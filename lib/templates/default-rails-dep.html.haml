@@ -1,0 +1,24 @@
+-# This template uses only the pagy_url_for helper from pagy and link_to/link_to_if from rails
+-# No special optimization for speed and memory. Use the pagy helpers if speed and memory are important.
+
+- rel = { pagy.prev => 'prev', pagy.next => 'next' }
+
+%nav.pagination{"aria-label" => "pager", :role => "navigation"}
+
+  %span{:class => "page prev #{'disabled' unless pagy.prev}"}
+    = link_to_if pagy.prev, pagy_t('pagy.nav.prev').html_safe, pagy_url_for(pagy.prev), rel: 'prev', 'aria-label': "previous"
+
+  - pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+    - case item
+
+      - when Integer        # page link
+        %span.page= link_to item, pagy_url_for(item), rel: rel[item]
+
+      - when String         # current page
+        %span.page.current= item
+
+      - when :gap           # page gap
+        %span.page.gap!= pagy_t('pagy.nav.gap')
+
+  %span{:class => "page next #{'disabled' unless pagy.next}"}
+    = link_to_if pagy.next, pagy_t('pagy.nav.next').html_safe, pagy_url_for(pagy.next), rel: 'next', 'aria-label': "next"
