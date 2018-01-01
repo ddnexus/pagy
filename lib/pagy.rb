@@ -30,10 +30,10 @@ class Pagy
     block.call GlobalOptions
   end
 
-  attr_reader :total_items            # total items of the collection
+  attr_reader :total_items            # total items in the collection
   attr_reader :page                   # ordinal number of the page in the page-collection
   alias_method :current_page, :page   # alias for page
-  attr_reader :options                # metrics options to customize the way the metrics are calculated
+  attr_reader :options                # options to customize metrics calculation
 
   # item-collection: the collection of items from 1 to #total_items (e.g.: the whole non-paginated collection of results)
   # page-items: the items in the page (e.g.: the subset of paginated result displayed in the page)
@@ -73,38 +73,40 @@ class Pagy
 
   # supplies direct option readers
   def method_missing(meth, *args, &block)
-    options.has_key?(meth) ? options[meth] : super
+    @options.has_key?(meth) ? @options[meth] : super
   end
 
   # respond_to direct option readers
   def respond_to?(meth, include_private=false)
-    options.has_key?(meth) || super
+    @options.has_key?(meth) || super
   end
 
   # items to offset
   def offset
-    @offset ||= items_per_page * ((page) - 1)
+    @offset ||= @options[:items_per_page] * ((@page) - 1)
   end
 
   # maximum number of items per page
   def limit
-    items_per_page
-  end
-
-  # the ordinal number representing the position of the first item in the item-collection
-  def page_first_item
-    offset + 1
-  end
-
-  # the ordinal number representing the position of the last item in the item-collection
-  def page_last_item
-    ending = offset + items_per_page
-    (ending > total_items) ? total_items : ending
+    @options[:items_per_page]
   end
 
   # total number of pages in the page-collection
   def total_pages
-    @total_pages ||= (total_items.to_f / items_per_page).ceil
+    @total_pages ||= (@total_items.to_f / @options[:items_per_page]).ceil
+  end
+
+  # the ordinal number representing the position of the first item in the item-collection
+  def page_first_item
+    @page_first_item ||= offset + 1
+  end
+
+  # the ordinal number representing the position of the last item in the item-collection
+  def page_last_item
+    @page_last_item ||= begin
+                          ending = offset + @options[:items_per_page]
+                          (ending > @total_items) ? @total_items : ending
+                        end
   end
 
   # first page of the page-collection (obviously 1, but it's here for verbose simmetry)
@@ -113,82 +115,91 @@ class Pagy
   end
 
   # last page of the page-collection
-  def last_page
-    total_pages
-  end
+  alias_method :last_page, :total_pages
+
 
   # is the page the first page of the page-collection?
   def first_page?
-    page == 1
+    @is_first_page ||= @page == 1
   end
 
   # is the current page the last page of the page-collection?
   def last_page?
-    page == last_page
+    @is_last_page ||= @page == last_page
   end
 
   # the page before the curent page (nil if first_page? is true)
   def previous_page
-    (page > 1) ? (page - 1) : nil
+    @previous_page ||= (@page > 1) ? (@page - 1) : nil
   end
 
   # the page after the current page (nil if last_page? is true)
   def next_page
-    last_page? ? nil : (page + 1)
+    @next_page ||= last_page? ? nil : (@page + 1)
   end
 
   # array containing the :number_of_before_pages right before the (current) page
   def before_pages
     @before_pages ||= begin
-                        return [] if number_of_before_pages.zero? || first_page?
-                        start_position = page - number_of_before_pages
+                        return [] if @options[:number_of_before_pages].zero? || first_page?
+                        start_position = @page - @options[:number_of_before_pages]
                         start_position = 1 if start_position < 1
-                        (start_position..(page - 1)).to_a
+                        (start_position..(@page - 1)).to_a
                       end
   end
 
   # array containing the :number_of_after_pages right after the (current) page
   def after_pages
     @after_pages ||= begin
-                       return [] if number_of_after_pages.zero? || last_page?
-                       end_position = page + number_of_after_pages
+                       return [] if @options[:number_of_after_pages].zero? || last_page?
+                       end_position = @page + @options[:number_of_after_pages]
                        end_position = last_page if end_position > last_page
-                       ((page + 1)..end_position).to_a
+                       ((@page + 1)..end_position).to_a
                      end
   end
 
   # array containing the :number_of_starting_pages starting from the first_page
   def starting_pages
     @starting_pages ||= begin
-                          return [] if number_of_starting_pages.zero? || first_page?
-                          end_position   = number_of_starting_pages
-                          end_position   = page - 1 if page <= end_position
+                          return [] if @options[:number_of_starting_pages].zero? || first_page?
+                          end_position   = @options[:number_of_starting_pages]
+                          end_position   = @page - 1 if @page <= end_position
                           starting_pages = (1..end_position).to_a
-                          remove_overlapping_pages ? (starting_pages - before_pages) : starting_pages
+                          @options[:remove_overlapping_pages] ? (starting_pages - before_pages) : starting_pages
                         end
   end
 
   # array containing the :number_of_ending_pages ending with the last_page
   def ending_pages
     @ending_pages ||= begin
-                        return [] if number_of_ending_pages.zero? || last_page?
-                        start_position = last_page - number_of_ending_pages + 1
-                        start_position = page + 1 if page >= start_position
+                        return [] if @options[:number_of_ending_pages].zero? || last_page?
+                        start_position = last_page - @options[:number_of_ending_pages] + 1
+                        start_position = @page + 1 if @page >= start_position
                         ending_pages   = (start_position..last_page).to_a
-                        remove_overlapping_pages ? (ending_pages - after_pages) : ending_pages
+                        @options[:remove_overlapping_pages] ? (ending_pages - after_pages) : ending_pages
                       end
   end
 
   # is there a gap between starting_pages and before_pages?
   def left_gap?
-    return false if starting_pages.empty? || before_pages.empty?
-    (starting_pages.last + 1) < before_pages.first
+    @has_left_gap ||= begin
+                        if starting_pages.empty? || before_pages.empty?
+                          false
+                        else
+                          (starting_pages.last + 1) < before_pages.first
+                        end
+                      end
   end
 
   # is there a gap between after_pages and ending_pages?
   def right_gap?
-    return false if ending_pages.empty? || after_pages.empty?
-    (after_pages.last + 1) < ending_pages.first
+    @has_right_gap ||= begin
+                         if ending_pages.empty? || after_pages.empty?
+                           false
+                         else
+                           (after_pages.last + 1) < ending_pages.first
+                         end
+                       end
   end
 
 end
