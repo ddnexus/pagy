@@ -32,7 +32,6 @@ class Pagy
 
   attr_reader :total_items            # total items in the collection
   attr_reader :page                   # ordinal number of the page in the page-collection
-  alias_method :current_page, :page   # alias for page
   attr_reader :options                # options to customize metrics calculation
 
   # item-collection: the collection of items from 1 to #total_items (e.g.: the whole non-paginated collection of results)
@@ -64,11 +63,6 @@ class Pagy
     else
       raise ArgumentError, "page expected to be an integer in the range 1..#{total_pages}; got #{page.inspect}."
     end
-  end
-
-  def inspect
-    super =~ /#<([^\s]+)/
-    "#<#{$1} total_items=#{@total_items}, page=#{@page}>"
   end
 
   # supplies direct option readers
@@ -200,6 +194,21 @@ class Pagy
                            (after_pages.last + 1) < ending_pages.first
                          end
                        end
+  end
+
+  def inspect
+    super =~ /#<([^\s]+)/
+    str =  "#<#{$1} "
+    str << "x:#{@options[:items_per_page]} "
+    str << "page:#{@page}/#{total_pages} "
+    str << "pages:[#{starting_pages.join('-')}]"
+    str << '~' if left_gap?
+    str << "[#{before_pages.join('-')}]"
+    str << "(#{@page})"
+    str << "[#{after_pages.join('-')}]"
+    str << '~' if right_gap?
+    str << "[#{ending_pages.join('-')}] "
+    str << "items:(#{page_first_item}..#{page_last_item})/#{total_items}>"
   end
 
 end

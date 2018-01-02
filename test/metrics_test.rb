@@ -15,6 +15,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(1, @options)
     assert_equal (1..10).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:1/11 pages:[][](1)[2-3]~[9-10-11] items:(1..10)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 1, pagy.page_first_item
     assert_equal 10, pagy.page_last_item
@@ -35,6 +37,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(2, @options)
     assert_equal (11..20).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:2/11 pages:[][1](2)[3-4]~[9-10-11] items:(11..20)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 11, pagy.page_first_item
     assert_equal 20, pagy.page_last_item
@@ -55,6 +59,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(3, @options)
     assert_equal (21..30).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:3/11 pages:[][1-2](3)[4-5]~[9-10-11] items:(21..30)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 21, pagy.page_first_item
     assert_equal 30, pagy.page_last_item
@@ -75,6 +81,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(4, @options)
     assert_equal (31..40).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:4/11 pages:[1][2-3](4)[5-6]~[9-10-11] items:(31..40)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 31, pagy.page_first_item
     assert_equal 40, pagy.page_last_item
@@ -95,6 +103,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(5, @options)
     assert_equal (41..50).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:5/11 pages:[1-2][3-4](5)[6-7]~[9-10-11] items:(41..50)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 41, pagy.page_first_item
     assert_equal 50, pagy.page_last_item
@@ -115,6 +125,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(6, @options)
     assert_equal (51..60).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('page:6/11 pages:[1-2-3][4-5](6)[7-8][9-10-11] items:(51..60)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_equal 51, pagy.page_first_item
     assert_equal 60, pagy.page_last_item
     refute pagy.first_page?
@@ -135,6 +147,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(7, @options)
     assert_equal (61..70).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:7/11 pages:[1-2-3]~[5-6](7)[8-9][10-11] items:(61..70)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 61, pagy.page_first_item
     assert_equal 70, pagy.page_last_item
@@ -155,6 +169,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(8, @options)
     assert_equal (71..80).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:8/11 pages:[1-2-3]~[6-7](8)[9-10][11] items:(71..80)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 71, pagy.page_first_item
     assert_equal 80, pagy.page_last_item
@@ -175,6 +191,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(9, @options)
     assert_equal (81..90).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:9/11 pages:[1-2-3]~[7-8](9)[10-11][] items:(81..90)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 81, pagy.page_first_item
     assert_equal 90, pagy.page_last_item
@@ -195,6 +213,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(10, @options)
     assert_equal (91..100).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:10/11 pages:[1-2-3]~[8-9](10)[11][] items:(91..100)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 91, pagy.page_first_item
     assert_equal 100, pagy.page_last_item
@@ -215,6 +235,8 @@ class OutputTest < Minitest::Test
     paginated = @array.page(11, @options)
     assert_equal (101..103).to_a, paginated
     pagy = paginated.pagy
+    content = Regexp.escape('x:10 page:11/11 pages:[1-2-3]~[9-10](11)[][] items:(101..103)/103')
+    assert_match /#{content}/, pagy.inspect
     assert_instance_of Pagy, pagy
     assert_equal 101, pagy.page_first_item
     assert_equal 103, pagy.page_last_item

@@ -24,7 +24,7 @@ class ApiTest < Minitest::Test
   end
 
   def test_responds_to_accessors
-    [:page, :current_page, :total_items, :options].each do |meth|
+    [:page, :total_items, :options].each do |meth|
       assert_respond_to @pagy, meth
     end
   end
