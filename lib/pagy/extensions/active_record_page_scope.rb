@@ -28,9 +28,9 @@ class Pagy
     extend self
 
     # internal helper: it enables count-cacheing if the :count_cache option is set to:
-    # :rails_cache - use the rails_cache (in that case you can also set the cache_expires_in)
+    # :rails_cache - use the rails_cache (in that case you can also set the :cache_expires_in)
     # Proc object  - useful if you want to handle the cache directly:
-    #                it calls the proc passing scope and options to get the count
+    #                it calls the proc passing the scope and the options objects to get the count
     # Otherwise it doesn't use any cache and performs a count query at each pagination
     def get_count(scope, options)
 
@@ -55,9 +55,10 @@ class Pagy
     end
 
     # helper useful if you use ActiveSupport::Cache::MemoryStore rails cache
-    # you should use it in a after_save callback in your model
-    # in order to delete the cache of your model
-    # after_save { Pagy::ActiveRecordHelpers.delete_memory_store_cache(self)}
+    # you should use it in a after_create and after_destroy callbacks in your model
+    # in order to delete the cache each time the total record cout changes
+    # after_create { Pagy::ActiveRecordHelpers.delete_memory_store_cache(self)}
+    # after_destroy { Pagy::ActiveRecordHelpers.delete_memory_store_cache(self)}
     def delete_memory_store_cache(model)
       Rails.cache.delete_matched /^pagy>#{model}>:/
     end
