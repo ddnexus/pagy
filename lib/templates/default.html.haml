@@ -1,0 +1,32 @@
+-# This template is i18n-ready: if you don't use i18n, then you can replace the pagy_t
+-# calls with the actual strings ("&lsaquo; Prev", "Next &rsaquo;", "&hellip;").
+
+-# This template uses the pagy_link_proc helper for high speed (+20x) and low memory (-12x).
+-# Usage: link.call(page_number[, label[,extra_attributes_string]])
+
+- link = pagy_link_proc(pagy)
+
+%nav.pagination{"aria-label" => "pager", :role => "navigation"}
+
+  - if pagy.prev
+    %span.page.prev!= link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
+  - else
+    %span.page.prev.disabled!= pagy_t('pagy.nav.prev')
+
+  - pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+    - case item
+
+      - when Integer        # page link
+        %span.page
+          != link.call(item)
+
+      - when String         # current page
+        %span.page.current= item
+
+      - when :gap           # page gap
+        %span.page.gap!= pagy_t('pagy.nav.gap')
+
+  - if pagy.next
+    %span.page.next!= link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
+  - else
+    %span.page.next.disabled!= pagy_t('pagy.nav.next')

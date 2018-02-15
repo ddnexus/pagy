@@ -6,7 +6,7 @@ class Pagy
   # allowing fancy routes, etc.)
   #
   # All the code has been optimized for speed and low memory usage.
-  # In particular there are a couple of very specialized methods (pagy_t and pagy_linker_proc)
+  # In particular there are a couple of very specialized methods (pagy_t and pagy_link_proc)
   # that can be used in place of the equivalent (but general-purpose) framework helpers,
   # in order to dramatically boost speed and reduce memory usage.
   #
@@ -15,7 +15,7 @@ class Pagy
   # just to get you (almost) the same string repeated with just the page number replaced.
   # Since pagination is a very specialized process, it is possible to do the same by using
   # a one-line proc that uses just one single string interpolation. Compared to the general-purpose
-  # link_to method, the pagy_linker_proc is tens of times faster and uses a very small fraction of the memory.
+  # link_to method, the pagy_link_proc benchmark gives a 20 times faster score and 12 times less memory.
   #
   # Notice: The code in this module may not look very pretty (as most code dealing with many long strings),
   # but its performance makes it very sexy! ;)
@@ -29,7 +29,7 @@ class Pagy
     # using the '%' method like in the following example:
     #
     # case item
-    #   when Integer; '<span class="page">%s</span>'        % linker.call(item)
+    #   when Integer; '<span class="page">%s</span>'        % link.call(item)
     #   when String ; '<span class="page active">%s</span>' % item
     #   when :gap   ; '<span class="page gap">%s</span>'    % pagy_t('pagy.nav.gap')
     # end
@@ -44,18 +44,18 @@ class Pagy
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, opts=nil)
-      pagy.opts.merge!(opts) if opts ; linker = pagy_linker_proc(pagy) ; tags = []  # init all vars
+      pagy.opts.merge!(opts) if opts ; link = pagy_link_proc(pagy) ; tags = []  # init all vars
 
-      tags << (pagy.prev ? %(<span class="page prev">#{linker.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</span>)
+      tags << (pagy.prev ? %(<span class="page prev">#{link.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</span>)
                          : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev'.freeze)}</span>))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         tags << case item
-                  when Integer; %(<span class="page">#{linker.call item}</span>)                  # page link
+                  when Integer; %(<span class="page">#{link.call item}</span>)                  # page link
                   when String ; %(<span class="page active">#{item}</span>)                       # current page
                   when :gap   ; %(<span class="page gap">#{pagy_t('pagy.nav.gap'.freeze)}</span>) # page gap
                 end
       end
-      tags << (pagy.next ? %(<span class="page next">#{linker.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</span>)
+      tags << (pagy.next ? %(<span class="page next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</span>)
                          : %(<span class="page next disabled">#{pagy_t('pagy.nav.next'.freeze)}</span>))
       %(<nav class="#{pagy.opts[:class]||'pagination'.freeze}" role="navigation" aria-label="pager">#{tags.join(pagy.opts[:separator]||' '.freeze)}</nav>)
     end
@@ -63,18 +63,18 @@ class Pagy
 
     # Pagination for bootstrap: it returns the html with the series of links to the pages
     def pagy_nav_bootstrap(pagy, opts=nil)
-      pagy.opts.merge!(opts) if opts ; linker = pagy_linker_proc(pagy) ; tags = []  # init all vars
+      pagy.opts.merge!(opts) if opts ; link = pagy_link_proc(pagy) ; tags = []  # init all vars
 
-      tags << (pagy.prev ? %(<li class="page-item prev">#{linker.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'class="page-link" aria-label="previous"'.freeze}</li>)
+      tags << (pagy.prev ? %(<li class="page-item prev">#{link.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'class="page-link" aria-label="previous"'.freeze}</li>)
                          : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev'.freeze)}</a></li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         tags << case item
-                  when Integer; %(<li class="page-item">#{linker.call item, item, 'class="page-link"'.freeze}</li>)                           # page link
-                  when String ; %(<li class="page-item active">#{linker.call item, item, 'class="page-link"'.freeze}</li>)                    # active page
+                  when Integer; %(<li class="page-item">#{link.call item, item, 'class="page-link"'.freeze}</li>)                           # page link
+                  when String ; %(<li class="page-item active">#{link.call item, item, 'class="page-link"'.freeze}</li>)                    # active page
                   when :gap   ; %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.gap'.freeze)}</a></li>) # page gap
                 end
       end
-      tags << (pagy.next ? %(<li class="page-item next">#{linker.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'class="page-link" aria-label="next"'.freeze}</li>)
+      tags << (pagy.next ? %(<li class="page-item next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'class="page-link" aria-label="next"'.freeze}</li>)
                          : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next'.freeze)}</a></li>))
       %(<nav class="#{pagy.opts[:class]||'pagination'.freeze}" role="navigation" aria-label="pager"><ul class="pagination">#{tags.join}</ul></nav>)
     end
@@ -145,7 +145,7 @@ class Pagy
 
     MARKER = "-pagy-#{'pagy'.hash}-".freeze
 
-    def pagy_linker_proc(pagy)
+    def pagy_link_proc(pagy)
       rel  = { pagy.prev=>' rel="prev"'.freeze, pagy.next=>' rel="next"'.freeze }
       a, b = %(<a href="#{pagy_url_for(MARKER)}" #{pagy.opts[:link_extra]}).split(MARKER)
       -> (n, name=n.to_s, extra=''.freeze) { "#{a}#{n}#{b}#{rel[n]||''.freeze} #{extra}>#{name}</a>"}
