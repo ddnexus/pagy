@@ -111,14 +111,14 @@ class Pagy
     # and add your translations to the I18n usual locales files
 
     hash = YAML.load_file Opts.i18n_file || Pagy.root.join('locales', 'pagy.yml')
-    DATA = hash[hash.keys.first].freeze
+    I18N = hash[hash.keys.first].freeze
 
     # Similar to I18n.t for interpolation and pluralization, with the following constraints:
     # - the path/keys option is supported only in dot-separated string or symbol format
     # - the :scope and :default options are not supported
     # - no exception are raised: the errors are returned as translated strings
     def pagy_t(path, vars={})
-      value = DATA.dig(*path.to_s.split('.'.freeze))
+      value = I18N.dig(*path.to_s.split('.'.freeze))
       if value.is_a?(Hash)
         vars.has_key?(:count) or return value
         plural = (Opts.i18n_plurals ||= -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'}).call(vars[:count])

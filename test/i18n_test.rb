@@ -11,8 +11,8 @@ class I18nTest < Minitest::Test
   end
 
   def test_data
-    assert_equal "&lsaquo; Prev", Pagy::Frontend::DATA['pagy']['nav']['prev']
-    assert_equal "&hellip;", Pagy::Frontend::DATA['pagy']['nav']['gap']
+    assert_equal "&lsaquo; Prev", Pagy::Frontend::I18N['pagy']['nav']['prev']
+    assert_equal "&hellip;", Pagy::Frontend::I18N['pagy']['nav']['gap']
   end
 
   def test_translation
@@ -28,7 +28,7 @@ class I18nTest < Minitest::Test
                  @I18n.pagy_t('pagy.info.single_page', count: 1)
     assert_equal "Displaying <b>all 10</b> %{item_name}",
                  @I18n.pagy_t('pagy.info.single_page', count: 10)
-    assert_equal "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>10</b>",
+    assert_equal "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>10</b> in total",
                  @I18n.pagy_t('pagy.info.multiple_pages', count: 10)
   end
 
@@ -44,7 +44,7 @@ class I18nTest < Minitest::Test
     pagy = Pagy.new count: 13
     assert_equal "Displaying <b>all 13</b> items", @I18n.pagy_info(pagy)
     pagy = Pagy.new count: 100, page: 3
-    assert_equal "Displaying items <b>41-60</b> of <b>100</b>", @I18n.pagy_info(pagy)
+    assert_equal "Displaying items <b>41-60</b> of <b>100</b> in total", @I18n.pagy_info(pagy)
   end
 
   def test_render_info_with_missing_118n_key
@@ -55,11 +55,11 @@ class I18nTest < Minitest::Test
     pagy = Pagy.new count: 13, i18n_key: :missing_key
     assert_equal "Displaying <b>all 13</b> items", @I18n.pagy_info(pagy)
     pagy = Pagy.new count: 100, page: 3, i18n_key: :missing_key
-    assert_equal "Displaying items <b>41-60</b> of <b>100</b>", @I18n.pagy_info(pagy)
+    assert_equal "Displaying items <b>41-60</b> of <b>100</b> in total", @I18n.pagy_info(pagy)
   end
 
   def test_render_info_with_existing_118n_key
-    Pagy::Frontend::DATA['pagy']['info']['product'] = { 'zero'  => 'Products',
+    Pagy::Frontend::I18N['pagy']['info']['product'] = { 'zero'  => 'Products',
                                                       'one'   => 'Product',
                                                       'other' => 'Products' }
     pagy = Pagy.new count: 0, i18n_key: 'pagy.info.product'
@@ -69,7 +69,7 @@ class I18nTest < Minitest::Test
     pagy = Pagy.new count: 13, i18n_key: 'pagy.info.product'
     assert_equal "Displaying <b>all 13</b> Products", @I18n.pagy_info(pagy)
     pagy = Pagy.new count: 100, page: 3, i18n_key: 'pagy.info.product'
-    assert_equal "Displaying Products <b>41-60</b> of <b>100</b>", @I18n.pagy_info(pagy)
+    assert_equal "Displaying Products <b>41-60</b> of <b>100</b> in total", @I18n.pagy_info(pagy)
   end
 
 end
