@@ -5,42 +5,9 @@ class Pagy
   # in order to fit its behavior with your app needs (e.g.: removing and adding some param or
   # allowing fancy routes, etc.)
   #
-  # All the code has been optimized for speed and low memory usage.
-  # In particular there are a couple of very specialized methods (pagy_t and pagy_link_proc)
-  # that can be used in place of the equivalent (but general-purpose) framework helpers,
-  # in order to dramatically boost speed and reduce memory usage.
-  #
-  # For example if you use the rails link_to in order to link each page in the pagination bar,
-  # you will call 10 or 20 times the same method that has to do a lot of things again and again
-  # just to get you (almost) the same string repeated with just the page number replaced.
-  # Since pagination is a very specialized process, it is possible to do the same by using
-  # a one-line proc that uses just one single string interpolation. Compared to the general-purpose
-  # link_to method, the pagy_link_proc benchmark gives a 20 times faster score and 12 times less memory.
-  #
-  # Notice: The code in this module may not look very pretty (as most code dealing with many long strings),
-  # but its performance makes it very sexy! ;)
-
+  # All the code here has been optimized for performance: it may not look very pretty
+  # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
   module Frontend
-
-    # Notice: Each long tag-string of the nav methods is written on one single line with a long
-    # interpolation in the middle for performance and... (hard to believe) readability reasons.
-    #
-    # Performance:
-    # using the '%' method like in the following example:
-    #
-    # case item
-    #   when Integer; '<span class="page">%s</span>'        % link.call(item)
-    #   when String ; '<span class="page active">%s</span>' % item
-    #   when :gap   ; '<span class="page gap">%s</span>'    % pagy_t('pagy.nav.gap')
-    # end
-    #
-    # would look a lot better but the benchmark really sucks! :/
-    #
-    # Readability:
-    # If you disable soft-wrapping in your editor, you can focus on the very simple ruby logic
-    # unfolding at the beginning of the lines, without any string-distraction.
-    # For the strings: each tag-string has only one interpolation, so at the end they are
-    # simple to deal with, even if they look a bit ugly.
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, opts=nil)
@@ -104,7 +71,7 @@ class Pagy
     # not needed (for example when your application is a single-locale app, e.g. only 'en', or only 'fr'...).
     #
     # It implements only the very basic functionality of the I18n.t method
-    # but it is a lot faster, it uses less memory and it's still good enough for the limited Pagy's needs.
+    # but it's still good enough for the limited Pagy's needs and it is faster.
     #
     # You can still use this method with a pluralization different than English
     # (i.e. not 'zero', 'one', 'other' plurals). In that case you should define the
