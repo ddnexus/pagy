@@ -15,13 +15,13 @@ nav.pagination role="navigation" aria-label="pager"
 
   - pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
     - case item
-      - when Integer                # page link
+      - when Integer           # page link
         span.page ==> link.call(item)
 
-      - when String                 # current page
+      - when String            # current page
         span.page.current ==> item
 
-      - when :gap                   # page gap
+      - when :gap              # page gap
         span.page.gap ==> pagy_t('pagy.nav.gap')
 
   - if pagy.next
