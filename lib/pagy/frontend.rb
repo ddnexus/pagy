@@ -1,5 +1,6 @@
 require 'yaml'
 class Pagy
+
   # This module supplies a few methods to deal with the navigation aspect of the pagination.
   # You will usually include it in some helper module, eventually overriding the #pagy_url_for
   # in order to fit its behavior with your app needs (e.g.: removing and adding some param or
@@ -67,6 +68,7 @@ class Pagy
       url << '?' << Rack::Utils.build_nested_query(params)
     end
 
+
     # The :pagy_t method is the internal implementation of I18n.t, used when I18n is missing or
     # not needed (for example when your application is a single-locale app, e.g. only 'en', or only 'fr'...).
     #
@@ -100,8 +102,9 @@ class Pagy
       sprintf value, Hash.new{|h,k| "%{#{k}}"}.merge!(vars)    # interpolation
     end
 
+
     # NOTICE: This method is used internally, so you need to know about it only if you
-    # are going to override a *_nav helper or a template AND changing the link tags.
+    # are going to override a *_nav helper or a template AND change the link tags.
     #
     # You call this method in order to get a proc that you will call to produce the page links.
     # The reasaon it is a 2 step process instead of a single method call is performance.
@@ -153,9 +156,9 @@ class Pagy
     def pagy_link_proc(pagy, lx=''.freeze)  # link extra
       p_prev, p_next, p_lx = pagy.prev, pagy.next, pagy.opts[:link_extra]
       a, b = %(<a href="#{pagy_url_for(MARKER)}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
-      -> (n, text=n, x=''.freeze) { "#{a}#{n}#{b}#{ if    n == p_prev; ' rel="prev"'.freeze
-                                                    elsif n == p_next; ' rel="next"'.freeze
-                                                    else                          ''.freeze
+      -> (n, text=n, x=''.freeze) { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'.freeze
+                                                    elsif n == p_next ; ' rel="next"'.freeze
+                                                    else                           ''.freeze
                                                     end }#{x.empty? ? x : %( #{x})}>#{text}</a>" }
     end
 
