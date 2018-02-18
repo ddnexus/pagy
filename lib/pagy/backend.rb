@@ -4,11 +4,11 @@ class Pagy
   # #pagy method, but it does not add any functionality on its own.
   #
   # Using the module allows you to have a predefined method and a few sub-methods
-  # (i.e. methods called only by the predefine method) handy if you need to override
+  # (i.e. methods called only by the predefined method) handy if you need to override
   # some aspect of the predefined #pagy method.
   #
   # However, you can just explicitly write your own pagy method in just a couple of
-  # lines of code, specially if you need to override two or more methods. For example:
+  # lines, specially if you need to override two or more methods. For example:
   #
   # def pagy(scope, opts={})
   #   pagy = Pagy.new scope.count, page: params[:page], **opts

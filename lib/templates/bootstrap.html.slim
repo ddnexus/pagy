@@ -1,17 +1,17 @@
 / This template is i18n-ready: if you don't use i18n, then you can replace the pagy_t
 / calls with the actual strings ("&lsaquo; Prev", "Next &rsaquo;", "&hellip;").
 
-/ This template uses the pagy_link_proc helper for high speed (+20x) and low memory (-12x).
-/ Usage: link.call(page_number[, label[,extra_attributes_string]])
+/ The link variable is set to a proc that returns the link tag.
+/ Usage: link.call( page_number [, text [, extra_attributes_string ]])
 
-- link = pagy_link_proc(pagy)
+- link = pagy_link_proc(pagy, 'class="page-link"')
 
 nav.pagination role="navigation" aria-label="pager"
 
   ul.pagination
 
     - if pagy.prev
-      li.page-item.prev == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'class="page-link" aria-label="previous"')
+      li.page-item.prev == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
     - else
       li.page-item.prev.disabled
         a.page-link href="#" == pagy_t('pagy.nav.prev')
@@ -20,17 +20,17 @@ nav.pagination role="navigation" aria-label="pager"
       - case item
 
         - when Integer # page link
-          li.page-item == link.call(item, item, 'class="page-link"')
+          li.page-item == link.call(item)
 
         - when String # current page
-          li.page-item.active == link.call(item, item, 'class="page-link"')
+          li.page-item.active == link.call(item)
 
         - when :gap # page gap
           li.page-item.disabled.gap
             a.page-link href="#" == pagy_t('pagy.nav.gap')
 
     - if pagy.next
-      li.page-item.next == link.call(pagy.next, pagy_t('pagy.nav.next'), 'class="page-link" aria-label="next"')
+      li.page-item.next == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
     - else
       li.page-item.next.disabled
         a.page-link href="#" == pagy_t('pagy.nav.next')

@@ -18,7 +18,7 @@ en:
         zero: "No %{item_name} found"
         one: "Displaying <b>1</b> %{item_name}"
         other: "Displaying <b>all %{count}</b> %{item_name}"
-      multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b>"
+      multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
       item:
         zero: "items"
         one: "item"
