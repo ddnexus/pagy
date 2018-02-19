@@ -7,7 +7,7 @@ require 'ostruct'
 # Notice that it doesn't actually do any pagination, nor navigation... that is
 # done with a few helpers in the Pagy::Backend and Pagy::Frontend modules.
 
-class Pagy ; VERSION = '0.4.1'
+class Pagy ; VERSION = '0.4.2'
 
   autoload :Backend,  'pagy/backend'
   autoload :Frontend, 'pagy/frontend'
@@ -39,8 +39,8 @@ class Pagy ; VERSION = '0.4.1'
     @pages   = @last = [(@count.to_f / @limit).ceil, 1].max               # cardinal and ordinal meanings
     (1..@last).cover?(@page) || raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset += @limit * (@page - 1)                                       # initial offset + offset for pagination
-    @limit   = @count % @limit if @page == @last                          # adjust limit for last page (for pre-limit(ed) collection)
-    @from    = @count.zero? ? 0 : @offset+1                               # page begins from item
+    @limit   = @count % @limit if @page == @last                          # adjust limit for last page (for pre-limit(ed) collections)
+    @from    = @count == 0 ? 0 : @offset+1                                # page begins from item
     @to      = @offset + @limit                                           # page ends to item
     @prev    = (@page-1 unless @page == 1)                                # nil if no prev page
     @next    = (@page+1 unless @page == @last)                            # nil if no next page
@@ -49,9 +49,9 @@ class Pagy ; VERSION = '0.4.1'
     around   = ([@page-@before, 1].max .. [@page+@after, @last].min).to_a # before..after pages
     row      = (all.first(@initial+1) | around | all.last(@final+1)).sort # row of pages with boundaries
     row.each_cons(2) do |a, b|                                            # loop in consecutive pairs
-      if    a+1 == b; @series.push(a)                                     # no gap     -> no additions
-      elsif a+2 == b; @series.push(a, a+1)                                # 1 page gap -> fill with missing page
-      else            @series.push(a, :gap)                               # n page gap -> add :gap
+      if    a+1 == b ; @series.push(a)                                    # no gap     -> no additions
+      elsif a+2 == b ; @series.push(a, a+1)                               # 1 page gap -> fill with missing page
+      else             @series.push(a, :gap)                              # n page gap -> add :gap
       end                                                                 # skip the end-boundary (last+1)
     end
     @series.shift                                                         # remove the start-boundary (0)

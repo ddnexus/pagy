@@ -1,4 +1,5 @@
 class Pagy
+
   # Including this module (usually in your controller) is handy but totally optional.
   # It basically just encapsulates a couple of verbose statements in one single slick
   # #pagy method, but it does not add any functionality on its own.
@@ -15,7 +16,7 @@ class Pagy
   #   return pagy, scope.offset(pagy.offset).limit(pagy.limit)
   # end
 
-  module Backend ; private         # the whole module is private so no problem including it in a controller
+  module Backend ; private         # the whole module is private so no problem with including it in a controller
 
     def pagy(obj, opts={})
       pagy = Pagy.new(count: pagy_get_count(obj), page: pagy_get_page, i18n_key: pagy_get_i18n_key(obj), **opts)
