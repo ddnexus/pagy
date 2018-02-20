@@ -11,12 +11,12 @@ class I18nTest < Minitest::Test
   end
 
   def test_data
-    assert_equal "&lsaquo; Prev", Pagy::Frontend::I18N['pagy']['nav']['prev']
+    assert_equal "&lsaquo;&nbsp;Prev", Pagy::Frontend::I18N['pagy']['nav']['prev']
     assert_equal "&hellip;", Pagy::Frontend::I18N['pagy']['nav']['gap']
   end
 
   def test_translation
-    assert_equal "&lsaquo; Prev", @I18n.pagy_t('pagy.nav.prev')
+    assert_equal "&lsaquo;&nbsp;Prev", @I18n.pagy_t('pagy.nav.prev')
 
     assert_equal "items", @I18n.pagy_t('pagy.info.item', count: 0)
     assert_equal "item", @I18n.pagy_t('pagy.info.item', count: 1)

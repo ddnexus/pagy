@@ -10,8 +10,8 @@
 en:
   pagy:
     nav:
-      prev: "&lsaquo; Prev"
-      next: "Next &rsaquo;"
+      prev: "&lsaquo;&nbsp;Prev"
+      next: "Next&nbsp;&rsaquo;"
       gap: "&hellip;"
     info:
       single_page:
