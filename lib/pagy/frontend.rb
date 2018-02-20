@@ -106,46 +106,49 @@ class Pagy
     # NOTICE: This method is used internally, so you need to know about it only if you
     # are going to override a *_nav helper or a template AND change the link tags.
     #
+    # This is a specialized method that works only for page links, it is not intended to be used
+    # for any other generic links to any urls different than a page link.
+    #
     # You call this method in order to get a proc that you will call to produce the page links.
     # The reasaon it is a 2 step process instead of a single method call is performance.
     #
     # Call the method to get the proc (once):
-    #   link = pagy_link_proc( pagy [, extra_attributes_string ])
+    #    link = pagy_link_proc( pagy [, extra_attributes_string ])
     #
     # Call the proc to get the links (multiple times):
-    #   link.call( page_number [, label [, extra_attributes_string ]])
+    #    link.call( page_number [, text [, extra_attributes_string ]])
     #
     # You can pass extra attribute strings to get inserted in the link tags at many different levels.
     # Depending by the scope you want your attributes to be added, (from wide to narrow) you can:
     #
     # 1. For all pagy objects: set the global option :link_extra:
     #
-    #     Pagy::Opts.extra_link = 'data-remote="true"'
-    #     link.call(page_number=2)
-    #     #=> <a href="...?page=2" data-remote="true">2</a>
+    #    Pagy::Opts.extra_link = 'data-remote="true"'
+    #    link.call(page_number=2)
+    #    #=> <a href="...?page=2" data-remote="true">2</a>
     #
     # 2. For one pagy object: pass a :link_extra option to a pagy constructor (Pagy.new or pagy controller method):
     #
-    #     @pagy, @records = pagy(my_scope, extra_link: 'data-remote="true"')
-    #     link.call(page_number)
-    #     #=> <a href="...?page=2" data-remote="true">2</a>
+    #    @pagy, @records = pagy(my_scope, extra_link: 'data-remote="true"')
+    #    link.call(page_number)
+    #    #=> <a href="...?page=2" data-remote="true">2</a>
     #
     # 3. For one pagy_nav render: pass a :link_extra option to a *_nav method:
     #
-    #      pagy_nav(@pagy,  extra_link: 'data-remote="true"')   #
-    #      link.call(page_number)
-    #      #=> <a href="...?page=2" data-remote="true">2</a>
+    #    pagy_nav(@pagy,  extra_link: 'data-remote="true"')   #
+    #    link.call(page_number)
+    #    #=> <a href="...?page=2" data-remote="true">2</a>
     #
     # 4. For all the calls to the returned pagy_link_proc: pass an extra attributes string when you get the proc:
     #
-    #      link = pagy_link_proc(pagy, 'class="page-link"')
-    #      link.call(page_number)
-    #      #=> <a href="...?page=2" data-remote="true" class="page-link">2</a>
+    #    link = pagy_link_proc(pagy, 'class="page-link"')
+    #    link.call(page_number)
+    #    #=> <a href="...?page=2" data-remote="true" class="page-link">2</a>
     #
     # 5. For a single link.call: pass an extra attributes string  when you call the proc:
     #
-    #      link.call(page_number, 'aria-label="my-label"')
-    #      #=> <a href="...?page=2" data-remote="true" class="page-link" aria-label="my-label">2</a>
+    #    link.call(page_number, 'aria-label="my-label"')
+    #    #=> <a href="...?page=2" data-remote="true" class="page-link" aria-label="my-label">2</a>
     #
     # WARNING: since we use only strings for performance, the attribute strings get concatenated, not merged!
     # Be careful not to pass the same attribute at different levels multiple times. That would generate a duplicated
