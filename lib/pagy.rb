@@ -7,7 +7,7 @@ require 'ostruct'
 # Notice that it doesn't actually do any pagination, nor navigation... that is
 # done with a few helpers in the Pagy::Backend and Pagy::Frontend modules.
 
-class Pagy ; VERSION = '0.4.2'
+class Pagy ; VERSION = '0.5.0'
 
   autoload :Backend,  'pagy/backend'
   autoload :Frontend, 'pagy/frontend'
