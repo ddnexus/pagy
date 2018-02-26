@@ -16,17 +16,16 @@
       %li.page-item.prev.disabled
         %a.page-link{:href => '#'}!= pagy_t('pagy.nav.prev')
 
-    - pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-      - case item
-        - when Integer           # page link
-          %li.page-item!= link.call(item)
+    - pagy.series.each do |item|                      # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      - if item.is_a?(Integer)                        # page link
+        %li.page-item!= link.call(item)
 
-        - when String            # current page
-          %li.page-item.active!= link.call(item)
+      - elsif item.is_a?(String)                      # current page
+        %li.page-item.active!= link.call(item)
 
-        - when :gap              # page gap
-          %li.page-item.disabled.gap
-            %a.page-link{:href => "#"}!= pagy_t('pagy.nav.gap')
+      - elsif item == :gap                            # page gap
+        %li.page-item.disabled.gap
+          %a.page-link{:href => "#"}!= pagy_t('pagy.nav.gap')
 
     - if pagy.next
       %li.page-item.next!= link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
