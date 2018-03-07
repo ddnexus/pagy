@@ -9,7 +9,7 @@ class Pagy
                     .merge(opts)                        # use merge instead of **opts for ruby versions < 2.*
                     .merge(count: count, page: page)    # add count and page
         pagy  = Pagy.new(opts)                          # create the pagy object
-        paged = self[pagy.offset, pagy.limit]           # paged using #offset and #limit from the pagy object
+        paged = self[pagy.offset, pagy.items]           # paged using #offset and #items from the pagy object
         return pagy, paged                              # return the pagy object and the page of items
       end
 

@@ -18,30 +18,30 @@ class Pagy ; VERSION = '0.5.0'
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default options
-  # limit:         max items per page: it gets adjusted for the last page,
+  # items:         max items per page: it gets adjusted for the last page,
   #                so it will pull the right items if the collection was pre-limit(ed)
   # offset:        the initial offset of the whole collection before pagination
   #                set it only if the collection was pre-offset(ted): it gets added to the final offset
   # initial/final: max pages to show from the first/last page
   # before/after:  max pages before/after the current page
-  Opts = OpenStruct.new(limit:20, offset:0, initial:1, before:4, after:4, final:1)
+  Opts = OpenStruct.new(items:20, offset:0, initial:1, before:4, after:4, final:1)
 
-  attr_reader :count, :page, :limit, :opts, :pages, :last, :offset, :from, :to, :prev, :next, :series
+  attr_reader :count, :page, :items, :opts, :pages, :last, :offset, :from, :to, :prev, :next, :series
 
   # merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(opts)
     @opts        = Opts.to_h.merge!(opts)                                 # global opts + instance opts (bang faster)
     @opts[:page] = (@opts[:page]||1).to_i                                 # set page to 1 if nil
-    [:count, :limit, :offset, :initial, :before, :page, :after, :final].each do |k|
+    [:count, :items, :offset, :initial, :before, :page, :after, :final].each do |k|
       @opts[k] >= 0 rescue nil || raise(ArgumentError, "expected #{k} >= 0; got #{@opts[k].inspect}")
       instance_variable_set(:"@#{k}", @opts.delete(k))                    # set all the metrics variables
     end
-    @pages   = @last = [(@count.to_f / @limit).ceil, 1].max               # cardinal and ordinal meanings
+    @pages   = @last = [(@count.to_f / @items).ceil, 1].max               # cardinal and ordinal meanings
     (1..@last).cover?(@page) || raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
-    @offset += @limit * (@page - 1)                                       # initial offset + offset for pagination
-    @limit   = @count % @limit if @page == @last                          # adjust limit for last page (for pre-limit(ed) collections)
+    @offset += @items * (@page - 1)                                       # initial offset + pagination offset
+    @items   = @count % @items if @page == @last                          # adjust items for last page
     @from    = @count == 0 ? 0 : @offset+1                                # page begins from item
-    @to      = @offset + @limit                                           # page ends to item
+    @to      = @offset + @items                                           # page ends to item
     @prev    = (@page-1 unless @page == 1)                                # nil if no prev page
     @next    = (@page+1 unless @page == @last)                            # nil if no next page
     @series  = []                                                         # e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]

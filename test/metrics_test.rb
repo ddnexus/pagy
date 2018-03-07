@@ -3,7 +3,7 @@ require "test_helper"
 class MetricsTest < Minitest::Test
 
   def setup
-    @opts  = { limit:   10,
+    @opts  = { items:   10,
                initial: 3,
                final:   3,
                before:  2,
@@ -194,25 +194,25 @@ class MetricsTest < Minitest::Test
   def test_other_output
     pagy = Pagy.new @opts.merge(count: 103, page: 2)
     assert_equal 103, pagy.count
-    assert_equal 10, pagy.limit
+    assert_equal 10, pagy.items
     assert_equal 10, pagy.offset
     assert_equal 11 , pagy.pages
     assert_equal 11, pagy.last
   end
 
   def test_initial_offset_page_1
-    pagy = Pagy.new(count: 87, page:1, offset:10, limit: 10)
+    pagy = Pagy.new(count: 87, page:1, offset:10, items: 10)
     assert_equal 10, pagy.offset
-    assert_equal 10, pagy.limit
+    assert_equal 10, pagy.items
     assert_equal 11, pagy.from
     assert_equal 20, pagy.to
     assert_equal 9, pagy.pages
   end
 
   def test_initial_offset_page_9
-    pagy = Pagy.new(count: 87, page:9, offset:10, limit: 10)
+    pagy = Pagy.new(count: 87, page:9, offset:10, items: 10)
     assert_equal 90, pagy.offset
-    assert_equal 7, pagy.limit
+    assert_equal 7, pagy.items
     assert_equal 91, pagy.from
     assert_equal 97, pagy.to
     assert_equal 9, pagy.pages

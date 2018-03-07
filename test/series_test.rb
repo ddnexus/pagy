@@ -6,21 +6,21 @@ class SeriesTest < Minitest::Test
   def setup
 
     @opt0 = { count:   103,
-              limit:   10,
+              items:   10,
               initial: 0,
               final:   0,
               before:  2,
               after:   2 }
 
     @opt1 = { count:   103,
-              limit:   10,
+              items:   10,
               initial: 3,
               final:   3,
               before:  0,
               after:   0 }
 
     @opt2 = { count:   103,
-              limit:   10,
+              items:   10,
               initial: 3,
               final:   0,
               before:  2,

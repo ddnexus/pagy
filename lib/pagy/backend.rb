@@ -13,7 +13,7 @@ class Pagy
   #
   # def pagy(scope, opts={})
   #   pagy = Pagy.new scope.count, page: params[:page], **opts
-  #   return pagy, scope.offset(pagy.offset).limit(pagy.limit)
+  #   return pagy, scope.offset(pagy.offset).limit(pagy.items)
   # end
 
   module Backend ; private         # the whole module is private so no problem with including it in a controller
@@ -36,7 +36,7 @@ class Pagy
     # this should work with ActiveRecord, Sequel, Mongoid...
     # override it if obj does not implement it that way
     def pagy_get_items(obj, pagy)
-      obj.offset(pagy.offset).limit(pagy.limit)
+      obj.offset(pagy.offset).limit(pagy.items)
     end
 
   end
