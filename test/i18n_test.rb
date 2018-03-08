@@ -11,8 +11,8 @@ class I18nTest < Minitest::Test
   end
 
   def test_data
-    assert_equal "&lsaquo;&nbsp;Prev", Pagy::Frontend::I18N['pagy']['nav']['prev']
-    assert_equal "&hellip;", Pagy::Frontend::I18N['pagy']['nav']['gap']
+    assert_equal "&lsaquo;&nbsp;Prev", Pagy::Frontend::I18N_DATA['pagy']['nav']['prev']
+    assert_equal "&hellip;", Pagy::Frontend::I18N_DATA['pagy']['nav']['gap']
   end
 
   def test_translation
@@ -59,9 +59,9 @@ class I18nTest < Minitest::Test
   end
 
   def test_render_info_with_existing_118n_key
-    Pagy::Frontend::I18N['pagy']['info']['product'] = { 'zero'  => 'Products',
-                                                      'one'   => 'Product',
-                                                      'other' => 'Products' }
+    Pagy::Frontend::I18N_DATA['pagy']['info']['product'] = { 'zero'  => 'Products',
+                                                             'one'   => 'Product',
+                                                             'other' => 'Products' }
     pagy = Pagy.new count: 0, i18n_key: 'pagy.info.product'
     assert_equal "No Products found", @I18n.pagy_info(pagy)
     pagy = Pagy.new count: 1, i18n_key: 'pagy.info.product'

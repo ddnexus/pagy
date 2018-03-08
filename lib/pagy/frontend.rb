@@ -1,5 +1,6 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
 
+# this file will get autoloaded, so environment constants like ::I18n will be already set
 require 'yaml'
 class Pagy
 
@@ -76,23 +77,25 @@ class Pagy
     end
 
 
-    hash = YAML.load_file Vars[:i18n_file] || Pagy.root.join('locales', 'pagy.yml')
-    I18N = hash[hash.keys.first].freeze
-
-    # Similar to I18n.t for interpolation and pluralization, with the following constraints:
-    # - the path/keys option is supported only in dot-separated string or symbol format
-    # - the :scope and :default options are not supported
-    # - no exception are raised: the errors are returned as translated strings
-    def pagy_t(path, vars={})
-      value = I18N.dig(*path.to_s.split('.'.freeze))
-      if value.is_a?(Hash)
-        vars.has_key?(:count) or return value
-        plural = (Vars[:i18n_plurals] ||= -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'}).call(vars[:count])
-        value.has_key?(plural) or return %(invalid pluralization data: "#{path}" cannot be used with count: #{vars[:count]}; key "#{plural}" is missing.)
-        value = value[plural]
+    # define #pagy_t depending on I18N[:gem] and I18n
+    if I18n[:gem] || I18n[:gem].nil? && defined?(::I18n)
+      ::I18n.load_path << I18n[:file]
+      def pagy_t(*a); ::I18n.t(*a) end
+    else
+      # load data from the first locale in the file
+      I18N_DATA = YAML.load_file(I18n[:file]).first[1].freeze
+      # Similar to I18n.t for interpolation and pluralization but without translation
+      # Use only for single-language apps: it is specialized for pagy and 5x faster than I18n.t
+      def pagy_t(path, vars={})
+        value = I18N_DATA.dig(*path.to_s.split('.'.freeze)) or return %(translation missing: "#{path}")
+        if value.is_a?(Hash)
+          vars.key?(:count) or return value
+          plural = I18n[:plurals].call(vars[:count])
+          value.key?(plural) or return %(invalid pluralization data: "#{path}" cannot be used with count: #{vars[:count]}; key "#{plural}" is missing.)
+          value = value[plural] or return %(translation missing: "#{path}")
+        end
+        sprintf value, Hash.new{|h,k| "%{#{k}}"}.merge!(vars)    # interpolation
       end
-      value or return %(translation missing: "#{path}")
-      sprintf value, Hash.new{|h,k| "%{#{k}}"}.merge!(vars)    # interpolation
     end
 
   end
