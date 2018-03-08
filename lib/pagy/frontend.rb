@@ -11,44 +11,38 @@ class Pagy
   module Frontend
 
     # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, vars=nil)
-      vars = vars ? pagy.vars.merge(vars) : pagy.vars
-      link = pagy_link_proc(pagy)
-      tags = []
+    def pagy_nav(pagy)
+      tags = []; link = pagy_link_proc(pagy)
 
       tags << (pagy.prev ? %(<span class="page prev">#{link.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</span>)
                          : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev'.freeze)}</span>))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags << case item
-                  when Integer; %(<span class="page">#{link.call item}</span>)                    # page link
-                  when String ; %(<span class="page active">#{item}</span>)                       # current page
-                  when :gap   ; %(<span class="page gap">#{pagy_t('pagy.nav.gap'.freeze)}</span>) # page gap
+        tags << if    item.is_a?(Integer); %(<span class="page">#{link.call item}</span>)                    # page link
+                elsif item.is_a?(String) ; %(<span class="page active">#{item}</span>)                       # current page
+                elsif item == :gap       ; %(<span class="page gap">#{pagy_t('pagy.nav.gap'.freeze)}</span>) # page gap
                 end
       end
       tags << (pagy.next ? %(<span class="page next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</span>)
                          : %(<span class="page next disabled">#{pagy_t('pagy.nav.next'.freeze)}</span>))
-      %(<nav class="#{vars[:class]||'pagination'.freeze}" role="navigation" aria-label="pager">#{tags.join(vars[:separator]||' '.freeze)}</nav>)
+      %(<nav class="pagination" role="navigation" aria-label="pager">#{tags.join(' '.freeze)}</nav>)
     end
 
 
     # Pagination for bootstrap: it returns the html with the series of links to the pages
-    def pagy_nav_bootstrap(pagy, vars=nil)
-      vars = vars ? pagy.vars.merge(vars) : pagy.vars
-      link = pagy_link_proc(pagy, 'class="page-link"'.freeze)
-      tags = []
+    def pagy_nav_bootstrap(pagy)
+      tags = []; link = pagy_link_proc(pagy, 'class="page-link"'.freeze)
 
       tags << (pagy.prev ? %(<li class="page-item prev">#{link.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</li>)
                          : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev'.freeze)}</a></li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags << case item
-                  when Integer; %(<li class="page-item">#{link.call item}</li>)                                                               # page link
-                  when String ; %(<li class="page-item active">#{link.call item}</li>)                                                        # active page
-                  when :gap   ; %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.gap'.freeze)}</a></li>) # page gap
+        tags << if    item.is_a?(Integer); %(<li class="page-item">#{link.call item}</li>)                                                               # page link
+                elsif item.is_a?(String) ; %(<li class="page-item active">#{link.call item}</li>)                                                        # active page
+                elsif item == :gap       ; %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.gap'.freeze)}</a></li>) # page gap
                 end
       end
       tags << (pagy.next ? %(<li class="page-item next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</li>)
                          : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next'.freeze)}</a></li>))
-      %(<nav class="#{vars[:class]||'pagination'.freeze}" role="navigation" aria-label="pager"><ul class="pagination">#{tags.join}</ul></nav>)
+      %(<nav class="pagination" role="navigation" aria-label="pager"><ul class="pagination">#{tags.join}</ul></nav>)
     end
 
 
@@ -64,7 +58,7 @@ class Pagy
     # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
     def pagy_url_for(n)
       url    = File.join(request.script_name.to_s, request.path_info)
-      params = request.GET.merge('page' => n.to_s)
+      params = request.GET.merge('page'.freeze => n.to_s)
       url << '?' << Rack::Utils.build_nested_query(params)
     end
 
@@ -89,29 +83,23 @@ class Pagy
     #
     # 1. For all pagy objects: set the global option :link_extra:
     #
-    #    Pagy::Vars[:extra_link] = 'data-remote="true"'
+    #    Pagy::Vars[:link_extra] = 'data-remote="true"'
     #    link.call(page_number=2)
     #    #=> <a href="...?page=2" data-remote="true">2</a>
     #
     # 2. For one pagy object: pass a :link_extra option to a pagy constructor (Pagy.new or pagy controller method):
     #
-    #    @pagy, @records = pagy(my_scope, extra_link: 'data-remote="true"')
+    #    @pagy, @records = pagy(my_scope, link_extra: 'data-remote="true"')
     #    link.call(page_number)
     #    #=> <a href="...?page=2" data-remote="true">2</a>
     #
-    # 3. For one pagy_nav render: pass a :link_extra option to a *_nav method:
-    #
-    #    pagy_nav(@pagy,  extra_link: 'data-remote="true"')   #
-    #    link.call(page_number)
-    #    #=> <a href="...?page=2" data-remote="true">2</a>
-    #
-    # 4. For all the calls to the returned pagy_link_proc: pass an extra attributes string when you get the proc:
+    # 3. For all the calls to the returned pagy_link_proc: pass an extra attributes string when you get the proc:
     #
     #    link = pagy_link_proc(pagy, 'class="page-link"')
     #    link.call(page_number)
     #    #=> <a href="...?page=2" data-remote="true" class="page-link">2</a>
     #
-    # 5. For a single link.call: pass an extra attributes string  when you call the proc:
+    # 4. For a single link.call: pass an extra attributes string  when you call the proc:
     #
     #    link.call(page_number, 'aria-label="my-label"')
     #    #=> <a href="...?page=2" data-remote="true" class="page-link" aria-label="my-label">2</a>
@@ -122,13 +110,12 @@ class Pagy
 
     MARKER = "-pagy-#{'pagy'.hash}-".freeze
 
-    def pagy_link_proc(pagy, lx=''.freeze)  # link extra
+    def pagy_link_proc(pagy, lx=''.freeze)  # "lx" means "link extra"
       p_prev, p_next, p_lx = pagy.prev, pagy.next, pagy.vars[:link_extra]
       a, b = %(<a href="#{pagy_url_for(MARKER)}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
       -> (n, text=n, x=''.freeze) { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'.freeze
                                                     elsif n == p_next ; ' rel="next"'.freeze
-                                                    else                           ''.freeze
-                                                    end }#{x.empty? ? x : %( #{x})}>#{text}</a>" }
+                                                    else                           ''.freeze end }#{x.empty? ? x : %( #{x})}>#{text}</a>" }
     end
 
 
