@@ -11,15 +11,15 @@ class Pagy
   # However, you can just explicitly write your own pagy method in just a couple of
   # lines, specially if you need to override two or more methods. For example:
   #
-  # def pagy(scope, opts={})
-  #   pagy = Pagy.new scope.count, page: params[:page], **opts
+  # def pagy(scope, vars={})
+  #   pagy = Pagy.new scope.count, page: params[:page], **vars
   #   return pagy, scope.offset(pagy.offset).limit(pagy.items)
   # end
 
   module Backend ; private         # the whole module is private so no problem with including it in a controller
 
-    def pagy(obj, opts={})
-      pagy = Pagy.new(count: pagy_get_count(obj), page: pagy_get_page, i18n_key: pagy_get_i18n_key(obj), **opts)
+    def pagy(obj, vars={})
+      pagy = Pagy.new(count: pagy_get_count(obj), page: pagy_get_page, i18n_key: pagy_get_i18n_key(obj), **vars)
       return pagy, pagy_get_items(obj, pagy)
     end
 

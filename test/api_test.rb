@@ -22,7 +22,7 @@ class ApiTest < Minitest::Test
   end
 
   def test_respond_to_accessors
-    [:count, :page, :items, :opts, # input
+    [:count, :page, :items, :vars, # input
      :offset, :pages, :last, :from, :to, :prev, :next, :series # output
     ].each do |meth|
       assert_respond_to @pagy, meth

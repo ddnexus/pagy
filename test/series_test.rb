@@ -5,33 +5,33 @@ class SeriesTest < Minitest::Test
 
   def setup
 
-    @opt0 = { count:   103,
-              items:   10,
-              initial: 0,
-              final:   0,
-              before:  2,
-              after:   2 }
+    @vars0 = { count:   103,
+               items:   10,
+               initial: 0,
+               final:   0,
+               before:  2,
+               after:   2 }
 
-    @opt1 = { count:   103,
-              items:   10,
-              initial: 3,
-              final:   3,
-              before:  0,
-              after:   0 }
+    @vars1 = { count:   103,
+               items:   10,
+               initial: 3,
+               final:   3,
+               before:  0,
+               after:   0 }
 
-    @opt2 = { count:   103,
-              items:   10,
-              initial: 3,
-              final:   0,
-              before:  2,
-              after:   0 }
+    @vars2 = { count:   103,
+               items:   10,
+               initial: 3,
+               final:   0,
+               before:  2,
+               after:   0 }
 
   end
 
   def series_tests(page, *expected)
     expected.each_with_index do |e, i|
-      opts = instance_variable_get(:"@opt#{i}").merge(page: page)
-      assert_equal e, Pagy.new(opts).series
+      vars = instance_variable_get(:"@vars#{i}").merge(page: page)
+      assert_equal e, Pagy.new(vars).series
     end
   end
 

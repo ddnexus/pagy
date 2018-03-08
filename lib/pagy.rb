@@ -24,17 +24,17 @@ class Pagy ; VERSION = '0.5.0'
   #                set it only if the collection was pre-offset(ted): it gets added to the final offset
   # initial/final: max pages to show from the first/last page
   # before/after:  max pages before/after the current page
-  Opts = OpenStruct.new(items:20, offset:0, initial:1, before:4, after:4, final:1)
+  Vars = OpenStruct.new(items:20, offset:0, initial:1, before:4, after:4, final:1)
 
-  attr_reader :count, :page, :items, :opts, :pages, :last, :offset, :from, :to, :prev, :next, :series
+  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next, :series
 
   # merge and validate the options, do some simple aritmetic and set the instance variables
-  def initialize(opts)
-    @opts        = Opts.to_h.merge!(opts)                                 # global opts + instance opts (bang faster)
-    @opts[:page] = (@opts[:page]||1).to_i                                 # set page to 1 if nil
+  def initialize(vars)
+    @vars        = Vars.to_h.merge!(vars)                                 # global vars + instance vars (bang faster)
+    @vars[:page] = (@vars[:page]||1).to_i                                 # set page to 1 if nil
     [:count, :items, :offset, :initial, :before, :page, :after, :final].each do |k|
-      @opts[k] >= 0 rescue nil || raise(ArgumentError, "expected #{k} >= 0; got #{@opts[k].inspect}")
-      instance_variable_set(:"@#{k}", @opts.delete(k))                    # set all the metrics variables
+      @vars[k] >= 0 rescue nil || raise(ArgumentError, "expected #{k} >= 0; got #{@vars[k].inspect}")
+      instance_variable_set(:"@#{k}", @vars.delete(k))                    # set all the metrics variables
     end
     @pages   = @last = [(@count.to_f / @items).ceil, 1].max               # cardinal and ordinal meanings
     (1..@last).cover?(@page) || raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
