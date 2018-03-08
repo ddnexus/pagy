@@ -1,11 +1,11 @@
 # Pagy uses an internal I18n-like :pagy_t helper that lookup
 # into this file at Pagy.root.join('locale', 'pagy.yml')
 # If you want to customize it you should set:
-# Pagy::Vars.i18n_file = 'path/to/your/file.yaml'
+# Pagy::Vars[:i18n_file] = 'path/to/your/file.yaml'
 
 # If you need to use this method with pluralization different than english
 # (i.e. not 'zero', 'one', 'other' plurals) then you should define the
-# Pagy::Vars.i18n_plurals proc to return the plural key based on the passed count.
+# Pagy::Vars[:i18n_plurals] proc to return the plural key based on the passed count.
 
 en:
   pagy:

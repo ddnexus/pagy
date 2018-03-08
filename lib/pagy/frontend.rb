@@ -89,7 +89,7 @@ class Pagy
     #
     # 1. For all pagy objects: set the global option :link_extra:
     #
-    #    Pagy::Vars.extra_link = 'data-remote="true"'
+    #    Pagy::Vars[:extra_link] = 'data-remote="true"'
     #    link.call(page_number=2)
     #    #=> <a href="...?page=2" data-remote="true">2</a>
     #
@@ -140,13 +140,13 @@ class Pagy
     #
     # You can still use this method with a pluralization different than English
     # (i.e. not 'zero', 'one', 'other' plurals). In that case you should define the
-    # Pagy::Vars.i18n_plurals proc to return the plural key based on the passed count.
+    # Pagy::Vars[:i18n_plurals} proc to return the plural key based on the passed count.
     #
     # If you need full I18n functionality, you should override this method with something like:
     #    def pagy_t(*a); I18n.t(*a) end
     # and add your translations to the I18n usual locales files
 
-    hash = YAML.load_file Vars.i18n_file || Pagy.root.join('locales', 'pagy.yml')
+    hash = YAML.load_file Vars[:i18n_file] || Pagy.root.join('locales', 'pagy.yml')
     I18N = hash[hash.keys.first].freeze
 
     # Similar to I18n.t for interpolation and pluralization, with the following constraints:
@@ -157,7 +157,7 @@ class Pagy
       value = I18N.dig(*path.to_s.split('.'.freeze))
       if value.is_a?(Hash)
         vars.has_key?(:count) or return value
-        plural = (Vars.i18n_plurals ||= -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'}).call(vars[:count])
+        plural = (Vars[:i18n_plurals] ||= -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'}).call(vars[:count])
         value.has_key?(plural) or return %(invalid pluralization data: "#{path}" cannot be used with count: #{vars[:count]}; key "#{plural}" is missing.)
         value = value[plural]
       end
