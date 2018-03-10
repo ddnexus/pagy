@@ -13,17 +13,17 @@ class Pagy ; VERSION = '0.5.0'
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default core vars
-  Vars = { items:20, offset:0, initial:1, before:4, after:4, final:1 }
+  VARS = { items:20, offset:0, initial:1, before:4, after:4, final:1 }
 
   # default I18n vars
-  I18n = { file: Pagy.root.join('locales', 'pagy.yml').to_s, plurals: -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'} }
+  I18N = { file: Pagy.root.join('locales', 'pagy.yml').to_s, plurals: -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'} }
 
 
-attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next, :series
+  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next, :series
 
   # merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(vars)
-    @vars        = Vars.merge(vars)                                       # global vars + instance vars
+    @vars        = VARS.merge(vars)                                       # global vars + instance vars
     @vars[:page] = (@vars[:page]||1).to_i                                 # set page to 1 if nil
     {count:0, items:1, offset:0, initial:0, before:0, page:1, after:0, final:0}.each do |k,min|
       @vars[k] >= min rescue nil || raise(ArgumentError, "expected #{k} >= #{min}; got #{@vars[k].inspect}")
