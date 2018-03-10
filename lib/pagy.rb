@@ -19,9 +19,9 @@ class Pagy ; VERSION = '0.5.0'
   def initialize(vars)
     @vars        = Vars.merge(vars)                                       # global vars + instance vars
     @vars[:page] = (@vars[:page]||1).to_i                                 # set page to 1 if nil
-    [:count, :items, :offset, :initial, :before, :page, :after, :final].each do |k|
-      @vars[k] >= 0 rescue nil || raise(ArgumentError, "expected #{k} >= 0; got #{@vars[k].inspect}")
-      instance_variable_set(:"@#{k}", @vars.delete(k))                    # set all the metrics variables
+    {count:0, items:1, offset:0, initial:0, before:0, page:1, after:0, final:0}.each do |k,min|
+      @vars[k] >= min rescue nil || raise(ArgumentError, "expected #{k} >= #{min}; got #{@vars[k].inspect}")
+      instance_variable_set(:"@#{k}", @vars.delete(k))                    # set all the core variables
     end
     @pages   = @last = [(@count.to_f / @items).ceil, 1].max               # cardinal and ordinal meanings
     (1..@last).cover?(@page) || raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
