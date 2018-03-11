@@ -19,7 +19,7 @@ class Pagy ; VERSION = '0.5.0'
   I18N = { file: Pagy.root.join('locales', 'pagy.yml').to_s, plurals: -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'} }
 
 
-  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next, :series
+  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
   # merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(vars)
@@ -37,18 +37,21 @@ class Pagy ; VERSION = '0.5.0'
     @to      = @offset + @items                                           # page ends to item
     @prev    = (@page-1 unless @page == 1)                                # nil if no prev page
     @next    = (@page+1 unless @page == @last)                            # nil if no next page
-    @series  = []                                                         # e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-    all      = (0..@last+1)                                               # page range with boundaries
-    around   = ([@page-@before, 1].max .. [@page+@after, @last].min).to_a # before..after pages
-    row      = (all.first(@initial+1) | around | all.last(@final+1)).sort # row of pages with boundaries
-    row.each_cons(2) do |a, b|                                            # loop in consecutive pairs
-      if    a+1 == b ; @series.push(a)                                    # no gap     -> no additions
-      elsif a+2 == b ; @series.push(a, a+1)                               # 1 page gap -> fill with missing page
-      else             @series.push(a, :gap)                              # n page gap -> add :gap
-      end                                                                 # skip the end-boundary (last+1)
+  end
+
+  # return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+  def series
+    @series ||= [].tap do |series|
+      [*0..@initial, *@page-@before..@page+@after, *@last-@final+1..@last+1].sort!.each_cons(2) do |a, b|
+        if    a<0 || a==b || a>@last                                      # skip out of range and duplicates
+        elsif a+1 == b; series.push(a)                                    # no gap     -> no additions
+        elsif a+2 == b; series.push(a, a+1)                               # 1 page gap -> fill with missing page
+        else            series.push(a, :gap)                              # n page gap -> add :gap
+        end                                                               # skip the end boundary (last+1)
+      end
+      series.shift                                                        # remove the start boundary (0)
+      series[series.index(@page)] = @page.to_s                            # convert the current page to String
     end
-    @series.shift                                                         # remove the start-boundary (0)
-    @series[@series.index(@page)] = @page.to_s                            # convert the current page to String
   end
 
 end
