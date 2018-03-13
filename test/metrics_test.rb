@@ -201,20 +201,20 @@ class MetricsTest < Minitest::Test
   end
 
   def test_initial_offset_page_1
-    pagy = Pagy.new(count: 87, page:1, offset:10, items: 10)
+    pagy = Pagy.new(count: 87, page:1, outset:10, items: 10)
     assert_equal 10, pagy.offset
     assert_equal 10, pagy.items
-    assert_equal 11, pagy.from
-    assert_equal 20, pagy.to
+    assert_equal 1, pagy.from
+    assert_equal 10, pagy.to
     assert_equal 9, pagy.pages
   end
 
   def test_initial_offset_page_9
-    pagy = Pagy.new(count: 87, page:9, offset:10, items: 10)
+    pagy = Pagy.new(count: 87, page:9, outset:10, items: 10)
     assert_equal 90, pagy.offset
     assert_equal 7, pagy.items
-    assert_equal 91, pagy.from
-    assert_equal 97, pagy.to
+    assert_equal 81, pagy.from
+    assert_equal 87, pagy.to
     assert_equal 9, pagy.pages
   end
 

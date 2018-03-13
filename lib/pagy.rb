@@ -13,7 +13,7 @@ class Pagy ; VERSION = '0.5.0'
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default core vars
-  VARS = { items:20, offset:0, initial:1, before:4, after:4, final:1 }
+  VARS = { items:20, outset:0, initial:1, before:4, after:4, final:1 }
 
   # default I18n vars
   I18N = { file: Pagy.root.join('locales', 'pagy.yml').to_s, plurals: -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'} }
@@ -23,20 +23,20 @@ class Pagy ; VERSION = '0.5.0'
 
   # merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(vars)
-    @vars        = VARS.merge(vars)                                       # global vars + instance vars
+    @vars        = VARS.merge(vars)                                       # default vars + instance vars
     @vars[:page] = (@vars[:page]||1).to_i                                 # set page to 1 if nil
-    {count:0, items:1, offset:0, initial:0, before:0, page:1, after:0, final:0}.each do |k,min|
-      @vars[k] >= min rescue nil || raise(ArgumentError, "expected #{k} >= #{min}; got #{@vars[k].inspect}")
+    {count:0, items:1, outset:0, initial:0, before:0, page:1, after:0, final:0}.each do |k,min|
+      @vars[k] >= min rescue nil || raise(ArgumentError, "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
       instance_variable_set(:"@#{k}", @vars.delete(k))                    # set all the core variables
     end
-    @pages   = @last = [(@count.to_f / @items).ceil, 1].max               # cardinal and ordinal meanings
+    @pages  = @last = [(@count.to_f / @items).ceil, 1].max                # cardinal and ordinal meanings
     (1..@last).cover?(@page) || raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
-    @offset += @items * (@page - 1)                                       # initial offset + pagination offset
-    @items   = @count % @items if @page == @last                          # adjust items for last page
-    @from    = @count == 0 ? 0 : @offset+1                                # page begins from item
-    @to      = @offset + @items                                           # page ends to item
-    @prev    = (@page-1 unless @page == 1)                                # nil if no prev page
-    @next    = (@page+1 unless @page == @last)                            # nil if no next page
+    @offset = @items * (@page - 1) + @outset                              # pagination offset + outset (initial offset)
+    @items  = @count % @items if @page == @last                           # adjust items for last page
+    @from   = @count == 0 ? 0 : @offset+1 - @outset                       # page begins from item
+    @to     = @offset + @items - @outset                                  # page ends to item
+    @prev   = (@page-1 unless @page == 1)                                 # nil if no prev page
+    @next   = (@page+1 unless @page == @last)                             # nil if no next page
   end
 
   # return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
