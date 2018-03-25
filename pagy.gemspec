@@ -11,14 +11,14 @@ Gem::Specification.new do |s|
   s.email         = ['dd.nexus@gmail.com']
   s.date          = Date.today.to_s
 
-  s.summary       = %q{Because pagination should not suck!}
-  s.description   = %q{Dead simple pagination in pure ruby. Easy, fast and very light. No restrictions imposed: use it with any MVC framework, any ORM, any DB type, any templating system or none at all. Use the built-in templates or create yours the way you want.}
+  s.summary       = 'The Ultimate Pagination Ruby Gem'
+  s.description   = 'Agnostic pagination in plain ruby: it works with any framework, ORM and DB type, with all kinds of collections, even pre-paginated, scopes, Arrays, JSON data... and just whatever you can count. Easy to use and customize, very fast and very light.'
   s.homepage      = 'https://github.com/ddnexus/pagy'
   s.license       = 'MIT'
   s.require_paths = ['lib']
 
-  s.files         = `git ls-files -z`.split("\x0")
-                                     .reject{|f| f.start_with? '.', 'test', 'Gemfile', 'Rakefile' }
+  s.files         = `git ls-files -z`.split("\x0").select{|f| f.start_with?('lib', 'pagy.gemspec', 'LICENSE', 'README', 'images') }
+
 
   s.add_development_dependency 'bundler',  '~> 1.16'
   s.add_development_dependency 'rake',     '~> 10.0'
