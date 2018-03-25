@@ -1,11 +1,8 @@
+# See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
+
 require 'yaml'
 class Pagy
 
-  # This module supplies a few methods to deal with the navigation aspect of the pagination.
-  # You will usually include it in some helper module, eventually overriding the #pagy_url_for
-  # in order to fit its behavior with your app needs (e.g.: removing and adding some param or
-  # allowing fancy routes, etc.)
-  #
   # All the code here has been optimized for performance: it may not look very pretty
   # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
   module Frontend
@@ -63,53 +60,9 @@ class Pagy
     end
 
 
-    # NOTICE: This method is used internally, so you need to know about it only if you
-    # are going to override a *_nav helper or a template AND change the link tags.
-    #
-    # This is a specialized method that works only for page links, it is not intended to be used
-    # for any other generic links to any urls different than a page link.
-    #
-    # You call this method in order to get a proc that you will call to produce the page links.
-    # The reasaon it is a 2 step process instead of a single method call is performance.
-    #
-    # Call the method to get the proc (once):
-    #    link = pagy_link_proc( pagy [, extra_attributes_string ])
-    #
-    # Call the proc to get the links (multiple times):
-    #    link.call( page_number [, text [, extra_attributes_string ]])
-    #
-    # You can pass extra attribute strings to get inserted in the link tags at many different levels.
-    # Depending by the scope you want your attributes to be added, (from wide to narrow) you can:
-    #
-    # 1. For all pagy objects: set the global option :link_extra:
-    #
-    #    Pagy::Vars[:link_extra] = 'data-remote="true"'
-    #    link.call(page_number=2)
-    #    #=> <a href="...?page=2" data-remote="true">2</a>
-    #
-    # 2. For one pagy object: pass a :link_extra option to a pagy constructor (Pagy.new or pagy controller method):
-    #
-    #    @pagy, @records = pagy(my_scope, link_extra: 'data-remote="true"')
-    #    link.call(page_number)
-    #    #=> <a href="...?page=2" data-remote="true">2</a>
-    #
-    # 3. For all the calls to the returned pagy_link_proc: pass an extra attributes string when you get the proc:
-    #
-    #    link = pagy_link_proc(pagy, 'class="page-link"')
-    #    link.call(page_number)
-    #    #=> <a href="...?page=2" data-remote="true" class="page-link">2</a>
-    #
-    # 4. For a single link.call: pass an extra attributes string  when you call the proc:
-    #
-    #    link.call(page_number, 'aria-label="my-label"')
-    #    #=> <a href="...?page=2" data-remote="true" class="page-link" aria-label="my-label">2</a>
-    #
-    # WARNING: since we use only strings for performance, the attribute strings get concatenated, not merged!
-    # Be careful not to pass the same attribute at different levels multiple times. That would generate a duplicated
-    # attribute which is illegal html (although handled by all mayor browsers by ignoring all the duplicates but the first)
-
     MARKER = "-pagy-#{'pagy'.hash}-".freeze
 
+    # returns a specialized proc to generate the HTML links
     def pagy_link_proc(pagy, lx=''.freeze)  # "lx" means "link extra"
       p_prev, p_next, p_lx = pagy.prev, pagy.next, pagy.vars[:link_extra]
       a, b = %(<a href="#{pagy_url_for(MARKER)}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
@@ -118,20 +71,6 @@ class Pagy
                                                     else                           ''.freeze end }#{x.empty? ? x : %( #{x})}>#{text}</a>" }
     end
 
-
-    # The :pagy_t method is the internal implementation of I18n.t, used when I18n is missing or
-    # not needed (for example when your application is a single-locale app, e.g. only 'en', or only 'fr'...).
-    #
-    # It implements only the very basic functionality of the I18n.t method
-    # but it's still good enough for the limited Pagy's needs and it is faster.
-    #
-    # You can still use this method with a pluralization different than English
-    # (i.e. not 'zero', 'one', 'other' plurals). In that case you should define the
-    # Pagy::Vars[:i18n_plurals} proc to return the plural key based on the passed count.
-    #
-    # If you need full I18n functionality, you should override this method with something like:
-    #    def pagy_t(*a); I18n.t(*a) end
-    # and add your translations to the I18n usual locales files
 
     hash = YAML.load_file Vars[:i18n_file] || Pagy.root.join('locales', 'pagy.yml')
     I18N = hash[hash.keys.first].freeze

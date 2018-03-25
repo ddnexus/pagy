@@ -1,3 +1,5 @@
+# See Pagy API documentation: https://ddnexus.github.io/pagy/api/pagy
+
 require 'pathname'
 
 class Pagy ; VERSION = '0.5.0'
