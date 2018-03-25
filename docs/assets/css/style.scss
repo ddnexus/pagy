@@ -1,0 +1,58 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+body {
+  background-color: #f7f7f7;
+  color: #51585F;
+}
+
+a:hover, a:focus {
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+code {
+  font-size: .8rem;
+  padding: 2px 5px;
+  background-color: #FFF;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+pre {
+  background-color: #FFF;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  code {
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+.highlight {
+  border-radius: 5px;
+  background-color: #FFF;
+}
+
+footer {
+  bottom: 0;
+}
+
+#toc {
+  position: fixed;
+  top: 170px;
+  ul {
+    list-style-type: square;
+    padding-left: 20px;
+    line-height: 1.8rem;
+  }
+}
+
+#gitter-badge {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+}
