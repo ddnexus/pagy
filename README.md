@@ -1,5 +1,7 @@
 # Pagy
 
+[![Join the chat at https://gitter.im/ruby-pagy/Lobby](https://badges.gitter.im/ruby-pagy/Lobby.svg)](https://gitter.im/ruby-pagy/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Dead simple pagination in pure ruby. Easy, fast and very light. No restrictions imposed: use it with any MVC framework, any ORM, any DB type, any templating system or none at all. Use the built-in templates or create yours the way you want.
 
 ## Alpha Version!
