@@ -37,22 +37,36 @@ pre {
   background-color: #FFF;
 }
 
+header {
+  div#site-header {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  h1#site-title {
+    margin-bottom: .5rem;
+  }
+  p {
+    margin-bottom: .5rem;
+  }
+}
+
+#toc {
+  margin: 2em 0;
+  p.indent1 {
+    margin-left: 2rem;
+  }
+  p#gitter-badge {
+    margin-top: 1.6em;
+  }
+}
+
 footer {
   bottom: 0;
 }
 
-#toc {
-  position: fixed;
-  top: 170px;
-  ul {
-    list-style-type: square;
-    padding-left: 20px;
-    line-height: 1.8rem;
-  }
-}
+@media print, screen and (max-width: 960px) {
 
-#gitter-badge {
-  position: fixed;
-  bottom: 20px;
-  left: 30px;
+  header {
+    padding-right: 0;
+  }
+
 }

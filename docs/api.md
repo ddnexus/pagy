@@ -1,5 +1,7 @@
 # API
 
+[![Gem Version](https://badge.fury.io/rb/pagy.svg)](https://badge.fury.io/rb/pagy)
+
 The whole code structure of pagy is very simple: it is organized around 3 small modules of just ~120 lines of code in total:
 
 | Module | Description | Links |

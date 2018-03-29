@@ -101,7 +101,7 @@ You don't need to explicitly pass the usual `params[:page]` page number to the `
 pagy(my_scope, page: 3)  
 ```
 
-That will override the result of the `:page` variable, which default is `params[:page]`.
+That will explicitly set the `:page` variable, overriding the `params[:page]` default.
 
 __Notice__: If you need to get the page number from another param or in some different way, just override the `pagy_get_vars` method right in your controller.
 
@@ -228,7 +228,7 @@ You may want to read also the [Pagy::Frontend API documentation](/pagy/api/front
 
 ### Caching the collecion count
 
-Every pagination gem needs the collection count in order to calculate all the rest. If you use a storage system like any SQL DB, there is no way to paginate and provide a full nav system without knowing the count, so the gem has to execute an extra query to get it. That is usually not a problem if your DB is well organized and maintained, but that may not be always the case. 
+Every pagination gem needs the collection count in order to calculate all the other variables involvd in the pagination. If you use a storage system like any SQL DB, there is no way to paginate and provide a full nav system without executing an extra query to get the collection count. That is usually not a problem if your DB is well organized and maintained, but that may not be always the case. 
 
 Sometimes you may have to deal with some not very efficient legacy apps/DBs that you cannot totally control. In that case the extra count query may affect the performance of the app quite badly. 
 
@@ -288,11 +288,12 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
     # or single pagy instance
     @pagy, @record = pagy(my_scope, item_path: 'activerecord.models.product' )
     ```
+    
 __Notice__: The variables passed to a pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
 
 ### Handling Pagy::OutOfRangeError exception
 
-Pass a `:page` number out of range and pagy will raise a `Pagy::OutOfRangeError` exception, which you can rescue from and do what you think fits. You can rescue from the exception and render a not found page, or render a specific page number, or whatever. For example:
+Pass an out of range `:page` number and pagy will raise a `Pagy::OutOfRangeError` exception, which you can rescue from and do what you think fits. You can rescue from the exception and render a not found page, or render a specific page number, or whatever. For example:
 
 ```ruby
 # in a controller

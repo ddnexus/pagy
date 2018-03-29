@@ -1,5 +1,7 @@
 # Pagy
 
+[![Gem Version](https://badge.fury.io/rb/pagy.svg)](https://badge.fury.io/rb/pagy)
+
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison. 
 
 ### Benchmarks
@@ -44,7 +46,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 #### Totally agnostic
 
 - it doesn't need to know anything about your models, ORM or Storage, so it doesn't add any code to them
-- it works with all kind of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count
+- it works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count
 - it works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box 
 - it works with any possible non-Rack envoronment by just overriding one or two one-liner methods
 
