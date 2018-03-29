@@ -1,42 +1,24 @@
+# See Pagy::Backend API documentation: https://ddnexus.github.io/pagy/api/backend
+
 class Pagy
-
-  # Including this module (usually in your controller) is handy but totally optional.
-  # It basically just encapsulates a couple of verbose statements in one single slick
-  # #pagy method, but it does not add any functionality on its own.
-  #
-  # Using the module allows you to have a predefined method and a few sub-methods
-  # (i.e. methods called only by the predefined method) handy if you need to override
-  # some aspect of the predefined #pagy method.
-  #
-  # However, you can just explicitly write your own pagy method in just a couple of
-  # lines, specially if you need to override two or more methods. For example:
-  #
-  # def pagy(scope, opts={})
-  #   pagy = Pagy.new scope.count, page: params[:page], **opts
-  #   return pagy, scope.offset(pagy.offset).limit(pagy.limit)
-  # end
-
   module Backend ; private         # the whole module is private so no problem with including it in a controller
 
-    def pagy(obj, opts={})
-      pagy = Pagy.new(count: pagy_get_count(obj), page: pagy_get_page, i18n_key: pagy_get_i18n_key(obj), **opts)
-      return pagy, pagy_get_items(obj, pagy)
+    # return pagy object and items
+    def pagy(collection, vars=nil)
+      pagy = Pagy.new(vars ? pagy_get_vars(collection).merge!(vars) : pagy_get_vars(collection))   # conditional merge is faster and saves memory
+      return pagy, pagy_get_items(collection, pagy)
     end
 
-    def pagy_get_count(obj)
-      obj.count
+    # sub-method called only by #pagy: here for easy customization of variables by overriding
+    def pagy_get_vars(collection)
+      # return the variables to initialize the pagy object
+      { count: collection.count, page: params[:page] }
     end
 
-    def pagy_get_page
-      params[:page]
-    end
-
-    def pagy_get_i18n_key(obj) end
-
-    # this should work with ActiveRecord, Sequel, Mongoid...
-    # override it if obj does not implement it that way
-    def pagy_get_items(obj, pagy)
-      obj.offset(pagy.offset).limit(pagy.limit)
+    # sub-method called only by #pagy: here for easy customization of record-extraction by overriding
+    def pagy_get_items(collection, pagy)
+      # this should work with ActiveRecord, Sequel, Mongoid...
+      collection.offset(pagy.offset).limit(pagy.items)
     end
 
   end

@@ -3,7 +3,7 @@ require "test_helper"
 class MetricsTest < Minitest::Test
 
   def setup
-    @opts  = { limit:   10,
+    @vars  = { items:   10,
                initial: 3,
                final:   3,
                before:  2,
@@ -12,7 +12,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_count_0
-    pagy = Pagy.new @opts.merge(count: 0)
+    pagy = Pagy.new @vars.merge(count: 0)
     assert_equal 1, pagy.pages
     assert_equal 1, pagy.last
     assert_equal 0, pagy.offset
@@ -24,7 +24,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_single_page
-    pagy = Pagy.new @opts.merge(count: 8)
+    pagy = Pagy.new @vars.merge(count: 8)
     assert_equal 1, pagy.pages
     assert_equal 1, pagy.last
     assert_equal 0, pagy.offset
@@ -36,7 +36,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_1_of_2_pages
-    pagy = Pagy.new @opts.merge(count: 15)
+    pagy = Pagy.new @vars.merge(count: 15)
     assert_equal 2, pagy.pages
     assert_equal 2, pagy.last
     assert_equal 0, pagy.offset
@@ -48,7 +48,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_2_of_2_pages
-    pagy = Pagy.new @opts.merge(count: 15, page: 2)
+    pagy = Pagy.new @vars.merge(count: 15, page: 2)
     assert_equal 2, pagy.pages
     assert_equal 2, pagy.last
     assert_equal 10, pagy.offset
@@ -60,7 +60,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_1
-    pagy, paged = @array.pagy(1, @opts)
+    pagy, paged = @array.pagy(1, @vars)
     assert_equal (1..10).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 1, pagy.from
@@ -72,7 +72,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_2
-    pagy, paged = @array.pagy(2, @opts)
+    pagy, paged = @array.pagy(2, @vars)
     assert_equal (11..20).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 11, pagy.from
@@ -84,7 +84,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_3
-    pagy, paged = @array.pagy(3, @opts)
+    pagy, paged = @array.pagy(3, @vars)
     assert_equal (21..30).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 21, pagy.from
@@ -96,7 +96,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_4
-    pagy, paged = @array.pagy(4, @opts)
+    pagy, paged = @array.pagy(4, @vars)
     assert_equal (31..40).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 31, pagy.from
@@ -108,7 +108,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_5
-    pagy, paged = @array.pagy(5, @opts)
+    pagy, paged = @array.pagy(5, @vars)
     assert_equal (41..50).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 41, pagy.from
@@ -120,7 +120,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_6
-    pagy, paged = @array.pagy(6, @opts)
+    pagy, paged = @array.pagy(6, @vars)
     assert_equal (51..60).to_a, paged
     assert_equal 51, pagy.from
     assert_equal 60, pagy.to
@@ -132,7 +132,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_7
-    pagy, paged = @array.pagy(7, @opts)
+    pagy, paged = @array.pagy(7, @vars)
     assert_equal (61..70).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 61, pagy.from
@@ -144,7 +144,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_8
-    pagy, paged = @array.pagy(8, @opts)
+    pagy, paged = @array.pagy(8, @vars)
     assert_equal (71..80).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 71, pagy.from
@@ -156,7 +156,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_9
-    pagy, paged = @array.pagy(9, @opts)
+    pagy, paged = @array.pagy(9, @vars)
     assert_equal (81..90).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 81, pagy.from
@@ -168,7 +168,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_10
-    pagy, paged = @array.pagy(10, @opts)
+    pagy, paged = @array.pagy(10, @vars)
     assert_equal (91..100).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 91, pagy.from
@@ -180,7 +180,7 @@ class MetricsTest < Minitest::Test
   end
 
   def test_page_11
-    pagy, paged = @array.pagy(11, @opts)
+    pagy, paged = @array.pagy(11, @vars)
     assert_equal (101..103).to_a, paged
     assert_instance_of Pagy, pagy
     assert_equal 101, pagy.from
@@ -192,29 +192,29 @@ class MetricsTest < Minitest::Test
   end
 
   def test_other_output
-    pagy = Pagy.new @opts.merge(count: 103, page: 2)
+    pagy = Pagy.new @vars.merge(count: 103, page: 2)
     assert_equal 103, pagy.count
-    assert_equal 10, pagy.limit
+    assert_equal 10, pagy.items
     assert_equal 10, pagy.offset
     assert_equal 11 , pagy.pages
     assert_equal 11, pagy.last
   end
 
   def test_initial_offset_page_1
-    pagy = Pagy.new(count: 87, page:1, offset:10, limit: 10)
+    pagy = Pagy.new(count: 87, page:1, outset:10, items: 10)
     assert_equal 10, pagy.offset
-    assert_equal 10, pagy.limit
-    assert_equal 11, pagy.from
-    assert_equal 20, pagy.to
+    assert_equal 10, pagy.items
+    assert_equal 1, pagy.from
+    assert_equal 10, pagy.to
     assert_equal 9, pagy.pages
   end
 
   def test_initial_offset_page_9
-    pagy = Pagy.new(count: 87, page:9, offset:10, limit: 10)
+    pagy = Pagy.new(count: 87, page:9, outset:10, items: 10)
     assert_equal 90, pagy.offset
-    assert_equal 7, pagy.limit
-    assert_equal 91, pagy.from
-    assert_equal 97, pagy.to
+    assert_equal 7, pagy.items
+    assert_equal 81, pagy.from
+    assert_equal 87, pagy.to
     assert_equal 9, pagy.pages
   end
 

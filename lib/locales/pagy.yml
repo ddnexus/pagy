@@ -1,17 +1,10 @@
-# Pagy uses an internal I18n-like :pagy_t helper that lookup
-# into this file at Pagy.root.join('locale', 'pagy.yml')
-# If you want to customize it you should set:
-# Pagy::Opts.i18n_file = 'path/to/your/file.yaml'
-
-# If you need to use this method with pluralization different than english
-# (i.e. not 'zero', 'one', 'other' plurals) then you should define the
-# Pagy::Opts.i18n_plurals proc to return the plural key based on the passed count.
+# Standard pagy dictionary
 
 en:
   pagy:
     nav:
-      prev: "&lsaquo; Prev"
-      next: "Next &rsaquo;"
+      prev: "&lsaquo;&nbsp;Prev"
+      next: "Next&nbsp;&rsaquo;"
       gap: "&hellip;"
     info:
       single_page:
@@ -19,7 +12,7 @@ en:
         one: "Displaying <b>1</b> %{item_name}"
         other: "Displaying <b>all %{count}</b> %{item_name}"
       multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
-      item:
+      item_name:
         zero: "items"
         one: "item"
         other: "items"
