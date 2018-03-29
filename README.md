@@ -76,7 +76,7 @@ Or - if you prefer - render the navigation links with a template:
 
 ## Useful Links
 
-- [Documentation Wiki](https://ddnexus.github.io/pagy)
+- [Documentation](https://ddnexus.github.io/pagy/index)
 - [Pagination Comparison App](http://github.com/ddnexus/pagination-comparison)
 
 ## Help Wanted
