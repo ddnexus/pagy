@@ -167,8 +167,8 @@ This method is similar to the `I18n.t` and its equivalent rails `t` helper. It i
 
 This method may be defined in 2 different ways:
 
-- if `I18n` is defined: it is defined to use the standard `I18n.t` helper. _It's 5x slower but provides full I18n features_
-- if `I18n` is missing or the `Pagy::I18N[:gem]` variable (see below) is explicitly set to `false`: it is defined to use the pagy I18n-like implementation. _It's 5x faster but provides only pluralization/interpolation without translation, so it's only useful with single language apps_
+- if `I18n` is defined: it is defined to use the standard `I18n.t` helper. _It's 5x slower but provides full I18n features_.
+- if `I18n` is missing or the `Pagy::I18N[:gem]` variable (see below) is explicitly set to `false`: it is defined to use the pagy I18n-like implementation. _It's 5x faster but provides only pluralization/interpolation without translation, so it's only useful with single language apps_.
 
 See also [Using I18n](/pagy/how-to#using-i18n).
 
