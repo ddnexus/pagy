@@ -2,7 +2,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '0.5.0'
+class Pagy ; VERSION = '0.6.0'
 
   autoload :Backend,  'pagy/backend'
   autoload :Frontend, 'pagy/frontend'
