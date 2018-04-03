@@ -7,24 +7,15 @@ class SeriesTest < Minitest::Test
 
     @vars0 = { count:   103,
                items:   10,
-               initial: 0,
-               final:   0,
-               before:  2,
-               after:   2 }
+               size:    [0,2,2,0] }
 
     @vars1 = { count:   103,
                items:   10,
-               initial: 3,
-               final:   3,
-               before:  0,
-               after:   0 }
+               size:    [3,0,0,3] }
 
     @vars2 = { count:   103,
                items:   10,
-               initial: 3,
-               final:   0,
-               before:  2,
-               after:   0 }
+               size:    [3,2,0,0] }
 
   end
 

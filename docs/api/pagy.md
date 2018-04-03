@@ -68,10 +68,7 @@ These are the core-variables (i.e. instance variables that define the pagination
 | `:page`    | the requested page number | `1` |
 | `:items`   | the _requested_ number of items for the page | `20` |
 | `:outset`  | the initial offset of the collection to paginate: pass it only if the collection was pre-offset(ted) | `0` |
-| `:initial` | max pages to show from the first page | `1` |
-| `:before`  | max pages before the current page | `4` | 
-| `:after`   | max pages after the current page | `4` |
-| `:final`   | max pages to show from the last page | `1` |
+| `:size`    | the size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [Control the page links](/pagy/how-to#control-the-page-links))_ | `[1,4,4,1]` |
 
 Pagy validates the core variables passed and raises an `ArgumentError` exception if any value is wrong. It also raises a specific `Pagy::OutOfRangeError` if the `:page` is out of range, so you can rescue from it and do whatever you think fits.
 
@@ -107,9 +104,11 @@ Pagy exposes all the instance variables needed for the pagination through a few 
 | `vars`   | the non-core variables hash |
 
 
-### series
+### series(size=@vars[:size])
 
-This method is the core of the pagination. It calculates, memoize and returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). The nav helpers and the templates basically loop through this array and render the correct item by simply checking its type:
+This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` argument (mostly useful for extras), defaulted on the `:size` variable.  
+
+The nav helpers and the templates basically loop through this array and render the correct item by simply checking its type:
 
 - if the item is an `Integer` then it is a page link
 - if the item is a `String` then it is the current page

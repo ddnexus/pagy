@@ -108,32 +108,27 @@ __Notice__: If you need to get the page number from another param or in some dif
 
 ### Control the page links
 
-You can control the number and position of page links in the navigation through the following variables.
+You can control the number and position of page links in the navigation through the `:size` variables. It is an array of 4 integers that specify which and how many page link to show.
 
-| Variable   | Description | Default |
-| ---:       | :---        | :---    |
-| `:initial` | max pages to show from the first page | `1` |
-| `:before`  | max pages before the current page | `4` | 
-| `:after`   | max pages after the current page | `4` |
-| `:final`   | max pages to show from the last page | `1` |
+The default is `[1,4,4,1]`, which means that you will get `1` initial page, `4` pages before the current page, `4` pages after the current page, and `1` final page
 
 As usual you can set them as global defaults by using the `Pagy::VARS` hash or pass them directly to the `pagy` method.
 
 The navigation links will contain the number of pages set in the variables:
 
-`:initial`...`:before` `:page` `:after`...`:final`
+`size[0]`...`size[1]` current page `size[2]`...`size[3]`
 
 For example:
 
 ```ruby
-pagy = Pagy.new count:1000, page: 10, initial: 3, final: 3 # etc
+pagy = Pagy.new count:1000, page: 10, size: [3,4,4,3] # etc
 pagy.series
 #=> [1, 2, 3, :gap, 6, 7, 8, 9, "10", 11, 12, 13, 14, :gap, 48, 49, 50]
 ```
 
-As you can see by the result of the `series` method, you get 3 explicitly requested`:initial` pages, 1 `:gap` (series interupted), the 4 default `:before` pages, the current `:page` (which is a string), the 4 default `:after` pages, another `:gap` and the 3 explicitly requested `:final` pages
+As you can see by the result of the `series` method, you get 3 initial pages, 1 `:gap` (series interupted), 4 pages before the current page, the current `:page` (which is a string), 4 pages after the current page, another `:gap` and 3 final pages.
  
-You can easily try different options (also asymmetrical) in a console: just check the `series` array to see what it contains when used with different core variables.
+You can easily try different options (also asymmetrical) in a console by changing the `:size`: just check the `series` array to see what it contains when used in combination with different core variables.
 
 
 ### Using the `pagy_nav` and `pagy_nav_bootstrap` helpers
@@ -289,6 +284,7 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
     @pagy, @record = pagy(my_scope, item_path: 'activerecord.models.product' )
     ```
     
+__Notice__: The variables passed to a pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
 __Notice__: The variables passed to a pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
 
 ### Handling Pagy::OutOfRangeError exception

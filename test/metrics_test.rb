@@ -3,11 +3,7 @@ require "test_helper"
 class MetricsTest < Minitest::Test
 
   def setup
-    @vars  = { items:   10,
-               initial: 3,
-               final:   3,
-               before:  2,
-               after:   2 }
+    @vars  = { items: 10, size: [3,2,2,3] }
     @array = (1..103).to_a.extend(Pagy::Array::PageMethod)
   end
 
