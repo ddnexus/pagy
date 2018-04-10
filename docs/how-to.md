@@ -25,12 +25,12 @@ include Pagy::Frontend
 ```
 Render the navigation links in some view...
 with a fast helper:
-```HTML+ERB
-<%= pagy_nav(@pagy) %>
+```erb
+<%== pagy_nav(@pagy) %>
 ```
 or with a template:
-```HTML+ERB
-<%= render 'pagy/nav', locals: {pagy: @pagy} %>
+```erb
+<%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
 ### Paginate Any Collection
@@ -63,8 +63,8 @@ This is basically what the `pagy` method included in your controller does for yo
 @pagy, @records = pagy(Product.some_scope)
 ```
 Then of course, regardless the kind of collection, you can render the navigation links in your view:
-```HTML+ERB
-<%= pagy_nav(@pagy) %>
+```erb
+<%== pagy_nav(@pagy) %>
 ```
 See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb) and the [Pagy::Backend API documentation](/pagy/api/backend) for more details. 
 
@@ -135,8 +135,8 @@ You can easily try different options (also asymmetrical) in a console by changin
 
 These helpers take the pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
-```HTML+ERB
-<%= pagy_nav(@pagy) %>
+```erb
+<%== pagy_nav(@pagy) %>
 ```
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
  

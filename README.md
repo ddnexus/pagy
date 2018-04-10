@@ -62,14 +62,14 @@ Paginate your collection in some controller:
 
 Render the navigation links with a super-fast helper in some view:
 
-```HTML+ERB
-<%= pagy_nav(@pagy) %>
+```erb
+<%== pagy_nav(@pagy) %>
 ```
 
 Or - if you prefer - render the navigation links with a template:
 
-```HTML+ERB
-<%= render 'pagy/nav', locals: {pagy: @pagy} %>
+```erb
+<%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
 ## Support, Comments and Feature Requests

@@ -16,9 +16,9 @@ end
 ```
 use some of its method in some view:
 
-```HTML+ERB
-<%= pagy_nav(@pagy) %>
-<%= pagy_info(@pagy) %>
+```erb
+<%== pagy_nav(@pagy) %>
+<%== pagy_info(@pagy) %>
 ```
 
 ### Methods
@@ -32,8 +32,8 @@ Please, keep in mind that overriding any method is very easy with pagy. Indeed y
 
 This method takes the pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
-```HTML+ERB
-<%= pagy_nav(@pagy) %>
+```erb
+<%== pagy_nav(@pagy) %>
 ```
 
 The `pagy/nav` templates produce the same output, and can be used as an easier (but slower) starting point to override it. 
@@ -54,8 +54,8 @@ See also [Using templates](/pagy/how-to#using-templates).
 
 This method provides the info about the content of the current pagination. For example:
 
-```HTML+ERB
-<%= pagy_info(@pagy) %>
+```erb
+<%== pagy_info(@pagy) %>
 ```
 
 Will produce something like:
