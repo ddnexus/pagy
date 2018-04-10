@@ -1,4 +1,8 @@
-## Pagy::Backend
+---
+title: Pagy::Backend
+---
+
+# Pagy::Backend
 
 The only scope of this module is encapsulating a couple of verbose statements in one single slick `pagy` method, that returns the pagy instance and the page of records from the collection. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_
 
@@ -12,7 +16,7 @@ def pagy(collection, vars={})
 end
 ```
 
-### Synopsys
+## Synopsys
 
 ```ruby
 # typically in your controller
@@ -30,7 +34,7 @@ end
  
 ```
 
-### Methods
+## Methods
 
 All the methods in this module are prefixed with the `"pagy_"` string, to avoid any possible conflict with your own methods when you include the module in your controller. They are also all private, so they will not be available as actions. The methods prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are intended to be overridden, not used directly.
 
@@ -46,7 +50,7 @@ This is the main method of this module. It takes a collection object (e.g. a sco
 Internally it calls the following sub-methods, in order to get the arguments needed to initialize the `Pagy` instance and to paginate the collection.
 
 
-#### pagy_get_vars(collection)
+### pagy_get_vars(collection)
 
 Sub-method called by the `pagy` method, it returns the hash of variables used to initialize the pagy object.
 
@@ -57,17 +61,17 @@ def pagy_get_vars(collection)
   { count: collection.count, page: params[:page] }
 end
 ```
-Override it if you need to add or change some variable. For example you may want to add the `:item_path` or the `:item_name` to customize the `pagy_info` output, or get the `:page` from a different param, or even cache the `count`. 
+Override it if you need to add or change some variable. For example you may want to add the `:item_path` or the `:item_name` to customize the `pagy_info` output, or get the `:page` from a different param, or even cache the `count`.
 
-See also the [How To](/pagy/how-to) wiki page for some usage example.
+See also the [How To](../how-to.md) wiki page for some usage example.
 
 
-#### pagy_get_items(collection, pagy)
+### pagy_get_items(collection, pagy)
 
 Sub-method called by the `pagy` method, it returns the page items (i.e. the records belonging to the current page).
- 
+
  Here is its source (it works with most ORMs like `ActiveRecord`, `Sequel`, `Mongoid`, ...):
- 
+
  ```ruby
  def pagy_get_items(collection, pagy)
    collection.offset(pagy.offset).limit(pagy.items)

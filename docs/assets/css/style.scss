@@ -70,3 +70,13 @@ footer {
   }
 
 }
+
+p#active {
+  position: relative;
+  font-weight: bold;
+  &:before {
+    content: "\25B6";
+    position: absolute;
+    left: -1rem;
+  }
+}

@@ -6,7 +6,7 @@
 
 - link = pagy_link_proc(pagy)
 
-nav.pagination role="navigation" aria-label="pager"
+nav.pagy_nav.pagination role="navigation" aria-label="pager"
 
   - if pagy.prev
     span.page.prev ==> link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
