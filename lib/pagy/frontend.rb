@@ -22,7 +22,7 @@ class Pagy
       end
       tags << (pagy.next ? %(<span class="page next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</span>)
                          : %(<span class="page next disabled">#{pagy_t('pagy.nav.next'.freeze)}</span>))
-      %(<nav class="pagination" role="navigation" aria-label="pager">#{tags}</nav>)
+      %(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">#{tags}</nav>)
     end
 
 
@@ -40,7 +40,7 @@ class Pagy
       end
       tags << (pagy.next ? %(<li class="page-item next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</li>)
                          : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next'.freeze)}</a></li>))
-      %(<nav class="pagination" role="navigation" aria-label="pager"><ul class="pagination">#{tags}</ul></nav>)
+      %(<nav class="pagy-nav-boostrap pagination" role="navigation" aria-label="pager"><ul class="pagination">#{tags}</ul></nav>)
     end
 
 
