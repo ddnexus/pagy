@@ -1,7 +1,5 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
 
-# this file will get autoloaded, so environment constants like ::I18n will be already set
-require 'yaml'
 class Pagy
 
   # All the code here has been optimized for performance: it may not look very pretty
@@ -77,10 +75,12 @@ class Pagy
 
 
     # define #pagy_t depending on I18N[:gem] and I18n
+    # this file will get autoloaded, so environment constants like ::I18n will be already set
     if I18N[:gem] || I18N[:gem].nil? && defined?(I18n)
       I18n.load_path << I18N[:file]
       def pagy_t(*a) I18n.t(*a) end
     else
+      require 'yaml'
       # load data from the first locale in the file
       I18N_DATA = YAML.load_file(I18N[:file]).first[1].freeze
       # Similar to I18n.t for interpolation and pluralization but without translation
