@@ -1,7 +1,5 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
 
-# this file will get autoloaded, so environment constants like ::I18n will be already set
-require 'yaml'
 class Pagy
 
   # All the code here has been optimized for performance: it may not look very pretty
@@ -10,37 +8,19 @@ class Pagy
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)
-      tags = []; link = pagy_link_proc(pagy)
+      tags = ''; link = pagy_link_proc(pagy)
 
-      tags << (pagy.prev ? %(<span class="page prev">#{link.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</span>)
-                         : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev'.freeze)}</span>))
+      tags << (pagy.prev ? %(<span class="page prev">#{link.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</span> )
+                         : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev'.freeze)}</span> ))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags << if    item.is_a?(Integer); %(<span class="page">#{link.call item}</span>)                    # page link
-                elsif item.is_a?(String) ; %(<span class="page active">#{item}</span>)                       # current page
-                elsif item == :gap       ; %(<span class="page gap">#{pagy_t('pagy.nav.gap'.freeze)}</span>) # page gap
+        tags << if    item.is_a?(Integer); %(<span class="page">#{link.call item}</span> )                    # page link
+                elsif item.is_a?(String) ; %(<span class="page active">#{item}</span> )                       # current page
+                elsif item == :gap       ; %(<span class="page gap">#{pagy_t('pagy.nav.gap'.freeze)}</span> ) # page gap
                 end
       end
       tags << (pagy.next ? %(<span class="page next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</span>)
                          : %(<span class="page next disabled">#{pagy_t('pagy.nav.next'.freeze)}</span>))
-      %(<nav class="pagination" role="navigation" aria-label="pager">#{tags.join(' '.freeze)}</nav>)
-    end
-
-
-    # Pagination for bootstrap: it returns the html with the series of links to the pages
-    def pagy_nav_bootstrap(pagy)
-      tags = []; link = pagy_link_proc(pagy, 'class="page-link"'.freeze)
-
-      tags << (pagy.prev ? %(<li class="page-item prev">#{link.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</li>)
-                         : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev'.freeze)}</a></li>))
-      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags << if    item.is_a?(Integer); %(<li class="page-item">#{link.call item}</li>)                                                               # page link
-                elsif item.is_a?(String) ; %(<li class="page-item active">#{link.call item}</li>)                                                        # active page
-                elsif item == :gap       ; %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.gap'.freeze)}</a></li>) # page gap
-                end
-      end
-      tags << (pagy.next ? %(<li class="page-item next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</li>)
-                         : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next'.freeze)}</a></li>))
-      %(<nav class="pagination" role="navigation" aria-label="pager"><ul class="pagination">#{tags.join}</ul></nav>)
+      %(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">#{tags}</nav>)
     end
 
 
@@ -77,10 +57,12 @@ class Pagy
 
 
     # define #pagy_t depending on I18N[:gem] and I18n
+    # this file will get autoloaded, so environment constants like ::I18n will be already set
     if I18N[:gem] || I18N[:gem].nil? && defined?(I18n)
       I18n.load_path << I18N[:file]
-      def pagy_t(*a); I18n.t(*a) end
+      def pagy_t(*a) I18n.t(*a) end
     else
+      require 'yaml'
       # load data from the first locale in the file
       I18N_DATA = YAML.load_file(I18N[:file]).first[1].freeze
       # Similar to I18n.t for interpolation and pluralization but without translation

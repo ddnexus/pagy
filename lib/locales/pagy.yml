@@ -16,3 +16,6 @@ en:
         zero: "items"
         one: "item"
         other: "items"
+    compact:
+      page: Page
+      of: of
