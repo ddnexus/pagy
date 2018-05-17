@@ -12,6 +12,8 @@ Here is an example of how the same pagination nav might look like by resizing th
 
 ## Synopsys
 
+See [pagy-extras](../pagy-extras.md) for general usage info.
+
 ```ruby
 # set your default custom breakpoints (width/size pairs) globally (it can be overridden per pagy instance)
 Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}

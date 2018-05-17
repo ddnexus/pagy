@@ -274,7 +274,7 @@ That may work very well with static (or almost static) DBs, where there is not m
 
 Pagy is I18n ready. That means that all the UI strings that pagy uses are stored in a dictionaray YAML file, ready to be customized and/or translated/pluralized. The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`
 
-It contains a few entries used in the the UI by helpers and templates through the `pagy_t` method (eqivalent to the `I18n.t` or rails `t` helper). For more details, please take a look at the [pagy.yml file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) and read the [pagy_t API documentation](api/frontend.md#pagy_tpath-vars)
+It contains a few entries used in the the UI by helpers and templates through the `pagy_t` method (eqivalent to the `I18n.t` or rails `t` helper). For more details, please take a look at the [pagy.yml dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) and read the [pagy_t API documentation](api/frontend.md#pagy_tpath-vars)
 
 ## Using the pagy_info helper
 

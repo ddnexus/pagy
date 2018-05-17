@@ -27,7 +27,7 @@ gem 'pagy-extras'
 
 ## Description
 
-This gem doesn't define any new module or class: it just re-opens the `Pagy` class and modules, adding the extra methods as it was part of the `pagy` gem. This neatly separates the core code from the optional extras, still keeping its usage as simple as it was part of the core gem.
+This gem doesn't define any new module or class: it just re-opens the `Pagy` class and modules, adding the extra methods as they were part of the `pagy` gem. This neatly separates the core code from the optional extras, still keeping its usage as simple as it were part of the core gem.
 
 ## Methods
 

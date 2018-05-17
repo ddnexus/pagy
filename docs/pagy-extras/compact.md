@@ -13,6 +13,8 @@ Here is an example (bootstrap style):
 
 ## Synopsys
 
+See [pagy-extras](../pagy-extras.md) for general usage info.
+
 In an initializer file:
 
 ```ruby
