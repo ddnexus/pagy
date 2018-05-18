@@ -13,10 +13,11 @@ class Pagy ; VERSION = '0.6.1'
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default core vars
-  VARS = { items:20, outset:0, size:[1,4,4,1] }
+  VARS = { items:20, outset:0, size:[1,4,4,1] }.freeze
+  I18N_PLURALS = ['zero', 'one'].freeze
 
   # default I18n vars
-  I18N = { file: Pagy.root.join('locales', 'pagy.yml').to_s, plurals: -> (c) {c==0 && 'zero' || c==1 && 'one' || 'other'} }
+  I18N = { file: Pagy.root.join('locales', 'pagy.yml').to_s, plurals: -> (c) {I18N_PLURALS[c] || 'other'} }
 
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
