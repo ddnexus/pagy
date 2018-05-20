@@ -73,7 +73,8 @@ These are the core-variables (i.e. instance variables that define the pagination
 | `:outset` | the initial offset of the collection to paginate: pass it only if the collection was pre-offset(ted)                                                                                         | `0`         |
 |   `:size` | the size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also       [Control the page links](../how-to.md#control-the-page-links))_ | `[1,4,4,1]` |
 
-Pagy validates the core variables passed and raises an `ArgumentError` exception if any value is wrong. It also raises a specific `Pagy::OutOfRangeError` if the `:page` is out of range, so you can rescue from it and do whatever you think fits.
+__Notice__: Pagy replaces the blank values of scalar core variables (so excluding `:size`) with their default values. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
+
 
 
 ### Non-core Variables
