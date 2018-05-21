@@ -28,7 +28,7 @@ The values shown in the charts below have been recorded while each gem was produ
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses any Kb of memory it allocates/consumes._
 
-#### Pagy does not suffer the typical limitations of the other gems:
+#### Pagy does not suffer the typical limitations of the other gems
 
 - it works with collections/scopes that already used `limit` and `offset`
 - it works with both helpers or templates (your choice)
@@ -114,6 +114,10 @@ Pagy is a fresh project and your help would be great. If you like it, you have a
 - submit some cool extra
 - submit a pull request to make pagy even faster, save more memory or improve its usability
 - create an issue if anything should be improved/fixed
+
+## Branches and Pull Requests
+
+`master` is the latest rubygem-published release: you should use it as the base branch for pull requests, because it will not be force-rebased. `dev` is the development branch that will receive your pull requests, and that get merged into `master` before a new release. Expect `dev` to be force-rebased, so it's probably wise not to use it as the base for your commits.
 
 ## License
 
