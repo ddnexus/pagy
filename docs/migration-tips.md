@@ -26,6 +26,7 @@ __Notice:__ Don't worry about missing something in this phase: if anything wont 
 #### Preparation
 
 - Create an empty Pagy initializer file: you will add to it during the process.
+- Replace the legacy gem with `gem "pagy"` in the `Gemfile` and `bundle`, or install and require the gem if you don't use bundler.
 - Add the `include Pagy::Backend` statement to the application controller.
 - Add the `include Pagy::Frontend` statement to the application helper.
 - Keep handy the legacy gem doc and the [Pagy API doc](api/pagy.md) in parallel.
@@ -119,7 +120,7 @@ Please take a look at the topics in the [how-to](how-to.md) documentation: that 
 
 #### CSSs
 
-If you used bootstrap the same CSSs should work seamlessly with `pagy_nav_bootstrap` or with any of the bootstrap templates. If the app didn't use bootstrap, you may need to rename some rule in your CSSs.
+If the app uses the bootstrap pagination, the same CSSs should work seamlessly with `pagy_nav_bootstrap` or with any of the bootstrap templates. If the app doesn't use bootstrap, you may need to rename some rule in your CSSs.
 
 #### I18n
 
@@ -127,4 +128,4 @@ If the app uses `I18n` you should copy and paste the entries in the [pagy.yml di
 
 #### Gain some more speed
 
-In case the app is a single language app (even not English) you can gain some extra performance if you explicitly exclude the use of the `I18n` gem. In that case you should set `Pagy::I18N[:gem] = false` in the initializer. See the Pagy::I18N [:gem doc](api/frontend.md#pagyi18ngem) for more details.
+In case the app is a single language app (only en, or only fr, etc.) you can gain some extra performance if you explicitly exclude the use of the `I18n` gem. In that case you should set `Pagy::I18N[:gem] = false` in the initializer. See the Pagy::I18N [:gem doc](api/frontend.md#pagyi18ngem) for more details.

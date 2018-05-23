@@ -242,7 +242,7 @@ You may want to read also the [Pagy::Frontend API documentation](api/frontend.md
 
 ## Caching the collecion count
 
-Every pagination gem needs the collection count in order to calculate all the other variables involvd in the pagination. If you use a storage system like any SQL DB, there is no way to paginate and provide a full nav system without executing an extra query to get the collection count. That is usually not a problem if your DB is well organized and maintained, but that may not be always the case.
+Every pagination gem needs the collection count in order to calculate all the other variables involved in the pagination. If you use a storage system like any SQL DB, there is no way to paginate and provide a full nav system without executing an extra query to get the collection count. That is usually not a problem if your DB is well organized and maintained, but that may not be always the case.
 
 Sometimes you may have to deal with some not very efficient legacy apps/DBs that you cannot totally control. In that case the extra count query may affect the performance of the app quite badly.
 
