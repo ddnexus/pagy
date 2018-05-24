@@ -103,7 +103,8 @@ This extra adds an alternative pagination UI that joins the pagination feature w
 ## Useful Links
 
 - [Documentation](https://ddnexus.github.io/pagy/index)
-- [Pagination Comparison App](http://github.com/ddnexus/pagination-comparison)
+- [Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
+- [Pagination Comparison App Repository](http://github.com/ddnexus/pagination-comparison)
 
 ## Help Wanted
 
