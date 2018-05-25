@@ -28,7 +28,7 @@ class Pagy ; VERSION = '0.7.1'
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{instance_variable_get(:"@#{k}").inspect}")
     end
     @pages  = @last = [(@count.to_f / @items).ceil, 1].max                # cardinal and ordinal meanings
-    (1..@last).cover?(@page) || raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
+    @page >= 1 && @page <= @last or raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                              # pagination offset + outset (initial offset)
     @items  = @count - ((@pages-1) * @items) if @page == @last            # adjust items for last page
     @from   = @count == 0 ? 0 : @offset+1 - @outset                       # page begins from item
@@ -39,7 +39,7 @@ class Pagy ; VERSION = '0.7.1'
 
   # return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
   def series(size=@vars[:size])
-    (0..3).each{|i| (size[i]>=0 rescue nil) or raise(ArgumentError, "expected 4 items >= 0 in :size; got #{size.inspect}")}
+    4.times{|i| (size[i]>=0 rescue nil) or raise(ArgumentError, "expected 4 items >= 0 in :size; got #{size.inspect}")}
     series = []
     [*0..size[0], *@page-size[1]..@page+size[2], *@last-size[3]+1..@last+1].sort!.each_cons(2) do |a, b|
       if    a<0 || a==b || a>@last                                        # skip out of range and duplicates
