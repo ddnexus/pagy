@@ -48,7 +48,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 - it doesn't need to know anything about your models, ORM or Storage, so it doesn't add any code to them
 - it works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count
 - it works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box
-- it works with any possible non-Rack envoronment by just overriding one or two one-liner methods
+- it works with any possible non-Rack environment by just overriding one or two one-liner methods
 
 ### Easy to use
 
