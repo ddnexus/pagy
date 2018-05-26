@@ -30,7 +30,7 @@ class Pagy ; VERSION = '0.7.1'
     @pages  = @last = [(@count.to_f / @items).ceil, 1].max                # cardinal and ordinal meanings
     (1..@last).cover?(@page) || raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                              # pagination offset + outset (initial offset)
-    @items  = @count % @items if @page == @last                           # adjust items for last page
+    @items  = @count - ((@pages-1) * @items) if @page == @last            # adjust items for last page
     @from   = @count == 0 ? 0 : @offset+1 - @outset                       # page begins from item
     @to     = @offset + @items - @outset                                  # page ends to item
     @prev   = (@page-1 unless @page == 1)                                 # nil if no prev page
