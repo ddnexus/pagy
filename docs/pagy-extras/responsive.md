@@ -52,7 +52,7 @@ The `:breakpoint` variable is a pagy variable added by the `responsive` extra: i
 Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
 ```
 
-The above statement means that from `0` to `450` pixels width, pagy will use the `[1,2,2,1]` size, from `450` to `750` it will use the `[3,4,4,3]` size and over `750` it will use the `[4,5,5,4]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#control-the-page-links) section)
+The above statement means that from `0` to `450` pixels width, pagy will use the `[1,2,2,1]` size, from `450` to `750` it will use the `[3,4,4,3]` size and over `750` it will use the `[4,5,5,4]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section)
 
 
 **IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only constraint is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.

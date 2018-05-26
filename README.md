@@ -72,53 +72,65 @@ Or - if you prefer - render the navigation links with a template:
 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
-### Easy to extend
+## Easy to extend
 
-Use the official extras contained in the [pagy-extras](https://github.com/ddnexus/pagy-extras) gem, or write your own in just a few lines:
+Use the official extras contained in the [pagy-extras](https://github.com/ddnexus/pagy-extras) gem, or write your own in just a few lines.
+
+### Frontend Extras
 
 #### Bootstrap Extra
 
-This extra adds a nav helper and a few templates compatible with the Bootstrap pagination ([more info...](http://ddnexus.github.io/pagy/pagy-extras/bootstrap)).
+Nav helper and templates for Bootstrap pagination. ([More info...](http://ddnexus.github.io/pagy/pagy-extras/bootstrap))
 
 #### Responsive Extra
 
-This extra adds responsiveness to the pagination UI. The number of page links will adapt in real-time to the available window or container width. Here is an example of how the same pagination nav will look like by resizing the browser window:
+On resize, the number of page links will adapt in real-time to the available window or container width.
 
 ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
-([more info...](http://ddnexus.github.io/pagy/pagy-extras/responsive))
+([More info...](http://ddnexus.github.io/pagy/pagy-extras/responsive))
 
 #### Compact Extra
 
-This extra adds an alternative pagination UI that joins the pagination feature with the navigation info in one compact element. It is especially useful for small size screens.
+An alternative UI that combines the pagination feature with the navigation info in one compact element.
 
 ![pagy-compact](docs/assets/images/pagy-compact-w.png)
 
-([more info...](http://ddnexus.github.io/pagy/pagy-extras/compact))
+([More info...](http://ddnexus.github.io/pagy/pagy-extras/compact))
 
-## Support, Comments and Feature Requests
+### Backend Extras
 
-[![Join the chat at https://gitter.im/ruby-pagy/Lobby](https://badges.gitter.im/ruby-pagy/Lobby.svg)](https://gitter.im/ruby-pagy/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+More specialized backend methods for specific types of collection that play well with each other and avoid overriding.
+
+#### Array Extra
+
+Paginate arrays effiently avoiding expensive array-wrapping and wihout overriding. ([More info...](http://ddnexus.github.io/pagy/pagy-extras/array))
+
+## Chat Support and Feedback
+
+[Chat on Gitter](https://gitter.im/ruby-pagy/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Useful Links
 
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
-- [Pagination Comparison App Repository](http://github.com/ddnexus/pagination-comparison)
+- [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison)
 
 ## Help Wanted
 
 Pagy is a fresh project and your help would be great. If you like it, you have a few options to contribute:
 
-- write a tutorial or a post or even just a tweet (pagy is young and needs to be known)
-- write a "How To" topic (the documentation is covering the basics and there is a lot of space for additions)
-- submit some cool extra
-- submit a pull request to make pagy even faster, save more memory or improve its usability
-- create an issue if anything should be improved/fixed
+- Write a tutorial or a post or even just a tweet (pagy is young and needs to be known)
+- Write a "How To" topic (the documentation is covering the basics and there is a lot of space for additions)
+- Submit some cool extra
+- Submit a pull request to make pagy even faster, save more memory or improve its usability
+- Create an issue if anything should be improved/fixed
 
 ## Branches and Pull Requests
 
-`master` is the latest rubygem-published release: you should use it as the base branch for pull requests, because it will not be force-rebased. `dev` is the development branch that will receive your pull requests, and that get merged into `master` before a new release. Expect `dev` to be force-rebased, so it's probably wise not to use it as the base for your commits.
+`master` is the latest rubygem-published release (plus documentation-only changes about the current version): you should use it as the base branch for pull requests, because it will not be force-rebased.
+
+`dev` is the development branch that is kept rebased on top of `master`, so expect it to be force-rebased (i.e. do not use it as the base for your commits). Use `dev` as a preview for trying the new code that will be merged in the next release, but please, don't use it as the base branch for pull requests.
 
 ## License
 

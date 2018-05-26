@@ -41,6 +41,19 @@ or with a template:
 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
+## Items per page
+
+You can control the items per page with the `items` variable. (Default `20`)
+
+You can set its default in an initializer (applied to all instances). For example:
+```ruby
+Pagy::VARS[:items] = 25
+```
+You can also pass it as an instance variable to the `Pagy.new` method or to the `pagy` controller method:
+```ruby
+@pagy, @records = pagy(Product.some_scope, items: 30)
+```
+
 ## Paginate Any Collection
 
 Pagy doesn't need to know anything about the kind of collection you paginate, it doesn't need to "teach" it how to paginate itself by adding code to it: pagy just needs to know its count.
@@ -76,6 +89,14 @@ Then of course, regardless the kind of collection, you can render the navigation
 ```
 See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb) and the [Pagy::Backend API documentation](api/backend.md) for more details.
 
+## Paginate an Array
+
+You have many ways to paginate an array with pagy:
+
+- implementing the above _how-to_ (probably not very convenient besides being a good example)
+- using `pagy` and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
+- using `pagy_array` offered by the `pagy-extra` gem _(see [array extra](pagy-extras/array.md))_
+
 ## Paginate a pre-offsetted and pre-limited collection
 
 With the other pagination gems you cannot paginate a subset of a collection that you got using offset and limit. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
@@ -87,26 +108,12 @@ subset = Product.offset(100).limit(315)
 
 Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and from 301 to 315 for the last page.
 
-
-## Items per page
-
-You can control the items per page with the `items` variable. (Default `20`)
-
-You can set its default in an initializer (applied to all instances). For example:
-```ruby
-Pagy::VARS[:items] = 25
-```
-You can also pass it as an instance variable to the `Pagy.new` method or to the `pagy` controller method:
-```ruby
-@pagy, @records = pagy(Product.some_scope, items: 30)
-```
-
 ## Passing the page number
 
 You don't need to explicitly pass the usual `params[:page]` page number to the `pagy` method, because it is pulled in by the `pagy_get_vars` (which is called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For example:
 
 ```ruby
-pagy(my_scope, page: 3)
+@pagy, @records = pagy(my_scope, page: 3)
 ```
 
 That will explicitly set the `:page` variable, overriding the `params[:page]` default.
@@ -114,7 +121,7 @@ That will explicitly set the `:page` variable, overriding the `params[:page]` de
 __Notice__: If you need to get the page number from another param or in some different way, just override the `pagy_get_vars` method right in your controller.
 
 
-## Control the page links
+## Controlling the page links
 
 You can control the number and position of page links in the navigation through the `:size` variable. It is an array of 4 integers that specify which and how many page link to show.
 

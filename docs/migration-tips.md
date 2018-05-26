@@ -4,7 +4,9 @@ title: Migration Tips
 
 # Migration Tips
 
-This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is higly customized you may need more digging into the Pagy documentation. Feel free to ask on Gitter if you need more assistance:&nbsp;&nbsp;<a href="https://gitter.im/ruby-pagy/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" rel="nofollow" target="_blank"><img src="https://camo.githubusercontent.com/1adf5e58915e2093fd2e856136ae26c99e2ae214/68747470733a2f2f6261646765732e6769747465722e696d2f727562792d706167792f4c6f6262792e737667" alt="Join the chat at https://gitter.im/ruby-pagy/Lobby" data-canonical-src="https://badges.gitter.im/ruby-pagy/Lobby.svg" style="max-width:100%;"></a>
+This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is higly customized you may need more digging into the Pagy documentation.
+
+Feel free to <a href="https://gitter.im/ruby-pagy/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" rel="nofollow" target="_blank">ask on Gitter</a> if you need more assistance.
 
 ## Phases
 
