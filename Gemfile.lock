@@ -228,6 +228,7 @@ GEM
     pathutil (0.16.1)
       forwardable-extended (~> 2.6)
     public_suffix (2.0.5)
+    rack (2.0.5)
     rake (10.5.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
@@ -273,6 +274,7 @@ DEPENDENCIES
   memory_profiler
   minitest (~> 5.0)
   pagy!
+  rack
   rake (~> 10.0)
   slim
 
