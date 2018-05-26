@@ -29,5 +29,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'benchmark-ips'
   s.add_development_dependency 'kalibera'
   s.add_development_dependency 'memory_profiler'
+  s.add_development_dependency 'rubocop', '~> 0.55.0' # needs to be fixed since it constantly adds new cops
 
 end

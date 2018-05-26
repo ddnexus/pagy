@@ -7,7 +7,7 @@ class I18nTest < Minitest::Test
   end
 
   def setup
-    @I18n = TestI18n.new
+    @I18n = TestI18n.new # rubocop:disable Naming/VariableName TODO rename
   end
 
   def test_data

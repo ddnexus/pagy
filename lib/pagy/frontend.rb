@@ -74,7 +74,7 @@ class Pagy
           value.key?(plural) or return %(invalid pluralization data: "#{path}" cannot be used with count: #{vars[:count]}; key "#{plural}" is missing.)
           value = value[plural] or return %(translation missing: "#{path}")
         end
-        sprintf value, Hash.new{|h,k| "%{#{k}}"}.merge!(vars)    # interpolation
+        sprintf value, Hash.new{|_,k| "%{#{k}}"}.merge!(vars)    # interpolation
       end
     end
 
