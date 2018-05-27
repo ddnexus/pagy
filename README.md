@@ -74,13 +74,13 @@ Or - if you prefer - render the navigation links with a template:
 
 ## Easy to extend
 
-Use the official extras contained in the [pagy-extras](https://github.com/ddnexus/pagy-extras) gem, or write your own in just a few lines.
+Use the official extras, or write your own in just a few lines.
 
 ### Frontend Extras
 
 #### Bootstrap Extra
 
-Nav helper and templates for Bootstrap pagination. ([More info...](http://ddnexus.github.io/pagy/pagy-extras/bootstrap))
+Nav helper and templates for Bootstrap pagination. ([More info...](http://ddnexus.github.io/pagy/extras/bootstrap))
 
 #### Responsive Extra
 
@@ -88,7 +88,7 @@ On resize, the number of page links will adapt in real-time to the available win
 
 ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
-([More info...](http://ddnexus.github.io/pagy/pagy-extras/responsive))
+([More info...](http://ddnexus.github.io/pagy/extras/responsive))
 
 #### Compact Extra
 
@@ -96,7 +96,7 @@ An alternative UI that combines the pagination feature with the navigation info 
 
 ![pagy-compact](docs/assets/images/pagy-compact-w.png)
 
-([More info...](http://ddnexus.github.io/pagy/pagy-extras/compact))
+([More info...](http://ddnexus.github.io/pagy/extras/compact))
 
 ### Backend Extras
 
@@ -104,7 +104,7 @@ More specialized backend methods for specific types of collection that play well
 
 #### Array Extra
 
-Paginate arrays effiently avoiding expensive array-wrapping and wihout overriding. ([More info...](http://ddnexus.github.io/pagy/pagy-extras/array))
+Paginate arrays effiently avoiding expensive array-wrapping and wihout overriding. ([More info...](http://ddnexus.github.io/pagy/extras/array))
 
 ## Chat Support and Feedback
 
