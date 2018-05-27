@@ -214,4 +214,20 @@ class MetricsTest < Minitest::Test
     assert_equal 9, pagy.pages
   end
 
+  def test_items_of_last_page_of_one
+    pagy = Pagy.new items: 10, count: 0
+    assert_equal 0, pagy.items
+    pagy = Pagy.new items: 10, count: 4
+    assert_equal 4, pagy.items
+    pagy = Pagy.new items: 10, count: 10
+    assert_equal 10, pagy.items
+  end
+
+  def test_items_of_last_page_of_many
+    pagy = Pagy.new items: 10, count: 14, page: 2
+    assert_equal 4, pagy.items
+    pagy = Pagy.new items: 10, count: 20, page: 2
+    assert_equal 10, pagy.items
+  end
+
 end

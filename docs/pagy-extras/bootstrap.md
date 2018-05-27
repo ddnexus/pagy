@@ -4,7 +4,7 @@ title: Bootstrap
 
 # Bootstrap
 
-This extra adds a nav helper compatible with the Bootstrap pagination.
+This extra adds nav helper and templates for Bootstrap pagination.
 
 ## Synopsys
 

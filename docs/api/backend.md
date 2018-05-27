@@ -4,17 +4,13 @@ title: Pagy::Backend
 
 # Pagy::Backend
 
-The only scope of this module is encapsulating a couple of verbose statements in one single slick `pagy` method, that returns the pagy instance and the page of records from the collection. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_
+This module provides a _generic_ pagination method (`pagy`) that works out of the box with any ORM collection (e.g. `ActiveRecord`, `Sequel`, `Mongoid`, ... collections), plus two sub-methods that you may want to override in order to customize it for any type of collection (e.g. Array, elasticsearch results, etc.) _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_
 
-Including this module in your controller allows you to have a predefined `pagy` method plus a couple of sub-methods (i.e. getter methods called only by the predefined method), which are handy if you need to override some specific aspect of the predefined `pagy` method.
+If you use also the `pagy-extras` gem, this module will get extended by a few _specific_ pagination methods, very convenient to use with _specific_ types of collections like Array, elasticsearch results, etc.
 
-You can also write your own `pagy` method in your controller without including this module: it's just a couple of lines. For example, the following may be enough for your app:
-```ruby
-def pagy(collection, vars={})
-  pagy = Pagy.new(count: collection.count, page: params[:page], _vars)
-  return pagy, collection.offset(pagy.offset).limit(pagy.items)
-end
-```
+ __Notice__: Currently, the only available backend extra is the [array extra](../pagy-extras/array.md), but stay tuned, because there will be more in the near future.
+
+  _(see the [pagy-extras](../pagy-extras.md) doc for more details)_
 
 ## Synopsys
 
@@ -31,7 +27,6 @@ end
 def index
   @pagy, @records = pagy(Product.some_scope, some_option: 'some option for this instance')
 end
- 
 ```
 
 ## Methods
@@ -63,6 +58,8 @@ end
 ```
 Override it if you need to add or change some variable. For example you may want to add the `:item_path` or the `:item_name` to customize the `pagy_info` output, or get the `:page` from a different param, or even cache the `count`.
 
+_IMPORTANT_: `:count` and `:page` are the only 2 required pagy core variables, so be careful not to remove them from the returned hash.
+
 See also the [How To](../how-to.md) wiki page for some usage example.
 
 
@@ -72,9 +69,15 @@ Sub-method called by the `pagy` method, it returns the page items (i.e. the reco
 
  Here is its source (it works with most ORMs like `ActiveRecord`, `Sequel`, `Mongoid`, ...):
 
- ```ruby
- def pagy_get_items(collection, pagy)
-   collection.offset(pagy.offset).limit(pagy.items)
- end
- ```
- Override it if the extraction of the items from your collection works in a different way.
+```ruby
+def pagy_get_items(collection, pagy)
+  collection.offset(pagy.offset).limit(pagy.items)
+end
+```
+Override it if the extraction of the items from your collection works in a different way. For example, if you need to paginate an array:
+
+```ruby
+def pagy_get_items(array, pagy)
+  array[pagy.offset, pagy.items]
+end
+```
