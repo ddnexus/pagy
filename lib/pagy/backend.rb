@@ -4,7 +4,7 @@ class Pagy
   # Defines a few generic methods to paginate a ORM collection out of the box,
   # or any collection by overriding pagy_get_items in your controller
 
-  # See also the pagy-extras gem if you need specialized methods to paginate
+  # See also the extras if you need specialized methods to paginate
   # Arrays, ORM, and other TBD collections
 
   module Backend ; private         # the whole module is private so no problem with including it in a controller

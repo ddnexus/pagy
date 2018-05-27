@@ -8,7 +8,7 @@ This page contains the practical tips and examples to get the job done with pagy
 
 ## Quick Start
 
-Install and require the pagy gem (you may want to install also the [pagy-extras](pagy-extras.md) gem):
+Install and require the pagy gem:
 ```bash
 gem install pagy
 ```
@@ -119,7 +119,7 @@ You have many ways to paginate an array with pagy:
 
 - implementing the above _how-to_ (probably not very convenient besides being a good example)
 - using `pagy` and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
-- using `pagy_array` offered by the `pagy-extra` gem _(see [array extra](pagy-extras/array.md))_
+- using `pagy_array` offered by the `array` extra _(see [array extra](extras/array.md))_
 
 ## Paginate a pre-offsetted and pre-limited collection
 
@@ -151,13 +151,13 @@ These helpers take the pagy object and returns the HTML string with the paginati
 ```erb
 <%== pagy_nav(@pagy) %>
 ```
-**Notice**: the [pagy-extras](pagy-extras.md) gem adds a few other helpers that you an use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
+**Notice**: the [extras](extras.md) add a few other helpers that you an use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
-| Extra                                | Helpers                                                |
-|:-------------------------------------|:-------------------------------------------------------|
-|                   [bootstrap](pagy-extras/bootstrap.md)   | `pagy_nav_bootstrap`                                   |
-|                   [responsive](pagy-extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_bootstrap_responsive` |
-|                   [compact](pagy-extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_bootstrap_compact`       |
+| Extra                                 | Helpers                                                |
+|:--------------------------------------|:-------------------------------------------------------|
+| [bootstrap](extras/bootstrap.md)   | `pagy_nav_bootstrap`                                   |
+| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_bootstrap_responsive` |
+| [compact](extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_bootstrap_compact`       |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -223,24 +223,24 @@ That would produce links that look like e.g. `<a href="2">2</a>`. Then you can a
 
 The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper, so choose wisely.
 
-Pagy provides the replacement templates for the `pagy_nav` and the `pagy_nav_bootstrap` helpers (available with the `pagy-extras` gem) in 3 flavors: `erb`, `haml` and `slim`.
+Pagy provides the replacement templates for the `pagy_nav` and the `pagy_nav_bootstrap` helpers (available with the `bootstrap` extra) in 3 flavors: `erb`, `haml` and `slim`.
 
 They produce exactly the same output of the helpers, but they are slower, so use them only if you need to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
 - `pagy`
-  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.erb)
-  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.haml)
-  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.slim)
-- `pagy-extras`
-  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.erb)
-  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.haml)
-  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.slim)
+  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.erb)
+  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.haml)
+  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.slim)
+- `bootstrap`
+  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.erb)
+  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.haml)
+  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.slim)
 
 If you need to try/compare an unmodified built-in template, you can render it right from the pagy gem with:
 
 ```erb
-<%== render file: Pagy.root.join('templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
-<%== render file: Pagy.extras_root.join('templates', 'nav_bootstrap.html.erb'), locals: {pagy: @pagy} %>
+<%== render file: Pagy.root.join('pagy', 'extras', 'templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
+<%== render file: Pagy.root.join('pagy', 'extras', 'templates', 'nav_bootstrap.html.erb'), locals: {pagy: @pagy} %>
 ```
 You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
 

@@ -6,7 +6,7 @@ title: Pagy::Frontend
 
 This module provides a few methods to deal with the navigation aspect of the pagination. You will usually include it in some helper module, making its methods available (and overridable) in your views. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb))_
 
-If you use also the `pagy-extras` gem, this module will get extended by a few more `nav_*` helpers _(see the [pagy-extras](../pagy-extras.md) doc for more details)_
+You can extend this module with a few more `nav_*` helpers _(see the [extras](../extras.md) doc for more details)_
 
 ## Synopsys
 
@@ -186,7 +186,7 @@ Pagy will define the `pagy_t` method to use the `I18n` gem if available, or the 
 
 That works in all conditions, however - for performance reasons - you may want to force using the internal 5x faster implementation even in presence of `I18n` (e.g. with rails). You should do so only in case of single-language apps (e.g. only 'en', or only 'fr'...) since the internal implementation supports only pluralization and interpolation but not translation.
 
-If you want to force the internal faster implementation, you should explicitly set `Pagy::I18N[:gem] = false` in an initializer. In case you are also using the `pagy-extras` you should also ensure to require it only after the `Pagy::I18N[:gem]` variable has been set.
+If you want to force the internal faster implementation, you should explicitly set `Pagy::I18N[:gem] = false` in an initializer. In case you are also using some frontend extra, you should also ensure to require the extra only after the `Pagy::I18N[:gem]` variable has been set.
 
 
 #### Pagy::I18N[:file]

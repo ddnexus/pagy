@@ -71,7 +71,7 @@ These are the core-variables (i.e. instance variables that define the pagination
 |   `:page` | the requested page number                                                                                                                                                                         | `1`         |
 |  `:items` | the _requested_ number of items for the page                                                                                                                                                      | `20`        |
 | `:outset` | the initial offset of the collection to paginate: pass it only if the collection was pre-offset(ted)                                                                                              | `0`         |
-|   `:size` | the size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also             [Control the page links](../how-to.md#controlling-the-page-links))_  | `[1,4,4,1]` |
+|   `:size` | the size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [Control the page links](../how-to.md#controlling-the-page-links))_  | `[1,4,4,1]` |
 
 __Notice__: Pagy replaces the blank values of scalar core variables (so excluding `:size`) with their default values. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
 
