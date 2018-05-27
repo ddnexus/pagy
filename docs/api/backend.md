@@ -6,11 +6,10 @@ title: Pagy::Backend
 
 This module provides a _generic_ pagination method (`pagy`) that works out of the box with any ORM collection (e.g. `ActiveRecord`, `Sequel`, `Mongoid`, ... collections), plus two sub-methods that you may want to override in order to customize it for any type of collection (e.g. Array, elasticsearch results, etc.) _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_
 
-If you use also the `pagy-extras` gem, this module will get extended by a few _specific_ pagination methods, very convenient to use with _specific_ types of collections like Array, elasticsearch results, etc.
+You can extend this module with a few _specific_ pagination methods, very convenient to use with _specific_ types of collections like Array, elasticsearch results, etc. _(see the [extras](../extras.md) doc for more details)_
 
 __Notice__: Currently, the only available backend extra is the [array extra](../pagy-extras/array.md), but stay tuned, because there will be more in the near future.
 
-_(see the [pagy-extras](../pagy-extras.md) doc for more details)_
 
 
 ## Synopsys
@@ -91,4 +90,4 @@ def pagy_get_items(array, pagy)
   array[pagy.offset, pagy.items]
 end
 ```
-__Notice__: in order to paginate arrays, you may want to use the `array` extra.
+__Notice__: in order to paginate arrays, you may want to use the  [array extra](../pagy-extras/array.md).
