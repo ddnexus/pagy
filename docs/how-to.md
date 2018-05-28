@@ -223,6 +223,10 @@ end
 ```
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
+## Skipping single page navs
+
+Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don't. If you don't... use the `pagy_nav*` only if `@pagy.pages > 1` is true.
+
 ## Using Templates
 
 The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper, so choose wisely.
