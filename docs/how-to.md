@@ -41,6 +41,10 @@ or with a template:
 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
+## Configuring
+
+Pagy should work out of the box for most Rack based apps (e.g. Rails) even without configuring anything, however you can configure all its features by creating a `pagy.rb` initializer file, copying the content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and uncomment and edit what you may need.
+
 ## Items per page
 
 You can control the items per page with the `items` variable. (Default `20`)
