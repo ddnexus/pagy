@@ -275,12 +275,6 @@ after_destroy { Rails.cache.delete_matched /^pagy-#{self.class.name}:/}
 ```
 That may work very well with static (or almost static) DBs, where there is not much writing and mostly reading. Less so with more DB writing, and probably not particularly useful with a DB in constant change.
 
-## Using I18n
-
-Pagy is I18n ready. That means that all the UI strings that pagy uses are stored in a dictionaray YAML file, ready to be customized and/or translated/pluralized. The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`
-
-It contains a few entries used in the the UI by helpers and templates through the `pagy_t` method (eqivalent to the `I18n.t` or rails `t` helper). For more details, please take a look at the [pagy.yml dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) and read the [pagy_t API documentation](api/frontend.md#pagy_tpath-vars)
-
 ## Using the pagy_info helper
 
 The page info that you get by using the `pagy_info` helper (e.g. "Displaying items <b>476-500</b> of <b>1000</b> in total") is composed by 2 strings:

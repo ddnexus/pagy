@@ -2,7 +2,7 @@
 title: Responsive
 ---
 
-# Responsive
+# Responsive Extra
 
 With the `responsive` extra the number of page links will adapt in real-time to the available window or container width.
 
@@ -15,6 +15,9 @@ Here is an example of how the same pagination nav might look like by resizing th
 See [extras](../extras.md) for general usage info.
 
 ```ruby
+# in the initializer
+require 'pagy/extra/responsive' 
+
 # set your default custom breakpoints (width/size pairs) globally (it can be overridden per pagy instance)
 Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
 
@@ -55,7 +58,7 @@ Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
 The above statement means that from `0` to `450` pixels width, pagy will use the `[1,2,2,1]` size, from `450` to `750` it will use the `[3,4,4,3]` size and over `750` it will use the `[4,5,5,4]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section)
 
 
-**IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only constraint is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.
+**IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only requirement is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.
 
 ## Methods
 
@@ -76,3 +79,9 @@ It can take an extra `id` argument, which is used to build the `id` attribute of
 ### pagy_nav_bootstrap_responsive(pagy, ...)
 
 This method is the same as the `pagy_nav_responsive`, but customized for Bootstrap.
+
+| A   | B                             | Links                        |
+|:----|:------------------------------|:-----------------------------|
+| `a` | Text text text text text text | [a](https://github.com/a.rb) |
+| `b` | Text text text text text text | [b](https://github.com/b.rb) |
+| `c` | Text text text text text text | [c](https://github.com/c)    |
