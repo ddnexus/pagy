@@ -4,9 +4,6 @@ require 'pathname'
 
 class Pagy ; VERSION = '0.8.0'
 
-  autoload :Backend,  'pagy/backend'
-  autoload :Frontend, 'pagy/frontend'
-
   class OutOfRangeError < StandardError; end
 
   # root pathname to get the path of pagy files like templates or dictionaries
@@ -52,3 +49,6 @@ class Pagy ; VERSION = '0.8.0'
   end
 
 end
+
+require 'pagy/backend'
+require 'pagy/frontend'
