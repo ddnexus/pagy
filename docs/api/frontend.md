@@ -159,40 +159,34 @@ Be careful not to pass the same attribute at different levels multiple times. Th
 
 ### pagy_t(path, vars={})
 
-This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML locale file.
+This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML dictionary file.
 
-This method may be defined in 2 different ways:
+_(see I18n below)_
 
-- if `I18n` is defined: it is defined to use the standard `I18n.t` helper. _It's 5x slower but provides full I18n features_.
-- if `I18n` is missing or the `Pagy::I18N[:gem]` variable (see below) is explicitly set to `false`: it is defined to use the pagy I18n-like implementation. _It's 5x faster but provides only pluralization/interpolation without translation, so it's only useful with single language apps_.
 
-See also [Using I18n](../how-to.md#using-i18n).
+## I18n
 
+Pagy is I18n ready. That means that all the UI strings that pagy uses are stored in a [dictionaray YAML file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml), ready to be customized and/or translated/pluralized.
+
+The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`. It contains a few entries used in the the UI by helpers and templates through the [pagy_t method](api/frontend.md#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper).
+
+By default, the `pagy_t` method uses the pagy implementation of I18n, which does not depend on the `I18n` gem in any way. It's _5x faster_ and uses _3.5x less memory_, but it provides only pluralization/interpolation without translation, so it's only useful with single language apps (i.e. only `fr` or only `en` or only ...)
+
+If you need full blown I18n, you should require the `i18n` extra, which will override the `pagy_t` method to use directly `::I18n.t`.
 
 ### I18n Global Variables
 
-These are the `Pagy::I18N` globally accessible variables used to configure I18n. They are not merged with the pagy object and used only at require time.
+These are the `Pagy::I18N` globally accessible variables used to configure the pagy I18n implementation. They have no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). They are not merged with the pagy object and used only at require time.
 
 |   Variable | Description                                                    | Default                                      |
 |-----------:|:---------------------------------------------------------------|:---------------------------------------------|
-|     `:gem` | Boolean: use the standard `I81n` gem?                          | `nil`                                        |
 |    `:file` | The I18n YAML file                                             | `Pagy.root.join('locales', 'pagy.yml').to_s` |
 | `:plurals` | The proc that returns the plural key based on the passed count | `Proc` for English                           |
 
 
-#### Pagy::I18N[:gem]
-
-Pagy will define the `pagy_t` method to use the `I18n` gem if available, or the pagy internal implementation if `I18n` is missing.
-
-That works in all conditions, however - for performance reasons - you may want to force using the internal 5x faster implementation even in presence of `I18n` (e.g. with rails). You should do so only in case of single-language apps (e.g. only 'en', or only 'fr'...) since the internal implementation supports only pluralization and interpolation but not translation.
-
-If you want to force the internal faster implementation, you should explicitly set `Pagy::I18N[:gem] = false` in an initializer. In case you are also using some frontend extra, you should also ensure to require the extra only after the `Pagy::I18N[:gem]` variable has been set.
-
-
 #### Pagy::I18N[:file]
 
-This variable contains the path of the YAML file to load: set this variable only if you customized the file.
-
+This variable contains the path of the YAML file to load: set this variable only if you moved the file from `Pagy.root.join('locales', 'pagy.yml')`.
 
 #### Pagy::I18N[:plurals]
 
@@ -200,4 +194,3 @@ This variable controls the internal pluralization. If `pagy_t` is defined to use
 
 By default the variable is set to a proc that receives the `count` as the single argument and returns the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the count). You should customize it only for pluralization types different than English.
 
-See also [Using I18n](../how-to.md#using-i18n).

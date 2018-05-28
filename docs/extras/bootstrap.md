@@ -2,7 +2,7 @@
 title: Bootstrap
 ---
 
-# Bootstrap
+# Bootstrap Extra
 
 This extra adds nav helper and templates for Bootstrap pagination.
 
