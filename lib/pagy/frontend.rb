@@ -34,9 +34,8 @@ class Pagy
 
     # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
     def pagy_url_for(n)
-      url    = request.path
       params = request.GET.merge('page'.freeze => n.to_s)
-      url << '?' << Rack::Utils.build_nested_query(pagy_get_params(params))
+      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}"
     end
 
 
