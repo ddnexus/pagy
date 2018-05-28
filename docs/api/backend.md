@@ -8,9 +8,10 @@ This module provides a _generic_ pagination method (`pagy`) that works out of th
 
 If you use also the `pagy-extras` gem, this module will get extended by a few _specific_ pagination methods, very convenient to use with _specific_ types of collections like Array, elasticsearch results, etc.
 
- __Notice__: Currently, the only available backend extra is the [array extra](../pagy-extras/array.md), but stay tuned, because there will be more in the near future.
+__Notice__: Currently, the only available backend extra is the [array extra](../pagy-extras/array.md), but stay tuned, because there will be more in the near future.
 
-  _(see the [pagy-extras](../pagy-extras.md) doc for more details)_
+_(see the [pagy-extras](../pagy-extras.md) doc for more details)_
+
 
 ## Synopsys
 
@@ -42,12 +43,21 @@ This is the main method of this module. It takes a collection object (e.g. a sco
 ```ruby
 @pagy, @records = pagy(Product.my_scope, some_option: 'get merged in the pagy object')
 ```
-Internally it calls the following sub-methods, in order to get the arguments needed to initialize the `Pagy` instance and to paginate the collection.
+The built-in `pagy` method is designed to be easy to customize by overriding any of the two sub-methods that it calls internally. You can independently change the default variables (`pagy_get_variables`) and/or the default page of items from the collection `pagy_get_items`).
 
+If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and self contained custom `pagy` method.
+
+For example: here is a `pagy` method that doesn't call any sub-method, that may be enough for your app:
+```ruby
+def pagy_custom(collection, vars={})
+  pagy = Pagy.new(count: collection.count, page: params[:page], **vars)
+  return pagy, collection.offset(pagy.offset).limit(pagy.items)
+end
+```
 
 ### pagy_get_vars(collection)
 
-Sub-method called by the `pagy` method, it returns the hash of variables used to initialize the pagy object.
+Sub-method called only by the `pagy` method, it returns the hash of variables used to initialize the pagy object.
 
 Here is its source:
 
@@ -65,7 +75,7 @@ See also the [How To](../how-to.md) wiki page for some usage example.
 
 ### pagy_get_items(collection, pagy)
 
-Sub-method called by the `pagy` method, it returns the page items (i.e. the records belonging to the current page).
+Sub-method called only by the `pagy` method, it returns the page items (i.e. the records belonging to the current page).
 
  Here is its source (it works with most ORMs like `ActiveRecord`, `Sequel`, `Mongoid`, ...):
 
@@ -81,3 +91,4 @@ def pagy_get_items(array, pagy)
   array[pagy.offset, pagy.items]
 end
 ```
+__Notice__: in order to paginate arrays, you may want to use the `array` extra.

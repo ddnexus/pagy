@@ -54,6 +54,30 @@ You can also pass it as an instance variable to the `Pagy.new` method or to the 
 @pagy, @records = pagy(Product.some_scope, items: 30)
 ```
 
+## Controlling the page links
+
+You can control the number and position of page links in the navigation through the `:size` variable. It is an array of 4 integers that specify which and how many page link to show.
+
+The default is `[1,4,4,1]`, which means that you will get `1` initial page, `4` pages before the current page, `4` pages after the current page, and `1` final page
+
+As usual you can set the `:size` variable as a global default by using the `Pagy::VARS` hash or pass it directly to the `pagy` method.
+
+The navigation links will contain the number of pages set in the variables:
+
+`size[0]`...`size[1]` current page `size[2]`...`size[3]`
+
+For example:
+
+```ruby
+pagy = Pagy.new count:1000, page: 10, size: [3,4,4,3] # etc
+pagy.series
+#=> [1, 2, 3, :gap, 6, 7, 8, 9, "10", 11, 12, 13, 14, :gap, 48, 49, 50]
+```
+
+As you can see by the result of the `series` method, you get 3 initial pages, 1 `:gap` (series interupted), 4 pages before the current page, the current `:page` (which is a string), 4 pages after the current page, another `:gap` and 3 final pages.
+
+You can easily try different options (also asymmetrical) in a console by changing the `:size`: just check the `series` array to see what it contains when used in combination with different core variables.
+
 ## Paginate Any Collection
 
 Pagy doesn't need to know anything about the kind of collection you paginate, it doesn't need to "teach" it how to paginate itself by adding code to it: pagy just needs to know its count.
@@ -119,32 +143,6 @@ You don't need to explicitly pass the usual `params[:page]` page number to the `
 That will explicitly set the `:page` variable, overriding the `params[:page]` default.
 
 __Notice__: If you need to get the page number from another param or in some different way, just override the `pagy_get_vars` method right in your controller.
-
-
-## Controlling the page links
-
-You can control the number and position of page links in the navigation through the `:size` variable. It is an array of 4 integers that specify which and how many page link to show.
-
-The default is `[1,4,4,1]`, which means that you will get `1` initial page, `4` pages before the current page, `4` pages after the current page, and `1` final page
-
-As usual you can set the `:size` variable as a global default by using the `Pagy::VARS` hash or pass it directly to the `pagy` method.
-
-The navigation links will contain the number of pages set in the variables:
-
-`size[0]`...`size[1]` current page `size[2]`...`size[3]`
-
-For example:
-
-```ruby
-pagy = Pagy.new count:1000, page: 10, size: [3,4,4,3] # etc
-pagy.series
-#=> [1, 2, 3, :gap, 6, 7, 8, 9, "10", 11, 12, 13, 14, :gap, 48, 49, 50]
-```
-
-As you can see by the result of the `series` method, you get 3 initial pages, 1 `:gap` (series interupted), 4 pages before the current page, the current `:page` (which is a string), 4 pages after the current page, another `:gap` and 3 final pages.
-
-You can easily try different options (also asymmetrical) in a console by changing the `:size`: just check the `series` array to see what it contains when used in combination with different core variables.
-
 
 ## Using the pagy_nav* helpers
 
