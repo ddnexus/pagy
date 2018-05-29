@@ -13,6 +13,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ast (2.4.0)
     benchmark-ips (2.7.2)
     coffee-script (2.4.1)
       coffee-script-source
@@ -225,18 +226,31 @@ GEM
       mini_portile2 (~> 2.3.0)
     octokit (4.8.0)
       sawyer (~> 0.8.0, >= 0.5.3)
+    parallel (1.12.1)
+    parser (2.5.1.0)
+      ast (~> 2.4.0)
     pathutil (0.16.1)
       forwardable-extended (~> 2.6)
+    powerpack (0.1.1)
     public_suffix (2.0.5)
     rack (2.0.5)
+    rainbow (3.0.0)
     rake (10.5.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rbzip2 (0.2.0)
     rouge (2.2.1)
+    rubocop (0.55.0)
+      parallel (~> 1.10)
+      parser (>= 2.5)
+      powerpack (~> 0.1)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-enum (0.7.2)
       i18n
+    ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     safe_yaml (1.0.4)
@@ -276,6 +290,7 @@ DEPENDENCIES
   pagy!
   rack
   rake (~> 10.0)
+  rubocop (~> 0.55.0)
   slim
 
 BUNDLED WITH

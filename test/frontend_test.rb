@@ -17,7 +17,7 @@ class FrontendTest < Minitest::Test
   end
 
   def test_pagy_nav_page_1
-    pagy, paged = @array.pagy(1)
+    pagy, _ = @array.pagy(1)
 
     assert_equal(
       '<nav class="pagy-nav pagination" role="navigation" aria-label="pager">' \
@@ -35,7 +35,7 @@ class FrontendTest < Minitest::Test
   end
 
   def test_pagy_nav_page_3
-    pagy, paged = @array.pagy(3)
+    pagy, _ = @array.pagy(3)
 
     assert_equal(
       '<nav class="pagy-nav pagination" role="navigation" aria-label="pager">' \
@@ -53,7 +53,7 @@ class FrontendTest < Minitest::Test
   end
 
   def test_pagy_nav_page_6
-    pagy, paged = @array.pagy(6)
+    pagy, _ = @array.pagy(6)
 
     assert_equal(
       '<nav class="pagy-nav pagination" role="navigation" aria-label="pager">' \

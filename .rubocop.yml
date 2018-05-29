@@ -1,0 +1,14 @@
+Layout:
+  Enabled: false
+
+Metrics:
+  Enabled: false
+
+Style:
+  Enabled: false
+
+Gemspec/OrderedDependencies:
+  Enabled: false
+
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
