@@ -128,6 +128,4 @@ If the app uses the bootstrap pagination, the same CSSs should work seamlessly w
 
 If the app uses `I18n` you should copy and paste the entries in the [pagy.yml dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) to the dictionaries of your app, and translate them accordingly.
 
-#### Gain some more speed
-
-In case the app is a single language app (only en, or only fr, etc.) you can gain some extra performance if you explicitly exclude the use of the `I18n` gem. In that case you should set `Pagy::I18N[:gem] = false` in the initializer. See the Pagy::I18N [:gem doc](api/frontend.md#pagyi18ngem) for more details.
+See also [I18n](api/frontend.md#i18n).
