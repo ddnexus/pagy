@@ -5,15 +5,15 @@ class Pagy
   module Backend ; private
 
     # return pagy object and items
-    def pagy_array(array, vars=nil)
-      pagy = Pagy.new(vars ? pagy_array_get_vars(array).merge!(vars) : pagy_array_get_vars(array))   # conditional merge is faster and saves memory
+    def pagy_array(array, vars={})
+      pagy = Pagy.new(pagy_array_get_vars(array, vars))
       return pagy, array[pagy.offset, pagy.items]
     end
 
-    # sub-method called only by #pagy_array: here for easy customization of variables by overriding
-    def pagy_array_get_vars(array)
-      # return the variables to initialize the pagy object
-      { count: array.count, page: params[:page] }
+    def pagy_array_get_vars(array, vars)
+      # return the merged variables to initialize the pagy object
+      { count: array.count,
+        page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
     end
 
   end

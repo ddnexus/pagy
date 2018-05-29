@@ -10,15 +10,16 @@ class Pagy
   module Backend ; private         # the whole module is private so no problem with including it in a controller
 
     # return pagy object and items
-    def pagy(collection, vars=nil)
-      pagy = Pagy.new(vars ? pagy_get_vars(collection).merge!(vars) : pagy_get_vars(collection))   # conditional merge is faster and saves memory
+    def pagy(collection, vars={})
+      pagy = Pagy.new(pagy_get_vars(collection, vars))
       return pagy, pagy_get_items(collection, pagy)
     end
 
     # sub-method called only by #pagy: here for easy customization of variables by overriding
-    def pagy_get_vars(collection)
-      # return the variables to initialize the pagy object
-      { count: collection.count, page: params[:page] }
+    def pagy_get_vars(collection, vars)
+      # return the merged variables to initialize the pagy object
+      { count: collection.count,
+        page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
     end
 
     # sub-method called only by #pagy: here for easy customization of record-extraction by overriding

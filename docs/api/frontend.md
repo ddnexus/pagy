@@ -28,7 +28,7 @@ use some of its method in some view:
 
 ## Methods
 
-All the methods in this module are prefixed with the `"pagy_"` string, to avoid any possible conflict with your own methods when you include the module in your helper. The methods prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are intended to be overridden and not used directly.
+All the methods in this module are prefixed with the `"pagy_"` string in order to avoid any possible conflict with your own methods when you include the module in your helper. The methods prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are intended to be overridden and not used directly.
 
 Please, keep in mind that overriding any method is very easy with pagy. Indeed you can do it right where you are using it: no need of monkey-patching or subclassing or tricky gymnic.
 
@@ -69,7 +69,7 @@ Displaying Products <b>476-500</b> of <b>1000</b> in total
 See also [Using the pagy_info helper](../how-to.md#using-the-pagy_info-helper).
 
 
-### pagy_url_for(n)
+### pagy_url_for(n, page_param)
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
 
@@ -102,7 +102,7 @@ You need this section only if you are going to override a `pagy_nav*` helper or 
 
 **Warning**: This is a peculiar way to create page links and it works only for that purpose. It is not intended to be used for any other generic links to any URLs different than a page link.
 
-This method returns a specialized proc that you call to produce the page links. The reason it is a 2 steps process instead of a single method call is performance.
+This method returns a specialized proc that you call to produce the page links. The reason it is a 2 steps process instead of a single method call is performance. Indeed the method  calls the potentially expensive `pagy_url_for` only once and generates the proc, then calling the proc will just interpolates the strings passed to it.
 
 Here is how you should use it: in your helper or template call the method to get the proc (just once):
 ```
@@ -118,7 +118,7 @@ link.call( page_number [, text [, extra_attributes_string ]])
 
 If you need to add some HTML attribute to the page links, you can pass some extra attribute string at many levels, depending on the scope you want your attributes to be added.
 
-**Important**: For performance reasons, the extra attributes strings must be formatted as valid HTML attribute/value pairs. _All_ the stringa spassed at any level will get inserted verbatim in the HTML of the link.
+**Important**: For performance reasons, the extra attributes strings must be formatted as valid HTML attribute/value pairs. _All_ the string spassed at any level will get inserted verbatim in the HTML of the link.
 
 1. For all pagy objects: set the global variable `:link_extra`:
     ```ruby
@@ -168,7 +168,7 @@ _(see I18n below)_
 
 Pagy is I18n ready. That means that all the UI strings that pagy uses are stored in a [dictionaray YAML file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml), ready to be customized and/or translated/pluralized.
 
-The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`. It contains a few entries used in the the UI by helpers and templates through the [pagy_t method](api/frontend.md#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper).
+The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`. It contains a few entries used in the the UI by helpers and templates through the [pagy_t method](#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper).
 
 By default, the `pagy_t` method uses the pagy implementation of I18n, which does not depend on the `I18n` gem in any way. It's _5x faster_ and uses _3.5x less memory_, but it provides only pluralization/interpolation without translation, so it's only useful with single language apps (i.e. only `fr` or only `en` or only ...)
 

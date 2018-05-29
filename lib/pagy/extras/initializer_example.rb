@@ -18,7 +18,7 @@
 # require 'pagy/extras/compact'
 
 # I18n: Uses the `I18n` gem instead of the pagy implementation
-# https://ddnexus.github.io/pagy/extras/i18n
+# See https://ddnexus.github.io/pagy/extras/i18n
 # require 'pagy/extras/i18n'
 
 # Responsive: On resize, the number of page links will adapt in real-time to the available window or container width
@@ -32,9 +32,10 @@
 
 # Core variables (See https://ddnexus.github.io/pagy/api/pagy#core-variables)
 # Pagy::VARS[:items] = 20                                   # default
-# Pagy::VARS[:size]  = [1,4,4,1]                            # default
 
 # Non Core Variables (See https://ddnexus.github.io/pagy/api/pagy#non-core-variables)
+# Pagy::VARS[:size]       = [1,4,4,1]                       # default
+# Pagy::Vars[:page_param] = :page                           # default
 # Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
 # Pagy::VARS[:item_path]  = 'activerecord.models.product'   # example
 

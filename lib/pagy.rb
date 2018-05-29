@@ -10,7 +10,7 @@ class Pagy ; VERSION = '0.8.0'
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default core vars
-  VARS = { page:1, items:20, outset:0, size:[1,4,4,1] }
+  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page }
 
   # default I18n vars
   zero_one = [:zero, :one] ; I18N = { file: Pagy.root.join('locales', 'pagy.yml').to_s, plurals: -> (c) {(zero_one[c] || :other).to_s.freeze} }

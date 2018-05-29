@@ -15,12 +15,12 @@ __Notice__: Currently, the only available backend extra is the [array extra](../
 ## Synopsys
 
 ```ruby
-# typically in your controller
+# in your controller
 include Pagy::Backend
 
-# optional overriding of some sub-method (e.g. get the page number from the :seite param)
-def pagy_get_vars(collection)
-  { count: collection.count, page: params[:seite] } 
+# optional overriding of some sub-method 
+def pagy_get_vars(collection, vars)
+  #...
 end
 
 # use it in some action
@@ -54,18 +54,21 @@ def pagy_custom(collection, vars={})
 end
 ```
 
-### pagy_get_vars(collection)
+### pagy_get_vars(collection, vars)
 
 Sub-method called only by the `pagy` method, it returns the hash of variables used to initialize the pagy object.
 
 Here is its source:
 
 ```ruby
-def pagy_get_vars(collection)
-  { count: collection.count, page: params[:page] }
+# sub-method called only by #pagy: here for easy customization of variables by overriding
+def pagy_get_vars(collection, vars)
+  # return the merged variables to initialize the pagy object
+  { count: collection.count,
+    page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
 end
 ```
-Override it if you need to add or change some variable. For example you may want to add the `:item_path` or the `:item_name` to customize the `pagy_info` output, or get the `:page` from a different param, or even cache the `count`.
+Override it if you need to add or change some variable. For example you may want to add the `:item_path` or the `:item_name` to customize the `pagy_info` output, or even cache the `count`.
 
 _IMPORTANT_: `:count` and `:page` are the only 2 required pagy core variables, so be careful not to remove them from the returned hash.
 
