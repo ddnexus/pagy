@@ -19,7 +19,7 @@ class Pagy ; VERSION = '0.8.0'
 
   # merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(vars)
-    @vars = VARS.merge(vars.delete_if{|k,v| v.nil? || v == '' })          # default vars + cleaned instance vars
+    @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })          # default vars + cleaned instance vars
     { count:0, items:1, outset:0, page:1 }.each do |k,min|                # validate core variables
       (@vars[k] && instance_variable_set(:"@#{k}", @vars.delete(k).to_i) >= min) \
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{instance_variable_get(:"@#{k}").inspect}")
