@@ -33,14 +33,14 @@ class Pagy
 
 
     # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(n)
-      params = request.GET.merge('page'.freeze => n.to_s)
+    def pagy_url_for(page)
+      params = request.GET.merge('page'.freeze => page.to_s)
       "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}"
     end
 
 
     # sub-method called only by #pagy_url_for: here for easy customization of params by overriding
-    def pagy_get_params(p) p end
+    def pagy_get_params(params) params end
 
 
     MARKER = "-pagy-#{'pagy'.hash}-".freeze
@@ -59,7 +59,7 @@ class Pagy
     # this file will get autoloaded, so environment constants like ::I18n will be already set
     if I18N[:gem] || I18N[:gem].nil? && defined?(I18n)
       I18n.load_path << I18N[:file]
-      def pagy_t(*a) I18n.t(*a) end
+      def pagy_t(*args) I18n.t(*args) end
     else
       require 'yaml'
       # load data from the first locale in the file
