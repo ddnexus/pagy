@@ -115,6 +115,7 @@ Paginate arrays effiently avoiding expensive array-wrapping and wihout overridin
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison)
+- [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
 
 ## Help Wanted
 
