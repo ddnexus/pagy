@@ -1,3 +1,11 @@
 language: ruby
 rvm:
  - 2.5
+script: bundle exec rake $TASK
+env:
+- TASK=test
+matrix:
+  include:
+    - env: TASK=rubocop
+      rvm: 2.2
+
