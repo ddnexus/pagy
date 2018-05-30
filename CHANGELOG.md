@@ -1,5 +1,19 @@
 # CHANGELOG
 
+
+## Version 0.8.1
+
+### Important Changes:
+
+- Added :params and :anchor variables to control the generation of arbitrary URLs per pagy instance
+
+### Commits
+
+- [d185461](https://github.com/ddnexus/pagy/commit/d185461): added :params and :anchor variables to control the generation of arbitrary URLs per pagy instance
+- [62fd6c8](https://github.com/ddnexus/pagy/commit/62fd6c8): better forward improvements with pagy_url_for receiving the pagy instance instead of the single pagy_param
+- [748de0d](https://github.com/ddnexus/pagy/commit/748de0d): readme and changelog improvement
+
+
 ## Version 0.8.0
 
 ### Important Changes:
@@ -15,7 +29,7 @@
 
 - Extras are now integrated in pagy. The `pagy-extras` gem has been discontinued: you should remove it and update your code as indicated [here](https://github.com/ddnexus/pagy-extras)
 - Pagy I18n has been refactored and it's simpler to use. The main change is that the `Pagy::I18N[:gem]` variable has been removed, so if you want to use the `I18n` gem in place of the internal pagy implementation you need just to `require 'pagy/extra/i18n'` in your initializer. (see the [I18n doc](https://ddnexus.github.io/pagy/api/frontend.md#i18n))
-- `pagy_url_for` now requires the page_param argument and it's called with 2 params: if you have overridden it, you should add the extra param.
+- `pagy_url_for` now requires the pagy argument and it's called with 2 params: if you have overridden it, you should add the extra param.
 - `pagy_get_vars` now requires the vars argument and it's called with 2 params: if you have overridden it, you should add the extra param.
 - `pagy_array_get_vars` now requires the vars argument and it's called with 2 params: if you have overridden it, you should add the extra param.
 - 
