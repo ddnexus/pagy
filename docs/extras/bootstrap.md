@@ -2,13 +2,13 @@
 title: Bootstrap
 ---
 
-# Bootstrap
+# Bootstrap Extra
 
 This extra adds nav helper and templates for Bootstrap pagination.
 
 ## Synopsys
 
-See [pagy-extras](../pagy-extras.md) for general usage info.
+See [extras](../extras.md) for general usage info.
 
 Render the navigation links in some view...
 with a fast helper:
@@ -24,10 +24,10 @@ or with a template:
 
 This extra is composed of 4 files:
 
-- [bootstrap.rb](https://github.com/ddnexus/pagy-extras/blob/master/lib/pagy-extras/bootstrap.rb)
-- [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.erb) (optional template)
-- [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.haml) (optional template)
-- [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.slim)  (optional template)
+- [bootstrap.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bootstrap.rb)
+- [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.erb) (optional template)
+- [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.haml) (optional template)
+- [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.slim)  (optional template)
 
 ## Methods
 

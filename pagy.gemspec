@@ -31,4 +31,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'memory_profiler'
   s.add_development_dependency 'rubocop', '~> 0.55.0' # needs to be fixed since it constantly adds new cops
 
+
+  s.post_install_message = <<END_OF_MESSAGE
+******************************************************************************
+   Pagy CHANGELOG: https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md
+******************************************************************************
+END_OF_MESSAGE
+
 end

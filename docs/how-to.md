@@ -8,7 +8,7 @@ This page contains the practical tips and examples to get the job done with pagy
 
 ## Quick Start
 
-Install and require the pagy gem (you may want to install also the [pagy-extras](pagy-extras.md) gem):
+Install and require the pagy gem:
 ```bash
 gem install pagy
 ```
@@ -41,11 +41,15 @@ or with a template:
 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
+## Configuring
+
+Pagy should work out of the box for most Rack based apps (e.g. Rails) even without configuring anything, however you can configure all its features by creating a `pagy.rb` initializer file, copying the content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and uncomment and edit what you may need.
+
 ## Items per page
 
 You can control the items per page with the `items` variable. (Default `20`)
 
-You can set its default in an initializer (applied to all instances). For example:
+You can set its default in the pagy initializer. For example:
 ```ruby
 Pagy::VARS[:items] = 25
 ```
@@ -58,7 +62,7 @@ You can also pass it as an instance variable to the `Pagy.new` method or to the 
 
 You can control the number and position of page links in the navigation through the `:size` variable. It is an array of 4 integers that specify which and how many page link to show.
 
-The default is `[1,4,4,1]`, which means that you will get `1` initial page, `4` pages before the current page, `4` pages after the current page, and `1` final page
+The default is `[1,4,4,1]`, which means that you will get `1` initial page, `4` pages before the current page, `4` pages after the current page, and `1` final page.
 
 As usual you can set the `:size` variable as a global default by using the `Pagy::VARS` hash or pass it directly to the `pagy` method.
 
@@ -80,9 +84,7 @@ You can easily try different options (also asymmetrical) in a console by changin
 
 ## Paginate Any Collection
 
-Pagy doesn't need to know anything about the kind of collection you paginate, it doesn't need to "teach" it how to paginate itself by adding code to it: pagy just needs to know its count.
-
-With pagy you can paginate any collection, because every collection knows its count and every collection has a way to paginate itself by extracting a chunk of its items given an `offset` and a `limit` (i.e. skipping a few items from the beginning and getting a limited number from there). It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
+Pagy doesn't need to know anything about the kind of collection you paginate, it can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
 
 1. Create a pagy object using the `count` of the collection to paginate
 2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
@@ -117,9 +119,9 @@ See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/p
 
 You have many ways to paginate an array with pagy:
 
-- implementing the above _how-to_ (probably not very convenient besides being a good example)
-- using `pagy` and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
-- using `pagy_array` offered by the `pagy-extra` gem _(see [array extra](pagy-extras/array.md))_
+1. Implementing the above _how-to_ (probably not very convenient besides being a good example)
+2. Using the `pagy` method and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
+3. Using `pagy_array` offered by the `array` extra _(see [array extra](extras/array.md))_
 
 ## Paginate a pre-offsetted and pre-limited collection
 
@@ -134,15 +136,25 @@ Assuming the `:items` default of `20`, you will get the pages with the right rec
 
 ## Passing the page number
 
-You don't need to explicitly pass the usual `params[:page]` page number to the `pagy` method, because it is pulled in by the `pagy_get_vars` (which is called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For example:
+You don't need to explicitly pass the page number to the `pagy` method, because it is pulled in by the `pagy_get_vars` (which is called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For example:
 
 ```ruby
 @pagy, @records = pagy(my_scope, page: 3)
 ```
 
-That will explicitly set the `:page` variable, overriding the `params[:page]` default.
+That will explicitly set the `:page` variable, overriding the default behavior (which usually pulls the page number from the `params[:page]`).
 
-__Notice__: If you need to get the page number from another param or in some different way, just override the `pagy_get_vars` method right in your controller.
+## Customizing the page param
+
+Pagy uses the `:page_param` variable to determine the param it should get the page number from and create the URL for. Its default is set as `Pagy::VARS = :page`, hence it will get the page number from the `params[:page]` and will create page URLs like `./?page=3` by default.
+
+You may want to customize that, for example to make it more readable in your language, or becuse you need to paginate different collections in the same action. Depending on the scope of the customization, you have  couple of options:
+
+1. `Pagy::VARS[:page_param] = :custom_param` will be used as global default
+2. `pagy(scope, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single instance (overriding the global default)
+
+You can also override the `pagy_get_vars` if you need some special way to get the page number.
+
 
 ## Using the pagy_nav* helpers
 
@@ -151,13 +163,13 @@ These helpers take the pagy object and returns the HTML string with the paginati
 ```erb
 <%== pagy_nav(@pagy) %>
 ```
-**Notice**: the [pagy-extras](pagy-extras.md) gem adds a few other helpers that you an use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
+**Notice**: the [extras](extras.md) add a few other helpers that you an use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
-| Extra                                | Helpers                                                |
-|:-------------------------------------|:-------------------------------------------------------|
-|                   [bootstrap](pagy-extras/bootstrap.md)   | `pagy_nav_bootstrap`                                   |
-|                   [responsive](pagy-extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_bootstrap_responsive` |
-|                   [compact](pagy-extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_bootstrap_compact`       |
+| Extra                              | Helpers                                                |
+|:-----------------------------------|:-------------------------------------------------------|
+| [bootstrap](extras/bootstrap.md)   | `pagy_nav_bootstrap`                                   |
+| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_bootstrap_responsive` |
+| [compact](extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_bootstrap_compact`       |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -200,47 +212,51 @@ When you need somethig more radical with the URL than just massaging the params,
 The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths like `your_route/23` instead of `your_route?page=23`):
 
 ```ruby
-def pagy_url_for(n)
-  params = request.query_parameters.merge(only_path: true, page: n)
+def pagy_url_for(n, page_param)
+  params = request.query_parameters.merge(:only_path => true, page_param => n)
   url_for(params)
 end
 ```
 
-Notice that this overridden method is quite slower than the original because it passes through the rails helpers. However that gets mitigated by the internal usage of `pagy_link_proc` which calls the method only once even in presence of many pages.
+Notice that this overridden method is quite slower than the original because it passes through the rails helpers. However that gets mitigated by the internal usage of `pagy_link_proc` which calls the method only once even in the presence of many pages.
 
 #### POST with page links
 
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and your page links may need to use POST and not GET. In that case you can try this simple solution:
 
 ```ruby
-def pagy_url_for(n)
+def pagy_url_for(n, _)
   n
 end
 ```
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
+## Skipping single page navs
+
+Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don't. If you don't... use the `pagy_nav*` only if `@pagy.pages > 1` is true.
+
 ## Using Templates
 
 The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper, so choose wisely.
 
-Pagy provides the replacement templates for the `pagy_nav` and the `pagy_nav_bootstrap` helpers (available with the `pagy-extras` gem) in 3 flavors: `erb`, `haml` and `slim`.
+Pagy provides the replacement templates for the `pagy_nav` and the `pagy_nav_bootstrap` helpers (available with the `bootstrap` extra) in 3 flavors: `erb`, `haml` and `slim`.
 
 They produce exactly the same output of the helpers, but they are slower, so use them only if you need to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
 - `pagy`
-  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.erb)
-  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.haml)
-  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.slim)
-- `pagy-extras`
-  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.erb)
-  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.haml)
-  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy-extras/blob/master/lib/templates/nav_bootstrap.html.slim)
+  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.erb)
+  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.haml)
+  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.slim)
+- `bootstrap`
+  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.erb)
+  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.haml)
+  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.slim)
 
 If you need to try/compare an unmodified built-in template, you can render it right from the pagy gem with:
 
 ```erb
-<%== render file: Pagy.root.join('templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
-<%== render file: Pagy.extras_root.join('templates', 'nav_bootstrap.html.erb'), locals: {pagy: @pagy} %>
+<%== render file: Pagy.root.join('pagy', 'extras', 'templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
+<%== render file: Pagy.root.join('pagy', 'extras', 'templates', 'nav_bootstrap.html.erb'), locals: {pagy: @pagy} %>
 ```
 You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
 
@@ -257,8 +273,9 @@ Pagy gets the collection count through its `pagy_get_vars` method, so you can ov
 
 ```ruby
 # in your controller: override the pagy_get_vars method so it will call your cache_count method
-def pagy_get_vars(collection)
-  {count: cache_count(collection), page: params[:page]}
+def pagy_get_vars(collection, vars)
+  { count: cache_count(collection), 
+    page: params[vars[:page_param]||Pagy::VARS[:page_param]] }.merge!(vars)
 end
 
 # add Rails.cache wrapper around the count call       
@@ -275,12 +292,6 @@ after_destroy { Rails.cache.delete_matched /^pagy-#{self.class.name}:/}
 ```
 That may work very well with static (or almost static) DBs, where there is not much writing and mostly reading. Less so with more DB writing, and probably not particularly useful with a DB in constant change.
 
-## Using I18n
-
-Pagy is I18n ready. That means that all the UI strings that pagy uses are stored in a dictionaray YAML file, ready to be customized and/or translated/pluralized. The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`
-
-It contains a few entries used in the the UI by helpers and templates through the `pagy_t` method (eqivalent to the `I18n.t` or rails `t` helper). For more details, please take a look at the [pagy.yml dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) and read the [pagy_t API documentation](api/frontend.md#pagy_tpath-vars)
-
 ## Using the pagy_info helper
 
 The page info that you get by using the `pagy_info` helper (e.g. "Displaying items <b>476-500</b> of <b>1000</b> in total") is composed by 2 strings:
@@ -294,8 +305,10 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
 
 1. by overriding the `pagy_get_vars` method in your controller (valid for all the pagy instances) adding the `:item_path`. For example (with ActiveRecord):
     ```ruby
-    def pagy_get_vars(collection)
-      {count: collection.count, page: params[:page], item_path: "activerecord.models.#{collection.model_name.i18n_key}" }
+    def pagy_get_vars(collection, vars)
+      { count:     collection.count, 
+        page:      params[vars[:page_param]||Pagy::VARS[:page_param]], 
+        item_path: "activerecord.models.#{collection.model_name.i18n_key}" }.merge!(vars)
     end
     ```
 

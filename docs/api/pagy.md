@@ -60,31 +60,31 @@ _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and 
 
 The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::Vars` hash and will be used to create the object. The only mandatory variable is the `:count` of the collection to paginate: all the other variables are optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page number 1. All the other variables not explicitly in the list of core-variables (the non-core variables) passed/merged to the new method will be kept in the object and passed around with it.
 
+__Notice__: Pagy replaces the blank values of the passed variables with their default values. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
+
 
 ### Core Variables
 
 These are the core-variables (i.e. instance variables that define the pagination object itself) consumed by the `new` method. They are all integers:
 
-|  Variable | Description                                                                                                                                                                                       | Default     |
-|----------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------|
-|  `:count` | the total count of the collection to paginate (mandatory argument)                                                                                                                                | `nil`       |
-|   `:page` | the requested page number                                                                                                                                                                         | `1`         |
-|  `:items` | the _requested_ number of items for the page                                                                                                                                                      | `20`        |
-| `:outset` | the initial offset of the collection to paginate: pass it only if the collection was pre-offset(ted)                                                                                              | `0`         |
-|   `:size` | the size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also             [Control the page links](../how-to.md#controlling-the-page-links))_  | `[1,4,4,1]` |
-
-__Notice__: Pagy replaces the blank values of scalar core variables (so excluding `:size`) with their default values. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
-
+|  Variable | Description                                                                                    | Default |
+|----------:|:-----------------------------------------------------------------------------------------------|:--------|
+|  `:count` | the total count of the collection to paginate (mandatory argument)                             | `nil`   |
+|   `:page` | the requested page number                                                                      | `1`     |
+|  `:items` | the _requested_ number of items for the page                                                   | `20`    |
+| `:outset` | the initial offset of the collection to paginate: pass it only if the collection had an offset | `0`     |
 
 
 ### Non-core Variables
 
-These are the non-core variables used in the `Pagy::Frontend`: as for the core-variables they can be set globally by using the `Pagy::VARS` hash or passed to the `Pagy.new` method, but they don't become instance variables. Instead they are items of the `@vars` instance variable hash and are accessible through the `vars` reader.
+These are the non-core variables: as for the core-variables they can be set globally by using the `Pagy::VARS` hash or passed to the `Pagy.new` method, but they don't become instance variables. Instead they are items of the `@vars` instance variable hash and are accessible through the `vars` reader.
 
-|      Variable | Description                                                                                           | Default |
-|--------------:|:------------------------------------------------------------------------------------------------------|:--------|
-| `:link_extra` | the extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links | `nil`   |
-|  `:item_path` | the dictionary path used by the `pagy_info` method to lookup the item/model name                      | `nil`   |
+|    Variable   | Description                                                                                                                                                                                      | Default     |
+|--------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------|
+|       `:size` | the size of the page links to show: array of initial pages, before current page, after current page, final pages. (see also [Control the page links](../how-to.md#controlling-the-page-links))_  | `[1,4,4,1]` |
+| `:page_param` | the name of the page param name used in the url. (see [Customizing the page param](../how-to.md#customizing-the-page-param)                                                                      | `:page`     |
+| `:link_extra` | the extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links                                                                                            | `nil`       |
+|  `:item_path` | the dictionary path used by the `pagy_info` method to lookup the item/model name                                                                                                                 | `nil`       |
 
 There is no specific default nor validation for non-core variables, which are just optional strings.
 
@@ -126,17 +126,17 @@ That is self-contained, simple and efficient.
 The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the pagy object created has the following peculiar attributes:
 
 | Attribute | Value   |
-|:----------|:--------|
-| `count`   | `0`     |
-| `page`    | `1`     |
-| `items`   | `0`     |
-| `pages`   | `1`     |
-| `last`    | `1`     |
-| `from`    | `0`     |
-| `to`      | `0`     |
-| `prev`    | `nil`   |
-| `next`    | `nil`   |
-| `series`  | `["1"]` |
+|----------:|:--------|
+|   `count` | `0`     |
+|    `page` | `1`     |
+|   `items` | `0`     |
+|   `pages` | `1`     |
+|    `last` | `1`     |
+|    `from` | `0`     |
+|      `to` | `0`     |
+|    `prev` | `nil`   |
+|    `next` | `nil`   |
+|  `series` | `["1"]` |
 
 Which means:
 

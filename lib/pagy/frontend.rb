@@ -1,5 +1,7 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
 
+require 'yaml'
+
 class Pagy
 
   # All the code here has been optimized for performance: it may not look very pretty
@@ -33,14 +35,14 @@ class Pagy
 
 
     # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(n)
-      params = request.GET.merge('page'.freeze => n.to_s)
+    def pagy_url_for(page, page_param)
+      params = request.GET.merge(page_param => page)
       "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}"
     end
 
 
     # sub-method called only by #pagy_url_for: here for easy customization of params by overriding
-    def pagy_get_params(p) p end
+    def pagy_get_params(params) params end
 
 
     MARKER = "-pagy-#{'pagy'.hash}-".freeze
@@ -48,34 +50,28 @@ class Pagy
     # returns a specialized proc to generate the HTML links
     def pagy_link_proc(pagy, lx=''.freeze)  # "lx" means "link extra"
       p_prev, p_next, p_lx = pagy.prev, pagy.next, pagy.vars[:link_extra]
-      a, b = %(<a href="#{pagy_url_for(MARKER)}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
+      a, b = %(<a href="#{pagy_url_for(MARKER, pagy.vars[:page_param])}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
       -> (n, text=n, x=''.freeze) { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'.freeze
                                                     elsif n == p_next ; ' rel="next"'.freeze
                                                     else                           ''.freeze end }#{x.empty? ? x : %( #{x})}>#{text}</a>" }
     end
 
 
-    # define #pagy_t depending on I18N[:gem] and I18n
-    # this file will get autoloaded, so environment constants like ::I18n will be already set
-    if I18N[:gem] || I18N[:gem].nil? && defined?(I18n)
-      I18n.load_path << I18N[:file]
-      def pagy_t(*a) I18n.t(*a) end
-    else
-      require 'yaml'
-      # load data from the first locale in the file
-      I18N_DATA = YAML.load_file(I18N[:file]).first[1].freeze
-      # Similar to I18n.t for interpolation and pluralization but without translation
-      # Use only for single-language apps: it is specialized for pagy and 5x faster than I18n.t
-      def pagy_t(path, vars={})
-        value = I18N_DATA.dig(*path.to_s.split('.'.freeze)) or return %(translation missing: "#{path}")
-        if value.is_a?(Hash)
-          vars.key?(:count) or return value
-          plural = I18N[:plurals].call(vars[:count])
-          value.key?(plural) or return %(invalid pluralization data: "#{path}" cannot be used with count: #{vars[:count]}; key "#{plural}" is missing.)
-          value = value[plural] or return %(translation missing: "#{path}")
-        end
-        sprintf value, Hash.new{|_,k| "%{#{k}}"}.merge!(vars)    # interpolation
+    # load data from the first locale in the file
+    I18N_DATA = YAML.load_file(I18N[:file]).first[1].freeze
+
+    # Similar to I18n.t for interpolation and pluralization but without translation
+    # Use only for single-language apps: it is specialized for pagy and 5x faster than I18n.t
+    # See also https://ddnexus.github.io/pagy/extras/i18n to use the standard I18n gem instead
+    def pagy_t(path, vars={})
+      value = I18N_DATA.dig(*path.to_s.split('.'.freeze)) or return %(translation missing: "#{path}")
+      if value.is_a?(Hash)
+        vars.key?(:count) or return value
+        plural = I18N[:plurals].call(vars[:count])
+        value.key?(plural) or return %(invalid pluralization data: "#{path}" cannot be used with count: #{vars[:count]}; key "#{plural}" is missing.)
+        value = value[plural] or return %(translation missing: "#{path}")
       end
+      sprintf value, Hash.new{|_,k| "%{#{k}}"}.merge!(vars)    # interpolation
     end
 
   end

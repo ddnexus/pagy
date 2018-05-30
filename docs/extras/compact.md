@@ -2,7 +2,7 @@
 title: Compact
 ---
 
-# Compact
+# Compact Extra
 
 The `compact` extra adds an alternative pagination UI that joins the pagination feature with the navigation info in one compact element. It is especially useful for small size screens.
 
@@ -13,19 +13,19 @@ Here is an example (bootstrap style):
 
 ## Synopsys
 
-See [pagy-extras](../pagy-extras.md) for general usage info.
+See [extras](../extras.md) for general usage info.
 
 In an initializer file:
 
 ```ruby
 # in rails apps: add the assets-path
-Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras')
+Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
 ```
 In rails: add the javascript file to the application.js
 ```js
 //= require pagy-compact
 ```
-In non-rails apps: ensure the `pagy/extra/pagy-compact.js` script gets served with the page
+In non-rails apps: ensure the `pagy/extras/javascripts/pagy-compact.js` script gets served with the page
 
 Then use the responsive helper(s) in any view:
 
@@ -38,8 +38,8 @@ Then use the responsive helper(s) in any view:
 
 This extra is composed of 2 small files:
 
-- [compact.rb](https://github.com/ddnexus/pagy-extras/blob/master/lib/pagy-extras/compact.rb)
-- [pagy-compact.js](https://github.com/ddnexus/pagy-extras/blob/master/lib/javascripts/pagy-compact.js)
+- [compact.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagyextras/compact.rb)
+- [pagy-compact.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy-compact.js)
 
 ## Methods
 

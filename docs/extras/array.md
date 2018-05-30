@@ -2,7 +2,7 @@
 title: Array
 ---
 
-# Array
+# Array Extra
 
 This extra adds a specialized pagination for arrays without the need to override the `pagy_get_items` in your controller, and without the need to use any expensive array-wrapping or patching.
 
@@ -10,7 +10,7 @@ That means that you can paginate the array independently from any other kind of 
 
 ## Synopsys
 
-See [pagy-extras](../pagy-extras.md) for general usage info.
+See [extras](../extras.md) for general usage info.
 
 In a controller:
 
@@ -25,7 +25,7 @@ In a controller:
 
 This extra is composed of 1 file:
 
-- [array.rb](https://github.com/ddnexus/pagy-extras/blob/master/lib/pagy-extras/array.rb)
+- [array.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/array.rb)
 
 ## Methods
 

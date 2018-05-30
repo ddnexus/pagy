@@ -2,7 +2,7 @@
 title: Responsive
 ---
 
-# Responsive
+# Responsive Extra
 
 With the `responsive` extra the number of page links will adapt in real-time to the available window or container width.
 
@@ -12,20 +12,23 @@ Here is an example of how the same pagination nav might look like by resizing th
 
 ## Synopsys
 
-See [pagy-extras](../pagy-extras.md) for general usage info.
+See [extras](../extras.md) for general usage info.
 
 ```ruby
+# in the initializer
+require 'pagy/extra/responsive' 
+
 # set your default custom breakpoints (width/size pairs) globally (it can be overridden per pagy instance)
 Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
 
 # in rails apps: add the assets-path
-Rails.application.config.assets.paths << Pagy.extras_root.join('javascripts')
+Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
 ```
 In rails: add the javascript file to the application.js
 ```js
 //= require pagy-responsive
 ```
-In non-rails apps: ensure the `pagy-extras/javascripts/pagy-responsive.js` script gets served with the page
+In non-rails apps: ensure the `pagy/extras/javascripts/pagy-responsive.js` script gets served with the page
 
 Then use the responsive helper(s) in any view:
 
@@ -38,8 +41,8 @@ Then use the responsive helper(s) in any view:
 
 This extra is composed of 2 small files:
 
-- [responsive.rb](https://github.com/ddnexus/pagy-extras/blob/master/lib/pagy-extras/responsive.rb)
-- [pagy-responsive.js](https://github.com/ddnexus/pagy-extras/blob/master/lib/javascripts/pagy-responsive.js)
+- [responsive.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/responsive.rb)
+- [pagy-responsive.js](https://github.com/ddnexus/extras/blob/master/lib/pagy/extras/javascripts/pagy-responsive.js)
 
 ## Variables
 
@@ -55,7 +58,7 @@ Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
 The above statement means that from `0` to `450` pixels width, pagy will use the `[1,2,2,1]` size, from `450` to `750` it will use the `[3,4,4,3]` size and over `750` it will use the `[4,5,5,4]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section)
 
 
-**IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only constraint is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.
+**IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only requirement is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.
 
 ## Methods
 
@@ -76,3 +79,9 @@ It can take an extra `id` argument, which is used to build the `id` attribute of
 ### pagy_nav_bootstrap_responsive(pagy, ...)
 
 This method is the same as the `pagy_nav_responsive`, but customized for Bootstrap.
+
+| A   | B                             | Links                        |
+|:----|:------------------------------|:-----------------------------|
+| `a` | Text text text text text text | [a](https://github.com/a.rb) |
+| `b` | Text text text text text text | [b](https://github.com/b.rb) |
+| `c` | Text text text text text text | [c](https://github.com/c)    |

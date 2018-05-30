@@ -6,7 +6,7 @@ title: Pagy::Frontend
 
 This module provides a few methods to deal with the navigation aspect of the pagination. You will usually include it in some helper module, making its methods available (and overridable) in your views. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb))_
 
-If you use also the `pagy-extras` gem, this module will get extended by a few more `nav_*` helpers _(see the [pagy-extras](../pagy-extras.md) doc for more details)_
+You can extend this module with a few more `nav_*` helpers _(see the [extras](../extras.md) doc for more details)_
 
 ## Synopsys
 
@@ -28,7 +28,7 @@ use some of its method in some view:
 
 ## Methods
 
-All the methods in this module are prefixed with the `"pagy_"` string, to avoid any possible conflict with your own methods when you include the module in your helper. The methods prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are intended to be overridden and not used directly.
+All the methods in this module are prefixed with the `"pagy_"` string in order to avoid any possible conflict with your own methods when you include the module in your helper. The methods prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are intended to be overridden and not used directly.
 
 Please, keep in mind that overriding any method is very easy with pagy. Indeed you can do it right where you are using it: no need of monkey-patching or subclassing or tricky gymnic.
 
@@ -69,7 +69,7 @@ Displaying Products <b>476-500</b> of <b>1000</b> in total
 See also [Using the pagy_info helper](../how-to.md#using-the-pagy_info-helper).
 
 
-### pagy_url_for(n)
+### pagy_url_for(n, page_param)
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
 
@@ -102,7 +102,7 @@ You need this section only if you are going to override a `pagy_nav*` helper or 
 
 **Warning**: This is a peculiar way to create page links and it works only for that purpose. It is not intended to be used for any other generic links to any URLs different than a page link.
 
-This method returns a specialized proc that you call to produce the page links. The reason it is a 2 steps process instead of a single method call is performance.
+This method returns a specialized proc that you call to produce the page links. The reason it is a 2 steps process instead of a single method call is performance. Indeed the method  calls the potentially expensive `pagy_url_for` only once and generates the proc, then calling the proc will just interpolates the strings passed to it.
 
 Here is how you should use it: in your helper or template call the method to get the proc (just once):
 ```
@@ -118,7 +118,7 @@ link.call( page_number [, text [, extra_attributes_string ]])
 
 If you need to add some HTML attribute to the page links, you can pass some extra attribute string at many levels, depending on the scope you want your attributes to be added.
 
-**Important**: For performance reasons, the extra attributes strings must be formatted as valid HTML attribute/value pairs. _All_ the stringa spassed at any level will get inserted verbatim in the HTML of the link.
+**Important**: For performance reasons, the extra attributes strings must be formatted as valid HTML attribute/value pairs. _All_ the string spassed at any level will get inserted verbatim in the HTML of the link.
 
 1. For all pagy objects: set the global variable `:link_extra`:
     ```ruby
@@ -159,40 +159,34 @@ Be careful not to pass the same attribute at different levels multiple times. Th
 
 ### pagy_t(path, vars={})
 
-This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML locale file.
+This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML dictionary file.
 
-This method may be defined in 2 different ways:
+_(see I18n below)_
 
-- if `I18n` is defined: it is defined to use the standard `I18n.t` helper. _It's 5x slower but provides full I18n features_.
-- if `I18n` is missing or the `Pagy::I18N[:gem]` variable (see below) is explicitly set to `false`: it is defined to use the pagy I18n-like implementation. _It's 5x faster but provides only pluralization/interpolation without translation, so it's only useful with single language apps_.
 
-See also [Using I18n](../how-to.md#using-i18n).
+## I18n
 
+Pagy is I18n ready. That means that all the UI strings that pagy uses are stored in a [dictionaray YAML file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml), ready to be customized and/or translated/pluralized.
+
+The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`. It contains a few entries used in the the UI by helpers and templates through the [pagy_t method](#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper).
+
+By default, the `pagy_t` method uses the pagy implementation of I18n, which does not depend on the `I18n` gem in any way. It's _5x faster_ and uses _3.5x less memory_, but it provides only pluralization/interpolation without translation, so it's only useful with single language apps (i.e. only `fr` or only `en` or only ...)
+
+If you need full blown I18n, you should require the `i18n` extra, which will override the `pagy_t` method to use directly `::I18n.t`.
 
 ### I18n Global Variables
 
-These are the `Pagy::I18N` globally accessible variables used to configure I18n. They are not merged with the pagy object and used only at require time.
+These are the `Pagy::I18N` globally accessible variables used to configure the pagy I18n implementation. They have no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). They are not merged with the pagy object and used only at require time.
 
 |   Variable | Description                                                    | Default                                      |
 |-----------:|:---------------------------------------------------------------|:---------------------------------------------|
-|     `:gem` | Boolean: use the standard `I81n` gem?                          | `nil`                                        |
 |    `:file` | The I18n YAML file                                             | `Pagy.root.join('locales', 'pagy.yml').to_s` |
 | `:plurals` | The proc that returns the plural key based on the passed count | `Proc` for English                           |
 
 
-#### Pagy::I18N[:gem]
-
-Pagy will define the `pagy_t` method to use the `I18n` gem if available, or the pagy internal implementation if `I18n` is missing.
-
-That works in all conditions, however - for performance reasons - you may want to force using the internal 5x faster implementation even in presence of `I18n` (e.g. with rails). You should do so only in case of single-language apps (e.g. only 'en', or only 'fr'...) since the internal implementation supports only pluralization and interpolation but not translation.
-
-If you want to force the internal faster implementation, you should explicitly set `Pagy::I18N[:gem] = false` in an initializer. In case you are also using the `pagy-extras` you should also ensure to require it only after the `Pagy::I18N[:gem]` variable has been set.
-
-
 #### Pagy::I18N[:file]
 
-This variable contains the path of the YAML file to load: set this variable only if you customized the file.
-
+This variable contains the path of the YAML file to load: set this variable only if you moved the file from `Pagy.root.join('locales', 'pagy.yml')`.
 
 #### Pagy::I18N[:plurals]
 
@@ -200,4 +194,3 @@ This variable controls the internal pluralization. If `pagy_t` is defined to use
 
 By default the variable is set to a proc that receives the `count` as the single argument and returns the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the count). You should customize it only for pluralization types different than English.
 
-See also [Using I18n](../how-to.md#using-i18n).
