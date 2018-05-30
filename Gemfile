@@ -12,6 +12,7 @@ gem 'benchmark-ips'
 gem 'kalibera'
 gem 'memory_profiler'
 gem 'rubocop', '~> 0.55.0' # needs to be fixed since it constantly adds new cops
+gem 'single_cov'
 
 
 gem "github-pages", group: :jekyll_plugins

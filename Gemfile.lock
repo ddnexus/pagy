@@ -257,6 +257,7 @@ GEM
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
+    single_cov (1.0.3)
     slim (3.0.9)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 1.3.3, < 2.1)
@@ -285,6 +286,7 @@ DEPENDENCIES
   rack
   rake (~> 10.0)
   rubocop (~> 0.55.0)
+  single_cov
   slim
 
 BUNDLED WITH
