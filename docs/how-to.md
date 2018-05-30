@@ -202,6 +202,12 @@ def pagy_get_params(params)
   params.except(:anything, :not, :useful).merge!(something: 'more useful')
 end
 ```
+You can also use the `:param` and : `:anchor` non core variables to add arbitrary params to the URLs of the pages. For example:
+
+```ruby
+@pagy, @records = pagy(some_scope, params: {custom: 'param'}, anchor: '#your-anchor')
+```
+__IMPORTANT__: For performance reasons the `:anchor` string must include the `#`.
 
 ## Customizing the URL
 
@@ -212,8 +218,8 @@ When you need somethig more radical with the URL than just massaging the params,
 The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths like `your_route/23` instead of `your_route?page=23`):
 
 ```ruby
-def pagy_url_for(n, page_param)
-  params = request.query_parameters.merge(:only_path => true, page_param => n)
+def pagy_url_for(page, pagy)
+  params = request.query_parameters.merge(:only_path => true, pagy.vars[:page_param] => page )
   url_for(params)
 end
 ```
@@ -225,8 +231,8 @@ Notice that this overridden method is quite slower than the original because it 
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and your page links may need to use POST and not GET. In that case you can try this simple solution:
 
 ```ruby
-def pagy_url_for(n, _)
-  n
+def pagy_url_for(page, _)
+  page
 end
 ```
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.

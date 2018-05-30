@@ -35,9 +35,9 @@ class Pagy
 
 
     # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(page, page_param)
-      params = request.GET.merge(page_param => page)
-      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}"
+    def pagy_url_for(page, pagy)
+      params = request.GET.merge(pagy.vars[:page_param] => page).merge!(pagy.vars[:params])
+      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{pagy.vars[:anchor]}"
     end
 
 
@@ -50,7 +50,7 @@ class Pagy
     # returns a specialized proc to generate the HTML links
     def pagy_link_proc(pagy, lx=''.freeze)  # "lx" means "link extra"
       p_prev, p_next, p_lx = pagy.prev, pagy.next, pagy.vars[:link_extra]
-      a, b = %(<a href="#{pagy_url_for(MARKER, pagy.vars[:page_param])}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
+      a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
       -> (n, text=n, x=''.freeze) { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'.freeze
                                                     elsif n == p_next ; ' rel="next"'.freeze
                                                     else                           ''.freeze end }#{x.empty? ? x : %( #{x})}>#{text}</a>" }
