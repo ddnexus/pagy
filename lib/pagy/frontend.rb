@@ -36,8 +36,8 @@ class Pagy
 
     # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
     def pagy_url_for(page, pagy)
-      params = request.GET.merge(pagy.vars[:page_param] => page)
-      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}"
+      params = request.GET.merge(pagy.vars[:page_param] => page).merge!(pagy.vars[:params])
+      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{pagy.vars[:anchor]}"
     end
 
 

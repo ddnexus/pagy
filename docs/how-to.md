@@ -202,6 +202,12 @@ def pagy_get_params(params)
   params.except(:anything, :not, :useful).merge!(something: 'more useful')
 end
 ```
+You can also use the `:param` and : `:anchor` non core variables to add arbitrary params to the URLs of the pages. For example:
+
+```ruby
+@pagy, @records = pagy(some_scope, params: {custom: 'param'}, anchor: '#your-anchor')
+```
+__IMPORTANT__: For performance reasons the `:anchor` string must include the `#`.
 
 ## Customizing the URL
 
