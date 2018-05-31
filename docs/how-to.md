@@ -45,6 +45,22 @@ or with a template:
 
 Pagy should work out of the box for most Rack based apps (e.g. Rails) even without configuring anything, however you can configure all its features by creating a `pagy.rb` initializer file, copying the content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and uncomment and edit what you may need.
 
+## Requirements
+
+- ruby >= 2.3
+
+### Environment Assumptions
+
+Pagy works out of the box assuming that:
+
+- You are using a `Rack` based framework
+- The controller where you include `Pagy::Backend` has a `params` method
+- The view where you include `Pagy::Frontend` has a `request` method respond to `GET` (i.e. Rack request)
+
+Pagy can work in any other scenarios assuming that:
+- you define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
+- you override the `pagy_url_for` (which uses `Rack` and `request`) in your view
+
 ## Items per page
 
 You can control the items per page with the `items` variable. (Default `20`)
@@ -119,7 +135,7 @@ See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/p
 
 You have many ways to paginate an array with pagy:
 
-1. Implementing the above _how-to_ (probably not very convenient besides being a good example)
+1. Implementing the above _how-to_ (probably not the most convenient way, besides being a good example)
 2. Using the `pagy` method and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
 3. Using `pagy_array` offered by the `array` extra _(see [array extra](extras/array.md))_
 
@@ -150,7 +166,7 @@ Pagy uses the `:page_param` variable to determine the param it should get the pa
 
 You may want to customize that, for example to make it more readable in your language, or becuse you need to paginate different collections in the same action. Depending on the scope of the customization, you have  couple of options:
 
-1. `Pagy::VARS[:page_param] = :custom_param` will be used as global default
+1. `Pagy::VARS[:page_param] = :custom_param` will be used as the global default
 2. `pagy(scope, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single instance (overriding the global default)
 
 You can also override the `pagy_get_vars` if you need some special way to get the page number.
@@ -300,10 +316,10 @@ That may work very well with static (or almost static) DBs, where there is not m
 
 ## Using the pagy_info helper
 
-The page info that you get by using the `pagy_info` helper (e.g. "Displaying items <b>476-500</b> of <b>1000</b> in total") is composed by 2 strings:
+The page info that you get by using the `pagy_info` helper (e.g. "Displaying items <b>476-500</b> of <b>1000</b> in total") is composed by 2 strings stored in the `pagy.yml` locale file:
 
-- the text of the sentence: available in the `pagy.yml` locale file at the i18n paths `"pagy.info.single_page"` and `"pagy.info.multiple_pages"` (depending on how many pages compose the pagination)
-- the generic item/model name: available at the i18n path`"pagy.info.item_name"`
+- the text of the sentence: located at the i18n paths `"pagy.info.single_page"` and `"pagy.info.multiple_pages"` (depending on how many pages compose the pagination)
+- the generic item/model name: located at the i18n path`"pagy.info.item_name"`
 
 While the text part can be always static, you may want the item/model name to be the actual model name, i.e. not just "items" but actually something like "Products" or something specific.
 

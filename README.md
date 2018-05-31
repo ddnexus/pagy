@@ -48,7 +48,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 - it doesn't need to know anything about your models, ORM or Storage, so it doesn't add any code to them
 - it works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count
 - it works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box
-- it works with any possible non-Rack environment by just overriding one or two one-liner methods
+- it works with any possible non-Rack environment by just overriding one or two two-line methods
 
 ### Easy to use
 
@@ -129,7 +129,7 @@ Pagy is a fresh project and your help would be great. If you like it, you have a
 
 ## Branches and Pull Requests
 
-`master` is the latest rubygem-published release (plus documentation-only changes about the current version): you should use it as the base branch for pull requests, because it will not be force-rebased.
+`master` is the latest rubygem-published release (plus changes that don't affect the actual gem behavior, e.g. tests). You should use it as the base branch for pull requests, because it will not be force-rebased.
 
 `dev` is the development branch that is kept rebased on top of `master`, so expect it to be force-rebased (i.e. do not use it as the base for your commits). Use `dev` as a preview for trying the new code that will be merged in the next release, but please, don't use it as the base branch for pull requests.
 

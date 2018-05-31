@@ -5,7 +5,7 @@
 
 ### Important Changes:
 
-- Added :params and :anchor variables to control the generation of arbitrary URLs per pagy instance
+- Added `:params` and `:anchor` variables to control the generation of arbitrary URLs per pagy instance
 
 ### Commits
 
