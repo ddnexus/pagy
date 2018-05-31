@@ -1,12 +1,11 @@
 ---
 title: Migration Tips
 ---
-
 # Migration Tips
 
 This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is higly customized you may need more digging into the Pagy documentation.
 
-Feel free to <a href="https://gitter.im/ruby-pagy/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge" rel="nofollow" target="_blank">ask on Gitter</a> if you need more assistance.
+Feel free to [ask on Gitter](https://gitter.im/ruby-pagy/Lobby) if you need more assistance.
 
 ## Phases
 
@@ -40,10 +39,11 @@ Search for the class name of the pagination gem to migrate from, for example `Wi
 For example, the following configuration are equivalent:
 
 ```ruby
-WillPaginate.per_page = 10  
+WillPaginate.per_page = 10
 WillPaginate::ViewHelpers.pagination_options[:inner_window] = 4
 WillPaginate::ViewHelpers.pagination_options[:outer_window] = 5
 ```
+
 ```ruby
 Kaminari.configure do |config|
   config.max_per_page = 10
@@ -51,10 +51,11 @@ Kaminari.configure do |config|
   config.outer_window = 5
   #config.left = 0
   #config.right = 0
-end  
+end
 ```
+
 ```ruby
-Pagy::VARS[:items] = 10 
+Pagy::VARS[:items] = 10
 Pagy::Vars[:size]  = [5,4,4,5]
 ```
 
@@ -80,15 +81,16 @@ In the controllers, the occurency of statements from legacy pagination should ha
 Search for keywords like `page` and `paginate` statements and use the `pagy` method instead. For example:
 
 ```ruby
-#@records = Product.some_scope.page(params[:page]) 
-#@records = Product.paginate(:page => params[:page])    
- 
+#@records = Product.some_scope.page(params[:page])
+#@records = Product.paginate(:page => params[:page])
+
 @pagy, @records = pagy(Product.some_scope)
 ```
+
 ```ruby
-#@records = Product.some_scope.page(params[:page]).per(15) 
-#@records = Product.some_scope.page(params[:page]).per_page(15)  
-#@records = Product.paginate(page: params[:page], per_page: 15) 
+#@records = Product.some_scope.page(params[:page]).per(15)
+#@records = Product.some_scope.page(params[:page]).per_page(15)
+#@records = Product.paginate(page: params[:page], per_page: 15)
 
 @pagy, @records = pagy(Product.some_scope, items: 15)
 ```
@@ -120,11 +122,11 @@ If the old pagination was using custom items (e.g. custom params, urls, links, h
 
 Please take a look at the topics in the [how-to](how-to.md) documentation: that should cover most of your custom needs.
 
-#### CSSs
+### CSSs
 
 If the app uses the bootstrap pagination, the same CSSs should work seamlessly with `pagy_nav_bootstrap` or with any of the bootstrap templates. If the app doesn't use bootstrap, you may need to rename some rule in your CSSs.
 
-#### I18n
+### I18n
 
 If the app uses `I18n` you should copy and paste the entries in the [pagy.yml dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) to the dictionaries of your app, and translate them accordingly.
 

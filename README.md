@@ -4,31 +4,31 @@
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
-### Benchmarks
+## Benchmarks
 
 The best way to quickly get an idea about its features is comparing it to the other well known gems.
 
 The values shown in the charts below have been recorded while each gem was producing the exact same output: same environment conditions, same task, just different gems _(see the complete [Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html))_
 
-#### Pagy is a lot faster
+### Faster
 
 ![IPS Chart](docs/assets/images/ips-chart.png)
 
-#### Pagy uses a lot less memory
+### Less Memory
 
 ![Memory Chart](docs/assets/images/memory-chart.png)
 
-#### Pagy is a lot simpler
+### Simpler
 
 ![Objects Chart](docs/assets/images/objects-chart.png)
 
-#### Pagy is a lot more efficient
+### More Efficient
 
 ![Efficiency Table](docs/assets/images/efficiency-table.png)
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses any Kb of memory it allocates/consumes._
 
-#### Pagy does not suffer the typical limitations of the other gems
+### Unlike the other gems
 
 - it works with collections/scopes that already used `limit` and `offset`
 - it works with both helpers or templates (your choice)
@@ -37,15 +37,15 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 
 ## Features
 
-### Straightforward code
+### Straightforward Code
 
 - Pagy is just ~100 lines of simple ruby, organized in 3 flat modules very easy to understand and use
 - it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code
 - 100% of its methods are public API, accessible and overridable **right where you use them** (no need of monkey patching or subclassing)
 
-### Totally agnostic
+### Totally Agnostic
 
-- it doesn't need to know anything about your models, ORM or Storage, so it doesn't add any code to them
+- it doesn't need to know anything about your models, ORM or storage, so it doesn't add any code to them
 - it works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count
 - it works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box
 - it works with any possible non-Rack environment by just overriding one or two two-line methods
@@ -76,13 +76,11 @@ Or - if you prefer - render the navigation links with a template:
 
 Use the official extras, or write your own in just a few lines.
 
-### Frontend Extras
-
-#### Bootstrap Extra
+### Bootstrap Extra
 
 Nav helper and templates for Bootstrap pagination. ([More info...](http://ddnexus.github.io/pagy/extras/bootstrap))
 
-#### Responsive Extra
+### Responsive Extra
 
 On resize, the number of page links will adapt in real-time to the available window or container width.
 
@@ -90,7 +88,7 @@ On resize, the number of page links will adapt in real-time to the available win
 
 ([More info...](http://ddnexus.github.io/pagy/extras/responsive))
 
-#### Compact Extra
+### Compact Extra
 
 An alternative UI that combines the pagination feature with the navigation info in one compact element.
 
@@ -98,13 +96,9 @@ An alternative UI that combines the pagination feature with the navigation info 
 
 ([More info...](http://ddnexus.github.io/pagy/extras/compact))
 
-### Backend Extras
+### Array Extra
 
-More specialized backend methods for specific types of collection that play well with each other and avoid overriding.
-
-#### Array Extra
-
-Paginate arrays effiently avoiding expensive array-wrapping and wihout overriding. ([More info...](http://ddnexus.github.io/pagy/extras/array))
+Paginate arrays efficiently avoiding expensive array-wrapping and wihout overriding. ([More info...](http://ddnexus.github.io/pagy/extras/array))
 
 ## Chat Support and Feedback
 
@@ -116,6 +110,7 @@ Paginate arrays effiently avoiding expensive array-wrapping and wihout overridin
 - [Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
+- [Contributors](https://github.com/ddnexus/pagy/graphs/contributors)
 
 ## Help Wanted
 

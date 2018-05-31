@@ -1,7 +1,6 @@
 ---
 title: Pagy::Backend
 ---
-
 # Pagy::Backend
 
 This module provides a _generic_ pagination method (`pagy`) that works out of the box with any ORM collection (e.g. `ActiveRecord`, `Sequel`, `Mongoid`, ... collections), plus two sub-methods that you may want to override in order to customize it for any type of collection (e.g. Array, elasticsearch results, etc.) _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_
@@ -10,15 +9,13 @@ You can extend this module with a few _specific_ pagination methods, very conven
 
 __Notice__: Currently, the only available backend extra is the [array extra](../extras/array.md), but stay tuned, because there will be more in the near future.
 
-
-
 ## Synopsys
 
 ```ruby
 # in your controller
 include Pagy::Backend
 
-# optional overriding of some sub-method 
+# optional overriding of some sub-method
 def pagy_get_vars(collection, vars)
   #...
 end
@@ -35,18 +32,20 @@ All the methods in this module are prefixed with the `"pagy_"` string, to avoid 
 
 Please, keep in mind that overriding any method is very easy with pagy. Indeed you can do it right where you are using it: no need of monkey-patching or subclassing or perform any tricky gymnic.
 
-
 ### pagy(collection, vars=nil)
 
 This is the main method of this module. It takes a collection object (e.g. a scope), and an optional hash of variables (passed to the `Pagy.new` method) and returns the `Pagy` instance and the page of records. For example:
+
 ```ruby
 @pagy, @records = pagy(Product.my_scope, some_option: 'get merged in the pagy object')
 ```
+
 The built-in `pagy` method is designed to be easy to customize by overriding any of the two sub-methods that it calls internally. You can independently change the default variables (`pagy_get_variables`) and/or the default page of items from the collection `pagy_get_items`).
 
 If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and self contained custom `pagy` method.
 
 For example: here is a `pagy` method that doesn't call any sub-method, that may be enough for your app:
+
 ```ruby
 def pagy_custom(collection, vars={})
   pagy = Pagy.new(count: collection.count, page: params[:page], **vars)
@@ -68,12 +67,12 @@ def pagy_get_vars(collection, vars)
     page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
 end
 ```
+
 Override it if you need to add or change some variable. For example you may want to add the `:item_path` or the `:item_name` to customize the `pagy_info` output, or even cache the `count`.
 
 _IMPORTANT_: `:count` and `:page` are the only 2 required pagy core variables, so be careful not to remove them from the returned hash.
 
 See also the [How To](../how-to.md) wiki page for some usage example.
-
 
 ### pagy_get_items(collection, pagy)
 
@@ -86,6 +85,7 @@ def pagy_get_items(collection, pagy)
   collection.offset(pagy.offset).limit(pagy.items)
 end
 ```
+
 Override it if the extraction of the items from your collection works in a different way. For example, if you need to paginate an array:
 
 ```ruby
@@ -93,4 +93,5 @@ def pagy_get_items(array, pagy)
   array[pagy.offset, pagy.items]
 end
 ```
+
 __Notice__: in order to paginate arrays, you may want to use the  [array extra](../extras/array.md).

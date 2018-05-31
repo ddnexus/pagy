@@ -1,7 +1,6 @@
 ---
 title: Bootstrap
 ---
-
 # Bootstrap Extra
 
 This extra adds nav helper and templates for Bootstrap pagination.
@@ -12,10 +11,13 @@ See [extras](../extras.md) for general usage info.
 
 Render the navigation links in some view...
 with a fast helper:
+
 ```erb
 <%== pagy_nav_bootstrap(@pagy) %>
 ```
+
 or with a template:
+
 ```erb
 <%== render 'pagy/nav_bootstrap', locals: {pagy: @pagy} %>
 ```

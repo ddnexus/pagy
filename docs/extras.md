@@ -1,12 +1,12 @@
 ---
 title: Extras
 ---
-
 # Extras
+
 Pagy comes with a few optional extensions/extras:
 
 | Extra        | Description                                                                                            | Links                                                                                                                                                                                                                                               |
-|:-------------|:-------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `array`      | Paginate arrays efficiently avoiding expensive array-wrapping and wihout overriding                    | [array.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/array.rb), [documentation](extras/array.md)                                                                                                                                  |
 | `bootstrap`  | Nav helper and templates for Bootstrap pagination                                                      | [bootstrap.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bootstrap.rb), [documentation](extras/bootstrap.md)                                                                                                                      |
 | `compact`    | An alternative UI that combines the pagination  with the nav info in one compact element               | [compact.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/compact.rb), [pagy-compact.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy-compact.js), [documentation](extras/compact.md)                |
@@ -16,6 +16,7 @@ Pagy comes with a few optional extensions/extras:
 ## Synopsys
 
 Extras are not loaded by default, so you should require them explicitly in your initializer:
+
 ```ruby
 require 'pagy/extras/bootstrap'
 require 'pagy/extras/...'

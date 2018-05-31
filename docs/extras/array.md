@@ -1,7 +1,6 @@
 ---
 title: Array
 ---
-
 # Array Extra
 
 This extra adds a specialized pagination for arrays without the need to override the `pagy_get_items` in your controller, and without the need to use any expensive array-wrapping or patching.

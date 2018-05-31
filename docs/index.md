@@ -1,7 +1,6 @@
 ---
 title: Basic Concepts
 ---
-
 # Basic Concepts
 
 ## Pagination is a simple task
@@ -22,7 +21,7 @@ Pagy is very specialized. It uses its own code to produce its own HTML, URLs, pl
 
 Those are perfect helpers to use in your apps: because they are generic they can get the job done in any situation, but because they are generic, they are just the wrong tool to use in a pagination gem. Indeed they are inevitably A LOT slower and use A LOT more memory than specialized methods (or no method at all, like in case of HTML string interpolation).
 
-## Stay away from the models!
+## Stay away from the models
 
 **Paginating is not business logic**: it has nothing to do with the data itself. It has to do with the way you decide to _present_ the data... one page at the time, n items per page... That is indeed _presentation_ logic, so the models are really not the place where to add that logic!
 
@@ -41,7 +40,6 @@ Just claiming it but adding code to the models with adapters/extensions or other
 Pagy provides the clean logic of pagination in one micro-class of less than 40 lines of code that creates a micro-object of less than 3k: it works perfectly, knowing **absolutely nothing** about your environment. _(see the [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
 
 You could even use it directly (without using any other pagy code) in a small partial template that you could write in just 5 minutes and about 15 lines. There you could use the regular helpers provided by your framework and it would still work a few times faster than using other gems, even without using a pagy template nor any other pagy method.
-
 
 ## Really easy to customize
 
