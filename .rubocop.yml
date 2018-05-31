@@ -10,7 +10,7 @@ Metrics:
 Style:
   Enabled: false
 
-Gemspec/OrderedDependencies:
+Bundler/OrderedGems:
   Enabled: false
 
 Naming/UncommunicativeMethodParamName:

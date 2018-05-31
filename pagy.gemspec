@@ -14,17 +14,6 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files -z`.split("\x0").select{|f| f.start_with?('lib', 'pagy.gemspec', 'LICENSE') }
   s.required_ruby_version = '>= 2.3.0'
 
-  s.add_development_dependency 'bundler',  '~> 1.16'
-  s.add_development_dependency 'rake',     '~> 10.0'
-  s.add_development_dependency 'minitest', '~> 5.0'
-  s.add_development_dependency 'rack'
-  s.add_development_dependency 'slim'
-  s.add_development_dependency 'haml'
-  s.add_development_dependency 'benchmark-ips'
-  s.add_development_dependency 'kalibera'
-  s.add_development_dependency 'memory_profiler'
-  s.add_development_dependency 'rubocop', '~> 0.55.0' # needs to be fixed since it constantly adds new cops
-
   # remove after 1.0
   s.post_install_message = "Pagy CHANGELOG: https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md"
 end
