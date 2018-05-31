@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.files         = `git ls-files -z`.split("\x0").select{|f| f.start_with?('lib', 'pagy.gemspec', 'LICENSE') }
-
+  s.required_ruby_version = '>= 2.3.0'
 
   s.add_development_dependency 'bundler',  '~> 1.16'
   s.add_development_dependency 'rake',     '~> 10.0'
