@@ -35,7 +35,9 @@
 
 # Non Core Variables (See https://ddnexus.github.io/pagy/api/pagy#non-core-variables)
 # Pagy::VARS[:size]       = [1,4,4,1]                       # default
-# Pagy::Vars[:page_param] = :page                           # default
+# Pagy::VARS[:page_param] = :page                           # default
+# Pagy::VARS[:params]     = {}                              # default
+# Pagy::VARS[:anchor]     = '#anchor'                       # example
 # Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
 # Pagy::VARS[:item_path]  = 'activerecord.models.product'   # example
 
