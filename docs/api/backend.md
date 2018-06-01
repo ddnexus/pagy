@@ -3,16 +3,19 @@ title: Pagy::Backend
 ---
 # Pagy::Backend
 
-This module provides a _generic_ pagination method (`pagy`) that works out of the box with any ORM collection (e.g. `ActiveRecord`, `Sequel`, `Mongoid`, ... collections), plus two sub-methods that you may want to override in order to customize it for any type of collection (e.g. Array, elasticsearch results, etc.) _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_
+This module _(see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_ provides a _generic_ pagination method (`pagy`) that should work with most ORM collection (e.g. `ActiveRecord`, `Sequel`, `Mongoid`, ... collections).
 
-You can extend this module with a few _specific_ pagination methods, very convenient to use with _specific_ types of collections like Array, elasticsearch results, etc. _(see the [extras](../extras.md) doc for more details)_
+For overriding convenience, the `pagy` method calls two sub-methods that you may want to override in order to customize it for any type of collection (e.g. different ORM types, Array, elasticsearch results, etc.).
 
-__Notice__: Currently, the only available backend extra is the [array extra](../extras/array.md), but stay tuned, because there will be more in the near future.
+However, keep in mind that the whole module is basically providing a single functionality: getting a pagy instance and the paginated items. You could re-write the whole module as one single and simple method specific to your need. (see [Writing your own pagy methods](#writing-your-own-pagy-methods))
+
+
+__Notice__: This module is also extended with a few _specific_ extra methods that paginate array collections, if you use the [array extra](../extras/array.md).
 
 ## Synopsys
 
 ```ruby
-# in your controller
+# in some controller
 include Pagy::Backend
 
 # optional overriding of some sub-method
@@ -42,16 +45,7 @@ This is the main method of this module. It takes a collection object (e.g. a sco
 
 The built-in `pagy` method is designed to be easy to customize by overriding any of the two sub-methods that it calls internally. You can independently change the default variables (`pagy_get_variables`) and/or the default page of items from the collection `pagy_get_items`).
 
-If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and self contained custom `pagy` method.
-
-For example: here is a `pagy` method that doesn't call any sub-method, that may be enough for your app:
-
-```ruby
-def pagy_custom(collection, vars={})
-  pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-  return pagy, collection.offset(pagy.offset).limit(pagy.items)
-end
-```
+If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and self contained custom `pagy` method. (see [Writing your own pagy methods](#writing-your-own-pagy-methods))
 
 ### pagy_get_vars(collection, vars)
 
@@ -95,3 +89,32 @@ end
 ```
 
 __Notice__: in order to paginate arrays, you may want to use the  [array extra](../extras/array.md).
+
+## Writing your own pagy methods
+
+Somethimes you may need to paginate different kinds of collections (that require different overriding) in the same controller, so using one single `pagy` method would not be an option.
+
+In that case you can define a number of `pagy_*` custom methods specific for each collection.
+
+For example: here is a `pagy` method that doesn't call any sub-method, that may be enough for your needs:
+
+```ruby
+def pagy_custom(collection, vars={})
+  pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+  return pagy, collection.offset(pagy.offset).limit(pagy.items)
+end
+```
+
+Or if you want to preserve the complete functionality of the `:page_param` variable:
+
+```ruby
+def pagy_another_custom(collection, vars={})
+  vars = { count: collection.count(:all),
+           page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
+  pagy = Pagy.new(vars)
+  # return the pagy instance and the paginated items
+  return pagy, collection.offset(pagy.offset).limit(pagy.limit)
+end
+```
+
+You can just copy and paste the above example, end edit the specific parts that you need for _any possible_ environment.

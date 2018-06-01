@@ -67,13 +67,17 @@ Pagy should work out of the box for most Rack based apps (e.g. Rails) even witho
 Pagy works out of the box assuming that:
 
 - You are using a `Rack` based framework
+- The collection to paginate is an ORM collection (e.g. ActiveRecord scope)
 - The controller where you include `Pagy::Backend` has a `params` method
 - The view where you include `Pagy::Frontend` has a `request` method that respond to `GET` (e.g. `Rack::Request`)
 
 Pagy can work in any other scenarios assuming that:
 
-- you define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
-- you override the `pagy_url_for` (which uses `Rack` and `request`) in your view
+- you may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
+- you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
+- you may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
+
+__Notice__: the overriding you may need is usually just a handful of lines at worse.
 
 ## Items per page
 
@@ -119,7 +123,7 @@ You can easily try different options (also asymmetrical) in a console by changin
 
 Pagy doesn't need to know anything about the kind of collection you paginate, it can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
 
-1. Create a pagy object using the `count` of the collection to paginate
+1. Create a pagy object using the count of the collection to paginate
 2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
 
 An example with an array:
