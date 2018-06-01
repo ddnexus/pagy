@@ -1,9 +1,29 @@
 # CHANGELOG
 
+## Version 0.8.2
+
+### Important Changes
+
+- Fix for PostgreSQL: `collection.count(:all)`
+
+### Commits
+
+- [8a204dc](https://github.com/ddnexus/pagy/commit/8a204dc): fix for count in Pagy::Backend (#36)
+- [29ed221](https://github.com/ddnexus/pagy/commit/29ed221): added test_check_variable_defaults
+- [1263540](https://github.com/ddnexus/pagy/commit/1263540): indentation fixes for tests
+- [a927d57](https://github.com/ddnexus/pagy/commit/a927d57): improve testability by sorting tests into files that mirror lib + group by method (#37)
+- [5a5178b](https://github.com/ddnexus/pagy/commit/5a5178b): docs markdown normalization and README editing
+- [11fbc49](https://github.com/ddnexus/pagy/commit/11fbc49): examples was using responsive instead of i18n (#35)
+- [b9517d3](https://github.com/ddnexus/pagy/commit/b9517d3): docs small fixes and improvements
+- [8bc6900](https://github.com/ddnexus/pagy/commit/8bc6900): fix for typos and omissions in initializer_example.rb
+- [a09558e](https://github.com/ddnexus/pagy/commit/a09558e): avoid uncoverable code by not using gemspec in Gemfile (#33)
+- [a585fe6](https://github.com/ddnexus/pagy/commit/a585fe6): clean up gemspec (#32)
+- [ae48f13](https://github.com/ddnexus/pagy/commit/ae48f13): test on all supported ruby versions and split out rubocop (#30)
+
 
 ## Version 0.8.1
 
-### Important Changes:
+### Important Changes
 
 - Added `:params` and `:anchor` variables to control the generation of arbitrary URLs per pagy instance
 
@@ -16,7 +36,7 @@
 
 ## Version 0.8.0
 
-### Important Changes:
+### Important Changes
 
 - Added an [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) that you can use as an easy template for pagy configuration
 - Integrated extras from `pagy-extras` gem into pagy, now optionally required in the initializer
@@ -25,7 +45,7 @@
 - Added the `:page_param` variable used to get the page number from and create the URL for the page links
 
 
-### Breaking changes:
+### Breaking Changes
 
 - Extras are now integrated in pagy. The `pagy-extras` gem has been discontinued: you should remove it and update your code as indicated [here](https://github.com/ddnexus/pagy-extras)
 - Pagy I18n has been refactored and it's simpler to use. The main change is that the `Pagy::I18N[:gem]` variable has been removed, so if you want to use the `I18n` gem in place of the internal pagy implementation you need just to `require 'pagy/extra/i18n'` in your initializer. (see the [I18n doc](https://ddnexus.github.io/pagy/api/frontend.md#i18n))

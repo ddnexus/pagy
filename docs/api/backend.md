@@ -48,7 +48,7 @@ For example: here is a `pagy` method that doesn't call any sub-method, that may 
 
 ```ruby
 def pagy_custom(collection, vars={})
-  pagy = Pagy.new(count: collection.count, page: params[:page], **vars)
+  pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
   return pagy, collection.offset(pagy.offset).limit(pagy.items)
 end
 ```
@@ -63,7 +63,7 @@ Here is its source:
 # sub-method called only by #pagy: here for easy customization of variables by overriding
 def pagy_get_vars(collection, vars)
   # return the merged variables to initialize the pagy object
-  { count: collection.count,
+  { count: collection.count(:all),
     page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
 end
 ```

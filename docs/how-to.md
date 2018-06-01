@@ -328,7 +328,7 @@ end
 def cache_count(collection)
   cache_key = "pagy-#{collection.model.name}:#{collection.to_sql}"
   Rails.cache.fetch(cache_key, expires_in: 20 * 60) do
-   collection.count
+   collection.count(:all)
   end
 end
 
@@ -353,7 +353,7 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
 1. by overriding the `pagy_get_vars` method in your controller (valid for all the pagy instances) adding the `:item_path`. For example (with ActiveRecord):
     ```ruby
     def pagy_get_vars(collection, vars)
-      { count:     collection.count,
+      { count:     collection.count(:all),
         page:      params[vars[:page_param]||Pagy::VARS[:page_param]],
         item_path: "activerecord.models.#{collection.model_name.i18n_key}" }.merge!(vars)
     end

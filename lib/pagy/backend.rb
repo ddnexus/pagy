@@ -18,7 +18,7 @@ class Pagy
     # sub-method called only by #pagy: here for easy customization of variables by overriding
     def pagy_get_vars(collection, vars)
       # return the merged variables to initialize the pagy object
-      { count: collection.count,
+      { count: collection.count(:all),
         page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
     end
 
