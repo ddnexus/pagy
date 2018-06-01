@@ -18,18 +18,18 @@ describe Pagy do
       assert_raises(ArgumentError) { Pagy.new({}) }
       assert_raises(ArgumentError) { Pagy.new(count: 100, page: 0) }
       assert_raises(ArgumentError) { Pagy.new(count: 100, page: 2, items: 0) }
-      assert_raises(ArgumentError) { Pagy.new(count: 100, page: 2, size: [1,2,3]).series }
-      assert_raises(ArgumentError) { Pagy.new(count: 100, page: 2, size: [1,2,3,'4']).series }
+      assert_raises(ArgumentError) { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }
+      assert_raises(ArgumentError) { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }
       assert_raises(Pagy::OutOfRangeError) { Pagy.new(count: 100, page: '11') }
-      assert_raises(Pagy::OutOfRangeError) { Pagy.new(count: 100, page: 12 ) }
+      assert_raises(Pagy::OutOfRangeError) { Pagy.new(count: 100, page: 12) }
     end
   end
 
   describe "accessors" do
     def test_respond_to_accessors
       [
-        :count, :page, :items, :vars, # input
-        :offset, :pages, :last, :from, :to, :prev, :next, :series # output
+      :count, :page, :items, :vars, # input
+      :offset, :pages, :last, :from, :to, :prev, :next, :series # output
       ].each do |meth|
         assert_respond_to pagy, meth
       end
@@ -38,17 +38,17 @@ describe Pagy do
 
   describe "#series" do
     def setup
-      @vars0 = { count:   103,
-        items:   10,
-        size:    [0,2,2,0] }
+      @vars0 = { count: 103,
+                 items: 10,
+                 size:  [0, 2, 2, 0] }
 
-      @vars1 = { count:   103,
-        items:   10,
-        size:    [3,0,0,3] }
+      @vars1 = { count: 103,
+                 items: 10,
+                 size:  [3, 0, 0, 3] }
 
-      @vars2 = { count:   103,
-        items:   10,
-        size:    [3,2,0,0] }
+      @vars2 = { count: 103,
+                 items: 10,
+                 size:  [3, 2, 0, 0] }
 
     end
 
@@ -61,86 +61,86 @@ describe Pagy do
 
     def test_page_1
       series_tests 1,
-        ["1", 2, 3, :gap],
-        ["1", 2, 3, :gap, 9, 10, 11],
-        ["1", 2, 3, :gap]
+                   ["1", 2, 3, :gap],
+                   ["1", 2, 3, :gap, 9, 10, 11],
+                   ["1", 2, 3, :gap]
     end
 
     def test_page_2
       series_tests 2,
-        [1, "2", 3, 4, :gap],
-        [1, "2", 3, :gap, 9, 10, 11],
-        [1, "2", 3, :gap]
+                   [1, "2", 3, 4, :gap],
+                   [1, "2", 3, :gap, 9, 10, 11],
+                   [1, "2", 3, :gap]
     end
 
     def test_page_3
       series_tests 3,
-        [1, 2, "3", 4, 5, :gap],
-        [1, 2, "3", :gap, 9, 10, 11],
-        [1, 2, "3", :gap]
+                   [1, 2, "3", 4, 5, :gap],
+                   [1, 2, "3", :gap, 9, 10, 11],
+                   [1, 2, "3", :gap]
     end
 
     def test_page_4
       series_tests 4,
-        [1, 2, 3, "4", 5, 6, :gap],
-        [1, 2, 3, "4", :gap, 9, 10, 11],
-        [1, 2, 3, "4", :gap]
+                   [1, 2, 3, "4", 5, 6, :gap],
+                   [1, 2, 3, "4", :gap, 9, 10, 11],
+                   [1, 2, 3, "4", :gap]
     end
 
     def test_page_5
       series_tests 5,
-        [:gap, 3, 4, "5", 6, 7, :gap],
-        [1, 2, 3, 4, "5", :gap, 9, 10, 11],
-        [1, 2, 3, 4, "5", :gap]
+                   [:gap, 3, 4, "5", 6, 7, :gap],
+                   [1, 2, 3, 4, "5", :gap, 9, 10, 11],
+                   [1, 2, 3, 4, "5", :gap]
     end
 
     def test_page_6
       series_tests 6,
-        [:gap, 4, 5, "6", 7, 8, :gap],
-        [1, 2, 3, :gap, "6", :gap, 9, 10, 11],
-        [1, 2, 3, 4, 5, "6", :gap]
+                   [:gap, 4, 5, "6", 7, 8, :gap],
+                   [1, 2, 3, :gap, "6", :gap, 9, 10, 11],
+                   [1, 2, 3, 4, 5, "6", :gap]
     end
 
     def test_page_7
       series_tests 7,
-        [:gap, 5, 6, "7", 8, 9, :gap],
-        [1, 2, 3, :gap, "7", 8, 9, 10, 11],
-        [1, 2, 3, 4, 5, 6, "7", :gap]
+                   [:gap, 5, 6, "7", 8, 9, :gap],
+                   [1, 2, 3, :gap, "7", 8, 9, 10, 11],
+                   [1, 2, 3, 4, 5, 6, "7", :gap]
     end
 
     def test_page_8
       series_tests 8,
-        [:gap, 6, 7, "8", 9, 10, 11],
-        [1, 2, 3, :gap, "8", 9, 10, 11],
-        [1, 2, 3, :gap, 6, 7, "8", :gap]
+                   [:gap, 6, 7, "8", 9, 10, 11],
+                   [1, 2, 3, :gap, "8", 9, 10, 11],
+                   [1, 2, 3, :gap, 6, 7, "8", :gap]
     end
 
     def test_page_9
       series_tests 9,
-        [:gap, 7, 8, "9", 10, 11],
-        [1, 2, 3, :gap, "9", 10, 11],
-        [1, 2, 3, :gap, 7, 8, "9", :gap]
+                   [:gap, 7, 8, "9", 10, 11],
+                   [1, 2, 3, :gap, "9", 10, 11],
+                   [1, 2, 3, :gap, 7, 8, "9", :gap]
     end
 
     def test_page_10
       series_tests 10,
-        [:gap, 8, 9, "10", 11],
-        [1, 2, 3, :gap, 9, "10", 11],
-        [1, 2, 3, :gap, 8, 9, "10", 11]
+                   [:gap, 8, 9, "10", 11],
+                   [1, 2, 3, :gap, 9, "10", 11],
+                   [1, 2, 3, :gap, 8, 9, "10", 11]
     end
 
     def test_page_11
       series_tests 11,
-        [:gap, 9, 10, "11"],
-        [1, 2, 3, :gap, 9, 10, "11"],
-        [1, 2, 3, :gap, 9, 10, "11"]
+                   [:gap, 9, 10, "11"],
+                   [1, 2, 3, :gap, 9, 10, "11"],
+                   [1, 2, 3, :gap, 9, 10, "11"]
     end
   end
 
   # TODO: split these into #initialize or #series
   describe "metrics" do
     def setup
-      @vars  = { items: 10, size: [3,2,2,3] }
+      @vars  = { items: 10, size: [3, 2, 2, 3] }
       @array = (1..103).to_a.extend(Pagy::Array::PageMethod)
     end
 
@@ -329,12 +329,12 @@ describe Pagy do
       assert_equal 103, pagy.count
       assert_equal 10, pagy.items
       assert_equal 10, pagy.offset
-      assert_equal 11 , pagy.pages
+      assert_equal 11, pagy.pages
       assert_equal 11, pagy.last
     end
 
     def test_initial_offset_page_1
-      pagy = Pagy.new(count: 87, page:1, outset:10, items: 10)
+      pagy = Pagy.new(count: 87, page: 1, outset: 10, items: 10)
       assert_equal 10, pagy.offset
       assert_equal 10, pagy.items
       assert_equal 1, pagy.from
@@ -343,7 +343,7 @@ describe Pagy do
     end
 
     def test_initial_offset_page_9
-      pagy = Pagy.new(count: 87, page:9, outset:10, items: 10)
+      pagy = Pagy.new(count: 87, page: 9, outset: 10, items: 10)
       assert_equal 90, pagy.offset
       assert_equal 7, pagy.items
       assert_equal 81, pagy.from
