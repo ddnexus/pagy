@@ -1,5 +1,7 @@
 require_relative 'test_helper'
 
+SingleCov.covered!
+
 describe Pagy do
   let(:pagy) { Pagy.new count: 100, page: 4 }
 
