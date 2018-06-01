@@ -2,7 +2,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '0.8.2'
+class Pagy ; VERSION = '0.8.3'
 
   class OutOfRangeError < StandardError; end
 
@@ -11,9 +11,6 @@ class Pagy ; VERSION = '0.8.2'
 
   # default core vars
   VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params: {} }
-
-  # default I18n vars
-  zero_one = [:zero, :one] ; I18N = { file: Pagy.root.join('locales', 'pagy.yml').to_s, plurals: -> (c) {(zero_one[c] || :other).to_s.freeze} }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 

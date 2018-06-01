@@ -166,21 +166,20 @@ By default, the `pagy_t` method uses the pagy implementation of I18n, which does
 
 If you need full blown I18n, you should require the `i18n` extra, which will override the `pagy_t` method to use directly `::I18n.t`.
 
-### I18n Global Variables
+### Pagy::Frontend::I18N Constant
 
-These are the `Pagy::I18N` globally accessible variables used to configure the pagy I18n implementation. They have no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). They are not merged with the pagy object and used only at require time.
+The `Pagy::Frontend::I18N` constant is the core of the pagy I18n implementation. It has no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). It allows to control the dictionary file to load and the pluralization proc.
 
-| Variable   | Description                                                    | Default                                      |
-| ---------- | -------------------------------------------------------------- | :------------------------------------------- |
-| `:file`    | The I18n YAML file                                             | `Pagy.root.join('locales', 'pagy.yml').to_s` |
-| `:plurals` | The proc that returns the plural key based on the passed count | `Proc` for English                           |
+#### Pagy::Frontend::I18N.load_file(file)
 
-#### Pagy::I18N[:file]
+This method allow to load a custom dictionary file, different from `Pagy.root.join('locales', 'pagy.yml')`. If the `i18n` extra is used it has no effect. It is tipically used in the initializer file. For example:
 
-This variable contains the path of the YAML file to load: set this variable only if you moved the file from `Pagy.root.join('locales', 'pagy.yml')`.
+```ruby
+Pagy::Frontend::I18N.load_file('path/to/dictionary.yml')
+```
 
-#### Pagy::I18N[:plurals]
+#### Pagy::Frontend::I18N[:plurals]
 
-This variable controls the internal pluralization. If `pagy_t` is defined to use `I18n.t` it has no effect.
+This variable controls the internal pluralization. If the `i18n` extra is used it has no effect.
 
 By default the variable is set to a proc that receives the `count` as the single argument and returns the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the count). You should customize it only for pluralization types different than English.

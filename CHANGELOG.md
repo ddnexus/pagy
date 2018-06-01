@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## Version 0.8.3
+
+### Important Changes
+
+- Refactoring of `I18N` to fix #39
+
+### Breaking Changes
+
+- `Pagy::I18N` has been moved to `Pagy::Frontend::I18N`: you should update the [initializer](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) in case you set any of the `Pagy::I18N` variable. Read [I18n](docs/api/frontend.md#I18n) for details.
+
+### Commits
+
+- [d85791e](https://github.com/ddnexus/pagy/commit/d85791e): Refactoring I18N to fix #39:
+    - moved I18N from Pagy to Pagy::Frontend - I18N_DATA moved to Pagy::Frontend::I18N[:data]
+    - I18N[:file] removed
+    - added I18N.load_file method
+    - updated initializer and doc
+- [504b943](https://github.com/ddnexus/pagy/commit/504b943): added missing tests to frontend_test.rb
+- [6168df3](https://github.com/ddnexus/pagy/commit/6168df3): use actionable code coverage (#29)
+
+
 ## Version 0.8.2
 
 ### Important Changes

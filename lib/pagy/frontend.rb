@@ -57,14 +57,16 @@ class Pagy
     end
 
 
-    # load data from the first locale in the file
-    I18N_DATA = YAML.load_file(I18N[:file]).first[1].freeze
+    # Pagy::Frontend::I18N constant
+    zero_one = [:zero, :one]; I18N = { plurals: -> (c) {(zero_one[c] || :other).to_s.freeze}, data: {}}
+    def I18N.load_file(file) I18N[:data].replace(YAML.load_file(file).first[1]) end
+    I18N[:data] = I18N.load_file(Pagy.root.join('locales', 'pagy.yml'))
 
     # Similar to I18n.t for interpolation and pluralization but without translation
     # Use only for single-language apps: it is specialized for pagy and 5x faster than I18n.t
     # See also https://ddnexus.github.io/pagy/extras/i18n to use the standard I18n gem instead
     def pagy_t(path, vars={})
-      value = I18N_DATA.dig(*path.to_s.split('.'.freeze)) or return %(translation missing: "#{path}")
+      value = I18N[:data].dig(*path.to_s.split('.'.freeze)) or return %(translation missing: "#{path}")
       if value.is_a?(Hash)
         vars.key?(:count) or return value
         plural = I18N[:plurals].call(vars[:count])

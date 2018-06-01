@@ -46,10 +46,10 @@
 # Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
 
 
-# I18n Variables
-# See https://ddnexus.github.io/pagy/api/frontend#pagy_tpath-vars
-# Pagy::I18N[:file]    = Pagy.root.join('locales', 'pagy.yml').to_s      # default
-# Pagy::I18N[:plurals] = -> (c) {([:zero, :one][c] || :other).to_s       # default
+# Pagy::Frontend::I18N Constant
+# See https://ddnexus.github.io/pagy/api/frontend#i18n
+# Pagy::Frontend::I18N[:plurals] = -> (c) {([:zero, :one][c] || :other).to_s   # default
+# Pagy::Frontend::I18N.load_file('path/to/dictionary.yml')                     # load a custom file
 
 
 # Rails: extras assets path required by compact or responsive extras
