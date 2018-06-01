@@ -4,11 +4,18 @@ require 'rack'
 SingleCov.covered!
 
 describe Pagy::Frontend do
+
   class TestView
     include Pagy::Frontend
 
     def request
       Rack::Request.new('SCRIPT_NAME' => '/foo')
+    end
+  end
+
+  class TestViewOverride < TestView
+    def pagy_get_params(params)
+      params.except(:a).merge!(k: 'k')
     end
   end
 
@@ -139,6 +146,9 @@ describe Pagy::Frontend do
       assert_equal 'translation missing: "pagy.nav.not_here"', frontend.pagy_t('pagy.nav.not_here')
     end
 
+  end
+
+  describe "#pagy_info" do
     def test_render_info_no_118n_key
       pagy = Pagy.new count: 0
       assert_equal "No items found", frontend.pagy_info(pagy)
@@ -164,4 +174,39 @@ describe Pagy::Frontend do
       assert_equal "Displaying Products <b>41-60</b> of <b>100</b> in total", frontend.pagy_info(pagy)
     end
   end
+
+  describe '#pagy_url_for' do
+
+    def test_basic_url
+      pagy = Pagy.new count: 1000, page: 3
+      assert_equal '/foo?page=5', frontend.pagy_url_for(5, pagy)
+    end
+
+    def test_url_with_params
+      pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}
+      assert_equal '/foo?page=5&a=3&b=4', frontend.pagy_url_for(5, pagy)
+    end
+
+    def test_url_with_anchor
+      pagy = Pagy.new count: 1000, page: 3, anchor: '#anchor'
+      assert_equal '/foo?page=6#anchor', frontend.pagy_url_for(6, pagy)
+    end
+
+    def test_url_with_params_and_anchor
+      pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
+      assert_equal '/foo?page=5&a=3&b=4#anchor', frontend.pagy_url_for(5, pagy)
+    end
+
+  end
+
+  describe '#pagy_get_params' do
+
+    def text_changed_params
+      overridden = TestViewOverridden.new
+      pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
+      assert_equal '/foo?page=5&&b=4&k=k#anchor', overridden.pagy_url_for(5, pagy)
+    end
+
+  end
+
 end
