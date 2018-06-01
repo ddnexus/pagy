@@ -2,7 +2,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '0.8.2'
+class Pagy ; VERSION = '0.8.3'
 
   class OutOfRangeError < StandardError; end
 
