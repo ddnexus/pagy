@@ -36,6 +36,17 @@ describe Pagy do
     end
   end
 
+  describe "variables" do
+    def test_check_variable_defaults
+      assert_equal 1, Pagy::VARS[:page]
+      assert_equal 20, Pagy::VARS[:items]
+      assert_equal 0, Pagy::VARS[:outset]
+      assert_equal [1,4,4,1], Pagy::VARS[:size]
+      assert_equal :page, Pagy::VARS[:page_param]
+      assert_equal({}, Pagy::VARS[:params])
+    end
+  end
+
   describe "#series" do
     def setup
       @vars0 = { count: 103,
