@@ -79,9 +79,9 @@ These are the non-core variables: as for the core-variables they can be set glob
 | `:size`       | the size of the page links to show: array of initial pages, before current page, after current page, final pages. (see also [Control the page links](../how-to.md#controlling-the-page-links))_ | `[1,4,4,1]` |
 | `:page_param` | the name of the page param name used in the url. (see [Customizing the page param](../how-to.md#customizing-the-page-param)                                                                     | `:page`     |
 | `:params`     | the arbitrary param hash to add to the url. (see [Customizing the params](../how-to.md#customizing-the-params)                                                                                  | `{}`        |
-| `:anchor`     | the arbitrary anchor string (including the "#") to add to the url. (see [Customizing the page param](../how-to.md#customizing-the-params)                                                       | `nil`       |
-| `:link_extra` | the extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links                                                                                           | `nil`       |
-| `:item_path`  | the dictionary path used by the `pagy_info` method to lookup the item/model name                                                                                                                | `nil`       |
+| `:anchor`     | the arbitrary anchor string (including the "#") to add to the url. (see [Customizing the page param](../how-to.md#customizing-the-params)                                                       | `""`       |
+| `:link_extra` | the extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links                                                                                           | `""`       |
+| `:item_path`  | the dictionary path used by the `pagy_info` method to lookup the item/model name                                                                                                                | `""`       |
 
 There is no specific default nor validation for non-core variables, which are just optional strings.
 

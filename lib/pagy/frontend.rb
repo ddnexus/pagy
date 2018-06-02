@@ -28,9 +28,9 @@ class Pagy
 
     # return examples: "Displaying items 41-60 of 324 in total"  or "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy)
-      name = pagy_t(pagy.vars[:item_path] || 'pagy.info.item_name'.freeze, count: pagy.count)
-      key  = pagy.pages == 1 ? 'single_page'.freeze : 'multiple_pages'.freeze
-      pagy_t("pagy.info.#{key}", item_name: name, count: pagy.count, from: pagy.from, to: pagy.to)
+      name = pagy_t(pagy.vars[:item_path], count: pagy.count)
+      path = pagy.pages == 1 ? 'pagy.info.single_page'.freeze : 'pagy.info.multiple_pages'.freeze
+      pagy_t(path, item_name: name, count: pagy.count, from: pagy.from, to: pagy.to)
     end
 
 
@@ -47,15 +47,14 @@ class Pagy
 
     MARKER = "-pagy-#{'pagy'.hash}-".freeze
 
-    # returns a specialized proc to generate the HTML links
-    def pagy_link_proc(pagy, lx=''.freeze)  # "lx" means "link extra"
-      p_prev, p_next, p_lx = pagy.prev, pagy.next, pagy.vars[:link_extra]
-      a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
-      -> (n, text=n, x=''.freeze) { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'.freeze
-                                                    elsif n == p_next ; ' rel="next"'.freeze
-                                                    else                           ''.freeze end }#{x.empty? ? x : %( #{x})}>#{text}</a>" }
+    # returns a performance optimized proc to generate the HTML links
+    def pagy_link_proc(pagy, link_extra=''.freeze)
+      p_prev, p_next = pagy.prev, pagy.next
+      a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(MARKER, 2)
+      -> (n, text=n, extra=''.freeze) { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'.freeze
+                                                        elsif n == p_next ; ' rel="next"'.freeze
+                                                        else                           ''.freeze end } #{extra}>#{text}</a>" }
     end
-
 
     # Pagy::Frontend::I18N constant
     zero_one = [:zero, :one]; I18N = { plurals: -> (c) {(zero_one[c] || :other).to_s.freeze}, data: {}}

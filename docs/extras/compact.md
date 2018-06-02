@@ -3,7 +3,7 @@ title: Compact
 ---
 # Compact Extra
 
-The `compact` extra adds an alternative pagination UI that joins the pagination feature with the navigation info in one compact element. It is especially useful for small size screens.
+The `compact` extra adds an alternative pagination UI that joins the pagination feature with the navigation info in a single compact element. It is especially useful for small size screens.
 
 Here is an example (bootstrap style):
 
@@ -26,7 +26,7 @@ In rails: add the javascript file to the application.js
 //= require pagy-compact
 ```
 
-In non-rails apps: ensure the `pagy/extras/javascripts/pagy-compact.js` script gets served with the page
+In non-rails apps: ensure the `pagy/extras/javascripts/pagy-compact.js` script gets served with the page.
 
 Then use the responsive helper(s) in any view:
 
@@ -50,7 +50,7 @@ This extra adds a couple of nav helpers to the `Pagy::Frontend` module. You can 
 
 Renders a compact navigation with a style similar to the `pagy_nav` helper.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id only if you are going to use more than one `*_responsive` call in the same line for the same page.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id only if you are going to use more than one `pagy_nav_compact` or `pagy_nav_bootstrap_compact` call in the same line for the same page.
 
 ### pagy_nav_bootstrap_compact(pagy, ...)
 

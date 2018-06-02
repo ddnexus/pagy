@@ -67,22 +67,16 @@ The `reponsive` extra adds an instance method to the `Pagy` class and couple of 
 
 ### responsive
 
-**Notice**: Unless you are going to override a `*_responsive` helper you can ignore this method.
+**Notice**: Unless you are going to override a `pagy_nav_responsive` or `pagy_nav_bootstrap_responsive` helper you can ignore this method.
 
-This is a `Pagy` instance method that returns the data structure used by the `*_responsive` helpers in order to build the html and the javascript codes needed to make pagy responsive to different widths.
+This is a `Pagy` instance method that returns the data structure used by the `pagy_nav_responsive` and `pagy_nav_bootstrap_responsive` helpers in order to build the html and the javascript codes needed to make pagy responsive to different widths.
 
 ### pagy_nav_responsive(pagy, ...)
 
 Similar to the `pagy_nav` helper, with added responsiveness.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id if you are going to use more than one `*_responsive` call in the same line for the same page.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id if you are going to use more than one `pagy_nav_responsive` or `pagy_nav_bootstrap_responsive` call in the same line for the same page.
 
 ### pagy_nav_bootstrap_responsive(pagy, ...)
 
 This method is the same as the `pagy_nav_responsive`, but customized for Bootstrap.
-
-| A   | B                             | Links                        |
-|:----|:------------------------------|:-----------------------------|
-| `a` | Text text text text text text | [a](https://github.com/a.rb) |
-| `b` | Text text text text text text | [b](https://github.com/b.rb) |
-| `c` | Text text text text text text | [c](https://github.com/c)    |

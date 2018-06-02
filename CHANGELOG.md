@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## Version 0.8.4
+
+### Important Changes
+
+- Improved readability and memory allocation
+- All the core methods are tested
+- Better documentation
+
+### Commits
+
+- [c25493a](https://github.com/ddnexus/pagy/commit/c25493a): added backend tests
+- [48dbe17](https://github.com/ddnexus/pagy/commit/48dbe17): docs small fixes and improvements
+- [5e9b7d4](https://github.com/ddnexus/pagy/commit/5e9b7d4): add Pagy::VARS[:item_path] empty default
+- [ce8d09a](https://github.com/ddnexus/pagy/commit/ce8d09a): add Pagy::VARS[:anchor] empty default
+- [8789edd](https://github.com/ddnexus/pagy/commit/8789edd): improve readability of pagy_link_proc (#40):
+  - remove conditions to avoid extra spaces inside the html tags
+  - add Pagy::VARS[:link_extra] empty default
+- [2f0d384](https://github.com/ddnexus/pagy/commit/2f0d384): docs additions
+
 ## Version 0.8.3
 
 ### Important Changes
@@ -13,13 +32,12 @@
 ### Commits
 
 - [d85791e](https://github.com/ddnexus/pagy/commit/d85791e): Refactoring I18N to fix #39:
-    - moved I18N from Pagy to Pagy::Frontend - I18N_DATA moved to Pagy::Frontend::I18N[:data]
-    - I18N[:file] removed
-    - added I18N.load_file method
-    - updated initializer and doc
+  - moved I18N from Pagy to Pagy::Frontend - I18N_DATA moved to Pagy::Frontend::I18N[:data]
+  - I18N[:file] removed
+  - added I18N.load_file method
+  - updated initializer and doc
 - [504b943](https://github.com/ddnexus/pagy/commit/504b943): added missing tests to frontend_test.rb
 - [6168df3](https://github.com/ddnexus/pagy/commit/6168df3): use actionable code coverage (#29)
-
 
 ## Version 0.8.2
 
@@ -41,7 +59,6 @@
 - [a585fe6](https://github.com/ddnexus/pagy/commit/a585fe6): clean up gemspec (#32)
 - [ae48f13](https://github.com/ddnexus/pagy/commit/ae48f13): test on all supported ruby versions and split out rubocop (#30)
 
-
 ## Version 0.8.1
 
 ### Important Changes
@@ -54,7 +71,6 @@
 - [62fd6c8](https://github.com/ddnexus/pagy/commit/62fd6c8): better forward improvements with pagy_url_for receiving the pagy instance instead of the single pagy_param
 - [748de0d](https://github.com/ddnexus/pagy/commit/748de0d): readme and changelog improvement
 
-
 ## Version 0.8.0
 
 ### Important Changes
@@ -65,7 +81,6 @@
 - Reorganized documentation and added a few more how-to topics
 - Added the `:page_param` variable used to get the page number from and create the URL for the page links
 
-
 ### Breaking Changes
 
 - Extras are now integrated in pagy. The `pagy-extras` gem has been discontinued: you should remove it and update your code as indicated [here](https://github.com/ddnexus/pagy-extras)
@@ -73,7 +88,7 @@
 - `pagy_url_for` now requires the pagy argument and it's called with 2 params: if you have overridden it, you should add the extra param.
 - `pagy_get_vars` now requires the vars argument and it's called with 2 params: if you have overridden it, you should add the extra param.
 - `pagy_array_get_vars` now requires the vars argument and it's called with 2 params: if you have overridden it, you should add the extra param.
-- 
+
 ### Commits
 
 - [3e2ad90](https://github.com/ddnexus/pagy/commit/3e2ad90): added CHANGELOG.md with the latest few versions (#23)
@@ -81,20 +96,19 @@
 - [9040593](https://github.com/ddnexus/pagy/commit/9040593): added doc about skipping single pages navs
 - [605169a](https://github.com/ddnexus/pagy/commit/605169a): added initializer_example.rb
 - [daa2c1b](https://github.com/ddnexus/pagy/commit/daa2c1b): I18n refactoring:
-    - simplified the pagy_t definition
-    - simplified the configuration of I18n now using the I18n extra to override the pagy_t
-    - modules are now required and not autoloaded
-    - updated doc
+  - simplified the pagy_t definition
+  - simplified the configuration of I18n now using the I18n extra to override the pagy_t
+  - modules are now required and not autoloaded
+  - updated doc
 - [9b0d420](https://github.com/ddnexus/pagy/commit/9b0d420): style cleanup (#24)
 - [dbc5a05](https://github.com/ddnexus/pagy/commit/dbc5a05): Add prev/next links to compact Bootstrap nav and improve HTML semantics (#21)
 - [f764cc1](https://github.com/ddnexus/pagy/commit/f764cc1): refactoring extras:
-    - moved pagy-extra files into the extras dir - moved the templates dir into the extras dir
-    - updated the documentation
+  - moved pagy-extra files into the extras dir - moved the templates dir into the extras dir
+  - updated the documentation
 - [befe92d](https://github.com/ddnexus/pagy/commit/befe92d): Fixes Travis Badge (#25)
 - [3862d26](https://github.com/ddnexus/pagy/commit/3862d26): Travis (#22)
 - [7050ee0](https://github.com/ddnexus/pagy/commit/7050ee0): basic rubocop setup (#18)
 - [7aee689](https://github.com/ddnexus/pagy/commit/7aee689): small docs improvements
-
 
 ## Version 0.7.2
 
@@ -132,8 +146,8 @@
 ### Commits
 
 - [ec8e268](https://github.com/ddnexus/pagy/commit/ec8e268): created pagy-extras gem:
-    - moved pagy_nav_bootstrap method and templates
-    - updated docs files (fixes and use of relative links)
+  - moved pagy_nav_bootstrap method and templates
+  - updated docs files (fixes and use of relative links)
 - [facc4c3](https://github.com/ddnexus/pagy/commit/facc4c3): unescaped notation for all erb usage
 - [26c068f](https://github.com/ddnexus/pagy/commit/26c068f): moved require yaml in Frontend
 - [f5782d8](https://github.com/ddnexus/pagy/commit/f5782d8): added css classes to pagy helper navs
