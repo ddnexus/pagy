@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 0.8.5
+
+### Important Changes
+
+- Fix for I18n exception on startup
+
+### Commits
+
+- [31b815d](https://github.com/ddnexus/pagy/commit/31b815d): fix for I18n exception on startup (#41)
+
 ## Version 0.8.4
 
 ### Important Changes
