@@ -11,9 +11,9 @@ Feel free to [ask on Gitter](https://gitter.im/ruby-pagy/Lobby) if you need more
 
 The Pagy API is quite different from other pagination gems, so there is not always a one-to-one correlation between the changes you will have to make, however, if you split the process in the following general phases it should be quite simple.
 
-1. Removing the egacy code trying to convert the statements that have a direct relation with Pagy
+1. Removing the legacy code, trying to convert the statements that have a direct relation with Pagy
 2. Running the app so to raise exceptions in order to find legacy code that may be still in place
-3. When the app runs without error, adjusting the pagination to look and work as before
+3. When the app runs without error, adjusting the pagination to look and work as before: just many times faster and using many times less memory ;)
 
 ### Removing the old code
 
@@ -26,8 +26,9 @@ __Notice:__ Don't worry about missing something in this phase: if anything wont 
 
 #### Preparation
 
-- Create an empty Pagy initializer file: you will add to it during the process.
+- Copy the content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and rename it `pagy.rb`: you will edit it during the process.
 - Replace the legacy gem with `gem "pagy"` in the `Gemfile` and `bundle`, or install and require the gem if you don't use bundler.
+- Ensure that the legacy gem will not get loaded anymore (or it could mask some old statement still in place and not converted)
 - Add the `include Pagy::Backend` statement to the application controller.
 - Add the `include Pagy::Frontend` statement to the application helper.
 - Keep handy the legacy gem doc and the [Pagy API doc](api/pagy.md) in parallel.
@@ -59,11 +60,13 @@ Pagy::VARS[:items] = 10
 Pagy::Vars[:size]  = [5,4,4,5]
 ```
 
+Remove all the old settings and uncomment and edit the new settings in the `pagy.rb` initializer.
+
 #### Cleanup the Models
 
-One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn't mess at all with the models (read the reasons [here](index.md#stay-away-from-the-models)), while the other gems are careless about adding methods, scopes, and even configuration settings to them.
+One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn't mess at all with the models (read the reasons [here](index.md#stay-away-from-the-models)).
 
-So you should remove all the legacy code in the model and eventually add the equivalent code where it makes sense to Pagy, which _is absolutely not_ in the models.
+The other gems are careless about adding methods, scopes, and even configuration settings to them, so you will find different kinds of statements scattered around in your models. You should remove them all and eventually add the equivalent code where it makes sense to Pagy, which of course _is absolutely not_ in the models.
 
 For example, you may want to search for keywords like `per_page`, `per` and such, which are actually configuration settings. They should either go into the Pagy initializer (if they are global to the app) or into the specific `pagy` call in the controller if they are specific to an action.
 
@@ -76,7 +79,7 @@ If the app used the `page` scope in some of its methods or scopes, that should b
 
 #### Search and replace in the Controllers
 
-In the controllers, the occurency of statements from legacy pagination should have a one-to-one relationship with Pagy pagination, so you should be able to go through each of them and convert them quite easily.
+In the controllers, the occurency of statements from legacy pagination should have a one-to-one relationship with the Pagy pagination, so you should be able to go through each of them and convert them quite easily.
 
 Search for keywords like `page` and `paginate` statements and use the `pagy` method instead. For example:
 
@@ -97,7 +100,7 @@ Search for keywords like `page` and `paginate` statements and use the `pagy` met
 
 #### Search and replace in the Views
 
-Also in the views, the occurency of statements from legacy pagination should have a one-to-one relationship with Pagy pagination, so you should be able to go through each of them and convert them quite easily.
+Also in the views, the occurency of statements from legacy pagination should have a one-to-one relationship with the Pagy pagination, so you should be able to go through each of them and convert them quite easily.
 
 Search for keywords like `will_paginate` and `paginate` statement and use one of the `pagy_nav` methods. For example:
 
@@ -116,9 +119,7 @@ If anything of the old code is still in place you should get some exception. In 
 
 ## Fine tuning
 
-If the app is working and displays the pagination, it's time to adjust Pagy as you need.
-
-If the old pagination was using custom items (e.g. custom params, urls, links, html elements, etc.) it will likely not work without some possibly easy adjustment.
+If the app is working and displays the pagination, it's time to adjust Pagy as you need, but if the old pagination was using custom items (e.g. custom params, urls, links, html elements, etc.) it will likely not work without some possibly easy adjustment.
 
 Please take a look at the topics in the [how-to](how-to.md) documentation: that should cover most of your custom needs.
 

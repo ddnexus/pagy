@@ -54,30 +54,32 @@ or with a template:
 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
-## Configuring
+## Global Configuration
 
 Pagy should work out of the box for most Rack based apps (e.g. Rails) even without configuring anything, however you can configure all its features by creating a `pagy.rb` initializer file, copying the content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and uncomment and edit what you may need.
 
-## Requirements
+## Environment Assumptions
 
 - ruby >= 2.3
 
-### Environment Assumptions
+### Out of the box assumptions
 
 Pagy works out of the box assuming that:
 
 - You are using a `Rack` based framework
 - The collection to paginate is an ORM collection (e.g. ActiveRecord scope)
-- The controller where you include `Pagy::Backend` has a `params` method
-- The view where you include `Pagy::Frontend` has a `request` method that respond to `GET` (e.g. `Rack::Request`)
+- The controller where you include `Pagy::Backend` responds to a `params` method
+- The view where you include `Pagy::Frontend` responds to a `request` method that responds to `GET` (e.g. `Rack::Request`)
 
-Pagy can work in any other scenarios assuming that:
+### Any other scenario assumptions
 
-- you may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
-- you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
-- you may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
+Pagy can work in any other scenario assuming that:
 
-__Notice__: the overriding you may need is usually just a handful of lines at worse.
+- You may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
+- You may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
+- You may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
+
+__Notice__: the total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module.
 
 ## Items per page
 
@@ -97,7 +99,7 @@ You can also pass it as an instance variable to the `Pagy.new` method or to the 
 
 ## Controlling the page links
 
-You can control the number and position of page links in the navigation through the `:size` variable. It is an array of 4 integers that specify which and how many page link to show.
+You can control the number and position of the page links in the navigation through the `:size` variable. It is an array of 4 integers that specify which and how many page links to show.
 
 The default is `[1,4,4,1]`, which means that you will get `1` initial page, `4` pages before the current page, `4` pages after the current page, and `1` final page.
 
@@ -117,11 +119,11 @@ pagy.series
 
 As you can see by the result of the `series` method, you get 3 initial pages, 1 `:gap` (series interupted), 4 pages before the current page, the current `:page` (which is a string), 4 pages after the current page, another `:gap` and 3 final pages.
 
-You can easily try different options (also asymmetrical) in a console by changing the `:size`: just check the `series` array to see what it contains when used in combination with different core variables.
+You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to see what it contains when used in combination with different core variables.
 
 ## Paginate Any Collection
 
-Pagy doesn't need to know anything about the kind of collection you paginate, it can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
+Pagy doesn't need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
 
 1. Create a pagy object using the count of the collection to paginate
 2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
@@ -203,7 +205,7 @@ These helpers take the pagy object and returns the HTML string with the paginati
 <%== pagy_nav(@pagy) %>
 ```
 
-**Notice**: the [extras](extras.md) add a few other helpers that you an use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
+**Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
 | Extra                              | Helpers                                                |
 | ---------------------------------- | ------------------------------------------------------ |
@@ -283,15 +285,15 @@ That would produce links that look like e.g. `<a href="2">2</a>`. Then you can a
 
 ## Skipping single page navs
 
-Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don't. If you don't... use the `pagy_nav*` only if `@pagy.pages > 1` is true.
+Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don't. If you don't... wrap it in a condition and use the `pagy_nav*` only if `@pagy.pages > 1` is true.
 
 ## Using Templates
 
-The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper, so choose wisely.
+The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose wisely.
 
 Pagy provides the replacement templates for the `pagy_nav` and the `pagy_nav_bootstrap` helpers (available with the `bootstrap` extra) in 3 flavors: `erb`, `haml` and `slim`.
 
-They produce exactly the same output of the helpers, but they are slower, so use them only if you need to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
+They produce exactly the same output of the helpers, but they are slower, so use them only if you need to edit something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
 - `pagy`
   - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.erb)
@@ -311,7 +313,7 @@ If you need to try/compare an unmodified built-in template, you can render it ri
 
 You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
 
-## Caching the collecion count
+## Caching the collection count
 
 Every pagination gem needs the collection count in order to calculate all the other variables involved in the pagination. If you use a storage system like any SQL DB, there is no way to paginate and provide a full nav system without executing an extra query to get the collection count. That is usually not a problem if your DB is well organized and maintained, but that may not be always the case.
 
