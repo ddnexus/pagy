@@ -47,13 +47,26 @@ class Pagy
 
     MARKER = "-pagy-#{'pagy'.hash}-".freeze
 
-    # returns a specialized proc to generate the HTML links
-    def pagy_link_proc(pagy, lx=''.freeze)  # "lx" means "link extra"
-      p_prev, p_next, p_lx = pagy.prev, pagy.next, pagy.vars[:link_extra]
-      a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}"#{p_lx ? %( #{p_lx}) : ''.freeze}#{lx.empty? ? lx : %( #{lx})}).split(MARKER)
-      -> (n, text=n, x=''.freeze) { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'.freeze
-                                                    elsif n == p_next ; ' rel="next"'.freeze
-                                                    else                           ''.freeze end }#{x.empty? ? x : %( #{x})}>#{text}</a>" }
+    # returns a performance optimized proc to generate the HTML links
+    def pagy_link_proc(pagy, link_extras=nil)  # "link_extras" means "link extra"
+      p_prev, p_next, page_link_extras = pagy.prev, pagy.next, pagy.vars[:link_extra]
+      page_link_extras = (page_link_extras ? " #{page_link_extras}" : ''.freeze)
+      link_extras = (link_extras ? " #{link_extras}" : ''.freeze)
+
+      a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}"#{page_link_extras}#{link_extras}).split(MARKER, 2)
+
+      -> (n, text=n, extras=nil) do
+        extras = (extras ? " #{extras}" : ''.freeze)
+        rel =
+          if n == p_prev;
+            ' rel="prev"'.freeze
+          elsif n == p_next;
+            ' rel="next"'.freeze
+          else
+            ''.freeze
+          end
+        "#{a}#{n}#{b}#{rel}#{extras}>#{text}</a>"
+      end
     end
 
 
