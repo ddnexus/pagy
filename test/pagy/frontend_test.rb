@@ -33,12 +33,12 @@ describe Pagy::Frontend do
       '<nav class="pagy-nav pagination" role="navigation" aria-label="pager">' \
         '<span class="page prev disabled">&lsaquo;&nbsp;Prev</span> ' \
         '<span class="page active">1</span> ' \
-        '<span class="page"><a href="/foo?page=2" rel="next">2</a></span> ' \
-        '<span class="page"><a href="/foo?page=3">3</a></span> ' \
-        '<span class="page"><a href="/foo?page=4">4</a></span> ' \
-        '<span class="page"><a href="/foo?page=5">5</a></span> ' \
-        '<span class="page"><a href="/foo?page=6">6</a></span> ' \
-        '<span class="page next"><a href="/foo?page=2" rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span>' \
+        '<span class="page"><a href="/foo?page=2"   rel="next" >2</a></span> ' \
+        '<span class="page"><a href="/foo?page=3"   >3</a></span> ' \
+        '<span class="page"><a href="/foo?page=4"   >4</a></span> ' \
+        '<span class="page"><a href="/foo?page=5"   >5</a></span> ' \
+        '<span class="page"><a href="/foo?page=6"   >6</a></span> ' \
+        '<span class="page next"><a href="/foo?page=2"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span>' \
         '</nav>',
       frontend.pagy_nav(pagy)
       )
@@ -49,30 +49,31 @@ describe Pagy::Frontend do
 
       assert_equal(
       '<nav class="pagy-nav pagination" role="navigation" aria-label="pager">' \
-        '<span class="page prev"><a href="/foo?page=2" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span> ' \
-        '<span class="page"><a href="/foo?page=1">1</a></span> ' \
-        '<span class="page"><a href="/foo?page=2" rel="prev">2</a></span> ' \
+        '<span class="page prev"><a href="/foo?page=2"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span> ' \
+        '<span class="page"><a href="/foo?page=1"   >1</a></span> ' \
+        '<span class="page"><a href="/foo?page=2"   rel="prev" >2</a></span> ' \
         '<span class="page active">3</span> ' \
-        '<span class="page"><a href="/foo?page=4" rel="next">4</a></span> ' \
-        '<span class="page"><a href="/foo?page=5">5</a></span> ' \
-        '<span class="page"><a href="/foo?page=6">6</a></span> ' \
-        '<span class="page next"><a href="/foo?page=4" rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span>' \
+        '<span class="page"><a href="/foo?page=4"   rel="next" >4</a></span> ' \
+        '<span class="page"><a href="/foo?page=5"   >5</a></span> ' \
+        '<span class="page"><a href="/foo?page=6"   >6</a></span> ' \
+        '<span class="page next"><a href="/foo?page=4"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span>' \
         '</nav>',
       frontend.pagy_nav(pagy)
       )
     end
+
 
     def test_pagy_nav_page_6
       pagy, _ = @array.pagy(6)
 
       assert_equal(
       '<nav class="pagy-nav pagination" role="navigation" aria-label="pager">' \
-        '<span class="page prev"><a href="/foo?page=5" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span> ' \
-        '<span class="page"><a href="/foo?page=1">1</a></span> ' \
-        '<span class="page"><a href="/foo?page=2">2</a></span> ' \
-        '<span class="page"><a href="/foo?page=3">3</a></span> ' \
-        '<span class="page"><a href="/foo?page=4">4</a></span> ' \
-        '<span class="page"><a href="/foo?page=5" rel="prev">5</a></span> ' \
+        '<span class="page prev"><a href="/foo?page=5"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span> ' \
+        '<span class="page"><a href="/foo?page=1"   >1</a></span> ' \
+        '<span class="page"><a href="/foo?page=2"   >2</a></span> ' \
+        '<span class="page"><a href="/foo?page=3"   >3</a></span> ' \
+        '<span class="page"><a href="/foo?page=4"   >4</a></span> ' \
+        '<span class="page"><a href="/foo?page=5"   rel="prev" >5</a></span> ' \
         '<span class="page active">6</span> ' \
         '<span class="page next disabled">Next&nbsp;&rsaquo;</span>' \
         '</nav>',
@@ -86,28 +87,28 @@ describe Pagy::Frontend do
 
       assert_equal(
         '<nav class="pagy-nav pagination" role="navigation" aria-label="pager">' \
-          '<span class="page prev"><a href="/foo?page=9" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span> ' \
-          '<span class="page"><a href="/foo?page=1">1</a></span> ' \
+          '<span class="page prev"><a href="/foo?page=9"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span> ' \
+          '<span class="page"><a href="/foo?page=1"   >1</a></span> ' \
           '<span class="page gap">&hellip;</span> ' \
-          '<span class="page"><a href="/foo?page=6">6</a></span> ' \
-          '<span class="page"><a href="/foo?page=7">7</a></span> ' \
-          '<span class="page"><a href="/foo?page=8">8</a></span> ' \
-          '<span class="page"><a href="/foo?page=9" rel="prev">9</a></span> ' \
+          '<span class="page"><a href="/foo?page=6"   >6</a></span> ' \
+          '<span class="page"><a href="/foo?page=7"   >7</a></span> ' \
+          '<span class="page"><a href="/foo?page=8"   >8</a></span> ' \
+          '<span class="page"><a href="/foo?page=9"   rel="prev" >9</a></span> ' \
           '<span class="page active">10</span> ' \
-          '<span class="page"><a href="/foo?page=11" rel="next">11</a></span> ' \
-          '<span class="page"><a href="/foo?page=12">12</a></span> ' \
-          '<span class="page"><a href="/foo?page=13">13</a></span> ' \
-          '<span class="page"><a href="/foo?page=14">14</a></span> ' \
+          '<span class="page"><a href="/foo?page=11"   rel="next" >11</a></span> ' \
+          '<span class="page"><a href="/foo?page=12"   >12</a></span> ' \
+          '<span class="page"><a href="/foo?page=13"   >13</a></span> ' \
+          '<span class="page"><a href="/foo?page=14"   >14</a></span> ' \
           '<span class="page gap">&hellip;</span> ' \
-          '<span class="page"><a href="/foo?page=50">50</a></span> ' \
-          '<span class="page next"><a href="/foo?page=11" rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>',
+          '<span class="page"><a href="/foo?page=50"   >50</a></span> ' \
+          '<span class="page next"><a href="/foo?page=11"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>',
         frontend.pagy_nav(pagy)
       )
     end
 
     def test_link_extras
       pagy, _ = @array.pagy(1, link_extra: "X")
-      frontend.pagy_nav(pagy).must_include '?page=2" X rel'
+      frontend.pagy_nav(pagy).must_include '?page=2" X  rel'
     end
   end
 
@@ -115,7 +116,7 @@ describe Pagy::Frontend do
     it "renders with extras" do
       @array = (1..103).to_a.extend(Pagy::Array::PageMethod)
       pagy, _ = @array.pagy(1)
-      frontend.pagy_link_proc(pagy, "X").call(1).must_equal '<a href="/foo?page=1" X>1</a>'
+      frontend.pagy_link_proc(pagy, "X").call(1).must_equal '<a href="/foo?page=1"  X >1</a>'
     end
   end
 
