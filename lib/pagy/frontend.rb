@@ -28,9 +28,9 @@ class Pagy
 
     # return examples: "Displaying items 41-60 of 324 in total"  or "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy)
-      name = pagy_t(pagy.vars[:item_path] || 'pagy.info.item_name'.freeze, count: pagy.count)
-      key  = pagy.pages == 1 ? 'single_page'.freeze : 'multiple_pages'.freeze
-      pagy_t("pagy.info.#{key}", item_name: name, count: pagy.count, from: pagy.from, to: pagy.to)
+      name = pagy_t(pagy.vars[:item_path], count: pagy.count)
+      path = pagy.pages == 1 ? 'pagy.info.single_page'.freeze : 'pagy.info.multiple_pages'.freeze
+      pagy_t(path, item_name: name, count: pagy.count, from: pagy.from, to: pagy.to)
     end
 
 
