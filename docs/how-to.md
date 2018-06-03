@@ -347,7 +347,7 @@ That may work very well with static (or almost static) DBs, where there is not m
 
 ## Using the pagy_info helper
 
-The page info that you get by using the `pagy_info` helper (e.g. "Displaying items \<b\>476-500\</b\> of \<b\>1000\</b\> in total") is composed by 2 strings stored in the `pagy.yml` locale file:
+The page info that you get by using the `pagy_info` helper (e.g. "Displaying items __476-500__ of __1000__ in total") is composed by 2 strings stored in the `pagy.yml` locale file:
 
 - the text of the sentence: located at the i18n paths `"pagy.info.single_page"` and `"pagy.info.multiple_pages"` (depending on how many pages compose the pagination)
 - the generic item/model name: located at the i18n path`"pagy.info.item_name"`

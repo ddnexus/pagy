@@ -61,6 +61,8 @@ The above statement means that from `0` to `450` pixels width, pagy will use the
 
 **IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only requirement is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.
 
+__Notice__: Each breakpoint added slowers down pagy of almost 10%. For example: with 5 breakpoints (which are actually quite a lot) the nav will be rendered rougly in twice the normal time. However, that will still run about 15 times faster than Kaminari and 6 times faster than WillPaginate.
+
 ## Methods
 
 The `reponsive` extra adds an instance method to the `Pagy` class and couple of nav helpers to the `Pagy::Frontend` module. You can customize them by overriding them directly in your own view helper.

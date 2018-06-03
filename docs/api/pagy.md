@@ -49,13 +49,15 @@ Pagy::VARS[:my_option] = 'my option'
 
 ### Pagy.root
 
-This method returns the `pathname` of the `pagy/lib` root dir. It is useful to get the absolute path of template and locale files installed with the gem.
+This method returns the `pathname` of the `pagy/lib` root dir. It is useful to get the absolute path of template, locale and javascript files installed with the gem.
 
 ### Pagy.new
 
 _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and return the pagy object for you.
 
-The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::Vars` hash and will be used to create the object. The only mandatory variable is the `:count` of the collection to paginate: all the other variables are optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page number 1. All the other variables not explicitly in the list of core-variables (the non-core variables) passed/merged to the new method will be kept in the object and passed around with it.
+The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::Vars` hash and will be used to create the object. The only mandatory variable is the `:count` of the collection to paginate: all the other variables are optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page number 1.
+
+All the variables not explicitly in the list of core-variables (the non-core variables) passed/merged to the new method will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
 
 __Notice__: Pagy replaces the blank values of the passed variables with their default values. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
 
@@ -83,7 +85,7 @@ These are the non-core variables: as for the core-variables they can be set glob
 | `:link_extra` | the extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links                                                                                           | `""`       |
 | `:item_path`  | the dictionary path used by the `pagy_info` method to lookup the item/model name                                                                                                                | `""`       |
 
-There is no specific default nor validation for non-core variables, which are just optional strings.
+There is no specific default nor validation for non-core variables.
 
 ### Attribute Readers
 

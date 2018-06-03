@@ -6,49 +6,49 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 
 ## Benchmarks
 
-The best way to quickly get an idea about its features is comparing it to the other well known gems.
+The best way to quickly get an idea about Pagy is comparing it to the other well known gems.
 
-The values shown in the charts below have been recorded while each gem was producing the exact same output: same environment conditions, same task, just different gems _(see the complete [Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html))_
+The values shown in the charts below have been recorded while each gem was producing the exact same output: same environment conditions, same task, just different gems _(see the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html))_
 
 ### Faster
 
-![IPS Chart](docs/assets/images/ips-chart.png)
+[![IPS Chart](docs/assets/images/ips-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#ips-benchmark)
 
 ### Less Memory
 
-![Memory Chart](docs/assets/images/memory-chart.png)
+[![Memory Chart](docs/assets/images/memory-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile)
 
 ### Simpler
 
-![Objects Chart](docs/assets/images/objects-chart.png)
+[![Objects Chart](docs/assets/images/objects-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile)
 
 ### More Efficient
 
-![Efficiency Table](docs/assets/images/efficiency-table.png)
+[![Efficiency Table](docs/assets/images/efficiency-table.png)](https://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio)
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses any Kb of memory it allocates/consumes._
 
 ### Unlike the other gems
 
-- it works with collections/scopes that already used `limit` and `offset`
-- it works with both helpers or templates (your choice)
-- it raises real `Pagy::OutOfRangeError` exceptions that you can rescue from
-- it does not impose any difficult-to-override logic or output
+- It works with collections/scopes that already used `limit` and `offset`
+- It works with both helpers or templates (your choice)
+- It raises real `Pagy::OutOfRangeError` exceptions that you can rescue from
+- It does not impose any difficult-to-override logic or output
 
 ## Features
 
 ### Straightforward Code
 
 - Pagy is just ~100 lines of simple ruby, organized in 3 flat modules very easy to understand and use
-- it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code
+- No dependencies: it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code
 - 100% of its methods are public API, accessible and overridable **right where you use them** (no need of monkey patching or subclassing)
 
 ### Totally Agnostic
 
-- it doesn't need to know anything about your models, ORM or storage, so it doesn't add any code to them
-- it works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count
-- it works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box
-- it works with any possible non-Rack environment by just overriding one or two two-line methods
+- It doesn't need to know anything about your models, ORM or storage, so it doesn't add any code to them
+- It works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count
+- It works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box
+- It works with any possible non-Rack environment by just overriding one or two two-lines methods
 
 ### Easy to use
 
@@ -98,7 +98,7 @@ An alternative UI that combines the pagination feature with the navigation info 
 
 ### Array Extra
 
-Paginate arrays efficiently avoiding expensive array-wrapping and wihout overriding. ([More info...](http://ddnexus.github.io/pagy/extras/array))
+Paginate arrays efficiently avoiding expensive array-wrapping and without any overriding. ([More info...](http://ddnexus.github.io/pagy/extras/array))
 
 ## Chat Support and Feedback
 
@@ -106,11 +106,13 @@ Paginate arrays efficiently avoiding expensive array-wrapping and wihout overrid
 
 ## Useful Links
 
+- [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
-- [Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
-- [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
 - [Contributors](https://github.com/ddnexus/pagy/graphs/contributors)
+---
+- [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
+- [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison)
 
 ## Help Wanted
 
@@ -124,7 +126,7 @@ Pagy is a fresh project and your help would be great. If you like it, you have a
 
 ## Branches and Pull Requests
 
-`master` is the latest rubygem-published release (plus changes that don't affect the actual gem behavior, e.g. tests). You should use it as the base branch for pull requests, because it will not be force-rebased.
+`master` is the latest rubygem-published release (plus changes that don't affect the actual gem behavior, e.g. doc, tests). You should use it as the base branch for pull requests, because it will not be force-rebased.
 
 `dev` is the development branch that is kept rebased on top of `master`, so expect it to be force-rebased (i.e. do not use it as the base for your commits). Use `dev` as a preview for trying the new code that will be merged in the next release, but please, don't use it as the base branch for pull requests.
 

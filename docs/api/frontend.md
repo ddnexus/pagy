@@ -168,7 +168,7 @@ If you need full blown I18n, you should require the `i18n` extra, which will ove
 
 ### Pagy::Frontend::I18N Constant
 
-The `Pagy::Frontend::I18N` constant is the core of the pagy I18n implementation. It has no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). It allows to control the dictionary file to load and the pluralization proc.
+The `Pagy::Frontend::I18N` constant is the core of the pagy I18n implementation. It has no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). This constant allows to control the dictionary file to load and the pluralization proc.
 
 #### Pagy::Frontend::I18N.load_file(file)
 
@@ -182,4 +182,4 @@ Pagy::Frontend::I18N.load_file('path/to/dictionary.yml')
 
 This variable controls the internal pluralization. If the `i18n` extra is used it has no effect.
 
-By default the variable is set to a proc that receives the `count` as the single argument and returns the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the count). You should customize it only for pluralization types different than English.
+By default the variable is set to a proc that receives the `count` as a single argument and returns the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the passed count). You should customize it only for pluralization types different than English.
