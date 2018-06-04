@@ -10,18 +10,18 @@ class Pagy
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)
-      tags = ''; link = pagy_link_proc(pagy)
+      tags, link, p_prev, p_next = '', pagy_link_proc(pagy), pagy.prev, pagy.next
 
-      tags << (pagy.prev ? %(<span class="page prev">#{link.call pagy.prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</span> )
-                         : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev'.freeze)}</span> ))
+      tags << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'.freeze), 'aria-label="previous"'.freeze}</span> )
+                      : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev'.freeze)}</span> ))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         tags << if    item.is_a?(Integer); %(<span class="page">#{link.call item}</span> )                    # page link
                 elsif item.is_a?(String) ; %(<span class="page active">#{item}</span> )                       # current page
                 elsif item == :gap       ; %(<span class="page gap">#{pagy_t('pagy.nav.gap'.freeze)}</span> ) # page gap
                 end
       end
-      tags << (pagy.next ? %(<span class="page next">#{link.call pagy.next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</span>)
-                         : %(<span class="page next disabled">#{pagy_t('pagy.nav.next'.freeze)}</span>))
+      tags << (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'.freeze), 'aria-label="next"'.freeze}</span>)
+                      : %(<span class="page next disabled">#{pagy_t('pagy.nav.next'.freeze)}</span>))
       %(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">#{tags}</nav>)
     end
 
@@ -36,8 +36,8 @@ class Pagy
 
     # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
     def pagy_url_for(page, pagy)
-      params = request.GET.merge(pagy.vars[:page_param] => page, **pagy.vars[:params])
-      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{pagy.vars[:anchor]}"
+      p_vars = pagy.vars; params = request.GET.merge(p_vars[:page_param] => page, **p_vars[:params])
+      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
     end
 
 
