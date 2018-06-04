@@ -28,31 +28,31 @@ The values shown in the charts below have been recorded while each gem was produ
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses any Kb of memory it allocates/consumes._
 
-### Unlike the other gems
-
-- It works with collections/scopes that already used `limit` and `offset`
-- It works with both helpers or templates (your choice)
-- It raises real `Pagy::OutOfRangeError` exceptions that you can rescue from
-- It does not impose any difficult-to-override logic or output
-
 ## Features
 
 ### Straightforward Code
 
-- Pagy is just ~100 lines of simple ruby, organized in 3 flat modules very easy to understand and use
-- No dependencies: it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code
+- Pagy is just ~100 lines of simple ruby, organized in 3 flat modules very easy to understand and use _(see [API](https://ddnexus.github.io/pagy/api))_
+- No dependencies: it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code _(see [why](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - 100% of its methods are public API, accessible and overridable **right where you use them** (no need of monkey patching or subclassing)
 
 ### Totally Agnostic
 
-- It doesn't need to know anything about your models, ORM or storage, so it doesn't add any code to them
-- It works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count
+- It doesn't need to know anything about your models, ORM or storage, so it doesn't add any code to them _(see [why](https://ddnexus.github.io/pagy/index#stay-away-from-the-models))_
+- It works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count _(see [how](https://ddnexus.github.io/pagy/how-to#paginate-any-collection))_
 - It works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box
 - It works with any possible non-Rack environment by just overriding one or two two-lines methods
 
+### Unlike the other gems
+
+- It works with collections/scopes that already used `limit` and `offset` _(see [how](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
+- It works with helpers or templates (your choice)
+- It raises real `Pagy::OutOfRangeError` exceptions that you can rescue from
+- It does not impose any difficult-to-override logic or output
+
 ### Easy to use
 
-You can use pagy in a quite familiar way:
+You can use Pagy in a quite familiar way:
 
 Paginate your collection in some controller:
 
@@ -118,10 +118,10 @@ Paginate arrays efficiently avoiding expensive array-wrapping and without any ov
 
 Pagy is a fresh project and your help would be great. If you like it, you have a few options to contribute:
 
-- Write a tutorial or a post or even just a tweet (pagy is young and needs to be known)
+- Write a tutorial or a post or even just a tweet (Pagy is young and needs to be known)
 - Write a "How To" topic (the documentation is covering the basics and there is a lot of space for additions)
 - Submit some cool extra
-- Submit a pull request to make pagy even faster, save more memory or improve its usability
+- Submit a pull request to make Pagy even faster, save more memory or improve its usability
 - Create an issue if anything should be improved/fixed
 
 ## Branches and Pull Requests

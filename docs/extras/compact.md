@@ -3,7 +3,7 @@ title: Compact
 ---
 # Compact Extra
 
-The `compact` extra adds an alternative pagination UI that joins the pagination feature with the navigation info in a single compact element.
+The `compact` extra adds an alternative pagination UI that combines the pagination feature with the navigation info in a single compact element.
 
 It is especially useful for small size screens, but it is used also with wide layouts since it is __even faster__ than the classic nav of links, because it needs to render just a minimal HTML string.
 
