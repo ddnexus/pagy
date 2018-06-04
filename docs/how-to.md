@@ -79,7 +79,7 @@ Pagy can work in any other scenario assuming that:
 - You may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
 - You may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
 
-__Notice__: the total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module.
+**Notice**: the total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module.
 
 ## Items per page
 
@@ -252,7 +252,7 @@ You can also use the `:param` and : `:anchor` non core variables to add arbitrar
 @pagy, @records = pagy(some_scope, params: {custom: 'param'}, anchor: '#your-anchor')
 ```
 
-__IMPORTANT__: For performance reasons the `:anchor` string must include the `#`.
+**IMPORTANT**: For performance reasons the `:anchor` string must include the `#`.
 
 ## Customizing the URL
 
@@ -374,7 +374,7 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
     @pagy, @record = pagy(my_scope, item_path: 'activerecord.models.product' )
     ```
 
-__Notice__: The variables passed to a pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
+**Notice**: The variables passed to a pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
 
 ## Handling Pagy::OutOfRangeError exception
 

@@ -22,7 +22,7 @@ In this phase you will search statements from legacy pagination gems, remove the
 - If it makes sense, you should add the equivalent Pagy statement and remove the legacy statement(s).
 - If it doesn't make sense, then just remove the legacy statement.
 
-__Notice:__ Don't worry about missing something in this phase: if anything wont work as before you can fix it later in the process.
+**Notice:** Don't worry about missing something in this phase: if anything wont work as before you can fix it later in the process.
 
 #### Preparation
 

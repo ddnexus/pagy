@@ -41,6 +41,6 @@ You could even use it directly (without using any other pagy code) in a small pa
 
 ## Really easy to customize
 
-If options and configuration are not enough, you have a few specialized [extras](extras.md). And if all that is still not enough, any other special customization is at most one step far from your own code. All its helpers are contained in 2 plain modules with no nesting. You include them in your code, so you can override any method right where you use it: no tricky gymnic required.
+If options and configuration are not enough, you have a few specialized [extras](extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. All its helpers are contained in 2 plain modules with no nesting. You include them in your code, so you can override any method right where you use it: no tricky gymnic required.
 
 What could be easier?
