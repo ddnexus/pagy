@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 0.8.6
+
+### Commits
+
+- [0db9125](https://github.com/ddnexus/pagy/commit/0db9125): minor documentation improvements
+- [8a0a5a8](https://github.com/ddnexus/pagy/commit/8a0a5a8): broader parallel assignment in methods (improved performance)
+- [18baa8b](https://github.com/ddnexus/pagy/commit/18baa8b): small optimization (used a few less objects)
+- [1d16e3d](https://github.com/ddnexus/pagy/commit/1d16e3d): documentation additions
+- [62c420d](https://github.com/ddnexus/pagy/commit/62c420d): updated doc and charts
+
 ## Version 0.8.5
 
 ### Important Changes
