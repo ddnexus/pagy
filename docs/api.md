@@ -5,7 +5,7 @@ title: API
 
 [![Gem Version](https://badge.fury.io/rb/pagy.svg)](https://badge.fury.io/rb/pagy)
 
-The whole core structure of pagy is very simple: it is organized around 3 small modules of just ~100 lines of code in total:
+The whole core structure of Pagy is very simple: it is organized around 3 small modules of just ~100 lines of code in total:
 
 | Module           | Description                                                                                                     | Links                                                                                                        |
 | --------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |

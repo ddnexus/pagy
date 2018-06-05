@@ -30,11 +30,11 @@ use some of its method in some view:
 
 All the methods in this module are prefixed with the `"pagy_"` string in order to avoid any possible conflict with your own methods when you include the module in your helper. The methods prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are intended to be overridden and not used directly.
 
-Please, keep in mind that overriding any method is very easy with pagy. Indeed you can do it right where you are using it: no need of monkey-patching or subclassing or tricky gymnic.
+Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or tricky gymnic.
 
 ### pagy_nav(pagy)
 
-This method takes the pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
+This method takes the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
 ```erb
 <%== pagy_nav(@pagy) %>
@@ -101,13 +101,13 @@ This method returns a specialized proc that you call to produce the page links. 
 Here is how you should use it: in your helper or template call the method to get the proc (just once):
 
 ```ruby
-link = pagy_link_proc( pagy [, extra_attributes_string ])
+link = pagy_link_proc( pagy [, extra_attributes_string ] )
 ```
 
 Then call the `"link"` proc to get the links (multiple times):
 
 ```ruby
-link.call( page_number [, text [, extra_attributes_string ]])
+link.call( page_number [, text [, extra_attributes_string ] ] )
 ```
 
 ### Extra attribute strings
@@ -125,7 +125,7 @@ If you need to add some HTML attribute to the page links, you can pass some extr
     link.call(2)
     #=> <a href="...?page=2" data-remote="true">2</a>
     ```
-2. For one pagy object: pass the `:link_extra` variable to a pagy constructor (`Pagy.new` or `pagy` controller method):
+2. For one Pagy object: pass the `:link_extra` variable to a Pagy constructor (`Pagy.new` or `pagy` controller method):
     ```ruby
     # in any controller
     @pagy, @records = pagy(my_scope, link_extra: 'data-remote="true"')
@@ -158,17 +158,17 @@ This method is similar to the `I18n.t` and its equivalent rails `t` helper. It i
 
 ## I18n
 
-Pagy is I18n ready. That means that all the UI strings that pagy uses are stored in a [dictionaray YAML file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml), ready to be customized and/or translated/pluralized.
+Pagy is I18n ready. That means that all the UI strings that Pagy uses are stored in a [dictionaray YAML file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml), ready to be customized and/or translated/pluralized.
 
 The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`. It contains a few entries used in the the UI by helpers and templates through the [pagy_t method](#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper).
 
-By default, the `pagy_t` method uses the pagy implementation of I18n, which does not depend on the `I18n` gem in any way. It's _5x faster_ and uses _3.5x less memory_, but it provides only pluralization/interpolation without translation, so it's only useful with single language apps (i.e. only `fr` or only `en` or only ...)
+By default, the `pagy_t` method uses the Pagy implementation of I18n, which does not depend on the `I18n` gem in any way. It's _5x faster_ and uses _3.5x less memory_, but it provides only pluralization/interpolation without translation, so it's only useful with single language apps (i.e. only `fr` or only `en` or only ...)
 
 If you need full blown I18n, you should require the `i18n` extra, which will override the `pagy_t` method to use directly `::I18n.t`.
 
 ### Pagy::Frontend::I18N Constant
 
-The `Pagy::Frontend::I18N` constant is the core of the pagy I18n implementation. It has no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). This constant allows to control the dictionary file to load and the pluralization proc.
+The `Pagy::Frontend::I18N` constant is the core of the Pagy I18n implementation. It has no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). This constant allows to control the dictionary file to load and the pluralization proc.
 
 #### Pagy::Frontend::I18N.load_file(file)
 

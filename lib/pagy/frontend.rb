@@ -26,7 +26,7 @@ class Pagy
     end
 
 
-    # return examples: "Displaying items 41-60 of 324 in total"  or "Displaying Products 41-60 of 324 in total"
+    # Return examples: "Displaying items 41-60 of 324 in total"  or "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy)
       name = pagy_t(pagy.vars[:item_path], count: pagy.count)
       path = pagy.pages == 1 ? 'pagy.info.single_page'.freeze : 'pagy.info.multiple_pages'.freeze
@@ -41,13 +41,14 @@ class Pagy
     end
 
 
-    # sub-method called only by #pagy_url_for: here for easy customization of params by overriding
+    # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
     def pagy_get_params(params) params end
 
 
     MARKER = "-pagy-#{'pagy'.hash}-".freeze
 
-    # returns a performance optimized proc to generate the HTML links
+    # Returns a performance optimized proc to generate the HTML links
+    # Benchmarked on a 20 link nav: it is ~27x faster and uses ~13x less memory than rails' link_to
     def pagy_link_proc(pagy, link_extra=''.freeze)
       p_prev, p_next = pagy.prev, pagy.next
       a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(MARKER, 2)
@@ -62,7 +63,7 @@ class Pagy
     def I18N.load_file(file) I18N_DATA.replace(YAML.load_file(file).first[1]) end
 
     # Similar to I18n.t for interpolation and pluralization but without translation
-    # Use only for single-language apps: it is specialized for pagy and 5x faster than I18n.t
+    # Use only for single-language apps: it is specialized for Pagy and 5x faster than I18n.t
     # See also https://ddnexus.github.io/pagy/extras/i18n to use the standard I18n gem instead
     def pagy_t(path, vars={})
       value = I18N_DATA.dig(*path.to_s.split('.'.freeze)) or return %(translation missing: "#{path}")

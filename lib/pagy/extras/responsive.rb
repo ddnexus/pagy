@@ -4,7 +4,7 @@ require 'json'
 
 class Pagy
 
-  # default :breakpoints
+  # Default :breakpoints
   VARS[:breakpoints] = { 0 => [1,4,4,1] }
 
   # Helper for building the page_nav with javascript. For example:

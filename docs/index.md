@@ -25,7 +25,7 @@ Those are perfect helpers but only if used _in an application_.  Because _they a
 
 **Paginating is not business logic**: it has nothing to do with the data itself. It has to do with the way you decide to _present_ the data... one page at the time, n items per page... That is indeed _presentation_ logic, so the models are really not the place where to add that logic!
 
-**Every colletion knows already how to paginate itself**: that's what OFFSET and LIMIT in DBs are for! You decide the limit (the items per page) and pagy (or yourself) can calculate the offset with simple arithmetic: `offset = items * (page - 1)`. That's not rocket science! You don't need to add a bunch of methods to your models just to get the page records!
+**Every colletion knows already how to paginate itself**: that's what OFFSET and LIMIT in DBs are for! You decide the limit (the items per page) and Pagy (or yourself) can calculate the offset with simple arithmetic: `offset = items * (page - 1)`. That's not rocket science! You don't need to add a bunch of methods to your models just to get the page records!
 
 Ignoring these simple rules has a lot of drawbacks for performance, memory, maintainance, complexity and usability, as you can confirm with the [Gems Comparison page](http://ddnexus.github.io/pagination-comparison).
 
@@ -37,10 +37,10 @@ You don't need a rails engine for a simple task like pagination: you just need a
 
 Pagy provides the clean logic of pagination in one micro-class of less than 40 lines of code that creates a micro-object of less than 3k: it works perfectly, knowing **absolutely nothing** about your environment. _(see the [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
 
-You could even use it directly (without using any other pagy code) in a small partial template that you could write in just 5 minutes and about 15 lines. There you could use the regular helpers provided by your framework and it would still work a few times faster than using other gems, even without using any pagy template nor any other pagy method.
+You could even use it directly (without using any other Pagy code) in a small partial template that you could write in just 5 minutes and about 15 lines. There you could use the regular helpers provided by your framework and it would still work a few times faster than using other gems, even without using any Pagy template nor any other Pagy method.
 
 ## Really easy to customize
 
-If options and configuration are not enough, you have a few specialized [extras](extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. All its helpers are contained in 2 plain modules with no nesting. You include them in your code, so you can override any method right where you use it: no tricky gymnic required.
+If options and configuration are not enough, you have a few specialized [extras](extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. All the Pagy helpers are contained in 2 plain modules with no nesting. You include them in your code, so you can override any method right where you use it: no tricky gymnic required.
 
 What could be easier?

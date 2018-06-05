@@ -53,7 +53,7 @@ This method returns the `pathname` of the `pagy/lib` root dir. It is useful to g
 
 ### Pagy.new
 
-_Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and return the pagy object for you.
+_Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and return the Pagy object for you.
 
 The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::Vars` hash and will be used to create the object. The only mandatory variable is the `:count` of the collection to paginate: all the other variables are optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page number 1.
 
@@ -109,6 +109,8 @@ Pagy exposes all the instance variables needed for the pagination through a few 
 
 This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` argument (only useful for extras), defaulted on the `:size` variable.
 
+**Notice**: A `:gap` is added only where the series is missing at least two pages. When the series is missing only one page, the `:gap` is replaced with the page link of the actual missing page. That's because the page link uses the same space of the `...` gap but it is more useful.
+
 The nav helpers and the templates basically loop through this array and render the correct item by simply checking its type:
 
 - if the item is an `Integer` then it is a page link
@@ -119,7 +121,7 @@ That is self-contained, simple and efficient.
 
 ### Lowest limit analysys
 
-The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the pagy object created has the following peculiar attributes:
+The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has the following peculiar attributes:
 
 | Attribute | Value   |
 | --------- | ------- |

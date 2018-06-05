@@ -27,8 +27,8 @@
 
 
 # Pagy Variables
-# All the Pagy::VARS here are set for all the pagy instances but can be
-# overridden by just passing them to Pagy.new or the pagy controller method
+# All the Pagy::VARS here are set for all the Pagy instances but can be
+# overridden by just passing them to Pagy.new or the #pagy controller method
 
 # Core variables (See https://ddnexus.github.io/pagy/api/pagy#core-variables)
 # Pagy::VARS[:items] = 20                                   # default

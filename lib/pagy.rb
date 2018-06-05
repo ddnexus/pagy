@@ -6,7 +6,7 @@ class Pagy ; VERSION = '0.8.6'
 
   class OutOfRangeError < StandardError; end
 
-  # root pathname to get the path of pagy files like templates or dictionaries
+  # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default vars
@@ -14,7 +14,7 @@ class Pagy ; VERSION = '0.8.6'
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
-  # merge and validate the options, do some simple aritmetic and set the instance variables
+  # Merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(vars)
     @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == ''.freeze })   # default vars + cleaned instance vars
     { count:0, items:1, outset:0, page:1 }.each do |k,min|                # validate core variables
@@ -31,7 +31,7 @@ class Pagy ; VERSION = '0.8.6'
     @next   = (@page+1 unless @page == @last)                             # nil if no next page
   end
 
-  # return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+  # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
   def series(size=@vars[:size])
     4.times{|i| (size[i]>=0 rescue nil) or raise(ArgumentError, "expected 4 items >= 0 in :size; got #{size.inspect}")}
     series = []

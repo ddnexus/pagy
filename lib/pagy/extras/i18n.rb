@@ -6,7 +6,7 @@ class Pagy
 
     ::I18n.load_path << Pagy.root.join('locales', 'pagy.yml')
 
-    # overrides the built-in pagy_t
+    # Override the built-in pagy_t
     def pagy_t(*args)
       I18n.t(*args)
     end

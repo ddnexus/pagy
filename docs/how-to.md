@@ -3,11 +3,11 @@ title: How To
 ---
 # How To
 
-This page contains the practical tips and examples to get the job done with pagy. If there is something missing, or some topic that you think should be added, fixed or explained better, please open an issue.
+This page contains the practical tips and examples to get the job done with Pagy. If there is something missing, or some topic that you think should be added, fixed or explained better, please open an issue.
 
 ## Quick Start
 
-Install and require the pagy gem:
+Install and require the Pagy gem:
 
 ```bash
 gem install pagy
@@ -69,7 +69,7 @@ Pagy works out of the box assuming that:
 - You are using a `Rack` based framework
 - The collection to paginate is an ORM collection (e.g. ActiveRecord scope)
 - The controller where you include `Pagy::Backend` responds to a `params` method
-- The view where you include `Pagy::Frontend` responds to a `request` method that responds to `GET` (e.g. `Rack::Request`)
+- The view where you include `Pagy::Frontend` responds to a `request` method returning a `Rack::Request` instance.
 
 ### Any other scenario assumptions
 
@@ -85,7 +85,7 @@ Pagy can work in any other scenario assuming that:
 
 You can control the items per page with the `items` variable. (Default `20`)
 
-You can set its default in the pagy initializer. For example:
+You can set its default in the `pagy.rb` initializer. For example:
 
 ```ruby
 Pagy::VARS[:items] = 25
@@ -125,7 +125,7 @@ You can easily try different options (also asymmetrical) in a console by changin
 
 Pagy doesn't need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
 
-1. Create a pagy object using the count of the collection to paginate
+1. Create a Pagy object using the count of the collection to paginate
 2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
 
 An example with an array:
@@ -134,7 +134,7 @@ An example with an array:
 # paginate an array
 arr = (1..1000).to_a
 
-# Create a pagy object using the count of the collection to paginate
+# Create a Pagy object using the count of the collection to paginate
 pagy = Pagy.new(count: arr.count, page: 2)
 #=> #<Pagy:0x000055e39d8feef0 ... >
 
@@ -159,7 +159,7 @@ See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/p
 
 ## Paginate an Array
 
-You have many ways to paginate an array with pagy:
+You have many ways to paginate an array with Pagy:
 
 1. Implementing the above _how-to_ (probably not the most convenient way, besides being a good example)
 2. Using the `pagy` method and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
@@ -199,7 +199,7 @@ You can also override the `pagy_get_vars` if you need some special way to get th
 
 ## Using the pagy_nav* helpers
 
-These helpers take the pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
+These helpers take the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
 ```erb
 <%== pagy_nav(@pagy) %>
@@ -222,10 +222,10 @@ Helpers are the preferred choice (over templates) for their performance. If you 
 If you need to customize some HTML attribute of the page links, you may not need to override the `pagy_nav*` helper. It might be enough to pass some extra attribute string with the `:link_extra` variable. For example:
 
 ```ruby
-# for all the pagy instance
+# for all the Pagy instance
 Pagy::VARS[:link_extra] = 'data-remote="true" class="my-class"'
 
-# for a single pagy instance (if you use the Pagy::Backend#pagy method)
+# for a single Pagy instance (if you use the Pagy::Backend#pagy method)
 @pagy, @records = pagy(my_scope, link_extra: 'data-remote="true" class="my-class"')
 
 # or directly to the constructor
@@ -304,7 +304,7 @@ They produce exactly the same output of the helpers, but they are slower, so use
   - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.haml)
   - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.slim)
 
-If you need to try/compare an unmodified built-in template, you can render it right from the pagy gem with:
+If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
 
 ```erb
 <%== render file: Pagy.root.join('pagy', 'extras', 'templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
@@ -356,7 +356,7 @@ While the text part can be always static, you may want the item/model name to be
 
 You can do so by setting the `:item_path` variable to the path to lookup in the dictionary file, in one of the following 2 ways:
 
-1. by overriding the `pagy_get_vars` method in your controller (valid for all the pagy instances) adding the `:item_path`. For example (with ActiveRecord):
+1. by overriding the `pagy_get_vars` method in your controller (valid for all the Pagy instances) adding the `:item_path`. For example (with ActiveRecord):
     ```ruby
     def pagy_get_vars(collection, vars)
       { count:     collection.count(:all),
@@ -365,20 +365,20 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
     end
     ```
 
-2. by passing the variable to the pagy object, either using the `Pagy::VARS` hash or `Pagy.new` method or `pagy` controller method:
+2. by passing the variable to the Pagy object, either using the `Pagy::VARS` hash or `Pagy.new` method or `pagy` controller method:
     ```ruby
-    # all pagy instance will have the default
+    # all the Pagy instances will have the default
     Pagy::VARS[:item_path] = 'activerecord.models.product'
 
-    # or single pagy instance
+    # or single Pagy instance
     @pagy, @record = pagy(my_scope, item_path: 'activerecord.models.product' )
     ```
 
-**Notice**: The variables passed to a pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
+**Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
 
 ## Handling Pagy::OutOfRangeError exception
 
-Pass an out of range `:page` number and pagy will raise a `Pagy::OutOfRangeError` exception, which you can rescue from and do what you think fits. You can rescue from the exception and render a not found page, or render a specific page number, or whatever. For example:
+Pass an out of range `:page` number and Pagy will raise a `Pagy::OutOfRangeError` exception, which you can rescue from and do what you think fits. You can rescue from the exception and render a not found page, or render a specific page number, or whatever. For example:
 
 ```ruby
 # in a controller

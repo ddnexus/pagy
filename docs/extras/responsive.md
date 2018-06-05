@@ -17,7 +17,7 @@ See [extras](../extras.md) for general usage info.
 # in the initializer
 require 'pagy/extra/responsive'
 
-# set your default custom breakpoints (width/size pairs) globally (it can be overridden per pagy instance)
+# set your default custom breakpoints (width/size pairs) globally (it can be overridden per Pagy instance)
 Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
 
 # in rails apps: add the assets-path
@@ -50,18 +50,18 @@ This extra is composed of 2 small files:
 
 ### :breakpoints
 
-The `:breakpoint` variable is a pagy variable added by the `responsive` extra: it allows you to control how the page links will get shown at different widths. It is a hash where the keys are integers representing the breakpoint widths in pixels and the values are the pagy `:size` variables to be applied for that width.
+The `:breakpoint` variable is a non-core variable added by the `responsive` extra: it allows you to control how the page links will get shown at different widths. It is a hash where the keys are integers representing the breakpoint widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
  For example:
 
 ```ruby
 Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
 ```
 
-The above statement means that from `0` to `450` pixels width, pagy will use the `[1,2,2,1]` size, from `450` to `750` it will use the `[3,4,4,3]` size and over `750` it will use the `[4,5,5,4]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section)
+The above statement means that from `0` to `450` pixels width, Pagy will use the `[1,2,2,1]` size, from `450` to `750` it will use the `[3,4,4,3]` size and over `750` it will use the `[4,5,5,4]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section)
 
 **IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only requirement is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.
 
-**Notice**: Each breakpoint added slowers down pagy of almost 10%. For example: with 5 breakpoints (which are actually quite a lot) the nav will be rendered rougly in twice the normal time. However, that will still run about 15 times faster than Kaminari and 6 times faster than WillPaginate.
+**Notice**: Each breakpoint added slowers down Pagy of almost 10%. For example: with 5 breakpoints (which are actually quite a lot) the nav will be rendered rougly in twice the normal time. However, that will still run about 15 times faster than Kaminari and 6 times faster than WillPaginate.
 
 ## Methods
 
@@ -71,7 +71,7 @@ The `reponsive` extra adds an instance method to the `Pagy` class and couple of 
 
 **Notice**: Unless you are going to override a `pagy_nav_responsive` or `pagy_nav_bootstrap_responsive` helper you can ignore this method.
 
-This is a `Pagy` instance method that returns the data structure used by the `pagy_nav_responsive` and `pagy_nav_bootstrap_responsive` helpers in order to build the html and the javascript codes needed to make pagy responsive to different widths.
+This is a `Pagy` instance method that returns the data structure used by the `pagy_nav_responsive` and `pagy_nav_bootstrap_responsive` helpers in order to build the html and the javascript codes needed to make Pagy responsive to different widths.
 
 ### pagy_nav_responsive(pagy, ...)
 
