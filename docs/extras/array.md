@@ -30,7 +30,7 @@ This extra is composed of 1 file:
 
 This extra adds the `pagy_array` method to the `Pagy::Backend` to be used in place (or in parallel) of the `pagy` method when you have to paginate an array. It also adds a `pagy_array_get_variables` sub-method, used for easy customization of variables by overriding.
 
-__Notice__: there is no `pagy_array_get_items` method to override, since the items are fetched directly by the specialized `pagy_array` method.
+**Notice**: there is no `pagy_array_get_items` method to override, since the items are fetched directly by the specialized `pagy_array` method.
 
 ### pagy_array(array, vars=nil)
 
@@ -38,4 +38,4 @@ This method is the same as the generic `pagy` method, but specialized for an Arr
 
 ### pagy_array_get_vars(array)
 
-This sub-method is the same as the `pagy_get_vars` sub-method, but it is called only by the `pagy_array` nethod. (see the [pagy_get_vars doc](../api/backend.md#pagy_get_varscollection))
+This sub-method is the same as the `pagy_get_vars` sub-method, but it is called only by the `pagy_array` method. (see the [pagy_get_vars doc](../api/backend.md#pagy_get_varscollection-vars)).

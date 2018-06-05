@@ -9,7 +9,7 @@ For overriding convenience, the `pagy` method calls two sub-methods that you may
 
 However, keep in mind that the whole module is basically providing a single functionality: getting a pagy instance and the paginated items. You could re-write the whole module as one single and simple method specific to your need. (see [Writing your own pagy methods](#writing-your-own-pagy-methods))
 
-__Notice__: This module is also extended with a few _specific_ extra methods that paginate array collections, if you use the [array extra](../extras/array.md).
+**Notice**: This module is also extended with a few _specific_ extra methods that paginate array collections, if you use the [array extra](../extras/array.md).
 
 ## Synopsys
 
@@ -87,7 +87,7 @@ def pagy_get_items(array, pagy)
 end
 ```
 
-__Notice__: in order to paginate arrays, you may want to use the  [array extra](../extras/array.md).
+**Notice**: in order to paginate arrays, you may want to use the  [array extra](../extras/array.md).
 
 ## Writing your own pagy methods
 

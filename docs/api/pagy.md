@@ -59,7 +59,7 @@ The `Pagy.new` method accepts a single hash of variables that will be merged wit
 
 All the variables not explicitly in the list of core-variables (the non-core variables) passed/merged to the new method will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
 
-__Notice__: Pagy replaces the blank values of the passed variables with their default values. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
+**Notice**: Pagy replaces the blank values of the passed variables with their default values. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
 
 ### Core Variables
 

@@ -32,23 +32,23 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 
 ### Straightforward Code
 
-- Pagy is just ~100 lines of simple ruby, organized in 3 flat modules very easy to understand and use _(see [API](https://ddnexus.github.io/pagy/api))_
-- No dependencies: it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code _(see [why](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
+- Pagy is just ~100 lines of simple ruby, organized in 3 flat modules very easy to understand and use _(see [more...](https://ddnexus.github.io/pagy/api))_
+- No dependencies: it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - 100% of its methods are public API, accessible and overridable **right where you use them** (no need of monkey patching or subclassing)
 
 ### Totally Agnostic
 
-- It doesn't need to know anything about your models, ORM or storage, so it doesn't add any code to them _(see [why](https://ddnexus.github.io/pagy/index#stay-away-from-the-models))_
-- It works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count _(see [how](https://ddnexus.github.io/pagy/how-to#paginate-any-collection))_
-- It works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box
-- It works with any possible non-Rack environment by just overriding one or two two-lines methods
+- It doesn't need to know anything about your models, ORM or storage, so it doesn't add any code to them _(see [why...](https://ddnexus.github.io/pagy/index#stay-away-from-the-models))_
+- It works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-any-collection))_
+- It works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box _(see [more...](https://ddnexus.github.io/pagy/how-to.md#environment-assumptions))_
+- It works with any possible non-Rack environment by just overriding one or two two-lines methods _(see [more...](https://ddnexus.github.io/pagy/how-to.md#environment-assumptions))_
 
 ### Unlike the other gems
 
-- It works with collections/scopes that already used `limit` and `offset` _(see [how](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
-- It works with helpers or templates (your choice)
-- It raises real `Pagy::OutOfRangeError` exceptions that you can rescue from
-- It does not impose any difficult-to-override logic or output
+- It works with collections/scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
+- It works with helpers or templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
+- It raises real `Pagy::OutOfRangeError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_
+- It does not impose any difficult-to-override logic or output _(see [why...](https://ddnexus.github.io/pagy/index#really-easy-to-customize))_
 
 ### Easy to use
 
@@ -72,37 +72,37 @@ Or - if you prefer - render the navigation links with a template:
 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
+_(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_
+
 ## Easy to extend
 
 Use the official extras, or write your own in just a few lines.
 
 ### Bootstrap Extra
 
-Nav helper and templates for Bootstrap pagination. ([More info...](http://ddnexus.github.io/pagy/extras/bootstrap))
+Nav helper and templates for Bootstrap pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/bootstrap))_
 
 ### Responsive Extra
 
-On resize, the number of page links will adapt in real-time to the available window or container width.
+On resize, the number of page links will adapt in real-time to the available window or container width. _(see [more...](http://ddnexus.github.io/pagy/extras/responsive))_
 
 ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
-([More info...](http://ddnexus.github.io/pagy/extras/responsive))
-
 ### Compact Extra
 
-An alternative UI that combines the pagination feature with the navigation info in one compact element.
+An alternative UI that combines the pagination feature with the navigation info in one compact element. _(see [more...](http://ddnexus.github.io/pagy/extras/compact))_
+
 
 ![pagy-compact](docs/assets/images/pagy-compact-w.png)
 
-([More info...](http://ddnexus.github.io/pagy/extras/compact))
 
 ### Array Extra
 
-Paginate arrays efficiently avoiding expensive array-wrapping and without any overriding. ([More info...](http://ddnexus.github.io/pagy/extras/array))
+Paginate arrays efficiently avoiding expensive array-wrapping and without any overriding. _(see [more...](http://ddnexus.github.io/pagy/extras/array))_
 
 ## Chat Support and Feedback
 
-[Chat on Gitter](https://gitter.im/ruby-pagy/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[Chat on Gitter](https://gitter.im/ruby-pagy/Lobby)
 
 ## Useful Links
 
