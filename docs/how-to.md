@@ -296,13 +296,13 @@ Pagy provides the replacement templates for the `pagy_nav` and the `pagy_nav_boo
 They produce exactly the same output of the helpers, but they are slower, so use them only if you need to edit something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
 - `pagy`
-  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.erb)
-  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.haml)
-  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav.html.slim)
+  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav.html.erb)
+  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav.html.haml)
+  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav.html.slim)
 - `bootstrap`
-  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.erb)
-  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.haml)
-  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/extras/templates/nav_bootstrap.html.slim)
+  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.erb)
+  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.haml)
+  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.slim)
 
 If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
 

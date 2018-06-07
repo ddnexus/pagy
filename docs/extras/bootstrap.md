@@ -27,9 +27,9 @@ or with a template:
 This extra is composed of 4 files:
 
 - [bootstrap.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bootstrap.rb)
-- [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.erb) (optional template)
-- [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.haml) (optional template)
-- [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.slim)  (optional template)
+- [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.erb) (optional template)
+- [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.haml) (optional template)
+- [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.slim)  (optional template)
 
 ## Methods
 

@@ -41,7 +41,7 @@ Then use the responsive helper(s) in any view:
 
 This extra is composed of 2 small files:
 
-- [compact.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagyextras/compact.rb)
+- [compact.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/compact.rb)
 - [pagy-compact.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy-compact.js)
 
 ## Methods

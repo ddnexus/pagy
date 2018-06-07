@@ -44,7 +44,7 @@ Then use the responsive helper(s) in any view:
 This extra is composed of 2 small files:
 
 - [responsive.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/responsive.rb)
-- [pagy-responsive.js](https://github.com/ddnexus/extras/blob/master/lib/pagy/extras/javascripts/pagy-responsive.js)
+- [pagy-responsive.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy-responsive.js)
 
 ## Variables
 
