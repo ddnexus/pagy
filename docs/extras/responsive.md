@@ -14,7 +14,7 @@ Here is an example of how the same pagination nav might look like by resizing th
 See [extras](../extras.md) for general usage info.
 
 ```ruby
-# in the initializer
+# in the Pagy initializer
 require 'pagy/extra/responsive'
 
 # set your default custom breakpoints (width/size pairs) globally (it can be overridden per Pagy instance)

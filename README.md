@@ -92,9 +92,7 @@ On resize, the number of page links will adapt in real-time to the available win
 
 An alternative UI that combines the pagination feature with the navigation info in one compact element. _(see [more...](http://ddnexus.github.io/pagy/extras/compact))_
 
-
 ![pagy-compact](docs/assets/images/pagy-compact-w.png)
-
 
 ### Array Extra
 
@@ -108,21 +106,27 @@ Paginate arrays efficiently avoiding expensive array-wrapping and without any ov
 
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
+- [Migrating from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-tips)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
 - [Contributors](https://github.com/ddnexus/pagy/graphs/contributors)
 ---
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison)
 
+## Please Star and Share!
+
+Pagy is young and needs to be known.
+
+**You** can really help, even with just a click. Thank you!
+
 ## Help Wanted
 
 Pagy is a fresh project and your help would be great. If you like it, you have a few options to contribute:
 
-- Write a tutorial or a post or even just a tweet (Pagy is young and needs to be known)
-- Write a "How To" topic (the documentation is covering the basics and there is a lot of space for additions)
-- Submit some cool extra
-- Submit a pull request to make Pagy even faster, save more memory or improve its usability
 - Create an issue if anything should be improved/fixed
+- Submit a pull request to improve Pagy
+- Write a Tutorial or a "How To" topic
+- Submit some cool extra
 
 ## Branches and Pull Requests
 

@@ -17,7 +17,7 @@
 # See https://ddnexus.github.io/pagy/extras/compact
 # require 'pagy/extras/compact'
 
-# I18n: Uses the `I18n` gem instead of the pagy implementation
+# I18n: Use the `I18n` gem instead of the pagy implementation
 # See https://ddnexus.github.io/pagy/extras/i18n
 # require 'pagy/extras/i18n'
 

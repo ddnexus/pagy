@@ -14,3 +14,5 @@ The whole core structure of Pagy is very simple: it is organized around 3 small 
 | `Pagy::Frontend` | The module to include in your views in order to get a few helpers for the HTML output                           | [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb), [documentation](api/frontend.md) |
 
 However, besides these files, you can explicitly require optional [extras](extras.md) that can handle special features, collections or environments.
+
+See also: [Global Configuration](how-to.md#global-configuration)

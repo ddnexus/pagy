@@ -8,7 +8,7 @@ The scope of the `Pagy` class is keeping track of the all integers and variables
 ## Synopsys
 
 ```ruby
-# set global defaults and extra variables typically in an initializer
+# set global defaults and extra variables typically in the Pagy initializer
 # they will get merged with every new Pagy instance
 Pagy::VARS[:items]    = 25
 Pagy::VARS[:some_var] = 'default value'

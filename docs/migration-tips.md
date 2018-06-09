@@ -1,7 +1,7 @@
 ---
 title: Migration Tips
 ---
-# Migration Tips
+# Migrating from WillPaginate and Kaminari
 
 This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is higly customized you may need more digging into the Pagy documentation.
 
@@ -60,7 +60,7 @@ Pagy::VARS[:items] = 10
 Pagy::Vars[:size]  = [5,4,4,5]
 ```
 
-Remove all the old settings and uncomment and edit the new settings in the `pagy.rb` initializer.
+Remove all the old settings and uncomment and edit the new settings in the `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_.
 
 #### Cleanup the Models
 

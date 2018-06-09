@@ -56,7 +56,9 @@ or with a template:
 
 ## Global Configuration
 
-Pagy should work out of the box for most Rack based apps (e.g. Rails) even without configuring anything, however you can configure all its features by creating a `pagy.rb` initializer file, copying the content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and uncomment and edit what you may need.
+Pagy should work out of the box for most Rack based apps (e.g. Rails) even without configuring anything, however you can configure all its features and all the extras loading a `pagy.rb` initializer file.
+
+You can copy the comprehensive and annotated content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and uncomment and edit what you may need. The file contains also all the relevant documentation links.
 
 ## Environment Assumptions
 
@@ -85,7 +87,7 @@ Pagy can work in any other scenario assuming that:
 
 You can control the items per page with the `items` variable. (Default `20`)
 
-You can set its default in the `pagy.rb` initializer. For example:
+You can set its default in the `pagy.rb` initializer _(see [Configuration](#global-configuration)_. For example:
 
 ```ruby
 Pagy::VARS[:items] = 25

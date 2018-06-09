@@ -15,7 +15,7 @@ Here is an example (bootstrap style):
 
 See [extras](../extras.md) for general usage info.
 
-In an initializer file:
+In the Pagy initializer file:
 
 ```ruby
 # in rails apps: add the assets-path

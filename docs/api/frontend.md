@@ -118,7 +118,7 @@ If you need to add some HTML attribute to the page links, you can pass some extr
 
 1. For all pagy objects: set the global variable `:link_extra`:
     ```ruby
-    # in an initializer file
+    # in the Pagy initializer file
     Pagy::VARS[:link_extra] = 'data-remote="true"'
     # in any view
     link = pagy_link_proc(pagy)
@@ -172,7 +172,7 @@ The `Pagy::Frontend::I18N` constant is the core of the Pagy I18n implementation.
 
 #### Pagy::Frontend::I18N.load_file(file)
 
-This method allow to load a custom dictionary file, different from `Pagy.root.join('locales', 'pagy.yml')`. If the `i18n` extra is used it has no effect. It is tipically used in the initializer file. For example:
+This method allow to load a custom dictionary file, different from `Pagy.root.join('locales', 'pagy.yml')`. If the `i18n` extra is used it has no effect. It is tipically used in the Pagy initializer file _(see [Configuration](../how-to.md#global-configuration))_. For example:
 
 ```ruby
 Pagy::Frontend::I18N.load_file('path/to/dictionary.yml')
