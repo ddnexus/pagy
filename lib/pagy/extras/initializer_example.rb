@@ -21,6 +21,12 @@
 # See https://ddnexus.github.io/pagy/extras/i18n
 # require 'pagy/extras/i18n'
 
+# Items: Handle the page :items passed with the params
+# See https://ddnexus.github.io/pagy/extras/items
+# require 'pagy/extras/items'
+# Pagy::VARS[:items_param] = :items    # default
+# Pagy::VARS[:max_items]   = 100       # default
+
 # Responsive: On resize, the number of page links will adapt in real-time to the available window or container width
 # See https://ddnexus.github.io/pagy/extras/responsive
 # require 'pagy/extras/responsive'
@@ -49,6 +55,6 @@
 # Pagy::Frontend::I18N.load_file('path/to/dictionary.yml')                     # load a custom file
 
 
-# Rails: extras assets path required by compact or responsive extras
+# Rails: extras assets path required by compact, items qnd responsive extras
 # See https://ddnexus.github.io/pagy/extras/compact and https://ddnexus.github.io/pagy/extras/responsive
 # Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
