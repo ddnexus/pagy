@@ -1,40 +1,8 @@
 require_relative '../test_helper'
-require 'rack'
 
 SingleCov.covered!
 
 describe Pagy::Backend do
-
-  class TestController
-    include Pagy::Backend
-
-    def params(vars={})
-      {a: 'a', page: 3}.merge(vars)
-    end
-
-  end
-
-  class TestCollection < Array
-
-    def initialize(*args)
-      super
-      @collection = self.clone
-    end
-
-    def offset(value)
-      @collection = self[value..-1]
-      self
-    end
-
-    def limit(value)
-      @collection[0, value]
-    end
-
-    def count(*_)
-      size
-    end
-
-  end
 
 
   let(:backend) { TestController.new }
@@ -71,21 +39,31 @@ describe Pagy::Backend do
 
   end
 
-  describe "#pagy_get_variables" do
+  describe "#pagy_get_vars" do
     before do
       @collection = TestCollection.new((1..1000).to_a)
     end
 
-    def test_pagy_get_variables_with_default
+    def test_pagy_get_vars_with_default
       vars   = {}
       merged = backend.send :pagy_get_vars, @collection, vars
-      assert_equal({:count=>1000, :page=>3}, merged)
+      assert_includes(merged.keys, :count)
+      assert_includes(merged.keys, :page)
+      assert_equal(1000, merged[:count])
+      assert_equal(3, merged[:page])
     end
 
-    def test_pagy_get_variables_with_vars
+    def test_pagy_get_vars_with_vars
       vars   = {page: 2, items: 10, link_extra: 'X'}
       merged = backend.send :pagy_get_vars, @collection, vars
-      assert_equal({:count=>1000, :page=>2, :items=>10, :link_extra=>"X"}, merged)
+      assert_includes(merged.keys, :count)
+      assert_includes(merged.keys, :page)
+      assert_includes(merged.keys, :items)
+      assert_includes(merged.keys, :link_extra)
+      assert_equal(1000, merged[:count])
+      assert_equal(2, merged[:page])
+      assert_equal(10, merged[:items])
+      assert_equal('X', merged[:link_extra])
     end
 
   end
