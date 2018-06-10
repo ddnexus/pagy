@@ -66,7 +66,7 @@ Displaying Products <b>476-500</b> of <b>1000</b> in total
 
 See also [Using the pagy_info helper](../how-to.md#using-the-pagy_info-helper).
 
-### pagy_url_for(page, page_param)
+### pagy_url_for(page, pagy)
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
 
