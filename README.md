@@ -92,7 +92,7 @@ An alternative UI that combines the pagination feature with the navigation info 
 
 ![pagy-compact](docs/assets/images/pagy-compact-w.png)
 
-## Items Extra
+### Items Extra
 
 Allow the client to request a custom number of items per page with a ready to use UI selector. _(see [more...](http://ddnexus.github.io/pagy/extras/items))_
 
