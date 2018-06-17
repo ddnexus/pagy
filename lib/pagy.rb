@@ -2,7 +2,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '0.8.6'
+class Pagy ; VERSION = '0.9.0'
 
   class OutOfRangeError < StandardError; end
 
@@ -16,9 +16,9 @@ class Pagy ; VERSION = '0.8.6'
 
   # Merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(vars)
-    @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == ''.freeze })   # default vars + cleaned instance vars
-    { count:0, items:1, outset:0, page:1 }.each do |k,min|                # validate core variables
-      (@vars[k] && instance_variable_set(:"@#{k}", @vars.delete(k).to_i) >= min) \
+    @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == ''.freeze })   # default vars + cleaned vars
+    { count:0, items:1, outset:0, page:1 }.each do |k,min|                # validate instance variables
+      (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{instance_variable_get(:"@#{k}").inspect}")
     end
     @pages  = @last = [(@count.to_f / @items).ceil, 1].max                # cardinal and ordinal meanings

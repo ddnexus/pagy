@@ -42,7 +42,7 @@ This is the main method of this module. It takes a collection object (e.g. a sco
 @pagy, @records = pagy(Product.my_scope, some_option: 'get merged in the pagy object')
 ```
 
-The built-in `pagy` method is designed to be easy to customize by overriding any of the two sub-methods that it calls internally. You can independently change the default variables (`pagy_get_variables`) and/or the default page of items from the collection `pagy_get_items`).
+The built-in `pagy` method is designed to be easy to customize by overriding any of the two sub-methods that it calls internally. You can independently change the default variables (`pagy_get_vars`) and/or the default page of items from the collection `pagy_get_items`).
 
 If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and self contained custom `pagy` method. (see [Writing your own Pagy methods](#writing-your-own-pagy-methods))
 

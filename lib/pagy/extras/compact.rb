@@ -1,4 +1,4 @@
-# See the Pagy Extras documentation: https://ddnexus.github.io/pagy/extras
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/compact
 
 class Pagy
   # Add nav helpers for compact pagination

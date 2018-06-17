@@ -78,15 +78,13 @@ _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_
 
 Use the official extras, or write your own in just a few lines.
 
+### Array Extra
+
+Paginate arrays efficiently avoiding expensive array-wrapping and without any overriding. _(see [more...](http://ddnexus.github.io/pagy/extras/array))_
+
 ### Bootstrap Extra
 
 Nav helper and templates for Bootstrap pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/bootstrap))_
-
-### Responsive Extra
-
-On resize, the number of page links will adapt in real-time to the available window or container width. _(see [more...](http://ddnexus.github.io/pagy/extras/responsive))_
-
-![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
 ### Compact Extra
 
@@ -94,9 +92,15 @@ An alternative UI that combines the pagination feature with the navigation info 
 
 ![pagy-compact](docs/assets/images/pagy-compact-w.png)
 
-### Array Extra
+## Items Extra
 
-Paginate arrays efficiently avoiding expensive array-wrapping and without any overriding. _(see [more...](http://ddnexus.github.io/pagy/extras/array))_
+Allow the client to request a custom number of items per page with a ready to use UI selector. _(see [more...](http://ddnexus.github.io/pagy/extras/items))_
+
+### Responsive Extra
+
+On resize, the number of page links will adapt in real-time to the available window or container width. _(see [more...](http://ddnexus.github.io/pagy/extras/responsive))_
+
+![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
 ## Chat Support and Feedback
 
@@ -115,9 +119,7 @@ Paginate arrays efficiently avoiding expensive array-wrapping and without any ov
 
 ## Please Star and Share!
 
-Pagy is young and needs to be known.
-
-**You** can really help, even with just a click. Thank you!
+Pagy is young and needs to be known, and **you** can really help, even with just a click on the star, or sharing a tweet with friends and collegues. Thank you!
 
 ## Help Wanted
 

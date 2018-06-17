@@ -21,19 +21,27 @@
 # See https://ddnexus.github.io/pagy/extras/i18n
 # require 'pagy/extras/i18n'
 
+# Items: Handle the page :items passed with the params
+# See https://ddnexus.github.io/pagy/extras/items
+# require 'pagy/extras/items'
+# Pagy::VARS[:items_param] = :items    # default
+# Pagy::VARS[:max_items]   = 100       # default
+
 # Responsive: On resize, the number of page links will adapt in real-time to the available window or container width
 # See https://ddnexus.github.io/pagy/extras/responsive
 # require 'pagy/extras/responsive'
+# See https://ddnexus.github.io/pagy/extras/responsive#breakpoints
+# Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
 
 
 # Pagy Variables
 # All the Pagy::VARS here are set for all the Pagy instances but can be
 # overridden by just passing them to Pagy.new or the #pagy controller method
 
-# Core variables (See https://ddnexus.github.io/pagy/api/pagy#core-variables)
+# Instance variables (See https://ddnexus.github.io/pagy/api/pagy#instance-variables)
 # Pagy::VARS[:items] = 20                                   # default
 
-# Non Core Variables (See https://ddnexus.github.io/pagy/api/pagy#non-core-variables)
+# Other Variables (See https://ddnexus.github.io/pagy/api/pagy#other-variables)
 # Pagy::VARS[:size]       = [1,4,4,1]                       # default
 # Pagy::VARS[:page_param] = :page                           # default
 # Pagy::VARS[:params]     = {}                              # default
@@ -41,17 +49,12 @@
 # Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
 # Pagy::VARS[:item_path]  = 'activerecord.models.product'   # example
 
-# Extras Non Core Variables
-# See https://ddnexus.github.io/pagy/extras/responsive#breakpoints
-# Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
-
-
 # Pagy::Frontend::I18N Constant
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
 # Pagy::Frontend::I18N[:plurals] = -> (c) {([:zero, :one][c] || :other).to_s   # default
 # Pagy::Frontend::I18N.load_file('path/to/dictionary.yml')                     # load a custom file
 
 
-# Rails: extras assets path required by compact or responsive extras
+# Rails: extras assets path required by compact, items qnd responsive extras
 # See https://ddnexus.github.io/pagy/extras/compact and https://ddnexus.github.io/pagy/extras/responsive
 # Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')

@@ -192,7 +192,7 @@ That will explicitly set the `:page` variable, overriding the default behavior (
 
 Pagy uses the `:page_param` variable to determine the param it should get the page number from and create the URL for. Its default is set as `Pagy::VARS = :page`, hence it will get the page number from the `params[:page]` and will create page URLs like `./?page=3` by default.
 
-You may want to customize that, for example to make it more readable in your language, or becuse you need to paginate different collections in the same action. Depending on the scope of the customization, you have  couple of options:
+You may want to customize that, for example to make it more readable in your language, or becuse you need to paginate different collections in the same action. Depending on the scope of the customization, you have a couple of options:
 
 1. `Pagy::VARS[:page_param] = :custom_param` will be used as the global default
 2. `pagy(scope, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single instance (overriding the global default)

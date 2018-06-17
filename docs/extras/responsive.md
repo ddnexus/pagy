@@ -30,7 +30,7 @@ In rails: add the javascript file to the application.js
 //= require pagy-responsive
 ```
 
-In non-rails apps: ensure the `pagy/extras/javascripts/pagy-responsive.js` script gets served with the page
+In non-rails apps: ensure the `pagy/extras/javascripts/pagy-responsive.js` script gets served with the page.
 
 Then use the responsive helper(s) in any view:
 

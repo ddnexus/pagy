@@ -1,4 +1,4 @@
-# See the Pagy Extras documentation: https://ddnexus.github.io/pagy/extras
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/i18n
 
 class Pagy
   # Use ::I18n gem

@@ -17,5 +17,8 @@ en:
         one: "item"
         other: "items"
     compact:
-      page: Page
-      of: of
+      page: "Page"
+      of: "of"
+    items:
+      show: "Show"
+      items: "items per page"

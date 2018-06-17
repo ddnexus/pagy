@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## Version 0.9.0
+
+### Important Changes
+
+- Improvements for compact extra
+- Refactoring of test structure and tasks
+- Added items extra: Allow the client to request a custom number of items per page with a ready to use UI selector
+
+### Commits
+
+- [45dd700](https://github.com/ddnexus/pagy/commit/45dd700): added array extra tests
+- [623ce9e](https://github.com/ddnexus/pagy/commit/623ce9e): Added items extra and tests
+- [5902e8a](https://github.com/ddnexus/pagy/commit/5902e8a): passed instance variables are not deleted from the vars hash
+- [e2efb89](https://github.com/ddnexus/pagy/commit/e2efb89): refactoring of test structure
+- [1cc335b](https://github.com/ddnexus/pagy/commit/1cc335b): documentation updates
+- [42ba053](https://github.com/ddnexus/pagy/commit/42ba053): improved pagy-compact.js
+- [8c20fa2](https://github.com/ddnexus/pagy/commit/8c20fa2): Enable support for return key inside Pagy compact input (#43)
+- [d4b751c](https://github.com/ddnexus/pagy/commit/d4b751c): Documentation updates
+- [9f0dec9](https://github.com/ddnexus/pagy/commit/9f0dec9): fix for broken links in docs
+- [c41e823](https://github.com/ddnexus/pagy/commit/c41e823): additions and normalization of documentation and comments
+- [38f9a49](https://github.com/ddnexus/pagy/commit/38f9a49): fix for broken links in readme
+
 ## Version 0.8.6
 
 ### Commits
