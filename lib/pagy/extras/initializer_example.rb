@@ -55,6 +55,6 @@
 # Pagy::Frontend::I18N.load_file('path/to/dictionary.yml')                     # load a custom file
 
 
-# Rails: extras assets path required by compact, items qnd responsive extras
+# Rails: extras assets path required by compact, items and responsive extras
 # See https://ddnexus.github.io/pagy/extras/compact and https://ddnexus.github.io/pagy/extras/responsive
 # Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
