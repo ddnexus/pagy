@@ -23,7 +23,8 @@ describe Pagy do
       assert_raises(ArgumentError) { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }
       assert_raises(ArgumentError) { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }
       assert_raises(Pagy::OutOfRangeError) { Pagy.new(count: 100, page: '11') }
-      assert_raises(Pagy::OutOfRangeError) { Pagy.new(count: 100, page: 12) }
+      e = assert_raises(Pagy::OutOfRangeError) { Pagy.new(count: 100, page: 12) }
+      assert_instance_of Pagy, e.pagy
     end
   end
 

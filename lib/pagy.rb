@@ -4,13 +4,13 @@ require 'pathname'
 
 class Pagy ; VERSION = '0.9.1'
 
-  class OutOfRangeError < StandardError; end
+  class OutOfRangeError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default vars
-  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params: {}, anchor: ''.freeze, link_extra: ''.freeze, item_path: 'pagy.info.item_name'.freeze }
+  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:''.freeze, link_extra:''.freeze, item_path:'pagy.info.item_name'.freeze }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
@@ -22,7 +22,7 @@ class Pagy ; VERSION = '0.9.1'
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{instance_variable_get(:"@#{k}").inspect}")
     end
     @pages  = @last = [(@count.to_f / @items).ceil, 1].max                # cardinal and ordinal meanings
-    @page >= 1 && @page <= @last or raise(OutOfRangeError, "expected :page in 1..#{@last}; got #{@page.inspect}")
+    @page >= 1 && @page <= @last or raise(OutOfRangeError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                              # pagination offset + outset (initial offset)
     @items  = @count - ((@pages-1) * @items) if @page == @last            # adjust items for last page
     @from   = @count == 0 ? 0 : @offset+1 - @outset                       # page begins from item

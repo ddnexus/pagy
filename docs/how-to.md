@@ -392,3 +392,16 @@ def redirect_to_page_20
   redirect_to url_for(page: 20), notice: %(Page ##{params[:page]} is out of range. Showing page #20 instead.)
 end
 ```
+
+**Notice**: The `Pagy::OutOfRangeError` exception object contain the failed Pagy object as it was during the initialization process. You can get some useful information from it. For example:
+
+```ruby
+# in a controller
+rescue_from Pagy::OutOfRangeError, :with => :redirect_to_last_page
+
+private
+
+def redirect_to_last_page(exception)
+  redirect_to url_for(page: exception.pagy.last), notice: %(Page ##{exception.pagy.page} is out of range. Showing the last page instead.)
+end
+```
