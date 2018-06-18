@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## Version 0.9.1
+
+### Important Changes
+
+- Improved the Pagy::OutOfRangeError exception, now storing the failed Pagy object
+
+### Commits
+
+- [9817659](https://github.com/ddnexus/pagy/commit/9817659): improved OutOfRangeError exception (storing the failed Pagy object)
+- [7195229](https://github.com/ddnexus/pagy/commit/7195229): a few minor consistency fixes for the initializer_example.rb
+- [00cd5bb](https://github.com/ddnexus/pagy/commit/00cd5bb): Fix typo (#45)
+- [8b3a733](https://github.com/ddnexus/pagy/commit/8b3a733): fix for header level in README
+
 ## Version 0.9.0
 
 ### Important Changes
