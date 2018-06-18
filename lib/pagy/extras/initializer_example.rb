@@ -35,19 +35,23 @@
 
 
 # Pagy Variables
-# All the Pagy::VARS here are set for all the Pagy instances but can be
-# overridden by just passing them to Pagy.new or the #pagy controller method
+# See https://ddnexus.github.io/pagy/api/pagy#variables
+# All the Pagy::VARS are set for all the Pagy instances but can be overridden
+# per instance by just passing them to Pagy.new or the #pagy controller method
 
-# Instance variables (See https://ddnexus.github.io/pagy/api/pagy#instance-variables)
+# Instance variables
+# See https://ddnexus.github.io/pagy/api/pagy#instance-variables
 # Pagy::VARS[:items] = 20                                   # default
 
-# Other Variables (See https://ddnexus.github.io/pagy/api/pagy#other-variables)
+# Other Variables
+# See https://ddnexus.github.io/pagy/api/pagy#other-variables
 # Pagy::VARS[:size]       = [1,4,4,1]                       # default
 # Pagy::VARS[:page_param] = :page                           # default
 # Pagy::VARS[:params]     = {}                              # default
 # Pagy::VARS[:anchor]     = '#anchor'                       # example
 # Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
 # Pagy::VARS[:item_path]  = 'activerecord.models.product'   # example
+
 
 # Pagy::Frontend::I18N Constant
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
@@ -56,5 +60,5 @@
 
 
 # Rails: extras assets path required by compact, items and responsive extras
-# See https://ddnexus.github.io/pagy/extras/compact and https://ddnexus.github.io/pagy/extras/responsive
+# See https://ddnexus.github.io/pagy/extras
 # Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
