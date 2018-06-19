@@ -280,6 +280,7 @@ DEPENDENCIES
   bundler (~> 1.16)
   github-pages
   haml
+  i18n
   kalibera
   memory_profiler
   minitest (~> 5.0)
