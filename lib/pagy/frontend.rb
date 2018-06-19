@@ -11,7 +11,7 @@ class Pagy
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)
-      tags, link, p_prev, p_next = '', pagy_link_proc(pagy), pagy.prev, pagy.next
+      tags, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
 
       tags << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
                       : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ))
@@ -54,8 +54,8 @@ class Pagy
       p_prev, p_next = pagy.prev, pagy.next
       a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(MARKER, 2)
       -> (n, text=n, extra='') { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'
-                                                        elsif n == p_next ; ' rel="next"'
-                                                        else                           '' end } #{extra}>#{text}</a>" }
+                                                 elsif n == p_next ; ' rel="next"'
+                                                 else                           '' end } #{extra}>#{text}</a>" }
     end
 
     # Pagy::Frontend::I18N constant
