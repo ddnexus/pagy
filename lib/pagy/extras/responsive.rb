@@ -50,7 +50,6 @@ class Pagy
       %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive pagination" role="navigation" aria-label="pager"></nav>#{script})
     end
 
-
     # Responsive pagination for bootstrap: it returns the html with the series of links to the pages
     # we build the tags as a json object string and render them with the PagyResponsive javascript
     def pagy_nav_bootstrap_responsive(pagy, id=caller(1,1)[0].hash)
