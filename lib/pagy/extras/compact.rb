@@ -8,7 +8,7 @@ class Pagy
     # Generic compact pagination: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the PagyCompact javascript to navigate
     def pagy_nav_compact(pagy, id=caller(1,1)[0].hash)
-      tags, link, p_prev, p_next, p_page, p_pages = '', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
+      tags, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
       tags << %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact pagination" role="navigation" aria-label="pager">)
 
@@ -28,7 +28,7 @@ class Pagy
     # Compact pagination for bootstrap: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the PagyCompact javascript to navigate
     def pagy_nav_bootstrap_compact(pagy, id=caller(1,1)[0].hash)
-      tags, link, p_prev, p_next, p_page, p_pages = '', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
+      tags, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
       tags << %(<nav id="pagy-nav-#{id}" class="pagy-nav-bootstrap-compact pagination" role="navigation" aria-label="pager">)
 

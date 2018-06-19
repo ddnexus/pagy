@@ -7,7 +7,7 @@ class Pagy
 
     # Pagination for bootstrap: it returns the html with the series of links to the pages
     def pagy_nav_bootstrap(pagy)
-      tags, link, p_prev, p_next = '', pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next
+      tags, link, p_prev, p_next = +'', pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next
 
       tags << (p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
                       : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))

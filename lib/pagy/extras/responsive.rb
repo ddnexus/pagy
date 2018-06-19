@@ -34,7 +34,7 @@ class Pagy
     # Generic responsive pagination: it returns the html with the series of links to the pages
     # we build the tags as a json object string and render them with the PagyResponsive javascript
     def pagy_nav_responsive(pagy, id=caller(1,1)[0].hash)
-      tags, link, p_prev, p_next, responsive = '{', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
+      tags, link, p_prev, p_next, responsive = +'{', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
       tags << (p_prev ? %('prev':'<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> ',)
                       : %('prev':'<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ',))
@@ -54,7 +54,7 @@ class Pagy
     # Responsive pagination for bootstrap: it returns the html with the series of links to the pages
     # we build the tags as a json object string and render them with the PagyResponsive javascript
     def pagy_nav_bootstrap_responsive(pagy, id=caller(1,1)[0].hash)
-      tags, link, p_prev, p_next, responsive = '{', pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next, pagy.responsive
+      tags, link, p_prev, p_next, responsive = +'{', pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next, pagy.responsive
 
       tags << (p_prev ? %('prev':'<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>',)
                       : %('prev':'<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>',))
