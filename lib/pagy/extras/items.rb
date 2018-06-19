@@ -1,4 +1,5 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/items
+# frozen_string_literal: true
 
 class Pagy
 
@@ -35,7 +36,7 @@ class Pagy
 
         tags << %(<a href="#{pagy_url_for("#{MARKER}-page-", pagy)}"></a>)
         input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
-        tags << %(#{pagy_t('pagy.items.show'.freeze)} #{input} #{pagy_t('pagy.items.items'.freeze)})
+        tags << %(#{pagy_t('pagy.items.show')} #{input} #{pagy_t('pagy.items.items')})
 
       tags << %(</span><script>PagyItems('#{id}', '#{MARKER}', #{pagy.from});</script>)
     end

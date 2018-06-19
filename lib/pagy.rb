@@ -1,4 +1,5 @@
 # See Pagy API documentation: https://ddnexus.github.io/pagy/api/pagy
+# frozen_string_literal: true
 
 require 'pathname'
 
@@ -10,13 +11,13 @@ class Pagy ; VERSION = '0.9.1'
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default vars
-  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:''.freeze, link_extra:''.freeze, item_path:'pagy.info.item_name'.freeze }
+  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', item_path:'pagy.info.item_name' }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
   # Merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(vars)
-    @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == ''.freeze })   # default vars + cleaned vars
+    @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })          # default vars + cleaned vars
     { count:0, items:1, outset:0, page:1 }.each do |k,min|                # validate instance variables
       (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{instance_variable_get(:"@#{k}").inspect}")
