@@ -35,6 +35,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 - Pagy is just ~100 lines of simple ruby, organized in 3 flat modules very easy to understand and use _(see [more...](https://ddnexus.github.io/pagy/api))_
 - No dependencies: it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - 100% of its methods are public API, accessible and overridable **right where you use them** (no need of monkey-patching)
+- 100% test coverage for core code and extras
 
 ### Totally Agnostic
 
