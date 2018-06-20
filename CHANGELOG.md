@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## Version 0.9.2
+
+### Important Changes
+
+- 100% test coverage for core code and extras
+
+### Commits
+
+- [c11dfcc](https://github.com/ddnexus/pagy/commit/c11dfcc): updated README
+- [f8728e7](https://github.com/ddnexus/pagy/commit/f8728e7): added responsive extra tests
+- [14ea356](https://github.com/ddnexus/pagy/commit/14ea356): added compact extra tests
+- [2ac743c](https://github.com/ddnexus/pagy/commit/2ac743c): added bootstrap extra test
+- [159b65e](https://github.com/ddnexus/pagy/commit/159b65e): added i18n extra tests
+- [4449c95](https://github.com/ddnexus/pagy/commit/4449c95): normalization of indentation and empty lines
+- [9afa9d9](https://github.com/ddnexus/pagy/commit/9afa9d9): Default Frozen Strings for Ruby Files (#49)
+- [036c87f](https://github.com/ddnexus/pagy/commit/036c87f): Fix typo in :page_param configuration (#48)
+
+
 ## Version 0.9.1
 
 ### Important Changes
