@@ -95,7 +95,7 @@ An alternative UI that combines the pagination feature with the navigation info 
 
 ### Items Extra
 
-Allow the client to request a custom number of items per page with a ready to use UI selector. _(see [more...](http://ddnexus.github.io/pagy/extras/items))_
+Allow the client to request a custom number of items per page with a ready to use selector UI. _(see [more...](http://ddnexus.github.io/pagy/extras/items))_
 
 ### Responsive Extra
 

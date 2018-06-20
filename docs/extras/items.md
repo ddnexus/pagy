@@ -3,7 +3,7 @@ title: Items
 ---
 # Items Extra
 
-Allow the client to request a custom number of items per page with a ready to use UI selector. It is useful with APIs or higly user-customizable apps.
+Allow the client to request a custom number of items per page with a ready to use selector UI. It is useful with APIs or higly user-customizable apps.
 
 ## Synopsys
 
