@@ -16,19 +16,9 @@ require 'pagy/extra/items'
 
 Pagy::VARS[:items_param] = :custom_param       # default :items
 Pagy::VARS[:max_items]   = 100                 # default
-
-# in rails apps: add the assets-path (only required if you use the pagy_items_selector helper)
-Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
 ```
 
-In rails: add the javascript file to the application.js
-
-```js
-// only required if you use the pagy_items_selector helper
-//= require pagy-items
-```
-
-In non-rails apps: ensure the `pagy/extras/javascripts/pagy-items.js` script gets served with the page.
+Configure [javascript](../extras.md#javascript)
 
 Then you may want to use the `pagy_items_selector` helper in any view:
 
@@ -38,10 +28,7 @@ Then you may want to use the `pagy_items_selector` helper in any view:
 
 ## Files
 
-This extra is composed of 2 small files:
-
-- [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb)
-- [pagy-items.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy-items.js)
+This extra is composed of the [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb) and uses the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy.js) file.
 
 ## Variables
 

@@ -157,7 +157,8 @@ describe Pagy::Frontend do
         %(<a href="/foo?page=#{Pagy::Frontend::MARKER}-page-&items=#{Pagy::Frontend::MARKER}-items-"></a>) +
         %(Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page) +
       %(</span>) +
-      %(<script>PagyItems('#{id}', '#{Pagy::Frontend::MARKER}', 41);</script>),
+      %(<script type="application/json" class="pagy-items">["#{id}", "#{Pagy::Frontend::MARKER}", 41]</script>),
+
       html
       )
     end
