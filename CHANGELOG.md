@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Version 0.10.0
+
+### Breaking Changes
+
+- The javascript used by the `compact`, `items` and `responsive` extras has been refactored in order to avoid any usafe-inline vulnerability. The javascript files have been replaced by one shared file, and require to set an event listener or run a function on window load. See the commit below and the [javascript doc](docs/extras.md#javascript) for details.
+
+### Commits
+
+- [50e304b](https://github.com/ddnexus/pagy/commit/50e304b): javascript refactoring in order to avoid any usafe-inline vulnerability (#52):
+  - removed inline scripts from all extras
+  - one single pagy.js file shared among all the extras
+  - the Pagy.init function should be executed at document load
+  - updated tests and docs
+- [32d0afc](https://github.com/ddnexus/pagy/commit/32d0afc): doc fix: UI selector > selector UI
+
 ## Version 0.9.2
 
 ### Important Changes
