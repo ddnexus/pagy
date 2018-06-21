@@ -19,18 +19,9 @@ require 'pagy/extra/responsive'
 
 # set your default custom breakpoints (width/size pairs) globally (it can be overridden per Pagy instance)
 Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
-
-# in rails apps: add the assets-path
-Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
 ```
 
-In rails: add the javascript file to the application.js
-
-```js
-//= require pagy-responsive
-```
-
-In non-rails apps: ensure the `pagy/extras/javascripts/pagy-responsive.js` script gets served with the page.
+Configure [javascript](../extras.md#javascript)
 
 Then use the responsive helper(s) in any view:
 
@@ -41,10 +32,7 @@ Then use the responsive helper(s) in any view:
 
 ## Files
 
-This extra is composed of 2 small files:
-
-- [responsive.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/responsive.rb)
-- [pagy-responsive.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy-responsive.js)
+This extra is composed of the [responsive.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/responsive.rb) file and uses the shared [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy.js) file.
 
 ## Variables
 

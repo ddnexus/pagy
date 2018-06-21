@@ -15,20 +15,7 @@ Here is an example (bootstrap style):
 
 See [extras](../extras.md) for general usage info.
 
-In the Pagy initializer file:
-
-```ruby
-# in rails apps: add the assets-path
-Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
-```
-
-In rails: add the javascript file to the application.js
-
-```js
-//= require pagy-compact
-```
-
-In non-rails apps: ensure the `pagy/extras/javascripts/pagy-compact.js` script gets served with the page.
+Configure [javascript](../extras.md#javascript)
 
 Then use the responsive helper(s) in any view:
 
@@ -39,10 +26,7 @@ Then use the responsive helper(s) in any view:
 
 ## Files
 
-This extra is composed of 2 small files:
-
-- [compact.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/compact.rb)
-- [pagy-compact.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy-compact.js)
+This extra is composed of the [compact.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/compact.rb)  and uses the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy.js) file.
 
 ## Methods
 
