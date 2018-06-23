@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Version 0.10.1
+
+### Commits
+
+- [8ca5013](https://github.com/ddnexus/pagy/commit/8ca5013): doc improvements
+- [99081ee](https://github.com/ddnexus/pagy/commit/99081ee): small performance improvement for #51 and updated doc
+- [5863ceb](https://github.com/ddnexus/pagy/commit/5863ceb): add support for counting grouped collections (#51)
+
 ## Version 0.10.0
 
 ### Breaking Changes

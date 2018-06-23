@@ -18,17 +18,11 @@ Pagy::VARS[:items_param] = :custom_param       # default :items
 Pagy::VARS[:max_items]   = 100                 # default
 ```
 
-Configure [javascript](../extras.md#javascript)
-
-Then you may want to use the `pagy_items_selector` helper in any view:
-
-```erb
-<%== pagy_items_selector(@pagy) %>
-```
+Configure [javascript](../extras.md#javascript) (only if you use the `pagy_items_selector` UI)
 
 ## Files
 
-This extra is composed of the [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb) and uses the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy.js) file.
+This extra is composed of the [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb) and may use the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy.js) file.
 
 ## Variables
 
@@ -57,7 +51,7 @@ pagy(scope, items_param: :custom_param, max_items: 50)
 Pagy.new(count:100, items_param: :custom_param, max_items: 50)
 ```
 
-**Notice**: you can override items that the client send with the params by passing the `:items` explicitly. For example:
+**Notice**: you can override the items that the client send with the params by passing the `:items` explicitly. For example:
 
 ```ruby
 # this will ignore the params[:item] (or any custom :param_name)
@@ -71,7 +65,7 @@ The `items` extra overrides a couple of builtin methods and adds a helper to the
 
 ### pagy_get_vars(collection, vars)
 
-This extra overrides the `pagy_get_vars` method of the `Pagy::Backend` module in order to set the `:items` variable, pulled from the request-params. The built-in `pagy_get_vars` method is aliased as `built_in_pagy_get_vars` and is called internally and still available.
+This extra overrides the `pagy_get_vars` method of the `Pagy::Backend` module in order to set the `:items` variable, pulled from the request-params. The built-in `pagy_get_vars` method is aliased as `built_in_pagy_get_vars` and it's called internally and still available.
 
 ### pagy_url_for(page, pagy)
 
@@ -79,8 +73,10 @@ This extra overrides also the `pagy_url_for` method of the `Pagy::Frontend` modu
 
 ### pagy_items_selector(pagy)
 
-This helper provides an items selector UI, which allows the user to select any arbitrary number of items per page below the `:max_items` number in a numeric input field. It looks like:
+This helper provides an items selector UI, which allows the user to select any arbitrary number of items per page (below the `:max_items` number) in a numeric input field. It looks like:
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page</span>
 
-When the items number is changed with the selector, pagy will reload the pagination UI using the selected items per page. It will also request the _right_ page number calculated in order to contain the first item of the previously displayed page. That way the new displayed page will roughly show the same items in the collection.
+You can change/translate its text by editing the [dictionaray YAML file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) at the `pagy.items` path.
+
+When the items number is changed with the selector, pagy will reload the pagination UI using the selected items per page. It will also request the _right_ page number calculated in order to contain the first item of the previously displayed page. That way the new displayed page will roughly show the same items in the collection before the items change.

@@ -4,7 +4,6 @@ SingleCov.covered!
 
 describe Pagy::Backend do
 
-
   let(:backend) { TestController.new }
 
   describe "#pagy" do
@@ -54,6 +53,20 @@ describe Pagy::Backend do
     end
 
     def test_pagy_get_vars_with_vars
+      vars   = {page: 2, items: 10, link_extra: 'X'}
+      merged = backend.send :pagy_get_vars, @collection, vars
+      assert_includes(merged.keys, :count)
+      assert_includes(merged.keys, :page)
+      assert_includes(merged.keys, :items)
+      assert_includes(merged.keys, :link_extra)
+      assert_equal(1000, merged[:count])
+      assert_equal(2, merged[:page])
+      assert_equal(10, merged[:items])
+      assert_equal('X', merged[:link_extra])
+    end
+
+    def test_pagy_get_vars_with_grouped_collection
+      @collection = GroupedCollection.new((1..1000).to_a)
       vars   = {page: 2, items: 10, link_extra: 'X'}
       merged = backend.send :pagy_get_vars, @collection, vars
       assert_includes(merged.keys, :count)
