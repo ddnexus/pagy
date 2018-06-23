@@ -5,11 +5,11 @@ title: Pagy::Backend
 
 This module _(see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_ provides a _generic_ pagination method (`pagy`) that should work with most ORM collection (e.g. `ActiveRecord`, `Sequel`, `Mongoid`, ... collections).
 
-For overriding convenience, the `pagy` method calls two sub-methods that you may want to override in order to customize it for any type of collection (e.g. different ORM types, Array, elasticsearch results, etc.).
+For overriding convenience, the `pagy` method calls two sub-methods that you may need to override in order to customize it for any type of collection (e.g. different ORM types, Array, elasticsearch results, etc.).
 
-However, keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simple method specific to your need. (see [Writing your own Pagy methods](#writing-your-own-pagy-methods))
+However, keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods))
 
-**Notice**: This module is also extended with a few _specific_ extra methods that paginate array collections, if you use the [array extra](../extras/array.md).
+**Notice**: This module works for ActiveRecord collections out of the box. For other types of colections you may need to override some sub-method or write your own `pagy_*` methods. For paginating Arrays you may want to use the [array extra](../extras/array.md).
 
 ## Synopsys
 
@@ -49,17 +49,6 @@ If you need to use multiple different types of collections in the same app or ac
 ### pagy_get_vars(collection, vars)
 
 Sub-method called only by the `pagy` method, it returns the hash of variables used to initialize the Pagy object.
-
-Here is its source:
-
-```ruby
-# sub-method called only by #pagy: here for easy customization of variables by overriding
-def pagy_get_vars(collection, vars)
-  # return the merged variables to initialize the Pagy object
-  { count: collection.count(:all),
-    page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
-end
-```
 
 Override it if you need to add or change some variable. For example you may want to add the `:item_path` or the `:item_name` to customize the `pagy_info` output, or even cache the `count`.
 
@@ -104,16 +93,4 @@ def pagy_custom(collection, vars={})
 end
 ```
 
-Or if you want to preserve the complete functionality of the `:page_param` variable:
-
-```ruby
-def pagy_another_custom(collection, vars={})
-  vars = { count: collection.count(:all),
-           page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
-  pagy = Pagy.new(vars)
-  # return the Pagy instance and the paginated items
-  return pagy, collection.offset(pagy.offset).limit(pagy.limit)
-end
-```
-
-You can just copy and paste the above example, end edit the specific parts that you need for _any possible_ environment.
+You can easily write a `pagy` method for _any possible_ environment: please read how to [Paginate Any Collection](../how-to.md#paginate-any-collection) for details.
