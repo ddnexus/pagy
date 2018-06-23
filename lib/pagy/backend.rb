@@ -16,9 +16,10 @@ class Pagy
 
     # Sub-method called only by #pagy: here for easy customization of variables by overriding
     def pagy_get_vars(collection, vars)
-      # Return the merged variables to initialize the Pagy object
-      { count: collection.count(:all),        # works with AR, but may not work with other ORMs
-        page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
+      count = collection.count(:all)
+      count = count.count if count.respond_to?(:count) # e.g. AR .group returns an OrderdHash that responds to #count
+      # return the merged variables to initialize the pagy object
+      { count: count, page: params[vars[:page_param] || VARS[:page_param]] }.merge!(vars)
     end
 
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding

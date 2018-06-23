@@ -30,3 +30,11 @@ class TestCollection < Array
   end
 
 end
+
+class GroupedCollection < TestCollection
+
+  def count(*_)
+    @collection.map { |value| [value, value + 1] }.to_h
+  end
+
+end
