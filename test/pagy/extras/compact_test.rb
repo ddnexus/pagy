@@ -62,17 +62,17 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_nav_bootstrap_compact" do
+  describe "#pagy_nav_compact_bootstrap" do
     before do
       @array = (1..103).to_a.extend(Pagy::Array::PageMethod)
     end
 
-    def test_pagy_nav_bootstrap_compact_page_1
+    def test_pagy_nav_compact_bootstrap_page_1
       pagy, _  = @array.pagy(1)
-      html, id = frontend.pagy_nav_bootstrap_compact(pagy), caller(0,1)[0].hash
+      html, id = frontend.pagy_nav_compact_bootstrap(pagy), caller(0,1)[0].hash
 
       assert_equal(
-      %(<nav id="pagy-nav-#{id}" class="pagy-nav-bootstrap-compact pagination" role="navigation" aria-label="pager">) +
+      %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-bootstrap pagination" role="navigation" aria-label="pager">) +
         %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
         %(<div class="btn-group" role="group">) +
           %(<a class="prev btn btn-primary disabled" href="#">&lsaquo;&nbsp;Prev</a>) +
@@ -89,12 +89,12 @@ describe Pagy::Frontend do
       )
     end
 
-    def test_pagy_nav_bootstrap_compact_page_3
+    def test_pagy_nav_compact_bootstrap_page_3
       pagy, _  = @array.pagy(3)
-      html, id = frontend.pagy_nav_bootstrap_compact(pagy), caller(0,1)[0].hash
+      html, id = frontend.pagy_nav_compact_bootstrap(pagy), caller(0,1)[0].hash
 
       assert_equal(
-      %(<nav id="pagy-nav-#{id}" class="pagy-nav-bootstrap-compact pagination" role="navigation" aria-label="pager">) +
+      %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-bootstrap pagination" role="navigation" aria-label="pager">) +
         %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
         %(<div class="btn-group" role="group">) +
           %(<a href="/foo?page=2"   rel="prev" aria-label="previous" class="prev btn btn-primary">&lsaquo;&nbsp;Prev</a>) +
@@ -111,12 +111,12 @@ describe Pagy::Frontend do
       )
     end
 
-    def test_pagy_nav_bootstrap_compact_page_6
+    def test_pagy_nav_compact_bootstrap_page_6
       pagy, _  = @array.pagy(6)
-      html, id = frontend.pagy_nav_bootstrap_compact(pagy), caller(0,1)[0].hash
+      html, id = frontend.pagy_nav_compact_bootstrap(pagy), caller(0,1)[0].hash
 
       assert_equal(
-      %(<nav id="pagy-nav-#{id}" class="pagy-nav-bootstrap-compact pagination" role="navigation" aria-label="pager">) +
+      %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-bootstrap pagination" role="navigation" aria-label="pager">) +
         %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
         %(<div class="btn-group" role="group">) +
           %(<a href="/foo?page=5"   rel="prev" aria-label="previous" class="prev btn btn-primary">&lsaquo;&nbsp;Prev</a>) +

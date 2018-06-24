@@ -212,8 +212,8 @@ These helpers take the Pagy object and returns the HTML string with the paginati
 | Extra                              | Helpers                                                |
 | ---------------------------------- | ------------------------------------------------------ |
 | [bootstrap](extras/bootstrap.md)   | `pagy_nav_bootstrap`                                   |
-| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_bootstrap_responsive` |
-| [compact](extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_bootstrap_compact`       |
+| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap` |
+| [compact](extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`       |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
 

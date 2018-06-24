@@ -19,7 +19,7 @@ class Pagy
       end
       html << (p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
                       : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
-      %(<nav class="pagy-nav-boostrap pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></nav>)
+      %(<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></nav>)
     end
 
   end
