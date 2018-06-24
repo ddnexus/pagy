@@ -13,4 +13,3 @@ class Pagy
 
   end
 end
-

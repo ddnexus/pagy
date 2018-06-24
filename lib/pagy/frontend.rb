@@ -11,19 +11,19 @@ class Pagy
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)
-      tags, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
+      html, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
 
-      tags << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
+      html << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
                       : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags << if    item.is_a?(Integer); %(<span class="page">#{link.call item}</span> )               # page link
+        html << if    item.is_a?(Integer); %(<span class="page">#{link.call item}</span> )               # page link
                 elsif item.is_a?(String) ; %(<span class="page active">#{item}</span> )                  # current page
                 elsif item == :gap       ; %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> )   # page gap
                 end
       end
-      tags << (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
+      html << (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                       : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
-      %(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">#{tags}</nav>)
+      %(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">#{html}</nav>)
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total"  or "Displaying Products 41-60 of 324 in total"
@@ -33,7 +33,7 @@ class Pagy
       pagy_t(path, item_name: name, count: pagy.count, from: pagy.from, to: pagy.to)
     end
 
-    # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
+    # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
     def pagy_url_for(page, pagy)
       p_vars = pagy.vars; params = request.GET.merge(p_vars[:page_param] => page, **p_vars[:params])
       "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"

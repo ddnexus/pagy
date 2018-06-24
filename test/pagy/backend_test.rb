@@ -66,7 +66,7 @@ describe Pagy::Backend do
     end
 
     def test_pagy_get_vars_with_grouped_collection
-      @collection = GroupedCollection.new((1..1000).to_a)
+      @collection = TestGroupedCollection.new((1..1000).to_a)
       vars   = {page: 2, items: 10, link_extra: 'X'}
       merged = backend.send :pagy_get_vars, @collection, vars
       assert_includes(merged.keys, :count)

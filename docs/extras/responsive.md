@@ -38,7 +38,7 @@ This extra is composed of the [responsive.rb](https://github.com/ddnexus/pagy/bl
 
 ### :breakpoints
 
-The `:breakpoint` variable is a non-core variable added by the `responsive` extra: it allows you to control how the page links will get shown at different widths. It is a hash where the keys are integers representing the breakpoint widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
+The `:breakpoints` variable is a non-core variable added by the `responsive` extra: it allows you to control how the page links will get shown at different widths. It is a hash where the keys are integers representing the breakpoint widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
  For example:
 
 ```ruby
