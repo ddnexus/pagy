@@ -10,8 +10,8 @@ describe Pagy::Frontend do
 
   describe "#pagy_t" do
     def test_data
-      assert_equal "&lsaquo;&nbsp;Prev", Pagy::Frontend::I18N_DATA['pagy']['nav']['prev']
-      assert_equal "&hellip;", Pagy::Frontend::I18N_DATA['pagy']['nav']['gap']
+      assert_equal "&lsaquo;&nbsp;Prev", Pagy::Frontend::I18N[:data]['pagy']['nav']['prev']
+      assert_equal "&hellip;", Pagy::Frontend::I18N[:data]['pagy']['nav']['gap']
     end
 
     def test_translation

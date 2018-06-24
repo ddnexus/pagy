@@ -107,8 +107,8 @@ describe Pagy::Frontend do
 
   describe "#pagy_t" do
     def test_data
-      assert_equal "&lsaquo;&nbsp;Prev", Pagy::Frontend::I18N_DATA['pagy']['nav']['prev']
-      assert_equal "&hellip;", Pagy::Frontend::I18N_DATA['pagy']['nav']['gap']
+      assert_equal "&lsaquo;&nbsp;Prev", Pagy::Frontend::I18N[:data]['pagy']['nav']['prev']
+      assert_equal "&hellip;", Pagy::Frontend::I18N[:data]['pagy']['nav']['gap']
     end
 
     def test_translation
@@ -147,7 +147,7 @@ describe Pagy::Frontend do
     end
 
     def test_render_info_with_existing_118n_key
-      Pagy::Frontend::I18N_DATA['pagy']['info']['product'] = { 'zero'  => 'Products',
+      Pagy::Frontend::I18N[:data]['pagy']['info']['product'] = { 'zero'  => 'Products',
                                                                'one'   => 'Product',
                                                                'other' => 'Products' }
       pagy = Pagy.new count: 0, item_path: 'pagy.info.product'

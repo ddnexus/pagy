@@ -54,19 +54,20 @@ class Pagy
                                                  else                           '' end } #{extra}>#{text}</a>" }
     end
 
-    # Pagy::Frontend::I18N constant
-    I18N_DATA = YAML.load_file(Pagy.root.join('locales', 'pagy.yml')).first[1]
-    zero_one  = ['zero', 'one']; I18N = { plurals: -> (c) {zero_one[c] || 'other'}}
-    def I18N.load_file(file) I18N_DATA.replace(YAML.load_file(file).first[1]) end
+    # Pagy::Frontend::I18N
+    def (I18N = {data:{}}).load(file:Pagy.root.join('locales', 'pagy.yml'), language: 'en')
+      self[:data]   = YAML.load_file(file)[language]
+      self[:plural] = eval(Pagy.root.join('locales', 'plurals.rb').read)[language] #rubocop:disable Security/Eval
+    end; I18N.load
 
-    # Similar to I18n.t for interpolation and pluralization but without translation
-    # Use only for single-language apps: it is specialized for Pagy and 5x faster than I18n.t
-    # See also https://ddnexus.github.io/pagy/extras/i18n to use the standard I18n gem instead
+    # Similar to I18n.t for streamlined interpolation and pluralization but without dynamic translation.
+    # It is specialized for Pagy and 5x faster than I18n.t (see https://ddnexus.github.io/pagy/api/frontend#i18n)
+    # See also https://ddnexus.github.io/pagy/extras/i18n if you need to use the standard I18n gem instead
     def pagy_t(path, vars={})
-      value = I18N_DATA.dig(*path.to_s.split('.')) or return %(translation missing: "#{path}")
+      value = I18N[:data].dig(*path.split('.')) or return %(translation missing: "#{path}")
       if value.is_a?(Hash)
         vars.key?(:count) or return value
-        plural = I18N[:plurals].call(vars[:count])
+        plural = I18N[:plural].call(vars[:count])
         value.key?(plural) or return %(invalid pluralization data: "#{path}" cannot be used with count: #{vars[:count]}; key "#{plural}" is missing.)
         value = value[plural] or return %(translation missing: "#{path}")
       end
