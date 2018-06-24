@@ -18,7 +18,7 @@ class Pagy
         html << %(<span class="pagy-compact-input" style="margin: 0 0.6rem;">#{pagy_t('pagy.compact.page')} #{input} #{pagy_t('pagy.compact.of')} #{p_pages}</span> )
         html << (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                         : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
-      html << %(</nav><script type="application/json" class="pagy-compact">["#{id}", "#{MARKER}", "#{p_page}"]</script>)
+      html << %(</nav><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}"]</script>)
     end
 
     # Compact pagination for bootstrap: it returns the html with the series of links to the pages
@@ -35,7 +35,7 @@ class Pagy
         html << %(<div class="pagy-compact-input btn btn-primary disabled">#{pagy_t('pagy.compact.page')} #{input} #{pagy_t('pagy.compact.of')} #{p_pages}</div>)
         html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'aria-label="next" class="next btn btn-primary"')
                         : %(<a class="next btn btn-primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
-      html << %(</div></nav><script type="application/json" class="pagy-compact">["#{id}", "#{MARKER}", "#{p_page}"]</script>)
+      html << %(</div></nav><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}"]</script>)
     end
 
   end

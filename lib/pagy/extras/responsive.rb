@@ -46,7 +46,7 @@ class Pagy
       end
       tags['next'] = (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                              : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
-      script = %(<script type="application/json" class="pagy-responsive">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
+      script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
       %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive pagination" role="navigation" aria-label="pager"></nav>#{script})
     end
 
@@ -65,7 +65,7 @@ class Pagy
       end
       tags['next'] = (p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
                              : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
-      script = %(<script type="application/json" class="pagy-responsive">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
+      script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
       %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive-bootstrap pagination" role="navigation" aria-label="pager"><ul class="pagination"></ul></nav>#{script})
     end
 
