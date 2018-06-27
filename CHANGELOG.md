@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## Version 0.11.0
+
+### Breaking Changes
+
+- The `pagy_nav_bootstrap_compact` and `pagy_nav_boostrap_responsive` helpers have been renamed as `pagy_nav_compact_bootstrap` and `pagy_nav_responsive_bootstrap` to keep the consistency with the extras structure (and support the consistency of future framework additions). Please, rename them accordingy.
+- The `Pagy::Frontend::I18N.load_file` has been renamed as `Pagy::Frontend::I18N.load` and expects a hash as the argument. See the [I18n doc](https://ddnexus.github.io/pagy/api/frontend#i18n).
+- The seldom used `Pagy::Frontend::I18N[plurals]` has been renamed as `Pagy::Frontend::I18N[plural]`. See the [I18n doc](https://ddnexus.github.io/pagy/api/frontend#i18n).
+
+### Commits
+
+- [826798b](https://github.com/ddnexus/pagy/commit/826798b): refactoring of I18N constant: added supportv for multiple static languages and plural rules
+- [b78b71e](https://github.com/ddnexus/pagy/commit/b78b71e): better naming of json classes
+- [ea7c22b](https://github.com/ddnexus/pagy/commit/ea7c22b): breaking change for compact and responsive extras: renaming of pagy_nav_bootstrap_* helpers to pagy_nav_*_bootstrap, consistent with extras structure
+- [7d1a573](https://github.com/ddnexus/pagy/commit/7d1a573): internal consistency renaming of local/test variables; minor fixes and improvements
+
+
 ## Version 0.10.1
 
 ### Commits
@@ -12,7 +28,7 @@
 
 ### Breaking Changes
 
-- The javascript used by the `compact`, `items` and `responsive` extras has been refactored in order to avoid any usafe-inline vulnerability. The javascript files have been replaced by one shared file, and require to set an event listener or run a function on window load. See the commit below and the [javascript doc](docs/extras.md#javascript) for details.
+- The javascript used by the `compact`, `items` and `responsive` extras has been refactored in order to avoid any usafe-inline vulnerability. The javascript files have been replaced by one shared file, and require to set an event listener or run a function on window load. See the commit below and the [javascript doc](https://ddnexus.github.io/pagy/extras#javascript) for details.
 
 ### Commits
 
