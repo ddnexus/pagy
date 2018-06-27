@@ -99,6 +99,8 @@ You can also pass it as an instance variable to the `Pagy.new` method or to the 
 @pagy, @records = pagy(Product.some_scope, items: 30)
 ```
 
+If you want to allow the client to request a custom number of items per page - useful with APIs or higly user-customizable apps - take a look at the [items extra](extras/items.md). It manages the number of items per page requested with the params, and offers a ready to use selector UI.
+
 ## Controlling the page links
 
 You can control the number and position of the page links in the navigation through the `:size` variable. It is an array of 4 integers that specify which and how many page links to show.
