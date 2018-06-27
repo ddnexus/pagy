@@ -16,7 +16,7 @@ describe Pagy::Frontend do
       pagy, _ = @array.pagy(1)
 
       assert_equal(
-      '<nav class="pagy-nav-boostrap pagination" role="navigation" aria-label="pager">' \
+      '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
         '<ul class="pagination">' \
           '<li class="page-item prev disabled"><a href="#" class="page-link">&lsaquo;&nbsp;Prev</a></li>' \
            '<li class="page-item active"><a href="/foo?page=1"  class="page-link" >1</a></li>'\
@@ -36,7 +36,7 @@ describe Pagy::Frontend do
       pagy, _ = @array.pagy(3)
 
       assert_equal(
-      '<nav class="pagy-nav-boostrap pagination" role="navigation" aria-label="pager">' \
+      '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
         '<ul class="pagination">' \
           '<li class="page-item prev"><a href="/foo?page=2"  class="page-link" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
           '<li class="page-item"><a href="/foo?page=1"  class="page-link" >1</a></li>' \
@@ -57,7 +57,7 @@ describe Pagy::Frontend do
       pagy, _ = @array.pagy(6)
 
       assert_equal(
-      '<nav class="pagy-nav-boostrap pagination" role="navigation" aria-label="pager">' \
+      '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
         '<ul class="pagination">' \
           '<li class="page-item prev"><a href="/foo?page=5"  class="page-link" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
           '<li class="page-item"><a href="/foo?page=1"  class="page-link" >1</a></li>' \
@@ -78,7 +78,7 @@ describe Pagy::Frontend do
       pagy, _ = @array.pagy(10)
 
       assert_equal(
-        '<nav class="pagy-nav-boostrap pagination" role="navigation" aria-label="pager">' \
+        '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
           '<ul class="pagination">' \
             '<li class="page-item prev"><a href="/foo?page=9"  class="page-link" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
             '<li class="page-item"><a href="/foo?page=1"  class="page-link" >1</a></li>' \

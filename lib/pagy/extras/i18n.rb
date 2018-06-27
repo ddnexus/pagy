@@ -8,9 +8,8 @@ class Pagy
 
     # Override the built-in pagy_t
     def pagy_t(*args)
-      I18n.t(*args)
+      ::I18n.t(*args)
     end
 
   end
 end
-

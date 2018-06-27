@@ -21,7 +21,7 @@ Then use the responsive helper(s) in any view:
 
 ```erb
 <%== pagy_nav_compact(@pagy) %>
-<%== pagy_nav_bootstrap_compact(@pagy) %>
+<%== pagy_nav_compact_bootstrap(@pagy) %>
 ```
 
 ## Files
@@ -36,8 +36,8 @@ This extra adds a couple of nav helpers to the `Pagy::Frontend` module. You can 
 
 Renders a compact navigation with a style similar to the `pagy_nav` helper.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id only if you are going to use more than one `pagy_nav_compact` or `pagy_nav_bootstrap_compact` call in the same line for the same page.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id only if you are going to use more than one `pagy_nav_compact` or `pagy_nav_compact_bootstrap` call in the same line for the same page.
 
-### pagy_nav_bootstrap_compact(pagy, ...)
+### pagy_nav_compact_bootstrap(pagy, ...)
 
 This method is the same as the `pagy_nav_compact`, but customized for Bootstrap.

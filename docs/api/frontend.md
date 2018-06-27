@@ -162,24 +162,45 @@ Pagy is I18n ready. That means that all the UI strings that Pagy uses are stored
 
 The YAML file is available at `Pagy.root.join('locales', 'pagy.yml')`. It contains a few entries used in the the UI by helpers and templates through the [pagy_t method](#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper).
 
-By default, the `pagy_t` method uses the Pagy implementation of I18n, which does not depend on the `I18n` gem in any way. It's _5x faster_ and uses _3.5x less memory_, but it provides only pluralization/interpolation without translation, so it's only useful with single language apps (i.e. only `fr` or only `en` or only ...)
+By default, the `pagy_t` method uses the Pagy implementation of I18n, which does not depend on the `I18n` gem in any way. It's _5x faster_ and uses _3.5x less memory_, but it provides only pluralization/interpolation without dynamic translation, so it's only useful with single language apps (i.e. only `fr` or only `en` or only ...) that don't need to switch between languages.
 
 If you need full blown I18n, you should require the `i18n` extra, which will override the `pagy_t` method to use directly `::I18n.t`.
 
 ### Pagy::Frontend::I18N Constant
 
-The `Pagy::Frontend::I18N` constant is the core of the Pagy I18n implementation. It has no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). This constant allows to control the dictionary file to load and the pluralization proc.
+The `Pagy::Frontend::I18N` constant is the core of the Pagy I18n implementation. It has no effect if you use the `i18n` extra (which uses the `I18n.t` method directly). This constant allows to control the dictionary file, the language to load and the pluralization proc.
 
-#### Pagy::Frontend::I18N.load_file(file)
+#### Pagy::Frontend::I18N.load(file:..., language:'en')
 
-This method allow to load a custom dictionary file, different from `Pagy.root.join('locales', 'pagy.yml')`. If the `i18n` extra is used it has no effect. It is tipically used in the Pagy initializer file _(see [Configuration](../how-to.md#global-configuration))_. For example:
+This method allows to load a built-in language (different than the default 'en') and/or a custom dictionary file, different from `Pagy.root.join('locales', 'pagy.yml')`. If the `i18n` extra is used it has no effect. It is tipically used in the Pagy initializer file _(see [Configuration](../how-to.md#global-configuration))_. For example:
 
 ```ruby
-Pagy::Frontend::I18N.load_file('path/to/dictionary.yml')
+# this would load the Italian variant of the built-in dictionary
+Pagy::Frontend::I18N.load(language:'it')
+
+# this would load the default English variant of 'path/to/dictionary.yml'
+Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml')
+
+# this would load the Italian variant of 'path/to/dictionary.yml'
+Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'it')
 ```
+
+**Notice**: the Pagy implementation of I18n is designed to speedup single language apps and does not provide dynamic translation, so the `language` is statically loaded at startup-time and cannot be changed. Use the `i18n` extra if you need dynamic translation.
 
 #### Pagy::Frontend::I18N[:plurals]
 
 This variable controls the internal pluralization. If the `i18n` extra is used it has no effect.
 
-By default the variable is set to a proc that receives the `count` as a single argument and returns the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the passed count). You should customize it only for pluralization types different than English.
+Pagy tries to set the language plural rule proc when you use the `Pagy::Frontend::I18N.load` method, by loading the built-in plural rules.
+
+If there is no rule defined for the language loaded, the variable is set to the `:zero_one_other` plural rule (default for English language).
+
+You may want to define a custom rule for your custom language. For example:
+
+```ruby
+# this would apply a custom pluralization rule to the current loaded dictionary
+Pagy::Frontend::I18N[:plural] = -> (count) {|count| ...}
+```
+
+The custom proc should receive the `count` as a single argument and should return the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the passed count). You should customize it only for pluralization types not included in the built-in plural rules. In that case, please submit a PR with your dictionary file and plural rule. Thanks.
+

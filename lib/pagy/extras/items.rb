@@ -22,21 +22,21 @@ class Pagy
 
   module Frontend
 
-    # this works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
+    # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
     def pagy_url_for(page, pagy)
       p_vars = pagy.vars; params = request.GET.merge(p_vars[:page_param] => page, p_vars[:items_param] => p_vars[:items], **p_vars[:params])
       "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
     end
 
-    # return the items selector HTML. For example "Show [20] items per page"
+    # Return the items selector HTML. For example "Show [20] items per page"
     def pagy_items_selector(pagy, id=caller(1,1)[0].hash)
       pagy = pagy.clone; p_vars = pagy.vars; p_items = p_vars[:items]; p_vars[:items] = "#{MARKER}-items-"
 
-      tags = +%(<span id="pagy-items-#{id}">)
-        tags << %(<a href="#{pagy_url_for("#{MARKER}-page-", pagy)}"></a>)
+      html = +%(<span id="pagy-items-#{id}">)
+        html << %(<a href="#{pagy_url_for("#{MARKER}-page-", pagy)}"></a>)
         input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
-        tags << %(#{pagy_t('pagy.items.show')} #{input} #{pagy_t('pagy.items.items')})
-      tags << %(</span><script type="application/json" class="pagy-items">["#{id}", "#{MARKER}", #{pagy.from}]</script>)
+        html << %(#{pagy_t('pagy.items.show')} #{input} #{pagy_t('pagy.items.items')})
+      html << %(</span><script type="application/json" class="pagy-items-json">["#{id}", "#{MARKER}", #{pagy.from}]</script>)
     end
 
   end
