@@ -1,4 +1,4 @@
-# This file adds support for multiple built-in plualiztion types.
+# This file adds support for multiple built-in plualization types.
 # It defines the pluralization procs and gets eval(ed) at I18N.load time
 # frozen_string_literal: true
 

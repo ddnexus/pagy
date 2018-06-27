@@ -187,7 +187,7 @@ Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'it')
 
 **Notice**: the Pagy implementation of I18n is designed to speedup single language apps and does not provide dynamic translation, so the `language` is statically loaded at startup-time and cannot be changed. Use the `i18n` extra if you need dynamic translation.
 
-#### Pagy::Frontend::I18N[:plurals]
+#### Pagy::Frontend::I18N[:plural]
 
 This variable controls the internal pluralization. If the `i18n` extra is used it has no effect.
 
