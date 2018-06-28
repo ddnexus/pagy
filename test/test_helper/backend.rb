@@ -25,7 +25,7 @@ class TestCollection < Array
     @collection[0, value]
   end
 
-  def count(*_)
+  def count(*)
     size
   end
 
@@ -33,7 +33,7 @@ end
 
 class TestGroupedCollection < TestCollection
 
-  def count(*_)
+  def count(*)
     @collection.map { |value| [value, value + 1] }.to_h
   end
 

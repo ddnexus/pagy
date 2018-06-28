@@ -12,6 +12,3 @@ Style:
 
 Bundler/OrderedGems:
   Enabled: false
-
-Naming/UncommunicativeMethodParamName:
-  Enabled: false
