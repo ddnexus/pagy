@@ -172,7 +172,9 @@ The `Pagy::Frontend::I18N` constant is the core of the Pagy I18n implementation.
 
 #### Pagy::Frontend::I18N.load(file:..., language:'en')
 
-This method allows to load a built-in language (different than the default 'en') and/or a custom dictionary file, different from `Pagy.root.join('locales', 'pagy.yml')`. If the `i18n` extra is used it has no effect. It is tipically used in the Pagy initializer file _(see [Configuration](../how-to.md#global-configuration))_. For example:
+This method has no effect if the `i18n` extra is used.
+
+It allows to load a built-in language (different than the default 'en') and/or a custom dictionary file, different from `Pagy.root.join('locales', 'pagy.yml')`. It is tipically used in the Pagy initializer file _(see [Configuration](../how-to.md#global-configuration))_. For example:
 
 ```ruby
 # this would load the Italian variant of the built-in dictionary
@@ -191,11 +193,11 @@ Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'it')
 
 This variable controls the internal pluralization. If the `i18n` extra is used it has no effect.
 
-Pagy tries to set the language plural rule proc when you use the `Pagy::Frontend::I18N.load` method, by loading the built-in plural rules.
+Pagy tries to set the language plural proc when you use the `Pagy::Frontend::I18N.load` method, by loading the built-in plural for the language. _(see [plurals.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/plurals.rb))_
 
 If there is no rule defined for the language loaded, the variable is set to the `:zero_one_other` plural rule (default for English language).
 
-You may want to define a custom rule for your custom language. For example:
+If your custom language requires a pluralization different than `"en"`, you should define a custom rule. For example:
 
 ```ruby
 # this would apply a custom pluralization rule to the current loaded dictionary
