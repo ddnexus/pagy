@@ -1,5 +1,22 @@
 # CHANGELOG
 
+## Version 0.11.1
+
+### Important Changes
+
+- All tests has been converted to the spec syntax
+
+### Commits
+
+- [b14f446](https://github.com/ddnexus/pagy/commit/b14f446): converted tests to spec syntax
+- [0422568](https://github.com/ddnexus/pagy/commit/0422568): cleanup of i81n plurals in code and docs
+- [5a2db16](https://github.com/ddnexus/pagy/commit/5a2db16): added a few missing references to docs
+- [6028980](https://github.com/ddnexus/pagy/commit/6028980): enabled rubocop Naming/UncommunicativeMetho
+dParamName
+- [1de470b](https://github.com/ddnexus/pagy/commit/1de470b): small improvements and fixes for docs
+- [228109e](https://github.com/ddnexus/pagy/commit/228109e): fix for typos
+- [0a1ed94](https://github.com/ddnexus/pagy/commit/0a1ed94): updated initializer_example.rb
+
 ## Version 0.11.0
 
 ### Breaking Changes
@@ -14,7 +31,6 @@
 - [b78b71e](https://github.com/ddnexus/pagy/commit/b78b71e): better naming of json classes
 - [ea7c22b](https://github.com/ddnexus/pagy/commit/ea7c22b): breaking change for compact and responsive extras: renaming of pagy_nav_bootstrap_* helpers to pagy_nav_*_bootstrap, consistent with extras structure
 - [7d1a573](https://github.com/ddnexus/pagy/commit/7d1a573): internal consistency renaming of local/test variables; minor fixes and improvements
-
 
 ## Version 0.10.1
 
@@ -55,7 +71,6 @@
 - [4449c95](https://github.com/ddnexus/pagy/commit/4449c95): normalization of indentation and empty lines
 - [9afa9d9](https://github.com/ddnexus/pagy/commit/9afa9d9): Default Frozen Strings for Ruby Files (#49)
 - [036c87f](https://github.com/ddnexus/pagy/commit/036c87f): Fix typo in :page_param configuration (#48)
-
 
 ## Version 0.9.1
 
