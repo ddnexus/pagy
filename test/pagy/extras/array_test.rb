@@ -5,66 +5,63 @@ SingleCov.covered!
 
 describe Pagy::Backend do
 
-
   let(:backend) { TestController.new }
 
   describe "#pagy_array" do
+
     before do
       @collection = (1..1000).to_a
     end
 
-    def test_extra_pagy_array_with_default
-      pagy, records = backend.send(:pagy_array, @collection)
-
-      assert_instance_of Pagy, pagy
-      assert_equal 1000, pagy.count
-      assert_equal Pagy::VARS[:items], pagy.items
-      assert_equal backend.params[:page], pagy.page
-
-      assert_equal Pagy::VARS[:items], records.count
-      assert_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], records
+    it 'paginates with defaults' do
+      pagy, items = backend.send(:pagy_array, @collection)
+      pagy.must_be_instance_of Pagy
+      pagy.count.must_equal 1000
+      pagy.items.must_equal Pagy::VARS[:items]
+      pagy.page.must_equal backend.params[:page]
+      items.count.must_equal Pagy::VARS[:items]
+      items.must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
     end
 
-    def test_extra_pagy_array_with_vars
-      pagy, records = backend.send(:pagy_array, @collection, page: 2, items: 10, link_extra: 'X')
-
-      assert_instance_of Pagy, pagy
-      assert_equal 1000, pagy.count
-      assert_equal 10, pagy.items
-      assert_equal 2, pagy.page
-      assert_equal 'X', pagy.vars[:link_extra]
-
-      assert_equal 10, records.count
-      assert_equal [11, 12, 13, 14, 15, 16, 17, 18, 19, 20], records
+    it 'paginates with vars' do
+      pagy, items = backend.send(:pagy_array, @collection, page: 2, items: 10, link_extra: 'X')
+      pagy.must_be_instance_of Pagy
+      pagy.count.must_equal 1000
+      pagy.items.must_equal 10
+      pagy.page.must_equal 2
+      pagy.vars[:link_extra].must_equal 'X'
+      items.count.must_equal 10
+      items.must_equal [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     end
 
   end
 
   describe "#pagy_array_get_vars" do
+
     before do
       @collection = (1..1000).to_a
     end
 
-    def test_extra_pagy_array_get_vars_with_default
+    it 'gets defaults' do
       vars   = {}
       merged = backend.send :pagy_array_get_vars, @collection, vars
-      assert_includes(merged.keys, :count)
-      assert_includes(merged.keys, :page)
-      assert_equal(1000, merged[:count])
-      assert_equal(3, merged[:page])
+      merged.keys.must_include :count
+      merged.keys.must_include :page
+      merged[:count].must_equal 1000
+      merged[:page].must_equal 3
     end
 
-    def test_extra_pagy_array_get_vars_with_vars
+    it 'gets vars' do
       vars   = {page: 2, items: 10, link_extra: 'X'}
       merged = backend.send :pagy_array_get_vars, @collection, vars
-      assert_includes(merged.keys, :count)
-      assert_includes(merged.keys, :page)
-      assert_includes(merged.keys, :items)
-      assert_includes(merged.keys, :link_extra)
-      assert_equal(1000, merged[:count])
-      assert_equal(2, merged[:page])
-      assert_equal(10, merged[:items])
-      assert_equal('X', merged[:link_extra])
+      merged.keys.must_include :count
+      merged.keys.must_include :page
+      merged.keys.must_include :items
+      merged.keys.must_include :link_extra
+      merged[:count].must_equal 1000
+      merged[:page].must_equal 2
+      merged[:items].must_equal 10
+      merged[:link_extra].must_equal 'X'
     end
 
   end

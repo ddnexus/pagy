@@ -214,8 +214,9 @@ These helpers take the Pagy object and returns the HTML string with the paginati
 | Extra                              | Helpers                                                |
 | ---------------------------------- | ------------------------------------------------------ |
 | [bootstrap](extras/bootstrap.md)   | `pagy_nav_bootstrap`                                   |
-| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap` |
 | [compact](extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`       |
+| [items](extras/items.md)           | `pagy_items_selector`                                  |
+| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap` |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -240,7 +241,7 @@ pagy = Pagy.new(count: 1000, link_extra: 'data-remote="true" class="my-class"')
 
 ## Customizing the params
 
-You may need to massage the params embedded in the URLs of the page links. You can do so by redefining the `pagy_get_params` sub-method in your helper. It will receive the `params` hash complete with the `"page"` param and it should return a possibly modified version of it.
+You may need to massage the params embedded in the URLs of the page links. You can do so by redefining the `pagy_get_params` sub-method in your helper. It will receive the `params` hash complete with the `:page` param and it should return a possibly modified version of it.
 
 An example using `except` and `merge!`:
 
