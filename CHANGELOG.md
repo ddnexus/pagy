@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 0.11.2
+
+### Commits
+
+- [76fc273](https://github.com/ddnexus/pagy/commit/76fc273): used merge! in place of **
+
 ## Version 0.11.1
 
 ### Important Changes
