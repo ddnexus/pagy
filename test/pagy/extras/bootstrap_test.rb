@@ -8,34 +8,31 @@ describe Pagy::Frontend do
   let(:frontend) { TestView.new }
 
   describe "#pagy_nav_bootstrap" do
+
     before do
       @array = (1..103).to_a.extend(Pagy::Array::PageMethod)
     end
 
-    def test_pagy_nav_bootstrap_page_1
+    it 'renders page 1' do
       pagy, _ = @array.pagy(1)
-
-      assert_equal(
-      '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
-        '<ul class="pagination">' \
-          '<li class="page-item prev disabled"><a href="#" class="page-link">&lsaquo;&nbsp;Prev</a></li>' \
-           '<li class="page-item active"><a href="/foo?page=1"  class="page-link" >1</a></li>'\
-           '<li class="page-item"><a href="/foo?page=2"  class="page-link" rel="next" >2</a></li>' \
-           '<li class="page-item"><a href="/foo?page=3"  class="page-link" >3</a></li>' \
-           '<li class="page-item"><a href="/foo?page=4"  class="page-link" >4</a></li>' \
-           '<li class="page-item"><a href="/foo?page=5"  class="page-link" >5</a></li>' \
-           '<li class="page-item"><a href="/foo?page=6"  class="page-link" >6</a></li>' \
-           '<li class="page-item next"><a href="/foo?page=2"  class="page-link" rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
-         '</ul>' \
-      '</nav>',
-      frontend.pagy_nav_bootstrap(pagy)
-      )
+      frontend.pagy_nav_bootstrap(pagy).must_equal \
+        '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
+          '<ul class="pagination">' \
+            '<li class="page-item prev disabled"><a href="#" class="page-link">&lsaquo;&nbsp;Prev</a></li>' \
+             '<li class="page-item active"><a href="/foo?page=1"  class="page-link" >1</a></li>'\
+             '<li class="page-item"><a href="/foo?page=2"  class="page-link" rel="next" >2</a></li>' \
+             '<li class="page-item"><a href="/foo?page=3"  class="page-link" >3</a></li>' \
+             '<li class="page-item"><a href="/foo?page=4"  class="page-link" >4</a></li>' \
+             '<li class="page-item"><a href="/foo?page=5"  class="page-link" >5</a></li>' \
+             '<li class="page-item"><a href="/foo?page=6"  class="page-link" >6</a></li>' \
+             '<li class="page-item next"><a href="/foo?page=2"  class="page-link" rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
+           '</ul>' \
+        '</nav>'
     end
 
-    def test_pagy_nav_bootstrap_page_3
+    it 'renders page 3' do
       pagy, _ = @array.pagy(3)
-
-      assert_equal(
+      frontend.pagy_nav_bootstrap(pagy).must_equal \
       '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
         '<ul class="pagination">' \
           '<li class="page-item prev"><a href="/foo?page=2"  class="page-link" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
@@ -47,17 +44,14 @@ describe Pagy::Frontend do
           '<li class="page-item"><a href="/foo?page=6"  class="page-link" >6</a></li>' \
           '<li class="page-item next"><a href="/foo?page=4"  class="page-link" rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
         '</ul>' \
-      '</nav>',
-      frontend.pagy_nav_bootstrap(pagy)
-      )
+      '</nav>'
     end
 
 
-    def test_pagy_nav_bootstrap_page_6
+    it 'renders page 6' do
       pagy, _ = @array.pagy(6)
-
-      assert_equal(
-      '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
+      frontend.pagy_nav_bootstrap(pagy).must_equal \
+       '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
         '<ul class="pagination">' \
           '<li class="page-item prev"><a href="/foo?page=5"  class="page-link" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
           '<li class="page-item"><a href="/foo?page=1"  class="page-link" >1</a></li>' \
@@ -68,16 +62,13 @@ describe Pagy::Frontend do
           '<li class="page-item active"><a href="/foo?page=6"  class="page-link" >6</a></li>' \
           '<li class="page-item next disabled"><a href="#" class="page-link">Next&nbsp;&rsaquo;</a></li>' \
         '</ul>' \
-      '</nav>',
-      frontend.pagy_nav_bootstrap(pagy)
-      )
+      '</nav>'
     end
 
-    def test_pagy_nav_bootstrap_page_10
+    it 'renders page 10' do
       @array = (1..1000).to_a.extend(Pagy::Array::PageMethod)
       pagy, _ = @array.pagy(10)
-
-      assert_equal(
+      frontend.pagy_nav_bootstrap(pagy).must_equal \
         '<nav class="pagy-nav-bootstrap pagination" role="navigation" aria-label="pager">' \
           '<ul class="pagination">' \
             '<li class="page-item prev"><a href="/foo?page=9"  class="page-link" rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
@@ -96,11 +87,9 @@ describe Pagy::Frontend do
             '<li class="page-item"><a href="/foo?page=50"  class="page-link" >50</a></li>' \
             '<li class="page-item next"><a href="/foo?page=11"  class="page-link" rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
           '</ul>' \
-        '</nav>',
-        frontend.pagy_nav_bootstrap(pagy)
-      )
+        '</nav>'
     end
 
-
   end
+
 end
