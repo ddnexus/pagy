@@ -17,10 +17,6 @@
 # See https://ddnexus.github.io/pagy/extras/compact
 # require 'pagy/extras/compact'
 
-# I18n: Use the `I18n` gem instead of the pagy implementation
-# See https://ddnexus.github.io/pagy/extras/i18n
-# require 'pagy/extras/i18n'
-
 # Items: Handle the page :items passed with the params
 # See https://ddnexus.github.io/pagy/extras/items
 # require 'pagy/extras/items'
@@ -53,12 +49,19 @@
 # Pagy::VARS[:item_path]  = 'activerecord.models.product'   # example
 
 
-# Pagy::Frontend::I18N Constant
-# See https://ddnexus.github.io/pagy/api/frontend#i18n
-# Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'en')           # load a custom file
-# Pagy::Frontend::I18N[:plural] = -> (count) {(['zero', 'one'][count] || 'other')   # default
-
-
 # Rails: extras assets path required by compact, items and responsive extras
 # See https://ddnexus.github.io/pagy/extras
 # Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
+
+
+# I18n: faster internal pagy implementation (does not use the I18n gem)
+# Use only for single language apps that don't need dynamic translation between multiple languages
+# See https://ddnexus.github.io/pagy/api/frontend#i18n
+# Notice: Do not use the following 2 lines if you use the i18n extra below
+# Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'en')           # load a custom file
+# Pagy::Frontend::I18N[:plural] = -> (count) {(['zero', 'one'][count] || 'other')   # default
+
+# I18n: Use the `I18n` gem instead of the pagy implementation
+# (slower but allows dynamic translation between multiple languages)
+# See https://ddnexus.github.io/pagy/extras/i18n
+# require 'pagy/extras/i18n'
