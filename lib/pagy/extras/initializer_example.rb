@@ -5,7 +5,7 @@
 # Extras
 # See https://ddnexus.github.io/pagy/extras
 
-# Array: Paginate arrays efficiently avoiding expensive array-wrapping and wihout overriding
+# Array: Paginate arrays efficiently avoiding expensive array-wrapping and without overriding
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
 
