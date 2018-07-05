@@ -1,0 +1,32 @@
+/ This template is i18n-ready: if you don't use i18n, then you can replace the pagy_t
+/ calls with the actual strings ("&lsaquo; Prev", "Next &rsaquo;", "&hellip;").
+
+/ The link variable is set to a proc that returns the link tag.
+/ Usage: link.call( page_number [, text [, extra_attributes_string ]])
+
+- link = pagy_link_proc(pagy)
+
+nav.pagy-nav-bulma.pagination.is-centered role="navigation" aria-label="pagination"
+
+  - if pagy.prev
+    == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
+  - else
+    a.pagination-previous disabled="disabled" == pagy_t('pagy.nav.prev')
+
+  - if pagy.next
+    == link.call(pagy.next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
+  - else
+    a.pagination-next disabled="disabled" == pagy_t('pagy.nav.next')
+
+  ul.pagination-list
+
+    - pagy.series.each do |item|                 # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      - if item.is_a?(Integer)                   # page link
+        li == link.call item, item, %(class="pagination-link" area-label="goto page #{item}")
+
+      - elsif item.is_a?(String)                 # current page
+        li == link.call item, item, %(class="pagination-link is-current" area-label="page #{item}" area-current="page")
+
+      - elsif item == :gap                       # page gap
+        li
+          span.pagination-ellipsis == pagy_t('pagy.nav.gap')
