@@ -69,26 +69,5 @@ class Pagy
       %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive-bootstrap pagination" role="navigation" aria-label="pager"><ul class="pagination"></ul></nav>#{script})
     end
 
-
-    # Responsive pagination for https://fezvrasta.github.io/bootstrap-material-design: 
-    # it returns the html with the series of links to the pages
-    # rendered by the Pagy.responsive javascript
-    def pagy_nav_responsive_bmd(pagy, id=caller(1,1)[0].hash)
-      tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
-
-      tags['prev'] = (p_prev ? %(<span class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
-                             : %(<span class="page-item prev disabled">#{pagy_t('pagy.nav.prev')}</span> ))
-      responsive[:items].each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags[item.to_s] = if    item.is_a?(Integer); %(<span class="page-item">#{link.call item}</span> )             # page link
-                          elsif item.is_a?(String) ; %(<span class="page-item active">#{item}</span> )                # current page
-                          elsif item == :gap       ; %(<span class="page-item gap">#{pagy_t('pagy.nav.gap')}</span> ) # page gap
-                          end
-      end
-      tags['next'] = (p_next ? %(<span class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
-                             : %(<span class="page-item next disabled">#{pagy_t('pagy.nav.next')}</span>))
-      script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
-      %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive pagination" role="navigation" aria-label="Page navigation"></nav>#{script})
-    end
-
   end
 end
