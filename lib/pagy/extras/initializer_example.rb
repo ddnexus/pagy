@@ -56,7 +56,7 @@
 # Pagy::Frontend::I18N Constant
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
 # Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'en')           # load a custom file
-# Pagy::Frontend::I18N[:plural] = -> (count) {(['zero', 'one'][count] || 'other')   # default
+# Pagy::Frontend::I18N[:plural] = -> (count) {(['zero', 'one'][count] || 'other')}   # default
 
 
 # Rails: extras assets path required by compact, items and responsive extras
