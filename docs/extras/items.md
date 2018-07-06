@@ -12,7 +12,7 @@ See [extras](../extras.md) for general usage info.
 In the Pagy initializer:
 
 ```ruby
-require 'pagy/extra/items'
+require 'pagy/extras/items'
 
 Pagy::VARS[:items_param] = :custom_param       # default :items
 Pagy::VARS[:max_items]   = 100                 # default
