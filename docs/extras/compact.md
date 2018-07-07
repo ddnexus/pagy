@@ -22,6 +22,7 @@ Then use the responsive helper(s) in any view:
 ```erb
 <%== pagy_nav_compact(@pagy) %>
 <%== pagy_nav_compact_bootstrap(@pagy) %>
+<%== pagy_nav_compact_bulma(@pagy) %>
 ```
 
 ## Files
@@ -41,3 +42,10 @@ It can take an extra `id` argument, which is used to build the `id` attribute of
 ### pagy_nav_compact_bootstrap(pagy, ...)
 
 This method is the same as the `pagy_nav_compact`, but customized for Bootstrap.
+
+### pagy_nav_compact_bulma(pagy, ...)
+
+This method is the same as the `pagy_nav_compact`, but customized for Bulma CSS framework.
+
+Generated pagination preview:
+![pagy-compact-bulma](../assets/images/pagy-compact-bulma-g.png)
