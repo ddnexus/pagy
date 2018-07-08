@@ -22,10 +22,10 @@
 
     - pagy.series.each do |item|                      # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
       - if item.is_a?(Integer)                        # page link
-        %li!= link.call item, item, %(class="pagination-link" area-label="goto page #{item}")
+        %li!= link.call item, item, %(class="pagination-link" aria-label="goto page #{item}")
 
       - elsif item.is_a?(String)                      # current page
-        %li!= link.call item, item, %(class="pagination-link is-current" area-label="page #{item}" area-current="page")
+        %li!= link.call item, item, %(class="pagination-link is-current" aria-label="page #{item}" aria-current="page")
 
       - elsif item == :gap                            # page gap
         %li

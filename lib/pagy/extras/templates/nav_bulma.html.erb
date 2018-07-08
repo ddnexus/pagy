@@ -15,8 +15,8 @@
 <% end                         -%>
 <%#                            -%>  <ul class="pagination-list">
 <% pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36] -%>
-<%   if    item.is_a?(Integer) -%>    <li><%== link.call item, item, %(class="pagination-link" area-label="goto page #{item}") %></li>
-<%   elsif item.is_a?(String)  -%>    <li><%== link.call item, item, %(class="pagination-link is-current" area-label="page #{item}" area-current="page") %></li>
+<%   if    item.is_a?(Integer) -%>    <li><%== link.call item, item, %(class="pagination-link" aria-label="goto page #{item}") %></li>
+<%   elsif item.is_a?(String)  -%>    <li><%== link.call item, item, %(class="pagination-link is-current" aria-label="page #{item}" aria-current="page") %></li>
 <%   elsif item == :gap        -%>    <li><span class="pagination-ellipsis"><%== pagy_t('pagy.nav.gap') %></span></li>
 <%   end                       -%>
 <% end                         -%>

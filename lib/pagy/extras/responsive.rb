@@ -36,16 +36,16 @@ class Pagy
     def pagy_nav_responsive(pagy, id=caller(1,1)[0].hash)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
-      tags['prev'] = (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
-                             : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ))
+      tags['before'] = (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
+                               : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ))
       responsive[:items].each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         tags[item.to_s] = if    item.is_a?(Integer); %(<span class="page">#{link.call item}</span> )             # page link
                           elsif item.is_a?(String) ; %(<span class="page active">#{item}</span> )                # current page
                           elsif item == :gap       ; %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> ) # page gap
                           end
       end
-      tags['next'] = (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
-                             : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
+      tags['after'] = (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
+                              : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
       script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
       %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive pagination" role="navigation" aria-label="pager"></nav>#{script})
     end
@@ -55,18 +55,20 @@ class Pagy
     def pagy_nav_responsive_bootstrap(pagy, id=caller(1,1)[0].hash)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next, pagy.responsive
 
-      tags['prev'] = (p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
-                             : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
+      tags['before'] = +'<ul class="pagination">'
+      tags['before'] << (p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+                               : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
       responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         tags[item.to_s] = if    item.is_a?(Integer); %(<li class="page-item">#{link.call item}</li>)                                                        # page link
                           elsif item.is_a?(String) ; %(<li class="page-item active">#{link.call item}</li>)                                                 # active page
                           elsif item == :gap       ; %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.gap')}</a></li>) # page gap
                           end
       end
-      tags['next'] = (p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
-                             : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
+      tags['after'] = +(p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
+                               : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
+      tags['after'] << '</ul>'
       script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
-      %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive-bootstrap pagination" role="navigation" aria-label="pager"><ul class="pagination"></ul></nav>#{script})
+      %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive-bootstrap pagination" role="navigation" aria-label="pager"></nav>#{script})
     end
 
     # Responsive pagination for Bulma: it returns the html with the series of links to the pages
@@ -74,16 +76,18 @@ class Pagy
     def pagy_nav_responsive_bulma(pagy, id=caller(1,1)[0].hash)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
-      tags['prev'] = (p_prev ? %(#{link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')}<ul class="pagination-list">)
-                             : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a><ul class="pagination-list">))
+      tags['before'] = +(p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
+                                : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
+      tags['before'] << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
+                                : %(<a class="pagination-next" disabled>#{pagy_t('pagy.nav.next')}</a>))
+      tags['before'] << '<ul class="pagination-list">'
       responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags[item.to_s] = if    item.is_a?(Integer); %(<li>#{link.call item, item, 'class="pagination-link" area-label="goto page '+item.to_s+'"'}</li>)
-                          elsif item.is_a?(String) ; %(<li>#{link.call item, item, 'class="pagination-link is-current" area-current="page" area-label="page '+item.to_s+'"'}</li>)
+        tags[item.to_s] = if    item.is_a?(Integer); %(<li>#{link.call item, item, %(class="pagination-link" aria-label="goto page #{item}")}</li>)
+                          elsif item.is_a?(String) ; %(<li>#{link.call item, item, %(class="pagination-link is-current" aria-current="page" aria-label="page #{item}")}</li>)
                           elsif item == :gap       ; %(<li><span class="pagination-ellipsis">#{pagy_t('pagy.nav.gap')}</span></li>)
                           end
       end
-      tags['next'] = (p_next ? %(</ul>#{link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')})
-                             : %(</ul><a class="pagination-next" disabled>#{pagy_t('pagy.nav.next')}</a>))
+      tags['after'] = '</ul>'
       script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
       %(<nav id="pagy-nav-#{id}" class="pagy-nav-bulma pagination is-centered" role="navigation" aria-label="pagination"></nav>#{script})
     end
