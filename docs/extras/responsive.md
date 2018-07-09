@@ -15,7 +15,7 @@ See [extras](../extras.md) for general usage info.
 
 ```ruby
 # in the Pagy initializer
-require 'pagy/extra/responsive'
+require 'pagy/extras/responsive'
 
 # set your default custom breakpoints (width/size pairs) globally (it can be overridden per Pagy instance)
 Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
@@ -28,6 +28,7 @@ Then use the responsive helper(s) in any view:
 ```erb
 <%== pagy_nav_responsive(@pagy) %>
 <%== pagy_nav_responsive_bootstrap(@pagy) %>
+<%== pagy_nav_responsive_bulma(@pagy) %>
 ```
 
 ## Files
@@ -57,9 +58,9 @@ The `reponsive` extra adds an instance method to the `Pagy` class and couple of 
 
 ### responsive
 
-**Notice**: Unless you are going to override a `pagy_nav_responsive` or `pagy_nav_responsive_bootstrap` helper you can ignore this method.
+**Notice**: Unless you are going to override a `pagy_nav_responsive*` helpers you can ignore this method.
 
-This is a `Pagy` instance method that returns the data structure used by the `pagy_nav_responsive` and `pagy_nav_responsive_bootstrap` helpers in order to build the html and the javascript codes needed to make Pagy responsive to different widths.
+This is a `Pagy` instance method that returns the data structure used by the `pagy_nav_responsive*` helpers in order to build the html and the javascript codes needed to make Pagy responsive to different widths.
 
 ### pagy_nav_responsive(pagy, ...)
 
@@ -70,3 +71,7 @@ It can take an extra `id` argument, which is used to build the `id` attribute of
 ### pagy_nav_responsive_bootstrap(pagy, ...)
 
 This method is the same as the `pagy_nav_responsive`, but customized for Bootstrap.
+
+### pagy_nav_responsive_bulma(pagy, ...)
+
+This method is the same as the `pagy_nav_responsive`, but customized for Bulma CSS framework.

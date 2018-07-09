@@ -87,6 +87,10 @@ Paginate arrays efficiently avoiding expensive array-wrapping and without any ov
 
 Nav helper and templates for Bootstrap pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/bootstrap))_
 
+### Bulma Extra
+
+Nav helper and templates for Bulma CSS framework pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/bulma))_
+
 ### Compact Extra
 
 An alternative UI that combines the pagination feature with the navigation info in one compact element. _(see [more...](http://ddnexus.github.io/pagy/extras/compact))_
