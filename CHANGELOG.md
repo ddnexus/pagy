@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## Version 0.12.0
+
+### Important Changes
+
+- Added Bulma extra
+- Added Turkish entry in pagy dictionary
+- Improved consistence and compatibility in extras
+
+### Commits
+
+- [8fc91df](https://github.com/ddnexus/pagy/commit/8fc91df): fix for "area" typos in bulma extra (#62) and consistency improvement across responsive helpers
+- [bb0060f](https://github.com/ddnexus/pagy/commit/bb0060f): fix for window event listeners persisted by turbolinks (#64)
+- [d759f91](https://github.com/ddnexus/pagy/commit/d759f91): Bulma extra (#62)
+- [9f09837](https://github.com/ddnexus/pagy/commit/9f09837): Fixed typo in some extras usage (#63)
+- [2ce572a](https://github.com/ddnexus/pagy/commit/2ce572a): Added Turkish locales (#58)
+- [dd361e1](https://github.com/ddnexus/pagy/commit/dd361e1): replaced Array.from in pagy.js for extended compatibility
+- [bb1243d](https://github.com/ddnexus/pagy/commit/bb1243d): fix typos
+- [da34b94](https://github.com/ddnexus/pagy/commit/da34b94): fix typo (#61)
+- [cdab354](https://github.com/ddnexus/pagy/commit/cdab354): added better I18n comments in initializer_example.rb
+
 ## Version 0.11.2
 
 ### Commits
