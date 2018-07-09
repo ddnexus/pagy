@@ -48,4 +48,5 @@ This method is the same as the `pagy_nav_compact`, but customized for Bootstrap.
 This method is the same as the `pagy_nav_compact`, but customized for Bulma CSS framework.
 
 Generated pagination preview:
+
 ![pagy-compact-bulma](../assets/images/pagy-compact-bulma-g.png)
