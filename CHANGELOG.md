@@ -5,7 +5,7 @@
 ### Important Changes
 
 - Added Bulma extra
-- Added Turkish entry in pagy dictionary
+- Added Turkish language in pagy dictionary
 - Improved consistence and compatibility in extras
 
 ### Commits
@@ -37,8 +37,7 @@
 - [b14f446](https://github.com/ddnexus/pagy/commit/b14f446): converted tests to spec syntax
 - [0422568](https://github.com/ddnexus/pagy/commit/0422568): cleanup of i81n plurals in code and docs
 - [5a2db16](https://github.com/ddnexus/pagy/commit/5a2db16): added a few missing references to docs
-- [6028980](https://github.com/ddnexus/pagy/commit/6028980): enabled rubocop Naming/UncommunicativeMetho
-dParamName
+- [6028980](https://github.com/ddnexus/pagy/commit/6028980): enabled rubocop Naming/UncommunicativeMethodParamName
 - [1de470b](https://github.com/ddnexus/pagy/commit/1de470b): small improvements and fixes for docs
 - [228109e](https://github.com/ddnexus/pagy/commit/228109e): fix for typos
 - [0a1ed94](https://github.com/ddnexus/pagy/commit/0a1ed94): updated initializer_example.rb
