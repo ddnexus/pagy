@@ -27,6 +27,10 @@
 # Pagy::VARS[:items_param] = :items    # default
 # Pagy::VARS[:max_items]   = 100       # default
 
+# Out Of Range: Allow for easy handling of out of range pages
+# See https://ddnexus.github.io/pagy/extras/out_of_range
+# Pagy::VARS[:out_of_range_mode] = :last_page    # default  (other options :empty_page and :exception )
+
 # Responsive: On resize, the number of page links will adapt in real-time to the available window or container width
 # See https://ddnexus.github.io/pagy/extras/responsive
 # require 'pagy/extras/responsive'

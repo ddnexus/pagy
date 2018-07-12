@@ -384,12 +384,19 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
 ## Handling Pagy::OutOfRangeError exception
 
 Pass an out of range `:page` number and Pagy will raise a `Pagy::OutOfRangeError` exception.
-This often happens because users paginate over the end of the record set or records go deleted and a user went to a stale page.
-A few options for handling this are:
+
+This often happens because users/clients paginate over the end of the record set or records go deleted and a user went to a stale page.
+
+You can rescue the exception manually or use the [out_of_range extra](extras/out_of_range.md):
+
+### Manual Rescue
+
+A few options for manually handling the error in apps are:
 
  - Do nothing and let the page render a 500
  - Rescue and render a 404
  - Rescue and redirect to the last know page
+
    ```ruby
    # in a controller
    rescue_from Pagy::OutOfRangeError, with: :redirect_to_last_page
@@ -400,6 +407,7 @@ A few options for handling this are:
      redirect_to url_for(page: e.pagy.last), notice: "Page ##{params[:page]} is out of range. Showing page #{e.pagy.last} instead."
    end
    ```
+
  - Rescue and render a page without results, this can be useful for api responses where clients iterate until they see an empty page
    ```ruby
    results = begin
@@ -408,3 +416,6 @@ A few options for handling this are:
      [] 
    end
    ```
+
+### Use the "out_of_range" Extra
+
