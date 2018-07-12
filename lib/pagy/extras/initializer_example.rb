@@ -13,6 +13,10 @@
 # See https://ddnexus.github.io/pagy/extras/bootstrap
 # require 'pagy/extras/bootstrap'
 
+# Bulma: Nav helper and templates for Bulma pagination
+# See https://ddnexus.github.io/pagy/extras/bulma
+# require 'pagy/extras/bulma'
+
 # Compact: An alternative UI that combines the pagination with the nav info in one compact element
 # See https://ddnexus.github.io/pagy/extras/compact
 # require 'pagy/extras/compact'
