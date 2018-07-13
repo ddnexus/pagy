@@ -383,28 +383,28 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
 
 ## Handling Pagy::OutOfRangeError exception
 
-Pass an out of range `:page` number and Pagy will raise a `Pagy::OutOfRangeError` exception, which you can rescue from and do what you think fits. You can rescue from the exception and render a not found page, or render a specific page number, or whatever. For example:
+Pass an out of range `:page` number and Pagy will raise a `Pagy::OutOfRangeError` exception.
+This often happens because users paginate over the end of the record set or records go deleted and a user went to a stale page.
+A few options for handling this are:
 
-```ruby
-# in a controller
-rescue_from Pagy::OutOfRangeError, :with => :redirect_to_page_20
-
-private
-
-def redirect_to_page_20
-  redirect_to url_for(page: 20), notice: %(Page ##{params[:page]} is out of range. Showing page #20 instead.)
-end
-```
-
-**Notice**: The `Pagy::OutOfRangeError` exception object contain the failed Pagy object as it was during the initialization process. You can get some useful information from it. For example:
-
-```ruby
-# in a controller
-rescue_from Pagy::OutOfRangeError, :with => :redirect_to_last_page
-
-private
-
-def redirect_to_last_page(exception)
-  redirect_to url_for(page: exception.pagy.last), notice: %(Page ##{exception.pagy.page} is out of range. Showing the last page instead.)
-end
-```
+ - Do nothing and let the page render a 500
+ - Rescue and render a 404
+ - Rescue and redirect to the last know page
+   ```ruby
+   # in a controller
+   rescue_from Pagy::OutOfRangeError, with: :redirect_to_last_page
+   
+   private
+   
+   def redirect_to_last_page(e)
+     redirect_to url_for(page: e.pagy.last), notice: "Page ##{params[:page]} is out of range. Showing page #{e.pagy.last} instead."
+   end
+   ```
+ - Rescue and render a page without results, this can be useful for api responses where clients iterate until they see an empty page
+   ```ruby
+   results = begin
+     pagy(users).last
+   rescue Pagy::OutOfRangeError
+     [] 
+   end
+   ```
