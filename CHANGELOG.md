@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Version 0.13.0
+
+### Important Changes
+
+- Added Out Of Range extra
+
+### Commits
+
+- [c52db2a](https://github.com/ddnexus/pagy/commit/c52db2a): added out_of_range extra (#68)
+- [37119ee](https://github.com/ddnexus/pagy/commit/37119ee): fixes for bulma extra in initializer_example.rb and docs
+- [05729f6](https://github.com/ddnexus/pagy/commit/05729f6): removed redundant condition in Pagy initialize
+- [2e75247](https://github.com/ddnexus/pagy/commit/2e75247): small fixes in CHANGELOG
+- [3d732dd](https://github.com/ddnexus/pagy/commit/3d732dd): docs for empty page OutOfRangeError (#69)
+- [a3be52e](https://github.com/ddnexus/pagy/commit/a3be52e): Fixed screenshot name for compact bulma extra (#67)
+
 ## Version 0.12.0
 
 ### Important Changes
