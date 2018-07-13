@@ -8,17 +8,20 @@ class Pagy
 
     def initialize(vars)
       super
-    rescue OutOfRangeError => e
+    rescue OutOfRangeError
       @out_of_range = true                            # adds the out_of_range flag
-      raise e if @vars[:out_of_range_mode] == :exception
-      if @vars[:out_of_range_mode] == :last_page
+      case @vars[:out_of_range_mode]
+      when :exception
+        raise
+      when :last_page
         @page = @last                                 # set as the last page
         finalize
-      elsif @vars[:out_of_range_mode] == :empty_page
+      when :empty_page
         @offset = @items = @from = @to = 0            # vars relative to the actual page
         @prev = @last
         extend(Series)
-      else raise ArgumentError, "Unknown mode #{@vars[:out_of_range_mode]}"
+      else
+        raise ArgumentError, "Unknown mode #{@vars[:out_of_range_mode]}"
       end
     end
 
