@@ -101,6 +101,10 @@ An alternative UI that combines the pagination feature with the navigation info 
 
 Allow the client to request a custom number of items per page with a ready to use selector UI. _(see [more...](http://ddnexus.github.io/pagy/extras/items))_
 
+### Out Of Range Extra
+
+Allow for easy handling of out of range pages _(see [more...](http://ddnexus.github.io/pagy/extras/out_of_range))_
+
 ### Responsive Extra
 
 On resize, the number of page links will adapt in real-time to the available window or container width. _(see [more...](http://ddnexus.github.io/pagy/extras/responsive))_

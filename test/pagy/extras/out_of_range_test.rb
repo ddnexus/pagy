@@ -29,7 +29,7 @@ describe Pagy do
 
   describe "#initialize" do
 
-    it 'initializes with out of range page' do
+    it 'works in :last_page mode' do
       pagy.must_be_instance_of Pagy
       pagy.page.must_equal pagy.last
       pagy.vars[:page].must_equal 100
@@ -49,15 +49,21 @@ describe Pagy do
       pagy.prev.must_equal pagy.last
     end
 
+    it 'raises ArgumentError' do
+      proc { Pagy.new(vars.merge(out_of_range_mode: :unknown)) }.must_raise ArgumentError
+    end
+
   end
 
   describe "#series singleton for :empty_page mode" do
+
     it 'computes series for last page' do
       pagy = Pagy.new(vars.merge(out_of_range_mode: :empty_page))
       series = pagy.series
       series.must_equal [1, 2, 3, :gap, 9, 10, 11]
       pagy.page.must_equal 100
     end
+
   end
 
 end
