@@ -33,6 +33,11 @@ describe Pagy do
       pagy.must_be_instance_of Pagy
       pagy.page.must_equal pagy.last
       pagy.vars[:page].must_equal 100
+      pagy.offset.must_equal 100
+      pagy.items.must_equal 3
+      pagy.from.must_equal 101
+      pagy.to.must_equal 103
+      pagy.prev.must_equal 10
     end
 
     it 'raises OutOfRangeError in :exception mode' do

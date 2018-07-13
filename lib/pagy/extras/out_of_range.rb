@@ -12,7 +12,9 @@ class Pagy
       @out_of_range = true                            # adds the out_of_range flag
       raise e if @vars[:out_of_range_mode] == :exception
       if @vars[:out_of_range_mode] == :last_page
-        @page = @last                                 # set as the last page
+        page = @vars[:page]                           # save the very initial page (even after re-run)
+        super(vars.merge!(page: @last))               # re-run with the last page
+        @vars[:page] = page                           # restore the inital page
       elsif @vars[:out_of_range_mode] == :empty_page
         @offset = @items = @from = @to = 0            # vars relative to the actual page
         @prev = @last
