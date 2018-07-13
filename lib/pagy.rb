@@ -24,13 +24,18 @@ class Pagy ; VERSION = '0.13.1'
     end
     @pages = @last = [(@count.to_f / @items).ceil, 1].max                 # cardinal and ordinal meanings
     @page <= @last or raise(OutOfRangeError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
+    finalize
+  end
+
+  # allow for calling it on failed objects
+  def finalize
     @offset = @items * (@page - 1) + @outset                              # pagination offset + outset (initial offset)
     @items  = @count - ((@pages-1) * @items) if @page == @last            # adjust items for last page
     @from   = @count == 0 ? 0 : @offset+1 - @outset                       # page begins from item
     @to     = @offset + @items - @outset                                  # page ends to item
     @prev   = (@page-1 unless @page == 1)                                 # nil if no prev page
     @next   = (@page+1 unless @page == @last)                             # nil if no next page
-  end
+  end ; private :finalize
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
   def series(size=@vars[:size])
