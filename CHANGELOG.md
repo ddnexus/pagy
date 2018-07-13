@@ -1,11 +1,26 @@
 # CHANGELOG
 
+## Version 0.13.0
+
+### Important Changes
+
+- Added Out Of Range extra
+
+### Commits
+
+- [c52db2a](https://github.com/ddnexus/pagy/commit/c52db2a): added out_of_range extra (#68)
+- [37119ee](https://github.com/ddnexus/pagy/commit/37119ee): fixes for bulma extra in initializer_example.rb and docs
+- [05729f6](https://github.com/ddnexus/pagy/commit/05729f6): removed redundant condition in Pagy initialize
+- [2e75247](https://github.com/ddnexus/pagy/commit/2e75247): small fixes in CHANGELOG
+- [3d732dd](https://github.com/ddnexus/pagy/commit/3d732dd): docs for empty page OutOfRangeError (#69)
+- [a3be52e](https://github.com/ddnexus/pagy/commit/a3be52e): Fixed screenshot name for compact bulma extra (#67)
+
 ## Version 0.12.0
 
 ### Important Changes
 
 - Added Bulma extra
-- Added Turkish entry in pagy dictionary
+- Added Turkish language in pagy dictionary
 - Improved consistence and compatibility in extras
 
 ### Commits
@@ -37,8 +52,7 @@
 - [b14f446](https://github.com/ddnexus/pagy/commit/b14f446): converted tests to spec syntax
 - [0422568](https://github.com/ddnexus/pagy/commit/0422568): cleanup of i81n plurals in code and docs
 - [5a2db16](https://github.com/ddnexus/pagy/commit/5a2db16): added a few missing references to docs
-- [6028980](https://github.com/ddnexus/pagy/commit/6028980): enabled rubocop Naming/UncommunicativeMetho
-dParamName
+- [6028980](https://github.com/ddnexus/pagy/commit/6028980): enabled rubocop Naming/UncommunicativeMethodParamName
 - [1de470b](https://github.com/ddnexus/pagy/commit/1de470b): small improvements and fixes for docs
 - [228109e](https://github.com/ddnexus/pagy/commit/228109e): fix for typos
 - [0a1ed94](https://github.com/ddnexus/pagy/commit/0a1ed94): updated initializer_example.rb

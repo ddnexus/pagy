@@ -13,6 +13,10 @@
 # See https://ddnexus.github.io/pagy/extras/bootstrap
 # require 'pagy/extras/bootstrap'
 
+# Bulma: Nav helper and templates for Bulma pagination
+# See https://ddnexus.github.io/pagy/extras/bulma
+# require 'pagy/extras/bulma'
+
 # Compact: An alternative UI that combines the pagination with the nav info in one compact element
 # See https://ddnexus.github.io/pagy/extras/compact
 # require 'pagy/extras/compact'
@@ -22,6 +26,10 @@
 # require 'pagy/extras/items'
 # Pagy::VARS[:items_param] = :items    # default
 # Pagy::VARS[:max_items]   = 100       # default
+
+# Out Of Range: Allow for easy handling of out of range pages
+# See https://ddnexus.github.io/pagy/extras/out_of_range
+# Pagy::VARS[:out_of_range_mode] = :last_page    # default  (other options :empty_page and :exception )
 
 # Responsive: On resize, the number of page links will adapt in real-time to the available window or container width
 # See https://ddnexus.github.io/pagy/extras/responsive

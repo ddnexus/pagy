@@ -3,7 +3,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '0.12.0'
+class Pagy ; VERSION = '0.13.0'
 
   class OutOfRangeError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
@@ -22,8 +22,8 @@ class Pagy ; VERSION = '0.12.0'
       (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{instance_variable_get(:"@#{k}").inspect}")
     end
-    @pages  = @last = [(@count.to_f / @items).ceil, 1].max                # cardinal and ordinal meanings
-    @page >= 1 && @page <= @last or raise(OutOfRangeError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
+    @pages = @last = [(@count.to_f / @items).ceil, 1].max                 # cardinal and ordinal meanings
+    @page <= @last or raise(OutOfRangeError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                              # pagination offset + outset (initial offset)
     @items  = @count - ((@pages-1) * @items) if @page == @last            # adjust items for last page
     @from   = @count == 0 ? 0 : @offset+1 - @outset                       # page begins from item
