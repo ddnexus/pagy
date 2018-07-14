@@ -81,14 +81,14 @@ They are all integers:
 
 ### Other Variables
 
-| Variable      | Description                                                                                                                                                                                     | Default     |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `:size`       | the size of the page links to show: array of initial pages, before current page, after current page, final pages. (see also [Control the page links](../how-to.md#controlling-the-page-links))_ | `[1,4,4,1]` |
-| `:page_param` | the name of the page param name used in the url. (see [Customizing the page param](../how-to.md#customizing-the-page-param)                                                                     | `:page`     |
-| `:params`     | the arbitrary param hash to add to the url. (see [Customizing the params](../how-to.md#customizing-the-params)                                                                                  | `{}`        |
-| `:anchor`     | the arbitrary anchor string (including the "#") to add to the url. (see [Customizing the page param](../how-to.md#customizing-the-params)                                                       | `""`        |
-| `:link_extra` | the extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links                                                                                           | `""`        |
-| `:item_path`  | the dictionary path used by the `pagy_info` method to lookup the item/model name                                                                                                                | `""`        |
+| Variable      | Description                                                                                                                                                                                      | Default     |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| `:size`       | the size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [Control the page links](../how-to.md#controlling-the-page-links))_ | `[1,4,4,1]` |
+| `:page_param` | the name of the page param name used in the url. _(see [Customizing the page param](../how-to.md#customizing-the-page-param))_                                                                   | `:page`     |
+| `:params`     | the arbitrary param hash to add to the url. _(see [Customizing the params](../how-to.md#customizing-the-params))_                                                                                | `{}`        |
+| `:anchor`     | the arbitrary anchor string (including the "#") to add to the url. _(see [Customizing the params](../how-to.md#customizing-the-params))_                                                         | `""`        |
+| `:link_extra` | the extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [Customizing the link attributes](../how-to.md#customizing-the-link-attributes))_    | `""`        |
+| `:item_path`  | the dictionary path used by the `pagy_info` method to lookup the item/model name _(see [Using the pagy info helper](../how-to.md#using-the-pagy_info-helper))_                                                                                                                | `""`        |
 
 There is no specific validation for non-instance variables.
 
@@ -145,7 +145,7 @@ Which means:
 
 - there is always a `page` #`1` in the pagination, even if it's empty
 - `pages` and `last` are always at least both `1`
-- the `series` array contains always at least the page #`1`, which for a single page is also a string (i.e. the current page)
+- the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string
 - the actual number of `items` in an empty page are `0`
 - `from` and `to` of an empty page are both `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)

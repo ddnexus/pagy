@@ -3,7 +3,7 @@ title: Out Of Range
 ---
 # Out Of Range Extra
 
-This extra allows for easy handling of out of range pages. It internally resques from the `Pagy::OutOfRangeError` offering a few different ready to use modes, quite useful for UIs and/or APIs.
+This extra allows for easy handling of out of range pages. It internally rescues from the `Pagy::OutOfRangeError` offering a few different ready to use modes, quite useful for UIs and/or APIs.
 
 ## Synopsys
 
@@ -55,11 +55,11 @@ Regardless the out of range page requested, Pagy will set the page to the last p
 
 ```ruby
 # no exception passing an out of range page (Default mode :last_page)
-pagy = Pagy.newpag(count: 100, page: 100)
+pagy = Pagy.new(count: 100, page: 100)
 
 pagy.out_of_range?      #=> true
 pagy.vars[:page]        #=> 100 (requested page)
-pagy.page               #=> 5   (curentlast page)
+pagy.page               #=> 5   (current/last page)
 pagy.last == pagy.page  #=> true
 ```
 
@@ -81,7 +81,6 @@ pagy.offset             #=> 0
 pagy.items              #=> 0
 pagy.from               #=> 0
 pagy.to                 #=> 0
-
 pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
 ```
 

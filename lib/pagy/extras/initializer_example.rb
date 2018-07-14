@@ -21,7 +21,7 @@
 # See https://ddnexus.github.io/pagy/extras/compact
 # require 'pagy/extras/compact'
 
-# Items: Handle the page :items passed with the params
+# Items: Allow the client to request a custom number of items per page with a ready to use selector UI
 # See https://ddnexus.github.io/pagy/extras/items
 # require 'pagy/extras/items'
 # Pagy::VARS[:items_param] = :items    # default
@@ -29,9 +29,9 @@
 
 # Out Of Range: Allow for easy handling of out of range pages
 # See https://ddnexus.github.io/pagy/extras/out_of_range
-# Pagy::VARS[:out_of_range_mode] = :last_page    # default  (other options :empty_page and :exception )
+# Pagy::VARS[:out_of_range_mode] = :last_page    # default  (other options: :empty_page and :exception)
 
-# Responsive: On resize, the number of page links will adapt in real-time to the available window or container width
+# Responsive: On resize, the number of page links will adapt in real-time to the available window/container width
 # See https://ddnexus.github.io/pagy/extras/responsive
 # require 'pagy/extras/responsive'
 # See https://ddnexus.github.io/pagy/extras/responsive#breakpoints

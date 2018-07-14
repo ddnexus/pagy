@@ -194,7 +194,7 @@ That will explicitly set the `:page` variable, overriding the default behavior (
 
 Pagy uses the `:page_param` variable to determine the param it should get the page number from and create the URL for. Its default is set as `Pagy::VARS[:page_param] = :page`, hence it will get the page number from the `params[:page]` and will create page URLs like `./?page=3` by default.
 
-You may want to customize that, for example to make it more readable in your language, or becuse you need to paginate different collections in the same action. Depending on the scope of the customization, you have a couple of options:
+You may want to customize that, for example to make it more readable in your language, or because you need to paginate different collections in the same action. Depending on the scope of the customization, you have a couple of options:
 
 1. `Pagy::VARS[:page_param] = :custom_param` will be used as the global default
 2. `pagy(scope, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single instance (overriding the global default)
@@ -211,16 +211,17 @@ These helpers take the Pagy object and returns the HTML string with the paginati
 
 **Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
-| Extra                              | Helpers                                                |
-| ---------------------------------- | ------------------------------------------------------ |
-| [bootstrap](extras/bootstrap.md)   | `pagy_nav_bootstrap`                                   |
-| [compact](extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`       |
-| [items](extras/items.md)           | `pagy_items_selector`                                  |
-| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap` |
+| Extra                              | Helpers                                                                             |
+| ---------------------------------- | ----------------------------------------------------------------------------------- |
+| [bootstrap](extras/bootstrap.md)   | `pagy_nav_bootstrap`                                                                |
+| [bulma](extras/bulma.md)       | `pagy_nav_bulma`                                                                    |
+| [compact](extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`, `pagy_nav_compact_bulma`          |
+| [items](extras/items.md)           | `pagy_items_selector`                                                               |
+| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap`, `pagy_nav_responsive_bulma` |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
 
- Depending on the level of your override, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your helpers.
+ Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your helpers.
 
 ## Customizing the link attributes
 
@@ -290,13 +291,17 @@ That would produce links that look like e.g. `<a href="2">2</a>`. Then you can a
 
 ## Skipping single page navs
 
-Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don't. If you don't... wrap it in a condition and use the `pagy_nav*` only if `@pagy.pages > 1` is true.
+Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don't. If you don't... wrap it in a condition and use the `pagy_nav*` only if `@pagy.pages > 1` is true. For example:
+
+```erb
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+```
 
 ## Using Templates
 
 The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose wisely.
 
-Pagy provides the replacement templates for the `pagy_nav` and the `pagy_nav_bootstrap` helpers (available with the `bootstrap` extra) in 3 flavors: `erb`, `haml` and `slim`.
+Pagy provides the replacement templates for the `pagy_nav`, `pagy_nav_bootstrap` and the `pagy_nav_bulma` helpers (available with the `bootstrap` and `bulma` extras) in 3 flavors: `erb`, `haml` and `slim`.
 
 They produce exactly the same output of the helpers, but they are slower, so use them only if you need to edit something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
@@ -308,6 +313,10 @@ They produce exactly the same output of the helpers, but they are slower, so use
   - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.erb)
   - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.haml)
   - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.slim)
+- `bulma`
+  - [nav_bulma.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bulma.html.erb)
+  - [nav_bulma.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bulma.html.haml)
+  - [nav_bulma.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bulma.html.slim)
 
 If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
 
@@ -381,21 +390,19 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
 
 **Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
 
-## Handling Pagy::OutOfRangeError exception
+## Handling Pagy::OutOfRangeError exceptions
 
 Pass an out of range `:page` number and Pagy will raise a `Pagy::OutOfRangeError` exception.
 
 This often happens because users/clients paginate over the end of the record set or records go deleted and a user went to a stale page.
 
-You can rescue the exception manually or use the [out_of_range extra](extras/out_of_range.md):
+You can handle the exception by using the [out_of_range extra](extras/out_of_range.md) which provides easy and ready to use solutions for a few common cases, or you can rescue the exception manually and do whatever fits better.
 
-### Manual Rescue
-
-A few options for manually handling the error in apps are:
+Here are a few options for manually handling the error in apps:
 
  - Do nothing and let the page render a 500
  - Rescue and render a 404
- - Rescue and redirect to the last know page
+ - Rescue and redirect to the last known page (Notice: the [out_of_range extra](extras/out_of_range.md) provides the same behavior without redirecting)
 
    ```ruby
    # in a controller
@@ -407,15 +414,3 @@ A few options for manually handling the error in apps are:
      redirect_to url_for(page: e.pagy.last), notice: "Page ##{params[:page]} is out of range. Showing page #{e.pagy.last} instead."
    end
    ```
-
- - Rescue and render a page without results, this can be useful for api responses where clients iterate until they see an empty page
-   ```ruby
-   results = begin
-     pagy(users).last
-   rescue Pagy::OutOfRangeError
-     [] 
-   end
-   ```
-
-### Use the "out_of_range" Extra
-

@@ -1,3 +1,6 @@
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/out_of_range
+# frozen_string_literal: true
+
 class Pagy
 
   VARS[:out_of_range_mode] = :last_page
