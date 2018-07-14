@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Version 0.13.1
+
+### Important Changes
+
+- Improvements and fixes for the out_of_range extra
+
+### Commits
+
+- [419af23](https://github.com/ddnexus/pagy/commit/419af23): better comments and error message for unknown out_of_range_mode variable
+- [48fa056](https://github.com/ddnexus/pagy/commit/48fa056): use case (#71)
+- [36761a8](https://github.com/ddnexus/pagy/commit/36761a8): fix :last_page mode in out_of_range extra (#70)
+- [5958dc5](https://github.com/ddnexus/pagy/commit/5958dc5): out_of_range extra improvements (#68)
+- [7177cd9](https://github.com/ddnexus/pagy/commit/7177cd9): added note about the out_of_range exta to the README
+
+
 ## Version 0.13.0
 
 ### Important Changes
