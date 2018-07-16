@@ -27,6 +27,10 @@
 # Pagy::VARS[:items_param] = :items    # default
 # Pagy::VARS[:max_items]   = 100       # default
 
+# Materialize: Nav helper for Materialize pagination
+# See https://ddnexus.github.io/pagy/extras/materialize
+# require 'pagy/extras/materialize'
+
 # Out Of Range: Allow for easy handling of out of range pages
 # See https://ddnexus.github.io/pagy/extras/out_of_range
 # Pagy::VARS[:out_of_range_mode] = :last_page    # default  (other options: :empty_page and :exception)
