@@ -19,7 +19,7 @@
 
   <header>
     <div id="site-header">
-      <a href="{{ site.github.url }}"> <h1 id="site-title">{{ site.title | default: site.github.repository_name }}</h1> </a>
+      <h1 id="site-title">{{ site.title | default: site.github.repository_name }} <a class="github-button" href="https://github.com/ddnexus/pagy" data-show-count="true" aria-label="Star ddnexus/pagy on GitHub">Star</a></h1>
       <p>{{ site.description | default: site.github.project_tagline }}</p>
     </div>
 
@@ -54,6 +54,9 @@
   </section>
 
 </div>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
 <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
 
 
