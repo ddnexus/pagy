@@ -211,13 +211,14 @@ These helpers take the Pagy object and returns the HTML string with the paginati
 
 **Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
-| Extra                              | Helpers                                                                             |
-| ---------------------------------- | ----------------------------------------------------------------------------------- |
-| [bootstrap](extras/bootstrap.md)   | `pagy_nav_bootstrap`                                                                |
-| [bulma](extras/bulma.md)       | `pagy_nav_bulma`                                                                    |
-| [compact](extras/compact.md)       | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`, `pagy_nav_compact_bulma`          |
-| [items](extras/items.md)           | `pagy_items_selector`                                                               |
-| [responsive](extras/responsive.md) | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap`, `pagy_nav_responsive_bulma` |
+| Extra                                | Helpers                                                                                                                |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| [bootstrap](extras/bootstrap.md)     | `pagy_nav_bootstrap`                                                                                                   |
+| [bulma](extras/bulma.md)             | `pagy_nav_bulma`                                                                                                       |
+| [compact](extras/compact.md)         | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`, `pagy_nav_compact_bulma` , `pagy_nav_compact_materialize`            |
+| [items](extras/items.md)             | `pagy_items_selector`                                                                                                  |
+| [materialize](extras/materialize.md) | `pagy_nav_materialize`                                                                                                 |
+| [responsive](extras/responsive.md)   | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap`, `pagy_nav_responsive_bulma`, `pagy_nav_responsive_materialize` |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -400,16 +401,16 @@ You can handle the exception by using the [out_of_range extra](extras/out_of_ran
 
 Here are a few options for manually handling the error in apps:
 
- - Do nothing and let the page render a 500
- - Rescue and render a 404
- - Rescue and redirect to the last known page (Notice: the [out_of_range extra](extras/out_of_range.md) provides the same behavior without redirecting)
+- Do nothing and let the page render a 500
+- Rescue and render a 404
+- Rescue and redirect to the last known page (Notice: the [out_of_range extra](extras/out_of_range.md) provides the same behavior without redirecting)
 
    ```ruby
    # in a controller
    rescue_from Pagy::OutOfRangeError, with: :redirect_to_last_page
-   
+
    private
-   
+
    def redirect_to_last_page(e)
      redirect_to url_for(page: e.pagy.last), notice: "Page ##{params[:page]} is out of range. Showing page #{e.pagy.last} instead."
    end

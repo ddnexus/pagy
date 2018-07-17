@@ -7,10 +7,6 @@ The `compact` extra adds an alternative pagination UI that combines the paginati
 
 It is especially useful for small size screens, but it is used also with wide layouts since it is __even faster__ than the classic nav of links, because it needs to render just a minimal HTML string.
 
-Here is an example (bootstrap style):
-
-![pagy-compact](../assets/images/pagy-compact-g.png)
-
 ## Synopsys
 
 See [extras](../extras.md) for general usage info.
@@ -23,6 +19,7 @@ Then use the responsive helper(s) in any view:
 <%== pagy_nav_compact(@pagy) %>
 <%== pagy_nav_compact_bootstrap(@pagy) %>
 <%== pagy_nav_compact_bulma(@pagy) %>
+<%== pagy_nav_compact_materialize(@pagy) %>
 ```
 
 ## Files
@@ -43,10 +40,22 @@ It can take an extra `id` argument, which is used to build the `id` attribute of
 
 This method is the same as the `pagy_nav_compact`, but customized for Bootstrap.
 
+Here is an example:
+
+![pagy-compact](../assets/images/pagy-compact-g.png)
+
 ### pagy_nav_compact_bulma(pagy, ...)
 
 This method is the same as the `pagy_nav_compact`, but customized for Bulma CSS framework.
 
-Generated pagination preview:
+Here is an example:
 
 ![pagy-compact-bulma](../assets/images/pagy-compact-bulma-g.png)
+
+### pagy_nav_compact_materialize(pagy, ...)
+
+This method is the same as the `pagy_nav_compact`, but customized for Materialize CSS framework.
+
+Here is an example:
+
+![pagy-compact-materialize](../assets/images/pagy-compact-materialize-g.png)

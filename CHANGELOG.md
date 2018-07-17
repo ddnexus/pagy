@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## Version 0.14.0
+
+### Important Changes
+
+- Added Materialize extra
+
+### Commits
+
+- [b0e959b](https://github.com/ddnexus/pagy/commit/b0e959b): added stars github button to docs
+- [1dd38c9](https://github.com/ddnexus/pagy/commit/1dd38c9): added materialize extra (#44)
+- [30c1a57](https://github.com/ddnexus/pagy/commit/30c1a57): updated docs
+
+
 ## Version 0.13.1
 
 ### Important Changes

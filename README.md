@@ -73,7 +73,7 @@ Or - if you prefer - render the navigation links with a template:
 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
-_(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_
+_(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start) for more details)_
 
 ## Easy to extend
 
@@ -89,7 +89,7 @@ Nav helper and templates for Bootstrap pagination. _(see [more...](http://ddnexu
 
 ### Bulma Extra
 
-Nav helper and templates for Bulma CSS framework pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/bulma))_
+Nav helper and templates for Bulma CSS pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/bulma))_
 
 ### Compact Extra
 
@@ -100,6 +100,10 @@ An alternative UI that combines the pagination feature with the navigation info 
 ### Items Extra
 
 Allow the client to request a custom number of items per page with a ready to use selector UI. _(see [more...](http://ddnexus.github.io/pagy/extras/items))_
+
+### Materialize Extra
+
+Nav helper for Materialize CSS pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/materialize))_
 
 ### Out Of Range Extra
 

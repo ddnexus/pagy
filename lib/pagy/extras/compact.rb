@@ -55,5 +55,24 @@ class Pagy
       html << %(</div></nav><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}"]</script>)
     end
 
+    # Compact pagination for materialize: it returns the html with the series of links to the pages
+    # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
+    def pagy_nav_compact_materialize(pagy, id=caller(1,1)[0].hash)
+      html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
+
+      html << %(<div id="pagy-nav-#{id}" class="pagy-nav-compact-materialize pagination" role="navigation" aria-label="pager">)
+      html << link.call(MARKER, '', %(style="display: none;" ))
+      html << %(<div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;">)
+      html << '<ul class="pagination" style="margin: 0px;">'
+      li_style = 'style="vertical-align: middle;"'
+      html << (p_prev ? %(<li class="waves-effect prev" #{li_style}>#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
+                      : %(<li class="prev disabled" #{li_style}><a href="#"><i class="material-icons">chevron_left</i></a></li>))
+      input = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 2px; border: none; border-radius: 2px; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
+      html << %(<div class="pagy-compact-input btn-flat" style="cursor: default; padding: 0px">#{pagy_t('pagy.compact.page')} #{input} #{pagy_t('pagy.compact.of')} #{p_pages}</div>)
+      html << (p_next ? %(<li class="waves-effect next" #{li_style}>#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
+                      : %(<li class="next disabled" #{li_style}><a href="#"><i class="material-icons">chevron_right</i></a></li>))
+      html << %(</ul></div><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}"]</script>)
+    end
+
   end
 end
