@@ -115,6 +115,10 @@ On resize, the number of page links will adapt in real-time to the available win
 
 ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
+### Trim Extra
+
+Remove the `page=1` param from the first page URL.
+
 ## Chat Support and Feedback
 
 [Chat on Gitter](https://gitter.im/ruby-pagy/Lobby)

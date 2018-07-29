@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 0.15.0
+
+### Important Changes
+
+- Added Trim extra
+
+### Commits
+
+- [868be25](https://github.com/ddnexus/pagy/commit/868be25): added trim extra
+- [fb48976](https://github.com/ddnexus/pagy/commit/fb48976): chained method for extra items overrides
+
 ## Version 0.14.0
 
 ### Important Changes
@@ -11,7 +22,6 @@
 - [b0e959b](https://github.com/ddnexus/pagy/commit/b0e959b): added stars github button to docs
 - [1dd38c9](https://github.com/ddnexus/pagy/commit/1dd38c9): added materialize extra (#44)
 - [30c1a57](https://github.com/ddnexus/pagy/commit/30c1a57): updated docs
-
 
 ## Version 0.13.1
 
@@ -26,7 +36,6 @@
 - [36761a8](https://github.com/ddnexus/pagy/commit/36761a8): fix :last_page mode in out_of_range extra (#70)
 - [5958dc5](https://github.com/ddnexus/pagy/commit/5958dc5): out_of_range extra improvements (#68)
 - [7177cd9](https://github.com/ddnexus/pagy/commit/7177cd9): added note about the out_of_range exta to the README
-
 
 ## Version 0.13.0
 
