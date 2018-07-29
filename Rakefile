@@ -10,7 +10,7 @@ require "rubocop/rake_task"
 Rake::TestTask.new(:test_common) do |t|
   t.libs << "test"
   t.libs << "lib"
-  t.test_files = FileList.new.include("test/**/*_test.rb").exclude('test/**/i18n_test.rb', 'test/**/items_test.rb', 'test/**/out_of_range_test.rb')
+  t.test_files = FileList.new.include("test/**/*_test.rb").exclude('test/**/i18n_test.rb', 'test/**/items_test.rb', 'test/**/out_of_range_test.rb', 'test/**/trim_test.rb')
 end
 
 Rake::TestTask.new(:test_extra_i18n) do |t|
@@ -31,7 +31,13 @@ Rake::TestTask.new(:test_extra_out_of_range) do |t|
   t.test_files = FileList['test/**/out_of_range_test.rb']
 end
 
-task :test => [:test_common, :test_extra_items, :test_extra_i18n, :test_extra_out_of_range ]
+Rake::TestTask.new(:test_extra_trim) do |t|
+  t.libs << "test"
+  t.libs << "lib"
+  t.test_files = FileList['test/**/trim_test.rb']
+end
+
+task :test => [:test_common, :test_extra_items, :test_extra_i18n, :test_extra_out_of_range, :test_extra_trim ]
 
 RuboCop::RakeTask.new(:rubocop) do |t|
   t.options = `git ls-files -z`.split("\x0")     # limit rubocop to the files in the repo

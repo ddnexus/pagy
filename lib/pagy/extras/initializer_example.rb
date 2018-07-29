@@ -41,6 +41,10 @@
 # See https://ddnexus.github.io/pagy/extras/responsive#breakpoints
 # Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
 
+# Trim: Remove the page=1 param from links
+# See https://ddnexus.github.io/pagy/extras/trim
+# require 'pagy/extras/trim'
+
 
 # Pagy Variables
 # See https://ddnexus.github.io/pagy/api/pagy#variables

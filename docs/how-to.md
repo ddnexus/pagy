@@ -77,9 +77,9 @@ Pagy works out of the box assuming that:
 
 Pagy can work in any other scenario assuming that:
 
-- You may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
-- You may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
-- You may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
+- If your framework doesn't have a `params` method you may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
+- If the collection you are paginating doesn't respond to `offset` and `limit` you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
+- If your framework doesn't have a `request` method you may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
 
 **Notice**: the total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module.
 
@@ -125,61 +125,6 @@ As you can see by the result of the `series` method, you get 3 initial pages, 1 
 
 You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to see what it contains when used in combination with different core variables.
 
-## Paginate Any Collection
-
-Pagy doesn't need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
-
-1. Create a Pagy object using the count of the collection to paginate
-2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
-
-An example with an array:
-
-```ruby
-# paginate an array
-arr = (1..1000).to_a
-
-# Create a Pagy object using the count of the collection to paginate
-pagy = Pagy.new(count: arr.count, page: 2)
-#=> #<Pagy:0x000055e39d8feef0 ... >
-
-# Get the page of items using `pagy.offset` and `pagy.items`
-paginated = arr[pagy.offset, pagy.items]
-#=> [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
-```
-
-This is basically what the `pagy` method included in your controller does for you in one go:
-
-```ruby
-@pagy, @records = pagy(Product.some_scope)
-```
-
-Then of course, regardless the kind of collection, you can render the navigation links in your view:
-
-```erb
-<%== pagy_nav(@pagy) %>
-```
-
-See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb) and the [Pagy::Backend API documentation](api/backend.md) for more details.
-
-## Paginate an Array
-
-You have many ways to paginate an array with Pagy:
-
-1. Implementing the above _how-to_ (probably not the most convenient way, besides being a good example)
-2. Using the `pagy` method and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
-3. Using `pagy_array` offered by the `array` extra _(see [array extra](extras/array.md))_
-
-## Paginate a pre-offsetted and pre-limited collection
-
-With the other pagination gems you cannot paginate a subset of a collection that you got using offset and limit. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
-
-```ruby
-subset = Product.offset(100).limit(315)
-@pagy, @paginated_subset = pagy(subset, outset: 100)
-```
-
-Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and from 301 to 315 for the last page.
-
 ## Passing the page number
 
 You don't need to explicitly pass the page number to the `pagy` method, because it is pulled in by the `pagy_get_vars` (which is called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For example:
@@ -200,29 +145,6 @@ You may want to customize that, for example to make it more readable in your lan
 2. `pagy(scope, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single instance (overriding the global default)
 
 You can also override the `pagy_get_vars` if you need some special way to get the page number.
-
-## Using the pagy_nav* helpers
-
-These helpers take the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
-
-```erb
-<%== pagy_nav(@pagy) %>
-```
-
-**Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
-
-| Extra                                | Helpers                                                                                                                |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| [bootstrap](extras/bootstrap.md)     | `pagy_nav_bootstrap`                                                                                                   |
-| [bulma](extras/bulma.md)             | `pagy_nav_bulma`                                                                                                       |
-| [compact](extras/compact.md)         | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`, `pagy_nav_compact_bulma` , `pagy_nav_compact_materialize`            |
-| [items](extras/items.md)             | `pagy_items_selector`                                                                                                  |
-| [materialize](extras/materialize.md) | `pagy_nav_materialize`                                                                                                 |
-| [responsive](extras/responsive.md)   | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap`, `pagy_nav_responsive_bulma`, `pagy_nav_responsive_materialize` |
-
-Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
-
- Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your helpers.
 
 ## Customizing the link attributes
 
@@ -290,6 +212,84 @@ end
 
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
+## Paginate Any Collection
+
+Pagy doesn't need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
+
+1. Create a Pagy object using the count of the collection to paginate
+2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
+
+An example with an array:
+
+```ruby
+# paginate an array
+arr = (1..1000).to_a
+
+# Create a Pagy object using the count of the collection to paginate
+pagy = Pagy.new(count: arr.count, page: 2)
+#=> #<Pagy:0x000055e39d8feef0 ... >
+
+# Get the page of items using `pagy.offset` and `pagy.items`
+paginated = arr[pagy.offset, pagy.items]
+#=> [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
+```
+
+This is basically what the `pagy` method included in your controller does for you in one go:
+
+```ruby
+@pagy, @records = pagy(Product.some_scope)
+```
+
+Then of course, regardless the kind of collection, you can render the navigation links in your view:
+
+```erb
+<%== pagy_nav(@pagy) %>
+```
+
+See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb) and the [Pagy::Backend API documentation](api/backend.md) for more details.
+
+## Paginate an Array
+
+You have many ways to paginate an array with Pagy:
+
+1. Implementing the above _how-to_ (probably not the most convenient way, besides being a good example)
+2. Using the `pagy` method and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
+3. Using `pagy_array` offered by the `array` extra _(see [array extra](extras/array.md))_
+
+## Paginate a pre-offsetted and pre-limited collection
+
+With the other pagination gems you cannot paginate a subset of a collection that you got using offset and limit. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
+
+```ruby
+subset = Product.offset(100).limit(315)
+@pagy, @paginated_subset = pagy(subset, outset: 100)
+```
+
+Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and from 301 to 315 for the last page.
+
+## Using the pagy_nav* helpers
+
+These helpers take the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
+
+```erb
+<%== pagy_nav(@pagy) %>
+```
+
+**Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
+
+| Extra                                | Helpers                                                                                                                |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| [bootstrap](extras/bootstrap.md)     | `pagy_nav_bootstrap`                                                                                                   |
+| [bulma](extras/bulma.md)             | `pagy_nav_bulma`                                                                                                       |
+| [compact](extras/compact.md)         | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`, `pagy_nav_compact_bulma` , `pagy_nav_compact_materialize`            |
+| [items](extras/items.md)             | `pagy_items_selector`                                                                                                  |
+| [materialize](extras/materialize.md) | `pagy_nav_materialize`                                                                                                 |
+| [responsive](extras/responsive.md)   | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap`, `pagy_nav_responsive_bulma`, `pagy_nav_responsive_materialize` |
+
+Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
+
+ Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your helpers.
+
 ## Skipping single page navs
 
 Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it rendered... or maybe you don't. If you don't... wrap it in a condition and use the `pagy_nav*` only if `@pagy.pages > 1` is true. For example:
@@ -297,6 +297,10 @@ Unlike other gems, Pagy does not decide for you that the nav of a single page of
 ```erb
 <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 ```
+
+## Skipping page=1 param
+
+By default Pagy generates all the page links including the `page` param. If you want to remove the `page=1` param from the first page link, just require the [trim extra](extras/trim.md).
 
 ## Using Templates
 

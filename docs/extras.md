@@ -6,7 +6,7 @@ title: Extras
 Pagy comes with a few optional extensions/extras:
 
 | Extra          | Description                                                                                            | Links                                                                                                                                   |
-| -------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+|:---------------|:-------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|
 | `array`        | Paginate arrays efficiently avoiding expensive array-wrapping and without overriding                   | [array.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/array.rb), [documentation](extras/array.md)                      |
 | `bootstrap`    | Nav helper and templates for Bootstrap pagination                                                      | [bootstrap.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bootstrap.rb), [documentation](extras/bootstrap.md)          |
 | `bulma`        | Nav helper and templates for [Bulma](https://bulma.io) pagination component                            | [bulma.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bulma.rb), [documentation](extras/bulma.md)                      |
@@ -16,6 +16,7 @@ Pagy comes with a few optional extensions/extras:
 | `materialize`  | Nav helper for Materialize CSS [pagination component](https://materializecss.com/pagination.html)      | [materialize.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/materialize.rb), [documentation](extras/materialize.md)    |
 | `out_of_range` | Allow for easy handling of out of range pages                                                          | [out_of_range.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/out_of_range.rb), [documentation](extras/out_of_range.md) |
 | `responsive`   | On resize, the number of page links will adapt in real-time to the available window or container width | [responsive.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/responsive.rb), [documentation](extras/responsive.md)       |
+| `trim`         | Remove the `page=1` param from links                                                                   | [trim.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/trim.rb), [documentation](extras/trim.md)                         |
 
 ## Synopsys
 
