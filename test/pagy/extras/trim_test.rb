@@ -8,7 +8,33 @@ describe Pagy::Frontend do
 
   let(:frontend) { TestView.new }
 
-  describe "#pagy_nav_compact" do
+  describe "#pagy_trim_url" do
+
+    it 'trims urls' do
+      frontend.pagy_trim_url('foo/bar?page=1', 'page=1').must_equal('foo/bar')
+      frontend.pagy_trim_url('foo/bar?a=page&page=1', 'page=1').must_equal('foo/bar?a=page')
+      frontend.pagy_trim_url('foo/bar?a=page&page=1&b=4', 'page=1').must_equal('foo/bar?a=page&b=4')
+      frontend.pagy_trim_url('foo/bar?a=page&page=1&b=4&my_page=1', 'page=1').must_equal('foo/bar?a=page&b=4&my_page=1')
+    end
+
+  end
+
+  describe "#pagy_link_proc" do
+
+    it 'returns trimmed link' do
+      pagy = Pagy.new(count: 1000)
+      link = frontend.pagy_link_proc(pagy)
+      link.call(1).must_equal("<a href=\"/foo\"   >1</a>")
+      link.call(10).must_equal("<a href=\"/foo?page=10\"   >10</a>")
+      pagy = Pagy.new(count: 1000, params: {a:3,b:4})
+      link = frontend.pagy_link_proc(pagy)
+      link.call(1).must_equal("<a href=\"/foo?a=3&b=4\"   >1</a>")
+      link.call(10).must_equal("<a href=\"/foo?page=10&a=3&b=4\"   >10</a>")
+    end
+
+  end
+
+describe "#pagy_nav_compact" do
 
     before do
       @array = (1..103).to_a.extend(Pagy::Array::PageMethod)
