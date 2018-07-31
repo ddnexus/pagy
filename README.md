@@ -105,6 +105,10 @@ Allow the client to request a custom number of items per page with a ready to us
 
 Nav helper for Materialize CSS pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/materialize))_
 
+### Semantic UI Extra
+
+Nav helper for Semantic UI CSS pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/semantic))_
+
 ### Out Of Range Extra
 
 Allow for easy handling of out of range pages _(see [more...](http://ddnexus.github.io/pagy/extras/out_of_range))_
