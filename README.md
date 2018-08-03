@@ -117,7 +117,7 @@ On resize, the number of page links will adapt in real-time to the available win
 
 ### Trim Extra
 
-Remove the `page=1` param from the first page URL.
+Remove the `page=1` param from the first page link _(see [more...](http://ddnexus.github.io/pagy/extras/trim))_
 
 ## Chat Support and Feedback
 
@@ -125,18 +125,24 @@ Remove the `page=1` param from the first page URL.
 
 ## Useful Links
 
+### Docs
+
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Migrating from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-tips)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
-- [Contributors](https://github.com/ddnexus/pagy/graphs/contributors)
----
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison)
 
+### Posts and Tutorials
+
+- [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy) by Tiago Franco
+- [Stateful Tabs Pagination](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
+- [Quick guide for Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
+
 ## Please Star and Share!
 
-Pagy is young and needs to be known, and **you** can really help, even with just a click on the star, or sharing a tweet with friends and collegues. Thank you!
+Pagy is young and needs to be known, and **you** can really help, even with just a click on the star, or sharing a tweet with friends and collegues. A big thank you for your help!
 
 ## Help Wanted
 
@@ -152,6 +158,15 @@ Pagy is a fresh project and your help would be great. If you like it, you have a
 `master` is the latest rubygem-published release (plus changes that don't affect the actual gem behavior, e.g. doc, tests). You should use it as the base branch for pull requests, because it will not be force-rebased.
 
 `dev` is the development branch that is kept rebased on top of `master`, so expect it to be force-rebased (i.e. do not use it as the base for your commits). Use `dev` as a preview for trying the new code that will be merged in the next release, but please, don't use it as the base branch for pull requests.
+
+## Credits
+
+Many thansk to:
+
+- [Imaginary Cloud](https://www.imaginarycloud.com), for continually publishing high-interest articles and helping share Pagy through their fantastic blog
+- [JetBrains](http://www.jetbrains.com) for their free OpenSource license
+- [The Contributors](https://github.com/ddnexus/pagy/graphs/contributors) for all the smart code and suggestions merged in the project
+- [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
 
 ## License
 
