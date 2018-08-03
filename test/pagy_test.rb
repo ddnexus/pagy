@@ -33,7 +33,7 @@ describe Pagy do
       e.pagy.must_be_instance_of Pagy
     end
 
-    it 'initiazes count 0' do
+    it 'initializes count 0' do
       pagy = Pagy.new @vars.merge(count: 0)
       pagy.pages.must_equal 1
       pagy.last.must_equal 1
@@ -44,7 +44,7 @@ describe Pagy do
       pagy.next.must_be_nil
     end
 
-    it 'initiazes single page' do
+    it 'initializes single page' do
       pagy = Pagy.new @vars.merge(count: 8)
       pagy.pages.must_equal 1
       pagy.last.must_equal 1
@@ -55,7 +55,7 @@ describe Pagy do
       pagy.next.must_be_nil
     end
 
-    it 'initiazes page 1 of 2' do
+    it 'initializes page 1 of 2' do
       pagy = Pagy.new @vars.merge(count: 15)
       pagy.pages.must_equal 2
       pagy.last.must_equal 2
@@ -66,7 +66,7 @@ describe Pagy do
       pagy.next.must_equal 2
     end
 
-    it 'initiazes page 2 of 2' do
+    it 'initializes page 2 of 2' do
       pagy = Pagy.new @vars.merge(count: 15, page: 2)
       pagy.pages.must_equal 2
       pagy.last.must_equal 2
@@ -78,7 +78,7 @@ describe Pagy do
       pagy.next.must_be_nil
     end
 
-    it 'initiazes page 1' do
+    it 'initializes page 1' do
       pagy = Pagy.new @vars.merge(page: 1)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -92,7 +92,7 @@ describe Pagy do
       pagy.next.must_equal 2
     end
 
-    it 'initiazes page 2' do
+    it 'initializes page 2' do
       pagy = Pagy.new @vars.merge(page: 2)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -106,7 +106,7 @@ describe Pagy do
       pagy.next.must_equal 3
     end
 
-    it 'initiazes page 3' do
+    it 'initializes page 3' do
       pagy = Pagy.new @vars.merge(page: 3)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -120,7 +120,7 @@ describe Pagy do
       pagy.next.must_equal 4
     end
 
-    it 'initiazes page 4' do
+    it 'initializes page 4' do
       pagy = Pagy.new @vars.merge(page: 4)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -134,7 +134,7 @@ describe Pagy do
       pagy.next.must_equal 5
     end
 
-    it 'initiazes page 5' do
+    it 'initializes page 5' do
       pagy = Pagy.new @vars.merge(page: 5)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -148,7 +148,7 @@ describe Pagy do
       pagy.next.must_equal 6
     end
 
-    it 'initiazes page 6' do
+    it 'initializes page 6' do
       pagy = Pagy.new @vars.merge(page: 6)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -162,7 +162,7 @@ describe Pagy do
       pagy.next.must_equal 7
     end
 
-    it 'initiazes page 7' do
+    it 'initializes page 7' do
       pagy = Pagy.new @vars.merge(page: 7)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -176,7 +176,7 @@ describe Pagy do
       pagy.next.must_equal 8
     end
 
-    it 'initiazes page 8' do
+    it 'initializes page 8' do
       pagy = Pagy.new @vars.merge(page: 8)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -190,7 +190,7 @@ describe Pagy do
       pagy.next.must_equal 9
     end
 
-    it 'initiazes page 9' do
+    it 'initializes page 9' do
       pagy = Pagy.new @vars.merge(page: 9)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -204,7 +204,7 @@ describe Pagy do
       pagy.next.must_equal 10
     end
 
-    it 'initiazes page 10' do
+    it 'initializes page 10' do
       pagy = Pagy.new @vars.merge(page: 10)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -218,7 +218,7 @@ describe Pagy do
       pagy.next.must_equal 11
     end
 
-    it 'initiazes page 11' do
+    it 'initializes page 11' do
       pagy = Pagy.new @vars.merge(page: 11)
       pagy.count.must_equal 103
       pagy.pages.must_equal 11
@@ -251,7 +251,7 @@ describe Pagy do
     end
 
     it 'initializes items of last page of one' do
-      Pagy.new(items: 10, count: 0).items.must_equal 0
+      Pagy.new(items: 10, count: 0).items.must_equal 10
       Pagy.new(items: 10, count: 4).items.must_equal 4
       Pagy.new(items: 10, count: 10).items.must_equal 10
     end
