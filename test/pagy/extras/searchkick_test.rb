@@ -24,7 +24,7 @@ describe Pagy::Backend do
     end
 
     it 'paginates with defaults' do
-      pagy, items = backend.send(:pagy_searchkick, @collection)
+      pagy, _items = backend.send(:pagy_searchkick, @collection)
       pagy.must_be_instance_of Pagy
       pagy.count.must_equal 1000
       pagy.items.must_equal Pagy::VARS[:items]
@@ -32,7 +32,7 @@ describe Pagy::Backend do
     end
 
     it 'paginates with vars' do
-      pagy, items = backend.send(:pagy_searchkick, @collection, link_extra: 'X')
+      pagy, _items = backend.send(:pagy_searchkick, @collection, link_extra: 'X')
       pagy.must_be_instance_of Pagy
       pagy.count.must_equal 1000
       pagy.vars[:link_extra].must_equal 'X'
