@@ -100,7 +100,7 @@ Pagy exposes all the instance variables needed for the pagination through a few 
 | -------- | ------------------------------------------------------------------------------------------------------------------ |
 | `count`  | the collection `:count`                                                                                            |
 | `page`   | the current page number                                                                                            |
-| `items`  | the _actual_ number of items in the current page (can be less than the requested `:items` variable)                |
+| `items`  | the _actual_ number of items in the current non-empty page (can be less than the requested `:items` variable)      |
 | `pages`  | the number of total pages in the collection (same as `last` but with cardinal meaning)                             |
 | `last`   | the number of the last page in the collection (same as `pages` but with ordinal meaning)                           |
 | `offset` | the number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
@@ -132,7 +132,6 @@ The lowest possible limit of the pagination is reached when the collection has `
 | --------- | ------- |
 | `count`   | `0`     |
 | `page`    | `1`     |
-| `items`   | `0`     |
 | `pages`   | `1`     |
 | `last`    | `1`     |
 | `from`    | `0`     |
@@ -146,6 +145,5 @@ Which means:
 - there is always a `page` #`1` in the pagination, even if it's empty
 - `pages` and `last` are always at least both `1`
 - the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string
-- the actual number of `items` in an empty page are `0`
 - `from` and `to` of an empty page are both `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)

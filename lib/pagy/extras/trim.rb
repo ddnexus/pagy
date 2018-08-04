@@ -19,7 +19,7 @@ class Pagy
       p1url = pagy_trim_url(url, "#{p_vars[:page_param]}=#{MARKER}")
       p1    = %(<a href="#{p1url}" #{p_vars[:link_extra]} #{link_extra})
       a, b = %(<a href="#{url}" #{p_vars[:link_extra]} #{link_extra}).split(MARKER, 2)
-      -> (n, text=n, extra='') { start = n == 1 ? p1 : "#{a}#{n}#{b}"
+      -> (n, text=n, extra='') { start = n.to_i == 1 ? p1 : "#{a}#{n}#{b}"
                                  "#{start}#{ if    n == p_prev ; ' rel="prev"'
                                              elsif n == p_next ; ' rel="next"'
                                              else                           '' end } #{extra}>#{text}</a>" }

@@ -3,7 +3,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '0.15.0'
+class Pagy ; VERSION = '0.15.1'
 
   class OutOfRangeError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
@@ -17,19 +17,19 @@ class Pagy ; VERSION = '0.15.0'
 
   # Merge and validate the options, do some simple aritmetic and set the instance variables
   def initialize(vars)
-    @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })          # default vars + cleaned vars
-    { count:0, items:1, outset:0, page:1 }.each do |k,min|                # validate instance variables
+    @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })               # default vars + cleaned vars
+    { count:0, items:1, outset:0, page:1 }.each do |k,min|                     # validate instance variables
       (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{instance_variable_get(:"@#{k}").inspect}")
     end
-    @pages = @last = [(@count.to_f / @items).ceil, 1].max                 # cardinal and ordinal meanings
+    @pages = @last = [(@count.to_f / @items).ceil, 1].max                      # cardinal and ordinal meanings
     @page <= @last or raise(OutOfRangeError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
-    @offset = @items * (@page - 1) + @outset                              # pagination offset + outset (initial offset)
-    @items  = @count - ((@pages-1) * @items) if @page == @last            # adjust items for last page
-    @from   = @count == 0 ? 0 : @offset+1 - @outset                       # page begins from item
-    @to     = @offset + @items - @outset                                  # page ends to item
-    @prev   = (@page-1 unless @page == 1)                                 # nil if no prev page
-    @next   = (@page+1 unless @page == @last)                             # nil if no next page
+    @offset = @items * (@page - 1) + @outset                                   # pagination offset + outset (initial offset)
+    @items  = @count - ((@pages-1) * @items) if @page == @last && @count > 0   # adjust items for last non-empty page
+    @from   = @count == 0 ? 0 : @offset+1 - @outset                            # page begins from item
+    @to     = @count == 0 ? 0 : @offset + @items - @outset                     # page ends to item
+    @prev   = (@page-1 unless @page == 1)                                      # nil if no prev page
+    @next   = (@page+1 unless @page == @last)                                  # nil if no next page
   end
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
