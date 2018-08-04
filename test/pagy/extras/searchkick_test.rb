@@ -1,0 +1,70 @@
+require_relative '../../test_helper'
+require 'pagy/extras/searchkick'
+
+SingleCov.covered!
+
+describe Pagy::Backend do
+
+  let(:backend) { TestController.new }
+
+  class Searchkick
+    class Results
+      def initialize(params); @params = params; end
+      def total_count; 1000; end
+      def options
+        { page: @params[:page] || 1 }
+      end
+    end
+  end
+
+  describe "#pagy_searchkick" do
+
+    before do
+      @collection = Searchkick::Results.new(backend.params)
+    end
+
+    it 'paginates with defaults' do
+      pagy, items = backend.send(:pagy_searchkick, @collection)
+      pagy.must_be_instance_of Pagy
+      pagy.count.must_equal 1000
+      pagy.items.must_equal Pagy::VARS[:items]
+      pagy.page.must_equal backend.params[:page]
+    end
+
+    it 'paginates with vars' do
+      pagy, items = backend.send(:pagy_searchkick, @collection, link_extra: 'X')
+      pagy.must_be_instance_of Pagy
+      pagy.count.must_equal 1000
+      pagy.vars[:link_extra].must_equal 'X'
+    end
+
+  end
+
+  describe "#pagy_searchkick_get_vars" do
+
+    before do
+      @collection = Searchkick::Results.new(backend.params)
+    end
+
+    it 'gets defaults' do
+      vars   = {}
+      merged = backend.send :pagy_searchkick_get_vars, @collection, vars
+      merged.keys.must_include :count
+      merged.keys.must_include :page
+      merged[:count].must_equal 1000
+      merged[:page].must_equal 3
+    end
+
+    it 'gets vars' do
+      vars   = {link_extra: 'X'}
+      merged = backend.send :pagy_searchkick_get_vars, @collection, vars
+      merged.keys.must_include :count
+      merged.keys.must_include :page
+      merged.keys.must_include :link_extra
+      merged[:count].must_equal 1000
+      merged[:link_extra].must_equal 'X'
+    end
+
+  end
+
+end
