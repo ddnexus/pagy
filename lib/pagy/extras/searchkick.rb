@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/searchkick TODO
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/searchkick
 
 class Pagy
   # Add specialized backend methods to paginate Searchkick::Results
