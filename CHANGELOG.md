@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## Version 0.15.1
+
+### Important Changes
+
+- small bugs and compatibility fixes
+
+### Commits
+
+- [1436833](https://github.com/ddnexus/pagy/commit/1436833): added Post and Tutorials links and Credits section
+- [4e400c6](https://github.com/ddnexus/pagy/commit/4e400c6): items are adjusted only for non-empty pages
+ (avoid sequel error for limit 0)
+- [3abcc11](https://github.com/ddnexus/pagy/commit/3abcc11): fix for sinatra: page_param must be converted to string
+- [ad8c311](https://github.com/ddnexus/pagy/commit/ad8c311): fix for trim extra missing when current page=1
+- [6f774d7](https://github.com/ddnexus/pagy/commit/6f774d7): added missing doc menu for trim extra
+- [5f6de56](https://github.com/ddnexus/pagy/commit/5f6de56): added a few tests for the trim extra
+
 ## Version 0.15.0
 
 ### Important Changes
