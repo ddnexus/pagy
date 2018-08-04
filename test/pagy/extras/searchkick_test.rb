@@ -12,7 +12,10 @@ describe Pagy::Backend do
       def initialize(params); @params = params; end
       def total_count; 1000; end
       def options
-        { page: @params[:page] || 1 }
+        {
+          page: @params[:page] || 1,
+          per_page: 25
+        }
       end
     end
   end
@@ -27,7 +30,7 @@ describe Pagy::Backend do
       pagy, _items = backend.send(:pagy_searchkick, @collection)
       pagy.must_be_instance_of Pagy
       pagy.count.must_equal 1000
-      pagy.items.must_equal Pagy::VARS[:items]
+      pagy.items.must_equal 25
       pagy.page.must_equal backend.params[:page]
     end
 
@@ -35,6 +38,7 @@ describe Pagy::Backend do
       pagy, _items = backend.send(:pagy_searchkick, @collection, link_extra: 'X')
       pagy.must_be_instance_of Pagy
       pagy.count.must_equal 1000
+      pagy.items.must_equal 25
       pagy.vars[:link_extra].must_equal 'X'
     end
 
@@ -52,6 +56,7 @@ describe Pagy::Backend do
       merged.keys.must_include :count
       merged.keys.must_include :page
       merged[:count].must_equal 1000
+      merged[:items].must_equal 25
       merged[:page].must_equal 3
     end
 
@@ -62,6 +67,7 @@ describe Pagy::Backend do
       merged.keys.must_include :page
       merged.keys.must_include :link_extra
       merged[:count].must_equal 1000
+      merged[:items].must_equal 25
       merged[:link_extra].must_equal 'X'
     end
 
