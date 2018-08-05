@@ -51,7 +51,7 @@ pagy(scope, items_param: :custom_param, max_items: 50)
 Pagy.new(count:100, items_param: :custom_param, max_items: 50)
 ```
 
-**Notice**: you can override the items that the client send with the params by passing the `:items` explicitly. For example:
+**Notice**: you can override the items that the client sends with the params by passing the `:items` explicitly. For example:
 
 ```ruby
 # this will ignore the params[:item] (or any custom :param_name)

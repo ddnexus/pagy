@@ -78,7 +78,6 @@ pagy.last               #=> 5
 pagy.last == pagy.prev  #=> true (the prev page is the last page relative to out of range page)
 pagy.next               #=> nil
 pagy.offset             #=> 0
-pagy.items              #=> 0
 pagy.from               #=> 0
 pagy.to                 #=> 0
 pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
