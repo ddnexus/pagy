@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 0.16.0
+
+### Important Changes
+
+- added Searchkick extra
+
+### Commits
+
+- [6143f5f](https://github.com/ddnexus/pagy/commit/6143f5f): docs fixes
+- [5227bd1](https://github.com/ddnexus/pagy/commit/5227bd1): added searchkick references in docs, README and inititalizer example (#75)
+- [b9acf0c](https://github.com/ddnexus/pagy/commit/b9acf0c): Searchkick extra (#75)
+
 ## Version 0.15.1
 
 ### Important Changes
