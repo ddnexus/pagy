@@ -115,6 +115,10 @@ On resize, the number of page links will adapt in real-time to the available win
 
 ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
+### Searchkick Extra
+
+Paginate `Searchkick::Results` objects efficiently avoiding expensive oject-wrapping and without overriding. _(see [more...](http://ddnexus.github.io/pagy/extras/searchkick))_
+
 ### Trim Extra
 
 Remove the `page=1` param from the first page link _(see [more...](http://ddnexus.github.io/pagy/extras/trim))_
