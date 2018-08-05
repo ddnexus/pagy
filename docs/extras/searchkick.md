@@ -3,7 +3,7 @@ title: Searchkick
 ---
 # Searchkick Extra
 
-This extra adds a specialized pagination for `Searchkick::Results` objects without the need to override the `pagy_get_items` in your controller.
+Paginate `Searchkick::Results` objects efficiently avoiding expensive oject-wrapping and without overriding.
 
 The `Searchkick::Results` object has already done pagination calculations, we just need to tell Pagy how to read page and total values. It is expected that you let Searchkick handle the `page` and `per_page` variables instead of providing those values as options to Pagy.
 
