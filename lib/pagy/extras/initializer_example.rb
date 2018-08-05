@@ -31,6 +31,10 @@
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'
 
+# Semantic UI: Nav helper for Semantic UI pagination
+# See https://ddnexus.github.io/pagy/extras/semantic
+# require 'pagy/extras/semantic'
+
 # Out Of Range: Allow for easy handling of out of range pages
 # See https://ddnexus.github.io/pagy/extras/out_of_range
 # Pagy::VARS[:out_of_range_mode] = :last_page    # default  (other options: :empty_page and :exception)
