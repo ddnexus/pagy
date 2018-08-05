@@ -77,51 +77,30 @@ _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start) for more 
 
 ## Easy to extend
 
-Use the official extras, or write your own in just a few lines.
+Use the official extras, or write your own in just a few lines. Extras add special options and manage different components, behaviors, Frontend or Backend environments... usually by just requiring them:
 
-### Array Extra
+### Component Extras
 
-Paginate arrays efficiently avoiding expensive array-wrapping and without any overriding. _(see [more...](http://ddnexus.github.io/pagy/extras/array))_
+- [compact](http://ddnexus.github.io/pagy/extras/compact): An alternative UI that combines the pagination feature with the navigation info in one compact element: ![pagy-compact](docs/assets/images/pagy-compact-w.png)
+- [responsive](http://ddnexus.github.io/pagy/extras/responsive): On resize, the number of page links adapts in real-time to the available window or container width: ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
-### Bootstrap Extra
+### Backend Extras
 
-Nav helper and templates for Bootstrap pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/bootstrap))_
+- [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
+- [searchkick](http://ddnexus.github.io/pagy/extras/searchkick): Paginate `Searchkick::Results` objects efficiently, avoiding expensive oject-wrapping and without overriding
 
-### Bulma Extra
+### Frontend Extras
 
-Nav helper and templates for Bulma CSS pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/bulma))_
+- [bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap): Nav helpers and templates for Bootstrap pagination
+- [bulma](http://ddnexus.github.io/pagy/extras/bulma): Nav helpers and templates for Bulma CSS pagination
+- [materialize](http://ddnexus.github.io/pagy/extras/materialize): Nav helpers for Materialize CSS pagination
 
-### Compact Extra
+### Feature Extras
 
-An alternative UI that combines the pagination feature with the navigation info in one compact element. _(see [more...](http://ddnexus.github.io/pagy/extras/compact))_
-
-![pagy-compact](docs/assets/images/pagy-compact-w.png)
-
-### Items Extra
-
-Allow the client to request a custom number of items per page with a ready to use selector UI. _(see [more...](http://ddnexus.github.io/pagy/extras/items))_
-
-### Materialize Extra
-
-Nav helper for Materialize CSS pagination. _(see [more...](http://ddnexus.github.io/pagy/extras/materialize))_
-
-### Out Of Range Extra
-
-Allow for easy handling of out of range pages _(see [more...](http://ddnexus.github.io/pagy/extras/out_of_range))_
-
-### Responsive Extra
-
-On resize, the number of page links will adapt in real-time to the available window or container width. _(see [more...](http://ddnexus.github.io/pagy/extras/responsive))_
-
-![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
-
-### Searchkick Extra
-
-Paginate `Searchkick::Results` objects efficiently avoiding expensive oject-wrapping and without overriding. _(see [more...](http://ddnexus.github.io/pagy/extras/searchkick))_
-
-### Trim Extra
-
-Remove the `page=1` param from the first page link _(see [more...](http://ddnexus.github.io/pagy/extras/trim))_
+- [I18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy implementation
+- [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with a ready to use selector UI
+- [out_of_range](http://ddnexus.github.io/pagy/extras/out_of_range): Allow for easy handling of out of range pages
+- [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
 
 ## Chat Support and Feedback
 
