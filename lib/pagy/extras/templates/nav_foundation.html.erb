@@ -8,8 +8,8 @@
 <% link = pagy_link_proc(pagy) -%>
 <%#                            -%><nav class="pagy-nav-foundation" aria-label="Pagination">
 <%#                            -%>  <ul class="pagination">
-<% if pagy.prev                -%>    <li><%== link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"') %></li>
-<% else                        -%>    <li class="disabled"><%== pagy_t('pagy.nav.prev') %></li>
+<% if pagy.prev                -%>    <li class="prev"><%== link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"') %></li>
+<% else                        -%>    <li class="prev disabled"><%== pagy_t('pagy.nav.prev') %></li>
 <% end                         -%>
 <% pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36] -%>
 <%   if    item.is_a?(Integer) -%>    <li><%== link.call(item) %></li>
@@ -17,8 +17,8 @@
 <%   elsif item == :gap        -%>    <li class="disabled gap"><%== pagy_t('pagy.nav.gap') %></li>
 <%   end                       -%>
 <% end                         -%>
-<% if pagy.next                -%>    <li><%== link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"') %></li>
-<% else                        -%>    <li class="disabled"><%== pagy_t('pagy.nav.next') %></li>
+<% if pagy.next                -%>    <li class="next"><%== link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"') %></li>
+<% else                        -%>    <li class="next disabled"><%== pagy_t('pagy.nav.next') %></li>
 <% end                         -%>
 <%#                            -%>  </ul>
 <%#                            -%></nav>

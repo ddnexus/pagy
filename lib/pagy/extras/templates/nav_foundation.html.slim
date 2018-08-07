@@ -11,9 +11,9 @@ nav.pagy-nav-foundation aria-label="Pagination"
   ul.pagination
 
     - if pagy.prev
-      li == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
+      li.prev == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
     - else
-      li.disabled
+      li.prev.disabled
         == pagy_t('pagy.nav.prev')
 
     - pagy.series.each do |item|                 # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -30,7 +30,7 @@ nav.pagy-nav-foundation aria-label="Pagination"
           == pagy_t('pagy.nav.gap')
 
     - if pagy.next
-      li == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
+      li.next == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
     - else
-      li.disabled
+      li.next.disabled
         == pagy_t('pagy.nav.next')

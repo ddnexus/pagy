@@ -18,14 +18,14 @@ describe Pagy::Frontend do
       frontend.pagy_nav_foundation(pagy).must_equal \
         '<nav class="pagy-nav-foundation" aria-label="Pagination">' \
           '<ul class="pagination">' \
-            '<li class="disabled">&lsaquo;&nbsp;Prev</li>' \
+            '<li class="prev disabled">&lsaquo;&nbsp;Prev</li>' \
             '<li class="current"><span class="show-for-sr">You\'re on page</span><a href="/foo?page=1"   >1</a></li>'\
             '<li><a href="/foo?page=2"   rel="next" >2</a></li>' \
             '<li><a href="/foo?page=3"   >3</a></li>' \
             '<li><a href="/foo?page=4"   >4</a></li>' \
             '<li><a href="/foo?page=5"   >5</a></li>' \
             '<li><a href="/foo?page=6"   >6</a></li>' \
-            '<li><a href="/foo?page=2"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
+            '<li class="next"><a href="/foo?page=2"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
           '</ul>' \
         '</nav>'
     end
@@ -35,14 +35,14 @@ describe Pagy::Frontend do
       frontend.pagy_nav_foundation(pagy).must_equal \
       '<nav class="pagy-nav-foundation" aria-label="Pagination">' \
         '<ul class="pagination">' \
-          '<li><a href="/foo?page=2"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
+          '<li class="prev"><a href="/foo?page=2"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
           '<li><a href="/foo?page=1"   >1</a></li>' \
           '<li><a href="/foo?page=2"   rel="prev" >2</a></li>' \
           '<li class="current"><span class="show-for-sr">You\'re on page</span><a href="/foo?page=3"   >3</a></li>' \
           '<li><a href="/foo?page=4"   rel="next" >4</a></li>' \
           '<li><a href="/foo?page=5"   >5</a></li>' \
           '<li><a href="/foo?page=6"   >6</a></li>' \
-          '<li><a href="/foo?page=4"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
+          '<li class="next"><a href="/foo?page=4"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
         '</ul>' \
       '</nav>'
     end
@@ -52,14 +52,14 @@ describe Pagy::Frontend do
       frontend.pagy_nav_foundation(pagy).must_equal \
        '<nav class="pagy-nav-foundation" aria-label="Pagination">' \
         '<ul class="pagination">' \
-          '<li><a href="/foo?page=5"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
+          '<li class="prev"><a href="/foo?page=5"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
           '<li><a href="/foo?page=1"   >1</a></li>' \
           '<li><a href="/foo?page=2"   >2</a></li>' \
           '<li><a href="/foo?page=3"   >3</a></li>' \
           '<li><a href="/foo?page=4"   >4</a></li>' \
           '<li><a href="/foo?page=5"   rel="prev" >5</a></li>' \
           '<li class="current"><span class="show-for-sr">You\'re on page</span><a href="/foo?page=6"   >6</a></li>' \
-          '<li class="disabled">Next&nbsp;&rsaquo;</li>' \
+          '<li class="next disabled">Next&nbsp;&rsaquo;</li>' \
         '</ul>' \
       '</nav>'
     end
@@ -70,7 +70,7 @@ describe Pagy::Frontend do
       frontend.pagy_nav_foundation(pagy).must_equal \
         '<nav class="pagy-nav-foundation" aria-label="Pagination">' \
           '<ul class="pagination">' \
-            '<li><a href="/foo?page=9"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
+            '<li class="prev"><a href="/foo?page=9"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
             '<li><a href="/foo?page=1"   >1</a></li>' \
             '<li class="ellipsis" aria-hidden="true"></li><li><a href="/foo?page=6"   >6</a></li>' \
             '<li><a href="/foo?page=7"   >7</a></li>' \
@@ -83,7 +83,7 @@ describe Pagy::Frontend do
             '<li><a href="/foo?page=14"   >14</a></li>' \
             '<li class="ellipsis" aria-hidden="true"></li>' \
             '<li><a href="/foo?page=50"   >50</a></li>' \
-            '<li><a href="/foo?page=11"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
+            '<li class="next"><a href="/foo?page=11"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li>' \
           '</ul>' \
         '</nav>'
     end

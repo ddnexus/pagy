@@ -197,13 +197,13 @@ describe Pagy::Frontend do
         %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-foundation" aria-label="Pagination">) +
           %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
           %(<div class="button-group">) +
-            %(<a class="button primary disabled" href="#">&lsaquo;&nbsp;Prev</a>) +
+            %(<a class="prev button primary disabled" href="#">&lsaquo;&nbsp;Prev</a>) +
             %(<span class="pagy-compact-input hollow button">) +
               %(Page ) +
               %(<input type="number" min="1" max="6" value="1" style="padding: 0; border: none; text-align: center; width: 2rem;">) +
               %( of 6) +
             %(</span>) +
-            %(<a href="/foo?page=2"   rel="next" aria-label="next" class="button primary">Next&nbsp;&rsaquo;</a>) +
+            %(<a href="/foo?page=2"   rel="next" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a>) +
           %(</div>) +
         %(</nav>) +
         %(<script type="application/json" class="pagy-compact-json">["#{id}", "#{Pagy::Frontend::MARKER}", "1", false]</script>)
@@ -216,13 +216,13 @@ describe Pagy::Frontend do
         %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-foundation" aria-label="Pagination">) +
           %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
           %(<div class="button-group">) +
-            %(<a href="/foo?page=2"   rel="prev" aria-label="previous" class="button primary">&lsaquo;&nbsp;Prev</a>) +
+            %(<a href="/foo?page=2"   rel="prev" aria-label="previous" class="prev button primary">&lsaquo;&nbsp;Prev</a>) +
             %(<span class="pagy-compact-input hollow button">) +
               %(Page ) +
               %(<input type="number" min="1" max="6" value="3" style="padding: 0; border: none; text-align: center; width: 2rem;">) +
               %( of 6) +
             %(</span>) +
-            %(<a href="/foo?page=4"   rel="next" aria-label="next" class="button primary">Next&nbsp;&rsaquo;</a>) +
+            %(<a href="/foo?page=4"   rel="next" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a>) +
           %(</div>) +
         %(</nav>) +
         %(<script type="application/json" class="pagy-compact-json">["#{id}", "#{Pagy::Frontend::MARKER}", "3", false]</script>)
@@ -235,13 +235,13 @@ describe Pagy::Frontend do
         %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-foundation" aria-label="Pagination">) +
           %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
           %(<div class="button-group">) +
-            %(<a href="/foo?page=5"   rel="prev" aria-label="previous" class="button primary">&lsaquo;&nbsp;Prev</a>) +
+            %(<a href="/foo?page=5"   rel="prev" aria-label="previous" class="prev button primary">&lsaquo;&nbsp;Prev</a>) +
             %(<span class="pagy-compact-input hollow button">) +
               %(Page ) +
               %(<input type="number" min="1" max="6" value="6" style="padding: 0; border: none; text-align: center; width: 2rem;">) +
               %( of 6) +
             %(</span>) +
-            %(<a class="button primary disabled" href="#">Next&nbsp;&rsaquo;</a>) +
+            %(<a class="next button primary disabled" href="#">Next&nbsp;&rsaquo;</a>) +
           %(</div>) +
         %(</nav>) +
         %(<script type="application/json" class="pagy-compact-json">["#{id}", "#{Pagy::Frontend::MARKER}", "6", false]</script>)
