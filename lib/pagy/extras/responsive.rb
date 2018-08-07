@@ -92,6 +92,27 @@ class Pagy
       %(<nav id="pagy-nav-#{id}" class="pagy-nav-bulma pagination is-centered" role="navigation" aria-label="pagination"></nav>#{script})
     end
 
+    # Responsive pagination for Foundation: it returns the html with the series of links to the pages
+    # rendered by the Pagy.responsive javascript
+    def pagy_nav_responsive_foundation(pagy, id=caller(1,1)[0].hash)
+      tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
+
+      tags['before'] = +'<ul class="pagination">'
+      tags['before'] << (p_prev ? %(<li>#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+                               : %(<li class="disabled">#{pagy_t('pagy.nav.prev')}</li>))
+      responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+        tags[item.to_s] = if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                              # page link
+                          elsif item.is_a?(String) ; %(<li class="current">#{link.call item}</li>)              # active page
+                          elsif item == :gap       ; %(<li class="gap disabled">#{pagy_t('pagy.nav.gap')}</li>) # page gap
+                          end
+      end
+      tags['after'] = +(p_next ? %(<li>#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
+                               : %(<li class="disabled">#{pagy_t('pagy.nav.next')}</li>))
+      tags['after'] << '</ul>'
+      script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
+      %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive-foundation" aria-label="Pagination"></nav>#{script})
+    end
+
     # Responsive pagination for Materialize: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
     def pagy_nav_responsive_materialize(pagy, id=caller(1,1)[0].hash)
