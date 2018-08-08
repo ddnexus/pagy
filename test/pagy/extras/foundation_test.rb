@@ -16,7 +16,7 @@ describe Pagy::Frontend do
     it 'renders page 1' do
       pagy, _ = @array.pagy(1)
       frontend.pagy_nav_foundation(pagy).must_equal \
-        '<nav class="pagy-nav-foundation" aria-label="Pagination">' \
+        '<nav class="pagy-nav-foundation" role="navigation" aria-label="Pagination">' \
           '<ul class="pagination">' \
             '<li class="prev disabled">&lsaquo;&nbsp;Prev</li>' \
             '<li class="current"><span class="show-for-sr">You\'re on page</span><a href="/foo?page=1"   >1</a></li>'\
@@ -33,7 +33,7 @@ describe Pagy::Frontend do
     it 'renders page 3' do
       pagy, _ = @array.pagy(3)
       frontend.pagy_nav_foundation(pagy).must_equal \
-      '<nav class="pagy-nav-foundation" aria-label="Pagination">' \
+      '<nav class="pagy-nav-foundation" role="navigation" aria-label="Pagination">' \
         '<ul class="pagination">' \
           '<li class="prev"><a href="/foo?page=2"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
           '<li><a href="/foo?page=1"   >1</a></li>' \
@@ -50,7 +50,7 @@ describe Pagy::Frontend do
     it 'renders page 6' do
       pagy, _ = @array.pagy(6)
       frontend.pagy_nav_foundation(pagy).must_equal \
-       '<nav class="pagy-nav-foundation" aria-label="Pagination">' \
+       '<nav class="pagy-nav-foundation" role="navigation" aria-label="Pagination">' \
         '<ul class="pagination">' \
           '<li class="prev"><a href="/foo?page=5"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
           '<li><a href="/foo?page=1"   >1</a></li>' \
@@ -68,7 +68,7 @@ describe Pagy::Frontend do
       @array = (1..1000).to_a.extend(Pagy::Array::PageMethod)
       pagy, _ = @array.pagy(10)
       frontend.pagy_nav_foundation(pagy).must_equal \
-        '<nav class="pagy-nav-foundation" aria-label="Pagination">' \
+        '<nav class="pagy-nav-foundation" role="navigation" aria-label="Pagination">' \
           '<ul class="pagination">' \
             '<li class="prev"><a href="/foo?page=9"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
             '<li><a href="/foo?page=1"   >1</a></li>' \

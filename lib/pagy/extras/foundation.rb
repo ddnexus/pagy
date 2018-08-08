@@ -19,7 +19,7 @@ class Pagy
       end
       html << (p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
                       : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
-      %(<nav class="pagy-nav-foundation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
+      %(<nav class="pagy-nav-foundation" role="navigation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
     end
 
   end
