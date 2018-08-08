@@ -19,7 +19,7 @@ describe Pagy::Frontend do
         '<nav class="pagy-nav-foundation" role="navigation" aria-label="Pagination">' \
           '<ul class="pagination">' \
             '<li class="prev disabled">&lsaquo;&nbsp;Prev</li>' \
-            '<li class="current"><span class="show-for-sr">You\'re on page</span><a href="/foo?page=1"   >1</a></li>'\
+            '<li class="current"><span class="show-for-sr">You\'re on page</span>1</li>'\
             '<li><a href="/foo?page=2"   rel="next" >2</a></li>' \
             '<li><a href="/foo?page=3"   >3</a></li>' \
             '<li><a href="/foo?page=4"   >4</a></li>' \
@@ -38,7 +38,7 @@ describe Pagy::Frontend do
           '<li class="prev"><a href="/foo?page=2"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li>' \
           '<li><a href="/foo?page=1"   >1</a></li>' \
           '<li><a href="/foo?page=2"   rel="prev" >2</a></li>' \
-          '<li class="current"><span class="show-for-sr">You\'re on page</span><a href="/foo?page=3"   >3</a></li>' \
+          '<li class="current"><span class="show-for-sr">You\'re on page</span>3</li>' \
           '<li><a href="/foo?page=4"   rel="next" >4</a></li>' \
           '<li><a href="/foo?page=5"   >5</a></li>' \
           '<li><a href="/foo?page=6"   >6</a></li>' \
@@ -58,7 +58,7 @@ describe Pagy::Frontend do
           '<li><a href="/foo?page=3"   >3</a></li>' \
           '<li><a href="/foo?page=4"   >4</a></li>' \
           '<li><a href="/foo?page=5"   rel="prev" >5</a></li>' \
-          '<li class="current"><span class="show-for-sr">You\'re on page</span><a href="/foo?page=6"   >6</a></li>' \
+          '<li class="current"><span class="show-for-sr">You\'re on page</span>6</li>' \
           '<li class="next disabled">Next&nbsp;&rsaquo;</li>' \
         '</ul>' \
       '</nav>'
@@ -76,7 +76,7 @@ describe Pagy::Frontend do
             '<li><a href="/foo?page=7"   >7</a></li>' \
             '<li><a href="/foo?page=8"   >8</a></li>' \
             '<li><a href="/foo?page=9"   rel="prev" >9</a></li>' \
-            '<li class="current"><span class="show-for-sr">You\'re on page</span><a href="/foo?page=10"   >10</a></li>' \
+            '<li class="current"><span class="show-for-sr">You\'re on page</span>10</li>' \
             '<li><a href="/foo?page=11"   rel="next" >11</a></li>' \
             '<li><a href="/foo?page=12"   >12</a></li>' \
             '<li><a href="/foo?page=13"   >13</a></li>' \
