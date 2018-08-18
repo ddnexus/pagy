@@ -57,7 +57,7 @@ class Pagy
 
       tags['before'] = +'<ul class="pagination">'
       tags['before'] << (p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
-                               : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
+                                : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
       responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         tags[item.to_s] = if    item.is_a?(Integer); %(<li class="page-item">#{link.call item}</li>)                                                        # page link
                           elsif item.is_a?(String) ; %(<li class="page-item active">#{link.call item}</li>)                                                 # active page
@@ -90,6 +90,27 @@ class Pagy
       tags['after'] = '</ul>'
       script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
       %(<nav id="pagy-nav-#{id}" class="pagy-nav-bulma pagination is-centered" role="navigation" aria-label="pagination"></nav>#{script})
+    end
+
+    # Responsive pagination for Foundation: it returns the html with the series of links to the pages
+    # rendered by the Pagy.responsive javascript
+    def pagy_nav_responsive_foundation(pagy, id=caller(1,1)[0].hash)
+      tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
+
+      tags['before'] = +'<ul class="pagination">'
+      tags['before'] << (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+                                : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
+      responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+        tags[item.to_s] = if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                              # page link
+                          elsif item.is_a?(String) ; %(<li class="current"><span class="show-for-sr">#{pagy_t('pagy.nav.current')}</span> #{item}</li>)                        # active page
+                          elsif item == :gap       ; %(<li class="gap disabled">#{pagy_t('pagy.nav.gap')}</li>) # page gap
+                          end
+      end
+      tags['after'] = +(p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
+                               : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
+      tags['after'] << '</ul>'
+      script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
+      %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive-foundation" aria-label="Pagination"></nav>#{script})
     end
 
     # Responsive pagination for Materialize: it returns the html with the series of links to the pages

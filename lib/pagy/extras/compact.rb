@@ -58,6 +58,24 @@ class Pagy
       html << %(</div></nav><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}", #{!!defined?(TRIM)}]</script>)
     end
 
+    # Compact pagination for foundation: it returns the html with the series of links to the pages
+    # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
+    def pagy_nav_compact_foundation(pagy, id=caller(1,1)[0].hash)
+      html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
+
+      html << %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-foundation" role="navigation" aria-label="Pagination">)
+        html << link.call(MARKER, '', %(style="display: none;" ))
+        (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
+      html << %(<div class="input-group">)
+        html << (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0px;" aria-label="previous" class="prev button primary"')
+                        : %(<a style="margin-bottom: 0px;" class="prev button primary disabled" href="#">#{pagy_t('pagy.nav.prev')}</a>))
+        input = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="width: #{p_pages.to_s.length+1.5}rem;">)
+        html << %(<span class="input-group-label">#{pagy_t('pagy.compact.page')}</span> #{input} <span class="input-group-label">#{pagy_t('pagy.compact.of')} #{p_pages}</span>)
+        html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0px;" aria-label="next" class="next button primary"')
+                        : %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
+      html << %(</div></nav><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}", #{!!defined?(TRIM)}]</script>)
+    end
+
     # Compact pagination for materialize: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
     def pagy_nav_compact_materialize(pagy, id=caller(1,1)[0].hash)

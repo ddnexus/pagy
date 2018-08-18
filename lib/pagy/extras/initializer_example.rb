@@ -40,6 +40,10 @@
 # See https://ddnexus.github.io/pagy/extras/bulma
 # require 'pagy/extras/bulma'
 
+# Foundation: Nav helper and templates for Foundation pagination
+# See https://ddnexus.github.io/pagy/extras/foundation
+# require 'pagy/extras/foundation'
+
 # Materialize: Nav helper for Materialize pagination
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'

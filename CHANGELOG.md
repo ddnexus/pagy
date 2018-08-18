@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 0.17.0
+
+### Important Changes
+
+- added Foundation extra
+
+### Commits
+
+- [ba7d046](https://github.com/ddnexus/pagy/commit/ba7d046): added fixes and improvements for foundation extra:
+- [d78f85d](https://github.com/ddnexus/pagy/commit/d78f85d): Foundation extra (#79)
+- [13f37a0](https://github.com/ddnexus/pagy/commit/13f37a0): restyling of extras in README, docs and initializer example
+
 ## Version 0.16.0
 
 ### Important Changes
