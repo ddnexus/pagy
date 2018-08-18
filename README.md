@@ -93,6 +93,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 - [bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap): Nav helpers and templates for Bootstrap pagination
 - [bulma](http://ddnexus.github.io/pagy/extras/bulma): Nav helpers and templates for Bulma CSS pagination
+- [foundation](http://ddnexus.github.io/pagy/extras/foundation): Nav helpers and templates for Foundation pagination
 - [materialize](http://ddnexus.github.io/pagy/extras/materialize): Nav helpers for Materialize CSS pagination
 
 ### Feature Extras
