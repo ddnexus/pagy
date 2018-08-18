@@ -368,6 +368,14 @@ after_destroy { Rails.cache.delete_matched /^pagy-#{self.class.name}:/}
 
 That may work very well with static (or almost static) DBs, where there is not much writing and mostly reading. Less so with more DB writing, and probably not particularly useful with a DB in constant change.
 
+## Adding HTTP headers
+
+The HTTP pagination headers may be useful for APIs, but they are out of scope for Pagy. However there are a couple of gems that support Pagy and do that for you in a quite automatic way.
+
+Please, take a look at:
+- [api-pagination](https://github.com/davidcelis/api-pagination)
+- [pager-api](https://github.com/IcaliaLabs/pager-api)
+
 ## Using the pagy_info helper
 
 The page info that you get by using the `pagy_info` helper (e.g. "Displaying items __476-500__ of __1000__ in total") is composed by 2 strings stored in the `pagy.yml` locale file:

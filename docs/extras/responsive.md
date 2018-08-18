@@ -29,6 +29,7 @@ Then use the responsive helper(s) in any view:
 <%== pagy_nav_responsive(@pagy) %>
 <%== pagy_nav_responsive_bootstrap(@pagy) %>
 <%== pagy_nav_responsive_bulma(@pagy) %>
+<%== pagy_nav_responsive_foundation(@pagy) %>
 <%== pagy_nav_responsive_materialize(@pagy) %>
 ```
 
@@ -71,12 +72,16 @@ It can take an extra `id` argument, which is used to build the `id` attribute of
 
 ### pagy_nav_responsive_bootstrap(pagy, ...)
 
-This method is the same as the `pagy_nav_responsive`, but customized for Bootstrap.
+This method is the same as the `pagy_nav_responsive`, but customized for the Bootstrap framework.
 
 ### pagy_nav_responsive_bulma(pagy, ...)
 
-This method is the same as the `pagy_nav_responsive`, but customized for Bulma CSS framework.
+This method is the same as the `pagy_nav_responsive`, but customized for the Bulma CSS framework.
+
+### pagy_nav_responsive_foundation(pagy, ...)
+
+This method is the same as the `pagy_nav_responsive`, but customized for the Foundation framework.
 
 ### pagy_nav_responsive_materialize(pagy, ...)
 
-This method is the same as the `pagy_nav_responsive`, but customized for Materialize CSS framework.
+This method is the same as the `pagy_nav_responsive`, but customized for the Materialize CSS framework.
