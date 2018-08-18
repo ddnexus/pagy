@@ -194,57 +194,21 @@ describe Pagy::Frontend do
       pagy, _  = @array.pagy(1)
       html, id = frontend.pagy_nav_compact_foundation(pagy), caller(0,1)[0].hash
       html.must_equal \
-        %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-foundation" aria-label="Pagination">) +
-          %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
-          %(<div class="button-group">) +
-            %(<a class="prev button primary disabled" href="#">&lsaquo;&nbsp;Prev</a>) +
-            %(<span class="pagy-compact-input hollow button">) +
-              %(Page ) +
-              %(<input type="number" min="1" max="6" value="1" style="padding: 0; border: none; text-align: center; width: 2rem;">) +
-              %( of 6) +
-            %(</span>) +
-            %(<a href="/foo?page=2"   rel="next" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a>) +
-          %(</div>) +
-        %(</nav>) +
-        %(<script type="application/json" class="pagy-compact-json">["#{id}", "#{Pagy::Frontend::MARKER}", "1", false]</script>)
+      "<nav id=\"pagy-nav-#{id}\" class=\"pagy-nav-compact-foundation\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a style=\"margin-bottom: 0px;\" class=\"prev button primary disabled\" href=\"#\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page</span> <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"1\" style=\"width: 2.5rem;\"> <span class=\"input-group-label\">of 6</span><a href=\"/foo?page=2\"   rel=\"next\" style=\"margin-bottom: 0px;\" aria-label=\"next\" class=\"next button primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"#{id}\", \"#{Pagy::Frontend::MARKER}\", \"1\", false]</script>"
     end
 
     it 'renders page 3 for foundation' do
       pagy, _  = @array.pagy(3)
       html, id = frontend.pagy_nav_compact_foundation(pagy), caller(0,1)[0].hash
       html.must_equal \
-        %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-foundation" aria-label="Pagination">) +
-          %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
-          %(<div class="button-group">) +
-            %(<a href="/foo?page=2"   rel="prev" aria-label="previous" class="prev button primary">&lsaquo;&nbsp;Prev</a>) +
-            %(<span class="pagy-compact-input hollow button">) +
-              %(Page ) +
-              %(<input type="number" min="1" max="6" value="3" style="padding: 0; border: none; text-align: center; width: 2rem;">) +
-              %( of 6) +
-            %(</span>) +
-            %(<a href="/foo?page=4"   rel="next" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a>) +
-          %(</div>) +
-        %(</nav>) +
-        %(<script type="application/json" class="pagy-compact-json">["#{id}", "#{Pagy::Frontend::MARKER}", "3", false]</script>)
+        "<nav id=\"pagy-nav-#{id}\" class=\"pagy-nav-compact-foundation\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a href=\"/foo?page=2\"   rel=\"prev\" style=\"margin-bottom: 0px;\" aria-label=\"previous\" class=\"prev button primary\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page</span> <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"3\" style=\"width: 2.5rem;\"> <span class=\"input-group-label\">of 6</span><a href=\"/foo?page=4\"   rel=\"next\" style=\"margin-bottom: 0px;\" aria-label=\"next\" class=\"next button primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"#{id}\", \"#{Pagy::Frontend::MARKER}\", \"3\", false]</script>"
     end
 
     it 'renders page 6 for foundation' do
       pagy, _  = @array.pagy(6)
       html, id = frontend.pagy_nav_compact_foundation(pagy), caller(0,1)[0].hash
       html.must_equal \
-        %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-foundation" aria-label="Pagination">) +
-          %(<a href="/foo?page=#{Pagy::Frontend::MARKER}"   style="display: none;" ></a>) +
-          %(<div class="button-group">) +
-            %(<a href="/foo?page=5"   rel="prev" aria-label="previous" class="prev button primary">&lsaquo;&nbsp;Prev</a>) +
-            %(<span class="pagy-compact-input hollow button">) +
-              %(Page ) +
-              %(<input type="number" min="1" max="6" value="6" style="padding: 0; border: none; text-align: center; width: 2rem;">) +
-              %( of 6) +
-            %(</span>) +
-            %(<a class="next button primary disabled" href="#">Next&nbsp;&rsaquo;</a>) +
-          %(</div>) +
-        %(</nav>) +
-        %(<script type="application/json" class="pagy-compact-json">["#{id}", "#{Pagy::Frontend::MARKER}", "6", false]</script>)
+        "<nav id=\"pagy-nav-#{id}\" class=\"pagy-nav-compact-foundation\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a href=\"/foo?page=5\"   rel=\"prev\" style=\"margin-bottom: 0px;\" aria-label=\"previous\" class=\"prev button primary\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page</span> <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"6\" style=\"width: 2.5rem;\"> <span class=\"input-group-label\">of 6</span><a style=\"margin-bottom: 0px;\" class=\"next button primary disabled\" href=\"#\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"#{id}\", \"#{Pagy::Frontend::MARKER}\", \"6\", false]</script>"
     end
 
   end

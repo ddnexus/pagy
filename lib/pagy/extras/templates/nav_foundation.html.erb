@@ -13,7 +13,7 @@
 <% end                         -%>
 <% pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36] -%>
 <%   if    item.is_a?(Integer) -%>    <li><%== link.call(item) %></li>
-<%   elsif item.is_a?(String)  -%>    <li class="current"><span class="show-for-sr">You're on page</span><%= item %></li>
+<%   elsif item.is_a?(String)  -%>    <li class="current"><span class="show-for-sr"><%== pagy_t('pagy.nav.current')%></span> <%= item %></li>
 <%   elsif item == :gap        -%>    <li class="disabled gap"><%== pagy_t('pagy.nav.gap') %></li>
 <%   end                       -%>
 <% end                         -%>

@@ -6,6 +6,7 @@ en:
       prev: "&lsaquo;&nbsp;Prev"
       next: "Next&nbsp;&rsaquo;"
       gap: "&hellip;"
+      current: "You're on page"
     info:
       single_page:
         zero: "No %{item_name} found"

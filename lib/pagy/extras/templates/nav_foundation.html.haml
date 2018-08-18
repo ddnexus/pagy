@@ -22,7 +22,8 @@
 
       - elsif item.is_a?(String)                      # current page
         %li.current
-          %span.show-for-sr You're on page
+          %span.show-for-sr
+            != pagy_t('pagy.nav.current')
           != item
 
       - elsif item == :gap                            # page gap
