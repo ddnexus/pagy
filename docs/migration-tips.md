@@ -26,7 +26,7 @@ In this phase you will search statements from legacy pagination gems, remove the
 
 #### Preparation
 
-- Copy the content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and rename it `pagy.rb`: you will edit it during the process.
+- Copy the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer: you will edit it during the process.
 - Replace the legacy gem with `gem "pagy"` in the `Gemfile` and `bundle`, or install and require the gem if you don't use bundler.
 - Ensure that the legacy gem will not get loaded anymore (or it could mask some old statement still in place and not converted)
 - Add the `include Pagy::Backend` statement to the application controller.
@@ -68,7 +68,7 @@ One of the most noticeable difference between the legacy gems and Pagy is that P
 
 The other gems are careless about adding methods, scopes, and even configuration settings to them, so you will find different kinds of statements scattered around in your models. You should remove them all and eventually add the equivalent code where it makes sense to Pagy, which of course _is absolutely not_ in the models.
 
-For example, you may want to search for keywords like `per_page`, `per` and such, which are actually configuration settings. They should either go into the Pagy initializer (if they are global to the app) or into the specific `pagy` call in the controller if they are specific to an action.
+For example, you may want to search for keywords like `per_page`, `per` and such, which are actually configuration settings. They should either go into the `pagy.rb` initializer (if they are global to the app) or into the specific `pagy` call in the controller if they are specific to an action.
 
 If the app used the `page` scope in some of its methods or scopes, that should be removed (including removing the argument used to pass the page number to the scope), leaving the rest of the scope in place. Search where the app uses the already paginated scope in the controllers, and use the scope in a regular `pagy` statement. For example:
 

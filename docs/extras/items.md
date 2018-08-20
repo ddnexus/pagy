@@ -9,7 +9,7 @@ Allow the client to request a custom number of items per page with a ready to us
 
 See [extras](../extras.md) for general usage info.
 
-In the Pagy initializer:
+In the `pagy.rb` initializer:
 
 ```ruby
 require 'pagy/extras/items'
@@ -22,7 +22,7 @@ Configure [javascript](../extras.md#javascript) (only if you use the `pagy_items
 
 ## Files
 
-This extra is composed of the [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb) and may use the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/javascripts/pagy.js) file.
+This extra is composed of the [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb) and may use the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file.
 
 ## Variables
 

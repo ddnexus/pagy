@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## Version 0.18.0
+
+### Breaking Changes
+
+- The extras dir has been reorganized:
+    - the helpers in the `compact` and `responsive` extras have been integrated into the respective frontend extras (`bootstrap`, `bulma`, `foundation`, `materialize` and `navs`), so the `compact` and `responsive` extras are gone. You should remove them from the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, eventually adding the `navs` extra if you use its plain helpers.
+    - The `templates` and `javascripts` dirs have been moved to `lib`. If you use rails and the `pagy.js` you should update the `assets.paths` in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
+
+### Commits
+
+- [8865fdb](https://github.com/ddnexus/pagy/commit/8865fdb): updated docs
+- [f093c7e](https://github.com/ddnexus/pagy/commit/f093c7e): reorganization of tests
+- [cd11c4f](https://github.com/ddnexus/pagy/commit/cd11c4f): reorganization of extras dir
+
 ## Version 0.17.0
 
 ### Important Changes

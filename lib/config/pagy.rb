@@ -1,22 +1,9 @@
-# Example of initializer file
+# Pagy initializer file
 # Customize only what you really need but notice that Pagy works also without any of the following lines.
 
 
 # Extras
 # See https://ddnexus.github.io/pagy/extras
-
-
-# Component Extras
-
-# Compact: An alternative UI that combines the pagination with the nav info in one compact element
-# See https://ddnexus.github.io/pagy/extras/compact
-# require 'pagy/extras/compact'
-
-# Responsive: On resize, the number of page links will adapt in real-time to the available window/container width
-# See https://ddnexus.github.io/pagy/extras/responsive
-# require 'pagy/extras/responsive'
-# See https://ddnexus.github.io/pagy/extras/responsive#breakpoints
-# Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
 
 
 # Backend Extras
@@ -32,21 +19,32 @@
 
 # Frontend Extras
 
-# Bootstrap: Nav helper and templates for Bootstrap pagination
+# Navs: Add responsive and compact generic/unstyled nav helpers
+# Notice: the other frontend extras add their own framework-styled versions,
+# so require this extra only if you need the plain unstyled version
+# See https://ddnexus.github.io/pagy/extras/navs
+# require 'pagy/extras/navs'
+
+# Bootstrap: Nav, responsive and compact helpers and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap
 # require 'pagy/extras/bootstrap'
 
-# Bulma: Nav helper and templates for Bulma pagination
+# Bulma: Nav, responsive and compact helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
 # require 'pagy/extras/bulma'
 
-# Foundation: Nav helper and templates for Foundation pagination
+# Foundation: Nav, responsive and compact helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/extras/foundation
 # require 'pagy/extras/foundation'
 
-# Materialize: Nav helper for Materialize pagination
+# Materialize: Nav, responsive and compact helpers for Materialize pagination
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'
+
+# Breakoints var used byt the responsive helpers
+# See https://ddnexus.github.io/pagy/extras/navs#breakpoints
+# Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
+
 
 
 # Feature Extras
@@ -91,8 +89,8 @@
 # Rails
 
 # Rails: extras assets path required by compact, items and responsive extras
-# See https://ddnexus.github.io/pagy/extras
-# Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
+# See https://ddnexus.github.io/pagy/extras#javascript
+# Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
 
 # I18n
