@@ -90,6 +90,8 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 - [bulma](http://ddnexus.github.io/pagy/extras/bulma): Nav helpers and templates for Bulma CSS pagination
 - [foundation](http://ddnexus.github.io/pagy/extras/foundation): Nav helpers and templates for Foundation pagination
 - [materialize](http://ddnexus.github.io/pagy/extras/materialize): Nav helpers for Materialize CSS pagination
+- [navs](http://ddnexus.github.io/pagy/extras/navs): Responsive and compact generic/unstyled nav helpers
+- [semantic](http://ddnexus.github.io/pagy/extras/semantic): Nav helper for Semantic UI CSS pagination
 
 ### Feature Extras
 

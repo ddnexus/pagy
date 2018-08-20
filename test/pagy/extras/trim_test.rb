@@ -2,8 +2,9 @@ require_relative '../../test_helper'
 require 'pagy/extras/navs'
 require 'pagy/extras/bootstrap'
 require 'pagy/extras/bulma'
-require 'pagy/extras/foundation'
+# require 'pagy/extras/foundation'
 require 'pagy/extras/materialize'
+# require 'pagy/extras/semantic'
 require 'pagy/extras/trim'
 
 SingleCov.covered!

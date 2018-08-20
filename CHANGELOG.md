@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 0.19.0
+
+### Important Changes
+
+- added Semantic extra
+
+### Commits
+
+- [b65a905](https://github.com/ddnexus/pagy/commit/b65a905): fix for page_link string and conflicts, added compact and responsive navs tests and docs (#73)
+- [f147cca](https://github.com/ddnexus/pagy/commit/f147cca): Semantic UI nav helper (#73)
+- [429ac14](https://github.com/ddnexus/pagy/commit/429ac14): updated pagy.js requirements info
+
 ## Version 0.18.0
 
 ### Breaking Changes
