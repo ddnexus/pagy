@@ -118,7 +118,7 @@ If you need to add some HTML attribute to the page links, you can pass some extr
 
 1. For all pagy objects: set the global variable `:link_extra`:
     ```ruby
-    # in the Pagy initializer file
+    # in the pagy.rb initializer file
     Pagy::VARS[:link_extra] = 'data-remote="true"'
     # in any view
     link = pagy_link_proc(pagy)

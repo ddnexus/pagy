@@ -58,7 +58,7 @@ or with a template:
 
 Pagy should work out of the box for most Rack based apps (e.g. Rails) even without configuring anything, however you can configure all its features and all the extras loading a `pagy.rb` initializer file.
 
-You can copy the comprehensive and annotated content of the [initializer_example.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) and uncomment and edit what you may need. The file contains also all the relevant documentation links.
+You can copy the comprehensive and annotated [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer and uncomment and edit what you may need. The file contains also all the relevant documentation links.
 
 ## Environment Assumptions
 
@@ -277,14 +277,13 @@ These helpers take the Pagy object and returns the HTML string with the paginati
 
 **Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
-| Extra                                | Helpers                                                                                                                |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| [bootstrap](extras/bootstrap.md)     | `pagy_nav_bootstrap`                                                                                                   |
-| [bulma](extras/bulma.md)             | `pagy_nav_bulma`                                                                                                       |
-| [compact](extras/compact.md)         | `pagy_nav_compact`, `pagy_nav_compact_bootstrap`, `pagy_nav_compact_bulma` , `pagy_nav_compact_materialize`            |
-| [items](extras/items.md)             | `pagy_items_selector`                                                                                                  |
-| [materialize](extras/materialize.md) | `pagy_nav_materialize`                                                                                                 |
-| [responsive](extras/responsive.md)   | `pagy_nav_responsive`, `pagy_nav_responsive_bootstrap`, `pagy_nav_responsive_bulma`, `pagy_nav_responsive_materialize` |
+| Extra                                | Helpers                                                                                   |
+| ------------------------------------ | ----------------------------------------------------------------------------------------- |
+| [bootstrap](extras/bootstrap.md)     | `pagy_nav_bootstrap`, `pagy_nav_responsive_bootstrap`, `pagy_nav_compact_bootstrap`       |
+| [bulma](extras/bulma.md)             | `pagy_nav_bulma`, `pagy_nav_responsive_bulma`, `pagy_nav_compact_bulma`                   |
+| [foundation](extras/foundation.md)   | `pagy_nav_foundation`, `pagy_nav_responsive_foundation`, `pagy_nav_compact_foundation`    |
+| [materialize](extras/materialize.md) | `pagy_nav_materialize`, `pagy_nav_responsive_materialize`, `pagy_nav_compact_materialize` |
+| [navs](extras/navs.md)               | `pagy_nav_responsive`, `pagy_nav_compact`                                                 |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -311,27 +310,27 @@ Pagy provides the replacement templates for the `pagy_nav`, `pagy_nav_bootstrap`
 They produce exactly the same output of the helpers, but they are slower, so use them only if you need to edit something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
 - `pagy`
-  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav.html.erb)
-  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav.html.haml)
-  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav.html.slim)
+  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.erb)
+  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.haml)
+  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.slim)
 - `bootstrap`
-  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.erb)
-  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.haml)
-  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bootstrap.html.slim)
+  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.erb)
+  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.haml)
+  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.slim)
 - `bulma`
-  - [nav_bulma.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bulma.html.erb)
-  - [nav_bulma.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bulma.html.haml)
-  - [nav_bulma.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_bulma.html.slim)
+  - [nav_bulma.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.erb)
+  - [nav_bulma.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.haml)
+  - [nav_bulma.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.slim)
 - `foundation`
-  - [nav_foundation.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_foundation.html.erb)
-  - [nav_foundation.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_foundation.html.haml)
-  - [nav_foundation.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/templates/nav_foundation.html.slim)
+  - [nav_foundation.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.erb)
+  - [nav_foundation.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.haml)
+  - [nav_foundation.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.slim)
 
 If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
 
 ```erb
-<%== render file: Pagy.root.join('pagy', 'extras', 'templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
-<%== render file: Pagy.root.join('pagy', 'extras', 'templates', 'nav_bootstrap.html.erb'), locals: {pagy: @pagy} %>
+<%== render file: Pagy.root.join('templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
+<%== render file: Pagy.root.join('templates', 'nav_bootstrap.html.erb'), locals: {pagy: @pagy} %>
 ```
 
 You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
@@ -373,6 +372,7 @@ That may work very well with static (or almost static) DBs, where there is not m
 The HTTP pagination headers may be useful for APIs, but they are out of scope for Pagy. However there are a couple of gems that support Pagy and do that for you in a quite automatic way.
 
 Please, take a look at:
+
 - [api-pagination](https://github.com/davidcelis/api-pagination)
 - [pager-api](https://github.com/IcaliaLabs/pager-api)
 

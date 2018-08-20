@@ -79,11 +79,6 @@ _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start) for more 
 
 Use the official extras, or write your own in just a few lines. Extras add special options and manage different components, behaviors, Frontend or Backend environments... usually by just requiring them:
 
-### Component Extras
-
-- [compact](http://ddnexus.github.io/pagy/extras/compact): An alternative UI that combines the pagination feature with the navigation info in one compact element: ![pagy-compact](docs/assets/images/pagy-compact-w.png)
-- [responsive](http://ddnexus.github.io/pagy/extras/responsive): On resize, the number of page links adapts in real-time to the available window or container width: ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
-
 ### Backend Extras
 
 - [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
@@ -102,6 +97,13 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with a ready to use selector UI
 - [out_of_range](http://ddnexus.github.io/pagy/extras/out_of_range): Allow for easy handling of out of range pages
 - [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
+
+### Alternative components
+
+Besides the classic pagination `nav`, Pagy offers a few ready to use alternatives like:
+
+- [compact nav](http://ddnexus.github.io/pagy/extras/navs#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element: ![pagy-compact](docs/assets/images/pagy-compact-w.png)
+- [responsive nav](http://ddnexus.github.io/pagy/extras/navs#responsive-navs): On resize, the number of page links adapts in real-time to the available window or container width: ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
 ## Chat Support and Feedback
 

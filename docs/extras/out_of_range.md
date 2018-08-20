@@ -9,7 +9,7 @@ This extra allows for easy handling of out of range pages. It internally rescues
 
 See [extras](../extras.md) for general usage info.
 
-In the Pagy initializer:
+In the `pagy.rb` initializer:
 
 ```ruby
 require 'pagy/extras/out_of_range'

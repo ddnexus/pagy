@@ -8,7 +8,7 @@ The scope of the `Pagy` class is keeping track of the all integers and variables
 ## Synopsys
 
 ```ruby
-# set global defaults and extra variables typically in the Pagy initializer
+# set global defaults and extra variables typically in the pagy.rb initializer
 # they will get merged with every new Pagy instance
 Pagy::VARS[:items]    = 25
 Pagy::VARS[:some_var] = 'default value'
@@ -38,7 +38,7 @@ pagy.series
 
 The `Pagy::VARS` is a globally available hash used to set defaults variables. It gets merged with (and overridden by) the variables passed with the `new` method every times a `Pagy` instance gets created.
 
-You will typically use it in an initializer file to pass defaults values. For example:
+You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
 ```ruby
 Pagy::VARS[:items]     = 25
