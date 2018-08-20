@@ -88,7 +88,7 @@
 
 # Rails
 
-# Rails: extras assets path required by compact, items and responsive extras
+# Rails: extras assets path required by the compact and responsive navs, and the items extra
 # See https://ddnexus.github.io/pagy/extras#javascript
 # Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 

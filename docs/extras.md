@@ -38,7 +38,7 @@ All the added methods are documented in the respective extras.
 
 ## Javascript
 
-The `compact`, `items` and `responsive` extras use javascript, so if you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load.
+The the `compact` and `responsive` navs, and the `items` extra use javascript, so if you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load.
 
 ### In rails apps
 
