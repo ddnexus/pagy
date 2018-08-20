@@ -41,9 +41,13 @@
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'
 
-# Breakoints var used byt the responsive helpers
+# Breakoints var used by the responsive helpers
 # See https://ddnexus.github.io/pagy/extras/navs#breakpoints
 # Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
+
+# Semantic UI: Nav helper for Semantic UI pagination
+# See https://ddnexus.github.io/pagy/extras/semantic
+# require 'pagy/extras/semantic'
 
 
 
