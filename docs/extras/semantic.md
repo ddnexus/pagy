@@ -9,11 +9,19 @@ This extra adds nav helper and templates for Semantic UI CSS framework [paginati
 
 See [extras](../extras.md) for general usage info.
 
+In the `pagy.rb` initializer:
+
+```ruby
+require 'pagy/extras/semantic'
+```
+
 Render the navigation links in some view...
 with a fast helper:
 
 ```erb
 <%== pagy_nav_semantic(@pagy) %>
+<%== pagy_nav_responsive_semantic(@pagy) %>
+<%== pagy_nav_compact_semantic(@pagy) %>
 ```
 
 ## Files
@@ -24,11 +32,23 @@ This extra is composed of 1 file:
 
 ## Methods
 
-This extra adds one nav helpers to the `Pagy::Frontend` module. You can customize it by overriding it directly in your own view helper.
+This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by overriding them directly in your own view helper.
 
 ### pagy_nav_semantic(pagy)
 
 This method is the same as the `pagy_nav`, but customized for Semantic UI.
+
+### pagy_nav_compact_semantic(pagy, ...)
+
+This method is the same as the `pagy_nav_compact`, but customized for the Bootstrap framework.
+
+See more details in the [compact navs](navs.md#compact-navs) documentation.
+
+### pagy_nav_responsive_semantic(pagy, ...)
+
+This method is the same as the `pagy_nav_responsive`, but customized for the Bootstrap framework.
+
+See more details in the [responsive navs](navs.md#responsive-navs) documentation.
 
 ## Templates
 
