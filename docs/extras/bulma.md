@@ -3,7 +3,7 @@ title: Bulma
 ---
 # Bulma Extra
 
-This extra adds nav helper and templates for Bulma CSS framework [pagination component](https://bulma.io/documentation/components/pagination).
+This extra adds nav helper and templates for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination).
 
 ## Synopsys
 

@@ -3,7 +3,7 @@ title: Bootstrap
 ---
 # Bootstrap Extra
 
-This extra adds nav helpers and templates for Bootstrap pagination.
+This extra adds nav helpers and templates for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination).
 
 ## Synopsys
 

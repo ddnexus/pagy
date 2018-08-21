@@ -3,7 +3,7 @@ title: Foundation
 ---
 # Foundation Extra
 
-This extra adds nav helper and templates for Foundation pagination.
+This extra adds nav helper and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
 
 ## Synopsys
 

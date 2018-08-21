@@ -86,16 +86,16 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 ### Frontend Extras
 
-- [bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap): Nav helpers and templates for Bootstrap pagination
-- [bulma](http://ddnexus.github.io/pagy/extras/bulma): Nav helpers and templates for Bulma CSS pagination
-- [foundation](http://ddnexus.github.io/pagy/extras/foundation): Nav helpers and templates for Foundation pagination
-- [materialize](http://ddnexus.github.io/pagy/extras/materialize): Nav helpers for Materialize CSS pagination
+- [bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap): Nav helpers and templates for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)
+- [bulma](http://ddnexus.github.io/pagy/extras/bulma): Nav helpers and templates for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
+- [foundation](http://ddnexus.github.io/pagy/extras/foundation): Nav helpers and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
+- [materialize](http://ddnexus.github.io/pagy/extras/materialize): Nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
 - [navs](http://ddnexus.github.io/pagy/extras/navs): Responsive and compact generic/unstyled nav helpers
-- [semantic](http://ddnexus.github.io/pagy/extras/semantic): Nav helper for Semantic UI CSS pagination
+- [semantic](http://ddnexus.github.io/pagy/extras/semantic): Nav helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
 
 ### Feature Extras
 
-- [I18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy implementation
+- [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy implementation
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with a ready to use selector UI
 - [out_of_range](http://ddnexus.github.io/pagy/extras/out_of_range): Allow for easy handling of out of range pages
 - [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
