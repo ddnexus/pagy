@@ -6,7 +6,7 @@ require 'pagy/extras/shared'
 class Pagy
   module Frontend
 
-    # Pagination for foundation: it returns the html with the series of links to the pages
+    # Pagination for Foundation: it returns the html with the series of links to the pages
     def pagy_nav_foundation(pagy)
       html, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
 
@@ -23,7 +23,7 @@ class Pagy
       %(<nav class="pagy-nav-foundation" role="navigation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
     end
 
-    # Compact pagination for foundation: it returns the html with the series of links to the pages
+    # Compact pagination for Foundation: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
     def pagy_nav_compact_foundation(pagy, id=caller(1,1)[0].hash)
       html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages

@@ -35,7 +35,7 @@ This extra is composed of 4 files:
 
 ## Methods
 
-This extra adds one nav helpers to the `Pagy::Frontend` module. You can customize it by overriding it directly in your own view helper.
+This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize it by overriding it directly in your own view helper.
 
 ### pagy_nav_foundation(pagy)
 

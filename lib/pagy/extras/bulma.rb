@@ -6,6 +6,7 @@ require 'pagy/extras/shared'
 class Pagy
   module Frontend
 
+    # Pagination for Bulma: it returns the html with the series of links to the pages
     def pagy_nav_bulma(pagy)
       html, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
 

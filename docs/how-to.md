@@ -267,6 +267,15 @@ subset = Product.offset(100).limit(315)
 
 Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and from 301 to 315 for the last page.
 
+## Paginate non-ActiveRecord collections
+
+The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.) you may need to override it in your controller, usually by simply removing the `:all` argument passed to `count`:
+
+```ruby
+#count = collection.count(:all) 
+count = collection.count
+```
+
 ## Using the pagy_nav* helpers
 
 These helpers take the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:

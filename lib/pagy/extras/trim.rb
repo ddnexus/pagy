@@ -5,7 +5,7 @@ class Pagy
 
   module Frontend
 
-    # boolean used by the compact extra
+    # boolean used by the compact navs
     TRIM = true
 
     def pagy_trim_url(url, param_string)
