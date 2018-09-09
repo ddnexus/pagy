@@ -113,6 +113,16 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 ## Useful Links
 
+### GoRails Screencast
+
+[![Objects Chart](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
+
+### Posts and Tutorials
+
+- [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy) by Tiago Franco
+- [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
+- [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
+
 ### Docs
 
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
@@ -121,12 +131,6 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison)
-
-### Posts and Tutorials
-
-- [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy) by Tiago Franco
-- [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
-- [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
 
 ## Please Star and Share!
 
