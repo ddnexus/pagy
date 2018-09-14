@@ -23,6 +23,29 @@ en:
     items:
       show: "Show"
       items: "items per page"
+es:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Prev"
+      next: "Siguiente&nbsp;&rsaquo;"
+      gap: "&hellip;"
+      current: "Estás en la página"
+    info:
+      single_page:
+        zero: "Sin resultados"
+        one: "Mostrando 1 %{item_name}"
+        other: "Mostrando %{count} %{item_name}"
+      multiple_pages: "Mostrando %{item_name}s %{from}-%{to} de %{count} en total"
+      item_name:
+        zero: "items"
+        one: "item"
+        other: "items"
+    compact:
+      page: "Pagina"
+      of: "de"
+    items:
+      show: "Mostrar"
+      items: "items por página"
 tr:
   pagy:
     nav:
