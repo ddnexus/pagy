@@ -41,7 +41,7 @@ es:
         one: "item"
         other: "items"
     compact:
-      page: "Pagina"
+      page: "Página"
       of: "de"
     items:
       show: "Mostrar"
