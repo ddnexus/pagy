@@ -3,13 +3,13 @@ title: Pagy::Backend
 ---
 # Pagy::Backend
 
-This module _(see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_ provides a _generic_ pagination method (`pagy`) that should work with most ORM collection (e.g. `ActiveRecord`, `Sequel`, `Mongoid`, ... collections).
+This module _(see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_ provides a _generic_ pagination method (`pagy`) that works with `ActiveRecord` out of the box. For any other collection (e.g. `Sequel`, `Mongoid`, `Elasticsearch`, ...) you may need to override some sub-method or [write your own Pagy methods](#writing-your-own-pagy-methods).
 
 For overriding convenience, the `pagy` method calls two sub-methods that you may need to override in order to customize it for any type of collection (e.g. different ORM types, Array, elasticsearch results, etc.).
 
-However, keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods))
+**Notice**: Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods).
 
-**Notice**: This module works for ActiveRecord collections out of the box. For other types of colections you may need to override some sub-method or write your own `pagy_*` methods. For paginating Arrays you may want to use the [array extra](../extras/array.md).
+Check also the [array extra](../extras/array.md) and [searchkick extra](../extras/searchkick.md) for specific backend customizations.
 
 ## Synopsys
 
@@ -80,7 +80,7 @@ end
 
 ## Writing your own Pagy methods
 
-Somethimes you may need to paginate different kinds of collections (that require different overriding) in the same controller, so using one single `pagy` method would not be an option.
+Sometimes you may need to paginate different kinds of collections (that require different overriding) in the same controller, so using one single `pagy` method would not be an option.
 
 In that case you can define a number of `pagy_*` custom methods specific for each collection.
 
@@ -94,3 +94,5 @@ end
 ```
 
 You can easily write a `pagy` method for _any possible_ environment: please read how to [Paginate Any Collection](../how-to.md#paginate-any-collection) for details.
+
+**IMPORTANT**: If you write some useful backend customization, please [let us know](https://gitter.im/ruby-pagy/Lobby) if you can submit a PR for a specific extra or if you need any help to do it.

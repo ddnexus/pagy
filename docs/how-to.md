@@ -56,7 +56,9 @@ or with a template:
 
 ## Global Configuration
 
-Pagy should work out of the box for most Rack based apps (e.g. Rails) even without configuring anything, however you can configure all its features and all the extras loading a `pagy.rb` initializer file.
+Unlike the other pagination gems, Pagy is very modular so it doesn't load nor execute unnecessary code in your app. Every feature that is not strictly needed for the basic pagination can be explicitly required in your initializer file.
+
+Basic pagination should work out of the box for most Rack based apps (e.g. Rails) even without configuring/requiring anything, however you can tweak all its features and all the extras by loading a `pagy.rb` initializer file.
 
 You can copy the comprehensive and annotated [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer and uncomment and edit what you may need. The file contains also all the relevant documentation links.
 
@@ -75,10 +77,10 @@ Pagy works out of the box assuming that:
 
 ### Any other scenario assumptions
 
-Pagy can work in any other scenario assuming that:
+Pagy can also work in any other scenario assuming that:
 
 - If your framework doesn't have a `params` method you may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
-- If the collection you are paginating doesn't respond to `offset` and `limit` you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
+- If the collection you are paginating doesn't respond to `offset` and `limit` you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection) or use a specific extra if available (e.g. `array`, `searchkick`, ...)
 - If your framework doesn't have a `request` method you may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
 
 **Notice**: the total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module.
@@ -258,7 +260,7 @@ You have many ways to paginate an array with Pagy:
 
 ## Paginate a pre-offsetted and pre-limited collection
 
-With the other pagination gems you cannot paginate a subset of a collection that you got using offset and limit. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
+With the other pagination gems you cannot paginate a subset of a collection that you got using `offset` and `limit`. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
 
 ```ruby
 subset = Product.offset(100).limit(315)
@@ -278,7 +280,7 @@ count = collection.count
 
 ## Using the pagy_nav* helpers
 
-These helpers take the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
+These helpers take the Pagy object and return the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
 ```erb
 <%== pagy_nav(@pagy) %>
@@ -314,9 +316,9 @@ By default Pagy generates all the page links including the `page` param. If you 
 
 The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose wisely.
 
-Pagy provides the replacement templates for the `pagy_nav`, `pagy_nav_bootstrap` and the `pagy_nav_bulma` helpers (available with the `bootstrap` and `bulma` extras) in 3 flavors: `erb`, `haml` and `slim`.
+Pagy provides the replacement templates for the `pagy_nav`, `pagy_nav_bootstrap`, `pagy_nav_bulma` and the `pagy_nav_foundation` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
 
-They produce exactly the same output of the helpers, but they are slower, so use them only if you need to edit something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
+They produce exactly the same output of the helpers, but since they are slower, using them wouldn't make any sense unless you need to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
 - `pagy`
   - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.erb)
@@ -378,7 +380,7 @@ That may work very well with static (or almost static) DBs, where there is not m
 
 ## Adding HTTP headers
 
-The HTTP pagination headers may be useful for APIs, but they are out of scope for Pagy. However there are a couple of gems that support Pagy and do that for you in a quite automatic way.
+The HTTP pagination headers may be useful for APIs, but they are currently out of scope for Pagy. However there are a couple of gems that support Pagy and do that for you in a quite automatic way.
 
 Please, take a look at:
 
