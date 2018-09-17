@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## Version 0.19.1
+
+### Changes
+
+- added Spanish locale
+
+### Commits
+
+- [6d498a1](https://github.com/ddnexus/pagy/commit/6d498a1): Added Spanish locale (#82)
+- [65db877](https://github.com/ddnexus/pagy/commit/65db877): general docs improvements
+- [5862b3f](https://github.com/ddnexus/pagy/commit/5862b3f): updated README
+- [6414395](https://github.com/ddnexus/pagy/commit/6414395): added GoRails screencast link to README
+- [a8ad399](https://github.com/ddnexus/pagy/commit/a8ad399): docs fixes and improvements
+- [435e849](https://github.com/ddnexus/pagy/commit/435e849): updated docs
+
+
 ## Version 0.19.0
 
 ### Important Changes
