@@ -24,7 +24,7 @@ This extra is composed of 1 small file:
 
 ## Methods
 
-The `items` extra overrides one method and adds a utility helper to the `Pagy::Frontend` module. The overridden method is alias-chained with `*_with_trim` and `*_without_trim`)
+The `trim` extra overrides one method and adds a utility helper to the `Pagy::Frontend` module. The overridden method is alias-chained with `*_with_trim` and `*_without_trim`)
 
 ### pagy_link_proc(pagy, link_extra='')
 
