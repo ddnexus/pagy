@@ -3,7 +3,7 @@ title: Items
 ---
 # Items Extra
 
-Allow the client to request a custom number of items per page with a ready to use selector UI. It is useful with APIs or higly user-customizable apps.
+Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or higly user-customizable apps.
 
 ## Synopsys
 
@@ -54,7 +54,7 @@ Pagy.new(count:100, items_param: :custom_param, max_items: 50)
 **Notice**: you can override the items that the client sends with the params by passing the `:items` explicitly. For example:
 
 ```ruby
-# this will ignore the params[:item] (or any custom :param_name)
+# this will ignore the params[:items] (or any custom :param_name)
 # from the client for this instance, and serve 30 items
 pagy(scope, items: 30)
 ```

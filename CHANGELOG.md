@@ -251,7 +251,7 @@
 
 - Improvements for compact extra
 - Refactoring of test structure and tasks
-- Added items extra: Allow the client to request a custom number of items per page with a ready to use selector UI
+- Added items extra: Allow the client to request a custom number of items per page with an optional selector UI
 
 ### Commits
 
