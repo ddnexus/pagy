@@ -42,7 +42,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 
 - The `Pagy` class doesn't need to know anything about your models, ORM or storage, so it doesn't add any code to them _(see [why...](https://ddnexus.github.io/pagy/index#stay-away-from-the-models))_
 - It works with all kinds of collections, even pre-paginated, records, Arrays, JSON data... and just whatever you can count _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-any-collection))_
-- Pagy works with all Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box _(see [more...](https://ddnexus.github.io/pagy/how-to#environment-assumptions))_
+- Pagy works with the most popular Rack frameworks (Rails, Sinatra, Padrino, ecc.) out of the box _(see [more...](https://ddnexus.github.io/pagy/how-to#environment-assumptions))_
 - It works also with any possible non-Rack environment by just overriding one or two two-lines methods _(see [more...](https://ddnexus.github.io/pagy/how-to#environment-assumptions))_
 
 ### Unlike the other gems
@@ -98,7 +98,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 ### Feature Extras
 
 - [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy implementation
-- [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with a ready to use selector UI
+- [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
 - [out_of_range](http://ddnexus.github.io/pagy/extras/out_of_range): Allow for easy handling of out of range pages
 - [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
 

@@ -24,14 +24,9 @@ This extra is composed of 1 small file:
 
 ## Methods
 
-The `trim` extra overrides one method and adds a utility helper to the `Pagy::Frontend` module. The overridden method is alias-chained with `*_with_trim` and `*_without_trim`)
+The `trim` extra overrides the `pagy_link_proc` method in the `Pagy::Frontend` module.
 
 ### pagy_link_proc(pagy, link_extra='')
 
-This extra overrides the `pagy_link_proc` method of the `Pagy::Frontend` module in order to trim the `:page_param` param from the first page link.
-
-### pagy_trim_url(url, param_string)
-
-This is the utility helper used internally in order to remove the `param_string` from the `url`. The `param_string` must be the complete string of name and value: e.g. `"page=1"`.
-
+This method trims the `:page_param` param from the first page link. It is alias-chained with `*_with_trim` and `*_without_trim`.
 

@@ -16,10 +16,10 @@ describe Pagy::Frontend do
   describe "#pagy_trim_url" do
 
     it 'trims urls' do
-      frontend.pagy_trim_url('foo/bar?page=1', 'page=1').must_equal('foo/bar')
-      frontend.pagy_trim_url('foo/bar?a=page&page=1', 'page=1').must_equal('foo/bar?a=page')
-      frontend.pagy_trim_url('foo/bar?a=page&page=1&b=4', 'page=1').must_equal('foo/bar?a=page&b=4')
-      frontend.pagy_trim_url('foo/bar?a=page&page=1&b=4&my_page=1', 'page=1').must_equal('foo/bar?a=page&b=4&my_page=1')
+      frontend.send(:pagy_trim_url, 'foo/bar?page=1', 'page=1').must_equal('foo/bar')
+      frontend.send(:pagy_trim_url, 'foo/bar?a=page&page=1', 'page=1').must_equal('foo/bar?a=page')
+      frontend.send(:pagy_trim_url, 'foo/bar?a=page&page=1&b=4', 'page=1').must_equal('foo/bar?a=page&b=4')
+      frontend.send(:pagy_trim_url, 'foo/bar?a=page&page=1&b=4&my_page=1', 'page=1').must_equal('foo/bar?a=page&b=4&my_page=1')
     end
 
   end

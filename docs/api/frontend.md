@@ -175,7 +175,7 @@ For multi-language apps you need the dynamic translation provided by the [i18n e
 
 ### Single-language apps
 
-Single-language apps (i.e. only `fr` or only `en` or only ...) don't need to switch between languages, so they don't need the `i18n` extra/`I18n` gem (although it you could choose to use it).
+Single-language apps (i.e. only `fr` or only `en` or only ...) don't need to switch between languages, so they don't need the `i18n` extra/`I18n` gem (although you could choose to use it).
 
 By default, Pagy handles its own dictionary file directly, providing pluralization and interpolation (without dynamic translation) _5x faster_ and using _3.5x less memory_ than the standard `I18n` gem.
 
@@ -232,13 +232,16 @@ The custom proc should receive the `count` as a single argument and should retur
 
 #### Adding the model translations
 
-If you use the `pagy_info` helper with the specific model names instead of the generic "items" string, you may need to add entries for the models in the dictionary file. For example:
+When Pagy uses its own handling of the dictionary file, it has only access to the strings in its own file and not in other `I18n` files used by the rest of the app.
+
+That means that if you use the `pagy_info` helper with the specific model names instead of the generic "items" string, you may need to add entries for the models in the pagy dictionary file. For example:
 
 ```yaml
 en:
   pagy:
     ...
 
+  # added models strings
   activerecord:
     models:
       product:

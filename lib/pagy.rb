@@ -3,7 +3,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '0.19.1'
+class Pagy ; VERSION = '0.19.2'
 
   class OutOfRangeError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
