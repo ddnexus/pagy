@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Version 0.19.2
+
+### Changes
+
+- added Russian locale
+
+### Commits
+
+- [099731b](https://github.com/ddnexus/pagy/commit/099731b): small improvement in i18n docs
+- [ef77ae2](https://github.com/ddnexus/pagy/commit/ef77ae2): Added ru translation (#84)
+- [d4b49d6](https://github.com/ddnexus/pagy/commit/d4b49d6): Fixed a typo in spanish locale. (#85)
+- [a91b72a](https://github.com/ddnexus/pagy/commit/a91b72a): small description change for items selector UI
+- [a62b222](https://github.com/ddnexus/pagy/commit/a62b222): small refactoring of the trim extra
+- [c23505a](https://github.com/ddnexus/pagy/commit/c23505a): fix for doc typo
+
 ## Version 0.19.1
 
 ### Changes
