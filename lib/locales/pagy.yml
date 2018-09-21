@@ -35,7 +35,7 @@ es:
         zero: "Sin resultados"
         one: "Mostrando 1 %{item_name}"
         other: "Mostrando %{count} %{item_name}"
-      multiple_pages: "Mostrando %{item_name}s %{from}-%{to} de %{count} en total"
+      multiple_pages: "Mostrando %{item_name} %{from}-%{to} de %{count} en total"
       item_name:
         zero: "ítems"
         one: "ítem"
