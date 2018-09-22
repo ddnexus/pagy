@@ -44,6 +44,7 @@ Other extras provide also the following framework-styled helpers:
 <%== pagy_nav_compact_bulma(@pagy) %>
 <%== pagy_nav_compact_foundation(@pagy) %>
 <%== pagy_nav_compact_materialize(@pagy) %>
+<%== pagy_nav_compact_semantic(@pagy) %>
 ```
 
 ## Methods
@@ -52,7 +53,7 @@ Other extras provide also the following framework-styled helpers:
 
 Renders a compact navigation with a style similar to the `pagy_nav` helper.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id only if you are going to use more than one `pagy_nav_compact` or `pagy_nav_compact_bootstrap` call in the same line for the same page.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id only if you are going to use more than one `pagy_nav_compact*` call in the same line for the same page.
 
 # Responsive navs
 
@@ -82,6 +83,7 @@ Other extras provide also the following framework-styled helpers:
 <%== pagy_nav_responsive_bulma(@pagy) %>
 <%== pagy_nav_responsive_foundation(@pagy) %>
 <%== pagy_nav_responsive_materialize(@pagy) %>
+<%== pagy_nav_responsive_semantic(@pagy) %>
 ```
 
 ## Variables
@@ -107,4 +109,4 @@ The above statement means that from `0` to `450` pixels width, Pagy will use the
 
 Similar to the `pagy_nav` helper, with added responsiveness.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id if you are going to use more than one `pagy_nav_responsive` or `pagy_nav_responsive_bootstrap` call in the same line for the same page.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id if you are going to use more than one `pagy_nav_responsive*` call in the same line for the same page.

@@ -12,8 +12,8 @@ Feel free to [ask on Gitter](https://gitter.im/ruby-pagy/Lobby) if you need more
 The Pagy API is quite different from other pagination gems, so there is not always a one-to-one correlation between the changes you will have to make, however, if you split the process in the following general phases it should be quite simple.
 
 1. Removing the legacy code, trying to convert the statements that have a direct relation with Pagy
-2. Running the app so to raise exceptions in order to find legacy code that may be still in place
-3. When the app runs without error, adjusting the pagination to look and work as before: just many times faster and using many times less memory ;)
+2. Running the app so to raise exceptions in order to find legacy code that may still be in place
+3. When the app runs without errors, adjusting the pagination to look and work as before: just many times faster and using many times less memory ;)
 
 ### Removing the old code
 
@@ -68,7 +68,7 @@ One of the most noticeable difference between the legacy gems and Pagy is that P
 
 The other gems are careless about adding methods, scopes, and even configuration settings to them, so you will find different kinds of statements scattered around in your models. You should remove them all and eventually add the equivalent code where it makes sense to Pagy, which of course _is absolutely not_ in the models.
 
-For example, you may want to search for keywords like `per_page`, `per` and such, which are actually configuration settings. They should either go into the `pagy.rb` initializer (if they are global to the app) or into the specific `pagy` call in the controller if they are specific to an action.
+For example, you may want to search for keywords like `per_page`, `per` and such, which are actually configuration settings. They should either go into the `pagy.rb` initializer if they are global to the app, or into the specific `pagy` call in the controller if they are specific to an action.
 
 If the app used the `page` scope in some of its methods or scopes, that should be removed (including removing the argument used to pass the page number to the scope), leaving the rest of the scope in place. Search where the app uses the already paginated scope in the controllers, and use the scope in a regular `pagy` statement. For example:
 
