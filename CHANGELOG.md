@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 0.19.3
+
+### Changes
+
+- added Chinese locale
+
+### Commits
+
+- [ebc0ed5](https://github.com/ddnexus/pagy/commit/ebc0ed5): added Chinese locale
+- [31823f9](https://github.com/ddnexus/pagy/commit/31823f9): fix for compact nav in bootstrap 3 (#86)
+- [ac2a76c](https://github.com/ddnexus/pagy/commit/ac2a76c): docs fixes
+
 ## Version 0.19.2
 
 ### Changes
