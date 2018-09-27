@@ -61,15 +61,15 @@ pt:
         other: "Mostrando %{count} %{item_name}"
       multiple_pages: "Mostrando %{item_name} %{from}-%{to} no total de %{count}"
       item_name:
-        zero: "items"
+        zero: "itens"
         one: "item"
-        other: "items"
+        other: "itens"
     compact:
       page: "Página"
       of: "de"
     items:
       show: "Mostrar"
-      items: "items por página"
+      items: "itens por página"
 
 tr:
   pagy:
