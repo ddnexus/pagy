@@ -47,19 +47,19 @@ es:
       show: "Mostrar"
       items: "ítems por página"
 
-pt-br:
+pt:
   pagy:
     nav:
       prev: "&lsaquo;&nbsp;Anterior"
       next: "Próximo&nbsp;&rsaquo;"
       gap: "&hellip;"
-      current: "Esta na página"
+      current: "Está na página"
     info:
       single_page:
         zero: "Sem resultados"
         one: "Mostrando 1 %{item_name}"
         other: "Mostrando %{count} %{item_name}"
-      multiple_pages: "Mostrando %{item_name} %{from}-%{to} de %{count} no total"
+      multiple_pages: "Mostrando %{item_name} %{from}-%{to} no total de %{count}"
       item_name:
         zero: "items"
         one: "item"
