@@ -68,6 +68,28 @@ es:
     items:
       show: "Mostrar"
       items: "ítems por página"
+ja:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;前へ"
+      next: "次へ&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "見つかりませんでした"
+        one: "<b>1</b> 件の%{item_name}"
+        other: "<b>%{count}</b> 件の%{item_name}"
+      multiple_pages: "<b>%{count}</b> 件中 <b>%{from}-%{to}</b> 件目の%{item_name}を表示中"
+      item_name:
+        zero: "結果"
+        one: "結果"
+        other: "結果"
+    compact:
+      page: "ページ"
+      of: "/"
+    items:
+      show: ""
+      items: "件ずつ表示"
 tr:
   pagy:
     nav:
