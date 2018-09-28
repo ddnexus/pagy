@@ -116,6 +116,29 @@ ru:
     items:
       show: "Показать"
       items: "записей на странице"
+id:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Balik"
+      next: "Lanjut&nbsp;&rsaquo;"
+      gap: "&hellip;"
+      current: "Anda di halaman"
+    info:
+      single_page:
+        zero: "Tidak ditemukan %{item_name}"
+        one: "Menampilkan <b>1</b> %{item_name}"
+        other: "Menampilkan <b>semua %{count}</b> %{item_name}"
+      multiple_pages: "Menampilkan %{item_name} <b>%{from}-%{to}</b> dari total <b>%{count}</b>"
+      item_name:
+        zero: "item"
+        one: "item"
+        other: "item"
+    compact:
+      page: "Halaman"
+      of: "dari"
+    items:
+      show: "Tampilkan"
+      items: "item per halaman"
 zh-cn:
   pagy:
     nav:
