@@ -1,27 +1,5 @@
 # Standard pagy dictionary
 
-cn:
-  pagy:
-    nav:
-      prev: "&lsaquo;&nbsp;上一页"
-      next: "下一页&nbsp;&rsaquo;"
-      gap: "&hellip;"
-    info:
-      single_page:
-        zero: " %{item_name} 未找到"
-        one: "显示 <b>1</b> %{item_name}"
-        other: "显示 <b>所有 %{count}</b> %{item_name}"
-      multiple_pages: "显示 %{item_name} <b>%{from}-%{to}</b> 共 <b>%{count}</b> 项"
-      item_name:
-        zero: "项"
-        one: "一个"
-        other: "多个"
-    compact:
-      page: "页"
-      of: "其中的"
-    items:
-      show: "显示"
-      items: "每页的条数"
 en:
   pagy:
     nav:
@@ -116,5 +94,27 @@ ru:
     items:
       show: "Показать"
       items: "записей на странице"
+zh-cn:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;上一页"
+      next: "下一页&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: " %{item_name}未找到"
+        one: "显示 <b>1</b> 条%{item_name}"
+        other: "显示<b>所有 %{count}</b> 条%{item_name}"
+      multiple_pages: "共 <b>%{count}</b> 条%{item_name}，显示 <b>%{from}-%{to}</b>"
+      item_name:
+        zero: "项目"
+        one: ""
+        other: ""
+    compact:
+      page: "页面"
+      of: "/"
+    items:
+      show: "每页显示"
+      items: "条"
 
 # PR for other languages are very welcome. Thanks!
