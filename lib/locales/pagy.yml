@@ -91,6 +91,29 @@ ja:
     items:
       show: ""
       items: "件ずつ表示"
+pt-br:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Anterior"
+      next: "Próximo&nbsp;&rsaquo;"
+      gap: "&hellip;"
+      current: "Está na página"
+    info:
+      single_page:
+        zero: "Sem resultados"
+        one: "Mostrando 1 %{item_name}"
+        other: "Mostrando %{count} %{item_name}"
+      multiple_pages: "Mostrando %{item_name} %{from}-%{to} no total de %{count}"
+      item_name:
+        zero: "itens"
+        one: "item"
+        other: "itens"
+    compact:
+      page: "Página"
+      of: "de"
+    items:
+      show: "Mostrar"
+      items: "itens por página"
 tr:
   pagy:
     nav:
