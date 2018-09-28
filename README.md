@@ -106,8 +106,9 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 Besides the classic pagination `nav`, Pagy offers a few ready to use alternatives like:
 
-- [compact nav](http://ddnexus.github.io/pagy/extras/navs#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element: ![pagy-compact](docs/assets/images/pagy-compact-w.png)
-- [responsive nav](http://ddnexus.github.io/pagy/extras/navs#responsive-navs): On resize, the number of page links adapts in real-time to the available window or container width: ![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
+- [compact nav](http://ddnexus.github.io/pagy/extras/navs#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![pagy-compact](docs/assets/images/pagy-compact-w.png)
+
+- [responsive nav](http://ddnexus.github.io/pagy/extras/navs#responsive-navs): On resize, the number of page links adapts in real-time to the available window or container width:<br>![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
 ## Resources
 
@@ -121,6 +122,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 - [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy) by Tiago Franco
 - [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
 - [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
+- [Integrating Pagy with Hanami](http://katafrakt.me/2018/06/01/integrating-pagy-with-hanami/) by Paweł Świątkowski
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analisys)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
 

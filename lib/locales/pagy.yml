@@ -46,8 +46,52 @@ es:
     items:
       show: "Mostrar"
       items: "ítems por página"
-
-pt:
+id:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Balik"
+      next: "Lanjut&nbsp;&rsaquo;"
+      gap: "&hellip;"
+      current: "Anda di halaman"
+    info:
+      single_page:
+        zero: "Tidak ditemukan %{item_name}"
+        one: "Menampilkan <b>1</b> %{item_name}"
+        other: "Menampilkan <b>semua %{count}</b> %{item_name}"
+      multiple_pages: "Menampilkan %{item_name} <b>%{from}-%{to}</b> dari total <b>%{count}</b>"
+      item_name:
+        zero: "item"
+        one: "item"
+        other: "item"
+    compact:
+      page: "Halaman"
+      of: "dari"
+    items:
+      show: "Tampilkan"
+      items: "item per halaman"
+ja:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;前へ"
+      next: "次へ&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "見つかりませんでした"
+        one: "<b>1</b> 件の%{item_name}"
+        other: "<b>%{count}</b> 件の%{item_name}"
+      multiple_pages: "<b>%{count}</b> 件中 <b>%{from}-%{to}</b> 件目の%{item_name}を表示中"
+      item_name:
+        zero: "結果"
+        one: "結果"
+        other: "結果"
+    compact:
+      page: "ページ"
+      of: "/"
+    items:
+      show: ""
+      items: "件ずつ表示"
+pt-br:
   pagy:
     nav:
       prev: "&lsaquo;&nbsp;Anterior"
@@ -70,7 +114,6 @@ pt:
     items:
       show: "Mostrar"
       items: "itens por página"
-
 tr:
   pagy:
     nav:
@@ -119,5 +162,27 @@ ru:
     items:
       show: "Показать"
       items: "записей на странице"
+zh-cn:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;上一页"
+      next: "下一页&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: " %{item_name}未找到"
+        one: "显示 <b>1</b> 条%{item_name}"
+        other: "显示<b>所有 %{count}</b> 条%{item_name}"
+      multiple_pages: "共 <b>%{count}</b> 条%{item_name}，显示 <b>%{from}-%{to}</b>"
+      item_name:
+        zero: "项目"
+        one: ""
+        other: ""
+    compact:
+      page: "页面"
+      of: "/"
+    items:
+      show: "每页显示"
+      items: "条"
 
 # PR for other languages are very welcome. Thanks!
