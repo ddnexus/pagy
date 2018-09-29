@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## Version 0.19.4
+
+### Changes
+
+- added Japanese, Brazilian and Indonesian translations
+
+### Commits
+
+- [67f1bb9](https://github.com/ddnexus/pagy/commit/67f1bb9): reordered translations
+- [4ab3438](https://github.com/ddnexus/pagy/commit/4ab3438): adding pt-br translation (#87)
+- [d1f8674](https://github.com/ddnexus/pagy/commit/d1f8674): alpha-ordered translations
+- [0311c85](https://github.com/ddnexus/pagy/commit/0311c85): Added Indonesian locale (#91)
+- [ce68624](https://github.com/ddnexus/pagy/commit/ce68624): add japanese translation (#89)
+- [5e4f93d](https://github.com/ddnexus/pagy/commit/5e4f93d): corrected chinese translation (#88)
+- [26654d4](https://github.com/ddnexus/pagy/commit/26654d4): updated README
+
 ## Version 0.19.3
 
 ### Changes

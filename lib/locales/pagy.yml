@@ -1,27 +1,5 @@
 # Standard pagy dictionary
 
-cn:
-  pagy:
-    nav:
-      prev: "&lsaquo;&nbsp;上一页"
-      next: "下一页&nbsp;&rsaquo;"
-      gap: "&hellip;"
-    info:
-      single_page:
-        zero: " %{item_name} 未找到"
-        one: "显示 <b>1</b> %{item_name}"
-        other: "显示 <b>所有 %{count}</b> %{item_name}"
-      multiple_pages: "显示 %{item_name} <b>%{from}-%{to}</b> 共 <b>%{count}</b> 项"
-      item_name:
-        zero: "项"
-        one: "一个"
-        other: "多个"
-    compact:
-      page: "页"
-      of: "其中的"
-    items:
-      show: "显示"
-      items: "每页的条数"
 en:
   pagy:
     nav:
@@ -68,28 +46,74 @@ es:
     items:
       show: "Mostrar"
       items: "ítems por página"
-tr:
+id:
   pagy:
     nav:
-      prev: "&lsaquo;&nbsp;Önceki"
-      next: "Sonraki&nbsp;&rsaquo;"
+      prev: "&lsaquo;&nbsp;Balik"
+      next: "Lanjut&nbsp;&rsaquo;"
+      gap: "&hellip;"
+      current: "Anda di halaman"
+    info:
+      single_page:
+        zero: "Tidak ditemukan %{item_name}"
+        one: "Menampilkan <b>1</b> %{item_name}"
+        other: "Menampilkan <b>semua %{count}</b> %{item_name}"
+      multiple_pages: "Menampilkan %{item_name} <b>%{from}-%{to}</b> dari total <b>%{count}</b>"
+      item_name:
+        zero: "item"
+        one: "item"
+        other: "item"
+    compact:
+      page: "Halaman"
+      of: "dari"
+    items:
+      show: "Tampilkan"
+      items: "item per halaman"
+ja:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;前へ"
+      next: "次へ&nbsp;&rsaquo;"
       gap: "&hellip;"
     info:
       single_page:
-        zero: "Hiç %{item_name} bulunamadı."
-        one: "<b>1</b> %{item_name} gösteriliyor."
-        other: "Toplam <b>%{count}</b> %{item_name} gösteriliyor."
-      multiple_pages: "<b>%{count}</b> %{item_name} içerisinden <b>%{from}-%{to}</b> kadarı gösteriliyor."
+        zero: "見つかりませんでした"
+        one: "<b>1</b> 件の%{item_name}"
+        other: "<b>%{count}</b> 件の%{item_name}"
+      multiple_pages: "<b>%{count}</b> 件中 <b>%{from}-%{to}</b> 件目の%{item_name}を表示中"
       item_name:
-        zero: "kayıt"
-        one: "kayıt"
-        other: "kayıt"
+        zero: "結果"
+        one: "結果"
+        other: "結果"
     compact:
-      page: "Sayfa"
+      page: "ページ"
       of: "/"
     items:
-      show: "Göster"
-      items: "sayfa başı"
+      show: ""
+      items: "件ずつ表示"
+pt-br:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Anterior"
+      next: "Próximo&nbsp;&rsaquo;"
+      gap: "&hellip;"
+      current: "Está na página"
+    info:
+      single_page:
+        zero: "Sem resultados"
+        one: "Mostrando 1 %{item_name}"
+        other: "Mostrando %{count} %{item_name}"
+      multiple_pages: "Mostrando %{item_name} %{from}-%{to} no total de %{count}"
+      item_name:
+        zero: "itens"
+        one: "item"
+        other: "itens"
+    compact:
+      page: "Página"
+      of: "de"
+    items:
+      show: "Mostrar"
+      items: "itens por página"
 ru:
   pagy:
     nav:
@@ -116,5 +140,49 @@ ru:
     items:
       show: "Показать"
       items: "записей на странице"
+tr:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Önceki"
+      next: "Sonraki&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Hiç %{item_name} bulunamadı."
+        one: "<b>1</b> %{item_name} gösteriliyor."
+        other: "Toplam <b>%{count}</b> %{item_name} gösteriliyor."
+      multiple_pages: "<b>%{count}</b> %{item_name} içerisinden <b>%{from}-%{to}</b> kadarı gösteriliyor."
+      item_name:
+        zero: "kayıt"
+        one: "kayıt"
+        other: "kayıt"
+    compact:
+      page: "Sayfa"
+      of: "/"
+    items:
+      show: "Göster"
+      items: "sayfa başı"
+zh-cn:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;上一页"
+      next: "下一页&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: " %{item_name}未找到"
+        one: "显示 <b>1</b> 条%{item_name}"
+        other: "显示<b>所有 %{count}</b> 条%{item_name}"
+      multiple_pages: "共 <b>%{count}</b> 条%{item_name}，显示 <b>%{from}-%{to}</b>"
+      item_name:
+        zero: "项目"
+        one: ""
+        other: ""
+    compact:
+      page: "页面"
+      of: "/"
+    items:
+      show: "每页显示"
+      items: "条"
 
 # PR for other languages are very welcome. Thanks!
