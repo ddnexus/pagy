@@ -13,9 +13,9 @@ class Pagy
       html << (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
                       : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        html << if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                                                       # page link
-                elsif item.is_a?(String) ; %(<li class="current"><span class="show-for-sr">#{pagy_t('pagy.nav.current')}</span> #{item}</li>)  # active page
-                elsif item == :gap       ; %(<li class="ellipsis" aria-hidden="true"></li>)                                    # page gap
+        html << if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                        # page link
+                elsif item.is_a?(String) ; %(<li class="current">#{item}</li>)                  # active page
+                elsif item == :gap       ; %(<li class="ellipsis gap" aria-hidden="true"></li>) # page gap
                 end
       end
       html << (p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
@@ -50,9 +50,9 @@ class Pagy
       tags['before'] << (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
                                 : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
       responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags[item.to_s] = if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                              # page link
-                          elsif item.is_a?(String) ; %(<li class="current"><span class="show-for-sr">#{pagy_t('pagy.nav.current')}</span> #{item}</li>)                        # active page
-                          elsif item == :gap       ; %(<li class="gap disabled">#{pagy_t('pagy.nav.gap')}</li>) # page gap
+        tags[item.to_s] = if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                        # page link
+                          elsif item.is_a?(String) ; %(<li class="current">#{item}</li>)                  # active page
+                          elsif item == :gap       ; %(<li class="ellipsis gap" aria-hidden="true"></li>) # page gap
                           end
       end
       tags['after'] = +(p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)

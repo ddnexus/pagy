@@ -6,7 +6,6 @@ en:
       prev: "&lsaquo;&nbsp;Prev"
       next: "Next&nbsp;&rsaquo;"
       gap: "&hellip;"
-      current: "You're on page"
     info:
       single_page:
         zero: "No %{item_name} found"
@@ -27,7 +26,6 @@ es:
       prev: "&lsaquo;&nbsp;Prev"
       next: "Siguiente&nbsp;&rsaquo;"
       gap: "&hellip;"
-      current: "Estás en la página"
     info:
       single_page:
         zero: "Sin resultados"
@@ -48,7 +46,6 @@ id:
       prev: "&lsaquo;&nbsp;Balik"
       next: "Lanjut&nbsp;&rsaquo;"
       gap: "&hellip;"
-      current: "Anda di halaman"
     info:
       single_page:
         zero: "Tidak ditemukan %{item_name}"
@@ -89,7 +86,6 @@ pt-br:
       prev: "&lsaquo;&nbsp;Anterior"
       next: "Próximo&nbsp;&rsaquo;"
       gap: "&hellip;"
-      current: "Está na página"
     info:
       single_page:
         zero: "Sem resultados"
@@ -110,7 +106,6 @@ ru:
       prev: "&lsaquo;&nbsp;Назад"
       next: "Вперёд&nbsp;&rsaquo;"
       gap: "&hellip;"
-      current: "Вы на странице"
     info:
       single_page:
         zero: "Пока %{item_name} нет"
