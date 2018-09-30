@@ -17,12 +17,10 @@ en:
         zero: "items"
         one: "item"
         other: "items"
-    compact:
-      page: "Page"
-      of: "of"
+    compact: "Page %{page_input} of %{pages}"
     items:
-      show: "Show"
-      items: "items per page"
+      one: "Show %{items_input} item per page"
+      other: "Show %{items_input} items per page"
 es:
   pagy:
     nav:
@@ -40,12 +38,10 @@ es:
         zero: "ítems"
         one: "ítem"
         other: "ítems"
-    compact:
-      page: "Página"
-      of: "de"
+    compact: "Página %{page_input} de %{pages}"
     items:
-      show: "Mostrar"
-      items: "ítems por página"
+      one: "Mostrar %{items_input} ítem por página"
+      other: "Mostrar %{items_input} ítems por página"
 id:
   pagy:
     nav:
@@ -63,12 +59,10 @@ id:
         zero: "item"
         one: "item"
         other: "item"
-    compact:
-      page: "Halaman"
-      of: "dari"
+    compact: "Halaman %{page_input} dari %{pages}"
     items:
-      show: "Tampilkan"
-      items: "item per halaman"
+      one: "Tampilkan %{items_input} item per halaman"
+      other: "Tampilkan %{items_input} item per halaman"
 ja:
   pagy:
     nav:
@@ -85,12 +79,10 @@ ja:
         zero: "結果"
         one: "結果"
         other: "結果"
-    compact:
-      page: "ページ"
-      of: "/"
+    compact: "ページ %{page_input} / %{pages}"
     items:
-      show: ""
-      items: "件ずつ表示"
+      one: "%{items_input} 件ずつ表示"
+      other: "%{items_input} 件ずつ表示"
 pt-br:
   pagy:
     nav:
@@ -108,12 +100,10 @@ pt-br:
         zero: "itens"
         one: "item"
         other: "itens"
-    compact:
-      page: "Página"
-      of: "de"
+    compact: "Página %{page_input} de %{pages}"
     items:
-      show: "Mostrar"
-      items: "itens por página"
+      one: "Mostrar %{items_input} iten por página"
+      other: "Mostrar %{items_input} itens por página"
 ru:
   pagy:
     nav:
@@ -134,12 +124,12 @@ ru:
         few: "записи"
         many: "записей"
         other: "записей"
-    compact:
-      page: "Страница"
-      of: "из"
+    compact: "Страница %{page_input} из %{pages}"
     items:
-      show: "Показать"
-      items: "записей на странице"
+      one: "Показать %{items_input} записей на странице"
+      few: "Показать %{items_input} записей на странице"
+      many: "Показать %{items_input} записей на странице"
+      other: "Показать %{items_input} записей на странице"
 tr:
   pagy:
     nav:
@@ -156,12 +146,10 @@ tr:
         zero: "kayıt"
         one: "kayıt"
         other: "kayıt"
-    compact:
-      page: "Sayfa"
-      of: "/"
+    compact: "Sayfa %{page_input} / %{pages}"
     items:
-      show: "Göster"
-      items: "sayfa başı"
+      one: "Göster %{items_input} sayfa başı"
+      other: "Göster %{items_input} sayfa başı"
 zh-cn:
   pagy:
     nav:
@@ -178,11 +166,9 @@ zh-cn:
         zero: "项目"
         one: ""
         other: ""
-    compact:
-      page: "页面"
-      of: "/"
+    compact: "页面 %{page_input} / %{pages}"
     items:
-      show: "每页显示"
-      items: "条"
+      one: "每页显示 %{items_input} 条"
+      other: "每页显示 %{items_input} 条"
 
 # PR for other languages are very welcome. Thanks!
