@@ -76,7 +76,7 @@ ja:
         zero: "結果"
         one: "結果"
         other: "結果"
-    compact: "ページ %{page_input} / %{pages}"
+    compact: "%{page_input} / %{pages} ページ"
     items:
       one: "%{items_input} 件ずつ表示"
       other: "%{items_input} 件ずつ表示"
@@ -143,8 +143,8 @@ tr:
         other: "kayıt"
     compact: "Sayfa %{page_input} / %{pages}"
     items:
-      one: "Göster %{items_input} sayfa başı"
-      other: "Göster %{items_input} sayfa başı"
+      one: "Sayfada %{items_input} kayıt göster"
+      other: "Sayfada %{items_input} kayıt göster"
 zh-cn:
   pagy:
     nav:
@@ -153,15 +153,15 @@ zh-cn:
       gap: "&hellip;"
     info:
       single_page:
-        zero: " %{item_name}未找到"
-        one: "显示 <b>1</b> 条%{item_name}"
-        other: "显示<b>所有 %{count}</b> 条%{item_name}"
-      multiple_pages: "共 <b>%{count}</b> 条%{item_name}，显示 <b>%{from}-%{to}</b>"
+        zero: "%{item_name}未找到"
+        one: "显示 <b>1</b> 项%{item_name}"
+        other: "显示<b>所有 %{count}</b> 项%{item_name}"
+        multiple_pages: "共 <b>%{count}</b> 项%{item_name}，显示 <b>%{from}-%{to}</b>"
       item_name:
         zero: "项目"
         one: ""
         other: ""
-    compact: "页面 %{page_input} / %{pages}"
+    compact: "第 %{page_input} / %{pages} 页"
     items:
       one: "每页显示 %{items_input} 条"
       other: "每页显示 %{items_input} 条"
