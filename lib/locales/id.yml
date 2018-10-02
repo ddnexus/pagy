@@ -1,0 +1,20 @@
+id:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Balik"
+      next: "Lanjut&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Tidak ditemukan %{item_name}"
+        one: "Menampilkan <b>1</b> %{item_name}"
+        other: "Menampilkan <b>semua %{count}</b> %{item_name}"
+      multiple_pages: "Menampilkan %{item_name} <b>%{from}-%{to}</b> dari total <b>%{count}</b>"
+      item_name:
+        zero: "item"
+        one: "item"
+        other: "item"
+    compact: "Halaman %{page_input} dari %{pages}"
+    items:
+      one: "Tampilkan %{items_input} item per halaman"
+      other: "Tampilkan %{items_input} item per halaman"

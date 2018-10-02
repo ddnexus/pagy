@@ -4,7 +4,7 @@ class Pagy
   # Use ::I18n gem
   module Frontend
 
-    ::I18n.load_path << Pagy.root.join('locales', 'pagy.yml')
+    ::I18n.load_path += Dir[Pagy.root.join('locales', '*.yml')]
 
     # Override the built-in pagy_t
     def pagy_t(*args)
