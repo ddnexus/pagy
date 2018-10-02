@@ -158,20 +158,17 @@ This method is similar to the `I18n.t` and its equivalent rails `t` helper. It i
 
 ## I18n
 
-**IMPORTANT**: if you are using pagy with some language missing from the dictionary file, please, submit your translation!
+**IMPORTANT**: if you are using pagy with some language missing from the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales), please, submit your translation!
 
-Pagy is I18n ready. That means that all its strings are stored in a [dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml), ready to be customized and/or translated/pluralized and used with or without the `I18n` gem.
+Pagy is I18n ready. That means that all its strings are stored in a dictionary file of one of its [languages](https://github.com/ddnexus/pagy/blob/master/lib/locales), ready to be customized and/or translated/pluralized and used with or without the `I18n` gem.
 
-The Pagy dictionary is a YAML file containing a few entries used in the the UI by helpers and templates through the [pagy_t method](#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper). The file follows the same structure of the standard locale files for `i18n`.
+A Pagy dictionary file is a YAML file containing a few entries used in the the UI by helpers and templates through the [pagy_t method](#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper). The file follows the same structure of the standard locale files for `i18n`.
 
 ### Multi-language apps
 
-For multi-language apps you need the dynamic translation provided by the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `I18n` gem. In that case you need only 2 steps:
+For multi-language apps you need the dynamic translation provided by the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `I18n` gem. In that case you need only to require the I18n extra in the initializer file.
 
-1. require the I18n extra in the initializer file
-2. add a copy of the locale file(s) to the usual I18n dir(s), and/or add the pagy entries to the existing files
-
-**Notice**: For simplicity, you could also use the previous 2 steps for single-language apps, but if you want more performance, please follow the specific documentation below.
+**Notice**: For simplicity, you could also use the `i18n` extra for single-language apps, but if you want more performance, please follow the specific documentation below.
 
 ### Single-language apps
 
@@ -179,11 +176,17 @@ Single-language apps (i.e. only `fr` or only `en` or only ...) don't need to swi
 
 By default, Pagy handles its own dictionary file directly, providing pluralization and interpolation (without dynamic translation) _5x faster_ and using _3.5x less memory_ than the standard `I18n` gem.
 
-If you need to use your own language and/or customize the Pagy strings in this scenario, you need the following steps:
+If you are fine with the locales provided with pagy, you just need to load the dictionary file of your language by adding this line the initializer file. For example with `zh-cn`:
 
-1. copy and edit the [dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml)
-2. see [Adding the model translations](#adding-the-model-translations) below
-3. load the dictionary file in the initializer file (e.g. `Pagy::Frontend::I18N.load(file:..., language:'en')`
+```ruby
+Pagy::Frontend::I18N.load(file: Pagy.root.join('locales', 'zh-cn.yml'), language:'zh-cn')
+```
+
+If you need to use your own translation file and/or customize the Pagy strings in this scenario, you may need the following steps:
+
+1. copy and edit one of the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales)
+2. load it in the initializer file (e.g. `Pagy::Frontend::I18N.load(file:..., language:'tr')`
+3. see [Adding the model translations](#adding-the-model-translations) below
 4. check if you need to configure some of the following variables in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
 
 #### Pagy::Frontend::I18N Constant

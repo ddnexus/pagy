@@ -13,9 +13,9 @@ class Pagy
       html << (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
                       : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        html << if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                                                       # page link
-                elsif item.is_a?(String) ; %(<li class="current"><span class="show-for-sr">#{pagy_t('pagy.nav.current')}</span> #{item}</li>)  # active page
-                elsif item == :gap       ; %(<li class="ellipsis" aria-hidden="true"></li>)                                    # page gap
+        html << if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                        # page link
+                elsif item.is_a?(String) ; %(<li class="current">#{item}</li>)                  # active page
+                elsif item == :gap       ; %(<li class="ellipsis gap" aria-hidden="true"></li>) # page gap
                 end
       end
       html << (p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
@@ -34,8 +34,8 @@ class Pagy
         html << %(<div class="input-group">)
         html << (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0px;" aria-label="previous" class="prev button primary"')
                         : %(<a style="margin-bottom: 0px;" class="prev button primary disabled" href="#">#{pagy_t('pagy.nav.prev')}</a>))
-        input = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="width: #{p_pages.to_s.length+1.5}rem;">)
-        html << %(<span class="input-group-label">#{pagy_t('pagy.compact.page')}</span> #{input} <span class="input-group-label">#{pagy_t('pagy.compact.of')} #{p_pages}</span>)
+        input = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="width: #{p_pages.to_s.length+1}rem; padding: 0 0.3rem; margin: 0 0.3rem;">)
+        html << %(<span class="input-group-label">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</span>)
         html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0px;" aria-label="next" class="next button primary"')
                         : %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
       html << %(</div></nav><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}", #{!!defined?(TRIM)}]</script>)
@@ -50,9 +50,9 @@ class Pagy
       tags['before'] << (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
                                 : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
       responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        tags[item.to_s] = if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                              # page link
-                          elsif item.is_a?(String) ; %(<li class="current"><span class="show-for-sr">#{pagy_t('pagy.nav.current')}</span> #{item}</li>)                        # active page
-                          elsif item == :gap       ; %(<li class="gap disabled">#{pagy_t('pagy.nav.gap')}</li>) # page gap
+        tags[item.to_s] = if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                        # page link
+                          elsif item.is_a?(String) ; %(<li class="current">#{item}</li>)                  # active page
+                          elsif item == :gap       ; %(<li class="ellipsis gap" aria-hidden="true"></li>) # page gap
                           end
       end
       tags['after'] = +(p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)

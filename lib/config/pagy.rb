@@ -101,8 +101,9 @@
 # I18n: faster internal pagy implementation (does not use the I18n gem)
 # Use only for single language apps that don't need dynamic translation between multiple languages
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
-# Notice: Do not use the following 2 lines if you use the i18n extra below
-# Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'en')            # load a custom file
+# Notice: Do not use any of the following lines if you use the i18n extra below
+# Pagy::Frontend::I18N.load(file: Pagy.root.join('locale', 'es.yml'), language:'es') # load 'es' pagy language file
+# Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'en')            # load a custom 'en' file
 # Pagy::Frontend::I18N[:plural] = -> (count) {(['zero', 'one'][count] || 'other')}   # default
 
 # I18n: Use the `I18n` gem instead of the pagy implementation

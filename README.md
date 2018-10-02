@@ -139,7 +139,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 ## Please Star and Share!
 
-Pagy is young and needs to be known, and **you** can really help, even with just a click on the star, or sharing a tweet with friends and collegues. A big thank you for your help!
+Pagy is young and needs to be known, and **you** can really help, even with just a click on the star, or sharing a tweet with friends and collegues. A big thank you for your support!
 
 ## Help Wanted
 
@@ -148,7 +148,7 @@ Pagy is a fresh project and your help would be great. If you like it, you have a
 - Create an issue if anything should be improved/fixed
 - Submit a pull request to improve Pagy
 - Submit some cool extra
-- Submit your translation if your language is missing from the [dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml)
+- Submit your translation if your language is missing from the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales)
 - Write a Tutorial or a "How To" topic
 
 ## Branches and Pull Requests

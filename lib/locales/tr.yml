@@ -1,0 +1,20 @@
+tr:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Önceki"
+      next: "Sonraki&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Hiç %{item_name} bulunamadı."
+        one: "<b>1</b> %{item_name} gösteriliyor."
+        other: "Toplam <b>%{count}</b> %{item_name} gösteriliyor."
+      multiple_pages: "<b>%{count}</b> %{item_name} içerisinden <b>%{from}-%{to}</b> kadarı gösteriliyor."
+      item_name:
+        zero: "kayıt"
+        one: "kayıt"
+        other: "kayıt"
+    compact: "Sayfa %{page_input} / %{pages}"
+    items:
+      one: "Sayfada %{items_input} kayıt göster"
+      other: "Sayfada %{items_input} kayıt göster"

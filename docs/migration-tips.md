@@ -129,6 +129,6 @@ If the app uses the bootstrap pagination, the same CSSs should work seamlessly w
 
 ### I18n
 
-If the app uses `I18n` you should copy and paste the entries in the [pagy.yml dictionary file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) to the dictionaries of your app, and translate them accordingly.
+If the app uses `I18n` you should follow the [I18n doc](api/frontend.md#i18n)
 
 See also [I18n](api/frontend.md#i18n).
