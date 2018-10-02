@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## Version 0.20.0
+
+### Breaking Changes
+
+- I18n refactoring
+  - Compact helpers and item selectors have been refactored: you should update your overridden helpers accordingly
+  - The i18n structure has changed, update your custom i18n locale file
+
+### Commits
+
+- [bab3bf8](https://github.com/ddnexus/pagy/commit/bab3bf8): Merge pull request #93 from ddnexus/i18n
+- [f8017c3](https://github.com/ddnexus/pagy/commit/f8017c3): updated config/pagy.rb
+- [c461885](https://github.com/ddnexus/pagy/commit/c461885): added ru plural proc
+- [5680628](https://github.com/ddnexus/pagy/commit/5680628): fix for wrong indentation in zh-cn
+- [6998932](https://github.com/ddnexus/pagy/commit/6998932): pagy.yml properly split into separate locale files
+- [e3048f2](https://github.com/ddnexus/pagy/commit/e3048f2): improvements for ja tr and zh-cn
+- [c1aec4c](https://github.com/ddnexus/pagy/commit/c1aec4c): removed marginal pagy.nav.current key used only by foundation an fixed consistency in foundation helpers and templates
+- [15e413b](https://github.com/ddnexus/pagy/commit/15e413b): refactoring of the composition of i18n strings for compact helpers and items selector
+
 ## Version 0.19.4
 
 ### Changes

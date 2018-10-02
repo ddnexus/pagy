@@ -1,0 +1,25 @@
+ru:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Назад"
+      next: "Вперёд&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Пока %{item_name} нет"
+        one: "<b>1</b> %{item_name}"
+        few: "<b>%{count}</b> %{item_name}"
+        many: "Всего <b>%{count}</b> %{item_name}"
+        other: "Всего <b>%{count}</b> %{item_name}"
+      multiple_pages: "Всего <b>%{count}</b> %{item_name}, показаны с <b>%{from}</b> по <b>%{to}</b>"
+      item_name:
+        one: "запись"
+        few: "записи"
+        many: "записей"
+        other: "записей"
+    compact: "Страница %{page_input} из %{pages}"
+    items:
+      one: "Показать %{items_input} записей на странице"
+      few: "Показать %{items_input} записей на странице"
+      many: "Показать %{items_input} записей на странице"
+      other: "Показать %{items_input} записей на странице"

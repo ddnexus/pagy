@@ -55,7 +55,7 @@ class Pagy
     end
 
     # Pagy::Frontend::I18N
-    def (I18N = {data:{}}).load(file:Pagy.root.join('locales', 'pagy.yml'), language: 'en')
+    def (I18N = {data:{}}).load(file:Pagy.root.join('locales', 'en.yml'), language: 'en')
       self[:data]   = YAML.load_file(file)[language]
       self[:plural] = eval(Pagy.root.join('locales', 'plurals.rb').read)[language] #rubocop:disable Security/Eval
     end; I18N.load

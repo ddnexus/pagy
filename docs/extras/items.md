@@ -77,6 +77,6 @@ This helper provides an items selector UI, which allows the user to select any a
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page</span>
 
-You can change/translate its text by editing the [dictionaray YAML file](https://github.com/ddnexus/pagy/blob/master/lib/locales/pagy.yml) at the `pagy.items` path.
+You can change/translate its text by editing the `pagy.items` value in the [dictionaray files](https://github.com/ddnexus/pagy/blob/master/lib/locales).
 
 When the items number is changed with the selector, pagy will reload the pagination UI using the selected items per page. It will also request the _right_ page number calculated in order to contain the first item of the previously displayed page. That way the new displayed page will roughly show the same items in the collection before the items change.

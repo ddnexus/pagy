@@ -1,0 +1,20 @@
+es:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Prev"
+      next: "Siguiente&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Sin resultados"
+        one: "Mostrando 1 %{item_name}"
+        other: "Mostrando %{count} %{item_name}"
+      multiple_pages: "Mostrando %{item_name} %{from}-%{to} de %{count} en total"
+      item_name:
+        zero: "ítems"
+        one: "ítem"
+        other: "ítems"
+    compact: "Página %{page_input} de %{pages}"
+    items:
+      one: "Mostrar %{items_input} ítem por página"
+      other: "Mostrar %{items_input} ítems por página"

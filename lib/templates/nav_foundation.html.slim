@@ -22,13 +22,10 @@ nav.pagy-nav-foundation role="navigation" aria-label="Pagination"
 
       - elsif item.is_a?(String)                 # current page
         li.current
-          span.show-for-sr
-            == pagy_t('pagy.nav.current')
           = item
 
       - elsif item == :gap                       # page gap
-        li.disabled.gap
-          == pagy_t('pagy.nav.gap')
+        li.ellipsis.gap aria-hidden="true"
 
     - if pagy.next
       li.next == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')

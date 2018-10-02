@@ -1,0 +1,20 @@
+pt-br:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Anterior"
+      next: "Próximo&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Sem resultados"
+        one: "Mostrando 1 %{item_name}"
+        other: "Mostrando %{count} %{item_name}"
+      multiple_pages: "Mostrando %{item_name} %{from}-%{to} no total de %{count}"
+      item_name:
+        zero: "itens"
+        one: "item"
+        other: "itens"
+    compact: "Página %{page_input} de %{pages}"
+    items:
+      one: "Mostrar %{items_input} iten por página"
+      other: "Mostrar %{items_input} itens por página"
