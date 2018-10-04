@@ -28,6 +28,14 @@ The values shown in the charts below have been recorded while each gem was produ
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses any Kb of memory it allocates/consumes._
 
+#### Disclaimer
+
+Please, notice that benchmarking and profiling the pagination gems in a working app environment is quite a tricky task.
+
+If you compare Pagy in your own app and don't notice much of a difference, your benchmarks are most likely not isolating the pagination code from the rest of your app.
+
+Please check the [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) for a working example about how to properly compare the gems. Feel free to ask [here](https://gitter.im/ruby-pagy/Lobby) if you need help.
+
 ## Features
 
 ### Straightforward Code
