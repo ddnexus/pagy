@@ -3,7 +3,7 @@ title: Semantic UI
 ---
 # Semantic UI Extra
 
-This extra adds nav helper and templates for Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html).
+This extra adds nav helper and templates for Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html#pagination).
 
 ## Synopsys
 
@@ -20,8 +20,8 @@ with a fast helper:
 
 ```erb
 <%== pagy_nav_semantic(@pagy) %>
-<%== pagy_nav_responsive_semantic(@pagy) %>
 <%== pagy_nav_compact_semantic(@pagy) %>
+<%== pagy_nav_responsive_semantic(@pagy) %>
 ```
 
 ## Files
@@ -40,13 +40,13 @@ This method is the same as the `pagy_nav`, but customized for Semantic UI.
 
 ### pagy_nav_compact_semantic(pagy, ...)
 
-This method is the same as the `pagy_nav_compact`, but customized for the Bootstrap framework.
+This method is the same as the `pagy_nav_compact`, but customized for the Semantic UI framework.
 
 See more details in the [compact navs](navs.md#compact-navs) documentation.
 
 ### pagy_nav_responsive_semantic(pagy, ...)
 
-This method is the same as the `pagy_nav_responsive`, but customized for the Bootstrap framework.
+This method is the same as the `pagy_nav_responsive`, but customized for the Semantic UI framework.
 
 See more details in the [responsive navs](navs.md#responsive-navs) documentation.
 
