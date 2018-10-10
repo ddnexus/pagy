@@ -25,8 +25,9 @@ plurals = {
 }
 
 # Languages (language/plural pairs)
-# Contain all the entries for all the languages defined in the pagy.yml dictionary
-# The default plural for missing languages is the :zero_one_other plural (used for English)
+# Contain all the entries for all the languages defined in the dictionaries.
+# The default plural for languages not explicitly listed here
+# is the :zero_one_other plural (used for English)
 Hash.new(plurals[:zero_one_other]).tap do |languages|
   languages['en'] = plurals[:zero_one_other]
   languages['ru'] = plurals[:one_few_many_other]
