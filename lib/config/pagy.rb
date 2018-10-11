@@ -12,9 +12,13 @@
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
 
-# Searchkick: Paginate `Searchkick::Results` objects efficiently, avoiding expensive oject-wrapping and without overriding.
+# Searchkick: Paginate `Searchkick::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
 # See https://ddnexus.github.io/pagy/extras/searchkick
 # require 'pagy/extras/searchkick'
+
+# Elasticsearch Rails: Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
+# See https://ddnexus.github.io/pagy/extras/elasticsearch-rails
+# require 'pagy/extras/elasticsearch-rails'
 
 
 # Frontend Extras
