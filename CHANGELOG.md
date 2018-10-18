@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Version 0.21.0
+
+### Changes
+
+- Added Elasticsearch Rails extra
+
+### Commits
+
+- [e0acbf6](https://github.com/ddnexus/pagy/commit/e0acbf6): fix for robocop offenses (#96)
+- [d082729](https://github.com/ddnexus/pagy/commit/d082729): Added Elasticsearch Rails extra (#96)
+- [dd0575a](https://github.com/ddnexus/pagy/commit/dd0575a): fix doc typo
+- [d3510a7](https://github.com/ddnexus/pagy/commit/d3510a7): updated comments in plurals.rb
+- [5ed458a](https://github.com/ddnexus/pagy/commit/5ed458a): added README disclaimer
+- [02b0a74](https://github.com/ddnexus/pagy/commit/02b0a74): Update link to Semantic-UI pagination
+
 ## Version 0.20.0
 
 ### Breaking Changes
