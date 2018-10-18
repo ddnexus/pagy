@@ -296,7 +296,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 | [materialize](extras/materialize.md) | `pagy_nav_materialize`, `pagy_nav_responsive_materialize`, `pagy_nav_compact_materialize` |
 | [navs](extras/navs.md)               | `pagy_nav_responsive`, `pagy_nav_compact`                                                 |
 
-Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper end edit it there. It is a simple concatenation of strings with a very simple logic.
+Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
  Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your helpers.
 
