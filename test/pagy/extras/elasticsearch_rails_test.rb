@@ -1,5 +1,5 @@
 require_relative '../../test_helper'
-require 'pagy/extras/elasticsearch-rails'
+require 'pagy/extras/elasticsearch_rails'
 
 SingleCov.covered!
 

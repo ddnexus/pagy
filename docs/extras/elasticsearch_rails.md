@@ -26,7 +26,7 @@ end
 
 This extra is composed of 1 file:
 
-- [elasticsearch-rails.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/elasticsearch-rails.rb)
+- [elasticsearch_rails.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/elasticsearch_rails.rb)
 
 ## Methods
 

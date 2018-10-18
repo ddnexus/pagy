@@ -17,8 +17,8 @@
 # require 'pagy/extras/searchkick'
 
 # Elasticsearch Rails: Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
-# See https://ddnexus.github.io/pagy/extras/elasticsearch-rails
-# require 'pagy/extras/elasticsearch-rails'
+# See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
+# require 'pagy/extras/elasticsearch_rails'
 
 
 # Frontend Extras

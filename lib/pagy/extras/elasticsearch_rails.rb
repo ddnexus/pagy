@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/elasticsearch-rails
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/elasticsearch_rails
 
 class Pagy
   # Add specialized backend methods to paginate ElasticsearchRails::Results

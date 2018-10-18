@@ -93,7 +93,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 - [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 - [searchkick](http://ddnexus.github.io/pagy/extras/searchkick): Paginate `Searchkick::Results` objects efficiently, avoiding expensive object-wrapping and without overriding
-- [elasticsearch-rails](http://ddnexus.github.io/pagy/extras/elasticsearch-rails): Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding
+- [elasticsearch_rails](http://ddnexus.github.io/pagy/extras/elasticsearch_rails): Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding
 
 ### Frontend Extras
 
