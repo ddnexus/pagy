@@ -11,8 +11,8 @@ describe Pagy::Backend do
     class Results
       def initialize(params); @params = params; end
       def total; 1000; end
-      def offset(value); self; end
-      def limit(value); 25; end
+      def offset(*); self; end
+      def limit(*); 25; end
       def page
         @params[:page] || 1
       end
