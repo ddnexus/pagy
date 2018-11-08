@@ -4,7 +4,7 @@
 
 ### Changes
 
-- Added Norvegian locale
+- Added Norwegian locale
 
 ### Commits
 
