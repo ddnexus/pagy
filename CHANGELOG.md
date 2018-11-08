@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 0.22.0
+
+### Changes
+
+- Added Norvegian locale
+
+### Commits
+
+- [59064c2](http://github.com/ddnexus/pagy/commit/59064c2): Added Norwegian locale (#100)
+
 ## Version 0.21.0
 
 ### Changes
