@@ -1,0 +1,20 @@
+nb:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Forrige"
+      next: "Neste&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Ingen %{item_name} funnet"
+        one: "Viser <b>1</b> %{item_name}"
+        other: "Viser <b>alle %{count}</b> %{item_name}"
+      multiple_pages: "Viser %{item_name} <b>%{from}-%{to}</b> av totalt <b>%{count}</b>"
+      item_name:
+        zero: "resultater"
+        one: "resultat"
+        other: "resultater"
+    compact: "Side %{page_input} av %{pages}"
+    items:
+      one: "Vis %{items_input} resultat per side"
+      other: "Vis %{items_input} resultater per side"
