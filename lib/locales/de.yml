@@ -1,0 +1,20 @@
+de:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;vor"
+      next: "weiter&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Kein %{item_name} gefunden"
+        one: "Zeige <b>1</b> %{item_name}"
+        other: "Zeige <b>alle %{count}</b> %{item_name}"
+      multiple_pages: "Zeige %{item_name} <b>%{from}-%{to}</b> von <b>%{count}</b> gesamt"
+      item_name:
+        zero: "Stück"
+        one: "Stück"
+        other: "Stücke"
+    compact: "Seite %{page_input} von %{pages}"
+    items:
+      one: "Zeige %{items_input} Stück pro Seite"
+      other: "Zeige %{items_input} Stücke pro Seite"
