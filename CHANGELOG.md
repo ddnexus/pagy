@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 0.23.0
+
+### Changes
+
+- Added German locale
+
+### Commits
+
+- [f41d465](http://github.com/ddnexus/pagy/commit/f41d465): German (#101)
+- [b6149ec](http://github.com/ddnexus/pagy/commit/b6149ec): docs fixes
+- [408cc32](http://github.com/ddnexus/pagy/commit/408cc32): fix for typo in CHANGELOG
+
 ## Version 0.22.0
 
 ### Changes
