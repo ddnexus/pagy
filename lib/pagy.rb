@@ -20,7 +20,7 @@ class Pagy ; VERSION = '0.23.1'
     @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })               # default vars + cleaned vars
     { count:0, items:1, outset:0, page:1 }.each do |k,min|                     # validate instance variables
       (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
-         or raise(ArgumentError, "expected :#{k} >= #{min}; got #{instance_variable_get(:"@#{k}").inspect}")
+         or raise(ArgumentError, "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
     end
     @pages = @last = [(@count.to_f / @items).ceil, 1].max                      # cardinal and ordinal meanings
     @page <= @last or raise(OutOfRangeError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
