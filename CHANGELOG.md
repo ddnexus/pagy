@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 0.23.1
+
+### Commits
+
+- [e8a2251](http://github.com/ddnexus/pagy/commit/e8a2251): fix for ArgumentError feedback in Pagy constructor should show the originally passed offending value (#104)
+
 ## Version 0.23.0
 
 ### Changes
