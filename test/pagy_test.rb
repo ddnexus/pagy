@@ -28,8 +28,8 @@ describe Pagy do
       proc { Pagy.new(count: 100, page: 2, items: 0) }.must_raise ArgumentError
       proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise ArgumentError
       proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise ArgumentError
-      proc { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OutOfRangeError
-      e = proc { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OutOfRangeError
+      proc { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
+      e = proc { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
       e.pagy.must_be_instance_of Pagy
     end
 
