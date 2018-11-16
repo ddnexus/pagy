@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/infinite
+
 require 'pagy/extras/shared'
 
 class Pagy
@@ -22,8 +24,9 @@ class Pagy
 
       # Return the merged variables to initialize the Pagy object
       {
-				count: infinite_count,
-				page: current_page,
+        size: [],
+        count: infinite_count,
+        page: current_page,
       }.merge!(vars)
     end
 
