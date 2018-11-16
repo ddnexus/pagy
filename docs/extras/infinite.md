@@ -34,11 +34,11 @@ This extra is composed of 1 file:
 
 This extra adds the `pagy_infinite` method to the `Pagy::Backend` to be used in place (or in parallel) of the `pagy` method when you have to paginate large table without need of showing "Total count". It also adds a `pagy_infinite_get_variables` sub-method, used for easy customization of variables by overriding.
 
-**Notice**: The `pagy_infinite_get_varuables` returns "count", but it dies not show real COUNT and mustn't be used to show "Total count: N"
+**Notice**: The `pagy_infinite_get_varuables` returns "count", but it does not show real COUNT and mustn't be used for showing "Total count: N"
 
 ### pagy_infinite(some_scope, vars={})
 
-This method is the same as the generic `pagy` method, but instead of execution COUNT-query, it chechs if "Next page" exists
+This method is the same as the generic `pagy` method, but instead of execution COUNT-query, it checks if "Next page" exists
 (for example: `Post.all.limit(...).offset(...next-offset...).exist?` [API Doc](https://apidock.com/rails/ActiveRecord/FinderMethods/exists%3F) )
 
 ### pagy_infinite_get_vars(some_scope)

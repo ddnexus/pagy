@@ -14,8 +14,6 @@ describe Pagy::Backend do
     end
 
     it 'gets vars on not last page' do
-      TestCollection.define_method(:exists?) { true }
-
       vars = {page: 2, items: 10, link_extra: 'X'}
       merged = backend.send :pagy_infinite_get_vars, @collection, vars
       pagy = Pagy.new(merged)
@@ -32,8 +30,6 @@ describe Pagy::Backend do
     end
 
     it 'gets vars with gaps' do
-      TestCollection.define_method(:exists?) { true }
-
       vars = {page: 25, items: 10, link_extra: 'X'}
       merged = backend.send :pagy_infinite_get_vars, @collection, vars
       pagy = Pagy.new(merged)
@@ -43,19 +39,17 @@ describe Pagy::Backend do
     end
 
     it 'gets vars on last page' do
-      TestCollection.define_method(:exists?) { false }
-
-      vars = {page: 2, items: 10, link_extra: 'X'}
+      last_page = (1_000 / 10)
+      vars = {page: last_page, items: 10, link_extra: 'X'}
       merged = backend.send :pagy_infinite_get_vars, @collection, vars
       pagy = Pagy.new(merged)
 
-      merged[:count].must_equal 20
+      merged[:count].must_equal 1_000
       pagy.series.must_equal []
     end
 
 
     it 'pagy_infinite call' do
-      TestCollection.define_method(:exists?) { true }
       pagy, scope = backend.send :pagy_infinite, @collection, { page: 2, items: 2 }
       pagy.must_be_kind_of ::Pagy
       scope.must_equal [3,4]
