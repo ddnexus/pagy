@@ -12,6 +12,10 @@
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
 
+# Countless: Paginate without any count, saving one query per rendering
+# See https://ddnexus.github.io/pagy/extras/countless
+# require 'pagy/extras/countless'
+
 # Elasticsearch Rails: Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
 # See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
 # require 'pagy/extras/elasticsearch_rails'
