@@ -3,9 +3,9 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '0.23.1'
+class Pagy ; VERSION = '1.0.0'
 
-  class OutOfRangeError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
+  class OverflowError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root; Pathname.new(__FILE__).dirname end
@@ -23,7 +23,7 @@ class Pagy ; VERSION = '0.23.1'
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
     end
     @pages = @last = [(@count.to_f / @items).ceil, 1].max                      # cardinal and ordinal meanings
-    @page <= @last or raise(OutOfRangeError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
+    @page <= @last or raise(OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                                   # pagination offset + outset (initial offset)
     @items  = @count - ((@pages-1) * @items) if @page == @last && @count > 0   # adjust items for last non-empty page
     @from   = @count == 0 ? 0 : @offset+1 - @outset                            # page begins from item
