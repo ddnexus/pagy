@@ -417,6 +417,10 @@ describe Pagy do
       Pagy.new(@vars3.merge(count: 15, page: 2)).series.must_equal [1, "2"]
     end
 
+    it 'computes an empty series' do
+      Pagy.new(@vars3.merge(count: 100, size: [])).series.must_equal []
+    end
+
   end
 
 end

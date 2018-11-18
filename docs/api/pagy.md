@@ -124,6 +124,8 @@ The nav helpers and the templates basically loop through this array and render t
 
 That is self-contained, simple and efficient.
 
+**Notice**: This method returns an empty array if the passed `size` (i.e. the `:size` variable by default) is set to an empty array. Useful to totally skip the generation of page links in the frontend.
+
 ### Lowest limit analysys
 
 The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has the following peculiar attributes:

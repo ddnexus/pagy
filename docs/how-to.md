@@ -127,6 +127,18 @@ As you can see by the result of the `series` method, you get 3 initial pages, 1 
 
 You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to see what it contains when used in combination with different core variables.
 
+### Skipping the page links
+
+If you want to skip the generation of the page links, just set the `:size` variable to an empty array:
+
+For example:
+
+```ruby
+pagy = Pagy.new count:1000, size: [] # etc
+pagy.series
+#=> []
+```
+
 ## Passing the page number
 
 You don't need to explicitly pass the page number to the `pagy` method, because it is pulled in by the `pagy_get_vars` (which is called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For example:
