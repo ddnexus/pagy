@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## Version 1.0.0
+
+### Breaking Changes
+
+- The "Out Of Range" concept has been redefined as "Overflow" resulting in a few renaming. Since there are no changes in the logic, you can update by just searching and replacing (if present) a few string in your code:
+   - `"/out_of_range"` > `"/overflow"`
+   - `"OutOfRangeError"` > `"OverflowError"`
+   - `":out_of_range_mode"` > `":overflow"`
+   - `"out_of_range?` > `"overflow?"`
+
+### Commits
+
+- [431e4db](http://github.com/ddnexus/pagy/commit/431e4db): redefined the "Out Of Range" concept as "Overflow" (#103):
+    - files: out_of_range* > overflow*
+    - extra name: out_of_range > overflow
+    - error class: OutOfRangeError > OverflowError
+    - module: OutOfRange > Overflow
+    - VARS: :out_of_range_mode > :overflow
+    - instance variable: @out_of_range > @overflow
+    - method: out_of_range? > overflow?
+- [a0b411a](http://github.com/ddnexus/pagy/commit/a0b411a): added README note about semantic versioning
+
 ## Version 0.23.1
 
 ### Commits

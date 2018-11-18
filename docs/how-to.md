@@ -418,27 +418,27 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
 
 **Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
 
-## Handling Pagy::OutOfRangeError exceptions
+## Handling Pagy::OverflowError exceptions
 
-Pass an out of range `:page` number and Pagy will raise a `Pagy::OutOfRangeError` exception.
+Pass an overflowing `:page` number and Pagy will raise a `Pagy::OverflowError` exception.
 
 This often happens because users/clients paginate over the end of the record set or records go deleted and a user went to a stale page.
 
-You can handle the exception by using the [out_of_range extra](extras/out_of_range.md) which provides easy and ready to use solutions for a few common cases, or you can rescue the exception manually and do whatever fits better.
+You can handle the exception by using the [overflow extra](extras/overflow.md) which provides easy and ready to use solutions for a few common cases, or you can rescue the exception manually and do whatever fits better.
 
 Here are a few options for manually handling the error in apps:
 
 - Do nothing and let the page render a 500
 - Rescue and render a 404
-- Rescue and redirect to the last known page (Notice: the [out_of_range extra](extras/out_of_range.md) provides the same behavior without redirecting)
+- Rescue and redirect to the last known page (Notice: the [overflow extra](extras/overflow.md) provides the same behavior without redirecting)
 
    ```ruby
    # in a controller
-   rescue_from Pagy::OutOfRangeError, with: :redirect_to_last_page
+   rescue_from Pagy::OverflowError, with: :redirect_to_last_page
 
    private
 
    def redirect_to_last_page(e)
-     redirect_to url_for(page: e.pagy.last), notice: "Page ##{params[:page]} is out of range. Showing page #{e.pagy.last} instead."
+     redirect_to url_for(page: e.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{e.pagy.last} instead."
    end
    ```

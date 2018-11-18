@@ -1,6 +1,6 @@
 require 'pagy'
 require_relative '../../test_helper'
-require 'pagy/extras/out_of_range'
+require 'pagy/extras/overflow'
 
 SingleCov.covered!
 
@@ -12,16 +12,16 @@ describe Pagy do
   describe "variables" do
 
     it 'has vars defaults' do
-      Pagy::VARS[:out_of_range_mode].must_equal :last_page
+      Pagy::VARS[:overflow].must_equal :last_page
     end
 
   end
 
-  describe "#out_of_range?" do
+  describe "#overflow?" do
 
-    it 'must be out_of_range?'  do
-      pagy.must_be :out_of_range?
-      Pagy.new(vars.merge(page:2)).wont_be :out_of_range?
+    it 'must be overflow?'  do
+      pagy.must_be :overflow?
+      Pagy.new(vars.merge(page:2)).wont_be :overflow?
     end
 
   end
@@ -40,12 +40,12 @@ describe Pagy do
       pagy.prev.must_equal 10
     end
 
-    it 'raises OutOfRangeError in :exception mode' do
-      proc { Pagy.new(vars.merge(out_of_range_mode: :exception)) }.must_raise Pagy::OutOfRangeError
+    it 'raises OverflowError in :exception mode' do
+      proc { Pagy.new(vars.merge(overflow: :exception)) }.must_raise Pagy::OverflowError
     end
 
     it 'works in :empty_page mode' do
-      pagy = Pagy.new(vars.merge(out_of_range_mode: :empty_page))
+      pagy = Pagy.new(vars.merge(overflow: :empty_page))
       pagy.page.must_equal 100
       pagy.offset.must_equal 0
       pagy.items.must_equal 0
@@ -55,7 +55,7 @@ describe Pagy do
     end
 
     it 'raises ArgumentError' do
-      proc { Pagy.new(vars.merge(out_of_range_mode: :unknown)) }.must_raise ArgumentError
+      proc { Pagy.new(vars.merge(overflow: :unknown)) }.must_raise ArgumentError
     end
 
   end
@@ -63,7 +63,7 @@ describe Pagy do
   describe "#series singleton for :empty_page mode" do
 
     it 'computes series for last page' do
-      pagy = Pagy.new(vars.merge(out_of_range_mode: :empty_page))
+      pagy = Pagy.new(vars.merge(overflow: :empty_page))
       series = pagy.series
       series.must_equal [1, 2, 3, :gap, 9, 10, 11]
       pagy.page.must_equal 100

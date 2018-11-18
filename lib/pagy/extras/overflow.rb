@@ -1,19 +1,19 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/out_of_range
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/overflow
 # frozen_string_literal: true
 
 class Pagy
 
-  VARS[:out_of_range_mode] = :last_page
+  VARS[:overflow] = :last_page
 
-  def out_of_range?; @out_of_range end
+  def overflow?; @overflow end
 
-  module OutOfRange
+  module Overflow
 
     def initialize(vars)
       super
-    rescue OutOfRangeError
-      @out_of_range = true                        # add the out_of_range flag
-      case @vars[:out_of_range_mode]
+    rescue OverflowError
+      @overflow = true                            # add the overflow flag
+      case @vars[:overflow]
       when :exception
         raise                                     # same as without the extra
       when :last_page
@@ -25,7 +25,7 @@ class Pagy
         @prev = @last                             # prev relative to the actual page
         extend(Series)                            # special series for :empty_page
       else
-        raise ArgumentError, "expected :out_of_range_mode variable in [:last_page, :empty_page, :exception]; got #{@vars[:out_of_range_mode].inspect}"
+        raise ArgumentError, "expected :overflow variable in [:last_page, :empty_page, :exception]; got #{@vars[:overflow].inspect}"
       end
     end
 
@@ -43,6 +43,6 @@ class Pagy
 
   end
 
-  prepend OutOfRange
+  prepend Overflow
 
 end

@@ -58,7 +58,7 @@ Please check the [Benchmarks and Memory Profiles Source](http://github.com/ddnex
 - Pagy is very modular and does not load nor execute unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#global-configuration))_
 - It works with collections/scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
 - It works with helpers or templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
-- It raises real `Pagy::OutOfRangeError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_ or use the [out_of_range extra](http://ddnexus.github.io/pagy/extras/out_of_range) for a few ready to use common behaviors
+- It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
 - It does not impose any difficult-to-override logic or output _(see [why...](https://ddnexus.github.io/pagy/index#really-easy-to-customize))_
 
 ### Easy to use
@@ -108,7 +108,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 - [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy implementation
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
-- [out_of_range](http://ddnexus.github.io/pagy/extras/out_of_range): Allow for easy handling of out of range pages
+- [overflow](http://ddnexus.github.io/pagy/extras/overflow): Allow for easy handling of overflowing pages
 - [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
 
 ### Alternative components
@@ -160,11 +160,13 @@ Pagy is a fresh project and your help would be great. If you like it, you have a
 - Submit your translation if your language is missing from the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales)
 - Write a Tutorial or a "How To" topic
 
-## Branches and Pull Requests
+## Versioning, Branches and Pull Requests
 
-`master` is the latest rubygem-published release (plus changes that don't affect the actual gem behavior, e.g. doc, tests). You should use it as the base branch for pull requests, because it will not be force-rebased.
+Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for breaking changes introduced by mayor versions.
 
-`dev` is the development branch that is kept rebased on top of `master`, so expect it to be force-rebased (i.e. do not use it as the base for your commits). Use `dev` as a preview for trying the new code that will be merged in the next release, but please, don't use it as the base branch for pull requests.
+The `master` branch is the latest rubygem-published release (plus changes that don't affect the actual gem behavior, e.g. doc, tests). You should use it as the base branch for pull requests, because it will not be force-rebased.
+
+The `dev` branch is kept rebased on top of `master`, so expect it to be force-rebased (i.e. do not use it as the base for your commits). Use `dev` as a preview for trying the new code that will be merged in the next release, but please, don't use it as the base branch for pull requests.
 
 ## Credits
 
