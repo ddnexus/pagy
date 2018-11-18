@@ -9,6 +9,12 @@ This extra adds nav helper and templates for the Foundation [pagination componen
 
 See [extras](../extras.md) for general usage info.
 
+In the `pagy.rb` initializer:
+
+```ruby
+require 'pagy/extras/foundation'
+```
+
 Render the navigation links in some view...
 with a fast helper:
 

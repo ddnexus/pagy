@@ -11,6 +11,12 @@ That means that you can paginate the array independently from any other kind of 
 
 See [extras](../extras.md) for general usage info.
 
+In the `pagy.rb` initializer:
+
+```ruby
+require 'pagy/extras/array'
+```
+
 In a controller:
 
 ```ruby

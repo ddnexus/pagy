@@ -11,6 +11,12 @@ The `Searchkick::Results` object has already done pagination calculations, we ju
 
 See [extras](../extras.md) for general usage info.
 
+In the `pagy.rb` initializer:
+
+```ruby
+require 'pagy/extras/searchkick'
+```
+
 In a controller:
 
 ```ruby

@@ -11,8 +11,9 @@ This extra is needed only for very specific scenarios, for example if you need t
 
 See [extras](../extras.md) for general usage info.
 
+In the `pagy.rb` initializer:
+
 ```ruby
-# in the Pagy initializer
 require 'pagy/extras/trim'
 ```
 

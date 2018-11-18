@@ -9,6 +9,12 @@ Paginate `ElasticsearchRails::Results` objects efficiently avoiding expensive ob
 
 See [extras](../extras.md) for general usage info.
 
+In the `pagy.rb` initializer:
+
+```ruby
+require 'pagy/extras/elasticsearch_rails'
+```
+
 In a controller:
 
 ```ruby
