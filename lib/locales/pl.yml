@@ -1,0 +1,20 @@
+en:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Poprzednia"
+      next: "Następna&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Nie znaleziono %{item_name}"
+        one: "Wyświetlono <b>1</b> %{item_name}"
+        other: "Wyświetlono <b>wszystkie %{count}</b> %{item_name}"
+      multiple_pages: "Wyświetlono %{item_name} <b>%{from}-%{to}</b> z wszystkich <b>%{count}</b>"
+      item_name:
+        zero: "elementów"
+        one: "element"
+        other: "elementów"
+    compact: "Strona %{page_input} z %{pages}"
+    items:
+      one: "Pokaż %{items_input} element na stronie"
+      other: "Pokaż %{items_input} elementów na stronie"
