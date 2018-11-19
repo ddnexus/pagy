@@ -101,7 +101,7 @@ You can also pass it as an instance variable to the `Pagy.new` method or to the 
 @pagy, @records = pagy(Product.some_scope, items: 30)
 ```
 
-If you want to allow the client to request a custom number of items per page - useful with APIs or higly user-customizable apps - take a look at the [items extra](extras/items.md). It manages the number of items per page requested with the params, and offers a ready to use selector UI.
+If you want to allow the client to request a custom number of items per page - useful with APIs or highly user-customizable apps - take a look at the [items extra](extras/items.md). It manages the number of items per page requested with the params, and offers a ready to use selector UI.
 
 ## Controlling the page links
 
@@ -123,7 +123,7 @@ pagy.series
 #=> [1, 2, 3, :gap, 6, 7, 8, 9, "10", 11, 12, 13, 14, :gap, 48, 49, 50]
 ```
 
-As you can see by the result of the `series` method, you get 3 initial pages, 1 `:gap` (series interupted), 4 pages before the current page, the current `:page` (which is a string), 4 pages after the current page, another `:gap` and 3 final pages.
+As you can see by the result of the `series` method, you get 3 initial pages, 1 `:gap` (series interrupted), 4 pages before the current page, the current `:page` (which is a string), 4 pages after the current page, another `:gap` and 3 final pages.
 
 You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to see what it contains when used in combination with different core variables.
 
