@@ -25,6 +25,8 @@ In a controller:
 @pagy, @records  = pagy_countless(some_scope, ...)
 ```
 
+**Notice**: When using `ActiveRecord`, the `@records` is an `Array`. Onthe other side, the normal `Pagy` returns an `ActiveRelation`.
+
 ## Files
 
 This extra is composed of 1 file:
