@@ -1,4 +1,3 @@
-require 'byebug'
 require_relative '../../test_helper'
 require 'pagy/extras/countless'
 
@@ -11,7 +10,12 @@ describe Pagy::Backend do
   let(:last_page) { 1000 / 20 }
 
   before do
+    @default_page_param = Pagy::Countless::VARS[:page_param]
     @collection = TestCollection.new((1..1000).to_a)
+  end
+
+  after do
+    Pagy::Countless::VARS[:page_param] = @default_page_param
   end
 
   describe "#pagy_countless" do
@@ -64,21 +68,21 @@ describe Pagy::Backend do
     let(:backend) { TestController.new({a: 'a', page: 3, page_number: 4}) }
     
     it 'page_param from defaults' do
-      Pagy::VARS[:page_param] = :page_number
+      Pagy::Countless::VARS[:page_param] = :page_number
       pagy, items = backend.send(:pagy_countless, @collection)
       pagy.page.must_equal 4
       items.must_equal Array(61..80)
     end
 
     it 'page_param from vars' do
-      Pagy::VARS[:page_param] = :page
+      Pagy::Countless::VARS[:page_param] = :page
       pagy, items = backend.send(:pagy_countless, @collection, {page_param: :page_number})
       pagy.page.must_equal 4
       items.must_equal Array(61..80)
     end
 
     it 'bypass page_param with vars[:page]' do
-      Pagy::VARS[:page_param] = :page_number
+      Pagy::Countless::VARS[:page_param] = :page_number
       pagy, items = backend.send(:pagy_countless, @collection, {page_param: :page_number, page: 1})
       pagy.page.must_equal 1
       items.must_equal Array(1..20)
