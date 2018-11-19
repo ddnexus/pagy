@@ -5,6 +5,8 @@ title: Items
 
 Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or higly user-customizable apps.
 
+It works also with the [countless extra](countless.md).
+
 ## Synopsys
 
 See [extras](../extras.md) for general usage info.
@@ -66,6 +68,10 @@ The `items` extra overrides a couple of builtin methods and adds a helper to the
 ### pagy_get_vars(collection, vars)
 
 This extra overrides the `pagy_get_vars` method of the `Pagy::Backend` module in order to set the `:items` variable, pulled from the request-params.
+
+### pagy_countless_get_vars(collection, vars)
+
+This extra overrides the `pagy_countless_get_vars` method of the `Pagy::Backend` module (added by the `countless` extra) in order to set the `:items` variable, pulled from the request-params.
 
 ### pagy_url_for(page, pagy)
 
