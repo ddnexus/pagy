@@ -7,7 +7,7 @@ Allow the client to request a custom number of items per page with an optional s
 
 It works also with the [countless extra](countless.md).
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 

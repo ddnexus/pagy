@@ -4,9 +4,9 @@ class Pagy
 
   class Countless < Pagy
 
-    # Merge and validate the options, do some simple aritmetic and set a few instance variables
+    # Merge and validate the options, do some simple arithmetic and set a few instance variables
     def initialize(vars={})
-      @vars ||= VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })    # default vars + cleaned vars (can be ovverridden)
+      @vars ||= VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })    # default vars + cleaned vars (can be overridden)
       { items:1, outset:0, page:1 }.each do |k,min|                     # validate instance variables
         (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
          or raise(ArgumentError, "expected :#{k} >= #{min}; got #{@vars[k].inspect}")

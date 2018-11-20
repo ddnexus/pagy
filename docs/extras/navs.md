@@ -7,7 +7,7 @@ This extra adds a couple of nav helpers to the `Pagy::Frontend` module: `pagy_na
 
 Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](foundation.md), [materialize](materialize.md)) provide framework-styled versions of the same `responsive` and `compact` helpers, so you may not need this extra if you use one of those.
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 
@@ -29,7 +29,7 @@ The `compact` navs (implemented by this extra or by other frontend extras) add a
 
 It is especially useful for small size screens, but it is used also with wide layouts since it is __even faster__ than the classic nav of links, because it needs to render just a minimal HTML string.
 
-## Synopsys
+## Synopsis
 
 Use the responsive helper(s) in any view:
 
@@ -63,7 +63,7 @@ Here is a screenshot (from the `bootstrap`extra) of how the same pagination nav 
 
 ![pagy-responsive](../assets/images/pagy-responsive-g.png)
 
-## Synopsys
+## Synopsis
 
 ```ruby
 # set your default custom breakpoints (width/size pairs) globally (it can be overridden per Pagy instance)

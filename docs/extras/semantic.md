@@ -5,7 +5,7 @@ title: Semantic UI
 
 This extra adds nav helper and templates for Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html#pagination).
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 

@@ -5,7 +5,7 @@ title: Overflow
 
 This extra allows for easy handling of overflowing pages. It internally rescues from the `Pagy::OverflowError` offering a few different ready to use modes, quite useful for UIs and/or APIs. It works with `Pagy` or `Pagy::Countless` instances.
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 

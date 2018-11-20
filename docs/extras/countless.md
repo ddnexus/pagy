@@ -9,7 +9,7 @@ Its usage is practically the same as the regular `Pagy::Backend` module (see the
 
 The pagination resulting from this extra has some limitation as documented in the [Pagy::Countless Caveats doc](../api/countless.md#caveats).
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 
@@ -45,5 +45,7 @@ This sub-method is similar to the `pagy_get_vars` sub-method, but it is called o
 
 ### pagy_countless_get_items(collection, pagy)
 
-This sub-method is the same as the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see the [pagy_get_items doc](../api/backend.md#pagy_get_itemscollection-pagy)).
+This sub-method is similar to the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see the [pagy_get_items doc](../api/backend.md#pagy_get_itemscollection-pagy)).
+
+**Notice**: This method calls `to_a` on the collection in order to `pop` the eventual extra item from the result, so it returns an `Array`. That's different than the regular `pagy_get_items` method which doesn't need to call `to_a` on the collection.
 

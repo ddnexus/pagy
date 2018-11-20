@@ -30,7 +30,7 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 15
-      pagy_countless, _ = backend.send :pagy, @collection, vars
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
       pagy_countless.items.must_equal 15
     end
 
@@ -41,7 +41,7 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 12
-      pagy_countless, _ = backend.send :pagy, @collection, vars
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
       pagy_countless.items.must_equal 12
     end
 
@@ -52,7 +52,7 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 21
-      pagy_countless, _ = backend.send :pagy, @collection, vars
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
       pagy_countless.items.must_equal 21
     end
 
@@ -63,7 +63,7 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 100
-      pagy_countless, _ = backend.send :pagy, @collection, vars
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
       pagy_countless.items.must_equal 100
     end
 
@@ -74,7 +74,7 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 1000
-      pagy_countless, _ = backend.send :pagy, @collection, vars
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
       pagy_countless.items.must_equal 1000
     end
 
@@ -87,7 +87,7 @@ describe Pagy::Backend do
         backend.params.must_equal params
         pagy, _ = backend.send :pagy, @collection, vars
         pagy.items.must_equal 1000
-        pagy_countless, _ = backend.send :pagy, @collection, vars
+        pagy_countless, _ = backend.send :pagy_countless, @collection, vars
         pagy_countless.items.must_equal 1000
       }
     end
@@ -99,7 +99,7 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 14
-      pagy_countless, _ = backend.send :pagy, @collection, vars
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
       pagy_countless.items.must_equal 14
     end
 
@@ -112,7 +112,7 @@ describe Pagy::Backend do
         backend.params.must_equal params
         pagy, _ = backend.send :pagy, @collection, vars
         pagy.items.must_equal 15
-        pagy_countless, _ = backend.send :pagy, @collection, vars
+        pagy_countless, _ = backend.send :pagy_countless, @collection, vars
         pagy_countless.items.must_equal 15
       }
     end

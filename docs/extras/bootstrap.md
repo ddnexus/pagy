@@ -5,7 +5,7 @@ title: Bootstrap
 
 This extra adds nav helpers and templates for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination).
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 
