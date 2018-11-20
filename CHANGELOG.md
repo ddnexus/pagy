@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## Version 1.1.0
+
+### Changes
+
+- added `Pagy::Countless` support subclass
+- added `countless` extra integrated with the other extras
+
+### Commits
+
+- [fa547ad](http://github.com/ddnexus/pagy/commit/fa547ad): reworded the doc notice about :pagy_countless_get_items returning an Array; fix typo in comment
+- [8368a99](http://github.com/ddnexus/pagy/commit/8368a99): Synopsys > Synopsis
+- [1b8a080](http://github.com/ddnexus/pagy/commit/1b8a080): a few fixes for the countless tests
+- [0bf2f46](http://github.com/ddnexus/pagy/commit/0bf2f46): Typo fix
+- [2f93227](http://github.com/ddnexus/pagy/commit/2f93227): Test coverage for `Pagy::Countless` (#108)
+- [c2a25b6](http://github.com/ddnexus/pagy/commit/c2a25b6): Add some tests for Countless extra (#108)
+- [04fa7a2](http://github.com/ddnexus/pagy/commit/04fa7a2): added countless support to the items extra
+- [f272faf](http://github.com/ddnexus/pagy/commit/f272faf): added countless support to the overflow extra
+- [7b25165](http://github.com/ddnexus/pagy/commit/7b25165): added countless sub-class and extra code
+- [37cf51a](http://github.com/ddnexus/pagy/commit/37cf51a): series can return an empty array if size is empty
+- [7bf9d14](http://github.com/ddnexus/pagy/commit/7bf9d14): fix for a few missing lines in the extras docs
+
 ## Version 1.0.0
 
 ### Breaking Changes
