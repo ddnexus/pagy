@@ -5,7 +5,7 @@ title: Pagy
 
 The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a few integers (such as the count of the collection, the page number, the items per page, ...), does some simple aritmetic and creates a very small object that allocates less than 3k of memory. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
 
-## Synopsys
+## Synopsis
 
 ```ruby
 # set global defaults and extra variables typically in the pagy.rb initializer
@@ -123,6 +123,8 @@ The nav helpers and the templates basically loop through this array and render t
 - if the item is the `:gap` symbol then it is a gap in the series
 
 That is self-contained, simple and efficient.
+
+**Notice**: This method returns an empty array if the passed `size` (i.e. the `:size` variable by default) is set to an empty array. Useful to totally skip the generation of page links in the frontend.
 
 ### Lowest limit analysys
 

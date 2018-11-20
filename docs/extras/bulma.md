@@ -5,9 +5,15 @@ title: Bulma
 
 This extra adds nav helper and templates for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination).
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
+
+In the `pagy.rb` initializer:
+
+```ruby
+require 'pagy/extras/bulma'
+```
 
 Render the navigation links in some view...
 with a fast helper:

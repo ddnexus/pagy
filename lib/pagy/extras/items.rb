@@ -10,13 +10,27 @@ class Pagy
   # Handle a custom number of :items from params
   module Backend ; private
 
-    alias_method :pagy_get_vars_without_items, :pagy_get_vars
-    def pagy_get_vars_with_items(collection, vars)
+    def pagy_with_items(vars)
       vars[:items] ||= (items = params[vars[:items_param] || VARS[:items_param]]) &&                           # :items from :items_param
                        [items&.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min  # :items capped to :max_items
+    end
+
+    alias_method :pagy_get_vars_without_items, :pagy_get_vars
+    def pagy_get_vars_with_items(collection, vars)
+      pagy_with_items(vars)
       pagy_get_vars_without_items(collection, vars)
     end
     alias_method :pagy_get_vars, :pagy_get_vars_with_items
+
+    # support for countless extra
+    if defined?(Pagy::COUNTLESS)   # defined in the countless extra
+      alias_method :pagy_countless_get_vars_without_items, :pagy_countless_get_vars
+      def pagy_countless_get_vars_with_items(collection, vars)
+        pagy_with_items(vars)
+        pagy_countless_get_vars_without_items(collection, vars)
+      end
+      alias_method :pagy_countless_get_vars, :pagy_countless_get_vars_with_items
+    end
 
   end
 

@@ -7,12 +7,13 @@ This extra removes the `page=1` param from the link of the first page. You need 
 
 This extra is needed only for very specific scenarios, for example if you need to avoid frontend cache duplicates.
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 
+In the `pagy.rb` initializer:
+
 ```ruby
-# in the Pagy initializer
 require 'pagy/extras/trim'
 ```
 

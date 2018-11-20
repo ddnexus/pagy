@@ -1,18 +1,23 @@
-require 'pagy'
 require_relative '../../test_helper'
 require 'pagy/extras/overflow'
 
-SingleCov.covered!
+SingleCov.covered!(uncovered: 1)   # the condition for countless
 
 describe Pagy do
 
   let(:vars) {{ page: 100, count: 103, items: 10, size: [3, 2, 2, 3] }}
-  let(:pagy) {Pagy.new(vars)}
+  let(:countless_vars) {{ page: 100, items: 10 }}
+
+  before do
+    @pagy = Pagy.new(vars)
+    @pagy_countless = Pagy::Countless.new(countless_vars)
+    @pagy_countless.finalize(0)
+  end
 
   describe "variables" do
 
     it 'has vars defaults' do
-      Pagy::VARS[:overflow].must_equal :last_page
+      Pagy::VARS[:overflow].must_equal :empty_page  # default for countless
     end
 
   end
@@ -20,7 +25,8 @@ describe Pagy do
   describe "#overflow?" do
 
     it 'must be overflow?'  do
-      pagy.must_be :overflow?
+      @pagy.must_be :overflow?
+      @pagy_countless.must_be :overflow?
       Pagy.new(vars.merge(page:2)).wont_be :overflow?
     end
 
@@ -30,6 +36,7 @@ describe Pagy do
   describe "#initialize" do
 
     it 'works in :last_page mode' do
+      pagy = Pagy.new(vars.merge(overflow: :last_page))
       pagy.must_be_instance_of Pagy
       pagy.page.must_equal pagy.last
       pagy.vars[:page].must_equal 100
@@ -42,6 +49,7 @@ describe Pagy do
 
     it 'raises OverflowError in :exception mode' do
       proc { Pagy.new(vars.merge(overflow: :exception)) }.must_raise Pagy::OverflowError
+      proc { Pagy::Countless.new(countless_vars.merge(overflow: :exception)).finalize(0) }.must_raise Pagy::OverflowError
     end
 
     it 'works in :empty_page mode' do
@@ -56,6 +64,7 @@ describe Pagy do
 
     it 'raises ArgumentError' do
       proc { Pagy.new(vars.merge(overflow: :unknown)) }.must_raise ArgumentError
+      proc { Pagy::Countless.new(countless_vars.merge(overflow: :unknown)).finalize(0) }.must_raise ArgumentError
     end
 
   end
@@ -67,6 +76,12 @@ describe Pagy do
       series = pagy.series
       series.must_equal [1, 2, 3, :gap, 9, 10, 11]
       pagy.page.must_equal 100
+    end
+
+    it 'computes empty series' do
+      series = @pagy_countless.series
+      series.must_equal []
+      @pagy_countless.page.must_equal 100
     end
 
   end

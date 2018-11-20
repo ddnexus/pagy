@@ -7,7 +7,7 @@ This module provides a few methods to deal with the navigation aspect of the pag
 
 You can extend this module with a few more `nav_*` helpers _(see the [extras](../extras.md) doc for more details)_
 
-## Synopsys
+## Synopsis
 
 ```ruby
 # typically in some helper

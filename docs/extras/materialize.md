@@ -5,9 +5,15 @@ title: Materialize
 
 This extra adds nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
+
+In the `pagy.rb` initializer:
+
+```ruby
+require 'pagy/extras/materialize'
+```
 
 Render the navigation links in some view...
 with a fast helper:

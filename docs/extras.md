@@ -10,6 +10,7 @@ Pagy comes with a few optional extensions/extras:
 | `array`               | Paginate arrays efficiently avoiding expensive array-wrapping and without overriding                                                                   | [array.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/array.rb), [documentation](extras/array.md)                                           |
 | `bootstrap`           | Nav, responsive and compact helpers and templates for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)    | [bootstrap.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bootstrap.rb), [documentation](extras/bootstrap.md)                               |
 | `bulma`               | Nav, responsive and compact helpers and templates for the Bulma [pagination component](https://bulma.io/documentation/components/pagination)           | [bulma.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bulma.rb), [documentation](extras/bulma.md)                                           |
+| `countless`           | Paginate without any count, saving one query per rendering                                                                                             | [countless.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb), [documentation](extras/countless.md) |
 | `elasticsearch_rails` | Paginate `elasticsearch_rails` gem results efficiently                                                                                                 | [elasticsearch_rails.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/elasticsearch_rails.rb), [documentation](extras/elasticsearch_rails.md) |
 | `foundation`          | Nav, responsive and compact helpers and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)    | [foundation.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/foundation.rb), [documentation](extras/foundation.md)                            |
 | `i18n`                | Use the `I18n` gem instead of the pagy implementation                                                                                                  | [i18n.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/i81n.rb), [documentation](extras/i18n.md)                                              |
@@ -21,7 +22,7 @@ Pagy comes with a few optional extensions/extras:
 | `semantic`            | Nav helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)                                              | [semantic.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/semantic.rb), [documentation](extras/semantic.md)                                  |
 | `trim`                | Remove the `page=1` param from links                                                                                                                   | [trim.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/trim.rb), [documentation](extras/trim.md)                                              |
 
-## Synopsys
+## Synopsis
 
 Extras are not loaded by default, so you should require them explicitly in your `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_:
 

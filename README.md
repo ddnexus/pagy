@@ -92,6 +92,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 ### Backend Extras
 
 - [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
+- [countless](http://ddnexus.github.io/pagy/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](http://ddnexus.github.io/pagy/extras/elasticsearch_rails): Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding
 - [searchkick](http://ddnexus.github.io/pagy/extras/searchkick): Paginate `Searchkick::Results` objects efficiently, avoiding expensive object-wrapping and without overriding
 
@@ -132,7 +133,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 - [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
 - [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
 - [Integrating Pagy with Hanami](http://katafrakt.me/2018/06/01/integrating-pagy-with-hanami/) by Paweł Świątkowski
-- [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analisys)
+- [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
 
 ### Docs
@@ -148,7 +149,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 ## Please Star and Share!
 
-Pagy is young and needs to be known, and **you** can really help, even with just a click on the star, or sharing a tweet with friends and collegues. A big thank you for your support!
+Pagy is young and needs to be known, and **you** can really help, even with just a click on the star, or sharing a tweet with friends and colleagues. A big thank you for your support!
 
 ## Help Wanted
 
@@ -170,7 +171,7 @@ The `dev` branch is kept rebased on top of `master`, so expect it to be force-re
 
 ## Credits
 
-Many thansk to:
+Many thanks to:
 
 - [Imaginary Cloud](https://www.imaginarycloud.com), for continually publishing high-interest articles and helping share Pagy through their fantastic blog
 - [JetBrains](http://www.jetbrains.com) for their free OpenSource license

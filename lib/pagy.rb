@@ -3,7 +3,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '1.0.0'
+class Pagy ; VERSION = '1.1.0'
 
   class OverflowError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
@@ -15,7 +15,7 @@ class Pagy ; VERSION = '1.0.0'
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
-  # Merge and validate the options, do some simple aritmetic and set the instance variables
+  # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
     @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })               # default vars + cleaned vars
     { count:0, items:1, outset:0, page:1 }.each do |k,min|                     # validate instance variables
@@ -34,8 +34,8 @@ class Pagy ; VERSION = '1.0.0'
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
   def series(size=@vars[:size])
+    (series = []) and size.empty? and return series
     4.times{|i| (size[i]>=0 rescue nil) or raise(ArgumentError, "expected 4 items >= 0 in :size; got #{size.inspect}")}
-    series = []
     [*0..size[0], *@page-size[1]..@page+size[2], *@last-size[3]+1..@last+1].sort!.each_cons(2) do |a, b|
       if    a<0 || a==b || a>@last                                        # skip out of range and duplicates
       elsif a+1 == b; series.push(a)                                      # no gap     -> no additions

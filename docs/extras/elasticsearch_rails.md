@@ -5,9 +5,15 @@ title: Elasticsearch Rails
 
 Paginate `ElasticsearchRails::Results` objects efficiently avoiding expensive object-wrapping and without overriding.
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
+
+In the `pagy.rb` initializer:
+
+```ruby
+require 'pagy/extras/elasticsearch_rails'
+```
 
 In a controller:
 
