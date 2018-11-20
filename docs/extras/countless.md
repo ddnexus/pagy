@@ -25,8 +25,6 @@ In a controller:
 @pagy, @records  = pagy_countless(some_scope, ...)
 ```
 
-**Notice**: When using `ActiveRecord`, the `@records` is an `Array`. On the other side, the normal `Pagy` returns an `ActiveRelation`.
-
 ## Files
 
 This extra is composed of 1 file:
@@ -47,5 +45,7 @@ This sub-method is similar to the `pagy_get_vars` sub-method, but it is called o
 
 ### pagy_countless_get_items(collection, pagy)
 
-This sub-method is the same as the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see the [pagy_get_items doc](../api/backend.md#pagy_get_itemscollection-pagy)).
+This sub-method is similar to the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see the [pagy_get_items doc](../api/backend.md#pagy_get_itemscollection-pagy)).
+
+**Notice**: This method calls `to_a` on the collection in order to `pop` the eventual extra item from the result, so it returns an `Array`. That's different than the regular `pagy_get_items` method which doesn't need to call `to_a` on the collection.
 
