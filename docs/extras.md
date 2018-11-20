@@ -22,7 +22,7 @@ Pagy comes with a few optional extensions/extras:
 | `semantic`            | Nav helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)                                              | [semantic.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/semantic.rb), [documentation](extras/semantic.md)                                  |
 | `trim`                | Remove the `page=1` param from links                                                                                                                   | [trim.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/trim.rb), [documentation](extras/trim.md)                                              |
 
-## Synopsys
+## Synopsis
 
 Extras are not loaded by default, so you should require them explicitly in your `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_:
 

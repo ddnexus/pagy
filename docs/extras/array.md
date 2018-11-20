@@ -7,7 +7,7 @@ This extra adds a specialized pagination for arrays without the need to override
 
 That means that you can paginate the array independently from any other kind of collections you may need to paginate even in the same action.
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 

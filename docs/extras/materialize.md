@@ -5,7 +5,7 @@ title: Materialize
 
 This extra adds nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 

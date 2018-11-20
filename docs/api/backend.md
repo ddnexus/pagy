@@ -11,7 +11,7 @@ For overriding convenience, the `pagy` method calls two sub-methods that you may
 
 Check also the [array extra](../extras/array.md) and [searchkick extra](../extras/searchkick.md) for specific backend customizations.
 
-## Synopsys
+## Synopsis
 
 ```ruby
 # in some controller

@@ -9,7 +9,7 @@ Its usage is practically the same as the regular `Pagy::Backend` module (see the
 
 The pagination resulting from this extra has some limitation as documented in the [Pagy::Countless Caveats doc](../api/countless.md#caveats).
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 
