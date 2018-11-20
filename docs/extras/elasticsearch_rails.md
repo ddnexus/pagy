@@ -5,7 +5,7 @@ title: Elasticsearch Rails
 
 Paginate `ElasticsearchRails::Results` objects efficiently avoiding expensive object-wrapping and without overriding.
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 

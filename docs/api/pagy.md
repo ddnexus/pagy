@@ -5,7 +5,7 @@ title: Pagy
 
 The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a few integers (such as the count of the collection, the page number, the items per page, ...), does some simple aritmetic and creates a very small object that allocates less than 3k of memory. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
 
-## Synopsys
+## Synopsis
 
 ```ruby
 # set global defaults and extra variables typically in the pagy.rb initializer

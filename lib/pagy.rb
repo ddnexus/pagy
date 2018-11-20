@@ -15,7 +15,7 @@ class Pagy ; VERSION = '1.1.0'
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
-  # Merge and validate the options, do some simple aritmetic and set the instance variables
+  # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
     @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })               # default vars + cleaned vars
     { count:0, items:1, outset:0, page:1 }.each do |k,min|                     # validate instance variables

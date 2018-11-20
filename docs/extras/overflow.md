@@ -3,9 +3,9 @@ title: Overflow
 ---
 # Overflow Extra
 
-This extra allows for easy handling of overflowing pages. It internally rescues from the `Pagy::OverflowError` offering a few different ready to use modes, quite useful for UIs and/or APIs.
+This extra allows for easy handling of overflowing pages. It internally rescues from the `Pagy::OverflowError` offering a few different ready to use modes, quite useful for UIs and/or APIs. It works with `Pagy` or `Pagy::Countless` instances.
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 
@@ -14,8 +14,16 @@ In the `pagy.rb` initializer:
 ```ruby
 require 'pagy/extras/overflow'
 
-# default :last_page (other options :empty_page and :exception )
+# default :empty_page (other options :last_page and :exception )
 Pagy::VARS[:overflow] = :last_page
+
+# OR
+require 'pagy/countless'
+require 'pagy/extras/overflow'
+
+# default :empty_page (other option :exception )
+Pagy::VARS[:overflow] = :exception
+
 ```
 
 ## Files
@@ -26,7 +34,7 @@ This extra is composed of the [overflow.rb](https://github.com/ddnexus/pagy/blob
 
 | Variable    | Description                                              | Default      |
 | ------------| -------------------------------------------------------- | ------------ |
-| `:overflow` | one of `:last_page`, `:empty_page` or `:exception` modes | `:last_page` |
+| `:overflow` | one of `:last_page`, `:empty_page` or `:exception` modes | `:empty_page` |
 
 As usual, depending on the scope of the customization, you have a couple of options to set the variables:
 
@@ -49,7 +57,9 @@ These are the modes accepted by the `:overflow` variable:
 
 ### :last_page
 
-This is the default mode. It is useful in apps with an UI, in order to avoid to redirect to the last page.
+**Notice**: Not available for `Pagy::Countless` instances.
+
+It is useful in apps with an UI, in order to avoid to redirect to the last page.
 
 Regardless the overflowing page requested, Pagy will set the page to the last page and paginate exactly as if the last page has been requested. For example:
 
@@ -65,7 +75,9 @@ pagy.last == pagy.page  #=> true
 
 ### :empty_page
 
-This mode will paginate the actual requested page, which - being overflowing - is empty. It is useful with APIs, where the client expects an empty set of results in order to stop requesting further pages. For example:
+This is the default mode; it will paginate the actual requested page, which - being overflowing - is empty. It is useful with APIs, where the client expects an empty set of results in order to stop requesting further pages.
+
+Example for `Pagy` instance:
 
 ```ruby
 pagy = Pagy.new(count: 100, page: 100, overflow: :empty_page)
@@ -81,6 +93,27 @@ pagy.offset             #=> 0
 pagy.from               #=> 0
 pagy.to                 #=> 0
 pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
+```
+
+Example for `Pagy::Countless` instance:
+
+```ruby
+require 'pagy/countless'
+require 'pagy/extras/overflow'
+
+pagy = Pagy::Countless.new(count: 100, page: 100, overflow: :empty_page).finalize(0)
+
+pagy.overflow?          #=> true
+pagy.vars[:page]        #=> 100 (requested page)
+pagy.page               #=> 100 (actual empty page)
+pagy.last == pagy.page  #=> false
+pagy.last               #=> nil
+pagy.last == pagy.prev  #=> true (but nil)
+pagy.next               #=> nil
+pagy.offset             #=> 0
+pagy.from               #=> 0
+pagy.to                 #=> 0
+pagy.series             #=>  [] (no pages)
 ```
 
 ### :exception

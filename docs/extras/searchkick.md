@@ -7,7 +7,7 @@ Paginate `Searchkick::Results` objects efficiently avoiding expensive oject-wrap
 
 The `Searchkick::Results` object has already done pagination calculations, we just need to tell Pagy how to read page and total values. It is expected that you let Searchkick handle the `page` and `per_page` variables instead of providing those values as options to Pagy.
 
-## Synopsys
+## Synopsis
 
 See [extras](../extras.md) for general usage info.
 

@@ -1,11 +1,12 @@
 require_relative '../../test_helper'
+require 'pagy/extras/countless'
 require 'pagy/extras/items'
 
-SingleCov.covered!
+SingleCov.covered!(uncovered: 1)
 
 describe Pagy::Backend do
 
-  describe "#pagy_get_vars" do
+  describe "#pagy_get_vars and #pagy_countless_get_vars" do
 
     before do
       @collection = TestCollection.new((1..1000).to_a)
@@ -17,6 +18,9 @@ describe Pagy::Backend do
       merged  = backend.send :pagy_get_vars, @collection, vars
       merged.keys.must_include :items
       merged[:items].must_be_nil
+      merged_countless  = backend.send :pagy_countless_get_vars, @collection, vars
+      merged_countless.keys.must_include :items
+      merged_countless[:items].must_be_nil
     end
 
     it 'uses the vars' do
@@ -26,6 +30,8 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 15
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+      pagy_countless.items.must_equal 15
     end
 
     it 'uses the params' do
@@ -35,6 +41,8 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 12
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+      pagy_countless.items.must_equal 12
     end
 
     it 'overrides the params' do
@@ -44,6 +52,8 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 21
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+      pagy_countless.items.must_equal 21
     end
 
     it 'uses the max_items default' do
@@ -53,6 +63,8 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 100
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+      pagy_countless.items.must_equal 100
     end
 
     it 'doesn\'t limit the items from vars' do
@@ -62,6 +74,8 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 1000
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+      pagy_countless.items.must_equal 1000
     end
 
     it 'doesn\'t limit the items from default' do
@@ -73,6 +87,8 @@ describe Pagy::Backend do
         backend.params.must_equal params
         pagy, _ = backend.send :pagy, @collection, vars
         pagy.items.must_equal 1000
+        pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+        pagy_countless.items.must_equal 1000
       }
     end
 
@@ -83,6 +99,8 @@ describe Pagy::Backend do
       backend.params.must_equal params
       pagy, _ = backend.send :pagy, @collection, vars
       pagy.items.must_equal 14
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+      pagy_countless.items.must_equal 14
     end
 
     it 'uses items_param from default' do
@@ -94,6 +112,8 @@ describe Pagy::Backend do
         backend.params.must_equal params
         pagy, _ = backend.send :pagy, @collection, vars
         pagy.items.must_equal 15
+        pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+        pagy_countless.items.must_equal 15
       }
     end
 
