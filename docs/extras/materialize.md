@@ -19,12 +19,12 @@ Render the navigation links in some view...
 with a fast helper:
 
 ```erb
-<%== pagy_nav_materialize(@pagy) %>
-<%== pagy_nav_responsive_materialize(@pagy) %>
-<%== pagy_nav_compact_materialize(@pagy) %>
+<%== pagy_materialize_nav(@pagy) %>
+<%== pagy_materialize_responsive_nav(@pagy) %>
+<%== pagy_materialize_compact_nav(@pagy) %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_nav_responsive_materialize` or `pagy_nav_compact_materialize`.
+Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_responsive_nav` or `pagy_materialize_compact_nav`.
 
 ## Files
 
@@ -36,11 +36,11 @@ This extra is composed of 1 file:
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by overriding them directly in your own view helper.
 
-### pagy_nav_materialize(pagy)
+### pagy_materialize_nav(pagy)
 
 This method is the same as the `pagy_nav`, but customized for Materialize.
 
-### pagy_nav_compact_materialize(pagy, ...)
+### pagy_materialize_compact_nav(pagy, ...)
 
 This method is the same as the `pagy_nav_compact`, but customized for the Materialize CSS framework.
 
@@ -50,7 +50,7 @@ Here is an example:
 
 See more details in the [compact navs](navs.md#compact-navs) documentation.
 
-### pagy_nav_responsive_materialize(pagy, ...)
+### pagy_materialize_responsive_nav(pagy, ...)
 
 This method is the same as the `pagy_nav_responsive`, but customized for the Materialize CSS framework.
 

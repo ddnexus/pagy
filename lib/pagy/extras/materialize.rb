@@ -7,7 +7,7 @@ class Pagy
   module Frontend
 
     # Pagination for materialize: it returns the html with the series of links to the pages
-    def pagy_nav_materialize(pagy)
+    def pagy_materialize_nav(pagy)
       html, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
       html << (p_prev ? %(<li class="waves-effect prev">#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
                       : %(<li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>))
@@ -19,15 +19,16 @@ class Pagy
       end
       html << (p_next ? %(<li class="waves-effect next">#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
                       : %(<li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>))
-      %(<div class="pagy-nav-materialize pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></div>)
+      %(<div class="pagy-nav-materialize pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></div>)
     end
+    Pagy.deprecate self, :pagy_nav_materialize, :pagy_materialize_nav
 
     # Compact pagination for materialize: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_nav_compact_materialize(pagy, id=caller(1,1)[0].hash)
+    def pagy_materialize_compact_nav(pagy, id=caller(1,1)[0].hash)
       html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html << %(<div id="pagy-nav-#{id}" class="pagy-nav-compact-materialize pagination" role="navigation" aria-label="pager">)
+      html << %(<div id="pagy-nav-#{id}" class="pagy-nav-compact-materialize pagy-materialize-compact-nav pagination" role="navigation" aria-label="pager">)
       html << link.call(MARKER, '', %(style="display: none;" ))
       (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
       html << %(<div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;">)
@@ -41,10 +42,11 @@ class Pagy
                : %(<li class="next disabled" #{li_style}><a href="#"><i class="material-icons">chevron_right</i></a></li>))
       html << %(</ul></div><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}", #{!!defined?(TRIM)}]</script>)
     end
+    Pagy.deprecate self, :pagy_nav_compact_materialize, :pagy_materialize_compact_nav
 
     # Responsive pagination for Materialize: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
-    def pagy_nav_responsive_materialize(pagy, id=caller(1,1)[0].hash)
+    def pagy_materialize_responsive_nav(pagy, id=caller(1,1)[0].hash)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
       tags['before'] = +'<ul class="pagination">'
@@ -60,8 +62,9 @@ class Pagy
                                : %(<li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>))
       tags['after'] << '</ul>'
       script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
-      %(<div id="pagy-nav-#{id}" class="pagy-nav-responsive-materialize pagination" role="navigation" aria-label="pager"></div>#{script})
+      %(<div id="pagy-nav-#{id}" class="pagy-nav-responsive-materialize pagy-materialize-responsive-nav pagination" role="navigation" aria-label="pager"></div>#{script})
     end
+    Pagy.deprecate self, :pagy_nav_responsive_materialize, :pagy_materialize_responsive_nav
 
   end
 end

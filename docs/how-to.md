@@ -305,7 +305,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 | [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_responsive_nav`, `pagy_bootstrap_compact_nav`       |
 | [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_responsive_nav`, `pagy_bulma_compact_nav`                   |
 | [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_responsive_nav`, `pagy_foundation_compact_nav`    |
-| [materialize](extras/materialize.md) | `pagy_nav_materialize`, `pagy_nav_responsive_materialize`, `pagy_nav_compact_materialize` |
+| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_responsive_nav`, `pagy_materialize_compact_nav` |
 | [navs](extras/navs.md)               | `pagy_nav_responsive`, `pagy_nav_compact`                                                 |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.

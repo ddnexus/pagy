@@ -43,7 +43,7 @@ Other extras provide also the following framework-styled helpers:
 <%== pagy_bootstrap_compact_nav(@pagy) %>
 <%== pagy_bulma_compact_nav(@pagy) %>
 <%== pagy_foundation_compact_nav(@pagy) %>
-<%== pagy_nav_compact_materialize(@pagy) %>
+<%== pagy_materialize_compact_nav(@pagy) %>
 <%== pagy_nav_compact_semantic(@pagy) %>
 ```
 
@@ -82,7 +82,7 @@ Other extras provide also the following framework-styled helpers:
 <%== pagy_bootstrap_responsive_nav(@pagy) %>
 <%== pagy_bulma_responsive_nav(@pagy) %>
 <%== pagy_foundation_responsive_nav(@pagy) %>
-<%== pagy_nav_responsive_materialize(@pagy) %>
+<%== pagy_materialize_responsive_nav(@pagy) %>
 <%== pagy_nav_responsive_semantic(@pagy) %>
 ```
 
