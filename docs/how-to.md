@@ -345,9 +345,9 @@ They produce exactly the same output of the helpers, but since they are slower, 
   - [bulma_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.haml)
   - [bulma_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.slim)
 - `foundation`
-  - [nav_foundation.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.erb)
-  - [nav_foundation.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.haml)
-  - [nav_foundation.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.slim)
+  - [foundation_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.erb)
+  - [foundation_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.haml)
+  - [foundation_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.slim)
 
 If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
 
