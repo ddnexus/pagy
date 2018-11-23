@@ -341,9 +341,9 @@ They produce exactly the same output of the helpers, but since they are slower, 
   - [bootstrap_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.haml)
   - [bootstrap_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.slim)
 - `bulma`
-  - [nav_bulma.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.erb)
-  - [nav_bulma.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.haml)
-  - [nav_bulma.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.slim)
+  - [bulma_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.erb)
+  - [bulma_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.haml)
+  - [bulma_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.slim)
 - `foundation`
   - [nav_foundation.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.erb)
   - [nav_foundation.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.haml)

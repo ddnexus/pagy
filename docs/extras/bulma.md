@@ -27,7 +27,7 @@ with a fast helper:
 or with a template:
 
 ```erb
-<%== render 'pagy/nav_bulma', locals: {pagy: @pagy} %>
+<%== render 'pagy/bulma_nav', locals: {pagy: @pagy} %>
 ```
 
 Configure [javascript](../extras.md#javascript) if you use `pagy_bulma_responsive_nav` or `pagy_bulma_compact_nav`.
@@ -37,9 +37,9 @@ Configure [javascript](../extras.md#javascript) if you use `pagy_bulma_responsiv
 This extra is composed of 4 files:
 
 - [bulma.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bulma.rb)
-- [nav_bulma.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.erb) (optional template)
-- [nav_bulma.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.haml) (optional template)
-- [nav_bulma.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.slim)  (optional template)
+- [bulma_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.erb) (optional template)
+- [bulma_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.haml) (optional template)
+- [bulma_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.slim)  (optional template)
 
 ## Methods
 
@@ -49,7 +49,7 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 This method is the same as the `pagy_nav`, but customized for Bulma.
 
-The `nav_bulma.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it.
+The `bulma_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it.
 
 ### pagy_bulma_compact_nav(pagy, ...)
 
