@@ -19,9 +19,9 @@ Render the navigation links in some view...
 with a fast helper:
 
 ```erb
-<%== pagy_nav_semantic(@pagy) %>
-<%== pagy_nav_compact_semantic(@pagy) %>
-<%== pagy_nav_responsive_semantic(@pagy) %>
+<%== pagy_semantic_nav(@pagy) %>
+<%== pagy_semantic_compact_nav(@pagy) %>
+<%== pagy_semantic_responsive_nav(@pagy) %>
 ```
 
 ## Files
@@ -34,17 +34,17 @@ This extra is composed of 1 file:
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by overriding them directly in your own view helper.
 
-### pagy_nav_semantic(pagy)
+### pagy_semantic_nav(pagy)
 
 This method is the same as the `pagy_nav`, but customized for Semantic UI.
 
-### pagy_nav_compact_semantic(pagy, ...)
+### pagy_semantic_compact_nav(pagy, ...)
 
 This method is the same as the `pagy_nav_compact`, but customized for the Semantic UI framework.
 
 See more details in the [compact navs](navs.md#compact-navs) documentation.
 
-### pagy_nav_responsive_semantic(pagy, ...)
+### pagy_semantic_responsive_nav(pagy, ...)
 
 This method is the same as the `pagy_nav_responsive`, but customized for the Semantic UI framework.
 

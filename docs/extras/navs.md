@@ -44,7 +44,7 @@ Other extras provide also the following framework-styled helpers:
 <%== pagy_bulma_compact_nav(@pagy) %>
 <%== pagy_foundation_compact_nav(@pagy) %>
 <%== pagy_materialize_compact_nav(@pagy) %>
-<%== pagy_nav_compact_semantic(@pagy) %>
+<%== pagy_semantic_compact_nav(@pagy) %>
 ```
 
 ## Methods
@@ -83,7 +83,7 @@ Other extras provide also the following framework-styled helpers:
 <%== pagy_bulma_responsive_nav(@pagy) %>
 <%== pagy_foundation_responsive_nav(@pagy) %>
 <%== pagy_materialize_responsive_nav(@pagy) %>
-<%== pagy_nav_responsive_semantic(@pagy) %>
+<%== pagy_semantic_responsive_nav(@pagy) %>
 ```
 
 ## Variables
