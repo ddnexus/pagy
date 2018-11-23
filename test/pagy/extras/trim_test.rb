@@ -98,7 +98,7 @@ describe "#pagy_nav_compact" do
 
   end
 
-  describe "#pagy_nav_compact_bulma" do
+  describe "#pagy_bulma_compact_nav" do
 
     before do
       @array = (1..103).to_a.extend(Pagy::Array::PageMethod)
@@ -106,23 +106,23 @@ describe "#pagy_nav_compact" do
 
     it 'renders page 1 for bulma' do
       pagy, _  = @array.pagy(1)
-      html = frontend.pagy_nav_compact_bulma(pagy, pagy_test_id)
+      html = frontend.pagy_bulma_compact_nav(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"pagy-nav-test-id\" class=\"pagy-nav-compact-bulma\" role=\"navigation\" aria-label=\"pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\"></a><a href=\"/foo\"   style=\"display: none;\"></a><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a class=\"button\" disabled>&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-compact-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"1\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a href=\"/foo?page=2\"   rel=\"next\" class=\"button\" aria-label=\"next page\">Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"test-id\", \"#{Pagy::Frontend::MARKER}\", \"1\", true]</script>"
+        "<nav id=\"pagy-nav-test-id\" class=\"pagy-nav-compact-bulma pagy-bulma-compact-nav\" role=\"navigation\" aria-label=\"pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\"></a><a href=\"/foo\"   style=\"display: none;\"></a><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a class=\"button\" disabled>&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-compact-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"1\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a href=\"/foo?page=2\"   rel=\"next\" class=\"button\" aria-label=\"next page\">Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"test-id\", \"#{Pagy::Frontend::MARKER}\", \"1\", true]</script>"
     end
 
     it 'renders page 3 for bulma' do
       pagy, _  = @array.pagy(3)
-      html = frontend.pagy_nav_compact_bulma(pagy, pagy_test_id)
+      html = frontend.pagy_bulma_compact_nav(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"pagy-nav-test-id\" class=\"pagy-nav-compact-bulma\" role=\"navigation\" aria-label=\"pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\"></a><a href=\"/foo\"   style=\"display: none;\"></a><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a href=\"/foo?page=2\"   rel=\"prev\" class=\"button\" aria-label=\"previous page\">&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-compact-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"3\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a href=\"/foo?page=4\"   rel=\"next\" class=\"button\" aria-label=\"next page\">Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"test-id\", \"#{Pagy::Frontend::MARKER}\", \"3\", true]</script>"
+        "<nav id=\"pagy-nav-test-id\" class=\"pagy-nav-compact-bulma pagy-bulma-compact-nav\" role=\"navigation\" aria-label=\"pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\"></a><a href=\"/foo\"   style=\"display: none;\"></a><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a href=\"/foo?page=2\"   rel=\"prev\" class=\"button\" aria-label=\"previous page\">&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-compact-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"3\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a href=\"/foo?page=4\"   rel=\"next\" class=\"button\" aria-label=\"next page\">Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"test-id\", \"#{Pagy::Frontend::MARKER}\", \"3\", true]</script>"
     end
 
     it 'renders page 6 for bulma' do
       pagy, _  = @array.pagy(6)
-      html = frontend.pagy_nav_compact_bulma(pagy, pagy_test_id)
+      html = frontend.pagy_bulma_compact_nav(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"pagy-nav-test-id\" class=\"pagy-nav-compact-bulma\" role=\"navigation\" aria-label=\"pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\"></a><a href=\"/foo\"   style=\"display: none;\"></a><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a href=\"/foo?page=5\"   rel=\"prev\" class=\"button\" aria-label=\"previous page\">&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-compact-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"6\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a class=\"button\" disabled>Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"test-id\", \"#{Pagy::Frontend::MARKER}\", \"6\", true]</script>"
+        "<nav id=\"pagy-nav-test-id\" class=\"pagy-nav-compact-bulma pagy-bulma-compact-nav\" role=\"navigation\" aria-label=\"pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\"></a><a href=\"/foo\"   style=\"display: none;\"></a><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a href=\"/foo?page=5\"   rel=\"prev\" class=\"button\" aria-label=\"previous page\">&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-compact-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"6\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a class=\"button\" disabled>Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-compact-json\">[\"test-id\", \"#{Pagy::Frontend::MARKER}\", \"6\", true]</script>"
     end
 
   end
