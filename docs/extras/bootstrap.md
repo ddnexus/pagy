@@ -47,25 +47,25 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 ### pagy_bootstrap_nav(pagy)
 
-This method is the same as the `pagy_nav`, but customized for Bootstrap.
+This method is the same as the `pagy_nav`/`pagy_plain_nav`, but customized for Bootstrap.
 
 The `bootstrap_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it.
 
 ### pagy_bootstrap_compact_nav(pagy, ...)
 
-This method is the same as the `pagy_nav_compact`, but customized for the Bootstrap framework.
+This method is the same as the `pagy_plain_compact_nav`, but customized for the Bootstrap framework.
 
 Here is an example:
 
 ![pagy-compact](../assets/images/pagy-compact-g.png)
 
-See more details in the [compact navs](navs.md#compact-navs) documentation.
+See more details in the [compact navs](plain.md#compact-navs) documentation.
 
 ### pagy_bootstrap_responsive_nav(pagy, ...)
 
-This method is the same as the `pagy_nav_responsive`, but customized for the Bootstrap framework.
+This method is the same as the `pagy_plain_responsive_nav`, but customized for the Bootstrap framework.
 
-See more details in the [responsive navs](navs.md#responsive-navs) documentation.
+See more details in the [responsive navs](plain.md#responsive-navs) documentation.
 
 ### Optional Template Files
 

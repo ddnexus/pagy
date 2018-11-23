@@ -1,11 +1,11 @@
 ---
-title: Navs
+title: Plain
 ---
-# Navs Extra
+# Plain Extra
 
-This extra adds a couple of nav helpers to the `Pagy::Frontend` module: `pagy_nav_compact` and `pagy_nav_responsive`. These are the generic/unstyled helpers for responsive and compact pagination.
+This extra adds a couple of nav helpers to the `Pagy::Frontend` module: `pagy_plain_compact_nav` and `pagy_plain_responsive_nav`. It also adds the `:pagy_plain_nav` alias (pointing to the `:pagy_nav` for naming consistency). These are the plain/unstyled nav helpers for pagination.
 
-Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](foundation.md), [materialize](materialize.md)) provide framework-styled versions of the same `responsive` and `compact` helpers, so you may not need this extra if you use one of those.
+Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](foundation.md), [materialize](materialize.md), [semantic](semantic.md)) provide framework-styled versions of the same `nav`, `responsive` and `compact` helpers, so you may not need this extra if you use one of those.
 
 ## Synopsis
 
@@ -14,14 +14,14 @@ See [extras](../extras.md) for general usage info.
 In the `pagy.rb` initializer:
 
 ```ruby
-require 'pagy/extras/navs'
+require 'pagy/extras/plain'
 ```
 
 Configure [javascript](../extras.md#javascript).
 
 ## Files
 
-This extra is composed of the [navs.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/navs.rb) file and uses the shared [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file.
+This extra is composed of the [plain.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/plain.rb) file and uses the shared [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file.
 
 # Compact navs
 
@@ -34,7 +34,7 @@ It is especially useful for small size screens, but it is used also with wide la
 Use the responsive helper(s) in any view:
 
 ```erb
-<%== pagy_nav_compact(@pagy) %>
+<%== pagy_plain_compact_nav(@pagy) %>
 ```
 
 Other extras provide also the following framework-styled helpers:
@@ -49,11 +49,11 @@ Other extras provide also the following framework-styled helpers:
 
 ## Methods
 
-### pagy_nav_compact(pagy, ...)
+### pagy_plain_compact_nav(pagy, ...)
 
 Renders a compact navigation with a style similar to the `pagy_nav` helper.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id only if you are going to use more than one `pagy_nav_compact*` call in the same line for the same page.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id only if you are going to use more than one `pagy_plain_compact_nav*` call in the same line for the same page.
 
 # Responsive navs
 
@@ -73,7 +73,7 @@ Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
 Use the responsive helper(s) in any view:
 
 ```erb
-<%== pagy_nav_responsive(@pagy) %>
+<%== pagy_plain_responsive_nav(@pagy) %>
 ```
 
 Other extras provide also the following framework-styled helpers:
@@ -105,8 +105,8 @@ The above statement means that from `0` to `450` pixels width, Pagy will use the
 
 ## Methods
 
-### pagy_nav_responsive(pagy, ...)
+### pagy_plain_responsive_nav(pagy, ...)
 
 Similar to the `pagy_nav` helper, with added responsiveness.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id if you are going to use more than one `pagy_nav_responsive*` call in the same line for the same file.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you should pass an explicit id if you are going to use more than one `pagy_plain_responsive_nav*` call in the same line for the same file.

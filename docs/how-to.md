@@ -302,11 +302,12 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 
 | Extra                                | Helpers                                                                                   |
 | ------------------------------------ | ----------------------------------------------------------------------------------------- |
-| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_responsive_nav`, `pagy_bootstrap_compact_nav`       |
-| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_responsive_nav`, `pagy_bulma_compact_nav`                   |
-| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_responsive_nav`, `pagy_foundation_compact_nav`    |
-| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_responsive_nav`, `pagy_materialize_compact_nav` |
-| [navs](extras/navs.md)               | `pagy_nav_responsive`, `pagy_nav_compact`                                                 |
+| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_compact_nav`, `pagy_bootstrap_responsive_nav`       |
+| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_compact_nav`, `pagy_bulma_responsive_nav`                   |
+| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_compact_nav`, `pagy_foundation_responsive_nav`    |
+| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_compact_nav`, `pagy_materialize_responsive_nav` |
+| [plain](extras/plain.md)             | `pagy_plain_nav`, `pagy_plain_compact_nav`, `pagy_plain_responsive_nav`                   |
+| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_compact_nav`, `pagy_semantic_responsive_nav`          |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -396,7 +397,7 @@ That may work very well with static (or almost static) DBs, where there is not m
 
 ### Avoiding the count
 
-When the count caching is not an option, you may want to use the   which totally avoid the need for a count query, still providing an acceptable subset of the full pagination features.
+When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoid the need for a count query, still providing an acceptable subset of the full pagination features.
 
 ## Adding HTTP headers
 
