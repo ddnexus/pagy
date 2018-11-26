@@ -141,6 +141,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
+- [Deprecations](https://github.com/ddnexus/pagy/blob/master/DEPRECATIONS.md)
 
 ### Support and Feedback
 
