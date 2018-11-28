@@ -40,7 +40,7 @@ Use the responsive helper(s) in any view:
 Other extras provide also the following framework-styled helpers:
 
 ```erb
-<%== pagy_nav_compact_bootstrap(@pagy) %>
+<%== pagy_bootstrap_compact_nav(@pagy) %>
 <%== pagy_nav_compact_bulma(@pagy) %>
 <%== pagy_nav_compact_foundation(@pagy) %>
 <%== pagy_nav_compact_materialize(@pagy) %>
@@ -79,7 +79,7 @@ Use the responsive helper(s) in any view:
 Other extras provide also the following framework-styled helpers:
 
 ```erb
-<%== pagy_nav_responsive_bootstrap(@pagy) %>
+<%== pagy_bootstrap_responsive_nav(@pagy) %>
 <%== pagy_nav_responsive_bulma(@pagy) %>
 <%== pagy_nav_responsive_foundation(@pagy) %>
 <%== pagy_nav_responsive_materialize(@pagy) %>

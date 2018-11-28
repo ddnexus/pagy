@@ -125,7 +125,7 @@ Please take a look at the topics in the [how-to](how-to.md) documentation: that 
 
 ### CSSs
 
-If the app uses the bootstrap pagination, the same CSSs should work seamlessly with `pagy_nav_bootstrap` or with any of the bootstrap templates. If the app doesn't use bootstrap, you may need to rename some rule in your CSSs.
+If the app uses the bootstrap pagination, the same CSSs should work seamlessly with `pagy_bootstrap_nav` or with any of the bootstrap templates. If the app doesn't use bootstrap, you may need to rename some rule in your CSSs.
 
 ### I18n
 

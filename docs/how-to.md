@@ -302,7 +302,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 
 | Extra                                | Helpers                                                                                   |
 | ------------------------------------ | ----------------------------------------------------------------------------------------- |
-| [bootstrap](extras/bootstrap.md)     | `pagy_nav_bootstrap`, `pagy_nav_responsive_bootstrap`, `pagy_nav_compact_bootstrap`       |
+| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_responsive_nav`, `pagy_bootstrap_compact_nav`       |
 | [bulma](extras/bulma.md)             | `pagy_nav_bulma`, `pagy_nav_responsive_bulma`, `pagy_nav_compact_bulma`                   |
 | [foundation](extras/foundation.md)   | `pagy_nav_foundation`, `pagy_nav_responsive_foundation`, `pagy_nav_compact_foundation`    |
 | [materialize](extras/materialize.md) | `pagy_nav_materialize`, `pagy_nav_responsive_materialize`, `pagy_nav_compact_materialize` |
@@ -328,7 +328,7 @@ By default Pagy generates all the page links including the `page` param. If you 
 
 The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose wisely.
 
-Pagy provides the replacement templates for the `pagy_nav`, `pagy_nav_bootstrap`, `pagy_nav_bulma` and the `pagy_nav_foundation` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
+Pagy provides the replacement templates for the `pagy_nav`, `pagy_bootstrap_nav`, `pagy_nav_bulma` and the `pagy_nav_foundation` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
 
 They produce exactly the same output of the helpers, but since they are slower, using them wouldn't make any sense unless you need to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 

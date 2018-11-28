@@ -19,9 +19,9 @@ Render the navigation links in some view...
 with a fast helper:
 
 ```erb
-<%== pagy_nav_bootstrap(@pagy) %>
-<%== pagy_nav_responsive_bootstrap(@pagy) %>
-<%== pagy_nav_compact_bootstrap(@pagy) %>
+<%== pagy_bootstrap_nav(@pagy) %>
+<%== pagy_bootstrap_responsive_nav(@pagy) %>
+<%== pagy_bootstrap_compact_nav(@pagy) %>
 ```
 
 or with a template:
@@ -30,7 +30,7 @@ or with a template:
 <%== render 'pagy/nav_bootstrap', locals: {pagy: @pagy} %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_nav_responsive_bootstrap` or `pagy_nav_compact_bootstrap`.
+Configure [javascript](../extras.md#javascript) if you use `pagy_bootstrap_responsive_nav` or `pagy_bootstrap_compact_nav`.
 
 ## Files
 
@@ -45,13 +45,13 @@ This extra is composed of 4 files:
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by overriding it directly in your own view helper.
 
-### pagy_nav_bootstrap(pagy)
+### pagy_bootstrap_nav(pagy)
 
 This method is the same as the `pagy_nav`, but customized for Bootstrap.
 
 The `nav_bootstrap.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it.
 
-### pagy_nav_compact_bootstrap(pagy, ...)
+### pagy_bootstrap_compact_nav(pagy, ...)
 
 This method is the same as the `pagy_nav_compact`, but customized for the Bootstrap framework.
 
@@ -61,7 +61,7 @@ Here is an example:
 
 See more details in the [compact navs](navs.md#compact-navs) documentation.
 
-### pagy_nav_responsive_bootstrap(pagy, ...)
+### pagy_bootstrap_responsive_nav(pagy, ...)
 
 This method is the same as the `pagy_nav_responsive`, but customized for the Bootstrap framework.
 
