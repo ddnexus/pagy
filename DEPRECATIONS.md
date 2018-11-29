@@ -75,3 +75,17 @@ The following methods (and one file) have been renamed and they will be removed 
 The `nav` CSS classes follow the same renaming rules of the helper methods. For example:
 
 `pagy-nav-responsive-bootstrap` is now `pagy-bootstrap-responsive-nav`
+
+### CSS JSON tag classes
+
+All the JSON tag classes are now `pagy-json`, and the qualifier of the json (e.g. `compact`, `responsive`, ...) is now passed as the first argument in the array content. For example:
+
+`<script type="application/json" class="pagy-responsive-json">["#{id}", ...`
+
+is now
+
+`<script type="application/json" class="pagy-json">["responsive", "#{id}", ...`
+
+However the tags have been refactored to use the shared `pagy_json_tag` helper. For example:
+
+`script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])`
