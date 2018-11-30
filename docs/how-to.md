@@ -302,11 +302,12 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 
 | Extra                                | Helpers                                                                                   |
 | ------------------------------------ | ----------------------------------------------------------------------------------------- |
-| [bootstrap](extras/bootstrap.md)     | `pagy_nav_bootstrap`, `pagy_nav_responsive_bootstrap`, `pagy_nav_compact_bootstrap`       |
-| [bulma](extras/bulma.md)             | `pagy_nav_bulma`, `pagy_nav_responsive_bulma`, `pagy_nav_compact_bulma`                   |
-| [foundation](extras/foundation.md)   | `pagy_nav_foundation`, `pagy_nav_responsive_foundation`, `pagy_nav_compact_foundation`    |
-| [materialize](extras/materialize.md) | `pagy_nav_materialize`, `pagy_nav_responsive_materialize`, `pagy_nav_compact_materialize` |
-| [navs](extras/navs.md)               | `pagy_nav_responsive`, `pagy_nav_compact`                                                 |
+| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_compact_nav`, `pagy_bootstrap_responsive_nav`       |
+| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_compact_nav`, `pagy_bulma_responsive_nav`                   |
+| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_compact_nav`, `pagy_foundation_responsive_nav`    |
+| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_compact_nav`, `pagy_materialize_responsive_nav` |
+| [plain](extras/plain.md)             | `pagy_plain_nav`, `pagy_plain_compact_nav`, `pagy_plain_responsive_nav`                   |
+| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_compact_nav`, `pagy_semantic_responsive_nav`          |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -328,7 +329,7 @@ By default Pagy generates all the page links including the `page` param. If you 
 
 The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose wisely.
 
-Pagy provides the replacement templates for the `pagy_nav`, `pagy_nav_bootstrap`, `pagy_nav_bulma` and the `pagy_nav_foundation` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
+Pagy provides the replacement templates for the `pagy_nav`, `pagy_bootstrap_nav`, `pagy_bulma_nav` and the `pagy_foundation_nav` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
 
 They produce exactly the same output of the helpers, but since they are slower, using them wouldn't make any sense unless you need to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
@@ -337,23 +338,23 @@ They produce exactly the same output of the helpers, but since they are slower, 
   - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.haml)
   - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.slim)
 - `bootstrap`
-  - [nav_bootstrap.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.erb)
-  - [nav_bootstrap.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.haml)
-  - [nav_bootstrap.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bootstrap.html.slim)
+  - [bootstrap_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.erb)
+  - [bootstrap_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.haml)
+  - [bootstrap_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.slim)
 - `bulma`
-  - [nav_bulma.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.erb)
-  - [nav_bulma.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.haml)
-  - [nav_bulma.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_bulma.html.slim)
+  - [bulma_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.erb)
+  - [bulma_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.haml)
+  - [bulma_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.slim)
 - `foundation`
-  - [nav_foundation.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.erb)
-  - [nav_foundation.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.haml)
-  - [nav_foundation.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav_foundation.html.slim)
+  - [foundation_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.erb)
+  - [foundation_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.haml)
+  - [foundation_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.slim)
 
 If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
 
 ```erb
 <%== render file: Pagy.root.join('templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
-<%== render file: Pagy.root.join('templates', 'nav_bootstrap.html.erb'), locals: {pagy: @pagy} %>
+<%== render file: Pagy.root.join('templates', 'bootstrap_nav.html.erb'), locals: {pagy: @pagy} %>
 ```
 
 You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
@@ -396,7 +397,7 @@ That may work very well with static (or almost static) DBs, where there is not m
 
 ### Avoiding the count
 
-When the count caching is not an option, you may want to use the   which totally avoid the need for a count query, still providing an acceptable subset of the full pagination features.
+When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoid the need for a count query, still providing an acceptable subset of the full pagination features.
 
 ## Adding HTTP headers
 

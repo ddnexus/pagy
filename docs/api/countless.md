@@ -34,7 +34,7 @@ The available values for the `:overflow` variable are `:empty_page` and `:except
 
 ### Features witout support
 
-The `pagy_info` and all the `pagy_nav_compact*` helpers are not supported.
+The `pagy_info` and all the `pagy_plain_compact_nav*` helpers are not supported.
 
 ## How countless pagination works
 

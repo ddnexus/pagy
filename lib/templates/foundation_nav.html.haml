@@ -4,31 +4,31 @@
 -# The link variable is set to a proc that returns the link tag.
 -# Usage: link.call( page_number [, text [, extra_attributes_string ]])
 
-- link = pagy_link_proc(pagy, 'class="page-link"')
+- link = pagy_link_proc(pagy)
 
-%nav.pagy-nav-bootstrap.pagination{"aria-label" => "pager", :role => "navigation"}
+%nav.pagy-nav-foundation.pagy-foundation-nav{"role" => "navigation", "aria-label" => "Pagination"}
 
   %ul.pagination
 
     - if pagy.prev
-      %li.page-item.prev!= link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
+      %li.prev!= link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
     - else
-      %li.page-item.prev.disabled
-        %a.page-link{:href => '#'}!= pagy_t('pagy.nav.prev')
+      %li.prev.disabled
+        != pagy_t('pagy.nav.prev')
 
     - pagy.series.each do |item|                      # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
       - if item.is_a?(Integer)                        # page link
-        %li.page-item!= link.call(item)
+        %li!= link.call(item)
 
       - elsif item.is_a?(String)                      # current page
-        %li.page-item.active!= link.call(item)
+        %li.current
+          = item
 
       - elsif item == :gap                            # page gap
-        %li.page-item.disabled.gap
-          %a.page-link{:href => "#"}!= pagy_t('pagy.nav.gap')
+        %li.ellipsis.gap{"aria-hidden" => true}
 
     - if pagy.next
-      %li.page-item.next!= link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
+      %li.next!= link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
     - else
-      %li.page-item.next.disabled
-        %a.page-link{:href => '#'}!= pagy_t('pagy.nav.next')
+      %li.next.disabled
+        != pagy_t('pagy.nav.next')
