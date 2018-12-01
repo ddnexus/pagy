@@ -1,6 +1,8 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/items
 # frozen_string_literal: true
 
+require 'pagy/extras/shared'
+
 class Pagy
 
   # Default variables for this extra
@@ -51,7 +53,7 @@ class Pagy
         html << %(<a href="#{pagy_url_for("#{MARKER}-page-", pagy)}"></a>)
         input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
         html << %(#{pagy_t('pagy.items', items_input: input, count: p_items)})
-      html << %(</span><script type="application/json" class="pagy-json">#{[:items, id, MARKER, pagy.from]}</script>)
+      html << %(</span>#{pagy_json_tag(:items, id, MARKER, pagy.from)})
     end
 
   end
