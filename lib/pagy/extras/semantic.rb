@@ -29,7 +29,7 @@ class Pagy
     def pagy_semantic_compact_nav(pagy, id=caller(1,1)[0].hash.to_s)
       html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html << %(<div id="pagy-nav-#{id}" class="pagy-nav-compact-semantic pagy-semantic-compact-nav ui compact menu" role="navigation" aria-label="pager">)
+      html << %(<div id="#{id}" class="pagy-nav-compact-semantic pagy-semantic-compact-nav ui compact menu" role="navigation" aria-label="pager">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
@@ -38,7 +38,7 @@ class Pagy
         html << %(<div class="pagy-compact-input item">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</div> )
         html << (p_next ? %(#{link.call p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"'})
                         : %(<div class="item disabled"><i class="right small chevron icon"></i></div>))
-      html << %(</div><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}", #{!!defined?(TRIM)}]</script>)
+      html << %(</div>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
     Pagy.deprecate self, :pagy_nav_compact_semantic, :pagy_semantic_compact_nav
 
@@ -57,8 +57,8 @@ class Pagy
       end
       tags['after'] = (p_next ? %(#{link.call p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"'})
                               : %(<div class="item disabled"><i class="right small chevron icon"></i></div>))
-      script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
-      %(<div id="pagy-nav-#{id}" class="pagy-nav-responsive-semantic pagy-semantic-responsive-nav ui pagination menu" role="navigation" aria-label="pager"></div>#{script})
+      script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
+      %(<div id="#{id}" class="pagy-nav-responsive-semantic pagy-semantic-responsive-nav ui pagination menu" role="navigation" aria-label="pager"></div>#{script})
     end
     Pagy.deprecate self, :pagy_nav_responsive_semantic, :pagy_semantic_responsive_nav
 

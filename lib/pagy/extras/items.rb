@@ -47,11 +47,11 @@ class Pagy
     def pagy_items_selector(pagy, id=caller(1,1)[0].hash.to_s)
       pagy = pagy.clone; p_vars = pagy.vars; p_items = p_vars[:items]; p_vars[:items] = "#{MARKER}-items-"
 
-      html = +%(<span id="pagy-items-#{id}">)
+      html = +%(<span id="#{id}">)
         html << %(<a href="#{pagy_url_for("#{MARKER}-page-", pagy)}"></a>)
         input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
         html << %(#{pagy_t('pagy.items', items_input: input, count: p_items)})
-      html << %(</span><script type="application/json" class="pagy-items-json">["#{id}", "#{MARKER}", #{pagy.from}]</script>)
+      html << %(</span><script type="application/json" class="pagy-json">#{[:items, id, MARKER, pagy.from]}</script>)
     end
 
   end

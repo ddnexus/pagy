@@ -14,7 +14,7 @@ class Pagy
     def pagy_plain_compact_nav(pagy, id=caller(1,1)[0].hash.to_s)
       html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html << %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact pagy-plain-compact-nav pagination" role="navigation" aria-label="pager">)
+      html << %(<nav id="#{id}" class="pagy-nav-compact pagy-plain-compact-nav pagination" role="navigation" aria-label="pager">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
@@ -23,7 +23,7 @@ class Pagy
         html << %(<span class="pagy-compact-input" style="margin: 0 0.6rem;">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</span> )
         html << (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                         : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
-      html << %(</nav><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}", #{!!defined?(TRIM)}]</script>)
+      html << %(</nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
     Pagy.deprecate self, :pagy_nav_compact, :pagy_plain_compact_nav
 
@@ -42,8 +42,8 @@ class Pagy
       end
       tags['after'] = (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                               : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
-      script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
-      %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive pagy-plain-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
+      script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
+      %(<nav id="#{id}" class="pagy-nav-responsive pagy-plain-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
     end
     Pagy.deprecate self, :pagy_nav_responsive, :pagy_plain_responsive_nav
 

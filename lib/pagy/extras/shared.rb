@@ -34,4 +34,12 @@ class Pagy
     end
   end
 
+  module Frontend
+
+    def pagy_json_tag(*args)
+      %(<script type="application/json" class="pagy-json">#{args.to_json}</script>)
+    end
+
+  end
+
 end
