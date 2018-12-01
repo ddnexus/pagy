@@ -3,9 +3,14 @@ title: Pagy::Countless
 ---
 # Pagy::Countless
 
-This is a `Pagy` [subclass](https://github.com/ddnexus/pagy/blob/master/lib/pagy/countless.rb) that provides pagination without the need of any `:count`. That may be especially useful for slow `COUNT(*)` query - result of large tables or poorly optimized DBs - or whenever you don't need the full set of pagination features.
+This is a `Pagy` [subclass](https://github.com/ddnexus/pagy/blob/master/lib/pagy/countless.rb) that provides pagination without the need of any `:count`. That may be especially useful in the following scenarios:
 
-This class is providing support for extras that don't need the full set of pagination support or need to avoid the `:count` variable (e.g. the [countless extra](../extras/countless.md)). You should not need to use it directly because it is required and used internally.
+ - slow `COUNT(*)` query - result of large tables or poorly optimized DBs
+ - large collections of items where the count is missing or irrelevant
+ - minimalistic UI, infinite scrolling, APIs that don't benefit from a nav-bar
+ - when the full nav-bar is not a requirement and/or performance is more desirable
+
+This class is providing support for extras that don't need the full set of pagination support or need to avoid the `:count` variable (e.g. the [countless](../extras/countless.md) extra). You should not need to use it directly because it is required and used internally.
 
 ## Caveats
 
@@ -13,12 +18,14 @@ In this class the `:count` variable is always `nil`, hence some feature that dep
 
 ### Features with limited support
 
-#### :size variable and series method
+#### Nav bar
 
-A couple if items of the `:size` array have some limitation. Regardless the actual `:size` value:
+The nav bar links after the current page cannot be fully displayed because a couple if items of the `:size` array depends on the `count`, so they have some limitations.
 
-- `vars[:size][2]` is capped at 1
-- `vars[:size][3]` is set to 0
+ Regardless the actual `:size` value:
+
+- `vars[:size][2]` is capped at 1 (we know only if the next page exists)
+- `vars[:size][3]` is set to 0 (we don't know the total pages)
 
 A few examples:
 
@@ -30,21 +37,23 @@ The `series` method reflects on the above.
 
 #### :overflow variable
 
-The available values for the `:overflow` variable are `:empty_page` and `:exception`, missing `:last_page`
+The available values for the `:overflow` variable are `:empty_page` and `:exception`, missing the `:last_page` (which is not known in case of an exception).
 
-### Features witout support
+### Features without support
 
-The `pagy_info` and all the `pagy_plain_compact_nav*` helpers are not supported.
+The `pagy_info` and all the `*_compact_nav` helpers that use the total `count` are not supported.
 
 ## How countless pagination works
 
-Instead of basing all the internal calculations on the `:count` variable (passed with the constructor), this class uses the number of actually retrieved items for the page (passed in a second step with the `finalize` method), in order to deduce if there is a `next` page, or if the current page is the `last` page, or if the current request should raise a `Pagy::OverflowError` exception.
+Instead of basing all the internal calculations on the `:count` variable (passed with the constructor), this class uses the number of actually retrieved items to deduce the pagination variables.
+
+The retrieved items number is passed in a second step with the `finalize` method, and it allows to determine if there is a `next` page, or if the current page is the `last` page, or if the current request should raise a `Pagy::OverflowError` exception.
 
 The trick is retrieving `items + 1`, and using the resulting number to calculate the variables, while eventually removing the extra item from the result. (see the [countless.rb extra](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb))
 
 ## Methods
 
-The construction of the `Pagy::Countless` object is splitted into 2 steps: the regular `initialize` method and the `finalize` method, which will use the retrieved items number to calculate the rest of the pagination integers.
+The construction of the final `Pagy::Countless` object is splitted into 2 steps: the regular `initialize` method and the `finalize` method, which will use the retrieved items number to calculate the rest of the pagination integers.
 
 ### Pagy::Countless.new(vars)
 
