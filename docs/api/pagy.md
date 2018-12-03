@@ -88,7 +88,8 @@ They are all integers:
 | `:params`     | the arbitrary param hash to add to the url. _(see [Customizing the params](../how-to.md#customizing-the-params))_                                                                                | `{}`        |
 | `:anchor`     | the arbitrary anchor string (including the "#") to add to the url. _(see [Customizing the params](../how-to.md#customizing-the-params))_                                                         | `""`        |
 | `:link_extra` | the extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [Customizing the link attributes](../how-to.md#customizing-the-link-attributes))_    | `""`        |
-| `:item_path`  | the dictionary path used by the `pagy_info` method to lookup the item/model name _(see [Using the pagy info helper](../how-to.md#using-the-pagy_info-helper))_                                                                                                                | `""`        |
+| `:item_path`  | the dictionary path used by the `pagy_info` method to lookup the item/model name _(see [Using the pagy info helper](../how-to.md#using-the-pagy_info-helper))_                                   | `""`        |
+| `:cycle`      | enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                    | `false`     |
 
 There is no specific validation for non-instance variables.
 
@@ -146,6 +147,6 @@ Which means:
 
 - there is always a `page` #`1` in the pagination, even if it's empty
 - `pages` and `last` are always at least both `1`
-- the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string
+- the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string. With `size: []` series returns `[]`
 - `from` and `to` of an empty page are both `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)

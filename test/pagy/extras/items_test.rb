@@ -161,11 +161,11 @@ describe Pagy::Frontend do
       html, id = frontend.pagy_items_selector(@pagy), caller(0,1)[0].hash
 
       html.must_equal \
-        %(<span id="pagy-items-#{id}">) +
+        %(<span id="#{id}">) +
           %(<a href="/foo?page=#{Pagy::Frontend::MARKER}-page-&items=#{Pagy::Frontend::MARKER}-items-"></a>) +
           %(Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page) +
         %(</span>) +
-        %(<script type="application/json" class="pagy-items-json">["#{id}", "#{Pagy::Frontend::MARKER}", 41]</script>)
+        %(<script type="application/json" class="pagy-json">["items","#{id}","#{Pagy::Frontend::MARKER}",41]</script>)
     end
 
   end

@@ -1,5 +1,35 @@
 # CHANGELOG
 
+### Changes
+
+- Deprecation of frontend helpers (see [Deprecations](https://github.com/ddnexus/pagy/blob/master/DEPRECATIONS.md))
+- Internal refactoring of javascript
+- added `support` extra for features like: incremental, infinite, auto-scroll pagination
+
+### Commits
+
+- [2bdb1e5](http://github.com/ddnexus/pagy/commit/2bdb1e5): added support extra
+- [055af34](http://github.com/ddnexus/pagy/commit/055af34): added :cycle variable to Pagy
+- [c1680ec](http://github.com/ddnexus/pagy/commit/c1680ec): add JSON/javascript deprecations
+- [263c12d](http://github.com/ddnexus/pagy/commit/263c12d): better internal javascript naming
+- [910facc](http://github.com/ddnexus/pagy/commit/910facc): updated tests
+- [6e8cde8](http://github.com/ddnexus/pagy/commit/6e8cde8): refactoring of json tags:
+    - single "pagy-json" class for all json tags
+    - removed prefix used for all pagy element ids
+    - extracted pagy_json_tag from frontend extras
+- [98ce8e7](http://github.com/ddnexus/pagy/commit/98ce8e7): automatic ids based on hash must be strings
+- [cd8256e](http://github.com/ddnexus/pagy/commit/cd8256e): added DEPRECATIONS file
+- [6e3e1e4](http://github.com/ddnexus/pagy/commit/6e3e1e4): deprecated and renamed navs helpers in code, tests and docs; renamed navs extension as plain; added :pagy_plain_nav alias of :pagy_nav
+- [4bc72af](http://github.com/ddnexus/pagy/commit/4bc72af): deprecated and renamed semantic navs in code, tests and docs
+- [a9c3822](http://github.com/ddnexus/pagy/commit/a9c3822): deprecated and renamed materialize navs in code, tests and docs
+- [5481f40](http://github.com/ddnexus/pagy/commit/5481f40): renamed foundation templates and updated docs
+- [f984f83](http://github.com/ddnexus/pagy/commit/f984f83): deprecated and renamed foundation navs in code, tests and docs
+- [95045c3](http://github.com/ddnexus/pagy/commit/95045c3): renamed bulma templates and updated docs
+- [dbad41a](http://github.com/ddnexus/pagy/commit/dbad41a): deprecated and renamed bulma navs in code, tests and docs
+- [e4f859f](http://github.com/ddnexus/pagy/commit/e4f859f): renamed bootstrap templates and updated docs
+- [35078ab](http://github.com/ddnexus/pagy/commit/35078ab): deprecated and renamed bootstrap navs in code, tests and docs
+- [04ec860](http://github.com/ddnexus/pagy/commit/04ec860): added Pagy.deprecate method
+
 ## Version 1.1.0
 
 ### Changes

@@ -74,6 +74,16 @@ describe Pagy::Countless do
       pagy.next.must_be_nil
     end
 
+    it 'handles the :cycle variable' do
+      pagy, _ = backend.send(:pagy_countless, @collection, page: last_page, cycle: true)
+      pagy.items.must_equal 19
+      pagy.pages.must_equal last_page
+      pagy.from.must_equal 41
+      pagy.to.must_equal 59
+      pagy.prev.must_equal(last_page - 1)
+      pagy.next.must_equal 1
+    end
+
   end
 
 end

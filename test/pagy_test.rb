@@ -261,6 +261,12 @@ describe Pagy do
       Pagy.new(items: 10, count: 20, page: 2).items.must_equal 10
     end
 
+    it 'handles the :cycle variable' do
+      pagy = Pagy.new(count: 100, page: 10, items: 10, cycle: true)
+      pagy.prev.must_equal(9)
+      pagy.next.must_equal 1
+    end
+
   end
 
   describe "accessors" do

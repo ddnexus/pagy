@@ -3,7 +3,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '1.1.0'
+class Pagy ; VERSION = '1.2.0'
 
   class OverflowError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
@@ -11,7 +11,7 @@ class Pagy ; VERSION = '1.1.0'
   def self.root; Pathname.new(__FILE__).dirname end
 
   # default vars
-  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', item_path:'pagy.info.item_name' }
+  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', item_path:'pagy.info.item_name', cycle: false }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
@@ -29,7 +29,7 @@ class Pagy ; VERSION = '1.1.0'
     @from   = @count == 0 ? 0 : @offset+1 - @outset                            # page begins from item
     @to     = @count == 0 ? 0 : @offset + @items - @outset                     # page ends to item
     @prev   = (@page-1 unless @page == 1)                                      # nil if no prev page
-    @next   = (@page+1 unless @page == @last)                                  # nil if no next page
+    @next   = @page == @last ? (1 if @vars[:cycle]) : @page+1                  # nil if no next page, 1 if :cycle
   end
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]

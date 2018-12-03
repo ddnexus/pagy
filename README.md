@@ -98,27 +98,28 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 ### Frontend Extras
 
-- [bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap): Nav helpers and templates for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)
-- [bulma](http://ddnexus.github.io/pagy/extras/bulma): Nav helpers and templates for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
-- [foundation](http://ddnexus.github.io/pagy/extras/foundation): Nav helpers and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
-- [materialize](http://ddnexus.github.io/pagy/extras/materialize): Nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
-- [navs](http://ddnexus.github.io/pagy/extras/navs): Responsive and compact generic/unstyled nav helpers
-- [semantic](http://ddnexus.github.io/pagy/extras/semantic): Nav helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
+- [bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap): Add nav, responsive and compact helpers for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)
+- [bulma](http://ddnexus.github.io/pagy/extras/bulma): Add nav, responsive and compact helpers for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
+- [foundation](http://ddnexus.github.io/pagy/extras/foundation): Add nav, responsive and compact helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
+- [materialize](http://ddnexus.github.io/pagy/extras/materialize): Add nav responsive and compact helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
+- [plain](http://ddnexus.github.io/pagy/extras/plain): Add responsive and compact plain/unstyled helpers
+- [semantic](http://ddnexus.github.io/pagy/extras/semantic): Add nav, responsive and compact helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
 
 ### Feature Extras
 
 - [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy implementation
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
 - [overflow](http://ddnexus.github.io/pagy/extras/overflow): Allow for easy handling of overflowing pages
+- [support](http://ddnexus.github.io/pagy/extras/support): Extra support for features like: incremental, infinite, auto-scroll pagination
 - [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
 
 ### Alternative components
 
 Besides the classic pagination `nav`, Pagy offers a few ready to use alternatives like:
 
-- [compact nav](http://ddnexus.github.io/pagy/extras/navs#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![pagy-compact](docs/assets/images/pagy-compact-w.png)
+- [compact nav](http://ddnexus.github.io/pagy/extras/plain#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![pagy-compact](docs/assets/images/pagy-compact-w.png)
 
-- [responsive nav](http://ddnexus.github.io/pagy/extras/navs#responsive-navs): On resize, the number of page links adapts in real-time to the available window or container width:<br>![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
+- [responsive nav](http://ddnexus.github.io/pagy/extras/plain#responsive-navs): On resize, the number of page links adapts in real-time to the available window or container width:<br>![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
 ## Resources
 
@@ -141,6 +142,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
+- [Deprecations](https://github.com/ddnexus/pagy/blob/master/DEPRECATIONS.md)
 
 ### Support and Feedback
 

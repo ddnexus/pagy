@@ -7,7 +7,7 @@ class Pagy
   module Frontend
 
     # Pagination for Foundation: it returns the html with the series of links to the pages
-    def pagy_nav_foundation(pagy)
+    def pagy_foundation_nav(pagy)
       html, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
 
       html << (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
@@ -20,15 +20,16 @@ class Pagy
       end
       html << (p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
                       : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
-      %(<nav class="pagy-nav-foundation" role="navigation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
+      %(<nav class="pagy-nav-foundation pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
     end
+    Pagy.deprecate self, :pagy_nav_foundation, :pagy_foundation_nav
 
     # Compact pagination for Foundation: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_nav_compact_foundation(pagy, id=caller(1,1)[0].hash)
+    def pagy_foundation_compact_nav(pagy, id=caller(1,1)[0].hash.to_s)
       html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html << %(<nav id="pagy-nav-#{id}" class="pagy-nav-compact-foundation" role="navigation" aria-label="Pagination">)
+      html << %(<nav id="#{id}" class="pagy-nav-compact-foundation pagy-foundation-compact-nav" role="navigation" aria-label="Pagination">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << %(<div class="input-group">)
@@ -38,12 +39,13 @@ class Pagy
         html << %(<span class="input-group-label">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</span>)
         html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0px;" aria-label="next" class="next button primary"')
                         : %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
-      html << %(</div></nav><script type="application/json" class="pagy-compact-json">["#{id}", "#{MARKER}", "#{p_page}", #{!!defined?(TRIM)}]</script>)
+      html << %(</div></nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
+    Pagy.deprecate self, :pagy_nav_compact_foundation, :pagy_foundation_compact_nav
 
     # Responsive pagination for Foundation: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
-    def pagy_nav_responsive_foundation(pagy, id=caller(1,1)[0].hash)
+    def pagy_foundation_responsive_nav(pagy, id=caller(1,1)[0].hash.to_s)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
       tags['before'] = +'<ul class="pagination">'
@@ -58,9 +60,10 @@ class Pagy
       tags['after'] = +(p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
                                : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
       tags['after'] << '</ul>'
-      script = %(<script type="application/json" class="pagy-responsive-json">["#{id}", #{tags.to_json},  #{responsive[:widths].to_json}, #{responsive[:series].to_json}]</script>)
-      %(<nav id="pagy-nav-#{id}" class="pagy-nav-responsive-foundation" aria-label="Pagination"></nav>#{script})
+      script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
+      %(<nav id="#{id}" class="pagy-nav-responsive-foundation pagy-foundation-responsive-nav" aria-label="Pagination"></nav>#{script})
     end
+    Pagy.deprecate self, :pagy_nav_responsive_foundation, :pagy_foundation_responsive_nav
 
   end
 end

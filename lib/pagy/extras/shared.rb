@@ -27,4 +27,19 @@ class Pagy
     end
   end
 
+  def self.deprecate(mod, old_meth, new_meth)
+    mod.send(:define_method, old_meth) do |pagy, id=caller(1,1)[0].hash.to_s|
+      Warning.warn "WARNING: The ##{old_meth} pagy helper method is deprecated and will be removed in 2.0; please use ##{new_meth} instead. More info at https://github.com/ddnexus/pagy/blob/master/DEPRECATIONS.md\n"
+      mod.instance_method(new_meth).arity == 1 ? send(new_meth, pagy) : send(new_meth, pagy, id)
+    end
+  end
+
+  module Frontend
+
+    def pagy_json_tag(*args)
+      %(<script type="application/json" class="pagy-json">#{args.to_json}</script>)
+    end
+
+  end
+
 end

@@ -8,69 +8,74 @@
 
 # Backend Extras
 
-# Array: Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
+# Array extra: Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
 
-# Countless: Paginate without any count, saving one query per rendering
+# Countless extra: Paginate without any count, saving one query per rendering
 # See https://ddnexus.github.io/pagy/extras/countless
 # require 'pagy/extras/countless'
+# Pagy::VARS[:cycle] = false    # default
 
-# Elasticsearch Rails: Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
+# Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
 # See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
 # require 'pagy/extras/elasticsearch_rails'
 
-# Searchkick: Paginate `Searchkick::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
+# Searchkick extra: Paginate `Searchkick::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
 # See https://ddnexus.github.io/pagy/extras/searchkick
 # require 'pagy/extras/searchkick'
 
 
 # Frontend Extras
 
-# Navs: Add responsive and compact generic/unstyled nav helpers
-# Notice: the other frontend extras add their own framework-styled versions,
-# so require this extra only if you need the plain unstyled version
-# See https://ddnexus.github.io/pagy/extras/navs
-# require 'pagy/extras/navs'
-
-# Bootstrap: Nav, responsive and compact helpers and templates for Bootstrap pagination
+# Bootstrap extra: Add nav, responsive and compact helpers and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap
 # require 'pagy/extras/bootstrap'
 
-# Bulma: Nav, responsive and compact helpers and templates for Bulma pagination
+# Bulma extra: Add nav, responsive and compact helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
 # require 'pagy/extras/bulma'
 
-# Foundation: Nav, responsive and compact helpers and templates for Foundation pagination
+# Foundation extra: Add nav, responsive and compact helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/extras/foundation
 # require 'pagy/extras/foundation'
 
-# Materialize: Nav, responsive and compact helpers for Materialize pagination
+# Materialize extra: Nav, responsive and compact helpers for Materialize pagination
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'
 
-# Semantic: Nav, responsive and compact helpers for Semantic UI pagination
+# Plain extra: Add responsive and compact nav plain helpers
+# Notice: the other frontend extras add their own framework-styled versions,
+# so require this extra only if you need the plain unstyled version
+# See https://ddnexus.github.io/pagy/extras/plain
+# require 'pagy/extras/plain'
+
+# Semantic extra: Nav, responsive and compact helpers for Semantic UI pagination
 # See https://ddnexus.github.io/pagy/extras/semantic
 # require 'pagy/extras/semantic'
 
 # Breakpoints var used by the responsive nav helpers
-# See https://ddnexus.github.io/pagy/extras/navs#breakpoints
+# See https://ddnexus.github.io/pagy/extras/plain#breakpoints
 # Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
 
 
 # Feature Extras
 
-# Items: Allow the client to request a custom number of items per page with an optional selector UI
+# Support extra: Extra support for features like: incremental, infinite, auto-scroll pagination
+# See https://ddnexus.github.io/pagy/extras/support
+# require 'pagy/extras/support'
+
+# Items extra: Allow the client to request a custom number of items per page with an optional selector UI
 # See https://ddnexus.github.io/pagy/extras/items
 # require 'pagy/extras/items'
 # Pagy::VARS[:items_param] = :items    # default
 # Pagy::VARS[:max_items]   = 100       # default
 
-# Overflow: Allow for easy handling of overflowing pages
+# Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/extras/overflow
 # Pagy::VARS[:overflow] = :last_page    # default  (other options: :empty_page and :exception)
 
-# Trim: Remove the page=1 param from links
+# Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/extras/trim
 # require 'pagy/extras/trim'
 
@@ -106,7 +111,7 @@
 
 # I18n
 
-# I18n: faster internal pagy implementation (does not use the I18n gem)
+# I18n faster internal pagy implementation (does not use the I18n gem)
 # Use only for single language apps that don't need dynamic translation between multiple languages
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
 # Notice: Do not use any of the following lines if you use the i18n extra below
@@ -114,7 +119,7 @@
 # Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'en')            # load a custom 'en' file
 # Pagy::Frontend::I18N[:plural] = -> (count) {(['zero', 'one'][count] || 'other')}   # default
 
-# I18n: Use the `I18n` gem instead of the pagy implementation
+# I18n extra: Use the `I18n` gem instead of the pagy implementation
 # (slower but allows dynamic translation between multiple languages)
 # See https://ddnexus.github.io/pagy/extras/i18n
 # require 'pagy/extras/i18n'
