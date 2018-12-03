@@ -20,6 +20,7 @@ Pagy comes with a few optional extensions/extras:
 | `plain`               | Add responsive and compact plain/unstyled helpers                                                                                                      | [plain.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/plain.rb), [documentation](extras/plain.md)                                           |
 | `searchkick`          | Paginate arrays efficiently avoiding expensive array-wrapping and without overriding                                                                   | [searchkick.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/searchkick.rb), [documentation](extras/searchkick.md)                            |
 | `semantic`            | Add nav, responsive and compact helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)                  | [semantic.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/semantic.rb), [documentation](extras/semantic.md)                                  |
+| `support`             | Extra support for features like: incremental, infinite, auto-scroll pagination                                                                         | [support.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/support.rb), [documentation](extras/support.md)                                     |
 | `trim`                | Remove the `page=1` param from links                                                                                                                   | [trim.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/trim.rb), [documentation](extras/trim.md)                                              |
 
 ## Synopsis
@@ -41,7 +42,14 @@ All the added methods are documented in the respective extras.
 
 ## Javascript
 
-The `compact` and `responsive` navs, and the `items` extra use javascript, so if you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load.
+A few helpers use javascript:
+
+- `pagy_*_compact_nav`
+- `pagy_*_responsive_nav`
+- `pagy_items_selector`
+- `pagy_apply_init_tag`
+
+If you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load.
 
 ### In rails apps
 

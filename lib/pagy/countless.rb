@@ -23,6 +23,7 @@ class Pagy
       @to    = items == 0 ? 0 : @offset + @items - @outset              # page ends to item
       @prev  = (@page-1 unless @page == 1)                              # nil if no prev page
       @next  = (@page+1 unless @page == @last)                          # nil if no next page
+      @next   = (@page == @last ? (1 if @vars[:cycle]) : @page+1)                # nil if no next page
       self
     end
 
