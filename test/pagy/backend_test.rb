@@ -63,6 +63,12 @@ describe Pagy::Backend do
       merged[:link_extra].must_equal 'X'
     end
 
+    it 'get count var' do
+      vars   = {count: 21}
+      merged = backend.send :pagy_get_vars, @collection, vars
+      merged[:count].must_equal 21
+    end
+
     it 'works with grouped collections' do
       @collection = TestGroupedCollection.new((1..1000).to_a)
       vars   = {page: 2, items: 10, link_extra: 'X'}

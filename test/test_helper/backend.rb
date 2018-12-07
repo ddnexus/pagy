@@ -29,6 +29,10 @@ class TestCollection < Array
     size
   end
 
+  def group_values
+    []
+  end
+
 end
 
 class TestGroupedCollection < TestCollection
@@ -37,4 +41,7 @@ class TestGroupedCollection < TestCollection
     @collection.map { |value| [value, value + 1] }.to_h
   end
 
+  def group_values
+    [:field]
+  end
 end
