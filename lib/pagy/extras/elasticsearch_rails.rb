@@ -9,10 +9,11 @@ class Pagy
       return pagy, results.offset(pagy.offset).limit(pagy.items)
     end
 
+    # Sub-method called only by #pagy_elasticsearch_rails: here for easy customization of variables by overriding
     def pagy_elasticsearch_rails_get_vars(results, vars)
-      # Return the merged variables to initialize the Pagy object
-      { count: results.total,
-        page: (params[:page] || 1)}.merge!(vars)
+      vars[:count] ||= results.total
+      vars[:page]  ||= params[:page] || 1
+      vars
     end
   end
 end

@@ -376,8 +376,9 @@ Pagy gets the collection count through its `pagy_get_vars` method, so you can ov
 ```ruby
 # in your controller: override the pagy_get_vars method so it will call your cache_count method
 def pagy_get_vars(collection, vars)
-  { count: cache_count(collection),
-    page: params[vars[:page_param]||Pagy::VARS[:page_param]] }.merge!(vars)
+  vars[:count] ||= cache_count(collection)
+  vars[:page]  ||= params[ vars[:page_param] || Pagy::VARS[:page_param] ]
+  vars
 end
 
 # add Rails.cache wrapper around the count call

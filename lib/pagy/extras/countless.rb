@@ -17,8 +17,8 @@ class Pagy
 
     # Sub-method called only by #pagy_countless: here for easy customization of variables by overriding
     def pagy_countless_get_vars(_collection, vars)
-      # Return the merged variables to initialize the Pagy object
-      { page: params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
+      vars[:page] ||= params[ vars[:page_param] || VARS[:page_param] ]
+      vars
     end
 
     # Sub-method called only by #pagy_countless: here for easy customization of record-extraction by overriding
