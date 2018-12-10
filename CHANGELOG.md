@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 1.2.1
+
+### Changes
+
+- Improved efficiency for count in backend and extras
+
+### Commits
+
+- [01178cb](http://github.com/ddnexus/pagy/commit/01178cb): replaced enumerable #count for #size (suggested in #112)
+- [0723228](http://github.com/ddnexus/pagy/commit/0723228): count (and page) in *get_variables methods are set only when nil (alternative implementation of #112)
+
 ### Changes
 
 - Deprecation of frontend helpers (see [Deprecations](https://github.com/ddnexus/pagy/blob/master/DEPRECATIONS.md))
