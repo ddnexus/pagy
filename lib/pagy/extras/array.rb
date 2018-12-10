@@ -12,7 +12,7 @@ class Pagy
 
     # Sub-method called only by #pagy_array: here for easy customization of variables by overriding
     def pagy_array_get_vars(array, vars)
-      vars[:count] ||= array.count
+      vars[:count] ||= array.size
       vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars
     end
