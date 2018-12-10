@@ -77,6 +77,15 @@ describe Pagy::Backend do
       merged[:link_extra].must_equal 'X'
     end
 
+    it 'overrides count and page' do
+      vars   = {count: 10, page: 32}
+      merged = backend.send :pagy_get_vars, @collection, vars
+      merged.keys.must_include :count
+      merged[:count].must_equal 10
+      merged.keys.must_include :page
+      merged[:page].must_equal 32
+    end
+
   end
 
   describe "#pagy_get_items" do

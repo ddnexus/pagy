@@ -10,10 +10,11 @@ class Pagy
       return pagy, array[pagy.offset, pagy.items]
     end
 
+    # Sub-method called only by #pagy_array: here for easy customization of variables by overriding
     def pagy_array_get_vars(array, vars)
-      # Return the merged variables to initialize the Pagy object
-      { count: array.count,
-        page:  params[vars[:page_param]||VARS[:page_param]] }.merge!(vars)
+      vars[:count] ||= array.size
+      vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
+      vars
     end
 
   end

@@ -9,11 +9,12 @@ class Pagy
       return pagy, results
     end
 
+    # Sub-method called only by #pagy_searchkick: here for easy customization of variables by overriding
     def pagy_searchkick_get_vars(results, vars)
-      # Return the merged variables to initialize the Pagy object
-      { count: results.total_count,
-        page:  results.options[:page],
-        items: results.options[:per_page] }.merge!(vars)
+      vars[:count] ||= results.total_count
+      vars[:page]  ||= results.options[:page]
+      vars[:items] ||= results.options[:per_page]
+      vars
     end
   end
 end
