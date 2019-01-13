@@ -1,0 +1,20 @@
+ nl:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Vorige"
+      next: "Volgende&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Geen %{item_name} gevonden"
+        one: "Toont <b>1</b> %{item_name}"
+        other: "Toont <b>alle %{count}</b> %{item_name}"
+      multiple_pages: "Toont %{item_name} <b>%{from}-%{to}</b> van <b>%{count}</b> in totaal"
+      item_name:
+        zero: "stuks"
+        one: "stuk"
+        other: "stuks"
+    compact: "Pagina %{page_input} van %{pages}"
+    items:
+      one: "Toont %{items_input} item per pagina"
+      other: "Toont %{items_input} items per pagina"
