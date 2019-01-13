@@ -46,7 +46,7 @@ class Pagy
     alias_method :pagy_url_for, :pagy_url_for_with_items
 
     # Return the items selector HTML. For example "Show [20] items per page"
-    def pagy_items_selector(pagy, id=caller(1,1)[0].hash.to_s)
+    def pagy_items_selector(pagy, id=pagy_id)
       pagy = pagy.clone; p_vars = pagy.vars; p_items = p_vars[:items]; p_vars[:items] = "#{MARKER}-items-"
 
       html = +%(<span id="#{id}">)
