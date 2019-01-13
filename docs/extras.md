@@ -49,7 +49,7 @@ A few helpers use javascript:
 - `pagy_items_selector`
 - `pagy_apply_init_tag`
 
-If you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load.
+If you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load and eventually on [AJAX-load](#using-ajax-with-javascript-enabled-helpers).
 
 ### In rails apps
 
@@ -86,3 +86,39 @@ $( window ).load(function() {
   Pagy.init()
 });
 ```
+
+
+### Using AJAX with javascript-enabled helpers
+
+If you AJAX-render any of the helpers using javascript mentioned above, you should also execute `Pagy.init(container_element);` in the javascript template. Here is an example for a `pagy_bootstrap_responsive_nav` AJAX-render:
+
+Controller (notice the `link_extra` to enable AJAX):
+
+```ruby
+def pagy_responsive_remote
+  @pagy, @records = pagy(Product.all, link_extra: 'data-remote="true"')
+end
+```
+
+Template `pagy_responsive_remote.html.erb` (non-AJAX render: first page-load):
+
+```
+<div id="container">
+  <%= render 'remote_partial` %>
+</div>
+```
+
+Partial `remote_partial.html.erb` (partial shared for AJAX and non-AJAX rendering):
+
+```erb
+<%== pagy_bootstrap_responsive_nav(@pagy) %>
+```
+
+Template `pagy_responsive_remote.js.erb` (javascript tempalte used for AJAX):
+
+```js-erb
+$('#container').html("<%= j(render 'remote_partial')%>");
+Pagy.init(document.getElementById('container'));
+```
+
+Notice the `document.getElementById('container')` argument: that will re-init the pagy elements just AJAX-rendered in the container div.
