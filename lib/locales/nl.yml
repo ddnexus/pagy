@@ -1,4 +1,4 @@
- nl:
+nl:
   pagy:
     nav:
       prev: "&lsaquo;&nbsp;Vorige"
@@ -9,7 +9,7 @@
         zero: "Geen %{item_name} gevonden"
         one: "Toont <b>1</b> %{item_name}"
         other: "Toont <b>alle %{count}</b> %{item_name}"
-      multiple_pages: "Toont %{item_name} <b>%{from}-%{to}</b> van <b>%{count}</b> in totaal"
+      multiple_pages: "Toont <b>%{from}-%{to}</b> %{item_name} van <b>%{count}</b> in totaal"
       item_name:
         zero: "stuks"
         one: "stuk"
