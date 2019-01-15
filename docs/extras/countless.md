@@ -5,7 +5,7 @@ title: Countless
 
 This extra uses the `Pagy::Countless` subclass in order to avoid to execute an otherwise needed count query. It is especially useful when used with large DB tables, where [Caching the count](../how-to.md#caching-the-count) may not be an option.
 
-Its usage is practically the same as the regular `Pagy::Backend` module (see the [backend doc](../api/backend.md).
+Its usage is practically the same as the regular `Pagy::Backend` module (see the [backend doc](../api/backend.md)).
 
 The pagination resulting from this extra has some limitation as documented in the [Pagy::Countless Caveats doc](../api/countless.md#caveats).
 

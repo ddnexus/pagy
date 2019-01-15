@@ -22,11 +22,11 @@ class Pagy
                       : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
       %(<nav class="pagy-nav-foundation pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
     end
-    Pagy.deprecate self, :pagy_nav_foundation, :pagy_foundation_nav
+    deprecate :pagy_nav_foundation, :pagy_foundation_nav
 
     # Compact pagination for Foundation: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_foundation_compact_nav(pagy, id=caller(1,1)[0].hash.to_s)
+    def pagy_foundation_compact_nav(pagy, id=pagy_id)
       html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
       html << %(<nav id="#{id}" class="pagy-nav-compact-foundation pagy-foundation-compact-nav" role="navigation" aria-label="Pagination">)
@@ -41,11 +41,11 @@ class Pagy
                         : %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
       html << %(</div></nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    Pagy.deprecate self, :pagy_nav_compact_foundation, :pagy_foundation_compact_nav
+    deprecate :pagy_nav_compact_foundation, :pagy_foundation_compact_nav
 
     # Responsive pagination for Foundation: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
-    def pagy_foundation_responsive_nav(pagy, id=caller(1,1)[0].hash.to_s)
+    def pagy_foundation_responsive_nav(pagy, id=pagy_id)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
       tags['before'] = +'<ul class="pagination">'
@@ -63,7 +63,7 @@ class Pagy
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
       %(<nav id="#{id}" class="pagy-nav-responsive-foundation pagy-foundation-responsive-nav" aria-label="Pagination"></nav>#{script})
     end
-    Pagy.deprecate self, :pagy_nav_responsive_foundation, :pagy_foundation_responsive_nav
+    deprecate :pagy_nav_responsive_foundation, :pagy_foundation_responsive_nav
 
   end
 end
