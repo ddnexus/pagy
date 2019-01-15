@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## Version 1.3
+
+### Changes
+- Added Dutch locale
+- Refactoring of plurals
+- Javascript refactoring: fixes and improvements
+
+### Commits
+
+- [70796d3](http://github.com/ddnexus/pagy/commit/70796d3): Add Dutch language (#116)Added Dutch dictionary
+- [b112f30](http://github.com/ddnexus/pagy/commit/b112f30): plurals.rb:
+    - added frozen variables
+    - added explicit 'zero' for :zero_one_few_may_other
+    - added :pl pluralization (#111)
+    - added README.md
+- [6cf86af](http://github.com/ddnexus/pagy/commit/6cf86af): added docs notes
+- [b05db4e](http://github.com/ddnexus/pagy/commit/b05db4e): added optional target element to Pagy.init for AJAX support
+- [e35a9ae](http://github.com/ddnexus/pagy/commit/e35a9ae): refactoring of default element ids for helpers and deprecation:
+    - default ids are now constant also in different processes and compilant also with oder HTML versions
+    - simpler deprecation code
+- [cef823c](http://github.com/ddnexus/pagy/commit/cef823c): pagy.js responsive refactoring (#115):
+    - moved handling of window event listeners into the responsive function
+    - added resize delay to Pagy.responsive
+- [a64a8bd](http://github.com/ddnexus/pagy/commit/a64a8bd): fix for items test
+- [e9ab4a1](http://github.com/ddnexus/pagy/commit/e9ab4a1): renamed argument items > fetched; removed redundant assignation
+
+
 ## Version 1.2.1
 
 ### Changes

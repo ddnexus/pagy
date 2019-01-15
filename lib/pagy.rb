@@ -3,7 +3,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '1.2.1'
+class Pagy ; VERSION = '1.3'
 
   class OverflowError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
