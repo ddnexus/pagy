@@ -47,10 +47,11 @@ class Pagy
 
     # Return the items selector HTML. For example "Show [20] items per page"
     def pagy_items_selector(pagy, id=pagy_id)
-      pagy = pagy.clone; p_vars = pagy.vars; p_items = p_vars[:items]; p_vars[:items] = "#{MARKER}-items-"
+      p_vars = pagy.vars; p_items = p_vars[:items]; p_vars[:items] = "#{MARKER}-items-"
 
       html = +%(<span id="#{id}">)
         html << %(<a href="#{pagy_url_for("#{MARKER}-page-", pagy)}"></a>)
+        p_vars[:items] = p_items # restore the items
         input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
         html << %(#{pagy_t('pagy.items', items_input: input, count: p_items)})
       html << %(</span>#{pagy_json_tag(:items, id, MARKER, pagy.from)})
