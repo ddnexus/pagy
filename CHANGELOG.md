@@ -1,8 +1,20 @@
 # CHANGELOG
 
+## Version 1.3.1
+
+### Changes
+
+- fixed issue with items extra rendered after pagy_nav
+
+### Commits
+
+- [3ead159](http://github.com/ddnexus/pagy/commit/3ead159): fix for temp items variable in items extra (
+#117)
+
 ## Version 1.3
 
 ### Changes
+
 - Added Dutch locale
 - Refactoring of plurals
 - Javascript refactoring: fixes and improvements
