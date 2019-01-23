@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 1.3.2
+
+### Changes
+
+- fixed responsive javascript error
+
+### Commits
+
+- [332c6a2](http://github.com/ddnexus/pagy/commit/332c6a2): fix for responsive javascript error in slow loading pages (#115)
+
 ## Version 1.3.1
 
 ### Changes
