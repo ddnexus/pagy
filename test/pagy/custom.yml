@@ -1,0 +1,20 @@
+custom:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Custom Prev"         # test
+      next: "Next&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "No %{item_name} found"
+        one: "Displaying <b>1</b> %{item_name}"
+        other: "Displaying <b>all %{count}</b> %{item_name}"
+      multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
+      item_name:
+        zero: "items"
+        one: "item"
+        other: "items"
+    compact: "Page %{page_input} of %{pages}"
+    items:
+      one: "Show %{items_input} item per page"
+      other: "Show %{items_input} items per page"

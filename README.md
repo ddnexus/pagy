@@ -42,7 +42,7 @@ Please check the [Benchmarks and Memory Profiles Source](http://github.com/ddnex
 
 - Pagy has a very slim core code of just ~100 line of simple ruby, organized in 3 flat modules very easy to understand and use _(see [more...](https://ddnexus.github.io/pagy/api))_
 - It has a quite fat set of optional extras that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/extras))_
-- It has no dependencies: it produces its own HTML, URLs, pluralization and interpolation with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
+- It has no dependencies: it produces its own HTML, URLs, i18n with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - 100% of its methods are public API, accessible and overridable **right where you use them** (no need of monkey-patching)
 - 100% test coverage for core code and extras
 

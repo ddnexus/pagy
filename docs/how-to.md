@@ -327,7 +327,7 @@ By default Pagy generates all the page links including the `page` param. If you 
 
 ## Using Templates
 
-The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 40-80% slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose wisely.
+The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 30-70% slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose wisely.
 
 Pagy provides the replacement templates for the `pagy_nav`, `pagy_bootstrap_nav`, `pagy_bulma_nav` and the `pagy_foundation_nav` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
 
