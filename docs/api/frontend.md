@@ -160,84 +160,73 @@ This method is similar to the `I18n.t` and its equivalent rails `t` helper. It i
 
 **IMPORTANT**: if you are using pagy with some language missing from the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales), please, submit your translation!
 
-Pagy is I18n ready. That means that all its strings are stored in a dictionary file of one of its [languages](https://github.com/ddnexus/pagy/blob/master/lib/locales), ready to be customized and/or translated/pluralized and used with or without the `I18n` gem.
+Pagy is i18n ready. That means that all its strings are stored in the dictionary files of its [locales](https://github.com/ddnexus/pagy/blob/master/lib/locales), ready to be customized and/or used with or without the `I18n` gem.
 
-A Pagy dictionary file is a YAML file containing a few entries used in the the UI by helpers and templates through the [pagy_t method](#pagy_tpath-vars) (eqivalent to the `I18n.t` or rails `t` helper). The file follows the same structure of the standard locale files for `i18n`.
+**Notice**: a Pagy dictionary file is a YAML file containing a few entries used internally in the the UI by helpers and templates through the [pagy_t](#pagy_tpath-vars) method. The file follows the same structure of the standard locale files for the `i18n` gem.
 
-### Multi-language apps
+### Pagy I18N implementation
 
-For multi-language apps you need the dynamic translation provided by the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `I18n` gem. In that case you need only to require the I18n extra in the initializer file.
+The pagy internal i18n implementation is ~12x faster and uses ~6x less memory than the standard `i18n` gem.
 
-**Notice**: For simplicity, you could also use the `i18n` extra for single-language apps, but if you want more performance, please follow the specific documentation below.
+Since Pagy version 2.0, you can use it for both single-language and multi-language apps, with or without the `i18n` gem.
 
-### Single-language apps
+Notice: if your app is using i18n, it will work independently from it.
 
-Single-language apps (i.e. only `fr` or only `en` or only ...) don't need to switch between languages, so they don't need the `i18n` extra/`I18n` gem (although you could choose to use it).
+The pagy internal i18n is implemented around the `Pagy::Frontend::I18N` constant hash which contains the locales data needed to pagy and your app. You may need to configure it in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
 
-By default, Pagy handles its own dictionary file directly, providing pluralization and interpolation (without dynamic translation) _5x faster_ and using _3.5x less memory_ than the standard `I18n` gem.
+#### Pagy::Frontend::I18N.load configuration
 
-If you are fine with the locales provided with pagy, you just need to load the dictionary file of your language by adding this line the initializer file. For example with `zh-cn`:
+By default pagy will render its output using the built-in `en` locale. If your app uses only `en` and you are fine with the built-in strings, you are done without configuring anything at all.
 
-```ruby
-Pagy::Frontend::I18N.load(file: Pagy.root.join('locales', 'zh-cn.yml'), language:'zh-cn')
+If you need to load different built-in locales, and/or custom dictionary files or even non built-in languages and pluralizations, you can do it all by passing a few arguments to the `Pagy::Frontend::I18N.load` method.
+
+**Notice**: the `Pagy::Frontend::I18N.load` method is intended to be used once in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer. If you use it multiple times, the last statement will override the previous statements.
+
+Here are a few examples that should cover all the possible confgurations:
+
+```rb
+# IMPORTANT: use only one load statement
+
+# load the "de" built-in locale:
+Pagy::Frontend::I18N.load(locale: 'de') 
+
+# load the "de" locale defined in the custom file at :filepath:
+Pagy::Frontend::I18N.load(locale: 'de', filepath: 'path/to/pagy-de.yml') 
+
+# load the "de", "en" and "es" built-in locales:
+# the first :locale will be used also as the default_locale
+Pagy::Frontend::I18N.load({locale: 'de'}, 
+                          {locale: 'en'}, 
+                          {locale: 'es'})
+ 
+# load the "en" built-in locale, a custom "es" locale, and a totally custom locale complete with the :pluralize proc:
+Pagy::Frontend::I18N.load({locale: 'en'}, 
+                          {locale: 'es', filepath: 'path/to/pagy-es.yml'},
+                          {locale: 'xyz',  # not built-in
+                           filepath: 'path/to/pagy-xyz.yml',
+                           pluralize: lambda{|count| ... } )
 ```
 
-If you need to use your own translation file and/or customize the Pagy strings in this scenario, you may need the following steps:
+**Notice**: You should use a custom `:pluralize` proc only for pluralization types not included in the built-in [p11n.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/p11n.rb)
+ rules. In that case, please submit a PR with your dictionary file and plural rule. The `:pluralize` proc should receive the `count` as a single argument and should return the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the passed count).
 
-1. copy and edit one of the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales)
-2. load it in the initializer file (e.g. `Pagy::Frontend::I18N.load(file:..., language:'tr')`
-3. see [Adding the model translations](#adding-the-model-translations) below
-4. check if you need to configure some of the following variables in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
+#### Set the request locale in multi-language apps
 
-#### Pagy::Frontend::I18N Constant
+When you configure multiple locales, you must also set the locale for each request. You usually do that in the application controller, by checking the `:locale` param. For example, in a rails app you should do something like:
 
-**IMPORTANT**: This variable has no effect if you use the `i18n` extra.
-
-The `Pagy::Frontend::I18N` constant is the core of the Pagy I18n implementation. This constant allows to control the dictionary file, the language to load and the pluralization proc.
-
-#### Pagy::Frontend::I18N.load(file:..., language:'en')
-
-**IMPORTANT**: This method has no effect if you use the `i18n` extra.
-
-It allows to load a built-in language (different than the default 'en') and/or a custom dictionary file, different from `Pagy.root.join('locales', 'pagy.yml')`. It is tipically used in the Pagy initializer file _(see [Configuration](../how-to.md#global-configuration))_. For example:
-
-```ruby
-# this would load the Italian variant of the built-in dictionary
-Pagy::Frontend::I18N.load(language:'it')
-
-# this would load the default English variant of 'path/to/dictionary.yml'
-Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml')
-
-# this would load the Italian variant of 'path/to/dictionary.yml'
-Pagy::Frontend::I18N.load(file:'path/to/dictionary.yml', language:'it')
+```rb
+before_action { @pagy_locale = params[:locale] || 'en' }
 ```
 
-**Notice**: the Pagy implementation of I18n is designed to speedup single-language apps and does not provide dynamic translation, so the `language` is statically loaded at startup-time and cannot be changed. Use the `i18n` extra if you need dynamic translation.
+That instance variable will be used by the [pagy_t](#pagy_tpath-vars) method included in your view and will translate the pagy strings to the selected locale.
 
-#### Pagy::Frontend::I18N[:plural]
-
-**IMPORTANT**: This variable has no effect if you use the `i18n` extra.
-
-This variable controls the internal pluralization.
-
-Pagy tries to set the language plural proc when you use the `Pagy::Frontend::I18N.load` method, by loading the built-in plural for the language. _(see [plurals.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/plurals.rb))_
-
-If there is no rule defined for the language loaded, the variable is set to the `:zero_one_other` plural rule (default for English language).
-
-If your custom language requires a pluralization different than `:zero_one_other`, you should define a custom rule. For example:
-
-```ruby
-# this would apply a custom pluralization rule to the current loaded dictionary
-Pagy::Frontend::I18N[:plural] = -> (count) {|count| ...}
-```
-
-The custom proc should receive the `count` as a single argument and should return the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the passed count). You should customize it only for pluralization types not included in the built-in plural rules. In that case, please submit a PR with your dictionary file and plural rule. Thanks.
+**Notice**: In case of `@pagy_locale.nil?` or unknown/not-loaded, then the the first loaded locale will be used for the translation. That means that you don't have to set the `@pagy_locale` variable if your app uses just a single locale.
 
 #### Adding the model translations
 
-When Pagy uses its own handling of the dictionary file, it has only access to the strings in its own file and not in other `I18n` files used by the rest of the app.
+When Pagy uses its own i18n implementation, it has only access to the strings in its own files and not in other `I18n` files used by the rest of the app.
 
-That means that if you use the `pagy_info` helper with the specific model names instead of the generic "items" string, you may need to add entries for the models in the pagy dictionary file. For example:
+That means that if you use the `pagy_info` helper with the specific model names instead of the generic "items" string, you may need to add entries for the models in the pagy dictionary files. For example:
 
 ```yaml
 en:
@@ -255,3 +244,10 @@ en:
 ```
 
 _(See also the [pagy_info method](#pagy_infopagy))_
+
+
+### Using the I18n gem
+
+If - despite the disadvantages - you want to use the standard `i18n` gem in place of the pagy i18n implementation, you should use the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `i18n` gem. In that case you need only to require the extra in the initializer file with `require 'pagy/extras/i18n'` and everything will be handled by the `i18n` gem.
+
+ **Notice**: if you use the [i18n extra](../extras/i18n.md)/`i18n` gem, you don't need any of the above configurations.

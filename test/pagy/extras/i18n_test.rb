@@ -10,11 +10,6 @@ describe Pagy::Frontend do
 
   describe "#pagy_t with I18n" do
 
-    it 'fetches data' do
-      Pagy::Frontend::I18N[:data]['pagy']['nav']['prev'].must_equal "&lsaquo;&nbsp;Prev"
-      Pagy::Frontend::I18N[:data]['pagy']['nav']['gap'].must_equal "&hellip;"
-    end
-
     it 'pluralizes' do
       frontend.pagy_t('pagy.nav.prev').must_equal "&lsaquo;&nbsp;Prev"
       frontend.pagy_t('pagy.info.item_name', count: 0).must_equal 'items'

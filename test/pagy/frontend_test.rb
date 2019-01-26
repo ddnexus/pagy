@@ -99,17 +99,11 @@ describe Pagy::Frontend do
 
   describe "#pagy_t" do
 
-    it 'fetches I18N data' do
-      Pagy::Frontend::I18N[:data]['pagy']['nav']['prev'].must_equal "&lsaquo;&nbsp;Prev"
-      Pagy::Frontend::I18N[:data]['pagy']['nav']['gap'].must_equal "&hellip;"
-    end
-
     it 'pluralizes' do
       frontend.pagy_t('pagy.nav.prev').must_equal "&lsaquo;&nbsp;Prev"
       frontend.pagy_t('pagy.info.item_name', count: 0).must_equal "items"
       frontend.pagy_t('pagy.info.item_name', count: 1).must_equal "item"
       frontend.pagy_t('pagy.info.item_name', count: 10).must_equal "items"
-
     end
 
     it 'interpolates' do
@@ -117,12 +111,46 @@ describe Pagy::Frontend do
       frontend.pagy_t('pagy.info.single_page', count: 1).must_equal "Displaying <b>1</b> %{item_name}"
       frontend.pagy_t('pagy.info.single_page', count: 10).must_equal "Displaying <b>all 10</b> %{item_name}"
       frontend.pagy_t('pagy.info.multiple_pages', count: 10).must_equal "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>10</b> in total"
+      frontend.pagy_t('pagy.info.multiple_pages', item_name: 'Products', count: 300, from: 101, to: 125).must_equal "Displaying Products <b>101-125</b> of <b>300</b> in total"
     end
 
     it 'handles missing paths' do
-      frontend.pagy_t('pagy.nav.not_here').must_equal 'translation missing: "pagy.nav.not_here"'
+      frontend.pagy_t('pagy.nav.not_here').must_equal '[translation missing: "pagy.nav.not_here"]'
+      frontend.pagy_t('pagy.nav.gap.not_here').must_equal '[translation missing: "pagy.nav.gap.not_here"]'
     end
 
+
+  end
+
+  describe "I18N" do
+
+    it 'loads custom :locale, :filepath and :pluralize' do
+      proc{ Pagy::Frontend::I18N.load(locale: 'xx') }.must_raise Errno::ENOENT
+      proc{ Pagy::Frontend::I18N.load(locale: 'xx', filepath: Pagy.root.join('locales', 'en.yml'))}.must_raise ArgumentError
+      proc{ Pagy::Frontend::I18N.load(locale: 'en', filepath: Pagy.root.join('locales', 'xx.yml')) }.must_raise Errno::ENOENT
+      custom_dictionary = File.join(File.dirname(__FILE__), 'custom.yml')
+      Pagy::Frontend::I18N.load(locale: 'custom', filepath: custom_dictionary)
+      # frontend.pagy_t('pagy.nav.prev').must_equal "&lsaquo;&nbsp;Custom Prev"
+      Pagy::Frontend::I18N.load(locale: 'en', pluralize: lambda{|_| 'one' }) # returns always 'one' regardless the count
+      frontend.pagy_t('pagy.info.item_name', count: 0).must_equal "item"
+      frontend.pagy_t('pagy.info.item_name', count: 1).must_equal "item"
+      frontend.pagy_t('pagy.info.item_name', count: 10).must_equal "item"
+      Pagy::Frontend::I18N.load(locale: 'en') # reset for other tests
+    end
+
+    it 'switches :locale according to @pagy_locale' do
+      Pagy::Frontend::I18N.load({locale: 'de'}, {locale: 'en'}, {locale: 'nl'})
+      frontend.instance_variable_set(:'@pagy_locale', 'nl')
+      frontend.pagy_t('pagy.info.item_name', count: 1).must_equal "stuk"
+      frontend.instance_variable_set(:'@pagy_locale', 'en')
+      frontend.pagy_t('pagy.info.item_name', count: 1).must_equal "item"
+      frontend.instance_variable_set(:'@pagy_locale', nil)
+      frontend.pagy_t('pagy.info.item_name', count: 1).must_equal "Eintrag"
+      frontend.instance_variable_set(:'@pagy_locale', 'unknown')
+      frontend.pagy_t('pagy.info.item_name', count: 1).must_equal "Eintrag" # silently serves the first loaded locale
+      Pagy::Frontend::I18N.load(locale: 'en') # reset for other tests
+      frontend.instance_variable_set(:'@pagy_locale', nil)      # reset for other tests
+    end
   end
 
   describe "#pagy_info" do
@@ -135,13 +163,14 @@ describe Pagy::Frontend do
     end
 
     it 'renders with existing i18n path' do
-      Pagy::Frontend::I18N[:data]['pagy']['info']['product'] = { 'zero'  => 'Products',
-                                                                 'one'   => 'Product',
-                                                                 'other' => 'Products' }
+      Pagy::Frontend::I18N['en'][0]['pagy.info.product.zero']  = lambda{|_| 'Products'}
+      Pagy::Frontend::I18N['en'][0]['pagy.info.product.one']   = lambda{|_| 'Product'}
+      Pagy::Frontend::I18N['en'][0]['pagy.info.product.other'] = lambda{|_| 'Products'}
       frontend.pagy_info(Pagy.new count: 0, item_path: 'pagy.info.product').must_equal "No Products found"
       frontend.pagy_info(Pagy.new count: 1, item_path: 'pagy.info.product').must_equal "Displaying <b>1</b> Product"
       frontend.pagy_info(Pagy.new count: 13, item_path: 'pagy.info.product').must_equal "Displaying <b>all 13</b> Products"
       frontend.pagy_info(Pagy.new count: 100, item_path: 'pagy.info.product', page: 3).must_equal "Displaying Products <b>41-60</b> of <b>100</b> in total"
+      Pagy::Frontend::I18N.load(locale: 'en') # reset for other tests
     end
   end
 
