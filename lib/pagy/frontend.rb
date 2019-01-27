@@ -52,9 +52,9 @@ class Pagy
     def pagy_link_proc(pagy, link_extra='')
       p_prev, p_next = pagy.prev, pagy.next
       a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(MARKER, 2)
-      -> (n, text=n, extra='') { "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'
-                                                 elsif n == p_next ; ' rel="next"'
-                                                 else                           '' end } #{extra}>#{text}</a>" }
+      lambda {|n, text=n, extra=''| "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'
+                                                    elsif n == p_next ; ' rel="next"'
+                                                    else                           '' end } #{extra}>#{text}</a>" }
     end
 
     # Pagy::Frontend::I18N

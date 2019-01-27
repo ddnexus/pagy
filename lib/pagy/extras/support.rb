@@ -6,7 +6,7 @@ require 'pagy/extras/shared'
 class Pagy
 
   def to_h
-    { count:  @count,
+    { count:  defined?(@count) && @count,
       page:   @page,
       items:  @items,
       pages:  @pages,

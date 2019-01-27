@@ -13,9 +13,9 @@ from12to14 = (12..14).freeze
 # A plural proc returns a plural type string based on the passed count
 # Each plural proc may apply to one or more languages below
 plurals = {
-  zero_one_other: -> (count) {zero_one[count] || 'other'},
+  zero_one_other: lambda {|count| zero_one[count] || 'other'},
 
-  zero_one_few_many_other: -> (count) do
+  zero_one_few_many_other: lambda do |count|
     mod10, mod100 = count % 10, count % 100
     if count == 0                                                           ; 'zero'
     elsif mod10 == 1 && mod100 != 11                                        ; 'one'
@@ -25,7 +25,7 @@ plurals = {
     end
   end,
 
-  pl: -> (count) do
+  pl: lambda do |count|
     mod10, mod100 = count % 10, count % 100
     if count == 0                                                                       ; 'zero'
     elsif count == 1                                                                    ; 'one'
