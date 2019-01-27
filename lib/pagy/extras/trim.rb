@@ -15,7 +15,7 @@ class Pagy
       page1_url  = pagy_trim_url(marker_url, "#{p_vars[:page_param]}=#{MARKER}")
       page1_link = %(<a href="#{page1_url}" #{p_vars[:link_extra]} #{link_extra})
       a, b = %(<a href="#{marker_url}" #{p_vars[:link_extra]} #{link_extra}).split(MARKER, 2)
-      -> (n, text=n, extra='') { start = n.to_i == 1 ? page1_link : "#{a}#{n}#{b}"
+      lambda{|n, text=n, extra=''| start = n.to_i == 1 ? page1_link : "#{a}#{n}#{b}"
                                  "#{start}#{ if    n == p_prev ; ' rel="prev"'
                                              elsif n == p_next ; ' rel="next"'
                                              else                           '' end } #{extra}>#{text}</a>" }

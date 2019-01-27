@@ -14,7 +14,7 @@ class Pagy
 
     def pagy_with_items(vars)
       vars[:items] ||= (items = params[vars[:items_param] || VARS[:items_param]]) &&                           # :items from :items_param
-                       [items&.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min  # :items capped to :max_items
+                       [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min   # :items capped to :max_items
     end
 
     alias_method :pagy_get_vars_without_items, :pagy_get_vars

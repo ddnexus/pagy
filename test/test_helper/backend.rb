@@ -34,7 +34,7 @@ end
 class TestGroupedCollection < TestCollection
 
   def count(*)
-    @collection.map { |value| [value, value + 1] }.to_h
+    Hash[@collection.map { |value| [value, value + 1] }]
   end
 
 end
