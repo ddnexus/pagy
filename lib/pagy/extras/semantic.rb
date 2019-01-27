@@ -8,9 +8,9 @@ class Pagy
 
     # Pagination for semantic-ui: it returns the html with the series of links to the pages
     def pagy_semantic_nav(pagy)
-      html, link, p_prev, p_next = +'', pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next
+      link, p_prev, p_next = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next
 
-      html << (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
+      html = +(p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
                       : %(<div class="item disabled"><i class="left small chevron icon"></i></div>))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(#{link.call item})                      # page link
@@ -26,9 +26,9 @@ class Pagy
     # Compact pagination for semantic: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
     def pagy_semantic_compact_nav(pagy, id=pagy_id)
-      html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next, pagy.page, pagy.pages
+      link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html << %(<div id="#{id}" class="pagy-nav-compact-semantic pagy-semantic-compact-nav ui compact menu" role="navigation" aria-label="pager">)
+      html = +%(<div id="#{id}" class="pagy-nav-compact-semantic pagy-semantic-compact-nav ui compact menu" role="navigation" aria-label="pager">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})

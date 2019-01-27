@@ -8,8 +8,8 @@ class Pagy
 
     # Pagination for materialize: it returns the html with the series of links to the pages
     def pagy_materialize_nav(pagy)
-      html, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
-      html << (p_prev ? %(<li class="waves-effect prev">#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
+      link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
+      html = +(p_prev ? %(<li class="waves-effect prev">#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
                       : %(<li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(<li class="waves-effect">#{link.call item}</li>)                                             # page link
@@ -25,9 +25,9 @@ class Pagy
     # Compact pagination for materialize: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
     def pagy_materialize_compact_nav(pagy, id=pagy_id)
-      html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
+      link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html << %(<div id="#{id}" class="pagy-nav-compact-materialize pagy-materialize-compact-nav pagination" role="navigation" aria-label="pager">)
+      html = +%(<div id="#{id}" class="pagy-nav-compact-materialize pagy-materialize-compact-nav pagination" role="navigation" aria-label="pager">)
       html << link.call(MARKER, '', %(style="display: none;" ))
       (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
       html << %(<div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;">)
