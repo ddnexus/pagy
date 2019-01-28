@@ -39,13 +39,6 @@ class Pagy
       "pagy-#{Digest::SHA1.hexdigest(caller(2..2)[0].split(':in')[0])}"
     end
 
-    def self.deprecate(old_meth, new_meth)
-      send(:define_method, old_meth) do |pagy, id=pagy_id|
-        Warning.warn "WARNING: The ##{old_meth} pagy helper method is deprecated and will be removed in 2.0; please use ##{new_meth} instead. More info at https://github.com/ddnexus/pagy/blob/master/DEPRECATIONS.md\n"
-        method(new_meth).arity == 1 ? send(new_meth, pagy) : send(new_meth, pagy, id)
-      end
-    end
-
   end
 
 end

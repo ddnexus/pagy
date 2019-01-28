@@ -25,7 +25,6 @@ class Pagy
                         : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
       html << %(</nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    deprecate :pagy_nav_compact, :pagy_plain_compact_nav
 
     # Plain responsive pagination: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
@@ -43,9 +42,8 @@ class Pagy
       tags['after'] = (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                               : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
-      %(<nav id="#{id}" class="pagy-nav-responsive pagy-plain-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
+      %(<nav id="#{id}" class="pagy-plain-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
     end
-    deprecate :pagy_nav_responsive, :pagy_plain_responsive_nav
 
   end
 end

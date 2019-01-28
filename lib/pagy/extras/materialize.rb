@@ -19,9 +19,8 @@ class Pagy
       end
       html << (p_next ? %(<li class="waves-effect next">#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
                       : %(<li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>))
-      %(<div class="pagy-nav-materialize pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></div>)
+      %(<div class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></div>)
     end
-    deprecate :pagy_nav_materialize, :pagy_materialize_nav
 
     # Compact pagination for materialize: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
@@ -42,7 +41,6 @@ class Pagy
                : %(<li class="next disabled" #{li_style}><a href="#"><i class="material-icons">chevron_right</i></a></li>))
       html << %(</ul></div>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    deprecate :pagy_nav_compact_materialize, :pagy_materialize_compact_nav
 
     # Responsive pagination for Materialize: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
@@ -62,9 +60,8 @@ class Pagy
                                : %(<li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>))
       tags['after'] << '</ul>'
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
-      %(<div id="#{id}" class="pagy-nav-responsive-materialize pagy-materialize-responsive-nav pagination" role="navigation" aria-label="pager"></div>#{script})
+      %(<div id="#{id}" class="pagy-materialize-responsive-nav pagination" role="navigation" aria-label="pager"></div>#{script})
     end
-    deprecate :pagy_nav_responsive_materialize, :pagy_materialize_responsive_nav
 
   end
 end

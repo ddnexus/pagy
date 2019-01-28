@@ -20,9 +20,8 @@ class Pagy
       end
       html << (p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
                       : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
-      %(<nav class="pagy-nav-bootstrap pagy-bootstrap-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></nav>)
+      %(<nav class="pagy-bootstrap-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></nav>)
     end
-    deprecate :pagy_nav_bootstrap, :pagy_bootstrap_nav
 
     # Compact pagination for bootstrap: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
@@ -41,7 +40,6 @@ class Pagy
                         : %(<a class="next btn btn-primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
       html << %(</div></nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    deprecate :pagy_nav_compact_bootstrap, :pagy_bootstrap_compact_nav
 
     # Responsive pagination for bootstrap: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
@@ -61,9 +59,8 @@ class Pagy
                                : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
       tags['after'] << '</ul>'
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
-      %(<nav id="#{id}" class="pagy-nav-responsive-bootstrap pagy-bootstrap-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
+      %(<nav id="#{id}" class="pagy-bootstrap-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
     end
-    deprecate :pagy_nav_responsive_bootstrap, :pagy_bootstrap_responsive_nav
 
   end
 end
