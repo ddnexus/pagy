@@ -20,9 +20,8 @@ class Pagy
       end
       html << (p_next ? %(#{link.call p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"'})
                       : %(<div class="item disabled"><i class="right small chevron icon"></i></div>))
-      %(<div class="pagy-nav-semantic pagy-semantic-nav ui pagination menu" aria-label="pager">#{html}</div>)
+      %(<div class="pagy-semantic-nav ui pagination menu" aria-label="pager">#{html}</div>)
     end
-    deprecate :pagy_nav_semantic, :pagy_semantic_nav
 
     # Compact pagination for semantic: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
@@ -40,7 +39,6 @@ class Pagy
                         : %(<div class="item disabled"><i class="right small chevron icon"></i></div>))
       html << %(</div>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    deprecate :pagy_nav_compact_semantic, :pagy_semantic_compact_nav
 
     # Responsive pagination for semantic: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
@@ -58,9 +56,8 @@ class Pagy
       tags['after'] = (p_next ? %(#{link.call p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"'})
                               : %(<div class="item disabled"><i class="right small chevron icon"></i></div>))
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
-      %(<div id="#{id}" class="pagy-nav-responsive-semantic pagy-semantic-responsive-nav ui pagination menu" role="navigation" aria-label="pager"></div>#{script})
+      %(<div id="#{id}" class="pagy-semantic-responsive-nav ui pagination menu" role="navigation" aria-label="pager"></div>#{script})
     end
-    deprecate :pagy_nav_responsive_semantic, :pagy_semantic_responsive_nav
 
   end
 end

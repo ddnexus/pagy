@@ -22,9 +22,8 @@ class Pagy
                 end
       end
       html << '</ul>'
-      %(<nav class="pagy-nav-bulma pagy-bulma-nav pagination is-centered" role="navigation" aria-label="pagination">#{html}</nav>)
+      %(<nav class="pagy-bulma-nav pagination is-centered" role="navigation" aria-label="pagination">#{html}</nav>)
     end
-    deprecate :pagy_nav_bulma, :pagy_bulma_nav
 
     # Compact pagination for Bulma: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
@@ -43,7 +42,6 @@ class Pagy
                         : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.next')}</a></p>))
       html << %(</div></nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    deprecate :pagy_nav_compact_bulma, :pagy_bulma_compact_nav
 
     # Responsive pagination for Bulma: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
@@ -63,9 +61,8 @@ class Pagy
       end
       tags['after'] = '</ul>'
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
-      %(<nav id="#{id}" class="pagy-nav-responsive-bulma pagy-bulma-responsive-nav pagination is-centered" role="navigation" aria-label="pagination"></nav>#{script})
+      %(<nav id="#{id}" class="pagy-bulma-responsive-nav pagination is-centered" role="navigation" aria-label="pagination"></nav>#{script})
     end
-    deprecate :pagy_nav_responsive_bulma, :pagy_bulma_responsive_nav
 
   end
 end

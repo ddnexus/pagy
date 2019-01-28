@@ -20,9 +20,8 @@ class Pagy
       end
       html << (p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
                       : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
-      %(<nav class="pagy-nav-foundation pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
+      %(<nav class="pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
     end
-    deprecate :pagy_nav_foundation, :pagy_foundation_nav
 
     # Compact pagination for Foundation: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
@@ -41,7 +40,6 @@ class Pagy
                         : %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
       html << %(</div></nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    deprecate :pagy_nav_compact_foundation, :pagy_foundation_compact_nav
 
     # Responsive pagination for Foundation: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
@@ -61,9 +59,8 @@ class Pagy
                                : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
       tags['after'] << '</ul>'
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
-      %(<nav id="#{id}" class="pagy-nav-responsive-foundation pagy-foundation-responsive-nav" aria-label="Pagination"></nav>#{script})
+      %(<nav id="#{id}" class="pagy-foundation-responsive-nav" aria-label="Pagination"></nav>#{script})
     end
-    deprecate :pagy_nav_responsive_foundation, :pagy_foundation_responsive_nav
 
   end
 end

@@ -127,6 +127,8 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 [![Objects Chart](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
 
+__* Notice__: the `pagy_nav_bootstrap` helper used in the screencast has been renamed to `pagy_bootstrap_nav` in version 2.0
+
 ### Posts and Tutorials
 
 - [Migrating from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-tips) (practical guide)
@@ -142,7 +144,6 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
-- [Deprecations](https://github.com/ddnexus/pagy/blob/master/DEPRECATIONS.md)
 
 ### Support and Feedback
 
