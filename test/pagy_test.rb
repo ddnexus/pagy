@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-SingleCov.covered!
+SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
 describe Pagy do
 

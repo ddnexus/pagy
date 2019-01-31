@@ -1,7 +1,7 @@
 require_relative '../../test_helper'
 require 'pagy/extras/overflow'
 
-SingleCov.covered!(uncovered: 1)   # the condition for countless
+SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
 describe Pagy do
 
