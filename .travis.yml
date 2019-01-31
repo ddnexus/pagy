@@ -1,13 +1,60 @@
+---
 language: ruby
-rvm:
- - 2.3
- - 2.4
- - 2.5
-script: bundle exec rake $TASK
-env:
-- TASK=test
+gemfile: gemfiles/ruby-others
+script: bundle exec rake default
+
 matrix:
   include:
-    - env: TASK=rubocop
-      rvm: 2.3
+
+    # ruby
+    - rvm: 1.9
+      gemfile: gemfiles/ruby-1.9
+      env:
+        - SKIP_RUBOCOP=true
+        - SKIP_SINGLECOV=true
+
+    - rvm: 2.0
+      gemfile: gemfiles/ruby-2.0
+      env: SKIP_RUBOCOP=true
+
+    - rvm: 2.1
+      env: SKIP_RUBOCOP=true
+
+    - rvm: 2.2
+      env: SKIP_RUBOCOP=true
+
+    - rvm: 2.3
+      env: SKIP_RUBOCOP=true
+
+    - rvm: 2.4
+      env: SKIP_RUBOCOP=true
+
+    - rvm: 2.5    # with rubocop
+
+    - rvm: 2.6
+      env: SKIP_RUBOCOP=true
+
+
+    # jruby
+    - rvm: jruby-1.7
+      gemfile: gemfiles/ruby-1.9
+      env:
+        - SKIP_RUBOCOP=true
+        - SKIP_SINGLECOV=true
+
+    - rvm: jruby-9.0
+      gemfile: gemfiles/ruby-2.0
+      env:
+        - SKIP_RUBOCOP=true
+        - SKIP_SINGLECOV=true
+
+    - rvm: jruby-9.1
+      env:
+        - SKIP_RUBOCOP=true
+        - SKIP_SINGLECOV=true
+
+    - rvm: jruby-9.2
+      env:
+        - SKIP_RUBOCOP=true
+        - SKIP_SINGLECOV=true
 

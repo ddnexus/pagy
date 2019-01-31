@@ -4,7 +4,7 @@
 require "bundler/setup"
 require "bundler/gem_tasks"
 require "rake/testtask"
-require "rubocop/rake_task"
+require "rubocop/rake_task" unless ENV['SKIP_RUBOCOP']
 
 # The extras that override the built-in methods need to be tested in isolation in order
 # to prevent them to change also the behavior and the result of the built-in tests.
@@ -42,8 +42,11 @@ end
 
 task :test => [:test_common, :test_extra_items, :test_extra_i18n, :test_extra_overflow, :test_extra_trim ]
 
-RuboCop::RakeTask.new(:rubocop) do |t|
-  t.options = `git ls-files -z`.split("\x0")     # limit rubocop to the files in the repo
+if ENV['SKIP_RUBOCOP']
+  task :default => [:test]
+else
+  RuboCop::RakeTask.new(:rubocop) do |t|
+    t.options = `git ls-files -z`.split("\x0")     # limit rubocop to the files in the repo
+  end
+  task :default => [:test, :rubocop]
 end
-
-task :default => [:test, :rubocop]

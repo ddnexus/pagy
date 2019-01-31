@@ -1,0 +1,11 @@
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# test
+gem 'rake',       '~> 10.0'
+gem 'minitest',   '~> 5.0'
+gem 'rack',       '1.6.11'
+gem 'i18n',       '1.1.0'
+gem 'single_cov', '~> 1.3.0' unless ENV['SKIP_SINGLECOV']
+
