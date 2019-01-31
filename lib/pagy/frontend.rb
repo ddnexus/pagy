@@ -9,12 +9,15 @@ class Pagy
   # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
   module Frontend
 
+    # We use EMPTY + 'whatever' that is almost as fast as +'whatever' but is also 1.9 compatible
+    EMPTY = ''
+
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
 
-      html = +(p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
-                      : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ))
+      html = EMPTY + (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
+                             : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(<span class="page">#{link.call item}</span> )               # page link
                 elsif item.is_a?(String) ; %(<span class="page active">#{item}</span> )                  # current page

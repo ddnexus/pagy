@@ -9,8 +9,8 @@ class Pagy
     # Pagination for materialize: it returns the html with the series of links to the pages
     def pagy_materialize_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
-      html = +(p_prev ? %(<li class="waves-effect prev">#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
-                      : %(<li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>))
+      html = EMPTY + (p_prev ? %(<li class="waves-effect prev">#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
+                             : %(<li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(<li class="waves-effect">#{link.call item}</li>)                                             # page link
                 elsif item.is_a?(String) ; %(<li class="active">#{link.call item}</li>)                                                   # active page
@@ -27,7 +27,7 @@ class Pagy
     def pagy_materialize_compact_nav(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = +%(<div id="#{id}" class="pagy-nav-compact-materialize pagy-materialize-compact-nav pagination" role="navigation" aria-label="pager">)
+      html = EMPTY + %(<div id="#{id}" class="pagy-materialize-compact-nav pagination" role="navigation" aria-label="pager">)
       html << link.call(MARKER, '', %(style="display: none;" ))
       (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
       html << %(<div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;">)
@@ -47,7 +47,7 @@ class Pagy
     def pagy_materialize_responsive_nav(pagy, id=pagy_id)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
-      tags['before'] = +'<ul class="pagination">'
+      tags['before'] = EMPTY + '<ul class="pagination">'
       tags['before'] << (p_prev  ? %(<li class="waves-effect prev">#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
                                  : %(<li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>))
       responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -56,8 +56,8 @@ class Pagy
                           elsif item == :gap       ; %(<li class="gap disabled"><a href="#">#{pagy_t('pagy.nav.gap')}</a></li>)   # page gap
                           end
       end
-      tags['after'] = +(p_next ? %(<li class="waves-effect next">#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
-                               : %(<li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>))
+      tags['after'] = EMPTY + (p_next ? %(<li class="waves-effect next">#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
+                                      : %(<li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>))
       tags['after'] << '</ul>'
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
       %(<div id="#{id}" class="pagy-materialize-responsive-nav pagination" role="navigation" aria-label="pager"></div>#{script})

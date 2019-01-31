@@ -10,8 +10,8 @@ class Pagy
     def pagy_bulma_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
 
-      html = +(p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
-                      : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
+      html = EMPTY + (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
+                             : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
       html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
                       : %(<a class="pagination-next" disabled>#{pagy_t('pagy.nav.next')}</a>))
       html << '<ul class="pagination-list">'
@@ -30,7 +30,7 @@ class Pagy
     def pagy_bulma_compact_nav(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = +%(<nav id="#{id}" class="pagy-nav-compact-bulma pagy-bulma-compact-nav" role="navigation" aria-label="pagination">)
+      html = EMPTY + %(<nav id="#{id}" class="pagy-bulma-compact-nav" role="navigation" aria-label="pagination">)
         html << link.call(MARKER, '', 'style="display: none;"')
         (html << link.call(1, '', %(style="display: none;"))) if defined?(TRIM)
         html << %(<div class="field is-grouped is-grouped-centered" role="group">)
@@ -48,8 +48,8 @@ class Pagy
     def pagy_bulma_responsive_nav(pagy, id=pagy_id)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
-      tags['before'] = +(p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
-                                : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
+      tags['before'] = EMPTY + (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
+                                       : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
       tags['before'] << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
                                 : %(<a class="pagination-next" disabled>#{pagy_t('pagy.nav.next')}</a>))
       tags['before'] << '<ul class="pagination-list">'

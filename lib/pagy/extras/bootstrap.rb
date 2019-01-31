@@ -10,8 +10,8 @@ class Pagy
     def pagy_bootstrap_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next
 
-      html = +(p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
-                      : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
+      html = EMPTY + (p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+                             : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(<li class="page-item">#{link.call item}</li>)                                                               # page link
                 elsif item.is_a?(String) ; %(<li class="page-item active">#{link.call item}</li>)                                                        # active page
@@ -28,7 +28,7 @@ class Pagy
     def pagy_bootstrap_compact_nav(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = +%(<nav id="#{id}" class="pagy-nav-compact-bootstrap pagy-bootstrap-compact-nav pagination" role="navigation" aria-label="pager">)
+      html = EMPTY + %(<nav id="#{id}" class="pagy-bootstrap-compact-nav pagination" role="navigation" aria-label="pager">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << %(<div class="btn-group" role="group">)
@@ -46,7 +46,7 @@ class Pagy
     def pagy_bootstrap_responsive_nav(pagy, id=pagy_id)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next, pagy.responsive
 
-      tags['before'] = +'<ul class="pagination">'
+      tags['before'] = EMPTY + '<ul class="pagination">'
       tags['before'] << (p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
                                 : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
       responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -55,8 +55,8 @@ class Pagy
                           elsif item == :gap       ; %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.gap')}</a></li>) # page gap
                           end
       end
-      tags['after'] = +(p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
-                               : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
+      tags['after'] = EMPTY + (p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
+                                      : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
       tags['after'] << '</ul>'
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
       %(<nav id="#{id}" class="pagy-bootstrap-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
