@@ -2,7 +2,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/countless'
 require 'pagy/extras/items'
 
-SingleCov.covered!(uncovered: 1)
+SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
 describe Pagy::Backend do
 

@@ -1,7 +1,7 @@
 require_relative '../../test_helper'
 require 'pagy/extras/searchkick'
 
-SingleCov.covered!
+SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
 describe Pagy::Backend do
 

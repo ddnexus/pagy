@@ -1,7 +1,7 @@
 require_relative '../test_helper'
 require 'pagy/extras/countless'
 
-SingleCov.covered!
+SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
 describe Pagy::Countless do
 

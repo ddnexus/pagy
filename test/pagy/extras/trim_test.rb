@@ -7,7 +7,7 @@ require 'pagy/extras/materialize'
 # require 'pagy/extras/semantic'
 require 'pagy/extras/trim'
 
-SingleCov.covered!
+SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
 describe Pagy::Frontend do
 
