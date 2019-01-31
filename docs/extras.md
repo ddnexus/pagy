@@ -104,7 +104,7 @@ Template `pagy_responsive_remote.html.erb` (non-AJAX render: first page-load):
 
 ```
 <div id="container">
-  <%= render 'remote_partial` %>
+  <%= render 'remote_partial' %>
 </div>
 ```
 
@@ -114,7 +114,7 @@ Partial `remote_partial.html.erb` (partial shared for AJAX and non-AJAX renderin
 <%== pagy_bootstrap_responsive_nav(@pagy) %>
 ```
 
-Template `pagy_responsive_remote.js.erb` (javascript tempalte used for AJAX):
+Template `pagy_responsive_remote.js.erb` (javascript template used for AJAX):
 
 ```js-erb
 $('#container').html("<%= j(render 'remote_partial')%>");
