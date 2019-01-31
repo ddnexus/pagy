@@ -10,8 +10,8 @@ class Pagy
     def pagy_semantic_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next
 
-      html = +(p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
-                      : %(<div class="item disabled"><i class="left small chevron icon"></i></div>))
+      html = EMPTY + (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
+                             : %(<div class="item disabled"><i class="left small chevron icon"></i></div>))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(#{link.call item})                      # page link
                 elsif item.is_a?(String) ; %(<a class="item active">#{item}</a>)     # current page
@@ -28,7 +28,7 @@ class Pagy
     def pagy_semantic_compact_nav(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = +%(<div id="#{id}" class="pagy-nav-compact-semantic pagy-semantic-compact-nav ui compact menu" role="navigation" aria-label="pager">)
+      html = EMPTY + %(<div id="#{id}" class="pagy-semantic-compact-nav ui compact menu" role="navigation" aria-label="pager">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})

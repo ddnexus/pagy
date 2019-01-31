@@ -10,8 +10,8 @@ class Pagy
     def pagy_foundation_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
 
-      html = +(p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
-                      : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
+      html = EMPTY + (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+                             : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                        # page link
                 elsif item.is_a?(String) ; %(<li class="current">#{item}</li>)                  # active page
@@ -28,7 +28,7 @@ class Pagy
     def pagy_foundation_compact_nav(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = +%(<nav id="#{id}" class="pagy-nav-compact-foundation pagy-foundation-compact-nav" role="navigation" aria-label="Pagination">)
+      html = EMPTY + %(<nav id="#{id}" class="pagy-foundation-compact-nav" role="navigation" aria-label="Pagination">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << %(<div class="input-group">)
@@ -46,7 +46,7 @@ class Pagy
     def pagy_foundation_responsive_nav(pagy, id=pagy_id)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
-      tags['before'] = +'<ul class="pagination">'
+      tags['before'] = EMPTY + '<ul class="pagination">'
       tags['before'] << (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
                                 : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
       responsive[:items].each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -55,8 +55,8 @@ class Pagy
                           elsif item == :gap       ; %(<li class="ellipsis gap" aria-hidden="true"></li>) # page gap
                           end
       end
-      tags['after'] = +(p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
-                               : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
+      tags['after'] = EMPTY + (p_next ? %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
+                                      : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>))
       tags['after'] << '</ul>'
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
       %(<nav id="#{id}" class="pagy-foundation-responsive-nav" aria-label="Pagination"></nav>#{script})

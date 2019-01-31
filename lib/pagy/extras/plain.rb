@@ -14,7 +14,7 @@ class Pagy
     def pagy_plain_compact_nav(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = +%(<nav id="#{id}" class="pagy-nav-compact pagy-plain-compact-nav pagination" role="navigation" aria-label="pager">)
+      html = EMPTY + %(<nav id="#{id}" class="pagy-plain-compact-nav pagination" role="navigation" aria-label="pager">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
