@@ -2,18 +2,23 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem 'bundler',  '~> 1.16'
-gem 'rake',     '~> 10.0'
-gem 'minitest', '~> 5.0'
+# test
+gem 'rake'
+gem 'minitest'
 gem 'rack'
 gem 'i18n'
-gem 'slim'
-gem 'haml'
-gem 'benchmark-ips'
-gem 'kalibera'
-gem 'memory_profiler'
-gem 'rubocop', '~> 0.55.0' # needs to be fixed since it constantly adds new cops
-gem 'single_cov'
+gem 'single_cov', '~> 1.3' unless ENV['SKIP_SINGLECOV']
+# include minor since it constantly adds new cops
+gem 'rubocop', '~> 0.63.1' unless ENV['SKIP_RUBOCOP']
 
+# development
+# gem 'slim'
+# gem 'haml'
 
-gem "github-pages", group: :jekyll_plugins
+# benchmark/profiling
+# gem 'benchmark-ips'
+# gem 'kalibera'
+# gem 'memory_profiler'
+
+# docs server
+#gem "github-pages", '193', group: :jekyll_plugins
