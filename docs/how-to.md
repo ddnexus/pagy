@@ -64,7 +64,7 @@ You can copy the comprehensive and annotated [pagy.rb](https://github.com/ddnexu
 
 ## Environment Assumptions
 
-- ruby >= 2.3
+- ruby 1.9+ or jruby 1.7+
 
 ### Out of the box assumptions
 
