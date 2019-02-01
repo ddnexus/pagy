@@ -79,17 +79,16 @@ describe Pagy::Backend do
     end
 
     it 'doesn\'t limit the items from default' do
-      fork{
-        vars = {}
-        Pagy::VARS[:max_items] = nil
-        params = {:a=>"a", :items=>1000}
-        backend = TestController.new params
-        backend.params.must_equal params
-        pagy, _ = backend.send :pagy, @collection, vars
-        pagy.items.must_equal 1000
-        pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-        pagy_countless.items.must_equal 1000
-      }
+      vars = {}
+      params = {:a=>"a", :items=>1000}
+      backend = TestController.new params
+      backend.params.must_equal params
+      Pagy::VARS[:max_items] = nil
+      pagy, _ = backend.send :pagy, @collection, vars
+      Pagy::VARS[:max_items] = 100
+      pagy.items.must_equal 1000
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+      pagy_countless.items.must_equal 1000
     end
 
     it 'uses items_param from vars' do
@@ -104,17 +103,16 @@ describe Pagy::Backend do
     end
 
     it 'uses items_param from default' do
-      fork{
-        vars = {}
-        Pagy::VARS[:items_param] = :custom
-        params = {:a=>"a", :page=>3, :custom=>15}
-        backend = TestController.new params
-        backend.params.must_equal params
-        pagy, _ = backend.send :pagy, @collection, vars
-        pagy.items.must_equal 15
-        pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-        pagy_countless.items.must_equal 15
-      }
+      vars = {}
+      params = {:a=>"a", :page=>3, :custom=>15}
+      backend = TestController.new params
+      backend.params.must_equal params
+      Pagy::VARS[:items_param] = :custom
+      pagy, _ = backend.send :pagy, @collection, vars
+      Pagy::VARS[:items_param] = :items
+      pagy.items.must_equal 15
+      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
+      pagy_countless.items.must_equal 15
     end
 
   end
