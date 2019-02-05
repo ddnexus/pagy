@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Version 1.3.3
+
+### Commits
+
+- [11944e4](http://github.com/ddnexus/pagy/commit/11944e4): Fix typo in class name (#122)
+- [40ef36d](http://github.com/ddnexus/pagy/commit/40ef36d): travis badge links to branches
+- [78141a3](http://github.com/ddnexus/pagy/commit/78141a3): Improve default German translation (#120)
+- [c0fe0df](http://github.com/ddnexus/pagy/commit/c0fe0df): minor typo corrections (#119)
+
 ## Version 1.3.2
 
 ### Changes
