@@ -1,8 +1,8 @@
 de:
   pagy:
     nav:
-      prev: "&lsaquo;&nbsp;vor"
-      next: "weiter&nbsp;&rsaquo;"
+      prev: "&lsaquo;&nbsp;Zurück"
+      next: "Weiter&nbsp;&rsaquo;"
       gap: "&hellip;"
     info:
       single_page:
@@ -11,10 +11,10 @@ de:
         other: "Zeige <b>alle %{count}</b> %{item_name}"
       multiple_pages: "Zeige %{item_name} <b>%{from}-%{to}</b> von <b>%{count}</b> gesamt"
       item_name:
-        zero: "Stück"
-        one: "Stück"
-        other: "Stücke"
+        zero: "Eintrag"
+        one: "Eintrag"
+        other: "Einträge"
     compact: "Seite %{page_input} von %{pages}"
     items:
-      one: "Zeige %{items_input} Stück pro Seite"
-      other: "Zeige %{items_input} Stücke pro Seite"
+      one: "Zeige %{items_input} Eintrag pro Seite"
+      other: "Zeige %{items_input} Einträge pro Seite"
