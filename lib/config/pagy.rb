@@ -1,3 +1,6 @@
+# encoding: utf-8
+# frozen_string_literal: true
+
 # Pagy initializer file
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 

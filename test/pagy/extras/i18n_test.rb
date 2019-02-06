@@ -1,3 +1,6 @@
+# encoding: utf-8
+# frozen_string_literal: true
+
 require_relative '../../test_helper'
 require 'i18n'
 require 'pagy/extras/i18n'

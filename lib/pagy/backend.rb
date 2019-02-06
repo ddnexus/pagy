@@ -1,4 +1,6 @@
 # See Pagy::Backend API documentation: https://ddnexus.github.io/pagy/api/backend
+# encoding: utf-8
+# frozen_string_literal: true
 
 class Pagy
   # Defines a few generic methods to paginate an ORM collection out of the box,

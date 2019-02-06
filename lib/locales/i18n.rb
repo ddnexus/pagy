@@ -1,4 +1,5 @@
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
+# encoding: utf-8
 # frozen_string_literal: true
 
 # this file returns the I18N hash used as default alternative to the i18n gem
