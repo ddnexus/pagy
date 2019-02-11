@@ -5,7 +5,7 @@ title: Items
 
 Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or higly user-customizable apps.
 
-It works also with the [countless extra](countless.md).
+It works also with the [countless](countless.md) and with the [elasticsearch_rails](elasticsearch_rails.md) extras.
 
 ## Synopsis
 
