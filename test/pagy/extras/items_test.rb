@@ -3,6 +3,7 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/countless'
+require_relative '../../test_helper/elasticsearch_rails'
 require 'pagy/extras/items'
 
 SingleCov.covered! unless ENV['SKIP_SINGLECOV']
@@ -18,12 +19,15 @@ describe Pagy::Backend do
     it 'uses the defaults' do
       vars    = {}
       backend = TestController.new
-      merged  = backend.send :pagy_get_vars, @collection, vars
+
+      [:pagy_get_vars, :pagy_countless_get_vars].each do |method|
+        merged  = backend.send method, @collection, vars
+        merged.keys.must_include :items
+        merged[:items].must_be_nil
+      end
+      merged  = backend.send :pagy_elasticsearch_rails_get_vars, nil, vars
       merged.keys.must_include :items
-      merged[:items].must_be_nil
-      merged_countless  = backend.send :pagy_countless_get_vars, @collection, vars
-      merged_countless.keys.must_include :items
-      merged_countless[:items].must_be_nil
+      merged[:items].must_equal 20
     end
 
     it 'uses the vars' do
@@ -31,10 +35,13 @@ describe Pagy::Backend do
       params  = {:a=>"a", :page=>3, :items=>12}
       backend = TestController.new params
       backend.params.must_equal params
-      pagy, _ = backend.send :pagy, @collection, vars
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, _ = backend.send method, @collection, vars
+        pagy.items.must_equal 15
+      end
+      pagy, _ = backend.send :pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('a').records, vars
       pagy.items.must_equal 15
-      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-      pagy_countless.items.must_equal 15
     end
 
     it 'uses the params' do
@@ -42,10 +49,14 @@ describe Pagy::Backend do
       params  = {:a=>"a", :page=>3, :items=>12}
       backend = TestController.new params
       backend.params.must_equal params
-      pagy, _ = backend.send :pagy, @collection, vars
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, _ = backend.send method, @collection, vars
+        pagy.items.must_equal 12
+      end
+
+      pagy, _ = backend.send :pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('a').records, vars
       pagy.items.must_equal 12
-      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-      pagy_countless.items.must_equal 12
     end
 
     it 'overrides the params' do
@@ -53,10 +64,14 @@ describe Pagy::Backend do
       params  = {:a=>"a", :page=>3, :items=>12}
       backend = TestController.new params
       backend.params.must_equal params
-      pagy, _ = backend.send :pagy, @collection, vars
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, _ = backend.send method, @collection, vars
+        pagy.items.must_equal 21
+      end
+
+      pagy, _ = backend.send :pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('a').records, vars
       pagy.items.must_equal 21
-      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-      pagy_countless.items.must_equal 21
     end
 
     it 'uses the max_items default' do
@@ -64,10 +79,14 @@ describe Pagy::Backend do
       params  = {:a=>"a", :page=>3, :items=>120}
       backend = TestController.new params
       backend.params.must_equal params
-      pagy, _ = backend.send :pagy, @collection, vars
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, _ = backend.send method, @collection, vars
+        pagy.items.must_equal 100
+      end
+
+      pagy, _ = backend.send :pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('a').records, vars
       pagy.items.must_equal 100
-      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-      pagy_countless.items.must_equal 100
     end
 
     it 'doesn\'t limit the items from vars' do
@@ -75,10 +94,14 @@ describe Pagy::Backend do
       params  = {:a=>"a", :items=>1000}
       backend = TestController.new params
       backend.params.must_equal params
-      pagy, _ = backend.send :pagy, @collection, vars
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, _ = backend.send method, @collection, vars
+        pagy.items.must_equal 1000
+      end
+
+      pagy, _ = backend.send :pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('a').records, vars
       pagy.items.must_equal 1000
-      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-      pagy_countless.items.must_equal 1000
     end
 
     it 'doesn\'t limit the items from default' do
@@ -87,11 +110,16 @@ describe Pagy::Backend do
       backend = TestController.new params
       backend.params.must_equal params
       Pagy::VARS[:max_items] = nil
-      pagy, _ = backend.send :pagy, @collection, vars
-      Pagy::VARS[:max_items] = 100
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, _ = backend.send method, @collection, vars
+        pagy.items.must_equal 1000
+      end
+
+      pagy, _ = backend.send :pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('a').records, vars
       pagy.items.must_equal 1000
-      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-      pagy_countless.items.must_equal 1000
+
+      Pagy::VARS[:max_items] = 100 # reset default
     end
 
     it 'uses items_param from vars' do
@@ -99,10 +127,14 @@ describe Pagy::Backend do
       params  = {:a=>"a", :page=>3, :items_param=>:custom, :custom=>14}
       backend = TestController.new params
       backend.params.must_equal params
-      pagy, _ = backend.send :pagy, @collection, vars
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, _ = backend.send method, @collection, vars
+        pagy.items.must_equal 14
+      end
+
+      pagy, _ = backend.send :pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('a').records, vars
       pagy.items.must_equal 14
-      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-      pagy_countless.items.must_equal 14
     end
 
     it 'uses items_param from default' do
@@ -111,11 +143,16 @@ describe Pagy::Backend do
       backend = TestController.new params
       backend.params.must_equal params
       Pagy::VARS[:items_param] = :custom
-      pagy, _ = backend.send :pagy, @collection, vars
-      Pagy::VARS[:items_param] = :items
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, _ = backend.send method, @collection, vars
+        pagy.items.must_equal 15
+      end
+
+      pagy, _ = backend.send :pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('a').records, vars
       pagy.items.must_equal 15
-      pagy_countless, _ = backend.send :pagy_countless, @collection, vars
-      pagy_countless.items.must_equal 15
+
+      Pagy::VARS[:items_param] = :items  # reset default
     end
 
   end

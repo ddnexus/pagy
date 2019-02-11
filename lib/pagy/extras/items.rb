@@ -18,21 +18,19 @@ class Pagy
                        [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min   # :items capped to :max_items
     end
 
-    alias_method :pagy_get_vars_without_items, :pagy_get_vars
-    def pagy_get_vars_with_items(collection, vars)
-      pagy_with_items(vars)
-      pagy_get_vars_without_items(collection, vars)
-    end
-    alias_method :pagy_get_vars, :pagy_get_vars_with_items
-
-    # support for countless extra
-    if defined?(Pagy::COUNTLESS)   # defined in the countless extra
-      alias_method :pagy_countless_get_vars_without_items, :pagy_countless_get_vars
-      def pagy_countless_get_vars_with_items(collection, vars)
-        pagy_with_items(vars)
-        pagy_countless_get_vars_without_items(collection, vars)
-      end
-      alias_method :pagy_countless_get_vars, :pagy_countless_get_vars_with_items
+    # add the pagy*_get_vars alias-chained methods for frontend, and defined/required extras
+    [nil, 'countless', 'elasticsearch_rails'].each do |name|
+      prefix, if_start, if_end = "_#{name}", "if defined?(Pagy::#{name.upcase})", "end" if name
+      module_eval <<-RUBY
+        #{if_start}
+        alias_method :pagy#{prefix}_get_vars_without_items, :pagy#{prefix}_get_vars
+        def pagy#{prefix}_get_vars_with_items(collection, vars)
+          pagy_with_items(vars)
+          pagy#{prefix}_get_vars_without_items(collection, vars)
+        end
+        alias_method :pagy#{prefix}_get_vars, :pagy#{prefix}_get_vars_with_items  
+        #{if_end}
+      RUBY
     end
 
   end
