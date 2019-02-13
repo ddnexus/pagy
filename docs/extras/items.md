@@ -7,6 +7,8 @@ Allow the client to request a custom number of items per page with an optional s
 
 It works also with the [countless](countless.md) and with the [elasticsearch_rails](elasticsearch_rails.md) extras.
 
+**Notice**: This extra cannot work with the [searchkick](searchkick.md) extra that passes the `:per_page` (i.e. `:items`) options directly to the query, before the `pagy_searchkick` method gets called.
+
 ## Synopsis
 
 See [extras](../extras.md) for general usage info.
