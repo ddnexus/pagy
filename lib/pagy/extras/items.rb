@@ -19,16 +19,16 @@ class Pagy
     end
 
     # add the pagy*_get_vars alias-chained methods for frontend, and defined/required extras
-    [nil, 'countless', 'elasticsearch_rails'].each do |name|
+    [nil, 'countless', 'elasticsearch_rails', 'searchkick'].each do |name|
       prefix, if_start, if_end = "_#{name}", "if defined?(Pagy::#{name.upcase})", "end" if name
       module_eval <<-RUBY
         #{if_start}
-        alias_method :pagy#{prefix}_get_vars_without_items, :pagy#{prefix}_get_vars
-        def pagy#{prefix}_get_vars_with_items(collection, vars)
-          pagy_with_items(vars)
-          pagy#{prefix}_get_vars_without_items(collection, vars)
-        end
-        alias_method :pagy#{prefix}_get_vars, :pagy#{prefix}_get_vars_with_items  
+          alias_method :pagy#{prefix}_get_vars_without_items, :pagy#{prefix}_get_vars
+          def pagy#{prefix}_get_vars_with_items(collection, vars)
+            pagy_with_items(vars)
+            pagy#{prefix}_get_vars_without_items(collection, vars)
+          end
+          alias_method :pagy#{prefix}_get_vars, :pagy#{prefix}_get_vars_with_items  
         #{if_end}
       RUBY
     end
