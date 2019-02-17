@@ -1,5 +1,6 @@
 ---
 language: ruby
+cache: bundler
 gemfile: gemfiles/ruby-others
 script: bundle exec rake default
 
