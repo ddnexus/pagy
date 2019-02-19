@@ -8,7 +8,7 @@ class Pagy ; VERSION = '1.3.3'
   class OverflowError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
-  def self.root; Pathname.new(__FILE__).dirname end
+  def self.root; @root ||= Pathname.new(__FILE__).dirname.freeze end
 
   # default vars
   VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', item_path:'pagy.info.item_name', cycle: false }
