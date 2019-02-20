@@ -53,7 +53,7 @@ class Pagy
     MARKER = "-pagy-#{'pagy'.hash}-"
 
     # Returns a performance optimized proc to generate the HTML links
-    # Benchmarked on a 20 link nav: it is ~27x faster and uses ~13x less memory than rails' link_to
+    # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_link_proc(pagy, link_extra='')
       p_prev, p_next = pagy.prev, pagy.next
       a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(MARKER, 2)
@@ -62,7 +62,7 @@ class Pagy
                                                     else                           '' end } #{extra}>#{text}</a>" }
     end
 
-    # Similar to I18n.t: just ~12x faster using ~6x less memory
+    # Similar to I18n.t: just ~18x faster using ~10x less memory
     def pagy_t(path, vars={}) Pagy::I18n.t(@pagy_locale, path, vars) end
 
   end

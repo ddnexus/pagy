@@ -92,7 +92,7 @@ For standard usage you may just need to read [Customizing the link attributes](.
 
 You need this section only if you are going to override a `pagy_nav*` helper or a template AND you need to customize the HTML attributes of the link tags.
 
-**Important**: This method is not intended to be overridden, however you could just replace it in your overridden `pagy_nav*` helpers or templates with some generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_link_proc` is a lot faster than the rails `link_to` (benchmarked at ~27x faster using ~13x less memory on a 20 links nav).
+**Important**: This method is not intended to be overridden, however you could just replace it in your overridden `pagy_nav*` helpers or templates with some generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_link_proc` is a lot faster than the rails `link_to` (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).
 
 **Warning**: This is a peculiar way to create page links and it works only for that purpose. It is not intended to be used for any other generic links to any URLs different than a page link.
 
@@ -166,7 +166,7 @@ Pagy is i18n ready. That means that all its strings are stored in the dictionary
 
 ### Pagy I18n implementation
 
-The pagy internal i18n implementation is ~12x faster and uses ~6x less memory than the standard `i18n` gem.
+The pagy internal i18n implementation is ~18x faster and uses ~10x less memory than the standard `i18n` gem.
 
 Since Pagy version 2.0, you can use it for both single-language and multi-language apps, with or without the `i18n` gem.
 

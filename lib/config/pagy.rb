@@ -114,7 +114,7 @@
 
 # I18n
 
-# Pagy internal I18n: ~12x faster using ~6x less memory than the i18n gem
+# Pagy internal I18n: ~18x faster using ~10x less memory than the i18n gem
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
 # Notice: No need to use any of the following lines if you use the i18n extra below
 #
@@ -141,7 +141,7 @@
 #                  pluralize: lambda{|count| ... } )
 
 
-# I18n extra: uses the standard i18n gem which is ~12x slower using ~6x more memory
+# I18n extra: uses the standard i18n gem which is ~18x slower using ~10x more memory
 # than the default pagy internal i18n (see above)
 # See https://ddnexus.github.io/pagy/extras/i18n
 # require 'pagy/extras/i18n'
