@@ -1,3 +1,6 @@
+# encoding: utf-8
+# frozen_string_literal: true
+
 class Pagy
   module Array
     # extend any array object to get the page method (mostly useful for testing)

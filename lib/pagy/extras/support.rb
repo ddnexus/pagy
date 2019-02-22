@@ -1,4 +1,5 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/support
+# encoding: utf-8
 # frozen_string_literal: true
 
 require 'pagy/extras/shared'
@@ -6,7 +7,7 @@ require 'pagy/extras/shared'
 class Pagy
 
   def to_h
-    { count:  @count,
+    { count:  defined?(@count) && @count,
       page:   @page,
       items:  @items,
       pages:  @pages,

@@ -1,8 +1,11 @@
+# encoding: utf-8
+# frozen_string_literal: true
+
 require_relative '../../test_helper'
 require 'pagy/extras/support'
 require 'pagy/countless'
 
-SingleCov.covered!
+SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
 describe Pagy::Frontend do
 

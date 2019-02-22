@@ -1,4 +1,6 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/array
+# encoding: utf-8
+# frozen_string_literal: true
 
 class Pagy
   # Add specialized backend methods to paginate array collections

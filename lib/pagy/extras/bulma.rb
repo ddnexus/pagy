@@ -1,4 +1,5 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/bulma
+# encoding: utf-8
 # frozen_string_literal: true
 
 require 'pagy/extras/shared'
@@ -8,10 +9,10 @@ class Pagy
 
     # Pagination for Bulma: it returns the html with the series of links to the pages
     def pagy_bulma_nav(pagy)
-      html, link, p_prev, p_next = +'', pagy_link_proc(pagy), pagy.prev, pagy.next
+      link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
 
-      html << (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
-                      : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
+      html = EMPTY + (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
+                             : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
       html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
                       : %(<a class="pagination-next" disabled>#{pagy_t('pagy.nav.next')}</a>))
       html << '<ul class="pagination-list">'
@@ -22,16 +23,15 @@ class Pagy
                 end
       end
       html << '</ul>'
-      %(<nav class="pagy-nav-bulma pagy-bulma-nav pagination is-centered" role="navigation" aria-label="pagination">#{html}</nav>)
+      %(<nav class="pagy-bulma-nav pagination is-centered" role="navigation" aria-label="pagination">#{html}</nav>)
     end
-    deprecate :pagy_nav_bulma, :pagy_bulma_nav
 
     # Compact pagination for Bulma: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
     def pagy_bulma_compact_nav(pagy, id=pagy_id)
-      html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
+      link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html << %(<nav id="#{id}" class="pagy-nav-compact-bulma pagy-bulma-compact-nav" role="navigation" aria-label="pagination">)
+      html = EMPTY + %(<nav id="#{id}" class="pagy-bulma-compact-nav" role="navigation" aria-label="pagination">)
         html << link.call(MARKER, '', 'style="display: none;"')
         (html << link.call(1, '', %(style="display: none;"))) if defined?(TRIM)
         html << %(<div class="field is-grouped is-grouped-centered" role="group">)
@@ -43,15 +43,14 @@ class Pagy
                         : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.next')}</a></p>))
       html << %(</div></nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    deprecate :pagy_nav_compact_bulma, :pagy_bulma_compact_nav
 
     # Responsive pagination for Bulma: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
     def pagy_bulma_responsive_nav(pagy, id=pagy_id)
       tags, link, p_prev, p_next, responsive = {}, pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.responsive
 
-      tags['before'] = +(p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
-                                : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
+      tags['before'] = EMPTY + (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
+                                       : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>))
       tags['before'] << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
                                 : %(<a class="pagination-next" disabled>#{pagy_t('pagy.nav.next')}</a>))
       tags['before'] << '<ul class="pagination-list">'
@@ -63,9 +62,8 @@ class Pagy
       end
       tags['after'] = '</ul>'
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
-      %(<nav id="#{id}" class="pagy-nav-responsive-bulma pagy-bulma-responsive-nav pagination is-centered" role="navigation" aria-label="pagination"></nav>#{script})
+      %(<nav id="#{id}" class="pagy-bulma-responsive-nav pagination is-centered" role="navigation" aria-label="pagination"></nav>#{script})
     end
-    deprecate :pagy_nav_responsive_bulma, :pagy_bulma_responsive_nav
 
   end
 end

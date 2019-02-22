@@ -1,4 +1,5 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/items
+# encoding: utf-8
 # frozen_string_literal: true
 
 require 'pagy/extras/shared'
@@ -14,24 +15,22 @@ class Pagy
 
     def pagy_with_items(vars)
       vars[:items] ||= (items = params[vars[:items_param] || VARS[:items_param]]) &&                           # :items from :items_param
-                       [items&.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min  # :items capped to :max_items
+                       [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min   # :items capped to :max_items
     end
 
-    alias_method :pagy_get_vars_without_items, :pagy_get_vars
-    def pagy_get_vars_with_items(collection, vars)
-      pagy_with_items(vars)
-      pagy_get_vars_without_items(collection, vars)
-    end
-    alias_method :pagy_get_vars, :pagy_get_vars_with_items
-
-    # support for countless extra
-    if defined?(Pagy::COUNTLESS)   # defined in the countless extra
-      alias_method :pagy_countless_get_vars_without_items, :pagy_countless_get_vars
-      def pagy_countless_get_vars_with_items(collection, vars)
-        pagy_with_items(vars)
-        pagy_countless_get_vars_without_items(collection, vars)
-      end
-      alias_method :pagy_countless_get_vars, :pagy_countless_get_vars_with_items
+    # add the pagy*_get_vars alias-chained methods for frontend, and defined/required extras
+    [nil, 'countless', 'elasticsearch_rails', 'searchkick'].each do |name|
+      prefix, if_start, if_end = "_#{name}", "if defined?(Pagy::#{name.upcase})", "end" if name
+      module_eval <<-RUBY
+        #{if_start}
+          alias_method :pagy#{prefix}_get_vars_without_items, :pagy#{prefix}_get_vars
+          def pagy#{prefix}_get_vars_with_items(collection, vars)
+            pagy_with_items(vars)
+            pagy#{prefix}_get_vars_without_items(collection, vars)
+          end
+          alias_method :pagy#{prefix}_get_vars, :pagy#{prefix}_get_vars_with_items  
+        #{if_end}
+      RUBY
     end
 
   end
@@ -49,7 +48,7 @@ class Pagy
     def pagy_items_selector(pagy, id=pagy_id)
       p_vars = pagy.vars; p_items = p_vars[:items]; p_vars[:items] = "#{MARKER}-items-"
 
-      html = +%(<span id="#{id}">)
+      html = EMPTY + %(<span id="#{id}">)
         html << %(<a href="#{pagy_url_for("#{MARKER}-page-", pagy)}"></a>)
         p_vars[:items] = p_items # restore the items
         input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)

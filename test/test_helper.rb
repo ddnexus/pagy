@@ -1,7 +1,12 @@
+# encoding: utf-8
+# frozen_string_literal: true
+
 require 'bundler/setup'
 
-require 'single_cov'
-SingleCov.setup :minitest
+unless ENV['SKIP_SINGLECOV']
+  require 'single_cov'
+  SingleCov.setup(:minitest, branches: false)
+end
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require 'pagy'

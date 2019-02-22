@@ -1,19 +1,17 @@
+# encoding: utf-8
+# frozen_string_literal: true
+
 require_relative '../../test_helper'
 require 'i18n'
 require 'pagy/extras/i18n'
 
-SingleCov.covered!
+SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
 describe Pagy::Frontend do
 
   let(:frontend) { TestView.new }
 
   describe "#pagy_t with I18n" do
-
-    it 'fetches data' do
-      Pagy::Frontend::I18N[:data]['pagy']['nav']['prev'].must_equal "&lsaquo;&nbsp;Prev"
-      Pagy::Frontend::I18N[:data]['pagy']['nav']['gap'].must_equal "&hellip;"
-    end
 
     it 'pluralizes' do
       frontend.pagy_t('pagy.nav.prev').must_equal "&lsaquo;&nbsp;Prev"

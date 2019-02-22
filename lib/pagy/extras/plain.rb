@@ -1,4 +1,5 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/plain
+# encoding: utf-8
 # frozen_string_literal: true
 
 require 'pagy/extras/shared'
@@ -12,9 +13,9 @@ class Pagy
     # Plain compact pagination: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
     def pagy_plain_compact_nav(pagy, id=pagy_id)
-      html, link, p_prev, p_next, p_page, p_pages = +'', pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
+      link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html << %(<nav id="#{id}" class="pagy-nav-compact pagy-plain-compact-nav pagination" role="navigation" aria-label="pager">)
+      html = EMPTY + %(<nav id="#{id}" class="pagy-plain-compact-nav pagination" role="navigation" aria-label="pager">)
         html << link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
@@ -25,7 +26,6 @@ class Pagy
                         : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
       html << %(</nav>#{pagy_json_tag(:compact, id, MARKER, p_page, !!defined?(TRIM))})
     end
-    deprecate :pagy_nav_compact, :pagy_plain_compact_nav
 
     # Plain responsive pagination: it returns the html with the series of links to the pages
     # rendered by the Pagy.responsive javascript
@@ -43,9 +43,8 @@ class Pagy
       tags['after'] = (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                               : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
       script = pagy_json_tag(:responsive, id, tags,  responsive[:widths], responsive[:series])
-      %(<nav id="#{id}" class="pagy-nav-responsive pagy-plain-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
+      %(<nav id="#{id}" class="pagy-plain-responsive-nav pagination" role="navigation" aria-label="pager"></nav>#{script})
     end
-    deprecate :pagy_nav_responsive, :pagy_plain_responsive_nav
 
   end
 end
