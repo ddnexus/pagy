@@ -1,4 +1,5 @@
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
+# encoding: utf-8
 # frozen_string_literal: true
 
 # This file adds support for multiple built-in plualization types.

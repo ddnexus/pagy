@@ -1,4 +1,5 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
+# encoding: utf-8
 # frozen_string_literal: true
 
 require 'yaml'

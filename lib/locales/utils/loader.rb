@@ -1,3 +1,4 @@
+# encoding: utf-8
 # frozen_string_literal: true
 
 # the whole file will be eval'ed/executed and gc-collected after returning/executing the loader proc
