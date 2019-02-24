@@ -68,7 +68,7 @@ extend Pagy::Search
 
 The `Pagy::Search` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
 
-### pagy_search(query_or_payload, options={})
+### pagy_search(term, options={})
 
 This method accepts the same arguments of the `search` method and you must use it in its place. This extra uses it in order to capture the arguments, automatically merging the calculated `:page` and `:per_page` options before passing them to the standard `search` method internally.
 
