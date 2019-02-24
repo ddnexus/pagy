@@ -3,7 +3,7 @@ title: API
 ---
 # API
 
-[![Gem Version](https://badge.fury.io/rb/pagy.svg)](https://badge.fury.io/rb/pagy)
+[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
 
 The whole core structure of Pagy is very simple: it is organized around 3 small modules of just ~100 lines of code in total:
 

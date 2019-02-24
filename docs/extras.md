@@ -53,7 +53,9 @@ If you use any of them you should load the [pagy.js](https://github.com/ddnexus/
 
 ### In rails apps
 
-Add the assets-path in the `pagy.rb` initializer:
+#### With the asset pipeline
+
+If your app uses the sprocket asset-pipeline, add the assets-path in the `pagy.rb` initializer:
 
 ```ruby
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
@@ -71,6 +73,42 @@ Add an event listener for turbolinks:
 window.addEventListener("turbolinks:load", Pagy.init);
 ```
 
+or a generic one if your app doesn't use turbolinks:
+```js
+window.addEventListener("load", Pagy.init);
+```
+
+#### With Webpacker
+
+If your app uses Webpacker, ensure that the webpacker `erb` loader is installed:
+
+```sh
+bundle exec rails webpacker:install:erb
+```
+
+Then create a `pagy.js.erb` to render the content of `pagy.js` and add the event listener into it:
+
+```
+// app/javascript/src/javascripts/pagy.js.erb
+<%= Pagy.root.join('javascripts', 'pagy.js').read %>
+window.addEventListener("load", Pagy.init)
+```
+and import it:
+```js
+// app/javascript/application.js
+import '../src/javascripts/pagy.js.erb'
+```
+
+**Notice**:
+
+- You may want to use `turbolinks:load` if your app uses turbolinks despite webpacker
+- or you may want just `export { Pagy, PagyInit }` from the `pagy.js.erb` file and import and use it somewhere else.
+- You may want to expose the `Pagy` and `PagyInit` namespaces, if you need them available elsewhere (e.g. in js.erb templates):
+    ```js
+    global.Pagy = Pagy
+    global.PagyInit = PagyInit
+    ```
+
 ### In non-rails apps
 
 Ensure the `pagy/extras/javascripts/pagy.js` script gets served with the page and add an event listener like:
@@ -86,7 +124,6 @@ $( window ).load(function() {
   Pagy.init()
 });
 ```
-
 
 ### Using AJAX with javascript-enabled helpers
 

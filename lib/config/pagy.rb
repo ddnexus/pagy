@@ -20,11 +20,11 @@
 # require 'pagy/extras/countless'
 # Pagy::VARS[:cycle] = false    # default
 
-# Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
+# Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects
 # See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
 # require 'pagy/extras/elasticsearch_rails'
 
-# Searchkick extra: Paginate `Searchkick::Results` objects efficiently, avoiding expensive object-wrapping and without overriding.
+# Searchkick extra: Paginate `Searchkick::Results` objects
 # See https://ddnexus.github.io/pagy/extras/searchkick
 # require 'pagy/extras/searchkick'
 

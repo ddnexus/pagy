@@ -7,7 +7,7 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)
 ![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
-[![Chat](http://img.shields.io/badge/gitter-ddnexus/pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
+[![Chat](http://img.shields.io/badge/gitter-ruby--pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
@@ -189,7 +189,7 @@ Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check
 
 Pagy follows the [GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) branching model with `master` and `dev`.
 
-The `master` branch is the latest rubygem-published release (plus the changes that don't affect the gem behavior, e.g. doc, tests).
+The `master` branch is the latest rubygem-published release.
 
 The `dev` branch is the development branch with the new code that will be merged in the next release.
 
