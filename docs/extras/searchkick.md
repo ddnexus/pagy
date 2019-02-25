@@ -12,7 +12,7 @@ See [extras](../extras.md) for general usage info.
 Require the extra in the `pagy.rb` initializer:
 
 ```ruby
-require 'pagy/extras/searchkik'
+require 'pagy/extras/searchkick'
 ```
 
 ### Passive mode
@@ -21,7 +21,7 @@ If you have an already paginated `Searchkick::Results` object, you can get the `
 
 ```ruby
 @results = Model.search('*', from: 0; size: 10, ...)
-@pagy     = Pagy.new_from_searchkik(@results, ...)
+@pagy     = Pagy.new_from_searchkick(@results, ...)
 ```
 
 ### Active Mode
@@ -38,14 +38,14 @@ In a controller use `pagy_search` in place of `search`:
 
 ```ruby
 records = Article.pagy_search(params[:q]).results
-@pagy, @records = pagy_searchkik(records, items: 10)
+@pagy, @records = pagy_searchkick(records, items: 10)
 ```
 
 ## Files
 
 This extra is composed of 1 file:
 
-- [searchkik.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/searchkik.rb)
+- [searchkick.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/searchkick.rb)
 
 ## Pagy.new_from_searchkick
 
@@ -53,7 +53,7 @@ This constructor accepts an `Searchkick::Results` as the first argument, plus th
 
 ```ruby
 @results = Model.search('*', page: 2; per_page: 10, ...)
-@pagy     = Pagy.new_from_searchkik(@results, ...)
+@pagy     = Pagy.new_from_searchkick(@results, ...)
 ```
 
 **Notice**: you have to take care of managing all the params manually. If you prefer to manage the pagination automatically, see below.
@@ -74,23 +74,23 @@ This method accepts the same arguments of the `search` method and you must use i
 
 ## Methods
 
-This extra adds the `pagy_searchkick` method to the `Pagy::Backend` to be used when you have to paginate a `Searchkick::Results` object. It also adds a `pagy_searchkik_get_variables` sub-method, used for easy customization of variables by overriding.
+This extra adds the `pagy_searchkick` method to the `Pagy::Backend` to be used when you have to paginate a `Searchkick::Results` object. It also adds a `pagy_searchkick_get_variables` sub-method, used for easy customization of variables by overriding.
 
-### pagy_searchkik(Model.pagy_search(...), vars={}})
+### pagy_searchkick(Model.pagy_search(...), vars={}})
 
 This method is similar to the generic `pagy` method, but specialized for Searchkick. (see the [pagy doc](../api/backend.md#pagycollection-varsnil))
 
 It expects to receive a `Model.pagy_search(...)` result and returns a paginated response. You can use it in a couple of ways:
 
 ```ruby
-@pagy, @results = pagy_searchkik(Model.pagy_search(params[:q]), ...)
+@pagy, @results = pagy_searchkick(Model.pagy_search(params[:q]), ...)
 ...
 @records = @results.results
 
 # or directly with the collection you need (e.g. records)
-@pagy, @records = pagy_searchkik(Model.pagy_search(params[:q]).results, ...)
+@pagy, @records = pagy_searchkick(Model.pagy_search(params[:q]).results, ...)
 ```
 
 ### pagy_searchkick_get_vars(array)
 
-This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_searchkik` method. (see the [pagy_get_vars doc](../api/backend.md#pagy_get_varscollection-vars)).
+This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_searchkick` method. (see the [pagy_get_vars doc](../api/backend.md#pagy_get_varscollection-vars)).
