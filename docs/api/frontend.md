@@ -168,9 +168,7 @@ Pagy is i18n ready. That means that all its strings are stored in the dictionary
 
 The pagy internal i18n implementation is ~18x faster and uses ~10x less memory than the standard `i18n` gem.
 
-Since Pagy version 2.0, you can use it for both single-language and multi-language apps, with or without the `i18n` gem.
-
-Notice: if your app is using i18n, it will work independently from it.
+Since Pagy version 2.0, you can use it for both single-language and multi-language apps. If (the rest of) your app is using i18n, it will work independently from the pagy i18n.
 
 The pagy internal i18n is implemented around the `Pagy::I18n` constant hash which contains the locales data needed to pagy and your app. You may need to configure it in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
 
@@ -196,15 +194,15 @@ Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml')
 # load the "de", "en" and "es" built-in locales:
 # the first :locale will be used also as the default_locale
 Pagy::I18n.load({locale: 'de'}, 
-                          {locale: 'en'}, 
-                          {locale: 'es'})
+                {locale: 'en'}, 
+                {locale: 'es'})
  
 # load the "en" built-in locale, a custom "es" locale, and a totally custom locale complete with the :pluralize proc:
 Pagy::I18n.load({locale: 'en'}, 
-                          {locale: 'es', filepath: 'path/to/pagy-es.yml'},
-                          {locale: 'xyz',  # not built-in
-                           filepath: 'path/to/pagy-xyz.yml',
-                           pluralize: lambda{|count| ... } )
+                {locale: 'es', filepath: 'path/to/pagy-es.yml'},
+                {locale: 'xyz',  # not built-in
+                 filepath: 'path/to/pagy-xyz.yml',
+                 pluralize: lambda{|count| ... } )
 ```
 
 **Notice**: You should use a custom `:pluralize` proc only for pluralization types not included in the built-in [p11n.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
