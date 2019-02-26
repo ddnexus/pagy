@@ -290,6 +290,18 @@ The `pagy_get_vars` method works out of the box with `ActiveRecord` collections;
 count = collection.count
 ```
 
+## Custom count for custom scopes
+
+Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count. In that case you can get the right count with some custom statement, and pass it to `pagy`:
+
+```ruby
+custom_scope = ...
+custom_count = ...
+@pagy, @records = pagy(custom_scope, count: custom_count)
+```
+
+**Notice**: pagy will efficiently skip its internal count query and will just use the passed `:count` variable
+
 ## Using the pagy_nav* helpers
 
 These helpers take the Pagy object and return the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
