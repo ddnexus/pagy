@@ -20,8 +20,8 @@ require 'pagy/extras/searchkick'
 If you have an already paginated `Searchkick::Results` object, you can get the `Pagy` object out of it:
 
 ```ruby
-@results = Model.search('*', from: 0; size: 10, ...)
-@pagy     = Pagy.new_from_searchkick(@results, ...)
+@results = Model.search('*', page: 1; per_page: 10, ...)
+@pagy    = Pagy.new_from_searchkick(@results, ...)
 ```
 
 ### Active Mode
@@ -53,7 +53,7 @@ This constructor accepts an `Searchkick::Results` as the first argument, plus th
 
 ```ruby
 @results = Model.search('*', page: 2; per_page: 10, ...)
-@pagy     = Pagy.new_from_searchkick(@results, ...)
+@pagy    = Pagy.new_from_searchkick(@results, ...)
 ```
 
 **Notice**: you have to take care of managing all the params manually. If you prefer to manage the pagination automatically, see below.
