@@ -74,7 +74,7 @@ This method accepts the same arguments of the `search` method and you must use i
 
 ## Methods
 
-This extra adds the `pagy_searchkick` method to the `Pagy::Backend` to be used when you have to paginate a `Searchkick::Results` object. It also adds a `pagy_searchkick_get_variables` sub-method, used for easy customization of variables by overriding.
+This extra adds the `pagy_searchkick` method to the `Pagy::Backend` to be used when you have to paginate a `Searchkick::Results` object. It also adds a `pagy_searchkick_get_vars` sub-method, used for easy customization of variables by overriding.
 
 ### pagy_searchkick(Model.pagy_search(...), vars={}})
 
