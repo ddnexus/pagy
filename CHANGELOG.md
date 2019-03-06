@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## Version 2.0.1
+
+## Changes
+
+- Fix for missing require in config/pagy.rb and fix for pt-br translation typos
+- docs fixes and improvements
+
+## Commits
+
+- [4e7b30f](http://github.com/ddnexus/pagy/commit/4e7b30f): update Repository Info section in README
+- [835e8d2](http://github.com/ddnexus/pagy/commit/835e8d2): Fix for missing require in config/pagy.rb and fix for pt-br translation typos (#134)
+- [8cdffa1](http://github.com/ddnexus/pagy/commit/8cdffa1): updated consumption chart in README
+- [91aa417](http://github.com/ddnexus/pagy/commit/91aa417): replaced efficiency table with resource-consumption chart; other minor fixes
+- [964ab24](http://github.com/ddnexus/pagy/commit/964ab24): fix for wrong params in searchkick synopsis example
+- [71baf56](http://github.com/ddnexus/pagy/commit/71baf56): added paginate-responder link to the HTTP header in the How to doc (#132)
+- [05e218c](http://github.com/ddnexus/pagy/commit/05e218c): fix for indents in searchkick doc
+- [7061086](http://github.com/ddnexus/pagy/commit/7061086): added README comments for the docs/update branch
+- [b93259c](http://github.com/ddnexus/pagy/commit/b93259c): fix typos in searchkick readme (#129)
+- [4156121](http://github.com/ddnexus/pagy/commit/4156121): added how-to for custom count for custom scopes (#130); other minor adjustments
+- [4c7b50a](http://github.com/ddnexus/pagy/commit/4c7b50a): docs fixes and additions (#128)
+
 ## Version 2.0.0
 
 ### Breaking Changes
