@@ -195,13 +195,7 @@ The `master` branch is the latest rubygem-published release.
 
 The `dev` branch is the development branch with the new code that will be merged in the next release.
 
-The `docs/update` is an extra branch used to update the documentation of the current code in `master`.
-
 Expect any other branch to be experimental, force-rebased and/or deleted even without merging.
-
-### Pull Requests
-
-Please, use `dev` as the base branch for your Pull Requests involving code; use the `docs/update` for Pull Request that involve only documentation/comments fixes or improvements.
 
 ## Credits
 
