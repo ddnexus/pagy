@@ -28,10 +28,9 @@ class Pagy
         select_the_sample_created_at = arel_table[:created_at].eq(select_created_at).and(arel_table[pagy.primary_key].send(pagy.comparation, position))
         sql_comparation = arel_table[:created_at].send(pagy.comparation, select_created_at).or(select_the_sample_created_at)
 
-        collection.where(sql_comparation).reorder(pagy.order).limit(pagy.items)
-      else
-        collection.reorder(pagy.order).limit(pagy.items)
+        collection = collection.where(sql_comparation)
       end
+      collection.reorder(pagy.order).limit(pagy.items)
     end
 
     def pagy_uuid_cursor_has_more?(collection, pagy)
