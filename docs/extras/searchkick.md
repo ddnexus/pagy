@@ -49,14 +49,14 @@ This extra is composed of 1 file:
 
 ## Pagy.new_from_searchkick
 
-This constructor accepts an `Searchkick::Results` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of the `Searchkick::Results` object.
+This constructor accepts a `Searchkick::Results` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of the `Searchkick::Results` object.
 
 ```ruby
 @results = Model.search('*', page: 2; per_page: 10, ...)
 @pagy    = Pagy.new_from_searchkick(@results, ...)
 ```
 
-**Notice**: you have to take care of managing all the params manually. If you prefer to manage the pagination automatically, see below.
+**Notice**: you have to take care of manually manage all the params for your search, however the method extracts the `:items`, `:page` and `:count` from the results object, so you don't need to pass that again. If you prefer to manage the pagination automatically, see below.
 
 ## Pagy::Search
 
