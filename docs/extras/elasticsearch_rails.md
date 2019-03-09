@@ -56,7 +56,7 @@ This constructor accepts an `Elasticsearch::Model::Response::Response` as the fi
 @pagy     = Pagy.new_from_elasticsearch_rails(@response, ...)
 ```
 
-**Notice**: you have to take care of managing all the params manually. If you prefer to manage the pagination automatically, see below.
+**Notice**: you have to take care of manually manage all the params for your search, however the method extracts/calculates the `:items`, `:page` and `:count` from the response object, so you don't need to pass that again. If you prefer to manage the pagination automatically, see below.
 
 ## Pagy::Search
 
