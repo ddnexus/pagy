@@ -77,7 +77,7 @@
 # Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/extras/overflow
 # require 'pagy/extras/overflow'
-# Pagy::VARS[:overflow] = :last_page    # default  (other options: :empty_page and :exception)
+# Pagy::VARS[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
 
 # Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/extras/trim
@@ -117,7 +117,8 @@
 
 # Pagy internal I18n: ~18x faster using ~10x less memory than the i18n gem
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
-# Notice: No need to use any of the following lines if you use the i18n extra below
+# Notice: No need to configure anything in this section if your app uses only "en"
+# or if you use the i18n extra below
 #
 # Examples:
 # load the "de" built-in locale:
@@ -133,7 +134,7 @@
 #                 {locale: 'es'})
 #
 # load the "en" built-in locale, a custom "es" locale,
-# and a totally custom locale complete with the :pluralize proc:
+# and a totally custom locale complete with a custom :pluralize proc:
 # (the first passed :locale will be used also as the default_locale)
 # Pagy::I18n.load({locale: 'en'},
 #                 {locale: 'es', filepath: 'path/to/pagy-es.yml'},
