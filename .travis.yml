@@ -19,9 +19,11 @@ matrix:
       env: SKIP_RUBOCOP=true
 
     - rvm: 2.1
+      gemfile: gemfiles/ruby-2.0
       env: SKIP_RUBOCOP=true
 
     - rvm: 2.2
+      gemfile: gemfiles/ruby-2.0
       env: SKIP_RUBOCOP=true
 
     - rvm: 2.3
