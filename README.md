@@ -124,6 +124,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 ### Feature Extras
 
+- [headers](http://ddnexus.github.io/pagy/extras/headers): Add [RFC-8288](https://tools.ietf.org/html/rfc8288) compilant http response headers (and other helpers) useful for API pagination
 - [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy implementation
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
 - [overflow](http://ddnexus.github.io/pagy/extras/overflow): Allow for easy handling of overflowing pages

@@ -3,6 +3,7 @@
 
 # Pagy initializer file
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
+# Should you just cherry pick part of this file, please maintain the require-order of the extras
 
 
 # Extras
@@ -63,6 +64,10 @@
 
 
 # Feature Extras
+
+# Headers extra: http response headers (and other helpers) useful for API pagination
+# See http://ddnexus.github.io/pagy/extras/headers
+# require 'pagy/extras/headers'
 
 # Support extra: Extra support for features like: incremental, infinite, auto-scroll pagination
 # See https://ddnexus.github.io/pagy/extras/support
