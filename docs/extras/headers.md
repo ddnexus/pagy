@@ -51,14 +51,14 @@ This extra is composed of 1 small file:
 
 ## Headers
 
-This extra adds the standard/legacy headers used by various API-pagination gems with `Links`, `Per-Page` and `Total` headers, so it is a convenient replacement for legacy apps that use external gems.
+This extra adds the standard/legacy headers used by various API-pagination gems with `Link`, `Per-Page` and `Total` headers, so it is a convenient replacement for legacy apps that use external gems.
 
 For new apps, and for consistency with the Pagy naming, you may want to use the `Items` (instead of Per-Page) and `Count` (instead of Total) aliases.
 
 Example of HTTP headers produced:
 
 ```
-Links <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
+Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
 Items 20 
 Per-Page 20 
 Count 1000 
@@ -72,7 +72,7 @@ If your requirements allow to save one count-query per rendering by using the `p
 Example of HTTP headers produced from a `Pagy::Countless` object:
 
 ```
-Links <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next"
+Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next"
 Items 20 
 Per-Page 20 
 ```

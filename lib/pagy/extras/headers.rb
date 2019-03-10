@@ -14,7 +14,7 @@ class Pagy
 
     def pagy_headers(pagy)
       hash = pagy_headers_hash(pagy)
-      { 'Links'    => hash[:links].map{|rel, link| %(<#{link}>; rel="#{rel}")}.join(', ') }.tap do |h|
+      { 'Link'    => hash[:links].map{|rel, link| %(<#{link}>; rel="#{rel}")}.join(', ') }.tap do |h|
         h['Items'] = h['Per-Page'] = hash[:items]
         h['Count'] = h['Total']    = hash[:count] if hash.key?(:count)
       end
