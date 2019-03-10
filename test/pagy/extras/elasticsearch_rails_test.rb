@@ -3,6 +3,7 @@
 
 require_relative '../../test_helper'
 require_relative '../../test_helper/elasticsearch_rails'
+require 'pagy/extras/overflow'
 
 SingleCov.covered! unless ENV['SKIP_SINGLECOV']
 
@@ -70,6 +71,17 @@ describe Pagy::Backend do
       pagy.vars[:link_extra].must_equal 'X'
       records.count.must_equal 10
       records.must_equal ["R-b-11", "R-b-12", "R-b-13", "R-b-14", "R-b-15", "R-b-16", "R-b-17", "R-b-18", "R-b-19", "R-b-20"]
+    end
+
+    it 'paginates with overflow' do
+      pagy, records = backend.send(:pagy_elasticsearch_rails, ElasticsearchRailsModel.pagy_search('b').records, page: 200, items: 10, link_extra: 'X', overflow: :last_page)
+      pagy.must_be_instance_of Pagy
+      pagy.count.must_equal 1000
+      pagy.items.must_equal 10
+      pagy.page.must_equal 100
+      pagy.vars[:link_extra].must_equal 'X'
+      records.count.must_equal 10
+      records.must_equal ["R-b-991", "R-b-992", "R-b-993", "R-b-994", "R-b-995", "R-b-996", "R-b-997", "R-b-998", "R-b-999", "R-b-1000"]
     end
 
   end

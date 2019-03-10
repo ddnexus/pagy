@@ -15,7 +15,7 @@ module SearchkickTest
       from     = @options[:per_page] * (@options[:page] - 1)
       results  = @entries[from, @options[:per_page]]
       addition = yield if block
-      @results = results.map{|r| "#{addition}#{r}"}
+      @results = results && results.map{|r| "#{addition}#{r}"}
     end
 
     def results
