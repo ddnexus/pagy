@@ -6,6 +6,8 @@ class Pagy
   # Add specialized backend methods to add pagination response headers
   module Backend ; private
 
+    VARS[:headers] = { items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
+
     include Helpers
 
     def pagy_headers_merge(pagy)
@@ -14,21 +16,22 @@ class Pagy
 
     def pagy_headers(pagy)
       hash = pagy_headers_hash(pagy)
-      { 'Link'    => hash[:links].map{|rel, link| %(<#{link}>; rel="#{rel}")}.join(', ') }.tap do |h|
-        h['Items'] = h['Per-Page'] = hash[:items]
-        h['Count'] = h['Total']    = hash[:count] if hash.key?(:count)
-      end
+      hash['Link'] = hash['Link'].map{|rel, link| %(<#{link}>; rel="#{rel}")}.join(', ')
+      hash
     end
 
     def pagy_headers_hash(pagy)
       countless = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
-      rels      = { first: 1, prev: pagy.prev, next: pagy.next }.tap{ |r| r[:last] = pagy.last unless countless }
-      a, b      = pagy_url_for(Frontend::MARKER, pagy, :url).split(Frontend::MARKER, 2)
-      links     = Hash[rels.map{|rel, n|[rel, "#{a}#{n}#{b}"] if n}.compact]
-      { links: links }.tap do |h|
-        h[:items] = h[:per_page] = pagy.vars[:items]
-        h[:count] = h[:total]    = pagy.count unless countless
+      rels      = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }; rels['last'] = pagy.last unless countless
+      url_str   = pagy_url_for(Frontend::MARKER, pagy, :url)
+      hash      = { 'Link' => Hash[rels.map{|rel, n|[rel, url_str.sub(Frontend::MARKER, n.to_s)] if n}.compact] }
+      headers   = pagy.vars[:headers]
+      hash[headers[:items]] = pagy.vars[:items] if headers[:items]
+      unless countless
+        hash[headers[:pages]] = pagy.pages if headers[:pages]
+        hash[headers[:count]] = pagy.count if headers[:count]
       end
+      hash
     end
 
   end

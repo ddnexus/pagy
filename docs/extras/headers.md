@@ -5,10 +5,10 @@ title: Headers
 
 This extra implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compilant http response headers (and other helpers) useful for API pagination.
 
-- It removes the need for an extra dependency
+- No need for an extra dependency
 - No need to learn yet another interface
 - It saves quite a lot of memory and CPU
-- It works with any type of collection and/or `pagy_*` constructor (even `pagy_countless`)
+- It works with any pagy object (including `Pagy::Countless`) regardless the type of collection
 - It offers more explicit flexibility and simplicity
 
 ## Synopsis
@@ -26,11 +26,27 @@ In your controller action:
 ```ruby
 # paginate as usual with any pagy_* backend constructor
 pagy, records = pagy(Product.all)
+# explicitly merge the headers to the response 
 pagy_headers_merge(pagy)
 render json: records
 ```
 
-Or if you can reuse it (e.g. in a pure API app with very standard actions), you are encouraged to define a custom `pagy_render` method in your application controller like:
+### Suggestions
+
+Instead of explicitly merging the headers before each rendering, you can get them automatically merged (application-wide and when `@pagy` is available), by overriding the `render` method in your application controller:
+
+```ruby
+def render(*args, &block)
+  pagy_headers_merge(@pagy) if @pagy
+  super
+end
+
+# and use it in any action (notice @pagy)
+@pagy, records = pagy(Product.all)
+render json: records
+```
+
+If your code in different actions is similar enough, you can encapsulate the statements in a custom `pagy_render` method in your application controller. For example:
 
 ```ruby
 def pagy_render(collection, vars={})
@@ -45,36 +61,44 @@ pagy_render(Product.all)
 
 ## Files
 
-This extra is composed of 1 small file:
-
 - [headers.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/headers.rb)
 
 ## Headers
 
-This extra adds the standard/legacy headers used by various API-pagination gems with `Link`, `Per-Page` and `Total` headers, so it is a convenient replacement for legacy apps that use external gems.
+This extra generates the standard `Link` header defined in the
+[RFC-8288](https://tools.ietf.org/html/rfc8288), and adds 3 customizable headers useful for pagination: `Page-Items`, `Total-Pages` and `Total-Count` headers.
 
-For new apps, and for consistency with the Pagy naming, you may want to use the `Items` (instead of Per-Page) and `Count` (instead of Total) aliases.
-
-Example of HTTP headers produced:
+Example of the default HTTP headers produced:
 
 ```
 Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
-Items 20 
-Per-Page 20 
-Count 1000 
-Total 1000
+Page-Items 20
+Total-Pages 50 
+Total-Count 1000 
+```
+
+#### Customize the header names
+
+If you are replacing any of the existing API-pagination gems in some already working app, you may want to customize the header names so you will not have to change the client app that consumes them. You can do so by using the `:headers` variable, set as usual at the global level or instance level.
+
+For example, the following will change the header names and will suppres the `:pages` ('Total-Pages') header:
+
+```ruby
+# globally
+Pagy::VARS[:headers] = {items: 'Per-Page', pages: false, count: 'Total'}
+# or for single instance
+pagy, records = pagy(collection, items: 'Per-Page', pages: false, count: 'Total'}
 ```
 
 #### Countless Pagination
 
-If your requirements allow to save one count-query per rendering by using the `pagy_countless` constructor, the headers will miss only the `rel="last"` link and the `Total`/`Count` (unknown with countless pagination).
+If your requirements allow to save one count-query per rendering by using the `pagy_countless` constructor, the headers will miss only the `rel="last"` link and the `Total-Count` (unknown with countless pagination).
 
 Example of HTTP headers produced from a `Pagy::Countless` object:
 
 ```
 Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next"
-Items 20 
-Per-Page 20 
+Page-Items 20 
 ```
 
 ## Methods
@@ -95,7 +119,7 @@ This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) 
 
 ### pagy_headers_hash(pagy)
 
-This method generates a hash of headers, useful if you want to include some meta-data within your json. For example:
+This method generates a hash structure of the headers, useful if you want to include some meta-data within your json. For example:
 
 ```ruby
 render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})
