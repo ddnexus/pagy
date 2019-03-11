@@ -4,7 +4,7 @@ class Pagy
   module Backend ; private         # the whole module is private so no problem with including it in a controller
 
     # Return Pagy object and items
-    def pagy_uuid_cursor(collection, vars={}, options={})
+    def pagy_uuid_cursor(collection, vars={})
       raise('ActiveRecord is not defined') unless defined?(ActiveRecord)
       pagy = Pagy::Cursor.new(pagy_uuid_cursor_get_vars(collection, vars))
       items =  pagy_uuid_cursor_get_items(collection, pagy, pagy.position)
