@@ -26,8 +26,6 @@ with a fast helper:
 
 ## Files
 
-This extra is composed of 1 file:
-
 - [semantic.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/semantic.rb)
 
 ## Methods

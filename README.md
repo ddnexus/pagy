@@ -14,6 +14,7 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 ## Improvements in v2.0+
 
 - Lower ruby requirements (ruby v1.9+ || jruby v1.7+) make Pagy very convenient also on older systems
+- Added [RFC-8288](https://tools.ietf.org/html/rfc8288) compilant http response `headers` extra
 - The i18n internal implementation now includes full dynamic support for multi-language apps, it's ~18x faster and uses ~10x less memory than the i18n gem
 - The `searchkick` and `elasticsearch_rails` extras have been refactored with more and better options
 - Pagy v2.0+ is even faster and lighter than v1.0+ (see charts below)

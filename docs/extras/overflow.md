@@ -28,12 +28,12 @@ Pagy::VARS[:overflow] = :exception
 
 ## Files
 
-This extra is composed of the [overflow.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/overflow.rb) file.
+-[overflow.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/overflow.rb)
 
 ## Variables
 
-| Variable    | Description                                              | Default      |
-| ------------| -------------------------------------------------------- | ------------ |
+| Variable    | Description                                              | Default       |
+|:------------|:---------------------------------------------------------|:--------------|
 | `:overflow` | one of `:last_page`, `:empty_page` or `:exception` modes | `:empty_page` |
 
 As usual, depending on the scope of the customization, you have a couple of options to set the variables:

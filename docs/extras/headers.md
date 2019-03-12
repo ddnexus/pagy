@@ -79,20 +79,11 @@ Total-Count 1000
 
 #### Customize the header names
 
-If you are replacing any of the existing API-pagination gems in some already working app, you may want to customize the header names so you will not have to change the client app that consumes them. You can do so by using the `:headers` variable, set as usual at the global level or instance level.
-
-For example, the following will change the header names and will suppres the `:pages` ('Total-Pages') header:
-
-```ruby
-# globally
-Pagy::VARS[:headers] = {items: 'Per-Page', pages: false, count: 'Total'}
-# or for single instance
-pagy, records = pagy(collection, items: 'Per-Page', pages: false, count: 'Total'}
-```
+If you are replacing any of the existing API-pagination gems in some already working app, you may want to customize the header names so you will not have to change the client app that consumes them. You can do so by using the `:headers` variable _(see [variables](#variables) below)_
 
 #### Countless Pagination
 
-If your requirements allow to save one count-query per rendering by using the `pagy_countless` constructor, the headers will miss only the `rel="last"` link and the `Total-Count` (unknown with countless pagination).
+If your requirements allow to save one count-query per rendering by using the `pagy_countless` constructor, the headers will not have the `rel="last"` link, the `Total-Count` and the `Total-Pages` that are unknown with countless pagination.
 
 Example of HTTP headers produced from a `Pagy::Countless` object:
 
@@ -101,9 +92,27 @@ Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:80
 Page-Items 20 
 ```
 
+## Variables
+
+| Variable   | Description                                              | Default                                                               |
+|:-----------|:---------------------------------------------------------|:----------------------------------------------------------------------|
+| `:headers` | Hash variable to customize/suppress the optional headers | `{ items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }` |
+
+As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance.
+
+For example, the following will change the header names and will suppres the `:pages` ('Total-Pages') header:
+
+```ruby
+# globally
+Pagy::VARS[:headers] = {items: 'Per-Page', pages: false, count: 'Total'}
+
+# or for single instance
+pagy, records = pagy(collection, headers: {items: 'Per-Page', pages: false, count: 'Total'})
+```
+
 ## Methods
 
-This extra adds a few methods available in your controllers.
+This extra adds a few methods to the `Pagy::Backend` (available in your controllers).
 
 ### pagy_headers_merge(pagy)
 

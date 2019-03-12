@@ -21,7 +21,7 @@ Configure [javascript](../extras.md#javascript).
 
 ## Files
 
-This extra is composed of the [plain.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/plain.rb) file and uses the shared [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file.
+- [plain.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/plain.rb)
 
 # Compact navs
 

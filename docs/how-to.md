@@ -313,7 +313,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 **Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
 | Extra                                | Helpers                                                                                   |
-| ------------------------------------ | ----------------------------------------------------------------------------------------- |
+|:-------------------------------------|:------------------------------------------------------------------------------------------|
 | [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_compact_nav`, `pagy_bootstrap_responsive_nav`       |
 | [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_compact_nav`, `pagy_bulma_responsive_nav`                   |
 | [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_compact_nav`, `pagy_foundation_responsive_nav`    |

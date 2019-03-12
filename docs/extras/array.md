@@ -28,8 +28,6 @@ In a controller:
 
 ## Files
 
-This extra is composed of 1 file:
-
 - [array.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/array.rb)
 
 ## Methods

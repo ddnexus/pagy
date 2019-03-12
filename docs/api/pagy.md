@@ -73,7 +73,7 @@ The only mandatory instance variable to be passed is the `:count` of the collect
 They are all integers:
 
 | Variable  | Description                                                                                    | Default |
-| --------- | ---------------------------------------------------------------------------------------------- | ------- |
+|:----------|:-----------------------------------------------------------------------------------------------|:--------|
 | `:count`  | the total count of the collection to paginate (mandatory argument)                             | `nil`   |
 | `:page`   | the requested page number                                                                      | `1`     |
 | `:items`  | the _requested_ number of items for the page                                                   | `20`    |
@@ -82,7 +82,7 @@ They are all integers:
 ### Other Variables
 
 | Variable      | Description                                                                                                                                                                                      | Default     |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------|
 | `:size`       | the size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [Control the page links](../how-to.md#controlling-the-page-links))_ | `[1,4,4,1]` |
 | `:page_param` | the name of the page param name used in the url. _(see [Customizing the page param](../how-to.md#customizing-the-page-param))_                                                                   | `:page`     |
 | `:params`     | the arbitrary param hash to add to the url. _(see [Customizing the params](../how-to.md#customizing-the-params))_                                                                                | `{}`        |
@@ -98,7 +98,7 @@ There is no specific validation for non-instance variables.
 Pagy exposes all the instance variables needed for the pagination through a few attribute readers. They all return integers (or `nil`), except the `vars` hash:
 
 | Reader   | Description                                                                                                        |
-| -------- | ------------------------------------------------------------------------------------------------------------------ |
+|:---------|:-------------------------------------------------------------------------------------------------------------------|
 | `count`  | the collection `:count`                                                                                            |
 | `page`   | the current page number                                                                                            |
 | `items`  | the _actual_ number of items in the current non-empty page (can be less than the requested `:items` variable)      |
@@ -132,7 +132,7 @@ That is self-contained, simple and efficient.
 The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has the following peculiar attributes:
 
 | Attribute | Value   |
-| --------- | ------- |
+|:----------|:--------|
 | `count`   | `0`     |
 | `page`    | `1`     |
 | `pages`   | `1`     |

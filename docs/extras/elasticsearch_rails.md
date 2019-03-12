@@ -43,8 +43,6 @@ records = Article.pagy_search(params[:q]).records
 
 ## Files
 
-This extra is composed of 1 file:
-
 - [elasticsearch_rails.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/elasticsearch_rails.rb)
 
 ## Pagy.new_from_elasticsearch_rails
