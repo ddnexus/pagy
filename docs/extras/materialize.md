@@ -28,8 +28,6 @@ Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_res
 
 ## Files
 
-This extra is composed of 1 file:
-
 - [materialize.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/materialize.rb)
 
 ## Methods

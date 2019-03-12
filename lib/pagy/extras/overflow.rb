@@ -4,6 +4,8 @@
 
 class Pagy
 
+  OVERFLOW = true
+
   VARS[:overflow] = :empty_page
 
   def overflow?; @overflow end

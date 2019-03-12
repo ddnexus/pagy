@@ -19,8 +19,6 @@ require 'pagy/extras/trim'
 
 ## Files
 
-This extra is composed of 1 small file:
-
 - [trim.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/trim.rb)
 
 ## Methods

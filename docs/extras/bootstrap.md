@@ -34,8 +34,6 @@ Configure [javascript](../extras.md#javascript) if you use `pagy_bootstrap_respo
 
 ## Files
 
-This extra is composed of 4 files:
-
 - [bootstrap.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bootstrap.rb)
 - [bootstrap_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.erb) (optional template)
 - [bootstrap_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.haml) (optional template)

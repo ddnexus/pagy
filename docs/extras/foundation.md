@@ -32,8 +32,6 @@ Configure [javascript](../extras.md#javascript) if you use `pagy_foundation_resp
 
 ## Files
 
-This extra is composed of 4 files:
-
 - [foundation.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/foundation.rb)
 - [foundation_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.erb) (optional template)
 - [foundation_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.haml) (optional template)

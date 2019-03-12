@@ -1,13 +1,32 @@
 # CHANGELOG
 
+## Version 2.1.0
+
+### Changes
+
+- Added headers extra
+- Added support for overflow :last_page to searchkick and elasticsearch_rails extras
+- Added zh-hk locale
+- Better docs
+
+### Commits
+
+- [4e83993](http://github.com/ddnexus/pagy/commit/4e83993): updated docs
+- [8bd19d6](http://github.com/ddnexus/pagy/commit/8bd19d6): added headers extra (#141)
+- [9a26b04](http://github.com/ddnexus/pagy/commit/9a26b04): added support for overflow :last_page to searchkick and elasticsearch_rails extras (#138)
+- [c5524fc](http://github.com/ddnexus/pagy/commit/c5524fc): Add zh-hk language yml file (#139)
+- [6d5841b](http://github.com/ddnexus/pagy/commit/6d5841b): update travis setup
+- [5bd7c0a](http://github.com/ddnexus/pagy/commit/5bd7c0a): updated docs notes for the searchkick and elasticsearch_rails extras
+- [0ca5539](http://github.com/ddnexus/pagy/commit/0ca5539): updated comments in config/pagy.rb (#138)
+
 ## Version 2.0.1
 
-## Changes
+### Changes
 
 - Fix for missing require in config/pagy.rb and fix for pt-br translation typos
 - docs fixes and improvements
 
-## Commits
+### Commits
 
 - [4e7b30f](http://github.com/ddnexus/pagy/commit/4e7b30f): update Repository Info section in README
 - [835e8d2](http://github.com/ddnexus/pagy/commit/835e8d2): Fix for missing require in config/pagy.rb and fix for pt-br translation typos (#134)

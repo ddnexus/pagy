@@ -34,8 +34,6 @@ Configure [javascript](../extras.md#javascript) if you use `pagy_bulma_responsiv
 
 ## Files
 
-This extra is composed of 4 files:
-
 - [bulma.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bulma.rb)
 - [bulma_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.erb) (optional template)
 - [bulma_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.haml) (optional template)

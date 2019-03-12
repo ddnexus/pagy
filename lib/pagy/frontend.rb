@@ -10,9 +10,22 @@ class Pagy
   # see https://ddnexus.github.io/pagy/api/frontend#i18n
   I18n = eval(Pagy.root.join('locales', 'utils', 'i18n.rb').read) #rubocop:disable Security/Eval
 
+  module Helpers
+    # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
+    def pagy_url_for(page, pagy, path_or_url=:path)
+      p_vars = pagy.vars; params = request.GET; params[p_vars[:page_param].to_s] = page; params.merge!(p_vars[:params])
+      "#{request.send(path_or_url)}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
+    end
+
+    # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
+    def pagy_get_params(params) params end
+  end
+
   # All the code here has been optimized for performance: it may not look very pretty
   # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
   module Frontend
+
+    include Helpers
 
     # We use EMPTY + 'whatever' that is almost as fast as +'whatever' but is also 1.9 compatible
     EMPTY = ''
@@ -40,15 +53,6 @@ class Pagy
       path = pagy.pages == 1 ? 'pagy.info.single_page' : 'pagy.info.multiple_pages'
       pagy_t(path, item_name: name, count: pagy.count, from: pagy.from, to: pagy.to)
     end
-
-    # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(page, pagy)
-      p_vars = pagy.vars; params = request.GET.merge(p_vars[:page_param].to_s => page).merge!(p_vars[:params])
-      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
-    end
-
-    # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
-    def pagy_get_params(params) params end
 
     MARKER = "-pagy-#{'pagy'.hash}-"
 

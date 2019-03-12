@@ -27,8 +27,6 @@ In a controller:
 
 ## Files
 
-This extra is composed of 1 file:
-
 - [countless.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb)
 
 ## Methods

@@ -313,7 +313,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 **Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
 | Extra                                | Helpers                                                                                   |
-| ------------------------------------ | ----------------------------------------------------------------------------------------- |
+|:-------------------------------------|:------------------------------------------------------------------------------------------|
 | [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_compact_nav`, `pagy_bootstrap_responsive_nav`       |
 | [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_compact_nav`, `pagy_bulma_responsive_nav`                   |
 | [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_compact_nav`, `pagy_foundation_responsive_nav`    |
@@ -414,13 +414,7 @@ When the count caching is not an option, you may want to use the [countless extr
 
 ## Adding HTTP headers
 
-The HTTP pagination headers are useful for APIs and Pagy will implement that feature in a next release (probably v2.1.0). Meanwhile there are a few gems that support Pagy and add the HTTP headers to the response for you in a quite automatic way.
-
-Please, take a look at:
-
-- [api-pagination](https://github.com/davidcelis/api-pagination)
-- [pager-api](https://github.com/IcaliaLabs/pager-api)
-- [paginate-responder](https://github.com/jgraichen/paginate-responder)
+Pagy implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compilant http response headers (and other helpers) useful for API pagination: no need of other dependencies. See the [headers extra](http://ddnexus.github.io/pagy/extras/headers) documentation and examples.
 
 ## Using the pagy_info helper
 

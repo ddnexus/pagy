@@ -13,7 +13,7 @@ require "rubocop/rake_task" unless ENV['SKIP_RUBOCOP']
 Rake::TestTask.new(:test_common) do |t|
   t.libs << "test"
   t.libs << "lib"
-  t.test_files = FileList.new.include("test/**/*_test.rb").exclude('test/**/i18n_test.rb', 'test/**/items_test.rb', 'test/**/overflow_test.rb', 'test/**/trim_test.rb')
+  t.test_files = FileList.new.include("test/**/*_test.rb").exclude('test/**/i18n_test.rb', 'test/**/items_test.rb', 'test/**/overflow_test.rb', 'test/**/trim_test.rb', 'test/**/elasticsearch_rails_test.rb', 'test/**/searchkick_test.rb', 'test/**/support_test.rb')
 end
 
 Rake::TestTask.new(:test_extra_i18n) do |t|
@@ -40,7 +40,19 @@ Rake::TestTask.new(:test_extra_trim) do |t|
   t.test_files = FileList['test/**/trim_test.rb']
 end
 
-task :test => [:test_common, :test_extra_items, :test_extra_i18n, :test_extra_overflow, :test_extra_trim ]
+Rake::TestTask.new(:test_extra_elasticsearch) do |t|
+  t.libs << "test"
+  t.libs << "lib"
+  t.test_files = FileList['test/**/elasticsearch_rails_test.rb', 'test/**/searchkick_test.rb']
+end
+
+Rake::TestTask.new(:test_support) do |t|
+  t.libs << "test"
+  t.libs << "lib"
+  t.test_files = FileList['test/**/support_test.rb']
+end
+
+task :test => [:test_common, :test_extra_items, :test_extra_i18n, :test_extra_overflow, :test_extra_trim, :test_extra_elasticsearch, :test_support ]
 
 if ENV['SKIP_RUBOCOP']
   task :default => [:test]

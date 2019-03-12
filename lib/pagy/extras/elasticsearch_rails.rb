@@ -28,7 +28,12 @@ class Pagy
       options[:from] = vars[:items] * (vars[:page] - 1)
       response       = model.search(query_or_payload, options)
       vars[:count]   = response.raw_response['hits']['total']
-      return Pagy.new(vars), called.empty? ? response : response.send(*called)
+      pagy = Pagy.new(vars)
+      # with :last_page overflow we need to re-run the method in order to get the hits
+      if defined?(OVERFLOW) && pagy.overflow? && pagy.vars[:overflow] == :last_page
+        return pagy_elasticsearch_rails(search_args, vars.merge(page: pagy.page))
+      end
+      return pagy, called.empty? ? response : response.send(*called)
     end
 
     # Sub-method called only by #pagy_elasticsearch_rails: here for easy customization of variables by overriding

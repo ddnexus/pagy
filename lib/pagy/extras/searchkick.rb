@@ -28,7 +28,12 @@ class Pagy
       options[:page]     = vars[:page]
       results            = model.search(term, options, &block)
       vars[:count]       = results.total_count
-      return Pagy.new(vars), called.empty? ? results : results.send(*called)
+      pagy = Pagy.new(vars)
+      # with :last_page overflow we need to re-run the method in order to get the hits
+      if defined?(OVERFLOW) && pagy.overflow? && pagy.vars[:overflow] == :last_page
+        return pagy_searchkick(search_args, vars.merge(page: pagy.page))
+      end
+      return pagy, called.empty? ? results : results.send(*called)
     end
 
     # Sub-method called only by #pagy_searchkick: here for easy customization of variables by overriding

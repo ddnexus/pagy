@@ -43,8 +43,6 @@ records = Article.pagy_search(params[:q]).results
 
 ## Files
 
-This extra is composed of 1 file:
-
 - [searchkick.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/searchkick.rb)
 
 ## Pagy.new_from_searchkick
