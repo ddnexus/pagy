@@ -17,8 +17,6 @@ class Pagy
       "#{request.send(path_or_url)}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
     end
 
-
-
     # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
     def pagy_get_params(params) params end
   end
