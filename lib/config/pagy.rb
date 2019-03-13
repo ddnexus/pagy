@@ -60,8 +60,8 @@
 
 # Breakpoints var used by the responsive nav helpers
 # See https://ddnexus.github.io/pagy/extras/plain#breakpoints
-# Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
-
+# width/size pairs: example for bootstrap4 sm-md-lg internal container widths
+# Pagy::VARS[:breakpoints] = { 0 => [1,0,0,1], 540 => [2,3,3,2], 720 => [3,4,4,3] }
 
 # Feature Extras
 

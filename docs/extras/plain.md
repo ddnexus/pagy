@@ -53,7 +53,7 @@ Other extras provide also the following framework-styled helpers:
 
 Renders a compact navigation with a style similar to the `pagy_nav` helper.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy_plain_compact_nav*` call in the same line for the same page.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy_*_responsive_nav` or `pagy_*_compact_nav` call in the same line for the same page.
 
 **Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
 
@@ -61,7 +61,7 @@ It can take an extra `id` argument, which is used to build the `id` attribute of
 
 With the `responsive` navs (implemented by this extra or by other frontend extras) the number of page links will adapt in real-time to the available window or container width.
 
-Here is a screenshot (from the `bootstrap`extra) of how the same pagination nav might look like by resizing the browser window at different widths:
+Here is a screenshot (from the `bootstrap`extra) of how the same pagination nav might look like by resizing the browser window/container at different widths:
 
 ![pagy-responsive](../assets/images/pagy-responsive-g.png)
 
@@ -69,7 +69,7 @@ Here is a screenshot (from the `bootstrap`extra) of how the same pagination nav 
 
 ```ruby
 # set your default custom breakpoints (width/size pairs) globally (it can be overridden per Pagy instance)
-Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
+Pagy::VARS[:breakpoints] = { 0 => [1,0,0,1], 540 => [2,3,3,2], 720 => [3,4,4,3] }
 ```
 
 Use the responsive helper(s) in any view:
@@ -96,14 +96,48 @@ The `:breakpoints` variable is a non-core variable used by the `responsive` navs
  For example:
 
 ```ruby
-Pagy::VARS[:breakpoints] = {0 => [1,2,2,1], 450 => [3,4,4,3], 750 => [4,5,5,4]}
+Pagy::VARS[:breakpoints] = { 0 => [1,0,0,1], 540 => [2,3,3,2], 720 => [3,4,4,3] }
 ```
 
-The above statement means that from `0` to `450` pixels width, Pagy will use the `[1,2,2,1]` size, from `450` to `750` it will use the `[3,4,4,3]` size and over `750` it will use the `[4,5,5,4]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section)
+The above statement means that from `0` to `540` pixels width, Pagy will use the `[1,0,0,1]` size, from `540` to `720` it will use the `[2,3,3,4]` size and over `720` it will use the `[3,4,4,3]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section).
 
 **IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only requirement is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.
 
 **Notice**: Each added breakpoint slowers down Pagy of almost 10%. For example: with 5 breakpoints (which are actually quite a lot) the nav will be rendered rougly in twice the normal time. However, that will still run about 15 times faster than Kaminari and 6 times faster than WillPaginate.
+
+#### Setting the right breakpoints
+
+Setting the width and the size of your breakpoint is what could create a nice transition between sizes... or some apparently erratic behavior.
+
+Here is what you should consider.
+
+The transition from one breakpoint/size to another depends by the width available to your nav. That width is the _internal available width_ of its container (excluding eventual horizontal padding), so the pagy breakpoint widths that you set should reflect the container internal available widths.
+
+The container width can change as a continous range (normal behavior for a div) or in discrete steps (for example when using bootstrap the container has classes like `sm-md-lg`).
+
+##### Continous Width-ranges
+
+For continous width-range containers you should ensure that the resulting navs can be contained in the breakpoint widths that you set. In other words if you create a size as `[20,20,20,20]`, is pretty obvious that it could not be contained in a `540` width, so assign reasonable sizes based on the available widths.
+
+##### Discrete Step Widths
+
+If you use frameworks like bootstrap (but the same applies to many others) you can assign classes to your container that will snap to specific widths (e.g. `sm-md-lg`). In that case you should sync the quantity and widths of the pagy brakpoints to the quantity and internal container widths of the bootstrap classes.
+
+**IMPORTANT**: The pagy breakpoint widths should not be the same bootstrap breakpoints widths, but the container internal available widths.
+
+For example: if you assign the following classes:
+
+```
+sm = Small ≥576px
+Max container width 540px
+
+md = Medium ≥768px
+Max container width 720px
+
+lg = Large ≥992px
+Max container width 960px
+```
+You should use the `0`, `540` and `720` width (or less if there is padding), and assign consistent sizes.
 
 ## Methods
 
@@ -111,6 +145,6 @@ The above statement means that from `0` to `450` pixels width, Pagy will use the
 
 Similar to the `pagy_nav` helper, with added responsiveness.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy_plain_responsive_nav*` call in the same line for the same file.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy_*_responsive_nav` or `pagy_*_compact_nav` call in the same line for the same file.
 
 **Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
