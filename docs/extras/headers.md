@@ -3,7 +3,7 @@ title: Headers
 ---
 # Headers Extra
 
-This extra implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compilant http response headers (and other helpers) useful for API pagination.
+This extra implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API pagination.
 
 - No need for an extra dependency
 - No need to learn yet another interface

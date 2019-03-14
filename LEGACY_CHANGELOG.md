@@ -49,7 +49,7 @@
 - [6cf86af](http://github.com/ddnexus/pagy/commit/6cf86af): added docs notes
 - [b05db4e](http://github.com/ddnexus/pagy/commit/b05db4e): added optional target element to Pagy.init for AJAX support
 - [e35a9ae](http://github.com/ddnexus/pagy/commit/e35a9ae): refactoring of default element ids for helpers and deprecation:
-    - default ids are now constant also in different processes and compilant also with oder HTML versions
+    - default ids are now constant also in different processes and compliant also with oder HTML versions
     - simpler deprecation code
 - [cef823c](http://github.com/ddnexus/pagy/commit/cef823c): pagy.js responsive refactoring (#115):
     - moved handling of window event listeners into the responsive function

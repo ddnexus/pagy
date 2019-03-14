@@ -414,7 +414,7 @@ When the count caching is not an option, you may want to use the [countless extr
 
 ## Adding HTTP headers
 
-Pagy implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compilant http response headers (and other helpers) useful for API pagination: no need of other dependencies. See the [headers extra](http://ddnexus.github.io/pagy/extras/headers) documentation and examples.
+Pagy implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API pagination: no need of other dependencies. See the [headers extra](http://ddnexus.github.io/pagy/extras/headers) documentation and examples.
 
 ## Using the pagy_info helper
 
