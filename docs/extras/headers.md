@@ -66,12 +66,13 @@ pagy_render(Product.all)
 ## Headers
 
 This extra generates the standard `Link` header defined in the
-[RFC-8288](https://tools.ietf.org/html/rfc8288), and adds 3 customizable headers useful for pagination: `Page-Items`, `Total-Pages` and `Total-Count` headers.
+[RFC-8288](https://tools.ietf.org/html/rfc8288), and adds 4 customizable headers useful for pagination: `Current-Page`, `Page-Items`, `Total-Pages` and `Total-Count` headers.
 
 Example of the default HTTP headers produced:
 
 ```
 Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
+Current-Page 3
 Page-Items 20
 Total-Pages 50 
 Total-Count 1000 
@@ -89,14 +90,15 @@ Example of HTTP headers produced from a `Pagy::Countless` object:
 
 ```
 Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next"
+Current-Page 3
 Page-Items 20 
 ```
 
 ## Variables
 
-| Variable   | Description                                              | Default                                                               |
-|:-----------|:---------------------------------------------------------|:----------------------------------------------------------------------|
-| `:headers` | Hash variable to customize/suppress the optional headers | `{ items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }` |
+| Variable   | Description                                              | Default                                                                                     |
+|:-----------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------------|
+| `:headers` | Hash variable to customize/suppress the optional headers | `{ page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }` |
 
 As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance.
 
@@ -104,10 +106,10 @@ For example, the following will change the header names and will suppres the `:p
 
 ```ruby
 # globally
-Pagy::VARS[:headers] = {items: 'Per-Page', pages: false, count: 'Total'}
+Pagy::VARS[:headers] = {page: 'Current-Page', items: 'Per-Page', pages: false, count: 'Total'}
 
 # or for single instance
-pagy, records = pagy(collection, headers: {items: 'Per-Page', pages: false, count: 'Total'})
+pagy, records = pagy(collection, headers: {page: 'Current-Page', items: 'Per-Page', pages: false, count: 'Total'})
 ```
 
 ## Methods
@@ -133,5 +135,3 @@ This method generates a hash structure of the headers, useful if you want to inc
 ```ruby
 render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})
 ```
-
-
