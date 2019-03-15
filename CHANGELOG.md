@@ -193,4 +193,4 @@ The pagy initializer has changed: please replace/update it: [pagy.rb](https://gi
 
 ---
 
-For older versions, check the [LEGACY CHANGELOG](https://github.com/ddnexus/pagy/blob/master/LEGACY-CHANGELOG.md).
+For older versions, check the [LEGACY CHANGELOG](https://github.com/ddnexus/pagy/blob/master/LEGACY_CHANGELOG.md).
