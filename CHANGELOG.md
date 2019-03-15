@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## Version 2.1.2
+
+### Changes
+
+- Added "Current-Page" header to headers extra
+
+### Commits
+
+- [016b377](http://github.com/ddnexus/pagy/commit/016b377): added Current-Page default header to headers extra
+- [4086181](http://github.com/ddnexus/pagy/commit/4086181): fix compilant > compliant typos in docs
+- [5d6edf6](http://github.com/ddnexus/pagy/commit/5d6edf6): reconciliation between test strings
+
+## Version 2.1.1
+
+### Changes
+
+- Fix for multiple pagy get wrong url (#143)
+- Better documentation for responsive breakpoints (#140)
+
+### Commits
+
+- [e9f467a](http://github.com/ddnexus/pagy/commit/e9f467a): fix for pagy_url_for not working with multiple pagy in the same request (#143)
+- [75329b4](http://github.com/ddnexus/pagy/commit/75329b4): better configuration example and documentation for responsive breakpoints (#140)
+
 ## Version 2.1.0
 
 ### Changes

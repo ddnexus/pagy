@@ -18,7 +18,7 @@ describe Pagy::Backend do
 
     it 'returns the full headers hash' do
       pagy, _records = @controller.send(:pagy, @collection)
-      @controller.send(:pagy_headers, pagy).must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=2>; rel=\"prev\", <https://example.com:8080/foo?page=4>; rel=\"next\", <https://example.com:8080/foo?page=50>; rel=\"last\"", "Page-Items"=>20, "Total-Pages"=>50, "Total-Count"=>1000})
+      @controller.send(:pagy_headers, pagy).must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=2>; rel=\"prev\", <https://example.com:8080/foo?page=4>; rel=\"next\", <https://example.com:8080/foo?page=50>; rel=\"last\"", "Current-Page"=>3, "Page-Items"=>20, "Total-Pages"=>50, "Total-Count"=>1000})
     end
 
     it 'returns custom headers hash' do
@@ -28,17 +28,17 @@ describe Pagy::Backend do
 
     it 'returns the countless headers hash' do
       pagy, _records = @controller.send(:pagy_countless, @collection)
-      @controller.send(:pagy_headers, pagy).must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=2>; rel=\"prev\", <https://example.com:8080/foo?page=4>; rel=\"next\"", "Page-Items"=>20})
+      @controller.send(:pagy_headers, pagy).must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=2>; rel=\"prev\", <https://example.com:8080/foo?page=4>; rel=\"next\"", "Current-Page"=>3, "Page-Items"=>20})
     end
 
     it 'omit prev on first page' do
       pagy, _records = @controller.send(:pagy, @collection, page: 1)
-      @controller.send(:pagy_headers, pagy).must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=2>; rel=\"next\", <https://example.com:8080/foo?page=50>; rel=\"last\"", "Page-Items"=>20, "Total-Pages"=>50, "Total-Count"=>1000})
+      @controller.send(:pagy_headers, pagy).must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=2>; rel=\"next\", <https://example.com:8080/foo?page=50>; rel=\"last\"", "Current-Page"=>1, "Page-Items"=>20, "Total-Pages"=>50, "Total-Count"=>1000})
     end
 
     it 'omit next on last page' do
       pagy, _records = @controller.send(:pagy, @collection, page: 50)
-      @controller.send(:pagy_headers, pagy).must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=49>; rel=\"prev\", <https://example.com:8080/foo?page=50>; rel=\"last\"", "Page-Items"=>20, "Total-Pages"=>50, "Total-Count"=>1000})
+      @controller.send(:pagy_headers, pagy).must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=49>; rel=\"prev\", <https://example.com:8080/foo?page=50>; rel=\"last\"", "Current-Page"=>50, "Page-Items"=>20, "Total-Pages"=>50, "Total-Count"=>1000})
     end
 
   end
@@ -53,7 +53,7 @@ describe Pagy::Backend do
     it 'returns the full headers hash' do
       pagy, _records = @controller.send(:pagy, @collection)
       @controller.send(:pagy_headers_merge, pagy)
-      @controller.send(:response).headers.must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=2>; rel=\"prev\", <https://example.com:8080/foo?page=4>; rel=\"next\", <https://example.com:8080/foo?page=50>; rel=\"last\"", "Page-Items"=>20, "Total-Pages"=>50, "Total-Count"=>1000})
+      @controller.send(:response).headers.must_equal({"Link"=>"<https://example.com:8080/foo?page=1>; rel=\"first\", <https://example.com:8080/foo?page=2>; rel=\"prev\", <https://example.com:8080/foo?page=4>; rel=\"next\", <https://example.com:8080/foo?page=50>; rel=\"last\"", "Current-Page"=>3, "Page-Items"=>20, "Total-Pages"=>50, "Total-Count"=>1000})
     end
 
   end
