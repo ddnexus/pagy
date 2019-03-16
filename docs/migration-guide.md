@@ -1,5 +1,5 @@
 ---
-title: Migration Tips
+title: Migration Guide
 ---
 # Migrating from WillPaginate and Kaminari
 
@@ -7,9 +7,9 @@ This page tries to cover most of the standard changes you will need to make in o
 
 Feel free to [ask on Gitter](https://gitter.im/ruby-pagy/Lobby) if you need more assistance.
 
-## Phases
+## Steps
 
-The Pagy API is quite different from other pagination gems, so there is not always a one-to-one correlation between the changes you will have to make, however, if you split the process in the following general phases it should be quite simple.
+The Pagy API is quite different from other pagination gems, so there is not always a one-to-one correlation between the changes you will have to make, however, if you split the process in the following general steps it should be quite simple.
 
 1. Removing the legacy code, trying to convert the statements that have a direct relation with Pagy
 2. Running the app so to raise exceptions in order to find legacy code that may still be in place
@@ -17,12 +17,12 @@ The Pagy API is quite different from other pagination gems, so there is not alwa
 
 ### Removing the old code
 
-In this phase you will search statements from legacy pagination gems, remove them and possibly write the equivalent Pagy statements if that makes sense for Pagy:
+In this step you will search statements from legacy pagination gems, remove them and possibly write the equivalent Pagy statements if that makes sense for Pagy:
 
 - If it makes sense, you should add the equivalent Pagy statement and remove the legacy statement(s).
 - If it doesn't make sense, then just remove the legacy statement.
 
-**Notice:** Don't worry about missing something in this phase: if anything wont work as before you can fix it later in the process.
+**Notice:** Don't worry about missing something in this step: if anything wont work as before you can fix it later in the process.
 
 #### Preparation
 
@@ -125,7 +125,7 @@ Please take a look at the topics in the [how-to](how-to.md) documentation: that 
 
 ### CSSs
 
-If the app uses the bootstrap pagination, the same CSSs should work seamlessly with `pagy_bootstrap_nav` or with any of the bootstrap templates. If the app doesn't use bootstrap, you may need to rename some rule in your CSSs.
+The css styling that you may have applied to the pagination elements may need some minor change. However if the app uses the pagination from bootstrap (or some other framework), the same CSSs should work seamlessly with the pagy nave helpers or with any of the bootstrap templates.
 
 ### I18n
 
