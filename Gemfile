@@ -21,4 +21,4 @@ gem 'rubocop', '~> 0.63.1' unless ENV['SKIP_RUBOCOP']
 # gem 'memory_profiler'
 
 # docs server
-#gem "github-pages", '193', group: :jekyll_plugins
+gem "github-pages", '193', group: :jekyll_plugins
