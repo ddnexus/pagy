@@ -191,9 +191,7 @@ Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check
 
 ### Branching
 
-Pagy follows the [GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) branching model with `master` and `dev`.
-
-The `master` branch is the latest rubygem-published release.
+The `master` branch is the latest rubygem-published release. It also contains docs and comment changes that don't affect the published code.
 
 The `dev` branch is the development branch with the new code that will be merged in the next release.
 
