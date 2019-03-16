@@ -44,7 +44,7 @@ class Pagy ; VERSION = '2.1.2'
       else            series.push(a, :gap)                                # n page gap -> add :gap
       end                                                                 # skip the end boundary (last+1)
     end                                                                   # shift the start boundary (0) and
-    series.tap{|s| s.shift; s[s.index(@page)] = @page.to_s}               # convert the current page to String
+    series.shift; series[series.index(@page)] = @page.to_s; series        # convert the current page to String
   end
 
 end
