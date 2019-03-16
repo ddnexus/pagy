@@ -38,17 +38,12 @@ Pagy::VARS[:overflow] = :exception
 
 As usual, depending on the scope of the customization, you have a couple of options to set the variables:
 
-As a global default:
-
 ```ruby
+# globally
 Pagy::VARS[:overflow] = :empty_page
-```
 
-For a single instance (overriding the global default):
-
-```ruby
-pagy(scope, overflow: :empty_page)
-Pagy.new(count:100,  overflow: :empty_page)
+# or for a single instance
+@pagy, @records = pagy(scope, overflow: :empty_page)
 ```
 
 ## Modes

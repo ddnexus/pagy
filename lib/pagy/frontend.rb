@@ -27,7 +27,7 @@ class Pagy
 
     include Helpers
 
-    # We use EMPTY + 'whatever' that is almost as fast as +'whatever' but is also 1.9 compatible
+    # EMPTY + 'string' is almost as fast as +'string' but is also 1.9 compatible
     EMPTY = ''
 
     # Generic pagination: it returns the html with the series of links to the pages

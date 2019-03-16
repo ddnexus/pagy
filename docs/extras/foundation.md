@@ -39,7 +39,7 @@ Configure [javascript](../extras.md#javascript) if you use `pagy_foundation_resp
 
 ## Methods
 
-This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize it by overriding it directly in your own view helper.
+This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by overriding them directly in your own view helper.
 
 ### pagy_foundation_nav(pagy)
 
