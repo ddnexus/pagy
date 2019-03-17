@@ -31,12 +31,12 @@ If you don't need the navbar you can just set the `:size` variable to an empty v
 
 You can also use the `pagy_prev_link` and `pagy_next_link` helpers provided by this extra, mostly useful if you also use the `countless` extra.
 
-Here is an example:
+Here is an example that use `pagy_countless` (saving one query per render):
 
 `incremental` action:
 ```ruby
 def incremental
-  @pagy, @records = pagy(Product.all, link_extra: 'data-remote="true"')
+  @pagy, @records = pagy_countless(Product.all, link_extra: 'data-remote="true"')
 end
 ```
 
@@ -113,7 +113,7 @@ For example, it is often used to show a few suggestions of "similar products" in
 For example:
 
 ```ruby
-@pagy, @suggestions = pagy(Product.all, count: 25, items: 5, cycle: true)
+@pagy, @suggestions = pagy_countless(Product.all, count: 25, items: 5, cycle: true)
 ```
 
 Passing a forced `:count` of 25 will generate 5 pages of 5 items each that will always have a next page. Regardless the actual collection count, you will show the first 25 items of the collection, looping in stripes of 5 items each.
