@@ -92,7 +92,7 @@ Other extras provide also the following framework-styled helpers:
 
 ### :breakpoints
 
-The `:breakpoints` variable is a non-core variable used by the `responsive` navs: it allows you to control how the page links will get shown at different widths. It is a hash where the keys are integers representing the breakpoint widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
+The `:breakpoints` variable is a non-core variable used by the `responsive` navs. It allows you to control how the page links will get shown at different widths. It is a hash where the keys are integers representing the breakpoint widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
  For example:
 
 ```ruby
@@ -117,13 +117,13 @@ The container width can change as a continous range (normal behavior for a div) 
 
 ##### Continous Width-ranges
 
-For continous width-range containers you should ensure that the resulting navs can be contained in the breakpoint widths that you set. In other words if you create a size as `[20,20,20,20]`, is pretty obvious that it could not be contained in a `540` width, so assign reasonable sizes based on the available widths.
+For continous width-range containers you should ensure that the resulting navs can be contained in the breakpoint widths that you set. In other words if you create a size as `[20,20,20,20]`, is pretty obvious that it could not be contained in a `540` width, so you should assign reasonable sizes based on the available widths.
 
 ##### Discrete Step Widths
 
 If you use frameworks like bootstrap (but the same applies to many others) you can assign classes to your container that will snap to specific widths (e.g. `sm-md-lg`). In that case you should sync the quantity and widths of the pagy brakpoints to the quantity and internal container widths of the bootstrap classes.
 
-**IMPORTANT**: The pagy breakpoint widths should not be the same bootstrap breakpoints widths, but the container internal available widths.
+**IMPORTANT**: The pagy breakpoint widths should not be the same bootstrap breakpoints widths, but their container internal available widths.
 
 For example: if you assign the following classes:
 

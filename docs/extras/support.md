@@ -46,8 +46,8 @@ end
 <div id="content">
   <table id="records_table">
     <tr>
-      <th> Name
-      <th> Description
+      <th>Name</th>
+      <th>Description</th>
     </tr>
     <%= render partial: 'page_items' %>
   </table>
@@ -60,8 +60,8 @@ end
 ```erb
 <% @records.each do |record| %>
   <tr>
-    <td> <%= record.name %> </td>
-    <td> <%= record.description %> </td>
+    <td><%= record.name %></td>
+    <td><%= record.description %></td>
   </tr>
 <% end %>
 ```
@@ -82,15 +82,15 @@ $('#next-link').html("<%= j(render 'next_link') %>");
 
 Automatic incremental pagination (sometimes referred as infinite-scroll pagination) is a UI-less pagination that loads the next page at the end of the listing with an AJAX call.
 
-A simple example about how to implement can use the same example for the [Incremental](#navlessincremental) above with just a couple of changes:
+We can implement it by using the same [Incremental example](#navlessincremental) above with just a couple of changes:
 
-Hide the link in `_next_link.html.slim` by adding a style tag:
+1. Hide the link in `_next_link.html.erb` by adding a style attribute:
 
 ```erb
 <%== pagy_next_link(@pagy, 'More...', 'id="next_link" style="display: none;"') %>
 ```
 
-Then the following javascript would take care of clicking the link when the page get loaded/resized/scrolled , so to keep the page filled with results, one page at a time:
+2. Add a javascript that will click the link when the listing-bottom appear in the viewport on load/resize/scroll. It will keep the page filled with results, one page at a time:
 
 ```js
 var loadNextPage = function(){

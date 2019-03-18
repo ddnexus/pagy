@@ -45,14 +45,6 @@ _Each dot in the chart represents the resources that Pagy consumes for one full 
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses each Kb of memory it allocates/consumes._
 
-#### Disclaimer
-
-Please, notice that benchmarking and profiling the pagination gems in a working app environment may be a quite a tricky task.
-
-If you compare Pagy in your own app and don't notice much of a difference, your benchmarks are most likely not isolating the pagination code from the rest of your app.
-
-Please check the [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) for a working example about how to properly compare the gems. Feel free to ask [here](https://gitter.im/ruby-pagy/Lobby) if you need help.
-
 ## Features
 
 ### Straightforward Code
@@ -74,7 +66,7 @@ Please check the [Benchmarks and Memory Profiles Source](http://github.com/ddnex
 
 - Pagy is very modular and does not load nor execute unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#global-configuration))_
 - It works even with collections/scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
-- It works with helpers or templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
+- It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
 - It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
 - It does not impose any difficult-to-override logic or output _(see [why...](https://ddnexus.github.io/pagy/index#really-easy-to-customize))_
 - It also works on legacy systems starting from ruby v1.9+ and jruby v1.7+
@@ -103,7 +95,7 @@ Or - if you prefer - render the navigation links with a template:
 
 _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start) for more details)_
 
-## Easy to extend
+## Easy to customize
 
 Use the official extras, or write your own in just a few lines. Extras add special options and manage different components, behaviors, Frontend or Backend environments... usually by just requiring them:
 
@@ -129,7 +121,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 - [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy-i18n implementation
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
 - [overflow](http://ddnexus.github.io/pagy/extras/overflow): Allow for easy handling of overflowing pages
-- [support](http://ddnexus.github.io/pagy/extras/support): Extra support for features like: incremental, infinite, auto-scroll pagination
+- [support](http://ddnexus.github.io/pagy/extras/support): Extra support for features like: incremental, auto-incremental and infinite pagination
 - [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
 
 ### Alternative Components
@@ -138,7 +130,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 - [compact nav](http://ddnexus.github.io/pagy/extras/plain#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![pagy-compact](docs/assets/images/pagy-compact-w.png)
 
-- [responsive nav](http://ddnexus.github.io/pagy/extras/plain#responsive-navs): On resize, the number of page links adapts in real-time to the available window or container width:<br>![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
+- [responsive nav](http://ddnexus.github.io/pagy/extras/plain#responsive-navs): A classic looking UI that fits the number of page links to the available width on the client-side:<br>![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
 
 ## Resources
 
@@ -168,28 +160,13 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 [Chat on Gitter](https://gitter.im/ruby-pagy/Lobby)
 
-
-## Please Star and Share!
-
-Pagy is young and needs to be known, and **you** can really help, even with just a click on the star, or sharing a tweet with friends and colleagues. A big thank you for your support!
-
-## Help Wanted
-
-Pagy is a fresh project and your help would be great. If you like it, you have a few options to contribute:
-
-- Create an issue if anything should be improved/fixed
-- Submit a pull request to improve Pagy
-- Submit some cool extra
-- Submit your translation if your language is missing from the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales)
-- Write a Tutorial or a "How To" topic
-
 ## Repository Info
 
 ### Versioning
 
 Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for breaking changes introduced by mayor versions.
 
-### Branching
+### Branches
 
 The `master` branch is the latest rubygem-published release. It also contains docs and comment changes that don't affect the published code.
 
@@ -201,11 +178,12 @@ Expect any other branch to be experimental, force-rebased and/or deleted even wi
 
 Many thanks to:
 
-- [Imaginary Cloud](https://www.imaginarycloud.com), for continually publishing high-interest articles and helping share Pagy through their fantastic blog
+- [GoRails](https://gorails.com) for the great [Pagy Screencast](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1) and their top notch [Rails Episodes](https://gorails.com/episodes)
+- [Imaginary Cloud](https://www.imaginarycloud.com) for continually publishing high-interest articles and helping to share Pagy when it just started
 - [JetBrains](http://www.jetbrains.com) for their free OpenSource license
 - [The Contributors](https://github.com/ddnexus/pagy/graphs/contributors) for all the smart code and suggestions merged in the project
 - [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+This project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
