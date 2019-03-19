@@ -17,4 +17,4 @@ se:
     compact: "Sida %{page_input} av %{pages}"
     items:
       one: "Visa %{items_input} resultat per sida"
-      other: "Show %{items_input} resultat per sida"
+      other: "Visa %{items_input} resultat per sida"
