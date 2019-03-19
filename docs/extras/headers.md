@@ -122,7 +122,7 @@ This method relies on the `response` method in your controller returning a `Rack
 
 You should use it before rendering: it simply merges the `pagy_headers` to the `response.headers` internaly.
 
-**Notice**: If your app doesn't implement the `response` object that way, you can still use the hash returned by the `pagy_headers` method in the way that your app/framework provides.
+If your app doesn't implement the `response` object that way, you should override the `pagy_headers_merge` method in your controller or use the `pagy_headers` method directly.
 
 ### pagy_headers(pagy)
 
