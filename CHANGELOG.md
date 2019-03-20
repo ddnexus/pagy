@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## Version 2.1.3
+
+### Changes
+
+- added Swedish locale
+
+### Commits
+
+- [f0dcac6](http://github.com/ddnexus/pagy/commit/f0dcac6): docs update
+- [9dc8c05](http://github.com/ddnexus/pagy/commit/9dc8c05): removed tap from Pagy#series
+- [e237ea6](http://github.com/ddnexus/pagy/commit/e237ea6): add translation for Swedish (#145)
+- [7d71699](http://github.com/ddnexus/pagy/commit/7d71699): lighter README and a few docs improvements
+- [f25b5f5](http://github.com/ddnexus/pagy/commit/f25b5f5): updated support extra examples with pagy_countess
+- [6fa1d03](http://github.com/ddnexus/pagy/commit/6fa1d03): comments and docs updates
+- [9f057e6](http://github.com/ddnexus/pagy/commit/9f057e6): small improvement for the headers extra doc
+- [2c53e76](http://github.com/ddnexus/pagy/commit/2c53e76): a few docs changes for the migration guide
+- [2a90e6a](http://github.com/ddnexus/pagy/commit/2a90e6a): stop following the GitFlow conventions (extra comlexity for no advantage for this project; too many merge commits; history difficult to follow)
+- [198883c](http://github.com/ddnexus/pagy/commit/198883c): Fix legacy changelog url (#144)
+
+
 ## Version 2.1.2
 
 ### Changes
