@@ -104,17 +104,14 @@ We can implement it by using the same [Incremental example](#navlessincremental)
 
 ```js
 var loadNextPage = function(){
+  if ($('#next_link').data("loading")){ return }  // prevent multiple loading
   var wBottom  = $(window).scrollTop() + $(window).height();
   var elBottom = $('#records_table').offset().top + $('#records_table').height();
-  if (wBottom > elBottom && $('#next_link_pagy').attr('href')){ 
-    $('#next_link')[0].click() 
-    $('#div_next_link_pagy').html('')
+  if (wBottom > elBottom){
+    $('#next_link')[0].click();
+    $('#next_link').data("loading", true);
   }
 };
-
-window.addEventListener('load',   loadNextPage);
-window.addEventListener('resize', loadNextPage);
-window.addEventListener('scroll', loadNextPage);
 ```
 
 ### Circular/Infinite
