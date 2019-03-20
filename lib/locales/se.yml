@@ -1,0 +1,20 @@
+se:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Föregående"
+      next: "Nästa&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Inga %{item_name} hittade"
+        one: "Visar <b>1</b> %{item_name}"
+        other: "Visar <b>alla %{count}</b> %{item_name}"
+      multiple_pages: "Visar %{item_name} <b>%{from}-%{to}</b> av <b>%{count}</b> totalt"
+      item_name:
+        zero: "resultat"
+        one: "resultat"
+        other: "resultat"
+    compact: "Sida %{page_input} av %{pages}"
+    items:
+      one: "Visa %{items_input} resultat per sida"
+      other: "Visa %{items_input} resultat per sida"
