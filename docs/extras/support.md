@@ -34,12 +34,13 @@ You can also use the `pagy_prev_link` and `pagy_next_link` helpers provided by t
 Here is an example that use `pagy_countless` (saving one query per render):
 
 `pagy.rb` add :
+
 ```
 require 'pagy/extras/countless'
 ```
 
-
 `incremental` action:
+
 ```ruby
 def incremental
   @pagy, @records = pagy_countless(Product.all, link_extra: 'data-remote="true"')
@@ -58,7 +59,7 @@ end
     <%= render partial: 'page_items' %>
   </table>
   <div id="div_next_link">
-  <%= render partial: 'next_link' %>
+    <%= render partial: 'next_link' %>
   </div>
 </div>
 ```
@@ -81,6 +82,7 @@ end
 ```
 
 `incremental.js.erb`
+
 ```erb
 $('#records_table').append("<%= j(render 'page_items')%>");
 $('#div_next_link').html("<%= j(render 'next_link') %>");
