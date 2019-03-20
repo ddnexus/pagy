@@ -112,6 +112,10 @@ var loadNextPage = function(){
     $('#next_link').data("loading", true);
   }
 };
+
+window.addEventListener('resize', loadNextPage);
+window.addEventListener('scroll', loadNextPage);
+window.addEventListener('load',   loadNextPage);
 ```
 
 ### Circular/Infinite
