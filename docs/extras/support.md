@@ -33,7 +33,14 @@ You can also use the `pagy_prev_link` and `pagy_next_link` helpers provided by t
 
 Here is an example that use `pagy_countless` (saving one query per render):
 
+`pagy.rb` add :
+
+```
+require 'pagy/extras/countless'
+```
+
 `incremental` action:
+
 ```ruby
 def incremental
   @pagy, @records = pagy_countless(Product.all, link_extra: 'data-remote="true"')
@@ -51,7 +58,9 @@ end
     </tr>
     <%= render partial: 'page_items' %>
   </table>
-  <%= render partial: 'next_link' %>
+  <div id="div_next_link">
+    <%= render partial: 'next_link' %>
+  </div>
 </div>
 ```
 
@@ -73,9 +82,10 @@ end
 ```
 
 `incremental.js.erb`
+
 ```erb
 $('#records_table').append("<%= j(render 'page_items')%>");
-$('#next-link').html("<%= j(render 'next_link') %>");
+$('#div_next_link').html("<%= j(render 'next_link') %>");
 ```
 
 ### Auto-incremental
@@ -96,7 +106,10 @@ We can implement it by using the same [Incremental example](#navlessincremental)
 var loadNextPage = function(){
   var wBottom  = $(window).scrollTop() + $(window).height();
   var elBottom = $('#records_table').offset().top + $('#records_table').height();
-  if (wBottom > elBottom){ $('#next_link')[0].click() }
+  if (wBottom > elBottom && $('#next_link_pagy').attr('href')){ 
+    $('#next_link')[0].click() 
+    $('#div_next_link_pagy').html('')
+  }
 };
 
 window.addEventListener('load',   loadNextPage);
