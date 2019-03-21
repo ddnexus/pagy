@@ -3,7 +3,7 @@ title: Support
 ---
 # Support Extra
 
-This extra adds support for features like countless or navless pagination, where you don't need the full link bar but only a simple `next` or `prev` link or no link at all (like for auto-scroll).
+This extra adds support for features like countless or navless pagination, where you don't need the full link bar but only a simple `next` or `prev` link or no link at all (as for [auto-incremental](#auto-incremental)).
 
 It also provides a couple of helpers to setup you own custom javascript components.
 
@@ -31,15 +31,15 @@ If you don't need the navbar you can just set the `:size` variable to an empty v
 
 You can also use the `pagy_prev_link` and `pagy_next_link` helpers provided by this extra, mostly useful if you also use the `countless` extra.
 
-Here is an example that use `pagy_countless` (saving one query per render):
+Here is a basic example that use `pagy_countless` (saving one query per render):
 
-`pagy.rb` add :
+`pagy.rb` initializer:
 
-```
+```ruby
 require 'pagy/extras/countless'
 ```
 
-`incremental` action:
+`incremental` controller action:
 
 ```ruby
 def incremental
@@ -47,7 +47,7 @@ def incremental
 end
 ```
 
-`incremental.html.erb`
+`incremental.html.erb` template:
 
 ```erb
 <div id="content">
@@ -64,7 +64,7 @@ end
 </div>
 ```
 
-`_page_items.html.erb`
+`_page_items.html.erb` partial shared for AJAX and non-AJAX rendering:
 
 ```erb
 <% @records.each do |record| %>
@@ -75,13 +75,13 @@ end
 <% end %>
 ```
 
-`_next_link.html.erb`
+`_next_link.html.erb` partial shared for AJAX and non-AJAX rendering:
 
 ```erb
 <%== pagy_next_link(@pagy, 'More...', 'id="next_link"') %>
 ```
 
-`incremental.js.erb`
+`incremental.js.erb` javascript template:
 
 ```erb
 $('#records_table').append("<%= j(render 'page_items')%>");
@@ -90,17 +90,17 @@ $('#div_next_link').html("<%= j(render 'next_link') %>");
 
 ### Auto-incremental
 
-Automatic incremental pagination (sometimes referred as infinite-scroll pagination) is a UI-less pagination that loads the next page at the end of the listing with an AJAX call.
+Automatic incremental pagination (sometimes improperly called "infinite-scroll" pagination) is a UI-less pagination that loads the next page at the end of the listing with an AJAX call.
 
-We can implement it by using the same [Incremental example](#navlessincremental) above with just a couple of changes:
+We can implement it by using the same [Incremental](#navlessincremental) example above with just a couple of changes:
 
-1. Hide the link in `_next_link.html.erb` by adding a style attribute:
+**1**. Hide the link in `_next_link.html.erb` by adding a style attribute:
 
 ```erb
 <%== pagy_next_link(@pagy, 'More...', 'id="next_link" style="display: none;"') %>
 ```
 
-2. Add a javascript that will click the link when the listing-bottom appear in the viewport on load/resize/scroll. It will keep the page filled with results, one page at a time:
+**2**. Add a javascript that will click the link when the listing-bottom appears in the viewport on load/resize/scroll. It will keep the page filled with results, one page at a time:
 
 ```js
 var loadNextPage = function(){
