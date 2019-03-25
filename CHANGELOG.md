@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## Version 2.1.4
+
+### Changes
+
+- Fix for responsive javascript not working with IE
+
+### Commits
+
+- [3cce19a](http://github.com/ddnexus/pagy/commit/3cce19a): javascript responsive refactoring:
+    - replaced problematic loop functions with plain for loops
+    - better naming in responsive function
+    - shortened rendering time
+    - simpler doc
+- [3eacc8d](http://github.com/ddnexus/pagy/commit/3eacc8d): better doc examples
+- [5c92187](http://github.com/ddnexus/pagy/commit/5c92187): added missing event listeners to auto-incremental javascript example
+- [119ba78](http://github.com/ddnexus/pagy/commit/119ba78): fix for support.md auto-incremental javascript example
+- [1f376d4](http://github.com/ddnexus/pagy/commit/1f376d4): Update support.md (#146) Fix incremental/infinite scroll examples
+
 ## Version 2.1.3
 
 ### Changes

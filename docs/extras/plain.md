@@ -96,48 +96,30 @@ The `:breakpoints` variable is a non-core variable used by the `responsive` navs
  For example:
 
 ```ruby
-Pagy::VARS[:breakpoints] = { 0 => [1,0,0,1], 540 => [2,3,3,2], 720 => [3,4,4,3] }
+Pagy::VARS[:breakpoints] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }
 ```
 
-The above statement means that from `0` to `540` pixels width, Pagy will use the `[1,0,0,1]` size, from `540` to `720` it will use the `[2,3,3,4]` size and over `720` it will use the `[3,4,4,3]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section).
+The above statement means that from `0` to `540` pixels width, Pagy will use the `[2,3,3,2]` size, from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section).
 
 **IMPORTANT**: You can set any number of breakpoints with any arbitrary width and size. The only requirement is that the `:breakpoints` hash must contain always the `0` size. An `ArgumentError` exception will be raises if it is missing.
 
-**Notice**: Each added breakpoint slowers down Pagy of almost 10%. For example: with 5 breakpoints (which are actually quite a lot) the nav will be rendered rougly in twice the normal time. However, that will still run about 15 times faster than Kaminari and 6 times faster than WillPaginate.
+**Notice**: Each added breakpoint slowers down Pagy of less than 10%. For example: with 5 breakpoints the nav will be rendered rougly in less than twice the normal time. That will still run about 16 times faster than Kaminari and 7 times faster than WillPaginate, so it doesn't look like an issue.
 
 #### Setting the right breakpoints
 
-Setting the width and the size of your breakpoint is what could create a nice transition between sizes... or some apparently erratic behavior.
+Setting the width and the size of your breakpoints is what can create a nice transition between sizes... or some apparently erratic behavior.
 
-Here is what you should consider.
+Here is what you should consider/ensure:
 
-The transition from one breakpoint/size to another depends by the width available to your nav. That width is the _internal available width_ of its container (excluding eventual horizontal padding), so the pagy breakpoint widths that you set should reflect the container internal available widths.
+1. The pagy size can only change in discreet steps: each widht/size pair in your `:breakpoints` represents a step.
 
-The container width can change as a continous range (normal behavior for a div) or in discrete steps (for example when using bootstrap the container has classes like `sm-md-lg`).
+2. The transition from one breakpoint/size to another depends on the width available to the pagy nav. That width is the _internal available width_ of its container (excluding eventual horizontal padding).
 
-##### Continous Width-ranges
+3. You should ensure that each pagy `:size` in your breakpoints produces a nav that can be contained in its its width.
 
-For continous width-range containers you should ensure that the resulting navs can be contained in the breakpoint widths that you set. In other words if you create a size as `[20,20,20,20]`, is pretty obvious that it could not be contained in a `540` width, so you should assign reasonable sizes based on the available widths.
+4. You should ensure that the minimum internal width for the container div be equal (or a bit bigger) to the smaller positive `:breakpoints` width. (`540` pixels in our previous example).
 
-##### Discrete Step Widths
-
-If you use frameworks like bootstrap (but the same applies to many others) you can assign classes to your container that will snap to specific widths (e.g. `sm-md-lg`). In that case you should sync the quantity and widths of the pagy brakpoints to the quantity and internal container widths of the bootstrap classes.
-
-**IMPORTANT**: The pagy breakpoint widths should not be the same bootstrap breakpoints widths, but their container internal available widths.
-
-For example: if you assign the following classes:
-
-```
-sm = Small ≥576px
-Max container width 540px
-
-md = Medium ≥768px
-Max container width 720px
-
-lg = Large ≥992px
-Max container width 960px
-```
-You should use the `0`, `540` and `720` width (or less if there is padding), and assign consistent sizes.
+5. If the container width snaps to specific widths in discrete steps, you should sync the quantity and widths of the pagy `:brakpoints` to the quantity and internal widths for each discrete step of the container.
 
 ## Methods
 

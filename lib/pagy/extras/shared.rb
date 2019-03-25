@@ -14,9 +14,9 @@ class Pagy
   #   Pagy.new count:1000, page: 20, breakpoints: {0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3]}
   # it returns something like:
   #   { :items  => [1, :gap, 18, 19, "20", 21, 22, 50, 2, 17, 23, 49, 3, 16, 24, 48],
-  #     :series => { 0   =>[1, :gap, 18, 19, "20", 21, 22, :gap, 50],
-  #                  350 =>[1, 2, :gap, 17, 18, 19, "20", 21, 22, 23, :gap, 49, 50],
-  #                  550 =>[1, 2, 3, :gap, 16, 17, 18, 19, "20", 21, 22, 23, 24, :gap, 48, 49, 50] },
+  #     :series => { 0   => [1, :gap, 18, 19, "20", 21, 22, :gap, 50],
+  #                  350 => [1, 2, :gap, 17, 18, 19, "20", 21, 22, 23, :gap, 49, 50],
+  #                  550 => [1, 2, 3, :gap, 16, 17, 18, 19, "20", 21, 22, 23, 24, :gap, 48, 49, 50] },
   #     :widths => [550, 350, 0] }
   # where :items  is the unordered array union of all the page numbers for all sizes (passed to the PagyResponsive javascript function)
   #       :series is the hash of the series keyed by width (used by the *_responsive helpers to create the JSON string)

@@ -1,7 +1,7 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-# Pagy initializer file (v2.1.3)
+# Pagy initializer file (v2.1.4)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -60,8 +60,8 @@
 
 # Breakpoints var used by the responsive nav helpers
 # See https://ddnexus.github.io/pagy/extras/plain#breakpoints
-# width/size pairs: example for bootstrap4 sm-md-lg internal container widths
-# Pagy::VARS[:breakpoints] = { 0 => [1,0,0,1], 540 => [2,3,3,2], 720 => [3,4,4,3] }
+# Pagy::VARS[:breakpoints] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }
+
 
 # Feature Extras
 
