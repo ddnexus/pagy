@@ -226,6 +226,47 @@ end
 
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
+## Paginate an Array
+
+Please, use the [array](extras/array.md) extra.
+
+## Paginate ActiveRecord collections
+
+Pagy works out of the box with `ActiveRecord` collections.
+
+## Paginate Ransack results
+
+Ransack `result` returns an `ActiveRecord` collection, which can be paginated out of the box. For example:
+
+```ruby
+@q = Person.ransack(params[:q])
+@pagy, @people = pagy(@q.result)
+```
+
+## Paginate Elasticsearch results
+
+Pagy has a couple of extras for gems returning elasticsearch results: [elasticsearch_rails](extras/elasticsearch_rails.md) and [searchkick](extras/searchkick.md)
+
+## Paginate pre-offsetted and pre-limited collections
+
+With the other pagination gems you cannot paginate a subset of a collection that you got using `offset` and `limit`. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
+
+```ruby
+subset = Product.offset(100).limit(315)
+@pagy, @paginated_subset = pagy(subset, outset: 100)
+```
+
+Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and from 301 to 315 for the last page.
+
+## Paginate non-ActiveRecord collections
+
+The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.) you may need to override it in your controller, usually by simply removing the `:all` argument passed to `count`:
+
+```ruby
+#count = collection.count(:all) 
+count = collection.count
+```
+
 ## Paginate Any Collection
 
 Pagy doesn't need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
@@ -233,7 +274,7 @@ Pagy doesn't need to know anything about the kind of collection you paginate. It
 1. Create a Pagy object using the count of the collection to paginate
 2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
 
-An example with an array:
+Here is an example with an array. (Please, notice that this is only a convenient example but you should use the [array](extras/array.md) extra to paginate arrays).
 
 ```ruby
 # paginate an array
@@ -261,34 +302,6 @@ Then of course, regardless the kind of collection, you can render the navigation
 ```
 
 See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb) and the [Pagy::Backend API documentation](api/backend.md) for more details.
-
-## Paginate an Array
-
-You have many ways to paginate an array with Pagy:
-
-1. Implementing the above _how-to_ (probably not the most convenient way, besides being a good example)
-2. Using the `pagy` method and overriding `pagy_get_items` _(see [pagy_get_items](api/backend.md#pagy_get_itemscollection-pagy)_
-3. Using `pagy_array` offered by the `array` extra _(see [array extra](extras/array.md))_
-
-## Paginate a pre-offsetted and pre-limited collection
-
-With the other pagination gems you cannot paginate a subset of a collection that you got using `offset` and `limit`. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
-
-```ruby
-subset = Product.offset(100).limit(315)
-@pagy, @paginated_subset = pagy(subset, outset: 100)
-```
-
-Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and from 301 to 315 for the last page.
-
-## Paginate non-ActiveRecord collections
-
-The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.) you may need to override it in your controller, usually by simply removing the `:all` argument passed to `count`:
-
-```ruby
-#count = collection.count(:all) 
-count = collection.count
-```
 
 ## Custom count for custom scopes
 
