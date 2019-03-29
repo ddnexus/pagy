@@ -38,7 +38,7 @@ describe Pagy::Frontend do
       pagy = Pagy.new(count: 1000, params: {a:3,b:4})
       link = frontend.pagy_link_proc(pagy)
       link.call(1).must_equal("<a href=\"/foo?a=3&b=4\"   >1</a>")
-      link.call(10).must_equal("<a href=\"/foo?a=3&b=4&page=10\"   >10</a>")
+      link.call(10).must_equal("<a href=\"/foo?page=10&a=3&b=4\"   >10</a>")
     end
 
   end

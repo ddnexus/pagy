@@ -5,7 +5,7 @@ class TestView
   include Pagy::Frontend
 
   def request
-    Rack::Request.new('SCRIPT_NAME' => '/foo')
+    Rack::Request.new(Rack::MockRequest.env_for('http://example.com:3000/foo?page=2'))
   end
 end
 
