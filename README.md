@@ -142,7 +142,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 ### Posts and Tutorials
 
-- [Migrating from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-tips) (practical guide)
+- [Migrating from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-guide) (practical guide)
 - [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy) by Tiago Franco
 - [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
 - [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
