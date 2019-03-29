@@ -38,9 +38,10 @@ class Pagy
   module Frontend
 
     alias_method :pagy_url_for_without_items, :pagy_url_for
-    def pagy_url_for_with_items(page, pagy)
-      p_vars = pagy.vars; params = request.GET.merge(p_vars[:page_param] => page, p_vars[:items_param] => p_vars[:items]).merge!(p_vars[:params])
-      "#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
+    def pagy_url_for_with_items(page, pagy, url=false)
+      p_vars = pagy.vars; params = request.GET.merge(p_vars[:params]); params[p_vars[:page_param].to_s] = page
+      params[p_vars[:items_param].to_s] = p_vars[:items]
+      "#{request.base_url if url}#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
     end
     alias_method :pagy_url_for, :pagy_url_for_with_items
 

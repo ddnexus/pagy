@@ -184,21 +184,25 @@ describe Pagy::Frontend do
     it 'renders basic url' do
       pagy = Pagy.new count: 1000, page: 3
       frontend.pagy_url_for(5, pagy). must_equal '/foo?page=5'
+      frontend.pagy_url_for(5, pagy, :url). must_equal 'http://example.com:3000/foo?page=5'
     end
 
     it 'renders url with params' do
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}
-      frontend.pagy_url_for(5, pagy).must_equal "/foo?a=3&b=4&page=5"
+      frontend.pagy_url_for(5, pagy).must_equal "/foo?page=5&a=3&b=4"
+      frontend.pagy_url_for(5, pagy, :url).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
     end
 
     it 'renders url with anchor' do
       pagy = Pagy.new count: 1000, page: 3, anchor: '#anchor'
       frontend.pagy_url_for(6, pagy).must_equal '/foo?page=6#anchor'
+      frontend.pagy_url_for(6, pagy, :url).must_equal 'http://example.com:3000/foo?page=6#anchor'
     end
 
     it 'renders url with params and anchor' do
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
-      frontend.pagy_url_for(5, pagy).must_equal "/foo?a=3&b=4&page=5#anchor"
+      frontend.pagy_url_for(5, pagy).must_equal "/foo?page=5&a=3&b=4#anchor"
+      frontend.pagy_url_for(5, pagy, :url).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#anchor"
     end
 
   end
@@ -208,7 +212,7 @@ describe Pagy::Frontend do
     it 'overrides params' do
       overridden = TestViewOverride.new
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
-      overridden.pagy_url_for(5, pagy).must_equal "/foo?b=4&page=5&k=k#anchor"
+      overridden.pagy_url_for(5, pagy).must_equal "/foo?page=5&b=4&k=k#anchor"
     end
 
   end

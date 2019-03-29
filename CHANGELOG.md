@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## Version 2.1.5
+
+### Changes
+
+- Fix for `pagy_url_for` returning duplicated params
+- Added "zh-TW" locale
+- Deprecated incorrect zh-cn and zh-hk locales in favor of zh-CN and zh-HK locales
+
+### Commits
+
+- [62ee172](http://github.com/ddnexus/pagy/commit/62ee172): fixes for pagy_url_for full url gets duplicated page param (#149)
+    - used concatenated request.
+base_url instead of request.url
+    - added better tests
+    - fixed overriding of pagy_url_for in items extra
+- [0bca4af](http://github.com/ddnexus/pagy/commit/0bca4af): fix for rubocop offense
+- [6b7fe77](http://github.com/ddnexus/pagy/commit/6b7fe77): deprecated zh-cn and zh-hk locales, normalized as zh-CN and zh-HK
+- [c28d21a](http://github.com/ddnexus/pagy/commit/c28d21a): Added locale zh-TW (#147)
+- [95cdf61](http://github.com/ddnexus/pagy/commit/95cdf61): docs improvements
+- [310c804](http://github.com/ddnexus/pagy/commit/310c804): Update lib/locales/README.md (#148)
+
 ## Version 2.1.4
 
 ### Changes

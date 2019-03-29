@@ -14,7 +14,7 @@ class TestController
   end
 
   def request
-    @request ||= Rack::Request.new('SCRIPT_NAME' => '/foo','HTTPS' => 'on', 'HTTP_HOST' => 'example.com:8080')
+    @request ||= Rack::Request.new(Rack::MockRequest.env_for('https://example.com:8080/foo?page=1'))
   end
 
   def response

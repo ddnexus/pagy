@@ -195,7 +195,7 @@ describe Pagy::Frontend do
 
     it 'renders url with params and anchor' do
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor', items: 40
-      frontend.pagy_url_for(5, pagy).must_equal '/foo?page=5&items=40&a=3&b=4#anchor'
+      frontend.pagy_url_for(5, pagy).must_equal "/foo?page=5&a=3&b=4&items=40#anchor"
     end
 
   end
