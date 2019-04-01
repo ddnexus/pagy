@@ -111,7 +111,7 @@ Setting the width and the size of your breakpoints is what can create a nice tra
 
 Here is what you should consider/ensure:
 
-1. The pagy size can only change in discreet steps: each widht/size pair in your `:breakpoints` represents a step.
+1. The pagy size can only change in discrete steps: each widht/size pair in your `:breakpoints` represents a step.
 
 2. The transition from one breakpoint/size to another depends on the width available to the pagy nav. That width is the _internal available width_ of its container (excluding eventual horizontal padding).
 
