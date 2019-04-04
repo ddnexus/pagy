@@ -20,7 +20,7 @@ Pagy::VARS[:items_param] = :custom_param       # default :items
 Pagy::VARS[:max_items]   = 100                 # default
 ```
 
-Configure [javascript](../extras.md#javascript) (only if you use the `pagy_items_selector` UI)
+Configure [javascript](../extras.md#javascript) (only if you use the `pagy_items_selector_js` UI)
 
 ## Files
 
@@ -77,7 +77,7 @@ This extra overrides the `pagy_countless_get_vars` method of the `Pagy::Backend`
 
 This extra overrides also the `pagy_url_for` method of the `Pagy::Frontend` module in order to add the `:items_param` param to the url of the links.
 
-### pagy_items_selector(pagy)
+### pagy_items_selector_js(pagy)
 
 This helper provides an items selector UI, which allows the user to select any arbitrary number of items per page (below the `:max_items` number) in a numeric input field. It looks like:
 

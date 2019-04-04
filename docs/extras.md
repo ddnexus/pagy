@@ -45,11 +45,11 @@ A few extras require the [pagy/extras/shared](https://github.com/ddnexus/pagy/bl
 
 ## Javascript
 
-A few helpers use javascript:
+A few helpers use javascript, and they are clearly recognizable by the `js` suffix:
 
-- `pagy_*_compact_nav_js`
 - `pagy_*_nav_js`
-- `pagy_items_selector`
+- `pagy_*_compact_nav_js`
+- `pagy_items_selector_js`
 
 If you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load and eventually on [AJAX-load](#using-ajax-with-javascript-enabled-helpers).
 

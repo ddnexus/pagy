@@ -200,18 +200,14 @@ describe Pagy::Frontend do
 
   end
 
-  describe '#pagy_items_selector' do
+  describe '#pagy_items_selector_js' do
 
     it 'renders items selector' do
       @pagy = Pagy.new count: 1000, page: 3
-      html = frontend.pagy_items_selector(@pagy, 'test-id')
+      html = frontend.pagy_items_selector_js(@pagy, 'test-id')
 
       html.must_equal \
-        %(<span id="test-id">) +
-                              %(<a href="/foo?page=#{Pagy::Frontend::MARKER}-page-&items=#{Pagy::Frontend::MARKER}-items-"></a>) +
-                              %(Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page) +
-                              %(</span>) +
-                              %(<script type="application/json" class="pagy-json">["items","test-id","#{Pagy::Frontend::MARKER}",41]</script>)
+      "<span id=\"test-id\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}-page-&items=#{Pagy::Frontend::MARKER}-items-\"></a>Show <input type=\"number\" min=\"1\" max=\"100\" value=\"20\" style=\"padding: 0; text-align: center; width: 3rem;\"> items per page</span><script type=\"application/json\" class=\"pagy-json\">[\"items_selector\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",41]</script>"
     end
 
   end
