@@ -48,7 +48,6 @@ A few helpers use javascript:
 - `pagy_*_compact_nav`
 - `pagy_*_responsive_nav`
 - `pagy_items_selector`
-- `pagy_apply_init_tag`
 
 If you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load and eventually on [AJAX-load](#using-ajax-with-javascript-enabled-helpers).
 
@@ -103,11 +102,10 @@ import '../src/javascripts/pagy.js.erb'
 **Notice**:
 
 - You may want to use `turbolinks:load` if your app uses turbolinks despite webpacker
-- or you may want just `export { Pagy, PagyInit }` from the `pagy.js.erb` file and import and use it somewhere else.
-- You may want to expose the `Pagy` and `PagyInit` namespaces, if you need them available elsewhere (e.g. in js.erb templates):
+- or you may want just `export { Pagy }` from the `pagy.js.erb` file and import and use it somewhere else.
+- You may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
     ```js
     global.Pagy = Pagy
-    global.PagyInit = PagyInit
     ```
 
 ### In non-rails apps
