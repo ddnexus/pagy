@@ -20,8 +20,8 @@ with a fast helper:
 
 ```erb
 <%== pagy_bootstrap_nav(@pagy) %>
-<%== pagy_bootstrap_responsive_nav(@pagy) %>
-<%== pagy_bootstrap_compact_nav(@pagy) %>
+<%== pagy_bootstrap_nav_js(@pagy) %>
+<%== pagy_bootstrap_compact_nav_js(@pagy) %>
 ```
 
 or with a template:
@@ -30,7 +30,7 @@ or with a template:
 <%== render 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_bootstrap_responsive_nav` or `pagy_bootstrap_compact_nav`.
+Configure [javascript](../extras.md#javascript) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_compact_nav_js`.
 
 ## Files
 
@@ -49,9 +49,9 @@ This method is the same as the `pagy_nav`/`pagy_plain_nav`, but customized for B
 
 The `bootstrap_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it.
 
-### pagy_bootstrap_compact_nav(pagy, ...)
+### pagy_bootstrap_compact_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_compact_nav`, but customized for the Bootstrap framework.
+This method is the same as the `pagy_plain_compact_nav_js`, but customized for the Bootstrap framework.
 
 Here is an example:
 
@@ -59,9 +59,9 @@ Here is an example:
 
 See more details in the [compact navs](plain.md#compact-navs) documentation.
 
-### pagy_bootstrap_responsive_nav(pagy, ...)
+### pagy_bootstrap_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_responsive_nav`, but customized for the Bootstrap framework.
+This method is the same as the `pagy_plain_nav_js`, but customized for the Bootstrap framework.
 
 See more details in the [responsive navs](plain.md#responsive-navs) documentation.
 

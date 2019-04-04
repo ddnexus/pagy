@@ -22,3 +22,5 @@ gem 'rubocop', '~> 0.63.1' unless ENV['SKIP_RUBOCOP']
 
 # docs server
 gem "github-pages", '193', group: :jekyll_plugins
+
+gem 'oj'

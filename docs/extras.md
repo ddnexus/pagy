@@ -39,14 +39,16 @@ Extras don't define any new module or class, they just re-open the `Pagy` class 
 
 ## Methods
 
-All the added methods are documented in the respective extras.
+A few extras require the [pagy/extras/shared](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/shared.rb) file. It defines only 3 methods used internally, so you don't actually need to use them directly.
+
+**Notice**: All the other added methods are documented in the respective extras doc.
 
 ## Javascript
 
 A few helpers use javascript:
 
-- `pagy_*_compact_nav`
-- `pagy_*_responsive_nav`
+- `pagy_*_compact_nav_js`
+- `pagy_*_nav_js`
 - `pagy_items_selector`
 
 If you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load and eventually on [AJAX-load](#using-ajax-with-javascript-enabled-helpers).
@@ -126,34 +128,34 @@ $( window ).load(function() {
 
 ### Using AJAX with javascript-enabled helpers
 
-If you AJAX-render any of the javascript helpers mentioned above, you should also execute `Pagy.init(container_element);` in the javascript template. Here is an example for a `pagy_bootstrap_responsive_nav` AJAX-render:
+If you AJAX-render any of the javascript helpers mentioned above, you should also execute `Pagy.init(container_element);` in the javascript template. Here is an example for a `pagy_bootstrap_nav_js` AJAX-render:
 
-`pagy_remote_responsive` controller action (notice the `link_extra` to enable AJAX):
+`pagy_remote_nav_js` controller action (notice the `link_extra` to enable AJAX):
 
 ```ruby
-def pagy_remote_responsive
+def pagy_remote_nav_js
   @pagy, @records = pagy(Product.all, link_extra: 'data-remote="true"')
 end
 ```
 
-`pagy_remote_responsive.html.erb` template for non-AJAX render (first page-load):
+`pagy_remote_nav_js.html.erb` template for non-AJAX render (first page-load):
 
 ```erb
 <div id="container">
-  <%= render partial: 'responsive_nav' %>
+  <%= render partial: 'nav_js' %>
 </div>
 ```
 
-`_responsive_nav.html.erb` partial shared for AJAX and non-AJAX rendering:
+`_nav_js.html.erb` partial shared for AJAX and non-AJAX rendering:
 
 ```erb
-<%== pagy_bootstrap_responsive_nav(@pagy) %>
+<%== pagy_bootstrap_nav_js(@pagy) %>
 ```
 
-`pagy_remote_responsive.js.erb` javascript template used for AJAX:
+`pagy_remote_nav_js.js.erb` javascript template used for AJAX:
 
-```js-erb
-$('#container').html("<%= j(render 'responsive_nav')%>");
+```erb
+$('#container').html("<%= j(render 'nav_js')%>");
 Pagy.init(document.getElementById('container'));
 ```
 

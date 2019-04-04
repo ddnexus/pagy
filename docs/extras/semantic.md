@@ -20,8 +20,8 @@ with a fast helper:
 
 ```erb
 <%== pagy_semantic_nav(@pagy) %>
-<%== pagy_semantic_compact_nav(@pagy) %>
-<%== pagy_semantic_responsive_nav(@pagy) %>
+<%== pagy_semantic_compact_nav_js(@pagy) %>
+<%== pagy_semantic_nav_js(@pagy) %>
 ```
 
 ## Files
@@ -36,15 +36,15 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 This method is the same as the `pagy_nav`/`pagy_plain_nav`, but customized for Semantic UI.
 
-### pagy_semantic_compact_nav(pagy, ...)
+### pagy_semantic_compact_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_compact_nav`, but customized for the Semantic UI framework.
+This method is the same as the `pagy_plain_compact_nav_js`, but customized for the Semantic UI framework.
 
 See more details in the [compact navs](plain.md#compact-navs) documentation.
 
-### pagy_semantic_responsive_nav(pagy, ...)
+### pagy_semantic_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_responsive_nav`, but customized for the Semantic UI framework.
+This method is the same as the `pagy_plain_nav_js`, but customized for the Semantic UI framework.
 
 See more details in the [responsive navs](plain.md#responsive-navs) documentation.
 

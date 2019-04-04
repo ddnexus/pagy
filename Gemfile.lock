@@ -209,6 +209,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     octokit (4.13.0)
       sawyer (~> 0.8.0, >= 0.5.3)
+    oj (3.7.11)
     parallel (1.13.0)
     parser (2.6.0.0)
       ast (~> 2.4.0)
@@ -263,10 +264,11 @@ DEPENDENCIES
   github-pages (= 193)
   i18n
   minitest
+  oj
   rack
   rake
   rubocop (~> 0.63.1)
   single_cov (~> 1.3)
 
 BUNDLED WITH
-   1.17.2
+   2.0.1

@@ -58,9 +58,9 @@
 # See https://ddnexus.github.io/pagy/extras/semantic
 # require 'pagy/extras/semantic'
 
-# Breakpoints var used by the responsive nav helpers
-# See https://ddnexus.github.io/pagy/extras/plain#breakpoints
-# Pagy::VARS[:breakpoints] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }
+# Multi size var used by the *_nav_js helpers
+# See https://ddnexus.github.io/pagy/extras/plain#sizes
+# Pagy::VARS[:sizes] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }
 
 
 # Feature Extras

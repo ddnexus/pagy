@@ -28,7 +28,7 @@ or with a template:
 <%== render 'pagy/foundation_nav', locals: {pagy: @pagy} %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_foundation_responsive_nav` or `pagy_foundation_compact_nav`.
+Configure [javascript](../extras.md#javascript) if you use `pagy_foundation_nav_js` or `pagy_foundation_compact_nav_js`.
 
 ## Files
 
@@ -47,15 +47,15 @@ This method is the same as the `pagy_nav`/`pagy_plain_nav`, but customized for F
 
 The `foundation_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it.
 
-### pagy_foundation_compact_nav(pagy, ...)
+### pagy_foundation_compact_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_compact_nav`, but customized for the Foundation framework.
+This method is the same as the `pagy_plain_compact_nav_js`, but customized for the Foundation framework.
 
 See more details in the [compact navs](plain.md#compact-navs) documentation.
 
-### pagy_foundation_responsive_nav(pagy, ...)
+### pagy_foundation_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_responsive_nav`, but customized for the Foundation framework.
+This method is the same as the `pagy_plain_nav_js`, but customized for the Foundation framework.
 
 See more details in the [responsive navs](plain.md#responsive-navs) documentation.
 

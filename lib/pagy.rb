@@ -41,7 +41,7 @@ class Pagy ; VERSION = '2.1.5'
       if    a<0 || a==b || a>@last                                        # skip out of range and duplicates
       elsif a+1 == b; series.push(a)                                      # no gap     -> no additions
       elsif a+2 == b; series.push(a, a+1)                                 # 1 page gap -> fill with missing page
-      else            series.push(a, :gap)                                # n page gap -> add :gap
+      else            series.push(a, :gap)                                 # n page gap -> add gap
       end                                                                 # skip the end boundary (last+1)
     end                                                                   # shift the start boundary (0) and
     series.shift; series[series.index(@page)] = @page.to_s; series        # convert the current page to String

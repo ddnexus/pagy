@@ -9,6 +9,8 @@ unless ENV['SKIP_SINGLECOV']
 end
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+require 'oj'
+
 require 'pagy'
 require 'pagy/countless'
 require 'rack'
