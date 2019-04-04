@@ -40,13 +40,13 @@ This method is the same as the `pagy_nav`/`pagy_plain_nav`, but customized for S
 
 This method is the same as the `pagy_plain_compact_nav_js`, but customized for the Semantic UI framework.
 
-See more details in the [compact navs](plain.md#compact-navs) documentation.
+See more details in the [compact_navs_js](plain.md#javascript-compact-navs)  documentation.
 
 ### pagy_semantic_nav_js(pagy, ...)
 
 This method is the same as the `pagy_plain_nav_js`, but customized for the Semantic UI framework.
 
-See more details in the [responsive navs](plain.md#responsive-navs) documentation.
+See more details in the [javascript navs](plain.md#javascript-navs) documentation.
 
 ## Templates
 

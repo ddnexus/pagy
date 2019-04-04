@@ -51,13 +51,13 @@ The `foundation_nav.*` templates produce the same output, and can be used as an 
 
 This method is the same as the `pagy_plain_compact_nav_js`, but customized for the Foundation framework.
 
-See more details in the [compact navs](plain.md#compact-navs) documentation.
+See more details in the [compact_navs_js](plain.md#javascript-compact-navs)  documentation.
 
 ### pagy_foundation_nav_js(pagy, ...)
 
 This method is the same as the `pagy_plain_nav_js`, but customized for the Foundation framework.
 
-See more details in the [responsive navs](plain.md#responsive-navs) documentation.
+See more details in the [javascript navs](plain.md#javascript-navs) documentation.
 
 ### Optional Template Files
 

@@ -32,29 +32,29 @@
 
 # Frontend Extras
 
-# Bootstrap extra: Add nav, responsive and compact helpers and templates for Bootstrap pagination
+# Bootstrap extra: Add nav, nav_js and compact_nav_js helpers and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap
 # require 'pagy/extras/bootstrap'
 
-# Bulma extra: Add nav, responsive and compact helpers and templates for Bulma pagination
+# Bulma extra: Add nav, nav_js and compact_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
 # require 'pagy/extras/bulma'
 
-# Foundation extra: Add nav, responsive and compact helpers and templates for Foundation pagination
+# Foundation extra: Add nav, nav_js and compact_nav_js helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/extras/foundation
 # require 'pagy/extras/foundation'
 
-# Materialize extra: Nav, responsive and compact helpers for Materialize pagination
+# Materialize extra: Add nav, nav_js and compact_nav_js helpers for Materialize pagination
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'
 
-# Plain extra: Add responsive and compact nav plain helpers
+# Plain extra: Add nav_js and compact_nav_js plain helpers
 # Notice: the other frontend extras add their own framework-styled versions,
 # so require this extra only if you need the plain unstyled version
 # See https://ddnexus.github.io/pagy/extras/plain
 # require 'pagy/extras/plain'
 
-# Semantic extra: Nav, responsive and compact helpers for Semantic UI pagination
+# Semantic extra: Add nav, nav_js and compact_nav_js helpers for Semantic UI pagination
 # See https://ddnexus.github.io/pagy/extras/semantic
 # require 'pagy/extras/semantic'
 
@@ -114,7 +114,7 @@
 
 # Rails
 
-# Rails: extras assets path required by the compact and responsive navs, and the items extra
+# Rails: extras assets path required by the nav_js and compact_nav_js, and the items_selector_js helpers
 # See https://ddnexus.github.io/pagy/extras#javascript
 # Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 

@@ -94,9 +94,9 @@ You need this section only if you are going to override a `pagy_nav*` helper or 
 
 **Important**: This method is not intended to be overridden, however you could just replace it in your overridden `pagy_nav*` helpers or templates with some generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_link_proc` is a lot faster than the rails `link_to` (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).
 
-**Warning**: This is a peculiar way to create page links and it works only for that purpose. It is not intended to be used for any other generic links to any URLs different than a page link.
+**Warning**: This is a peculiar way to create page links and it works only for that purpose. It is not intended to be used for generic links.
 
-This method returns a specialized proc that you call to produce the page links. The reason it is a 2 steps process instead of a single method call is performance. Indeed the method  calls the potentially expensive `pagy_url_for` only once and generates the proc, then calling the proc will just interpolates the strings passed to it.
+This method returns a specialized proc that you call to produce the page links. The reason it is a two steps process instead of a single method call is performance. Indeed the method calls the potentially expensive `pagy_url_for` only once and generates the proc, then calling the proc will just interpolates the strings passed to it.
 
 Here is how you should use it: in your helper or template call the method to get the proc (just once):
 

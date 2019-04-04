@@ -57,13 +57,13 @@ Here is an example:
 
 ![pagy-compact](../assets/images/pagy-compact-g.png)
 
-See more details in the [compact navs](plain.md#compact-navs) documentation.
+See more details in the [javascript compact navs](plain.md#javascript-compact-navs) documentation.
 
 ### pagy_bootstrap_nav_js(pagy, ...)
 
 This method is the same as the `pagy_plain_nav_js`, but customized for the Bootstrap framework.
 
-See more details in the [responsive navs](plain.md#responsive-navs) documentation.
+See more details in the [javascript navs](plain.md#javascript-navs) documentation.
 
 ### Optional Template Files
 
