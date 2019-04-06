@@ -43,21 +43,21 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 ### pagy_foundation_nav(pagy)
 
-This method is the same as the `pagy_nav`/`pagy_plain_nav`, but customized for Foundation.
+This method is the same as the `pagy_nav`, but customized for Foundation.
 
 The `foundation_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it.
 
 ### pagy_foundation_compact_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_compact_nav_js`, but customized for the Foundation framework.
+This method is the same as the `pagy_compact_nav_js`, but customized for the Foundation framework.
 
-See more details in the [compact_navs_js](plain.md#javascript-compact-navs)  documentation.
+See more details in the [compact_navs_js](navs.md#javascript-compact-navs)  documentation.
 
 ### pagy_foundation_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_nav_js`, but customized for the Foundation framework.
+This method is the same as the `pagy_nav_js`, but customized for the Foundation framework.
 
-See more details in the [javascript navs](plain.md#javascript-navs) documentation.
+See more details in the [javascript navs](navs.md#javascript-navs) documentation.
 
 ### Optional Template Files
 

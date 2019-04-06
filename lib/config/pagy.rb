@@ -48,19 +48,19 @@
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'
 
-# Plain extra: Add nav_js and compact_nav_js plain helpers
+# Navs extra: Add nav_js and compact_nav_js javascript helpers
 # Notice: the other frontend extras add their own framework-styled versions,
-# so require this extra only if you need the plain unstyled version
-# See https://ddnexus.github.io/pagy/extras/plain
-# require 'pagy/extras/plain'
+# so require this extra only if you need the unstyled version
+# See https://ddnexus.github.io/pagy/extras/navs
+# require 'pagy/extras/navs'
 
 # Semantic extra: Add nav, nav_js and compact_nav_js helpers for Semantic UI pagination
 # See https://ddnexus.github.io/pagy/extras/semantic
 # require 'pagy/extras/semantic'
 
 # Multi size var used by the *_nav_js helpers
-# See https://ddnexus.github.io/pagy/extras/plain#sizes
-# Pagy::VARS[:sizes] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }
+# See https://ddnexus.github.io/pagy/extras/navs#sizes
+# Pagy::VARS[:sizes] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
 
 
 # Feature Extras

@@ -36,23 +36,23 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 ### pagy_materialize_nav(pagy)
 
-This method is the same as the `pagy_nav`/`pagy_plain_nav`, but customized for Materialize.
+This method is the same as the `pagy_nav`, but customized for Materialize.
 
 ### pagy_materialize_compact_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_compact_nav_js`, but customized for the Materialize CSS framework.
+This method is the same as the `pagy_compact_nav_js`, but customized for the Materialize CSS framework.
 
 Here is an example:
 
 ![pagy-compact-materialize](../assets/images/pagy-compact-materialize-g.png)
 
-See more details in the [compact_navs_js](plain.md#javascript-compact-navs)  documentation.
+See more details in the [compact_navs_js](navs.md#javascript-compact-navs)  documentation.
 
 ### pagy_materialize_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_nav_js`, but customized for the Materialize CSS framework.
+This method is the same as the `pagy_nav_js`, but customized for the Materialize CSS framework.
 
-See more details in the [javascript navs](plain.md#javascript-navs) documentation.
+See more details in the [javascript navs](navs.md#javascript-navs) documentation.
 
 ## Templates
 

@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/plain
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/navs
 # encoding: utf-8
 # frozen_string_literal: true
 
@@ -7,11 +7,8 @@ require 'pagy/extras/shared'
 class Pagy
   module Frontend
 
-    # added alias for symmetry
-    alias :pagy_plain_nav :pagy_nav
-
-    # Plain js pagination: it returns an empty nav, plus the JSON needed for the javascript render
-    def pagy_plain_nav_js(pagy, id=pagy_id)
+    # Javascript pagination: it returns an empty nav, plus the JSON needed for the javascript render
+    def pagy_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
       tags = { 'before' => p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
                                   : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ),
@@ -20,15 +17,15 @@ class Pagy
                'gap'    => %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> ),
                'after'  => p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                                   : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>) }
-      %(<nav id="#{id}" class="pagy-plain-js-nav pagination" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
+      %(<nav id="#{id}" class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
     end
 
-    # Plain compact pagination: it returns the html with the series of links to the pages
+    # Javascript compact pagination: it returns the html with the series of links to the pages
     # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_plain_compact_nav_js(pagy, id=pagy_id)
+    def pagy_compact_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = %(<nav id="#{id}" class="pagy-plain-compact-nav pagination" role="navigation" aria-label="pager">) \
+      html = %(<nav id="#{id}" class="pagy-compact-nav-js pagination" role="navigation" aria-label="pager">) \
              + link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )

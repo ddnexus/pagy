@@ -1,11 +1,11 @@
 ---
-title: Plain
+title: Navs
 ---
-# Plain Extra
+# Navs Extra
 
-This extra adds a couple of nav helpers to the `Pagy::Frontend` module: `pagy_plain_compact_nav_js` and `pagy_plain_nav_js`. It also adds the `:pagy_plain_nav` alias (pointing to the `:pagy_nav` for naming consistency). These are the plain/unstyled nav helpers for pagination.
+This extra adds a couple of javascript nav helpers to the `Pagy::Frontend` module: `pagy_compact_nav_js` and `pagy_nav_js`. These are the unstyled nav helpers for pagination.
 
-Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](foundation.md), [materialize](materialize.md), [semantic](semantic.md)) provide framework-styled versions of the same `nav`, `responsive` and `compact` helpers, so you may not need this extra if you use one of those.
+Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](foundation.md), [materialize](materialize.md), [semantic](semantic.md)) provide framework-styled versions of the same `nav`, `nav_js` and `compact_nav_js` helpers, so you may not need this extra if you use one of those.
 
 ## Synopsis
 
@@ -14,14 +14,14 @@ See [extras](../extras.md) for general usage info.
 In the `pagy.rb` initializer:
 
 ```ruby
-require 'pagy/extras/plain'
+require 'pagy/extras/navs'
 ```
 
 Configure [javascript](../extras.md#javascript).
 
 ## Files
 
-- [plain.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/plain.rb)
+- [navs.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/navs.rb)
 
 # Javascript Compact Navs
 
@@ -34,7 +34,7 @@ It is especially useful for small size screens, but it is used also with wide la
 Use the `*_compact_nav_js helpers in any view:
 
 ```erb
-<%== pagy_plain_compact_nav_js(@pagy) %>
+<%== pagy_compact_nav_js(@pagy) %>
 ```
 
 Other extras provide also the following framework-styled helpers:
@@ -49,7 +49,7 @@ Other extras provide also the following framework-styled helpers:
 
 ## Methods
 
-### pagy_plain_compact_nav_js(pagy, ...)
+### pagy_compact_nav_js(pagy, ...)
 
 Renders a compact navigation with a style similar to the `pagy_nav` helper.
 
@@ -75,7 +75,7 @@ Pagy::VARS[:sizes] = { 0 => [1,0,0,1], 540 => [2,3,3,2], 720 => [3,4,4,3] }
 Use the `*_nav_js` helpers in any view:
 
 ```erb
-<%== pagy_plain_nav_js(@pagy) %>
+<%== pagy_nav_js(@pagy) %>
 ```
 
 Other extras provide also the following framework-styled helpers:
@@ -134,7 +134,7 @@ Here is what you should consider/ensure:
 
 ## Methods
 
-### pagy_plain_nav_js(pagy, ...)
+### pagy_nav_js(pagy, ...)
 
 Similar to the `pagy_nav` helper, with added responsiveness.
 

@@ -112,7 +112,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 - [bulma](http://ddnexus.github.io/pagy/extras/bulma): Add nav, nav_js and compact_nav_js helpers for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
 - [foundation](http://ddnexus.github.io/pagy/extras/foundation): Add nav, nav_js and compact_nav_js helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
 - [materialize](http://ddnexus.github.io/pagy/extras/materialize): Add nav, nav_js and compact_nav_js helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
-- [plain](http://ddnexus.github.io/pagy/extras/plain): Add nav_js and compact_nav_js plain/unstyled helpers
+- [navs](http://ddnexus.github.io/pagy/extras/navs): Add nav_js and compact_nav_js plain/unstyled helpers
 - [semantic](http://ddnexus.github.io/pagy/extras/semantic): Add nav, nav_js and compact_nav_js helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
 
 ### Feature Extras
@@ -128,9 +128,9 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 Besides the classic pagination `nav`, Pagy offers a few ready to use alternatives like:
 
-- [compact nav](http://ddnexus.github.io/pagy/extras/plain#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![pagy-compact](docs/assets/images/pagy-compact-w.png)
+- [compact nav](http://ddnexus.github.io/pagy/extras/navs#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![pagy-compact](docs/assets/images/pagy-compact-w.png)
 
-- [nav_js](http://ddnexus.github.io/pagy/extras/plain#responsive-navs): A classic looking UI that fits the number of page links to the available width on the client-side:<br>![pagy-nav_js](docs/assets/images/pagy-nav_js-w.png)
+- [nav_js](http://ddnexus.github.io/pagy/extras/navs#responsive-navs): A classic looking UI that fits the number of page links to the available width on the client-side:<br>![pagy-nav_js](docs/assets/images/pagy-nav_js-w.png)
 
 ## Resources
 
