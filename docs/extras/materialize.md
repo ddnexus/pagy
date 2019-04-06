@@ -3,7 +3,7 @@ title: Materialize
 ---
 # Materialize Extra
 
-This extra adds nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
+This extra adds 3 nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
 
 ## Synopsis
 
@@ -32,21 +32,11 @@ Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_nav
 
 ## Methods
 
-This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by overriding them directly in your own view helper.
+This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by direct overriding in your own view helper.
 
 ### pagy_materialize_nav(pagy)
 
 This method is the same as the `pagy_nav`, but customized for Materialize.
-
-### pagy_materialize_compact_nav_js(pagy, ...)
-
-This method is the same as the `pagy_compact_nav_js`, but customized for the Materialize CSS framework.
-
-Here is an example:
-
-![pagy-compact-materialize](../assets/images/pagy-compact-materialize-g.png)
-
-See more details in the [compact_navs_js](navs.md#javascript-compact-navs)  documentation.
 
 ### pagy_materialize_nav_js(pagy, ...)
 
@@ -54,6 +44,12 @@ This method is the same as the `pagy_nav_js`, but customized for the Materialize
 
 See more details in the [javascript navs](navs.md#javascript-navs) documentation.
 
-## Templates
+### pagy_materialize_compact_nav_js(pagy, ...)
 
-There is currently no template for Materialize. Please, create a Pull Request or an Issue requesting it.
+This method is the same as the `pagy_compact_nav_js`, but customized for the Materialize CSS framework.
+
+Here is an example:
+
+![materialize_compact_nav_js](../assets/images/materialize_compact_nav_js-g.png)
+
+See more details in the [compact_navs_js](navs.md#javascript-compact-navs)  documentation.

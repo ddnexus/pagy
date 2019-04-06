@@ -5,7 +5,7 @@ title: Pagy::Frontend
 
 This module provides a few methods to deal with the navigation aspect of the pagination. You will usually include it in some helper module, making its methods available (and overridable) in your views. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb))_
 
-You can extend this module with a few more `nav_*` helpers _(see the [extras](../extras.md) doc for more details)_
+You can extend this module with a few more nav helpers _(see the [extras](../extras.md) doc for more details)_
 
 ## Synopsis
 
@@ -186,19 +186,19 @@ Here are a few examples that should cover all the possible confgurations:
 # IMPORTANT: use only one load statement
 
 # load the "de" built-in locale:
-Pagy::I18n.load(locale: 'de') 
+Pagy::I18n.load(locale: 'de')
 
 # load the "de" locale defined in the custom file at :filepath:
-Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml') 
+Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml')
 
 # load the "de", "en" and "es" built-in locales:
 # the first :locale will be used also as the default_locale
-Pagy::I18n.load({locale: 'de'}, 
-                {locale: 'en'}, 
+Pagy::I18n.load({locale: 'de'},
+                {locale: 'en'},
                 {locale: 'es'})
- 
+
 # load the "en" built-in locale, a custom "es" locale, and a totally custom locale complete with the :pluralize proc:
-Pagy::I18n.load({locale: 'en'}, 
+Pagy::I18n.load({locale: 'en'},
                 {locale: 'es', filepath: 'path/to/pagy-es.yml'},
                 {locale: 'xyz',  # not built-in
                  filepath: 'path/to/pagy-xyz.yml',

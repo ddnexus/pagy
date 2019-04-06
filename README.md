@@ -112,7 +112,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 - [bulma](http://ddnexus.github.io/pagy/extras/bulma): Add nav, nav_js and compact_nav_js helpers for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
 - [foundation](http://ddnexus.github.io/pagy/extras/foundation): Add nav, nav_js and compact_nav_js helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
 - [materialize](http://ddnexus.github.io/pagy/extras/materialize): Add nav, nav_js and compact_nav_js helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
-- [navs](http://ddnexus.github.io/pagy/extras/navs): Add nav_js and compact_nav_js plain/unstyled helpers
+- [navs](http://ddnexus.github.io/pagy/extras/navs): Add nav_js and compact_nav_js unstyled helpers
 - [semantic](http://ddnexus.github.io/pagy/extras/semantic): Add nav, nav_js and compact_nav_js helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
 
 ### Feature Extras
@@ -128,9 +128,9 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 Besides the classic pagination `nav`, Pagy offers a few ready to use alternatives like:
 
-- [compact nav](http://ddnexus.github.io/pagy/extras/navs#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![pagy-compact](docs/assets/images/pagy-compact-w.png)
+- [nav_js](http://ddnexus.github.io/pagy/extras/navs#javascript-navs): A classic looking UI that fits the number of page links to the available width on the client-side:<br>![bootstrap_nav_js](docs/assets/images/bootstrap_nav_js-w.png)
 
-- [nav_js](http://ddnexus.github.io/pagy/extras/navs#responsive-navs): A classic looking UI that fits the number of page links to the available width on the client-side:<br>![pagy-nav_js](docs/assets/images/pagy-nav_js-w.png)
+- [compact_nav_js](http://ddnexus.github.io/pagy/extras/navs#javascript-compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![bootstrap_compact_nav_js](docs/assets/images/bootstrap_compact_nav_js-w.png)
 
 ## Resources
 
@@ -138,7 +138,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 [![Objects Chart](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
 
-**Notice**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` in version 2.0
+**Notice**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
 
 ### Posts and Tutorials
 

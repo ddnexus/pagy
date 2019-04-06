@@ -23,54 +23,19 @@ Configure [javascript](../extras.md#javascript).
 
 - [navs.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/navs.rb)
 
-# Javascript Compact Navs
-
-The `*_compact_nav_js` navs (implemented by this extra or by other frontend extras) add an alternative pagination UI that combines the pagination feature with the navigation info in a single compact element.
-
-It is especially useful for small size screens, but it is used also with wide layouts since it is __even faster__ than the classic nav of links, because it needs to render just a minimal HTML string.
-
-## Synopsis
-
-Use the `*_compact_nav_js helpers in any view:
-
-```erb
-<%== pagy_compact_nav_js(@pagy) %>
-```
-
-Other extras provide also the following framework-styled helpers:
-
-```erb
-<%== pagy_bootstrap_compact_nav_js(@pagy) %>
-<%== pagy_bulma_compact_nav_js(@pagy) %>
-<%== pagy_foundation_compact_nav_js(@pagy) %>
-<%== pagy_materialize_compact_nav_js(@pagy) %>
-<%== pagy_semantic_compact_nav_js(@pagy) %>
-```
-
-## Methods
-
-### pagy_compact_nav_js(pagy, ...)
-
-Renders a compact navigation with a style similar to the `pagy_nav` helper.
-
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy_*_nav_js` or `pagy_*_compact_nav_js` call in the same line for the same page.
-
-**Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
-
 # Javascript Navs
 
-With the `*_nav_js` navs (implemented by this extra or by other frontend extras) the number of page links will adapt in real-time to the available window or container width.
+The `*_nav_js` (implemented by this extra or by other frontend extras) looks like a normal `*_nav` but has a a few added features:
+
+1. It is rendered on the client side
+2. It has optional added responsiveness
+3. It is a lot faster on modern environments _(see [Maximizing Performance](../how-to.md#maximizing-performance))_
 
 Here is a screenshot (from the `bootstrap`extra) of how the same pagination nav might look like by resizing the browser window/container at different widths:
 
-![pagy-nav_js](../assets/images/pagy-nav_js-g.png)
+![bootstrap_nav_js](../assets/images/bootstrap_nav_js-g.png)
 
 ## Synopsis
-
-```ruby
-# set your default custom sizes (width/size pairs) globally (it can be overridden per Pagy instance)
-Pagy::VARS[:sizes] = { 0 => [1,0,0,1], 540 => [2,3,3,2], 720 => [3,4,4,3] }
-```
 
 Use the `*_nav_js` helpers in any view:
 
@@ -96,7 +61,7 @@ Other extras provide also the following framework-styled helpers:
 
 ### :sizes
 
-The `:sizes` variable is an optional non-core variable used by the `*_nav_js` navs. If defined, it allows you to control multipe pagy `:size` at different widths; if `nil` the `*_nav_js` will behave exactly as a static `*_nav` respecting the single `:size` variable _(see also the [pagy variables](../api/pagy.md#other-variables) doc for details)_.
+The `:sizes` variable is an optional non-core variable used by the `*_nav_js` navs. If it's defined, it allows you to control multiple pagy `:size` at different widths. If it's `nil`, the `*_nav_js` will behave exactly as a static `*_nav` respecting the single `:size` variable _(see also the [pagy variables](../api/pagy.md#other-variables) doc for details)_.
 
 The `:sizes` variable is a hash where the keys are integers representing the widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
 
@@ -136,8 +101,47 @@ Here is what you should consider/ensure:
 
 ### pagy_nav_js(pagy, ...)
 
-Similar to the `pagy_nav` helper, with added responsiveness.
+Similar to the `pagy_nav` helper, but faster and rendered on the client side, with added responsiveness.
 
 It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy_*_nav_js` or `pagy_*_compact_nav_js` call in the same line for the same file.
+
+**Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
+
+
+# Javascript Compact Navs
+
+The `*_compact_nav_js` navs (implemented by this extra or by other frontend extras) adds an alternative pagination UI that combines the pagination feature with the navigation info in a single compact element.
+
+It is even faster and lighter than the `*_nav_js` on modern environments _(see [Maximizing Performance](../how-to.md#maximizing-performance))_, so it is recommended when youo care about efficiency and server load.
+
+Here is a screenshot (from the `bootstrap`extra):
+
+![bootstrap_compact_nav_js](../assets/images/bootstrap_compact_nav_js-g.png)
+
+## Synopsis
+
+Use the `*_compact_nav_js helpers in any view:
+
+```erb
+<%== pagy_compact_nav_js(@pagy) %>
+```
+
+Other extras provide also the following framework-styled helpers:
+
+```erb
+<%== pagy_bootstrap_compact_nav_js(@pagy) %>
+<%== pagy_bulma_compact_nav_js(@pagy) %>
+<%== pagy_foundation_compact_nav_js(@pagy) %>
+<%== pagy_materialize_compact_nav_js(@pagy) %>
+<%== pagy_semantic_compact_nav_js(@pagy) %>
+```
+
+## Methods
+
+### pagy_compact_nav_js(pagy, ...)
+
+Renders a compact navigation with a style similar to the `pagy_nav` helper.
+
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id assignation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy_*_nav_js` or `pagy_*_compact_nav_js` call in the same line for the same page.
 
 **Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
