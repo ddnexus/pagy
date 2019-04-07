@@ -23,7 +23,7 @@ class Pagy
       %(<div class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></div>)
     end
 
-    # Materialize js pagination: it returns an empty nav, plus the JSON needed for the javascript render
+    # Javascript pagination for materialize: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_materialize_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
       tags = { 'before' => ( '<ul class="pagination">' \
@@ -38,12 +38,11 @@ class Pagy
       %(<div id="#{id}" class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
     end
 
-    # Compact pagination for materialize: it returns the html with the series of links to the pages
-    # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_materialize_compact_nav_js(pagy, id=pagy_id)
+    # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    def pagy_materialize_combo_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = %(<div id="#{id}" class="pagy-materialize-compact-nav pagination" role="navigation" aria-label="pager">) \
+      html = %(<div id="#{id}" class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager">) \
            + link.call(MARKER, '', %(style="display: none;" ))
       (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
       html << %(<div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;">)
@@ -55,7 +54,7 @@ class Pagy
       html << %(<div class="pagy-compact-input btn-flat" style="cursor: default; padding: 0px">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</div>)
       html << (p_next ? %(<li class="waves-effect next" #{li_style}>#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
                : %(<li class="next disabled" #{li_style}><a href="#"><i class="material-icons">chevron_right</i></a></li>))
-      html << %(</ul></div>#{pagy_json_tag(:compact_nav, id, MARKER, p_page, !!defined?(TRIM))})
+      html << %(</ul></div>#{pagy_json_tag(:combo_nav, id, MARKER, p_page, !!defined?(TRIM))})
     end
 
   end

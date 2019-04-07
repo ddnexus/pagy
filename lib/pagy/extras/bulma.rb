@@ -26,7 +26,7 @@ class Pagy
       %(<nav class="pagy-bulma-nav pagination is-centered" role="navigation" aria-label="pagination">#{html}</nav>)
     end
 
-    # Bulma js pagination: it returns an empty nav, plus the JSON needed for the javascript render
+    # Javascript pagination for bulma: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_bulma_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
       tags = { 'before' => ( (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
@@ -41,12 +41,11 @@ class Pagy
       %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
     end
 
-    # Compact pagination for Bulma: it returns the html with the series of links to the pages
-    # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_bulma_compact_nav_js(pagy, id=pagy_id)
+    # Javascript combo pagination for Bulma: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    def pagy_bulma_combo_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = %(<nav id="#{id}" class="pagy-bulma-compact-nav" role="navigation" aria-label="pagination">) \
+      html = %(<nav id="#{id}" class="pagy-bulma-combo-nav-js" role="navigation" aria-label="pagination">) \
            + link.call(MARKER, '', 'style="display: none;"')
         (html << link.call(1, '', %(style="display: none;"))) if defined?(TRIM)
         html << %(<div class="field is-grouped is-grouped-centered" role="group">)
@@ -56,7 +55,7 @@ class Pagy
         html << %(<div class="pagy-compact-input control level is-mobile">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</div>)
         html << (p_next ? %(<p class="control">#{link.call(p_next, pagy_t('pagy.nav.next'), 'class="button" aria-label="next page"')}</p>)
                         : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.next')}</a></p>))
-      html << %(</div></nav>#{pagy_json_tag(:compact_nav, id, MARKER, p_page, !!defined?(TRIM))})
+      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, MARKER, p_page, !!defined?(TRIM))})
     end
 
   end

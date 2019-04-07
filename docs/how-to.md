@@ -7,7 +7,13 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 ## Quick Start
 
-Install and require the Pagy gem:
+If you use Bundler, add the gem in the Gemfile:
+
+```ruby
+gem 'pagy'
+```
+
+or if you don't, just install and require the Pagy gem:
 
 ```bash
 gem install pagy
@@ -15,12 +21,6 @@ gem install pagy
 
 ```ruby
 require 'pagy'
-```
-
-or if you use the Bundler, add the gem in the Gemfile:
-
-```ruby
-gem 'pagy'
 ```
 
 Include the backend in some controller:
@@ -327,12 +327,12 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 
 | Extra                                | Helpers                                                                              |
 |:-------------------------------------|:-------------------------------------------------------------------------------------|
-| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_compact_nav_js`, `pagy_bootstrap_nav_js`       |
-| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_compact_nav_js`, `pagy_bulma_nav_js`                   |
-| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_compact_nav_js`, `pagy_foundation_nav_js`    |
-| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_compact_nav_js`, `pagy_materialize_nav_js` |
-| [navs](extras/navs.md)               | `pagy_compact_nav_js`, `pagy_nav_js`                                                 |
-| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_compact_nav_js`, `pagy_semantic_nav_js`          |
+| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_combo_nav_js`, `pagy_bootstrap_nav_js`       |
+| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_combo_nav_js`, `pagy_bulma_nav_js`                   |
+| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_combo_nav_js`, `pagy_foundation_nav_js`    |
+| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_combo_nav_js`, `pagy_materialize_nav_js` |
+| [navs](extras/navs.md)               | `pagy_combo_nav_js`, `pagy_nav_js`                                                 |
+| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_combo_nav_js`, `pagy_semantic_nav_js`          |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -459,6 +459,25 @@ You can do so by setting the `:item_path` variable to the path to lookup in the 
     ```
 
 **Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
+
+## Maximizing Performance
+
+Here are some tips that will help chosing the best way to use Pagy, depending on your requirements and environment.
+
+### Consider the nav_js
+
+If you need the classic pagination bar with links and info, then you have a couple of choices, depending on your environment:
+
+- If you are on ruby 2.0+, add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript Navs](extras/navs.md#javascript-navs))_. That uses client side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more effcient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
+- If you are on jruby (any version) or ruby 1.9+, or you cannot install `oj` then use the `pagy*_nav` helper, which will give you the same performance of pagy v2.0 (33x faster; 26x lighter; 850x more efficient than Kaminari)
+
+### Consider the combo navs
+
+If you don't have strict requirements but still need to give the user total feedback and control on the page to display, then consider the `pagy*_combo_nav_js` helpers. That give you the best performance with nav info and UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ also saving real estate.
+
+#### Consider the countless extra
+
+If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically boost efficiency eliminating the nav info and almost all the UI. Take a look at the examples in the [support extra](extras/support.md).
 
 ## Handling Pagy::OverflowError exceptions
 

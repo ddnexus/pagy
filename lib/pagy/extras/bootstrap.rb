@@ -24,7 +24,7 @@ class Pagy
       %(<nav class="pagy-bootstrap-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></nav>)
     end
 
-    # Bootstrap js pagination: it returns an empty nav, plus the JSON needed for the javascript render
+    # Javascript pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_bootstrap_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next = pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next
       tags = { 'before' => p_prev ? %(<ul class="pagination"><li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
@@ -37,12 +37,11 @@ class Pagy
       %(<nav id="#{id}" class="pagy-bootstrap-nav-js pagination" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
     end
 
-    # Compact pagination for bootstrap: it returns the html with the series of links to the pages
-    # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_bootstrap_compact_nav_js(pagy, id=pagy_id)
+    # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    def pagy_bootstrap_combo_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = %(<nav id="#{id}" class="pagy-bootstrap-compact-nav pagination" role="navigation" aria-label="pager">) \
+      html = %(<nav id="#{id}" class="pagy-bootstrap-combo-nav-js pagination" role="navigation" aria-label="pager">) \
              + link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << %(<div class="btn-group" role="group">)
@@ -52,7 +51,7 @@ class Pagy
         html << %(<div class="pagy-compact-input btn btn-primary disabled" style="white-space: nowrap;">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</div>)
         html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'aria-label="next" class="next btn btn-primary"')
                         : %(<a class="next btn btn-primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
-      html << %(</div></nav>#{pagy_json_tag(:compact_nav, id, MARKER, p_page, !!defined?(TRIM))})
+      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, MARKER, p_page, !!defined?(TRIM))})
     end
 
   end

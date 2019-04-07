@@ -64,27 +64,27 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_foundation_compact_nav_js" do
+  describe "#pagy_foundation_combo_nav_js" do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)
-      html = frontend.pagy_foundation_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_foundation_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"test-id\" class=\"pagy-foundation-compact-nav\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a style=\"margin-bottom: 0px;\" class=\"prev button primary disabled\" href=\"#\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"1\" style=\"width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;\"> of 6</span><a href=\"/foo?page=2\"   rel=\"next\" style=\"margin-bottom: 0px;\" aria-label=\"next\" class=\"next button primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",1,false]</script>"
+        "<nav id=\"test-id\" class=\"pagy-foundation-combo-nav-js\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a style=\"margin-bottom: 0px;\" class=\"prev button primary disabled\" href=\"#\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"1\" style=\"width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;\"> of 6</span><a href=\"/foo?page=2\"   rel=\"next\" style=\"margin-bottom: 0px;\" aria-label=\"next\" class=\"next button primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",1,false]</script>"
     end
 
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 103, page: 3)
-      html = frontend.pagy_foundation_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_foundation_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"test-id\" class=\"pagy-foundation-compact-nav\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a href=\"/foo?page=2\"   rel=\"prev\" style=\"margin-bottom: 0px;\" aria-label=\"previous\" class=\"prev button primary\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"3\" style=\"width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;\"> of 6</span><a href=\"/foo?page=4\"   rel=\"next\" style=\"margin-bottom: 0px;\" aria-label=\"next\" class=\"next button primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",3,false]</script>"
+        "<nav id=\"test-id\" class=\"pagy-foundation-combo-nav-js\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a href=\"/foo?page=2\"   rel=\"prev\" style=\"margin-bottom: 0px;\" aria-label=\"previous\" class=\"prev button primary\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"3\" style=\"width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;\"> of 6</span><a href=\"/foo?page=4\"   rel=\"next\" style=\"margin-bottom: 0px;\" aria-label=\"next\" class=\"next button primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",3,false]</script>"
     end
 
     it 'renders last page' do
       pagy = Pagy.new(count: 103, page: 6)
-      html = frontend.pagy_foundation_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_foundation_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"test-id\" class=\"pagy-foundation-compact-nav\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a href=\"/foo?page=5\"   rel=\"prev\" style=\"margin-bottom: 0px;\" aria-label=\"previous\" class=\"prev button primary\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"6\" style=\"width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;\"> of 6</span><a style=\"margin-bottom: 0px;\" class=\"next button primary disabled\" href=\"#\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",6,false]</script>"
+        "<nav id=\"test-id\" class=\"pagy-foundation-combo-nav-js\" role=\"navigation\" aria-label=\"Pagination\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"input-group\"><a href=\"/foo?page=5\"   rel=\"prev\" style=\"margin-bottom: 0px;\" aria-label=\"previous\" class=\"prev button primary\">&lsaquo;&nbsp;Prev</a><span class=\"input-group-label\">Page <input class=\"input-group-field cell shrink\" type=\"number\" min=\"1\" max=\"6\" value=\"6\" style=\"width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;\"> of 6</span><a style=\"margin-bottom: 0px;\" class=\"next button primary disabled\" href=\"#\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",6,false]</script>"
     end
 
   end

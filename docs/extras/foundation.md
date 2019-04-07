@@ -28,7 +28,7 @@ or with a template:
 <%== render 'pagy/foundation_nav', locals: {pagy: @pagy} %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_foundation_nav_js` or `pagy_foundation_compact_nav_js`.
+Configure [javascript](../extras.md#javascript) if you use `pagy_foundation_nav_js` or `pagy_foundation_combo_nav_js`.
 
 ## Files
 
@@ -53,8 +53,8 @@ This method is the same as the `pagy_nav_js`, but customized for the Foundation 
 
 See more details in the [javascript navs](navs.md#javascript-navs) documentation.
 
-### pagy_foundation_compact_nav_js(pagy, ...)
+### pagy_foundation_combo_nav_js(pagy, ...)
 
-This method is the same as the `pagy_compact_nav_js`, but customized for the Foundation framework.
+This method is the same as the `pagy_combo_nav_js`, but customized for the Foundation framework.
 
-See more details in the [compact_navs_js](navs.md#javascript-compact-navs)  documentation.
+See more details in the [compact_navs_js](navs.md#javascript-combo-navs)  documentation.

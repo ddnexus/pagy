@@ -41,7 +41,7 @@ The available values for the `:overflow` variable are `:empty_page` and `:except
 
 ### Features without support
 
-The `pagy_info` and all the `*_compact_nav_js` helpers that use the total `count` are not supported.
+The `pagy_info` and all the `*_combo_nav_js` helpers that use the total `count` are not supported.
 
 ## How countless pagination works
 

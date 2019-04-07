@@ -21,7 +21,7 @@ with a fast helper:
 ```erb
 <%== pagy_bootstrap_nav(@pagy) %>
 <%== pagy_bootstrap_nav_js(@pagy) %>
-<%== pagy_bootstrap_compact_nav_js(@pagy) %>
+<%== pagy_bootstrap_combo_nav_js(@pagy) %>
 ```
 
 or with a template:
@@ -30,7 +30,7 @@ or with a template:
 <%== render 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_compact_nav_js`.
+Configure [javascript](../extras.md#javascript) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
 
 ## Files
 
@@ -57,12 +57,12 @@ This method is the same as the `pagy_nav_js`, but customized for the Bootstrap f
 See more details in the [javascript navs](navs.md#javascript-navs) documentation.
 
 
-### pagy_bootstrap_compact_nav_js(pagy, ...)
+### pagy_bootstrap_combo_nav_js(pagy, ...)
 
-This method is the same as the `pagy_compact_nav_js`, but customized for the Bootstrap framework.
+This method is the same as the `pagy_combo_nav_js`, but customized for the Bootstrap framework.
 
 Here is an example:
 
-![bootstrap_compact_nav_js](../assets/images/bootstrap_compact_nav_js-g.png)
+![bootstrap_combo_nav_js](../assets/images/bootstrap_combo_nav_js-g.png)
 
-See more details in the [javascript compact navs](navs.md#javascript-compact-navs) documentation.
+See more details in the [javascript compact navs](navs.md#javascript-combo-navs) documentation.

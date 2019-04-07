@@ -20,7 +20,7 @@ with a fast helper:
 
 ```erb
 <%== pagy_semantic_nav(@pagy) %>
-<%== pagy_semantic_compact_nav_js(@pagy) %>
+<%== pagy_semantic_combo_nav_js(@pagy) %>
 <%== pagy_semantic_nav_js(@pagy) %>
 ```
 
@@ -42,8 +42,8 @@ This method is the same as the `pagy_nav_js`, but customized for the Semantic UI
 
 See more details in the [javascript navs](navs.md#javascript-navs) documentation.
 
-### pagy_semantic_compact_nav_js(pagy, ...)
+### pagy_semantic_combo_nav_js(pagy, ...)
 
-This method is the same as the `pagy_compact_nav_js`, but customized for the Semantic UI framework.
+This method is the same as the `pagy_combo_nav_js`, but customized for the Semantic UI framework.
 
-See more details in the [compact_navs_js](navs.md#javascript-compact-navs)  documentation.
+See more details in the [compact_navs_js](navs.md#javascript-combo-navs)  documentation.

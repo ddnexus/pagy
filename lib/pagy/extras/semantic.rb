@@ -7,7 +7,7 @@ require 'pagy/extras/shared'
 class Pagy
   module Frontend
 
-    # Pagination for semantic-ui: it returns the html with the series of links to the pages
+    # Pagination for semantic: it returns the html with the series of links to the pages
     def pagy_semantic_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next
 
@@ -24,7 +24,7 @@ class Pagy
       %(<div class="pagy-semantic-nav ui pagination menu" aria-label="pager">#{html}</div>)
     end
 
-    # Semantic js pagination: it returns an empty nav, plus the JSON needed for the javascript render
+    # Javascript pagination for semantic: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_semantic_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next
       tags = { 'before' => (p_prev ? %(#{link.call(p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"')})
@@ -37,12 +37,11 @@ class Pagy
       %(<div id="#{id}" class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
     end
 
-    # Compact pagination for semantic: it returns the html with the series of links to the pages
-    # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_semantic_compact_nav_js(pagy, id=pagy_id)
+    # Combo pagination for semantic: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    def pagy_semantic_combo_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = %(<div id="#{id}" class="pagy-semantic-compact-nav ui compact menu" role="navigation" aria-label="pager">) \
+      html = %(<div id="#{id}" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" aria-label="pager">) \
            + link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
@@ -51,7 +50,7 @@ class Pagy
         html << %(<div class="pagy-compact-input item">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</div> )
         html << (p_next ? %(#{link.call p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"'})
                         : %(<div class="item disabled"><i class="right small chevron icon"></i></div>))
-      html << %(</div>#{pagy_json_tag(:compact_nav, id, MARKER, p_page, !!defined?(TRIM))})
+      html << %(</div>#{pagy_json_tag(:combo_nav, id, MARKER, p_page, !!defined?(TRIM))})
     end
 
   end

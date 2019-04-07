@@ -24,7 +24,7 @@ class Pagy
       %(<nav class="pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">#{html}</ul></nav>)
     end
 
-    # Foundation js pagination: it returns an empty nav, plus the JSON needed for the javascript render
+    # Javascript pagination for foundation: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_foundation_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
       tags = { 'before' => ( '<ul class="pagination">' \
@@ -39,12 +39,11 @@ class Pagy
       %(<nav id="#{id}" class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
     end
 
-    # Compact pagination for Foundation: it returns the html with the series of links to the pages
-    # we use a numeric input tag to set the page and the Pagy.compact javascript to navigate
-    def pagy_foundation_compact_nav_js(pagy, id=pagy_id)
+    # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    def pagy_foundation_combo_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = %(<nav id="#{id}" class="pagy-foundation-compact-nav" role="navigation" aria-label="Pagination">) \
+      html = %(<nav id="#{id}" class="pagy-foundation-combo-nav-js" role="navigation" aria-label="Pagination">) \
            + link.call(MARKER, '', %(style="display: none;" ))
         (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
         html << %(<div class="input-group">)
@@ -54,7 +53,7 @@ class Pagy
         html << %(<span class="input-group-label">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</span>)
         html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0px;" aria-label="next" class="next button primary"')
                         : %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
-      html << %(</div></nav>#{pagy_json_tag(:compact_nav, id, MARKER, p_page, !!defined?(TRIM))})
+      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, MARKER, p_page, !!defined?(TRIM))})
     end
 
   end

@@ -21,10 +21,10 @@ with a fast helper:
 ```erb
 <%== pagy_materialize_nav(@pagy) %>
 <%== pagy_materialize_nav_js(@pagy) %>
-<%== pagy_materialize_compact_nav_js(@pagy) %>
+<%== pagy_materialize_combo_nav_js(@pagy) %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_nav_js` or `pagy_materialize_compact_nav_js`.
+Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
 
 ## Files
 
@@ -44,12 +44,12 @@ This method is the same as the `pagy_nav_js`, but customized for the Materialize
 
 See more details in the [javascript navs](navs.md#javascript-navs) documentation.
 
-### pagy_materialize_compact_nav_js(pagy, ...)
+### pagy_materialize_combo_nav_js(pagy, ...)
 
-This method is the same as the `pagy_compact_nav_js`, but customized for the Materialize CSS framework.
+This method is the same as the `pagy_combo_nav_js`, but customized for the Materialize CSS framework.
 
 Here is an example:
 
-![materialize_compact_nav_js](../assets/images/materialize_compact_nav_js-g.png)
+![materialize_combo_nav_js](../assets/images/materialize_combo_nav_js-g.png)
 
-See more details in the [compact_navs_js](navs.md#javascript-compact-navs)  documentation.
+See more details in the [compact_navs_js](navs.md#javascript-combo-navs)  documentation.

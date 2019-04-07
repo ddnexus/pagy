@@ -65,27 +65,27 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_bootstrap_compact_nav_js" do
+  describe "#pagy_bootstrap_combo_nav_js" do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)
-      html = frontend.pagy_bootstrap_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_bootstrap_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"test-id\" class=\"pagy-bootstrap-compact-nav pagination\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"btn-group\" role=\"group\"><a class=\"prev btn btn-primary disabled\" href=\"#\">&lsaquo;&nbsp;Prev</a><div class=\"pagy-compact-input btn btn-primary disabled\" style=\"white-space: nowrap;\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"1\" class=\"text-primary\" style=\"padding: 0; border: none; text-align: center; width: 2rem;\"> of 6</div><a href=\"/foo?page=2\"   rel=\"next\" aria-label=\"next\" class=\"next btn btn-primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",1,false]</script>"
+        "<nav id=\"test-id\" class=\"pagy-bootstrap-combo-nav-js pagination\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"btn-group\" role=\"group\"><a class=\"prev btn btn-primary disabled\" href=\"#\">&lsaquo;&nbsp;Prev</a><div class=\"pagy-compact-input btn btn-primary disabled\" style=\"white-space: nowrap;\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"1\" class=\"text-primary\" style=\"padding: 0; border: none; text-align: center; width: 2rem;\"> of 6</div><a href=\"/foo?page=2\"   rel=\"next\" aria-label=\"next\" class=\"next btn btn-primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",1,false]</script>"
     end
 
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 103, page: 3)
-      html = frontend.pagy_bootstrap_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_bootstrap_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"test-id\" class=\"pagy-bootstrap-compact-nav pagination\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"btn-group\" role=\"group\"><a href=\"/foo?page=2\"   rel=\"prev\" aria-label=\"previous\" class=\"prev btn btn-primary\">&lsaquo;&nbsp;Prev</a><div class=\"pagy-compact-input btn btn-primary disabled\" style=\"white-space: nowrap;\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"3\" class=\"text-primary\" style=\"padding: 0; border: none; text-align: center; width: 2rem;\"> of 6</div><a href=\"/foo?page=4\"   rel=\"next\" aria-label=\"next\" class=\"next btn btn-primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",3,false]</script>"
+        "<nav id=\"test-id\" class=\"pagy-bootstrap-combo-nav-js pagination\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"btn-group\" role=\"group\"><a href=\"/foo?page=2\"   rel=\"prev\" aria-label=\"previous\" class=\"prev btn btn-primary\">&lsaquo;&nbsp;Prev</a><div class=\"pagy-compact-input btn btn-primary disabled\" style=\"white-space: nowrap;\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"3\" class=\"text-primary\" style=\"padding: 0; border: none; text-align: center; width: 2rem;\"> of 6</div><a href=\"/foo?page=4\"   rel=\"next\" aria-label=\"next\" class=\"next btn btn-primary\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",3,false]</script>"
     end
 
     it 'renders last page' do
       pagy = Pagy.new(count: 103, page: 6)
-      html = frontend.pagy_bootstrap_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_bootstrap_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<nav id=\"test-id\" class=\"pagy-bootstrap-compact-nav pagination\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"btn-group\" role=\"group\"><a href=\"/foo?page=5\"   rel=\"prev\" aria-label=\"previous\" class=\"prev btn btn-primary\">&lsaquo;&nbsp;Prev</a><div class=\"pagy-compact-input btn btn-primary disabled\" style=\"white-space: nowrap;\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"6\" class=\"text-primary\" style=\"padding: 0; border: none; text-align: center; width: 2rem;\"> of 6</div><a class=\"next btn btn-primary disabled\" href=\"#\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",6,false]</script>"
+        "<nav id=\"test-id\" class=\"pagy-bootstrap-combo-nav-js pagination\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"   style=\"display: none;\" ></a><div class=\"btn-group\" role=\"group\"><a href=\"/foo?page=5\"   rel=\"prev\" aria-label=\"previous\" class=\"prev btn btn-primary\">&lsaquo;&nbsp;Prev</a><div class=\"pagy-compact-input btn btn-primary disabled\" style=\"white-space: nowrap;\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"6\" class=\"text-primary\" style=\"padding: 0; border: none; text-align: center; width: 2rem;\"> of 6</div><a class=\"next btn btn-primary disabled\" href=\"#\">Next&nbsp;&rsaquo;</a></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",6,false]</script>"
     end
 
   end

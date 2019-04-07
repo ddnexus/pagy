@@ -32,29 +32,29 @@
 
 # Frontend Extras
 
-# Bootstrap extra: Add nav, nav_js and compact_nav_js helpers and templates for Bootstrap pagination
+# Bootstrap extra: Add nav, nav_js and combo_nav_js helpers and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap
 # require 'pagy/extras/bootstrap'
 
-# Bulma extra: Add nav, nav_js and compact_nav_js helpers and templates for Bulma pagination
+# Bulma extra: Add nav, nav_js and combo_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
 # require 'pagy/extras/bulma'
 
-# Foundation extra: Add nav, nav_js and compact_nav_js helpers and templates for Foundation pagination
+# Foundation extra: Add nav, nav_js and combo_nav_js helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/extras/foundation
 # require 'pagy/extras/foundation'
 
-# Materialize extra: Add nav, nav_js and compact_nav_js helpers for Materialize pagination
+# Materialize extra: Add nav, nav_js and combo_nav_js helpers for Materialize pagination
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'
 
-# Navs extra: Add nav_js and compact_nav_js javascript helpers
+# Navs extra: Add nav_js and combo_nav_js javascript helpers
 # Notice: the other frontend extras add their own framework-styled versions,
 # so require this extra only if you need the unstyled version
 # See https://ddnexus.github.io/pagy/extras/navs
 # require 'pagy/extras/navs'
 
-# Semantic extra: Add nav, nav_js and compact_nav_js helpers for Semantic UI pagination
+# Semantic extra: Add nav, nav_js and combo_nav_js helpers for Semantic UI pagination
 # See https://ddnexus.github.io/pagy/extras/semantic
 # require 'pagy/extras/semantic'
 
@@ -114,7 +114,8 @@
 
 # Rails
 
-# Rails: extras assets path required by the nav_js and compact_nav_js, and the items_selector_js helpers
+# Rails: extras assets path required by the helpers that use javascript
+# (pagy_*_nav_js, pagy_*_combo_nav_js, and pagy_items_selector_js)
 # See https://ddnexus.github.io/pagy/extras#javascript
 # Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 

@@ -190,7 +190,7 @@
 ### Breaking Changes
 
 - I18n refactoring
-  - Compact helpers and item selectors have been refactored: you should update your overridden helpers accordingly
+  - Combo helpers and item selectors have been refactored: you should update your overridden helpers accordingly
   - The i18n structure has changed, update your custom i18n locale file
 
 ### Commits

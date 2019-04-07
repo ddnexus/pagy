@@ -65,27 +65,27 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_semantic_compact_nav_js" do
+  describe "#pagy_semantic_combo_nav_js" do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)
-      html = frontend.pagy_semantic_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_semantic_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<div id=\"test-id\" class=\"pagy-semantic-compact-nav ui compact menu\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"  class=\"item\" style=\"display: none;\" ></a><div class=\"item disabled\"><i class=\"left small chevron icon\"></i></div><div class=\"pagy-compact-input item\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"1\" style=\"padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem\"> of 6</div> <a href=\"/foo?page=2\"  class=\"item\" rel=\"next\" aria-label=\"next\"><i class=\"right small chevron icon\"></i></a></div><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",1,false]</script>"
+        "<div id=\"test-id\" class=\"pagy-semantic-combo-nav-js ui compact menu\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"  class=\"item\" style=\"display: none;\" ></a><div class=\"item disabled\"><i class=\"left small chevron icon\"></i></div><div class=\"pagy-compact-input item\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"1\" style=\"padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem\"> of 6</div> <a href=\"/foo?page=2\"  class=\"item\" rel=\"next\" aria-label=\"next\"><i class=\"right small chevron icon\"></i></a></div><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",1,false]</script>"
     end
 
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 103, page: 3)
-      html = frontend.pagy_semantic_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_semantic_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<div id=\"test-id\" class=\"pagy-semantic-compact-nav ui compact menu\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"  class=\"item\" style=\"display: none;\" ></a><a href=\"/foo?page=2\"  class=\"item\" rel=\"prev\" aria-label=\"previous\"><i class=\"left small chevron icon\"></i></a><div class=\"pagy-compact-input item\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"3\" style=\"padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem\"> of 6</div> <a href=\"/foo?page=4\"  class=\"item\" rel=\"next\" aria-label=\"next\"><i class=\"right small chevron icon\"></i></a></div><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",3,false]</script>"
+        "<div id=\"test-id\" class=\"pagy-semantic-combo-nav-js ui compact menu\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"  class=\"item\" style=\"display: none;\" ></a><a href=\"/foo?page=2\"  class=\"item\" rel=\"prev\" aria-label=\"previous\"><i class=\"left small chevron icon\"></i></a><div class=\"pagy-compact-input item\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"3\" style=\"padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem\"> of 6</div> <a href=\"/foo?page=4\"  class=\"item\" rel=\"next\" aria-label=\"next\"><i class=\"right small chevron icon\"></i></a></div><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",3,false]</script>"
     end
 
     it 'renders last page' do
       pagy = Pagy.new(count: 103, page: 6)
-      html = frontend.pagy_semantic_compact_nav_js(pagy, pagy_test_id)
+      html = frontend.pagy_semantic_combo_nav_js(pagy, pagy_test_id)
       html.must_equal \
-        "<div id=\"test-id\" class=\"pagy-semantic-compact-nav ui compact menu\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"  class=\"item\" style=\"display: none;\" ></a><a href=\"/foo?page=5\"  class=\"item\" rel=\"prev\" aria-label=\"previous\"><i class=\"left small chevron icon\"></i></a><div class=\"pagy-compact-input item\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"6\" style=\"padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem\"> of 6</div> <div class=\"item disabled\"><i class=\"right small chevron icon\"></i></div></div><script type=\"application/json\" class=\"pagy-json\">[\"compact_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",6,false]</script>"
+        "<div id=\"test-id\" class=\"pagy-semantic-combo-nav-js ui compact menu\" role=\"navigation\" aria-label=\"pager\"><a href=\"/foo?page=#{Pagy::Frontend::MARKER}\"  class=\"item\" style=\"display: none;\" ></a><a href=\"/foo?page=5\"  class=\"item\" rel=\"prev\" aria-label=\"previous\"><i class=\"left small chevron icon\"></i></a><div class=\"pagy-compact-input item\">Page <input type=\"number\" min=\"1\" max=\"6\" value=\"6\" style=\"padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem\"> of 6</div> <div class=\"item disabled\"><i class=\"right small chevron icon\"></i></div></div><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",6,false]</script>"
     end
 
   end
