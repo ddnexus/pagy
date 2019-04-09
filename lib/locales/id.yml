@@ -1,8 +1,8 @@
 id:
   pagy:
     nav:
-      prev: "&lsaquo;&nbsp;Balik"
-      next: "Lanjut&nbsp;&rsaquo;"
+      prev: "&lsaquo;&nbsp;Sebelumnya"
+      next: "Selanjutnya&nbsp;&rsaquo;"
       gap: "&hellip;"
     info:
       single_page:
