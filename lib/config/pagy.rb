@@ -1,7 +1,7 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-# Pagy initializer file (2.1.5)
+# Pagy initializer file (3.0.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -114,7 +114,7 @@
 # Rails
 
 # Rails: extras assets path required by the helpers that use javascript
-# (pagy_*_nav_js, pagy_*_combo_nav_js, and pagy_items_selector_js)
+# (pagy*_nav_js, pagy*_combo_nav_js, and pagy_items_selector_js)
 # See https://ddnexus.github.io/pagy/extras#javascript
 # Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
