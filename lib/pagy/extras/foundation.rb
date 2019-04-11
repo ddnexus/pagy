@@ -36,7 +36,7 @@ class Pagy
                'after'  => ( (p_next ? %(<li class="next">#{link.call(p_next, pagy_t('pagy.nav.next'), 'aria-label="next"')}</li>)
                                      : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>)) \
                            + '</ul>' ) }
-      %(<nav id="#{id}" class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
+      %(<nav id="#{id}" class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.sequels)})
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

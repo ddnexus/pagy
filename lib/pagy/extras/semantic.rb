@@ -34,7 +34,7 @@ class Pagy
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.nav.gap')}</div>),
                'after'  => (p_next ? %(#{link.call(p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"')})
                                    : %(<div class="item disabled"><i class="right small chevron icon"></i></div>)) }
-      %(<div id="#{id}" class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
+      %(<div id="#{id}" class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.sequels)})
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

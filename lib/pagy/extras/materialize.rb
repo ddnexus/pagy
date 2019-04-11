@@ -35,7 +35,7 @@ class Pagy
                'after'  => ( (p_next ? %(<li class="waves-effect next">#{link.call(p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"')}</li>)
                                      : %(<li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>)) \
                            + '</ul>' ) }
-      %(<div id="#{id}" class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
+      %(<div id="#{id}" class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.sequels)})
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

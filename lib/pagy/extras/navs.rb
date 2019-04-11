@@ -17,7 +17,7 @@ class Pagy
                'gap'    => %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> ),
                'after'  => p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                                   : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>) }
-      %(<nav id="#{id}" class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.multi_series)})
+      %(<nav id="#{id}" class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.sequels)})
     end
 
     # Javascript combo pagination: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

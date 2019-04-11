@@ -34,8 +34,8 @@ describe Pagy::Frontend do
       "<nav id=\"test-id\" class=\"pagy-nav-js pagination\" role=\"navigation\" aria-label=\"pager\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",{\"before\":\"<span class=\\\"page prev\\\"><a href=\\\"/foo?page=49\\\"   rel=\\\"prev\\\" aria-label=\\\"previous\\\">&lsaquo;&nbsp;Prev</a></span> \",\"link\":\"<span class=\\\"page\\\"><a href=\\\"/foo?page=#{Pagy::Frontend::MARKER}\\\"   >#{Pagy::Frontend::MARKER}</a></span> \",\"active\":\"<span class=\\\"page active\\\">50</span> \",\"gap\":\"<span class=\\\"page gap\\\">&hellip;</span> \",\"after\":\"<span class=\\\"page next disabled\\\">Next&nbsp;&rsaquo;</span>\"},{\"0\":[1,\"gap\",46,47,48,49,\"50\"]}]</script>"
     end
 
-    it 'renders with :sizes' do
-      pagy = Pagy.new(count: 1000, page: 20, sizes: {0 => [1,2,2,1], 500 => [2,3,3,2]})
+    it 'renders with :steps' do
+      pagy = Pagy.new(count: 1000, page: 20, steps: {0 => [1,2,2,1], 500 => [2,3,3,2]})
       html = frontend.pagy_nav_js(pagy, pagy_test_id)
       html.must_equal \
       "<nav id=\"test-id\" class=\"pagy-nav-js pagination\" role=\"navigation\" aria-label=\"pager\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",\"test-id\",\"#{Pagy::Frontend::MARKER}\",{\"before\":\"<span class=\\\"page prev\\\"><a href=\\\"/foo?page=19\\\"   rel=\\\"prev\\\" aria-label=\\\"previous\\\">&lsaquo;&nbsp;Prev</a></span> \",\"link\":\"<span class=\\\"page\\\"><a href=\\\"/foo?page=#{Pagy::Frontend::MARKER}\\\"   >#{Pagy::Frontend::MARKER}</a></span> \",\"active\":\"<span class=\\\"page active\\\">20</span> \",\"gap\":\"<span class=\\\"page gap\\\">&hellip;</span> \",\"after\":\"<span class=\\\"page next\\\"><a href=\\\"/foo?page=21\\\"   rel=\\\"next\\\" aria-label=\\\"next\\\">Next&nbsp;&rsaquo;</a></span>\"},{\"0\":[1,\"gap\",18,19,\"20\",21,22,\"gap\",50],\"500\":[1,2,\"gap\",17,18,19,\"20\",21,22,23,\"gap\",49,50]}]</script>"

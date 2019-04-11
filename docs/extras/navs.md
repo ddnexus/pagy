@@ -57,13 +57,13 @@ Other extras provide also the following framework-styled helpers:
 
 | Variable | Description                                                       | Default |
 |:---------|:------------------------------------------------------------------|:--------|
-| `:sizes` | Hash variable to control multipe pagy `:size` at different widths | `nil`   |
+| `:steps` | Hash variable to control multipe pagy `:size` at different widths | `false`   |
 
-### :sizes
+### :steps
 
-The `:sizes` variable is an optional non-core variable used by the `pagy*_nav_js` navs. If it's defined, it allows you to control multiple pagy `:size` at different widths. If it's `nil`, the `pagy*_nav_js` will behave exactly as a static `pagy*_nav` respecting the single `:size` variable, just faster and lighter.
+The `:steps` is an optional non-core variable used by the `pagy*_nav_js` navs. If it's `false`, the `pagy*_nav_js` will behave exactly as a static `pagy*_nav` respecting the single `:size` variable, just faster and lighter. If it's defined as a hash, it allows you to control multiple pagy `:size` at different widths.
 
-The `:sizes` variable is a hash where the keys are integers representing the widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
+You can set the `:steps` as a hash where the keys are integers representing the widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
 
 As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance.
 
@@ -71,31 +71,35 @@ For example:
 
 ```ruby
 # globally
-Pagy::VARS[:sizes] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }
+Pagy::VARS[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }
 
 # or for a single instance
-pagy, records = pagy(collection, sizes: { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] } )
+pagy, records = pagy(collection, steps: { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] } )
+
+# or use the :size as any static pagy*_nav
+pagy, records = pagy(collection, steps: false )
+
 ```
 
 The above statement means that from `0` to `540` pixels width, Pagy will use the `[2,3,3,2]` size, from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section).
 
-**IMPORTANT**: You can set any number of sizes with any arbitrary width/size. The only requirement is that the `:sizes` hash (when defined) must contain always the `0` width or an `ArgumentError` exception will be raises.
+**IMPORTANT**: You can set any number of steps with any arbitrary width/size. The only requirement is that the `:steps` hash must contain always the `0` width or an `ArgumentError` exception will be raises.
 
 #### Setting the right sizes
 
-Setting the widths and sizes can create a nice transition between sizes or some apparently erratic behavior.
+Setting the widths and sizes can create a nice transition between widths or some apparently erratic behavior.
 
 Here is what you should consider/ensure:
 
-1. The pagy size changes in discrete steps: each widht/size pair in your `:sizes` represents a step.
+1. The pagy size changes in discrete `:steps`, defined by the width/size pairs.
 
-2. The transition from one size to another depends on the width available to the pagy nav. That width is the _internal available width_ of its container (excluding eventual horizontal padding).
+2. The automatic transition from one size to another depends on the width available to the pagy nav. That width is the _internal available width_ of its container (excluding eventual horizontal padding).
 
-3. You should ensure that each pagy `:size` produces a nav that can be contained in its width.
+3. You should ensure that - for each step - each pagy `:size` produces a nav that can be contained in its width.
 
 4. You should ensure that the minimum internal width for the container div be equal (or a bit bigger) to the smaller positive width. (`540` pixels in our previous example).
 
-5. If the container width snaps to specific widths in discrete steps, you should sync the quantity and widths of the pagy `:sizes` to the quantity and internal widths for each discrete step of the container.
+5. If the container width snaps to specific widths in discrete steps, you should sync the quantity and widths of the pagy `:steps` to the quantity and internal widths for each discrete step of the container.
 
 ## Methods
 
@@ -106,7 +110,6 @@ Similar to the `pagy_nav` helper, but faster and rendered on the client side, wi
 It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy*_nav_js` or `pagy*_combo_nav_js` call in the same line for the same file.
 
 **Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
-
 
 # Javascript Combo Navs
 
