@@ -14,11 +14,12 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 
 ## New in 3.0+
 
-- Internal refactoring of nav helpers for improved performance and more intuitive API
+- Pagy 3.0+ is considerably faster, lighter and more efficient than 2.0+ on modern environments (see the charts below)
+- The javascript nav helpers have been refactored for improved performance and more intuitive API
+- The i18n has been refactored, the dictionary files are simpler and 100% compliant with the i18n gem
 - Added [Maximizing Performance](https://ddnexus.github.io/pagy/how-to#maximizing-performance) docs as a practical guide to choose the best options for your requirements and environment
-- Pagy 3.0+ is even faster and lighter than 2.0+ on modern environments (see the charts below)
 
-**Notice**: Updating from 2.0+ to 3.0+ requires only a few renaming. Check the [CHANGELOG](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for details.
+**Notice**: Updating from 2.0+ to 3.0+ requires a some search and replace and a little reorganization of your custom i18n dictionaries. Check the [CHANGELOG](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for details.
 
 **Suggestion**: If you are using any `pagy*_nav` helper, [consider to switch](https://ddnexus.github.io/pagy/how-to#consider-the-nav_js) to `pagy*_nav_js`, which gives you the same output with a substancial performance boost.
 
@@ -28,23 +29,23 @@ The best way to quickly get an idea about Pagy is comparing it to the other well
 
 The values shown in the charts below have been recorded while each gem was producing the exact same output in the exact same environment. _(see the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html))_
 
-### ~ 33x Faster!
+### ~ 40x Faster!
 
 [![IPS Chart](docs/assets/images/ips-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#ips-benchmark)
 
-### ~ 26x Lighter!
+### ~ 36x Lighter!
 
 [![Memory Chart](docs/assets/images/memory-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile)
 
-### ~ 25x Simpler!
+### ~ 35x Simpler!
 
 [![Objects Chart](docs/assets/images/objects-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile)
 
-### ~ 850x More Efficient!
+### ~ 1,410x More Efficient!
 
 [![Resource Consumption Chart](docs/assets/images/resource-consumption-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio)
 
-_Each dot in the chart represents the resources that Pagy consumes for one full rendering. The other gems consume hundreds of times as much for the same rendering._
+_Each dot in the visualization above represents the resources that Pagy consumes for one full rendering. The other gems consume hundreds of times as much for the same rendering._
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses each Kb of memory it allocates/consumes._
 
