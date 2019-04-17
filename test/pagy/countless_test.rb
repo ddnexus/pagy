@@ -4,8 +4,6 @@
 require_relative '../test_helper'
 require 'pagy/extras/countless'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
-
 describe Pagy::Countless do
 
   let(:backend) { TestController.new } # page = 3, items = 20

@@ -4,8 +4,6 @@
 require_relative '../../test_helper'
 require 'pagy/extras/semantic'
 
-SingleCov.covered!(uncovered: 1) unless ENV['SKIP_SINGLECOV']
-
 describe Pagy::Frontend do
 
   let(:frontend) { TestView.new }

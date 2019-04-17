@@ -4,8 +4,6 @@
 require_relative '../../test_helper'
 require 'pagy/extras/foundation'
 
-SingleCov.covered!(uncovered: 1) unless ENV['SKIP_SINGLECOV'] # undefined TRIM for compact helper, tested in trim_test
-
 describe Pagy::Frontend do
 
   let(:frontend) { TestView.new }

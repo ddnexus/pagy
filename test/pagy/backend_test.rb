@@ -3,8 +3,6 @@
 
 require_relative '../test_helper'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
-
 describe Pagy::Backend do
 
   let(:backend) { TestController.new }

@@ -5,7 +5,7 @@ require_relative '../../test_helper'
 require 'i18n'
 require 'pagy/extras/i18n'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
+SimpleCov.command_name 'i18n' if ENV['RUN_SIMPLECOV']
 
 describe Pagy::Frontend do
 

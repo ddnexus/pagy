@@ -7,7 +7,7 @@ require_relative '../../test_helper/elasticsearch_rails'
 require_relative '../../test_helper/searchkick'
 require 'pagy/extras/items'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
+SimpleCov.command_name 'items' if ENV['RUN_SIMPLECOV']
 
 describe Pagy::Backend do
 

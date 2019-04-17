@@ -5,7 +5,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/navs'
 require 'pagy/extras/trim'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
+SimpleCov.command_name 'trim' if ENV['RUN_SIMPLECOV']
 
 describe Pagy::Frontend do
 

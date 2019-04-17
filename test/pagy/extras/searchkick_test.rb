@@ -5,7 +5,7 @@ require_relative '../../test_helper'
 require_relative '../../test_helper/searchkick'
 require 'pagy/extras/overflow'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
+SimpleCov.command_name 'elasticsearch' if ENV['RUN_SIMPLECOV']
 
 describe Pagy::Search do
 

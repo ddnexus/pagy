@@ -5,7 +5,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/support'
 require 'pagy/countless'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
+SimpleCov.command_name 'support' if ENV['RUN_SIMPLECOV']
 
 describe Pagy::Frontend do
 
