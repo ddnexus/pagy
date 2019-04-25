@@ -1,0 +1,20 @@
+fr:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Précédent"
+      next: "Suivant&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Aucun %{item_name} trouvé"
+        one: "<b>1</b> %{item_name}"
+        other: "<b>tous les %{count}</b> %{item_name}"
+      multiple_pages: "%{item_name} <b>%{from} - %{to}</b> sur <b>%{count}</b> au total"
+      item_name:
+        zero: "résultat"
+        one: "résultat"
+        other: "résultats"
+    compact: "Page %{page_input} de %{pages}"
+    items:
+      one: "%{items_input} résultat par page"
+      other: "%{items_input} résultats par page"
