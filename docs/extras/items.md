@@ -77,12 +77,21 @@ This extra overrides the `pagy_countless_get_vars` method of the `Pagy::Backend`
 
 This extra overrides also the `pagy_url_for` method of the `Pagy::Frontend` module in order to add the `:items_param` param to the url of the links.
 
-### pagy_items_selector_js(pagy)
+### pagy_items_selector_js(pagy, ...)
 
 This helper provides an items selector UI, which allows the user to select any arbitrary number of items per page (below the `:max_items` number) in a numeric input field. It looks like:
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page</span>
 
-You can change/translate its text by editing the `pagy.items` value in the [dictionaray files](https://github.com/ddnexus/pagy/blob/master/lib/locales).
+or, if you use the `:i18n_key` variable you can get a custom/collection-specific output:
+
+<span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per page</span>
+
+_(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
 When the items number is changed with the selector, pagy will reload the pagination UI using the selected items per page. It will also request the _right_ page number calculated in order to contain the first item of the previously displayed page. That way the new displayed page will roughly show the same items in the collection before the items change.
+
+This method can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `*_js` call in the same line for the same file.
+
+**Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
+

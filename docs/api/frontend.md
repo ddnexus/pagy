@@ -54,17 +54,13 @@ This method provides the info about the content of the current pagination. For e
 
 Will produce something like:
 
-```HTML
 Displaying items <b>476-500</b> of <b>1000</b> in total
-```
 
-Or, if you provide the `:item_path` variable for the Product model, it will produce a model-specific output like:
+or, if you use the `:i18n_key` variable a custom/collection-specific output:
 
-```HTML
 Displaying Products <b>476-500</b> of <b>1000</b> in total
-```
 
-See also [Using the pagy_info helper](../how-to.md#using-the-pagy_info-helper).
+_(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
 ### pagy_url_for(page, pagy)
 
@@ -164,13 +160,15 @@ Pagy is i18n ready. That means that all its strings are stored in the dictionary
 
 **Notice**: a Pagy dictionary file is a YAML file containing a few entries used internally in the the UI by helpers and templates through the [pagy_t](#pagy_tpath-vars) method. The file follows the same structure of the standard locale files for the `i18n` gem.
 
+Pagy can consume i18n using its own recommended [internal implementation](#pagy-i18n-implementation) or using the [standard I18n gem](#using-the-standard-i18n-gem)
+
 ### Pagy I18n implementation
 
 The pagy internal i18n implementation is ~18x faster and uses ~10x less memory than the standard `i18n` gem.
 
-Since Pagy version 2.0, you can use it for both single-language and multi-language apps. If (the rest of) your app is using i18n, it will work independently from the pagy i18n.
+Since Pagy version 2.0, you can use it for both single-language and multi-language apps. If (the rest of) your app is using i18n, it will continue to work independently from the pagy i18n.
 
-The pagy internal i18n is implemented around the `Pagy::I18n` constant hash which contains the locales data needed to pagy and your app. You may need to configure it in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
+The pagy internal i18n is implemented around the `Pagy::I18n` constant. You may need to configure it in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
 
 #### Pagy::I18n.load configuration
 
@@ -206,9 +204,9 @@ Pagy::I18n.load({locale: 'en'},
 ```
 
 **Notice**: You should use a custom `:pluralize` proc only for pluralization types not included in the built-in [p11n.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
- rules. In that case, please submit a PR with your dictionary file and plural rule. The `:pluralize` proc should receive the `count` as a single argument and should return the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the passed count).
+ rules. In that case, please submit a PR with your dictionary file and plural rule. The `:pluralize` proc should receive the `count` as a single argument and should return the plural type string (e.g. something like `'one'` or `'other'`, depending on the passed count).
 
-#### Set the request locale in multi-language apps
+#### Setting the request locale in multi-language apps
 
 When you configure multiple locales, you must also set the locale for each request. You usually do that in the application controller, by checking the `:locale` param. For example, in a rails app you should do something like:
 
@@ -235,17 +233,17 @@ en:
   activerecord:
     models:
       product:
-        zero: Products
         one: Product
         other: Products
       ...
 ```
 
-_(See also the [pagy_info method](#pagy_infopagy))_
+_(See also the [pagy_info method](#pagy_infopagy) and [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
+### Using the standard I18n gem
 
-### Using the I18n gem
+If you want to use the standard `i18n` gem in place of the pagy i18n implementation, you should use the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `i18n` gem.
 
-If - despite the disadvantages - you want to use the standard `i18n` gem in place of the pagy i18n implementation, you should use the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `i18n` gem. In that case you need only to require the extra in the initializer file with `require 'pagy/extras/i18n'` and everything will be handled by the `i18n` gem.
+In that case you need only to require the extra in the initializer file with `require 'pagy/extras/i18n'` and everything will be handled by the `i18n` gem.
 
  **Notice**: if you use the [i18n extra](../extras/i18n.md)/`i18n` gem, you don't need any of the above configurations.

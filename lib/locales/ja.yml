@@ -1,20 +1,20 @@
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
 ja:
   pagy:
+
+    item_name: "結果"
+
     nav:
       prev: "&lsaquo;&nbsp;前へ"
       next: "次へ&nbsp;&rsaquo;"
       gap: "&hellip;"
+
     info:
-      single_page:
-        zero: "見つかりませんでした"
-        one: "<b>1</b> 件の%{item_name}"
-        other: "<b>%{count}</b> 件の%{item_name}"
+      no_items: "見つかりませんでした"
+      single_page: "<b>%{count}</b> 件の%{item_name}"
       multiple_pages: "<b>%{count}</b> 件中 <b>%{from}-%{to}</b> 件目の%{item_name}を表示中"
-      item_name:
-        zero: "結果"
-        one: "結果"
-        other: "結果"
-    compact: "%{page_input} / %{pages} ページ"
-    items:
-      one: "%{items_input} 件ずつ表示"
-      other: "%{items_input} 件ずつ表示"
+
+    combo_nav_js: "%{page_input} / %{pages} ページ"
+
+    items_selector_js: "%{items_input} 件ずつ表示"

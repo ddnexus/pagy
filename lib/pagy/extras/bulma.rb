@@ -52,7 +52,7 @@ class Pagy
         html << (p_prev ? %(<p class="control">#{link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="button" aria-label="previous page"')}</p>)
                         : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.prev')}</a></p>))
         input = %(<input class="input" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem; margin:0 0.3rem;">)
-        html << %(<div class="pagy-compact-input control level is-mobile">#{pagy_t('pagy.compact', page_input: input, count: p_page, pages: p_pages)}</div>)
+        html << %(<div class="pagy-combo-input control level is-mobile">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</div>)
         html << (p_next ? %(<p class="control">#{link.call(p_next, pagy_t('pagy.nav.next'), 'class="button" aria-label="next page"')}</p>)
                         : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.next')}</a></p>))
       html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, MARKER, p_page, !!defined?(TRIM))})

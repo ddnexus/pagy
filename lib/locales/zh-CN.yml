@@ -1,20 +1,20 @@
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
 zh-CN:
   pagy:
+
+    item_name: ""
+
     nav:
       prev: "&lsaquo;&nbsp;上一页"
       next: "下一页&nbsp;&rsaquo;"
       gap: "&hellip;"
+
     info:
-      single_page:
-        zero: "%{item_name}未找到"
-        one: "显示 <b>1</b> 项%{item_name}"
-        other: "显示<b>所有 %{count}</b> 项%{item_name}"
+      no_items: "项目未找到"
+      single_page: "显示<b>%{count}</b> 项%{item_name}"
       multiple_pages: "共 <b>%{count}</b> 项%{item_name}，显示 <b>%{from}-%{to}</b>"
-      item_name:
-        zero: "项目"
-        one: ""
-        other: ""
-    compact: "第 %{page_input} / %{pages} 页"
-    items:
-      one: "每页显示 %{items_input} 条"
-      other: "每页显示 %{items_input} 条"
+
+    combo_nav_js: "第 %{page_input} / %{pages} 页"
+
+    items_selector_js: "每页显示 %{items_input} 条%"

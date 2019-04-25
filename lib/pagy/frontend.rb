@@ -47,11 +47,12 @@ class Pagy
       %(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">#{html}</nav>)
     end
 
-    # Return examples: "Displaying items 41-60 of 324 in total"  or "Displaying Products 41-60 of 324 in total"
+    # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy)
-      name = pagy_t(pagy.vars[:item_path], count: pagy.count)
-      path = pagy.pages == 1 ? 'pagy.info.single_page' : 'pagy.info.multiple_pages'
-      pagy_t(path, item_name: name, count: pagy.count, from: pagy.from, to: pagy.to)
+      path = if (count = pagy.count) == 0 ; 'pagy.info.no_items'
+             else pagy.pages == 1 ? 'pagy.info.single_page' : 'pagy.info.multiple_pages'
+             end
+      pagy_t(path, item_name: pagy_t(pagy.vars[:i18n_key], count: count), count: count, from: pagy.from, to: pagy.to)
     end
 
     MARKER = "-pagy-#{'pagy'.hash}-"

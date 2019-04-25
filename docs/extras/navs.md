@@ -107,7 +107,7 @@ Here is what you should consider/ensure:
 
 Similar to the `pagy_nav` helper, but faster and rendered on the client side, with added responsiveness.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy*_nav_js` or `pagy*_combo_nav_js` call in the same line for the same file.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `*_js` call in the same line for the same file.
 
 **Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
 
@@ -145,6 +145,6 @@ Other extras provide also the following framework-styled helpers:
 
 Renders a javascript-powered compact navigation helper.
 
-It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `pagy*_nav_js` or `pagy*_combo_nav_js` call in the same line for the same page.
+It can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `*_js` call in the same line for the same page.
 
 **Notice**: passing an explicit id is also a bit faster than having pagy to generate one.

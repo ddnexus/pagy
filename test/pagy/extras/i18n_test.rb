@@ -15,9 +15,9 @@ describe Pagy::Frontend do
 
     it 'pluralizes' do
       frontend.pagy_t('pagy.nav.prev').must_equal "&lsaquo;&nbsp;Prev"
-      frontend.pagy_t('pagy.info.item_name', count: 0).must_equal 'items'
-      frontend.pagy_t('pagy.info.item_name', count: 1).must_equal  'item'
-      frontend.pagy_t('pagy.info.item_name', count: 10).must_equal 'items'
+      frontend.pagy_t('pagy.item_name', count: 0).must_equal 'items'
+      frontend.pagy_t('pagy.item_name', count: 1).must_equal  'item'
+      frontend.pagy_t('pagy.item_name', count: 10).must_equal 'items'
     end
 
     it 'handles missing paths' do
@@ -31,10 +31,19 @@ describe Pagy::Frontend do
     it 'renders info' do
       frontend.pagy_info(Pagy.new count: 0).must_equal "No items found"
       frontend.pagy_info(Pagy.new count: 1).must_equal "Displaying <b>1</b> item"
-      frontend.pagy_info(Pagy.new count: 13).must_equal "Displaying <b>all 13</b> items"
+      frontend.pagy_info(Pagy.new count: 13).must_equal "Displaying <b>13</b> items"
       frontend.pagy_info(Pagy.new count: 100, page: 3).must_equal "Displaying items <b>41-60</b> of <b>100</b> in total"
     end
 
+    it 'renders with existing i18n path' do
+      ::I18n.locale = 'en'
+      custom_dictionary = File.join(File.dirname(__FILE__), 'i18n.yml')
+      ::I18n.load_path += [custom_dictionary]
+      frontend.pagy_info(Pagy.new count: 0, i18n_key: 'activerecord.models.product').must_equal "No Products found"
+      frontend.pagy_info(Pagy.new count: 1, i18n_key: 'activerecord.models.product').must_equal "Displaying <b>1</b> Product"
+      frontend.pagy_info(Pagy.new count: 13, i18n_key: 'activerecord.models.product').must_equal "Displaying <b>13</b> Products"
+      frontend.pagy_info(Pagy.new count: 100, i18n_key: 'activerecord.models.product', page: 3).must_equal "Displaying Products <b>41-60</b> of <b>100</b> in total"
+    end
   end
 
 end

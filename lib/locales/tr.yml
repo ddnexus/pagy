@@ -1,20 +1,20 @@
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
 tr:
   pagy:
+
+    item_name: "kayıt"
+
     nav:
       prev: "&lsaquo;&nbsp;Önceki"
       next: "Sonraki&nbsp;&rsaquo;"
       gap: "&hellip;"
+
     info:
-      single_page:
-        zero: "Hiç %{item_name} bulunamadı."
-        one: "<b>1</b> %{item_name} gösteriliyor."
-        other: "Toplam <b>%{count}</b> %{item_name} gösteriliyor."
-      multiple_pages: "<b>%{count}</b> %{item_name} içerisinden <b>%{from}-%{to}</b> kadarı gösteriliyor."
-      item_name:
-        zero: "kayıt"
-        one: "kayıt"
-        other: "kayıt"
-    compact: "Sayfa %{page_input} / %{pages}"
-    items:
-      one: "Sayfada %{items_input} kayıt göster"
-      other: "Sayfada %{items_input} kayıt göster"
+      no_items: "Hiç %{item_name} bulunamadı"
+      single_page: "Toplam <b>%{count}</b> %{item_name} gösteriliyor"
+      multiple_pages: "<b>%{count}</b> %{item_name} içerisinden <b>%{from}-%{to}</b> kadarı gösteriliyor"
+
+    combo_nav_js: "Sayfa %{page_input} / %{pages}"
+
+    items_selector_js: "Sayfada %{items_input} %{item_name} göster"

@@ -12,7 +12,7 @@ class Pagy ; VERSION = '2.1.5'
   def self.root; @root ||= Pathname.new(__FILE__).dirname.freeze end
 
   # default vars
-  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', item_path:'pagy.info.item_name', cycle: false }
+  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', i18n_key:'pagy.item_name', cycle:false }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 

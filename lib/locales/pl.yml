@@ -1,0 +1,24 @@
+# :polish pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+pl:
+  pagy:
+
+    item_name:
+      one: "element"
+      few: "elementy"
+      many: "elementów"
+      other: "elementów"
+
+    nav:
+      prev: "&lsaquo;&nbsp;Poprzednia"
+      next: "Następna&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "Nie znaleziono %{item_name}"
+      single_page: "Wyświetlono <b>%{count}</b> %{item_name}"
+      multiple_pages: "Wyświetlono %{item_name} <b>%{from}-%{to}</b> z wszystkich <b>%{count}</b>"
+
+    combo_nav_js: "Strona %{page_input} z %{pages}"
+
+    items_selector_js: "Pokaż %{items_input} %{item_name} na stronie"
