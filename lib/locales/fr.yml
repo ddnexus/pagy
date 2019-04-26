@@ -1,0 +1,20 @@
+fr:
+  pagy:
+    nav:
+      prev: "&lsaquo;&nbsp;Précédent"
+      next: "Suivant&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      single_page:
+        zero: "Aucun %{item_name} trouvé"
+        one: "Affichage de <b>1</b> %{item_name}"
+        other: "Affichage de <b>tous les %{count}</b> %{item_name}"
+      multiple_pages: "Affichage des %{item_name} <b>%{from} à %{to}</b> sur <b>%{count}</b> au total"
+      item_name:
+        zero: "élements"
+        one: "élement"
+        other: "élements"
+    compact: "Page %{page_input} sur %{pages}"
+    items:
+      one: "Afficher %{items_input} élément par page"
+      other: "Afficher %{items_input} élements par page"
