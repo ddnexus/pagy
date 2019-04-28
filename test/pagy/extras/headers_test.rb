@@ -5,8 +5,6 @@ require_relative '../../test_helper'
 require 'pagy/extras/headers'
 require 'pagy/countless'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
-
 describe Pagy::Backend do
 
   describe "#pagy_headers" do

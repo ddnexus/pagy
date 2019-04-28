@@ -5,7 +5,7 @@ title: Pagy::Frontend
 
 This module provides a few methods to deal with the navigation aspect of the pagination. You will usually include it in some helper module, making its methods available (and overridable) in your views. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb))_
 
-You can extend this module with a few more `nav_*` helpers _(see the [extras](../extras.md) doc for more details)_
+You can extend this module with a few more nav helpers _(see the [extras](../extras.md) doc for more details)_
 
 ## Synopsis
 
@@ -54,17 +54,13 @@ This method provides the info about the content of the current pagination. For e
 
 Will produce something like:
 
-```HTML
 Displaying items <b>476-500</b> of <b>1000</b> in total
-```
 
-Or, if you provide the `:item_path` variable for the Product model, it will produce a model-specific output like:
+or, if you use the `:i18n_key` variable a custom/collection-specific output:
 
-```HTML
 Displaying Products <b>476-500</b> of <b>1000</b> in total
-```
 
-See also [Using the pagy_info helper](../how-to.md#using-the-pagy_info-helper).
+_(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
 ### pagy_url_for(page, pagy)
 
@@ -94,9 +90,9 @@ You need this section only if you are going to override a `pagy_nav*` helper or 
 
 **Important**: This method is not intended to be overridden, however you could just replace it in your overridden `pagy_nav*` helpers or templates with some generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_link_proc` is a lot faster than the rails `link_to` (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).
 
-**Warning**: This is a peculiar way to create page links and it works only for that purpose. It is not intended to be used for any other generic links to any URLs different than a page link.
+**Warning**: This is a peculiar way to create page links and it works only for that purpose. It is not intended to be used for generic links.
 
-This method returns a specialized proc that you call to produce the page links. The reason it is a 2 steps process instead of a single method call is performance. Indeed the method  calls the potentially expensive `pagy_url_for` only once and generates the proc, then calling the proc will just interpolates the strings passed to it.
+This method returns a specialized proc that you call to produce the page links. The reason it is a two steps process instead of a single method call is performance. Indeed the method calls the potentially expensive `pagy_url_for` only once and generates the proc, then calling the proc will just interpolates the strings passed to it.
 
 Here is how you should use it: in your helper or template call the method to get the proc (just once):
 
@@ -164,13 +160,15 @@ Pagy is i18n ready. That means that all its strings are stored in the dictionary
 
 **Notice**: a Pagy dictionary file is a YAML file containing a few entries used internally in the the UI by helpers and templates through the [pagy_t](#pagy_tpath-vars) method. The file follows the same structure of the standard locale files for the `i18n` gem.
 
+Pagy can consume i18n using its own recommended [internal implementation](#pagy-i18n-implementation) or using the [standard I18n gem](#using-the-standard-i18n-gem)
+
 ### Pagy I18n implementation
 
 The pagy internal i18n implementation is ~18x faster and uses ~10x less memory than the standard `i18n` gem.
 
-Since Pagy version 2.0, you can use it for both single-language and multi-language apps. If (the rest of) your app is using i18n, it will work independently from the pagy i18n.
+Since Pagy version 2.0, you can use it for both single-language and multi-language apps. If (the rest of) your app is using i18n, it will continue to work independently from the pagy i18n.
 
-The pagy internal i18n is implemented around the `Pagy::I18n` constant hash which contains the locales data needed to pagy and your app. You may need to configure it in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
+The pagy internal i18n is implemented around the `Pagy::I18n` constant. You may need to configure it in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
 
 #### Pagy::I18n.load configuration
 
@@ -186,19 +184,19 @@ Here are a few examples that should cover all the possible confgurations:
 # IMPORTANT: use only one load statement
 
 # load the "de" built-in locale:
-Pagy::I18n.load(locale: 'de') 
+Pagy::I18n.load(locale: 'de')
 
 # load the "de" locale defined in the custom file at :filepath:
-Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml') 
+Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml')
 
 # load the "de", "en" and "es" built-in locales:
 # the first :locale will be used also as the default_locale
-Pagy::I18n.load({locale: 'de'}, 
-                {locale: 'en'}, 
+Pagy::I18n.load({locale: 'de'},
+                {locale: 'en'},
                 {locale: 'es'})
- 
+
 # load the "en" built-in locale, a custom "es" locale, and a totally custom locale complete with the :pluralize proc:
-Pagy::I18n.load({locale: 'en'}, 
+Pagy::I18n.load({locale: 'en'},
                 {locale: 'es', filepath: 'path/to/pagy-es.yml'},
                 {locale: 'xyz',  # not built-in
                  filepath: 'path/to/pagy-xyz.yml',
@@ -206,9 +204,9 @@ Pagy::I18n.load({locale: 'en'},
 ```
 
 **Notice**: You should use a custom `:pluralize` proc only for pluralization types not included in the built-in [p11n.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
- rules. In that case, please submit a PR with your dictionary file and plural rule. The `:pluralize` proc should receive the `count` as a single argument and should return the plural type string (e.g. something like `'zero'`, `'one'` or `'other'`, depending on the passed count).
+ rules. In that case, please submit a PR with your dictionary file and plural rule. The `:pluralize` proc should receive the `count` as a single argument and should return the plural type string (e.g. something like `'one'` or `'other'`, depending on the passed count).
 
-#### Set the request locale in multi-language apps
+#### Setting the request locale in multi-language apps
 
 When you configure multiple locales, you must also set the locale for each request. You usually do that in the application controller, by checking the `:locale` param. For example, in a rails app you should do something like:
 
@@ -235,17 +233,17 @@ en:
   activerecord:
     models:
       product:
-        zero: Products
         one: Product
         other: Products
       ...
 ```
 
-_(See also the [pagy_info method](#pagy_infopagy))_
+_(See also the [pagy_info method](#pagy_infopagy) and [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
+### Using the standard I18n gem
 
-### Using the I18n gem
+If you want to use the standard `i18n` gem in place of the pagy i18n implementation, you should use the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `i18n` gem.
 
-If - despite the disadvantages - you want to use the standard `i18n` gem in place of the pagy i18n implementation, you should use the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `i18n` gem. In that case you need only to require the extra in the initializer file with `require 'pagy/extras/i18n'` and everything will be handled by the `i18n` gem.
+In that case you need only to require the extra in the initializer file with `require 'pagy/extras/i18n'` and everything will be handled by the `i18n` gem.
 
  **Notice**: if you use the [i18n extra](../extras/i18n.md)/`i18n` gem, you don't need any of the above configurations.

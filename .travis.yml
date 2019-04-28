@@ -2,7 +2,10 @@
 language: ruby
 cache: bundler
 gemfile: gemfiles/ruby-others
-script: bundle exec rake default
+script:
+  - bundle exec rake default
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 matrix:
   include:
@@ -10,54 +13,40 @@ matrix:
     # ruby
     - rvm: 1.9
       gemfile: gemfiles/ruby-1.9
-      env:
-        - SKIP_RUBOCOP=true
-        - SKIP_SINGLECOV=true
-
     - rvm: 2.0
       gemfile: gemfiles/ruby-2.0
-      env: SKIP_RUBOCOP=true
-
+      env:
+        - ENABLE_OJ=true
     - rvm: 2.1
       gemfile: gemfiles/ruby-2.0
-      env: SKIP_RUBOCOP=true
-
+      env:
+        - ENABLE_OJ=true
     - rvm: 2.2
       gemfile: gemfiles/ruby-2.0
-      env: SKIP_RUBOCOP=true
-
+      env:
+        - ENABLE_OJ=true
     - rvm: 2.3
-      env: SKIP_RUBOCOP=true
-
+      env:
+        - ENABLE_OJ=true
     - rvm: 2.4
-      env: SKIP_RUBOCOP=true
-
-    - rvm: 2.5    # with rubocop
-
+      env:
+        - ENABLE_OJ=true
+    - rvm: 2.5
+      env:
+        - ENABLE_OJ=true
     - rvm: 2.6
-      env: SKIP_RUBOCOP=true
-
+      gemfile: gemfiles/ruby-latest
+      env:
+        - ENABLE_OJ=true
+        - RUN_SIMPLECOV=true
+        - RUN_RUBOCOP=true
+        - RUN_CODECOV=true
 
     # jruby
     - rvm: jruby-1.7
       gemfile: gemfiles/ruby-1.9
-      env:
-        - SKIP_RUBOCOP=true
-        - SKIP_SINGLECOV=true
-
     - rvm: jruby-9.0
       gemfile: gemfiles/ruby-2.0
-      env:
-        - SKIP_RUBOCOP=true
-        - SKIP_SINGLECOV=true
-
     - rvm: jruby-9.1
-      env:
-        - SKIP_RUBOCOP=true
-        - SKIP_SINGLECOV=true
-
     - rvm: jruby-9.2
-      env:
-        - SKIP_RUBOCOP=true
-        - SKIP_SINGLECOV=true
 

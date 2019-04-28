@@ -3,7 +3,7 @@ title: Materialize
 ---
 # Materialize Extra
 
-This extra adds nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
+This extra adds 3 nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
 
 ## Synopsis
 
@@ -20,11 +20,11 @@ with a fast helper:
 
 ```erb
 <%== pagy_materialize_nav(@pagy) %>
-<%== pagy_materialize_responsive_nav(@pagy) %>
-<%== pagy_materialize_compact_nav(@pagy) %>
+<%== pagy_materialize_nav_js(@pagy) %>
+<%== pagy_materialize_combo_nav_js(@pagy) %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_responsive_nav` or `pagy_materialize_compact_nav`.
+Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
 
 ## Files
 
@@ -32,28 +32,24 @@ Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_res
 
 ## Methods
 
-This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by overriding them directly in your own view helper.
+This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by direct overriding in your own view helper.
 
 ### pagy_materialize_nav(pagy)
 
-This method is the same as the `pagy_nav`/`pagy_plain_nav`, but customized for Materialize.
+This method is the same as the `pagy_nav`, but customized for Materialize.
 
-### pagy_materialize_compact_nav(pagy, ...)
+### pagy_materialize_nav_js(pagy, ...)
 
-This method is the same as the `pagy_plain_compact_nav`, but customized for the Materialize CSS framework.
+This method is the same as the `pagy_nav_js`, but customized for the Materialize CSS framework.
+
+See more details in the [javascript navs](navs.md#javascript-navs) documentation.
+
+### pagy_materialize_combo_nav_js(pagy, ...)
+
+This method is the same as the `pagy_combo_nav_js`, but customized for the Materialize CSS framework.
 
 Here is an example:
 
-![pagy-compact-materialize](../assets/images/pagy-compact-materialize-g.png)
+![materialize_combo_nav_js](../assets/images/materialize_combo_nav_js-g.png)
 
-See more details in the [compact navs](plain.md#compact-navs) documentation.
-
-### pagy_materialize_responsive_nav(pagy, ...)
-
-This method is the same as the `pagy_plain_responsive_nav`, but customized for the Materialize CSS framework.
-
-See more details in the [responsive navs](plain.md#responsive-navs) documentation.
-
-## Templates
-
-There is currently no template for Materialize. Please, create a Pull Request or an Issue requesting it.
+See more details in the [compact_navs_js](navs.md#javascript-combo-navs)  documentation.

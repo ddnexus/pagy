@@ -7,7 +7,13 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 ## Quick Start
 
-Install and require the Pagy gem:
+If you use Bundler, add the gem in the Gemfile:
+
+```ruby
+gem 'pagy'
+```
+
+or if you don't, just install and require the Pagy gem:
 
 ```bash
 gem install pagy
@@ -15,12 +21,6 @@ gem install pagy
 
 ```ruby
 require 'pagy'
-```
-
-or if you use the Bundler, add the gem in the Gemfile:
-
-```ruby
-gem 'pagy'
 ```
 
 Include the backend in some controller:
@@ -226,6 +226,34 @@ end
 
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
+## Customizing the item name
+
+The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that by editing the values of the `"pagy.item_name"` i18n key in the [dictionaray files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
+
+Besides you can also (dynamically) set the `:i18n_key` variable to let Pagy know where to lookup the item name in some dictionary file (instead looking it up in the default `"pagy.item_name"` key).
+
+You have a few ways to do that:
+
+1. you can override the `pagy_get_vars` method in your controller, adding the dynamically set `:i18n_key`. For example with ActiveRecord (mostly useful with the [i18n extra](extras/i18n.md) or if you copy over the AR keys into the pagy dictionary):
+    ```ruby
+    def pagy_get_vars(collection, vars)
+      { count: ...,
+        page: ...,
+        i18n_key: "activerecord.models.#{collection.model_name.i18n_key}" }.merge!(vars)
+    end
+    ```
+
+2. you can set the `:i18n_key` variable, either globally using the `Pagy::VARS` hash or per instance with the `Pagy.new` method or with the `pagy` controller method:
+    ```ruby
+    # all the Pagy instances will have the default
+    Pagy::VARS[:i18n_key] = 'activerecord.models.product'
+
+    # or single Pagy instance
+    @pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product' )
+    ```
+
+**Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
+
 ## Paginate an Array
 
 Please, use the [array](extras/array.md) extra.
@@ -263,7 +291,7 @@ Assuming the `:items` default of `20`, you will get the pages with the right rec
 The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.) you may need to override it in your controller, usually by simply removing the `:all` argument passed to `count`:
 
 ```ruby
-#count = collection.count(:all) 
+#count = collection.count(:all)
 count = collection.count
 ```
 
@@ -325,14 +353,14 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 
 **Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
-| Extra                                | Helpers                                                                                   |
-|:-------------------------------------|:------------------------------------------------------------------------------------------|
-| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_compact_nav`, `pagy_bootstrap_responsive_nav`       |
-| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_compact_nav`, `pagy_bulma_responsive_nav`                   |
-| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_compact_nav`, `pagy_foundation_responsive_nav`    |
-| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_compact_nav`, `pagy_materialize_responsive_nav` |
-| [plain](extras/plain.md)             | `pagy_plain_nav`, `pagy_plain_compact_nav`, `pagy_plain_responsive_nav`                   |
-| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_compact_nav`, `pagy_semantic_responsive_nav`          |
+| Extra                                | Helpers                                                                              |
+|:-------------------------------------|:-------------------------------------------------------------------------------------|
+| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_combo_nav_js`, `pagy_bootstrap_nav_js`       |
+| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_combo_nav_js`, `pagy_bulma_nav_js`                   |
+| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_combo_nav_js`, `pagy_foundation_nav_js`    |
+| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_combo_nav_js`, `pagy_materialize_nav_js` |
+| [navs](extras/navs.md)               | `pagy_combo_nav_js`, `pagy_nav_js`                                                 |
+| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_combo_nav_js`, `pagy_semantic_nav_js`          |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -429,36 +457,24 @@ When the count caching is not an option, you may want to use the [countless extr
 
 Pagy implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API pagination: no need to use other dependencies. See the [headers extra](http://ddnexus.github.io/pagy/extras/headers) documentation and examples.
 
-## Using the pagy_info helper
+## Maximizing Performance
 
-The page info that you get by using the `pagy_info` helper (e.g. "Displaying items __476-500__ of __1000__ in total") is composed by 2 strings stored in the `pagy.yml` locale file:
+Here are some tips that will help chosing the best way to use Pagy, depending on your requirements and environment.
 
-- the text of the sentence: located at the i18n paths `"pagy.info.single_page"` and `"pagy.info.multiple_pages"` (depending on how many pages compose the pagination)
-- the generic item/model name: located at the i18n path`"pagy.info.item_name"`
+### Consider the nav_js
 
-While the text part can be always static, you may want the item/model name to be the actual model name, i.e. not just "items" but actually something like "Products" or something specific.
+If you need the classic pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
-You can do so by setting the `:item_path` variable to the path to lookup in the dictionary file, in one of the following 2 ways:
+- If you are on ruby 2.0+, add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript Navs](extras/navs.md#javascript-navs))_. That uses client side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more effcient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
+- If you are on jruby (any version) or ruby 1.9+, or you cannot install `oj` then use the `pagy*_nav` helper, which will give you the same performance of pagy v2.0 (33x faster; 26x lighter; 850x more efficient than Kaminari)
 
-1. by overriding the `pagy_get_vars` method in your controller (valid for all the Pagy instances) adding the `:item_path`. For example (with ActiveRecord):
-    ```ruby
-    def pagy_get_vars(collection, vars)
-      { count:     collection.count(:all),
-        page:      params[vars[:page_param]||Pagy::VARS[:page_param]],
-        item_path: "activerecord.models.#{collection.model_name.i18n_key}" }.merge!(vars)
-    end
-    ```
+### Consider the combo navs
 
-2. by passing the variable to the Pagy object, either using the `Pagy::VARS` hash or `Pagy.new` method or `pagy` controller method:
-    ```ruby
-    # all the Pagy instances will have the default
-    Pagy::VARS[:item_path] = 'activerecord.models.product'
+If you don't have strict requirements but still need to give the user total feedback and control on the page to display, then consider the `pagy*_combo_nav_js` helpers. That give you the best performance with nav info and UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ also saving real estate.
 
-    # or single Pagy instance
-    @pagy, @record = pagy(my_scope, item_path: 'activerecord.models.product' )
-    ```
+#### Consider the countless extra
 
-**Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`.
+If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically boost efficiency eliminating the nav info and almost all the UI. Take a look at the examples in the [support extra](extras/support.md).
 
 ## Handling Pagy::OverflowError exceptions
 

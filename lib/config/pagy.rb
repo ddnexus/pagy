@@ -1,7 +1,7 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-# Pagy initializer file (2.1.5)
+# Pagy initializer file (3.0.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -32,35 +32,35 @@
 
 # Frontend Extras
 
-# Bootstrap extra: Add nav, responsive and compact helpers and templates for Bootstrap pagination
+# Bootstrap extra: Add nav, nav_js and combo_nav_js helpers and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap
 # require 'pagy/extras/bootstrap'
 
-# Bulma extra: Add nav, responsive and compact helpers and templates for Bulma pagination
+# Bulma extra: Add nav, nav_js and combo_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
 # require 'pagy/extras/bulma'
 
-# Foundation extra: Add nav, responsive and compact helpers and templates for Foundation pagination
+# Foundation extra: Add nav, nav_js and combo_nav_js helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/extras/foundation
 # require 'pagy/extras/foundation'
 
-# Materialize extra: Nav, responsive and compact helpers for Materialize pagination
+# Materialize extra: Add nav, nav_js and combo_nav_js helpers for Materialize pagination
 # See https://ddnexus.github.io/pagy/extras/materialize
 # require 'pagy/extras/materialize'
 
-# Plain extra: Add responsive and compact nav plain helpers
+# Navs extra: Add nav_js and combo_nav_js javascript helpers
 # Notice: the other frontend extras add their own framework-styled versions,
-# so require this extra only if you need the plain unstyled version
-# See https://ddnexus.github.io/pagy/extras/plain
-# require 'pagy/extras/plain'
+# so require this extra only if you need the unstyled version
+# See https://ddnexus.github.io/pagy/extras/navs
+# require 'pagy/extras/navs'
 
-# Semantic extra: Nav, responsive and compact helpers for Semantic UI pagination
+# Semantic extra: Add nav, nav_js and combo_nav_js helpers for Semantic UI pagination
 # See https://ddnexus.github.io/pagy/extras/semantic
 # require 'pagy/extras/semantic'
 
-# Breakpoints var used by the responsive nav helpers
-# See https://ddnexus.github.io/pagy/extras/plain#breakpoints
-# Pagy::VARS[:breakpoints] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }
+# Multi size var used by the *_nav_js helpers
+# See https://ddnexus.github.io/pagy/extras/navs#steps
+# Pagy::VARS[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
 
 
 # Feature Extras
@@ -109,12 +109,12 @@
 # Pagy::VARS[:params]     = {}                              # default
 # Pagy::VARS[:anchor]     = '#anchor'                       # example
 # Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
-# Pagy::VARS[:item_path]  = 'activerecord.models.product'   # example
 
 
 # Rails
 
-# Rails: extras assets path required by the compact and responsive navs, and the items extra
+# Rails: extras assets path required by the helpers that use javascript
+# (pagy*_nav_js, pagy*_combo_nav_js, and pagy_items_selector_js)
 # See https://ddnexus.github.io/pagy/extras#javascript
 # Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
@@ -153,3 +153,6 @@
 # than the default pagy internal i18n (see above)
 # See https://ddnexus.github.io/pagy/extras/i18n
 # require 'pagy/extras/i18n'
+
+# Default i18n key
+# Pagy::VARS[:i18n_key] = 'pagy.item_name'   # default

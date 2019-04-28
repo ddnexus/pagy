@@ -4,7 +4,7 @@
 require_relative '../../test_helper'
 require 'pagy/extras/overflow'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
+SimpleCov.command_name 'overflow' if ENV['RUN_SIMPLECOV']
 
 describe Pagy do
 

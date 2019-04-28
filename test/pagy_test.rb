@@ -3,8 +3,6 @@
 
 require_relative 'test_helper'
 
-SingleCov.covered! unless ENV['SKIP_SINGLECOV']
-
 describe Pagy do
 
   let(:pagy) { Pagy.new count: 100, page: 4 }

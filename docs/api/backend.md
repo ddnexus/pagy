@@ -50,11 +50,11 @@ If you need to use multiple different types of collections in the same app or ac
 
 Sub-method called only by the `pagy` method, it returns the hash of variables used to initialize the Pagy object.
 
-Override it if you need to add or change some variable. For example you may want to add the `:item_path` or the `:item_name` to customize the `pagy_info` output, or even cache the `count`.
+Override it if you need to add or change some variable. For example you may want to add the `:i18n_key` in order to customize output _(see [Customizing the item name](../how-to.md#customizing-the-item-name))_, or even cache the `count`.
 
 _IMPORTANT_: `:count` and `:page` are the only 2 required Pagy core variables, so be careful not to remove them from the returned hash.
 
-See also the [How To](../how-to.md) wiki page for some usage example.
+See also the [How To](../how-to.md) page for some usage example.
 
 ### pagy_get_items(collection, pagy)
 
