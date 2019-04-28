@@ -3,12 +3,15 @@
 
 require 'bundler/setup'
 
-unless ENV['SKIP_SINGLECOV']
-  require 'single_cov'
-  SingleCov.setup(:minitest, branches: false)
+require 'simplecov' if ENV['RUN_SIMPLECOV']
+
+if ENV['RUN_CODECOV']
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+
 require 'pagy'
 require 'pagy/countless'
 require 'rack'

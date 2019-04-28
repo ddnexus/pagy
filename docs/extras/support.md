@@ -5,8 +5,6 @@ title: Support
 
 This extra adds support for features like countless or navless pagination, where you don't need the full link bar but only a simple `next` or `prev` link or no link at all (as for [auto-incremental](#auto-incremental)).
 
-It also provides a couple of helpers to setup you own custom javascript components.
-
 ## Synopsis
 
 See [extras](../extras.md) for general usage info.
@@ -138,10 +136,6 @@ You may want to combine it with something like:
 <%== pagy_next_link(@pagy, 'More...') %>
 ```
 
-### Custom UIs
-
-You can use the `pagy_prev_url` and `pagy_next_url` to build your own links or buttons. Besides, with the `pagy_apply_init_tag` and `pagy_serialized` helpers you can also setup you own custom javascript components.
-
 ## Methods
 
 ### pagy_prev_url(pagy)
@@ -163,35 +157,3 @@ Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `cou
 Returns the link for the next page. It is the same next link string which is part of the `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
-
-### pagy_serialized(pagy)
-
-Returns a hash with all the instance variables, series, prev_url and next_url of the `pagy` argument. Useful to use in some client-side javascript. It's the default payload of `pagy_apply_init_tag`.
-
-### pagy_apply_init_tag(pagy, function, payload=...)
-
-This is a multi-purpose helper that generates a JSON tag that will be loaded and exececuted by the `Pagy.init` javascript function at document load (see [Javascript](../extras.md#javascript)).
-
-**Notice**: This method is useful to create your custom reusable component. For simpler need you can just use some generic javascript.
-
-The method requires a pagy object, a javascript function name and accepts an optional payload (default to the hash returned by `pagy_serialized` method) that will get passed to the function. For example:
-
-```ryby
-# this uses the serialized pagy object as the default payload
-pagy_apply_init_tag(@pagy, :myInitFunction)
-
-# this uses a custom payload
-pagy_apply_init_tag(@pagy, :myOtherFunction, {a: 1, b: 2})
-```
-
-You should define your functions in the `PagyInit` namespace, as follow, using the payload as needed:
-
-```javascript
-PagyInit.myInitFunction = function(payload){
-  console.log(payload);
-  doSomethingWith(payload);
-  ...
-}
-```
-
-You can use it to initialize your custom pagination elements. For auto-incremental pagination, you may want to update some client side variable with the `pagy_next_url` at each page load.

@@ -1,20 +1,22 @@
+# :one_upto_two_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
 fr:
   pagy:
+
+    item_name:
+      one: "élement"
+      other: "élements"
+
     nav:
       prev: "&lsaquo;&nbsp;Précédent"
       next: "Suivant&nbsp;&rsaquo;"
       gap: "&hellip;"
+
     info:
-      single_page:
-        zero: "Aucun %{item_name} trouvé"
-        one: "<b>1</b> %{item_name}"
-        other: "<b>tous les %{count}</b> %{item_name}"
-      multiple_pages: "%{item_name} <b>%{from} - %{to}</b> sur <b>%{count}</b> au total"
-      item_name:
-        zero: "résultat"
-        one: "résultat"
-        other: "résultats"
-    compact: "Page %{page_input} de %{pages}"
-    items:
-      one: "%{items_input} résultat par page"
-      other: "%{items_input} résultats par page"
+      no_items: "Aucun %{item_name} trouvé"
+      single_page: "Affichage de <b>%{count}</b> %{item_name}"
+      multiple_pages: "Affichage des %{item_name} <b>%{from} à %{to}</b> sur <b>%{count}</b> au total"
+
+    combo_nav_js: "Page %{page_input} sur %{pages}"
+
+    items_selector_js: "Afficher %{items_input} %{item_name} par page"

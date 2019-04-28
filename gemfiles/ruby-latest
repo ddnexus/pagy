@@ -8,4 +8,10 @@ gem 'minitest',   '~> 5.0'
 gem 'rack',       '~> 2.0.6'
 gem 'i18n',       '~> 1.6.0'
 
-gem 'oj', require: false if ENV['ENABLE_OJ']
+gem 'oj', require: false
+
+gem 'rubocop'
+gem 'rubocop-performance', '~> 1.1.0'
+
+gem 'simplecov', :require => false
+gem 'codecov', :require => false

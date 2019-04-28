@@ -4,7 +4,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '2.1.5'
+class Pagy ; VERSION = '3.0.0'
 
   class OverflowError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
 
@@ -12,7 +12,7 @@ class Pagy ; VERSION = '2.1.5'
   def self.root; @root ||= Pathname.new(__FILE__).dirname.freeze end
 
   # default vars
-  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', item_path:'pagy.info.item_name', cycle: false }
+  VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', i18n_key:'pagy.item_name', cycle:false }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
@@ -41,7 +41,7 @@ class Pagy ; VERSION = '2.1.5'
       if    a<0 || a==b || a>@last                                        # skip out of range and duplicates
       elsif a+1 == b; series.push(a)                                      # no gap     -> no additions
       elsif a+2 == b; series.push(a, a+1)                                 # 1 page gap -> fill with missing page
-      else            series.push(a, :gap)                                # n page gap -> add :gap
+      else            series.push(a, :gap)                                # n page gap -> add gap
       end                                                                 # skip the end boundary (last+1)
     end                                                                   # shift the start boundary (0) and
     series.shift; series[series.index(@page)] = @page.to_s; series        # convert the current page to String

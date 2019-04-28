@@ -7,9 +7,13 @@ gem 'rake'
 gem 'minitest'
 gem 'rack'
 gem 'i18n'
-gem 'single_cov', '~> 1.3' unless ENV['SKIP_SINGLECOV']
-# include minor since it constantly adds new cops
-gem 'rubocop', '~> 0.63.1' unless ENV['SKIP_RUBOCOP']
+
+gem 'oj', require: false     # false is for testing with or without it
+
+gem 'rubocop'
+gem 'rubocop-performance', '~> 1.1.0'
+gem 'simplecov', require: false
+gem 'codecov', :require => false
 
 # development
 # gem 'slim'
@@ -21,4 +25,4 @@ gem 'rubocop', '~> 0.63.1' unless ENV['SKIP_RUBOCOP']
 # gem 'memory_profiler'
 
 # docs server
-gem "github-pages", '193', group: :jekyll_plugins
+gem "github-pages", '197', group: :jekyll_plugins

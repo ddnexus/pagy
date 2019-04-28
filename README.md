@@ -3,6 +3,7 @@
 [![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
 ![ruby](https://img.shields.io/badge/ruby-1.9+-ruby.svg?colorA=99004d&colorB=cc0066)
 ![jruby](https://img.shields.io/badge/jruby-1.7+-jruby.svg?colorA=99004d&colorB=cc0066)
+[![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 [![Build Status](https://img.shields.io/travis/ddnexus/pagy/master.svg?colorA=1f7a1f&colorB=2aa22a)](https://travis-ci.org/ddnexus/pagy/branches)
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)
 ![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)
@@ -11,13 +12,16 @@
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
-## Improvements in 2.0+
+## New in 3.0+
 
-- Lower ruby requirements (ruby 1.9+ || jruby 1.7+) make Pagy very convenient also on older systems
-- Added RFC-8288 compliant http response `headers` extra
-- The i18n internal implementation now includes full dynamic support for multi-language apps, it's ~18x faster and uses ~10x less memory than the i18n gem
-- The `searchkick` and `elasticsearch_rails` extras have been refactored with more and better options
-- Pagy 2.0+ is even faster and lighter than 1.0+ (see charts below)
+- Pagy 3.0+ is considerably faster, lighter and more efficient than 2.0+ on modern environments (see the charts below)
+- The javascript nav helpers have been refactored for improved performance and more intuitive API
+- The i18n has been refactored, the dictionary files are simpler and 100% compliant with the i18n gem
+- Added [Maximizing Performance](https://ddnexus.github.io/pagy/how-to#maximizing-performance) docs as a practical guide to choose the best options for your requirements and environment
+
+**Notice**: Updating from 2.0+ to 3.0+ requires a some search and replace and a little reorganization of your custom i18n dictionaries. Check the [CHANGELOG](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for details.
+
+**Suggestion**: If you are using any `pagy*_nav` helper, [consider to switch](https://ddnexus.github.io/pagy/how-to#consider-the-nav_js) to `pagy*_nav_js`, which gives you the same output with a substancial performance boost.
 
 ## Comparison with other gems
 
@@ -25,23 +29,23 @@ The best way to quickly get an idea about Pagy is comparing it to the other well
 
 The values shown in the charts below have been recorded while each gem was producing the exact same output in the exact same environment. _(see the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html))_
 
-### ~ 33x Faster!
+### ~ 40x Faster!
 
 [![IPS Chart](docs/assets/images/ips-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#ips-benchmark)
 
-### ~ 26x Lighter!
+### ~ 36x Lighter!
 
 [![Memory Chart](docs/assets/images/memory-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile)
 
-### ~ 25x Simpler!
+### ~ 35x Simpler!
 
 [![Objects Chart](docs/assets/images/objects-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile)
 
-### ~ 850x More Efficient!
+### ~ 1,410x More Efficient!
 
 [![Resource Consumption Chart](docs/assets/images/resource-consumption-chart.png)](https://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio)
 
-_Each dot in the chart represents the resources that Pagy consumes for one full rendering. The other gems consume hundreds of times as much for the same rendering._
+_Each dot in the visualization above represents the resources that Pagy consumes for one full rendering. The other gems consume hundreds of times as much for the same rendering._
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses each Kb of memory it allocates/consumes._
 
@@ -64,7 +68,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 
 ### Unlike the other gems
 
-- Pagy is very modular and does not load nor execute unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#global-configuration))_
+- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#global-configuration))_
 - It works even with collections/scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
 - It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
@@ -73,7 +77,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 
 ### Easy to use
 
-You can use Pagy in a quite familiar way:
+After installing and including Pagy _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_, you can use it in a quite familiar way:
 
 Paginate your collection in some controller:
 
@@ -93,8 +97,6 @@ Or - if you prefer - render the navigation links with a template:
 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
-_(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start) for more details)_
-
 ## Easy to customize
 
 Use the official extras, or write your own in just a few lines. Extras add special options and manage different components, behaviors, Frontend or Backend environments... usually by just requiring them:
@@ -108,12 +110,12 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 ### Frontend Extras
 
-- [bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap): Add nav, responsive and compact helpers for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)
-- [bulma](http://ddnexus.github.io/pagy/extras/bulma): Add nav, responsive and compact helpers for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
-- [foundation](http://ddnexus.github.io/pagy/extras/foundation): Add nav, responsive and compact helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
-- [materialize](http://ddnexus.github.io/pagy/extras/materialize): Add nav responsive and compact helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
-- [plain](http://ddnexus.github.io/pagy/extras/plain): Add responsive and compact plain/unstyled helpers
-- [semantic](http://ddnexus.github.io/pagy/extras/semantic): Add nav, responsive and compact helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
+- [bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap): Add nav, nav_js and combo_nav_js helpers for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)
+- [bulma](http://ddnexus.github.io/pagy/extras/bulma): Add nav, nav_js and combo_nav_js helpers for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
+- [foundation](http://ddnexus.github.io/pagy/extras/foundation): Add nav, nav_js and combo_nav_js helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
+- [materialize](http://ddnexus.github.io/pagy/extras/materialize): Add nav, nav_js and combo_nav_js helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
+- [navs](http://ddnexus.github.io/pagy/extras/navs): Add nav_js and combo_nav_js unstyled helpers
+- [semantic](http://ddnexus.github.io/pagy/extras/semantic): Add nav, nav_js and combo_nav_js helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
 
 ### Feature Extras
 
@@ -126,11 +128,11 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 ### Alternative Components
 
-Besides the classic pagination `nav`, Pagy offers a few ready to use alternatives like:
+Besides the classic pagination offered by the `pagy_nav` helpers, you can use a couple of more performant alternatives:
 
-- [compact nav](http://ddnexus.github.io/pagy/extras/plain#compact-navs): An alternative UI that combines the pagination feature with the navigation info in one compact element:<br>![pagy-compact](docs/assets/images/pagy-compact-w.png)
+- [pagy_nav_js](http://ddnexus.github.io/pagy/extras/navs#javascript-navs): A faster and lighter classic looking UI, rendered on the client side with optional responsiveness:<br>![bootstrap_nav_js](docs/assets/images/bootstrap_nav_js-w.png)
 
-- [responsive nav](http://ddnexus.github.io/pagy/extras/plain#responsive-navs): A classic looking UI that fits the number of page links to the available width on the client-side:<br>![pagy-responsive](docs/assets/images/pagy-responsive-w.png)
+- [pagy_combo_nav_js](http://ddnexus.github.io/pagy/extras/navs#javascript-combo-navs): The fastest and lighest alternative UI that combines navigation and pagination info in a single compact element:<br>![bootstrap_combo_nav_js](docs/assets/images/bootstrap_combo_nav_js-w.png)
 
 ## Resources
 
@@ -138,7 +140,7 @@ Besides the classic pagination `nav`, Pagy offers a few ready to use alternative
 
 [![Objects Chart](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
 
-**Notice**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` in version 2.0
+**Notice**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
 
 ### Posts and Tutorials
 
