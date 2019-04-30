@@ -57,7 +57,7 @@ end
 
 ```ruby
 Pagy::VARS[:items] = 10
-Pagy::Vars[:size]  = [5,4,4,5]
+Pagy::VARS[:size]  = [5,4,4,5]
 ```
 
 Remove all the old settings and uncomment and edit the new settings in the `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_.
