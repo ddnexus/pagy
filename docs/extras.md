@@ -92,16 +92,16 @@ If your app uses Webpacker, ensure that the webpacker `erb` loader is installed:
 bundle exec rails webpacker:install:erb
 ```
 
-Then create a `pagy.js.erb` to render the content of `pagy.js` and add the event listener into it:
+Then create a `pagy.js.erb` in order to render the content of `pagy.js` and add the event listener into it:
 
-```
-// app/javascript/src/javascripts/pagy.js.erb
+```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
 window.addEventListener("load", Pagy.init)
 ```
-and import it:
+
+and import it in `app/javascript/application.js`:
+
 ```js
-// app/javascript/application.js
 import '../src/javascripts/pagy.js.erb'
 ```
 
@@ -116,7 +116,9 @@ import '../src/javascripts/pagy.js.erb'
 
 ### In non-rails apps
 
-Ensure the `pagy/extras/javascripts/pagy.js` script gets served with the page and add an event listener like:
+Ensure the `pagy/extras/javascripts/pagy.js` script gets served with the page.
+
+Add an event listener like:
 
 ```js
 window.addEventListener('load', Pagy.init);

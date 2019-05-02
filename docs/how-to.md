@@ -80,7 +80,7 @@ Pagy works out of the box assuming that:
 Pagy can also work in any other scenario assuming that:
 
 - If your framework doesn't have a `params` method you may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
-- If the collection you are paginating doesn't respond to `offset` and `limit` you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection) or use a specific extra if available (e.g. `array`, `searchkick`, ...)
+- If the collection you are paginating doesn't respond to `offset` and `limit` you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection) or use a specific extra if available (e.g. `array`, `searchkick`, `elasticsearch_rais`)
 - If your framework doesn't have a `request` method you may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
 
 **Notice**: the total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module.
@@ -165,7 +165,7 @@ You can also override the `pagy_get_vars` if you need some special way to get th
 If you need to customize some HTML attribute of the page links, you may not need to override the `pagy_nav*` helper. It might be enough to pass some extra attribute string with the `:link_extra` variable. For example:
 
 ```ruby
-# for all the Pagy instance
+# for all the Pagy instances
 Pagy::VARS[:link_extra] = 'data-remote="true" class="my-class"'
 
 # for a single Pagy instance (if you use the Pagy::Backend#pagy method)
@@ -189,13 +189,13 @@ def pagy_get_params(params)
 end
 ```
 
-You can also use the `:param` and : `:anchor` non core variables to add arbitrary params to the URLs of the pages. For example:
+You can also use the `:param` and : `:anchor` variables to add arbitrary params to the URLs of the pages. For example:
 
 ```ruby
 @pagy, @records = pagy(some_scope, params: {custom: 'param'}, anchor: '#your-anchor')
 ```
 
-**IMPORTANT**: For performance reasons the `:anchor` string must include the `#`.
+**IMPORTANT**: For performance reasons the `:anchor` string must include the `"#"`.
 
 ## Customizing the URL
 
@@ -353,14 +353,14 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 
 **Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 
-| Extra                                | Helpers                                                                              |
-|:-------------------------------------|:-------------------------------------------------------------------------------------|
-| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_combo_nav_js`, `pagy_bootstrap_nav_js`       |
-| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_combo_nav_js`, `pagy_bulma_nav_js`                   |
-| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_combo_nav_js`, `pagy_foundation_nav_js`    |
-| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_combo_nav_js`, `pagy_materialize_nav_js` |
-| [navs](extras/navs.md)               | `pagy_combo_nav_js`, `pagy_nav_js`                                                 |
-| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_combo_nav_js`, `pagy_semantic_nav_js`          |
+| Extra                                | Helpers                                                                            |
+|:-------------------------------------|:-----------------------------------------------------------------------------------|
+| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_nav_js`, `pagy_bootstrap_combo_nav_js`       |
+| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_nav_js`, `pagy_bulma_combo_nav_js`                   |
+| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_nav_js`, `pagy_foundation_combo_nav_js`    |
+| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_nav_js`, `pagy_materialize_combo_nav_js` |
+| [navs](extras/navs.md)               | `pagy_nav_js`, `pagy_combo_nav_js`                                                                    |
+| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_nav_js`, `pagy_semantic_combo_nav_js`          |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -496,7 +496,7 @@ Here are a few options for manually handling the error in apps:
 
    private
 
-   def redirect_to_last_page(e)
-     redirect_to url_for(page: e.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{e.pagy.last} instead."
+   def redirect_to_last_page(exception)
+     redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
    end
    ```

@@ -20,8 +20,8 @@ with a fast helper:
 
 ```erb
 <%== pagy_semantic_nav(@pagy) %>
-<%== pagy_semantic_combo_nav_js(@pagy) %>
 <%== pagy_semantic_nav_js(@pagy) %>
+<%== pagy_semantic_combo_nav_js(@pagy) %>
 ```
 
 ## Files

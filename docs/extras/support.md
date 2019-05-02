@@ -17,7 +17,7 @@ require 'pagy/extras/support'
 
 ## Support for alternative pagination types and features
 
-Besides the classic navbar pagination, the `compact` and the `responsive` UI components, Pagy offers a few helpers to support a few alternative types of pagination and related features.
+Besides the classic `pagy*_nav` pagination, the `pagy*_nav_js` and the `pagy*_combo_nav_js` UI components, Pagy offers a few helpers to support a few alternative types of pagination and related features.
 
 ### Countless
 

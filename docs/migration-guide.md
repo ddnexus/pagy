@@ -60,7 +60,7 @@ Pagy::VARS[:items] = 10
 Pagy::VARS[:size]  = [5,4,4,5]
 ```
 
-Remove all the old settings and uncomment and edit the new settings in the `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_.
+Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_.
 
 #### Cleanup the Models
 
@@ -70,7 +70,7 @@ The other gems are careless about adding methods, scopes, and even configuration
 
 For example, you may want to search for keywords like `per_page`, `per` and such, which are actually configuration settings. They should either go into the `pagy.rb` initializer if they are global to the app, or into the specific `pagy` call in the controller if they are specific to an action.
 
-If the app used the `page` scope in some of its methods or scopes, that should be removed (including removing the argument used to pass the page number to the scope), leaving the rest of the scope in place. Search where the app uses the already paginated scope in the controllers, and use the scope in a regular `pagy` statement. For example:
+If the app used the `page` scope in some of its methods or scopes in some model, that should be removed (including removing the argument used to pass the page number to the method/scope), leaving the rest of the scope in place. Search where the app uses the already paginated scope in the controllers, and use the scope in a regular `pagy` statement. For example:
 
 ```ruby
 #@records = Product.paginated_scope(params[:page])
@@ -125,10 +125,8 @@ Please take a look at the topics in the [how-to](how-to.md) documentation: that 
 
 ### CSSs
 
-The css styling that you may have applied to the pagination elements may need some minor change. However if the app uses the pagination from bootstrap (or some other framework), the same CSSs should work seamlessly with the pagy nave helpers or with any of the bootstrap templates.
+The css styling that you may have applied to the pagination elements may need some minor change. However if the app uses the pagination from bootstrap (or some other framework), the same CSSs should work seamlessly with the pagy nav helpers or with any of the bootstrap templates.
 
 ### I18n
 
-If the app uses `I18n` you should follow the [I18n doc](api/frontend.md#i18n)
-
-See also [I18n](api/frontend.md#i18n).
+If the app uses `I18n` you should follow the [I18n doc](api/frontend.md#i18n).

@@ -90,8 +90,6 @@ You need this section only if you are going to override a `pagy_nav*` helper or 
 
 **Important**: This method is not intended to be overridden, however you could just replace it in your overridden `pagy_nav*` helpers or templates with some generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_link_proc` is a lot faster than the rails `link_to` (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).
 
-**Warning**: This is a peculiar way to create page links and it works only for that purpose. It is not intended to be used for generic links.
-
 This method returns a specialized proc that you call to produce the page links. The reason it is a two steps process instead of a single method call is performance. Indeed the method calls the potentially expensive `pagy_url_for` only once and generates the proc, then calling the proc will just interpolates the strings passed to it.
 
 Here is how you should use it: in your helper or template call the method to get the proc (just once):
@@ -190,7 +188,7 @@ Pagy::I18n.load(locale: 'de')
 Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml')
 
 # load the "de", "en" and "es" built-in locales:
-# the first :locale will be used also as the default_locale
+# the first :locale will be used also as the default locale
 Pagy::I18n.load({locale: 'de'},
                 {locale: 'en'},
                 {locale: 'es'})
@@ -222,7 +220,7 @@ That instance variable will be used by the [pagy_t](#pagy_tpath-vars) method inc
 
 When Pagy uses its own i18n implementation, it has only access to the strings in its own files and not in other `I18n` files used by the rest of the app.
 
-That means that if you use the `pagy_info` helper with the specific model names instead of the generic "items" string, you may need to add entries for the models in the pagy dictionary files. For example:
+That means that if you use the `pagy_info` or `pagy_items_selector` helpers with the specific model names instead of the generic "items" string, you may need to add entries for the models in the pagy dictionary files. For example:
 
 ```yaml
 en:

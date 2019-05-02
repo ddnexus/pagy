@@ -20,6 +20,8 @@ with a fast helper:
 
 ```erb
 <%== pagy_foundation_nav(@pagy) %>
+<%== pagy_foundation_nav_js(@pagy) %>
+<%== pagy_foundation_combo_nav_js(@pagy) %>
 ```
 
 or with a template:
