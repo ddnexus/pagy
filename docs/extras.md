@@ -39,7 +39,7 @@ Extras don't define any new module or class, they just re-open the `Pagy` class 
 
 ## Methods
 
-A few extras require the [pagy/extras/shared](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/shared.rb) file. It defines only 3 methods used internally, so you don't actually need to use them directly.
+A few extras require the [pagy/extras/shared](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/shared.rb) file. It defines only a few methods used internally, so you don't actually need to use them directly.
 
 **Notice**: All the other added methods are documented in the respective extras doc.
 

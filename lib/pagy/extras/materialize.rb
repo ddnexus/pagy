@@ -29,13 +29,13 @@ class Pagy
       tags = { 'before' => ( '<ul class="pagination">' \
                            + (p_prev  ? %(<li class="waves-effect prev">#{link.call(p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"')}</li>)
                                       : %(<li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>)) ),
-               'link'   => %(<li class="waves-effect">#{marker = link.call(MARKER)}</li>),
-               'active' => %(<li class="active">#{marker}</li>),
+               'link'   => %(<li class="waves-effect">#{mark = link.call(MARK)}</li>),
+               'active' => %(<li class="active">#{mark}</li>),
                'gap'    => %(<li class="gap disabled"><a href="#">#{pagy_t('pagy.nav.gap')}</a></li>),
                'after'  => ( (p_next ? %(<li class="waves-effect next">#{link.call(p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"')}</li>)
                                      : %(<li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>)) \
                            + '</ul>' ) }
-      %(<div id="#{id}" class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.sequels)})
+      %(<div id="#{id}" class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, tags, pagy.sequels)})
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -43,18 +43,16 @@ class Pagy
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
       html = %(<div id="#{id}" class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager">) \
-           + link.call(MARKER, '', %(style="display: none;" ))
-      (html << link.call(1, '', %(style="display: none;" ))) if defined?(TRIM)
-      html << %(<div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;">)
+           + %(<div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;">)
       html << '<ul class="pagination" style="margin: 0px;">'
       li_style = 'style="vertical-align: middle;"'
       html << (p_prev ? %(<li class="waves-effect prev" #{li_style}>#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
-               : %(<li class="prev disabled" #{li_style}><a href="#"><i class="material-icons">chevron_left</i></a></li>))
+                      : %(<li class="prev disabled" #{li_style}><a href="#"><i class="material-icons">chevron_left</i></a></li>))
       input = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 2px; border: none; border-radius: 2px; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
       html << %(<div class="pagy-combo-input btn-flat" style="cursor: default; padding: 0px">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</div>)
       html << (p_next ? %(<li class="waves-effect next" #{li_style}>#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
-               : %(<li class="next disabled" #{li_style}><a href="#"><i class="material-icons">chevron_right</i></a></li>))
-      html << %(</ul></div>#{pagy_json_tag(:combo_nav, id, MARKER, p_page, !!defined?(TRIM))})
+                      : %(<li class="next disabled" #{li_style}><a href="#"><i class="material-icons">chevron_right</i></a></li>))
+      html << %(</ul></div>#{pagy_json_tag(:combo_nav, id, p_page, pagy_links(link))})
     end
 
   end

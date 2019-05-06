@@ -9,6 +9,15 @@ class TestView
   end
 end
 
+class TestSimpleView
+  include Pagy::Frontend
+
+  def request
+    Rack::Request.new(Rack::MockRequest.env_for('http://example.com:3000/foo?'))
+  end
+end
+
+
 class TestViewOverride < TestView
   def pagy_get_params(params)
     params.except(:a).merge!(k: 'k')
