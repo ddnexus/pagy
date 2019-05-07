@@ -53,6 +53,8 @@ A few helpers use javascript, and they are clearly recognizable by the `js` suff
 
 If you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load and eventually on [AJAX-load](#using-ajax-with-javascript-enabled-helpers).
 
+**CAVEATS**: if you override any `*_js` helper, ensure to override/enforce the relative javascript function, even with a simple copy and paste. If the relation between the helper and the function changes in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
+
 ### Add the oj gem
 
 Although it's not a requirement, if you are on ruby 2.0+ (not jruby), you should add the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance.
