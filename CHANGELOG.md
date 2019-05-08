@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Version 3.1.0
+
+### Commits
+
+- [1732dee](http://github.com/ddnexus/pagy/commit/1732dee): refactoring of marker and hidden links in *_js helpers:
+  - MARKER renamed to MARK is simpler, static and hardcoded in pagy.js as well
+  - removed hidden links to bogus urls that were triggering crawlers to follow (#158)
+  - pagy_items_selector now works also with trim and in combination with other *nav_js helpers
+  - updated tests
+- [aa140e1](http://github.com/ddnexus/pagy/commit/aa140e1): doc improvement
+- [d0e4ba6](http://github.com/ddnexus/pagy/commit/d0e4ba6): a few fixes and doc improvements [ci skip]
+- [c1ddbd9](http://github.com/ddnexus/pagy/commit/c1ddbd9): Fix typo in docs example (#156)
+- [e0b2a2b](http://github.com/ddnexus/pagy/commit/e0b2a2b): removed duplication in LEGACY_CHANGELOG
+- [ecb6822](http://github.com/ddnexus/pagy/commit/ecb6822): fix typo in README
+
 ## Version 3.0.0
 
 ### Breaking Changes
