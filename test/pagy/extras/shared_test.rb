@@ -12,7 +12,7 @@ if ENV['ENABLE_OJ']
   # add tests for oj and pagy_id
   describe Pagy::Frontend do
 
-    let(:frontend) { TestView.new }
+    let(:frontend) { TestSimpleView.new }
 
     describe "#pagy_json_tag" do
 
@@ -36,6 +36,22 @@ if ENV['ENABLE_OJ']
 
     end
 
+    describe "#pagy_links" do
+
+      it 'should return only the "standard" link' do
+        pagy = Pagy.new(count: 100, page: 4)
+        frontend.instance_eval do
+          pagy_links(pagy_link_proc(pagy)).must_equal({"standard"=>"<a href=\"/foo?page=--pagy.page--\"   style=\"display: none;\"></a>"})
+        end
+        pagy = Pagy.new(count: 100, page: 4, page_param: 'p')
+        frontend.instance_eval do
+          pagy_links(pagy_link_proc(pagy)).must_equal({"standard"=>"<a href=\"/foo?p=--pagy.page--\"   style=\"display: none;\"></a>"})
+        end
+      end
+
+    end
+
+    # we need an intermediate call to get the right caller
     def call_pagy_id
       frontend.pagy_id
     end

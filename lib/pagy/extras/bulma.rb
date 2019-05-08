@@ -34,11 +34,11 @@ class Pagy
                            + (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
                                      : %(<a class="pagination-next" disabled>#{pagy_t('pagy.nav.next')}</a>)) \
                            + '<ul class="pagination-list">' ),
-               'link'   => %(<li>#{link.call(MARKER, MARKER, %(class="pagination-link" aria-label="goto page #{MARKER}"))}</li>),
-               'active' => %(<li>#{link.call(MARKER, MARKER, %(class="pagination-link is-current" aria-current="page" aria-label="page #{MARKER}"))}</li>),
+               'link'   => %(<li>#{link.call(MARK, MARK, %(class="pagination-link" aria-label="goto page #{MARK}"))}</li>),
+               'active' => %(<li>#{link.call(MARK, MARK, %(class="pagination-link is-current" aria-current="page" aria-label="page #{MARK}"))}</li>),
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t('pagy.nav.gap')}</span></li>),
                'after'  => '</ul>' }
-      %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>#{pagy_json_tag(:nav, id, MARKER, tags, pagy.sequels)})
+      %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels)})
     end
 
     # Javascript combo pagination for Bulma: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -46,16 +46,14 @@ class Pagy
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
       html = %(<nav id="#{id}" class="pagy-bulma-combo-nav-js" role="navigation" aria-label="pagination">) \
-           + link.call(MARKER, '', 'style="display: none;"')
-        (html << link.call(1, '', %(style="display: none;"))) if defined?(TRIM)
-        html << %(<div class="field is-grouped is-grouped-centered" role="group">)
-        html << (p_prev ? %(<p class="control">#{link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="button" aria-label="previous page"')}</p>)
-                        : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.prev')}</a></p>))
-        input = %(<input class="input" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem; margin:0 0.3rem;">)
-        html << %(<div class="pagy-combo-input control level is-mobile">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</div>)
-        html << (p_next ? %(<p class="control">#{link.call(p_next, pagy_t('pagy.nav.next'), 'class="button" aria-label="next page"')}</p>)
-                        : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.next')}</a></p>))
-      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, MARKER, p_page, !!defined?(TRIM))})
+           + %(<div class="field is-grouped is-grouped-centered" role="group">)
+      html << (p_prev ? %(<p class="control">#{link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="button" aria-label="previous page"')}</p>)
+                      : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.prev')}</a></p>))
+      input = %(<input class="input" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem; margin:0 0.3rem;">)
+      html << %(<div class="pagy-combo-input control level is-mobile">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</div>)
+      html << (p_next ? %(<p class="control">#{link.call(p_next, pagy_t('pagy.nav.next'), 'class="button" aria-label="next page"')}</p>)
+                      : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.next')}</a></p>))
+      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_links(link))})
     end
 
   end

@@ -39,7 +39,7 @@ Extras don't define any new module or class, they just re-open the `Pagy` class 
 
 ## Methods
 
-A few extras require the [pagy/extras/shared](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/shared.rb) file. It defines only 3 methods used internally, so you don't actually need to use them directly.
+A few extras require the [pagy/extras/shared](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/shared.rb) file. It defines only a few methods used internally, so you don't actually need to use them directly.
 
 **Notice**: All the other added methods are documented in the respective extras doc.
 
@@ -52,6 +52,8 @@ A few helpers use javascript, and they are clearly recognizable by the `js` suff
 - `pagy_items_selector_js`
 
 If you use any of them you should load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window load and eventually on [AJAX-load](#using-ajax-with-javascript-enabled-helpers).
+
+**CAVEATS**: if you override any `*_js` helper, ensure to override/enforce the relative javascript function, even with a simple copy and paste. If the relation between the helper and the function changes in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
 
 ### Add the oj gem
 

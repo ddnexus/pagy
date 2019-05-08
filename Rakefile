@@ -11,7 +11,16 @@ require "rake/testtask"
 
 Rake::TestTask.new(:test_main) do |t|
   t.libs += %w[test lib]
-  t.test_files = FileList.new.include("test/**/*_test.rb").exclude('test/**/i18n_test.rb', 'test/**/items_test.rb', 'test/**/overflow_test.rb', 'test/**/trim_test.rb', 'test/**/elasticsearch_rails_test.rb', 'test/**/searchkick_test.rb', 'test/**/support_test.rb', 'test/**/shared_test.rb')
+  t.test_files = FileList.new.include("test/**/*_test.rb")
+                             .exclude('test/**/i18n_test.rb',
+                                      'test/**/items_test.rb',
+                                      'test/**/overflow_test.rb',
+                                      'test/**/trim_test.rb',
+                                      'test/**/elasticsearch_rails_test.rb',
+                                      'test/**/searchkick_test.rb',
+                                      'test/**/support_test.rb',
+                                      'test/**/shared_test.rb',
+                                      'test/**/shared_combo_test.rb')
 end
 
 Rake::TestTask.new(:test_extra_i18n) do |t|
@@ -49,7 +58,21 @@ Rake::TestTask.new(:test_shared) do |t|
   t.test_files = FileList['test/**/shared_test.rb']
 end
 
-task :test => [:test_main, :test_extra_items, :test_extra_i18n, :test_extra_overflow, :test_extra_trim, :test_extra_elasticsearch, :test_support, :test_shared ]
+Rake::TestTask.new(:test_shared_combo) do |t|
+  t.libs += %w[test lib]
+  t.test_files = FileList['test/**/shared_combo_test.rb']
+end
+
+
+task :test => [ :test_main,
+                :test_extra_items,
+                :test_extra_i18n,
+                :test_extra_overflow,
+                :test_extra_trim,
+                :test_extra_elasticsearch,
+                :test_support,
+                :test_shared,
+                :test_shared_combo ]
 
 if ENV['RUN_RUBOCOP']
   require "rubocop/rake_task"

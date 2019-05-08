@@ -27,8 +27,8 @@ class Pagy
 
     include Helpers
 
-    # EMPTY + 'string' is almost as fast as +'string' but is also 1.9 compatible
-    EMPTY = ''
+    EMPTY = ''               # EMPTY + 'string' is almost as fast as +'string' but is also 1.9 compatible
+    MARK  = '--pagy.page--'  # string used for search and replace, hardcoded also in the pagy.js file
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)
@@ -55,16 +55,14 @@ class Pagy
       pagy_t(path, item_name: pagy_t(pagy.vars[:i18n_key], count: count), count: count, from: pagy.from, to: pagy.to)
     end
 
-    MARKER = "-pagy-#{'pagy'.hash}-"
-
     # Returns a performance optimized proc to generate the HTML links
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_link_proc(pagy, link_extra='')
       p_prev, p_next = pagy.prev, pagy.next
-      a, b = %(<a href="#{pagy_url_for(MARKER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(MARKER, 2)
+      a, b = %(<a href="#{pagy_url_for(MARK, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(MARK, 2)
       lambda {|n, text=n, extra=''| "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'
                                                     elsif n == p_next ; ' rel="next"'
-                                                    else                           '' end } #{extra}>#{text}</a>" }
+                                                    else                           '' end } #{extra}>#{text}</a>"}
     end
 
     # Similar to I18n.t: just ~18x faster using ~10x less memory

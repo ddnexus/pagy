@@ -23,8 +23,8 @@ class Pagy
     def pagy_headers_hash(pagy)
       countless = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
       rels      = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }; rels['last'] = pagy.last unless countless
-      url_str   = pagy_url_for(Frontend::MARKER, pagy, :url)
-      hash      = { 'Link' => Hash[rels.map{|rel, n|[rel, url_str.sub(Frontend::MARKER, n.to_s)] if n}.compact] }
+      url_str   = pagy_url_for(Frontend::MARK, pagy, :url)
+      hash      = { 'Link' => Hash[rels.map{|rel, n|[rel, url_str.sub(Frontend::MARK, n.to_s)] if n}.compact] }
       headers   = pagy.vars[:headers]
       hash[headers[:page]]  = pagy.page         if headers[:page]
       hash[headers[:items]] = pagy.vars[:items] if headers[:items]

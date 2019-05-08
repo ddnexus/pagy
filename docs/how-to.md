@@ -470,7 +470,7 @@ If you need the classic pagination bar with links and info, then you have a coup
 
 ### Consider the combo navs
 
-If you don't have strict requirements but still need to give the user total feedback and control on the page to display, then consider the `pagy*_combo_nav_js` helpers. That give you the best performance with nav info and UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ also saving real estate.
+If you don't have strict requirements but still need to give the user total feedback and control on the page to display, then consider the `pagy*_combo_nav_js` helpers (faster and lighter when the `oj` gem is available). That gives you the best performance with nav info and UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ also saving real estate.
 
 #### Consider the countless extra
 
