@@ -43,11 +43,9 @@ class Pagy
       "pagy-#{Digest::SHA1.hexdigest(caller(2..2)[0].split(':in')[0])}"
     end
 
-    # it return the links hash to used by pagy.js
-    def pagy_links(link)
-      links            = { 'standard' => link.call(MARK, '', 'style="display: none;"') }
-      links['trimmed'] = link.call(1, '', 'style="display: none;"') if defined?(TRIM)
-      links
+    # it returns the marked link to used by pagy.js
+    def pagy_marked_link(link)
+      link.call(MARK, '', 'style="display: none;"')
     end
 
   end

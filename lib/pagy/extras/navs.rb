@@ -17,7 +17,7 @@ class Pagy
                'gap'    => %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> ),
                'after'  => p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                                   : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>) }
-      %(<nav id="#{id}" class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels)})
+      %(<nav id="#{id}" class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
     end
 
     # Javascript combo pagination: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -31,7 +31,7 @@ class Pagy
       html << %(<span class="pagy-combo-input" style="margin: 0 0.6rem;">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</span> )
       html << (p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)
                       : %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>))
-      html << %(</nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_links(link))})
+      html << %(</nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_marked_link(link), defined?(TRIM) && pagy.vars[:page_param])})
     end
 
   end
