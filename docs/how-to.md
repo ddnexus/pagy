@@ -476,6 +476,17 @@ If you don't have strict requirements but still need to give the user total feed
 
 If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically boost efficiency eliminating the nav info and almost all the UI. Take a look at the examples in the [support extra](extras/support.md).
 
+## Preventing crawlers to follow look-alike links
+
+The `*_js` helpers come with a JSON tag including a string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it even if it is not a DOM element. That causes server side errors reported in your log.
+
+You may want to prevent that by adding the following to your `robots.txt` file:
+
+```
+User-agent: *
+Disallow: *__pagy_page__
+```
+
 ## Handling Pagy::OverflowError exceptions
 
 Pass an overflowing `:page` number and Pagy will raise a `Pagy::OverflowError` exception.
