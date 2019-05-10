@@ -36,16 +36,16 @@ if ENV['ENABLE_OJ']
 
     end
 
-    describe "#pagy_links" do
+    describe "#pagy_marked_link" do
 
       it 'should return only the "standard" link' do
         pagy = Pagy.new(count: 100, page: 4)
         frontend.instance_eval do
-          pagy_links(pagy_link_proc(pagy)).must_equal({"standard"=>"<a href=\"/foo?page=--pagy.page--\"   style=\"display: none;\"></a>"})
+          pagy_marked_link(pagy_link_proc(pagy)).must_equal("<a href=\"/foo?page=__pagy_page__\"   style=\"display: none;\"></a>")
         end
         pagy = Pagy.new(count: 100, page: 4, page_param: 'p')
         frontend.instance_eval do
-          pagy_links(pagy_link_proc(pagy)).must_equal({"standard"=>"<a href=\"/foo?p=--pagy.page--\"   style=\"display: none;\"></a>"})
+          pagy_marked_link(pagy_link_proc(pagy)).must_equal("<a href=\"/foo?p=__pagy_page__\"   style=\"display: none;\"></a>")
         end
       end
 

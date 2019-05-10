@@ -28,7 +28,7 @@ class Pagy
     include Helpers
 
     EMPTY = ''               # EMPTY + 'string' is almost as fast as +'string' but is also 1.9 compatible
-    MARK  = '--pagy.page--'  # string used for search and replace, hardcoded also in the pagy.js file
+    MARK  = '__pagy_page__'  # string used for search and replace, hardcoded also in the pagy.js file
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)

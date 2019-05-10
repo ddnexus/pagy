@@ -38,7 +38,7 @@ class Pagy
                'active' => %(<li>#{link.call(MARK, MARK, %(class="pagination-link is-current" aria-current="page" aria-label="page #{MARK}"))}</li>),
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t('pagy.nav.gap')}</span></li>),
                'after'  => '</ul>' }
-      %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels)})
+      %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
     end
 
     # Javascript combo pagination for Bulma: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -53,7 +53,7 @@ class Pagy
       html << %(<div class="pagy-combo-input control level is-mobile">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</div>)
       html << (p_next ? %(<p class="control">#{link.call(p_next, pagy_t('pagy.nav.next'), 'class="button" aria-label="next page"')}</p>)
                       : %(<p class="control"><a class="button" disabled>#{pagy_t('pagy.nav.next')}</a></p>))
-      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_links(link))})
+      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_marked_link(link), defined?(TRIM) && pagy.vars[:page_param])})
     end
 
   end

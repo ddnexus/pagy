@@ -6,29 +6,18 @@ class Pagy
 
   module Frontend
 
-    # boolean used by the compact navs
-    TRIM = true
+    TRIM = true   # boolean used by *_js helpers
 
     alias_method :pagy_link_proc_without_trim, :pagy_link_proc
     def pagy_link_proc_with_trim(pagy, link_extra='')
-      p_prev, p_next, p_vars = pagy.prev, pagy.next, pagy.vars
-      marked_url = pagy_url_for(MARK, pagy)
-      page1_url  = pagy_trim_url(marked_url, "#{p_vars[:page_param]}=#{MARK}")
-      page1_link = %(<a href="#{page1_url}" #{p_vars[:link_extra]} #{link_extra})
-      a, b = %(<a href="#{marked_url}" #{p_vars[:link_extra]} #{link_extra}).split(MARK, 2)
-      lambda{|n, text=n, extra=''| start = n.to_i == 1 ? page1_link : "#{a}#{n}#{b}"
-                                 "#{start}#{ if    n == p_prev ; ' rel="prev"'
-                                             elsif n == p_next ; ' rel="next"'
-                                             else                           '' end } #{extra}>#{text}</a>"}
+      link_proc  = pagy_link_proc_without_trim(pagy, link_extra)
+      page_param = pagy.vars[:page_param]
+      lambda do |n, text=n, extra=''|
+        link = link_proc.call(n, text, extra)
+        n == 1 ? link.sub(/[?&]#{page_param}=1(?![&])|\b(?<=[?&])#{page_param}=1&/, '') : link
+      end
     end
     alias_method :pagy_link_proc, :pagy_link_proc_with_trim
-
-    private
-
-      # separate method easier to test
-      def pagy_trim_url(url, param_string)
-        url.sub(/((?:[?&])#{param_string}\z|\b(?<=[?&])#{param_string}&)/, '')
-      end
 
   end
 end
