@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 3.2.0
+
+### Commits
+
+- [2341a83](http://github.com/ddnexus/pagy/commit/2341a83): docs fixes and additions
+- [96ad00f](http://github.com/ddnexus/pagy/commit/96ad00f): extended trim extra support to all the *_js helpers:
+    - refactored trim extra
+    - simplified MARK strings
+    - use of RegExp patterns in pagy.js
+    - added and improved tests
+
 ## Version 3.1.0
 
 ### Commits
@@ -10,7 +21,7 @@
   - pagy_items_selector now works also with trim and in combination with other *nav_js helpers
   - updated tests
 - [aa140e1](http://github.com/ddnexus/pagy/commit/aa140e1): doc improvement
-- [d0e4ba6](http://github.com/ddnexus/pagy/commit/d0e4ba6): a few fixes and doc improvements [ci skip]
+- [d0e4ba6](http://github.com/ddnexus/pagy/commit/d0e4ba6): a few fixes and doc improvements
 - [c1ddbd9](http://github.com/ddnexus/pagy/commit/c1ddbd9): Fix typo in docs example (#156)
 - [e0b2a2b](http://github.com/ddnexus/pagy/commit/e0b2a2b): removed duplication in LEGACY_CHANGELOG
 - [ecb6822](http://github.com/ddnexus/pagy/commit/ecb6822): fix typo in README
