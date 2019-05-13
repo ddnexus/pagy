@@ -6,7 +6,7 @@ require 'pagy/extras/array'
 
 describe Pagy::Backend do
 
-  let(:backend) { TestController.new }
+  let(:controller) { MockController.new }
 
   describe "#pagy_array" do
 
@@ -15,17 +15,17 @@ describe Pagy::Backend do
     end
 
     it 'paginates with defaults' do
-      pagy, items = backend.send(:pagy_array, @collection)
+      pagy, items = controller.send(:pagy_array, @collection)
       pagy.must_be_instance_of Pagy
       pagy.count.must_equal 1000
       pagy.items.must_equal Pagy::VARS[:items]
-      pagy.page.must_equal backend.params[:page]
+      pagy.page.must_equal controller.params[:page]
       items.count.must_equal Pagy::VARS[:items]
       items.must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
     end
 
     it 'paginates with vars' do
-      pagy, items = backend.send(:pagy_array, @collection, page: 2, items: 10, link_extra: 'X')
+      pagy, items = controller.send(:pagy_array, @collection, page: 2, items: 10, link_extra: 'X')
       pagy.must_be_instance_of Pagy
       pagy.count.must_equal 1000
       pagy.items.must_equal 10
@@ -45,7 +45,7 @@ describe Pagy::Backend do
 
     it 'gets defaults' do
       vars   = {}
-      merged = backend.send :pagy_array_get_vars, @collection, vars
+      merged = controller.send :pagy_array_get_vars, @collection, vars
       merged.keys.must_include :count
       merged.keys.must_include :page
       merged[:count].must_equal 1000
@@ -54,7 +54,7 @@ describe Pagy::Backend do
 
     it 'gets vars' do
       vars   = {page: 2, items: 10, link_extra: 'X'}
-      merged = backend.send :pagy_array_get_vars, @collection, vars
+      merged = controller.send :pagy_array_get_vars, @collection, vars
       merged.keys.must_include :count
       merged.keys.must_include :page
       merged.keys.must_include :items

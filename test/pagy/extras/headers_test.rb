@@ -10,8 +10,8 @@ describe Pagy::Backend do
   describe "#pagy_headers" do
 
     before do
-      @controller = TestController.new
-      @collection = TestCollection.new((1..1000).to_a)
+      @controller = MockController.new
+      @collection = MockCollection.new
     end
 
     it 'returns the full headers hash' do
@@ -44,8 +44,8 @@ describe Pagy::Backend do
   describe "#pagy_headers_merge" do
 
     before do
-      @controller = TestController.new
-      @collection = TestCollection.new((1..1000).to_a)
+      @controller = MockController.new
+      @collection = MockCollection.new
     end
 
     it 'returns the full headers hash' do

@@ -12,12 +12,12 @@ if ENV['ENABLE_OJ']
   # add tests for oj and pagy_id
   describe Pagy::Frontend do
 
-    let(:frontend) { TestSimpleView.new }
+    let(:view) { MockView.new('http://example.com:3000/foo?') }
 
     describe "#pagy_json_tag" do
 
       it 'should use oj' do
-        frontend.pagy_json_tag(:test_function, 'some-id', 'some-string', 123, true).must_equal \
+        view.pagy_json_tag(:test_function, 'some-id', 'some-string', 123, true).must_equal \
           "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-id\",\"some-string\",123,true]</script>"
       end
 
@@ -40,11 +40,11 @@ if ENV['ENABLE_OJ']
 
       it 'should return only the "standard" link' do
         pagy = Pagy.new(count: 100, page: 4)
-        frontend.instance_eval do
+        view.instance_eval do
           pagy_marked_link(pagy_link_proc(pagy)).must_equal("<a href=\"/foo?page=__pagy_page__\"   style=\"display: none;\"></a>")
         end
         pagy = Pagy.new(count: 100, page: 4, page_param: 'p')
-        frontend.instance_eval do
+        view.instance_eval do
           pagy_marked_link(pagy_link_proc(pagy)).must_equal("<a href=\"/foo?p=__pagy_page__\"   style=\"display: none;\"></a>")
         end
       end
@@ -53,7 +53,7 @@ if ENV['ENABLE_OJ']
 
     # we need an intermediate call to get the right caller
     def call_pagy_id
-      frontend.pagy_id
+      view.pagy_id
     end
 
   end

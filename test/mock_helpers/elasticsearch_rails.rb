@@ -1,6 +1,6 @@
 require 'pagy/extras/elasticsearch_rails'
 
-module ElasticsearchRailsTest
+module MockElasticsearchRails
 
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
               'b' => ('b-1'..'b-1000').to_a }
@@ -34,14 +34,14 @@ module ElasticsearchRailsTest
     end
 
   end
-end
 
-class ElasticsearchRailsModel
+  class Model
 
-  def self.search(*args)
-    ElasticsearchRailsTest::Response.new(*args)
+    def self.search(*args)
+      Response.new(*args)
+    end
+
+    extend Pagy::Search
   end
-
-  extend Pagy::Search
 
 end

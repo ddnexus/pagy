@@ -1,6 +1,6 @@
 require 'pagy/extras/searchkick'
 
-module SearchkickTest
+module MockSearchkick
 
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
               'b' => ('b-1'..'b-1000').to_a }
@@ -28,13 +28,15 @@ module SearchkickTest
     end
 
   end
-end
 
-class SearchkickModel
+  class Model
 
-  def self.search(*args, &block)
-    SearchkickTest::Results.new(*args, &block)
+    def self.search(*args, &block)
+      Results.new(*args, &block)
+    end
+
+    extend Pagy::Search
   end
-
-  extend Pagy::Search
 end
+
+
