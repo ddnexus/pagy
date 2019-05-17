@@ -27,7 +27,7 @@ with a fast helper:
 or with a template:
 
 ```erb
-<%== render 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
+<%== render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
 ```
 
 Configure [javascript](../extras.md#javascript) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.

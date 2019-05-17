@@ -94,7 +94,7 @@ Render the navigation links with a super-fast helper in some view:
 Or - if you prefer - render the navigation links with a template:
 
 ```erb
-<%== render 'pagy/nav', locals: {pagy: @pagy} %>
+<%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
 ```
 
 ## Easy to customize

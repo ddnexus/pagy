@@ -27,7 +27,7 @@ with a fast helper:
 or with a template:
 
 ```erb
-<%== render 'pagy/bulma_nav', locals: {pagy: @pagy} %>
+<%== render partial: 'pagy/bulma_nav', locals: {pagy: @pagy} %>
 ```
 
 Configure [javascript](../extras.md#javascript) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
