@@ -466,7 +466,7 @@ Here are some tips that will help chosing the best way to use Pagy, depending on
 If you need the classic pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
 - If you are on ruby 2.0+, add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript Navs](extras/navs.md#javascript-navs))_. That uses client side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more effcient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
-- If you are on jruby (any version) or ruby 1.9+, or you cannot install `oj` then use the `pagy*_nav` helper, which will give you the same performance of pagy v2.0 (33x faster; 26x lighter; 850x more efficient than Kaminari)
+- If you are on jruby (any version) or ruby 1.9.x, or you cannot install `oj` then use the `pagy*_nav` helper, which will give you the same performance of pagy v2.0 (33x faster; 26x lighter; 850x more efficient than Kaminari)
 
 ### Consider the combo navs
 
@@ -489,7 +489,7 @@ Disallow: *__pagy_page__
 
 **Caveats**: already indexed links may take a while to get purged by some search engine (i.e. you may still get some hits for a while even after you disallow them)
 
-A quite drastical alternative to the `robot.txt` would be adding the following block to the `config/initializers/rack_attack.rb` (if you use the [Rack Attack Middlewhare](https://github.com/kickstarter/rack-attack)):
+A quite drastic alternative to the `robot.txt` would be adding the following block to the `config/initializers/rack_attack.rb` (if you use the [Rack Attack Middlewhare](https://github.com/kickstarter/rack-attack)):
 
 ```ruby
 Rack::Attack.blocklist("block crawlers to follow pagy look-alike links") do |request|

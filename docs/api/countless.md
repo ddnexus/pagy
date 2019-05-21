@@ -14,7 +14,7 @@ This class is providing support for extras that don't need the full set of pagin
 
 ## Caveats
 
-In this class the `:count` variable is always `nil`, hence some feature that depends on it can have limited or no support:
+In this class the `:count` variable is always `nil`, hence some feature that depends on it may have limited or no support:
 
 ### Features with limited support
 
