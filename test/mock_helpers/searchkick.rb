@@ -21,7 +21,7 @@ module MockSearchkick
     def results
       @results.map{|r| "R-#{r}"}
     end
-    alias :records :results      # enables loops in items_test
+    alias_method :records, :results      # enables loops in items_test
 
     def total_count
       @entries.size
