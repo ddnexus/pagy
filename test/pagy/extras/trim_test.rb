@@ -20,14 +20,26 @@ describe Pagy::Frontend do
   describe "#pagy_link_proc" do
 
     it 'returns trimmed link' do
-      pagy = Pagy.new(count: 1000)
-      link = view.pagy_link_proc(pagy)
-      link.call(1).must_equal("<a href=\"/foo\"   >1</a>")
-      link.call(10).must_equal("<a href=\"/foo?page=10\"   >10</a>")
-      pagy = Pagy.new(count: 1000, params: {a:3,b:4})
-      link = view.pagy_link_proc(pagy)
-      link.call(1).must_equal("<a href=\"/foo?a=3&b=4\"   >1</a>")
-      link.call(10).must_equal("<a href=\"/foo?page=10&a=3&b=4\"   >10</a>")
+      [ [1,  '?page=1',               ''],                    # only param
+        [1,  '?page=1&b=2',           '?b=2'],                # first param
+        [1,  '?a=1&page=1&b=2',       '?a=1&b=2'],            # middle param
+        [1,  '?a=1&page=1',           '?a=1'],                # last param
+
+        [1,  '?my_page=1&page=1',     '?my_page=1'],          # skip similar first param
+        [1,  '?a=1&my_page=1&page=1', '?a=1&my_page=1'],      # skip similar middle param
+        [1,  '?a=1&page=1&my_page=1', '?a=1&my_page=1'],      # skip similar last param
+
+        [11, '?page=11',              '?page=11'],            # don't trim only param
+        [11, '?page=11&b=2',          '?page=11&b=2'],        # don't trim first param
+        [11, '?a=1&page=11&b=2',      '?a=1&page=11&b=2'],    # don't trim middle param
+        [11, '?a=1&page=11',          '?a=1&page=11']         # don't trim last param
+      ].each do |args|
+        page, generated, trimmed = args
+        view = MockView.new("http://example.com:3000/foo#{generated}")
+        pagy = Pagy.new(count: 1000, page: page)
+        link = view.pagy_link_proc(pagy)
+        link.call(page).must_equal("<a href=\"/foo#{trimmed}\"   >#{page}</a>")
+      end
     end
 
   end
