@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 3.2.1
+
+### Commits
+
+- [b403a35](http://github.com/ddnexus/pagy/commit/b403a35): improved trim regex: simpler, safer and more tested
+- [bd3be09](http://github.com/ddnexus/pagy/commit/bd3be09): normalized aliasing with alias_method
+- [3c60d9b](http://github.com/ddnexus/pagy/commit/3c60d9b): minor doc fixes
+- [9aa1bea](http://github.com/ddnexus/pagy/commit/9aa1bea): fix for missing "partial" in examples for template usage (#160)
+- [405b4d2](http://github.com/ddnexus/pagy/commit/405b4d2): reorganization and renaming of test helpers
+- [459edaa](http://github.com/ddnexus/pagy/commit/459edaa): improved notes about preventing crawlers to follow look-alike links
+- [01c73d3](http://github.com/ddnexus/pagy/commit/01c73d3): added search box to docs
+
 ## Version 3.2.0
 
 ### Commits
