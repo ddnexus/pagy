@@ -10,7 +10,7 @@ class Pagy
 
   def overflow?; @overflow end
 
-  alias :initialize_without_overflow :initialize
+  alias_method :initialize_without_overflow, :initialize
   def initialize_with_overflow(vars)
     @overflow ||= false                         # don't override if :last_page re-run the method after an overflow
     initialize_without_overflow(vars)
@@ -31,7 +31,7 @@ class Pagy
       raise ArgumentError, "expected :overflow variable in [:last_page, :empty_page, :exception]; got #{@vars[:overflow].inspect}"
     end
   end
-  alias :initialize :initialize_with_overflow
+  alias_method :initialize, :initialize_with_overflow
 
   module Series
     def series(size=@vars[:size])
@@ -48,7 +48,7 @@ class Pagy
   if defined?(Pagy::Countless)
     class Countless
 
-      alias :finalize_without_overflow :finalize
+      alias_method :finalize_without_overflow, :finalize
       def finalize_with_overflow(items)
         @overflow = false
         finalize_without_overflow(items)
@@ -65,7 +65,7 @@ class Pagy
           raise ArgumentError, "expected :overflow variable in [:empty_page, :exception]; got #{@vars[:overflow].inspect}"
         end
       end
-      alias :finalize :finalize_with_overflow
+      alias_method :finalize, :finalize_with_overflow
 
     end
   end

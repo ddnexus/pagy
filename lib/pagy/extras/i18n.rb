@@ -10,9 +10,9 @@ class Pagy
 
     Pagy::I18n.clear.instance_eval { undef :load; undef :t } # unload the pagy default constant for efficiency
 
-    alias :pagy_without_i18n :pagy_t
+    alias_method :pagy_without_i18n, :pagy_t
     def pagy_t_with_i18n(*args) ::I18n.t(*args) end
-    alias :pagy_t :pagy_t_with_i18n
+    alias_method :pagy_t, :pagy_t_with_i18n
 
   end
 end
