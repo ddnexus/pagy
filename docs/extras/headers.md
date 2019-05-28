@@ -26,22 +26,19 @@ In your controller action:
 ```ruby
 # paginate as usual with any pagy_* backend constructor
 pagy, records = pagy(Product.all)
-# explicitly merge the headers to the response 
+# explicitly merge the headers to the response
 pagy_headers_merge(pagy)
 render json: records
 ```
 
 ### Suggestions
 
-Instead of explicitly merging the headers before each rendering, you can get them automatically merged (application-wide and when `@pagy` is available), by overriding the `render` method in your application controller:
+Instead of explicitly merging the headers before each rendering, if you use rails you can get them automatically merged (application-wide and when `@pagy` is available), by adding an `after_action` in your application controller:
 
 ```ruby
-def render(*args, &block)
-  pagy_headers_merge(@pagy) if @pagy
-  super
-end
+after_action { pagy_headers_merge(@pagy) if @pagy }
 
-# and use it in any action (notice @pagy)
+# and use it in any action (notice @pagy that enables the merging)
 @pagy, records = pagy(Product.all)
 render json: records
 ```
@@ -74,8 +71,8 @@ Example of the default HTTP headers produced:
 Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
 Current-Page 3
 Page-Items 20
-Total-Pages 50 
-Total-Count 1000 
+Total-Pages 50
+Total-Count 1000
 ```
 
 #### Customize the header names
@@ -91,7 +88,7 @@ Example of HTTP headers produced from a `Pagy::Countless` object:
 ```
 Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next"
 Current-Page 3
-Page-Items 20 
+Page-Items 20
 ```
 
 ## Variables
