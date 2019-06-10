@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 3.3.0
+
+### Changes
+
+- Added Bulgarian locale
+
+### Commits
+
+- [2c56428](http://github.com/ddnexus/pagy/commit/2c56428): added pluralization comment to bg.yml dictionary
+- [7111cec](http://github.com/ddnexus/pagy/commit/7111cec): Bulgarian language yml file. (#162)
+- [a46f6b5](http://github.com/ddnexus/pagy/commit/a46f6b5): improved suggestion for headers usage
+
 ## Version 3.2.1
 
 ### Commits

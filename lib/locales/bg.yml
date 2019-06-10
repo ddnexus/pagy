@@ -1,0 +1,22 @@
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+bg:
+  pagy:
+
+    item_name:
+      one: "резултат"
+      other: "резултати"
+
+    nav:
+      prev: "&lsaquo;&nbsp;Предишна"
+      next: "Следваща&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "Няма намерени %{item_name}"
+      single_page: "Показани са <b>%{count}</b> %{item_name}"
+      multiple_pages: "Показани са %{item_name} <b>%{from}-%{to}</b> от <b>%{count}</b> общо"
+
+    combo_nav_js: "Страница %{page_input} от %{pages}"
+
+    items_selector_js: "Покажи %{items_input} %{item_name} на страница"
