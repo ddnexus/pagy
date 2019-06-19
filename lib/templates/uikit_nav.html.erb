@@ -1,0 +1,15 @@
+<% link = pagy_link_proc(pagy) -%>
+<%#                            -%> <ul class="uk-pagination uk-flex-center">
+<% if page.prev                -%>   <li><%== link.call(pagy.prev, "<span uk-pagination-previous>#{pagy_t('pagy.nav.prev')}</span>") %></li>
+<% else                        -%>   <li class="uk-disabled"><a href="#"><span uk-pagination-previous><%== pagy_t('pagy.nav.prev') %></span></a></li>
+<% end                         -%>
+<% pagy.series.each do |item|  -%>
+<%   if    item.is_a?(Integer) -%>   <li><%== link.call(item) %></li>
+<%   elsif item.is_a?(String)  -%>   <li class="uk-active"><span><%== item %></span></li>
+<%   elsif item == :gap        -%>   <li class="uk-disabled"><span><%== pagy_t('pagy.nav.gap') %></span></li>
+<%   end                       -%>
+<% end                         -%>
+<% if pagy.next                -%>   <li><%== link.call(p_next, "<span uk-pagination-next>#{pagy_t('pagy.nav.next')}</span>") %></li>
+<% else                        -%>   <li class="uk-disabled"><a href="#"><span uk-pagination-next><%== pagy_t('pagy.nav.next') %></span></a></li>
+<% end                         -%>
+<%#                            -%> </ul>
