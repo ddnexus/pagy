@@ -359,8 +359,9 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 | [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_nav_js`, `pagy_bulma_combo_nav_js`                   |
 | [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_nav_js`, `pagy_foundation_combo_nav_js`    |
 | [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_nav_js`, `pagy_materialize_combo_nav_js` |
-| [navs](extras/navs.md)               | `pagy_nav_js`, `pagy_combo_nav_js`                                                                    |
+| [navs](extras/navs.md)               | `pagy_nav_js`, `pagy_combo_nav_js`                                                 |
 | [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_nav_js`, `pagy_semantic_combo_nav_js`          |
+| [uikit](extras/uikit.md)             | `pagy_uikit_nav`                                                                   |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
@@ -402,6 +403,10 @@ They produce exactly the same output of the helpers, but since they are slower, 
   - [foundation_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.erb)
   - [foundation_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.haml)
   - [foundation_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.slim)
+- `uikit`
+  - [uikit_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.erb)
+  - [uikit_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.haml)
+  - [uikit_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.slim)
 
 If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
 

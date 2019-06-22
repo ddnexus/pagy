@@ -40,10 +40,6 @@
 # See https://ddnexus.github.io/pagy/extras/bulma
 # require 'pagy/extras/bulma'
 
-# UIkit extra: Add nav helper and templates for UIkit pagination
-# See https://ddnexus.github.io/pagy/extras/uikit
-# require 'pagy/extras/uikit'
-
 # Foundation extra: Add nav, nav_js and combo_nav_js helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/extras/foundation
 # require 'pagy/extras/foundation'
@@ -61,6 +57,10 @@
 # Semantic extra: Add nav, nav_js and combo_nav_js helpers for Semantic UI pagination
 # See https://ddnexus.github.io/pagy/extras/semantic
 # require 'pagy/extras/semantic'
+
+# UIkit extra: Add nav helper and templates for UIkit pagination
+# See https://ddnexus.github.io/pagy/extras/uikit
+# require 'pagy/extras/uikit'
 
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/extras/navs#steps
