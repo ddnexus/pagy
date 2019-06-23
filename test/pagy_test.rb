@@ -24,11 +24,11 @@ describe Pagy do
       Pagy.new(count: 100, page: '2').must_be_instance_of Pagy
       Pagy.new(count: 100, page: '').must_be_instance_of Pagy
       Pagy.new(count: 100, items: '10').must_be_instance_of Pagy
-      proc { Pagy.new({}) }.must_raise ArgumentError
-      proc { Pagy.new(count: 100, page: 0) }.must_raise ArgumentError
-      proc { Pagy.new(count: 100, page: 2, items: 0) }.must_raise ArgumentError
-      proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise ArgumentError
-      proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise ArgumentError
+      proc { Pagy.new({}) }.must_raise Pagy::VariableError
+      proc { Pagy.new(count: 100, page: 0) }.must_raise Pagy::VariableError
+      proc { Pagy.new(count: 100, page: 2, items: 0) }.must_raise Pagy::VariableError
+      proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::VariableError
+      proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
       proc { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
       e = proc { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
       e.pagy.must_be_instance_of Pagy
