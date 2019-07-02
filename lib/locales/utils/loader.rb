@@ -23,7 +23,7 @@ lambda do |i18n, *args|
     arg[:filepath]  ||= Pagy.root.join('locales', "#{arg[:locale]}.yml")
     arg[:pluralize] ||= plurals[arg[:locale]]
     hash = YAML.load(File.read(arg[:filepath], encoding: 'UTF-8')) #rubocop:disable Security/YAMLLoad
-    hash.key?(arg[:locale]) or raise ArgumentError, %(Pagy::I18n.load: :locale "#{arg[:locale]}" not found in :filepath "#{arg[:filepath].inspect}")
+    hash.key?(arg[:locale]) or raise VariableError, %(expected :locale "#{arg[:locale]}" not found in :filepath "#{arg[:filepath].inspect}")
     i18n[arg[:locale]] = [flatten.call(hash[arg[:locale]]), arg[:pluralize]]
   end
 end

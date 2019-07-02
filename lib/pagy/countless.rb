@@ -12,7 +12,7 @@ class Pagy
       @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })      # default vars + cleaned vars (can be overridden)
       { items:1, outset:0, page:1 }.each do |k,min|                     # validate instance variables
         (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
-         or raise(ArgumentError, "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
+         or raise(VariableError.new(self), "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
       end
       @offset = @items * (@page - 1) + @outset                          # pagination offset + outset (initial offset)
     end

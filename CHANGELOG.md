@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 3.3.1
+
+### Changes
+
+Namespacing of all exceptions, still backward compatible with legacy rescues
+
+### Commits
+
+- [530cb24](http://github.com/ddnexus/pagy/commit/530cb24): all the exceptions are namespaced and can return more information for easier rescue of special cases
+
 ## Version 3.3.0
 
 ### Changes

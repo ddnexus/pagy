@@ -28,7 +28,7 @@ class Pagy
       @prev = @last                             # prev relative to the actual page
       extend(Series)                            # special series for :empty_page
     else
-      raise ArgumentError, "expected :overflow variable in [:last_page, :empty_page, :exception]; got #{@vars[:overflow].inspect}"
+      raise VariableError.new(self), "expected :overflow variable in [:last_page, :empty_page, :exception]; got #{@vars[:overflow].inspect}"
     end
   end
   alias_method :initialize, :initialize_with_overflow
@@ -62,7 +62,7 @@ class Pagy
           @vars[:size] = []                         # no page in the series
           self
         else
-          raise ArgumentError, "expected :overflow variable in [:empty_page, :exception]; got #{@vars[:overflow].inspect}"
+          raise VariableError.new(self), "expected :overflow variable in [:empty_page, :exception]; got #{@vars[:overflow].inspect}"
         end
       end
       alias_method :finalize, :finalize_with_overflow

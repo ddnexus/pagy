@@ -78,7 +78,7 @@ describe Pagy::Frontend do
 
     it 'loads custom :locale, :filepath and :pluralize' do
       proc{ Pagy::I18n.load(locale: 'xx') }.must_raise Errno::ENOENT
-      proc{ Pagy::I18n.load(locale: 'xx', filepath: Pagy.root.join('locales', 'en.yml'))}.must_raise ArgumentError
+      proc{ Pagy::I18n.load(locale: 'xx', filepath: Pagy.root.join('locales', 'en.yml'))}.must_raise Pagy::VariableError
       proc{ Pagy::I18n.load(locale: 'en', filepath: Pagy.root.join('locales', 'xx.yml')) }.must_raise Errno::ENOENT
       custom_dictionary = File.join(File.dirname(__FILE__), 'custom.yml')
       Pagy::I18n.load(locale: 'custom', filepath: custom_dictionary)

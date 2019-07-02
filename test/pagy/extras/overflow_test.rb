@@ -65,9 +65,9 @@ describe Pagy do
       pagy.prev.must_equal pagy.last
     end
 
-    it 'raises ArgumentError' do
-      proc { Pagy.new(vars.merge(overflow: :unknown)) }.must_raise ArgumentError
-      proc { Pagy::Countless.new(countless_vars.merge(overflow: :unknown)).finalize(0) }.must_raise ArgumentError
+    it 'raises Pagy::VariableError' do
+      proc { Pagy.new(vars.merge(overflow: :unknown)) }.must_raise Pagy::VariableError
+      proc { Pagy::Countless.new(countless_vars.merge(overflow: :unknown)).finalize(0) }.must_raise Pagy::VariableError
     end
 
   end

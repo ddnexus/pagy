@@ -4,9 +4,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '3.3.0'
-
-  class OverflowError < StandardError; attr_reader :pagy; def initialize(pagy) @pagy = pagy end; end
+class Pagy ; VERSION = '3.3.1'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root; @root ||= Pathname.new(__FILE__).dirname.freeze end
@@ -21,7 +19,7 @@ class Pagy ; VERSION = '3.3.0'
     @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })               # default vars + cleaned vars
     { count:0, items:1, outset:0, page:1 }.each do |k,min|                     # validate instance variables
       (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
-         or raise(ArgumentError, "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
+         or raise(VariableError.new(self), "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
     end
     @pages = @last = [(@count.to_f / @items).ceil, 1].max                      # cardinal and ordinal meanings
     @page <= @last or raise(OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
@@ -36,7 +34,7 @@ class Pagy ; VERSION = '3.3.0'
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
   def series(size=@vars[:size])
     (series = []) and size.empty? and return series
-    4.times{|i| (size[i]>=0 rescue nil) or raise(ArgumentError, "expected 4 items >= 0 in :size; got #{size.inspect}")}
+    4.times{|i| (size[i]>=0 rescue nil) or raise(VariableError.new(self), "expected 4 items >= 0 in :size; got #{size.inspect}")}
     [*0..size[0], *@page-size[1]..@page+size[2], *@last-size[3]+1..@last+1].sort!.each_cons(2) do |a, b|
       if    a<0 || a==b || a>@last                                        # skip out of range and duplicates
       elsif a+1 == b; series.push(a)                                      # no gap     -> no additions
@@ -51,3 +49,4 @@ end
 
 require 'pagy/backend'
 require 'pagy/frontend'
+require 'pagy/exceptions'

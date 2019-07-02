@@ -19,7 +19,7 @@ class Pagy
   # Notice: if :steps is false it will use the single {0 => @vars[:size]} size
   def sequels
     steps = @vars[:steps] || {0 => @vars[:size]}
-    steps.key?(0) or raise(ArgumentError, "expected :steps to define the 0 width; got #{steps.inspect}")
+    steps.key?(0) or raise(VariableError.new(self), "expected :steps to define the 0 width; got #{steps.inspect}")
     sequels = {}; steps.each {|width, size| sequels[width.to_s] = series(size)}; sequels
   end
 
