@@ -101,6 +101,14 @@ Here is what you should consider/ensure:
 
 5. If the container width snaps to specific widths in discrete steps, you should sync the quantity and widths of the pagy `:steps` to the quantity and internal widths for each discrete step of the container.
 
+#### Javascript Caveats
+
+In case of a window resize, the `pagy_*nav_js` elements on the page are re-rendered (when the container width changes), however if the container width changes in any other way that does not involve a window resize, then you should re-render the pagy element explicitly. For example:
+
+```js
+document.getElementById('my-pagy-nav-js').render();
+```
+
 ## Methods
 
 ### pagy_nav_js(pagy, ...)
