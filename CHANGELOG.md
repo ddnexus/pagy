@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 3.3.2
+
+### Changes
+
+- Fix for #163
+- Javascript improvements
+
+### Commits
+
+- [aff8cbb](http://github.com/ddnexus/pagy/commit/aff8cbb): better handling of resize listeners; added render funcition to the pagy element
+- [c699fe5](http://github.com/ddnexus/pagy/commit/c699fe5): fix for javascript/turbolink nav.render firing when element not found (#163)
+
 ## Version 3.3.1
 
 ### Changes
