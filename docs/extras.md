@@ -23,7 +23,7 @@ Pagy comes with a few optional extensions/extras:
 | `semantic`            | Add nav, nav_js and combo_nav_js helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)     | [semantic.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/semantic.rb), [documentation](extras/semantic.md)                                  |
 | `support`             | Extra support for features like: incremental, infinite, auto-scroll pagination                                                             | [support.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/support.rb), [documentation](extras/support.md)                                     |
 | `trim`                | Remove the `page=1` param from links                                                                                                       | [trim.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/trim.rb), [documentation](extras/trim.md)                                              |
-| `uikit`               | Add nav helper for the UIkit [pagination component](https://getuikit.com/docs/pagination)                                                  | [uikit.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/uikit.rb), [documentation](extras/uikit.md)                                           |
+| `uikit`               | Add nav, nav_js and combo_nav_js helpers for the UIkit [pagination component](https://getuikit.com/docs/pagination)                                                  | [uikit.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/uikit.rb), [documentation](extras/uikit.md)                                           |
 
 ## Synopsis
 

@@ -44,3 +44,21 @@ This extra adds nav helper to the `Pagy::Frontend` module. You can customize it 
 This method is the same as the `pagy_nav`, but customized for UIkit.
 
 The `uikit_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [Using Templates](../how-to.md#using-templates).
+
+
+### pagy_uikit_nav_js(pagy, ...)
+
+This method is the same as the `pagy_nav_js`, but customized for the Bootstrap framework.
+
+See more details in the [javascript navs](navs.md#javascript-navs) documentation.
+
+
+### pagy_uikit_combo_nav_js(pagy, ...)
+
+This method is the same as the `pagy_combo_nav_js`, but customized for the UIKit framework.
+
+Here is an example:
+
+![uikit_combo_nav_js](../assets/images/uikit_combo_nav_js-g.png)
+
+See more details in the [javascript compact navs](navs.md#javascript-combo-navs) documentation.

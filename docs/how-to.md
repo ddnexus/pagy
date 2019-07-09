@@ -361,7 +361,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 | [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_nav_js`, `pagy_materialize_combo_nav_js` |
 | [navs](extras/navs.md)               | `pagy_nav_js`, `pagy_combo_nav_js`                                                 |
 | [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_nav_js`, `pagy_semantic_combo_nav_js`          |
-| [uikit](extras/uikit.md)             | `pagy_uikit_nav`                                                                   |
+| [uikit](extras/uikit.md)             | `pagy_uikit_nav`, `pagy_uikit_nav_js`, `pagy_uikit_combo_nav_js`                                                                   |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
