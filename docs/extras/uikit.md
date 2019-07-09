@@ -48,14 +48,14 @@ The `uikit_nav.*` templates produce the same output, and can be used as an easie
 
 ### pagy_uikit_nav_js(pagy, ...)
 
-This method is the same as the `pagy_nav_js`, but customized for the Bootstrap framework.
+This method is the same as the `pagy_nav_js`, but customized for the UIkit framework.
 
 See more details in the [javascript navs](navs.md#javascript-navs) documentation.
 
 
 ### pagy_uikit_combo_nav_js(pagy, ...)
 
-This method is the same as the `pagy_combo_nav_js`, but customized for the UIKit framework.
+This method is the same as the `pagy_combo_nav_js`, but customized for the UIkit framework.
 
 Here is an example:
 
