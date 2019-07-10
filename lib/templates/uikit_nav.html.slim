@@ -1,0 +1,28 @@
+- link = pagy_link_proc(pagy)
+
+ul.uk-pagination.uk-flex-center
+  - if page.prev
+    li== link.call(pagy.prev, "<span uk-pagination-previous>#{pagy_t('pagy.nav.prev')}</span>")
+  - else
+    li.uk-disabled
+      a href="#"
+        span uk-pagination-previous="" == pagy_t('pagy.nav.prev')
+
+  - pagy.series.each do |item|
+    - if    item.is_a?(Integer)
+      li== link.call(item)
+
+    - elsif item.is_a?(String)
+      li.uk-active
+        span== item
+
+    - elsif item == :gap
+      li.uk-disabled
+        span== pagy_t('pagy.nav.gap')
+
+  - if pagy.next
+    li== link.call(p_next, "<span uk-pagination-next>#{pagy_t('pagy.nav.next')}</span>")
+  - else
+    li.uk-disabled
+      a href="#"
+        span uk-pagination-next="" == pagy_t('pagy.nav.next')
