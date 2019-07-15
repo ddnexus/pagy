@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 3.4.0
+
+### Changes
+
+- Added UIkit nav, nav_js and combo_js helpers and templates.
+
+### Commits
+
+- [1eb25ec](http://github.com/ddnexus/pagy/commit/1eb25ec): Implement UIkit pagination (#164)
+
 ## Version 3.3.2
 
 ### Changes
