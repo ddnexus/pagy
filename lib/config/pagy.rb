@@ -1,7 +1,7 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-# Pagy initializer file (3.3.2)
+# Pagy initializer file (3.4.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -57,6 +57,10 @@
 # Semantic extra: Add nav, nav_js and combo_nav_js helpers for Semantic UI pagination
 # See https://ddnexus.github.io/pagy/extras/semantic
 # require 'pagy/extras/semantic'
+
+# UIkit extra: Add nav helper and templates for UIkit pagination
+# See https://ddnexus.github.io/pagy/extras/uikit
+# require 'pagy/extras/uikit'
 
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/extras/navs#steps
