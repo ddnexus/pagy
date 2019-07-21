@@ -22,6 +22,7 @@ class Pagy
 
     # Return Pagy object and results
     def pagy_searchkick(search_args, vars={})
+      search_args.insert(1, '*') && search_args.delete_at(-2) unless search_args[1].is_a?(String)
       model, term, options, block, *called = search_args
       vars               = pagy_searchkick_get_vars(nil, vars)
       options[:per_page] = vars[:items]
