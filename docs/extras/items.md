@@ -5,7 +5,7 @@ title: Items
 
 Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or higly user-customizable apps.
 
-It works also with the [countless](countless.md) and with the [elasticsearch_rails](elasticsearch_rails.md) extras.
+It works also with the [countless](countless.md), [searchkick](searchkick.md) and [elasticsearch_rails](elasticsearch_rails.md) extras.
 
 ## Synopsis
 
@@ -24,12 +24,12 @@ Configure [javascript](../extras.md#javascript) (only if you use the `pagy_items
 
 ## Files
 
-This extra is composed of the [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb) and may use the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file.
+- [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb)
 
 ## Variables
 
 | Variable       | Description                                                          | Default  |
-| -------------- | -------------------------------------------------------------------- | -------- |
+|:---------------|:---------------------------------------------------------------------|:---------|
 | `:items_param` | the name of the items param used in the url.                         | `:items` |
 | `:max_items`   | the max items allowed to be requested. Set it to `nil` for no limit. | `100`    |
 
