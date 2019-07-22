@@ -21,17 +21,17 @@ class Pagy
   module Backend ; private
 
     # Return Pagy object and results
-    def pagy_searchkick(search_args, vars={})
-      model, term, options, block, *called = search_args
-      vars               = pagy_searchkick_get_vars(nil, vars)
-      options[:per_page] = vars[:items]
-      options[:page]     = vars[:page]
-      results            = model.search(term, options, &block)
-      vars[:count]       = results.total_count
+    def pagy_searchkick(pagy_search_args, vars={})
+      model, search_args, block, *called = pagy_search_args
+      vars                       = pagy_searchkick_get_vars(nil, vars)
+      search_args[-1][:per_page] = vars[:items]
+      search_args[-1][:page]     = vars[:page]
+      results                    = model.search(*search_args, &block)
+      vars[:count]               = results.total_count
       pagy = Pagy.new(vars)
       # with :last_page overflow we need to re-run the method in order to get the hits
       if defined?(OVERFLOW) && pagy.overflow? && pagy.vars[:overflow] == :last_page
-        return pagy_searchkick(search_args, vars.merge(page: pagy.page))
+        return pagy_searchkick(pagy_search_args, vars.merge(page: pagy.page))
       end
       return pagy, called.empty? ? results : results.send(*called)
     end

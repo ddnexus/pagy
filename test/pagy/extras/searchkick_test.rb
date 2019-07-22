@@ -16,15 +16,29 @@ describe Pagy::Search do
     end
 
     it 'returns class and arguments' do
-      MockSearchkick::Model.pagy_search('a', b:2).must_equal [MockSearchkick::Model, 'a', {b: 2}, nil]
+      MockSearchkick::Model.pagy_search('a', b:2).must_equal [MockSearchkick::Model, ['a', {b: 2}], nil]
       args  = MockSearchkick::Model.pagy_search('a', b:2){|a| a*2}
       block = args[-1]
-      args.must_equal [MockSearchkick::Model, 'a', {b: 2}, block]
+      args.must_equal [MockSearchkick::Model, ['a', {b: 2}], block]
+    end
+
+    it 'allows the term argument to be optional' do
+      MockSearchkick::Model.pagy_search(b:2).must_equal [MockSearchkick::Model, [{b: 2}], nil]
+      args  = MockSearchkick::Model.pagy_search(b:2){|a| a*2}
+      block = args[-1]
+      args.must_equal [MockSearchkick::Model, [{b: 2}], block]
+    end
+
+    it 'adds an empty option hash' do
+      MockSearchkick::Model.pagy_search('a').must_equal [MockSearchkick::Model, ['a', {}], nil]
+      args  = MockSearchkick::Model.pagy_search('a'){|a| a*2}
+      block = args[-1]
+      args.must_equal [MockSearchkick::Model, ['a', {}], block]
     end
 
     it 'adds the caller and arguments' do
-      MockSearchkick::Model.pagy_search('a', b:2).results.must_equal [MockSearchkick::Model, 'a', {b: 2}, nil, :results]
-      MockSearchkick::Model.pagy_search('a', b:2).a('b', 2).must_equal [MockSearchkick::Model, 'a', {b: 2}, nil, :a, 'b', 2]
+      MockSearchkick::Model.pagy_search('a', b:2).results.must_equal [MockSearchkick::Model, ['a', {b: 2}], nil, :results]
+      MockSearchkick::Model.pagy_search('a', b:2).a('b', 2).must_equal [MockSearchkick::Model, ['a', {b: 2}], nil, :a, 'b', 2]
     end
 
   end
