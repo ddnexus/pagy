@@ -21,17 +21,17 @@ class Pagy
   module Backend ; private
 
     # Return Pagy object and items
-    def pagy_elasticsearch_rails(search_args, vars={})
-      model, query_or_payload, options, _block, *called = search_args
-      vars           = pagy_elasticsearch_rails_get_vars(nil, vars)
-      options[:size] = vars[:items]
-      options[:from] = vars[:items] * (vars[:page] - 1)
-      response       = model.search(query_or_payload, options)
-      vars[:count]   = response.raw_response['hits']['total']
+    def pagy_elasticsearch_rails(pagy_search_args, vars={})
+      model, search_args, _block, *called = pagy_search_args
+      vars                   = pagy_elasticsearch_rails_get_vars(nil, vars)
+      search_args[-1][:size] = vars[:items]
+      search_args[-1][:from] = vars[:items] * (vars[:page] - 1)
+      response               = model.search(*search_args)
+      vars[:count]           = response.raw_response['hits']['total']
       pagy = Pagy.new(vars)
       # with :last_page overflow we need to re-run the method in order to get the hits
       if defined?(OVERFLOW) && pagy.overflow? && pagy.vars[:overflow] == :last_page
-        return pagy_elasticsearch_rails(search_args, vars.merge(page: pagy.page))
+        return pagy_elasticsearch_rails(pagy_search_args, vars.merge(page: pagy.page))
       end
       return pagy, called.empty? ? response : response.send(*called)
     end

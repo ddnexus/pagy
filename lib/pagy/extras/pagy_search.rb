@@ -7,8 +7,10 @@ class Pagy
     # returns an array used to delay the call of #search
     # after the pagination variables are merged to the options
     # it also pushes to the same array an eventually called method and arguments
-    def pagy_search(arg, options={}, &block)
-      [self, arg, options, block].tap do |args|
+    # the last search argument must be a hash option
+    def pagy_search(*search_args, &block)
+      search_args << {} unless search_args[-1].is_a?(Hash)
+      [self, search_args, block].tap do |args|
         args.define_singleton_method(:method_missing){|*a| args += a}
       end
     end

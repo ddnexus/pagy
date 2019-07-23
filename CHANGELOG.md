@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 3.4.1
+
+### Changes
+
+- Improvements for searchkick extra
+- Added javascript Pagy.version
+
+### Commits
+
+- [0ac5c27](http://github.com/ddnexus/pagy/commit/0ac5c27): refactoring of pagy_search and its usage in order to allow optional term argument for searchkick (#169)
+- [389755b](http://github.com/ddnexus/pagy/commit/389755b): small docs editing [ci skip]
+
 ## Version 3.4.0
 
 ### Changes
