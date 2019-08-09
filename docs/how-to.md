@@ -80,7 +80,7 @@ Pagy works out of the box assuming that:
 Pagy can also work in any other scenario assuming that:
 
 - If your framework doesn't have a `params` method you may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
-- If the collection you are paginating doesn't respond to `offset` and `limit` you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection) or use a specific extra if available (e.g. `array`, `searchkick`, `elasticsearch_rais`)
+- If the collection you are paginating doesn't respond to `offset` and `limit` you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection) or use a specific extra if available (e.g. `array`, `searchkick`, `elasticsearch_rails`)
 - If your framework doesn't have a `request` method you may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
 
 **Notice**: the total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module.
@@ -470,7 +470,7 @@ Here are some tips that will help chosing the best way to use Pagy, depending on
 
 If you need the classic pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
-- If you are on ruby 2.0+, add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript Navs](extras/navs.md#javascript-navs))_. That uses client side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more effcient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
+- If you are on ruby 2.0+, add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript Navs](extras/navs.md#javascript-navs))_. That uses client side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more efficient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
 - If you are on jruby (any version) or ruby 1.9.x, or you cannot install `oj` then use the `pagy*_nav` helper, which will give you the same performance of pagy v2.0 (33x faster; 26x lighter; 850x more efficient than Kaminari)
 
 ### Consider the combo navs
@@ -479,7 +479,7 @@ If you don't have strict requirements but still need to give the user total feed
 
 #### Consider the countless extra
 
-If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically boost efficiency eliminating the nav info and almost all the UI. Take a look at the examples in the [support extra](extras/support.md).
+If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically boost the efficiency eliminating the nav info and almost all the UI. Take a look at the examples in the [support extra](extras/support.md).
 
 ## Preventing crawlers to follow look-alike links
 
