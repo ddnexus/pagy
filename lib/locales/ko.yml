@@ -1,11 +1,9 @@
-# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
 
 ko:
   pagy:
 
-    item_name:
-      one: "항목"
-      other: "항목들"
+    item_name: "항목"
 
     nav:
       prev: "&lsaquo;&nbsp;이전"
