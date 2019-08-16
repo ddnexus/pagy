@@ -10,7 +10,7 @@ This page contains the practical tips and examples to get the job done with Pagy
 If you use Bundler, add the gem in the Gemfile:
 
 ```ruby
-gem 'pagy'
+gem 'pagy', '~> 3.4.1' # the latest version to-date
 ```
 
 or if you don't, just install and require the Pagy gem:
