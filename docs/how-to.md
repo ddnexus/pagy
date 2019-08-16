@@ -35,10 +35,12 @@ Use the `pagy` method in some action:
 @pagy, @records = pagy(Product.some_scope)
 ```
 
-Include the frontend in some helper:
+Include the frontend in some helper. (Here is a Rails specific example):
 
 ```ruby
-include Pagy::Frontend
+module ApplicationHelper 
+  include Pagy::Frontend # add this line - app/helpers/application_helper.rb if you are using rails
+end
 ```
 
 Render the navigation links in some view...
