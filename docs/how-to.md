@@ -45,7 +45,7 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 5. Render the pagination:
 
-    - If your app renders the views server-side:
+    - Option A: if your app renders the views server-side:
 
         1. Include the frontend in some helper (e.g. `ApplicationHelper` in Rails):
 
@@ -60,13 +60,13 @@ This page contains the practical tips and examples to get the job done with Pagy
                 ```erb
                 <%== pagy_nav(@pagy) %>
                 ```
-            - or it with an easy customizable template:
+            - or with an easy customizable template:
 
                 ```erb
                 <%== render 'pagy/nav', locals: {pagy: @pagy} %>
                 ```
 
-    - If your app renders the views with a javascript framework (e.g. Vue.js, react.js, ...), you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
+    - Option B: if your app renders the views with a javascript framework (e.g. Vue.js, react.js, ...), you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
 
         1. require the [metadata extra](extras/metadata.md) by uncommenting the following line in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
 
@@ -81,7 +81,7 @@ This page contains the practical tips and examples to get the job done with Pagy
                           pagy: pagy_metadata(@pagy) }
            ```
 
-    - If your app is an API service consumed by some client and doesn't provide any UI on its own, you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
+    - Option C: if your app is an API service consumed by some client and doesn't provide any UI on its own, you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
 
         1. require the [headers extra](extras/headers.md) by uncommenting it in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
 

@@ -17,11 +17,16 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 - Pagy 3.0+ is considerably faster, lighter and more efficient than 2.0+ on modern environments (see the charts below)
 - The javascript nav helpers have been refactored for improved performance and more intuitive API
 - The i18n has been refactored, the dictionary files are simpler and 100% compliant with the i18n gem
+- Added a few new [extras](https://ddnexus.github.io/pagy/extras)
 - Added [Maximizing Performance](https://ddnexus.github.io/pagy/how-to#maximizing-performance) docs as a practical guide to choose the best options for your requirements and environment
 
 **Notice**: Updating from 2.0+ to 3.0+ requires just some search and replace and a little reorganization of your custom i18n dictionaries. Check the [CHANGELOG](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for details.
 
-**Suggestion**: If you are using any `pagy*_nav` helper, [consider to switch](https://ddnexus.github.io/pagy/how-to#consider-the-nav_js) to `pagy*_nav_js`, which gives you the same output with a substancial performance boost.
+**Suggestions**:
+
+- If you are using any `pagy*_nav` helper, [consider to switch](https://ddnexus.github.io/pagy/how-to#consider-the-nav_js) to `pagy*_nav_js`, which gives you the same output with a substancial performance boost.
+- If you are using any javascript frontend, take a look at the [metadata](https://ddnexus.github.io/pagy/extras/metadata) extra
+- For API pagination take a look at the [headers](http://ddnexus.github.io/pagy/extras/headers) extra
 
 ## Comparison with other gems
 
