@@ -127,8 +127,10 @@ This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) 
 
 ### pagy_headers_hash(pagy)
 
-This method generates a hash structure of the headers, useful if you want to include some meta-data within your json. For example:
+This method generates a hash structure of the headers, useful only if you want to include the headers as metadata within your JSON. For example:
 
 ```ruby
 render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})
 ```
+
+**Notice**: If you need a more complete set of metadata (e.g. if you use some javascript frontend) see the [metadata extra](metadata.md).

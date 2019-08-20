@@ -12,7 +12,8 @@ require "rake/testtask"
 Rake::TestTask.new(:test_main) do |t|
   t.libs += %w[test lib]
   t.test_files = FileList.new.include("test/**/*_test.rb")
-                             .exclude('test/**/i18n_test.rb',
+                             .exclude('test/**/headers_test.rb',
+                                      'test/**/i18n_test.rb',
                                       'test/**/items_test.rb',
                                       'test/**/overflow_test.rb',
                                       'test/**/trim_test.rb',
@@ -21,6 +22,11 @@ Rake::TestTask.new(:test_main) do |t|
                                       'test/**/support_test.rb',
                                       'test/**/shared_test.rb',
                                       'test/**/shared_combo_test.rb')
+end
+
+Rake::TestTask.new(:test_extra_headers) do |t|
+  t.libs += %w[test lib]
+  t.test_files = FileList['test/**/headers_test.rb']
 end
 
 Rake::TestTask.new(:test_extra_i18n) do |t|
@@ -66,6 +72,7 @@ end
 
 task :test => [ :test_main,
                 :test_extra_items,
+                :test_extra_headers,
                 :test_extra_i18n,
                 :test_extra_overflow,
                 :test_extra_trim,

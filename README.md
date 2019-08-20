@@ -106,6 +106,8 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 - [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 - [countless](http://ddnexus.github.io/pagy/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](http://ddnexus.github.io/pagy/extras/elasticsearch_rails): Paginate `ElasticsearchRails` response objects
+- [headers](http://ddnexus.github.io/pagy/extras/headers): Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination
+- [metadata](http://ddnexus.github.io/pagy/extras/metadata): Provides the pagination metadata to Javascrtipt frameworks like Vue.js, react.js, etc.
 - [searchkick](http://ddnexus.github.io/pagy/extras/searchkick): Paginate `Searchkick::Results` objects
 
 ### Frontend Extras
@@ -120,7 +122,6 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 ### Feature Extras
 
-- [headers](http://ddnexus.github.io/pagy/extras/headers): Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination
 - [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy-i18n implementation
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
 - [overflow](http://ddnexus.github.io/pagy/extras/overflow): Allow for easy handling of overflowing pages
