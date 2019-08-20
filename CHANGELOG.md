@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## Version 3.5.0
+
+### Changes
+
+- Added Korean locale
+- Added Catalan locale
+- Added metadata extra
+- Docs fixes and improvements
+
+### Commits
+
+- [2813973](http://github.com/ddnexus/pagy/commit/2813973): Docs:
+    - added detailed Quick Start steps (closes #176, closes #177)
+    - added specific sections for API clients and javascript frameworks
+- [43349a8](http://github.com/ddnexus/pagy/commit/43349a8): added metadata extra
+- [261e6e6](http://github.com/ddnexus/pagy/commit/261e6e6): Add Catalan localization (#178)
+- [30ed505](http://github.com/ddnexus/pagy/commit/30ed505): temporarily removed jruby 1.7 and 9.0 rvm from travis - waiting travis to fix their rvms or suggest some work around [see issue](https://travis-ci.community/t/jruby-1-7-and-9-0-fail/4703)
+- [2863c55](http://github.com/ddnexus/pagy/commit/2863c55): added minitest-reporters gem
+- [0b42e5c](http://github.com/ddnexus/pagy/commit/0b42e5c): Add translation ko.yml for korean (#172)
+- [da3fc37](http://github.com/ddnexus/pagy/commit/da3fc37): minor doc fixes [ci skip]
+
 ## Version 3.4.1
 
 ### Changes
