@@ -7,52 +7,99 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 ## Quick Start
 
-If you use Bundler, add the gem in the Gemfile:
+1. Install Pagy:
 
-```ruby
-gem 'pagy'
-```
+    - If you use Bundler, add the gem in the Gemfile, optionally avoiding the next mayor version with breaking changes (e.g. '~> 3.5' see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
-or if you don't, just install and require the Pagy gem:
+        ```ruby
+        gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
+        ```
 
-```bash
-gem install pagy
-```
+    - If you don't use Bundler, install and require the Pagy gem:
 
-```ruby
-require 'pagy'
-```
+        ```bash
+        $ gem install pagy
+        ```
 
-Include the backend in some controller:
+        ```ruby
+        require 'pagy'
+        ```
 
-```ruby
-include Pagy::Backend
-```
+2. Add the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) configuration file to your app:
 
-Use the `pagy` method in some action:
+   - If you use Rails, put it into the `config/initializers` dir
 
-```ruby
-@pagy, @records = pagy(Product.some_scope)
-```
+   - if you don't use Rails it doesn't matter where you put it, as long as you require it when your app starts
 
-Include the frontend in some helper:
+3. Include the backend in some controller (e.g. `ApplicationController` in Rails):
 
-```ruby
-include Pagy::Frontend
-```
+    ```ruby
+    include Pagy::Backend
+    ```
 
-Render the navigation links in some view...
-with a fast helper:
+4. Use the `pagy` method in some action:
 
-```erb
-<%== pagy_nav(@pagy) %>
-```
+    ```ruby
+    @pagy, @records = pagy(Product.some_scope)
+    ```
 
-or with a template:
+5. Render the pagination:
 
-```erb
-<%== render 'pagy/nav', locals: {pagy: @pagy} %>
-```
+    - If your app renders the views server-side:
+
+        1. Include the frontend in some helper (e.g. `ApplicationHelper` in Rails):
+
+            ```ruby
+            include Pagy::Frontend
+            ```
+
+        2. Render the navigation links in some view:
+
+            - with a fast helper (also styled for  [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [uikit](extras/uikit.md) and available in different flavors (static, responsive, compact, etc.)
+
+                ```erb
+                <%== pagy_nav(@pagy) %>
+                ```
+            - or it with an easy customizable template:
+
+                ```erb
+                <%== render 'pagy/nav', locals: {pagy: @pagy} %>
+                ```
+
+    - If your app renders the views with a javascript framework (e.g. Vue.js, react.js, ...), you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
+
+        1. require the [metadata extra](extras/metadata.md) by uncommenting the following line in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
+
+            ```ruby
+            require 'pagy/extras/metadata'
+            ```
+
+        2. add the metadata to your JSON response:
+
+           ```ruby
+           render json: { data: @records,
+                          pagy: pagy_metadata(@pagy) }
+           ```
+
+    - If your app is an API service consumed by some client and doesn't provide any UI on its own, you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
+
+        1. require the [headers extra](extras/headers.md) by uncommenting it in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
+
+            ```ruby
+            require 'pagy/extras/metadata'
+            ```
+
+        2. add the pagination headers to your responses:
+
+            ```ruby
+            after_action { pagy_headers_merge(@pagy) if @pagy }
+            ```
+
+        3. render your JSON response as usual:
+
+            ```ruby
+            render json: { data: @records }
+            ```
 
 ## Global Configuration
 
@@ -458,9 +505,17 @@ That may work very well with static (or almost static) DBs, where there is not m
 
 When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoid the need for a count query, still providing an acceptable subset of the full pagination features.
 
-## Adding HTTP headers
+## Paginate for API clients
 
-Pagy implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API pagination: no need to use other dependencies. See the [headers extra](http://ddnexus.github.io/pagy/extras/headers) documentation and examples.
+When your app is a service that doesn't need to serve any UI, but provides an API to some sort of client, you can serve the pagination metadata as HTTP headers added to your response.
+
+In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require the [headers extra](extras/headers.md) and add the headers to your responses.
+
+## Paginate for Javascript Frameworks
+
+If your app uses ruby as pure backend and some javascript frameworks as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate the whole pagination UI directly in javascript (with your own code or using some available component).
+
+In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require the [metadata extra](extras/metadata.md) and pass the pagination metadata in your JSON response.
 
 ## Maximizing Performance
 
@@ -528,3 +583,5 @@ Here are a few options for manually handling the error in apps:
      redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
    end
    ```
+
+**WARNING**: All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with `rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it will never get rescued.
