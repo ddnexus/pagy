@@ -3,7 +3,7 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/headers'
-require 'pagy/countless'
+require 'pagy/extras/countless'
 
 describe Pagy::Backend do
 

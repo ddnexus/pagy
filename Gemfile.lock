@@ -8,7 +8,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ansi (1.5.0)
     ast (2.4.0)
+    builder (3.2.3)
     codecov (0.1.14)
       json
       simplecov
@@ -212,6 +214,11 @@ GEM
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
     minitest (5.11.3)
+    minitest-reporters (1.3.6)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     multipart-post (2.0.0)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -279,6 +286,7 @@ DEPENDENCIES
   github-pages (= 197)
   i18n
   minitest
+  minitest-reporters
   oj
   rack
   rake

@@ -1,7 +1,7 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-# Pagy initializer file (3.4.1)
+# Pagy initializer file (3.5.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -88,6 +88,14 @@
 # See https://ddnexus.github.io/pagy/extras/overflow
 # require 'pagy/extras/overflow'
 # Pagy::VARS[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
+
+# Metadata extra: Provides the pagination metadata to Javascrtipt frameworks like Vue.js, react.js, etc.
+# See https://ddnexus.github.io/pagy/extras/metadata
+# you must require the shared internal extra (BEFORE the metadata extra) ONLY if you need also the :sequels
+# require 'pagy/extras/shared'
+# require 'pagy/extras/metadata'
+# For performance reason, you should explicitly set ONLY the metadata you use in the frontend
+# Pagy::VARS[:metadata] = [:scaffold_url, :count, :page, :prev, :next, :last]    # example
 
 # Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/extras/trim

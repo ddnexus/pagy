@@ -1,5 +1,5 @@
 ---
-title: Semantic UI
+title: Semantic
 ---
 # Semantic UI Extra
 
@@ -46,4 +46,4 @@ See more details in the [javascript navs](navs.md#javascript-navs) documentation
 
 This method is the same as the `pagy_combo_nav_js`, but customized for the Semantic UI framework.
 
-See more details in the [compact_navs_js](navs.md#javascript-combo-navs)  documentation.
+See more details in the [compact_navs_js](navs.md#javascript-combo-navs) documentation.

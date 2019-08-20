@@ -1,0 +1,20 @@
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+ko:
+  pagy:
+
+    item_name: "항목"
+
+    nav:
+      prev: "&lsaquo;&nbsp;이전"
+      next: "이후&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "%{item_name} 없음"
+      single_page: "<b>%{count}</b>개의 %{item_name} 표시됨"
+      multiple_pages: "총 <b>%{count}</b>개의 %{item_name} 중 <b>%{from}-%{to}</b>"
+
+    combo_nav_js: "총 %{pages} 중 %{page_input} 페이지"
+
+    items_selector_js: "페이지 당 %{items_input}개 표시%"
