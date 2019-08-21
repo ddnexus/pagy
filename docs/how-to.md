@@ -63,7 +63,7 @@ This page contains the practical tips and examples to get the job done with Pagy
             - or with an easy customizable template:
 
                 ```erb
-                <%== render 'pagy/nav', locals: {pagy: @pagy} %>
+                <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
                 ```
 
     - Option B: if your app renders the views with a javascript framework (e.g. Vue.js, react.js, ...), you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
