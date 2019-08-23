@@ -40,6 +40,7 @@ pre {
 }
 
 header {
+  height: 100%;
   h1#site-title {
     margin-bottom: .5rem;
   }
@@ -54,21 +55,46 @@ h1 span {
 }
 
 #toc {
-  margin: 1em 0;
+  height: calc(100% - 200px - 4em);
+  overflow: auto;
+  margin: 1.6em 0;
   white-space: nowrap;
   p {
-    margin: .06em 0;
+    margin: .1em 0;
   }
   p.indent1 {
     margin-left: 2rem;
   }
-  p#gitter-support {
+  p#active {
+    position: relative;
     font-weight: bold;
-    margin-top: 1em;
-    a:hover {
-      font-weight: bold;
+    display: inline-block;
+    &:after {
+      content: "\25B6";
+      position: relative;
+      left: .4rem;
     }
   }
+}
+
+ a#gitter {
+   &:hover {
+     text-decoration: none;
+   }
+   p {
+     border-radius: 3px;
+     font-weight: bold;
+     margin-top: .5em;
+     border: solid 1px #267CB9;
+     padding: 4px;
+     text-align: center;
+     background-color: #FFF;
+     &:hover {
+       background-color: #267CB9;
+       color: #FFF;
+     }
+
+   }
 }
 
 footer {
@@ -82,17 +108,6 @@ footer {
   }
 
 }
-
-p#active {
-  position: relative;
-  font-weight: bold;
-  &:before {
-    content: "\25B6";
-    position: absolute;
-    left: -1rem;
-  }
-}
-
 
 .cse .gsc-control-cse,
 .gsc-control-cse {
