@@ -16,11 +16,11 @@ class Pagy ; VERSION = '3.5.0'
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
-    @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })               # default vars + cleaned vars
+    @vars = clean_vars(vars)
     { count:0, items:1, outset:0, page:1 }.each do |k,min|                     # validate instance variables
       (@vars[k] && instance_variable_set(:"@#{k}", @vars[k].to_i) >= min) \
-         or raise(VariableError.new(self), "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
-    end
+        or raise(VariableError.new(self), "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
+        end
     @pages = @last = [(@count.to_f / @items).ceil, 1].max                      # cardinal and ordinal meanings
     @page <= @last or raise(OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                                   # pagination offset + outset (initial offset)
@@ -43,6 +43,11 @@ class Pagy ; VERSION = '3.5.0'
       end                                                                 # skip the end boundary (last+1)
     end                                                                   # shift the start boundary (0) and
     series.shift; series[series.index(@page)] = @page.to_s; series        # convert the current page to String
+  end
+
+  private
+  def clean_vars(vars)
+    VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })                  # default vars + cleaned vars
   end
 
 end
