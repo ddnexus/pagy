@@ -26,4 +26,4 @@ gem 'codecov', :require => false
 # gem 'memory_profiler'
 
 # docs server
-gem "github-pages", '197', group: :jekyll_plugins
+gem "github-pages", '198', group: :jekyll_plugins
