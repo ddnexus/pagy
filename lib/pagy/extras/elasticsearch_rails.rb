@@ -13,7 +13,8 @@ class Pagy
   def self.new_from_elasticsearch_rails(response, vars={})
     vars[:items] = response.search.options[:size] || 10
     vars[:page]  = (response.search.options[:from] || 0) / vars[:items] + 1
-    vars[:count] = response.raw_response['hits']['total']
+    total = response.raw_response['hits']['total']
+    vars[:count] = total.is_a?(Hash) ? total['value'] : total
     new(vars)
   end
 
@@ -27,7 +28,8 @@ class Pagy
       search_args[-1][:size] = vars[:items]
       search_args[-1][:from] = vars[:items] * (vars[:page] - 1)
       response               = model.search(*search_args)
-      vars[:count]           = response.raw_response['hits']['total']
+      total                  = response.raw_response['hits']['total']
+      vars[:count]           = total.is_a?(Hash) ? total['value'] : total
       pagy = Pagy.new(vars)
       # with :last_page overflow we need to re-run the method in order to get the hits
       if defined?(OVERFLOW) && pagy.overflow? && pagy.vars[:overflow] == :last_page
