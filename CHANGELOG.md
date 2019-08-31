@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## Version 3.5.1
+
+### Changes
+
+- added support for elasticsearch 7
+
+### Commits
+
+- [ca736cc](http://github.com/ddnexus/pagy/commit/ca736cc): Adding elasticsearch7 support (#185) Fixes #184
+- [13b7314](http://github.com/ddnexus/pagy/commit/13b7314): correct typos in docs and initialiser (#186) [ci skip]
+- [9734ed6](http://github.com/ddnexus/pagy/commit/9734ed6): Docs style changes [ci skip]
+- [fb8bcf4](http://github.com/ddnexus/pagy/commit/fb8bcf4): doc fix for missing :partial key in rendering example (closes #180)
+- [7160a18](http://github.com/ddnexus/pagy/commit/7160a18): Minor docs changes [ci skip]
+
 ## Version 3.5.0
 
 ### Changes

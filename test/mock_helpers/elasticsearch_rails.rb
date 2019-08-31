@@ -44,4 +44,20 @@ module MockElasticsearchRails
     extend Pagy::Search
   end
 
+  class ResponseES7 < Response
+
+    def initialize(query, options={})
+      super(query, options)
+      @raw_response = {'hits' => {'hits' => @search.results, 'total' => {'value' => RESULTS[query].size}}}
+    end
+
+  end
+
+  class ModelES7 < Model
+
+    def self.search(*args)
+      ResponseES7.new(*args)
+    end
+
+  end
 end
