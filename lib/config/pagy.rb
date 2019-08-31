@@ -89,7 +89,7 @@
 # require 'pagy/extras/overflow'
 # Pagy::VARS[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
 
-# Metadata extra: Provides the pagination metadata to Javascrtipt frameworks like Vue.js, react.js, etc.
+# Metadata extra: Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
 # See https://ddnexus.github.io/pagy/extras/metadata
 # you must require the shared internal extra (BEFORE the metadata extra) ONLY if you need also the :sequels
 # require 'pagy/extras/shared'
