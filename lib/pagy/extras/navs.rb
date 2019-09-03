@@ -12,7 +12,7 @@ class Pagy
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
       tags = { 'before' => p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
                                   : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ),
-               'link'   => %(<span class="page">#{link.call(MARK)}</span> ),
+               'link'   => %(<span class="page">#{link.call(PAGE_PLACEHOLDER)}</span> ),
                'active' => %(<span class="page active">#{pagy.page}</span> ),
                'gap'    => %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> ),
                'after'  => p_next ? %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</span>)

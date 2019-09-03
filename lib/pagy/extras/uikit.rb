@@ -33,8 +33,8 @@ class Pagy
       next_span     = "<span uk-pagination-next>#{pagy_t('pagy.nav.next')}</span>"
       tags = { 'before' => p_prev ? %(<li>#{link.call p_prev, previous_span}</li>)
                                   : %(<li class="uk-disabled"><a href="#">#{previous_span}</a></li>),
-               'link'   => %(<li>#{link.call(MARK)}</li>),
-               'active' => %(<li class="uk-active"><span>#{MARK}</span></li>),
+               'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER)}</li>),
+               'active' => %(<li class="uk-active"><span>#{PAGE_PLACEHOLDER}</span></li>),
                'gap'    => %(<li class="uk-disabled"><span>#{pagy_t('pagy.nav.gap')}</span></li>),
                'after'  => p_next ? %(<li>#{link.call p_next, next_span}</li>)
                                   : %(<li class="uk-disabled"><a href="#">#{next_span}</a></li>) }

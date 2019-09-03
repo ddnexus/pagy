@@ -29,7 +29,7 @@ class Pagy
       tags = { 'before' => ( '<ul class="pagination">' \
                            + (p_prev  ? %(<li class="waves-effect prev">#{link.call(p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"')}</li>)
                                       : %(<li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>)) ),
-               'link'   => %(<li class="waves-effect">#{mark = link.call(MARK)}</li>),
+               'link'   => %(<li class="waves-effect">#{mark = link.call(PAGE_PLACEHOLDER)}</li>),
                'active' => %(<li class="active">#{mark}</li>),
                'gap'    => %(<li class="gap disabled"><a href="#">#{pagy_t('pagy.nav.gap')}</a></li>),
                'after'  => ( (p_next ? %(<li class="waves-effect next">#{link.call(p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"')}</li>)

@@ -30,7 +30,7 @@ class Pagy
       tags = { 'before' => ( '<ul class="pagination">' \
                            + (p_prev ? %(<li class="prev">#{link.call(p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')}</li>)
                                      : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>)) ),
-               'link'   => %(<li>#{link.call(MARK)}</li>),
+               'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER)}</li>),
                'active' => %(<li class="current">#{pagy.page}</li>),
                'gap'    => %(<li class="ellipsis gap" aria-hidden="true"></li>),
                'after'  => ( (p_next ? %(<li class="next">#{link.call(p_next, pagy_t('pagy.nav.next'), 'aria-label="next"')}</li>)

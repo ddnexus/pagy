@@ -34,8 +34,8 @@ class Pagy
                            + (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
                                      : %(<a class="pagination-next" disabled>#{pagy_t('pagy.nav.next')}</a>)) \
                            + '<ul class="pagination-list">' ),
-               'link'   => %(<li>#{link.call(MARK, MARK, %(class="pagination-link" aria-label="goto page #{MARK}"))}</li>),
-               'active' => %(<li>#{link.call(MARK, MARK, %(class="pagination-link is-current" aria-current="page" aria-label="page #{MARK}"))}</li>),
+               'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, PAGE_PLACEHOLDER, %(class="pagination-link" aria-label="goto page #{PAGE_PLACEHOLDER}"))}</li>),
+               'active' => %(<li>#{link.call(PAGE_PLACEHOLDER, PAGE_PLACEHOLDER, %(class="pagination-link is-current" aria-current="page" aria-label="page #{PAGE_PLACEHOLDER}"))}</li>),
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t('pagy.nav.gap')}</span></li>),
                'after'  => '</ul>' }
       %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})

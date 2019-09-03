@@ -29,7 +29,7 @@ class Pagy
       link, p_prev, p_next = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next
       tags = { 'before' => (p_prev ? %(#{link.call(p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"')})
                                    : %(<div class="item disabled"><i class="left small chevron icon"></i></div>)),
-               'link'   => %(#{link.call(MARK)}),
+               'link'   => %(#{link.call(PAGE_PLACEHOLDER)}),
                'active' => %(<a class="item active">#{pagy.page}</a>),
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.nav.gap')}</div>),
                'after'  => (p_next ? %(#{link.call(p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"')})
