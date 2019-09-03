@@ -10,6 +10,8 @@ class Pagy
   VARS[:items_param] = :items
   VARS[:max_items]   = 100
 
+  ITEMS_PLACEHOLDER = '__pagy_items__'
+
   # Handle a custom number of :items from params
   module Backend ; private
 
@@ -49,7 +51,7 @@ class Pagy
     def pagy_items_selector_js(pagy, id=pagy_id)
       p_vars         = pagy.vars
       p_items        = p_vars[:items]
-      p_vars[:items] = '__pagy_items__'
+      p_vars[:items] = ITEMS_PLACEHOLDER
       link           = pagy_marked_link(pagy_link_proc(pagy))
       p_vars[:items] = p_items # restore the items
 
