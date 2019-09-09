@@ -5,7 +5,7 @@ title: Basic Concepts
 
 ## Pagination is a simple task
 
-Basically, a pagination gem needs to calculate a series of 10-20 sequencial integers (the page numbers) and loop through that series to produce one link per integer. That's just a long string with a few numbers in it, and it's a very simple task... unless someone build a whole complex world of thousands of objects around a simple series of integers :).
+Basically, a pagination gem needs to calculate a series of 10-20 sequencial integers (the page numbers) and loop through that series to produce one link per integer. That's just a long string with a few numbers in it, and it's a very simple task... unless someone builds a whole complex world of thousands of objects around a simple series of integers :).
 
 ## Pagy keeps it simple
 
