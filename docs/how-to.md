@@ -86,7 +86,7 @@ This page contains the practical tips and examples to get the job done with Pagy
         1. require the [headers extra](extras/headers.md) by uncommenting it in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
 
             ```ruby
-            require 'pagy/extras/metadata'
+            require 'pagy/extras/headers'
             ```
 
         2. add the pagination headers to your responses:
