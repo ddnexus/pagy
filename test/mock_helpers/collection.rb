@@ -18,6 +18,10 @@ class MockCollection < Array
     size
   end
 
+  def unscope(*)
+    self
+  end
+
   class Grouped < MockCollection
 
     def count(*)
