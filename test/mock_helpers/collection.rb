@@ -24,5 +24,13 @@ class MockCollection < Array
       Hash[@collection.map { |value| [value, value + 1] }]
     end
 
+    def unscope(symbol)
+      self
+    end
+
+    def pick(query)
+      size
+    end
+
   end
 end
