@@ -15,7 +15,7 @@ class Pagy
     # Sub-method called only by #pagy_array: here for easy customization of variables by overriding
     def pagy_aggregated_get_vars(collection, vars)
       sql = Arel.sql("COUNT(*) OVER () as count_all")
-      vars[:count] ||= collection.reorder(nil).select(sql).limit(1).first.count_all
+      vars[:count] ||= collection.unscope(:order).pick(sql)
       vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars
     end
