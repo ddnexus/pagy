@@ -18,9 +18,18 @@ class Pagy
 
     # Sub-method called only by #pagy: here for easy customization of variables by overriding
     def pagy_get_vars(collection, vars)
-      vars[:count] ||= (c = collection.count(:all)).is_a?(Hash) ? c.size : c
+      vars[:count] ||= count_all(collection)
       vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars
+    end
+
+    def count_all(collection)
+      if collection.group_values.empty?
+        (c = collection.count(:all)).is_a?(Hash) ? c.size : c
+      else
+        count_all_sql = Arel.sql("COUNT(*) OVER () as count_all")
+        collection.reorder(nil).select(count_all_sql).limit(1).first.count_all
+      end
     end
 
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding
