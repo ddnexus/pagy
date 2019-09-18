@@ -28,6 +28,10 @@ class MockCollection < Array
       self
     end
 
+    def group_values
+      [:column1]
+    end
+
     def pick(query)
       size
     end

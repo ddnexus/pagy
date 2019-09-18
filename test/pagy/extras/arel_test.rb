@@ -3,20 +3,20 @@
 
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/arel'
-require 'pagy/extras/aggregated'
+require 'pagy/extras/arel'
 
 describe Pagy::Backend do
 
   let(:controller) { MockController.new }
 
-  describe "#pagy_array" do
+  describe "#pagy_arel" do
 
     before do
       @collection = MockCollection::Grouped.new((1..1000).to_a)
     end
 
     it 'paginates with defaults' do
-      pagy, items = controller.send(:pagy_aggregated, @collection)
+      pagy, items = controller.send(:pagy_arel, @collection)
       pagy.must_be_instance_of Pagy
       pagy.count.must_equal 1000
       pagy.items.must_equal Pagy::VARS[:items]
@@ -26,7 +26,7 @@ describe Pagy::Backend do
     end
 
     it 'paginates with vars' do
-      pagy, items = controller.send(:pagy_aggregated, @collection, page: 2, items: 10, link_extra: 'X')
+      pagy, items = controller.send(:pagy_arel, @collection, page: 2, items: 10, link_extra: 'X')
       pagy.must_be_instance_of Pagy
       pagy.count.must_equal 1000
       pagy.items.must_equal 10
@@ -38,7 +38,7 @@ describe Pagy::Backend do
 
   end
 
-  describe "#pagy_aggregated_get_vars" do
+  describe "#pagy_arel_get_vars" do
 
     before do
       @collection = MockCollection::Grouped.new((1..1000).to_a)
@@ -46,7 +46,7 @@ describe Pagy::Backend do
 
     it 'gets defaults' do
       vars   = {}
-      merged = controller.send :pagy_aggregated_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       merged.keys.must_include :count
       merged.keys.must_include :page
       merged[:count].must_equal 1000
@@ -55,7 +55,7 @@ describe Pagy::Backend do
 
     it 'gets vars' do
       vars   = {page: 2, items: 10, link_extra: 'X'}
-      merged = controller.send :pagy_aggregated_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       merged.keys.must_include :count
       merged.keys.must_include :page
       merged.keys.must_include :items
