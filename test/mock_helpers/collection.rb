@@ -18,6 +18,10 @@ class MockCollection < Array
     size
   end
 
+  def group_values
+    []
+  end
+
   class Grouped < MockCollection
 
     def count(*)
