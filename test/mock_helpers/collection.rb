@@ -11,11 +11,19 @@ class MockCollection < Array
   end
 
   def limit(value)
-    @collection[0, value]
+    if value == 1
+      self # used in pluck
+    else
+      @collection[0, value]
+    end
   end
 
   def count(*)
     size
+  end
+
+  def pluck(*)
+    [size]
   end
 
   class Grouped < MockCollection
