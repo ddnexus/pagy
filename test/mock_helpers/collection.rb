@@ -18,10 +18,6 @@ class MockCollection < Array
     size
   end
 
-  def group_values
-    []
-  end
-
   class Grouped < MockCollection
 
     def count(*)
@@ -30,10 +26,6 @@ class MockCollection < Array
 
     def unscope(symbol)
       self
-    end
-
-    def group_values
-      [:column1]
     end
 
     def pick(query)
