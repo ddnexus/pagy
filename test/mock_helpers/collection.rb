@@ -26,6 +26,10 @@ class MockCollection < Array
     [size]
   end
 
+  def group_values
+    []
+  end
+
   class Grouped < MockCollection
 
     def count(*)
@@ -36,8 +40,8 @@ class MockCollection < Array
       self
     end
 
-    def pick(*)
-      size
+    def group_values
+      [:other_table_id]
     end
 
   end

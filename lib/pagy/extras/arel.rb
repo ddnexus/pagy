@@ -17,9 +17,14 @@ class Pagy
     end
 
     def pagy_arel_count(collection)
-      # COUNT(*) OVER ()
-      sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
-      collection.unscope(:order).limit(1).pluck(sql).first
+      if collection.group_values.empty?
+        # COUNT(*)
+        collection.count(:all)
+      else
+        # COUNT(*) OVER ()
+        sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
+        collection.unscope(:order).limit(1).pluck(sql).first
+      end
     end
 
   end
