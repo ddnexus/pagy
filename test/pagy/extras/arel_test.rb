@@ -12,7 +12,7 @@ describe Pagy::Backend do
   describe "#pagy_arel" do
 
     before do
-      @collection = MockCollection::Grouped.new((1..1000).to_a)
+      @collection = MockCollection.new
     end
 
     it 'paginates with defaults' do
@@ -46,7 +46,7 @@ describe Pagy::Backend do
 
     it 'gets defaults' do
       vars   = {}
-      merged = controller.send :pagy_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       merged.keys.must_include :count
       merged.keys.must_include :page
       merged[:count].must_equal 1000
@@ -55,7 +55,7 @@ describe Pagy::Backend do
 
     it 'gets vars' do
       vars   = {page: 2, items: 10, link_extra: 'X'}
-      merged = controller.send :pagy_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       merged.keys.must_include :count
       merged.keys.must_include :page
       merged.keys.must_include :items
@@ -69,7 +69,7 @@ describe Pagy::Backend do
     it 'works with grouped collections' do
       @collection = MockCollection::Grouped.new((1..1000).to_a)
       vars   = {page: 2, items: 10, link_extra: 'X'}
-      merged = controller.send :pagy_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       merged.keys.must_include :count
       merged.keys.must_include :page
       merged.keys.must_include :items
@@ -82,7 +82,7 @@ describe Pagy::Backend do
 
     it 'overrides count and page' do
       vars   = {count: 10, page: 32}
-      merged = controller.send :pagy_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       merged.keys.must_include :count
       merged[:count].must_equal 10
       merged.keys.must_include :page
