@@ -509,7 +509,7 @@ When the count caching is not an option, you may want to use the [countless extr
 
 When your app is a service that doesn't need to serve any UI, but provides an API to some sort of client, you can serve the pagination metadata as HTTP headers added to your response.
 
-In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require the [headers extra](extras/headers.md) and add the headers to your responses.
+In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require the [headers extra](extras/headers.md) and use its helpers to add the headers to your responses.
 
 ## Paginate for Javascript Frameworks
 
