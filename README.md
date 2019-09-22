@@ -160,6 +160,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
 - [日本語の投稿](https://qiita.com/search?q=pagy)
+- [한국어 튜토리얼](https://blog.naver.com/kbs4674/221616865157)
 
 ### Docs
 
