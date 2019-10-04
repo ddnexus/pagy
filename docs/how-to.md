@@ -273,6 +273,35 @@ end
 
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
+#### POST a ransack form
+
+You may have a ransack search form that you need submitted as a POST request. The search results may need to be paginated. If you click on pagy's pagination links, then they will get submitted the form as a GET request. That won't do. How do you handle this?
+
+The following is an example from a rails app, but can be generalised as required:
+
+* Firstly: add a hidden field in your ransack form as follows:
+```ruby
+<%= search_form_for @q, url: search_quotes_path,  html: { method: :post, class: 'ransack-form' } do |f| %>  
+  <%= hidden_field_tag 'page', '1', {class: 'pagy-page'} %>
+  <%= f.submit %>  
+<% end %>
+<br>
+```
+
+* Secondly: add a javascript event handler:
+
+```js
+$(document).on('turbolinks:load', function(event){               
+  $(document).on('click', 'a.page-link', function(event){        // run when you click on an a element with the page-link class
+    pageNum = $(this).attr("href").match(/page=([0-9]+)/)[1];    // we extract the page number from the link
+    $('.pagy-page').val(pageNum);                                // we substitute the page number in the hidden field in the form
+    $('form.ransack-form').submit();                             // then we submit the form    
+    });
+});
+```
+
+The code above was adapted substantially from the code contained [in this blog post](https://nicholaide.github.io/ransack/2016/11/26/ransack-pagination.html).
+
 ## Customizing the item name
 
 The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that by editing the values of the `"pagy.item_name"` i18n key in the [dictionaray files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
