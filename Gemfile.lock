@@ -95,7 +95,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    jaro_winkler (1.5.2)
+    jaro_winkler (1.5.3)
     jekyll (3.8.5)
       addressable (~> 2.4)
       colorator (~> 1.0)
@@ -225,12 +225,11 @@ GEM
     octokit (4.14.0)
       sawyer (~> 0.8.0, >= 0.5.3)
     oj (3.7.12)
-    parallel (1.17.0)
-    parser (2.6.2.1)
+    parallel (1.18.0)
+    parser (2.6.5.0)
       ast (~> 2.4.0)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
-    psych (3.1.0)
     public_suffix (3.1.1)
     rack (2.0.7)
     rainbow (3.0.0)
@@ -239,19 +238,18 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     rouge (2.2.1)
-    rubocop (0.67.2)
+    rubocop (0.75.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
-      parser (>= 2.5, != 2.5.1.1)
-      psych (>= 3.1.0)
+      parser (>= 2.6)
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 1.6)
-    rubocop-performance (1.1.0)
-      rubocop (>= 0.67.0)
+      unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-performance (1.5.0)
+      rubocop (>= 0.71.0)
     ruby-enum (0.7.2)
       i18n
-    ruby-progressbar (1.10.0)
+    ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     rubyzip (1.2.3)
     safe_yaml (1.0.5)
@@ -275,7 +273,7 @@ GEM
       ethon (>= 0.9.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    unicode-display_width (1.5.0)
+    unicode-display_width (1.6.0)
     url (0.3.2)
 
 PLATFORMS
@@ -290,8 +288,8 @@ DEPENDENCIES
   oj
   rack
   rake
-  rubocop
-  rubocop-performance (~> 1.1.0)
+  rubocop (~> 0.75.0)
+  rubocop-performance (~> 1.5.0)
   simplecov
 
 BUNDLED WITH
