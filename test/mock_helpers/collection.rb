@@ -11,17 +11,37 @@ class MockCollection < Array
   end
 
   def limit(value)
-    @collection[0, value]
+    if value == 1
+      self # used in pluck
+    else
+      @collection[0, value]
+    end
   end
 
   def count(*)
     size
   end
 
+  def pluck(*)
+    [size]
+  end
+
+  def group_values
+    []
+  end
+
   class Grouped < MockCollection
 
     def count(*)
       Hash[@collection.map { |value| [value, value + 1] }]
+    end
+
+    def unscope(*)
+      self
+    end
+
+    def group_values
+      [:other_table_id]
     end
 
   end

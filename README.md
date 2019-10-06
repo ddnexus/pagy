@@ -108,6 +108,8 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 ### Backend Extras
 
+- [arel](http://ddnexus.github.io/pagy/extras/arel): Better performance of grouped ActiveRecord collections
+Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 - [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 - [countless](http://ddnexus.github.io/pagy/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](http://ddnexus.github.io/pagy/extras/elasticsearch_rails): Paginate `ElasticsearchRails` response objects
@@ -160,6 +162,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
 - [日本語の投稿](https://qiita.com/search?q=pagy)
+- [한국어 튜토리얼](https://blog.naver.com/kbs4674/221616865157)
 
 ### Docs
 

@@ -1,5 +1,28 @@
 # CHANGELOG
 
+## Version 3.6.0
+
+### Changes
+
+- added arel extra
+- updated Gemfile for development environment
+- docs fixes and improvements
+
+### Commits
+
+- [af0f189](http://github.com/ddnexus/pagy/commit/af0f189): updated minitest and minitest-reporter gems and removed deprecation
+- [6a62de5](http://github.com/ddnexus/pagy/commit/6a62de5): updated Gemfile
+- [4856782](http://github.com/ddnexus/pagy/commit/4856782): Arel Extra (#189)
+- [2a2d9b0](http://github.com/ddnexus/pagy/commit/2a2d9b0): Revert "Added digital-climate-strike banner"This reverts commit 07f7d9256ef9b1cef1c1eaf6da56ebb03daa19d5.
+- [b5c2809](http://github.com/ddnexus/pagy/commit/b5c2809): docs fixes
+- [f8e4f42](http://github.com/ddnexus/pagy/commit/f8e4f42): replaced markdown file link for documentation link in extras
+- [6a5c271](http://github.com/ddnexus/pagy/commit/6a5c271): updated github-pages gem
+- [60d243c](http://github.com/ddnexus/pagy/commit/60d243c): small doc improvement [ci skip]
+- [2feb451](http://github.com/ddnexus/pagy/commit/2feb451): docs changes
+- [07f7d92](http://github.com/ddnexus/pagy/commit/07f7d92): Added digital-climate-strike banner
+- [281da85](http://github.com/ddnexus/pagy/commit/281da85): update grammar (#187)
+- [739f032](http://github.com/ddnexus/pagy/commit/739f032): Update how-to: Correct to require header for API (#188)
+
 ## Version 3.5.1
 
 ### Changes
