@@ -30,7 +30,7 @@ In a controller:
 
 ## Methods
 
-This extra adds the `pagy_arel` method to the `Pagy::Backend` to be used in place (or in parallel) of the `pagy` method when you want to paginate a collection with sql `GROUP BY` clause, where the number of groups/rows is big - for instance when group by day of the last 3 years). It also adds a `pagy_arel_get_variables` sub-method, used for easy customization of variables by overriding.
+This extra adds the `pagy_arel` method to the `Pagy::Backend` to be used in place (or in parallel) of the `pagy` method when you want to paginate a collection with sql `GROUP BY` clause, where the number of groups/rows is big (for instance when group by day of the last 3 years). It also adds a `pagy_arel_get_variables` sub-method, used for easy customization of variables by overriding.
 
 **Notice**: there is no `pagy_arel_get_items` method to override, since the items are fetched directly by the specialized `pagy_arel` method.
 

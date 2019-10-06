@@ -108,6 +108,8 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 
 ### Backend Extras
 
+- [arel](http://ddnexus.github.io/pagy/extras/arel): Better performance of grouped ActiveRecord collections
+Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 - [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
 - [countless](http://ddnexus.github.io/pagy/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](http://ddnexus.github.io/pagy/extras/elasticsearch_rails): Paginate `ElasticsearchRails` response objects

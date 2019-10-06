@@ -307,7 +307,7 @@ Please, use the [array](extras/array.md) extra.
 
 ## Paginate ActiveRecord collections
 
-Pagy works out of the box with `ActiveRecord` collections.
+Pagy works out of the box with `ActiveRecord` collections. See also the [arel](http://ddnexus.github.io/pagy/extras/arel) for better performance of grouped ActiveRecord collections.
 
 ## Paginate Ransack results
 
@@ -389,6 +389,8 @@ custom_count = ...
 ```
 
 **Notice**: pagy will efficiently skip its internal count query and will just use the passed `:count` variable
+
+See also the [arel](http://ddnexus.github.io/pagy/extras/arel) for better performance of grouped ActiveRecord collections.
 
 ## Using the pagy_nav* helpers
 
@@ -500,6 +502,10 @@ after_destroy { Rails.cache.delete_matched /^pagy-#{self.class.name}:/}
 ```
 
 That may work very well with static (or almost static) DBs, where there is not much writing and mostly reading. Less so with more DB writing, and probably not particularly useful with a DB in constant change.
+
+### Using the arel extra
+
+For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel](http://ddnexus.github.io/pagy/extras/arel).
 
 ### Avoiding the count
 

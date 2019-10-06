@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/array
+# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/arel
 # encoding: utf-8
 # frozen_string_literal: true
 
