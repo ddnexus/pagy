@@ -16,33 +16,16 @@ describe Pagy::Frontend do
 
     it 'should return the marked link' do
       pagy = Pagy.new(count: 100, page: 4)
-      view.instance_eval do
-        pagy_marked_link(pagy_link_proc(pagy)).must_equal(
-          "<a href=\"/foo?page=__pagy_page__&items=20\"   style=\"display: none;\"></a>"
-        )
-      end
+      _(view.pagy_marked_link(view.pagy_link_proc(pagy))).must_equal "<a href=\"/foo?page=__pagy_page__&items=20\"   style=\"display: none;\"></a>"
 
       pagy = Pagy.new(count: 100, page: 4, page_param: 'p')
-      view.instance_eval do
-        pagy_marked_link(pagy_link_proc(pagy)).must_equal(
-          "<a href=\"/foo?p=__pagy_page__&items=20\"   style=\"display: none;\"></a>"
-        )
-      end
+      _(view.pagy_marked_link(view.pagy_link_proc(pagy))).must_equal "<a href=\"/foo?p=__pagy_page__&items=20\"   style=\"display: none;\"></a>"
 
       pagy = Pagy.new(count: 100, page: 4, items_param: 'i')
-      view.instance_eval do
-        pagy_marked_link(pagy_link_proc(pagy)).must_equal(
-          "<a href=\"/foo?page=__pagy_page__&i=20\"   style=\"display: none;\"></a>"
-        )
-      end
+      _(view.pagy_marked_link(view.pagy_link_proc(pagy))).must_equal "<a href=\"/foo?page=__pagy_page__&i=20\"   style=\"display: none;\"></a>"
 
       pagy = Pagy.new(count: 100, page: 4, page_param: 'p', items_param: 'i')
-      view.instance_eval do
-        pagy_marked_link(pagy_link_proc(pagy)).must_equal(
-          "<a href=\"/foo?p=__pagy_page__&i=20\"   style=\"display: none;\"></a>"
-        )
-      end
-
+      _(view.pagy_marked_link(view.pagy_link_proc(pagy))).must_equal "<a href=\"/foo?p=__pagy_page__&i=20\"   style=\"display: none;\"></a>"
 
     end
 
@@ -52,8 +35,7 @@ describe Pagy::Frontend do
 
     it 'renders items selector with trim' do
       pagy = Pagy.new count: 1000, page: 3
-      view.pagy_items_selector_js(pagy, 'test-id').must_equal \
-        "<span id=\"test-id\">Show <input type=\"number\" min=\"1\" max=\"100\" value=\"20\" style=\"padding: 0; text-align: center; width: 3rem;\"> items per page</span><script type=\"application/json\" class=\"pagy-json\">[\"items_selector\",\"test-id\",41,\"<a href=\\\"/foo?page=__pagy_page__&items=__pagy_items__\\\"   style=\\\"display: none;\\\"></a>\",\"page\"]</script>"
+      _(view.pagy_items_selector_js(pagy, 'test-id')).must_equal "<span id=\"test-id\">Show <input type=\"number\" min=\"1\" max=\"100\" value=\"20\" style=\"padding: 0; text-align: center; width: 3rem;\"> items per page</span><script type=\"application/json\" class=\"pagy-json\">[\"items_selector\",\"test-id\",41,\"<a href=\\\"/foo?page=__pagy_page__&items=__pagy_items__\\\"   style=\\\"display: none;\\\"></a>\",\"page\"]</script>"
     end
 
   end

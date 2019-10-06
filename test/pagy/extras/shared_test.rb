@@ -17,7 +17,7 @@ if ENV['ENABLE_OJ']
     describe "#pagy_json_tag" do
 
       it 'should use oj' do
-        view.pagy_json_tag(:test_function, 'some-id', 'some-string', 123, true).must_equal \
+        _(view.pagy_json_tag(:test_function, 'some-id', 'some-string', 123, true)).must_equal \
           "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-id\",\"some-string\",123,true]</script>"
       end
 
@@ -29,9 +29,9 @@ if ENV['ENABLE_OJ']
       it 'should return different SHA1 ids' do
         id1 = call_pagy_id
         id2 = call_pagy_id
-        id1.must_be_kind_of String
-        id2.must_be_kind_of String
-        id1.must_be :!=, id2
+        _(id1).must_be_kind_of String
+        _(id2).must_be_kind_of String
+        _(id1).must_be :!=, id2
       end
 
     end
@@ -40,13 +40,9 @@ if ENV['ENABLE_OJ']
 
       it 'should return only the "standard" link' do
         pagy = Pagy.new(count: 100, page: 4)
-        view.instance_eval do
-          pagy_marked_link(pagy_link_proc(pagy)).must_equal("<a href=\"/foo?page=__pagy_page__\"   style=\"display: none;\"></a>")
-        end
+        _(view.pagy_marked_link(view.pagy_link_proc(pagy))).must_equal("<a href=\"/foo?page=__pagy_page__\"   style=\"display: none;\"></a>")
         pagy = Pagy.new(count: 100, page: 4, page_param: 'p')
-        view.instance_eval do
-          pagy_marked_link(pagy_link_proc(pagy)).must_equal("<a href=\"/foo?p=__pagy_page__\"   style=\"display: none;\"></a>")
-        end
+        _(view.pagy_marked_link(view.pagy_link_proc(pagy))).must_equal("<a href=\"/foo?p=__pagy_page__\"   style=\"display: none;\"></a>")
       end
 
     end

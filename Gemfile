@@ -4,7 +4,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # test
 gem 'rake'
-gem 'minitest'
+gem 'minitest', '~> 5.12'
 gem 'minitest-reporters'
 gem 'rack'
 gem 'i18n'

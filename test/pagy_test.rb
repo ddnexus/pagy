@@ -8,7 +8,7 @@ describe Pagy do
   let(:pagy) { Pagy.new count: 100, page: 4 }
 
   it 'has version' do
-    Pagy::VERSION.wont_be_nil
+    _(Pagy::VERSION).wont_be_nil
   end
 
   describe "#initialize" do
@@ -18,254 +18,258 @@ describe Pagy do
     end
 
     it 'initializes' do
-      pagy.must_be_instance_of Pagy
-      Pagy.new(count: 100).must_be_instance_of Pagy
-      Pagy.new(count: '100').must_be_instance_of Pagy
-      Pagy.new(count: 100, page: '2').must_be_instance_of Pagy
-      Pagy.new(count: 100, page: '').must_be_instance_of Pagy
-      Pagy.new(count: 100, items: '10').must_be_instance_of Pagy
-      proc { Pagy.new({}) }.must_raise Pagy::VariableError
-      proc { Pagy.new(count: 100, page: 0) }.must_raise Pagy::VariableError
-      proc { Pagy.new(count: 100, page: 2, items: 0) }.must_raise Pagy::VariableError
-      proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::VariableError
-      proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
-      proc { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
-      e = proc { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
-      e.pagy.must_be_instance_of Pagy
+      _(pagy).must_be_instance_of Pagy
+      _(Pagy.new(count: 100)).must_be_instance_of Pagy
+      _(Pagy.new(count: '100')).must_be_instance_of Pagy
+      _(Pagy.new(count: 100, page: '2')).must_be_instance_of Pagy
+      _(Pagy.new(count: 100, page: '')).must_be_instance_of Pagy
+      _(Pagy.new(count: 100, items: '10')).must_be_instance_of Pagy
+      _(proc { Pagy.new({}) }).must_raise Pagy::VariableError
+      _(proc { Pagy.new(count: 100, page: 0) }).must_raise Pagy::VariableError
+      _(proc { Pagy.new(count: 100, page: 2, items: 0) }).must_raise Pagy::VariableError
+      _(proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }).must_raise Pagy::VariableError
+      _(proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }).must_raise Pagy::VariableError
+      _(proc { Pagy.new(count: 100, page: '11') }).must_raise Pagy::OverflowError
+      _(proc { Pagy.new(count: 100, page: 12) }).must_raise Pagy::OverflowError
+      begin
+        Pagy.new(count: 100, page: 12)
+      rescue => e
+        _(e.pagy).must_be_instance_of Pagy
+      end
     end
 
     it 'initializes count 0' do
       pagy = Pagy.new @vars.merge(count: 0)
-      pagy.pages.must_equal 1
-      pagy.last.must_equal 1
-      pagy.offset.must_equal 0
-      pagy.from.must_equal 0
-      pagy.to.must_equal 0
-      pagy.prev.must_be_nil
-      pagy.next.must_be_nil
+      _(pagy.pages).must_equal 1
+      _(pagy.last).must_equal 1
+      _(pagy.offset).must_equal 0
+      _(pagy.from).must_equal 0
+      _(pagy.to).must_equal 0
+      _(pagy.prev).must_be_nil
+      _(pagy.next).must_be_nil
     end
 
     it 'initializes single page' do
       pagy = Pagy.new @vars.merge(count: 8)
-      pagy.pages.must_equal 1
-      pagy.last.must_equal 1
-      pagy.offset.must_equal 0
-      pagy.from.must_equal 1
-      pagy.to.must_equal 8
-      pagy.prev.must_be_nil
-      pagy.next.must_be_nil
+      _(pagy.pages).must_equal 1
+      _(pagy.last).must_equal 1
+      _(pagy.offset).must_equal 0
+      _(pagy.from).must_equal 1
+      _(pagy.to).must_equal 8
+      _(pagy.prev).must_be_nil
+      _(pagy.next).must_be_nil
     end
 
     it 'initializes page 1 of 2' do
       pagy = Pagy.new @vars.merge(count: 15)
-      pagy.pages.must_equal 2
-      pagy.last.must_equal 2
-      pagy.offset.must_equal 0
-      pagy.from.must_equal 1
-      pagy.to.must_equal 10
-      pagy.prev.must_be_nil
-      pagy.next.must_equal 2
+      _(pagy.pages).must_equal 2
+      _(pagy.last).must_equal 2
+      _(pagy.offset).must_equal 0
+      _(pagy.from).must_equal 1
+      _(pagy.to).must_equal 10
+      _(pagy.prev).must_be_nil
+      _(pagy.next).must_equal 2
     end
 
     it 'initializes page 2 of 2' do
       pagy = Pagy.new @vars.merge(count: 15, page: 2)
-      pagy.pages.must_equal 2
-      pagy.last.must_equal 2
-      pagy.offset.must_equal 10
-      pagy.from.must_equal 11
-      pagy.to.must_equal 15
-      pagy.prev.must_equal 1
-      pagy.page.must_equal 2
-      pagy.next.must_be_nil
+      _(pagy.pages).must_equal 2
+      _(pagy.last).must_equal 2
+      _(pagy.offset).must_equal 10
+      _(pagy.from).must_equal 11
+      _(pagy.to).must_equal 15
+      _(pagy.prev).must_equal 1
+      _(pagy.page).must_equal 2
+      _(pagy.next).must_be_nil
     end
 
     it 'initializes page 1' do
       pagy = Pagy.new @vars.merge(page: 1)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 0
-      pagy.from.must_equal 1
-      pagy.to.must_equal 10
-      pagy.prev.must_be_nil
-      pagy.page.must_equal 1
-      pagy.next.must_equal 2
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 0
+      _(pagy.from).must_equal 1
+      _(pagy.to).must_equal 10
+      _(pagy.prev).must_be_nil
+      _(pagy.page).must_equal 1
+      _(pagy.next).must_equal 2
     end
 
     it 'initializes page 2' do
       pagy = Pagy.new @vars.merge(page: 2)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 10
-      pagy.from.must_equal 11
-      pagy.to.must_equal 20
-      pagy.prev.must_equal 1
-      pagy.page.must_equal 2
-      pagy.next.must_equal 3
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 10
+      _(pagy.from).must_equal 11
+      _(pagy.to).must_equal 20
+      _(pagy.prev).must_equal 1
+      _(pagy.page).must_equal 2
+      _(pagy.next).must_equal 3
     end
 
     it 'initializes page 3' do
       pagy = Pagy.new @vars.merge(page: 3)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 20
-      pagy.from.must_equal 21
-      pagy.to.must_equal 30
-      pagy.prev.must_equal 2
-      pagy.page.must_equal 3
-      pagy.next.must_equal 4
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 20
+      _(pagy.from).must_equal 21
+      _(pagy.to).must_equal 30
+      _(pagy.prev).must_equal 2
+      _(pagy.page).must_equal 3
+      _(pagy.next).must_equal 4
     end
 
     it 'initializes page 4' do
       pagy = Pagy.new @vars.merge(page: 4)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 30
-      pagy.from.must_equal 31
-      pagy.to.must_equal 40
-      pagy.prev.must_equal 3
-      pagy.page.must_equal 4
-      pagy.next.must_equal 5
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 30
+      _(pagy.from).must_equal 31
+      _(pagy.to).must_equal 40
+      _(pagy.prev).must_equal 3
+      _(pagy.page).must_equal 4
+      _(pagy.next).must_equal 5
     end
 
     it 'initializes page 5' do
       pagy = Pagy.new @vars.merge(page: 5)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 40
-      pagy.from.must_equal 41
-      pagy.to.must_equal 50
-      pagy.prev.must_equal 4
-      pagy.page.must_equal 5
-      pagy.next.must_equal 6
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 40
+      _(pagy.from).must_equal 41
+      _(pagy.to).must_equal 50
+      _(pagy.prev).must_equal 4
+      _(pagy.page).must_equal 5
+      _(pagy.next).must_equal 6
     end
 
     it 'initializes page 6' do
       pagy = Pagy.new @vars.merge(page: 6)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 50
-      pagy.from.must_equal 51
-      pagy.to.must_equal 60
-      pagy.prev.must_equal 5
-      pagy.page.must_equal 6
-      pagy.next.must_equal 7
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 50
+      _(pagy.from).must_equal 51
+      _(pagy.to).must_equal 60
+      _(pagy.prev).must_equal 5
+      _(pagy.page).must_equal 6
+      _(pagy.next).must_equal 7
     end
 
     it 'initializes page 7' do
       pagy = Pagy.new @vars.merge(page: 7)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 60
-      pagy.from.must_equal 61
-      pagy.to.must_equal 70
-      pagy.prev.must_equal 6
-      pagy.page.must_equal 7
-      pagy.next.must_equal 8
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 60
+      _(pagy.from).must_equal 61
+      _(pagy.to).must_equal 70
+      _(pagy.prev).must_equal 6
+      _(pagy.page).must_equal 7
+      _(pagy.next).must_equal 8
     end
 
     it 'initializes page 8' do
       pagy = Pagy.new @vars.merge(page: 8)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 70
-      pagy.from.must_equal 71
-      pagy.to.must_equal 80
-      pagy.prev.must_equal 7
-      pagy.page.must_equal 8
-      pagy.next.must_equal 9
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 70
+      _(pagy.from).must_equal 71
+      _(pagy.to).must_equal 80
+      _(pagy.prev).must_equal 7
+      _(pagy.page).must_equal 8
+      _(pagy.next).must_equal 9
     end
 
     it 'initializes page 9' do
       pagy = Pagy.new @vars.merge(page: 9)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 80
-      pagy.from.must_equal 81
-      pagy.to.must_equal 90
-      pagy.prev.must_equal 8
-      pagy.page.must_equal 9
-      pagy.next.must_equal 10
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 80
+      _(pagy.from).must_equal 81
+      _(pagy.to).must_equal 90
+      _(pagy.prev).must_equal 8
+      _(pagy.page).must_equal 9
+      _(pagy.next).must_equal 10
     end
 
     it 'initializes page 10' do
       pagy = Pagy.new @vars.merge(page: 10)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 10
-      pagy.offset.must_equal 90
-      pagy.from.must_equal 91
-      pagy.to.must_equal 100
-      pagy.prev.must_equal 9
-      pagy.page.must_equal 10
-      pagy.next.must_equal 11
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 10
+      _(pagy.offset).must_equal 90
+      _(pagy.from).must_equal 91
+      _(pagy.to).must_equal 100
+      _(pagy.prev).must_equal 9
+      _(pagy.page).must_equal 10
+      _(pagy.next).must_equal 11
     end
 
     it 'initializes page 11' do
       pagy = Pagy.new @vars.merge(page: 11)
-      pagy.count.must_equal 103
-      pagy.pages.must_equal 11
-      pagy.last.must_equal 11
-      pagy.items.must_equal 3
-      pagy.offset.must_equal 100
-      pagy.from.must_equal 101
-      pagy.to.must_equal 103
-      pagy.prev.must_equal 10
-      pagy.page.must_equal 11
-      pagy.next.must_be_nil
+      _(pagy.count).must_equal 103
+      _(pagy.pages).must_equal 11
+      _(pagy.last).must_equal 11
+      _(pagy.items).must_equal 3
+      _(pagy.offset).must_equal 100
+      _(pagy.from).must_equal 101
+      _(pagy.to).must_equal 103
+      _(pagy.prev).must_equal 10
+      _(pagy.page).must_equal 11
+      _(pagy.next).must_be_nil
     end
 
     it 'initializes outset page 1' do
       pagy = Pagy.new(count: 87, page: 1, outset: 10, items: 10)
-      pagy.offset.must_equal 10
-      pagy.items.must_equal 10
-      pagy.from.must_equal 1
-      pagy.to.must_equal 10
-      pagy.pages.must_equal 9
+      _(pagy.offset).must_equal 10
+      _(pagy.items).must_equal 10
+      _(pagy.from).must_equal 1
+      _(pagy.to).must_equal 10
+      _(pagy.pages).must_equal 9
     end
 
     it 'initializes outset page 9' do
       pagy = Pagy.new(count: 87, page: 9, outset: 10, items: 10)
-      pagy.offset.must_equal 90
-      pagy.items.must_equal 7
-      pagy.from.must_equal 81
-      pagy.to.must_equal 87
-      pagy.pages.must_equal 9
+      _(pagy.offset).must_equal 90
+      _(pagy.items).must_equal 7
+      _(pagy.from).must_equal 81
+      _(pagy.to).must_equal 87
+      _(pagy.pages).must_equal 9
     end
 
     it 'initializes items of last page of one' do
-      Pagy.new(items: 10, count: 0).items.must_equal 10
-      Pagy.new(items: 10, count: 4).items.must_equal 4
-      Pagy.new(items: 10, count: 10).items.must_equal 10
+      _(Pagy.new(items: 10, count: 0).items).must_equal 10
+      _(Pagy.new(items: 10, count: 4).items).must_equal 4
+      _(Pagy.new(items: 10, count: 10).items).must_equal 10
     end
 
     it 'initializes items of last page of many' do
-      Pagy.new(items: 10, count: 14, page: 2).items.must_equal 4
-      Pagy.new(items: 10, count: 20, page: 2).items.must_equal 10
+      _(Pagy.new(items: 10, count: 14, page: 2).items).must_equal 4
+      _(Pagy.new(items: 10, count: 20, page: 2).items).must_equal 10
     end
 
     it 'handles the :cycle variable' do
       pagy = Pagy.new(count: 100, page: 10, items: 10, cycle: true)
-      pagy.prev.must_equal(9)
-      pagy.next.must_equal 1
+      _(pagy.prev).must_equal(9)
+      _(pagy.next).must_equal 1
     end
 
   end
@@ -277,7 +281,7 @@ describe Pagy do
       :count, :page, :items, :vars, # input
       :offset, :pages, :last, :from, :to, :prev, :next, :series # output
       ].each do |meth|
-        pagy.must_respond_to meth
+        _(pagy).must_respond_to meth
       end
     end
 
@@ -286,12 +290,12 @@ describe Pagy do
   describe "variables" do
 
     it 'has vars defaults' do
-      Pagy::VARS[:page].must_equal 1
-      Pagy::VARS[:items].must_equal 20
-      Pagy::VARS[:outset].must_equal 0
-      Pagy::VARS[:size].must_equal [1, 4, 4, 1]
-      Pagy::VARS[:page_param].must_equal :page
-      Pagy::VARS[:params].must_equal({})
+      _(Pagy::VARS[:page]).must_equal 1
+      _(Pagy::VARS[:items]).must_equal 20
+      _(Pagy::VARS[:outset]).must_equal 0
+      _(Pagy::VARS[:size]).must_equal [1, 4, 4, 1]
+      _(Pagy::VARS[:page_param]).must_equal :page
+      _(Pagy::VARS[:params]).must_equal({})
     end
 
   end
@@ -316,7 +320,7 @@ describe Pagy do
     def series_for(page, *expected)
       expected.each_with_index do |value, index|
         vars = instance_variable_get(:"@vars#{index}").merge(page: page)
-        Pagy.new(vars).series.must_equal value
+        _(Pagy.new(vars).series).must_equal value
       end
     end
 
@@ -409,23 +413,23 @@ describe Pagy do
     end
 
     it 'computes series for count 0' do
-      Pagy.new(@vars3.merge(count: 0)).series.must_equal ["1"]
+      _(Pagy.new(@vars3.merge(count: 0)).series).must_equal ["1"]
     end
 
     it 'computes series for single page' do
-      Pagy.new(@vars3.merge(count: 8)).series.must_equal ["1"]
+      _(Pagy.new(@vars3.merge(count: 8)).series).must_equal ["1"]
     end
 
     it 'computes series for 1 of 2 pages' do
-      Pagy.new(@vars3.merge(count: 15)).series.must_equal ["1", 2]
+      _(Pagy.new(@vars3.merge(count: 15)).series).must_equal ["1", 2]
     end
 
     it 'computes series for 2 of 2 pages' do
-      Pagy.new(@vars3.merge(count: 15, page: 2)).series.must_equal [1, "2"]
+      _(Pagy.new(@vars3.merge(count: 15, page: 2)).series).must_equal [1, "2"]
     end
 
     it 'computes an empty series' do
-      Pagy.new(@vars3.merge(count: 100, size: [])).series.must_equal []
+      _(Pagy.new(@vars3.merge(count: 100, size: [])).series).must_equal []
     end
 
   end

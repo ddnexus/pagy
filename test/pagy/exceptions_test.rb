@@ -12,22 +12,22 @@ describe Pagy::VariableError do
       begin
         Pagy.new(count: 1, page: 0)
       rescue Pagy::VariableError => e
-        e.variable.must_equal :page
-        e.value.must_equal 0
+        _(e.variable).must_equal :page
+        _(e.value).must_equal 0
       end
 
       begin
         Pagy.new(count: 1, page: -10)
       rescue Pagy::VariableError => e
-        e.variable.must_equal :page
-        e.value.must_equal(-10)
+        _(e.variable).must_equal :page
+        _(e.value).must_equal(-10)
       end
 
       begin
         Pagy.new(count: 1, page: 'string')
       rescue Pagy::VariableError => e
-        e.variable.must_equal :page
-        e.value.must_equal 'string'
+        _(e.variable).must_equal :page
+        _(e.value).must_equal 'string'
       end
     end
 
@@ -35,14 +35,14 @@ describe Pagy::VariableError do
       begin
         Pagy.new(count: -10)
       rescue Pagy::VariableError => e
-        e.variable.must_equal :count
-        e.value.must_equal(-10)
+        _(e.variable).must_equal :count
+        _(e.value).must_equal(-10)
       end
       begin
         Pagy.new(count: 'string')
       rescue Pagy::VariableError => e
-        e.variable.must_equal :count
-        e.value.must_equal 'string'
+        _(e.variable).must_equal :count
+        _(e.value).must_equal 'string'
       end
     end
 
@@ -50,15 +50,15 @@ describe Pagy::VariableError do
       begin
         Pagy.new(count: 1, page: -10)
       rescue ArgumentError => e
-        e.variable.must_equal :page
-        e.value.must_equal(-10)
+        _(e.variable).must_equal :page
+        _(e.value).must_equal(-10)
       end
 
       begin
         Pagy.new(count: 'string')
       rescue ArgumentError => e
-        e.variable.must_equal :count
-        e.value.must_equal 'string'
+        _(e.variable).must_equal :count
+        _(e.value).must_equal 'string'
       end
     end
 
