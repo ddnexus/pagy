@@ -302,6 +302,22 @@ $(document).on('turbolinks:load', function(event){
 
 The code above was adapted substantially from the code contained [in this blog post](https://nicholaide.github.io/ransack/2016/11/26/ransack-pagination.html).
 
+A sublte bug to watch out for. Sometimes users may specify new ransack search conditions, but may not press the search button - but rather, could directly press one of the pagination links. In other words, they could ask for page 20, when there is only one search result for that new ransack search - and this does not make any sense! What is happening is that the ransack search from will be submitted with those new search conditions, along with the page number that was clicked - but the page number may not make any sense with those new search conditions! In such cases you will get a Pagy::Overflow exception. You can catch these exceptions and manually submit a new page number like so:
+
+```ruby
+     def search
+        @q = YourModel.ransack(params[:q])
+        begin
+          @pagy, @your_model = pagy(@q.result(distinct: true).order("created_at DESC"))
+        rescue Pagy::OverflowError
+          flash[:notice] = "You are searching with a new condition and are clicking on a page number which does not make sense. Please try again!"
+          @pagy,@your_models = pagy(@q.result(distinct: true).order("created_at DESC"), {page: 1})
+        end
+
+        render :index
+      end
+```
+
 ## Customizing the item name
 
 The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that by editing the values of the `"pagy.item_name"` i18n key in the [dictionaray files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
