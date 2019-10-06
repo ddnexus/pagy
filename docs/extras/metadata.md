@@ -27,7 +27,7 @@ render json: { data: records,
 
 ## Files
 
-- [hash.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/metadata.rb)
+- [metadata.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/metadata.rb)
 
 ## Variables
 

@@ -120,7 +120,7 @@ window.addEventListener('load',   loadNextPage);
 
 This type of pagination sets the `next` page to `1` when the current page is the last page, allowing an infinite loop through the pages.
 
-For example, it is often used to show a few suggestions of "similar products" in a horizontal stripe of just a few page of a few items each. Clicking on next will continue to loop through.
+For example, it is often used to show a few suggestions of "similar products" in a horizontal stripe of just a few pages of a few items each. Clicking on next will continue to loop through.
 
 For example:
 

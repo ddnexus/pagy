@@ -62,7 +62,7 @@ If you use any of them you should load the [pagy.js](https://github.com/ddnexus/
 
 ### Add the oj gem
 
-Although it's not a requirement, if you are on ruby 2.0+ (not jruby), you should add the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance.
+Although it's not a requirement, if you are on ruby 2.0+ (not jruby), and if you use any `*_nav_js` helper, you should add the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance. (Notice: It does nothing for normal, non-js helpers.)
 
 ### In rails apps
 
