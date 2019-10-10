@@ -11,9 +11,9 @@ class Pagy
 
   # create a Pagy object from a Searchkick::Results object
   def self.new_from_searchkick(results, vars={})
-    vars[:items] = results.options[:per_page]
-    vars[:page]  = results.options[:page]
-    vars[:count] = results.total_count
+    vars[:items] ||= results.options[:per_page]
+    vars[:page]  ||= results.options[:page]
+    vars[:count] ||= results.total_count
     new(vars)
   end
 
