@@ -160,6 +160,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 - [Integrating Pagy with Hanami](http://katafrakt.me/2018/06/01/integrating-pagy-with-hanami/) by Paweł Świątkowski
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
+- [Handling Pagination When POSTing Complex Search Forms](https://bkspurgeon.github.io/paginating-search-results-with-a-post-request/) by Ben Koshy.
 - [日本語の投稿](https://qiita.com/search?q=pagy)
 - [한국어 튜토리얼](https://blog.naver.com/kbs4674/221616865157)
 
