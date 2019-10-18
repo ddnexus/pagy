@@ -4,8 +4,8 @@ fr:
   pagy:
 
     item_name:
-      one: "élement"
-      other: "élements"
+      one: "élément"
+      other: "éléments"
 
     nav:
       prev: "&lsaquo;&nbsp;Précédent"
