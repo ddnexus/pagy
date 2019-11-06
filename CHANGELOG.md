@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## Version 3.7.0
+
+### Changes
+
+- updated French and Spanish translations
+- added Italian translation
+- interenal renaming `Pagy::Frontend::MARK` > `Pagy::PAGE_PLACEHOLDER`
+
+### Commits
+
+- [434912b](http://github.com/ddnexus/pagy/commit/434912b): updated rubyzip gem
+- [b627e55](http://github.com/ddnexus/pagy/commit/b627e55): add italian translation (#202)
+- [3341dcc](http://github.com/ddnexus/pagy/commit/3341dcc): created ITEMS_PLACEHOLDER constant
+- [7775155](http://github.com/ddnexus/pagy/commit/7775155): replaced Pagy::Frontend::MARK with Pagy::PAGE_PLACEHOLDER (MARK is still defined for backward compatibility)
+- [439676e](http://github.com/ddnexus/pagy/commit/439676e): Fixed previous translation for Spanish (#199)
+- [ee1b1f0](http://github.com/ddnexus/pagy/commit/ee1b1f0): Update fr.yml (#195)
+- [8b6f81f](http://github.com/ddnexus/pagy/commit/8b6f81f): added pagy-cursor link in README
+- [c290dca](http://github.com/ddnexus/pagy/commit/c290dca): update incorrect tutorial link (#198)
+- [77c045d](http://github.com/ddnexus/pagy/commit/77c045d): add: tutorial link in ReadMe - complex search forms (#194)
+- [846eece](http://github.com/ddnexus/pagy/commit/846eece): fix in README.md
+- [224748a](http://github.com/ddnexus/pagy/commit/224748a): fix for resurrected-by-mistake line in README
+
 ## Version 3.6.0
 
 ### Changes
