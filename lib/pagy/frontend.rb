@@ -6,6 +6,8 @@ require 'yaml'
 
 class Pagy
 
+  PAGE_PLACEHOLDER  = '__pagy_page__'  # string used for search and replace, hardcoded also in the pagy.js file
+
   # I18n static hash loaded at startup, used as default alternative to the i18n gem.
   # see https://ddnexus.github.io/pagy/api/frontend#i18n
   I18n = eval(Pagy.root.join('locales', 'utils', 'i18n.rb').read) #rubocop:disable Security/Eval
@@ -28,7 +30,7 @@ class Pagy
     include Helpers
 
     EMPTY = ''               # EMPTY + 'string' is almost as fast as +'string' but is also 1.9 compatible
-    MARK  = '__pagy_page__'  # string used for search and replace, hardcoded also in the pagy.js file
+    MARK  = PAGE_PLACEHOLDER # backward compatibility in case of helper-overriding in legacy apps
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)
@@ -59,7 +61,7 @@ class Pagy
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_link_proc(pagy, link_extra='')
       p_prev, p_next = pagy.prev, pagy.next
-      a, b = %(<a href="#{pagy_url_for(MARK, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(MARK, 2)
+      a, b = %(<a href="#{pagy_url_for(PAGE_PLACEHOLDER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
       lambda {|n, text=n, extra=''| "#{a}#{n}#{b}#{ if    n == p_prev ; ' rel="prev"'
                                                     elsif n == p_next ; ' rel="next"'
                                                     else                           '' end } #{extra}>#{text}</a>"}

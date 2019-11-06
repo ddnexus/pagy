@@ -45,7 +45,7 @@ class Pagy
 
     # it returns the marked link to used by pagy.js
     def pagy_marked_link(link)
-      link.call(MARK, '', 'style="display: none;"')
+      link.call(PAGE_PLACEHOLDER, '', 'style="display: none;"')
     end
 
   end

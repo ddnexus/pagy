@@ -8,7 +8,7 @@ es:
       other: "ítems"
 
     nav:
-      prev: "&lsaquo;&nbsp;Prev"
+      prev: "&lsaquo;&nbsp;Anterior"
       next: "Siguiente&nbsp;&rsaquo;"
       gap: "&hellip;"
 
