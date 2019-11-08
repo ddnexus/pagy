@@ -166,7 +166,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
 - [Handling Pagination When POSTing Complex Search Forms](https://bkspurgeon.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
 - [日本語の投稿](https://qiita.com/search?q=pagy)
-- [한국어 튜토리얼](https://blog.naver.com/kbs4674/221616865157)
+- [한국어 튜토리얼](https://kbs4674.tistory.com/72)
 
 ### Docs
 
