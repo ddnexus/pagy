@@ -84,7 +84,7 @@ This method is called internally to get a very specialized and fast proc that pr
 
 For standard usage you may just need to read [Customizing the link attributes](../how-to.md#customizing-the-link-attributes), for advanced usage see below.
 
-### Advanced Usage
+## Advanced Usage
 
 You need this section only if you are going to override a `pagy_nav*` helper or a template AND you need to customize the HTML attributes of the link tags.
 
