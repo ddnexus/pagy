@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 3.7.1
+
+### Changes
+
+- fix for arel count
+
+### Commits
+
+- [cbe4a97](http://github.com/ddnexus/pagy/commit/cbe4a97): Type cast pagy_arel_count value to integer (#207)
+- [973f4fe](http://github.com/ddnexus/pagy/commit/973f4fe): updated link [ci skip]
+
 ## Version 3.7.0
 
 ### Changes
