@@ -23,7 +23,7 @@ class Pagy
       else
         # COUNT(*) OVER ()
         sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
-        collection.unscope(:order).limit(1).pluck(sql).first
+        collection.unscope(:order).limit(1).pluck(sql).first.to_i
       end
     end
 
