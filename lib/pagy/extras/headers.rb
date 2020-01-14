@@ -26,11 +26,11 @@ class Pagy
       url_str   = pagy_url_for(PAGE_PLACEHOLDER, pagy, :url)
       hash      = { 'Link' => Hash[rels.map{|rel, n|[rel, url_str.sub(PAGE_PLACEHOLDER, n.to_s)] if n}.compact] }
       headers   = pagy.vars[:headers]
-      hash[headers[:page]]  = pagy.page         if headers[:page]
-      hash[headers[:items]] = pagy.vars[:items] if headers[:items]
+      hash[headers[:page]]  = pagy.page.to_s         if headers[:page]
+      hash[headers[:items]] = pagy.vars[:items].to_s if headers[:items]
       unless countless
-        hash[headers[:pages]] = pagy.pages if headers[:pages]
-        hash[headers[:count]] = pagy.count if headers[:count]
+        hash[headers[:pages]] = pagy.pages.to_s if headers[:pages]
+        hash[headers[:count]] = pagy.count.to_s if headers[:count]
       end
       hash
     end

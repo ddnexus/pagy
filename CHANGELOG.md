@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 3.7.2
+
+### Changes
+
+- fix for numeric headers in the headers extra
+
+### Commits
+
+- [6a93b97](http://github.com/ddnexus/pagy/commit/6a93b97): headers must be strings (closes #211)
+
 ## Version 3.7.1
 
 ### Changes
