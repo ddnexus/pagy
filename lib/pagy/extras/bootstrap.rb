@@ -21,7 +21,7 @@ class Pagy
       end
       html << (p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
                       : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li>))
-      %(<nav class="pagy-bootstrap-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></nav>)
+      %(<nav class="pagy-bootstrap-nav" role="navigation" aria-label="pager"><ul class="pagination">#{html}</ul></nav>)
     end
 
     # Javascript pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.nav javascript
@@ -34,7 +34,7 @@ class Pagy
                'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.gap')}</a></li>),
                'after'  => p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li></ul>)
                                   : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li></ul>) }
-      %(<nav id="#{id}" class="pagy-bootstrap-nav-js pagination" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
+      %(<nav id="#{id}" class="pagy-bootstrap-nav-js" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
     end
 
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
