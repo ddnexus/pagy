@@ -20,7 +20,7 @@ Pagy::VARS[:items_param] = :custom_param       # default :items
 Pagy::VARS[:max_items]   = 100                 # default
 ```
 
-Configure [javascript](../extras.md#javascript) (only if you use the `pagy_items_selector_js` UI)
+See [Javascript](../api/javascript.md) (only if you use the `pagy_items_selector_js` UI)
 
 ## Files
 

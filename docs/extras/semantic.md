@@ -38,12 +38,8 @@ This method is the same as the `pagy_nav`, but customized for Semantic UI.
 
 ### pagy_semantic_nav_js(pagy, ...)
 
-This method is the same as the `pagy_nav_js`, but customized for the Semantic UI framework.
-
-See more details in the [javascript navs](navs.md#javascript-navs) documentation.
+See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
 
 ### pagy_semantic_combo_nav_js(pagy, ...)
 
-This method is the same as the `pagy_combo_nav_js`, but customized for the Semantic UI framework.
-
-See more details in the [compact_navs_js](navs.md#javascript-combo-navs) documentation.
+See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.

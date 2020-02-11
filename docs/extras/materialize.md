@@ -24,7 +24,7 @@ with a fast helper:
 <%== pagy_materialize_combo_nav_js(@pagy) %>
 ```
 
-Configure [javascript](../extras.md#javascript) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
+See [Javascript](../api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
 
 ## Files
 
@@ -40,16 +40,10 @@ This method is the same as the `pagy_nav`, but customized for Materialize.
 
 ### pagy_materialize_nav_js(pagy, ...)
 
-This method is the same as the `pagy_nav_js`, but customized for the Materialize CSS framework.
-
-See more details in the [javascript navs](navs.md#javascript-navs) documentation.
+See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
 
 ### pagy_materialize_combo_nav_js(pagy, ...)
 
-This method is the same as the `pagy_combo_nav_js`, but customized for the Materialize CSS framework.
-
-Here is an example:
-
 ![materialize_combo_nav_js](../assets/images/materialize_combo_nav_js-g.png)
 
-See more details in the [compact_navs_js](navs.md#javascript-combo-navs)  documentation.
+See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
