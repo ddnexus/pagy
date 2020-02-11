@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## Version 3.7.3
+
+### Commits
+
+- [a2b915e](http://github.com/ddnexus/pagy/commit/a2b915e): reorganization of Javascript documentation
+- [fead55c](http://github.com/ddnexus/pagy/commit/fead55c): Remove duplicated pagination class for Bootstrap (#212)
+
 ## Version 3.7.2
 
 ### Changes
