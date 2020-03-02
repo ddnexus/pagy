@@ -26,5 +26,4 @@ gem 'codecov', :require => false
 # gem 'memory_profiler'
 
 # docs server
-gem "rubyzip", ">= 1.3.0"
 gem "github-pages", '198', group: :jekyll_plugins
