@@ -12,7 +12,7 @@ class Pagy ; VERSION = '3.7.3'
   # default vars
   VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', i18n_key:'pagy.item_name', cycle:false }
 
-  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
+  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next, :items_per_page
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
@@ -24,6 +24,7 @@ class Pagy ; VERSION = '3.7.3'
     @pages = @last = [(@count.to_f / @items).ceil, 1].max                      # cardinal and ordinal meanings
     @page <= @last or raise(OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                                   # pagination offset + outset (initial offset)
+    @items_per_page = @items                                                   # keep original items per page
     @items  = @count - ((@pages-1) * @items) if @page == @last && @count > 0   # adjust items for last non-empty page
     @from   = @count == 0 ? 0 : @offset+1 - @outset                            # page begins from item
     @to     = @count == 0 ? 0 : @offset + @items - @outset                     # page ends to item
