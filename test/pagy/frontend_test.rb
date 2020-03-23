@@ -21,7 +21,6 @@ describe Pagy::Frontend do
         "<nav class=\"pagy-nav pagination\" role=\"navigation\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"/foo?page=2\"   rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"/foo?page=1\"   >1</a></span> <span class=\"page\"><a href=\"/foo?page=2\"   rel=\"prev\" >2</a></span> <span class=\"page active\">3</span> <span class=\"page\"><a href=\"/foo?page=4\"   rel=\"next\" >4</a></span> <span class=\"page\"><a href=\"/foo?page=5\"   >5</a></span> <span class=\"page\"><a href=\"/foo?page=6\"   >6</a></span> <span class=\"page next\"><a href=\"/foo?page=4\"   rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
     end
 
-
     it 'renders page 6' do
       pagy = Pagy.new count: 103, page: 6
       _(view.pagy_nav(pagy)).must_equal \
@@ -101,7 +100,24 @@ describe Pagy::Frontend do
       _(view.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag"
       view.instance_variable_set(:'@pagy_locale', 'unknown')
       _(view.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag" # silently serves the first loaded locale
-      Pagy::I18n.load(locale: 'en') # reset for other tests
+      Pagy::I18n.load(locale: 'en')                         # reset for other tests
+      view.instance_variable_set(:'@pagy_locale', nil)      # reset for other tests
+    end
+
+  end
+
+  describe  "Pagy::I18n deprecation" do
+
+    it 'handles deprecated locales' do
+      _(proc {Pagy::I18n.load({locale: 'se'}, {locale: 'pt-br'})}).must_output '', /^WARNING:/
+
+      view.instance_variable_set(:'@pagy_locale', 'se')
+      _(proc {view.pagy_t('pagy.item_name', count: 1).must_equal 'resultat'}).must_output '', /^WARNING:/
+
+      view.instance_variable_set(:'@pagy_locale', 'pt-br')
+      _(proc {view.pagy_t('pagy.item_name', count: 1).must_equal 'item'}).must_output '', /^WARNING:/
+
+      Pagy::I18n.load(locale: 'en')                         # reset for other tests
       view.instance_variable_set(:'@pagy_locale', nil)      # reset for other tests
     end
 
@@ -125,6 +141,7 @@ describe Pagy::Frontend do
       _(view.pagy_info(Pagy.new count: 100, i18n_key: 'pagy.info.product', page: 3)).must_equal "Displaying Products <b>41-60</b> of <b>100</b> in total"
       Pagy::I18n.load(locale: 'en') # reset for other tests
     end
+
   end
 
   describe '#pagy_url_for' do
