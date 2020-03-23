@@ -38,6 +38,10 @@ matrix:
       gemfile: gemfiles/ruby-latest
       env:
         - ENABLE_OJ=true
+    - rvm: 2.7
+      gemfile: gemfiles/ruby-latest
+      env:
+        - ENABLE_OJ=true
         - RUN_SIMPLECOV=true
         - RUN_RUBOCOP=true
         - RUN_CODECOV=true
