@@ -1,6 +1,6 @@
 # :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
 
-pt-br:
+pt-BR:
   pagy:
 
     item_name:

@@ -60,14 +60,15 @@ p11n = {
 # The default pluralization for locales not explicitly listed here
 # is the :one_other pluralization proc (used for English)
 plurals = Hash.new(p11n[:one_other]).tap do |hash|
-  hash['id'] = p11n[:other]
-  hash['fr'] = p11n[:one_upto_two_other]
-  hash['ja'] = p11n[:other]
-  hash['ko'] = p11n[:other]
-  hash['pl'] = p11n[:polish]
-  hash['ru'] = p11n[:east_slavic]
-  hash['se'] = p11n[:one_two_other]
-  hash['tr'] = p11n[:other]
+  hash['id']    = p11n[:other]
+  hash['fr']    = p11n[:one_upto_two_other]
+  hash['ja']    = p11n[:other]
+  hash['ko']    = p11n[:other]
+  hash['pl']    = p11n[:polish]
+  hash['ru']    = p11n[:east_slavic]
+  hash['sv']    = p11n[:one_two_other]
+  hash['sv-SE'] = p11n[:one_two_other]
+  hash['tr']    = p11n[:other]
   hash['zh-CN'] = p11n[:other]
   hash['zh-HK'] = p11n[:other]
   hash['zh-TW'] = p11n[:other]
