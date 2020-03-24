@@ -12,6 +12,10 @@
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
+## Just get me started!
+
+Follow these instructions: [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
+
 ## New in 3.0+
 
 - Pagy 3.0+ is considerably faster, lighter and more efficient than 2.0+ on modern environments (see the charts below)
