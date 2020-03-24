@@ -18,7 +18,7 @@ class Pagy
 
     # Sub-method called only by #pagy: here for easy customization of variables by overriding
     def pagy_get_vars(collection, vars)
-      vars[:count] ||= (c = collection.count(:all)).is_a?(Hash) ? c.size : c
+      vars[:count] ||= (c = collection.size).is_a?(Hash) ? c.size : c
       vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars
     end
@@ -26,7 +26,10 @@ class Pagy
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding
     def pagy_get_items(collection, pagy)
       # This should work with ActiveRecord, Sequel, Mongoid...
-      collection.offset(pagy.offset).limit(pagy.items)
+      # Reduce database queries by receiving loaded AR Relation into collection argument before applying Pagy::Backend methods
+      # This should work if collection is an AR Relation and can respond to Array methods
+      # ALSO VALID: collection[pagy.offset...pagy.items+pagy.offset]
+      collection.slice(pagy.offset..).first(pagy.items)
     end
 
   end
