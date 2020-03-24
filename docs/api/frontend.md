@@ -94,13 +94,13 @@ This method returns a specialized proc that you call to produce the page links. 
 
 Here is how you should use it: in your helper or template call the method to get the proc (just once):
 
-```ruby
+```
 link = pagy_link_proc( pagy [, extra_attributes_string ] )
 ```
 
 Then call the `"link"` proc to get the links (multiple times):
 
-```ruby
+```
 link.call( page_number [, text [, extra_attributes_string ] ] )
 ```
 
@@ -178,7 +178,7 @@ If you need to load different built-in locales, and/or custom dictionary files o
 
 Here are a few examples that should cover all the possible confgurations:
 
-```rb
+```ruby
 # IMPORTANT: use only one load statement
 
 # load the "de" built-in locale:
@@ -198,7 +198,7 @@ Pagy::I18n.load({locale: 'en'},
                 {locale: 'es', filepath: 'path/to/pagy-es.yml'},
                 {locale: 'xyz',  # not built-in
                  filepath: 'path/to/pagy-xyz.yml',
-                 pluralize: lambda{|count| ... } )
+                 pluralize: lambda{|count| ... }})
 ```
 
 **Notice**: You should use a custom `:pluralize` proc only for pluralization types not included in the built-in [p11n.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
@@ -208,7 +208,7 @@ Pagy::I18n.load({locale: 'en'},
 
 When you configure multiple locales, you must also set the locale for each request. You usually do that in the application controller, by checking the `:locale` param. For example, in a rails app you should do something like:
 
-```rb
+```ruby
 before_action { @pagy_locale = params[:locale] || 'en' }
 ```
 

@@ -48,17 +48,12 @@ The `uikit_nav.*` templates produce the same output, and can be used as an easie
 
 ### pagy_uikit_nav_js(pagy, ...)
 
-This method is the same as the `pagy_nav_js`, but customized for the UIkit framework.
-
-See more details in the [javascript navs](navs.md#javascript-navs) documentation.
-
+See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation
 
 ### pagy_uikit_combo_nav_js(pagy, ...)
 
-This method is the same as the `pagy_combo_nav_js`, but customized for the UIkit framework.
+See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
 
 Here is an example:
 
 ![uikit_combo_nav_js](../assets/images/uikit_combo_nav_js-g.png)
-
-See more details in the [javascript compact navs](navs.md#javascript-combo-navs) documentation.

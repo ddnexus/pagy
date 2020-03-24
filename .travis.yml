@@ -38,15 +38,19 @@ matrix:
       gemfile: gemfiles/ruby-latest
       env:
         - ENABLE_OJ=true
+    - rvm: 2.7
+      gemfile: gemfiles/ruby-latest
+      env:
+        - ENABLE_OJ=true
         - RUN_SIMPLECOV=true
         - RUN_RUBOCOP=true
         - RUN_CODECOV=true
 
     # jruby
-#    - rvm: jruby-1.7
-#      gemfile: gemfiles/ruby-1.9
-#    - rvm: jruby-9.0
-#      gemfile: gemfiles/ruby-2.0
+    - rvm: jruby-1.7
+      gemfile: gemfiles/ruby-1.9
+    - rvm: jruby-9.0
+      gemfile: gemfiles/ruby-2.0
     - rvm: jruby-9.1
     - rvm: jruby-9.2
 

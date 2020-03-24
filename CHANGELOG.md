@@ -1,5 +1,51 @@
 # CHANGELOG
 
+## Version 3.7.4
+
+### Changes
+
+- Locales normalization and deprecations
+- Bundle update
+
+### Commits
+
+- [c424466](http://github.com/ddnexus/pagy/commit/c424466): Merge branch 'locales-normalization' into dev
+- [032615c](http://github.com/ddnexus/pagy/commit/032615c): added Pagy::I18n deprecation tests
+- [ebd6151](http://github.com/ddnexus/pagy/commit/ebd6151): added deprecation remapping
+- [e1bd70c](http://github.com/ddnexus/pagy/commit/e1bd70c): renamed pt-br -> pt-BR
+- [a77dfcf](http://github.com/ddnexus/pagy/commit/a77dfcf): fix for sv and sv-SE pluralization
+- [6a31db6](http://github.com/ddnexus/pagy/commit/6a31db6): Swedish locale: add sv-SE, rename se -> sv (#226)
+- [00bd312](http://github.com/ddnexus/pagy/commit/00bd312): bundle update (closes #208, closes #223, closes #224)
+- [133da16](http://github.com/ddnexus/pagy/commit/133da16): Add tutorial link (#222) [ci skip]
+
+## Version 3.7.3
+
+### Commits
+
+- [a2b915e](http://github.com/ddnexus/pagy/commit/a2b915e): reorganization of Javascript documentation
+- [fead55c](http://github.com/ddnexus/pagy/commit/fead55c): Remove duplicated pagination class for Bootstrap (#212)
+
+## Version 3.7.2
+
+### Changes
+
+- fix for numeric headers in the headers extra
+
+### Commits
+
+- [6a93b97](http://github.com/ddnexus/pagy/commit/6a93b97): headers must be strings (closes #211)
+
+## Version 3.7.1
+
+### Changes
+
+- fix for arel count
+
+### Commits
+
+- [cbe4a97](http://github.com/ddnexus/pagy/commit/cbe4a97): Type cast pagy_arel_count value to integer (#207)
+- [973f4fe](http://github.com/ddnexus/pagy/commit/973f4fe): updated link [ci skip]
+
 ## Version 3.7.0
 
 ### Changes
