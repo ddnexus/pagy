@@ -20,7 +20,7 @@ require 'pagy/extras/searchkick'
 If you have an already paginated `Searchkick::Results` object, you can get the `Pagy` object out of it:
 
 ```ruby
-@results = Model.search('*', page: 1; per_page: 10, ...)
+@results = Model.search('*', page: 1, per_page: 10, ...)
 @pagy    = Pagy.new_from_searchkick(@results, ...)
 ```
 
@@ -37,7 +37,7 @@ extend Pagy::Search
 In a controller use `pagy_search` in place of `search`:
 
 ```ruby
-records = Article.pagy_search(params[:q]).results
+records = Article.pagy_search(params[:q])
 @pagy, @records = pagy_searchkick(records, items: 10)
 ```
 
