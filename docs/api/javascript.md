@@ -217,7 +217,7 @@ The following `pagy*_combo_nav_js` offer an alternative pagination UI that combi
 - `pagy_materialize_combo_nav_js`
 - `pagy_semantic_combo_nav_js`
 
-They are the fastest and lighter `nav` on modern environments, recommended when you care about efficiency and server load _(see [Maximizing Performance](../how-to.md#maximizing-performance))_.
+They are the fastest and lightest `nav` on modern environments, recommended when you care about efficiency and server load _(see [Maximizing Performance](../how-to.md#maximizing-performance))_.
 
 Here is a screenshot (from the `bootstrap` extra):
 

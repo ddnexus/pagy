@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Version 3.7.5
+
+### Changes
+
+- Danish translation
+- Re-enabled legacy jruby travis config
+- Added ruby 2.7 travis testing and rubocop config
+
+### Commits
+
+- [721d01f](http://github.com/ddnexus/pagy/commit/721d01f): more documentation fixes and improvements
+- [246fca7](http://github.com/ddnexus/pagy/commit/246fca7): Danish translation for Pagy (#232)
+- [e57215f](http://github.com/ddnexus/pagy/commit/e57215f): added ruby 2.7 travis testing and rubocop target version
+- [280164a](http://github.com/ddnexus/pagy/commit/280164a): re-enabled travis testing for old jruby (travis fixed the jruby images issue)
+
 ## Version 3.7.4
 
 ### Changes

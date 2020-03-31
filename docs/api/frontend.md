@@ -170,7 +170,7 @@ The pagy internal i18n is implemented around the `Pagy::I18n` constant. You may 
 
 #### Pagy::I18n.load configuration
 
-By default pagy will render its output using the built-in `en` locale. If your app uses only `en` and you are fine with the built-in strings, you are done without configuring anything at all.
+By default pagy will render its output using the built-in `en` locale. If your app uses only `en` and you are fine with the built-in strings, you are done without configuring anything at all and you can just skip this whole section.
 
 If you need to load different built-in locales, and/or custom dictionary files or even non built-in languages and pluralizations, you can do it all by passing a few arguments to the `Pagy::I18n.load` method.
 

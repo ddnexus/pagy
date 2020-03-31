@@ -136,7 +136,7 @@ Pagy can also work in any other scenario assuming that:
 
 You can control the items per page with the `items` variable. (Default `20`)
 
-You can set its default in the `pagy.rb` initializer _(see [Configuration](#global-configuration)_. For example:
+You can set its default in the `pagy.rb` initializer _(see [Configuration](#global-configuration))_. For example:
 
 ```ruby
 Pagy::VARS[:items] = 25
@@ -432,7 +432,7 @@ By default Pagy generates all the page links including the `page` param. If you 
 
 The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 30-70% slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose wisely.
 
-Pagy provides the replacement templates for the `pagy_nav`, `pagy_bootstrap_nav`, `pagy_bulma_nav` and the `pagy_foundation_nav` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
+Pagy provides the replacement templates for the `pagy_nav`, `pagy_bootstrap_nav`, `pagy_bulma_nav`, `pagy_foundation_nav`, and the `pagy_uikit_nav` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
 
 They produce exactly the same output of the helpers, but since they are slower, using them wouldn't make any sense unless you need to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
 
