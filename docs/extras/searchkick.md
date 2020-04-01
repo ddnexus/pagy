@@ -37,8 +37,8 @@ extend Pagy::Search
 In a controller use `pagy_search` in place of `search`:
 
 ```ruby
-records = Article.pagy_search(params[:q]).results
-@pagy, @records = pagy_searchkick(records, items: 10)
+results         = Article.pagy_search(params[:q])
+@pagy, @results = pagy_searchkick(results, items: 10)
 ```
 
 ## Files

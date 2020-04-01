@@ -37,8 +37,8 @@ extend Pagy::Search
 In a controller use `pagy_search` in place of `search`:
 
 ```ruby
-records = Article.pagy_search(params[:q]).records
-@pagy, @articles = pagy_elasticsearch_rails(records, items: 10)
+response         = Article.pagy_search(params[:q])
+@pagy, @response = pagy_elasticsearch_rails(response, items: 10)
 ```
 
 ## Files
