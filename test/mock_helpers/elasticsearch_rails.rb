@@ -61,11 +61,21 @@ module MockElasticsearchRails
 
   end
 
-  class ResponseES5 < Response
+  class ResponseES5 
+
+    attr_reader :search, :response
 
     def initialize(query, options={})
-      super(query, options)
-      @response = {'hits' => {'hits' => @search.results, 'total' => {'value' => RESULTS[query].size}}}
+      @search = Search.new(query, options)
+      @response = {'hits' => {'hits' => @search.results, 'total' => RESULTS[query].size}}
+    end
+
+    def records
+      @response['hits']['hits'].map{|r| "R-#{r}"}
+    end
+
+    def count
+      @response['hits']['hits'].size
     end
 
   end
