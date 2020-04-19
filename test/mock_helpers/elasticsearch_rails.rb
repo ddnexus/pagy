@@ -60,4 +60,21 @@ module MockElasticsearchRails
     end
 
   end
+
+  class ResponseES5 < Response
+
+    def initialize(query, options={})
+      super(query, options)
+      @response = {'hits' => {'hits' => @search.results, 'total' => {'value' => RESULTS[query].size}}}
+    end
+
+  end
+
+  class ModelES5 < Model
+
+    def self.search(*args)
+      ResponseES5.new(*args)
+    end
+
+  end
 end

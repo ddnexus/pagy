@@ -182,6 +182,24 @@ describe Pagy::Backend do
       _(pagy.vars[:link_extra]).must_equal 'X'
     end
 
+    it 'paginates response with defaults on Elasticearch 5' do
+      response = MockElasticsearchRails::ModelES5.search('a')
+      pagy     = Pagy.new_from_elasticsearch_rails(response)
+      _(pagy).must_be_instance_of Pagy
+      _(pagy.count).must_equal 1000
+      _(pagy.items).must_equal 10
+      _(pagy.page).must_equal 1
+    end
+
+    it 'paginates response with vars on Elasticsearch 5' do
+      response = MockElasticsearchRails::ModelES5.search('b', from: 15, size: 15)
+      pagy     = Pagy.new_from_elasticsearch_rails(response, link_extra: 'X')
+      _(pagy).must_be_instance_of Pagy
+      _(pagy.count).must_equal 1000
+      _(pagy.items).must_equal 15
+      _(pagy.page).must_equal 2
+      _(pagy.vars[:link_extra]).must_equal 'X'
+    end
   end
 
 end
