@@ -1,0 +1,15 @@
+km:
+  pagy:
+    item_name:
+      one: "ធាតុ"
+      other: "របស់របរ"
+    nav:
+      prev: "&lsaquo;&nbsp;មុន"
+      next: "បន្ទាប់&nbsp;&rsaquo;"
+      gap: "&hellip;"
+    info:
+      no_items: "មិនមាន %{item_name} ទេ"
+      single_page: "បង្ហាញ <b>%{count}</b> %{item_name}"
+      multiple_pages: "បង្ហាញ %{item_name} <b>%{from}-%{to}</b> នៃ <b>%{count}</b> ជាចំនួនសរុប"
+    combo_nav_js: "ទំព័រ %{page_input} នៃ %{pages}"
+    items_selector_js: "បង្ហាញ %{items_input} %{item_name} ក្នុង ១ ទំព័រ"
