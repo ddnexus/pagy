@@ -220,7 +220,7 @@ That instance variable will be used by the [pagy_t](#pagy_tpath-vars) method inc
 
 When Pagy uses its own i18n implementation, it has only access to the strings in its own files and not in other `I18n` files used by the rest of the app.
 
-That means that if you use the `pagy_info` or `pagy_items_selector` helpers with the specific model names instead of the generic "items" string, you may need to add entries for the models in the pagy dictionary files. For example:
+That means that if you use the `pagy_info` or `pagy_items_selector_js` helpers with the specific model names instead of the generic "items" string, you may need to add entries for the models in the pagy dictionary files. For example:
 
 ```yaml
 en:
