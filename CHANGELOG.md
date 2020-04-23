@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## Version 3.8.0
+
+### Changes
+
+- Khmer tranlation
+- Added support for elasticsearch < 6
+- Documentation fixes
+
+### Commits
+
+- [bba1bca](http://github.com/ddnexus/pagy/commit/bba1bca): used ternary conditional
+- [a9cee7d](http://github.com/ddnexus/pagy/commit/a9cee7d): Support ES5 on elasticsearch rails (#234)
+- [d58a39d](http://github.com/ddnexus/pagy/commit/d58a39d): Khmer translation for pagy (#235)
+- [7ced96c](http://github.com/ddnexus/pagy/commit/7ced96c): fix for missing suffix fr method reference in doc
+- [73600be](http://github.com/ddnexus/pagy/commit/73600be): improved consistency in searchkick and elasticsearch_rails documentation examples (#231)
+
 ## Version 3.7.5
 
 ### Changes
