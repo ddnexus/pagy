@@ -20,7 +20,7 @@ require 'pagy/extras/elasticsearch_rails'
 If you have an already paginated `Elasticsearch::Model::Response::Response` object, you can get the `Pagy` object out of it:
 
 ```ruby
-@response = Model.search('*', from: 0; size: 10, ...)
+@response = Model.search('*', from: 0, size: 10, ...)
 @pagy     = Pagy.new_from_elasticsearch_rails(@response, ...)
 ```
 
