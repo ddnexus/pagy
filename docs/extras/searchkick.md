@@ -50,7 +50,7 @@ results         = Article.pagy_search(params[:q])
 This constructor accepts a `Searchkick::Results` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of the `Searchkick::Results` object.
 
 ```ruby
-@results = Model.search('*', page: 2; per_page: 10, ...)
+@results = Model.search('*', page: 2, per_page: 10, ...)
 @pagy    = Pagy.new_from_searchkick(@results, ...)
 ```
 
