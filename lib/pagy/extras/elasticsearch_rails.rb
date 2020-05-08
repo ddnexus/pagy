@@ -28,7 +28,7 @@ class Pagy
       search_args[-1][:size] = vars[:items]
       search_args[-1][:from] = vars[:items] * (vars[:page] - 1)
       response               = model.search(*search_args)
-      total                  = response.raw_response['hits']['total']
+      total                  = response.respond_to?(:raw_response) ? response.raw_response['hits']['total'] : response.response['hits']['total']
       vars[:count]           = total.is_a?(Hash) ? total['value'] : total
       pagy = Pagy.new(vars)
       # with :last_page overflow we need to re-run the method in order to get the hits
