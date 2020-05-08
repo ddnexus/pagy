@@ -1,7 +1,7 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-# Pagy initializer file (3.8.0)
+# Pagy initializer file (3.8.1)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 

@@ -2,8 +2,6 @@
 /.yardoc
 /_yardoc/
 /coverage/
-/doc/
-/pkg/
-/spec/reports/
 /tmp/
+/docs/.jekyll-metadata
 /.idea/

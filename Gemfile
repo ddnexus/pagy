@@ -11,7 +11,7 @@ gem 'i18n'
 
 gem 'oj', require: false     # false is for testing with or without it
 
-gem 'rubocop', '~> 0.75.0'
+gem 'rubocop', '~> 0.82.0'
 gem 'rubocop-performance', '~> 1.5.0'
 gem 'simplecov', require: false
 gem 'codecov', :require => false
@@ -26,4 +26,4 @@ gem 'codecov', :require => false
 # gem 'memory_profiler'
 
 # docs server
-gem "github-pages", '198', group: :jekyll_plugins
+gem "github-pages", '204', group: :jekyll_plugins

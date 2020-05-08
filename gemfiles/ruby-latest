@@ -10,7 +10,7 @@ gem 'i18n',       '~> 1.6.0'
 
 gem 'oj', require: false
 
-gem 'rubocop', '~> 0.75.0'
+gem 'rubocop', '~> 0.82.0'
 gem 'rubocop-performance', '~> 1.5.0'
 
 gem 'simplecov', :require => false

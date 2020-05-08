@@ -1,10 +1,25 @@
 # CHANGELOG
 
+## Version 3.8.1
+
+### Changes
+
+- Various fixes ad gems update
+
+### Commits
+
+- [1aa1fa7](http://github.com/ddnexus/pagy/commit/1aa1fa7): gems update
+- [289d38a](http://github.com/ddnexus/pagy/commit/289d38a): added conditional definition of pagy_t_with_i18n to avoid ruby 2.7 "last argument as keyword parameters" deprecation warning (closes #241)
+- [d571719](http://github.com/ddnexus/pagy/commit/d571719): added raw_response method check for pagy_elastisearch_rails (#234)
+- [7a09bb9](http://github.com/ddnexus/pagy/commit/7a09bb9): fix typo in documentation
+- [d7a9f7a](http://github.com/ddnexus/pagy/commit/d7a9f7a): Fixes boundary character escaping in regex in js trim function (#239)
+- [3561885](http://github.com/ddnexus/pagy/commit/3561885): gems update
+
 ## Version 3.8.0
 
 ### Changes
 
-- Khmer tranlation
+- Khmer translation
 - Added support for elasticsearch < 6
 - Documentation fixes
 
