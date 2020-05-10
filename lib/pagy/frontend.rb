@@ -50,11 +50,11 @@ class Pagy
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy)
+    def pagy_info(pagy, item_name=nil)
       path = if (count = pagy.count) == 0 ; 'pagy.info.no_items'
              else pagy.pages == 1 ? 'pagy.info.single_page' : 'pagy.info.multiple_pages'
              end
-      pagy_t(path, item_name: pagy_t(pagy.vars[:i18n_key], count: count), count: count, from: pagy.from, to: pagy.to)
+      pagy_t(path, item_name: item_name || pagy_t(pagy.vars[:i18n_key], count: count), count: count, from: pagy.from, to: pagy.to)
     end
 
     # Returns a performance optimized proc to generate the HTML links

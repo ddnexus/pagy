@@ -142,6 +142,13 @@ describe Pagy::Frontend do
       Pagy::I18n.load(locale: 'en') # reset for other tests
     end
 
+    it 'overrides the item_name' do
+      _(view.pagy_info(Pagy.new(count: 0), 'Widgets')).must_equal "No Widgets found"
+      _(view.pagy_info(Pagy.new(count: 1), 'Widget')).must_equal "Displaying <b>1</b> Widget"
+      _(view.pagy_info(Pagy.new(count: 13), 'Widgets')).must_equal "Displaying <b>13</b> Widgets"
+      _(view.pagy_info(Pagy.new(count: 100, page: 3), 'Widgets')).must_equal "Displaying Widgets <b>41-60</b> of <b>100</b> in total"
+    end
+
   end
 
   describe '#pagy_url_for' do
