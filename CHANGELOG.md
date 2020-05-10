@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 3.8.2
+
+### Changes
+
+- Fixes, improvments and gems updates
+
+### Commits
+
+- [a1a7962](http://github.com/ddnexus/pagy/commit/a1a7962): gems update
+- [0a70110](http://github.com/ddnexus/pagy/commit/0a70110): item_name can be overridden by passing an already pluralized string to pagy_info
+- [28913d6](http://github.com/ddnexus/pagy/commit/28913d6): Use proper attributes for "previous" links (#244)
+
 ## Version 3.8.1
 
 ### Changes
