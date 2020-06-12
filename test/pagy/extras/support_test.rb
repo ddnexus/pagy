@@ -87,22 +87,22 @@ describe Pagy::Frontend do
     it 'renders the prev link for page 3' do
       pagy = Pagy.new count: 1000, page: 3
       pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
-      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"next\" aria-label=\"next\"  >&lsaquo;&nbsp;Prev</a></span>"
-      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"next\" aria-label=\"next\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
     end
 
     it 'renders the prev link for page 6' do
       pagy = Pagy.new count: 1000, page: 6
       pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
-      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"next\" aria-label=\"next\"  >&lsaquo;&nbsp;Prev</a></span>"
-      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"next\" aria-label=\"next\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
     end
 
     it 'renders the prev link for last page' do
       pagy = Pagy.new count: 1000, page: 50
       pagy_countless = Pagy::Countless.new(page: 50).finalize(20)
-      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"next\" aria-label=\"next\"  >&lsaquo;&nbsp;Prev</a></span>"
-      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"next\" aria-label=\"next\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
     end
 
   end
@@ -140,4 +140,3 @@ describe Pagy::Frontend do
   end
 
 end
-

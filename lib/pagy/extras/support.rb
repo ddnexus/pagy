@@ -15,7 +15,7 @@ class Pagy
     end
 
     def pagy_prev_link(pagy, text = pagy_t('pagy.nav.prev'), link_extra = '')
-      pagy.prev ? %(<span class="page prev"><a href="#{pagy_prev_url(pagy)}" rel="next" aria-label="next" #{pagy.vars[:link_extra]} #{link_extra}>#{text}</a></span>)
+      pagy.prev ? %(<span class="page prev"><a href="#{pagy_prev_url(pagy)}" rel="prev" aria-label="previous" #{pagy.vars[:link_extra]} #{link_extra}>#{text}</a></span>)
                 : %(<span class="page prev disabled">#{text}</span>)
     end
 

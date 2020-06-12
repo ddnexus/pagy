@@ -44,7 +44,7 @@ The `nav.*` templates produce the same output, and can be used as an easier (but
 
 See also [Using templates](../how-to.md#using-templates).
 
-### pagy_info(pagy)
+### pagy_info(pagy, item_name=nil)
 
 This method provides the info about the content of the current pagination. For example:
 
@@ -59,6 +59,12 @@ Displaying items <b>476-500</b> of <b>1000</b> in total
 or, if you use the `:i18n_key` variable a custom/collection-specific output:
 
 Displaying Products <b>476-500</b> of <b>1000</b> in total
+
+You can also overwrite the `item_name` entirely by passing an already pluralized string directly to the helper:
+
+```erb
+<%== pagy_info(@pagy, 'Widget'.pluralized(@pagy.count) %>
+```
 
 _(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
