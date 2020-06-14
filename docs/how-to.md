@@ -186,6 +186,10 @@ pagy.series
 #=> []
 ```
 
+### Customizing the series
+
+If changing the `:size` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place of gaps) you should override the `series` method. See more details and examples [here](https://github.com/ddnexus/pagy/issues/245).
+
 ## Passing the page number
 
 You don't need to explicitly pass the page number to the `pagy` method, because it is pulled in by the `pagy_get_vars` (which is called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For example:
@@ -515,6 +519,10 @@ For better performance of grouped ActiveRecord collection counts, you may want t
 ### Avoiding the count
 
 When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoid the need for a count query, still providing an acceptable subset of the full pagination features.
+
+## Using AJAX
+
+See [Using AJAX](api/javascript.md#using-ajax)
 
 ## Paginate for API clients
 
