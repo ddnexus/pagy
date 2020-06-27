@@ -8,8 +8,10 @@ class Pagy
   module Frontend
 
     # Pagination for Bulma: it returns the html with the series of links to the pages
-    def pagy_bulma_nav(pagy)
+    def pagy_bulma_nav(pagy, nav_class: "")
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
+
+      nav_class = " #{nav_class}".rstrip
 
       html = (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
                      : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>)) \
@@ -23,12 +25,15 @@ class Pagy
                 end
       end
       html << '</ul>'
-      %(<nav class="pagy-bulma-nav pagination is-centered" role="navigation" aria-label="pagination">#{html}</nav>)
+      %(<nav class="pagy-bulma-nav pagination is-centered#{nav_class}" role="navigation" aria-label="pagination">#{html}</nav>)
     end
 
     # Javascript pagination for bulma: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_bulma_nav_js(pagy, id=pagy_id)
+    def pagy_bulma_nav_js(pagy, id=pagy_id, nav_class: "")
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
+
+      nav_class = " #{nav_class}".rstrip
+
       tags = { 'before' => ( (p_prev ? link.call(p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"')
                                      : %(<a class="pagination-previous" disabled>#{pagy_t('pagy.nav.prev')}</a>)) \
                            + (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="pagination-next" aria-label="next page"')
@@ -38,7 +43,7 @@ class Pagy
                'active' => %(<li>#{link.call(PAGE_PLACEHOLDER, PAGE_PLACEHOLDER, %(class="pagination-link is-current" aria-current="page" aria-label="page #{PAGE_PLACEHOLDER}"))}</li>),
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t('pagy.nav.gap')}</span></li>),
                'after'  => '</ul>' }
-      %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
+      %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered#{nav_class}" role="navigation" aria-label="pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
     end
 
     # Javascript combo pagination for Bulma: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
