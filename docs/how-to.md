@@ -312,7 +312,7 @@ You have a few ways to do that:
 
 ## Customizing CSS styles
 
-Pagy provides a few frontend extras for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md) and [uikit](extras/uikit.md) that come with a decent styling provided by their framework.
+Pagy provides a few frontend extras for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [tailwind](https://tailwindcss.com) and [uikit](extras/uikit.md) that come with a decent styling provided by their framework.
 
 If you need to further customize the provided styles, you don't necessary need to override the helpers/templates. Here are a few alternatives:
 
@@ -430,7 +430,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 | [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_nav_js`, `pagy_materialize_combo_nav_js` |
 | [navs](extras/navs.md)               | `pagy_nav_js`, `pagy_combo_nav_js`                                                 |
 | [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_nav_js`, `pagy_semantic_combo_nav_js`          |
-| [uikit](extras/uikit.md)             | `pagy_uikit_nav`, `pagy_uikit_nav_js`, `pagy_uikit_combo_nav_js`                                                                   |
+| [uikit](extras/uikit.md)             | `pagy_uikit_nav`, `pagy_uikit_nav_js`, `pagy_uikit_combo_nav_js`                   |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
