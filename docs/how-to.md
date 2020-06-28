@@ -310,6 +310,17 @@ You have a few ways to do that:
 
 **Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to set the `i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most flexible way is passing a pluralized string to the helper.
 
+## Customizing CSS styles
+
+Pagy provides a few frontend extras for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md) and [uikit](extras/uikit.md) that come with a decent styling provided by their framework.
+
+If you need to further customize the provided styles, you don't necessary need to override the helpers/templates. Here are a few alternatives:
+
+- define the CSS styles to apply to the pagy CSS classes
+- when sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss directive
+- use the jQuery `addClass` method
+- use a couple of lines of plain javascript
+
 ## Paginate an Array
 
 Please, use the [array](extras/array.md) extra.
