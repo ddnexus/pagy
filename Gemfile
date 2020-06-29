@@ -1,29 +1,35 @@
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-
-# test
 gem 'rake'
-gem 'minitest', '~> 5.12'
-gem 'minitest-reporters'
 gem 'rack'
 gem 'i18n'
 
 gem 'oj', require: false     # false is for testing with or without it
 
-gem 'rubocop', '~> 0.82.0'
-gem 'rubocop-performance', '~> 1.5.0'
-gem 'simplecov', require: false
-gem 'codecov', :require => false
+gem 'puma'
 
-# development
-# gem 'slim'
-# gem 'haml'
-
-# benchmark/profiling
-# gem 'benchmark-ips'
-# gem 'kalibera'
-# gem 'memory_profiler'
+group :test do
+  gem 'rubocop', '~> 0.82.0'
+  gem 'rubocop-performance', '~> 1.5.0'
+  gem 'simplecov', require: false
+  gem 'codecov', require:  false
+  gem 'minitest'
+  gem 'minitest-reporters'
+end
 
 # docs server
-gem "github-pages", '204', group: :jekyll_plugins
+gem "github-pages", '206', group: :jekyll_plugins
+
+group :apps do
+  gem 'sinatra'
+  gem 'sinatra-contrib'
+  # gem 'slim'
+  # gem 'haml'
+end
+
+# group :performance do
+  # benchmark/profiling
+  # gem 'benchmark-ips'
+  # gem 'kalibera'
+  # gem 'memory_profiler'
+# end
