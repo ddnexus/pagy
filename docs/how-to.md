@@ -310,6 +310,17 @@ You have a few ways to do that:
 
 **Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to set the `i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most flexible way is passing a pluralized string to the helper.
 
+## Customizing CSS styles
+
+Pagy provides a few frontend extras for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [tailwind](https://tailwindcss.com) and [uikit](extras/uikit.md) that come with a decent styling provided by their framework.
+
+If you need to further customize the provided styles, you don't necessary need to override the helpers/templates. Here are a few alternatives:
+
+- define the CSS styles to apply to the pagy CSS classes
+- when sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss directive
+- use the jQuery `addClass` method
+- use a couple of lines of plain javascript
+
 ## Paginate an Array
 
 Please, use the [array](extras/array.md) extra.
@@ -419,7 +430,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 | [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_nav_js`, `pagy_materialize_combo_nav_js` |
 | [navs](extras/navs.md)               | `pagy_nav_js`, `pagy_combo_nav_js`                                                 |
 | [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_nav_js`, `pagy_semantic_combo_nav_js`          |
-| [uikit](extras/uikit.md)             | `pagy_uikit_nav`, `pagy_uikit_nav_js`, `pagy_uikit_combo_nav_js`                                                                   |
+| [uikit](extras/uikit.md)             | `pagy_uikit_nav`, `pagy_uikit_nav_js`, `pagy_uikit_combo_nav_js`                   |
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
