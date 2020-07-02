@@ -305,7 +305,7 @@ You have a few ways to do that:
 
 3. you can override entirely the `:item_name` by passing an already pluralized string directly to the helper call:
     ```erb
-    <%== pagy_info(@pagy, 'Widgets'.pluralize(@pagy.count) %>
+    <%== pagy_info(@pagy, 'Widgets'.pluralize(@pagy.count)) %>
     ```
 
 **Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to set the `i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most flexible way is passing a pluralized string to the helper.
