@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## Version 3.8.3
+
+### Changes
+
+- Portuguese translation
+- Fixes and documentation improvments
+
+### Commits
+
+- [f64a1d6](http://github.com/ddnexus/pagy/commit/f64a1d6): added pagy reference to jetbrains link
+- [8a4596f](http://github.com/ddnexus/pagy/commit/8a4596f): Add translation for Portuguese (#250) [ci-skip]
+- [515de9b](http://github.com/ddnexus/pagy/commit/515de9b): Adds parentheses (#249) [ci-skip]
+- [734f30c](http://github.com/ddnexus/pagy/commit/734f30c): added basic sinatra app
+- [c7aa44d](http://github.com/ddnexus/pagy/commit/c7aa44d): updated gems
+- [62bd4ac](http://github.com/ddnexus/pagy/commit/62bd4ac): added tailwind extra styles
+- [c2e8eef](http://github.com/ddnexus/pagy/commit/c2e8eef): added "Customizing CSS styles" how to section
+- [614a3e1](http://github.com/ddnexus/pagy/commit/614a3e1): fix for extra "-js" in "pagy-combo-nav-js"
+- [8673ca4](http://github.com/ddnexus/pagy/commit/8673ca4): a couple of how_to additions
+
 ## Version 3.8.2
 
 ### Changes
