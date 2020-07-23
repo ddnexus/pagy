@@ -4,7 +4,7 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '3.8.2'
+class Pagy ; VERSION = '3.8.3'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root; @root ||= Pathname.new(__FILE__).dirname.freeze end
