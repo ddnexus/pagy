@@ -158,13 +158,14 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 ### Posts and Tutorials
 
 - [Migrating from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-guide) (practical guide)
-- [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy) by Tiago Franco
-- [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
-- [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
-- [Pagy with Templates Minipost](https://www.aloucaslabs.com/miniposts/how-to-install-pagy-gem-with-a-custom-pagination-template-on-a-ruby-on-rails-application) by aloucas
-- [Integrating Pagy with Hanami](http://katafrakt.me/2018/06/01/integrating-pagy-with-hanami/) by Paweł Świątkowski
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
+- [Faster Pagination with Pagy](https://viblo.asia/p/faster-pagination-with-pagy-Eb85ok9W52G) introductory tutorial by Sirajus Salekin
+- [Pagy with Templates Minipost](https://www.aloucaslabs.com/miniposts/how-to-install-pagy-gem-with-a-custom-pagination-template-on-a-ruby-on-rails-application) by aloucas
+- [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy) by Tiago Franco
+- [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
+- [Integrating Pagy with Hanami](http://katafrakt.me/2018/06/01/integrating-pagy-with-hanami/) by Paweł Świątkowski
+- [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
 - [Handling Pagination When POSTing Complex Search Forms](https://bkspurgeon.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
 - [How to Override pagy methods only in specific circumstances](https://bkspurgeon.github.io/2020/02/01/overriding-pagy-methods.html) by Ben Koshy.
 - [日本語の投稿](https://qiita.com/search?q=pagy)
@@ -175,6 +176,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
+- [Legacy Changelog](https://github.com/ddnexus/pagy/blob/master/LEGACY_CHANGELOG.md)
 
 ### Support and Feedback
 
