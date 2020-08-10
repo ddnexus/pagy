@@ -58,14 +58,14 @@ This page contains the practical tips and examples to get the job done with Pagy
             - with a fast helper (also styled for  [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [uikit](extras/uikit.md) and available in different flavors (static, responsive, compact, etc.)
 
                 ```erb
+                <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>                
                 <%== pagy_nav(@pagy) %>
                 ```
             - or with an easy customizable template:
 
-                ```erb
+                ```erb                
                 <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
                 ```
-
     - Option B: if your app renders the views with a javascript framework (e.g. Vue.js, react.js, ...), you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
 
         1. require the [metadata extra](extras/metadata.md) by uncommenting the following line in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
