@@ -9,7 +9,7 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 1. Install Pagy:
 
-    - If you use Bundler, add the gem in the Gemfile, optionally avoiding the next mayor version with breaking changes (e.g. '~> 3.5' see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
+    - If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (e.g. '~> 3.5' see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
         ```ruby
         gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
