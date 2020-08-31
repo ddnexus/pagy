@@ -18,7 +18,10 @@ class Pagy
 
     # Sub-method called only by #pagy: here for easy customization of variables by overriding
     def pagy_get_vars(collection, vars)
-      vars[:count] ||= (c = collection.count(:all)).is_a?(Hash) ? c.size : c
+      unless vars[:count]
+        collection = collection.reorder(nil) if collection.respond_to?(:reorder)
+        vars[:count] = (c = collection.count(:all)).is_a?(Hash) ? c.size : c
+      end
       vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars
     end

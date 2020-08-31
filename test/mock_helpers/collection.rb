@@ -30,6 +30,10 @@ class MockCollection < Array
     []
   end
 
+  def reorder(order)
+    self
+  end
+
   class Grouped < MockCollection
 
     def count(*)
