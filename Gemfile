@@ -18,7 +18,7 @@ group :test do
 end
 
 # docs server
-gem "github-pages", '206', group: :jekyll_plugins
+gem "github-pages", '208', group: :jekyll_plugins
 
 group :apps do
   gem 'sinatra'
