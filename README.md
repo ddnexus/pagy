@@ -189,6 +189,14 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 
 Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for breaking changes introduced by mayor versions.
 
+### Contributions
+
+Pull Requests are welcome!
+
+Before spending time creating a (potentially complex) Pull Request, you can [Confirm on Gitter](https://gitter.im/ruby-pagy/Lobby) whether your proposed changes are going to be useful for most users.
+
+If you Create A Pull Request, please ensure that the "All checks have passed" indicator gets green light on the Pull Request page. That means that the tests passed and Codecov and Rubocop are happy.
+
 ### Branches
 
 The `master` branch is the latest rubygem-published release. It also contains docs and comment changes that don't affect the published code.
