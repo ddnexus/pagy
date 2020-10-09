@@ -9,6 +9,7 @@
 ![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
 [![Chat](http://img.shields.io/badge/gitter-ruby--pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
+ [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
@@ -151,9 +152,13 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 
 ### GoRails Screencast
 
-[![Objects Chart](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
+[![GoRails Screencast](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
 
 **Notice**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
+
+### Raul Palacio Screencast (Spanish)
+
+[![Raul Palacio Screncast](docs/assets/images/raul-palacio-thumbnail-w360.jpg)](https://youtu.be/_j3gtKf5rRs)
 
 ### Posts and Tutorials
 
