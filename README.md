@@ -220,6 +220,14 @@ Many thanks to:
 - [The Contributors](https://github.com/ddnexus/pagy/graphs/contributors) for all the smart code and suggestions merged in the project
 - [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
 
+## Caveats
+
+### Jruby 9.2+ random exceptions in tests
+
+One of the latest jruby version (9.2.+) raises a couple of random `Java::JavaLang::NullPointerException` while running the frontend tests in Travis. That doesn't happen with previous versions.
+
+It might be just another jruby bug or a number of possible things related to the tests or the Travis build that might or might not affect real usage. I am done with debugging jruby weirdness, so I am not going to investigate it further. If you get any info about it, please, create an issue.
+
 ## License
 
 This project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

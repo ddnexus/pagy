@@ -1,7 +1,7 @@
 ---
 language: ruby
 cache: bundler
-gemfile: gemfiles/ruby-others
+gemfile: ci-gemfiles/ruby-others
 script:
   - bundle exec rake default
 after_success:
@@ -12,17 +12,17 @@ matrix:
 
     # ruby
     - rvm: 1.9
-      gemfile: gemfiles/ruby-1.9
+      gemfile: ci-gemfiles/ruby-1.9
     - rvm: 2.0
-      gemfile: gemfiles/ruby-2.0
+      gemfile: ci-gemfiles/ruby-2.0
       env:
         - ENABLE_OJ=true
     - rvm: 2.1
-      gemfile: gemfiles/ruby-2.0
+      gemfile: ci-gemfiles/ruby-2.0
       env:
         - ENABLE_OJ=true
     - rvm: 2.2
-      gemfile: gemfiles/ruby-2.0
+      gemfile: ci-gemfiles/ruby-2.0
       env:
         - ENABLE_OJ=true
     - rvm: 2.3
@@ -35,11 +35,11 @@ matrix:
       env:
         - ENABLE_OJ=true
     - rvm: 2.6
-      gemfile: gemfiles/ruby-latest
+      gemfile: ci-gemfiles/ruby-latest
       env:
         - ENABLE_OJ=true
     - rvm: 2.7
-      gemfile: gemfiles/ruby-latest
+      gemfile: ci-gemfiles/ruby-latest
       env:
         - ENABLE_OJ=true
         - RUN_SIMPLECOV=true
@@ -48,9 +48,9 @@ matrix:
 
     # jruby
     - rvm: jruby-1.7
-      gemfile: gemfiles/ruby-1.9
+      gemfile: ci-gemfiles/ruby-1.9
     - rvm: jruby-9.0
-      gemfile: gemfiles/ruby-2.0
+      gemfile: ci-gemfiles/ruby-2.0
     - rvm: jruby-9.1
-    - rvm: jruby-9.2
+    #- rvm: jruby-9.2
 

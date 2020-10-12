@@ -68,7 +68,7 @@ class Pagy
     end
 
     # Similar to I18n.t: just ~18x faster using ~10x less memory
-    def pagy_t(path, vars={}) Pagy::I18n.t(@pagy_locale||=nil, path, vars) end
+    def pagy_t(path, vars={}) Pagy::I18n.t(@pagy_locale, path, vars) end
 
   end
 end
