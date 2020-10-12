@@ -106,23 +106,6 @@ describe Pagy::Frontend do
 
   end
 
-  describe  "Pagy::I18n deprecation" do
-
-    it 'handles deprecated locales' do
-      _(proc {Pagy::I18n.load({locale: 'se'}, {locale: 'pt-br'})}).must_output '', /^WARNING:/
-
-      view.instance_variable_set(:'@pagy_locale', 'se')
-      _(proc {view.pagy_t('pagy.item_name', count: 1).must_equal 'resultat'}).must_output '', /^WARNING:/
-
-      view.instance_variable_set(:'@pagy_locale', 'pt-br')
-      _(proc {view.pagy_t('pagy.item_name', count: 1).must_equal 'item'}).must_output '', /^WARNING:/
-
-      Pagy::I18n.load(locale: 'en')                         # reset for other tests
-      view.instance_variable_set(:'@pagy_locale', nil)      # reset for other tests
-    end
-
-  end
-
   describe "#pagy_info" do
 
     it 'renders without i18n path' do
