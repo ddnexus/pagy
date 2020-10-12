@@ -1,0 +1,2 @@
+docs/* linguist-documentation
+test/ci-gemfiles/* linguist-language=Ruby
