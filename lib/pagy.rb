@@ -22,7 +22,8 @@ class Pagy ; VERSION = '3.8.3'
          or raise(VariableError.new(self), "expected :#{k} >= #{min}; got #{@vars[k].inspect}")
     end
     @pages = @last = [(@count.to_f / @items).ceil, 1].max                      # cardinal and ordinal meanings
-    @page <= @last or raise(OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
+    @page = @last unless @page <= @last  # user cannot control if the page count reduced between calls
+    #@page <= @last or raise(OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                                   # pagination offset + outset (initial offset)
     @items  = @count - ((@pages-1) * @items) if @page == @last && @count > 0   # adjust items for last non-empty page
     @from   = @count == 0 ? 0 : @offset+1 - @outset                            # page begins from item
