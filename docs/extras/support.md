@@ -148,12 +148,20 @@ Returns the url for the next page. Useful to build minimalistic UIs that don't u
 
 ### pagy_prev_link(pagy, text=pagy_t('pagy.nav.prev'), link_extra="")
 
-Returns the link for the next page. It is the same prev link string which is part of the `pagy_nav` helper.
+Returns the `a` tag for the previous page. It is the same prev link string which is part of the `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
 
 ### pagy_next_link(pagy, text=pagy_t('pagy.nav.next'), link_extra="")
 
-Returns the link for the next page. It is the same next link string which is part of the `pagy_nav` helper.
+Returns the `a` tag for the next page. It is the same next link string which is part of the `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
+
+### pagy_prev_link_tag(pagy)
+
+Returns the `link` tag for the previous page. Useful to add the link tag to the HTML `head`.
+
+### pagy_next_link_tag(pagy)
+
+Returns the `link` tag for the next page. Useful to add the link tag to the HTML `head`.

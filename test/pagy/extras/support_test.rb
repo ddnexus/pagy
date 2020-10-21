@@ -139,4 +139,68 @@ describe Pagy::Frontend do
 
   end
 
+  describe "#pagy_prev_link_tag" do
+
+    it 'renders the prev link tag for page 1' do
+      pagy = Pagy.new count: 1000, page: 1
+      pagy_countless = Pagy::Countless.new(page: 1).finalize(21)
+      _(view.pagy_prev_link_tag(pagy)).must_be_nil
+      _(view.pagy_prev_link_tag(pagy_countless)).must_be_nil
+    end
+
+    it 'renders the prev link tag for page 3' do
+      pagy = Pagy.new count: 1000, page: 3
+      pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
+      _(view.pagy_prev_link_tag(pagy)).must_equal "<link href=\"/foo?page=2\" rel=\"prev\"/>"
+      _(view.pagy_prev_link_tag(pagy_countless)).must_equal "<link href=\"/foo?page=2\" rel=\"prev\"/>"
+    end
+
+    it 'renders the prev link tag for page 6' do
+      pagy = Pagy.new count: 1000, page: 6
+      pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
+      _(view.pagy_prev_link_tag(pagy)).must_equal "<link href=\"/foo?page=5\" rel=\"prev\"/>"
+      _(view.pagy_prev_link_tag(pagy_countless)).must_equal "<link href=\"/foo?page=5\" rel=\"prev\"/>"
+    end
+
+    it 'renders the prev link tag for last page' do
+      pagy = Pagy.new count: 1000, page: 50
+      pagy_countless = Pagy::Countless.new(page: 50).finalize(20)
+      _(view.pagy_prev_link_tag(pagy)).must_equal "<link href=\"/foo?page=49\" rel=\"prev\"/>"
+      _(view.pagy_prev_link_tag(pagy_countless)).must_equal "<link href=\"/foo?page=49\" rel=\"prev\"/>"
+    end
+
+  end
+
+  describe "#pagy_next_link_tag" do
+
+    it 'renders the next link tag for page 1' do
+      pagy = Pagy.new count: 1000, page: 1
+      pagy_countless = Pagy::Countless.new(page: 1).finalize(21)
+      _(view.pagy_next_link_tag(pagy)).must_equal "<link href=\"/foo?page=2\" rel=\"next\"/>"
+      _(view.pagy_next_link_tag(pagy_countless)).must_equal "<link href=\"/foo?page=2\" rel=\"next\"/>"
+    end
+
+    it 'renders the next link tag for page 3' do
+      pagy = Pagy.new count: 1000, page: 3
+      pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
+      _(view.pagy_next_link_tag(pagy)).must_equal "<link href=\"/foo?page=4\" rel=\"next\"/>"
+      _(view.pagy_next_link_tag(pagy_countless)).must_equal "<link href=\"/foo?page=4\" rel=\"next\"/>"
+    end
+
+    it 'renders the next link tag for page 6' do
+      pagy = Pagy.new count: 1000, page: 6
+      pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
+      _(view.pagy_next_link_tag(pagy)).must_equal "<link href=\"/foo?page=7\" rel=\"next\"/>"
+      _(view.pagy_next_link_tag(pagy_countless)).must_equal "<link href=\"/foo?page=7\" rel=\"next\"/>"
+    end
+
+    it 'renders the next link tag for last page' do
+      pagy = Pagy.new count: 1000, page: 50
+      pagy_countless = Pagy::Countless.new(page: 50).finalize(20)
+      _(view.pagy_next_link_tag(pagy)).must_be_nil
+      _(view.pagy_next_link_tag(pagy_countless)).must_be_nil
+    end
+
+  end
+
 end
