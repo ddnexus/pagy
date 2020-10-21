@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## Version 3.9.0
+
+### Changes
+
+- added link tags helpers to support extra
+
+### Commits
+
+- [a66491b](http://github.com/ddnexus/pagy/commit/a66491b): added link tags helpers to support extra
+- [2ef08a9](http://github.com/ddnexus/pagy/commit/2ef08a9): @pagy_locale explicitly initialized to avoid warning
+- [261c6a1](http://github.com/ddnexus/pagy/commit/261c6a1): reorganized gemfiles for travis, removed jruby 9.2 tests and added CAVEATS and removed redundant ||=nil
+- [619d7d1](http://github.com/ddnexus/pagy/commit/619d7d1): updated gems
+- [fc861d8](http://github.com/ddnexus/pagy/commit/fc861d8): added .gitattributes to fix github linguist [ci-skip]
+- [287b94f](http://github.com/ddnexus/pagy/commit/287b94f): added Raul Palacio screencast link to README
+- [52c65a3](http://github.com/ddnexus/pagy/commit/52c65a3): added "Contributions" section in the README
+- [f09a80a](http://github.com/ddnexus/pagy/commit/f09a80a): Add tutorial link to readme (#259)
+- [86bf3dc](http://github.com/ddnexus/pagy/commit/86bf3dc): Fix: typo [ci-skip] (#257)
+- [bd3bcc7](http://github.com/ddnexus/pagy/commit/bd3bcc7): Update copyright notice to 2020 (#256) [ci-skip]
+- [01e4a14](http://github.com/ddnexus/pagy/commit/01e4a14): [ci-skip] Add note re: html safe helpers (#254)Fixes discussion noted in: #6
+- [1d812be](http://github.com/ddnexus/pagy/commit/1d812be): doc improvements [ci-skip]
+
 ## Version 3.8.3
 
 ### Changes
