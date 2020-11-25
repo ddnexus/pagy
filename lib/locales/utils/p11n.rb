@@ -32,6 +32,13 @@ p11n = {
     end
   end,
 
+  west_slavic: lambda do |n|
+     if n == 1                    ; 'one'
+     elsif [2, 3, 4].include?(n)  ; 'few'
+     else                         ; 'other'
+     end
+  end,
+
   one_two_other: lambda do |n|
     if n == 1    ; 'one'
     elsif n == 2 ; 'two'
@@ -60,9 +67,11 @@ p11n = {
 # The default pluralization for locales not explicitly listed here
 # is the :one_other pluralization proc (used for English)
 plurals = Hash.new(p11n[:one_other]).tap do |hash|
+  hash['cs']    = p11n[:west_slavic]
   hash['id']    = p11n[:other]
   hash['fr']    = p11n[:one_upto_two_other]
   hash['ja']    = p11n[:other]
+  hash['km']    = p11n[:other]
   hash['ko']    = p11n[:other]
   hash['pl']    = p11n[:polish]
   hash['ru']    = p11n[:east_slavic]
@@ -72,7 +81,6 @@ plurals = Hash.new(p11n[:one_other]).tap do |hash|
   hash['zh-CN'] = p11n[:other]
   hash['zh-HK'] = p11n[:other]
   hash['zh-TW'] = p11n[:other]
-  hash['km']    = p11n[:other]
 end
 
 [ plurals, p11n ]

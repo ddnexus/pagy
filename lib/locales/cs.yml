@@ -1,0 +1,22 @@
+# :czech pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+cs:
+  pagy:
+    item_name:
+      one: "položka"
+      few: "položek"
+      other: "položky"
+
+    nav:
+      prev: "&lsaquo;&nbsp;Předchozí"
+      next: "Další&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "Nic nebylo nalezeno"
+      single_page: "Zobrazeno <b>%{count}</b> %{item_name}"
+      multiple_pages: "Zobrazeno %{item_name} <b>%{from}-%{to}</b> z <b>%{count}</b> celkem"
+
+    combo_nav_js: "Strana %{page_input} z %{pages}"
+
+    items_selector_js: "Zobrazit %{items_input} %{item_name} na stránce"
