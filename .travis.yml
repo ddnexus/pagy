@@ -49,8 +49,8 @@ matrix:
     # jruby
     - rvm: jruby-1.7
       gemfile: ci-gemfiles/ruby-1.9
-    - rvm: jruby-9.0
-      gemfile: ci-gemfiles/ruby-2.0
+    #- rvm: jruby-9.0
+    #  gemfile: ci-gemfiles/ruby-2.0
     - rvm: jruby-9.1
     #- rvm: jruby-9.2
 
