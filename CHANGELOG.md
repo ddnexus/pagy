@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## Version 3.11.0
+
+### Changers
+
+- added Swahili localization
+
+### Commits
+
+- [fbc322f](http://github.com/ddnexus/pagy/commit/fbc322f): Add Swahili (sw) to pagy (#276)
+- [ebbac6b](http://github.com/ddnexus/pagy/commit/ebbac6b): Fix: broken links (#272) [ci-skip]
+- [2178436](http://github.com/ddnexus/pagy/commit/2178436): restored file removed by mistake
+
 ## Version 3.10.0
 
 ### Changes
@@ -8,7 +20,6 @@
 
 ### Commits
 
-- [8fe6f21](http://github.com/ddnexus/pagy/commit/8fe6f21): version 3.10.0
 - [316183f](http://github.com/ddnexus/pagy/commit/316183f): minor adjustments to p11n.rb; removed local file
 - [2e7fa1b](http://github.com/ddnexus/pagy/commit/2e7fa1b): Update with 'cs' (#269)added lambda for 'west_slavic' and 'hash for 'cs' language
 - [70760c6](http://github.com/ddnexus/pagy/commit/70760c6): Czech localization (#268)
