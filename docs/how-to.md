@@ -63,7 +63,7 @@ This page contains the practical tips and examples to get the job done with Pagy
                 ```
             - or with an easy customizable template:
 
-                ```erb                
+                ```erb
                 <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
                 ```
     - Option B: if your app renders the views with a javascript framework (e.g. Vue.js, react.js, ...), you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
@@ -361,6 +361,27 @@ The `pagy_get_vars` method works out of the box with `ActiveRecord` collections;
 #count = collection.count(:all)
 count = collection.count
 ```
+
+## Paginate collections with metadata
+
+When your collection already contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object:
+
+```
+#<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>
+```
+
+As you can see it contains the pagination metadata that you can use to setup the pagination with pagy:
+
+```ruby
+
+tobj    = Tmdb::Search.movie("Harry Potter", page: params[:page])
+@pagy   = Pagy.new(count: tobj.total_results, page: tobj.page)
+@movies = tobj.results
+
+```
+
+Notice that you can apply the same principe to any other type of collection metadata.
+
 
 ## Paginate Any Collection
 
