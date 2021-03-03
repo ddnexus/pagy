@@ -26,7 +26,7 @@ class Pagy
       vars                       = pagy_searchkick_get_vars(nil, vars)
       search_args[-1][:per_page] = vars[:items]
       search_args[-1][:page]     = vars[:page]
-      results                    = model.search(*search_args, &block)
+      results                    = pagy_searchkick_get_results(model, search_args, block)
       vars[:count]               = results.total_count
       pagy = Pagy.new(vars)
       # with :last_page overflow we need to re-run the method in order to get the hits
@@ -42,6 +42,19 @@ class Pagy
       vars[:items] ||= VARS[:items]
       vars[:page]  ||= (params[ vars[:page_param] || VARS[:page_param] ] || 1).to_i
       vars
+    end
+
+    if RUBY_VERSION.start_with?('3.')
+      eval <<-RUBY
+        def pagy_searchkick_get_results(model, search_args, block)
+          options = search_args.pop
+          model.search(*search_args, **options, &block)
+        end
+      RUBY
+    else
+      def pagy_searchkick_get_results(model, search_args, block)
+        model.search(*search_args, &block)
+      end
     end
 
   end
