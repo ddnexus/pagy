@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pagy (3.11.0)
+    pagy (4.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -71,7 +71,7 @@ GEM
     unicode-display_width (1.7.0)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   codecov
@@ -90,4 +90,4 @@ DEPENDENCIES
   sinatra-contrib
 
 BUNDLED WITH
-   2.1.4
+   2.2.3
