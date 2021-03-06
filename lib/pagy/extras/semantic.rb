@@ -11,8 +11,8 @@ class Pagy
     def pagy_semantic_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next
 
-      html = EMPTY + (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
-                             : %(<div class="item disabled"><i class="left small chevron icon"></i></div>))
+      html = (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
+                     : +%(<div class="item disabled"><i class="left small chevron icon"></i></div>))
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(#{link.call item})                      # page link
                 elsif item.is_a?(String) ; %(<a class="item active">#{item}</a>)     # current page
@@ -41,7 +41,7 @@ class Pagy
     def pagy_semantic_combo_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy, 'class="item"'), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = EMPTY + %(<div id="#{id}" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" aria-label="pager">)
+      html = %(<div id="#{id}" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" aria-label="pager">)
       html << (p_prev ? %(#{link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'})
                       : %(<div class="item disabled"><i class="left small chevron icon"></i></div>))
       input = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem; margin: 0 0.3rem">)

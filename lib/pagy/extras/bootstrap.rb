@@ -11,8 +11,8 @@ class Pagy
     def pagy_bootstrap_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy, 'class="page-link"'), pagy.prev, pagy.next
 
-      html = EMPTY + (p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
-                             : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
+      html = (p_prev ? %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+                     : %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.prev')}</a></li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(<li class="page-item">#{link.call item}</li>)                                                               # page link
                 elsif item.is_a?(String) ; %(<li class="page-item active">#{link.call item}</li>)                                                        # active page

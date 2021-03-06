@@ -12,8 +12,8 @@ class Pagy
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
 
       previous_span = "<span uk-pagination-previous>#{pagy_t('pagy.nav.prev')}</span>"
-      html = EMPTY + (p_prev ? %(<li>#{link.call p_prev, previous_span}</li>)
-                             : %(<li class="uk-disabled"><a href="#">#{previous_span}</a></li>))
+      html = (p_prev ? %(<li>#{link.call p_prev, previous_span}</li>)
+                     : %(<li class="uk-disabled"><a href="#">#{previous_span}</a></li>))
       pagy.series.each do |item|
         html << if    item.is_a?(Integer); %(<li>#{link.call item}</li>)
                 elsif item.is_a?(String) ; %(<li class="uk-active"><span>#{item}</span></li>)

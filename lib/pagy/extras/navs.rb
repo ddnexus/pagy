@@ -24,7 +24,7 @@ class Pagy
     def pagy_combo_nav_js(pagy, id=pagy_id)
       link, p_prev, p_next, p_page, p_pages = pagy_link_proc(pagy), pagy.prev, pagy.next, pagy.page, pagy.pages
 
-      html = EMPTY + %(<nav id="#{id}" class="pagy-combo-nav-js pagination" role="navigation" aria-label="pager">)
+      html = %(<nav id="#{id}" class="pagy-combo-nav-js pagination" role="navigation" aria-label="pager">)
       html << (p_prev ? %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
                       : %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> ))
       input = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
