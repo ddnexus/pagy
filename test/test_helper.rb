@@ -3,9 +3,9 @@
 
 require 'bundler/setup'
 
-require 'simplecov' if ENV['RUN_SIMPLECOV']
+require 'simplecov' if ENV['RUN_SIMPLECOV'] == 'true'
 
-if ENV['RUN_CODECOV']
+if ENV['RUN_CODECOV'] == 'true'
   require 'codecov'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end

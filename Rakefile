@@ -81,7 +81,7 @@ task :test => [ :test_main,
                 :test_shared,
                 :test_shared_combo ]
 
-if ENV['RUN_RUBOCOP']
+if ENV['RUN_RUBOCOP'] == 'true'
   require "rubocop/rake_task"
   RuboCop::RakeTask.new(:rubocop) do |t|
     t.options = `git ls-files -z`.split("\x0")     # limit rubocop to the files in the repo

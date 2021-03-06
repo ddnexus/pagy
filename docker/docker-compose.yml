@@ -1,0 +1,69 @@
+# Basic docker development environment
+# it will keep the installed gems and HOME in the pagy_bundle and pagy_user_home docker volumes
+# the gh-pages service will be updating a live preview for the documentation
+
+
+version: "3.8"
+
+services:
+
+  pagy:
+    image: pagy:3
+    build:
+      context: .
+      dockerfile: pagy.dockerfile
+      # set env variables with your user info
+      args:
+        user: $USER
+        group: $GROUP
+        uid: $UID
+        gid: $GID
+        password: "${PASSWORD:-rubydev}"
+        term: ${TERM:-xterm-256color}
+    container_name: pagy3
+    volumes:
+      - ../.:/opt/project
+      - bundle:/usr/local/bundle
+      - user_home:/home/$USER
+    environment:
+      - ENABLE_OJ=${ENABLE_OJ:-true}
+      - RUN_SIMPLECOV=${RUN_SIMPLECOV:-true}
+      - RUN_RUBOCOP=${RUN_RUBOCOP:-true}
+    stdin_open: true
+    tty: true
+
+  pagy-jekyll:
+    image: pagy-jekyll:latest
+    build:
+      context: .
+      dockerfile: pagy-jekyll.dockerfile
+    container_name: pagy-jekyll
+    environment:
+      - JEKYLL_GITHUB_TOKEN=${JEKYLL_GITHUB_TOKEN}
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    volumes:
+      - ../docs:/opt/docs
+      - docs_site:/opt/site
+    command: |
+      jekyll serve \
+          --incremental \
+          --livereload \
+          --watch \
+          --force-polling \
+          --host 0.0.0.0 \
+          --baseurl '' \
+          --source /opt/docs \
+          --destination /opt/site
+    stdin_open: true
+    tty: true
+
+volumes:
+  bundle:
+    name: pagy3_bundle
+  user_home:
+    name: pagy3_user_home
+  docs_site:
+    name: pagy3_docs_site
+

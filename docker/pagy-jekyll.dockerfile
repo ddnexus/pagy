@@ -1,0 +1,20 @@
+FROM ruby:2-alpine
+
+WORKDIR /opt
+
+# one step to exclude .build_deps from docker cache
+RUN apk update \
+ && apk add --no-cache --virtual .build_deps make build-base \
+ && echo "source 'https://rubygems.org'" > Gemfile \
+ && echo "gem 'github-pages', '212', group: :jekyll_plugins" >> Gemfile \
+ && bundle install \
+ && apk del .build_deps
+
+ENV LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8
+
+CMD ["jekyll", "serve", "-H", "0.0.0.0", "-P", "4000"]
+
+EXPOSE 4000 35729
+VOLUME /opt/site

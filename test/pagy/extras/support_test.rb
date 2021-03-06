@@ -5,7 +5,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/support'
 require 'pagy/countless'
 
-SimpleCov.command_name 'support' if ENV['RUN_SIMPLECOV']
+SimpleCov.command_name 'support' if ENV['RUN_SIMPLECOV'] == 'true'
 
 describe Pagy::Frontend do
 

@@ -1,13 +1,13 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-if ENV['ENABLE_OJ']
+if ENV['ENABLE_OJ'] == 'true'
 
   require_relative '../../test_helper'
   require 'oj' # all the other tests run without Oj
   require 'pagy/extras/shared'
 
-  SimpleCov.command_name 'shared' if ENV['RUN_SIMPLECOV']
+  SimpleCov.command_name 'shared' if ENV['RUN_SIMPLECOV'] == 'true'
 
   # add tests for oj and pagy_id
   describe Pagy::Frontend do

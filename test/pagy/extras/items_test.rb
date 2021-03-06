@@ -7,7 +7,7 @@ require_relative '../../mock_helpers/elasticsearch_rails'
 require_relative '../../mock_helpers/searchkick'
 require 'pagy/extras/items'
 
-SimpleCov.command_name 'items' if ENV['RUN_SIMPLECOV']
+SimpleCov.command_name 'items' if ENV['RUN_SIMPLECOV'] == 'true'
 
 describe Pagy::Backend do
 

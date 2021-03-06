@@ -14,7 +14,7 @@ require 'pagy'
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
 require 'pagy/extras/trim' if ENV['ENABLE_TRIM']
-require 'oj' if ENV['ENABLE_OJ']
+require 'oj' if ENV['ENABLE_OJ'] == 'true'
 
 # sinatra setup
 require "sinatra/base"

@@ -5,7 +5,7 @@ require_relative '../../test_helper'
 require_relative '../../mock_helpers/elasticsearch_rails'
 require 'pagy/extras/overflow'
 
-SimpleCov.command_name 'elasticsearch' if ENV['RUN_SIMPLECOV']
+SimpleCov.command_name 'elasticsearch' if ENV['RUN_SIMPLECOV'] == 'true'
 
 describe Pagy::Search do
 
