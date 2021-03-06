@@ -29,8 +29,6 @@ class Pagy
 
     include Helpers
 
-    MARK  = PAGE_PLACEHOLDER # backward compatibility in case of helper-overriding in legacy apps
-
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
