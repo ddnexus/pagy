@@ -24,7 +24,7 @@ Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/p
 
 ### Add the oj gem
 
-Although it's not a requirement, if you are on ruby 2.0+ (not jruby), and if you use any `*_nav_js` helper, you should add the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance. (Notice: It does nothing for normal, non-js helpers.)
+Although it's not a requirement, if you use any `*_nav_js` helper, you should consider adding the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance. (Notice: It does nothing for normal, non-js helpers.)
 
 ### In rails apps
 
@@ -292,4 +292,4 @@ $('#container').html("<%= j(render 'nav_js')%>");
 Pagy.init(document.getElementById('container'));
 ```
 
-**IMPORTANT**: The `document.getElementById('container')` argument will re-init the pagy elements just AJAX-rendered in the container div. If you miss it it will not work with AJAX.
+**IMPORTANT**: The `document.getElementById('container')` argument will re-init the pagy elements just AJAX-rendered in the container div. If you miss it, it will not work.
