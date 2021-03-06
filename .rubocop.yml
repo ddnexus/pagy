@@ -1,7 +1,11 @@
-require: rubocop-performance
+require:
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-minitest
 
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.0
+  NewCops: enable
 
 Layout:
   Enabled: false

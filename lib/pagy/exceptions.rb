@@ -4,6 +4,7 @@ class Pagy
     attr_reader :pagy
 
     def initialize(pagy)
+      super
       @pagy = pagy
     end
 

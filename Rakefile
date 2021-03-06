@@ -24,6 +24,11 @@ Rake::TestTask.new(:test_main) do |t|
                                       'test/**/shared_combo_test.rb')
 end
 
+Rake::TestTask.new(:test_extra_items) do |t|
+  t.libs += %w[test lib]
+  t.test_files = FileList['test/**/items_test.rb']
+end
+
 Rake::TestTask.new(:test_extra_headers) do |t|
   t.libs += %w[test lib]
   t.test_files = FileList['test/**/headers_test.rb']
@@ -32,11 +37,6 @@ end
 Rake::TestTask.new(:test_extra_i18n) do |t|
   t.libs += %w[test lib]
   t.test_files = FileList['test/**/i18n_test.rb']
-end
-
-Rake::TestTask.new(:test_extra_items) do |t|
-  t.libs += %w[test lib]
-  t.test_files = FileList['test/**/items_test.rb']
 end
 
 Rake::TestTask.new(:test_extra_overflow) do |t|
@@ -84,8 +84,7 @@ task :test => [ :test_main,
 if ENV['RUN_RUBOCOP'] == 'true'
   require "rubocop/rake_task"
   RuboCop::RakeTask.new(:rubocop) do |t|
-    t.options = `git ls-files -z`.split("\x0")     # limit rubocop to the files in the repo
-    t.requires << 'rubocop-performance'
+    t.options = `git ls-files | grep -E '\\.rb$'`.split("\n")     # limit rubocop to the files in the repo
   end
   task :default => [:test, :rubocop]
 else

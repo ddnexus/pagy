@@ -11,8 +11,10 @@ gem 'oj', require: false     # false is for testing with or without it
 gem 'puma'
 
 group :test do
-  gem 'rubocop', '~> 0.82.0'
-  gem 'rubocop-performance', '~> 1.5.0'
+  gem 'rubocop', '~> 1.11', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rake', require: false
+  gem 'rubocop-minitest', require: false
   gem 'simplecov', require: false
   gem 'codecov', require:  false
   gem 'minitest'
