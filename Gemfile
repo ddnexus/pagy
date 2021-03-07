@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+gemspec
+
 gem 'rake'
 gem 'rack'
 gem 'i18n'
@@ -16,9 +18,6 @@ group :test do
   gem 'minitest'
   gem 'minitest-reporters'
 end
-
-# docs server
-gem "github-pages", '208', group: :jekyll_plugins
 
 group :apps do
   gem 'sinatra'
