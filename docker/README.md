@@ -44,7 +44,7 @@ cd docker
 GROUP=dd UID=1000 GID=1000 && docker-compose build pagy pagy-jekyll
 ```
 
-The first time it will also build the images, from then on it will just run the containers for the pagy environment (you can inspect the `docker-compose.yml` file for more details).
+You need to run this only once to build the images.
 
 ## Use it
 
@@ -56,11 +56,11 @@ docker-compose up
 
 Open a terminal in the pagy container and run the usual `bundle install` to install the gems into the `pagy_bundle` volume.
 
-Then you cou can run `irb -Ilib -r pagy` from the container in order to have `pagy` loaded and ready to try.
+Then you cou can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
 
 Run all the tests by simply running `rake` without arguments.
 
-The `gh-pages` service runs the jekyll server so you can edit the docs files from the local `pagy` dir and have a real-time preview of your changes at `http://localhost:4000`. You don't even need to reload the page in the browser to see the change you do in the `*.md` page file.
+The `pagy-jekyll` service runs the jekyll server so you can edit the docs files from the local `pagy` dir and have a real-time preview of your changes at `http://localhost:4000`. You don't even need to reload the page in the browser to see the change you do in the `*.md` page file.
 
 If you are serious about developing, you can integrate this environment with some good IDE that provides docker and ruby integration. I currently use it for all the basic pagy development, fully integrated with [RubyMine](https://www.jetbrains.com/ruby/?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy).
 
@@ -77,4 +77,4 @@ When you want to get rid of everything related to the `pagy` development on your
 
 - If you use different pagy images for different pagy versions/branches:
   - Remember to checkout the right branch before using it
-  - If you test with `RUN_SIMPLECOV` you may need to `rm -rf coverage` or you may get some error that will not allow you to test
+  - If you test it with `RUN_SIMPLECOV` you may need to `rm -rf coverage` or you may get some error that will not allow you to run the tests

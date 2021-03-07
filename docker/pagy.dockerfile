@@ -1,6 +1,5 @@
 FROM ruby:2.7
 
-
 ARG term
 ENV TERM="${term:-xterm-256color}"
 
