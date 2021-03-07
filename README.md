@@ -13,8 +13,15 @@
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
+## IMPORTANT
+
+**This version requires `ruby <3.0`. For `ruby 3.0+` use `pagy 4.0+`**
+
+The `pagy3` branch will continue the support for legacy systems with bug-fixes and back-ports of new fetures by releasing to rubygems further `3.x` updates.
+
 ## New in 3.0+
 
+- Added the docker development environment to ease contributions
 - Pagy 3.0+ is considerably faster, lighter and more efficient than 2.0+ on modern environments (see the charts below)
 - The javascript nav helpers have been refactored for improved performance and more intuitive API
 - The i18n has been refactored, the dictionary files are simpler and 100% compliant with the i18n gem
