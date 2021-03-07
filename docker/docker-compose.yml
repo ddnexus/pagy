@@ -8,7 +8,7 @@ version: "3.8"
 services:
 
   pagy:
-    image: pagy:3
+    image: pagy:4
     build:
       context: .
       dockerfile: pagy.dockerfile
@@ -20,7 +20,7 @@ services:
         gid: $GID
         password: "${PASSWORD:-rubydev}"
         term: ${TERM:-xterm-256color}
-    container_name: pagy3
+    container_name: pagy
     volumes:
       - ../.:/opt/project
       - bundle:/usr/local/bundle
@@ -61,9 +61,9 @@ services:
 
 volumes:
   bundle:
-    name: pagy3_bundle
+    name: pagy_bundle
   user_home:
-    name: pagy3_user_home
+    name: pagy_user_home
   docs_site:
-    name: pagy3_docs_site
+    name: pagy_docs_site
 

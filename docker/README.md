@@ -34,7 +34,7 @@ If you already set the variables:
 
 ```sh
 cd docker
-docker-compose build pagy3 pagy-jekyll
+docker-compose build pagy pagy-jekyll
 ```
 
 or just set it with the command. For example:
@@ -69,8 +69,8 @@ If you are serious about developing, you can integrate this environment with som
 When you want to get rid of everything related to the `pagy` development on your system:
 
 - `rm -rf /path/to/pagy`
-- `docker rmi pagy pagy-gh-pages` or `docker rmi pagy:3 pagy-gh-pages` if you don't want to remove other versions (e.g. `pagy:4`)
-- `docker volume rm pagy3_bundle pagy3_user_home pagy3_docs_site`
+- `docker rmi pagy pagy-gh-pages` or `docker rmi pagy:4 pagy-gh-pages` if you don't want to remove other versions (e.g. `pagy:3`)
+- `docker volume rm pagy_bundle pagy_user_home pagy_docs_site`
 - `docker system prune` (not pagy related but good for reclaiming storage space from docker)
 
 ## Caveats

@@ -1,8 +1,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-$VERBOSE = nil
-
 require 'bundler/setup'
 
 require 'simplecov' if ENV['RUN_SIMPLECOV'] == 'true'
