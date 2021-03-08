@@ -25,7 +25,7 @@ Those are perfect helpers but only if used _in an application_.  Because _they a
 
 **Paginating is not business logic**: it has nothing to do with the data itself. It has to do with the way you decide to _present_ the data... one page at the time, n items per page... That is indeed _presentation_ logic, so the models are really not the place where to add that logic!
 
-**Every colletion knows already how to paginate itself**: that's what OFFSET and LIMIT in DBs are for! You decide the limit (the items per page) and Pagy (or yourself) can calculate the offset with simple arithmetic: `offset = items * (page - 1)`. That's not rocket science! You don't need to add a bunch of methods to your models just to get the page records!
+**Every collection knows already how to paginate itself**: that's what OFFSET and LIMIT in DBs are for! You decide the limit (the items per page) and Pagy (or yourself) can calculate the offset with simple arithmetic: `offset = items * (page - 1)`. That's not rocket science! You don't need to add a bunch of methods to your models just to get the page records!
 
 Ignoring these simple rules has a lot of drawbacks for performance, memory, maintainance, complexity and usability, as you can confirm with the [Gems Comparison page](http://ddnexus.github.io/pagination-comparison).
 
