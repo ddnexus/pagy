@@ -36,7 +36,7 @@ class Pagy
                'after'  => ( (p_next ? %(<li class="next">#{link.call(p_next, pagy_t('pagy.nav.next'), 'aria-label="next"')}</li>)
                                      : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>)) \
                            + '</ul>' ) }
-      %(<nav id="#{id}" class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
+      %(<nav id="#{id}" class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(Trim) && pagy.vars[:page_param])})
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -50,7 +50,7 @@ class Pagy
       html << %(<span class="input-group-label">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</span>)
       html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0px;" aria-label="next" class="next button primary"')
                       : %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
-      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_marked_link(link), defined?(TRIM) && pagy.vars[:page_param])})
+      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_marked_link(link), defined?(Trim) && pagy.vars[:page_param])})
     end
 
   end

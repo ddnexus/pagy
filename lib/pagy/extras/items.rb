@@ -58,7 +58,7 @@ class Pagy
       html = %(<span id="#{id}">)
       input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
       html << %(#{pagy_t('pagy.items_selector_js', item_name: pagy_t(p_vars[:i18n_key], count: p_items), items_input: input, count: p_items)})
-      html << %(</span>#{pagy_json_tag(:items_selector, id, pagy.from, link, defined?(TRIM) && p_vars[:page_param])})
+      html << %(</span>#{pagy_json_tag(:items_selector, id, pagy.from, link, defined?(Trim) && p_vars[:page_param])})
     end
 
   end
