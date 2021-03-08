@@ -12,9 +12,10 @@ require "rake/testtask"
 Rake::TestTask.new(:test_main) do |t|
   t.libs += %w[test lib]
   t.test_files = FileList.new.include("test/**/*_test.rb")
-                             .exclude('test/**/headers_test.rb',
+                             .exclude('test/**/items_and_countless_test.rb',
+                                      'test/**/items_and_elasticsearch_test.rb',
+                                      'test/**/headers_test.rb',
                                       'test/**/i18n_test.rb',
-                                      'test/**/items_test.rb',
                                       'test/**/overflow_test.rb',
                                       'test/**/trim_test.rb',
                                       'test/**/elasticsearch_rails_test.rb',
@@ -24,9 +25,14 @@ Rake::TestTask.new(:test_main) do |t|
                                       'test/**/shared_combo_test.rb')
 end
 
-Rake::TestTask.new(:test_extra_items) do |t|
+Rake::TestTask.new(:test_extra_items_and_countless) do |t|
   t.libs += %w[test lib]
-  t.test_files = FileList['test/**/items_test.rb']
+  t.test_files = FileList['test/**/items_and_countless_test.rb']
+end
+
+Rake::TestTask.new(:test_extra_items_and_elasticsearch) do |t|
+  t.libs += %w[test lib]
+  t.test_files = FileList['test/**/items_and_elasticsearch_test.rb']
 end
 
 Rake::TestTask.new(:test_extra_headers) do |t|
@@ -71,7 +77,8 @@ end
 
 
 task :test => [ :test_main,
-                :test_extra_items,
+                :test_extra_items_and_countless,
+                :test_extra_items_and_elasticsearch,
                 :test_extra_headers,
                 :test_extra_i18n,
                 :test_extra_overflow,

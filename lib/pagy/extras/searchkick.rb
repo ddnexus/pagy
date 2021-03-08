@@ -6,9 +6,6 @@ require 'pagy/extras/pagy_search'
 
 class Pagy
 
-  # used by the items extra
-  SEARCHKICK = true
-
   # create a Pagy object from a Searchkick::Results object
   def self.new_from_searchkick(results, vars={})
     vars[:items] = results.options[:per_page]

@@ -6,9 +6,6 @@ require 'pagy/extras/pagy_search'
 
 class Pagy
 
-  # used by the items extra
-  ELASTICSEARCH_RAILS = true
-
   # create a Pagy object from an Elasticsearch::Model::Response::Response object
   def self.new_from_elasticsearch_rails(response, vars={})
     vars[:items] = response.search.options[:size] || 10

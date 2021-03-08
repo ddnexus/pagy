@@ -6,9 +6,6 @@ require 'pagy/countless'
 
 class Pagy
 
-  # used by the items extra
-  COUNTLESS = true
-
   module Backend ; private         # the whole module is private so no problem with including it in a controller
 
     # Return Pagy object and items
