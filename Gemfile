@@ -28,9 +28,9 @@ group :apps do
   # gem 'haml'
 end
 
-# group :performance do
-  # benchmark/profiling
-  # gem 'benchmark-ips'
-  # gem 'kalibera'
-  # gem 'memory_profiler'
-# end
+group :performance do
+  #benchmark/profiling
+  gem 'benchmark-ips'
+  gem 'kalibera'
+  gem 'memory_profiler'
+end
