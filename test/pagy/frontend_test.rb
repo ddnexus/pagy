@@ -66,7 +66,7 @@ describe Pagy::Frontend do
       _(view.pagy_t('pagy.info.multiple_pages', item_name: 'Products', count: 300, from: 101, to: 125)).must_equal "Displaying Products <b>101-125</b> of <b>300</b> in total"
     end
 
-    it 'handles missing paths' do
+    it 'handles missing keys' do
       _(view.pagy_t('pagy.nav.not_here')).must_equal '[translation missing: "pagy.nav.not_here"]'
       _(view.pagy_t('pagy.nav.gap.not_here')).must_equal '[translation missing: "pagy.nav.gap.not_here"]'
     end
@@ -108,14 +108,14 @@ describe Pagy::Frontend do
 
   describe "#pagy_info" do
 
-    it 'renders without i18n path' do
+    it 'renders without i18n key' do
       _(view.pagy_info(Pagy.new count: 0)).must_equal "No items found"
       _(view.pagy_info(Pagy.new count: 1)).must_equal "Displaying <b>1</b> item"
       _(view.pagy_info(Pagy.new count: 13)).must_equal "Displaying <b>13</b> items"
       _(view.pagy_info(Pagy.new count: 100, page: 3)).must_equal "Displaying items <b>41-60</b> of <b>100</b> in total"
     end
 
-    it 'renders with existing i18n path' do
+    it 'renders with existing i18n key' do
       Pagy::I18n['en'][0]['pagy.info.product.one']   = lambda{|_| 'Product'}
       Pagy::I18n['en'][0]['pagy.info.product.other'] = lambda{|_| 'Products'}
       _(view.pagy_info(Pagy.new count: 0, i18n_key: 'pagy.info.product')).must_equal "No Products found"

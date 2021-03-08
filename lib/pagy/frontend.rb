@@ -48,10 +48,10 @@ class Pagy
 
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy, item_name=nil)
-      path = if (count = pagy.count) == 0 ; 'pagy.info.no_items'
+      key = if (count = pagy.count) == 0 ; 'pagy.info.no_items'
              else pagy.pages == 1 ? 'pagy.info.single_page' : 'pagy.info.multiple_pages'
              end
-      pagy_t(path, item_name: item_name || pagy_t(pagy.vars[:i18n_key], count: count), count: count, from: pagy.from, to: pagy.to)
+      pagy_t(key, item_name: item_name || pagy_t(pagy.vars[:i18n_key], count: count), count: count, from: pagy.from, to: pagy.to)
     end
 
     # Returns a performance optimized proc to generate the HTML links
@@ -66,7 +66,7 @@ class Pagy
 
     # Similar to I18n.t: just ~18x faster using ~10x less memory
     # (@pagy_locale explicitly initilized in order to avoid warning)
-    def pagy_t(path, vars={}) = Pagy::I18n.t(@pagy_locale||=nil, path, vars)
+    def pagy_t(key, **opts) = Pagy::I18n.t(@pagy_locale||=nil, key, **opts)
 
   end
 end
