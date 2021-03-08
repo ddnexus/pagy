@@ -31,7 +31,7 @@ If you want Pagy to control the pagination, getting the page from the params, an
 Extend your model:
 
 ```ruby
-extend Pagy::Search
+extend Pagy::ElasticsearchRails
 ```
 
 In a controller use `pagy_search` in place of `search`:
@@ -56,15 +56,15 @@ This constructor accepts an `Elasticsearch::Model::Response::Response` as the fi
 
 **Notice**: you have to take care of manually manage all the params for your search, however the method extracts/calculates the `:items`, `:page` and `:count` from the response object, so you don't need to pass that again. If you prefer to manage the pagination automatically, see below.
 
-## Pagy::Search
+## Pagy::ElasticsearchRails
 
-Extend your model with the `Pagy::Search` micro-moudule (see [pagy_search.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/pagy_search.rb))
+Extend your model with the `Pagy::ElasticsearchRails` micro-moudule:
 
 ```ruby
-extend Pagy::Search
+extend Pagy::ElasticsearchRails
 ```
 
-The `Pagy::Search` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
+The `Pagy::ElasticsearchRails` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
 
 ### pagy_search(...)
 

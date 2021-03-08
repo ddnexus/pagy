@@ -7,7 +7,7 @@ require 'pagy/extras/overflow'
 
 SimpleCov.command_name 'elasticsearch' if ENV['RUN_SIMPLECOV'] == 'true'
 
-describe Pagy::Search do
+describe Pagy::ElasticsearchRails do
 
   describe '#pagy_search' do
 
