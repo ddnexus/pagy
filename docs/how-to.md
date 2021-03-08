@@ -329,6 +329,15 @@ Please, use the [array](extras/array.md) extra.
 
 Pagy works out of the box with `ActiveRecord` collections. See also the [arel](http://ddnexus.github.io/pagy/extras/arel) for better performance of grouped ActiveRecord collections.
 
+### Paginate a decorated collection
+
+Do it in 2 steps: first get the page of records without decoration, and then apply the decoration on it. For example:
+
+```ruby
+@pagy, records = pagy(Post.all)
+@decorated_records = records.decorate   # or YourDecorator.method(records) whatever works
+```
+
 ## Paginate Ransack results
 
 Ransack `result` returns an `ActiveRecord` collection, which can be paginated out of the box. For example:
