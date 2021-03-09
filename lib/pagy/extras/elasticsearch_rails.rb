@@ -4,15 +4,18 @@
 
 class Pagy
 
+  VARS[:elasticsearch_rails_search_method] ||= :pagy_search
+
   module ElasticsearchRails
     # returns an array used to delay the call of #search
     # after the pagination variables are merged to the options
-    # it also pushes to the same array an eventually called method and arguments
-    def pagy_search(query_or_payload, **options)
+    # it also pushes to the same array an eventually called method
+    def pagy_elasticsearch_rails(query_or_payload, **options)
       [self, query_or_payload, options].tap do |args|
         args.define_singleton_method(:method_missing){|*a| args += a}
       end
     end
+    alias_method VARS[:elasticsearch_rails_search_method], :pagy_elasticsearch_rails
   end
 
   # create a Pagy object from an Elasticsearch::Model::Response::Response object

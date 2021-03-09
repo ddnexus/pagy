@@ -70,6 +70,12 @@ The `Pagy::ElasticsearchRails` adds the `pagy_search` class method that you must
 
 This method accepts the same arguments of the `search` method and you must use it in its place. This extra uses it in order to capture the arguments, automatically merging the calculated `:from` and `:size` options before passing them to the standard `search` method internally.
 
+## Variables
+
+| Variable                             | Description                                                                                | Default      |
+|:-------------------------------------|:-------------------------------------------------------------------------------------------|:-------------|
+| `:elasticsearch_rails_search_method` | customizable name of the `:pagy_search` method | :pagy_search |
+
 ## Methods
 
 This extra adds the `pagy_elasticsearch_rails` method to the `Pagy::Backend` to be used when you have to paginate a `ElasticsearchRails` object. It also adds a `pagy_elasticsearch_rails_get_variables` sub-method, used for easy customization of variables by overriding.

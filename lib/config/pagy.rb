@@ -23,12 +23,17 @@
 
 # Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects
 # See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
+# default :pagy_search method: change only if you use
+# also the searchkick extra that defines the same
+# VARS[:elasticsearch_rails_search_method] = :pagy_search
 # require 'pagy/extras/elasticsearch_rails'
 
 # Searchkick extra: Paginate `Searchkick::Results` objects
 # See https://ddnexus.github.io/pagy/extras/searchkick
+# default :pagy_search method: change only if you use
+# also the elasticsearch_rails extra that defines the same
+# VARS[:searchkick_search_method] = :pagy_search
 # require 'pagy/extras/searchkick'
-
 
 # Frontend Extras
 

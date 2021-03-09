@@ -4,15 +4,18 @@
 
 class Pagy
 
+  VARS[:searchkick_search_method] ||= :pagy_search
+
   module Searchkick
     # returns an array used to delay the call of #search
     # after the pagination variables are merged to the options
-    # it also pushes to the same array an eventually called method and arguments
-    def pagy_search(term = "*", **options, &block)
+    # it also pushes to the same array an eventually called method
+    def pagy_searchkick(term = "*", **options, &block)
       [self, term, options, block].tap do |args|
         args.define_singleton_method(:method_missing){|*a| args += a}
       end
     end
+    alias_method VARS[:searchkick_search_method], :pagy_searchkick
   end
 
   # create a Pagy object from a Searchkick::Results object
