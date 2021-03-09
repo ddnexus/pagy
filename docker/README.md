@@ -13,7 +13,6 @@ The pagy docker environment has been designed to be useful for developing:
 - The gems are installed in the container `BUNDLE_PATH=/usr/local/bundle` and that dir is `chown`ed to your user, and mounted as the docker volume `pagy_bundle`. You can use the `bundle` command and it will be persisted in the volume, no need to rebuild the image nor pollute your own system.
 - Your container user `HOME` is preserved in the `pagy_user_home` volume, so you can even get back to the shell history in future sessions.
 
-
 ## Prerequisites
 
 - recent `docker`
@@ -60,7 +59,7 @@ Then you cou can run `irb -I lib -r pagy` from the container in order to have `p
 
 Run all the tests by simply running `rake` without arguments.
 
-The `gh-pages` service runs the jekyll server so you can edit the docs files from the local `pagy` dir and have a real-time preview of your changes at `http://localhost:4000`. You don't even need to reload the page in the browser to see the change you do in the `*.md` page file.
+The `pagy-jekyll` service runs the jekyll server so you can edit the docs files from the local `pagy` dir and have a real-time preview of your changes at `http://localhost:4000`. You don't even need to reload the page in the browser to see the change you do in the `*.md` page file.
 
 If you are serious about developing, you can integrate this environment with some good IDE that provides docker and ruby integration. I currently use it for all the basic pagy development, fully integrated with [RubyMine](https://www.jetbrains.com/ruby/?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy).
 
