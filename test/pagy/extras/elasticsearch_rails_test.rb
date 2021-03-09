@@ -16,15 +16,14 @@ describe Pagy::ElasticsearchRails do
     end
 
     it 'returns class and arguments' do
-      _(MockElasticsearchRails::Model.pagy_search('a', b:2)).must_equal [MockElasticsearchRails::Model, ['a', {b: 2}], nil]
-      args  = MockElasticsearchRails::Model.pagy_search('a', b:2){|a| a*2}
-      block = args[-1]
-      _(args).must_equal [MockElasticsearchRails::Model, ['a', {b: 2}], block]
+      _(MockElasticsearchRails::Model.pagy_search('a', b:2)).must_equal [MockElasticsearchRails::Model, 'a', {b: 2}]
+      args  = MockElasticsearchRails::Model.pagy_search('a', b:2)
+      _(args).must_equal [MockElasticsearchRails::Model, 'a', {b: 2}]
     end
 
     it 'adds the caller and arguments' do
-      _(MockElasticsearchRails::Model.pagy_search('a', b:2).records).must_equal [MockElasticsearchRails::Model, ['a', {b: 2}], nil, :records]
-      _(MockElasticsearchRails::Model.pagy_search('a', b:2).a('b', 2)).must_equal [MockElasticsearchRails::Model, ['a', {b: 2}], nil, :a, 'b', 2]
+      _(MockElasticsearchRails::Model.pagy_search('a', b:2).records).must_equal [MockElasticsearchRails::Model, 'a', {b: 2}, :records]
+      _(MockElasticsearchRails::Model.pagy_search('a', b:2).a('b', 2)).must_equal [MockElasticsearchRails::Model, 'a', {b: 2}, :a, 'b', 2]
     end
 
   end

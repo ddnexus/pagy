@@ -8,10 +8,8 @@ class Pagy
     # returns an array used to delay the call of #search
     # after the pagination variables are merged to the options
     # it also pushes to the same array an eventually called method and arguments
-    # the last search argument must be a hash option
-    def pagy_search(*search_args, &block)
-      search_args << {} unless search_args[-1].is_a?(Hash)
-      [self, search_args, block].tap do |args|
+    def pagy_search(query_or_payload, **options)
+      [self, query_or_payload, options].tap do |args|
         args.define_singleton_method(:method_missing){|*a| args += a}
       end
     end
@@ -31,13 +29,13 @@ class Pagy
 
     # Return Pagy object and items
     def pagy_elasticsearch_rails(pagy_search_args, vars={})
-      model, search_args, _block, *called = pagy_search_args
-      vars                   = pagy_elasticsearch_rails_get_vars(nil, vars)
-      search_args[-1][:size] = vars[:items]
-      search_args[-1][:from] = vars[:items] * (vars[:page] - 1)
-      response               = model.search(*search_args)
-      total                  = response.respond_to?(:raw_response) ? response.raw_response['hits']['total'] : response.response['hits']['total']
-      vars[:count]           = total.is_a?(Hash) ? total['value'] : total
+      model, query_or_payload, options, *called = pagy_search_args
+      vars           = pagy_elasticsearch_rails_get_vars(nil, vars)
+      options[:size] = vars[:items]
+      options[:from] = vars[:items] * (vars[:page] - 1)
+      response       = model.search(query_or_payload, **options)
+      total          = response.respond_to?(:raw_response) ? response.raw_response['hits']['total'] : response.response['hits']['total']
+      vars[:count]   = total.is_a?(Hash) ? total['value'] : total
       pagy = Pagy.new(vars)
       # with :last_page overflow we need to re-run the method in order to get the hits
       if defined?(Pagy::Overflow) && pagy.overflow? && pagy.vars[:overflow] == :last_page
