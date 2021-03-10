@@ -12,9 +12,10 @@ require "rake/testtask"
 Rake::TestTask.new(:test_main) do |t|
   t.libs += %w[test lib]
   t.test_files = FileList.new.include("test/**/*_test.rb")
-                             .exclude('test/**/headers_test.rb',
+                             .exclude('test/**/items_and_countless_test.rb',
+                                      'test/**/items_and_elasticsearch_test.rb',
+                                      'test/**/headers_test.rb',
                                       'test/**/i18n_test.rb',
-                                      'test/**/items_test.rb',
                                       'test/**/overflow_test.rb',
                                       'test/**/trim_test.rb',
                                       'test/**/elasticsearch_rails_test.rb',
@@ -22,6 +23,16 @@ Rake::TestTask.new(:test_main) do |t|
                                       'test/**/support_test.rb',
                                       'test/**/shared_test.rb',
                                       'test/**/shared_combo_test.rb')
+end
+
+Rake::TestTask.new(:test_extra_items_and_countless) do |t|
+  t.libs += %w[test lib]
+  t.test_files = FileList['test/**/items_and_countless_test.rb']
+end
+
+Rake::TestTask.new(:test_extra_items_and_elasticsearch) do |t|
+  t.libs += %w[test lib]
+  t.test_files = FileList['test/**/items_and_elasticsearch_test.rb']
 end
 
 Rake::TestTask.new(:test_extra_headers) do |t|
@@ -32,11 +43,6 @@ end
 Rake::TestTask.new(:test_extra_i18n) do |t|
   t.libs += %w[test lib]
   t.test_files = FileList['test/**/i18n_test.rb']
-end
-
-Rake::TestTask.new(:test_extra_items) do |t|
-  t.libs += %w[test lib]
-  t.test_files = FileList['test/**/items_test.rb']
 end
 
 Rake::TestTask.new(:test_extra_overflow) do |t|
@@ -71,7 +77,8 @@ end
 
 
 task :test => [ :test_main,
-                :test_extra_items,
+                :test_extra_items_and_countless,
+                :test_extra_items_and_elasticsearch,
                 :test_extra_headers,
                 :test_extra_i18n,
                 :test_extra_overflow,
@@ -81,11 +88,10 @@ task :test => [ :test_main,
                 :test_shared,
                 :test_shared_combo ]
 
-if ENV['RUN_RUBOCOP']
+if ENV['RUN_RUBOCOP'] == 'true'
   require "rubocop/rake_task"
   RuboCop::RakeTask.new(:rubocop) do |t|
-    t.options = `git ls-files -z`.split("\x0")     # limit rubocop to the files in the repo
-    t.requires << 'rubocop-performance'
+    t.options = `git ls-files | grep -E '\\.rb$'`.split("\n")     # limit rubocop to the files in the repo
   end
   task :default => [:test, :rubocop]
 else

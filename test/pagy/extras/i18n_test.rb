@@ -5,7 +5,7 @@ require_relative '../../test_helper'
 require 'i18n'
 require 'pagy/extras/i18n'
 
-SimpleCov.command_name 'i18n' if ENV['RUN_SIMPLECOV']
+SimpleCov.command_name 'i18n' if ENV['RUN_SIMPLECOV'] == 'true'
 
 describe Pagy::Frontend do
 
@@ -35,7 +35,7 @@ describe Pagy::Frontend do
       _(view.pagy_info(Pagy.new count: 100, page: 3)).must_equal "Displaying items <b>41-60</b> of <b>100</b> in total"
     end
 
-    it 'renders with existing i18n path' do
+    it 'renders with existing i18n key' do
       ::I18n.locale = 'en'
       custom_dictionary = File.join(File.dirname(__FILE__), 'i18n.yml')
       ::I18n.load_path += [custom_dictionary]

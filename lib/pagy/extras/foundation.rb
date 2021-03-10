@@ -11,8 +11,8 @@ class Pagy
     def pagy_foundation_nav(pagy)
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
 
-      html = EMPTY + (p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
-                             : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
+      html = +(p_prev ? %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+                      : %(<li class="prev disabled">#{pagy_t('pagy.nav.prev')}</li>))
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << if    item.is_a?(Integer); %(<li>#{link.call item}</li>)                        # page link
                 elsif item.is_a?(String) ; %(<li class="current">#{item}</li>)                  # active page
@@ -36,7 +36,7 @@ class Pagy
                'after'  => ( (p_next ? %(<li class="next">#{link.call(p_next, pagy_t('pagy.nav.next'), 'aria-label="next"')}</li>)
                                      : %(<li class="next disabled">#{pagy_t('pagy.nav.next')}</li>)) \
                            + '</ul>' ) }
-      %(<nav id="#{id}" class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
+      %(<nav id="#{id}" class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>#{pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)})
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -50,7 +50,7 @@ class Pagy
       html << %(<span class="input-group-label">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</span>)
       html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0px;" aria-label="next" class="next button primary"')
                       : %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
-      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_marked_link(link), defined?(TRIM) && pagy.vars[:page_param])})
+      html << %(</div></nav>#{pagy_json_tag(pagy, :combo_nav, id, p_page, pagy_marked_link(link))})
     end
 
   end

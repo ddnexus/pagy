@@ -5,9 +5,9 @@ require_relative '../../test_helper'
 require_relative '../../mock_helpers/elasticsearch_rails'
 require 'pagy/extras/overflow'
 
-SimpleCov.command_name 'elasticsearch' if ENV['RUN_SIMPLECOV']
+SimpleCov.command_name 'elasticsearch' if ENV['RUN_SIMPLECOV'] == 'true'
 
-describe Pagy::Search do
+describe Pagy::ElasticsearchRails do
 
   describe '#pagy_search' do
 
@@ -16,15 +16,14 @@ describe Pagy::Search do
     end
 
     it 'returns class and arguments' do
-      _(MockElasticsearchRails::Model.pagy_search('a', b:2)).must_equal [MockElasticsearchRails::Model, ['a', {b: 2}], nil]
-      args  = MockElasticsearchRails::Model.pagy_search('a', b:2){|a| a*2}
-      block = args[-1]
-      _(args).must_equal [MockElasticsearchRails::Model, ['a', {b: 2}], block]
+      _(MockElasticsearchRails::Model.pagy_search('a', b:2)).must_equal [MockElasticsearchRails::Model, 'a', {b: 2}]
+      args  = MockElasticsearchRails::Model.pagy_search('a', b:2)
+      _(args).must_equal [MockElasticsearchRails::Model, 'a', {b: 2}]
     end
 
     it 'adds the caller and arguments' do
-      _(MockElasticsearchRails::Model.pagy_search('a', b:2).records).must_equal [MockElasticsearchRails::Model, ['a', {b: 2}], nil, :records]
-      _(MockElasticsearchRails::Model.pagy_search('a', b:2).a('b', 2)).must_equal [MockElasticsearchRails::Model, ['a', {b: 2}], nil, :a, 'b', 2]
+      _(MockElasticsearchRails::Model.pagy_search('a', b:2).records).must_equal [MockElasticsearchRails::Model, 'a', {b: 2}, :records]
+      _(MockElasticsearchRails::Model.pagy_search('a', b:2).a('b', 2)).must_equal [MockElasticsearchRails::Model, 'a', {b: 2}, :a, 'b', 2]
     end
 
   end

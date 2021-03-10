@@ -1,13 +1,13 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-if ENV['ENABLE_OJ']
+if ENV['ENABLE_OJ'] == 'true'
 
   require_relative '../../test_helper'
   require 'oj' # all the other tests run without Oj
   require 'pagy/extras/shared'
 
-  SimpleCov.command_name 'shared' if ENV['RUN_SIMPLECOV']
+  SimpleCov.command_name 'shared' if ENV['RUN_SIMPLECOV'] == 'true'
 
   # add tests for oj and pagy_id
   describe Pagy::Frontend do
@@ -17,8 +17,8 @@ if ENV['ENABLE_OJ']
     describe "#pagy_json_tag" do
 
       it 'should use oj' do
-        _(view.pagy_json_tag(:test_function, 'some-id', 'some-string', 123, true)).must_equal \
-          "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-id\",\"some-string\",123,true]</script>"
+        _(view.pagy_json_tag(Pagy.new(count: 10), :test_function, 'some-id', 'some-string', 123, true)).must_equal \
+          "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-id\",\"some-string\",123,true,null]</script>"
       end
 
     end

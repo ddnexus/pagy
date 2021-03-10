@@ -1,4 +1,4 @@
-if ENV['RUN_SIMPLECOV']
+if ENV['RUN_SIMPLECOV'] == 'true'
   SimpleCov.command_name 'main'
   SimpleCov.start do
     add_filter %r{^/test/}

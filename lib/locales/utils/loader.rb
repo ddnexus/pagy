@@ -20,11 +20,6 @@ flatten = lambda do |hash, key=''|
 lambda do |i18n, *args|
   i18n.clear
   args.each do |arg|
-    if Pagy::DEPRECATED_LOCALES.key?(arg[:locale])
-      new_locale = Pagy::DEPRECATED_LOCALES[arg[:locale]]
-      $stderr.puts("WARNING: the Pagy locale '#{arg[:locale]}' is deprecated; use '#{new_locale}' instead")
-      arg[:locale] = new_locale
-    end
     arg[:filepath]  ||= Pagy.root.join('locales', "#{arg[:locale]}.yml")
     arg[:pluralize] ||= plurals[arg[:locale]]
     hash = YAML.load(File.read(arg[:filepath], encoding: 'UTF-8')) #rubocop:disable Security/YAMLLoad

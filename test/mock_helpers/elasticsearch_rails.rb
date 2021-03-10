@@ -41,7 +41,7 @@ module MockElasticsearchRails
       Response.new(*args)
     end
 
-    extend Pagy::Search
+    extend Pagy::ElasticsearchRails
   end
 
   class ResponseES7 < Response
@@ -61,7 +61,7 @@ module MockElasticsearchRails
 
   end
 
-  class ResponseES5 
+  class ResponseES5
 
     attr_reader :search, :response
 

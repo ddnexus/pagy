@@ -4,10 +4,10 @@
 
 require 'pathname'
 
-class Pagy ; VERSION = '3.11.0'
+class Pagy ; VERSION = '4.0.0'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
-  def self.root; @root ||= Pathname.new(__FILE__).dirname.freeze end
+  def self.root = @root ||= Pathname.new(__FILE__).dirname.freeze
 
   # default vars
   VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', i18n_key:'pagy.item_name', cycle:false }
@@ -36,7 +36,7 @@ class Pagy ; VERSION = '3.11.0'
     (series = []) and size.empty? and return series
     4.times{|i| (size[i]>=0 rescue nil) or raise(VariableError.new(self), "expected 4 items >= 0 in :size; got #{size.inspect}")}
     [*0..size[0], *@page-size[1]..@page+size[2], *@last-size[3]+1..@last+1].sort!.each_cons(2) do |a, b|
-      if    a<0 || a==b || a>@last                                        # skip out of range and duplicates
+      if    a<0 || a==b || a>@last; next                                  # skip out of range and duplicates
       elsif a+1 == b; series.push(a)                                      # no gap     -> no additions
       elsif a+2 == b; series.push(a, a+1)                                 # 1 page gap -> fill with missing page
       else            series.push(a, :gap)                                # n page gap -> add gap

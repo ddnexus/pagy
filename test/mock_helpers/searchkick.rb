@@ -35,7 +35,7 @@ module MockSearchkick
       Results.new(*args, &block)
     end
 
-    extend Pagy::Search
+    extend Pagy::Searchkick
   end
 end
 

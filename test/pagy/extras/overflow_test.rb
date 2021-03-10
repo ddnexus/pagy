@@ -4,7 +4,7 @@
 require_relative '../../test_helper'
 require 'pagy/extras/overflow'
 
-SimpleCov.command_name 'overflow' if ENV['RUN_SIMPLECOV']
+SimpleCov.command_name 'overflow' if ENV['RUN_SIMPLECOV'] == 'true'
 
 describe Pagy do
 

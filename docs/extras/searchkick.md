@@ -31,7 +31,7 @@ If you want Pagy to control the pagination, getting the page from the params, an
 Extend your model:
 
 ```ruby
-extend Pagy::Search
+extend Pagy::Searchkick
 ```
 
 In a controller use `pagy_search` in place of `search`:
@@ -56,19 +56,25 @@ This constructor accepts a `Searchkick::Results` as the first argument, plus the
 
 **Notice**: you have to take care of manually manage all the params for your search, however the method extracts the `:items`, `:page` and `:count` from the results object, so you don't need to pass that again. If you prefer to manage the pagination automatically, see below.
 
-## Pagy::Search
+## Pagy::Searchkick
 
-Extend your model with the `Pagy::Search` micro-moudule (see [pagy_search.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/pagy_search.rb))
+Extend your model with the Pagy::Searchkick` micro-moudule:
 
 ```ruby
-extend Pagy::Search
+extend Pagy::Searchkick
 ```
 
-The `Pagy::Search` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
+The `Pagy::ElasticsearchRails::Search` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
 
 ### pagy_search(...)
 
 This method accepts the same arguments of the `search` method and you must use it in its place. This extra uses it in order to capture the arguments, automatically merging the calculated `:page` and `:per_page` options before passing them to the standard `search` method internally.
+
+## Variables
+
+| Variable                    |                                                | Description    | Default |
+|:----------------------------|:-----------------------------------------------|:---------------|:--------|
+| `:searchkick_search_method` | customizable name of the `:pagy_search` method | `:pagy_search` |         |
 
 ## Methods
 

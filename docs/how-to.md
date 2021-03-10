@@ -111,7 +111,9 @@ You can copy the comprehensive and annotated [pagy.rb](https://github.com/ddnexu
 
 ## Environment Assumptions
 
-- ruby 1.9+ or jruby 1.7+
+- Pagy 4.0+ runs on ruby 3.0+
+
+Notice: Older versions run on ruby 1.9+ or jruby 1.7+ till ruby <3.0
 
 ### Out of the box assumptions
 
@@ -585,12 +587,11 @@ Here are some tips that will help chosing the best way to use Pagy, depending on
 
 If you need the classic pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
-- If you are on ruby 2.0+, add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](api/javascript.md))_. That uses client side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more efficient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
-- If you are on jruby (any version) or ruby 1.9.x, or you cannot install `oj` then use the `pagy*_nav` helper, which will give you the same performance of pagy v2.0 (33x faster; 26x lighter; 850x more efficient than Kaminari)
+- Add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](api/javascript.md))_. That uses client side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more efficient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
 
 ### Consider the combo navs
 
-If you don't have strict requirements but still need to give the user total feedback and control on the page to display, then consider the `pagy*_combo_nav_js` helpers (faster and lighter when the `oj` gem is available). That gives you the best performance with nav info and UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ also saving real estate.
+If you don't have strict requirements but still need to give the user total feedback and control on the page to display, then consider the `pagy*_combo_nav_js` helpers. They are faster and lighter, and even more when the `oj` gem is available. That gives you the best performance with nav info and UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ also saving real estate.
 
 #### Consider the countless extra
 

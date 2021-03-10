@@ -1,33 +1,23 @@
 # Pagy
 
 [![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
-![ruby](https://img.shields.io/badge/ruby-1.9+-ruby.svg?colorA=99004d&colorB=cc0066)
-![jruby](https://img.shields.io/badge/jruby-1.7+-jruby.svg?colorA=99004d&colorB=cc0066)
+![ruby](https://img.shields.io/badge/ruby-3.0+-ruby.svg?colorA=99004d&colorB=cc0066)
 [![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 [![Build Status](https://img.shields.io/travis/ddnexus/pagy/master.svg?colorA=1f7a1f&colorB=2aa22a)](https://travis-ci.org/ddnexus/pagy/branches)
+![Rubocop Status](https://img.shields.io/badge/rubocop-passing-rubocop.svg?colorA=1f7a1f&colorB=2aa22a)
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)
+ [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
 ![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
 [![Chat](http://img.shields.io/badge/gitter-ruby--pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
- [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
-## New in 3.0+
+## New in 4.0+
 
-- Pagy 3.0+ is considerably faster, lighter and more efficient than 2.0+ on modern environments (see the charts below)
-- The javascript nav helpers have been refactored for improved performance and more intuitive API
-- The i18n has been refactored, the dictionary files are simpler and 100% compliant with the i18n gem
-- Added a few new [extras](https://ddnexus.github.io/pagy/extras)
-- Added [Maximizing Performance](https://ddnexus.github.io/pagy/how-to#maximizing-performance) docs as a practical guide to choose the best options for your requirements and environment
-
-**Notice**: Updating from 2.0+ to 3.0+ requires just some search and replace and a little reorganization of your custom i18n dictionaries. Check the [CHANGELOG](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for details.
-
-**Suggestions**:
-
-- If you are using any `pagy*_nav` helper, [consider to switch](https://ddnexus.github.io/pagy/how-to#consider-the-nav_js) to `pagy*_nav_js`, which gives you the same output with a substancial performance boost.
-- If you are using any javascript frontend, take a look at the [metadata](https://ddnexus.github.io/pagy/extras/metadata) extra
-- For API pagination take a look at the [headers](http://ddnexus.github.io/pagy/extras/headers) extra
+- __This version requires `ruby 3.0+`. For `ruby <3.0` use `pagy <4.0` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
+- Updating `pagy` from `3.0+` to `4.0+` require a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
+- Added the docker development environment to ease contributions
 
 ## Comparison with other gems
 
@@ -79,7 +69,6 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
 - It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
 - It does not impose any difficult-to-override logic or output _(see [why...](https://ddnexus.github.io/pagy/index#really-easy-to-customize))_
-- It also works on legacy systems starting from ruby 1.9+ and jruby 1.7+
 
 ### Easy to use
 
@@ -182,7 +171,6 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
-- [Legacy Changelog](https://github.com/ddnexus/pagy/blob/master/LEGACY_CHANGELOG.md)
 
 ### Support and Feedback
 
@@ -197,6 +185,8 @@ Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check
 ### Contributions
 
 Pull Requests are welcome!
+
+Setting up a development environment for Pagy is very simple if you use the [docker environment](https://github.com/ddnexus/pagy/tree/master/docker).
 
 Before spending time creating a (potentially complex) Pull Request, you can [Confirm on Gitter](https://gitter.im/ruby-pagy/Lobby) whether your proposed changes are going to be useful for most users.
 
@@ -219,14 +209,6 @@ Many thanks to:
 - [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free OpenSource license
 - [The Contributors](https://github.com/ddnexus/pagy/graphs/contributors) for all the smart code and suggestions merged in the project
 - [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
-
-## Caveats
-
-### Jruby 9.2+ random exceptions in tests
-
-One of the latest jruby version (9.2.+) raises a couple of random `Java::JavaLang::NullPointerException` while running the frontend tests in Travis. That doesn't happen with previous versions.
-
-It might be just another jruby bug or a number of possible things related to the tests or the Travis build that might or might not affect real usage. I am done with debugging jruby weirdness, so I am not going to investigate it further. If you get any info about it, please, create an issue.
 
 ## License
 

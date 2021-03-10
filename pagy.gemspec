@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/ddnexus/pagy'
   s.license       = 'MIT'
   s.files         = `git ls-files -z`.split("\x0").select{|f| f.start_with?('lib', 'pagy.gemspec', 'LICENSE') }
-  s.required_ruby_version = '>= 1.9'  # rubocop:disable Gemspec/RequiredRubyVersion
+  s.required_ruby_version = '>= 3.0'
 end

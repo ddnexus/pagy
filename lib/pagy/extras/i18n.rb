@@ -10,16 +10,10 @@ class Pagy
 
     Pagy::I18n.clear.instance_eval { undef :load; undef :t } # unload the pagy default constant for efficiency
 
-    alias_method :pagy_without_i18n, :pagy_t
-    if Gem::Version.new(::I18n::VERSION) < Gem::Version.new('1.6.0')
-      def pagy_t_with_i18n(*args) ::I18n.t(*args) end
-    else
-      # keep 1.9 compatibility by hiding 2.0+ syntax in string
-      module_eval <<-RUBY
-        def pagy_t_with_i18n(key, **opts) ::I18n.t(key, **opts) end
-      RUBY
+    module I18n
+      def pagy_t(key, **opts) = ::I18n.t(key, **opts)
     end
-    alias_method :pagy_t, :pagy_t_with_i18n
+    prepend I18n
 
   end
 end

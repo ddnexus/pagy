@@ -12,8 +12,8 @@ class Pagy
       link, p_prev, p_next = pagy_link_proc(pagy), pagy.prev, pagy.next
 
       previous_span = "<span uk-pagination-previous>#{pagy_t('pagy.nav.prev')}</span>"
-      html = EMPTY + (p_prev ? %(<li>#{link.call p_prev, previous_span}</li>)
-                             : %(<li class="uk-disabled"><a href="#">#{previous_span}</a></li>))
+      html = (p_prev ? %(<li>#{link.call p_prev, previous_span}</li>)
+                     : %(<li class="uk-disabled"><a href="#">#{previous_span}</a></li>))
       pagy.series.each do |item|
         html << if    item.is_a?(Integer); %(<li>#{link.call item}</li>)
                 elsif item.is_a?(String) ; %(<li class="uk-active"><span>#{item}</span></li>)
@@ -38,7 +38,7 @@ class Pagy
                'gap'    => %(<li class="uk-disabled"><span>#{pagy_t('pagy.nav.gap')}</span></li>),
                'after'  => p_next ? %(<li>#{link.call p_next, next_span}</li>)
                                   : %(<li class="uk-disabled"><a href="#">#{next_span}</a></li>) }
-      %(<ul id="#{id}" class="pagy-uikit-nav-js uk-pagination uk-flex-center"></ul>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(TRIM) && pagy.vars[:page_param])})
+      %(<ul id="#{id}" class="pagy-uikit-nav-js uk-pagination uk-flex-center"></ul>#{pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)})
     end
 
     # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -56,7 +56,7 @@ class Pagy
       html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'class="uk-button uk-button-default"')
                       : %(<button class="uk-button uk-button-default" disabled>#{pagy_t('pagy.nav.next')}</button>))
 
-      html << %(</div>#{pagy_json_tag(:combo_nav, id, p_page, pagy_marked_link(link), defined?(TRIM) && pagy.vars[:page_param])})
+      html << %(</div>#{pagy_json_tag(pagy, :combo_nav, id, p_page, pagy_marked_link(link))})
     end
   end
 end

@@ -152,7 +152,7 @@ If you need to add some HTML attribute to the page links, you can pass some extr
 **WARNING**: we use only strings for performance, so the attribute strings get concatenated level after level, but not merged!
 Be careful not to pass the same attribute at different levels multiple times. That would generate a duplicated HTML attribute which is illegal html (although handled by all mayor browsers by ignoring all the duplicates but the first)
 
-### pagy_t(path, vars={})
+### pagy_t(key, vars={})
 
 This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML dictionary file. _(see I18n below)_
 
