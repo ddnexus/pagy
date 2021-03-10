@@ -34,7 +34,7 @@ class Pagy
                'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.gap')}</a></li>),
                'after'  => p_next ? %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li></ul>)
                                   : %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t('pagy.nav.next')}</a></li></ul>) }
-      %(<nav id="#{id}" class="pagy-bootstrap-nav-js" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(Trim) && pagy.vars[:page_param])})
+      %(<nav id="#{id}" class="pagy-bootstrap-nav-js" role="navigation" aria-label="pager"></nav>#{pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)})
     end
 
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -48,7 +48,7 @@ class Pagy
       html << %(<div class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</div>)
       html << (p_next ? link.call(p_next, pagy_t('pagy.nav.next'), 'aria-label="next" class="next btn btn-primary"')
                       : %(<a class="next btn btn-primary disabled" href="#">#{pagy_t('pagy.nav.next')}</a>))
-      html << %(</div></nav>#{pagy_json_tag(:combo_nav, id, p_page, pagy_marked_link(link), defined?(Trim) && pagy.vars[:page_param])})
+      html << %(</div></nav>#{pagy_json_tag(pagy, :combo_nav, id, p_page, pagy_marked_link(link))})
     end
 
   end

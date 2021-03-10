@@ -17,8 +17,8 @@ if ENV['ENABLE_OJ'] == 'true'
     describe "#pagy_json_tag" do
 
       it 'should use oj' do
-        _(view.pagy_json_tag(:test_function, 'some-id', 'some-string', 123, true)).must_equal \
-          "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-id\",\"some-string\",123,true]</script>"
+        _(view.pagy_json_tag(Pagy.new(count: 10), :test_function, 'some-id', 'some-string', 123, true)).must_equal \
+          "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-id\",\"some-string\",123,true,null]</script>"
       end
 
     end

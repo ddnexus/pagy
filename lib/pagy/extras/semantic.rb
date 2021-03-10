@@ -34,7 +34,7 @@ class Pagy
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.nav.gap')}</div>),
                'after'  => (p_next ? %(#{link.call(p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"')})
                                    : %(<div class="item disabled"><i class="right small chevron icon"></i></div>)) }
-      %(<div id="#{id}" class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>#{pagy_json_tag(:nav, id, tags, pagy.sequels, defined?(Trim) && pagy.vars[:page_param])})
+      %(<div id="#{id}" class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>#{pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)})
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -48,7 +48,7 @@ class Pagy
       html << %(<div class="pagy-combo-input item">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</div> )
       html << (p_next ? %(#{link.call p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"'})
                       : %(<div class="item disabled"><i class="right small chevron icon"></i></div>))
-      html << %(</div>#{pagy_json_tag(:combo_nav, id, p_page, pagy_marked_link(link), defined?(Trim) && pagy.vars[:page_param])})
+      html << %(</div>#{pagy_json_tag(pagy, :combo_nav, id, p_page, pagy_marked_link(link))})
     end
 
   end
