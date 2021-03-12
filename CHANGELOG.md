@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 4.1.0
+
+### Changes
+
+- added Bosnian, Croatian and Serbian locales
+
+### Commits
+
+- [8da0e06](http://github.com/ddnexus/pagy/commit/8da0e06): Add Serbian locale (#283)
+- [dcfc659](http://github.com/ddnexus/pagy/commit/dcfc659): Add locales for Bosnian and Croatian language (#281)
+
 ## Version 4.0.0
 
 ### Breaking Changes
