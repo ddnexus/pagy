@@ -1,8 +1,19 @@
 # CHANGELOG
 
+## Version 3.12.0
+
+### Changes
+
+- added locales for Bosnian, Croatian and Serbian
+
+### Commits
+
+- [a3d0416](http://github.com/ddnexus/pagy/commit/a3d0416): [backport] Add Serbian locale (#283)
+- [baf54b6](http://github.com/ddnexus/pagy/commit/baf54b6): [backport] Add locales for Bosnian and Croatian language (#281)
+
 ## Version 3.11.0
 
-### Changers
+### Changes
 
 - added Swahili localization
 
