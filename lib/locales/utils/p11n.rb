@@ -67,14 +67,17 @@ p11n = {
 # The default pluralization for locales not explicitly listed here
 # is the :one_other pluralization proc (used for English)
 plurals = Hash.new(p11n[:one_other]).tap do |hash|
+  hash['bs']    = p11n[:east_slavic]
   hash['cs']    = p11n[:west_slavic]
   hash['id']    = p11n[:other]
   hash['fr']    = p11n[:one_upto_two_other]
+  hash['hr']    = p11n[:east_slavic]
   hash['ja']    = p11n[:other]
   hash['km']    = p11n[:other]
   hash['ko']    = p11n[:other]
   hash['pl']    = p11n[:polish]
   hash['ru']    = p11n[:east_slavic]
+  hash['sr']    = p11n[:east_slavic]
   hash['sv']    = p11n[:one_two_other]
   hash['sv-SE'] = p11n[:one_two_other]
   hash['tr']    = p11n[:other]
