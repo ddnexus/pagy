@@ -1,0 +1,24 @@
+# :east_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+bs:
+  pagy:
+
+    item_name:
+      one: "stavka"
+      few: "stavke"
+      many: "stavki"
+      other: "stavki"
+
+    nav:
+      prev: "&lsaquo;&nbsp;Prethodna"
+      next: "Sljedeća &nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "Nije pronađena %{item_name}"
+      single_page: "Prikazuje se <b>%{count}</b> %{item_name}"
+      multiple_pages: "Prikaz %{item_name} <b>%{from}-%{to}</b> od <b>%{count}</b> ukupno"
+
+    combo_nav_js: "Stranica %{page_input} od %{pages}"
+
+    items_selector_js: "Prikaži %{items_input} %{item_name} po stranici"
