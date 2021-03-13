@@ -37,11 +37,11 @@ cd docker
 docker-compose build pagy3 pagy-jekyll
 ```
 
-or just set it with the command. For example:
+or just set them with the command. For example:
 
 ```sh
 cd docker
-GROUP=dd UID=1000 GID=1000 && docker-compose build pagy pagy-jekyll
+GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
 ```
 
 You need to run this only once to build the images.
