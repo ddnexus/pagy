@@ -13,9 +13,7 @@ class Pagy
       $1.to_sym if $1
     end
 
-    def value
-      pagy.vars[variable]
-    end
+    def value = pagy.vars[variable]
   end
 
   class OverflowError < VariableError; end

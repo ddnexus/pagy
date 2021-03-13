@@ -25,10 +25,10 @@ class Pagy ; VERSION = '4.1.0'
     @page <= @last or raise(OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}")
     @offset = @items * (@page - 1) + @outset                                   # pagination offset + outset (initial offset)
     @items  = @count - ((@pages-1) * @items) if @page == @last && @count > 0   # adjust items for last non-empty page
-    @from   = @count == 0 ? 0 : @offset+1 - @outset                            # page begins from item
+    @from   = @count == 0 ? 0 : @offset + 1 - @outset                          # page begins from item
     @to     = @count == 0 ? 0 : @offset + @items - @outset                     # page ends to item
     @prev   = (@page-1 unless @page == 1)                                      # nil if no prev page
-    @next   = @page == @last ? (1 if @vars[:cycle]) : @page+1                  # nil if no next page, 1 if :cycle
+    @next   = @page == @last ? (1 if @vars[:cycle]) : @page + 1                # nil if no next page, 1 if :cycle
   end
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]

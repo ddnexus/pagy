@@ -15,7 +15,7 @@ class Pagy
   module Items ; private
 
     [:pagy_get_vars, :pagy_countless_get_vars, :pagy_elasticsearch_rails_get_vars, :pagy_searchkick_get_vars].each do |meth|
-      if Pagy::Backend.private_method_defined?(meth, true)
+      if Backend.private_method_defined?(meth, true)
         define_method(meth) do |collection, vars|
           vars[:items] ||= (items = params[vars[:items_param] || VARS[:items_param]]) &&                           # :items from :items_param
                            [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min   # :items capped to :max_items
@@ -32,7 +32,9 @@ class Pagy
 
     module Items
       def pagy_url_for(page, pagy, url=false)
-        p_vars = pagy.vars; params = request.GET.merge(p_vars[:params]); params[p_vars[:page_param].to_s] = page
+        p_vars = pagy.vars
+        params = request.GET.merge(p_vars[:params])
+        params[p_vars[:page_param].to_s]  = page
         params[p_vars[:items_param].to_s] = p_vars[:items]
         "#{request.base_url if url}#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
       end

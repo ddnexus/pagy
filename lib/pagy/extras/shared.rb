@@ -20,7 +20,9 @@ class Pagy
   def sequels
     steps = @vars[:steps] || {0 => @vars[:size]}
     steps.key?(0) or raise(VariableError.new(self), "expected :steps to define the 0 width; got #{steps.inspect}")
-    sequels = {}; steps.each {|width, size| sequels[width.to_s] = series(size)}; sequels
+    sequels = {}
+    steps.each {|width, size| sequels[width.to_s] = series(size)}
+    sequels
   end
 
   module Frontend

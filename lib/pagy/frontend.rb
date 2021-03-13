@@ -6,7 +6,7 @@ require 'yaml'
 
 class Pagy
 
-  PAGE_PLACEHOLDER  = '__pagy_page__'  # string used for search and replace, hardcoded also in the pagy.js file
+  PAGE_PLACEHOLDER = '__pagy_page__'  # string used for search and replace, hardcoded also in the pagy.js file
 
   # I18n static hash loaded at startup, used as default alternative to the i18n gem.
   # see https://ddnexus.github.io/pagy/api/frontend#i18n
@@ -15,12 +15,14 @@ class Pagy
   module Helpers
     # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
     def pagy_url_for(page, pagy, url=false)
-      p_vars = pagy.vars; params = request.GET.merge(p_vars[:params]); params[p_vars[:page_param].to_s] = page
+      p_vars = pagy.vars
+      params = request.GET.merge(p_vars[:params])
+      params[p_vars[:page_param].to_s] = page
       "#{request.base_url if url}#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
     end
 
     # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
-    def pagy_get_params(params) params end
+    def pagy_get_params(params) = params
   end
 
   # All the code here has been optimized for performance: it may not look very pretty
@@ -49,8 +51,8 @@ class Pagy
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy, item_name=nil)
       key = if (count = pagy.count) == 0 ; 'pagy.info.no_items'
-             else pagy.pages == 1 ? 'pagy.info.single_page' : 'pagy.info.multiple_pages'
-             end
+            else pagy.pages == 1 ? 'pagy.info.single_page' : 'pagy.info.multiple_pages'
+            end
       pagy_t(key, item_name: item_name || pagy_t(pagy.vars[:i18n_key], count: count), count: count, from: pagy.from, to: pagy.to)
     end
 
