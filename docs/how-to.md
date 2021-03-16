@@ -58,7 +58,7 @@ This page contains the practical tips and examples to get the job done with Pagy
             - with a fast helper (also styled for  [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [uikit](extras/uikit.md) and available in different flavors (static, responsive, compact, etc.)
 
                 ```erb
-                <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>                
+                <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
                 <%== pagy_nav(@pagy) %>
                 ```
             - or with an easy customizable template:
@@ -619,6 +619,12 @@ end
 ```
 
 but it would be quite an overkill if you plan to install it only for this purpose.
+
+## Ignoring Brakeman UnescapedOutputs false postives warnings
+
+Pagy output html safe HTML, however, being an agnostic pagination gem it does not use the specific `html_safe` rails helper on its output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakeman) gem, that will raise a warning.
+
+You can avoid the warning adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243) and [here](https://github.com/presidentbeef/brakeman/issues/1519).
 
 ## Handling Pagy::OverflowError exceptions
 
