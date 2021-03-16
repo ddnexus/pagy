@@ -114,7 +114,7 @@ link.call( page_number [, text [, extra_attributes_string ] ] )
 
 If you need to add some HTML attribute to the page links, you can pass some extra attribute string at many levels, depending on the scope you want your attributes to be added.
 
-**Important**: For performance reasons, the extra attributes strings must be formatted as valid HTML attribute/value pairs. _All_ the string spassed at any level will get inserted verbatim in the HTML of the link.
+**Important**: For performance reasons, the extra attributes strings must be formatted as valid HTML attribute/value pairs. _All_ the strings passed at any level will get inserted verbatim in the HTML of the link.
 
 1. For all pagy objects: set the global variable `:link_extra`:
     ```ruby
