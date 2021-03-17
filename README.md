@@ -145,6 +145,11 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 
 **Notice**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
 
+### Mike Rogers Screencast
+
+[![How To Paginate A Collection Using Pagy
+](docs/assets/images/mike-rogers-thumbnail-w360.jpg)](https://youtu.be/aILtxj_LVuA)
+
 ### Raul Palacio Screencast (Spanish)
 
 [![Raul Palacio Screncast](docs/assets/images/raul-palacio-thumbnail-w360.jpg)](https://youtu.be/_j3gtKf5rRs)
