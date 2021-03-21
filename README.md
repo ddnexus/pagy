@@ -90,7 +90,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 
 ### Easy to use
 
-After installing and including Pagy _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_, you can use it in a quite familiar way:
+After requiring `pagy` and including its module(s) _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_, you can use it in your controller and views:
 
 Paginate your collection in some controller:
 
@@ -109,6 +109,8 @@ Or - if you prefer - render the navigation links with a template:
 ```erb
 <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
 ```
+
+However, Pagy goes far beyond the classic pagination above. You can also use fast client-side rendering, headers pagination or integrate it with javascript frameworks (e.g. `vue.js`, `react`, ...) by just requiring the extras that you need.
 
 ## Easy to customize
 
