@@ -15,40 +15,40 @@ Copy and customize the following basic rules to apply the styles to the pagy CSS
 .pagy-nav, 
 .pagy-nav-js,
 .pagy-combo-nav-js {
-  @apply .inline-flex .shadow-md;
+  @apply inline-flex shadow-md;
 }
 .pagy-nav.pagination, 
 .pagy-nav-js.pagination,
 .pagy-combo-nav-js.pagination {
-  @apply .border .border-gray-600 .rounded-sm;
+  @apply border border-gray-600 rounded-sm;
 }
 .pagy-nav .page,
 .pagy-nav-js .page,
 .pagy-combo-nav-js .page,
 .pagy-combo-nav-js .pagy-combo-input {
-  @apply .text-gray-700 .border-r .border-gray-600 .px-3 .py-2 .text-sm .leading-tight .font-medium;
+  @apply text-gray-700 border-r border-gray-600 px-3 py-2 text-sm leading-tight font-medium;
 }
 .pagy-nav .page:hover,
 .pagy-nav-js .page:hover {
-  @apply .text-gray-900;
+  @apply text-gray-900;
 }
 .pagy-nav .disabled,
 .pagy-nav-js .disabled,
 .pagy-combo-nav-js .disabled {
-  @apply .cursor-not-allowed;
+  @apply cursor-not-allowed;
 }
 .pagy-nav .active,
 .pagy-nav-js .active {
-  @apply .text-blue-500;
+  @apply text-blue-500;
 }
 .pagy-nav .prev,
 .pagy-nav-js .prev,
 .pagy-combo-nav-js .prev {
-  @apply .text-gray-900;
+  @apply text-gray-900;
 }
 .pagy-nav .next,
  .pagy-nav-js .next,
  .pagy-combo-nav-js .next {
-  @apply .text-gray-900 .border-r .border-transparent;
+  @apply text-gray-900 border-r border-transparent;
 }
 ```
