@@ -242,7 +242,7 @@ def pagy_get_params(params)
 end
 ```
 
-You can also use the `:param` and : `:anchor` variables to add arbitrary params to the URLs of the pages. For example:
+You can also use the `:params` and : `:anchor` variables to add arbitrary params to the URLs of the pages. For example:
 
 ```ruby
 @pagy, @records = pagy(some_scope, params: {custom: 'param'}, anchor: '#your-anchor')
@@ -283,7 +283,7 @@ That would produce links that look like e.g. `<a href="2">2</a>`. Then you can a
 
 The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that by editing the values of the `"pagy.item_name"` i18n key in the [dictionaray files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
 
-Besides you can also (dynamically) set the `:i18n_key` variable to let Pagy know where to lookup the item name in some dictionary file (instead looking it up in the default `"pagy.item_name"` key).
+Besides you can also (dynamically) set the `:i18n_key` variable to let Pagy know where to lookup the item name in some dictionary file (instead of looking it up in the default `"pagy.item_name"` key).
 
 You have a few ways to do that:
 
@@ -375,7 +375,7 @@ count = collection.count
 
 ## Paginate collections with metadata
 
-When your collection already contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object:
+When your collection is already paginated and contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object:
 
 ```
 #<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>
