@@ -43,7 +43,7 @@ cd docker
 GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
 ```
 
-You need to run this only once to build the images.
+You need to run this only once, when you build the images. After that you just run th containers (see below).
 
 ## Use it
 
@@ -55,7 +55,7 @@ docker-compose up
 
 Open a terminal in the pagy container and run the usual `bundle install` to install the gems into the `pagy_bundle` volume.
 
-Then you cou can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
+Then you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
 
 Run all the tests by simply running `rake` without arguments.
 
