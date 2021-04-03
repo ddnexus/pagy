@@ -17,8 +17,13 @@ class Pagy
     [:pagy_get_vars, :pagy_countless_get_vars, :pagy_elasticsearch_rails_get_vars, :pagy_searchkick_get_vars].each do |meth|
       if Backend.private_method_defined?(meth, true)
         define_method(meth) do |collection, vars|
-          vars[:items] ||= (items = params[vars[:items_param] || VARS[:items_param]]) &&                           # :items from :items_param
-                           [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min   # :items capped to :max_items
+          items = [
+            params[vars[:items_param] || VARS[:items_param]] || VARS[:items], # :items
+            vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]       # :max_items
+          ].compact.min
+
+          vars[:items] ||= (items == VARS[:items]) ? nil : items
+
           super(collection, vars)
         end
       end

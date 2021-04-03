@@ -97,6 +97,49 @@ describe Pagy::Backend do
 
     end
 
+    it 'uses the max_items default when items not specified' do
+      vars    = {}
+      params  = {:a=>"a"}
+      controller = MockController.new params
+      _(controller.params).must_equal params
+      Pagy::VARS[:max_items] = 10 # set to less than items default of 20
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
+        _(pagy.items).must_equal 10
+        _(records.size).must_equal 10
+      end
+      Pagy::VARS[:max_items] = 100 # reset default
+    end
+
+    it 'uses max_items from vars' do
+      vars    = {max_items: 50}
+      params  = {:a=>"a", :page=>3, :items=>60}
+      controller = MockController.new params
+      _(controller.params).must_equal params
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
+        _(pagy.items).must_equal 50
+        _(records.size).must_equal 50
+      end
+
+    end
+
+    it 'uses max_items from vars when items not specified' do
+      vars    = {max_items: 10} # set to less than items default of 20
+      params  = {:a=>"a"}
+      controller = MockController.new params
+      _(controller.params).must_equal params
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
+        _(pagy.items).must_equal 10
+        _(records.size).must_equal 10
+      end
+
+    end
+
     it 'doesn\'t limit the items from vars' do
       vars    = {max_items: nil}
       params  = {:a=>"a", :items=>1000}
