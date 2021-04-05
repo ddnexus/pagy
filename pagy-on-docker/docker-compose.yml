@@ -1,5 +1,5 @@
-# Basic docker development environment
-# it will keep the installed gems and HOME in the pagy_bundle and pagy_user_home docker volumes
+# Basic pagy-on-docker development environment
+# it will keep the installed gems and HOME in the pagy_bundle and pagy_user_home pagy-on-docker volumes
 # the gh-pages service will be updating a live preview for the documentation
 
 
