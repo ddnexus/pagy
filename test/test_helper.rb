@@ -22,8 +22,3 @@ require 'rack'
 require_relative 'mock_helpers/view'
 require_relative 'mock_helpers/controller'
 require "minitest/autorun"
-
-unless ENV['TRAVIS']
-  require 'minitest/reporters'
-  MiniTest::Reporters.use!
-end
