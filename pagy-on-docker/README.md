@@ -8,7 +8,7 @@ You can use it to develop changes, run tests and check a live preview of the doc
 
 The pagy docker environment has been designed to be useful for developing:
 
-- It provides the infrastructure required (right version of ruby, jekyll server, env variable, tests, etc.) without the hassle to install and maintain anything in your system
+- It provides the infrastructure required (right version of ruby, jekyll server, env variables, tests, etc.) without the hassle to install and maintain anything in your system
 - The local `pagy` dir is mounted at the container dir `/opt/project` so you can edit the files in your local pagy dir or in the container: they are the same files.
 - The gems are installed in the container `BUNDLE_PATH=/usr/local/bundle` and that dir is `chown`ed to your user, and mounted as the docker volume `pagy_bundle`. You can use the `bundle` command and it will be persisted in the volume, no need to rebuild the image nor pollute your own system.
 - Your container user `HOME` is preserved in the `pagy_user_home` volume, so you can even get back to the shell history in future sessions.
