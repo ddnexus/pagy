@@ -35,11 +35,13 @@ class Pagy
       link   = pagy_link_proc(pagy)
       p_prev = pagy.prev
       p_next = pagy.next
-      html   = if p_prev
-                 %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
-               else
-                 %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> )
-               end
+
+      html  = +%(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">)
+      html << if p_prev
+                %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
+              else
+                %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> )
+              end
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<span class="page">#{link.call item}</span> )               # page link
@@ -52,18 +54,15 @@ class Pagy
               else
                 %(<span class="page next disabled">#{pagy_t('pagy.nav.next')}</span>)
               end
-      %(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">#{html}</nav>)
+      html << %(</nav>)
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy, item_name=nil)
       count = pagy.count
-      key   = if count.zero?
-                'pagy.info.no_items'
-              elsif pagy.pages == 1
-                'pagy.info.single_page'
-              else
-                'pagy.info.multiple_pages'
+      key   = if    count.zero?     then 'pagy.info.no_items'
+              elsif pagy.pages == 1 then 'pagy.info.single_page'
+              else                       'pagy.info.multiple_pages'
               end
       pagy_t key, item_name: item_name || pagy_t(pagy.vars[:i18n_key], count: count),
                   count:     count,

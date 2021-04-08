@@ -1,5 +1,4 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/items
-# encoding: utf-8
 # frozen_string_literal: true
 
 require 'pagy/extras/shared'
@@ -12,15 +11,21 @@ class Pagy
 
   ITEMS_PLACEHOLDER = '__pagy_items__'
 
-  module UseItemsExtra ; private
+  module UseItemsExtra
+    private
 
-    [:pagy_get_vars, :pagy_countless_get_vars, :pagy_elasticsearch_rails_get_vars, :pagy_searchkick_get_vars].each do |meth|
-      if Backend.private_method_defined?(meth, true)
-        define_method(meth) do |collection, vars|
-          vars[:items] ||= (items = params[vars[:items_param] || VARS[:items_param]]) &&                           # :items from :items_param
+    %i[ pagy_get_vars
+        pagy_countless_get_vars
+        pagy_elasticsearch_rails_get_vars
+        pagy_searchkick_get_vars
+    ].each do |meth|
+      next unless Backend.private_method_defined?(meth, true)
+
+      define_method(meth) do |collection, vars|
+        vars[:items] ||= if (items = params[vars[:items_param] || VARS[:items_param]])                             # :items from :items_param
                            [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min   # :items capped to :max_items
-          super(collection, vars)
-        end
+                         end
+        super collection, vars
       end
     end
 
@@ -31,7 +36,7 @@ class Pagy
   module Frontend
 
     module UseItemsExtra
-      def pagy_url_for(page, pagy, url=false)
+      def pagy_url_for(page, pagy, url=nil)
         p_vars = pagy.vars
         params = request.GET.merge(p_vars[:params])
         params[p_vars[:page_param].to_s]  = page
@@ -49,9 +54,11 @@ class Pagy
       link           = pagy_marked_link(pagy_link_proc(pagy))
       p_vars[:items] = p_items # restore the items
 
-      html = %(<span id="#{id}">)
+      html  = %(<span id="#{id}">)
       input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
-      html << %(#{pagy_t('pagy.items_selector_js', item_name: pagy_t(p_vars[:i18n_key], count: p_items), items_input: input, count: p_items)})
+      html << pagy_t('pagy.items_selector_js', item_name:   pagy_t(p_vars[:i18n_key], count: p_items),
+                                               items_input: input,
+                                               count:       p_items)
       html << %(</span>#{pagy_json_tag(pagy, :items_selector, id, pagy.from, link)})
     end
 

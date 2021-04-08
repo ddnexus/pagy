@@ -1,5 +1,4 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/searchkick
-# encoding: utf-8
 # frozen_string_literal: true
 
 class Pagy
@@ -10,7 +9,7 @@ class Pagy
     # returns an array used to delay the call of #search
     # after the pagination variables are merged to the options
     # it also pushes to the same array an eventually called method
-    def pagy_searchkick(term = "*", **options, &block)
+    def pagy_searchkick(term = '*', **options, &block)
       [self, term, options, block].tap do |args|
         args.define_singleton_method(:method_missing){|*a| args += a}
       end
@@ -27,7 +26,8 @@ class Pagy
   end
 
   # Add specialized backend methods to paginate Searchkick::Results
-  module Backend ; private
+  module Backend
+    private
 
     # Return Pagy object and results
     def pagy_searchkick(pagy_search_args, vars={})
@@ -37,12 +37,13 @@ class Pagy
       options[:page]     = vars[:page]
       results            = model.search(term, **options, &block)
       vars[:count]       = results.total_count
+
       pagy = Pagy.new(vars)
       # with :last_page overflow we need to re-run the method in order to get the hits
-      if defined?(Pagy::UseOverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
-        return pagy_searchkick(pagy_search_args, vars.merge(page: pagy.page))
-      end
-      return pagy, called.empty? ? results : results.send(*called)
+      return pagy_searchkick(pagy_search_args, vars.merge(page: pagy.page)) \
+             if defined?(Pagy::UseOverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
+
+      [ pagy, called.empty? ? results : results.send(*called) ]
     end
 
     # Sub-method called only by #pagy_searchkick: here for easy customization of variables by overriding

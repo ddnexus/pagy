@@ -1,10 +1,10 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/headers
-# encoding: utf-8
 # frozen_string_literal: true
 
 class Pagy
   # Add specialized backend methods to add pagination response headers
-  module Backend ; private
+  module Backend
+    private
 
     VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
 
@@ -15,17 +15,21 @@ class Pagy
     end
 
     def pagy_headers(pagy)
-      hash = pagy_headers_hash(pagy)
-      hash['Link'] = hash['Link'].map{|rel, link| %(<#{link}>; rel="#{rel}")}.join(', ')
-      hash
+      pagy_headers_hash(pagy).tap do |hash|
+        hash['Link'] = hash['Link'].map{|rel, link| %(<#{link}>; rel="#{rel}")}.join(', ')
+      end
     end
 
     def pagy_headers_hash(pagy)
       countless = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
-      rels      = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }; rels['last'] = pagy.last unless countless
-      url_str   = pagy_url_for(PAGE_PLACEHOLDER, pagy, :url)
-      hash      = { 'Link' => Hash[rels.map{|rel, n|[rel, url_str.sub(PAGE_PLACEHOLDER, n.to_s)] if n}.compact] }
-      headers   = pagy.vars[:headers]
+      rels = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
+      rels['last'] = pagy.last unless countless
+      url_str = pagy_url_for(PAGE_PLACEHOLDER, pagy, :url)
+      hash    = { 'Link' => rels.map do |rel, num|
+                              next unless num
+                              [ rel, url_str.sub(PAGE_PLACEHOLDER, num.to_s) ]
+                            end.compact.to_h }
+      headers = pagy.vars[:headers]
       hash[headers[:page]]  = pagy.page.to_s         if headers[:page]
       hash[headers[:items]] = pagy.vars[:items].to_s if headers[:items]
       unless countless

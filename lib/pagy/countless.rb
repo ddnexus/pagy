@@ -22,6 +22,7 @@ class Pagy
     def finalize(fetched)
       raise OverflowError.new(self), "page #{@page} got no items" \
             if fetched.zero? && @page > 1
+
       @pages = @last = (fetched > @items ? @page + 1 : @page)         # set the @pages and @last
       @items = fetched if fetched < @items && fetched.positive?       # adjust items for last non-empty page
       @from  = fetched.zero? ? 0 : @offset + 1 - @outset              # page begins from item
