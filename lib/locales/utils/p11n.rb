@@ -1,5 +1,4 @@
 # See https://ddnexus.github.io/pagy/api/frontend#i18n
-# encoding: utf-8
 # frozen_string_literal: true
 
 # This file adds support for multiple built-in plualization types.
@@ -18,46 +17,51 @@ from12to14 = [12,13,14].freeze
 # Each proc may apply to one or more locales below.
 # Pluralization logic adapted from https://github.com/svenfuchs/rails-i18n
 p11n = {
-  one_other: lambda {|n| n == 1 ? 'one' : 'other'},    # default
+  one_other: -> (n){ n == 1 ? 'one' : 'other' },    # default
 
   east_slavic: lambda do |n|
     n ||= 0
     mod10 = n % 10
     mod100 = n % 100
 
-    if    mod10 == 1 && mod100 != 11                                            ; 'one'
-    elsif from2to4.include?(mod10) && !from12to14.include?(mod100)              ; 'few'
-    elsif mod10 == 0 || from5to9.include?(mod10) || from11to14.include?(mod100) ; 'many'
-    else                                                                          'other'
+    case
+    when mod10 == 1 && mod100 != 11                                            then 'one'
+    when from2to4.include?(mod10) && !from12to14.include?(mod100)              then 'few'
+    when mod10 == 0 || from5to9.include?(mod10) || from11to14.include?(mod100) then 'many' # rubocop:disable Style/NumericPredicate
+    else                                                                            'other'
     end
   end,
 
   west_slavic: lambda do |n|
-     if n == 1                    ; 'one'
-     elsif [2, 3, 4].include?(n)  ; 'few'
-     else                         ; 'other'
-     end
-  end,
-
-  one_two_other: lambda do |n|
-    if n == 1    ; 'one'
-    elsif n == 2 ; 'two'
-    else           'other'
+    case n
+    when 1       then 'one'
+    when 2, 3, 4 then 'few'
+    else              'other'
     end
   end,
 
-  one_upto_two_other: lambda {|n| n && n >= 0 && n < 2 ? 'one' : 'other'},
+  one_two_other: lambda do |n|
+    case n
+    when 1 then 'one'
+    when 2 then 'two'
+    else        'other'
+    end
+  end,
 
-  other: Proc.new { 'other' },
+  one_upto_two_other: -> (n){ n && n >= 0 && n < 2 ? 'one' : 'other' },
+
+  other: -> (*){ 'other' },
 
   polish: lambda do |n|
     n ||= 0
-    mod10 = n % 10
+    mod10  = n % 10
     mod100 = n % 100
-    if n == 1                                                                  ; 'one'
-    elsif from2to4.include?(mod10) && !from12to14.include?(mod100)             ; 'few'
-    elsif (from0to1 + from5to9).include?(mod10) || from12to14.include?(mod100) ; 'many'
-    else                                                                         'other'
+
+    case
+    when n == 1                                                               then 'one'
+    when from2to4.include?(mod10) && !from12to14.include?(mod100)             then 'few'
+    when (from0to1 + from5to9).include?(mod10) || from12to14.include?(mod100) then 'many'
+    else                                                                           'other'
     end
   end
 }

@@ -1,18 +1,20 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 # the whole file will be eval'ed/executed and gc-collected after returning/executing the loader proc
 
 # eval: no need for the whole file in memory
-plurals, _ = eval(Pagy.root.join('locales', 'utils', 'p11n.rb').read)   #rubocop:disable Security/Eval
+plurals, = eval Pagy.root.join('locales', 'utils', 'p11n.rb').read   # rubocop:disable Security/Eval
 
 # flatten the dictionary file nested keys
 # convert each value to a simple ruby interpolation proc
 flatten = lambda do |hash, key=''|
             hash.each.reduce({}) do |h, (k, v)|
-              v.is_a?(Hash) \
-                ? h.merge!(flatten.call(v, "#{key}#{k}."))
-                : h.merge!(eval %({"#{key}#{k}" => lambda{|vars|"#{v.gsub(/%{[^}]+?}/){|m| "\#{vars[:#{m[2..-2]}]||'#{m}'}" }}"}})) #rubocop:disable Security/Eval
+              if v.is_a?(Hash)
+                h.merge! flatten.call(v, "#{key}#{k}.")
+              else
+                code = %({"#{key}#{k}" => lambda{|vars|"#{v.gsub(/%{[^}]+?}/){|m| "\#{vars[:#{m[2..-2]}]||'#{m}'}" }}"}})
+                h.merge! eval(code) # rubocop:disable Security/Eval
+              end
             end
           end
 
