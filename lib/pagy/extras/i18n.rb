@@ -10,10 +10,10 @@ class Pagy
 
     Pagy::I18n.clear.instance_eval { undef :load; undef :t } # unload the pagy default constant for efficiency
 
-    module I18n
+    module UseI18nGem
       def pagy_t(key, **opts) = ::I18n.t(key, **opts)
     end
-    prepend I18n
+    prepend UseI18nGem
 
   end
 end
