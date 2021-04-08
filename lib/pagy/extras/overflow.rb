@@ -4,7 +4,7 @@
 
 class Pagy
 
-  module Overflow
+  module UseOverflowExtra
     VARS[:overflow] = :empty_page
 
     def overflow? = @overflow
@@ -41,14 +41,14 @@ class Pagy
     end
 
   end
-  prepend Overflow
+  prepend UseOverflowExtra
 
 
   # support for Pagy::Countless
   if defined?(Pagy::Countless)
     class Countless
 
-      module Overflow
+      module UseOverflowExtra
 
         def finalize(items)
           @overflow = false
@@ -68,7 +68,7 @@ class Pagy
         end
 
       end
-      prepend Overflow
+      prepend UseOverflowExtra
 
     end
   end

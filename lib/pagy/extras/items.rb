@@ -12,7 +12,7 @@ class Pagy
 
   ITEMS_PLACEHOLDER = '__pagy_items__'
 
-  module Items ; private
+  module UseItemsExtra ; private
 
     [:pagy_get_vars, :pagy_countless_get_vars, :pagy_elasticsearch_rails_get_vars, :pagy_searchkick_get_vars].each do |meth|
       if Backend.private_method_defined?(meth, true)
@@ -25,12 +25,12 @@ class Pagy
     end
 
   end
-  Backend.prepend Items
+  Backend.prepend UseItemsExtra
 
 
   module Frontend
 
-    module Items
+    module UseItemsExtra
       def pagy_url_for(page, pagy, url=false)
         p_vars = pagy.vars
         params = request.GET.merge(p_vars[:params])
@@ -39,7 +39,7 @@ class Pagy
         "#{request.base_url if url}#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
       end
     end
-    prepend Items
+    prepend UseItemsExtra
 
     # Return the items selector HTML. For example "Show [20] items per page"
     def pagy_items_selector_js(pagy, id=pagy_id)

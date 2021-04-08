@@ -4,7 +4,7 @@
 
 class Pagy
 
-  module Trim
+  module UseTrimExtra
     def pagy_link_proc(pagy, link_extra='')
       link_proc = super(pagy, link_extra)
       re = /[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/
@@ -14,6 +14,6 @@ class Pagy
       end
     end
   end
-  Frontend.prepend Trim
+  Frontend.prepend UseTrimExtra
 
 end
