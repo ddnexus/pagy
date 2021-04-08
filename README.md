@@ -137,7 +137,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 
 ### Related Projects
 
-- [pagy-cursor](https://github.com/Uysim/pagy-cursor) An early stage proget that implements cursor pagination for AR
+- [pagy-cursor](https://github.com/Uysim/pagy-cursor) An early stage project that implements cursor pagination for AR
 
 ## Resources
 
