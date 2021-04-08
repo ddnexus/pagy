@@ -3,24 +3,38 @@ require:
   - rubocop-rake
   - rubocop-minitest
 
+# trying to be good  O:)
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
 
+# No, thank you!
 Layout:
   Enabled: false
 
+# affect performance
 Metrics:
   Enabled: false
 
-Style:
+# not cool
+Style/CommentedKeyword:
+  Enabled: false
+Style/EmptyCaseCondition:
+  Enabled: false
+Style/Documentation:
   Enabled: false
 
-Bundler/OrderedGems:
-  Enabled: false
-
-Lint/RaiseException:
+# these cops are disabled only in the test files in order to
+# allow to copy and paste the failed output for test reconciliation
+Style/StringLiterals:
   Enabled: true
-
-Lint/StructNewOverride:
+  Exclude:
+  - test/**/*
+Style/HashSyntax:
   Enabled: true
+  Exclude:
+  - test/**/*
+Style/SymbolArray:
+  Enabled: true
+  Exclude:
+  - test/**/*
