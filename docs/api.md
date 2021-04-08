@@ -3,7 +3,7 @@ title: API
 ---
 # API
 
-The whole core structure of Pagy is very simple: it is organized around 3 small files of just ~100 lines of code in total:
+The whole core structure of Pagy is very simple: it is organized around 3 small files of just above 100 lines of code in total:
 
 | File                                                                                 | Description                                                                                                                                                |
 |:-------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
