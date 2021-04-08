@@ -8,6 +8,10 @@ class MockView
     @url = url
   end
 
+  def test_i18n_call
+    I18n.t('test')
+  end
+
   def request
     Rack::Request.new(Rack::MockRequest.env_for(@url))
   end

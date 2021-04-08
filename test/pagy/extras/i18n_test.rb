@@ -7,16 +7,14 @@ require 'pagy/extras/i18n'
 
 SimpleCov.command_name 'i18n' if ENV['RUN_SIMPLECOV'] == 'true'
 
-require_relative '../../mock_helpers/application_helper'
-include ApplicationHelper
-
 describe Pagy::Frontend do
 
   let(:view) { MockView.new }
 
   describe "#pagy_t with I18n" do
-    it 'works with an included Module' do
-      ApplicationHelper.any_method_name()
+
+    it 'does not conflict with the I18n gem namespace' do
+      view.test_i18n_call
     end
 
     it 'pluralizes' do
