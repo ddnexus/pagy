@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
@@ -12,7 +11,7 @@ describe Pagy::Frontend do
 
   let(:view) { MockView.new('http://example.com:3000/foo?') }
 
-  describe "#pagy_marked_link" do
+  describe '#pagy_marked_link' do
 
     it 'should return the marked link' do
       pagy = Pagy.new(count: 100, page: 4)

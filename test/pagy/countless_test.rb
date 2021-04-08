@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../test_helper'
@@ -8,7 +7,7 @@ describe Pagy::Countless do
 
   let(:controller) { MockController.new } # page = 3, items = 20
 
-  describe "#finalize" do
+  describe '#finalize' do
 
     before do
       @empty_collection = MockCollection.new([])
@@ -22,7 +21,7 @@ describe Pagy::Countless do
     end
 
     it 'initializes empty collection' do
-      pagy, _ = controller.send(:pagy_countless, @empty_collection, page: 1)
+      pagy, = controller.send(:pagy_countless, @empty_collection, page: 1)
       _(pagy.items).must_equal 20
       _(pagy.pages).must_equal 1
       _(pagy.last).must_equal 1
@@ -33,7 +32,7 @@ describe Pagy::Countless do
     end
 
     it 'initializes first page' do
-      pagy, _ = controller.send(:pagy_countless, @collection, page: 1)
+      pagy, = controller.send(:pagy_countless, @collection, page: 1)
       _(pagy).must_be_instance_of Pagy::Countless
       _(pagy.items).must_equal 20
       _(pagy.last).must_equal 2
@@ -45,7 +44,7 @@ describe Pagy::Countless do
     end
 
     it 'initializes single full page' do
-      pagy, _ = controller.send(:pagy_countless, MockCollection.new(Array(1..20)), page: 1)
+      pagy, = controller.send(:pagy_countless, MockCollection.new(Array(1..20)), page: 1)
       _(pagy.items).must_equal 20
       _(pagy.pages).must_equal 1
       _(pagy.from).must_equal 1
@@ -55,7 +54,7 @@ describe Pagy::Countless do
     end
 
     it 'initialize single partial page' do
-      pagy, _ = controller.send(:pagy_countless, MockCollection.new(Array(1..4)), page: 1)
+      pagy, = controller.send(:pagy_countless, MockCollection.new(Array(1..4)), page: 1)
       _(pagy.items).must_equal 4
       _(pagy.pages).must_equal 1
       _(pagy.from).must_equal 1
@@ -66,7 +65,7 @@ describe Pagy::Countless do
     end
 
     it 'initializes last partial page' do
-      pagy, _ = controller.send(:pagy_countless, @collection, page: last_page)
+      pagy, = controller.send(:pagy_countless, @collection, page: last_page)
       _(pagy.items).must_equal 19
       _(pagy.pages).must_equal last_page
       _(pagy.from).must_equal 41
@@ -76,7 +75,7 @@ describe Pagy::Countless do
     end
 
     it 'handles the :cycle variable' do
-      pagy, _ = controller.send(:pagy_countless, @collection, page: last_page, cycle: true)
+      pagy, = controller.send(:pagy_countless, @collection, page: last_page, cycle: true)
       _(pagy.items).must_equal 19
       _(pagy.pages).must_equal last_page
       _(pagy.from).must_equal 41

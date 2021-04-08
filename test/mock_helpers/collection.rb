@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class MockCollection < Array
 
   def initialize(arr=Array(1..1000))
     super
-    @collection = self.clone
+    @collection = clone
   end
 
   def offset(value)
-    @collection = self[value..-1]
+    @collection = self[value..]
     self
   end
 
@@ -33,7 +35,7 @@ class MockCollection < Array
   class Grouped < MockCollection
 
     def count(*)
-      Hash[@collection.map { |value| [value, value + 1] }]
+      @collection.map { |value| [value, value + 1] }.to_h
     end
 
     def unscope(*)

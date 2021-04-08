@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative 'test_helper'
@@ -11,7 +10,7 @@ describe Pagy do
     _(Pagy::VERSION).wont_be_nil
   end
 
-  describe "#initialize" do
+  describe '#initialize' do
 
     before do
       @vars  = { count: 103, items: 10, size: [3, 2, 2, 3] }
@@ -24,17 +23,17 @@ describe Pagy do
       _(Pagy.new(count: 100, page: '2')).must_be_instance_of Pagy
       _(Pagy.new(count: 100, page: '')).must_be_instance_of Pagy
       _(Pagy.new(count: 100, items: '10')).must_be_instance_of Pagy
-      _(proc { Pagy.new({}) }).must_raise Pagy::VariableError
-      _(proc { Pagy.new(count: 0, page: -1) }).must_raise Pagy::VariableError
-      _(proc { Pagy.new(count: 100, page: 0) }).must_raise Pagy::VariableError
-      _(proc { Pagy.new(count: 100, page: 2, items: 0) }).must_raise Pagy::VariableError
-      _(proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }).must_raise Pagy::VariableError
-      _(proc { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }).must_raise Pagy::VariableError
-      _(proc { Pagy.new(count: 100, page: '11') }).must_raise Pagy::OverflowError
-      _(proc { Pagy.new(count: 100, page: 12) }).must_raise Pagy::OverflowError
+      _ { Pagy.new({}) }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 0, page: -1) }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: 0) }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: 2, items: 0) }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
+      _ { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
       begin
         Pagy.new(count: 100, page: 12)
-      rescue => e
+      rescue Pagy::OverflowError => e
         _(e.pagy).must_be_instance_of Pagy
       end
     end
@@ -275,7 +274,7 @@ describe Pagy do
 
   end
 
-  describe "accessors" do
+  describe 'accessors' do
 
     it 'has accessors' do
       [
@@ -288,7 +287,7 @@ describe Pagy do
 
   end
 
-  describe "variables" do
+  describe 'variables' do
 
     it 'has vars defaults' do
       _(Pagy::VARS[:page]).must_equal 1
@@ -301,7 +300,7 @@ describe Pagy do
 
   end
 
-  describe "#series" do
+  describe '#series' do
 
     before do
       @vars0 = { count: 103,

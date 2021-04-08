@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 if ENV['ENABLE_OJ'] == 'true'
@@ -14,7 +13,7 @@ if ENV['ENABLE_OJ'] == 'true'
 
     let(:view) { MockView.new('http://example.com:3000/foo?') }
 
-    describe "#pagy_json_tag" do
+    describe '#pagy_json_tag' do
 
       it 'should use oj' do
         _(view.pagy_json_tag(Pagy.new(count: 10), :test_function, 'some-id', 'some-string', 123, true)).must_equal \
@@ -24,7 +23,7 @@ if ENV['ENABLE_OJ'] == 'true'
     end
 
 
-    describe "#pagy_id" do
+    describe '#pagy_id' do
 
       it 'should return different SHA1 ids' do
         id1 = call_pagy_id
@@ -36,7 +35,7 @@ if ENV['ENABLE_OJ'] == 'true'
 
     end
 
-    describe "#pagy_marked_link" do
+    describe '#pagy_marked_link' do
 
       it 'should return only the "standard" link' do
         pagy = Pagy.new(count: 100, page: 4)

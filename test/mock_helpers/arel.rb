@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Arel
   def self.star(*)
     self
@@ -13,8 +15,7 @@ module Arel
 
   module Nodes
     class Grouping
-      def initialize(array)
-      end
+      def initialize(_); end
     end
   end
 end

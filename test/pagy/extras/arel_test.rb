@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
@@ -9,7 +8,7 @@ describe Pagy::Backend do
 
   let(:controller) { MockController.new }
 
-  describe "#pagy_arel" do
+  describe '#pagy_arel' do
 
     before do
       @collection = MockCollection.new
@@ -38,7 +37,7 @@ describe Pagy::Backend do
 
   end
 
-  describe "#pagy_arel_get_vars" do
+  describe '#pagy_arel_get_vars' do
 
     before do
       @collection = MockCollection.new

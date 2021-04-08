@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'pagy/extras/elasticsearch_rails'
 
 module MockElasticsearchRails
 
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
-              'b' => ('b-1'..'b-1000').to_a }
+              'b' => ('b-1'..'b-1000').to_a }.freeze
 
   class Search
 
