@@ -25,8 +25,9 @@ define_test_task :test_extra_overflow, 'test/**/overflow_test.rb'
 define_test_task :test_extra_trim, 'test/**/trim_test.rb'
 define_test_task :test_extra_elasticsearch, 'test/**/elasticsearch_rails_test.rb', 'test/**/searchkick_test.rb'
 define_test_task :test_support, 'test/**/support_test.rb'
+define_test_task :test_shared,'test/**/oj_shared_test.rb'
 define_test_task :test_shared,'test/**/shared_test.rb'
-define_test_task :test_shared_combo, 'test/**/shared_combo_test.rb'
+define_test_task :test_shared_items_trim, 'test/**/shared_items_trim_test.rb'
 
 # We exclude the files of the other tasks from the :test_main task
 Rake::TestTask.new(:test_main) do |t|
