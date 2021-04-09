@@ -6,9 +6,6 @@ if ENV['ENABLE_OJ'] == 'true'
   require 'oj' # all the other tests run without Oj
   require 'pagy/extras/shared'
 
-  SimpleCov.command_name 'shared' if ENV['RUN_SIMPLECOV'] == 'true'
-
-  # add tests for oj and pagy_id
   describe Pagy::Frontend do
 
     let(:view) { MockView.new('http://example.com:3000/foo?') }

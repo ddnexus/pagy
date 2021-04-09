@@ -31,9 +31,10 @@ module MockElasticsearchRails
       @raw_response['hits']['hits'].map{|r| "R-#{r}"}
     end
 
-    def count
-      @raw_response['hits']['hits'].size
-    end
+    # unused by current testing
+    # def count
+    #   @raw_response['hits']['hits'].size
+    # end
 
   end
 
@@ -72,13 +73,14 @@ module MockElasticsearchRails
       @response = {'hits' => {'hits' => @search.results, 'total' => RESULTS[query].size}}
     end
 
-    def records
-      @response['hits']['hits'].map{|r| "R-#{r}"}
-    end
-
-    def count
-      @response['hits']['hits'].size
-    end
+    # unused by current testing
+    # def records
+    #   @response['hits']['hits'].map{|r| "R-#{r}"}
+    # end
+    #
+    # def count
+    #   @response['hits']['hits'].size
+    # end
 
   end
 

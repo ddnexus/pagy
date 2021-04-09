@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gemspec
+# gemspec
 
 gem 'i18n'
 gem 'oj', require: false     # false is for testing with or without it
@@ -18,7 +18,7 @@ group :test do
   gem 'rubocop-rake', require: false
   gem 'rubocop-minitest', require: false
   gem 'simplecov', require: false
-end
+  end
 
 group :apps do
   gem 'sinatra'

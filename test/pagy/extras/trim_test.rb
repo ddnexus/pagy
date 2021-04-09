@@ -9,8 +9,6 @@ require 'pagy/extras/materialize'
 require 'pagy/extras/semantic'
 require 'pagy/extras/trim'
 
-SimpleCov.command_name 'trim' if ENV['RUN_SIMPLECOV'] == 'true'
-
 describe Pagy::Frontend do
 
   let(:view) { MockView.new }

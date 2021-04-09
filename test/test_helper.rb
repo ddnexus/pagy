@@ -6,13 +6,6 @@ require 'bundler/setup'
 
 require 'simplecov' if ENV['RUN_SIMPLECOV'] == 'true'
 
-if ENV['RUN_CODECOV'] == 'true'
-  require 'codecov'
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
-elsif ENV['SILENT_SIMPLECOV'] == 'true'
-  SimpleCov.formatter = SimpleCov::Formatter::SimpleFormatter
-end
-
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
 require 'pagy'
