@@ -76,4 +76,4 @@ When you want to get rid of everything related to the `pagy` development on your
 
 - If you use different pagy images for different pagy versions/branches:
   - Remember to checkout the right branch before using it
-  - If you test it with `RUN_SIMPLECOV` you may need to `rm -rf coverage` or you may get some error that will not allow you to run the tests
+  - If you get some problem running the tests you might need to `rm -rf coverage`

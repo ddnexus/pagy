@@ -13,6 +13,5 @@ matrix:
       gemfile: ci-gemfiles/ruby-3.0
       env:
         - ENABLE_OJ=true
-        - RUN_SIMPLECOV=true
         - RUN_RUBOCOP=true
         - RUN_CODECOV=true

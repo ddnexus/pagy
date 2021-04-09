@@ -3,8 +3,7 @@
 $VERBOSE = {'false' => false, 'true' => true}[ENV['VERBOSE']] if ENV['VERBOSE']
 
 require 'bundler/setup'
-
-require 'simplecov' if ENV['RUN_SIMPLECOV'] == 'true'
+require 'simplecov'
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
