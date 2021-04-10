@@ -1,4 +1,6 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
 
 # gemspec
 
@@ -14,9 +16,9 @@ group :test do
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'rubocop', '~> 1.11', require: false
+  gem 'rubocop-minitest', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rake', require: false
-  gem 'rubocop-minitest', require: false
   gem 'simplecov', require: false
   end
 
@@ -31,4 +33,9 @@ group :performance do
   gem 'benchmark-ips'
   gem 'kalibera'
   gem 'memory_profiler'
+end
+
+group :ide_development do
+  gem 'debase'
+  gem 'ruby-debug-ide'
 end
