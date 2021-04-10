@@ -1,8 +1,3 @@
-PATH
-  remote: .
-  specs:
-    pagy (4.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,7 +92,6 @@ DEPENDENCIES
   minitest
   minitest-reporters
   oj
-  pagy!
   puma
   rack
   rake

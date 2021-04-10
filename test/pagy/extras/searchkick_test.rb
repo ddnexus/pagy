@@ -1,11 +1,8 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/searchkick'
 require 'pagy/extras/overflow'
-
-SimpleCov.command_name 'elasticsearch' if ENV['RUN_SIMPLECOV'] == 'true'
 
 describe Pagy::Searchkick do
 
@@ -49,7 +46,7 @@ describe Pagy::Backend do
 
   let(:controller) { MockController.new }
 
-  describe "#pagy_searchkick" do
+  describe '#pagy_searchkick' do
 
     before do
       @collection = MockCollection.new

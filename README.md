@@ -16,8 +16,9 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 ## New in 4.0+
 
 - __This version requires `ruby 3.0+`. For `ruby <3.0` use `pagy <4.0` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
-- Updating `pagy` from `3.0+` to `4.0+` require a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
+- Updating `pagy` from `3.0+` to `4.0+` requires a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
 - Added the docker development environment to ease contributions
+- Big code restyling following ruby 3.0 syntax and cops; tried to make the code simpler, more readable and verbose with almost negligible performance loss.
 
 ## Comparison with other gems
 
@@ -49,7 +50,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 
 ### Straightforward Code
 
-- Pagy has a very slim core code of just ~100 lines of simple ruby, organized in 3 flat modules, very easy to understand and use _(see [more...](https://ddnexus.github.io/pagy/api))_
+- Pagy has a very slim core code of just above 100 lines of simple ruby, organized in 3 flat modules, very easy to understand and use _(see [more...](https://ddnexus.github.io/pagy/api))_
 - It has a quite fat set of optional extras that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/extras))_
 - It has no dependencies: it produces its own HTML, URLs, i18n with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - 100% of its methods are public API, accessible and overridable **right where you use them** (no pesky monkey-patching needed)
@@ -137,7 +138,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 
 ### Related Projects
 
-- [pagy-cursor](https://github.com/Uysim/pagy-cursor) An early stage proget that implements cursor pagination for AR
+- [pagy-cursor](https://github.com/Uysim/pagy-cursor) An early stage project that implements cursor pagination for AR
 
 ## Resources
 

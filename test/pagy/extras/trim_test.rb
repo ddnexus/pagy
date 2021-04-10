@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
@@ -10,14 +9,12 @@ require 'pagy/extras/materialize'
 require 'pagy/extras/semantic'
 require 'pagy/extras/trim'
 
-SimpleCov.command_name 'trim' if ENV['RUN_SIMPLECOV'] == 'true'
-
 describe Pagy::Frontend do
 
   let(:view) { MockView.new }
   let(:pagy_test_id) { 'test-id' }
 
-  describe "#pagy_link_proc" do
+  describe '#pagy_link_proc' do
 
     it 'returns trimmed link' do
       [ [1,  '?page=1',               ''],                    # only param
@@ -44,7 +41,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_nav" do
+  describe '#pagy_nav' do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)
@@ -66,7 +63,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_nav_js" do
+  describe '#pagy_nav_js' do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)
@@ -90,7 +87,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_combo_nav_js" do
+  describe '#pagy_combo_nav_js' do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)

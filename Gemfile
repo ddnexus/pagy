@@ -1,25 +1,24 @@
 source "https://rubygems.org"
 
-gemspec
+# gemspec
 
-gem 'rake'
-gem 'rack'
 gem 'i18n'
-
 gem 'oj', require: false     # false is for testing with or without it
+gem 'rack'
+gem 'rake'
 
 gem 'puma'
 
 group :test do
+  gem 'codecov', require:  false
+  gem 'minitest'
+  gem 'minitest-reporters'
   gem 'rubocop', '~> 1.11', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rake', require: false
   gem 'rubocop-minitest', require: false
   gem 'simplecov', require: false
-  gem 'codecov', require:  false
-  gem 'minitest'
-  gem 'minitest-reporters'
-end
+  end
 
 group :apps do
   gem 'sinatra'
@@ -29,7 +28,6 @@ group :apps do
 end
 
 group :performance do
-  #benchmark/profiling
   gem 'benchmark-ips'
   gem 'kalibera'
   gem 'memory_profiler'

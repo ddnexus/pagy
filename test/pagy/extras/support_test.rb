@@ -1,17 +1,14 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
 require 'pagy/extras/support'
 require 'pagy/countless'
 
-SimpleCov.command_name 'support' if ENV['RUN_SIMPLECOV'] == 'true'
-
 describe Pagy::Frontend do
 
   let(:view) { MockView.new }
 
-  describe "#pagy_prev_url" do
+  describe '#pagy_prev_url' do
 
     it 'returns the prev url for page 1' do
       pagy = Pagy.new count: 1000, page: 1
@@ -43,7 +40,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_next_url" do
+  describe '#pagy_next_url' do
 
     it 'returns the next url for page 1' do
       pagy = Pagy.new count: 1000, page: 1
@@ -75,7 +72,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_prev_link" do
+  describe '#pagy_prev_link' do
 
     it 'renders the prev link for page 1' do
       pagy = Pagy.new count: 1000, page: 1
@@ -107,7 +104,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_next_link" do
+  describe '#pagy_next_link' do
 
     it 'renders the next link for page 1' do
       pagy = Pagy.new count: 1000, page: 1
@@ -139,7 +136,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_prev_link_tag" do
+  describe '#pagy_prev_link_tag' do
 
     it 'renders the prev link tag for page 1' do
       pagy = Pagy.new count: 1000, page: 1
@@ -171,7 +168,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_next_link_tag" do
+  describe '#pagy_next_link_tag' do
 
     it 'renders the next link tag for page 1' do
       pagy = Pagy.new count: 1000, page: 1

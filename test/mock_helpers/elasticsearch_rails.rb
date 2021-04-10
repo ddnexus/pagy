@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'pagy/extras/elasticsearch_rails'
 
 module MockElasticsearchRails
 
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
-              'b' => ('b-1'..'b-1000').to_a }
+              'b' => ('b-1'..'b-1000').to_a }.freeze
 
   class Search
 
@@ -29,9 +31,10 @@ module MockElasticsearchRails
       @raw_response['hits']['hits'].map{|r| "R-#{r}"}
     end
 
-    def count
-      @raw_response['hits']['hits'].size
-    end
+    # unused by current testing
+    # def count
+    #   @raw_response['hits']['hits'].size
+    # end
 
   end
 
@@ -70,13 +73,14 @@ module MockElasticsearchRails
       @response = {'hits' => {'hits' => @search.results, 'total' => RESULTS[query].size}}
     end
 
-    def records
-      @response['hits']['hits'].map{|r| "R-#{r}"}
-    end
-
-    def count
-      @response['hits']['hits'].size
-    end
+    # unused by current testing
+    # def records
+    #   @response['hits']['hits'].map{|r| "R-#{r}"}
+    # end
+    #
+    # def count
+    #   @response['hits']['hits'].size
+    # end
 
   end
 

@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
@@ -8,7 +7,7 @@ require 'pagy/countless'
 
 describe Pagy::Backend do
 
-  describe "#pagy_metadata" do
+  describe '#pagy_metadata' do
 
     before do
       @controller = MockController.new
@@ -27,12 +26,12 @@ describe Pagy::Backend do
     end
 
     it 'checks for unknown metadata' do
-      pagy, _records = @controller.send(:pagy, @collection, metadata: [:page, :unknown_key])
+      pagy, _records = @controller.send(:pagy, @collection, metadata: %i[page unknown_key])
       _(proc { @controller.send(:pagy_metadata, pagy)}).must_raise Pagy::VariableError
     end
 
     it 'returns only specific metadata' do
-      pagy, _records = @controller.send(:pagy, @collection, metadata: [:scaffold_url, :page, :count, :prev, :next, :pages])
+      pagy, _records = @controller.send(:pagy, @collection, metadata: %i[scaffold_url page count prev next pages])
       _(@controller.send(:pagy_metadata, pagy)).must_equal(
       {:scaffold_url=>"/foo?page=__pagy_page__", :page=>3, :count=>1000, :prev=>2, :next=>4, :pages=>50}
       )

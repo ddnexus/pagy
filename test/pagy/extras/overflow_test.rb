@@ -1,10 +1,7 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
 require 'pagy/extras/overflow'
-
-SimpleCov.command_name 'overflow' if ENV['RUN_SIMPLECOV'] == 'true'
 
 describe Pagy do
 
@@ -36,7 +33,7 @@ describe Pagy do
   end
 
 
-  describe "#initialize" do
+  describe '#initialize' do
 
     it 'works in :last_page mode' do
       pagy = Pagy.new(vars.merge(overflow: :last_page))

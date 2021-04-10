@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class Pagy
 
+  # generic variable error
   class VariableError < ArgumentError
     attr_reader :pagy
 
@@ -9,13 +12,14 @@ class Pagy
     end
 
     def variable
-      message =~ /expected :([\w]+)/
-      $1.to_sym if $1
+      message =~ /expected :(\w+)/
+      Regexp.last_match(1)&.to_sym
     end
 
     def value = pagy.vars[variable]
   end
 
+  # specific overflow error
   class OverflowError < VariableError; end
 
 end

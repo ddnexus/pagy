@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'pagy/extras/searchkick'
 
 module MockSearchkick
 
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
-              'b' => ('b-1'..'b-1000').to_a }
+              'b' => ('b-1'..'b-1000').to_a }.freeze
 
   class Results
 
@@ -15,13 +17,13 @@ module MockSearchkick
       from     = @options[:per_page] * (@options[:page] - 1)
       results  = @entries[from, @options[:per_page]]
       addition = yield if block
-      @results = results && results.map{|r| "#{addition}#{r}"}
+      @results = results&.map{|r| "#{addition}#{r}"}
     end
 
     def results
       @results.map{|r| "R-#{r}"}
     end
-    alias_method :records, :results      # enables loops in items_test
+    alias records results      # enables loops in items_test
 
     def total_count
       @entries.size
@@ -31,8 +33,8 @@ module MockSearchkick
 
   class Model
 
-    def self.search(*args, &block)
-      Results.new(*args, &block)
+    def self.search(...)
+      Results.new(...)
     end
 
     extend Pagy::Searchkick

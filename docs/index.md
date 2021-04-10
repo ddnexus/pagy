@@ -11,7 +11,7 @@ Basically, a pagination gem needs to calculate a series of 10-20 sequencial inte
 
 Pagy keeps pagination as straightforward as it could be: there are no "declarative DSL" to learn, no "global pollution" to avoid, no need for any special module or adapter. There are no nested modules, classes nor countless methods and many hundreds lines of code... all really difficult to justify for such a simple task.
 
-Including all the features, validations, exceptions, etc., the Pagy core code is just 3 small files of just ~100 lines in total, easy to understand and use. Just take a look at the source: [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb), [pagy/backend.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb), [pagy/frontend.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb) .
+Including all the features, validations, exceptions, etc., the Pagy core code is just 3 small files of just above 100 lines in total, easy to understand and use. Just take a look at the source: [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb), [pagy/backend.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb), [pagy/frontend.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb) .
 
  Its size and simplicity is one of the reasons of its stunning performance.
 
@@ -41,6 +41,6 @@ You could even use it directly (without using any other Pagy code) in a small pa
 
 ## Really easy to customize
 
-If options and configuration are not enough, you have a few specialized [extras](extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. All the Pagy helpers are contained in 2 plain modules with no nesting. You include them in your code, so you can override any method right where you use it: no tricky gymnic required.
+If options and configuration are not enough, you have a few specialized [extras](extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. All the Pagy helpers are contained in 2 plain modules with no nesting. You include them in your code, so you can override any method right where you use it: no tricky gymmickry required.
 
 What could be easier?

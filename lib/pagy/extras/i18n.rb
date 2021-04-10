@@ -1,5 +1,4 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/i18n
-# encoding: utf-8
 # frozen_string_literal: true
 
 class Pagy
@@ -8,12 +7,16 @@ class Pagy
 
     ::I18n.load_path += Dir[Pagy.root.join('locales', '*.yml')]
 
-    Pagy::I18n.clear.instance_eval { undef :load; undef :t } # unload the pagy default constant for efficiency
+    # unload the pagy default constant for efficiency
+    Pagy::I18n.clear.instance_eval do
+      undef :load
+      undef :t
+    end
 
-    module I18n
+    module UseI18nGem
       def pagy_t(key, **opts) = ::I18n.t(key, **opts)
     end
-    prepend I18n
+    prepend UseI18nGem
 
   end
 end

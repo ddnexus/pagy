@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
@@ -9,7 +8,7 @@ describe Pagy::Frontend do
   let(:view) { MockView.new }
   let(:pagy_test_id) { 'test-id' }
 
-  describe "#pagy_semantic_nav" do
+  describe '#pagy_semantic_nav' do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 1000, page: 1)
@@ -31,7 +30,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_semantic_nav_js" do
+  describe '#pagy_semantic_nav_js' do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 1000, page: 1)
@@ -49,6 +48,7 @@ describe Pagy::Frontend do
       pagy = Pagy.new(count: 1000, page: 50)
       _(view.pagy_semantic_nav_js(pagy, pagy_test_id)).must_equal \
         "<div id=\"test-id\" class=\"pagy-semantic-nav-js ui pagination menu\" role=\"navigation\" aria-label=\"pager\"></div><script type=\"application/json\" class=\"pagy-json\">[\"nav\",\"test-id\",{\"before\":\"<a href=\\\"/foo?page=49\\\"  class=\\\"item\\\" rel=\\\"prev\\\" aria-label=\\\"previous\\\"><i class=\\\"left small chevron icon\\\"></i></a>\",\"link\":\"<a href=\\\"/foo?page=__pagy_page__\\\"  class=\\\"item\\\" >__pagy_page__</a>\",\"active\":\"<a class=\\\"item active\\\">50</a>\",\"gap\":\"<div class=\\\"disabled item\\\">&hellip;</div>\",\"after\":\"<div class=\\\"item disabled\\\"><i class=\\\"right small chevron icon\\\"></i></div>\"},{\"0\":[1,\"gap\",46,47,48,49,\"50\"]},null]</script>"
+        "<div id=\"test-id\" class=\"pagy-semantic-nav-js ui pagination menu\" role=\"navigation\" aria-label=\"pager\"></div><script type=\"application/json\" class=\"pagy-json\">[\"nav\",\"test-id\",{\"before\":\"<a href=\\\"/foo?page=49\\\"  class=\\\"item\\\" rel=\\\"prev\\\" ><i class=\\\"left small chevron icon\\\"></i>', 'aria-label=\\\"previous\\\"</a>\",\"link\":\"<a href=\\\"/foo?page=__pagy_page__\\\"  class=\\\"item\\\" >__pagy_page__</a>\",\"active\":\"<a class=\\\"item active\\\">50</a>\",\"gap\":\"<div class=\\\"disabled item\\\">&hellip;</div>\",\"after\":\"<div class=\\\"item disabled\\\"><i class=\\\"right small chevron icon\\\"></i></div>\"},{\"0\":[1,\"gap\",46,47,48,49,\"50\"]},null]</script>"
     end
 
     it 'renders with :steps' do
@@ -59,7 +59,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_semantic_combo_nav_js" do
+  describe '#pagy_semantic_combo_nav_js' do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)

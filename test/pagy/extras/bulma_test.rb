@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
@@ -28,7 +27,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_bulma_nav_js" do
+  describe '#pagy_bulma_nav_js' do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 1000, page: 1)
@@ -52,7 +51,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe "#pagy_bulma_combo_nav_js" do
+  describe '#pagy_bulma_combo_nav_js' do
 
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)

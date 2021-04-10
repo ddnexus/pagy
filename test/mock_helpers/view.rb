@@ -1,4 +1,3 @@
-# encoding: utf-8
 # frozen_string_literal: true
 
 class MockView
@@ -6,6 +5,10 @@ class MockView
 
   def initialize(url='http://example.com:3000/foo?page=2')
     @url = url
+  end
+
+  def test_i18n_call
+    I18n.t('test')
   end
 
   def request
