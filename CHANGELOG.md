@@ -1,5 +1,43 @@
 # CHANGELOG
 
+## Version 4.2.0
+
+### Changes
+
+- Fix for `Pagy::Frontend::I18n` conflicting with rthe `I18n` gem namespace after inclusion and safer renaming of other modules
+- Fix the simplecov setup reporting less coverage than what's actually covered
+- Updated Tailwind styles
+- Included the test dir in the coverage check, refactoring and additions of tests
+- Big code restyling following ruby 3.0 syntax and cops; tried to make the code simpler, more readable and verbose with almost negligible performance loss.
+
+### Commits
+
+- [a62ae94](http://github.com/ddnexus/pagy/commit/a62ae94): Updated README
+- [9efb908](http://github.com/ddnexus/pagy/commit/9efb908): removed ENABLE_OJ from tests and travis config
+- [dede255](http://github.com/ddnexus/pagy/commit/dede255): removed RUN_SIMPLECOV option
+- [fc614bd](http://github.com/ddnexus/pagy/commit/fc614bd): fix/refactoring for simplecov setup reporting less coverage than what's actually covered
+- [5e6ecf1](http://github.com/ddnexus/pagy/commit/5e6ecf1): refactoring of Rakefile
+- [aea25a1](http://github.com/ddnexus/pagy/commit/aea25a1): code-restyling: test
+- [cb67353](http://github.com/ddnexus/pagy/commit/cb67353): code-restyling: extras
+- [b2dc35a](http://github.com/ddnexus/pagy/commit/b2dc35a): code-restyling: locales, config
+- [b638764](http://github.com/ddnexus/pagy/commit/b638764): code-restyling: root files and Pagy Core
+- [aac54aa](http://github.com/ddnexus/pagy/commit/aac54aa): Renaming prepended modules with more specific and safe naming convention (see Issue #290 PR #293)
+- [3eef450](http://github.com/ddnexus/pagy/commit/3eef450): Simpler test for I18n namespace conflict
+- [b2aaa01](http://github.com/ddnexus/pagy/commit/b2aaa01): README: fix typo (#289) [ci-skip]
+- [3a9e70f](http://github.com/ddnexus/pagy/commit/3a9e70f): Fix extra i18n namespacing (#293)* Add a test that looks at i18n working in Modules included (fixes #290)
+- [8cd25d2](http://github.com/ddnexus/pagy/commit/8cd25d2): renamed docker > pagy-on-docker
+- [a8060b1](http://github.com/ddnexus/pagy/commit/a8060b1): fixed doc typos
+- [f0e0d41](http://github.com/ddnexus/pagy/commit/f0e0d41): removed require for minitest/reporters
+- [c178c6f](http://github.com/ddnexus/pagy/commit/c178c6f): docker README fixes [ci-skip]
+- [ac988fd](http://github.com/ddnexus/pagy/commit/ac988fd): docs fixes
+- [4d20d34](http://github.com/ddnexus/pagy/commit/4d20d34): Update Tailwind styles (#285)
+- [9a14400](http://github.com/ddnexus/pagy/commit/9a14400): Small README addition [ci-skip]
+- [9b40cdd](http://github.com/ddnexus/pagy/commit/9b40cdd): Update frontend.md (#284) [ci-skip]
+- [2bbf204](http://github.com/ddnexus/pagy/commit/2bbf204): added Mike Rogers' screencast [ci-skip]
+- [b24b86d](http://github.com/ddnexus/pagy/commit/b24b86d): Added note for brakeman false positive warnings (closes #243) [ci-skip]
+- [df3c8d6](http://github.com/ddnexus/pagy/commit/df3c8d6): small syntax normalization
+- [618d226](http://github.com/ddnexus/pagy/commit/618d226): docker README fix [ci-skip]
+
 ## Version 4.1.0
 
 ### Changes
