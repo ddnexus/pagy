@@ -2,8 +2,8 @@
 
 [![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
 ![ruby](https://img.shields.io/badge/ruby-3.0+-ruby.svg?colorA=99004d&colorB=cc0066)
-[![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 [![Build Status](https://img.shields.io/travis/ddnexus/pagy/master.svg?colorA=1f7a1f&colorB=2aa22a)](https://travis-ci.org/ddnexus/pagy/branches)
+[![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 ![Rubocop Status](https://img.shields.io/badge/rubocop-passing-rubocop.svg?colorA=1f7a1f&colorB=2aa22a)
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)
  [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
@@ -194,7 +194,7 @@ Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check
 
 Pull Requests are welcome!
 
-Setting up a development environment for Pagy is very simple if you use the [docker environment](https://github.com/ddnexus/pagy/tree/master/docker).
+Setting up a development environment for Pagy is very simple if you use the [docker environment](https://github.com/ddnexus/pagy/tree/master/pagy-on-docker).
 
 Before spending time creating a (potentially complex) Pull Request, you can [Confirm on Gitter](https://gitter.im/ruby-pagy/Lobby) whether your proposed changes are going to be useful for most users.
 
