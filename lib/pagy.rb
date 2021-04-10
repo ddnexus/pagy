@@ -7,7 +7,9 @@ require 'pathname'
 class Pagy ; VERSION = '4.1.0'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
-  def self.root = @root ||= Pathname.new(__FILE__).dirname.freeze
+  def self.root
+    @root ||= Pathname.new(__FILE__).dirname.freeze
+  end
 
   # default vars
   VARS = { page:1, items:20, outset:0, size:[1,4,4,1], page_param: :page, params:{}, anchor:'', link_extra:'', i18n_key:'pagy.item_name', cycle:false }
