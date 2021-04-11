@@ -3,13 +3,13 @@
 [![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
 ![ruby](https://img.shields.io/badge/ruby-1.9+-ruby.svg?colorA=99004d&colorB=cc0066)
 ![jruby](https://img.shields.io/badge/jruby-1.7+-jruby.svg?colorA=99004d&colorB=cc0066)
-[![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 [![Build Status](https://img.shields.io/travis/ddnexus/pagy/master.svg?colorA=1f7a1f&colorB=2aa22a)](https://travis-ci.org/ddnexus/pagy/branches)
+[![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)
+ [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
 ![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
 [![Chat](http://img.shields.io/badge/gitter-ruby--pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
- [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
@@ -211,6 +211,8 @@ Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check
 ### Contributions
 
 Pull Requests are welcome!
+
+Setting up a development environment for Pagy is very simple if you use the [docker environment](https://github.com/ddnexus/pagy/tree/pagy3/pagy3-on-docker).
 
 Before spending time creating a (potentially complex) Pull Request, you can [Confirm on Gitter](https://gitter.im/ruby-pagy/Lobby) whether your proposed changes are going to be useful for most users.
 

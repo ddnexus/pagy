@@ -32,14 +32,14 @@ You can also specify a few other variables used in the `docker-compose.yml` file
 If you already set the variables:
 
 ```sh
-cd pagy-on-docker
+cd pagy3-on-docker
 docker-compose build pagy pagy-jekyll
 ```
 
 or just set them with the command. For example:
 
 ```sh
-cd pagy-on-docker
+cd pagy3-on-docker
 GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
 ```
 
@@ -47,7 +47,7 @@ You need to run this only once, when you build the images. After that you just r
 
 ## Use it
 
-Run the containers from the docker dir:
+Run the containers from the pagy3-on-docker dir:
 
 ```sh
 docker-compose up
@@ -58,6 +58,8 @@ Open a terminal in the pagy container and run the usual `bundle install` to inst
 Then you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
 
 Run all the tests by simply running `rake` without arguments.
+
+Notice: The rake taks is needed because certain tests must run in an isolated ruby process. For example, certain extras override the core pagy methods and we need to test how pagy works with or without the extra, or with many extras at the same time. You can get the full list of of all the test tasks (and test files that each task run) with `rake -D test_*`
 
 Check the coverage at `http://0.0.0.0:63342/pagy/coverage`
 
