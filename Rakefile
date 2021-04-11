@@ -18,9 +18,11 @@ def define_test_task(name, *files)
   end
 end
 
-define_test_task :test_extra_items, 'test/**/items_test.rb'
+define_test_task :test_extra_items_and_countless, 'test/**/items_and_countless_test.rb'
+define_test_task :test_extra_items_and_elasticsearch, 'test/**/items_and_elasticsearch_test.rb'
 define_test_task :test_extra_headers, 'test/**/headers_test.rb'
 define_test_task :test_extra_i18n, 'test/**/i18n_test.rb'
+define_test_task :test_extra_i18n_old, 'test/**/i18n_old_test.rb'
 define_test_task :test_extra_overflow, 'test/**/overflow_test.rb'
 define_test_task :test_extra_trim, 'test/**/trim_test.rb'
 define_test_task :test_extra_elasticsearch, 'test/**/elasticsearch_rails_test.rb', 'test/**/searchkick_test.rb'

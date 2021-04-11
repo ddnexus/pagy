@@ -3,8 +3,6 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/countless'
-require_relative '../../mock_helpers/elasticsearch_rails'
-require_relative '../../mock_helpers/searchkick'
 require 'pagy/extras/items'
 
 SimpleCov.command_name 'items' if ENV['RUN_SIMPLECOV'] == 'true'
@@ -26,9 +24,6 @@ describe Pagy::Backend do
         _(merged.keys).must_include :items
         _(merged[:items]).must_be_nil
       end
-      merged  = controller.send :pagy_elasticsearch_rails_get_vars, nil, vars
-      _(merged.keys).must_include :items
-      _(merged[:items]).must_equal 20
     end
 
     it 'uses the vars' do
@@ -38,13 +33,11 @@ describe Pagy::Backend do
       _(controller.params).must_equal params
 
       [:pagy, :pagy_countless].each do |method|
-        pagy, _ = controller.send method, @collection, vars
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 15
+        _(records.size).must_equal 15
       end
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, _ = controller.send meth, mod.pagy_search('a').records, vars
-        _(pagy.items).must_equal 15
-      end
+
     end
 
     it 'uses the params' do
@@ -54,14 +47,27 @@ describe Pagy::Backend do
       _(controller.params).must_equal params
 
       [:pagy, :pagy_countless].each do |method|
-        pagy, _ = controller.send method, @collection, vars
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 12
+        _(records.size).must_equal 12
       end
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, _ = controller.send meth, mod.pagy_search('a').records, vars
-        _(pagy.items).must_equal 12
-      end
+
     end
+
+    it 'uses the params without page' do
+      vars    = {}
+      params  = {:a=>"a", :items=>12}
+      controller = MockController.new params
+      _(controller.params).must_equal params
+
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
+        _(pagy.items).must_equal 12
+        _(records.size).must_equal 12
+      end
+
+    end
+
 
     it 'overrides the params' do
       vars    = {items: 21}
@@ -70,13 +76,11 @@ describe Pagy::Backend do
       _(controller.params).must_equal params
 
       [:pagy, :pagy_countless].each do |method|
-        pagy, _ = controller.send method, @collection, vars
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 21
+        _(records.size).must_equal 21
       end
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, _ = controller.send meth, mod.pagy_search('a').records, vars
-        _(pagy.items).must_equal 21
-      end
+
     end
 
     it 'uses the max_items default' do
@@ -86,13 +90,11 @@ describe Pagy::Backend do
       _(controller.params).must_equal params
 
       [:pagy, :pagy_countless].each do |method|
-        pagy, _ = controller.send method, @collection, vars
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 100
+        _(records.size).must_equal 100
       end
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, _ = controller.send meth, mod.pagy_search('a').records, vars
-        _(pagy.items).must_equal 100
-      end
+
     end
 
     it 'doesn\'t limit the items from vars' do
@@ -102,13 +104,11 @@ describe Pagy::Backend do
       _(controller.params).must_equal params
 
       [:pagy, :pagy_countless].each do |method|
-        pagy, _ = controller.send method, @collection, vars
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 1000
+        _(records.size).must_equal 1000
       end
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, _ = controller.send meth, mod.pagy_search('a').records, vars
-        _(pagy.items).must_equal 1000
-      end
+
     end
 
     it 'doesn\'t limit the items from default' do
@@ -119,12 +119,9 @@ describe Pagy::Backend do
       Pagy::VARS[:max_items] = nil
 
       [:pagy, :pagy_countless].each do |method|
-        pagy, _ = controller.send method, @collection, vars
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 1000
-      end
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, _ = controller.send meth, mod.pagy_search('a').records, vars
-        _(pagy.items).must_equal 1000
+        _(records.size).must_equal 1000
       end
       Pagy::VARS[:max_items] = 100 # reset default
     end
@@ -136,13 +133,11 @@ describe Pagy::Backend do
       _(controller.params).must_equal params
 
       [:pagy, :pagy_countless].each do |method|
-        pagy, _ = controller.send method, @collection, vars
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 14
+        _(records.size).must_equal 14
       end
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, _ = controller.send meth, mod.pagy_search('a').records, vars
-        _(pagy.items).must_equal 14
-      end
+
     end
 
     it 'uses items_param from default' do
@@ -153,13 +148,11 @@ describe Pagy::Backend do
       Pagy::VARS[:items_param] = :custom
 
       [:pagy, :pagy_countless].each do |method|
-        pagy, _ = controller.send method, @collection, vars
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 15
+        _(records.size).must_equal 15
       end
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, _ = controller.send meth, mod.pagy_search('a').records, vars
-        _(pagy.items).must_equal 15
-      end
+
       Pagy::VARS[:items_param] = :items  # reset default
     end
 
