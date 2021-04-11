@@ -5,8 +5,6 @@ require_relative '../../test_helper'
 require 'i18n'
 require 'pagy/extras/i18n'
 
-SimpleCov.command_name 'i18n' if ENV['RUN_SIMPLECOV'] == 'true'
-
 describe Pagy::Frontend do
 
   let(:view) { MockView.new }
