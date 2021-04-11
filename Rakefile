@@ -5,41 +5,42 @@ require 'bundler/setup'
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 
-# The extras that override the built-in methods need to be tested in isolation in order
-# to prevent them to change also the behavior and the result of the built-in tests.
-# We create a single task for each of them
-@test_tasks = {}
+# Separate tasks for each test that must run a process
+# in isolation in order to avoid affecting also other tests.
+test_tasks = {}
 
-def define_test_task(name, *files)
-  @test_tasks[name] = files
-  Rake::TestTask.new(name) do |t|
-    t.libs += %w[test lib]
-    t.test_files = FileList[*files]
+%w[ headers
+    i18n
+    i18n_old
+    overflow
+    support
+    shared
+    trim
+    items_trim
+    items_countless
+    items_elasticsearch
+    elasticsearch_rails
+    searchkick
+].each do |name|
+  task_name = :"test_#{name}"
+  file_path = "test/**/#{name}_test.rb"
+  test_tasks[task_name] = file_path
+  Rake::TestTask.new(task_name) do |t|
+    test_files    = FileList.new file_path
+    t.test_files  = test_files
+    t.description = "Run tests in #{test_files.join(', ')}"
   end
 end
 
-define_test_task :test_extra_items_and_countless, 'test/**/items_and_countless_test.rb'
-define_test_task :test_extra_items_and_elasticsearch, 'test/**/items_and_elasticsearch_test.rb'
-define_test_task :test_extra_headers, 'test/**/headers_test.rb'
-define_test_task :test_extra_i18n, 'test/**/i18n_test.rb'
-define_test_task :test_extra_i18n_old, 'test/**/i18n_old_test.rb'
-define_test_task :test_extra_overflow, 'test/**/overflow_test.rb'
-define_test_task :test_extra_trim, 'test/**/trim_test.rb'
-define_test_task :test_extra_elasticsearch, 'test/**/elasticsearch_rails_test.rb', 'test/**/searchkick_test.rb'
-define_test_task :test_support, 'test/**/support_test.rb'
-define_test_task :test_shared,'test/**/shared_test.rb'
-define_test_task :test_shared_combo, 'test/**/shared_combo_test.rb'
-
-# We exclude the files of the other tasks from the :test_main task
-Rake::TestTask.new(:test_main) do |t|
-  t.libs += %w[test lib]
-  t.test_files = FileList.new
-                         .include('test/**/*_test.rb')
-                         .exclude(*@test_tasks.values.flatten)
+# Collect the other tests
+Rake::TestTask.new(:test_others) do |t|
+  test_files    = FileList.new.include('test/**/*_test.rb').exclude(*test_tasks.values)
+  t.test_files  = test_files
+  t.description = "Run tests in #{test_files.join(', ')}"
 end
 
-desc 'Run all the individual test tasks'
-task :test => [:test_main, *@test_tasks.keys]
+desc "Run all the test tasks: #{test_tasks.keys.join(', ')}"
+task :test => [*test_tasks.keys, :test_others]
 
 if ENV['RUN_RUBOCOP'] == 'true'
   require "rubocop/rake_task"
@@ -51,3 +52,7 @@ if ENV['RUN_RUBOCOP'] == 'true'
 else
   task :default => [:test]
 end
+
+# get the full list of of all the test tasks
+# (and test files that each task run) with:
+# rake -D test_*
