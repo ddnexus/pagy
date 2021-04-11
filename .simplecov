@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 SimpleCov.start do
   if ENV['RUN_CODECOV'] == 'true'
     require 'codecov'

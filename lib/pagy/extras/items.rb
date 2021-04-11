@@ -36,6 +36,7 @@ class Pagy
   module Frontend
 
     module UseItemsExtra
+
       def pagy_url_for(page, pagy, url=nil)
         p_vars = pagy.vars
         params = request.GET.merge(p_vars[:params])
@@ -43,6 +44,7 @@ class Pagy
         params[p_vars[:items_param].to_s] = p_vars[:items]
         "#{request.base_url if url}#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
       end
+
     end
     prepend UseItemsExtra
 
