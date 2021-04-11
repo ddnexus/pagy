@@ -29,7 +29,8 @@ class Pagy
             unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
     end
     @pages = @last = [(@count.to_f / @items).ceil, 1].max
-    raise OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}" if @page > @last
+    raise OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}" \
+          if @page > @last
 
     @offset = @items * (@page - 1) + @outset
     @items  = @count - ((@pages-1) * @items) if @page == @last && @count.positive?
