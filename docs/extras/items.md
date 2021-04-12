@@ -63,7 +63,7 @@ pagy(scope, items: 30)
 
 ## Methods
 
-The `items` extra overrides a couple of builtin methods and adds a helper to the `Pagy::Frontend` module. All the overridden methods are alias-chained with `*_with_items` and `*_without_items`)
+The `items` extra overrides a couple of builtin methods and adds a helper to the `Pagy::Frontend` module.
 
 ### pagy_get_vars(collection, vars)
 

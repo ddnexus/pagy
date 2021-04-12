@@ -182,12 +182,12 @@ describe Pagy::Frontend do
 
   end
 
-  describe '#pagy_items_selector_js' do
+  describe '#pagy_items_selector_js with elasticsearch' do
 
     it 'renders items selector' do
       @pagy = Pagy.new count: 1000, page: 3
       _(view.pagy_items_selector_js(@pagy, 'test-id')).must_equal \
-        "<span id=\"test-id\">Show <input type=\"number\" min=\"1\" max=\"100\" value=\"20\" style=\"padding: 0; text-align: center; width: 3rem;\"> items per page</span><script type=\"application/json\" class=\"pagy-json\">[\"items_selector\",\"test-id\",41,\"<a href=\\\"/foo?page=__pagy_page__&items=__pagy_items__\\\"   style=\\\"display: none;\\\"></a>\",null]</script>"
+        "<span id=\"test-id\">Show <input type=\"number\" min=\"1\" max=\"100\" value=\"20\" style=\"padding: 0; text-align: center; width: 3rem;\"> items per page</span><script type=\"application/json\" class=\"pagy-json\">[\"items_selector\",\"test-id\",41,\"<a href=\\\"/foo?page=__pagy_page__&items=__pagy_items__\\\"   style=\\\"display: none;\\\"></a>\"]</script>"
     end
 
   end

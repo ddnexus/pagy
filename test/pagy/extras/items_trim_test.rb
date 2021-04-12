@@ -28,7 +28,7 @@ describe Pagy::Frontend do
 
   end
 
-  describe '#pagy_items_selector_js' do
+  describe '#pagy_items_selector_js with trim' do
 
     it 'renders items selector with trim' do
       pagy = Pagy.new count: 1000, page: 3
