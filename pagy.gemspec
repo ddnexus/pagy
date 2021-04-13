@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
   s.description   = 'Agnostic pagination in plain ruby: it works with any framework, ORM and DB type, with all kinds of collections, even pre-paginated, scopes, Arrays, JSON data... Easy, powerful, fast and light.'
   s.homepage      = 'https://github.com/ddnexus/pagy'
   s.license       = 'MIT'
-  s.files         = `git ls-files -z`.split("\x0").select{|f| f.start_with?('lib', 'pagy.gemspec', 'LICENSE') }
+  s.files         = Dir['lib/**/*', 'LICENSE']
   s.required_ruby_version = '>= 3.0'
 end
