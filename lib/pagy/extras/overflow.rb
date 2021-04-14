@@ -18,12 +18,12 @@ class Pagy
         raise                                     # same as without the extra
       when :last_page
         initial_page = @vars[:page]               # save the very initial page (even after re-run)
-        initialize(vars.merge!(page: @last))      # re-run with the last page
+        initialize vars.merge!(page: @last)       # re-run with the last page
         @vars[:page] = initial_page               # restore the inital page
       when :empty_page
         @offset = @items = @from = @to = 0        # vars relative to the actual page
         @prev = @last                             # prev relative to the actual page
-        extend(Series)                            # special series for :empty_page
+        extend Series                             # special series for :empty_page
       else
         raise VariableError.new(self), "expected :overflow variable in [:last_page, :empty_page, :exception]; got #{@vars[:overflow].inspect}"
       end

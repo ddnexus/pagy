@@ -73,7 +73,7 @@ class Pagy
     def pagy_link_proc(pagy, link_extra='')
       p_prev = pagy.prev
       p_next = pagy.next
-      left, right = %(<a href="#{pagy_url_for(PAGE_PLACEHOLDER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
+      left, right = %(<a href="#{pagy_url_for PAGE_PLACEHOLDER, pagy}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
       lambda do |num, text=num, extra=''|
         %(#{left}#{num}#{right}#{ case num
                                   when p_prev then ' rel="prev"'

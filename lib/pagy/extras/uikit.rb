@@ -10,12 +10,12 @@ class Pagy
     def pagy_uikit_nav(pagy)
       link = pagy_link_proc(pagy)
 
-      html = %(<ul class="pagy-uikit-nav uk-pagination uk-flex-center">#{pagy_uikit_prev_html(pagy, link)})
+      html = %(<ul class="pagy-uikit-nav uk-pagination uk-flex-center">#{pagy_uikit_prev_html pagy, link})
       pagy.series.each do |item|
         html << case    item
                 when Integer then %(<li>#{link.call item}</li>)
                 when String  then %(<li class="uk-active"><span>#{item}</span></li>)
-                when :gap    then %(<li class="uk-disabled"><span>#{pagy_t('pagy.nav.gap')}</span></li>)
+                when :gap    then %(<li class="uk-disabled"><span>#{pagy_t 'pagy.nav.gap'}</span></li>)
                 end
       end
       html << pagy_uikit_next_html(pagy, link)
@@ -46,18 +46,18 @@ class Pagy
           if (p_prev = pagy.prev)
             link.call p_prev, pagy_t('pagy.nav.prev'), 'class="uk-button uk-button-default"'
           else
-            %(<button class="uk-button uk-button-default" disabled>#{pagy_t('pagy.nav.prev')}</button>)
+            %(<button class="uk-button uk-button-default" disabled>#{pagy_t 'pagy.nav.prev'}</button>)
           end
       }<div class="uk-text-middle uk-margin-left uk-margin-right">#{
-          pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)
+          pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
       }</div>#{
           if (p_next = pagy.next)
-            link.call(p_next, pagy_t('pagy.nav.next'), 'class="uk-button uk-button-default"')
+            link.call p_next, pagy_t('pagy.nav.next'), 'class="uk-button uk-button-default"'
           else
-            %(<button class="uk-button uk-button-default" disabled>#{pagy_t('pagy.nav.next')}</button>)
+            %(<button class="uk-button uk-button-default" disabled>#{pagy_t 'pagy.nav.next'}</button>)
           end
       }</div>#{
-          pagy_json_tag(pagy, :combo_nav, id, p_page, pagy_marked_link(link))
+          pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
       })
     end
 
@@ -66,7 +66,7 @@ class Pagy
     private
 
       def pagy_uikit_prev_html(pagy, link)
-        previous_span = %(<span uk-pagination-previous>#{pagy_t('pagy.nav.prev')}</span>)
+        previous_span = %(<span uk-pagination-previous>#{pagy_t 'pagy.nav.prev'}</span>)
         if (p_prev = pagy.prev)
           %(<li>#{link.call p_prev, previous_span}</li>)
         else
@@ -75,7 +75,7 @@ class Pagy
       end
 
       def pagy_uikit_next_html(pagy, link)
-        next_span = %(<span uk-pagination-next>#{pagy_t('pagy.nav.next')}</span>)
+        next_span = %(<span uk-pagination-next>#{pagy_t 'pagy.nav.next'}</span>)
         if (p_next = pagy.next)
           %(<li>#{link.call p_next, next_span}</li>)
         else
