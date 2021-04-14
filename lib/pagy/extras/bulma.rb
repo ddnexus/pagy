@@ -17,7 +17,7 @@ class Pagy
         html << case item
                 when Integer then %(<li>#{link.call item, item, %(class="pagination-link" aria-label="goto page #{item}") }</li>)                           # page link
                 when String  then %(<li>#{link.call item, item, %(class="pagination-link is-current" aria-label="page #{item}" aria-current="page")}</li>)  # active page
-                when :gap    then %(<li><span class="pagination-ellipsis">#{pagy_t('pagy.nav.gap')}</span></li>)                                            # page gap
+                when :gap    then %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.nav.gap'}</span></li>)                                            # page gap
                 end
       end
       html << %(</ul></nav>)
@@ -48,14 +48,14 @@ class Pagy
           else
             %(<p class="control"><a class="button" disabled>#{pagy_t 'pagy.nav.prev'}</a></p>)
           end
-      }<div class="pagy-combo-input control level is-mobile">#{pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)}</div>#{
+      }<div class="pagy-combo-input control level is-mobile">#{pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</div>#{
           if (p_next  = pagy.next)
             %(<p class="control">#{link.call p_next, pagy_t('pagy.nav.next'), 'class="button" aria-label="next page"'}</p>)
           else
             %(<p class="control"><a class="button" disabled>#{pagy_t 'pagy.nav.next'}</a></p>)
           end
       }</div></nav>#{
-         pagy_json_tag(pagy, :combo_nav, id, p_page, pagy_marked_link(link))
+         pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
       })
     end
 

@@ -44,13 +44,13 @@ class Pagy
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem; margin: 0 0.3rem">)
 
       %(<div id="#{id}" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" aria-label="pager">#{
-         pagy_semantic_prev_html(pagy, link)
+         pagy_semantic_prev_html pagy, link
       }<div class="pagy-combo-input item">#{
-         pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)
+         pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
       }</div> #{
-         pagy_semantic_next_html(pagy, link)
+         pagy_semantic_next_html pagy, link
       }</div>#{
-         pagy_json_tag(pagy, :combo_nav, id, p_page, pagy_marked_link(link))
+         pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
       })
     end
 
@@ -60,7 +60,7 @@ class Pagy
         if (p_prev = pagy.prev)
           link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'
         else
-          %(<div class="item disabled"><i class="left small chevron icon"></i></div>)
+          +%(<div class="item disabled"><i class="left small chevron icon"></i></div>)
         end
       end
 
@@ -68,7 +68,7 @@ class Pagy
         if (p_next = pagy.next)
           link.call p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"'
         else
-          %(<div class="item disabled"><i class="right small chevron icon"></i></div>)
+          +%(<div class="item disabled"><i class="right small chevron icon"></i></div>)
         end
       end
 

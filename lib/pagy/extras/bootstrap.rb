@@ -56,7 +56,7 @@ class Pagy
             %(<a class="next btn btn-primary disabled" href="#">#{pagy_t 'pagy.nav.next' }</a>)
           end
       }</div></nav>#{
-          pagy_json_tag(pagy, :combo_nav, id, p_page, pagy_marked_link(link))
+          pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
       })
     end
 
