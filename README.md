@@ -18,7 +18,7 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 - __This version requires `ruby 3.0+`. For `ruby <3.0` use `pagy <4.0` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
 - Updating `pagy` from `3.0+` to `4.0+` requires a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
 - Added the docker development environment to ease contributions
-- Big code restyling following ruby 3.0 syntax and cops; tried to make the code simpler, more readable and verbose with almost negligible performance loss.
+- Big code restyling following ruby 3.0 syntax and cops; the code is simpler, more readable and verbose with yet improved performance.
 
 ## Comparison with other gems
 
