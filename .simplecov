@@ -2,7 +2,7 @@
 
 SimpleCov.start do
   if ENV['RUN_CODECOV'] == 'true'
-    require 'codecov'
+    require 'codecov' unless ENV['TRAVIS']
     SimpleCov.formatter = SimpleCov::Formatter::Codecov
   elsif ENV['SILENT_SIMPLECOV'] == 'true'
     SimpleCov.formatter = SimpleCov::Formatter::SimpleFormatter
