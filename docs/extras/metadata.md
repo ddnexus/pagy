@@ -25,6 +25,13 @@ render json: { data: records,
                pagy: pagy_metadata(pagy) }
 ```
 
+...and when you do this, you will get a ruby hash, which when converted to a JSON object, will give you the following which you can display as per your requirements:
+
+```javascript
+// `pagy_metadata(pagy).to_json``
+{"scaffold_url":"/products?page=__pagy_page__","first_url":"/products?page=1","prev_url":"/products?page=","page_url":"/products?page=1","next_url":"/products?page=2","last_url":"/products?page=4","count":73,"page":1,"items":20,"vars":{"page":1,"items":20,"outset":0,"size":[1,4,4,1],"page_param":"page","params":{},"anchor":"","i18n_key":"pagy.item_name","cycle":false,"metadata":["scaffold_url","first_url","prev_url","page_url","next_url","last_url","count","page","items","vars","pages","last","from","to","prev","next","series"],"steps":false,"overriding":true,"count":73},"pages":4,"last":4,"from":1,"to":20,"prev":null,"next":2,"series":["1",2,3,4]}
+```
+
 ## Files
 
 - [metadata.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/metadata.rb)
