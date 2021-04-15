@@ -2,7 +2,12 @@
 
 $VERBOSE = {'false' => false, 'true' => true}[ENV['VERBOSE']] if ENV['VERBOSE']
 
-require 'simplecov'
+if ENV['RUN_CODECOV']
+  require 'codecov'   # requires also simplecov
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+else
+  require 'simplecov'
+end
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
