@@ -5,7 +5,7 @@ title: Metadata
 
 If your app uses ruby as pure backend and some Javascript framework as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate all pagination UI directly in Javascript either with your own code or using some available component. 
 
-This extra makes that easy and efficient by adding a single method to the backend.
+How are you going to generate the pagination URLs? i.e. the previous URL, or the next URL etc.? This extra makes that easy and efficient by adding a single method to the backend. The metadata generated on the back end can be passed into your Javascript code to be used or displayed as per your requirements.
 
 ## Synopsis
 
