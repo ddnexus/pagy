@@ -3,6 +3,9 @@
 require 'bundler/setup'
 require 'bundler/gem_tasks'
 require 'rake/testtask'
+require 'rubocop/rake_task'
+
+RuboCop::RakeTask.new(:rubocop)
 
 # Separate tasks for each test that must run a process
 # in isolation in order to avoid affecting also other tests.
@@ -38,17 +41,9 @@ Rake::TestTask.new(:test_others) do |t|
   t.description = "Run tests in #{test_files.join(', ')}"
 end
 
+# get the full list of of all the test tasks (and test files that each task run) with:
+# rake -D test_*
 desc "Run all the test tasks: #{test_tasks.keys.join(', ')}"
 task test: [*test_tasks.keys, :test_others]
 
-task default: ( if ENV['RUN_RUBOCOP'] == 'true'
-                  require 'rubocop/rake_task'
-                  RuboCop::RakeTask.new(:rubocop)
-                  %i[test rubocop]
-                else
-                  [:test]
-                end )
-
-# get the full list of of all the test tasks
-# (and test files that each task run) with:
-# rake -D test_*
+task default: %i[test rubocop]
