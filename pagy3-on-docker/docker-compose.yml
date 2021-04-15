@@ -26,8 +26,7 @@ services:
       - user_home:/home/$USER
     environment:
       - ENABLE_OJ=${ENABLE_OJ:-true}
-      - RUN_SIMPLECOV=${RUN_SIMPLECOV:-true}
-      - RUN_RUBOCOP=${RUN_RUBOCOP:-true}
+      - RUBOCOP=${RUBOCOP:-true}
     stdin_open: true
     tty: true
 

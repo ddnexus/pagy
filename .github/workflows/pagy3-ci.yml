@@ -1,0 +1,71 @@
+name: Pagy3 CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  test:
+    name: Ruby ${{ matrix.ruby-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - ruby-version: 2.1
+            env:
+              BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.0+
+              ENABLE_OJ: true
+          - ruby-version: 2.2
+            env:
+              BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.0+
+              ENABLE_OJ: true
+          - ruby-version: 2.3
+            env:
+              BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.3+
+              ENABLE_OJ: true
+          - ruby-version: 2.4
+            env:
+              BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.3+
+              ENABLE_OJ: true
+          - ruby-version: 2.5
+            env:
+              BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.3+
+              ENABLE_OJ: true
+          - ruby-version: 2.6
+            env:
+              BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.6+
+              ENABLE_OJ: true
+          - ruby-version: 2.7
+            gemfile: .github/ci-gemfiles/ruby-latest
+            env:
+              BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.6+
+              ENABLE_OJ: true
+              RUBOCOP: true
+              CODECOV: true
+      fail-fast: false
+    env: ${{ matrix.env }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Run tests
+        run: bundle exec rake test
+
+      - name: Run rubocop
+        if: ${{ env.RUBOCOP == 'true' }}
+        run: bundle exec rubocop
+
+
+      - name: Codecov
+        if: ${{ env.CODECOV == 'true' }}
+        uses: codecov/codecov-action@v1.3.2
+        with:
+          fail_ci_if_error: true

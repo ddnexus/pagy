@@ -238,11 +238,9 @@ Many thanks to:
 
 ## Caveats
 
-### Jruby 9.2+ random exceptions in tests
+While Pagy < 4.0 still supports `ruby 1.9+` and `jruby 1.7+`, testing ancient and rare environments has become quite a burden. Ancient applications based on `ruby < 2.1` or `jruby` (all versions) are not very frequent, so the CI testing is limited to MRI ruby `2.1` to `2.7`.
 
-One of the latest jruby version (9.2.+) raises a couple of random `Java::JavaLang::NullPointerException` while running the frontend tests in Travis. That doesn't happen with previous versions.
-
-It might be just another jruby bug or a number of possible things related to the tests or the Travis build that might or might not affect real usage. I am done with debugging jruby weirdness, so I am not going to investigate it further. If you get any info about it, please, create an issue.
+That means that if you are using Pagy with any non-ci-tested version, you should be more careful when you upgrade the gem. If you discover any problem with a new pagy `3.*` update, please create an Issue, and eventually a PR based on the `dev3` branch. Thank you.
 
 ## License
 

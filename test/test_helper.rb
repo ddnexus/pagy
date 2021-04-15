@@ -3,7 +3,12 @@
 
 require 'bundler/setup'
 
-require 'simplecov' if ENV['RUN_SIMPLECOV'] == 'true'
+if ENV['CODECOV']
+  require 'codecov'
+  SimpleCov.formatter = Codecov::SimpleCov::Formatter
+elsif !ENV['CI']
+  require 'simplecov'
+end
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 

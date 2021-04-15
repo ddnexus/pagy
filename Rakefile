@@ -5,6 +5,11 @@ require 'bundler/setup'
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 
+if ENV['RUBOCOP'] || !ENV['CI']
+  require "rubocop/rake_task"
+  RuboCop::RakeTask.new(:rubocop)
+end
+
 # Separate tasks for each test that must run a process
 # in isolation in order to avoid affecting also other tests.
 test_tasks = {}
@@ -40,18 +45,10 @@ Rake::TestTask.new(:test_others) do |t|
 end
 
 desc "Run all the test tasks: #{test_tasks.keys.join(', ')}"
-task :test => [*test_tasks.keys, :test_others]
+task test: [*test_tasks.keys, :test_others]
 
-if ENV['RUN_RUBOCOP'] == 'true'
-  require "rubocop/rake_task"
-  RuboCop::RakeTask.new(:rubocop) do |t|
-    t.options = `git ls-files -z`.split("\x0")     # limit rubocop to the files in the repo
-    t.requires << 'rubocop-performance'
-  end
-  task :default => [:test, :rubocop]
-else
-  task :default => [:test]
-end
+task default: [:test, :rubocop]
+
 
 # get the full list of of all the test tasks
 # (and test files that each task run) with:
