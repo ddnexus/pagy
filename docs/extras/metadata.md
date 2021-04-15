@@ -3,7 +3,7 @@ title: Metadata
 ---
 # Metadata Extra
 
-If your app uses ruby as pure backend and some javascript frameworks as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate the whole pagination UI directly in javascript either with your own code or using some available component.
+If your app uses ruby as pure backend and some Javascript framework as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate all pagination UI directly in Javascript either with your own code or using some available component. 
 
 This extra makes that easy and efficient by adding a single method to the backend.
 
