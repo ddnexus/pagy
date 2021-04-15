@@ -17,6 +17,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'rubocop', '~> 1.11', require: false
   gem 'rubocop-minitest', require: false
+  gem 'rubocop-packaging', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rake', require: false
   gem 'simplecov', require: false

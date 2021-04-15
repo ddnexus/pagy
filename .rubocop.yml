@@ -1,12 +1,15 @@
 require:
+  - rubocop-minitest
+  - rubocop-packaging
   - rubocop-performance
   - rubocop-rake
-  - rubocop-minitest
 
 # trying to be good  O:)
 AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
+  Exclude:
+    - ___*/**/*    # '___' prefixed dirs are excluded
 
 # No, thank you!
 Layout:
