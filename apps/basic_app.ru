@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Basec self-contained rack/sinatra app
 # edit or duplicate this app to experiment with the pagy features
 
@@ -17,8 +19,8 @@ require 'pagy/extras/trim' if ENV['ENABLE_TRIM']
 require 'oj' if ENV['ENABLE_OJ'] == 'true'
 
 # sinatra setup
-require "sinatra/base"
-require "sinatra/reloader"
+require 'sinatra/base'
+require 'sinatra/reloader'
 
 
 # simple array-based collection that acts as standard DB collection
@@ -26,11 +28,11 @@ class MockCollection < Array
 
   def initialize(arr=Array(1..1000))
     super
-    @collection = self.clone
+    @collection = clone
   end
 
   def offset(value)
-    @collection = self[value..-1]
+    @collection = self[value..]
     self
   end
 
@@ -69,7 +71,7 @@ class PagyApp < Sinatra::Base
 
   get '/helpers' do
     collection = MockCollection.new
-    @pagy, _   = pagy(collection)
+    @pagy, = pagy(collection)
     erb :helpers
   end
 

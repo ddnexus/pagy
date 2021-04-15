@@ -43,9 +43,7 @@ task test: [*test_tasks.keys, :test_others]
 
 task default: ( if ENV['RUN_RUBOCOP'] == 'true'
                   require 'rubocop/rake_task'
-                  RuboCop::RakeTask.new(:rubocop) do |t|
-                    t.options = `git ls-files | grep -E '\\.rb$'`.split("\n") # limit rubocop to the files in the repo
-                  end
+                  RuboCop::RakeTask.new(:rubocop)
                   %i[test rubocop]
                 else
                   [:test]
