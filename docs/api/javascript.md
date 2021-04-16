@@ -14,6 +14,10 @@ A few helpers use javascript, and they are clearly recognizable by the `js` suff
 
 If you use any of them you should follow this documentation, if not, consider that Javascript is not used anywhere else, so you can skip this.
 
+### Basic principle
+
+All the `pagy*_js` helpers produce/render their component on the client side. The helper methods serve just a minimal HTML tag and a `JSON` tag that gets into the view. The javascript in the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file takes care to read the data embedded in the `ISON` tag and make it work in the browser.
+
 ## Usage
 
 Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window-load and eventually on [AJAX-load](#using-ajax).
