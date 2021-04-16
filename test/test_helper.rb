@@ -2,10 +2,11 @@
 
 $VERBOSE = {'false' => false, 'true' => true}[ENV['VERBOSE']] if ENV['VERBOSE']
 
-if ENV['RUN_CODECOV']
+if ENV['CODECOV']
   require 'codecov'   # requires also simplecov
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
-else
+  # if you want the formatter to upload the results use SimpleCov::Formatter::Codecov instead
+  SimpleCov.formatter = Codecov::SimpleCov::Formatter
+elsif !ENV['CI']
   require 'simplecov'
 end
 

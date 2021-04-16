@@ -9,7 +9,8 @@ AllCops:
   TargetRubyVersion: 3.0
   NewCops: enable
   Exclude:
-    - ___*/**/*    # '___' prefixed dirs are excluded
+    - ___*/**/*           # '___' prefixed dirs are excluded
+    - vendor/bundle/**/*  # avoid Error: RuboCop found unsupported Ruby version 2.1 in `TargetRubyVersion` parameter (in vendor/bundle/ruby/3.0.0/gems/rainbow-3.0.0/.rubocop.yml).
 
 # No, thank you!
 Layout:

@@ -4,6 +4,7 @@ gem 'rake'
 gem 'rack'
 gem 'i18n'
 gem 'minitest'
+gem 'ansi'
 
 gem 'oj', require: false     # false is for testing with or without it
 
