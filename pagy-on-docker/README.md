@@ -32,14 +32,16 @@ You can also specify a few other variables used in the `docker-compose.yml` file
 If you already set the variables:
 
 ```sh
-cd docker
+# start in your pagy root directory
+cd pagy-on-docker/
 docker-compose build pagy pagy-jekyll
 ```
 
 or just set them with the command. For example:
 
 ```sh
-cd docker
+# start in your pagy root directory
+cd pagy-on-docker/
 GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
 ```
 
