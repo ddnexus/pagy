@@ -8,8 +8,7 @@ gem 'i18n'
 gem 'oj', require: false     # false is for testing with or without it
 gem 'rack'
 gem 'rake'
-
-gem 'puma'
+gem 'rake-manifest'
 
 group :test do
   gem 'codecov', require:  false
@@ -24,6 +23,7 @@ group :test do
   end
 
 group :apps do
+  gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
   # gem 'slim'

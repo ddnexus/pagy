@@ -7,6 +7,18 @@ require 'rubocop/rake_task'
 
 RuboCop::RakeTask.new(:rubocop)
 
+unless ENV['CI']
+  require 'rake/manifest'
+  Rake::Manifest::Task.new do |t|
+    t.patterns      = %w[lib/**/* LICENSE.txt]
+    t.patterns      = FileList.new.include('lib/**/*', 'LICENSE.txt').exclude('**/*.md')
+    t.manifest_file = 'pagy.manifest'
+  end
+
+  desc 'Build the gem, checking the manifest first'
+  task build: 'manifest:check'
+end
+
 # Separate tasks for each test that must run a process
 # in isolation in order to avoid affecting also other tests.
 test_tasks = {}
