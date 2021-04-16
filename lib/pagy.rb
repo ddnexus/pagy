@@ -44,7 +44,7 @@ class Pagy
   def series(size=@vars[:size])
     return [] if size.empty?
     raise VariableError.new(self), "expected 4 items >= 0 in :size; got #{size.inspect}" \
-          unless size.size == 4 && size.all?{ |num| num >= 0 rescue false }  # rubocop:disable Style/RescueModifier
+          unless size.size == 4 && size.all?{ |num| !num.negative? rescue false }  # rubocop:disable Style/RescueModifier
     # This algorithm is up to ~5x faster and ~2.3x lighter than the previous one (pagy < 4.3)
     left_gap_start  =     1 + size[0]
     left_gap_end    = @page - size[1] - 1
