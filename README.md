@@ -194,7 +194,7 @@ Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check
 
 Pull Requests are welcome!
 
-Setting up a development environment for Pagy is very simple if you use the [docker environment](https://github.com/ddnexus/pagy/tree/master/docker).
+Setting up a development environment for Pagy is very simple if you use the [docker environment](https://github.com/ddnexus/pagy/tree/master/pagy-on-docker).
 
 Before spending time creating a (potentially complex) Pull Request, you can [Confirm on Gitter](https://gitter.im/ruby-pagy/Lobby) whether your proposed changes are going to be useful for most users.
 
