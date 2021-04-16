@@ -1,0 +1,42 @@
+name: Pagy CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  test:
+    name: Ruby ${{ matrix.ruby-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - ruby-version: 3.0
+            env:
+              BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-3.0
+              CODECOV: true
+      fail-fast: false
+    env: ${{ matrix.env }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Run tests
+        run: bundle exec rake test
+
+      - name: Run rubocop for github
+        run: bundle exec rubocop --format github
+
+      - name: Codecov
+        if: ${{ env.CODECOV == 'true' }}
+        uses: codecov/codecov-action@v1.3.2
+        with:
+          fail_ci_if_error: true
