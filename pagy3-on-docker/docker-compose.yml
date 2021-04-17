@@ -27,6 +27,9 @@ services:
     environment:
       - ENABLE_OJ=${ENABLE_OJ:-true}
       - RUBOCOP=${RUBOCOP:-true}
+      - COVERAGE_REPORT=${COVERAGE_REPORT:-false}
+    ports:
+      - "1234:1234"   # RubyMine debugger
     stdin_open: true
     tty: true
 
