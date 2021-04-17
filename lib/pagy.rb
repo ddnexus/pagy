@@ -32,18 +32,31 @@ class Pagy ; VERSION = '3.12.0'
   end
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-  def series(size=@vars[:size])
-    (series = []) and size.empty? and return series
-    4.times{|i| (size[i]>=0 rescue nil) or raise(VariableError.new(self), "expected 4 items >= 0 in :size; got #{size.inspect}")}
-    [*0..size[0], *@page-size[1]..@page+size[2], *@last-size[3]+1..@last+1].sort!.each_cons(2) do |a, b|
-      if    a<0 || a==b || a>@last                                        # skip out of range and duplicates
-      elsif a+1 == b; series.push(a)                                      # no gap     -> no additions
-      elsif a+2 == b; series.push(a, a+1)                                 # 1 page gap -> fill with missing page
-      else            series.push(a, :gap)                                # n page gap -> add gap
-      end                                                                 # skip the end boundary (last+1)
-    end                                                                   # shift the start boundary (0) and
-    series.shift; series[series.index(@page)] = @page.to_s; series        # convert the current page to String
+def series(size=@vars[:size])
+  return [] if size.empty?
+  raise VariableError.new(self), "expected 4 items >= 0 in :size; got #{size.inspect}" \
+          unless size.size == 4 && size.all?{ |num| num >= 0 rescue false }  # rubocop:disable Style/RescueModifier
+  # This algorithm (backported from pagy 4.3) is up to ~5x faster and ~2.3x lighter than the previous one
+  left_gap_start  =     1 + size[0]
+  left_gap_end    = @page - size[1] - 1
+  right_gap_start = @page + size[2] + 1
+  right_gap_end   = @last - size[3]
+  left_gap_end    = right_gap_end  if left_gap_end   > right_gap_end
+  right_gap_start = left_gap_start if left_gap_start > right_gap_start
+  series = []
+  start  = 1
+  if (left_gap_end - left_gap_start) > 0
+    series.push(*start..(left_gap_start - 1), :gap)
+    start = left_gap_end + 1
   end
+  if (right_gap_end - right_gap_start) > 0
+    series.push(*start..(right_gap_start - 1), :gap)
+    start = right_gap_end + 1
+  end
+  series.push(*start..@last)
+  series[series.index(@page)] = @page.to_s
+  series
+end
 
 end
 
