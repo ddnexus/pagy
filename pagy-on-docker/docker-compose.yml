@@ -26,7 +26,7 @@ services:
       - user_home:/home/$USER
     environment:
       - ENABLE_OJ=${ENABLE_OJ:-true}
-      - RUN_RUBOCOP=${RUN_RUBOCOP:-true}
+      - COVERAGE_REPORT=${COVERAGE_REPORT:-false}
     ports:
       - "1234:1234"   # RubyMine debugger
     stdin_open: true

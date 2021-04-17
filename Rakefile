@@ -4,13 +4,13 @@ require 'bundler/setup'
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rubocop/rake_task'
+require 'json'
 
 RuboCop::RakeTask.new(:rubocop)
 
 unless ENV['CI']
   require 'rake/manifest'
   Rake::Manifest::Task.new do |t|
-    t.patterns      = %w[lib/**/* LICENSE.txt]
     t.patterns      = FileList.new.include('lib/**/*', 'LICENSE.txt').exclude('**/*.md')
     t.manifest_file = 'pagy.manifest'
   end
@@ -53,9 +53,20 @@ Rake::TestTask.new(:test_others) do |t|
   t.description = "Run tests in #{test_files.join(', ')}"
 end
 
+desc 'Display SimpleCov coverage summary'
+task :coverage_summary do
+  last_run = JSON.load_file('coverage/.last_run.json')
+  result   = last_run['result']['line']
+  puts "\n>>> SimpleCov Coverage: #{result}% <<<"
+  if result < 100.0
+    Warning.warn "!!!!! Missing #{(100.0 - result).round(2)}% coverage !!!!!"
+    puts "\n(run it again with COVERAGE_REPORT=true for a line-by-line HTML report @ coverage/index.html)" unless ENV['COVERAGE_REPORT']
+  end
+end
+
 # get the full list of of all the test tasks (and test files that each task run) with:
 # rake -D test_*
 desc "Run all the test tasks: #{test_tasks.keys.join(', ')}"
 task test: [*test_tasks.keys, :test_others]
 
-task default: %i[test rubocop]
+task default: %i[test rubocop coverage_summary]
