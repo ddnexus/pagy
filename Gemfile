@@ -11,15 +11,15 @@ gem 'i18n'
 
 gem 'oj', require: false     # false is for testing with or without it
 
-gem 'puma'
-
 group :test do
-  gem 'rubocop', '~> 0.82.0'
-  gem 'rubocop-performance', '~> 1.5.0'
-  gem 'simplecov', require: false
   gem 'codecov', require:  false
   gem 'minitest'
   gem 'minitest-reporters'
+  gem 'rubocop'
+  gem 'rubocop-minitest'
+  gem 'rubocop-performance'
+  gem 'rubocop-rake'
+  gem 'simplecov', require: false
 end
 
 group :apps do
