@@ -8,4 +8,4 @@ gem 'minitest',   '~> 5.0'
 gem 'rack',       '1.6.11'
 gem 'i18n',       '1.1.0'
 
-gem 'oj', require: false if ENV['ENABLE_OJ']
+gem 'oj', require: false

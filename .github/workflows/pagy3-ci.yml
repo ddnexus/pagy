@@ -16,32 +16,25 @@ jobs:
           - ruby-version: 2.1
             env:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.0+
-              ENABLE_OJ: true
           - ruby-version: 2.2
             env:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.0+
-              ENABLE_OJ: true
           - ruby-version: 2.3
             env:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.3+
-              ENABLE_OJ: true
           - ruby-version: 2.4
             env:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.3+
-              ENABLE_OJ: true
           - ruby-version: 2.5
             env:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.3+
-              ENABLE_OJ: true
           - ruby-version: 2.6
             env:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.6+
-              ENABLE_OJ: true
           - ruby-version: 2.7
             gemfile: .github/ci-gemfiles/ruby-latest
             env:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.6+
-              ENABLE_OJ: true
               RUBOCOP: true
               CODECOV: true
       fail-fast: false

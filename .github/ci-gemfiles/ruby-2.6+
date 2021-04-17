@@ -10,8 +10,10 @@ gem 'i18n',       '~> 1.6.0'
 
 gem 'oj', require: false
 
-gem 'rubocop', '~> 0.82.0'
-gem 'rubocop-performance', '~> 1.5.0'
+gem 'rubocop'
+gem 'rubocop-minitest'
+gem 'rubocop-performance'
+gem 'rubocop-rake'
 
 gem 'simplecov', :require => false
 gem 'codecov', :require => false

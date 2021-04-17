@@ -25,7 +25,6 @@ services:
       - bundle:/usr/local/bundle
       - user_home:/home/$USER
     environment:
-      - ENABLE_OJ=${ENABLE_OJ:-true}
       - RUBOCOP=${RUBOCOP:-true}
       - COVERAGE_REPORT=${COVERAGE_REPORT:-false}
     ports:
