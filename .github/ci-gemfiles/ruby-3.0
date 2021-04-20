@@ -4,13 +4,15 @@ gem 'rake'
 gem 'rack'
 gem 'i18n'
 gem 'minitest'
+gem 'ansi'
 
 gem 'oj', require: false     # false is for testing with or without it
 
 gem 'rubocop', '~> 1.11', require: false
+gem 'rubocop-minitest', require: false
+gem 'rubocop-packaging', require: false
 gem 'rubocop-performance', require: false
 gem 'rubocop-rake', require: false
-gem 'rubocop-minitest', require: false
 
 gem 'simplecov', require: false
 gem 'codecov', require:  false

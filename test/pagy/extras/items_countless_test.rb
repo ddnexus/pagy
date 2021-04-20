@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require_relative '../../mock_helpers/elasticsearch_rails'
-require_relative '../../mock_helpers/searchkick'
+require 'pagy/extras/countless'
 require 'pagy/extras/items'
 
 describe Pagy::Backend do
@@ -16,10 +15,11 @@ describe Pagy::Backend do
     it 'uses the defaults' do
       vars    = {}
       controller = MockController.new
-      [:pagy_elasticsearch_rails_get_vars, :pagy_searchkick_get_vars].each do |method|
-        merged  = controller.send method, nil, vars
+
+      [:pagy_get_vars, :pagy_countless_get_vars].each do |method|
+        merged  = controller.send method, @collection, vars
         _(merged.keys).must_include :items
-        _(merged[:items]).must_equal 20
+        _(merged[:items]).must_be_nil
       end
     end
 
@@ -29,11 +29,12 @@ describe Pagy::Backend do
       controller = MockController.new params
       _(controller.params).must_equal params
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 15
         _(records.size).must_equal 15
       end
+
     end
 
     it 'uses the params' do
@@ -42,11 +43,12 @@ describe Pagy::Backend do
       controller = MockController.new params
       _(controller.params).must_equal params
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 12
         _(records.size).must_equal 12
       end
+
     end
 
     it 'uses the params without page' do
@@ -55,11 +57,12 @@ describe Pagy::Backend do
       controller = MockController.new params
       _(controller.params).must_equal params
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 12
         _(records.size).must_equal 12
       end
+
     end
 
 
@@ -69,11 +72,12 @@ describe Pagy::Backend do
       controller = MockController.new params
       _(controller.params).must_equal params
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 21
         _(records.size).must_equal 21
       end
+
     end
 
     it 'uses the max_items default' do
@@ -82,11 +86,12 @@ describe Pagy::Backend do
       controller = MockController.new params
       _(controller.params).must_equal params
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 100
         _(records.size).must_equal 100
       end
+
     end
 
     it 'doesn\'t limit the items from vars' do
@@ -95,11 +100,12 @@ describe Pagy::Backend do
       controller = MockController.new params
       _(controller.params).must_equal params
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 1000
         _(records.size).must_equal 1000
       end
+
     end
 
     it 'doesn\'t limit the items from default' do
@@ -109,8 +115,8 @@ describe Pagy::Backend do
       _(controller.params).must_equal params
       Pagy::VARS[:max_items] = nil
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 1000
         _(records.size).must_equal 1000
       end
@@ -123,11 +129,12 @@ describe Pagy::Backend do
       controller = MockController.new params
       _(controller.params).must_equal params
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 14
         _(records.size).must_equal 14
       end
+
     end
 
     it 'uses items_param from default' do
@@ -137,11 +144,12 @@ describe Pagy::Backend do
       _(controller.params).must_equal params
       Pagy::VARS[:items_param] = :custom
 
-      [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-        pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+      [:pagy, :pagy_countless].each do |method|
+        pagy, records = controller.send method, @collection, vars
         _(pagy.items).must_equal 15
         _(records.size).must_equal 15
       end
+
       Pagy::VARS[:items_param] = :items  # reset default
     end
 
@@ -182,12 +190,12 @@ describe Pagy::Frontend do
 
   end
 
-  describe '#pagy_items_selector_js' do
+  describe '#pagy_items_selector_js with countless' do
 
     it 'renders items selector' do
       @pagy = Pagy.new count: 1000, page: 3
       _(view.pagy_items_selector_js(@pagy, 'test-id')).must_equal \
-        "<span id=\"test-id\">Show <input type=\"number\" min=\"1\" max=\"100\" value=\"20\" style=\"padding: 0; text-align: center; width: 3rem;\"> items per page</span><script type=\"application/json\" class=\"pagy-json\">[\"items_selector\",\"test-id\",41,\"<a href=\\\"/foo?page=__pagy_page__&items=__pagy_items__\\\"   style=\\\"display: none;\\\"></a>\",null]</script>"
+        "<span id=\"test-id\">Show <input type=\"number\" min=\"1\" max=\"100\" value=\"20\" style=\"padding: 0; text-align: center; width: 3rem;\"> items per page</span><script type=\"application/json\" class=\"pagy-json\">[\"items_selector\",\"test-id\",41,\"<a href=\\\"/foo?page=__pagy_page__&items=__pagy_items__\\\"   style=\\\"display: none;\\\"></a>\"]</script>"
     end
 
   end

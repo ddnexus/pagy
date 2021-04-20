@@ -1,4 +1,6 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
 
 # gemspec
 
@@ -6,21 +8,22 @@ gem 'i18n'
 gem 'oj', require: false     # false is for testing with or without it
 gem 'rack'
 gem 'rake'
-
-gem 'puma'
+gem 'rake-manifest'
 
 group :test do
   gem 'codecov', require:  false
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'rubocop', '~> 1.11', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rake', require: false
-  gem 'rubocop-minitest', require: false
+  gem 'rubocop', '~> 1.12'
+  gem 'rubocop-minitest'
+  gem 'rubocop-packaging'
+  gem 'rubocop-performance'
+  gem 'rubocop-rake'
   gem 'simplecov', require: false
-  end
+end
 
 group :apps do
+  gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
   # gem 'slim'
@@ -32,3 +35,8 @@ group :performance do
   gem 'kalibera'
   gem 'memory_profiler'
 end
+
+# group :ide_development do
+#   gem 'debase'
+#   gem 'ruby-debug-ide'
+# end

@@ -65,9 +65,7 @@ class Pagy
               else                       'pagy.info.multiple_pages'
               end
       pagy_t key, item_name: item_name || pagy_t(pagy.vars[:i18n_key], count: count),
-                  count:     count,
-                  from:      pagy.from,
-                  to:        pagy.to
+                  count: count, from: pagy.from, to: pagy.to
     end
 
     # Returns a performance optimized proc to generate the HTML links
@@ -75,18 +73,18 @@ class Pagy
     def pagy_link_proc(pagy, link_extra='')
       p_prev = pagy.prev
       p_next = pagy.next
-      left, right = %(<a href="#{pagy_url_for(PAGE_PLACEHOLDER, pagy)}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
+      left, right = %(<a href="#{pagy_url_for PAGE_PLACEHOLDER, pagy}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
       lambda do |num, text=num, extra=''|
-        "#{left}#{num}#{right}#{ case num
-                                 when p_prev then ' rel="prev"'
-                                 when p_next then ' rel="next"'
-                                 else             ''
-                                 end } #{extra}>#{text}</a>"
+        %(#{left}#{num}#{right}#{ case num
+                                  when p_prev then ' rel="prev"'
+                                  when p_next then ' rel="next"'
+                                  else             ''
+                                  end } #{extra}>#{text}</a>)
       end
     end
 
     # Similar to I18n.t: just ~18x faster using ~10x less memory
-    # (@pagy_locale explicitly initilized in order to avoid warning)
+    # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_t(key, **opts)
       Pagy::I18n.t @pagy_locale||=nil, key, **opts
     end

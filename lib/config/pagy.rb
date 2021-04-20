@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (4.2.0)
+# Pagy initializer file (4.3.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -104,7 +104,9 @@
 # Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/extras/trim
 # require 'pagy/extras/trim'
-
+# after requiring it will trim by default
+# set to false if you want to make :trim an opt-in variable
+# Pagy::VARS[:trim] = true # default
 
 
 # Pagy Variables

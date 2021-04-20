@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## Version 4.3.0
+
+### Changes
+
+- Improved efficiency of #series algorithm
+- Added new features to the trim extra
+- Added rubocop compliance (additional rubocop-packaging plugin)
+- Many test tasks improvements
+- CI transition from Travis to Github Action
+
+### Commits
+
+- [80cef45](http://github.com/ddnexus/pagy/commit/80cef45): updated Gemfile
+- [3cc464b](http://github.com/ddnexus/pagy/commit/3cc464b): added coverage_summary at the end of the default task; added possibility of creating a coverage report
+- [0424b71](http://github.com/ddnexus/pagy/commit/0424b71): docs and comment additions/fixes [skip ci]
+- [b6115e7](http://github.com/ddnexus/pagy/commit/b6115e7): Added explicit pagy.manifest to comply with rubocop-packaging (see also #297)
+- [ef1980e](http://github.com/ddnexus/pagy/commit/ef1980e): refactoring of CI from Travis to Github Actions
+- [9fb1195](http://github.com/ddnexus/pagy/commit/9fb1195): more verbose condition
+- [fe565eb](http://github.com/ddnexus/pagy/commit/fe565eb): removed RUN_RUBOCOP
+- [60be542](http://github.com/ddnexus/pagy/commit/60be542): fix missing codecov formatter/circular reference problem
+- [8c4ccfc](http://github.com/ddnexus/pagy/commit/8c4ccfc): rubocop: added rubocop-packaging plugin; expanded inclusion of files
+- [487eb70](http://github.com/ddnexus/pagy/commit/487eb70): small code normalization
+- [3ea2d27](http://github.com/ddnexus/pagy/commit/3ea2d27): codecov gets already required in travis on ruby 3.0 (but not locally)
+- [e17d294](http://github.com/ddnexus/pagy/commit/e17d294): improved series algorithm efficiency (now up to ~5x faster and ~2.3x lighter than the previous one)
+- [1051e6d](http://github.com/ddnexus/pagy/commit/1051e6d): trim feature: added :trim variable to opt-out to trim even with the trim extra loaded, or invert the logic to out-in by setting Pagy::VARS[:trim] to false
+- [ece4daa](http://github.com/ddnexus/pagy/commit/ece4daa): minor code restyling
+- [0e3a09d](http://github.com/ddnexus/pagy/commit/0e3a09d): added :ide_development bundle group; small README changes
+- [5e6f749](http://github.com/ddnexus/pagy/commit/5e6f749): simpler test tasks
+- [e5ee4e7](http://github.com/ddnexus/pagy/commit/e5ee4e7): CI: Remove Bundler 1.x workaround (#296)The "github" source now has that form, already.
+
 ## Version 4.2.0
 
 ### Changes

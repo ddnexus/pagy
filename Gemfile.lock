@@ -28,7 +28,7 @@ GEM
     nio4r (2.5.7)
     oj (3.11.2)
     parallel (1.20.1)
-    parser (3.0.0.0)
+    parser (3.0.1.0)
       ast (~> 2.4.1)
     puma (5.2.2)
       nio4r (~> 2.0)
@@ -37,10 +37,11 @@ GEM
       rack
     rainbow (3.0.0)
     rake (13.0.3)
+    rake-manifest (0.2.0)
     rbzip2 (0.2.0)
     regexp_parser (2.1.1)
-    rexml (3.2.4)
-    rubocop (1.11.0)
+    rexml (3.2.5)
+    rubocop (1.12.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -53,6 +54,8 @@ GEM
       parser (>= 2.7.1.5)
     rubocop-minitest (0.10.3)
       rubocop (>= 0.87, < 2.0)
+    rubocop-packaging (0.5.1)
+      rubocop (>= 0.89, < 2.0)
     rubocop-performance (1.10.1)
       rubocop (>= 0.90.0, < 2.0)
       rubocop-ast (>= 0.4.0)
@@ -95,8 +98,10 @@ DEPENDENCIES
   puma
   rack
   rake
-  rubocop (~> 1.11)
+  rake-manifest
+  rubocop (~> 1.12)
   rubocop-minitest
+  rubocop-packaging
   rubocop-performance
   rubocop-rake
   simplecov

@@ -1,12 +1,16 @@
 require:
+  - rubocop-minitest
+  - rubocop-packaging
   - rubocop-performance
   - rubocop-rake
-  - rubocop-minitest
 
 # trying to be good  O:)
 AllCops:
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 3.0.1
   NewCops: enable
+  Exclude:
+    - ___*/**/*           # '___' prefixed dirs are excluded
+    - vendor/bundle/**/*  # avoid Error: RuboCop found unsupported Ruby version 2.1 in `TargetRubyVersion` parameter (in vendor/bundle/ruby/3.0.0/gems/rainbow-3.0.0/.rubocop.yml).
 
 # No, thank you!
 Layout:
