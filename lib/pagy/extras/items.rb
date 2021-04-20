@@ -61,7 +61,7 @@ class Pagy
       html << pagy_t('pagy.items_selector_js', item_name:   pagy_t(p_vars[:i18n_key], count: p_items),
                                                items_input: input,
                                                count:       p_items)
-      html << %(</span>#{pagy_json_tag(pagy, :items_selector, id, pagy.from, link)})
+      html << %(</span>#{pagy_json_tag(pagy, :items_selector, pagy.from, link)})
     end
 
   end

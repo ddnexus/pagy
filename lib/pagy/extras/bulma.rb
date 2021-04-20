@@ -32,7 +32,7 @@ class Pagy
                'after'  => '</ul>' }
 
       html = %(<nav id="#{id}" class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>)
-      html << pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)
+      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Javascript combo pagination for Bulma: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -55,7 +55,7 @@ class Pagy
             %(<p class="control"><a class="button" disabled>#{pagy_t 'pagy.nav.next'}</a></p>)
           end
       }</div></nav>#{
-         pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
+         pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)
       })
     end
 

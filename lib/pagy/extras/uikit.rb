@@ -32,7 +32,7 @@ class Pagy
                'after'  => pagy_uikit_next_html(pagy, link) }
 
       html = %(<ul id="#{id}" class="pagy-uikit-nav-js uk-pagination uk-flex-center"></ul>)
-      html << pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)
+      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -57,7 +57,7 @@ class Pagy
             %(<button class="uk-button uk-button-default" disabled>#{pagy_t 'pagy.nav.next'}</button>)
           end
       }</div>#{
-          pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
+          pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)
       })
     end
 

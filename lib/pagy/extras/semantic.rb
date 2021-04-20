@@ -33,7 +33,7 @@ class Pagy
                'after'  => pagy_semantic_next_html(pagy, link) }
 
       html = %(<div id="#{id}" class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>)
-      html << pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)
+      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -50,7 +50,7 @@ class Pagy
       }</div> #{
          pagy_semantic_next_html pagy, link
       }</div>#{
-         pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
+         pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)
       })
     end
 

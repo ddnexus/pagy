@@ -33,7 +33,7 @@ class Pagy
                'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
 
       html = %(<div id="#{id}" class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>)
-      html << pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)
+      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -51,7 +51,7 @@ class Pagy
       }</div>#{
           pagy_materialize_next_html pagy, link, style
       }</ul></div>#{
-          pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
+          pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)
       })
     end
 

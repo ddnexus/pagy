@@ -10,8 +10,8 @@ describe Pagy::Frontend do
   describe '#pagy_json_tag' do
 
     it 'should use oj/json' do
-      _(view.pagy_json_tag(Pagy.new(count: 10), :test_function, 'some-id', 'some-string', 123, true)).must_equal \
-      "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-id\",\"some-string\",123,true]</script>"
+      _(view.pagy_json_tag(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_equal \
+      "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-string\",123,true]</script>"
     end
 
   end

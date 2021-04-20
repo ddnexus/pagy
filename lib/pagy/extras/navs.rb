@@ -16,7 +16,7 @@ class Pagy
                'after'  => pagy_nav_next_html(pagy, link) }
 
       html = %(<nav id="#{id}" class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>)
-      html << pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)
+      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Javascript combo pagination: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -33,7 +33,7 @@ class Pagy
       }</span> #{
           pagy_nav_next_html pagy, link
       }</nav>#{
-          pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
+          pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)
       })
     end
 
