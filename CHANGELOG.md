@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## Version 3.13.0
+
+### Changes
+
+- Improved efficiency of #series algorithm
+- Added rubocop compliance (additional rubocop-packaging plugin)
+- Many test tasks improvements
+- CI transition from Travis to Github Action
+
+### Commits
+
+- [16f5560](http://github.com/ddnexus/pagy/commit/16f5560): backport: refactoring of Rakefile now split in different task files; addition of manifest:chec to default task
+- [a49ae2a](http://github.com/ddnexus/pagy/commit/a49ae2a): Added explicit pagy.manifest to comply with rubocop-packaging (see also #297)
+- [98cbb2e](http://github.com/ddnexus/pagy/commit/98cbb2e): ci refactoring: remove ENABLE_OJ, updated to new rubocop
+- [c9a30d0](http://github.com/ddnexus/pagy/commit/c9a30d0): updated rubocop
+- [ae81cb9](http://github.com/ddnexus/pagy/commit/ae81cb9): backport: improved series algorithm efficiency (now up to ~5x faster and ~2.3x lighter than the previous one)
+- [53adeab](http://github.com/ddnexus/pagy/commit/53adeab): backport: added coverage_summary at the end of the default task; added possibility of creating a coverage report
+- [2759bb2](http://github.com/ddnexus/pagy/commit/2759bb2): refactoring of ci from Travis to Github Actions
+- [d7fe0df](http://github.com/ddnexus/pagy/commit/d7fe0df): small README changes, minor code restyling
+- [49153b6](http://github.com/ddnexus/pagy/commit/49153b6): simpler test tasks
+- [4a34d54](http://github.com/ddnexus/pagy/commit/4a34d54): fix/refactoring for simplecov setup reporting less coverage than what's actually covered
+- [e8fd6b6](http://github.com/ddnexus/pagy/commit/e8fd6b6): split items_test and added i18n_old_test, commented out unused test in mock_helpers
+- [7d4b662](http://github.com/ddnexus/pagy/commit/7d4b662): refactoring of rake file
+- [03c6a53](http://github.com/ddnexus/pagy/commit/03c6a53): renamed docker > pagy-on-docker
+- [a842a95](http://github.com/ddnexus/pagy/commit/a842a95): docker README fixes [ci-skip]
+- [674c854](http://github.com/ddnexus/pagy/commit/674c854): Small README addition [ci-skip]
+- [f46404a](http://github.com/ddnexus/pagy/commit/f46404a): added Mike Rogers' screencast [ci-skip]
+- [e0fdb98](http://github.com/ddnexus/pagy/commit/e0fdb98): docker README fix [ci-skip]
+
 ## Version 3.12.0
 
 ### Changes
