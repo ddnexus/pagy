@@ -35,7 +35,7 @@ end
   # gem 'memory_profiler'
 # end
 
-group :ide_development do
-  gem 'debase'
-  gem 'ruby-debug-ide'
-end
+# group :ide_development do
+#   gem 'debase'
+#   gem 'ruby-debug-ide'
+# end

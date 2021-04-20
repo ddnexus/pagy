@@ -17,3 +17,4 @@ gem 'rubocop-rake'
 
 gem 'simplecov', :require => false
 gem 'codecov', :require => false
+gem 'rake-manifest', :require => false

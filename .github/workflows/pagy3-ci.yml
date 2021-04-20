@@ -37,6 +37,7 @@ jobs:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-2.6+
               RUBOCOP: true
               CODECOV: true
+              RAKE_MANIFEST: true
       fail-fast: false
     env: ${{ matrix.env }}
 
@@ -56,9 +57,12 @@ jobs:
         if: ${{ env.RUBOCOP == 'true' }}
         run: bundle exec rubocop
 
-
       - name: Codecov
         if: ${{ env.CODECOV == 'true' }}
         uses: codecov/codecov-action@v1.3.2
         with:
           fail_ci_if_error: true
+
+      - name: Check whether pagy.manifest is up-to-date in pagy3|dev3
+        if: ${{ env.RAKE_MANIFEST == 'true' && (endsWith(github.ref, '/pagy3') || endsWith(github.ref, '/dev3')) }}
+        run: bundle exec rake manifest:check
