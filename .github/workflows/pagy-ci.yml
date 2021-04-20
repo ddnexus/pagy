@@ -17,6 +17,7 @@ jobs:
             env:
               BUNDLE_GEMFILE: .github/ci-gemfiles/ruby-3.0
               CODECOV: true
+              RAKE_MANIFEST: true
       fail-fast: false
     env: ${{ matrix.env }}
 
@@ -40,3 +41,7 @@ jobs:
         uses: codecov/codecov-action@v1.3.2
         with:
           fail_ci_if_error: true
+
+      - name: Check whether pagy.manifest is up-to-date in master|dev
+        if: ${{ env.RAKE_MANIFEST == 'true' && (endsWith(github.ref, '/master') || endsWith(github.ref, '/dev')) }}
+        run: bundle exec rake manifest:check

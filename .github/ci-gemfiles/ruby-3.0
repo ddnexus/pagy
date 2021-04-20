@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 
-gem 'rake'
-gem 'rack'
+gem 'ansi'
 gem 'i18n'
 gem 'minitest'
-gem 'ansi'
-
 gem 'oj', require: false     # false is for testing with or without it
+gem 'rake'
+gem 'rack'
+gem 'rake-manifest', require: false
 
 gem 'rubocop', '~> 1.11', require: false
 gem 'rubocop-minitest', require: false

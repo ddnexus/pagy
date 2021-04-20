@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-return if ENV['CI']
-
 # gem build and release tasks, with added checks and patches
 
 require 'bundler/gem_tasks'

@@ -2,7 +2,7 @@
 
 [![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
 ![ruby](https://img.shields.io/badge/ruby-3.0+-ruby.svg?colorA=99004d&colorB=cc0066)
-[![Build Status](https://img.shields.io/travis/ddnexus/pagy/master.svg?colorA=1f7a1f&colorB=2aa22a)](https://travis-ci.org/ddnexus/pagy/branches)
+[![Build Status](https://img.shields.io/github/workflow/status/ddnexus/pagy/Pagy%20CI/master)](https://github.com/ddnexus/pagy/actions?query=branch:master)
 [![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 ![Rubocop Status](https://img.shields.io/badge/rubocop-passing-rubocop.svg?colorA=1f7a1f&colorB=2aa22a)
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)
