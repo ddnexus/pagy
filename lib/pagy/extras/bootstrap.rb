@@ -7,10 +7,11 @@ class Pagy
   module Frontend
 
     # Pagination for bootstrap: it returns the html with the series of links to the pages
-    def pagy_bootstrap_nav(pagy)
+    def pagy_bootstrap_nav(pagy, id=nil)
+      p_id = %( id="#{id}") if id
       link = pagy_link_proc(pagy, 'class="page-link"')
 
-      html = +%(<nav class="pagy-bootstrap-nav" role="navigation" aria-label="pager"><ul class="pagination">)
+      html = +%(<nav#{p_id} class="pagy-bootstrap-nav" role="navigation" aria-label="pager"><ul class="pagination">)
       html << pagy_bootstrap_prev_html(pagy, link)
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -24,7 +25,8 @@ class Pagy
     end
 
     # Javascript pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_bootstrap_nav_js(pagy, id=pagy_id)
+    def pagy_bootstrap_nav_js(pagy, id=nil)
+      p_id = %( id="#{id}") if id
       link = pagy_link_proc(pagy, 'class="page-link"')
       tags = { 'before' => %(<ul class="pagination">#{pagy_bootstrap_prev_html pagy, link}),
                'link'   => %(<li class="page-item">#{mark = link.call(PAGE_PLACEHOLDER)}</li>),
@@ -32,18 +34,19 @@ class Pagy
                'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_bootstrap_next_html pagy, link}</ul>) }
 
-      html = %(<nav id="#{id}" class="pagy-bootstrap-nav-js" role="navigation" aria-label="pager"></nav>)
+      html = %(<nav#{p_id} class="pagy-bootstrap-nav-js" role="navigation" aria-label="pager"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_bootstrap_combo_nav_js(pagy, id=pagy_id)
+    def pagy_bootstrap_combo_nav_js(pagy, id=nil)
+      p_id    = %( id="#{id}") if id
       link    = pagy_link_proc(pagy)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" class="text-primary" style="padding: 0; border: none; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<nav id="#{id}" class="pagy-bootstrap-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="btn-group" role="group">#{
+      %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="btn-group" role="group">#{
           if (p_prev = pagy.prev)
             link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous" class="prev btn btn-primary"'
           else

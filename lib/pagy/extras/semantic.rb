@@ -7,10 +7,11 @@ class Pagy
   module Frontend
 
     # Pagination for semantic: it returns the html with the series of links to the pages
-    def pagy_semantic_nav(pagy)
+    def pagy_semantic_nav(pagy, id=nil)
+      p_id = %( id="#{id}") if id
       link = pagy_link_proc(pagy, 'class="item"')
 
-      html = +%(<div class="pagy-semantic-nav ui pagination menu" aria-label="pager">)
+      html = +%(<div#{p_id} class="pagy-semantic-nav ui pagination menu" aria-label="pager">)
       html << pagy_semantic_prev_html(pagy, link)
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -24,7 +25,8 @@ class Pagy
     end
 
     # Javascript pagination for semantic: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_semantic_nav_js(pagy, id=pagy_id)
+    def pagy_semantic_nav_js(pagy, id=nil)
+      p_id = %( id="#{id}") if id
       link = pagy_link_proc(pagy, 'class="item"')
       tags = { 'before' => pagy_semantic_prev_html(pagy, link),
                'link'   => link.call(PAGE_PLACEHOLDER),
@@ -32,18 +34,19 @@ class Pagy
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.nav.gap')}</div>),
                'after'  => pagy_semantic_next_html(pagy, link) }
 
-      html = %(<div id="#{id}" class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>)
+      html = %(<div#{p_id} class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_semantic_combo_nav_js(pagy, id=pagy_id)
+    def pagy_semantic_combo_nav_js(pagy, id=nil)
+      p_id    = %( id="#{id}") if id
       link    = pagy_link_proc(pagy, 'class="item"')
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem; margin: 0 0.3rem">)
 
-      %(<div id="#{id}" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" aria-label="pager">#{
+      %(<div#{p_id} class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" aria-label="pager">#{
          pagy_semantic_prev_html pagy, link
       }<div class="pagy-combo-input item">#{
          pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages

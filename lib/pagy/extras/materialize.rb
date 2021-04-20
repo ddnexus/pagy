@@ -7,10 +7,11 @@ class Pagy
   module Frontend
 
     # Pagination for materialize: it returns the html with the series of links to the pages
-    def pagy_materialize_nav(pagy)
+    def pagy_materialize_nav(pagy, id=nil)
+      p_id = %( id="#{id}") if id
       link = pagy_link_proc(pagy)
 
-      html = +%(<div class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">)
+      html = +%(<div#{p_id} class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">)
       html << pagy_materialize_prev_html(pagy, link)
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -24,7 +25,8 @@ class Pagy
     end
 
     # Javascript pagination for materialize: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_materialize_nav_js(pagy, id=pagy_id)
+    def pagy_materialize_nav_js(pagy, id=nil)
+      p_id = %( id="#{id}") if id
       link = pagy_link_proc(pagy)
       tags = { 'before' => %(<ul class="pagination">#{pagy_materialize_prev_html pagy, link}),
                'link'   => %(<li class="waves-effect">#{mark = link.call(PAGE_PLACEHOLDER)}</li>),
@@ -32,19 +34,20 @@ class Pagy
                'gap'    => %(<li class="gap disabled"><a href="#">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
 
-      html = %(<div id="#{id}" class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>)
+      html = %(<div#{p_id} class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_materialize_combo_nav_js(pagy, id=pagy_id)
+    def pagy_materialize_combo_nav_js(pagy, id=nil)
+      p_id    = %( id="#{id}") if id
       link    = pagy_link_proc(pagy)
       p_page  = pagy.page
       p_pages = pagy.pages
       style   = ' style="vertical-align: middle;"'
       input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 2px; border: none; border-radius: 2px; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<div id="#{id}" class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;"><ul class="pagination" style="margin: 0px;">#{
+      %(<div#{p_id} class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;"><ul class="pagination" style="margin: 0px;">#{
           pagy_materialize_prev_html pagy, link, style
       }<div class="pagy-combo-input btn-flat" style="cursor: default; padding: 0px">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages

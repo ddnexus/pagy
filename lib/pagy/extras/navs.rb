@@ -7,7 +7,8 @@ class Pagy
   module Frontend
 
     # Javascript pagination: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_nav_js(pagy, id=pagy_id)
+    def pagy_nav_js(pagy, id=nil)
+      p_id = %( id="#{id}") if id
       link = pagy_link_proc(pagy)
       tags = { 'before' => pagy_nav_prev_html(pagy, link),
                'link'   => %(<span class="page">#{link.call(PAGE_PLACEHOLDER)}</span> ),
@@ -15,18 +16,19 @@ class Pagy
                'gap'    => %(<span class="page gap">#{pagy_t 'pagy.nav.gap'}</span> ),
                'after'  => pagy_nav_next_html(pagy, link) }
 
-      html = %(<nav id="#{id}" class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>)
+      html = %(<nav#{p_id} class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
     end
 
     # Javascript combo pagination: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_combo_nav_js(pagy, id=pagy_id)
+    def pagy_combo_nav_js(pagy, id=nil)
+      p_id    = %( id="#{id}") if id
       link    = pagy_link_proc(pagy)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<nav id="#{id}" class="pagy-combo-nav-js pagination" role="navigation" aria-label="pager">#{
+      %(<nav#{p_id} class="pagy-combo-nav-js pagination" role="navigation" aria-label="pager">#{
           pagy_nav_prev_html pagy, link
       }<span class="pagy-combo-input" style="margin: 0 0.6rem;">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages

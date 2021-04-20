@@ -49,14 +49,15 @@ class Pagy
     prepend UseItemsExtra
 
     # Return the items selector HTML. For example "Show [20] items per page"
-    def pagy_items_selector_js(pagy, id=pagy_id)
+    def pagy_items_selector_js(pagy, id=nil)
+      p_id           = %( id="#{id}") if id
       p_vars         = pagy.vars
       p_items        = p_vars[:items]
       p_vars[:items] = ITEMS_PLACEHOLDER
       link           = pagy_marked_link(pagy_link_proc(pagy))
       p_vars[:items] = p_items # restore the items
 
-      html  = %(<span id="#{id}">)
+      html  = %(<span#{p_id}>)
       input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
       html << pagy_t('pagy.items_selector_js', item_name:   pagy_t(p_vars[:i18n_key], count: p_items),
                                                items_input: input,

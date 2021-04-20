@@ -42,11 +42,6 @@ class Pagy
       end
     end
 
-    # it returns the SHA1 (fastest on modern ruby) string used as default `id` attribute by all the `*_js` tags
-    def pagy_id
-      "pagy-#{Digest::SHA1.hexdigest(caller(2..2)[0].split(':in')[0])}"
-    end
-
     # it returns the marked link to used by pagy.js
     def pagy_marked_link(link)
       link.call PAGE_PLACEHOLDER, '', 'style="display: none;"'
