@@ -16,7 +16,7 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 ## New in 4.0+
 
 - __This version requires `ruby 3.0+`. For `ruby <3.0` use `pagy <4.0` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
-- Updating `pagy` from `3.0+` to `4.0+` requires a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
+- Updating `pagy` from `3.0+` to `4.0+` requires a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](CHANGELOG.md))
 - Added the docker development environment to ease contributions
 - Big code restyling following ruby 3.0 syntax and cops; the code is simpler, more readable and verbose with yet improved performance.
 
@@ -171,6 +171,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 - [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
 - [How to Override pagy methods only in specific circumstances](https://benkoshy.github.io/2020/02/01/overriding-pagy-methods.html) by Ben Koshy.
 - [How to make your pagination links sticky + bounce at the bottom of your page](https://benkoshy.github.io/2020/09/15/sticky-menu.html) by Ben Koshy.
+- [Endless Scroll / Infinite Loading with Turbo Streams & Stimulus](https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/) by Stefan Wienert
 - [日本語の投稿](https://qiita.com/search?q=pagy)
 - [한국어 튜토리얼](https://kbs4674.tistory.com/72)
 
