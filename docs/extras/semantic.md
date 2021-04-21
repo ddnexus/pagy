@@ -19,9 +19,9 @@ Render the navigation links in some view...
 with a fast helper:
 
 ```erb
-<%== pagy_semantic_nav(@pagy) %>
-<%== pagy_semantic_nav_js(@pagy) %>
-<%== pagy_semantic_combo_nav_js(@pagy) %>
+<%== pagy_semantic_nav(@pagy, ...) %>
+<%== pagy_semantic_nav_js(@pagy, ...) %>
+<%== pagy_semantic_combo_nav_js(@pagy, ...) %>
 ```
 
 ## Files
@@ -35,6 +35,8 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 ### pagy_semantic_nav(pagy)
 
 This method is the same as the `pagy_nav`, but customized for Semantic UI.
+
+See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
 
 ### pagy_semantic_nav_js(pagy, ...)
 

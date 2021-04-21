@@ -19,9 +19,9 @@ Render the navigation links in some view...
 with a fast helper:
 
 ```erb
-<%== pagy_bulma_nav(@pagy) %>
-<%== pagy_bulma_nav_js(@pagy) %>
-<%== pagy_bulma_combo_nav_js(@pagy) %>
+<%== pagy_bulma_nav(@pagy, ...) %>
+<%== pagy_bulma_nav_js(@pagy, ...) %>
+<%== pagy_bulma_combo_nav_js(@pagy, ...) %>
 ```
 
 or with a template:
@@ -46,6 +46,8 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 ### pagy_bulma_nav(pagy)
 
 This method is the same as the `pagy_nav`, but customized for Bulma.
+
+See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
 
 The `bulma_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [Using Templates](../how-to.md#using-templates).
 

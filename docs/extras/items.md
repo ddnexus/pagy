@@ -73,7 +73,7 @@ This extra overrides the `pagy_get_vars` method of the `Pagy::Backend` module in
 
 This extra overrides the `pagy_countless_get_vars` method of the `Pagy::Backend` module (added by the `countless` extra) in order to set the `:items` variable, pulled from the request-params.
 
-### pagy_url_for(page, pagy)
+### pagy_url_for(pagy, page)
 
 This extra overrides also the `pagy_url_for` method of the `Pagy::Frontend` module in order to add the `:items_param` param to the url of the links.
 
@@ -83,7 +83,17 @@ This helper provides an items selector UI, which allows the user to select any a
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page</span>
 
-or, if you use the `:i18n_key` variable you can get a custom/collection-specific output:
+The method accepts also a few optional keyword arguments:
+- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+- `:item_name` an already pluralized string that will be used in place of the dedfault `item/items`
+- `:i18n_key` the key to lookup in a dictionary
+
+Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `VARS[:i18n_key]`
+
+```erb
+<%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count) %>
+<%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.model.product' %>
+```
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per page</span>
 
