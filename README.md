@@ -1,9 +1,9 @@
 # Pagy
 
-[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
+![Gem Version](https://img.shields.io/badge/pagy-3.13-gem.svg?colorA=99004d&colorB=cc0066)
 ![ruby](https://img.shields.io/badge/ruby-1.9+-ruby.svg?colorA=99004d&colorB=cc0066)
 ![jruby](https://img.shields.io/badge/jruby-1.7+-jruby.svg?colorA=99004d&colorB=cc0066)
-[![Build Status](https://img.shields.io/travis/ddnexus/pagy/master.svg?colorA=1f7a1f&colorB=2aa22a)](https://travis-ci.org/ddnexus/pagy/branches)
+[![Build Status](https://img.shields.io/github/workflow/status/ddnexus/pagy/Pagy3%20CI/pagy3)](https://github.com/ddnexus/pagy/actions?query=branch:pagy3)
 [![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)
  [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
@@ -28,7 +28,7 @@ The `pagy3` branch will continue the support for legacy systems with bug-fixes a
 - Added a few new [extras](https://ddnexus.github.io/pagy/extras)
 - Added [Maximizing Performance](https://ddnexus.github.io/pagy/how-to#maximizing-performance) docs as a practical guide to choose the best options for your requirements and environment
 
-**Notice**: Updating from 2.0+ to 3.0+ requires just some search and replace and a little reorganization of your custom i18n dictionaries. Check the [CHANGELOG](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for details.
+**Notice**: Updating from 2.0+ to 3.0+ requires just some search and replace and a little reorganization of your custom i18n dictionaries. Check the [CHANGELOG](CHANGELOG.md) for details.
 
 **Suggestions**:
 
