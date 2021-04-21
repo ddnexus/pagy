@@ -16,8 +16,8 @@ class Pagy
   #       "350" => [1, 2, :gap, 17, 18, 19, "20", 21, 22, 23, :gap, 49, 50],
   #       "550" => [1, 2, 3, :gap, 16, 17, 18, 19, "20", 21, 22, 23, 24, :gap, 48, 49, 50] }
   # Notice: if :steps is false it will use the single {0 => @vars[:size]} size
-  def sequels
-    steps = @vars[:steps] || {0 => @vars[:size]}
+  def sequels(steps=nil)
+    steps ||= @vars[:steps] || {0 => @vars[:size]}
     raise VariableError.new(self), "expected :steps to define the 0 width; got #{steps.inspect}" \
           unless steps.key?(0)
     {}.tap do |sequels|

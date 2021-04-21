@@ -49,8 +49,9 @@ class Pagy
     prepend UseItemsExtra
 
     # Return the items selector HTML. For example "Show [20] items per page"
-    def pagy_items_selector_js(pagy, id=nil)
-      p_id           = %( id="#{id}") if id
+    def pagy_items_selector_js(pagy, deprecated_id=nil, pagy_id: nil, item_name: nil, i18n_key: nil)
+      pagy_id        = pagy_deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      p_id           = %( id="#{pagy_id}") if pagy_id
       p_vars         = pagy.vars
       p_items        = p_vars[:items]
       p_vars[:items] = ITEMS_PLACEHOLDER
@@ -59,10 +60,10 @@ class Pagy
 
       html  = %(<span#{p_id}>)
       input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
-      html << pagy_t('pagy.items_selector_js', item_name:   pagy_t(p_vars[:i18n_key], count: p_items),
+      html << pagy_t('pagy.items_selector_js', item_name: item_name || pagy_t(i18n_key || p_vars[:i18n_key], count: p_items),
                                                items_input: input,
                                                count:       p_items)
-      html << %(</span>#{pagy_json_tag(pagy, :items_selector, pagy.from, link)})
+      html << %(</span>#{pagy_json_tag pagy, :items_selector, pagy.from, link})
     end
 
   end

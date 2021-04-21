@@ -77,29 +77,53 @@ describe Pagy::Frontend do
     it 'renders the prev link for page 1' do
       pagy = Pagy.new count: 1000, page: 1
       pagy_countless = Pagy::Countless.new(page: 1).finalize(21)
-      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev disabled\">&lsaquo;&nbsp;Prev</span>"
-      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev disabled\">&lsaquo;&nbsp;Prev</span>"
+      _(view.pagy_prev_link(pagy)).must_equal \
+        "<span class=\"page prev disabled\">&lsaquo;&nbsp;Prev</span>"
+      _(view.pagy_prev_link(pagy_countless)).must_equal \
+        "<span class=\"page prev disabled\">&lsaquo;&nbsp;Prev</span>"
+      _(view.pagy_prev_link(pagy, text: 'PREV', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page prev disabled\">PREV</span>"
+      _(view.pagy_prev_link(pagy_countless, text: 'PREV', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page prev disabled\">PREV</span>"
     end
 
     it 'renders the prev link for page 3' do
       pagy = Pagy.new count: 1000, page: 3
       pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
-      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
-      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy)).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy_countless)).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy, text: 'PREV', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"prev\" aria-label=\"previous\"  link-extra>PREV</a></span>"
+      _(view.pagy_prev_link(pagy_countless, text: 'PREV', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=2\" rel=\"prev\" aria-label=\"previous\"  link-extra>PREV</a></span>"
     end
 
     it 'renders the prev link for page 6' do
       pagy = Pagy.new count: 1000, page: 6
       pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
-      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
-      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy)).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy_countless)).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy, text: 'PREV', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"prev\" aria-label=\"previous\"  link-extra>PREV</a></span>"
+      _(view.pagy_prev_link(pagy_countless, text: 'PREV', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=5\" rel=\"prev\" aria-label=\"previous\"  link-extra>PREV</a></span>"
     end
 
     it 'renders the prev link for last page' do
       pagy = Pagy.new count: 1000, page: 50
       pagy_countless = Pagy::Countless.new(page: 50).finalize(20)
-      _(view.pagy_prev_link(pagy)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
-      _(view.pagy_prev_link(pagy_countless)).must_equal "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy)).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy_countless)).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"prev\" aria-label=\"previous\"  >&lsaquo;&nbsp;Prev</a></span>"
+      _(view.pagy_prev_link(pagy, text: 'PREV', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"prev\" aria-label=\"previous\"  link-extra>PREV</a></span>"
+      _(view.pagy_prev_link(pagy_countless, text: 'PREV', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page prev\"><a href=\"/foo?page=49\" rel=\"prev\" aria-label=\"previous\"  link-extra>PREV</a></span>"
     end
 
   end
@@ -109,29 +133,53 @@ describe Pagy::Frontend do
     it 'renders the next link for page 1' do
       pagy = Pagy.new count: 1000, page: 1
       pagy_countless = Pagy::Countless.new(page: 1).finalize(21)
-      _(view.pagy_next_link(pagy)).must_equal "<span class=\"page next\"><a href=\"/foo?page=2\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
-      _(view.pagy_next_link(pagy_countless)).must_equal "<span class=\"page next\"><a href=\"/foo?page=2\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy)).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=2\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy_countless)).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=2\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy, text: 'NEXT', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=2\" rel=\"next\" aria-label=\"next\"  link-extra>NEXT</a></span>"
+      _(view.pagy_next_link(pagy_countless, text: 'NEXT', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=2\" rel=\"next\" aria-label=\"next\"  link-extra>NEXT</a></span>"
     end
 
     it 'renders the next link for page 3' do
       pagy = Pagy.new count: 1000, page: 3
       pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
-      _(view.pagy_next_link(pagy)).must_equal "<span class=\"page next\"><a href=\"/foo?page=4\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
-      _(view.pagy_next_link(pagy_countless)).must_equal "<span class=\"page next\"><a href=\"/foo?page=4\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy)).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=4\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy_countless)).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=4\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy, text: 'NEXT', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=4\" rel=\"next\" aria-label=\"next\"  link-extra>NEXT</a></span>"
+      _(view.pagy_next_link(pagy_countless, text: 'NEXT', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=4\" rel=\"next\" aria-label=\"next\"  link-extra>NEXT</a></span>"
     end
 
     it 'renders the next link for page 6' do
       pagy = Pagy.new count: 1000, page: 6
       pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
-      _(view.pagy_next_link(pagy)).must_equal "<span class=\"page next\"><a href=\"/foo?page=7\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
-      _(view.pagy_next_link(pagy_countless)).must_equal "<span class=\"page next\"><a href=\"/foo?page=7\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy)).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=7\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy_countless)).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=7\" rel=\"next\" aria-label=\"next\"  >Next&nbsp;&rsaquo;</a></span>"
+      _(view.pagy_next_link(pagy, text: 'NEXT', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=7\" rel=\"next\" aria-label=\"next\"  link-extra>NEXT</a></span>"
+      _(view.pagy_next_link(pagy_countless, text: 'NEXT', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page next\"><a href=\"/foo?page=7\" rel=\"next\" aria-label=\"next\"  link-extra>NEXT</a></span>"
     end
 
     it 'renders the next link for last page' do
       pagy = Pagy.new count: 1000, page: 50
       pagy_countless = Pagy::Countless.new(page: 50).finalize(20)
-      _(view.pagy_next_link(pagy)).must_equal "<span class=\"page next disabled\">Next&nbsp;&rsaquo;</span>"
-      _(view.pagy_next_link(pagy_countless)).must_equal "<span class=\"page next disabled\">Next&nbsp;&rsaquo;</span>"
+      _(view.pagy_next_link(pagy)).must_equal \
+        "<span class=\"page next disabled\">Next&nbsp;&rsaquo;</span>"
+      _(view.pagy_next_link(pagy_countless)).must_equal \
+        "<span class=\"page next disabled\">Next&nbsp;&rsaquo;</span>"
+      _(view.pagy_next_link(pagy, text: 'NEXT', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page next disabled\">NEXT</span>"
+      _(view.pagy_next_link(pagy_countless, text: 'NEXT', link_extra: 'link-extra')).must_equal \
+        "<span class=\"page next disabled\">NEXT</span>"
     end
 
   end

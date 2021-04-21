@@ -31,9 +31,9 @@ class Pagy
     include Helpers
 
     # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, id=nil)
-      p_id   = %( id="#{id}") if id
-      link   = pagy_link_proc(pagy)
+    def pagy_nav(pagy, pagy_id: nil, link_extra: '')
+      p_id   = %( id="#{pagy_id}") if pagy_id
+      link   = pagy_link_proc(pagy, link_extra)
       p_prev = pagy.prev
       p_next = pagy.next
 
@@ -59,14 +59,15 @@ class Pagy
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, item_name=nil)
-      count = pagy.count
-      key   = if    count.zero?     then 'pagy.info.no_items'
-              elsif pagy.pages == 1 then 'pagy.info.single_page'
-              else                       'pagy.info.multiple_pages'
-              end
-      pagy_t key, item_name: item_name || pagy_t(pagy.vars[:i18n_key], count: count),
-                  count: count, from: pagy.from, to: pagy.to
+    def pagy_info(pagy, deprecated_item_name=nil, item_name: nil, i18n_key: nil)
+      item_name = pagy_deprecated_arg(:item_name, deprecated_item_name, :item_name, item_name) if deprecated_item_name
+      p_count = pagy.count
+      key     = if    p_count.zero?   then 'pagy.info.no_items'
+                elsif pagy.pages == 1 then 'pagy.info.single_page'
+                else                       'pagy.info.multiple_pages'
+                end
+      pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
+                  count: p_count, from: pagy.from, to: pagy.to
     end
 
     # Returns a performance optimized proc to generate the HTML links
@@ -75,12 +76,12 @@ class Pagy
       p_prev = pagy.prev
       p_next = pagy.next
       left, right = %(<a href="#{pagy_url_for PAGE_PLACEHOLDER, pagy}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
-      lambda do |num, text=num, extra=''|
+      lambda do |num, text=num, extra_attrs=''|
         %(#{left}#{num}#{right}#{ case num
                                   when p_prev then ' rel="prev"'
                                   when p_next then ' rel="next"'
                                   else             ''
-                                  end } #{extra}>#{text}</a>)
+                                  end } #{extra_attrs}>#{text}</a>)
       end
     end
 
@@ -88,6 +89,13 @@ class Pagy
     # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_t(key, **opts)
       Pagy::I18n.t @pagy_locale||=nil, key, **opts
+    end
+
+    # deprecated arguments to remove in 5.0
+    def pagy_deprecated_arg(arg, val, new_key, new_val)
+      value = new_val || val  # we use the new_val if present
+      Warning.warn %([PAGY WARNING] deprecated positional `#{arg}` arg, it will be removed in 5.0! Use only the keyword arg `#{new_key}: #{value.inspect}` instead.\n)
+      value
     end
 
   end

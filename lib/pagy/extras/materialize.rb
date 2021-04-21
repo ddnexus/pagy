@@ -7,9 +7,9 @@ class Pagy
   module Frontend
 
     # Pagination for materialize: it returns the html with the series of links to the pages
-    def pagy_materialize_nav(pagy, id=nil)
-      p_id = %( id="#{id}") if id
-      link = pagy_link_proc(pagy)
+    def pagy_materialize_nav(pagy, pagy_id: nil, link_extra: '')
+      p_id = %( id="#{pagy_id}") if pagy_id
+      link = pagy_link_proc(pagy, link_extra)
 
       html = +%(<div#{p_id} class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">)
       html << pagy_materialize_prev_html(pagy, link)
@@ -25,9 +25,11 @@ class Pagy
     end
 
     # Javascript pagination for materialize: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_materialize_nav_js(pagy, id=nil)
-      p_id = %( id="#{id}") if id
-      link = pagy_link_proc(pagy)
+    def pagy_materialize_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '', steps: nil)
+      pagy_id = pagy_deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      p_id = %( id="#{pagy_id}") if pagy_id
+      link = pagy_link_proc(pagy, link_extra)
+
       tags = { 'before' => %(<ul class="pagination">#{pagy_materialize_prev_html pagy, link}),
                'link'   => %(<li class="waves-effect">#{mark = link.call(PAGE_PLACEHOLDER)}</li>),
                'active' => %(<li class="active">#{mark}</li>),
@@ -35,13 +37,14 @@ class Pagy
                'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
 
       html = %(<div#{p_id} class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>)
-      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
+      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_materialize_combo_nav_js(pagy, id=nil)
-      p_id    = %( id="#{id}") if id
-      link    = pagy_link_proc(pagy)
+    def pagy_materialize_combo_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '')
+      pagy_id = pagy_deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      p_id    = %( id="#{pagy_id}") if pagy_id
+      link    = pagy_link_proc(pagy, link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
       style   = ' style="vertical-align: middle;"'

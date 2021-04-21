@@ -7,9 +7,9 @@ class Pagy
   module Frontend
 
     # Pagination for Foundation: it returns the html with the series of links to the pages
-    def pagy_foundation_nav(pagy, id=nil)
-      p_id = %( id="#{id}") if id
-      link = pagy_link_proc(pagy)
+    def pagy_foundation_nav(pagy, pagy_id: nil, link_extra: '')
+      p_id = %( id="#{pagy_id}") if pagy_id
+      link = pagy_link_proc(pagy, link_extra)
 
       html = +%(<nav#{p_id} class="pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">)
       html << pagy_foundation_prev_html(pagy, link)
@@ -25,9 +25,10 @@ class Pagy
     end
 
     # Javascript pagination for foundation: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_foundation_nav_js(pagy, id=nil)
-      p_id = %( id="#{id}") if id
-      link = pagy_link_proc(pagy)
+    def pagy_foundation_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '', steps: nil)
+      pagy_id = pagy_deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      p_id = %( id="#{pagy_id}") if pagy_id
+      link = pagy_link_proc(pagy, link_extra)
       tags = { 'before' => %(<ul class="pagination">#{pagy_foundation_prev_html pagy, link}),
                'link'   => %(<li>#{link.call PAGE_PLACEHOLDER}</li>),
                'active' => %(<li class="current">#{pagy.page}</li>),
@@ -35,13 +36,14 @@ class Pagy
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
       html = %(<nav#{p_id} class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>)
-      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels)
+      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_foundation_combo_nav_js(pagy, id=nil)
-      p_id    = %( id="#{id}") if id
-      link    = pagy_link_proc(pagy)
+    def pagy_foundation_combo_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '')
+      pagy_id = pagy_deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      p_id    = %( id="#{pagy_id}") if pagy_id
+      link    = pagy_link_proc(pagy, link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="width: #{p_pages.to_s.length+1}rem; padding: 0 0.3rem; margin: 0 0.3rem;">)
