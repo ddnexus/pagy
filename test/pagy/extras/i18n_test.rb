@@ -44,6 +44,10 @@ describe Pagy::Frontend do
       _(view.pagy_info(Pagy.new(count: 1, i18n_key: 'activerecord.models.product'))).must_equal "Displaying <b>1</b> Product"
       _(view.pagy_info(Pagy.new(count: 13, i18n_key: 'activerecord.models.product'))).must_equal "Displaying <b>13</b> Products"
       _(view.pagy_info(Pagy.new(count: 100, i18n_key: 'activerecord.models.product', page: 3))).must_equal "Displaying Products <b>41-60</b> of <b>100</b> in total"
+      _(view.pagy_info(Pagy.new(count: 0), i18n_key: 'activerecord.models.product')).must_equal "No Products found"
+      _(view.pagy_info(Pagy.new(count: 1), i18n_key: 'activerecord.models.product')).must_equal "Displaying <b>1</b> Product"
+      _(view.pagy_info(Pagy.new(count: 13), i18n_key: 'activerecord.models.product')).must_equal "Displaying <b>13</b> Products"
+      _(view.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'activerecord.models.product')).must_equal "Displaying Products <b>41-60</b> of <b>100</b> in total"
     end
   end
 
