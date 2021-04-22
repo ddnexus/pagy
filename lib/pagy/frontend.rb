@@ -13,7 +13,8 @@ class Pagy
 
   module Helpers
     # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(page, pagy, url=nil)
+    def pagy_url_for(pagy, page, url=nil)
+      pagy, page = Pagy.deprecated_order(pagy, page) if page.is_a?(Pagy)
       p_vars = pagy.vars
       params = request.GET.merge(p_vars[:params])
       params[p_vars[:page_param].to_s] = page
@@ -60,7 +61,7 @@ class Pagy
 
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy, deprecated_item_name=nil, item_name: nil, i18n_key: nil)
-      item_name = pagy_deprecated_arg(:item_name, deprecated_item_name, :item_name, item_name) if deprecated_item_name
+      item_name = Pagy.deprecated_arg(:item_name, deprecated_item_name, :item_name, item_name) if deprecated_item_name
       p_count = pagy.count
       key     = if    p_count.zero?   then 'pagy.info.no_items'
                 elsif pagy.pages == 1 then 'pagy.info.single_page'
@@ -75,7 +76,7 @@ class Pagy
     def pagy_link_proc(pagy, link_extra='')
       p_prev = pagy.prev
       p_next = pagy.next
-      left, right = %(<a href="#{pagy_url_for PAGE_PLACEHOLDER, pagy}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
+      left, right = %(<a href="#{pagy_url_for pagy, PAGE_PLACEHOLDER}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
       lambda do |num, text=num, extra_attrs=''|
         %(#{left}#{num}#{right}#{ case num
                                   when p_prev then ' rel="prev"'
@@ -89,13 +90,6 @@ class Pagy
     # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_t(key, **opts)
       Pagy::I18n.t @pagy_locale||=nil, key, **opts
-    end
-
-    # deprecated arguments to remove in 5.0
-    def pagy_deprecated_arg(arg, val, new_key, new_val)
-      value = new_val || val  # we use the new_val if present
-      Warning.warn %([PAGY WARNING] deprecated positional `#{arg}` arg, it will be removed in 5.0! Use only the keyword arg `#{new_key}: #{value.inspect}` instead.\n)
-      value
     end
 
   end

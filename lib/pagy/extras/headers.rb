@@ -24,7 +24,7 @@ class Pagy
       countless = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
       rels = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
       rels['last'] = pagy.last unless countless
-      url_str = pagy_url_for(PAGE_PLACEHOLDER, pagy, :url)
+      url_str = pagy_url_for(pagy, PAGE_PLACEHOLDER, :url)
       hash    = { 'Link' => rels.filter_map do |rel, num|
                               next unless num
                               [ rel, url_str.sub(PAGE_PLACEHOLDER, num.to_s) ]

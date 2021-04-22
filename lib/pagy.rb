@@ -66,9 +66,10 @@ class Pagy
     series[series.index(@page)] = @page.to_s
     series
   end
-
+  
 end
 
+require 'pagy/deprecation'
 require 'pagy/backend'
 require 'pagy/frontend'
 require 'pagy/exceptions'

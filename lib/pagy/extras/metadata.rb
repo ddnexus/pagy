@@ -22,7 +22,7 @@ class Pagy
       raise VariableError.new(pagy), "unknown metadata #{unknown.inspect}" \
             unless unknown.empty?
 
-      scaffold_url = pagy_url_for(PAGE_PLACEHOLDER, pagy, url)
+      scaffold_url = pagy_url_for(pagy, PAGE_PLACEHOLDER, url)
       {}.tap do |metadata|
         names.each do |key|
           metadata[key] = case key

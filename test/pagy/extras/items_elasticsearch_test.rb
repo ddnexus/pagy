@@ -132,23 +132,23 @@ describe 'pagy/extras/items_elsticsearch' do
     describe '#pagy_url_for' do
       it 'renders basic url' do
         pagy = Pagy.new count: 1000, page: 3
-        _(view.pagy_url_for(5, pagy)).must_equal '/foo?page=5&items=20'
+        _(view.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&items=20'
       end
       it 'renders basic url and items var' do
         pagy = Pagy.new count: 1000, page: 3, items: 50
-        _(view.pagy_url_for(5, pagy)).must_equal '/foo?page=5&items=50'
+        _(view.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&items=50'
       end
       it 'renders url with items_params' do
         pagy = Pagy.new count: 1000, page: 3, items_param: :custom
-        _(view.pagy_url_for(5, pagy)).must_equal '/foo?page=5&custom=20'
+        _(view.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with anchor' do
         pagy = Pagy.new count: 1000, page: 3, anchor: '#anchor'
-        _(view.pagy_url_for(6, pagy)).must_equal '/foo?page=6&items=20#anchor'
+        _(view.pagy_url_for(pagy, 6)).must_equal '/foo?page=6&items=20#anchor'
       end
       it 'renders url with params and anchor' do
         pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor', items: 40
-        _(view.pagy_url_for(5, pagy)).must_equal "/foo?page=5&a=3&b=4&items=40#anchor"
+        _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4&items=40#anchor"
       end
     end
     it 'renders items selector with elasticsearch' do

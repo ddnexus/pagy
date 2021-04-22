@@ -131,23 +131,23 @@ describe 'pagy/frontend' do
   describe '#pagy_url_for' do
     it 'renders basic url' do
       pagy = Pagy.new count: 1000, page: 3
-      _(view.pagy_url_for(5, pagy)).must_equal '/foo?page=5'
-      _(view.pagy_url_for(5, pagy, :url)).must_equal 'http://example.com:3000/foo?page=5'
+      _(view.pagy_url_for(pagy, 5)).must_equal '/foo?page=5'
+      _(view.pagy_url_for(pagy, 5, :url)).must_equal 'http://example.com:3000/foo?page=5'
     end
     it 'renders url with params' do
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}
-      _(view.pagy_url_for(5, pagy)).must_equal "/foo?page=5&a=3&b=4"
-      _(view.pagy_url_for(5, pagy, :url)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
+      _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4"
+      _(view.pagy_url_for(pagy, 5, :url)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
     end
     it 'renders url with anchor' do
       pagy = Pagy.new count: 1000, page: 3, anchor: '#anchor'
-      _(view.pagy_url_for(6, pagy)).must_equal '/foo?page=6#anchor'
-      _(view.pagy_url_for(6, pagy, :url)).must_equal 'http://example.com:3000/foo?page=6#anchor'
+      _(view.pagy_url_for(pagy, 6)).must_equal '/foo?page=6#anchor'
+      _(view.pagy_url_for(pagy, 6, :url)).must_equal 'http://example.com:3000/foo?page=6#anchor'
     end
     it 'renders url with params and anchor' do
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
-      _(view.pagy_url_for(5, pagy)).must_equal "/foo?page=5&a=3&b=4#anchor"
-      _(view.pagy_url_for(5, pagy, :url)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#anchor"
+      _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4#anchor"
+      _(view.pagy_url_for(pagy, 5, :url)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#anchor"
     end
   end
 
@@ -155,14 +155,8 @@ describe 'pagy/frontend' do
     it 'overrides params' do
       overridden = MockView::Overridden.new
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
-      _(overridden.pagy_url_for(5, pagy)).must_equal "/foo?page=5&b=4&k=k#anchor"
+      _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&b=4&k=k#anchor"
     end
   end
 
-  describe '#pagy_deprecated_arg' do
-    it 'deprecate arg and returns right value' do
-      _ { _(view.pagy_deprecated_arg(:arg, 'deprecated-val', :new_key, 'new-value')).must_equal 'new-value' }.must_output nil, \
-        "[PAGY WARNING] deprecated positional `arg` arg, it will be removed in 5.0! Use only the keyword arg `new_key: \"new-value\"` instead.\n"
-    end
-  end
 end

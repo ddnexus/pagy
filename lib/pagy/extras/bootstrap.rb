@@ -26,7 +26,7 @@ class Pagy
 
     # Javascript pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_bootstrap_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '', steps: nil)
-      pagy_id = pagy_deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, %(class="page-link" #{link_extra}))
       tags = { 'before' => %(<ul class="pagination">#{pagy_bootstrap_prev_html pagy, link}),
@@ -41,7 +41,7 @@ class Pagy
 
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
     def pagy_bootstrap_combo_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '')
-      pagy_id = pagy_deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra)
       p_page  = pagy.page

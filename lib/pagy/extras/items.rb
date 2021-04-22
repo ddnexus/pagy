@@ -37,7 +37,8 @@ class Pagy
 
     module UseItemsExtra
 
-      def pagy_url_for(page, pagy, url=nil)
+      def pagy_url_for(pagy, page, url=nil)
+        pagy, page = Pagy.deprecated_order(pagy, page) if page.is_a?(Pagy)
         p_vars = pagy.vars
         params = request.GET.merge(p_vars[:params])
         params[p_vars[:page_param].to_s]  = page
@@ -50,7 +51,7 @@ class Pagy
 
     # Return the items selector HTML. For example "Show [20] items per page"
     def pagy_items_selector_js(pagy, deprecated_id=nil, pagy_id: nil, item_name: nil, i18n_key: nil)
-      pagy_id        = pagy_deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      pagy_id        = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
       p_id           = %( id="#{pagy_id}") if pagy_id
       p_vars         = pagy.vars
       p_items        = p_vars[:items]
