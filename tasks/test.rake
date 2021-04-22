@@ -10,8 +10,8 @@ test_tasks = {}
     i18n
     overflow
     support
-    oj_shared
-    shared
+    shared_oj
+    shared_json
     trim
     items_trim
     items_countless

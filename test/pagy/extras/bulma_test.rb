@@ -3,12 +3,10 @@
 require_relative '../../test_helper'
 require 'pagy/extras/bulma'
 
-describe Pagy::Frontend do
-
+describe 'pagy/extras/bulma' do
   let(:view) { MockView.new }
 
   describe '#pagy_bulma_nav' do
-
     it 'renders first page' do
       pagy = Pagy.new(count: 1000, page: 1)
       _(view.pagy_bulma_nav(pagy)).must_equal \
@@ -16,7 +14,6 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-nav-js pagination is-centered\" role=\"navigation\" aria-label=\"pagination\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",{\"before\":\"<a class=\\\"pagination-previous\\\" disabled>&lsaquo;&nbsp;Prev</a><a href=\\\"/foo?page=2\\\"  link-extra rel=\\\"next\\\" class=\\\"pagination-next\\\" aria-label=\\\"next page\\\">Next&nbsp;&rsaquo;</a><ul class=\\\"pagination-list\\\">\",\"link\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link\\\" aria-label=\\\"goto page __pagy_page__\\\">__pagy_page__</a></li>\",\"active\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link is-current\\\" aria-current=\\\"page\\\" aria-label=\\\"page __pagy_page__\\\">__pagy_page__</a></li>\",\"gap\":\"<li><span class=\\\"pagination-ellipsis\\\">&hellip;</span></li>\",\"after\":\"</ul>\"},{\"0\":[\"1\",2,3,4,5,\"gap\",50]}]</script>"
     end
-
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 1000, page: 20)
       _(view.pagy_bulma_nav(pagy)).must_equal \
@@ -24,7 +21,6 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-nav-js pagination is-centered\" role=\"navigation\" aria-label=\"pagination\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",{\"before\":\"<a href=\\\"/foo?page=19\\\"  link-extra rel=\\\"prev\\\" class=\\\"pagination-previous\\\" aria-label=\\\"previous page\\\">&lsaquo;&nbsp;Prev</a><a href=\\\"/foo?page=21\\\"  link-extra rel=\\\"next\\\" class=\\\"pagination-next\\\" aria-label=\\\"next page\\\">Next&nbsp;&rsaquo;</a><ul class=\\\"pagination-list\\\">\",\"link\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link\\\" aria-label=\\\"goto page __pagy_page__\\\">__pagy_page__</a></li>\",\"active\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link is-current\\\" aria-current=\\\"page\\\" aria-label=\\\"page __pagy_page__\\\">__pagy_page__</a></li>\",\"gap\":\"<li><span class=\\\"pagination-ellipsis\\\">&hellip;</span></li>\",\"after\":\"</ul>\"},{\"0\":[1,\"gap\",16,17,18,19,\"20\",21,22,23,24,\"gap\",50]}]</script>"
     end
-
     it 'renders last page' do
       pagy = Pagy.new(count: 1000, page: 50)
       _(view.pagy_bulma_nav(pagy)).must_equal \
@@ -32,11 +28,9 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-nav-js pagination is-centered\" role=\"navigation\" aria-label=\"pagination\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",{\"before\":\"<a href=\\\"/foo?page=49\\\"  link-extra rel=\\\"prev\\\" class=\\\"pagination-previous\\\" aria-label=\\\"previous page\\\">&lsaquo;&nbsp;Prev</a><a class=\\\"pagination-next\\\" disabled>Next&nbsp;&rsaquo;</a><ul class=\\\"pagination-list\\\">\",\"link\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link\\\" aria-label=\\\"goto page __pagy_page__\\\">__pagy_page__</a></li>\",\"active\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link is-current\\\" aria-current=\\\"page\\\" aria-label=\\\"page __pagy_page__\\\">__pagy_page__</a></li>\",\"gap\":\"<li><span class=\\\"pagination-ellipsis\\\">&hellip;</span></li>\",\"after\":\"</ul>\"},{\"0\":[1,\"gap\",46,47,48,49,\"50\"]}]</script>"
     end
-
   end
 
   describe '#pagy_bulma_nav_js' do
-
     it 'renders first page' do
       pagy = Pagy.new(count: 1000, page: 1)
       _(view.pagy_bulma_nav_js(pagy)).must_equal \
@@ -44,7 +38,6 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra', steps: {0 => [1,2,2,1], 600 => [1,3,3,1]})).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-nav-js pagination is-centered\" role=\"navigation\" aria-label=\"pagination\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",{\"before\":\"<a class=\\\"pagination-previous\\\" disabled>&lsaquo;&nbsp;Prev</a><a href=\\\"/foo?page=2\\\"  link-extra rel=\\\"next\\\" class=\\\"pagination-next\\\" aria-label=\\\"next page\\\">Next&nbsp;&rsaquo;</a><ul class=\\\"pagination-list\\\">\",\"link\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link\\\" aria-label=\\\"goto page __pagy_page__\\\">__pagy_page__</a></li>\",\"active\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link is-current\\\" aria-current=\\\"page\\\" aria-label=\\\"page __pagy_page__\\\">__pagy_page__</a></li>\",\"gap\":\"<li><span class=\\\"pagination-ellipsis\\\">&hellip;</span></li>\",\"after\":\"</ul>\"},{\"0\":[\"1\",2,3,\"gap\",50],\"600\":[\"1\",2,3,4,\"gap\",50]}]</script>"
     end
-
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 1000, page: 20)
       _(view.pagy_bulma_nav_js(pagy)).must_equal \
@@ -52,7 +45,6 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra', steps: {0 => [1,2,2,1], 600 => [1,3,3,1]})).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-nav-js pagination is-centered\" role=\"navigation\" aria-label=\"pagination\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",{\"before\":\"<a href=\\\"/foo?page=19\\\"  link-extra rel=\\\"prev\\\" class=\\\"pagination-previous\\\" aria-label=\\\"previous page\\\">&lsaquo;&nbsp;Prev</a><a href=\\\"/foo?page=21\\\"  link-extra rel=\\\"next\\\" class=\\\"pagination-next\\\" aria-label=\\\"next page\\\">Next&nbsp;&rsaquo;</a><ul class=\\\"pagination-list\\\">\",\"link\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link\\\" aria-label=\\\"goto page __pagy_page__\\\">__pagy_page__</a></li>\",\"active\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link is-current\\\" aria-current=\\\"page\\\" aria-label=\\\"page __pagy_page__\\\">__pagy_page__</a></li>\",\"gap\":\"<li><span class=\\\"pagination-ellipsis\\\">&hellip;</span></li>\",\"after\":\"</ul>\"},{\"0\":[1,\"gap\",18,19,\"20\",21,22,\"gap\",50],\"600\":[1,\"gap\",17,18,19,\"20\",21,22,23,\"gap\",50]}]</script>"
     end
-
     it 'renders last page' do
       pagy = Pagy.new(count: 1000, page: 50)
       _(view.pagy_bulma_nav_js(pagy)).must_equal \
@@ -60,7 +52,6 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra', steps: {0 => [1,2,2,1], 600 => [1,3,3,1]})).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-nav-js pagination is-centered\" role=\"navigation\" aria-label=\"pagination\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",{\"before\":\"<a href=\\\"/foo?page=49\\\"  link-extra rel=\\\"prev\\\" class=\\\"pagination-previous\\\" aria-label=\\\"previous page\\\">&lsaquo;&nbsp;Prev</a><a class=\\\"pagination-next\\\" disabled>Next&nbsp;&rsaquo;</a><ul class=\\\"pagination-list\\\">\",\"link\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link\\\" aria-label=\\\"goto page __pagy_page__\\\">__pagy_page__</a></li>\",\"active\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link is-current\\\" aria-current=\\\"page\\\" aria-label=\\\"page __pagy_page__\\\">__pagy_page__</a></li>\",\"gap\":\"<li><span class=\\\"pagination-ellipsis\\\">&hellip;</span></li>\",\"after\":\"</ul>\"},{\"0\":[1,\"gap\",48,49,\"50\"],\"600\":[1,\"gap\",47,48,49,\"50\"]}]</script>"
     end
-
     it 'renders with :steps' do
       pagy = Pagy.new(count: 1000, page: 20, steps: {0 => [1,2,2,1], 500 => [2,3,3,2]})
       _(view.pagy_bulma_nav_js(pagy)).must_equal \
@@ -68,11 +59,9 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra', steps: {0 => [1,2,2,1], 600 => [1,3,3,1]})).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-nav-js pagination is-centered\" role=\"navigation\" aria-label=\"pagination\"></nav><script type=\"application/json\" class=\"pagy-json\">[\"nav\",{\"before\":\"<a href=\\\"/foo?page=19\\\"  link-extra rel=\\\"prev\\\" class=\\\"pagination-previous\\\" aria-label=\\\"previous page\\\">&lsaquo;&nbsp;Prev</a><a href=\\\"/foo?page=21\\\"  link-extra rel=\\\"next\\\" class=\\\"pagination-next\\\" aria-label=\\\"next page\\\">Next&nbsp;&rsaquo;</a><ul class=\\\"pagination-list\\\">\",\"link\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link\\\" aria-label=\\\"goto page __pagy_page__\\\">__pagy_page__</a></li>\",\"active\":\"<li><a href=\\\"/foo?page=__pagy_page__\\\"  link-extra class=\\\"pagination-link is-current\\\" aria-current=\\\"page\\\" aria-label=\\\"page __pagy_page__\\\">__pagy_page__</a></li>\",\"gap\":\"<li><span class=\\\"pagination-ellipsis\\\">&hellip;</span></li>\",\"after\":\"</ul>\"},{\"0\":[1,\"gap\",18,19,\"20\",21,22,\"gap\",50],\"600\":[1,\"gap\",17,18,19,\"20\",21,22,23,\"gap\",50]}]</script>"
     end
-
   end
 
   describe '#pagy_bulma_combo_nav_js' do
-
     it 'renders first page' do
       pagy = Pagy.new(count: 103, page: 1)
       _(view.pagy_bulma_combo_nav_js(pagy)).must_equal \
@@ -80,7 +69,6 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_combo_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-combo-nav-js\" role=\"navigation\" aria-label=\"pagination\"><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a class=\"button\" disabled>&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-combo-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"1\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a href=\"/foo?page=2\"  link-extra rel=\"next\" class=\"button\" aria-label=\"next page\">Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",1,\"<a href=\\\"/foo?page=__pagy_page__\\\"  link-extra style=\\\"display: none;\\\"></a>\"]</script>"
     end
-
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 103, page: 3)
       _(view.pagy_bulma_combo_nav_js(pagy)).must_equal \
@@ -88,7 +76,6 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_combo_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-combo-nav-js\" role=\"navigation\" aria-label=\"pagination\"><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a href=\"/foo?page=2\"  link-extra rel=\"prev\" class=\"button\" aria-label=\"previous page\">&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-combo-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"3\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a href=\"/foo?page=4\"  link-extra rel=\"next\" class=\"button\" aria-label=\"next page\">Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",3,\"<a href=\\\"/foo?page=__pagy_page__\\\"  link-extra style=\\\"display: none;\\\"></a>\"]</script>"
     end
-
     it 'renders last page' do
       pagy = Pagy.new(count: 103, page: 6)
       _(view.pagy_bulma_combo_nav_js(pagy)).must_equal \
@@ -96,7 +83,5 @@ describe Pagy::Frontend do
       _(view.pagy_bulma_combo_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
         "<nav id=\"test-nav-id\" class=\"pagy-bulma-combo-nav-js\" role=\"navigation\" aria-label=\"pagination\"><div class=\"field is-grouped is-grouped-centered\" role=\"group\"><p class=\"control\"><a href=\"/foo?page=5\"  link-extra rel=\"prev\" class=\"button\" aria-label=\"previous page\">&lsaquo;&nbsp;Prev</a></p><div class=\"pagy-combo-input control level is-mobile\">Page <input class=\"input\" type=\"number\" min=\"1\" max=\"6\" value=\"6\" style=\"padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;\"> of 6</div><p class=\"control\"><a class=\"button\" disabled>Next&nbsp;&rsaquo;</a></p></div></nav><script type=\"application/json\" class=\"pagy-json\">[\"combo_nav\",6,\"<a href=\\\"/foo?page=__pagy_page__\\\"  link-extra style=\\\"display: none;\\\"></a>\"]</script>"
     end
-
   end
-
 end

@@ -1,10 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    ansi (1.5.0)
     ast (2.4.2)
     benchmark-ips (2.8.4)
-    builder (3.2.4)
     codecov (0.5.1)
       simplecov (>= 0.15, < 0.22)
     concurrent-ruby (1.1.8)
@@ -17,11 +15,6 @@ GEM
     memoist (0.11.0)
     memory_profiler (1.0.0)
     minitest (5.14.4)
-    minitest-reporters (1.4.3)
-      ansi
-      builder
-      minitest (>= 5.0)
-      ruby-progressbar
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -93,7 +86,6 @@ DEPENDENCIES
   kalibera
   memory_profiler
   minitest
-  minitest-reporters
   oj
   puma
   rack
@@ -109,4 +101,4 @@ DEPENDENCIES
   sinatra-contrib
 
 BUNDLED WITH
-   2.2.3
+   2.2.15

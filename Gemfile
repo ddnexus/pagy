@@ -13,7 +13,6 @@ gem 'rake-manifest'
 group :test do
   gem 'codecov', require:  false
   gem 'minitest'
-  gem 'minitest-reporters'
   gem 'rubocop', '~> 1.12'
   gem 'rubocop-minitest'
   gem 'rubocop-packaging'
