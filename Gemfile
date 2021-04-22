@@ -13,7 +13,7 @@ gem 'rake-manifest'
 group :test do
   gem 'codecov', require:  false
   gem 'minitest'
-  gem 'rubocop', '~> 1.12'
+  gem 'rubocop'
   gem 'rubocop-minitest'
   gem 'rubocop-packaging'
   gem 'rubocop-performance'
@@ -34,8 +34,3 @@ group :performance do
   gem 'kalibera'
   gem 'memory_profiler'
 end
-
-# group :ide_development do
-#   gem 'debase'
-#   gem 'ruby-debug-ide'
-# end
