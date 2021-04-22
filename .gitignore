@@ -1,8 +1,7 @@
 /.bundle/
-/.yardoc
-/_yardoc/
 /coverage/
-/pkg/
-/tmp/
 /docs/.jekyll-metadata
-/.idea/
+/pkg/
+/test_js/cypress/videos/
+/test_js/cypress/screenshots/
+/tmp/
