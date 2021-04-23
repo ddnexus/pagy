@@ -35,7 +35,7 @@ class Pagy
                'gap'    => %(<li class="ellipsis gap" aria-hidden="true"></li>),
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
-      html = %(<nav#{p_id} class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>)
+      html = %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 

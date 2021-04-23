@@ -34,7 +34,7 @@ class Pagy
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.nav.gap' }</span></li>),
                'after'  => '</ul>' }
 
-      html = %(<nav#{p_id} class="pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>)
+      html = %(<nav#{p_id} class="pagy-njs pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 

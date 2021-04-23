@@ -36,7 +36,7 @@ class Pagy
                'gap'    => %(<li class="gap disabled"><a href="#">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
 
-      html = %(<div#{p_id} class="pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>)
+      html = %(<div#{p_id} class="pagy-njs pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 

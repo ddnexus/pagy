@@ -17,7 +17,7 @@ class Pagy
                'gap'    => %(<span class="page gap">#{pagy_t 'pagy.nav.gap'}</span> ),
                'after'  => pagy_nav_next_html(pagy, link) }
 
-      html = %(<nav#{p_id} class="pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>)
+      html = %(<nav#{p_id} class="pagy-njs pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 

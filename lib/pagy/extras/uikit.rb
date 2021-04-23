@@ -34,7 +34,7 @@ class Pagy
                'gap'    => %(<li class="uk-disabled"><span>#{pagy_t('pagy.nav.gap')}</span></li>),
                'after'  => pagy_uikit_next_html(pagy, link) }
 
-      html = %(<ul#{p_id} class="pagy-uikit-nav-js uk-pagination uk-flex-center"></ul>)
+      html = %(<ul#{p_id} class="pagy-njs pagy-uikit-nav-js uk-pagination uk-flex-center"></ul>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 

@@ -35,7 +35,7 @@ class Pagy
                'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_bootstrap_next_html pagy, link}</ul>) }
 
-      html = %(<nav#{p_id} class="pagy-bootstrap-nav-js" role="navigation" aria-label="pager"></nav>)
+      html = %(<nav#{p_id} class="pagy-njs pagy-bootstrap-nav-js" role="navigation" aria-label="pager"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 

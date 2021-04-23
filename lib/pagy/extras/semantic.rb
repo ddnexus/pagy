@@ -35,7 +35,7 @@ class Pagy
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.nav.gap')}</div>),
                'after'  => pagy_semantic_next_html(pagy, link) }
 
-      html = %(<div#{p_id} class="pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>)
+      html = %(<div#{p_id} class="pagy-njs pagy-semantic-nav-js ui pagination menu" role="navigation" aria-label="pager"></div>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 
