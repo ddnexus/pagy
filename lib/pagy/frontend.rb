@@ -18,7 +18,8 @@ class Pagy
       p_vars = pagy.vars
       params = request.GET.merge(p_vars[:params])
       params[p_vars[:page_param].to_s] = page
-      "#{request.base_url if url}#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
+      query_string = "?#{Rack::Utils.build_nested_query(pagy_get_params(params))}" unless params.empty?
+      "#{request.base_url if url}#{request.path}#{query_string}#{p_vars[:anchor]}"
     end
 
     # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
