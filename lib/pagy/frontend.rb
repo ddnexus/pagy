@@ -36,7 +36,7 @@ class Pagy
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, pagy_id: nil, link_extra: '')
       p_id   = %( id="#{pagy_id}") if pagy_id
-      link   = pagy_link_proc(pagy, link_extra)
+      link   = pagy_link_proc(pagy, link_extra: link_extra)
       p_prev = pagy.prev
       p_next = pagy.next
 
@@ -79,7 +79,8 @@ class Pagy
 
     # Returns a performance optimized proc to generate the HTML links
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_link_proc(pagy, link_extra='')
+    def pagy_link_proc(pagy, deprecated_link_extra=nil, link_extra: '')
+      link_extra = Pagy.deprecated_arg(:link_extra, deprecated_link_extra, :link_extra, link_extra) if deprecated_link_extra
       p_prev = pagy.prev
       p_next = pagy.next
       left, right = %(<a href="#{pagy_url_for pagy, PAGE_PLACEHOLDER}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)

@@ -9,7 +9,7 @@ class Pagy
     # Pagination for bootstrap: it returns the html with the series of links to the pages
     def pagy_bootstrap_nav(pagy, pagy_id: nil, link_extra: '')
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, %(class="page-link" #{link_extra}))
+      link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
 
       html = +%(<nav#{p_id} class="pagy-bootstrap-nav" role="navigation" aria-label="pager"><ul class="pagination">)
       html << pagy_bootstrap_prev_html(pagy, link)
@@ -28,7 +28,7 @@ class Pagy
     def pagy_bootstrap_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '', steps: nil)
       pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, %(class="page-link" #{link_extra}))
+      link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
       tags = { 'before' => %(<ul class="pagination">#{pagy_bootstrap_prev_html pagy, link}),
                'link'   => %(<li class="page-item">#{mark = link.call(PAGE_PLACEHOLDER)}</li>),
                'active' => %(<li class="page-item active">#{mark}</li>),
@@ -43,7 +43,7 @@ class Pagy
     def pagy_bootstrap_combo_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '')
       pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
       p_id    = %( id="#{pagy_id}") if pagy_id
-      link    = pagy_link_proc(pagy, link_extra)
+      link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" class="text-primary" style="padding: 0; border: none; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
