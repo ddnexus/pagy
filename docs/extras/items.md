@@ -73,7 +73,7 @@ This extra overrides the `pagy_get_vars` method of the `Pagy::Backend` module in
 
 This extra overrides the `pagy_countless_get_vars` method of the `Pagy::Backend` module (added by the `countless` extra) in order to set the `:items` variable, pulled from the request-params.
 
-### pagy_url_for(pagy, page)
+### pagy_url_for(pagy, page, absolute: nil)
 
 This extra overrides also the `pagy_url_for` method of the `Pagy::Frontend` module in order to add the `:items_param` param to the url of the links.
 

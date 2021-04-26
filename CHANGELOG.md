@@ -4,7 +4,8 @@
 
 ### Changes
 
-- All the public helpers accept optional keyword arguments, for example:
+- Passing positional arguments (besides `@pagy`) to all the helpers is deprecated and it will be supported only until pagy 5.0
+- All the helpers accept more optional keyword arguments, for example:
   - `pagy*_nav(@pagy, pagy_id: 'my-id', link-extra: '...')`
   - `pagy*_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...', steps: {...})`
   - `pagy*_combo_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...')`
@@ -12,8 +13,8 @@
   - `pagy_info(@pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...')`
   - `pagy_prev_link(@pagy, text: '...', link_extra: '...')`
   - `pagy_next_link(@pagy, text: '...', link_extra: '...')`
-  - passing positional arguments (besides `@pagy`) to the public helpers is deprecated and it will be supported only until pagy 5.0 (with the exception is the internal `pagy_url_for` and `pagy_link_proc` methods that will keep using positional arguments)
-- Changed the argument order of `pagy_url_for(page, pagy)` to `pagy_url_for(pagy, page)` for consistency with the rest of the helpers. The legacy usage, has been deprecated and supported only until pagy 5.0.
+  - `pagy_link_proc(@pagy, link_extra: '...')`
+  - `pagy_url_for(pagy, page, absolute: nil)` (notice the inverted page/pagy order with the legacy`pagy_url_for(page, pagy, url=nil)`)
 
 ## Version 4.3.0
 

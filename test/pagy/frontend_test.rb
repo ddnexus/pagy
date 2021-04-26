@@ -132,22 +132,22 @@ describe 'pagy/frontend' do
     it 'renders basic url' do
       pagy = Pagy.new count: 1000, page: 3
       _(view.pagy_url_for(pagy, 5)).must_equal '/foo?page=5'
-      _(view.pagy_url_for(pagy, 5, :url)).must_equal 'http://example.com:3000/foo?page=5'
+      _(view.pagy_url_for(pagy, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5'
     end
     it 'renders url with params' do
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}
       _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4"
-      _(view.pagy_url_for(pagy, 5, :url)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
+      _(view.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
     end
     it 'renders url with anchor' do
       pagy = Pagy.new count: 1000, page: 3, anchor: '#anchor'
       _(view.pagy_url_for(pagy, 6)).must_equal '/foo?page=6#anchor'
-      _(view.pagy_url_for(pagy, 6, :url)).must_equal 'http://example.com:3000/foo?page=6#anchor'
+      _(view.pagy_url_for(pagy, 6, absolute: true)).must_equal 'http://example.com:3000/foo?page=6#anchor'
     end
     it 'renders url with params and anchor' do
       pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
       _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4#anchor"
-      _(view.pagy_url_for(pagy, 5, :url)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#anchor"
+      _(view.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#anchor"
     end
   end
 

@@ -22,7 +22,7 @@ In your controller action:
 ```ruby
 pagy, records = pagy(Product.all)
 render json: { data: records,
-               pagy: pagy_metadata(pagy) }
+               pagy: pagy_metadata(pagy, ...) }
 ```
 
 ## Files
@@ -61,6 +61,6 @@ This is particularly useful when you want to build some dynamic pagination UI (e
 
 This extra adds a single method to the `Pagy::Backend` (available in your controllers).
 
-### pagy_metadata(pagy, url=false)
+### pagy_metadata(pagy, absolute: nil)
 
 This method returns a hash with the keys/values defined by the `:metadata` variable.  When true, the `url` boolean argument will cause all the `:*_url` metadata to be absolute instead of relative.

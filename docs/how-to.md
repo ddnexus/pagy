@@ -78,7 +78,7 @@ This page contains the practical tips and examples to get the job done with Pagy
 
            ```ruby
            render json: { data: @records,
-                          pagy: pagy_metadata(@pagy) }
+                          pagy: pagy_metadata(@pagy, ...) }
            ```
 
     - Option C: if your app is an API service consumed by some client and doesn't provide any UI on its own, you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
@@ -260,7 +260,7 @@ The following is a Rails-specific alternative that supports fancy-routes (e.g. `
 
 ```ruby
 def pagy_url_for(pagy, page)
-  params = request.query_parameters.merge(:only_path => true, pagy.vars[:page_param] => page )
+  params = request.query_parameters.merge(pagy.vars[:page_param] => page )
   url_for(params)
 end
 ```

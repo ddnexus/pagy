@@ -76,7 +76,7 @@ Displaying Products <b>476-500</b> of <b>1000</b> in total
 
 _(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
-### pagy_url_for(pagy, page)
+### pagy_url_for(pagy, page, absolute: nil)
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
 

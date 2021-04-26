@@ -13,13 +13,14 @@ class Pagy
 
   module Helpers
     # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(pagy, page, url=nil)
+    def pagy_url_for(pagy, page, deprecated_url=nil, absolute: nil)
+      absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
       pagy, page = Pagy.deprecated_order(pagy, page) if page.is_a?(Pagy)
       p_vars = pagy.vars
       params = request.GET.merge(p_vars[:params])
       params[p_vars[:page_param].to_s] = page
       query_string = "?#{Rack::Utils.build_nested_query(pagy_get_params(params))}" unless params.empty?
-      "#{request.base_url if url}#{request.path}#{query_string}#{p_vars[:anchor]}"
+      "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:anchor]}"
     end
 
     # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding

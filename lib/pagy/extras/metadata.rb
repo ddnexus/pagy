@@ -16,13 +16,14 @@ class Pagy
 
     include Helpers
 
-    def pagy_metadata(pagy, url=nil)
+    def pagy_metadata(pagy, deprecated_url=nil, absolute: nil)
+      absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
       names   = pagy.vars[:metadata]
       unknown = names - METADATA
       raise VariableError.new(pagy), "unknown metadata #{unknown.inspect}" \
             unless unknown.empty?
 
-      scaffold_url = pagy_url_for(pagy, PAGE_PLACEHOLDER, url)
+      scaffold_url = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: absolute)
       {}.tap do |metadata|
         names.each do |key|
           metadata[key] = case key
