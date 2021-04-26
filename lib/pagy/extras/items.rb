@@ -59,7 +59,7 @@ class Pagy
       link           = pagy_marked_link(pagy_link_proc(pagy))
       p_vars[:items] = p_items # restore the items
 
-      html  = %(<span#{p_id}>)
+      html  = %(<span#{p_id} class="pagy-items-selector-js">)
       input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
       html << pagy_t('pagy.items_selector_js', item_name: item_name || pagy_t(i18n_key || p_vars[:i18n_key], count: p_items),
                                                items_input: input,
