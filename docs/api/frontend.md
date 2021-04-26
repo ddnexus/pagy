@@ -42,7 +42,7 @@ This method takes the Pagy object and returns the HTML string with the paginatio
 
 The method accepts also a couple of optional keyword arguments:
 - `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
-- `:link_extra` which add a verbatim `link_extra` string to the `a` tag (e.g. `'data-remote="true"'`)
+- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 
 The `nav.*` templates produce the same output, and can be used as an easier (but slower) way to customize it.
 
@@ -62,7 +62,7 @@ Will produce something like:
 
 The method accepts also a few optional keyword arguments:
 - `:pagy_id` which adds the `id` HTML attributedto the `span` tag wrapping the info
-- `:item_name` an already pluralized string that will be used in place of the dedfault `item/items`
+- `:item_name` an already pluralized string that will be used in place of the default `item/items`
 - `:i18n_key` the key to lookup in a dictionary
 
 Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `VARS[:i18n_key]`

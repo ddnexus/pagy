@@ -262,11 +262,11 @@ Use the `pagy*_combo_nav_js` helpers in any view:
 
 ## Methods
 
-### pqgy*_nav_js(pagy, ...)
+### pagy*_nav_js(pagy, ...)
 
 The method accepts also a few optional keyword arguments:
 - `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
-- `:link_extra` which add a verbatim `link_extra` string to the `a` tag (e.g. `'data-remote="true"'`)
+- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 - `:steps` the [:steps](#steps) variable
 
 **CAVEATS**: the `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add anoter class attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.
@@ -275,7 +275,7 @@ The method accepts also a few optional keyword arguments:
 
 The method accepts also a couple of optional keyword arguments:
 - `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
-- `:link_extra` which add a verbatim `link_extra` string to the `a` tag (e.g. `'data-remote="true"'`)
+- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 
 **CAVEATS**: the `pagy_semantic_combo_nav_js` assigns a class attribute to its links, so do not add another class attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.
 

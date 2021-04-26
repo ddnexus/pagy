@@ -9,7 +9,7 @@
   - `pagy*_nav(@pagy, pagy_id: 'my-id', link-extra: '...')`
   - `pagy*_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...', steps: {...})`
   - `pagy*_combo_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...')`
-  - `pagy_items_selector_js(pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...')`
+  - `pagy_items_selector_js(pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...', link_extra: '...')`
   - `pagy_info(@pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...')`
   - `pagy_prev_link(@pagy, text: '...', link_extra: '...')`
   - `pagy_next_link(@pagy, text: '...', link_extra: '...')`

@@ -85,8 +85,9 @@ This helper provides an items selector UI, which allows the user to select any a
 
 The method accepts also a few optional keyword arguments:
 - `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
-- `:item_name` an already pluralized string that will be used in place of the dedfault `item/items`
+- `:item_name` an already pluralized string that will be used in place of the default `item/items`
 - `:i18n_key` the key to lookup in a dictionary
+- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 
 Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `VARS[:i18n_key]`
 
