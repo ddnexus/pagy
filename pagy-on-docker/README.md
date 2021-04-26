@@ -23,7 +23,7 @@ The pagy docker environment has been designed to be useful for developing:
 
 ### Build
 
-You have a couple of alternative:
+You have a couple of alternatives:
 
 1. (recommended) Permanently set a few variables about your user in your IDE or system (it will be easier for the future):
 
@@ -52,12 +52,14 @@ You need to run this only once usually, when you build the images. After that yo
 Run the containers from the `pagy-on-docker` dir:
 
 ```sh
-docker-compose up pagy pagy-jekyll
+docker-compose up pagy 
+docker-compose up pagy-jekyll # for the documentation site
+docker-compose up pagy pagy-jekyll # for both pagy and the documentation site
 ```
-
-Notice, you can omit the `pagy-jekyll` if you don't need to deal with the documentation site.
-
-Open a terminal in the pagy container and run the usual `bundle install` to install the gems into the `pagy_bundle` volume.
+Then:
+ 
+1. Open a terminal in the pagy container: `docker exec -it pagy /bin/bash` 
+2. `bundle install` to install the gems into the `pagy_bundle` volume.
 
 Then you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
 
