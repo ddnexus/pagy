@@ -84,7 +84,7 @@ import '../src/javascripts/pagy.js.erb'
 
 - You may want to use `turbolinks:load` if your app uses turbolinks despite webpacker
 - or you may want just `export { Pagy }` from the `pagy.js.erb` file and import and use it somewhere else.
-- You may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
+- or you may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
     ```js
     global.Pagy = Pagy
     ```

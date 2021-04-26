@@ -48,7 +48,7 @@ The `nav.*` templates produce the same output, and can be used as an easier (but
 
 See also [Using templates](../how-to.md#using-templates).
 
-### pagy_info(pagy, item_name: ..., i18n_key: ...)
+### pagy_info(pagy, pagy_id: ..., item_name: ..., i18n_key: ...)
 
 This method provides the info about the content of the current pagination. For example:
 
@@ -58,9 +58,10 @@ This method provides the info about the content of the current pagination. For e
 
 Will produce something like:
 
-Displaying items <b>476-500</b> of <b>1000</b> in total
+<span>Displaying items <b>476-500</b> of <b>1000</b> in total</span>
 
-The method accepts also a couple of optional keyword arguments:
+The method accepts also a few optional keyword arguments:
+- `:pagy_id` which adds the `id` HTML attributedto the `span` tag wrapping the info
 - `:item_name` an already pluralized string that will be used in place of the dedfault `item/items`
 - `:i18n_key` the key to lookup in a dictionary
 

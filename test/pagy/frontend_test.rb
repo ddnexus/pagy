@@ -102,29 +102,29 @@ describe 'pagy/frontend' do
 
   describe '#pagy_info' do
     it 'renders without i18n key' do
-      _(view.pagy_info(Pagy.new(count: 0))).must_equal "No items found"
-      _(view.pagy_info(Pagy.new(count: 1))).must_equal "Displaying <b>1</b> item"
-      _(view.pagy_info(Pagy.new(count: 13))).must_equal "Displaying <b>13</b> items"
-      _(view.pagy_info(Pagy.new(count: 100, page: 3))).must_equal "Displaying items <b>41-60</b> of <b>100</b> in total"
+      _(view.pagy_info(Pagy.new(count: 0))).must_equal '<span>No items found</span>'
+      _(view.pagy_info(Pagy.new(count: 1))).must_equal '<span>Displaying <b>1</b> item</span>'
+      _(view.pagy_info(Pagy.new(count: 13))).must_equal '<span>Displaying <b>13</b> items</span>'
+      _(view.pagy_info(Pagy.new(count: 100, page: 3))).must_equal '<span>Displaying items <b>41-60</b> of <b>100</b> in total</span>'
     end
     it 'renders with existing i18n key' do
       Pagy::I18n['en'][0]['pagy.info.product.one']   = ->(_){ 'Product'}
       Pagy::I18n['en'][0]['pagy.info.product.other'] = ->(_){ 'Products'}
-      _(view.pagy_info(Pagy.new(count: 0, i18n_key: 'pagy.info.product'))).must_equal "No Products found"
-      _(view.pagy_info(Pagy.new(count: 1, i18n_key: 'pagy.info.product'))).must_equal "Displaying <b>1</b> Product"
-      _(view.pagy_info(Pagy.new(count: 13, i18n_key: 'pagy.info.product'))).must_equal "Displaying <b>13</b> Products"
-      _(view.pagy_info(Pagy.new(count: 100, i18n_key: 'pagy.info.product', page: 3))).must_equal "Displaying Products <b>41-60</b> of <b>100</b> in total"
-      _(view.pagy_info(Pagy.new(count: 0), i18n_key: 'pagy.info.product')).must_equal "No Products found"
-      _(view.pagy_info(Pagy.new(count: 1), i18n_key: 'pagy.info.product')).must_equal "Displaying <b>1</b> Product"
-      _(view.pagy_info(Pagy.new(count: 13), i18n_key: 'pagy.info.product')).must_equal "Displaying <b>13</b> Products"
-      _(view.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'pagy.info.product')).must_equal "Displaying Products <b>41-60</b> of <b>100</b> in total"
+      _(view.pagy_info(Pagy.new(count: 0, i18n_key: 'pagy.info.product'))).must_equal '<span>No Products found</span>'
+      _(view.pagy_info(Pagy.new(count: 1, i18n_key: 'pagy.info.product'))).must_equal '<span>Displaying <b>1</b> Product</span>'
+      _(view.pagy_info(Pagy.new(count: 13, i18n_key: 'pagy.info.product'))).must_equal '<span>Displaying <b>13</b> Products</span>'
+      _(view.pagy_info(Pagy.new(count: 100, i18n_key: 'pagy.info.product', page: 3))).must_equal '<span>Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
+      _(view.pagy_info(Pagy.new(count: 0), i18n_key: 'pagy.info.product')).must_equal '<span>No Products found</span>'
+      _(view.pagy_info(Pagy.new(count: 1), i18n_key: 'pagy.info.product')).must_equal '<span>Displaying <b>1</b> Product</span>'
+      _(view.pagy_info(Pagy.new(count: 13), i18n_key: 'pagy.info.product')).must_equal '<span>Displaying <b>13</b> Products</span>'
+      _(view.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'pagy.info.product')).must_equal '<span>Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
       Pagy::I18n.load(locale: 'en') # reset for other tests
     end
-    it 'overrides the item_name' do
-      _(view.pagy_info(Pagy.new(count: 0), item_name: 'Widgets')).must_equal "No Widgets found"
-      _(view.pagy_info(Pagy.new(count: 1), item_name: 'Widget')).must_equal "Displaying <b>1</b> Widget"
-      _(view.pagy_info(Pagy.new(count: 13), item_name: 'Widgets')).must_equal "Displaying <b>13</b> Widgets"
-      _(view.pagy_info(Pagy.new(count: 100, page: 3), item_name: 'Widgets')).must_equal "Displaying Widgets <b>41-60</b> of <b>100</b> in total"
+    it 'overrides the item_name and set pagy_id' do
+      _(view.pagy_info(Pagy.new(count: 0), pagy_id: 'pagy-info', item_name: 'Widgets')).must_equal '<span id="pagy-info">No Widgets found</span>'
+      _(view.pagy_info(Pagy.new(count: 1), pagy_id: 'pagy-info', item_name: 'Widget')).must_equal '<span id="pagy-info">Displaying <b>1</b> Widget</span>'
+      _(view.pagy_info(Pagy.new(count: 13), pagy_id: 'pagy-info', item_name: 'Widgets')).must_equal '<span id="pagy-info">Displaying <b>13</b> Widgets</span>'
+      _(view.pagy_info(Pagy.new(count: 100, page: 3), pagy_id: 'pagy-info', item_name: 'Widgets')).must_equal '<span id="pagy-info">Displaying Widgets <b>41-60</b> of <b>100</b> in total</span>'
     end
   end
 

@@ -9,7 +9,7 @@
   - `pagy*_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...', steps: {...})`
   - `pagy*_combo_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...')`
   - `pagy_items_selector_js(pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...')`
-  - `pagy_info(@pagy, item_name: '...', i18n_key: '...')`
+  - `pagy_info(@pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...')`
   - `pagy_prev_link(@pagy, text: '...', link_extra: '...')`
   - `pagy_next_link(@pagy, text: '...', link_extra: '...')`
   - passing positional arguments (besides `@pagy`) to the public helpers is deprecated and it will be supported only until pagy 5.0 (with the exception is the internal `pagy_url_for` and `pagy_link_proc` methods that will keep using positional arguments)

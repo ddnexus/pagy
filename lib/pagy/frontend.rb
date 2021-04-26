@@ -61,15 +61,19 @@ class Pagy
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, deprecated_item_name=nil, item_name: nil, i18n_key: nil)
+    def pagy_info(pagy, deprecated_item_name=nil, pagy_id: nil, item_name: nil, i18n_key: nil)
+      p_id      = %( id="#{pagy_id}") if pagy_id
       item_name = Pagy.deprecated_arg(:item_name, deprecated_item_name, :item_name, item_name) if deprecated_item_name
       p_count = pagy.count
       key     = if    p_count.zero?   then 'pagy.info.no_items'
                 elsif pagy.pages == 1 then 'pagy.info.single_page'
                 else                       'pagy.info.multiple_pages'
                 end
+
+      %(<span#{p_id}>#{
       pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
                   count: p_count, from: pagy.from, to: pagy.to
+      }</span>)
     end
 
     # Returns a performance optimized proc to generate the HTML links
