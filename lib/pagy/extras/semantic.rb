@@ -17,7 +17,7 @@ class Pagy
         html << case item
                 when Integer then link.call item                            # page link
                 when String  then %(<a class="item active">#{item}</a>)     # current page
-                when :gap    then %(<div class="disabled item">...</div>)   # page gap
+                when :gap    then %(<div class="disabled item">#{pagy_t 'pagy.nav.gap'}</div>)   # page gap
                 end
       end
       html << pagy_semantic_next_html(pagy, link)
