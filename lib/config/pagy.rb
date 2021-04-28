@@ -107,8 +107,8 @@
 # See https://ddnexus.github.io/pagy/extras/trim
 # require 'pagy/extras/trim'
 # after requiring it will trim by default
-# set to false if you want to make :trim an opt-in variable
-# Pagy::VARS[:trim] = true # default
+# set to false if you want to make :enable_trim_extra an opt-in variable
+# Pagy::VARS[:enable_trim_extra] = true # default
 
 
 # Pagy Variables

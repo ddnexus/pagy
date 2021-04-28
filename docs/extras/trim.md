@@ -15,6 +15,18 @@ In the `pagy.rb` initializer:
 
 ```ruby
 require 'pagy/extras/trim'
+
+# it will trim without any further configuration,
+
+# you can disable it explicitly for specific requests 
+@pagy, @records = pagy(Product.all, enable_trim_extra: false)
+
+# or...
+
+# disable it by default (opt-in)
+Pagy::VARS[:enable_trim_extra] = false   # default true
+# in this case you have to enable it explicitly when you want the trimming
+@pagy, @records = pagy(Product.all, enable_trim_extra: true)
 ```
 
 ## Files
@@ -23,13 +35,13 @@ require 'pagy/extras/trim'
 
 ## Variables
 
-| Variable | Description      | Default |
-|:---------|:-----------------|:--------|
-| `:trim`  | is trim enabled? | `true`  |
+| Variable             | Description                   | Default |
+|:---------------------|:------------------------------|:--------|
+| `:enable_trim_extra` | enable or disable the feature | `true`  |
 
-You can use the `:trim` variable to opt-out of trimming even when the extra is required (trimming by default).
+You can use the `:enable_trim_extra` variable to opt-out of trimming even when the extra is required (trimming by default).
 
-You can set the `Pagy::VARS[:trim]` default to `false` if you want to explicitly pass the `trim: true` variable in order to trim the param.
+You can set the `Pagy::VARS[:use_trim_extra]` default to `false` if you want to explicitly pass the `enable_trim_extra: true` variable in order to trim the page param.
 
 ## Methods
 
