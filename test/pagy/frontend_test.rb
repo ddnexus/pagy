@@ -139,23 +139,23 @@ describe 'pagy/frontend' do
       _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4"
       _(view.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
     end
-    it 'renders url with anchor' do
-      pagy = Pagy.new count: 1000, page: 3, anchor: '#anchor'
-      _(view.pagy_url_for(pagy, 6)).must_equal '/foo?page=6#anchor'
-      _(view.pagy_url_for(pagy, 6, absolute: true)).must_equal 'http://example.com:3000/foo?page=6#anchor'
+    it 'renders url with fragment' do
+      pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment'
+      _(view.pagy_url_for(pagy, 6)).must_equal '/foo?page=6#fragment'
+      _(view.pagy_url_for(pagy, 6, absolute: true)).must_equal 'http://example.com:3000/foo?page=6#fragment'
     end
-    it 'renders url with params and anchor' do
-      pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
-      _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4#anchor"
-      _(view.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#anchor"
+    it 'renders url with params and fragment' do
+      pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, fragment: '#fragment'
+      _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4#fragment"
+      _(view.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
     end
   end
 
   describe '#pagy_get_params' do
     it 'overrides params' do
       overridden = MockView::Overridden.new
-      pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, anchor: '#anchor'
-      _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&b=4&k=k#anchor"
+      pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, fragment: '#fragment'
+      _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&b=4&k=k#fragment"
     end
   end
 

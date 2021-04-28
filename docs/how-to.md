@@ -242,13 +242,13 @@ def pagy_get_params(params)
 end
 ```
 
-You can also use the `:params` and : `:anchor` variables to add arbitrary params to the URLs of the pages. For example:
+You can also use the `:params` and : `:fragment` variables to add arbitrary params to the URLs of the pages. For example:
 
 ```ruby
-@pagy, @records = pagy(some_scope, params: {custom: 'param'}, anchor: '#your-anchor')
+@pagy, @records = pagy(some_scope, params: {custom: 'param'}, fragment: '#your-fragment')
 ```
 
-**IMPORTANT**: For performance reasons the `:anchor` string must include the `"#"`.
+**IMPORTANT**: For performance reasons the `:fragment` string must include the `"#"`.
 
 ## Customizing the URL
 
@@ -313,7 +313,7 @@ You have a few ways to do that:
 3. you can override entirely the `:item_name` by passing an already pluralized string directly to the helper call:
     ```erb
     <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
-    <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %> 
+    <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
     ```
 
 **Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to set the `i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most flexible way is passing a pluralized string to the helper.

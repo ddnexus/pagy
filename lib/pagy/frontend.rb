@@ -21,7 +21,7 @@ class Pagy
       params[p_vars[:page_param].to_s]  = page
       params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(UseItemsExtra)
       query_string = "?#{Rack::Utils.build_nested_query(pagy_get_params(params))}" unless params.empty?
-      "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:anchor]}"
+      "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:fragment]}"
     end
 
     # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding

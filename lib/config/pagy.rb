@@ -23,7 +23,7 @@
 # Pagy::VARS[:size]       = [1,4,4,1]                       # default
 # Pagy::VARS[:page_param] = :page                           # default
 # Pagy::VARS[:params]     = {}                              # default
-# Pagy::VARS[:anchor]     = '#anchor'                       # example
+# Pagy::VARS[:fragment]   = '#fragment'                     # example
 # Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
 # Pagy::VARS[:i18n_key]   = 'pagy.item_name'                # default
 # Pagy::VARS[:cycle]      = true                            # example
