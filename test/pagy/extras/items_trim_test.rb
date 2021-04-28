@@ -32,6 +32,8 @@ describe 'pagy/extras/items_trim' do
     Pagy::I18n['en'][0]['activerecord.models.product.other'] = ->(_){ 'products'}
     _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', i18n_key: 'activerecord.models.product')).must_equal \
       "<span id=\"test-id\" class=\"pagy-items-selector-js\">Show <input type=\"number\" min=\"1\" max=\"100\" value=\"20\" style=\"padding: 0; text-align: center; width: 3rem;\"> products per page</span><script type=\"application/json\" class=\"pagy-json\">[\"items_selector\",41,\"<a href=\\\"/foo?page=__pagy_page__&items=__pagy_items__\\\"   style=\\\"display: none;\\\"></a>\",\"page\"]</script>"
+    pagy = Pagy.new count: 1000, page: 3, enable_items_extra: false
+    _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_equal ''
   end
 end
 

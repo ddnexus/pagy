@@ -14,8 +14,7 @@ test_tasks = {}
     shared_json
     trim
     items_trim
-    items_countless
-    items_elasticsearch
+    items
     elasticsearch_rails
     searchkick
 ].each do |name|
