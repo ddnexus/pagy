@@ -54,6 +54,7 @@ lib/pagy/extras/overflow.rb
 lib/pagy/extras/searchkick.rb
 lib/pagy/extras/semantic.rb
 lib/pagy/extras/shared.rb
+lib/pagy/extras/standalone.rb
 lib/pagy/extras/support.rb
 lib/pagy/extras/trim.rb
 lib/pagy/extras/uikit.rb
