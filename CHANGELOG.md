@@ -15,6 +15,10 @@
   - `pagy_next_link(@pagy, text: '...', link_extra: '...')`
   - `pagy_link_proc(@pagy, link_extra: '...')`
   - `pagy_url_for(pagy, page, absolute: nil)` (notice the inverted page/pagy order with the legacy`pagy_url_for(page, pagy, url=nil)`)
+- deprecated `:anchor` variable in favor of `:fragment`
+- Refactoring of rake tasks, tests, items extra, javascript helpers
+- Gems and documentation updates and fixes
+- Added standalone extra
 
 ## Version 4.3.0
 
