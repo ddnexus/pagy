@@ -14,7 +14,7 @@ class Pagy
 
   # default vars
   VARS = { page: 1, items: 20, outset: 0, size: [1, 4, 4, 1], page_param: :page,              # rubocop:disable Style/MutableConstant
-           params: {}, anchor: '', link_extra: '', i18n_key: 'pagy.item_name', cycle: false }
+           params: {}, fragment: '', link_extra: '', i18n_key: 'pagy.item_name', cycle: false }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
 
@@ -23,6 +23,7 @@ class Pagy
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
     @vars = VARS.merge( vars.delete_if{|_,v| v.nil? || v == '' } )
+    @vars[:fragment] = deprecated_var(:anchor, @vars[:anchor], :fragment, @vars[:fragment]) if @vars[:anchor]
 
     INSTANCE_VARS_MIN.each do |name,min|
       raise VariableError.new(self), "expected :#{name} >= #{min}; got #{@vars[name].inspect}" \
@@ -69,6 +70,7 @@ class Pagy
 
 end
 
+require 'pagy/deprecation'
 require 'pagy/backend'
 require 'pagy/frontend'
 require 'pagy/exceptions'

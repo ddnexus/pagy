@@ -11,6 +11,7 @@ class Pagy
     end
 
     def pagy_arel_get_vars(collection, vars)
+      pagy_set_items_from_params(vars) if defined?(UseItemsExtra)
       vars[:count] ||= pagy_arel_count(collection)
       vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars

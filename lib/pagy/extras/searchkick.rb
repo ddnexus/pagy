@@ -49,6 +49,7 @@ class Pagy
     # Sub-method called only by #pagy_searchkick: here for easy customization of variables by overriding
     # the _collection argument is not available when the method is called
     def pagy_searchkick_get_vars(_collection, vars)
+      pagy_set_items_from_params(vars) if defined?(UseItemsExtra)
       vars[:items] ||= VARS[:items]
       vars[:page]  ||= (params[ vars[:page_param] || VARS[:page_param] ] || 1).to_i
       vars

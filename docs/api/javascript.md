@@ -22,9 +22,11 @@ All the `pagy*_js` helpers produce/render their component on the client side. Th
 
 Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window-load and eventually on [AJAX-load](#using-ajax).
 
-**CAVEATS**
-- If you override any `*_js` helper, ensure to override/enforce the relative javascript function, even with a simple copy and paste. If the relation between the helper and the function changes in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
-- See also [Preventing crawlers to follow look-alike links](../how-to.md#preventing-crawlers-to-follow-look-alike-links)
+### CAVEATS
+
+If you override any `*_js` helper, ensure to override/enforce the relative javascript function, even with a simple copy and paste. If the relation between the helper and the function changes in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
+
+See also [Preventing crawlers to follow look-alike links](../how-to.md#preventing-crawlers-to-follow-look-alike-links)
 
 ### Add the oj gem
 
@@ -82,7 +84,7 @@ import '../src/javascripts/pagy.js.erb'
 
 - You may want to use `turbolinks:load` if your app uses turbolinks despite webpacker
 - or you may want just `export { Pagy }` from the `pagy.js.erb` file and import and use it somewhere else.
-- You may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
+- or you may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
     ```js
     global.Pagy = Pagy
     ```
@@ -166,7 +168,7 @@ The `:steps` is an optional non-core variable used by the `pagy*_nav_js` navs. I
 
 You can set the `:steps` as a hash where the keys are integers representing the widths in pixels and the values are the Pagy `:size` variables to be applied for that width.
 
-As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance.
+As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance, or even pass it to the `pagy*_nav_js` helper as an optional keyword argument.
 
 For example:
 
@@ -179,7 +181,10 @@ pagy, records = pagy(collection, steps: { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 
 
 # or use the :size as any static pagy*_nav
 pagy, records = pagy(collection, steps: false )
-
+```
+```erb
+or pass it to the helper
+<%== pagy_nav_js(@pagy, steps: {...}) %> 
 ```
 
 The above statement means that from `0` to `540` pixels width, Pagy will use the `[2,3,3,2]` size, from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section).
@@ -247,21 +252,32 @@ require 'pagy/extras/uikit'
 Use the `pagy*_combo_nav_js` helpers in any view:
 
 ```erb
-<%== pagy_combo_nav_js(@pagy) %>
-<%== pagy_bootstrap_combo_nav_js(@pagy) %>
-<%== pagy_bulma_combo_nav_js(@pagy) %>
-<%== pagy_foundation_combo_nav_js(@pagy) %>
-<%== pagy_materialize_combo_nav_js(@pagy) %>
-<%== pagy_semantic_combo_nav_js(@pagy) %>
+<%== pagy_combo_nav_js(@pagy, ...) %>
+<%== pagy_bootstrap_combo_nav_js(@pagy, ...) %>
+<%== pagy_bulma_combo_nav_js(@pagy, ...) %>
+<%== pagy_foundation_combo_nav_js(@pagy, ...) %>
+<%== pagy_materialize_combo_nav_js(@pagy, ...) %>
+<%== pagy_semantic_combo_nav_js(@pagy, ...) %>
 ```
 
 ## Methods
 
-### *_nav_js(pagy, ...)
+### pagy*_nav_js(pagy, ...)
 
-All `*_nav_js` methods can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `*_js` call in the same line for the same file.
+The method accepts also a few optional keyword arguments:
+- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
+- `:steps` the [:steps](#steps) variable
 
-**Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
+**CAVEATS**: the `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add anoter class attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.
+
+### pagy*_combo_nav_js(pagy, ...)
+
+The method accepts also a couple of optional keyword arguments:
+- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
+
+**CAVEATS**: the `pagy_semantic_combo_nav_js` assigns a class attribute to its links, so do not add another class attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.
 
 # Using AJAX
 

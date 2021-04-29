@@ -22,8 +22,8 @@ end
 use some of its method in some view:
 
 ```erb
-<%== pagy_nav(@pagy) %>
-<%== pagy_info(@pagy) %>
+<%== pagy_nav(@pagy, ...) %>
+<%== pagy_info(@pagy, ...) %>
 ```
 
 ## Methods
@@ -32,43 +32,51 @@ All the methods in this module are prefixed with the `"pagy_"` string in order t
 
 Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or tricky gymmickry.
 
-### pagy_nav(pagy)
+### pagy_nav(pagy, ...)
 
 This method takes the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
 ```erb
-<%== pagy_nav(@pagy) %>
+<%== pagy_nav(@pagy, ...) %>
 ```
 
-The `nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it.
+The method accepts also a couple of optional keyword arguments:
+- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
+
+The `nav.*` templates produce the same output, and can be used as an easier (but slower) way to customize it.
 
 See also [Using templates](../how-to.md#using-templates).
 
-### pagy_info(pagy, item_name=nil)
+### pagy_info(pagy, pagy_id: ..., item_name: ..., i18n_key: ...)
 
 This method provides the info about the content of the current pagination. For example:
 
 ```erb
-<%== pagy_info(@pagy) %>
+<%== pagy_info(@pagy, ...) %>
 ```
 
 Will produce something like:
 
-Displaying items <b>476-500</b> of <b>1000</b> in total
+<span>Displaying items <b>476-500</b> of <b>1000</b> in total</span>
 
-or, if you use the `:i18n_key` variable a custom/collection-specific output:
+The method accepts also a few optional keyword arguments:
+- `:pagy_id` which adds the `id` HTML attributedto the `span` tag wrapping the info
+- `:item_name` an already pluralized string that will be used in place of the default `item/items`
+- `:i18n_key` the key to lookup in a dictionary
+
+Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `VARS[:i18n_key]`
+
+```erb
+<%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count) %>
+<%== pagy_info(@pagy, i18n_key: 'activerecord.model.product' %>
+```
 
 Displaying Products <b>476-500</b> of <b>1000</b> in total
 
-You can also overwrite the `item_name` entirely by passing an already pluralized string directly to the helper:
-
-```erb
-<%== pagy_info(@pagy, 'Widget'.pluralized(@pagy.count) %>
-```
-
 _(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
-### pagy_url_for(page, pagy)
+### pagy_url_for(pagy, page, absolute: nil)
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
 
@@ -149,8 +157,14 @@ If you need to add some HTML attribute to the page links, you can pass some extr
     link.call(page_number, 'aria-label="my-label"')
     #=> <a href="...?page=2" data-remote="true" class="page-link" aria-label="my-label">2</a>
     ```
-**WARNING**: we use only strings for performance, so the attribute strings get concatenated level after level, but not merged!
-Be careful not to pass the same attribute at different levels multiple times. That would generate a duplicated HTML attribute which is illegal html (although handled by all mayor browsers by ignoring all the duplicates but the first)
+
+#### CAVEATS
+
+We use only strings for performance, so the attribute strings get concatenated level after level, but not merged!
+
+Be careful not to pass the same attribute at different levels multiple times. That would generate a duplicated HTML attribute which is illegal html (although handled by all mayor browsers by ignoring all the duplicates but the first).
+
+Specifically do not add a `class` attribute that will end up in the `pagy_bootstrap_nav_js`, `pagy_semantic_nav_js` and `pagy_semantic_combo_nav_js`, which define already their own.
 
 ### pagy_t(key, vars={})
 

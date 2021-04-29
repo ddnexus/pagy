@@ -78,7 +78,7 @@ This page contains the practical tips and examples to get the job done with Pagy
 
            ```ruby
            render json: { data: @records,
-                          pagy: pagy_metadata(@pagy) }
+                          pagy: pagy_metadata(@pagy, ...) }
            ```
 
     - Option C: if your app is an API service consumed by some client and doesn't provide any UI on its own, you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
@@ -242,13 +242,13 @@ def pagy_get_params(params)
 end
 ```
 
-You can also use the `:params` and : `:anchor` variables to add arbitrary params to the URLs of the pages. For example:
+You can also use the `:params` and : `:fragment` variables to add arbitrary params to the URLs of the pages. For example:
 
 ```ruby
-@pagy, @records = pagy(some_scope, params: {custom: 'param'}, anchor: '#your-anchor')
+@pagy, @records = pagy(some_scope, params: {custom: 'param'}, fragment: '#your-fragment')
 ```
 
-**IMPORTANT**: For performance reasons the `:anchor` string must include the `"#"`.
+**IMPORTANT**: For performance reasons the `:fragment` string must include the `"#"`.
 
 ## Customizing the URL
 
@@ -259,8 +259,8 @@ When you need somethig more radical with the URL than just massaging the params,
 The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths like `your_route/23` instead of `your_route?page=23`):
 
 ```ruby
-def pagy_url_for(page, pagy)
-  params = request.query_parameters.merge(:only_path => true, pagy.vars[:page_param] => page )
+def pagy_url_for(pagy, page)
+  params = request.query_parameters.merge(pagy.vars[:page_param] => page )
   url_for(params)
 end
 ```
@@ -272,7 +272,7 @@ Notice that this overridden method is quite slower than the original because it 
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and your page links may need to use POST and not GET. In that case you can try this simple solution:
 
 ```ruby
-def pagy_url_for(page, _)
+def pagy_url_for(_, page)
   page
 end
 ```
@@ -304,10 +304,16 @@ You have a few ways to do that:
     # or single Pagy instance
     @pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product' )
     ```
+    or passing it as an optional keyword argument to the helper:
+    ```erb
+    <%== pagy_info(@pagy, i18n_key: 'activerecord.models.product') %>
+    <%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.models.product') %>
+    ```
 
 3. you can override entirely the `:item_name` by passing an already pluralized string directly to the helper call:
     ```erb
-    <%== pagy_info(@pagy, 'Widgets'.pluralize(@pagy.count)) %>
+    <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
+    <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
     ```
 
 **Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to set the `i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most flexible way is passing a pluralized string to the helper.

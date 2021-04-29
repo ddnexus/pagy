@@ -24,11 +24,11 @@ class Pagy
       countless = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
       rels = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
       rels['last'] = pagy.last unless countless
-      url_str = pagy_url_for(PAGE_PLACEHOLDER, pagy, :url)
-      hash    = { 'Link' => rels.map do |rel, num|
+      url_str = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: true)
+      hash    = { 'Link' => rels.filter_map do |rel, num|
                               next unless num
                               [ rel, url_str.sub(PAGE_PLACEHOLDER, num.to_s) ]
-                            end.compact.to_h }
+                            end.to_h }
       headers = pagy.vars[:headers]
       hash[headers[:page]]  = pagy.page.to_s         if headers[:page]
       hash[headers[:items]] = pagy.vars[:items].to_s if headers[:items]

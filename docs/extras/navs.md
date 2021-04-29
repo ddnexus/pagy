@@ -21,8 +21,8 @@ Render the navigation links in some view...
 with a fast helper:
 
 ```erb
-<%== pagy_nav_js(@pagy) %>
-<%== pagy_combo_nav_js(@pagy) %>
+<%== pagy_nav_js(@pagy, ...) %>
+<%== pagy_combo_nav_js(@pagy, ...) %>
 ```
 
 See [Javascript](../api/javascript.md).

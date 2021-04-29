@@ -7,10 +7,11 @@ class Pagy
   module Frontend
 
     # Pagination for Foundation: it returns the html with the series of links to the pages
-    def pagy_foundation_nav(pagy)
-      link = pagy_link_proc(pagy)
+    def pagy_foundation_nav(pagy, pagy_id: nil, link_extra: '')
+      p_id = %( id="#{pagy_id}") if pagy_id
+      link = pagy_link_proc(pagy, link_extra: link_extra)
 
-      html = +%(<nav class="pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">)
+      html = +%(<nav#{p_id} class="pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">)
       html << pagy_foundation_prev_html(pagy, link)
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -24,26 +25,30 @@ class Pagy
     end
 
     # Javascript pagination for foundation: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_foundation_nav_js(pagy, id=pagy_id)
-      link = pagy_link_proc(pagy)
+    def pagy_foundation_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '', steps: nil)
+      pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      p_id = %( id="#{pagy_id}") if pagy_id
+      link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => %(<ul class="pagination">#{pagy_foundation_prev_html pagy, link}),
                'link'   => %(<li>#{link.call PAGE_PLACEHOLDER}</li>),
                'active' => %(<li class="current">#{pagy.page}</li>),
                'gap'    => %(<li class="ellipsis gap" aria-hidden="true"></li>),
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
-      html = %(<nav id="#{id}" class="pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>)
-      html << pagy_json_tag(pagy, :nav, id, tags, pagy.sequels)
+      html = %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>)
+      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_foundation_combo_nav_js(pagy, id=pagy_id)
-      link    = pagy_link_proc(pagy)
+    def pagy_foundation_combo_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '')
+      pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+      p_id    = %( id="#{pagy_id}") if pagy_id
+      link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="width: #{p_pages.to_s.length+1}rem; padding: 0 0.3rem; margin: 0 0.3rem;">)
 
-      %(<nav id="#{id}" class="pagy-foundation-combo-nav-js" role="navigation" aria-label="Pagination"><div class="input-group">#{
+      %(<nav#{p_id} class="pagy-foundation-combo-nav-js" role="navigation" aria-label="Pagination"><div class="input-group">#{
           if (p_prev  = pagy.prev)
             link.call p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0px;" aria-label="previous" class="prev button primary"'
           else
@@ -56,7 +61,7 @@ class Pagy
             %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t 'pagy.nav.next'}</a>)
           end
       }</div></nav>#{
-          pagy_json_tag pagy, :combo_nav, id, p_page, pagy_marked_link(link)
+          pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)
       })
     end
 
