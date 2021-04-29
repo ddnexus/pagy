@@ -65,17 +65,20 @@ If your app uses Webpacker, ensure that the webpacker `erb` loader is installed:
 bundle exec rails webpacker:install:erb
 ```
 
-Then create a `pagy.js.erb` in order to render the content of `pagy.js` and add the event listener into it:
+Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to render the contents of `pagy.js` and add an event listener to it (to allow the library to reinitialise when you click a new link):
 
 ```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
-window.addEventListener("load", Pagy.init)
+window.addEventListener("turbo:load", Pagy.init) # if using turbo-rails OR
+
+# window.addEventListener("turbolinks:load", Pagy.init) # if turbolinks OR
+# window.addEventListener("load", Pagy.init) # if using no library
 ```
 
 and import it in `app/javascript/application.js`:
 
 ```js
-import '../src/javascripts/pagy.js.erb'
+import './pagy.js.erb'
 ```
 
 **Notice**:
