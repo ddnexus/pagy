@@ -1,5 +1,17 @@
 # CHANGELOG
 
+### Version 4.5.0
+
+### Changes
+
+- Added E2E infrastructure for development and testing
+- Refactoring of Javascript and docker environment
+
+### Commits
+
+- [1b7b014](http://github.com/ddnexus/pagy/commit/1b7b014): Add: clarity, further instructions to run pagy tests [skip ci] (#304)
+- [7c723ba](http://github.com/ddnexus/pagy/commit/7c723ba): added basic structure to run cypress tests and open the cypress IDE
+
 ## Version 4.4.0
 
 ### Changes

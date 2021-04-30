@@ -1,11 +1,19 @@
 # Basic pagy-on-docker development environment
 # it will keep the installed gems and HOME in the pagy_bundle and pagy_user_home pagy-on-docker volumes
-# the gh-pages service will be updating a live preview for the documentation
+# the pagy-jekill service will be updating a live preview for the docs
+
+# USAGE
+#   cd pagy-on-docker
+#   docker-compose up pagy           # only pagy service (running ruby development and test environment)
+#   docker-compose up pagy-jekyll    # pagy and pagy-jekyll services (add the docs live site)
+#   docker-compose up pagy-cyress    # pagy and pagy-cyress services (run the e2e tests and exit)
 
 version: "3.8"
 
 services:
 
+  # ruby dev and test pagy development
+  # It also runs a minimal sinatra app at http://0.0.0.0:8080
   pagy:
     image: pagy:4
     build:
@@ -25,21 +33,27 @@ services:
       - bundle:/usr/local/bundle
       - user_home:/home/$USER
     environment:
-      - ENABLE_OJ=${ENABLE_OJ:-true}
-      - COVERAGE_REPORT=${COVERAGE_REPORT:-false}
+      - COVERAGE_REPORT
     ports:
       - "1234:1234"   # RubyMine debugger
+      - "4567:4567"   # default sinatra e2e/app.rb
+      - "8080:8080"   # should you run the rackup apps/base_app.ru
+    command: rerun "test/e2e/app.rb -o 0.0.0.0"
     stdin_open: true
     tty: true
 
+  # Serve the docs site live at http://0.0.0.0:4000
+  # Use it to check/edit the rendered content in the docs dir
   pagy-jekyll:
+    depends_on:
+      - pagy
     image: pagy-jekyll:latest
     build:
       context: .
       dockerfile: pagy-jekyll.dockerfile
     container_name: pagy-jekyll
     environment:
-      - JEKYLL_GITHUB_TOKEN=${JEKYLL_GITHUB_TOKEN}
+      - JEKYLL_GITHUB_TOKEN
     ports:
       - "4000:4000"
       - "35729:35729"
@@ -58,6 +72,31 @@ services:
           --destination /opt/site
     stdin_open: true
     tty: true
+
+  # you may want skip this service when you run the docker-compose.yml file
+  # and run it only on demand to run the tests and exit, or to interact with cypress
+  # using the additional open-cypress.yml (see the comments in the open-cypress.yml file)
+  # IMPORTANT: pick the build.dockerfile entry according to your UID
+  pagy-cypress:
+    depends_on:
+      - pagy
+    image: pagy-cypress:latest
+    build:
+      context: .
+      # switch between the following 2 lines if your user id is 1000 or not
+      dockerfile: pagy-cypress-uid1000.dockerfile
+      # dockerfile: pagy-cypress.dockerfile
+      args:
+        user: $USER
+        group: $GROUP
+        uid: $UID
+        gid: $GID
+    container_name: pagy-cypress
+    environment:
+      - CYPRESS_baseUrl=http://pagy:4567
+    working_dir: /test/e2e
+    volumes:
+      - ../test/e2e:/test/e2e
 
 volumes:
   bundle:

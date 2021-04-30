@@ -31,7 +31,7 @@ class Pagy
       tags = { 'before' => pagy_uikit_prev_html(pagy, link),
                'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER)}</li>),
                'active' => %(<li class="uk-active"><span>#{PAGE_PLACEHOLDER}</span></li>),
-               'gap'    => %(<li class="uk-disabled"><span>#{pagy_t('pagy.nav.gap')}</span></li>),
+               'gap'    => %(<li class="uk-disabled"><span>#{pagy_t 'pagy.nav.gap'}</span></li>),
                'after'  => pagy_uikit_next_html(pagy, link) }
 
       html = %(<ul#{p_id} class="pagy-njs pagy-uikit-nav-js uk-pagination uk-flex-center"></ul>)
