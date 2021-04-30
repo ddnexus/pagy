@@ -16,7 +16,8 @@ class Pagy
 
     # Sub-method called only by #pagy_countless: here for easy customization of variables by overriding
     def pagy_countless_get_vars(_collection, vars)
-      vars[:page] ||= params[ vars[:page_param] || VARS[:page_param] ]
+      pagy_set_items_from_params(vars) if defined?(UseItemsExtra)
+      vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars
     end
 

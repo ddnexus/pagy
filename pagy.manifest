@@ -35,6 +35,7 @@ lib/locales/zh-TW.yml
 lib/pagy.rb
 lib/pagy/backend.rb
 lib/pagy/countless.rb
+lib/pagy/deprecation.rb
 lib/pagy/exceptions.rb
 lib/pagy/extras/arel.rb
 lib/pagy/extras/array.rb
@@ -53,6 +54,7 @@ lib/pagy/extras/overflow.rb
 lib/pagy/extras/searchkick.rb
 lib/pagy/extras/semantic.rb
 lib/pagy/extras/shared.rb
+lib/pagy/extras/standalone.rb
 lib/pagy/extras/support.rb
 lib/pagy/extras/trim.rb
 lib/pagy/extras/uikit.rb

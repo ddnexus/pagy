@@ -19,9 +19,9 @@ Render the navigation links in some view...
 with a fast helper:
 
 ```erb
-<%== pagy_materialize_nav(@pagy) %>
-<%== pagy_materialize_nav_js(@pagy) %>
-<%== pagy_materialize_combo_nav_js(@pagy) %>
+<%== pagy_materialize_nav(@pagy, ...) %>
+<%== pagy_materialize_nav_js(@pagy, ...) %>
+<%== pagy_materialize_combo_nav_js(@pagy, ...) %>
 ```
 
 See [Javascript](../api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
@@ -37,6 +37,8 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 ### pagy_materialize_nav(pagy)
 
 This method is the same as the `pagy_nav`, but customized for Materialize.
+
+See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
 
 ### pagy_materialize_nav_js(pagy, ...)
 

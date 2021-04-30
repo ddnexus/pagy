@@ -13,11 +13,15 @@ class Pagy
 
   module Helpers
     # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(page, pagy, url=nil)
+    def pagy_url_for(pagy, page, deprecated_url=nil, absolute: nil)
+      absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
+      pagy, page = Pagy.deprecated_order(pagy, page) if page.is_a?(Pagy)
       p_vars = pagy.vars
       params = request.GET.merge(p_vars[:params])
-      params[p_vars[:page_param].to_s] = page
-      "#{request.base_url if url}#{request.path}?#{Rack::Utils.build_nested_query(pagy_get_params(params))}#{p_vars[:anchor]}"
+      params[p_vars[:page_param].to_s]  = page
+      params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(UseItemsExtra)
+      query_string = "?#{Rack::Utils.build_nested_query(pagy_get_params(params))}" unless params.empty?
+      "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:fragment]}"
     end
 
     # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
@@ -31,12 +35,13 @@ class Pagy
     include Helpers
 
     # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy)
-      link   = pagy_link_proc(pagy)
+    def pagy_nav(pagy, pagy_id: nil, link_extra: '')
+      p_id   = %( id="#{pagy_id}") if pagy_id
+      link   = pagy_link_proc(pagy, link_extra: link_extra)
       p_prev = pagy.prev
       p_next = pagy.next
 
-      html  = +%(<nav class="pagy-nav pagination" role="navigation" aria-label="pager">)
+      html  = +%(<nav#{p_id} class="pagy-nav pagination" role="navigation" aria-label="pager">)
       html << if p_prev
                 %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
               else
@@ -58,28 +63,34 @@ class Pagy
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, item_name=nil)
-      count = pagy.count
-      key   = if    count.zero?     then 'pagy.info.no_items'
-              elsif pagy.pages == 1 then 'pagy.info.single_page'
-              else                       'pagy.info.multiple_pages'
-              end
-      pagy_t key, item_name: item_name || pagy_t(pagy.vars[:i18n_key], count: count),
-                  count: count, from: pagy.from, to: pagy.to
+    def pagy_info(pagy, deprecated_item_name=nil, pagy_id: nil, item_name: nil, i18n_key: nil)
+      p_id      = %( id="#{pagy_id}") if pagy_id
+      item_name = Pagy.deprecated_arg(:item_name, deprecated_item_name, :item_name, item_name) if deprecated_item_name
+      p_count = pagy.count
+      key     = if    p_count.zero?   then 'pagy.info.no_items'
+                elsif pagy.pages == 1 then 'pagy.info.single_page'
+                else                       'pagy.info.multiple_pages'
+                end
+
+      %(<span#{p_id} class="pagy-info">#{
+      pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
+                  count: p_count, from: pagy.from, to: pagy.to
+      }</span>)
     end
 
     # Returns a performance optimized proc to generate the HTML links
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_link_proc(pagy, link_extra='')
+    def pagy_link_proc(pagy, deprecated_link_extra=nil, link_extra: '')
+      link_extra = Pagy.deprecated_arg(:link_extra, deprecated_link_extra, :link_extra, link_extra) if deprecated_link_extra
       p_prev = pagy.prev
       p_next = pagy.next
-      left, right = %(<a href="#{pagy_url_for PAGE_PLACEHOLDER, pagy}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
-      lambda do |num, text=num, extra=''|
+      left, right = %(<a href="#{pagy_url_for pagy, PAGE_PLACEHOLDER}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
+      lambda do |num, text=num, extra_attrs=''|
         %(#{left}#{num}#{right}#{ case num
                                   when p_prev then ' rel="prev"'
                                   when p_next then ' rel="next"'
                                   else             ''
-                                  end } #{extra}>#{text}</a>)
+                                  end } #{extra_attrs}>#{text}</a>)
       end
     end
 

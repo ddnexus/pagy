@@ -19,6 +19,8 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 - Updating `pagy` from `3.0+` to `4.0+` requires a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](CHANGELOG.md))
 - Added the docker development environment to ease contributions
 - Big code restyling following ruby 3.0 syntax and cops; the code is simpler, more readable and verbose with yet improved performance.
+- All the public helpers accept optional keyword arguments (see the [Changelog](CHANGELOG.md#version-440))
+- New [standalone extra](http://ddnexus.github.io/pagy/extras/standalone) to use pagy without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without any app or config.
 
 ## Comparison with other gems
 
@@ -125,6 +127,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 - [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy-i18n implementation
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
 - [overflow](http://ddnexus.github.io/pagy/extras/overflow): Allow for easy handling of overflowing pages
+- [standalone](http://ddnexus.github.io/pagy/extras/standalone): Use pagy without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without any app or config.
 - [support](http://ddnexus.github.io/pagy/extras/support): Extra support for features like: incremental, auto-incremental and infinite pagination
 - [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
 

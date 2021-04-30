@@ -3,7 +3,7 @@ title: Items
 ---
 # Items Extra
 
-Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or higly user-customizable apps.
+Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or user-customizable UIs.
 
 It works also with the [countless](countless.md), [searchkick](searchkick.md) and [elasticsearch_rails](elasticsearch_rails.md) extras.
 
@@ -16,8 +16,21 @@ In the `pagy.rb` initializer:
 ```ruby
 require 'pagy/extras/items'
 
+# it will work without any further configuration
+
+# you can disable it explicitly for specific requests
+@pagy, @records = pagy(Product.all, enable_items_extra: false)
+ 
+# or... 
+ 
+# disable it by default (opt-in)
+Pagy::VARS[:enable_items_extra] = false   # default true
+# in this case you have to enable it explicitly when you want it
+@pagy, @records = pagy(Product.all, enable_items_extra: true)
+
+# customize the defaults if you need to
 Pagy::VARS[:items_param] = :custom_param       # default :items
-Pagy::VARS[:max_items]   = 100                 # default
+Pagy::VARS[:max_items]   = 200                 # default 100
 ```
 
 See [Javascript](../api/javascript.md) (only if you use the `pagy_items_selector_js` UI)
@@ -28,10 +41,13 @@ See [Javascript](../api/javascript.md) (only if you use the `pagy_items_selector
 
 ## Variables
 
-| Variable       | Description                                                          | Default  |
-|:---------------|:---------------------------------------------------------------------|:---------|
-| `:items_param` | the name of the items param used in the url.                         | `:items` |
-| `:max_items`   | the max items allowed to be requested. Set it to `nil` for no limit. | `100`    |
+| Variable              | Description                                                          | Default  |
+|:----------------------|:---------------------------------------------------------------------|:---------|
+| `:enable_items_extra` | enable or disable the feature                                        | `true`   |
+| `:items_param`        | the name of the items param used in the url.                         | `:items` |
+| `:max_items`          | the max items allowed to be requested. Set it to `nil` for no limit. | `100`    |
+
+You can use the `:enable_items_extra` variable to opt-out of the feature even when the extra is required.
 
 This extra uses the `:items_param` variable to determine the param it should get the number of `:items` from.
 
@@ -63,19 +79,7 @@ pagy(scope, items: 30)
 
 ## Methods
 
-The `items` extra overrides a couple of builtin methods and adds a helper to the `Pagy::Frontend` module.
-
-### pagy_get_vars(collection, vars)
-
-This extra overrides the `pagy_get_vars` method of the `Pagy::Backend` module in order to set the `:items` variable, pulled from the request-params.
-
-### pagy_countless_get_vars(collection, vars)
-
-This extra overrides the `pagy_countless_get_vars` method of the `Pagy::Backend` module (added by the `countless` extra) in order to set the `:items` variable, pulled from the request-params.
-
-### pagy_url_for(page, pagy)
-
-This extra overrides also the `pagy_url_for` method of the `Pagy::Frontend` module in order to add the `:items_param` param to the url of the links.
+The `items` extra adds the `pagy_items_selector_js` helper to the `Pagy::Frontend` module.
 
 ### pagy_items_selector_js(pagy, ...)
 
@@ -83,7 +87,20 @@ This helper provides an items selector UI, which allows the user to select any a
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page</span>
 
-or, if you use the `:i18n_key` variable you can get a custom/collection-specific output:
+It returns an empty string if the `:enable_items_extra` is `false`.
+
+The method accepts also a few optional keyword arguments:
+- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+- `:item_name` an already pluralized string that will be used in place of the default `item/items`
+- `:i18n_key` the key to lookup in a dictionary
+- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
+
+Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `VARS[:i18n_key]`
+
+```erb
+<%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count) %>
+<%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.model.product' %>
+```
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per page</span>
 

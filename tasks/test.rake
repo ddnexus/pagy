@@ -6,18 +6,19 @@ require 'rake/testtask'
 # in isolation in order to avoid affecting also other tests.
 test_tasks = {}
 
-%w[ headers
+%w[ elasticsearch_rails
+    headers
     i18n
-    overflow
-    support
-    oj_shared
-    shared
-    trim
+    items
     items_trim
-    items_countless
-    items_elasticsearch
-    elasticsearch_rails
+    overflow
     searchkick
+    shared_json
+    shared_oj
+    standalone
+    standalone_console
+    support
+    trim
 ].each do |name|
   task_name = :"test_#{name}"
   file_path = "test/**/#{name}_test.rb"
