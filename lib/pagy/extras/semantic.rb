@@ -15,8 +15,8 @@ class Pagy
       html << pagy_semantic_prev_html(pagy, link)
       pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
-                when Integer then link.call item                            # page link
-                when String  then %(<a class="item active">#{item}</a>)     # current page
+                when Integer then link.call item                                                 # page link
+                when String  then %(<a class="item active">#{item}</a>)                          # current page
                 when :gap    then %(<div class="disabled item">#{pagy_t 'pagy.nav.gap'}</div>)   # page gap
                 end
       end

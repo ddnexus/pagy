@@ -1,0 +1,83 @@
+/* reset all excluding hr */
+*:not(hr) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* normalize all p excluding bulma spectific combo */
+p:not(.control) {
+  display: block;
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+/* normalize all on one line with some space in between */
+ul li,
+.pagy-bootstrap-combo-nav-js .btn-group, .pagy-combo-input,
+.pagy-bulma-combo-nav-js .is-grouped,
+.pagy-foundation-combo-nav-js .input-group, .pagy-foundation-combo-nav-js .input-group-label,
+.pagy-materialize-combo-nav-js ul.pagination,
+.pagy-combo-nav-js,
+.pagy-semantic-nav, .pagy-semantic-nav .item, .pagy-semantic-nav-js, .pagy-semantic-nav-js .item, .pagy-semantic-combo-nav-js,
+.pagy-uikit-combo-nav-js, .pagy-uikit-combo-nav-js .uk-text-middle {
+  display: inline-flex !important;
+  margin-left: .2em;
+  margin-right: .2em;
+}
+
+.pagy-nav-js, .pagy-nav {
+  margin-left: .3em;
+  margin-right: .3em;
+}
+
+/* normalize materialize combo specific */
+.pagy-materialize-combo-nav-js .pagy-compact-chip {
+  height: auto !important;
+  background: none !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+}
+
+/* normalize missing chevron icons (materialize and semantic) */
+li i.material-icons,
+.item i.chevron {
+  font-size: 0;
+}
+li:first-child i.material-icons:after,
+.item:first-child i.chevron:after {
+  content: "‹ Prev";
+  font-size: initial;
+}
+
+li:last-child i.material-icons:after,
+.item:last-child i.chevron:after {
+  content: "Next ›";
+  font-size: initial;
+}
+
+/* normalize missing ellipsis icons (foundation) */
+li.ellipsis {
+  font-size: 0;
+}
+li.ellipsis:after {
+  content: "…";
+  font-size: initial;
+}
+
+/* disable style of current page (bootstrap, bulma, materialize, semantic) */
+li.active a.page-link,
+a.is-current,
+li.active a,
+a.item.active {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* disable style of disabled links (bootstrap, bulma, materialize) */
+li.page-item.disabled a, .btn-group a.disabled,
+a[disabled],
+li.disabled a {
+  text-decoration: none !important;
+  color: inherit !important;
+}

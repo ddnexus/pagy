@@ -1,27 +1,24 @@
 # frozen_string_literal: true
 
-# Basec self-contained rack/sinatra app
+# Basic self-contained rack/sinatra app
 # edit or duplicate this app to experiment with the pagy features
 
-# USAGE: rackup -I lib -o 0.0.0.0 -p 8080 apps/basic_app.ru
+# USAGE: rerun -- rackup -o 0.0.0.0 -p 8080 apps/basic_app.ru
 
-# standard bundler using project Gemfile
-require 'rubygems'
-require 'bundler'
 Bundler.require(:default, :apps)
+require 'oj' # require false in Gemfile
 
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'pagy'
 
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
-require 'pagy/extras/trim' if ENV['ENABLE_TRIM']
-require 'oj' if ENV['ENABLE_OJ'] == 'true'
+require 'pagy/extras/trim'
+Pagy::VARS[:trim] = false # opt-in trim
 
 # sinatra setup
 require 'sinatra/base'
-require 'sinatra/reloader'
-
 
 # simple array-based collection that acts as standard DB collection
 class MockCollection < Array
@@ -53,12 +50,11 @@ class PagyApp < Sinatra::Base
     enable :inline_templates
   end
 
-  configure :development do
-    register Sinatra::Reloader
-  end
-
   include Pagy::Backend
-  include Pagy::Frontend
+
+  helpers do
+    include Pagy::Frontend
+  end
 
   get '/pagy.js' do
     content_type 'application/javascript'
@@ -66,17 +62,13 @@ class PagyApp < Sinatra::Base
   end
 
   get '/' do
-    redirect '/helpers'
+    erb :welcome
   end
 
   get '/helpers' do
     collection = MockCollection.new
     @pagy, = pagy(collection)
     erb :helpers
-  end
-
-  get '/no-pagy' do
-    erb :'no-pagy'
   end
 
 end
@@ -99,6 +91,12 @@ __END__
 </body>
 </html>
 
+
+@@ welcome
+<h3>Pagy app</h3>
+<p>This app runs on Sinatra/rackup/Puma</p>
+
+
 @@ helpers
 <br>
 <%= pagy_nav(@pagy) %>
@@ -108,6 +106,3 @@ __END__
 <%= pagy_combo_nav_js(@pagy) %>
 <br>
 <%= pagy_items_selector_js(@pagy) %>
-
-@@ no-pagy
-<p>Just a page without pagy</p>
