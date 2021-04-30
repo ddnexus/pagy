@@ -23,7 +23,7 @@ The pagy docker environment has been designed to be useful for developing:
 
 ### Build
 
-You have a couple of alternative:
+You have a couple of alternatives:
 
 1. (recommended) Permanently set a few variables about your user in your IDE or system (it will be easier for the future):
 
@@ -52,12 +52,17 @@ You need to run this only once usually, when you build the images. After that yo
 Run the containers from the `pagy-on-docker` dir:
 
 ```sh
-docker-compose up pagy pagy-jekyll
+docker-compose up pagy
+docker-compose up pagy-jekyll # for the documentation site
+docker-compose up pagy pagy-jekyll # for both pagy and the documentation site
 ```
+Then:
 
-Notice, you can omit the `pagy-jekyll` if you don't need to deal with the documentation site.
+1. Open a terminal in the pagy container:
+     - if the container is already up, run bash in the same container `docker-compose exec pagy bash`
+     - or `docker-compose run --rm pagy bash` to run it in a different container
 
-Open a terminal in the pagy container and run the usual `bundle install` to install the gems into the `pagy_bundle` volume.
+2. `bundle install` to install the gems into the `pagy_bundle` volume.
 
 Then you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
 
@@ -116,7 +121,7 @@ Check your user id with:
 id -u
 ```
 
-If it is `1000` you are all setup for building the container. If it is any other id, you should first open the `pagy-on-docker/docker-compose.yml` file and switch (i.e. Commenting/uncommenting) the `pagy-cypress.build.dockerimage` entries so they will look like this:
+If it is `1000` you are all setup for building the container. If it is any other id, you should first open the `pagy-on-docker/docker-compose.yml` file and switch (i.e. commenting/uncommenting) the `pagy-cypress.build.dockerimage` entries so they will look like this:
 
 ```yml
 ...
@@ -128,7 +133,7 @@ If it is `1000` you are all setup for building the container. If it is any other
 
 After saving the file, the rest of the building will be almost identical to the [Build](#build) section above.
 
-The ony difference is that you must replace the command `docker-compose build pagy pagy-jekyll` with `docker-compose build pagy-cyress`.
+The ony difference is that you must replace the command `docker-compose build pagy pagy-jekyll` with `docker-compose build pagy-cypress`.
 
 All the rest (including ENV variables) is exactly the same.
 
@@ -157,7 +162,7 @@ docker-compose -f docker-compose.yml -f open-cypress.yml up pagy-cypress
 
 That will open the cypress desktop app and will allow you to interact with it.
 
-You can always run only the tests (without opening cypress desktop_ by running the usual:
+You can always run only the tests (without opening the cypress desktop) by running the usual:
 
 ```sh
 docker-compose up pagy-cypress
