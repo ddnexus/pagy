@@ -20,6 +20,38 @@
 - Gems and documentation updates and fixes
 - Added standalone extra
 
+### Commits
+
+- [b69a2f2](http://github.com/ddnexus/pagy/commit/b69a2f2): Merge branch 'dev'
+- [9611eac](http://github.com/ddnexus/pagy/commit/9611eac): updated CHANGELOG
+- [d977767](http://github.com/ddnexus/pagy/commit/d977767): better links in extras.md
+- [aa83126](http://github.com/ddnexus/pagy/commit/aa83126): added standalone extra
+- [e22c9c3](http://github.com/ddnexus/pagy/commit/e22c9c3): Merge branch 'args-refactoring' into dev
+- [d791a04](http://github.com/ddnexus/pagy/commit/d791a04): deprecated :anchor variable in favor of :fragment
+- [e91e4da](http://github.com/ddnexus/pagy/commit/e91e4da): [skip ci] update javascript documentation (#305)
+- [034afe8](http://github.com/ddnexus/pagy/commit/034afe8): config/pagy.rb: moved pagy variables block at the beginning
+- [bd0bb6c](http://github.com/ddnexus/pagy/commit/bd0bb6c): renamed :trim variable to the more explicit :enable_trim_extra; removed redundant tests
+- [76096e7](http://github.com/ddnexus/pagy/commit/76096e7): simplified the items extra, and added its features to the array and arel extras
+- [86fb20e](http://github.com/ddnexus/pagy/commit/86fb20e): fixed pagy_semantic_nav hellips
+- [2382482](http://github.com/ddnexus/pagy/commit/2382482): added link_extra keyword arg to pagy_items_selector_js
+- [627a0dc](http://github.com/ddnexus/pagy/commit/627a0dc): also pagy_link_proc uses keyword arguments
+- [8ff2665](http://github.com/ddnexus/pagy/commit/8ff2665): completed args conversion also for pagy_url_for and pagy_metadata
+- [6a8fbb4](http://github.com/ddnexus/pagy/commit/6a8fbb4): added "pagy-info" and "pagy-items-selector-js" classes to helpers output
+- [ad350e1](http://github.com/ddnexus/pagy/commit/ad350e1): pagy_info wrapped into span tag, and added pagy_id keyword arg
+- [2faca63](http://github.com/ddnexus/pagy/commit/2faca63): small improvement to pagy_url_for
+- [2acbac6](http://github.com/ddnexus/pagy/commit/2acbac6): added "pagy-njs" class to all pagy*_nav_js helpers
+- [670f5a5](http://github.com/ddnexus/pagy/commit/670f5a5): updated documentation
+- [64347f8](http://github.com/ddnexus/pagy/commit/64347f8): changed the argument order from pagy_url_for(page, pagy) > pagy_url_for(pagy, page) for consistency with all the other helpers; deprecation warning and support for pagy < 5
+- [393d216](http://github.com/ddnexus/pagy/commit/393d216): updated gems
+- [d2891fb](http://github.com/ddnexus/pagy/commit/d2891fb): refactoring and additions of tests
+- [1538f24](http://github.com/ddnexus/pagy/commit/1538f24): updated tests with keyword arguments
+- [6ce0c1d](http://github.com/ddnexus/pagy/commit/6ce0c1d): helpers: deprecated positional id argument and added keyword arguments
+- [9fd7930](http://github.com/ddnexus/pagy/commit/9fd7930): removed pagy_id method and added id arg to the pagy*_nav helpers
+- [ec74e4f](http://github.com/ddnexus/pagy/commit/ec74e4f): removed the mandatory id arg passed to pagy_json_tag; updated tests; simplified pagy.js using previousSibling
+- [3f13014](http://github.com/ddnexus/pagy/commit/3f13014): added resource post and relative link [skip ci]
+- [7927f37](http://github.com/ddnexus/pagy/commit/7927f37): added manifest:check to CI for master and dev and to the default rake task
+- [01f8f1c](http://github.com/ddnexus/pagy/commit/01f8f1c): refactoring of Rakefile now split in different task files
+
 ## Version 4.3.0
 
 ### Changes
