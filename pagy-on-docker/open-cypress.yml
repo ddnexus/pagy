@@ -20,17 +20,24 @@ services:
       - DISPLAY
       - DBUS_SESSION_BUS_ADDRESS
     entrypoint: |
-      cypress open --project /test_js
+      cypress open --project /test/e2e
     privileged: true
     network_mode: host
     volumes:
       # mounts working on ubuntu 20.10 host uid 1000
       - /run/user/1000/bus:/run/user/1000/bus
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
+      - cypress_config:/home/node/.config   # node is the user name for uid 1000: for other cases use your actual USER
       # you may need to change all these mounts by reading at the error messages in the container
       # you might also need some of the following:
       # - $XAUTHORITY:/root/.Xauthority:rw
       # - $HOME/.Xauthority:/root/.Xauthority:rw
       # or on macOS:
       # - /tmp/.X11-unix:/tmp/.X11-unix
+    stdin_open: true
+    tty: true
 
+volumes:
+  # persists the configuration settings
+  cypress_config:
+    name: pagy_cypress_config

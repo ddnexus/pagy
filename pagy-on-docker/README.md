@@ -97,12 +97,11 @@ When you want to get rid of everything related to the `pagy` development on your
     - Remember to checkout the right branch before using it
     - If you get some problem running the tests you might need to `rm -rf coverage`
 
-## JS Test Environment
+## E2E Environment
 
-Pagy provides quite a few helpers that render the pagination elements for different js-frameworks on the client side, with improved performance. They are tested with a sinatra/rackup/puma ruby app and  [Cypress](https://www.cypress.io).
+Pagy provides quite a few helpers that render the pagination elements for different js-frameworks on the server side or on the client side (with improved performance). They are tested with a sinatra/rackup/puma ruby app and  [Cypress](https://www.cypress.io).
 
-If you determine that you need to run the JS tests, you can choose different ways to run them:
-
+If you determine that you need to run the E2E tests, you can choose different ways to run them:
 
 1. Remotely in Github Actions CI:
     - Just create a PR and all the tests (including the cypress tests) will run on GitHub. Use this option if you don't need to write any js code or tests interactively and the ruby tests pass.
@@ -110,8 +109,10 @@ If you determine that you need to run the JS tests, you can choose different way
     - With a cypress desktop app that you can [download](https://download.cypress.io/desktop) and manually run from your system. The doc is available on the cypress site and it requires some basic knowledge of cypress to run the tests.
     - Or with a full cypress install with all its dependencies that you may or may not have already (e.g. node modules). The doc is available on the cypress site and it requires some basic knowledge of cypress to run the tests.
 3. Inside docker:
-    - With fully automated testing running the JS tests in headless mode. It requires building only one container and requires no other knowledge about cypress
+    - With fully automated testing running the E2E tests in headless mode. It requires building only one container and requires no other knowledge about cypress
     - Or opening a cypress desktop session from inside the container. It requires a bit of docker setup, but it is a complete installation that avoid polluting your system.
+
+If you need to edit/develop new the E2E tests, you can use one of the previous points #2 or #3.
 
 ### Build Pagy Cypress
 
@@ -145,14 +146,13 @@ If you just want to run the tests, run the container from the `pagy-on-docker` d
 docker-compose up pagy-cypress
 ```
 
-That will run all the tests in headless mode and print a report right on the screen. It will also create a video for each test file run in the `test_js/cypress/videos`. That will be useful in case of failure, showing you exactly what was on the page of the browser during the whole process.
+That will run all the tests with the built in `electron` browser in headless mode and print a report right on the screen. It will also create a video for each test file run in the `test_js/cypress/videos`. That will be useful in case of failure, showing you exactly what was on the page of the browser during the whole process.
 
 ### Open Cypress
 
-If you want to open the cypress desktop app as it was installed in your local system, and you are lucky enough to run with user id 1000 on an ubuntu system, you can just run it with the command below.
+If you want to open and interact the cypress desktop app as it was installed in your local system, and you are lucky enough to run with user id 1000 on an ubuntu system, you can just run it with the command below without custoizing anything.
 
-If not, (i.e. different uid or different OS or version)
-you should read the comments in the `pagy-on-docker/open-cypress.yml` file, customizing it a bit according to your OS need.
+If not, (i.e. different uid or different OS or version) you should first read the comments in the `pagy-on-docker/open-cypress.yml` file and customize it a bit according to your OS need.
 
 Then run it with:
 

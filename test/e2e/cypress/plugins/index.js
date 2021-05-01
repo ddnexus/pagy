@@ -16,7 +16,14 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
-module.exports = (on, config) => {
+// module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-}
+// }
+
+const { initPlugin } = require('cypress-plugin-snapshots/plugin');
+
+module.exports = (on, config) => {
+  initPlugin(on, config);
+  return config;
+};

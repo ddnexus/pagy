@@ -39,7 +39,7 @@ helpers do
   include Pagy::Frontend
 
   def site_map
-    html = +%(<div class="style-links">)
+    html = +%(<div id="site-map">)
     query_string = "?#{Rack::Utils.build_nested_query(params)}" unless params.empty?
     [:home, *STYLES].each do |name|
       html << %(<a href="/#{name}#{query_string}">#{name}</a> )
@@ -91,15 +91,16 @@ __END__
 
 
 @@ home
-<h3>Pagy e2e app</h3>
+<div id="home">
+  <h3>Pagy e2e app</h3>
 
-<p>This app runs on Sinatra/Puma and is used for testing locally and in GitHub Actions CI with cypress, or just inspect the different helpers in the same page.</p>
+  <p>This app runs on Sinatra/Puma and is used for testing locally and in GitHub Actions CI with cypress, or just inspect the different helpers in the same page.</p>
 
-<p>It shows all the helpers for all the styles supported by pagy.</p>
+  <p>It shows all the helpers for all the styles supported by pagy.</p>
 
-<p>Each framework provides its own set of CSS that applies to the helpers, but we cannot load different framewors in the same app because they would conflict. Without the framework where the helpers are supposed to work we can only normalize the CSS styles in order to make them at least readable.</p>
-<hr>
-
+  <p>Each framework provides its own set of CSS that applies to the helpers, but we cannot load different framewors in the same app because they would conflict. Without the framework where the helpers are supposed to work we can only normalize the CSS styles in order to make them at least readable.</p>
+  <hr>
+</div>
 
 
 @@ helpers

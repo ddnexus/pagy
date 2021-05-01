@@ -1,7 +1,11 @@
 /// <reference types="cypress" />
 
 describe('Dummy Test', () => {
-  it('Visits the / page', () => {
+  it('toMatchSnapshot - HTML', () => {
     cy.visit('/')
-  })
+      .then(() => {
+        cy.get('#site-map').toMatchSnapshot();
+      });
+  });
 })
+
