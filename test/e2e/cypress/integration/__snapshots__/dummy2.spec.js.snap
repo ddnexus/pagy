@@ -7,7 +7,7 @@ exports[`Dummy Test > toMatchSnapshot - HTML #0`] = `
 </div>
 `;
 
-exports[`Test Bootstrap > toMatchSnapshot - HTML #0`] = `
+exports[`Dummy Test > toMatchSnapshot - HTML #1`] = `
 <div id="site-map">
   <a href="/home">home</a> <a href="/bootstrap">bootstrap</a>
   <a href="/bulma">bulma</a> <a href="/foundation">foundation</a>

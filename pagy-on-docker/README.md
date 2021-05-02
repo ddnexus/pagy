@@ -106,13 +106,14 @@ If you determine that you need to run the E2E tests, you can choose different wa
 1. Remotely in Github Actions CI:
     - Just create a PR and all the tests (including the cypress tests) will run on GitHub. Use this option if you don't need to write any js code or tests interactively and the ruby tests pass.
 2. Locally on your system:
-    - With a cypress desktop app that you can [download](https://download.cypress.io/desktop) and manually run from your system. The doc is available on the cypress site and it requires some basic knowledge of cypress to run the tests.
-    - Or with a full cypress install with all its dependencies that you may or may not have already (e.g. node modules). The doc is available on the cypress site and it requires some basic knowledge of cypress to run the tests.
+    - With a full cypress install with all its dependencies that you may or may not have already (e.g. node modules). The doc is available on the cypress site and it requires some basic knowledge of cypress to run the tests.
 3. Inside docker:
     - With fully automated testing running the E2E tests in headless mode. It requires building only one container and requires no other knowledge about cypress
     - Or opening a cypress desktop session from inside the container. It requires a bit of docker setup, but it is a complete installation that avoid polluting your system.
 
-If you need to edit/develop new the E2E tests, you can use one of the previous points #2 or #3.
+If you need to edit/develop new E2E tests, you can use one of the previous points:
+- the #2 is the easiest to work with but it adds an app and dependencies to your system
+- the #3 is a big download, but it is contained in the docker space (i.e. you can remove it completely when you finished without any left-over in your system), but it may miss a few minor features
 
 ### Build Pagy Cypress
 
