@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
-require 'pagy/extras/standalone'
+require_relative '../test_helper'
+require 'pagy/console'
 
 module PagyConsole
   include Pagy::Console
@@ -9,7 +9,7 @@ module PagyConsole
   module_function :pagy_extras
 end
 
-describe 'pagy/extras/standalone_console' do
+describe 'pagy/console' do
 
   describe 'Pagy::Console' do
     it 'defines default :url' do

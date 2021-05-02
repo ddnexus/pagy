@@ -16,7 +16,7 @@ test_tasks = {}
     shared_json
     shared_oj
     standalone
-    standalone_console
+    console
     support
     trim
 ].each do |name|
