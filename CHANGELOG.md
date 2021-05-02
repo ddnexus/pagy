@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### Version 4.5.1
+
+### Changes
+
+- Better Pagy::Console usability
+
+### Commits
+
+- [4ee8bbf](http://github.com/ddnexus/pagy/commit/4ee8bbf): pagy console extracted in its own module
+
 ### Version 4.5.0
 
 ### Changes
