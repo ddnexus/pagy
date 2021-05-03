@@ -288,6 +288,8 @@ end
 
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
+For a detailed tutorial about this topic see [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
+
 ## Customizing the item name
 
 The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that by editing the values of the `"pagy.item_name"` i18n key in the [dictionaray files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
@@ -337,6 +339,27 @@ If you need to further customize the provided styles, you don't necessary need t
 - when sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss directive
 - use the jQuery `addClass` method
 - use a couple of lines of plain javascript
+
+## Overriding pagy methods
+
+You include the pagy modules in your controllers and helpers, so if you want to override any of them, you can redefine them right in your code, where you included them.
+
+You can read more details in the nice [How to Override pagy methods only in specific circumstances](https://benkoshy.github.io/2020/02/01/overriding-pagy-methods.html) mini-post by Ben Koshy.
+
+Also, consider that you can use `prepend` if you need to do it globally:
+
+```ruby
+module MyOverridingModule
+  def pagy_any_method
+    ...
+    super
+    ...
+  end
+end
+Pagy::Backend.prepend MyOverridingModule
+# or
+Pagy::Frontend.prepend MyOverridingModule
+```
 
 ## Paginate an Array
 
@@ -635,7 +658,7 @@ end
 
 but it would be quite an overkill if you plan to install it only for this purpose.
 
-## Ignoring Brakeman UnescapedOutputs false postives warnings
+## Ignoring Brakeman UnescapedOutputs false positives warnings
 
 Pagy output html safe HTML, however, being an agnostic pagination gem it does not use the specific `html_safe` rails helper on its output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakeman) gem, that will raise a warning.
 
