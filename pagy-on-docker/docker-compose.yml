@@ -35,7 +35,7 @@ services:
     environment:
       - COVERAGE_REPORT
     ports:
-      - "1234:1234"   # RubyMine debugger
+#      - "1234:1234"   # RubyMine debugger
       - "4567:4567"   # default sinatra e2e/app.rb
       - "8080:8080"   # should you run the rackup apps/base_app.ru
     command: rerun "test/e2e/app.rb -o 0.0.0.0"
