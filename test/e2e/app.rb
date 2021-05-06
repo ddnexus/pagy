@@ -49,7 +49,6 @@ helpers do
 
 end
 
-# routes/actions
 
 get '/pagy.js' do
   content_type 'application/javascript'
@@ -103,6 +102,7 @@ __END__
 </div>
 
 
+
 @@ helpers
 <h3 id="style"><%= name %></h3>
 <hr>
@@ -116,7 +116,7 @@ __END__
 <hr>
 
 <p>pagy_items_selector_js</p>
-<%= pagy_items_selector_js(@pagy, pagy_id: 'item-selector') %>
+<%= pagy_items_selector_js(@pagy, pagy_id: 'items-selector-js') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav" %></p>
@@ -128,7 +128,7 @@ __END__
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav_js" %> (responsive)</p>
-<%= send(:"pagy_#{name_fragment}nav_js", @pagy, pagy_id: 'nav-js-responsive', steps: { 0 => [1,3,3,1], 540 => [2,4,4,2], 720 => [3,4,4,3] }) %>
+<%= send(:"pagy_#{name_fragment}nav_js", @pagy, pagy_id: 'nav-js-responsive', steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}combo_nav_js" %></p>

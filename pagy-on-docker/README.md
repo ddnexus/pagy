@@ -25,11 +25,11 @@ The pagy docker environment has been designed to be useful for developing:
 
 You have a couple of alternatives:
 
-1. (recommended) Permanently set a few variables about your user in your IDE or system (it will be easier for the future):
+1. (recommended) Permanently set a few environment variables about your user in your IDE or system (it will be easier for the future):
 
   - the `GROUP` name (get it with `id -gn` in the terminal)
-  - the `UID` (get it with `id -u` in the terminal)
-  - the `GID` (get it with `id -g` in the terminal)
+  - if `echo $UID` return nothing, then set the `UID` (get it with `id -u` in the terminal)
+  - if `echo $GID` return nothing, then set the `GID` (get it with `id -g` in the terminal)
 
   (Notice: you can also specify a few other variables used in the `docker-compose.yml` file.)
 
@@ -40,12 +40,12 @@ You have a couple of alternatives:
 
 2. Just set them with the command (you will have to set them each time you will have to build or do other stuff) For example:
 
-```sh
-cd pagy-on-docker
-GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
-```
+  ```sh
+  cd pagy-on-docker
+  GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
+  ```
 
-You need to run this only once usually, when you build the images. After that you just run the containers (see below).
+  You need to run this only once usually, when you build the images. After that you just run the containers (see below).
 
 ### Run
 
@@ -59,12 +59,12 @@ docker-compose up pagy pagy-jekyll # for both pagy and the documentation site
 Then:
 
 1. Open a terminal in the pagy container:
-     - if the container is already up, run bash in the same container `docker-compose exec pagy bash`
-     - or `docker-compose run --rm pagy bash` to run it in a different container
+   - if the container is already up, run bash in the same container `docker-compose exec pagy bash`
+   - or `docker-compose run --rm pagy bash` to run it in a different container
 
 2. `bundle install` to install the gems into the `pagy_bundle` volume.
 
-Then you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
+At this poin the setup is completed, so you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
 
 Run all the tests by simply running `rake` without arguments: it will run the `test`, `rubocop`, `coverge_summary` and `manifest:check` tasks.
 
