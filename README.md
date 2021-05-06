@@ -153,12 +153,16 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 
 ### Mike Rogers Screencast
 
-[![How To Paginate A Collection Using Pagy
-](docs/assets/images/mike-rogers-thumbnail-w360.jpg)](https://youtu.be/aILtxj_LVuA)
+[![How To Paginate A Collection Using Pagy](docs/assets/images/mike-rogers-w360.jpg)](https://youtu.be/aILtxj_LVuA)
+
+### SupeRails Screencast
+
+[![Ruby on Rails #19 gem Pagy - Ultimate Guide
+](docs/assets/images/superails-w360.jpg)](https://youtu.be/1tsWL4EjhMo)
 
 ### Raul Palacio Screencast (Spanish)
 
-[![Raul Palacio Screncast](docs/assets/images/raul-palacio-thumbnail-w360.jpg)](https://youtu.be/_j3gtKf5rRs)
+[![Raul Palacio Screncast](docs/assets/images/raul-palacio-w360.jpg)](https://youtu.be/_j3gtKf5rRs)
 
 ### Posts and Tutorials
 
