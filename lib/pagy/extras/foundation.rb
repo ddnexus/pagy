@@ -50,15 +50,15 @@ class Pagy
 
       %(<nav#{p_id} class="pagy-foundation-combo-nav-js" role="navigation" aria-label="Pagination"><div class="input-group">#{
           if (p_prev  = pagy.prev)
-            link.call p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0px;" aria-label="previous" class="prev button primary"'
+            link.call p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0" aria-label="previous" class="prev button primary"'
           else
-            %(<a style="margin-bottom: 0px;" class="prev button primary disabled" href="#">#{pagy_t 'pagy.nav.prev'}</a>)
+            %(<a style="margin-bottom: 0" class="prev button primary disabled" href="#">#{pagy_t 'pagy.nav.prev'}</a>)
           end
       }<span class="input-group-label">#{pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</span>#{
           if (p_next  = pagy.next)
-            link.call p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0px;" aria-label="next" class="next button primary"'
+            link.call p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0" aria-label="next" class="next button primary"'
           else
-            %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t 'pagy.nav.next'}</a>)
+            %(<a style="margin-bottom: 0" class="next button primary disabled" href="#">#{pagy_t 'pagy.nav.next'}</a>)
           end
       }</div></nav>#{
           pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)

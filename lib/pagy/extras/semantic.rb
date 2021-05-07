@@ -9,7 +9,7 @@ class Pagy
     # Pagination for semantic: it returns the html with the series of links to the pages
     def pagy_semantic_nav(pagy, pagy_id: nil, link_extra: '')
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}"))
+      link = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
 
       html = +%(<div#{p_id} class="pagy-semantic-nav ui pagination menu" aria-label="pager">)
       html << pagy_semantic_prev_html(pagy, link)
