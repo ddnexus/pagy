@@ -7,6 +7,19 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 ## Quick Start
 
+### Play with it
+
+If you want to just play with Pagy before using it in your own app, you have 2 alternatives:
+
+1. Standalone Application
+   - Ensure to have `rack` installed (or `gem install rack`)
+   - [Use the pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru) (usage notes in the file)
+2. Pagy Console
+   - Just `gem install pagy`
+   - [Use it fully without any app](api/console.md)
+
+### Use it in your app
+
 1. Install Pagy:
 
     - If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (e.g. '~> 3.5' see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):

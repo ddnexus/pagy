@@ -1,10 +1,21 @@
 # frozen_string_literal: true
 
-# Self-contained, standalone sinatra app usable to easily reproduce any pagy issue
+# Self-contained, standalone Sinatra app usable to play with pagy
+# and/or easily reproduce any pagy issue.
 
-# USAGE: rerun -- rackup -o 0.0.0.0 -p 8080 apps/basic_app.ru
+# Copy this file in your own machine and
+# ensure rack is installed (or `gem install rack`)
 
-# Available at http://0.0.0.0:8080
+# USAGE:
+#    rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
+
+# ADVANCED USAGE (with automatic app reload if you edit it):
+#    gem install rerun
+#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
+
+# Point your browser at http://0.0.0.0:8080
+
+# read the comment below to edit this app
 
 require 'bundler/inline'
 
@@ -15,7 +26,6 @@ gemfile true do
   gem 'oj'
   gem 'rack'
   gem 'pagy'
-  gem 'rerun'
   gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
@@ -28,38 +38,30 @@ require 'pagy/extras/items'
 require 'pagy/extras/trim'
 Pagy::VARS[:trim] = false # opt-in trim
 
-# sinatra setup
-require 'sinatra/base'
-
 # sinatra application
+require 'sinatra/base'
 class PagyApp < Sinatra::Base
-
   configure do
     enable :inline_templates
   end
-
   include Pagy::Backend
-
-  # edit this section adding your own helpers as you need
+  # edit this section adding your own helpers as needed
   helpers do
     include Pagy::Frontend
   end
-
   get '/pagy.js' do
     content_type 'application/javascript'
     send_file Pagy.root.join('javascripts', 'pagy.js')
   end
-
-  # edit this action as you need
+  # edit this action as needed
   get '/' do
     collection = MockCollection.new
     @pagy, @records = pagy(collection)
-    erb :pagy_demo    # template available in the __END__ section as @@ pagy_issue
+    erb :pagy_demo    # template available in the __END__ section as @@ pagy_demo
   end
-
 end
 
-# simple array-based collection that acts as standard DB collection
+# simple array-based collection that acts as a standard DB collection
 # use it as a simple way to get a collection that acts as a AR scope, but without any DB
 # or create an ActiveRecord class or anything else that you need instead
 class MockCollection < Array
@@ -98,8 +100,8 @@ __END__
 
 
 @@ pagy_demo
-<h3>Pagy Standalone</h3>
-<p> Self-contained, standalone sinatra app usable to easily reproduce any pagy issue.</p>
+<h3>Pagy Standalone Application</h3>
+<p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
 <p>Please, report the following versions in any new issue.</p>
 <h4>Versions</h4>
 <ul>
