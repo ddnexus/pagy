@@ -139,7 +139,7 @@ Pagy works out of the box in a web app assuming that:
 
 ### Non Rack Environments apps/API
 
-- Require the [standalone extra](extras/standalone.md), and pass a `:url` variable and you can use it without Rack in your app or exotic API, with or without the other extra you might need. You can even use every feature/helper right in the irb/rails console.
+- Require the [standalone extra](extras/standalone.md), and pass a `:url` variable and you can use it without Rack in your app or exotic API, with or without the other extras you might need. You can even use every feature/helper right in the irb/rails console.
 - Besides Rack the other assumptions above apply
 
 ### Any other scenario assumptions
@@ -349,7 +349,7 @@ Pagy provides a few frontend extras for [bootstrap](extras/bootstrap.md), [bulma
 If you need to further customize the provided styles, you don't necessary need to override the helpers/templates. Here are a few alternatives:
 
 - define the CSS styles to apply to the pagy CSS classes
-- when sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss directive
+- if sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss directive
 - use the jQuery `addClass` method
 - use a couple of lines of plain javascript
 
