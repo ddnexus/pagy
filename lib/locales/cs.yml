@@ -17,6 +17,6 @@ cs:
       single_page: "Zobrazeno <b>%{count}</b> %{item_name}"
       multiple_pages: "Zobrazeno %{item_name} <b>%{from}-%{to}</b> z <b>%{count}</b> celkem"
 
-    combo_nav_js: "Strana %{page_input} z %{pages}"
+    combo_nav_js: "<label>Strana %{page_input}</label> z %{pages}"
 
-    items_selector_js: "Zobrazit %{items_input} %{item_name} na stránce"
+    items_selector_js: "<label>Zobrazit %{items_input} %{item_name} na stránce</label>"

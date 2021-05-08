@@ -10,11 +10,11 @@ zh-TW:
       next: "下一頁&nbsp;&rsaquo;"
       gap: "&hellip;"
 
-    combo_nav_js: "第 %{page_input} / %{pages} 頁"
-
     info:
       no_items: "沒找到項"
       single_page: "顯示 <b>%{count}</b> 項%{item_name}"
       multiple_pages: "共 <b>%{count}</b> 項%{item_name}，顯示 <b>%{from}-%{to}</b>"
 
-    items_selector_js: "每頁顯示 %{items_input} 項%{item_name}"
+    combo_nav_js: "<label>第 %{page_input}</label> / %{pages} 頁"
+
+    items_selector_js: "<label>每頁顯示 %{items_input} 項%{item_name}"

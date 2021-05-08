@@ -18,6 +18,6 @@ sv:
       single_page: "Visar <b>%{count}</b> %{item_name}"
       multiple_pages: "Visar %{item_name} <b>%{from}-%{to}</b> av <b>%{count}</b> totalt"
 
-    combo_nav_js: "Sida %{page_input} av %{pages}"
+    combo_nav_js: "<label>Sida %{page_input}</label> av %{pages}"
 
-    items_selector_js: "Visa %{items_input} %{item_name} per sida"
+    items_selector_js: "<label>Visa %{items_input} %{item_name} per sida</label>"
