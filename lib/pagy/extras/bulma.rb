@@ -11,7 +11,7 @@ class Pagy
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
-      html = +%(<nav#{p_id} class="pagy-bulma-nav pagination is-centered" role="navigation" aria-label="pagination">)
+      html = +%(<nav#{p_id} class="pagy-bulma-nav pagination is-centered" aria-label="pagination">)
       html << pagy_bulma_prev_next_html(pagy, link)
       html << %(<ul class="pagination-list">)
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -34,7 +34,7 @@ class Pagy
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.nav.gap' }</span></li>),
                'after'  => '</ul>' }
 
-      html = %(<nav#{p_id} class="pagy-njs pagy-bulma-nav-js pagination is-centered" role="navigation" aria-label="pagination"></nav>)
+      html = %(<nav#{p_id} class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 
@@ -47,7 +47,7 @@ class Pagy
       p_pages = pagy.pages
       input   = %(<input class="input" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem; margin:0 0.3rem;">)
 
-      %(<nav#{p_id} class="pagy-bulma-combo-nav-js" role="navigation" aria-label="pagination"><div class="field is-grouped is-grouped-centered" role="group">#{
+      %(<nav#{p_id} class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field is-grouped is-grouped-centered" role="group">#{
           if (p_prev  = pagy.prev)
             %(<p class="control">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'class="button" aria-label="previous page"'}</p>)
           else
