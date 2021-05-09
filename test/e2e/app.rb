@@ -39,7 +39,7 @@ helpers do
   include Pagy::Frontend
 
   def site_map
-    html = +%(<div class="style-links">)
+    html = +%(<div id="site-map">)
     query_string = "?#{Rack::Utils.build_nested_query(params)}" unless params.empty?
     [:home, *STYLES].each do |name|
       html << %(<a href="/#{name}#{query_string}">#{name}</a> )
@@ -49,7 +49,6 @@ helpers do
 
 end
 
-# routes/actions
 
 get '/pagy.js' do
   content_type 'application/javascript'
@@ -91,14 +90,16 @@ __END__
 
 
 @@ home
-<h3>Pagy e2e app</h3>
+<div id="home">
+  <h3>Pagy e2e app</h3>
 
-<p>This app runs on Sinatra/Puma and is used for testing locally and in GitHub Actions CI with cypress, or just inspect the different helpers in the same page.</p>
+  <p>This app runs on Sinatra/Puma and is used for testing locally and in GitHub Actions CI with cypress, or just inspect the different helpers in the same page.</p>
 
-<p>It shows all the helpers for all the styles supported by pagy.</p>
+  <p>It shows all the helpers for all the styles supported by pagy.</p>
 
-<p>Each framework provides its own set of CSS that applies to the helpers, but we cannot load different framewors in the same app because they would conflict. Without the framework where the helpers are supposed to work we can only normalize the CSS styles in order to make them at least readable.</p>
-<hr>
+  <p>Each framework provides its own set of CSS that applies to the helpers, but we cannot load different framewors in the same app because they would conflict. Without the framework where the helpers are supposed to work we can only normalize the CSS styles in order to make them at least readable.</p>
+  <hr>
+</div>
 
 
 
@@ -115,7 +116,7 @@ __END__
 <hr>
 
 <p>pagy_items_selector_js</p>
-<%= pagy_items_selector_js(@pagy, pagy_id: 'item-selector') %>
+<%= pagy_items_selector_js(@pagy, pagy_id: 'items-selector-js') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav" %></p>
@@ -127,7 +128,7 @@ __END__
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav_js" %> (responsive)</p>
-<%= send(:"pagy_#{name_fragment}nav_js", @pagy, pagy_id: 'nav-js-responsive', steps: { 0 => [1,3,3,1], 540 => [2,4,4,2], 720 => [3,4,4,3] }) %>
+<%= send(:"pagy_#{name_fragment}nav_js", @pagy, pagy_id: 'nav-js-responsive', steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}combo_nav_js" %></p>

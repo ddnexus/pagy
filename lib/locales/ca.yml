@@ -17,6 +17,6 @@ ca:
       single_page: "Mostrant <b>%{count}</b> %{item_name}"
       multiple_pages: "Mostrant %{item_name} <b>%{from}-%{to}</b> de <b>%{count}</b> en total"
 
-    combo_nav_js: "Pàgina %{page_input} de %{pages}"
+    combo_nav_js: "<label>Pàgina %{page_input}</label> de %{pages}"
 
-    items_selector_js: "Mostra %{items_input} %{item_name} per pàgina"
+    items_selector_js: "<label>Mostra %{items_input} %{item_name} per pàgina</label>"

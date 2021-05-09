@@ -1,0 +1,375 @@
+exports[`Test generic helpers > test pagy_info #0`] = `
+<p id="records">1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20</p>
+`;
+
+exports[`Test generic helpers > test pagy_info #1`] = `
+<span id="pagy-info" class="pagy-info"
+  >Displaying items <b>1-20</b> of <b>1000</b> in total</span
+>
+`;
+
+exports[`Test generic helpers > test pagy_info #2`] = `
+<p id="records">81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100</p>
+`;
+
+exports[`Test generic helpers > test pagy_info #3`] = `
+<span id="pagy-info" class="pagy-info"
+  >Displaying items <b>81-100</b> of <b>1000</b> in total</span
+>
+`;
+
+exports[`Test generic helpers > test pagy_info #4`] = `
+<p id="records">
+  701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720
+</p>
+`;
+
+exports[`Test generic helpers > test pagy_info #5`] = `
+<span id="pagy-info" class="pagy-info"
+  >Displaying items <b>701-720</b> of <b>1000</b> in total</span
+>
+`;
+
+exports[`Test generic helpers > test pagy_info #6`] = `
+<p id="records">
+  981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000
+</p>
+`;
+
+exports[`Test generic helpers > test pagy_info #7`] = `
+<span id="pagy-info" class="pagy-info"
+  >Displaying items <b>981-1000</b> of <b>1000</b> in total</span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #0`] = `
+<p id="records">1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #1`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="20"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #2`] = `
+<p id="records">1,2,3,4,5,6,7,8,9,10</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #3`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="10"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #4`] = `
+<p id="records">1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #5`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="17"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #6`] = `
+<p id="records">1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #7`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="18"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #8`] = `
+<p id="records">81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #9`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="20"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #10`] = `
+<p id="records">81,82,83,84,85,86,87,88,89,90</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #11`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="10"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #12`] = `
+<p id="records">69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #13`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="17"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #14`] = `
+<p id="records">55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #15`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="18"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #16`] = `
+<p id="records">
+  701,702,703,704,705,706,707,708,709,710,711,712,713,714,715,716,717,718,719,720
+</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #17`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="20"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #18`] = `
+<p id="records">701,702,703,704,705,706,707,708,709,710</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #19`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="10"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #20`] = `
+<p id="records">
+  698,699,700,701,702,703,704,705,706,707,708,709,710,711,712,713,714
+</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #21`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="17"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #22`] = `
+<p id="records">
+  685,686,687,688,689,690,691,692,693,694,695,696,697,698,699,700,701,702
+</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #23`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="18"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #24`] = `
+<p id="records">
+  981,982,983,984,985,986,987,988,989,990,991,992,993,994,995,996,997,998,999,1000
+</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #25`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="20"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #26`] = `
+<p id="records">981,982,983,984,985,986,987,988,989,990</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #27`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="10"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #28`] = `
+<p id="records">
+  970,971,972,973,974,975,976,977,978,979,980,981,982,983,984,985,986
+</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #29`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="17"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #30`] = `
+<p id="records">
+  955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972
+</p>
+`;
+
+exports[`Test generic helpers > test pagy_items_selector_js #31`] = `
+<span id="items-selector-js" class="pagy-items-selector-js"
+  ><label
+    >Show
+    <input
+      type="number"
+      min="1"
+      max="100"
+      value="18"
+      style="padding: 0; text-align: center; width: 3rem;"
+    />
+    items per page</label
+  ></span
+>
+`;

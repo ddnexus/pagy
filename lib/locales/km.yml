@@ -14,6 +14,6 @@ km:
       single_page: "បង្ហាញ <b>%{count}</b> %{item_name}"
       multiple_pages: "បង្ហាញ %{item_name} <b>%{from}-%{to}</b> នៃ <b>%{count}</b> ជាចំនួនសរុប"
 
-    combo_nav_js: "ទំព័រ %{page_input} នៃ %{pages}"
+    combo_nav_js: "<label>ទំព័រ %{page_input}</label> នៃ %{pages}"
 
-    items_selector_js: "បង្ហាញ %{items_input} %{item_name} ក្នុង ១ ទំព័រ"
+    items_selector_js: "<label>បង្ហាញ %{items_input} %{item_name} ក្នុង ១ ទំព័រ</label>"

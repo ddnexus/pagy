@@ -50,7 +50,7 @@ class Pagy
       style   = ' style="vertical-align: middle;"'
       input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 2px; border: none; border-radius: 2px; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<div#{p_id} class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="pagy-compact-chip role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;"><ul class="pagination" style="margin: 0px;">#{
+      %(<div#{p_id} class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="pagy-compact-chip" role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;"><ul class="pagination" style="margin: 0">#{
           pagy_materialize_prev_html pagy, link, style
       }<div class="pagy-combo-input btn-flat" style="cursor: default; padding: 0px">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages

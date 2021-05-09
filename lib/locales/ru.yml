@@ -19,6 +19,6 @@ ru:
       single_page: "<b>%{count}</b> %{item_name}"
       multiple_pages: "Всего <b>%{count}</b> %{item_name}, показаны с <b>%{from}</b> по <b>%{to}</b>"
 
-    combo_nav_js: "Страница %{page_input} из %{pages}"
+    combo_nav_js: "<label>Страница %{page_input}</label> из %{pages}"
 
-    items_selector_js: "Показать %{items_input} %{item_name} на странице"
+    items_selector_js: "<label>Показать %{items_input} %{item_name} на странице</label>"

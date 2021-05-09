@@ -1,6 +1,34 @@
 # CHANGELOG
 
-### Version 4.5.1
+## Version 4.6.0
+
+### Changes
+
+- Added labels to all input tags for improved usability and compliance
+- Fixed a few HTML typos and rendundant or illegal attributes
+- Improved Sinatra app usable for experiment with pagy and providing support for ode issues
+- Documentation inprovements
+- Added E2E testing for all pagy helpers
+- GitHub management improvements
+
+### Commits
+
+- [0fe2e49](http://github.com/ddnexus/pagy/commit/0fe2e49): added helpers and navbar tests for all the styles; updated docker readme
+- [26b57a8](http://github.com/ddnexus/pagy/commit/26b57a8): Added fix for Cypress bug affecting the snapshots plugin, improved cypress dockerfiles; added cypress studio and basic try
+- [7693b3e](http://github.com/ddnexus/pagy/commit/7693b3e): cypress: updated images; better open-cypress.yml with persistent configuration settings; added snapshots plugin
+- [94e262f](http://github.com/ddnexus/pagy/commit/94e262f): added label tag to the pagy inputs
+- [f5e3482](http://github.com/ddnexus/pagy/commit/f5e3482): removed redundant role="navigation" attribute from nav tags; removed illegal aria-label="pager" from semantic div
+- [0467d32](http://github.com/ddnexus/pagy/commit/0467d32): fixes for html typos in semantic, foundation and materialize helpers
+- [3f2c9f0](http://github.com/ddnexus/pagy/commit/3f2c9f0): doc small fixes
+- [bff8c5f](http://github.com/ddnexus/pagy/commit/bff8c5f): refactoring of sinatra apps; added quick-start doc section
+- [b0baaa5](http://github.com/ddnexus/pagy/commit/b0baaa5): simplified standalone_app.ru
+- [5442b34](http://github.com/ddnexus/pagy/commit/5442b34): fix broken link [ci skip]
+- [17b1faf](http://github.com/ddnexus/pagy/commit/17b1faf): improved issue template [ci skip]
+- [f933cd7](http://github.com/ddnexus/pagy/commit/f933cd7): Added issue template and standalone_app to use as a scaffold for reproducing issues [ci skip]
+- [c8e41e3](http://github.com/ddnexus/pagy/commit/c8e41e3): added superails screencast; resized thumbnails [skip ci]
+- [6116c32](http://github.com/ddnexus/pagy/commit/6116c32): added a few references in the how_to doc [skip ci]
+
+## Version 4.5.1
 
 ### Changes
 

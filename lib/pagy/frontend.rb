@@ -41,7 +41,7 @@ class Pagy
       p_prev = pagy.prev
       p_next = pagy.next
 
-      html  = +%(<nav#{p_id} class="pagy-nav pagination" role="navigation" aria-label="pager">)
+      html  = +%(<nav#{p_id} class="pagy-nav pagination" aria-label="pager">)
       html << if p_prev
                 %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
               else

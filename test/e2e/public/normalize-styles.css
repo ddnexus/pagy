@@ -12,6 +12,11 @@ p:not(.control) {
   margin-bottom: .5em;
 }
 
+body {
+  font-family: sans-serif;
+  margin: 2em;
+}
+
 /* normalize all on one line with some space in between */
 ul li,
 .pagy-bootstrap-combo-nav-js .btn-group, .pagy-combo-input,

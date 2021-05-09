@@ -1,4 +1,7 @@
 {
-    "pluginsFile": false,
-    "supportFile": false
+  "experimentalStudio": true,
+  "ignoreTestFiles": [
+    "**/__snapshots__/*",
+    "**/__image_snapshots__/*"
+  ]
 }

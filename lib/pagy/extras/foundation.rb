@@ -11,7 +11,7 @@ class Pagy
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
-      html = +%(<nav#{p_id} class="pagy-foundation-nav" role="navigation" aria-label="Pagination"><ul class="pagination">)
+      html = +%(<nav#{p_id} class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination">)
       html << pagy_foundation_prev_html(pagy, link)
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -35,7 +35,7 @@ class Pagy
                'gap'    => %(<li class="ellipsis gap" aria-hidden="true"></li>),
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
-      html = %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" role="navigation" aria-label="Pagination"></nav>)
+      html = %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" aria-label="Pagination"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 
@@ -48,17 +48,17 @@ class Pagy
       p_pages = pagy.pages
       input   = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="width: #{p_pages.to_s.length+1}rem; padding: 0 0.3rem; margin: 0 0.3rem;">)
 
-      %(<nav#{p_id} class="pagy-foundation-combo-nav-js" role="navigation" aria-label="Pagination"><div class="input-group">#{
+      %(<nav#{p_id} class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group">#{
           if (p_prev  = pagy.prev)
-            link.call p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0px;" aria-label="previous" class="prev button primary"'
+            link.call p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0" aria-label="previous" class="prev button primary"'
           else
-            %(<a style="margin-bottom: 0px;" class="prev button primary disabled" href="#">#{pagy_t 'pagy.nav.prev'}</a>)
+            %(<a style="margin-bottom: 0" class="prev button primary disabled" href="#">#{pagy_t 'pagy.nav.prev'}</a>)
           end
       }<span class="input-group-label">#{pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</span>#{
           if (p_next  = pagy.next)
-            link.call p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0px;" aria-label="next" class="next button primary"'
+            link.call p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0" aria-label="next" class="next button primary"'
           else
-            %(<a style="margin-bottom: 0px;" class="next button primary disabled" href="#">#{pagy_t 'pagy.nav.next'}</a>)
+            %(<a style="margin-bottom: 0" class="next button primary disabled" href="#">#{pagy_t 'pagy.nav.next'}</a>)
           end
       }</div></nav>#{
           pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)

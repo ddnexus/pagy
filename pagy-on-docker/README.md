@@ -25,11 +25,11 @@ The pagy docker environment has been designed to be useful for developing:
 
 You have a couple of alternatives:
 
-1. (recommended) Permanently set a few variables about your user in your IDE or system (it will be easier for the future):
+1. (recommended) Permanently set a few environment variables about your user in your IDE or system (it will be easier for the future):
 
   - the `GROUP` name (get it with `id -gn` in the terminal)
-  - the `UID` (get it with `id -u` in the terminal)
-  - the `GID` (get it with `id -g` in the terminal)
+  - if `echo $UID` return nothing, then set the `UID` (get it with `id -u` in the terminal)
+  - if `echo $GID` return nothing, then set the `GID` (get it with `id -g` in the terminal)
 
   (Notice: you can also specify a few other variables used in the `docker-compose.yml` file.)
 
@@ -40,12 +40,12 @@ You have a couple of alternatives:
 
 2. Just set them with the command (you will have to set them each time you will have to build or do other stuff) For example:
 
-```sh
-cd pagy-on-docker
-GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
-```
+  ```sh
+  cd pagy-on-docker
+  GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
+  ```
 
-You need to run this only once usually, when you build the images. After that you just run the containers (see below).
+  You need to run this only once usually, when you build the images. After that you just run the containers (see below).
 
 ### Run
 
@@ -59,12 +59,12 @@ docker-compose up pagy pagy-jekyll # for both pagy and the documentation site
 Then:
 
 1. Open a terminal in the pagy container:
-     - if the container is already up, run bash in the same container `docker-compose exec pagy bash`
-     - or `docker-compose run --rm pagy bash` to run it in a different container
+   - if the container is already up, run bash in the same container `docker-compose exec pagy bash`
+   - or `docker-compose run --rm pagy bash` to run it in a different container
 
 2. `bundle install` to install the gems into the `pagy_bundle` volume.
 
-Then you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
+At this poin the setup is completed, so you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
 
 Run all the tests by simply running `rake` without arguments: it will run the `test`, `rubocop`, `coverge_summary` and `manifest:check` tasks.
 
@@ -97,21 +97,23 @@ When you want to get rid of everything related to the `pagy` development on your
     - Remember to checkout the right branch before using it
     - If you get some problem running the tests you might need to `rm -rf coverage`
 
-## JS Test Environment
+## E2E Environment
 
-Pagy provides quite a few helpers that render the pagination elements for different js-frameworks on the client side, with improved performance. They are tested with a sinatra/rackup/puma ruby app and  [Cypress](https://www.cypress.io).
+Pagy provides quite a few helpers that render the pagination elements for different js-frameworks on the server side or on the client side (with improved performance). They are tested with a sinatra/rackup/puma ruby app and  [Cypress](https://www.cypress.io).
 
-If you determine that you need to run the JS tests, you can choose different ways to run them:
-
+If you determine that you need to run the E2E tests, you can choose different ways to run them:
 
 1. Remotely in Github Actions CI:
     - Just create a PR and all the tests (including the cypress tests) will run on GitHub. Use this option if you don't need to write any js code or tests interactively and the ruby tests pass.
 2. Locally on your system:
-    - With a cypress desktop app that you can [download](https://download.cypress.io/desktop) and manually run from your system. The doc is available on the cypress site and it requires some basic knowledge of cypress to run the tests.
-    - Or with a full cypress install with all its dependencies that you may or may not have already (e.g. node modules). The doc is available on the cypress site and it requires some basic knowledge of cypress to run the tests.
+    - With a full cypress install with all its dependencies that you may or may not have already (e.g. node modules). The doc is available on the cypress site and it requires some basic knowledge of cypress to run the tests.
 3. Inside docker:
-    - With fully automated testing running the JS tests in headless mode. It requires building only one container and requires no other knowledge about cypress
+    - With fully automated testing running the E2E tests in headless mode. It requires building only one container and requires no other knowledge about cypress
     - Or opening a cypress desktop session from inside the container. It requires a bit of docker setup, but it is a complete installation that avoid polluting your system.
+
+If you need to edit/develop new E2E tests, you can use one of the previous points:
+- the #2 is the easiest to work with but it adds an app and dependencies to your system
+- the #3 is a big download, but it is contained in the docker space (i.e. you can remove it completely when you finished without any left-over in your system), but it may miss a few minor features
 
 ### Build Pagy Cypress
 
@@ -145,14 +147,13 @@ If you just want to run the tests, run the container from the `pagy-on-docker` d
 docker-compose up pagy-cypress
 ```
 
-That will run all the tests in headless mode and print a report right on the screen. It will also create a video for each test file run in the `test_js/cypress/videos`. That will be useful in case of failure, showing you exactly what was on the page of the browser during the whole process.
+That will run all the tests with the built in `electron` browser in headless mode and print a report right on the screen. It will also create a video for each test file run in the `test_js/cypress/videos`. That will be useful in case of failure, showing you exactly what was on the page of the browser during the whole process.
 
 ### Open Cypress
 
-If you want to open the cypress desktop app as it was installed in your local system, and you are lucky enough to run with user id 1000 on an ubuntu system, you can just run it with the command below.
+If you want to open and interact the cypress desktop app as it was installed in your local system, and you are lucky enough to run with user id 1000 on an ubuntu system, you can just run it with the command below without custoizing anything.
 
-If not, (i.e. different uid or different OS or version)
-you should read the comments in the `pagy-on-docker/open-cypress.yml` file, customizing it a bit according to your OS need.
+If not, (i.e. different uid or different OS or version) you should first read the comments in the `pagy-on-docker/open-cypress.yml` file and customize it a bit according to your OS need.
 
 Then run it with:
 

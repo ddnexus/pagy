@@ -16,7 +16,28 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
-module.exports = (on, config) => {
+// module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+// }
+
+const { initPlugin } = require('cypress-plugin-snapshots/plugin');
+
+module.exports = (on, config) => {
+  initPlugin(on, config);
+  /*
+  on('before:browser:launch', (browser = {}, launchOptions) => {
+    // `args` is an array of all the arguments that will
+    // be passed to browsers when it launches
+    // console.log(launchOptions.args) // print all current args
+    if (browser.family === 'chromium' && browser.name !== 'electron') {
+      // fullscreen ad auto open devtools
+      launchOptions.args.push('--start-fullscreen', '--auto-open-devtools-for-tabs')
+    }
+    // whatever you return here becomes the launchOptions
+    return launchOptions
+  })
+  */
+
+  return config;
 }

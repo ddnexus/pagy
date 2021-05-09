@@ -17,7 +17,7 @@ class Pagy
                'gap'    => %(<span class="page gap">#{pagy_t 'pagy.nav.gap'}</span> ),
                'after'  => pagy_nav_next_html(pagy, link) }
 
-      html = %(<nav#{p_id} class="pagy-njs pagy-nav-js pagination" role="navigation" aria-label="pager"></nav>)
+      html = %(<nav#{p_id} class="pagy-njs pagy-nav-js pagination" aria-label="pager"></nav>)
       html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
     end
 
@@ -30,7 +30,7 @@ class Pagy
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<nav#{p_id} class="pagy-combo-nav-js pagination" role="navigation" aria-label="pager">#{
+      %(<nav#{p_id} class="pagy-combo-nav-js pagination" aria-label="pager">#{
           pagy_nav_prev_html pagy, link
       }<span class="pagy-combo-input" style="margin: 0 0.6rem;">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
