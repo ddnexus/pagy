@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 require('@cypress/snapshot').register();
+import 'cypress-html-validate/dist/commands';
 
 global.styles = ['/bootstrap', '/bulma', '/foundation', '/materialize', '/navs', '/semantic', '/uikit'];
 

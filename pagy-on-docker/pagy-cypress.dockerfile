@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y libcanberra-gtk* \
  && install -d -m 0755 -o $user -g $user /home/$user \
  && rm -rf /opt/firefox /usr/bin/firefox \
  && ln -s /root/.cache /home/$user/.cache \
- && npm install --save-dev @cypress/snapshot
+ && npm install --save-dev @cypress/snapshot html-validate cypress-html-validate
 
 # make sure cypress looks in the right place
 ENV CYPRESS_CACHE_FOLDER=/home/$user/.cache/Cypress

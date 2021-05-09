@@ -40,7 +40,7 @@ Pagy::VARS[:trim] = false # opt-in trim
 
 # sinatra application
 require 'sinatra/base'
-class PagyApp < Sinatra::Base
+class PagyStandaloneApp < Sinatra::Base
   configure do
     enable :inline_templates
   end
@@ -81,7 +81,7 @@ class MockCollection < Array
   end
 end
 
-run PagyApp
+run PagyStandaloneApp
 
 __END__
 

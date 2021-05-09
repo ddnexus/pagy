@@ -3,10 +3,10 @@
 # Self-contained sinatra app to test the pagy helpers in the browser
 
 # USAGE:
-#    test/e2e/app.rb -o 0.0.0.0
+#    rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru
 
 # DEV USAGE:
-#    rerun "test/e2e/app.rb -o 0.0.0.0"
+#    rerun -- rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru
 
 # Available at http://0.0.0.0:4567
 
@@ -28,55 +28,59 @@ Pagy::VARS[:trim] = false  # opt-in trim
 require_relative '../mock_helpers/collection'
 
 # sinatra setup
-require 'sinatra'
+require 'sinatra/base'
 
 # sinatra application
-enable :inline_templates
+class PagyApp < Sinatra::Base
+  enable :inline_templates
 
-include Pagy::Backend   # rubocop:disable Style/MixinUsage
+  include Pagy::Backend
 
-helpers do
-  include Pagy::Frontend
+  helpers do
+    include Pagy::Frontend
 
-  def site_map
-    html = +%(<div id="site-map">)
-    query_string = "?#{Rack::Utils.build_nested_query(params)}" unless params.empty?
-    [:home, *STYLES].each do |name|
-      html << %(<a href="/#{name}#{query_string}">#{name}</a> )
+    def site_map
+      html = +%(<div id="site-map">)
+      query_string = "?#{Rack::Utils.build_nested_query(params)}" unless params.empty?
+      [:home, *STYLES].each do |name|
+        html << %(<a href="/#{name}#{query_string}">#{name}</a> )
+      end
+      html << %(</div>)
     end
-    html << %(</div>)
+
   end
 
-end
 
+  get '/pagy.js' do
+    content_type 'application/javascript'
+    send_file Pagy.root.join('javascripts', 'pagy.js')
+  end
 
-get '/pagy.js' do
-  content_type 'application/javascript'
-  send_file Pagy.root.join('javascripts', 'pagy.js')
-end
+  %w[/ /home].each do |route|
+    get(route) { erb :home }
+  end
 
-%w[/ /home].each do |route|
-  get(route) { erb :home }
-end
-
-# one route/action per style
-STYLES.each do |name|
-  get "/#{name}" do
-    collection = MockCollection.new
-    @pagy, @records = pagy(collection)
-    name_fragment = name == 'navs' ? '' : "#{name}_"
-    erb :helpers, locals: {name: name, name_fragment: name_fragment}
+  # one route/action per style
+  STYLES.each do |name|
+    get "/#{name}" do
+      collection = MockCollection.new
+      @pagy, @records = pagy(collection)
+      name_fragment = name == 'navs' ? '' : "#{name}_"
+      erb :helpers, locals: {name: name, name_fragment: name_fragment}
+    end
   end
 end
 
+run PagyApp
 
 __END__
 
 @@ layout
-<html>
+<html lang="en">
 <head>
-  <script type="application/javascript" src="/pagy.js"></script>
-  <script type="application/javascript">
+  <title>Pagy E2E</title>
+  <script src="/pagy.js"></script>
+  <script>
     window.addEventListener("load", Pagy.init);
   </script>
   <link rel="stylesheet" href="/normalize-styles.css">
@@ -91,7 +95,7 @@ __END__
 
 @@ home
 <div id="home">
-  <h3>Pagy e2e app</h3>
+  <h1>Pagy e2e app</h1>
 
   <p>This app runs on Sinatra/Puma and is used for testing locally and in GitHub Actions CI with cypress, or just inspect the different helpers in the same page.</p>
 
@@ -104,7 +108,7 @@ __END__
 
 
 @@ helpers
-<h3 id="style"><%= name %></h3>
+<h1 id="style"><%= name %></h1>
 <hr>
 
 <p>@records</p>

@@ -21,8 +21,18 @@
   // `config` is the resolved Cypress config
 // }
 
+const htmlvalidate = require('cypress-html-validate/dist/plugin');
 
 module.exports = (on, config) => {
+  const htmlConfig  = {
+    rules: {
+      // a few frameworks use ul or div for pagination, and aria-role="navigation" will trigger it
+      'prefer-native-element': 'off',
+      // not needed in test environment
+      'require-sri': 'off'
+    }
+  }
+  htmlvalidate.install(on, htmlConfig);
   /*
   on('before:browser:launch', (browser = {}, launchOptions) => {
     // `args` is an array of all the arguments that will
