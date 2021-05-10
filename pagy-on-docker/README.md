@@ -115,7 +115,19 @@ If you need to edit/develop new E2E tests, you can use one of the previous point
 - the #2 is the easiest to work with but it adds an app and dependencies to your system
 - the #3 is a big download, but it is contained in the docker space (i.e. you can remove it completely when you finished without any left-over in your system), but it may miss a few minor features
 
-### Build Pagy Cypress
+### 1. Github Actions
+
+This section is a work in progress.
+
+### 2. Run Cypress Locally On Your System
+
+* [Install Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress)
+* Set up a Sinatra app (which we'll be using to test):
+  - Go to: `test/e2e/app.rb` and `bundle install`
+  - Run the Sinatra app contained there: `ruby test/e2e/app.rb`
+* Open and run your Cypress tests `./node_modules/.bin/cypress open`
+
+### 3. Build Pagy Cypress
 
 Check your user id with:
 
