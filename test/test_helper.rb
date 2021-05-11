@@ -18,3 +18,5 @@ require 'rack'
 require_relative 'mock_helpers/view'
 require_relative 'mock_helpers/controller'
 require 'minitest/autorun'
+require_relative 'rematch'
+Minitest::Spec.include Pagy::Rematch::Minitest
