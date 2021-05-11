@@ -8,31 +8,23 @@ describe 'pagy/frontend' do
   describe '#pagy_nav' do
     it 'renders page 1' do
       pagy = Pagy.new count: 103, page: 1
-      _(view.pagy_nav(pagy)).must_equal \
-        "<nav class=\"pagy-nav pagination\" aria-label=\"pager\"><span class=\"page prev disabled\">&lsaquo;&nbsp;Prev</span> <span class=\"page active\">1</span> <span class=\"page\"><a href=\"/foo?page=2\"   rel=\"next\" >2</a></span> <span class=\"page\"><a href=\"/foo?page=3\"   >3</a></span> <span class=\"page\"><a href=\"/foo?page=4\"   >4</a></span> <span class=\"page\"><a href=\"/foo?page=5\"   >5</a></span> <span class=\"page\"><a href=\"/foo?page=6\"   >6</a></span> <span class=\"page next\"><a href=\"/foo?page=2\"   rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
-      _(view.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
-        "<nav id=\"test-nav-id\" class=\"pagy-nav pagination\" aria-label=\"pager\"><span class=\"page prev disabled\">&lsaquo;&nbsp;Prev</span> <span class=\"page active\">1</span> <span class=\"page\"><a href=\"/foo?page=2\"  link-extra rel=\"next\" >2</a></span> <span class=\"page\"><a href=\"/foo?page=3\"  link-extra >3</a></span> <span class=\"page\"><a href=\"/foo?page=4\"  link-extra >4</a></span> <span class=\"page\"><a href=\"/foo?page=5\"  link-extra >5</a></span> <span class=\"page\"><a href=\"/foo?page=6\"  link-extra >6</a></span> <span class=\"page next\"><a href=\"/foo?page=2\"  link-extra rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
+      _(view.pagy_nav(pagy)).must_rematch
+      _(view.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
     it 'renders page 3' do
       pagy = Pagy.new count: 103, page: 3
-      _(view.pagy_nav(pagy)).must_equal \
-        "<nav class=\"pagy-nav pagination\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"/foo?page=2\"   rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"/foo?page=1\"   >1</a></span> <span class=\"page\"><a href=\"/foo?page=2\"   rel=\"prev\" >2</a></span> <span class=\"page active\">3</span> <span class=\"page\"><a href=\"/foo?page=4\"   rel=\"next\" >4</a></span> <span class=\"page\"><a href=\"/foo?page=5\"   >5</a></span> <span class=\"page\"><a href=\"/foo?page=6\"   >6</a></span> <span class=\"page next\"><a href=\"/foo?page=4\"   rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
-      _(view.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
-        "<nav id=\"test-nav-id\" class=\"pagy-nav pagination\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"/foo?page=2\"  link-extra rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"/foo?page=1\"  link-extra >1</a></span> <span class=\"page\"><a href=\"/foo?page=2\"  link-extra rel=\"prev\" >2</a></span> <span class=\"page active\">3</span> <span class=\"page\"><a href=\"/foo?page=4\"  link-extra rel=\"next\" >4</a></span> <span class=\"page\"><a href=\"/foo?page=5\"  link-extra >5</a></span> <span class=\"page\"><a href=\"/foo?page=6\"  link-extra >6</a></span> <span class=\"page next\"><a href=\"/foo?page=4\"  link-extra rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
+      _(view.pagy_nav(pagy)).must_rematch
+      _(view.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
     it 'renders page 6' do
       pagy = Pagy.new count: 103, page: 6
-      _(view.pagy_nav(pagy)).must_equal \
-        "<nav class=\"pagy-nav pagination\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"/foo?page=5\"   rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"/foo?page=1\"   >1</a></span> <span class=\"page\"><a href=\"/foo?page=2\"   >2</a></span> <span class=\"page\"><a href=\"/foo?page=3\"   >3</a></span> <span class=\"page\"><a href=\"/foo?page=4\"   >4</a></span> <span class=\"page\"><a href=\"/foo?page=5\"   rel=\"prev\" >5</a></span> <span class=\"page active\">6</span> <span class=\"page next disabled\">Next&nbsp;&rsaquo;</span></nav>"
-      _(view.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
-        "<nav id=\"test-nav-id\" class=\"pagy-nav pagination\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"/foo?page=5\"  link-extra rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"/foo?page=1\"  link-extra >1</a></span> <span class=\"page\"><a href=\"/foo?page=2\"  link-extra >2</a></span> <span class=\"page\"><a href=\"/foo?page=3\"  link-extra >3</a></span> <span class=\"page\"><a href=\"/foo?page=4\"  link-extra >4</a></span> <span class=\"page\"><a href=\"/foo?page=5\"  link-extra rel=\"prev\" >5</a></span> <span class=\"page active\">6</span> <span class=\"page next disabled\">Next&nbsp;&rsaquo;</span></nav>"
+      _(view.pagy_nav(pagy)).must_rematch
+      _(view.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
     it 'renders page 10' do
       pagy = Pagy.new count: 1000, page: 10
-      _(view.pagy_nav(pagy)).must_equal \
-        "<nav class=\"pagy-nav pagination\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"/foo?page=9\"   rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"/foo?page=1\"   >1</a></span> <span class=\"page gap\">&hellip;</span> <span class=\"page\"><a href=\"/foo?page=6\"   >6</a></span> <span class=\"page\"><a href=\"/foo?page=7\"   >7</a></span> <span class=\"page\"><a href=\"/foo?page=8\"   >8</a></span> <span class=\"page\"><a href=\"/foo?page=9\"   rel=\"prev\" >9</a></span> <span class=\"page active\">10</span> <span class=\"page\"><a href=\"/foo?page=11\"   rel=\"next\" >11</a></span> <span class=\"page\"><a href=\"/foo?page=12\"   >12</a></span> <span class=\"page\"><a href=\"/foo?page=13\"   >13</a></span> <span class=\"page\"><a href=\"/foo?page=14\"   >14</a></span> <span class=\"page gap\">&hellip;</span> <span class=\"page\"><a href=\"/foo?page=50\"   >50</a></span> <span class=\"page next\"><a href=\"/foo?page=11\"   rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
-      _(view.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_equal \
-        "<nav id=\"test-nav-id\" class=\"pagy-nav pagination\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"/foo?page=9\"  link-extra rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"/foo?page=1\"  link-extra >1</a></span> <span class=\"page gap\">&hellip;</span> <span class=\"page\"><a href=\"/foo?page=6\"  link-extra >6</a></span> <span class=\"page\"><a href=\"/foo?page=7\"  link-extra >7</a></span> <span class=\"page\"><a href=\"/foo?page=8\"  link-extra >8</a></span> <span class=\"page\"><a href=\"/foo?page=9\"  link-extra rel=\"prev\" >9</a></span> <span class=\"page active\">10</span> <span class=\"page\"><a href=\"/foo?page=11\"  link-extra rel=\"next\" >11</a></span> <span class=\"page\"><a href=\"/foo?page=12\"  link-extra >12</a></span> <span class=\"page\"><a href=\"/foo?page=13\"  link-extra >13</a></span> <span class=\"page\"><a href=\"/foo?page=14\"  link-extra >14</a></span> <span class=\"page gap\">&hellip;</span> <span class=\"page\"><a href=\"/foo?page=50\"  link-extra >50</a></span> <span class=\"page next\"><a href=\"/foo?page=11\"  link-extra rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
+      _(view.pagy_nav(pagy)).must_rematch
+      _(view.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
     it 'renders with link_extras' do
       pagy = Pagy.new count: 103, page: 1, link_extra: "X"

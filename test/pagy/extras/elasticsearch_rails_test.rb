@@ -36,7 +36,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.items).must_equal Pagy::VARS[:items]
         _(pagy.page).must_equal controller.params[:page]
         _(records.count).must_equal Pagy::VARS[:items]
-        _(records).must_equal ["R-a-41", "R-a-42", "R-a-43", "R-a-44", "R-a-45", "R-a-46", "R-a-47", "R-a-48", "R-a-49", "R-a-50", "R-a-51", "R-a-52", "R-a-53", "R-a-54", "R-a-55", "R-a-56", "R-a-57", "R-a-58", "R-a-59", "R-a-60"]
+        _(records).must_rematch
       end
       it 'paginates records with defaults' do
         pagy, records = controller.send(:pagy_elasticsearch_rails, MockElasticsearchRails::Model.pagy_search('a').records)
@@ -45,7 +45,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.items).must_equal Pagy::VARS[:items]
         _(pagy.page).must_equal controller.params[:page]
         _(records.count).must_equal Pagy::VARS[:items]
-        _(records).must_equal ["R-a-41", "R-a-42", "R-a-43", "R-a-44", "R-a-45", "R-a-46", "R-a-47", "R-a-48", "R-a-49", "R-a-50", "R-a-51", "R-a-52", "R-a-53", "R-a-54", "R-a-55", "R-a-56", "R-a-57", "R-a-58", "R-a-59", "R-a-60"]
+        _(records).must_rematch
       end
       it 'paginates with vars' do
         pagy, records = controller.send(:pagy_elasticsearch_rails, MockElasticsearchRails::Model.pagy_search('b').records, page: 2, items: 10, link_extra: 'X')
@@ -55,7 +55,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 2
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(records.count).must_equal 10
-        _(records).must_equal ["R-b-11", "R-b-12", "R-b-13", "R-b-14", "R-b-15", "R-b-16", "R-b-17", "R-b-18", "R-b-19", "R-b-20"]
+        _(records).must_rematch
       end
       it 'paginates with overflow' do
         pagy, records = controller.send(:pagy_elasticsearch_rails, MockElasticsearchRails::Model.pagy_search('b').records, page: 200, items: 10, link_extra: 'X', overflow: :last_page)
@@ -65,7 +65,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 100
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(records.count).must_equal 10
-        _(records).must_equal ["R-b-991", "R-b-992", "R-b-993", "R-b-994", "R-b-995", "R-b-996", "R-b-997", "R-b-998", "R-b-999", "R-b-1000"]
+        _(records).must_rematch
       end
     end
 
@@ -81,7 +81,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.items).must_equal Pagy::VARS[:items]
         _(pagy.page).must_equal controller.params[:page]
         _(records.count).must_equal Pagy::VARS[:items]
-        _(records).must_equal ["R-a-41", "R-a-42", "R-a-43", "R-a-44", "R-a-45", "R-a-46", "R-a-47", "R-a-48", "R-a-49", "R-a-50", "R-a-51", "R-a-52", "R-a-53", "R-a-54", "R-a-55", "R-a-56", "R-a-57", "R-a-58", "R-a-59", "R-a-60"]
+        _(records).must_rematch
       end
       it 'paginates records with defaults' do
         pagy, records = controller.send(:pagy_elasticsearch_rails, MockElasticsearchRails::ModelES7.pagy_search('a').records)
@@ -90,7 +90,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.items).must_equal Pagy::VARS[:items]
         _(pagy.page).must_equal controller.params[:page]
         _(records.count).must_equal Pagy::VARS[:items]
-        _(records).must_equal ["R-a-41", "R-a-42", "R-a-43", "R-a-44", "R-a-45", "R-a-46", "R-a-47", "R-a-48", "R-a-49", "R-a-50", "R-a-51", "R-a-52", "R-a-53", "R-a-54", "R-a-55", "R-a-56", "R-a-57", "R-a-58", "R-a-59", "R-a-60"]
+        _(records).must_rematch
       end
       it 'paginates with vars' do
         pagy, records = controller.send(:pagy_elasticsearch_rails, MockElasticsearchRails::ModelES7.pagy_search('b').records, page: 2, items: 10, link_extra: 'X')
@@ -100,7 +100,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 2
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(records.count).must_equal 10
-        _(records).must_equal ["R-b-11", "R-b-12", "R-b-13", "R-b-14", "R-b-15", "R-b-16", "R-b-17", "R-b-18", "R-b-19", "R-b-20"]
+        _(records).must_rematch
       end
       it 'paginates with overflow' do
         pagy, records = controller.send(:pagy_elasticsearch_rails, MockElasticsearchRails::Model.pagy_search('b').records, page: 200, items: 10, link_extra: 'X', overflow: :last_page)
@@ -110,7 +110,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 100
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(records.count).must_equal 10
-        _(records).must_equal ["R-b-991", "R-b-992", "R-b-993", "R-b-994", "R-b-995", "R-b-996", "R-b-997", "R-b-998", "R-b-999", "R-b-1000"]
+        _(records).must_rematch
       end
     end
 
