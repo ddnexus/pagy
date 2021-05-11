@@ -36,8 +36,7 @@ class Pagy
                'gap'    => %(<li class="gap disabled"><a href="#">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
 
-      html = %(<div#{p_id} class="pagy-njs pagy-materialize-nav-js" role="navigation" aria-label="pager"></div>)
-      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
+      %(<div#{p_id} class="pagy-njs pagy-materialize-nav-js" role="navigation" aria-label="pager" #{pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></div>)
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -50,15 +49,15 @@ class Pagy
       style   = ' style="vertical-align: middle;"'
       input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 2px; border: none; border-radius: 2px; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<div#{p_id} class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="pagy-compact-chip" role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;"><ul class="pagination" style="margin: 0">#{
+      %(<div#{p_id} class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="pagy-compact-chip" role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;"><ul class="pagination" style="margin: 0" #{
+          pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
+      }>#{
           pagy_materialize_prev_html pagy, link, style
       }<div class="pagy-combo-input btn-flat" style="cursor: default; padding: 0px">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
       }</div>#{
           pagy_materialize_next_html pagy, link, style
-      }</ul></div>#{
-          pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)
-      })
+      }</ul></div>)
     end
 
     private

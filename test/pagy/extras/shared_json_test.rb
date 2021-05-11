@@ -6,10 +6,10 @@ require 'pagy/extras/shared'
 describe 'pagy/extras/shared_json' do
   let(:view) { MockView.new('http://example.com:3000/foo?') }
 
-  describe '#pagy_json_tag' do
+  describe '#pagy_json_attr' do
     it 'should use json' do
-      _(view.pagy_json_tag(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_equal \
-      "<script type=\"application/json\" class=\"pagy-json\">[\"test_function\",\"some-string\",123,true]</script>"
+      _(view.pagy_json_attr(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_equal \
+        "data-pagy-json=\"[&quot;test_function&quot;,&quot;some-string&quot;,123,true]\""
     end
   end
 
