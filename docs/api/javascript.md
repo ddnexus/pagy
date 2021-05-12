@@ -16,7 +16,7 @@ If you use any of them you should follow this documentation, if not, consider th
 
 ### Basic principle
 
-All the `pagy*_js` helpers produce/render their component on the client side. The helper methods serve just a minimal HTML tag and a `JSON` tag that gets into the view. The javascript in the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file takes care to read the data embedded in the `ISON` tag and make it work in the browser.
+All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy-json` attribute. The javascript in the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file takes care to read the data embedded in the `data-pagy-json` attribute and make it work in the browser.
 
 ## Usage
 

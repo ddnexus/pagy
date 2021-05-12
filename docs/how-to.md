@@ -650,7 +650,7 @@ If your requirements allow to use the `countless` extra (minimal or automatic UI
 
 ## Preventing crawlers to follow look-alike links
 
-The `*_js` helpers come with a JSON tag including a string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it even if it is not a DOM element. That causes server side errors reported in your log.
+The `*_js` helpers come with a `data-pagy-json` attribute that includes an HTML encoded string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it even if it is not a DOM element. That causes server side errors reported in your log.
 
 You may want to prevent that by simply adding the following lines to your `robots.txt` file:
 
