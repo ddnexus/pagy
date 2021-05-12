@@ -1,6 +1,6 @@
 ---
+pagy/extras/shared_json::#pagy_json_attr#test_0001_should use json 1: data-pagy-json="[&quot;test_function&quot;,&quot;some-string&quot;,123,true]"
 pagy/extras/shared_json::#pagy_marked_link#test_0001_should return only the "standard" link 1: '<a
   href="/foo?page=__pagy_page__"   style="display: none;"></a>'
 pagy/extras/shared_json::#pagy_marked_link#test_0001_should return only the "standard" link 2: '<a
   href="/foo?p=__pagy_page__"   style="display: none;"></a>'
-pagy/extras/shared_json::#pagy_json_attr#test_0001_should use json 1: data-pagy-json="[&quot;test_function&quot;,&quot;some-string&quot;,123,true]"

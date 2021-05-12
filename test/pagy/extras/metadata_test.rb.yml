@@ -1,4 +1,23 @@
 ---
+pagy/extras/metadata::#pagy_metadata#test_0001_defines all metadata 1:
+- :scaffold_url
+- :first_url
+- :prev_url
+- :page_url
+- :next_url
+- :last_url
+- :count
+- :page
+- :items
+- :vars
+- :pages
+- :last
+- :from
+- :to
+- :prev
+- :next
+- :series
+- :sequels
 pagy/extras/metadata::#pagy_metadata#test_0002_returns the full pagy metadata 1:
   :scaffold_url: "/foo?page=__pagy_page__"
   :first_url: "/foo?page=1"
@@ -79,22 +98,3 @@ pagy/extras/metadata::#pagy_metadata#test_0004_returns only specific metadata 1:
   :prev: 2
   :next: 4
   :pages: 50
-pagy/extras/metadata::#pagy_metadata#test_0001_defines all metadata 1:
-- :scaffold_url
-- :first_url
-- :prev_url
-- :page_url
-- :next_url
-- :last_url
-- :count
-- :page
-- :items
-- :vars
-- :pages
-- :last
-- :from
-- :to
-- :prev
-- :next
-- :series
-- :sequels

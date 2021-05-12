@@ -1,4 +1,21 @@
 ---
+pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0001_renders first page 1: '<nav
+  class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group"
+  role="group" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  none;\&quot;></a>&quot;]"><a class="prev btn btn-primary disabled" href="#">&lsaquo;&nbsp;Prev</a><div
+  class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;"><label>Page
+  <input type="number" min="1" max="6" value="1" class="text-primary" style="padding:
+  0; border: none; text-align: center; width: 2rem;"></label> of 6</div><a href="/foo?page=2"   rel="next"
+  aria-label="next" class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
+pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0001_renders first page 2: '<nav
+  id="test-nav-id" class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div
+  class="btn-group" role="group" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><a
+  class="prev btn btn-primary disabled" href="#">&lsaquo;&nbsp;Prev</a><div class="pagy-combo-input
+  btn btn-primary disabled" style="white-space: nowrap;"><label>Page <input type="number"
+  min="1" max="6" value="1" class="text-primary" style="padding: 0; border: none;
+  text-align: center; width: 2rem;"></label> of 6</div><a href="/foo?page=2"  link-extra
+  rel="next" aria-label="next" class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
 pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0002_renders intermediate page 1: '<nav
   class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group"
   role="group" data-pagy-json="[&quot;combo_nav&quot;,3,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
@@ -18,23 +35,6 @@ pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0002_renders intermedia
   max="6" value="3" class="text-primary" style="padding: 0; border: none; text-align:
   center; width: 2rem;"></label> of 6</div><a href="/foo?page=4"  link-extra rel="next"
   aria-label="next" class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
-pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0001_renders first page 1: '<nav
-  class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group"
-  role="group" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
-  none;\&quot;></a>&quot;]"><a class="prev btn btn-primary disabled" href="#">&lsaquo;&nbsp;Prev</a><div
-  class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;"><label>Page
-  <input type="number" min="1" max="6" value="1" class="text-primary" style="padding:
-  0; border: none; text-align: center; width: 2rem;"></label> of 6</div><a href="/foo?page=2"   rel="next"
-  aria-label="next" class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
-pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0001_renders first page 2: '<nav
-  id="test-nav-id" class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div
-  class="btn-group" role="group" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><a
-  class="prev btn btn-primary disabled" href="#">&lsaquo;&nbsp;Prev</a><div class="pagy-combo-input
-  btn btn-primary disabled" style="white-space: nowrap;"><label>Page <input type="number"
-  min="1" max="6" value="1" class="text-primary" style="padding: 0; border: none;
-  text-align: center; width: 2rem;"></label> of 6</div><a href="/foo?page=2"  link-extra
-  rel="next" aria-label="next" class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
 pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0003_renders last page 1: '<nav
   class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group"
   role="group" data-pagy-json="[&quot;combo_nav&quot;,6,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
@@ -54,26 +54,6 @@ pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0003_renders last page 
   max="6" value="6" class="text-primary" style="padding: 0; border: none; text-align:
   center; width: 2rem;"></label> of 6</div><a class="next btn btn-primary disabled"
   href="#">Next&nbsp;&rsaquo;</a></div></nav>'
-pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0001_renders first page 1: <nav
-  class="pagy-njs pagy-bootstrap-nav-js" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<ul
-  class=\&quot;pagination\&quot;><li class=\&quot;page-item prev disabled\&quot;><a
-  href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&lsaquo;&nbsp;Prev</a></li>&quot;,&quot;link&quot;:&quot;<li
-  class=\&quot;page-item\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;page-link\&quot;  >__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li
-  class=\&quot;page-item active\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;page-link\&quot;  >__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li
-  class=\&quot;page-item gap disabled\&quot;><a href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&hellip;</a></li>&quot;,&quot;after&quot;:&quot;<li
-  class=\&quot;page-item next\&quot;><a href=\&quot;/foo?page=2\&quot;  class=\&quot;page-link\&quot;  rel=\&quot;next\&quot;
-  aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></li></ul>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,4,5,&quot;gap&quot;,50]}]"></nav>
-pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0001_renders first page 2: <nav
-  id="test-nav-id" class="pagy-njs pagy-bootstrap-nav-js" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<ul
-  class=\&quot;pagination\&quot;><li class=\&quot;page-item prev disabled\&quot;><a
-  href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&lsaquo;&nbsp;Prev</a></li>&quot;,&quot;link&quot;:&quot;<li
-  class=\&quot;page-item\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;page-link\&quot;
-  link-extra >__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li class=\&quot;page-item
-  active\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;page-link\&quot;
-  link-extra >__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li class=\&quot;page-item
-  gap disabled\&quot;><a href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&hellip;</a></li>&quot;,&quot;after&quot;:&quot;<li
-  class=\&quot;page-item next\&quot;><a href=\&quot;/foo?page=2\&quot;  class=\&quot;page-link\&quot;
-  link-extra rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></li></ul>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,&quot;gap&quot;,50],&quot;600&quot;:[&quot;1&quot;,2,3,4,&quot;gap&quot;,50]}]"></nav>
 pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0003_renders last page 1: <nav
   class="pagy-njs pagy-bootstrap-nav-js" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<ul
   class=\&quot;pagination\&quot;><li class=\&quot;page-item prev\&quot;><a href=\&quot;/foo?page=49\&quot;  class=\&quot;page-link\&quot;  rel=\&quot;prev\&quot;
@@ -112,6 +92,26 @@ pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0004_renders with :steps 2: <
   gap disabled\&quot;><a href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&hellip;</a></li>&quot;,&quot;after&quot;:&quot;<li
   class=\&quot;page-item next\&quot;><a href=\&quot;/foo?page=21\&quot;  class=\&quot;page-link\&quot;
   link-extra rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></li></ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
+pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0001_renders first page 1: <nav
+  class="pagy-njs pagy-bootstrap-nav-js" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<ul
+  class=\&quot;pagination\&quot;><li class=\&quot;page-item prev disabled\&quot;><a
+  href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&lsaquo;&nbsp;Prev</a></li>&quot;,&quot;link&quot;:&quot;<li
+  class=\&quot;page-item\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;page-link\&quot;  >__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li
+  class=\&quot;page-item active\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;page-link\&quot;  >__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li
+  class=\&quot;page-item gap disabled\&quot;><a href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&hellip;</a></li>&quot;,&quot;after&quot;:&quot;<li
+  class=\&quot;page-item next\&quot;><a href=\&quot;/foo?page=2\&quot;  class=\&quot;page-link\&quot;  rel=\&quot;next\&quot;
+  aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></li></ul>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,4,5,&quot;gap&quot;,50]}]"></nav>
+pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0001_renders first page 2: <nav
+  id="test-nav-id" class="pagy-njs pagy-bootstrap-nav-js" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<ul
+  class=\&quot;pagination\&quot;><li class=\&quot;page-item prev disabled\&quot;><a
+  href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&lsaquo;&nbsp;Prev</a></li>&quot;,&quot;link&quot;:&quot;<li
+  class=\&quot;page-item\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;page-link\&quot;
+  link-extra >__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li class=\&quot;page-item
+  active\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;page-link\&quot;
+  link-extra >__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li class=\&quot;page-item
+  gap disabled\&quot;><a href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&hellip;</a></li>&quot;,&quot;after&quot;:&quot;<li
+  class=\&quot;page-item next\&quot;><a href=\&quot;/foo?page=2\&quot;  class=\&quot;page-link\&quot;
+  link-extra rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></li></ul>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,&quot;gap&quot;,50],&quot;600&quot;:[&quot;1&quot;,2,3,4,&quot;gap&quot;,50]}]"></nav>
 pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0002_renders intermediate page 1: <nav
   class="pagy-njs pagy-bootstrap-nav-js" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<ul
   class=\&quot;pagination\&quot;><li class=\&quot;page-item prev\&quot;><a href=\&quot;/foo?page=19\&quot;  class=\&quot;page-link\&quot;  rel=\&quot;prev\&quot;
@@ -132,6 +132,39 @@ pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0002_renders intermediate pag
   gap disabled\&quot;><a href=\&quot;#\&quot; class=\&quot;page-link\&quot;>&hellip;</a></li>&quot;,&quot;after&quot;:&quot;<li
   class=\&quot;page-item next\&quot;><a href=\&quot;/foo?page=21\&quot;  class=\&quot;page-link\&quot;
   link-extra rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></li></ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
+pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0002_renders intermediate page 1: <nav
+  class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination"><li class="page-item
+  prev"><a href="/foo?page=19"  class="page-link"  rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li
+  class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li class="page-item
+  gap disabled"><a href="#" class="page-link">&hellip;</a></li><li class="page-item"><a
+  href="/foo?page=16"  class="page-link"  >16</a></li><li class="page-item"><a href="/foo?page=17"  class="page-link"  >17</a></li><li
+  class="page-item"><a href="/foo?page=18"  class="page-link"  >18</a></li><li class="page-item"><a
+  href="/foo?page=19"  class="page-link"  rel="prev" >19</a></li><li class="page-item
+  active"><a href="/foo?page=20"  class="page-link"  >20</a></li><li class="page-item"><a
+  href="/foo?page=21"  class="page-link"  rel="next" >21</a></li><li class="page-item"><a
+  href="/foo?page=22"  class="page-link"  >22</a></li><li class="page-item"><a href="/foo?page=23"  class="page-link"  >23</a></li><li
+  class="page-item"><a href="/foo?page=24"  class="page-link"  >24</a></li><li class="page-item
+  gap disabled"><a href="#" class="page-link">&hellip;</a></li><li class="page-item"><a
+  href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item next"><a
+  href="/foo?page=21"  class="page-link"  rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>
+pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0002_renders intermediate page 2: <nav
+  id="test-nav-id" class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination"><li
+  class="page-item prev"><a href="/foo?page=19"  class="page-link" link-extra rel="prev"
+  aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li class="page-item"><a href="/foo?page=1"  class="page-link"
+  link-extra >1</a></li><li class="page-item gap disabled"><a href="#" class="page-link">&hellip;</a></li><li
+  class="page-item"><a href="/foo?page=16"  class="page-link" link-extra >16</a></li><li
+  class="page-item"><a href="/foo?page=17"  class="page-link" link-extra >17</a></li><li
+  class="page-item"><a href="/foo?page=18"  class="page-link" link-extra >18</a></li><li
+  class="page-item"><a href="/foo?page=19"  class="page-link" link-extra rel="prev"
+  >19</a></li><li class="page-item active"><a href="/foo?page=20"  class="page-link"
+  link-extra >20</a></li><li class="page-item"><a href="/foo?page=21"  class="page-link"
+  link-extra rel="next" >21</a></li><li class="page-item"><a href="/foo?page=22"  class="page-link"
+  link-extra >22</a></li><li class="page-item"><a href="/foo?page=23"  class="page-link"
+  link-extra >23</a></li><li class="page-item"><a href="/foo?page=24"  class="page-link"
+  link-extra >24</a></li><li class="page-item gap disabled"><a href="#" class="page-link">&hellip;</a></li><li
+  class="page-item"><a href="/foo?page=50"  class="page-link" link-extra >50</a></li><li
+  class="page-item next"><a href="/foo?page=21"  class="page-link" link-extra rel="next"
+  aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>
 pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0003_renders last page 1: <nav class="pagy-bootstrap-nav"
   aria-label="pager"><ul class="pagination"><li class="page-item prev"><a href="/foo?page=49"  class="page-link"  rel="prev"
   aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li
@@ -172,36 +205,3 @@ pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0001_renders first page 2: <nav 
   gap disabled"><a href="#" class="page-link">&hellip;</a></li><li class="page-item"><a
   href="/foo?page=50"  class="page-link" link-extra >50</a></li><li class="page-item
   next"><a href="/foo?page=2"  class="page-link" link-extra rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>
-pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0002_renders intermediate page 1: <nav
-  class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination"><li class="page-item
-  prev"><a href="/foo?page=19"  class="page-link"  rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li
-  class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li class="page-item
-  gap disabled"><a href="#" class="page-link">&hellip;</a></li><li class="page-item"><a
-  href="/foo?page=16"  class="page-link"  >16</a></li><li class="page-item"><a href="/foo?page=17"  class="page-link"  >17</a></li><li
-  class="page-item"><a href="/foo?page=18"  class="page-link"  >18</a></li><li class="page-item"><a
-  href="/foo?page=19"  class="page-link"  rel="prev" >19</a></li><li class="page-item
-  active"><a href="/foo?page=20"  class="page-link"  >20</a></li><li class="page-item"><a
-  href="/foo?page=21"  class="page-link"  rel="next" >21</a></li><li class="page-item"><a
-  href="/foo?page=22"  class="page-link"  >22</a></li><li class="page-item"><a href="/foo?page=23"  class="page-link"  >23</a></li><li
-  class="page-item"><a href="/foo?page=24"  class="page-link"  >24</a></li><li class="page-item
-  gap disabled"><a href="#" class="page-link">&hellip;</a></li><li class="page-item"><a
-  href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item next"><a
-  href="/foo?page=21"  class="page-link"  rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>
-pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0002_renders intermediate page 2: <nav
-  id="test-nav-id" class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination"><li
-  class="page-item prev"><a href="/foo?page=19"  class="page-link" link-extra rel="prev"
-  aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li class="page-item"><a href="/foo?page=1"  class="page-link"
-  link-extra >1</a></li><li class="page-item gap disabled"><a href="#" class="page-link">&hellip;</a></li><li
-  class="page-item"><a href="/foo?page=16"  class="page-link" link-extra >16</a></li><li
-  class="page-item"><a href="/foo?page=17"  class="page-link" link-extra >17</a></li><li
-  class="page-item"><a href="/foo?page=18"  class="page-link" link-extra >18</a></li><li
-  class="page-item"><a href="/foo?page=19"  class="page-link" link-extra rel="prev"
-  >19</a></li><li class="page-item active"><a href="/foo?page=20"  class="page-link"
-  link-extra >20</a></li><li class="page-item"><a href="/foo?page=21"  class="page-link"
-  link-extra rel="next" >21</a></li><li class="page-item"><a href="/foo?page=22"  class="page-link"
-  link-extra >22</a></li><li class="page-item"><a href="/foo?page=23"  class="page-link"
-  link-extra >23</a></li><li class="page-item"><a href="/foo?page=24"  class="page-link"
-  link-extra >24</a></li><li class="page-item gap disabled"><a href="#" class="page-link">&hellip;</a></li><li
-  class="page-item"><a href="/foo?page=50"  class="page-link" link-extra >50</a></li><li
-  class="page-item next"><a href="/foo?page=21"  class="page-link" link-extra rel="next"
-  aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>
