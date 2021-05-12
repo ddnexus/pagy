@@ -49,14 +49,14 @@ class Pagy
       style   = ' style="vertical-align: middle"'
       input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination btn" role="navigation" aria-label="pager" style="padding-right: 0" #{
-      pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
+      %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager" style="padding-right: 0" #{
+          pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
       }>#{
-      pagy_materialize_prev_html pagy, link, style
+          pagy_materialize_prev_html pagy, link, style
       }<li class="pagy-combo-input">#{
-      pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
+          pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
       }</li>#{
-      pagy_materialize_next_html pagy, link, style
+          pagy_materialize_next_html pagy, link, style
       }</ul>)
     end
 
