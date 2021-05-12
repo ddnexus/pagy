@@ -1,4 +1,22 @@
 ---
+pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0001_renders first page 1: '<nav
+  class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field is-grouped
+  is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a
+  href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><p
+  class="control"><a class="button" disabled>&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
+  control level is-mobile"><label>Page <input class="input" type="number" min="1"
+  max="6" value="1" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;">
+  of 6</label></div><p class="control"><a href="/foo?page=2"   rel="next" class="button"
+  aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
+pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0001_renders first page 2: '<nav
+  id="test-nav-id" class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field
+  is-grouped is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><p
+  class="control"><a class="button" disabled>&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
+  control level is-mobile"><label>Page <input class="input" type="number" min="1"
+  max="6" value="1" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;">
+  of 6</label></div><p class="control"><a href="/foo?page=2"  link-extra rel="next"
+  class="button" aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
 pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0002_renders intermediate page 1: '<nav
   class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field is-grouped
   is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,3,&quot;<a
@@ -6,7 +24,7 @@ pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0002_renders intermediate page 
   class="control"><a href="/foo?page=2"   rel="prev" class="button" aria-label="previous
   page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input control level is-mobile"><label>Page
   <input class="input" type="number" min="1" max="6" value="3" style="padding: 0;
-  text-align: center; width: 2rem; margin:0 0.3rem;"></label> of 6</div><p class="control"><a
+  text-align: center; width: 2rem; margin:0 0.3rem;"> of 6</label></div><p class="control"><a
   href="/foo?page=4"   rel="next" class="button" aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
 pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0002_renders intermediate page 2: '<nav
   id="test-nav-id" class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field
@@ -15,7 +33,7 @@ pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0002_renders intermediate page 
   class="control"><a href="/foo?page=2"  link-extra rel="prev" class="button" aria-label="previous
   page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input control level is-mobile"><label>Page
   <input class="input" type="number" min="1" max="6" value="3" style="padding: 0;
-  text-align: center; width: 2rem; margin:0 0.3rem;"></label> of 6</div><p class="control"><a
+  text-align: center; width: 2rem; margin:0 0.3rem;"> of 6</label></div><p class="control"><a
   href="/foo?page=4"  link-extra rel="next" class="button" aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
 pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0003_renders last page 1: '<nav class="pagy-bulma-combo-nav-js"
   aria-label="pagination"><div class="field is-grouped is-grouped-centered" role="group"
@@ -23,8 +41,8 @@ pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0003_renders last page 1: '<nav
   none;\&quot;></a>&quot;]"><p class="control"><a href="/foo?page=5"   rel="prev"
   class="button" aria-label="previous page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
   control level is-mobile"><label>Page <input class="input" type="number" min="1"
-  max="6" value="6" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;"></label>
-  of 6</div><p class="control"><a class="button" disabled>Next&nbsp;&rsaquo;</a></p></div></nav>'
+  max="6" value="6" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;">
+  of 6</label></div><p class="control"><a class="button" disabled>Next&nbsp;&rsaquo;</a></p></div></nav>'
 pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0003_renders last page 2: '<nav id="test-nav-id"
   class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field is-grouped
   is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,6,&quot;<a
@@ -32,131 +50,8 @@ pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0003_renders last page 2: '<nav
   class="control"><a href="/foo?page=5"  link-extra rel="prev" class="button" aria-label="previous
   page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input control level is-mobile"><label>Page
   <input class="input" type="number" min="1" max="6" value="6" style="padding: 0;
-  text-align: center; width: 2rem; margin:0 0.3rem;"></label> of 6</div><p class="control"><a
+  text-align: center; width: 2rem; margin:0 0.3rem;"> of 6</label></div><p class="control"><a
   class="button" disabled>Next&nbsp;&rsaquo;</a></p></div></nav>'
-pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0001_renders first page 1: '<nav
-  class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field is-grouped
-  is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><p
-  class="control"><a class="button" disabled>&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
-  control level is-mobile"><label>Page <input class="input" type="number" min="1"
-  max="6" value="1" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;"></label>
-  of 6</div><p class="control"><a href="/foo?page=2"   rel="next" class="button" aria-label="next
-  page">Next&nbsp;&rsaquo;</a></p></div></nav>'
-pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0001_renders first page 2: '<nav
-  id="test-nav-id" class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field
-  is-grouped is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><p
-  class="control"><a class="button" disabled>&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
-  control level is-mobile"><label>Page <input class="input" type="number" min="1"
-  max="6" value="1" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;"></label>
-  of 6</div><p class="control"><a href="/foo?page=2"  link-extra rel="next" class="button"
-  aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
-pagy/extras/bulma::#pagy_bulma_nav_js#test_0001_renders first page 1: <nav class="pagy-njs
-  pagy-bulma-nav-js pagination is-centered" aria-label="pagination" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a
-  class=\&quot;pagination-previous\&quot; disabled>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=2\&quot;   rel=\&quot;next\&quot;
-  class=\&quot;pagination-next\&quot; aria-label=\&quot;next page\&quot;>Next&nbsp;&rsaquo;</a><ul
-  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link\&quot;
-  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link is-current\&quot;
-  aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,4,5,&quot;gap&quot;,50]}]"></nav>
-pagy/extras/bulma::#pagy_bulma_nav_js#test_0001_renders first page 2: <nav id="test-nav-id"
-  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
-  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a class=\&quot;pagination-previous\&quot;
-  disabled>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=2\&quot;  link-extra rel=\&quot;next\&quot;
-  class=\&quot;pagination-next\&quot; aria-label=\&quot;next page\&quot;>Next&nbsp;&rsaquo;</a><ul
-  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
-  class=\&quot;pagination-link\&quot; aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
-  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,&quot;gap&quot;,50],&quot;600&quot;:[&quot;1&quot;,2,3,4,&quot;gap&quot;,50]}]"></nav>
-pagy/extras/bulma::#pagy_bulma_nav_js#test_0004_renders with :steps 1: <nav class="pagy-njs
-  pagy-bulma-nav-js pagination is-centered" aria-label="pagination" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a
-  href=\&quot;/foo?page=19\&quot;   rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot;
-  aria-label=\&quot;previous page\&quot;>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=21\&quot;   rel=\&quot;next\&quot;
-  class=\&quot;pagination-next\&quot; aria-label=\&quot;next page\&quot;>Next&nbsp;&rsaquo;</a><ul
-  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link\&quot;
-  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link is-current\&quot;
-  aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;500&quot;:[1,2,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,49,50]}]"></nav>
-pagy/extras/bulma::#pagy_bulma_nav_js#test_0004_renders with :steps 2: <nav id="test-nav-id"
-  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
-  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=19\&quot;  link-extra
-  rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous
-  page\&quot;>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=21\&quot;  link-extra
-  rel=\&quot;next\&quot; class=\&quot;pagination-next\&quot; aria-label=\&quot;next
-  page\&quot;>Next&nbsp;&rsaquo;</a><ul class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link\&quot;
-  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
-  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
-pagy/extras/bulma::#pagy_bulma_nav_js#test_0002_renders intermediate page 1: <nav
-  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
-  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=19\&quot;   rel=\&quot;prev\&quot;
-  class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous page\&quot;>&lsaquo;&nbsp;Prev</a><a
-  href=\&quot;/foo?page=21\&quot;   rel=\&quot;next\&quot; class=\&quot;pagination-next\&quot;
-  aria-label=\&quot;next page\&quot;>Next&nbsp;&rsaquo;</a><ul class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link\&quot;
-  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link is-current\&quot;
-  aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,16,17,18,19,&quot;20&quot;,21,22,23,24,&quot;gap&quot;,50]}]"></nav>
-pagy/extras/bulma::#pagy_bulma_nav_js#test_0002_renders intermediate page 2: <nav
-  id="test-nav-id" class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
-  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=19\&quot;  link-extra
-  rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous
-  page\&quot;>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=21\&quot;  link-extra
-  rel=\&quot;next\&quot; class=\&quot;pagination-next\&quot; aria-label=\&quot;next
-  page\&quot;>Next&nbsp;&rsaquo;</a><ul class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link\&quot;
-  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
-  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
-pagy/extras/bulma::#pagy_bulma_nav_js#test_0003_renders last page 1: <nav class="pagy-njs
-  pagy-bulma-nav-js pagination is-centered" aria-label="pagination" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a
-  href=\&quot;/foo?page=49\&quot;   rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot;
-  aria-label=\&quot;previous page\&quot;>&lsaquo;&nbsp;Prev</a><a class=\&quot;pagination-next\&quot;
-  disabled>Next&nbsp;&rsaquo;</a><ul class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link\&quot;
-  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link is-current\&quot;
-  aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,46,47,48,49,&quot;50&quot;]}]"></nav>
-pagy/extras/bulma::#pagy_bulma_nav_js#test_0003_renders last page 2: <nav id="test-nav-id"
-  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
-  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=49\&quot;  link-extra
-  rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous
-  page\&quot;>&lsaquo;&nbsp;Prev</a><a class=\&quot;pagination-next\&quot; disabled>Next&nbsp;&rsaquo;</a><ul
-  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
-  class=\&quot;pagination-link\&quot; aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
-  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,48,49,&quot;50&quot;],&quot;600&quot;:[1,&quot;gap&quot;,47,48,49,&quot;50&quot;]}]"></nav>
-pagy/extras/bulma::#pagy_bulma_nav#test_0003_renders last page 1: <nav class="pagy-bulma-nav
-  pagination is-centered" aria-label="pagination"><a href="/foo?page=49"   rel="prev"
-  class="pagination-previous" aria-label="previous page">&lsaquo;&nbsp;Prev</a><a
-  class="pagination-next" disabled>Next&nbsp;&rsaquo;</a><ul class="pagination-list"><li><a
-  href="/foo?page=1"   class="pagination-link" aria-label="goto page 1">1</a></li><li><span
-  class="pagination-ellipsis">&hellip;</span></li><li><a href="/foo?page=46"   class="pagination-link"
-  aria-label="goto page 46">46</a></li><li><a href="/foo?page=47"   class="pagination-link"
-  aria-label="goto page 47">47</a></li><li><a href="/foo?page=48"   class="pagination-link"
-  aria-label="goto page 48">48</a></li><li><a href="/foo?page=49"   rel="prev" class="pagination-link"
-  aria-label="goto page 49">49</a></li><li><a href="/foo?page=50"   class="pagination-link
-  is-current" aria-label="page 50" aria-current="page">50</a></li></ul></nav>
-pagy/extras/bulma::#pagy_bulma_nav#test_0003_renders last page 2: <nav id="test-nav-id"
-  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
-  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=49\&quot;  link-extra
-  rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous
-  page\&quot;>&lsaquo;&nbsp;Prev</a><a class=\&quot;pagination-next\&quot; disabled>Next&nbsp;&rsaquo;</a><ul
-  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
-  class=\&quot;pagination-link\&quot; aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
-  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
-  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,46,47,48,49,&quot;50&quot;]}]"></nav>
 pagy/extras/bulma::#pagy_bulma_nav#test_0001_renders first page 1: <nav class="pagy-bulma-nav
   pagination is-centered" aria-label="pagination"><a class="pagination-previous" disabled>&lsaquo;&nbsp;Prev</a><a
   href="/foo?page=2"   rel="next" class="pagination-next" aria-label="next page">Next&nbsp;&rsaquo;</a><ul
@@ -206,3 +101,108 @@ pagy/extras/bulma::#pagy_bulma_nav#test_0002_renders intermediate page 2: <nav i
   href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
   is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
   class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,16,17,18,19,&quot;20&quot;,21,22,23,24,&quot;gap&quot;,50]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav#test_0003_renders last page 1: <nav class="pagy-bulma-nav
+  pagination is-centered" aria-label="pagination"><a href="/foo?page=49"   rel="prev"
+  class="pagination-previous" aria-label="previous page">&lsaquo;&nbsp;Prev</a><a
+  class="pagination-next" disabled>Next&nbsp;&rsaquo;</a><ul class="pagination-list"><li><a
+  href="/foo?page=1"   class="pagination-link" aria-label="goto page 1">1</a></li><li><span
+  class="pagination-ellipsis">&hellip;</span></li><li><a href="/foo?page=46"   class="pagination-link"
+  aria-label="goto page 46">46</a></li><li><a href="/foo?page=47"   class="pagination-link"
+  aria-label="goto page 47">47</a></li><li><a href="/foo?page=48"   class="pagination-link"
+  aria-label="goto page 48">48</a></li><li><a href="/foo?page=49"   rel="prev" class="pagination-link"
+  aria-label="goto page 49">49</a></li><li><a href="/foo?page=50"   class="pagination-link
+  is-current" aria-label="page 50" aria-current="page">50</a></li></ul></nav>
+pagy/extras/bulma::#pagy_bulma_nav#test_0003_renders last page 2: <nav id="test-nav-id"
+  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
+  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=49\&quot;  link-extra
+  rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous
+  page\&quot;>&lsaquo;&nbsp;Prev</a><a class=\&quot;pagination-next\&quot; disabled>Next&nbsp;&rsaquo;</a><ul
+  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class=\&quot;pagination-link\&quot; aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
+  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,46,47,48,49,&quot;50&quot;]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav_js#test_0001_renders first page 1: <nav class="pagy-njs
+  pagy-bulma-nav-js pagination is-centered" aria-label="pagination" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a
+  class=\&quot;pagination-previous\&quot; disabled>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=2\&quot;   rel=\&quot;next\&quot;
+  class=\&quot;pagination-next\&quot; aria-label=\&quot;next page\&quot;>Next&nbsp;&rsaquo;</a><ul
+  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link\&quot;
+  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link is-current\&quot;
+  aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,4,5,&quot;gap&quot;,50]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav_js#test_0001_renders first page 2: <nav id="test-nav-id"
+  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
+  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a class=\&quot;pagination-previous\&quot;
+  disabled>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=2\&quot;  link-extra rel=\&quot;next\&quot;
+  class=\&quot;pagination-next\&quot; aria-label=\&quot;next page\&quot;>Next&nbsp;&rsaquo;</a><ul
+  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class=\&quot;pagination-link\&quot; aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
+  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,&quot;gap&quot;,50],&quot;600&quot;:[&quot;1&quot;,2,3,4,&quot;gap&quot;,50]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav_js#test_0002_renders intermediate page 1: <nav
+  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
+  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=19\&quot;   rel=\&quot;prev\&quot;
+  class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous page\&quot;>&lsaquo;&nbsp;Prev</a><a
+  href=\&quot;/foo?page=21\&quot;   rel=\&quot;next\&quot; class=\&quot;pagination-next\&quot;
+  aria-label=\&quot;next page\&quot;>Next&nbsp;&rsaquo;</a><ul class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link\&quot;
+  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link is-current\&quot;
+  aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,16,17,18,19,&quot;20&quot;,21,22,23,24,&quot;gap&quot;,50]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav_js#test_0002_renders intermediate page 2: <nav
+  id="test-nav-id" class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
+  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=19\&quot;  link-extra
+  rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous
+  page\&quot;>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=21\&quot;  link-extra
+  rel=\&quot;next\&quot; class=\&quot;pagination-next\&quot; aria-label=\&quot;next
+  page\&quot;>Next&nbsp;&rsaquo;</a><ul class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link\&quot;
+  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
+  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav_js#test_0003_renders last page 1: <nav class="pagy-njs
+  pagy-bulma-nav-js pagination is-centered" aria-label="pagination" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a
+  href=\&quot;/foo?page=49\&quot;   rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot;
+  aria-label=\&quot;previous page\&quot;>&lsaquo;&nbsp;Prev</a><a class=\&quot;pagination-next\&quot;
+  disabled>Next&nbsp;&rsaquo;</a><ul class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link\&quot;
+  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link is-current\&quot;
+  aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,46,47,48,49,&quot;50&quot;]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav_js#test_0003_renders last page 2: <nav id="test-nav-id"
+  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
+  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=49\&quot;  link-extra
+  rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous
+  page\&quot;>&lsaquo;&nbsp;Prev</a><a class=\&quot;pagination-next\&quot; disabled>Next&nbsp;&rsaquo;</a><ul
+  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class=\&quot;pagination-link\&quot; aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
+  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,48,49,&quot;50&quot;],&quot;600&quot;:[1,&quot;gap&quot;,47,48,49,&quot;50&quot;]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav_js#test_0004_renders with :steps 1: <nav class="pagy-njs
+  pagy-bulma-nav-js pagination is-centered" aria-label="pagination" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a
+  href=\&quot;/foo?page=19\&quot;   rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot;
+  aria-label=\&quot;previous page\&quot;>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=21\&quot;   rel=\&quot;next\&quot;
+  class=\&quot;pagination-next\&quot; aria-label=\&quot;next page\&quot;>Next&nbsp;&rsaquo;</a><ul
+  class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link\&quot;
+  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;   class=\&quot;pagination-link is-current\&quot;
+  aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;500&quot;:[1,2,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,49,50]}]"></nav>
+pagy/extras/bulma::#pagy_bulma_nav_js#test_0004_renders with :steps 2: <nav id="test-nav-id"
+  class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination"
+  data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<a href=\&quot;/foo?page=19\&quot;  link-extra
+  rel=\&quot;prev\&quot; class=\&quot;pagination-previous\&quot; aria-label=\&quot;previous
+  page\&quot;>&lsaquo;&nbsp;Prev</a><a href=\&quot;/foo?page=21\&quot;  link-extra
+  rel=\&quot;next\&quot; class=\&quot;pagination-next\&quot; aria-label=\&quot;next
+  page\&quot;>Next&nbsp;&rsaquo;</a><ul class=\&quot;pagination-list\&quot;>&quot;,&quot;link&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link\&quot;
+  aria-label=\&quot;goto page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;active&quot;:&quot;<li><a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra class=\&quot;pagination-link
+  is-current\&quot; aria-current=\&quot;page\&quot; aria-label=\&quot;page __pagy_page__\&quot;>__pagy_page__</a></li>&quot;,&quot;gap&quot;:&quot;<li><span
+  class=\&quot;pagination-ellipsis\&quot;>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;</ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
