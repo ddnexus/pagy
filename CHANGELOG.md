@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## Version 4.7.0
+
+### Changes
+
+- Refactoring of pagy-json tags into data attributes
+- Added the rematch testing system to ease maintenance of tests
+- Added Ukrainian locale
+- updated Gemfile and doc
+
+### Commits
+
+- [887c783](http://github.com/ddnexus/pagy/commit/887c783): better doc for E2E testing
+- [738fd93](http://github.com/ddnexus/pagy/commit/738fd93): updated manifest
+- [0110e3a](http://github.com/ddnexus/pagy/commit/0110e3a): Ukrainian locale (#310)
+- [9265cd2](http://github.com/ddnexus/pagy/commit/9265cd2): extended must_rematch to other tests
+- [d217965](http://github.com/ddnexus/pagy/commit/d217965): refactoring of pagy_json_tag to pagy_json_attr: from script tag to data attribute
+- [57e6f91](http://github.com/ddnexus/pagy/commit/57e6f91): added rematch test to ease maintenance of tests
+- [94561a0](http://github.com/ddnexus/pagy/commit/94561a0): updated puma
+
 ## Version 4.6.0
 
 ### Changes
