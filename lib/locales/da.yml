@@ -17,6 +17,6 @@ da:
       single_page: "Viser <b>%{count}</b> %{item_name}"
       multiple_pages: "Viser %{item_name} <b>%{from}-%{to}</b> til <b>%{count}</b> totalt"
 
-    combo_nav_js: "<label>Side %{page_input}</label> of %{pages}"
+    combo_nav_js: "<label>Side %{page_input} of %{pages}</label>"
 
     items_selector_js: "<label>Antal %{items_input} %{item_name} per side</label>"

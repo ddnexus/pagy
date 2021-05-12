@@ -17,6 +17,6 @@ bg:
       single_page: "Показани са <b>%{count}</b> %{item_name}"
       multiple_pages: "Показани са %{item_name} <b>%{from}-%{to}</b> от <b>%{count}</b> общо"
 
-    combo_nav_js: "<label>Страница %{page_input}</label> от %{pages}"
+    combo_nav_js: "<label>Страница %{page_input} от %{pages}</label>"
 
     items_selector_js: "<label>Покажи %{items_input} %{item_name} на страница</label>"

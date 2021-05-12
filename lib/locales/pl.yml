@@ -19,6 +19,6 @@ pl:
       single_page: "Wyświetlono <b>%{count}</b> %{item_name}"
       multiple_pages: "Wyświetlono %{item_name} <b>%{from}-%{to}</b> z wszystkich <b>%{count}</b>"
 
-    combo_nav_js: "<label>Strona %{page_input}</label> z %{pages}"
+    combo_nav_js: "<label>Strona %{page_input} z %{pages}</label>"
 
     items_selector_js: "<label>Pokaż %{items_input} %{item_name} na stronie</label>"
