@@ -34,8 +34,7 @@ class Pagy
                'gap'    => %(<li class="uk-disabled"><span>#{pagy_t 'pagy.nav.gap'}</span></li>),
                'after'  => pagy_uikit_next_html(pagy, link) }
 
-      html = %(<ul#{p_id} class="pagy-njs pagy-uikit-nav-js uk-pagination uk-flex-center"></ul>)
-      html << pagy_json_tag(pagy, :nav, tags, pagy.sequels(steps))
+      %(<ul#{p_id} class="pagy-njs pagy-uikit-nav-js uk-pagination uk-flex-center" #{pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></ul>)
     end
 
     # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -47,7 +46,9 @@ class Pagy
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" class="uk-input" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<div#{p_id} class="pagy-uikit-combo-nav-js uk-button-group">#{
+      %(<div#{p_id} class="pagy-uikit-combo-nav-js uk-button-group" #{
+          pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
+      }>#{
           if (p_prev = pagy.prev)
             link.call p_prev, pagy_t('pagy.nav.prev'), 'class="uk-button uk-button-default"'
           else
@@ -61,9 +62,7 @@ class Pagy
           else
             %(<button class="uk-button uk-button-default" disabled>#{pagy_t 'pagy.nav.next'}</button>)
           end
-      }</div>#{
-          pagy_json_tag pagy, :combo_nav, p_page, pagy_marked_link(link)
-      })
+      }</div>)
     end
 
 

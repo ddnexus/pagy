@@ -24,23 +24,23 @@ describe 'pagy/extras/i18n' do
 
   describe '#pagy_info with I18n' do
     it 'renders info' do
-      _(view.pagy_info(Pagy.new(count: 0))).must_equal '<span class="pagy-info">No items found</span>'
-      _(view.pagy_info(Pagy.new(count: 1))).must_equal '<span class="pagy-info">Displaying <b>1</b> item</span>'
-      _(view.pagy_info(Pagy.new(count: 13))).must_equal '<span class="pagy-info">Displaying <b>13</b> items</span>'
-      _(view.pagy_info(Pagy.new(count: 100, page: 3))).must_equal '<span class="pagy-info">Displaying items <b>41-60</b> of <b>100</b> in total</span>'
+      _(view.pagy_info(Pagy.new(count: 0))).must_rematch
+      _(view.pagy_info(Pagy.new(count: 1))).must_rematch
+      _(view.pagy_info(Pagy.new(count: 13))).must_rematch
+      _(view.pagy_info(Pagy.new(count: 100, page: 3))).must_rematch
     end
     it 'renders with existing i18n key' do
       ::I18n.locale = 'en'
       custom_dictionary = Pagy.root.parent.join('test', 'files', 'i18n.yml')
       ::I18n.load_path += [custom_dictionary]
-      _(view.pagy_info(Pagy.new(count: 0, i18n_key: 'activerecord.models.product'))).must_equal '<span class="pagy-info">No Products found</span>'
-      _(view.pagy_info(Pagy.new(count: 1, i18n_key: 'activerecord.models.product'))).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
-      _(view.pagy_info(Pagy.new(count: 13, i18n_key: 'activerecord.models.product'))).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
-      _(view.pagy_info(Pagy.new(count: 100, i18n_key: 'activerecord.models.product', page: 3))).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
-      _(view.pagy_info(Pagy.new(count: 0), i18n_key: 'activerecord.models.product')).must_equal '<span class="pagy-info">No Products found</span>'
-      _(view.pagy_info(Pagy.new(count: 1), i18n_key: 'activerecord.models.product')).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
-      _(view.pagy_info(Pagy.new(count: 13), i18n_key: 'activerecord.models.product')).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
-      _(view.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'activerecord.models.product')).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
+      _(view.pagy_info(Pagy.new(count: 0, i18n_key: 'activerecord.models.product'))).must_rematch
+      _(view.pagy_info(Pagy.new(count: 1, i18n_key: 'activerecord.models.product'))).must_rematch
+      _(view.pagy_info(Pagy.new(count: 13, i18n_key: 'activerecord.models.product'))).must_rematch
+      _(view.pagy_info(Pagy.new(count: 100, i18n_key: 'activerecord.models.product', page: 3))).must_rematch
+      _(view.pagy_info(Pagy.new(count: 0), i18n_key: 'activerecord.models.product')).must_rematch
+      _(view.pagy_info(Pagy.new(count: 1), i18n_key: 'activerecord.models.product')).must_rematch
+      _(view.pagy_info(Pagy.new(count: 13), i18n_key: 'activerecord.models.product')).must_rematch
+      _(view.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'activerecord.models.product')).must_rematch
     end
   end
 end

@@ -85,6 +85,7 @@ plurals = Hash.new(p11n[:one_other]).tap do |hash|
   hash['sv']    = p11n[:one_two_other]
   hash['sv-SE'] = p11n[:one_two_other]
   hash['tr']    = p11n[:other]
+  hash['uk']    = p11n[:east_slavic]
   hash['zh-CN'] = p11n[:other]
   hash['zh-HK'] = p11n[:other]
   hash['zh-TW'] = p11n[:other]

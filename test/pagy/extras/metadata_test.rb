@@ -13,13 +13,11 @@ describe 'pagy/extras/metadata' do
       @collection = MockCollection.new
     end
     it 'defines all metadata' do
-      _(Pagy::VARS[:metadata]).must_equal [:scaffold_url, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :items, :vars, :pages, :last, :from, :to, :prev, :next, :series, :sequels]
+      _(Pagy::VARS[:metadata]).must_rematch
     end
     it 'returns the full pagy metadata' do
       pagy, _records = @controller.send(:pagy, @collection)
-      _(@controller.send(:pagy_metadata, pagy)).must_equal(
-      {:scaffold_url=>"/foo?page=__pagy_page__", :first_url=>"/foo?page=1", :prev_url=>"/foo?page=2", :page_url=>"/foo?page=3", :next_url=>"/foo?page=4", :last_url=>"/foo?page=50", :count=>1000, :page=>3, :items=>20, :vars=>{:page=>3, :items=>20, :outset=>0, :size=>[1, 4, 4, 1], :page_param=>:page, :params=>{}, :fragment=>"", :link_extra=>"", :i18n_key=>"pagy.item_name", :cycle=>false, :steps=>false, :metadata=>[:scaffold_url, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :items, :vars, :pages, :last, :from, :to, :prev, :next, :series, :sequels], :count=>1000}, :pages=>50, :last=>50, :from=>41, :to=>60, :prev=>2, :next=>4, :series=>[1, 2, "3", 4, 5, 6, 7, :gap, 50], :sequels=>{"0"=>[1, 2, "3", 4, 5, 6, 7, :gap, 50]}}
-      )
+      _(@controller.send(:pagy_metadata, pagy)).must_rematch
     end
     it 'checks for unknown metadata' do
       pagy, _records = @controller.send(:pagy, @collection, metadata: %i[page unknown_key])
@@ -27,9 +25,7 @@ describe 'pagy/extras/metadata' do
     end
     it 'returns only specific metadata' do
       pagy, _records = @controller.send(:pagy, @collection, metadata: %i[scaffold_url page count prev next pages])
-      _(@controller.send(:pagy_metadata, pagy)).must_equal(
-      {:scaffold_url=>"/foo?page=__pagy_page__", :page=>3, :count=>1000, :prev=>2, :next=>4, :pages=>50}
-      )
+      _(@controller.send(:pagy_metadata, pagy)).must_rematch
     end
   end
 
