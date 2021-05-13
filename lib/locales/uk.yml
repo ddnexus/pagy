@@ -19,6 +19,6 @@ uk:
       single_page: "<b>%{count}</b> %{item_name}"
       multiple_pages: "Загалом <b>%{count}</b> %{item_name}, показані з <b>%{from}</b> по <b>%{to}</b>"
 
-    combo_nav_js: "<label>Сторінка %{page_input}</label> з %{pages}"
+    combo_nav_js: "<label>Сторінка %{page_input} з %{pages}</label>"
 
     items_selector_js: "<label>Показати %{items_input} %{item_name} на сторінці</label>"

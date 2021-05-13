@@ -15,6 +15,6 @@ zh-TW:
       single_page: "顯示 <b>%{count}</b> 項%{item_name}"
       multiple_pages: "共 <b>%{count}</b> 項%{item_name}，顯示 <b>%{from}-%{to}</b>"
 
-    combo_nav_js: "<label>第 %{page_input}</label> / %{pages} 頁"
+    combo_nav_js: "<label>第 %{page_input} / %{pages} 頁</label>"
 
-    items_selector_js: "<label>每頁顯示 %{items_input} 項%{item_name}"
+    items_selector_js: "<label>每頁顯示 %{items_input} 項%{item_name}</label>"

@@ -18,6 +18,6 @@ sr:
       single_page: "Приказује се <b>%{count}</b> %{item_name}"
       multiple_pages: "Приказ %{item_name} <b>%{from}-%{to}</b> од <b>%{count}</b> укупно"
 
-    combo_nav_js: "<label>Страниca %{page_input}</label> од %{pages}"
+    combo_nav_js: "<label>Страниca %{page_input} од %{pages}</label>"
 
     items_selector_js: "<label>Прикажи %{items_input} %{item_name} по страниcи</label>"

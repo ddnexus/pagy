@@ -46,18 +46,18 @@ class Pagy
       link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
-      style   = ' style="vertical-align: middle;"'
-      input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 2px; border: none; border-radius: 2px; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
+      style   = ' style="vertical-align: middle"'
+      input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<div#{p_id} class="pagy-materialize-combo-nav-js pagination" role="navigation" aria-label="pager"><div class="pagy-compact-chip" role="group" style="height: 35px; border-radius: 18px; background: #e4e4e4; display: inline-block;"><ul class="pagination" style="margin: 0" #{
+      %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager" style="padding-right: 0" #{
           pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
       }>#{
           pagy_materialize_prev_html pagy, link, style
-      }<div class="pagy-combo-input btn-flat" style="cursor: default; padding: 0px">#{
+      }<li class="pagy-combo-input">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
-      }</div>#{
+      }</li>#{
           pagy_materialize_next_html pagy, link, style
-      }</ul></div>)
+      }</ul>)
     end
 
     private

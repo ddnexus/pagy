@@ -36,14 +36,6 @@ ul li,
   margin-right: .3em;
 }
 
-/* normalize materialize combo specific */
-.pagy-materialize-combo-nav-js .pagy-compact-chip {
-  height: auto !important;
-  background: none !important;
-  border-radius: 0 !important;
-  display: inline-flex !important;
-}
-
 /* normalize missing chevron icons (materialize and semantic) */
 li i.material-icons,
 .item i.chevron {

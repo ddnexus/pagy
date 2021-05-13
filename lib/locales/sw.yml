@@ -17,6 +17,6 @@ sw:
       single_page: "Inaonyesha %{item_name} <b>%{count}</b>"
       multiple_pages: "Inaonyesha %{item_name} <b>%{from}-%{to}</b> ya <b>%{count}</b> kwa jumla"
 
-    combo_nav_js: "<label>Kurasa %{page_input}</label> ya %{pages}"
+    combo_nav_js: "<label>Kurasa %{page_input} ya %{pages}</label>"
 
     items_selector_js: "<label>Onyesha %{items_input} %{item_name} kwa kila ukurasa</label>"

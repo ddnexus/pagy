@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## Version 4.7.1
+
+### Changes
+
+- Fixed a couple of HTML validity issues with uikit and materialize combo_nav_js
+- Improved rematch testing
+- Updated the documentation
+
+### Commits
+
+- [8cb4193](http://github.com/ddnexus/pagy/commit/8cb4193): fixed and simplified uikit combo nav
+- [f762aca](http://github.com/ddnexus/pagy/commit/f762aca): used chip class for materialized combo nav
+- [064a2b5](http://github.com/ddnexus/pagy/commit/064a2b5): rematched tests
+- [2a45321](http://github.com/ddnexus/pagy/commit/2a45321): expanded the combo nav label to the whole text
+- [37c65a8](http://github.com/ddnexus/pagy/commit/37c65a8): fixed and simplified materialize combo nav
+- [789773b](http://github.com/ddnexus/pagy/commit/789773b): removed faulty PAGY_REMATCH variable function; added rematch_all rake task
+- [eb2df6d](http://github.com/ddnexus/pagy/commit/eb2df6d): updated docs [skip ci]
+
 ## Version 4.7.0
 
 ### Changes

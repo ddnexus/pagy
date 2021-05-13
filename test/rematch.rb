@@ -16,15 +16,13 @@ require 'yaml/store'
 # You can update the values (or purge the unused values) in a few ways:
 #  * delete the specific store file that you want to update
 #    (e.g. frontend_test.rb.yml) and rerun the test
-#  * set the env variable PAGY_REMATCH = 'true' and rerun all tests
+#  * run the rematch_all task (which will regenerate all the store files)
 #  * manually edit the store file (useful only to try to fail a test)
 
 class Pagy
   class Rematch
     def initialize(path:, base:)
-      file = Pathname.new("#{path}.yml")
-      file.delete if !ENV['PAGY_REMATCH'].nil? && file.file?   # regenerate all the rematch files
-      @store = YAML::Store.new(file.to_s, true)
+      @store = YAML::Store.new("#{path}.yml", true)
       @base  = base
       @count = 0
     end

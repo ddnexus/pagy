@@ -44,28 +44,18 @@ class Pagy
       link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" class="uk-input" style="padding: 0; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
+      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="text-align: center; width: #{p_pages.to_s.length+1}rem;">)
 
-      %(<div#{p_id} class="pagy-uikit-combo-nav-js uk-button-group" #{
+      %(<ul#{p_id} class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" #{
           pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
       }>#{
-          if (p_prev = pagy.prev)
-            link.call p_prev, pagy_t('pagy.nav.prev'), 'class="uk-button uk-button-default"'
-          else
-            %(<button class="uk-button uk-button-default" disabled>#{pagy_t 'pagy.nav.prev'}</button>)
-          end
-      }<div class="uk-text-middle uk-margin-left uk-margin-right">#{
+          pagy_uikit_prev_html pagy, link
+      }<li>#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
-      }</div>#{
-          if (p_next = pagy.next)
-            link.call p_next, pagy_t('pagy.nav.next'), 'class="uk-button uk-button-default"'
-          else
-            %(<button class="uk-button uk-button-default" disabled>#{pagy_t 'pagy.nav.next'}</button>)
-          end
-      }</div>)
+      }</li>#{
+          pagy_uikit_next_html pagy, link
+      }</ul>)
     end
-
-
 
     private
 
