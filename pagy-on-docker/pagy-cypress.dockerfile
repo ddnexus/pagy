@@ -1,4 +1,4 @@
-FROM cypress/included:7.2.0
+FROM cypress/included:7.3.0
 
 ARG user
 ARG group
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y libcanberra-gtk* \
  && install -d -m 0755 -o $user -g $user /home/$user \
  && rm -rf /opt/firefox /usr/bin/firefox \
  && ln -s /root/.cache /home/$user/.cache \
- && npm install cypress-plugin-snapshots
+ && npm install --save-dev @cypress/snapshot
 
 # make sure cypress looks in the right place
 ENV CYPRESS_CACHE_FOLDER=/home/$user/.cache/Cypress

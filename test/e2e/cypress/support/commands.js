@@ -24,13 +24,13 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import 'cypress-plugin-snapshots/commands';
+require('@cypress/snapshot').register();
 
 global.styles = ['/bootstrap', '/bulma', '/foundation', '/materialize', '/navs', '/semantic', '/uikit'];
 
 Cypress.Commands.add('snapId', (id) => {
-  cy.get('#records').toMatchSnapshot();
-  cy.get(id).toMatchSnapshot();
+  cy.get('#records').snapshot();
+  cy.get(id).snapshot({json: false});
 })
 
 Cypress.Commands.add('navStyleId', (style, id) => {

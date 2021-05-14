@@ -1,8 +1,5 @@
 /// <reference types="cypress" />
 
-import { fixCypressSpec } from '../support'
-beforeEach(fixCypressSpec(__filename))
-
 describe('Test generic helpers', () => {
   const pages = [1, 5, 36, 50];
   it('test pagy_info', () => {
@@ -12,7 +9,7 @@ describe('Test generic helpers', () => {
       cy.snapId(id)
     }
   });
-  it('test pagy_items_selector_js', () => {
+  it('Test pagy_items_selector_js', () => {
     const id = '#items-selector-js';
     for(let p = 0; p < pages.length; p++) {
       cy.visit('/navs?page=' + pages[p]);

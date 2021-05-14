@@ -21,10 +21,8 @@
   // `config` is the resolved Cypress config
 // }
 
-const { initPlugin } = require('cypress-plugin-snapshots/plugin');
 
 module.exports = (on, config) => {
-  initPlugin(on, config);
   /*
   on('before:browser:launch', (browser = {}, launchOptions) => {
     // `args` is an array of all the arguments that will

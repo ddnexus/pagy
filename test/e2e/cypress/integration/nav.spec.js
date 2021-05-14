@@ -1,8 +1,5 @@
 /// <reference types="cypress" />
 
-import { fixCypressSpec } from '../support'
-beforeEach(fixCypressSpec(__filename))
-
 describe('Test all navs for all styles', () => {
   const ids = ['#nav', '#nav-js'];
   const widths = [500, 750, 1000];
@@ -18,13 +15,13 @@ describe('Test all navs for all styles', () => {
     // nav-js-responsive at different widths
     for(let w = 0; w < widths.length; w++) {
       let width = widths[w]
-      it('test ' + style + ' #nav-js-responsive (' + width + ' width)', () => {
+      it('Test ' + style + ' #nav-js-responsive (' + width + ' width)', () => {
         cy.viewport(width, 1000);
         cy.navStyleId(style, '#nav-js-responsive');
       });
     }
     // combo-nav-js
-    it('test ' + style + ' #combo-nav-js', () => {
+    it('Test ' + style + ' #combo-nav-js', () => {
       cy.comboNavStyle(style);
     });
   }
