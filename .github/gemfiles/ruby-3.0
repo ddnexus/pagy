@@ -16,3 +16,9 @@ gem 'rubocop-rake', require: false
 
 gem 'simplecov', require: false
 gem 'codecov', require:  false
+
+group :apps do
+  gem 'puma'
+  gem 'sinatra'
+  gem 'sinatra-contrib'
+end

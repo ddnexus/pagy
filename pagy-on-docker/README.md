@@ -113,7 +113,7 @@ _**Notice**: This is the easiest way to run/edit the E2E tests but it requires `
 
 - [Install Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress)
 - `bundle install`
-- `ruby test/e2e/app.rb`
+- `rackup test/e2e/pagy_app.rb`
 - Open and run your Cypress tests `./node_modules/.bin/cypress open`
 
 ### 3. Build Pagy Cypress
@@ -150,7 +150,7 @@ If you just want to run the tests, run the container from the `pagy-on-docker` d
 docker-compose up pagy-cypress
 ```
 
-That will run all the tests with the built in `electron` browser in headless mode and print a report right on the screen. It will also create a video for each test file run in the `test_js/cypress/videos`. That will be useful in case of failure, showing you exactly what was on the page of the browser during the whole process.
+That will run all the tests with the built in `electron` browser in headless mode and print a report right on the screen. It will also create a video for each test file run in the `test/e2e/cypress/videos`. In case of test failures you will also have screenshots images in `test/e2e/cypress/screenshots` showing you exactly what was on the page of the browser at the moment of the failure.
 
 #### Open Cypress
 

@@ -1,0 +1,4 @@
+cypress:7.3.0
+@cypress/snapshot:2.1.7
+cypress-html-validate:1.5.1
+
