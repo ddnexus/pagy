@@ -14,6 +14,7 @@ gem 'rerun'
 group :test do
   gem 'codecov', require:  false
   gem 'minitest'
+  gem 'rematch'
   gem 'rubocop'
   gem 'rubocop-minitest'
   gem 'rubocop-packaging'

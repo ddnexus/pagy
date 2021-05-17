@@ -1,5 +1,81 @@
 ---
-pagy/extras/headers::#pagy_headers_merge#test_0001_returns the full headers hash 1: !ruby/hash-with-ivars:Rack::Utils::HeaderHash
+"[1] pagy/extras/headers::#pagy_headers#test_0001_returns the full headers hash":
+  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>;
+    rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>;
+    rel="last"
+  Current-Page: '3'
+  Page-Items: '20'
+  Total-Pages: '50'
+  Total-Count: '1000'
+"[2] pagy/extras/headers::#pagy_headers#test_0001_returns the full headers hash":
+  Link:
+    first: https://example.com:8080/foo?page=1
+    prev: https://example.com:8080/foo?page=2
+    next: https://example.com:8080/foo?page=4
+    last: https://example.com:8080/foo?page=50
+  Current-Page: '3'
+  Page-Items: '20'
+  Total-Pages: '50'
+  Total-Count: '1000'
+"[1] pagy/extras/headers::#pagy_headers#test_0002_returns custom headers hash":
+  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>;
+    rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>;
+    rel="last"
+  Per-Page: '20'
+  Total: '1000'
+"[2] pagy/extras/headers::#pagy_headers#test_0002_returns custom headers hash":
+  Link:
+    first: https://example.com:8080/foo?page=1
+    prev: https://example.com:8080/foo?page=2
+    next: https://example.com:8080/foo?page=4
+    last: https://example.com:8080/foo?page=50
+  Per-Page: '20'
+  Total: '1000'
+"[1] pagy/extras/headers::#pagy_headers#test_0003_returns the countless headers hash":
+  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>;
+    rel="prev", <https://example.com:8080/foo?page=4>; rel="next"
+  Current-Page: '3'
+  Page-Items: '20'
+"[2] pagy/extras/headers::#pagy_headers#test_0003_returns the countless headers hash":
+  Link:
+    first: https://example.com:8080/foo?page=1
+    prev: https://example.com:8080/foo?page=2
+    next: https://example.com:8080/foo?page=4
+  Current-Page: '3'
+  Page-Items: '20'
+"[1] pagy/extras/headers::#pagy_headers#test_0004_omit prev on first page":
+  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>;
+    rel="next", <https://example.com:8080/foo?page=50>; rel="last"
+  Current-Page: '1'
+  Page-Items: '20'
+  Total-Pages: '50'
+  Total-Count: '1000'
+"[2] pagy/extras/headers::#pagy_headers#test_0004_omit prev on first page":
+  Link:
+    first: https://example.com:8080/foo?page=1
+    next: https://example.com:8080/foo?page=2
+    last: https://example.com:8080/foo?page=50
+  Current-Page: '1'
+  Page-Items: '20'
+  Total-Pages: '50'
+  Total-Count: '1000'
+"[1] pagy/extras/headers::#pagy_headers#test_0005_omit next on last page":
+  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=49>;
+    rel="prev", <https://example.com:8080/foo?page=50>; rel="last"
+  Current-Page: '50'
+  Page-Items: '20'
+  Total-Pages: '50'
+  Total-Count: '1000'
+"[2] pagy/extras/headers::#pagy_headers#test_0005_omit next on last page":
+  Link:
+    first: https://example.com:8080/foo?page=1
+    prev: https://example.com:8080/foo?page=49
+    last: https://example.com:8080/foo?page=50
+  Current-Page: '50'
+  Page-Items: '20'
+  Total-Pages: '50'
+  Total-Count: '1000'
+"[1] pagy/extras/headers::#pagy_headers_merge#test_0001_returns the full headers hash": !ruby/hash-with-ivars:Rack::Utils::HeaderHash
   ivars:
     :@names:
       link: Link
@@ -15,79 +91,3 @@ pagy/extras/headers::#pagy_headers_merge#test_0001_returns the full headers hash
     Page-Items: '20'
     Total-Pages: '50'
     Total-Count: '1000'
-pagy/extras/headers::#pagy_headers#test_0001_returns the full headers hash 1:
-  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>;
-    rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>;
-    rel="last"
-  Current-Page: '3'
-  Page-Items: '20'
-  Total-Pages: '50'
-  Total-Count: '1000'
-pagy/extras/headers::#pagy_headers#test_0001_returns the full headers hash 2:
-  Link:
-    first: https://example.com:8080/foo?page=1
-    prev: https://example.com:8080/foo?page=2
-    next: https://example.com:8080/foo?page=4
-    last: https://example.com:8080/foo?page=50
-  Current-Page: '3'
-  Page-Items: '20'
-  Total-Pages: '50'
-  Total-Count: '1000'
-pagy/extras/headers::#pagy_headers#test_0003_returns the countless headers hash 1:
-  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>;
-    rel="prev", <https://example.com:8080/foo?page=4>; rel="next"
-  Current-Page: '3'
-  Page-Items: '20'
-pagy/extras/headers::#pagy_headers#test_0003_returns the countless headers hash 2:
-  Link:
-    first: https://example.com:8080/foo?page=1
-    prev: https://example.com:8080/foo?page=2
-    next: https://example.com:8080/foo?page=4
-  Current-Page: '3'
-  Page-Items: '20'
-pagy/extras/headers::#pagy_headers#test_0002_returns custom headers hash 1:
-  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>;
-    rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>;
-    rel="last"
-  Per-Page: '20'
-  Total: '1000'
-pagy/extras/headers::#pagy_headers#test_0002_returns custom headers hash 2:
-  Link:
-    first: https://example.com:8080/foo?page=1
-    prev: https://example.com:8080/foo?page=2
-    next: https://example.com:8080/foo?page=4
-    last: https://example.com:8080/foo?page=50
-  Per-Page: '20'
-  Total: '1000'
-pagy/extras/headers::#pagy_headers#test_0004_omit prev on first page 1:
-  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>;
-    rel="next", <https://example.com:8080/foo?page=50>; rel="last"
-  Current-Page: '1'
-  Page-Items: '20'
-  Total-Pages: '50'
-  Total-Count: '1000'
-pagy/extras/headers::#pagy_headers#test_0004_omit prev on first page 2:
-  Link:
-    first: https://example.com:8080/foo?page=1
-    next: https://example.com:8080/foo?page=2
-    last: https://example.com:8080/foo?page=50
-  Current-Page: '1'
-  Page-Items: '20'
-  Total-Pages: '50'
-  Total-Count: '1000'
-pagy/extras/headers::#pagy_headers#test_0005_omit next on last page 1:
-  Link: <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=49>;
-    rel="prev", <https://example.com:8080/foo?page=50>; rel="last"
-  Current-Page: '50'
-  Page-Items: '20'
-  Total-Pages: '50'
-  Total-Count: '1000'
-pagy/extras/headers::#pagy_headers#test_0005_omit next on last page 2:
-  Link:
-    first: https://example.com:8080/foo?page=1
-    prev: https://example.com:8080/foo?page=49
-    last: https://example.com:8080/foo?page=50
-  Current-Page: '50'
-  Page-Items: '20'
-  Total-Pages: '50'
-  Total-Count: '1000'

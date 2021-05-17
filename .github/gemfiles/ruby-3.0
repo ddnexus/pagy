@@ -8,6 +8,7 @@ gem 'rake'
 gem 'rack'
 gem 'rake-manifest', require: false
 
+gem 'rematch'
 gem 'rubocop', '~> 1.11', require: false
 gem 'rubocop-minitest', require: false
 gem 'rubocop-packaging', require: false

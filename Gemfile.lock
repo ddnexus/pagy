@@ -40,6 +40,7 @@ GEM
       ffi (~> 1.0)
     rbzip2 (0.2.0)
     regexp_parser (2.1.1)
+    rematch (0.0.1)
     rerun (0.13.1)
       listen (~> 3.0)
     rexml (3.2.5)
@@ -100,6 +101,7 @@ DEPENDENCIES
   rack
   rake
   rake-manifest
+  rematch
   rerun
   rubocop
   rubocop-minitest
