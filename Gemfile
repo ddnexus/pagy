@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# gemspec
+gemspec
 
 gem 'i18n'
 gem 'oj', require: false     # false is for testing with or without it
