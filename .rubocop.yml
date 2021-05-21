@@ -11,12 +11,13 @@ AllCops:
   Exclude:
     - ___*/**/*           # '___' prefixed dirs are excluded
     - vendor/bundle/**/*  # avoid Error: RuboCop found unsupported Ruby version 2.1 in `TargetRubyVersion` parameter (in vendor/bundle/ruby/3.0.0/gems/rainbow-3.0.0/.rubocop.yml).
+                          # and also the extra weird "Unable to find gem panolint; is the gem installed? Gem::MissingSpecError" in all ruby versions
 
 # No, thank you!
 Layout:
   Enabled: false
 
-# affect performance
+# bad for performance
 Metrics:
   Enabled: false
 
@@ -31,14 +32,6 @@ Style/Documentation:
 # these cops are disabled only in the test files in order to
 # allow to copy and paste the failed output for test reconciliation
 Style/StringLiterals:
-  Enabled: true
-  Exclude:
-  - test/**/*
-Style/HashSyntax:
-  Enabled: true
-  Exclude:
-  - test/**/*
-Style/SymbolArray:
   Enabled: true
   Exclude:
   - test/**/*

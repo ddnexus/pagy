@@ -16,8 +16,8 @@ describe 'pagy/console' do
       _(Pagy::VARS[:url]).must_equal 'http://www.example.com/subdir'
     end
     it 'includes Pagy::Backend and Pagy::Frontend' do
-      _(PagyConsole <= Pagy::Backend).must_equal true
-      _(PagyConsole <= Pagy::Frontend).must_equal true
+      assert PagyConsole <= Pagy::Backend
+      assert PagyConsole <= Pagy::Frontend
     end
     it 'requires extras' do
       PagyConsole.pagy_extras :array, :navs

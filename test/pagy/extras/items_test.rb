@@ -46,44 +46,44 @@ describe 'pagy/extras/items' do
     it 'uses the vars' do
       items  = 15
       vars   = { items: items } # force items
-      params = { :a => "a", :page => 3, :items => 12 }
+      params = { a: "a", page: 3, items: 12 }
       test_items_vars_params(items, vars, params)
     end
     it 'uses the params' do
       items  = 12
       vars   = {}
-      params = { :a => "a", :page => 3, :items => items }
+      params = { a: "a", page: 3, items: items }
       test_items_vars_params(items, vars, params)
     end
     it 'uses the params without page' do
       items  = 12
       vars   = {}
-      params = { :a => "a", :items => items }
+      params = { a: "a", items: items }
       test_items_vars_params(items, vars, params)
     end
 
     it 'overrides the params' do
       items  = 21
       vars   = { items: items }
-      params = { :a => "a", :page => 3, :items => 12 }
+      params = { a: "a", page: 3, items: 12 }
       test_items_vars_params(items, vars, params)
     end
     it 'uses the max_items default' do
       items  = 100
       vars   = {}
-      params = { :a => "a", :page => 3, :items => 120 }
+      params = { a: "a", page: 3, items: 120 }
       test_items_vars_params(items, vars, params)
     end
     it 'doesn\'t limit the items from vars' do
       items  = 1000
       vars   = { max_items: nil }
-      params = { :a => "a", :items => 1000 }
+      params = { a: "a", items: 1000 }
       test_items_vars_params(items, vars, params)
     end
     it 'doesn\'t limit the items from default' do
       items  = 1000
       vars   = {}
-      params = { :a => "a", :items => items }
+      params = { a: "a", items: items }
 
       Pagy::VARS[:max_items] = nil
       test_items_vars_params(items, vars, params)
@@ -92,13 +92,13 @@ describe 'pagy/extras/items' do
     it 'uses items_param from vars' do
       items  = 14
       vars   = { items_param: :custom }
-      params = { :a => "a", :page => 3, :items_param => :custom, :custom => items }
+      params = { a: "a", page: 3, items_param: :custom, custom: items }
       test_items_vars_params(items, vars, params)
     end
     it 'uses items_param from default' do
       items  = 15
       vars   = {}
-      params = { :a => "a", :page => 3, :custom => 15 }
+      params = { a: "a", page: 3, custom: 15 }
 
       Pagy::VARS[:items_param] = :custom
       test_items_vars_params(items, vars, params)
