@@ -35,7 +35,6 @@ jobs:
         include:
           - ruby-version: 3.0
             env:
-              BUNDLE_GEMFILE: .github/gemfiles/ruby-3.0
               CODECOV: true
               CHECK_MANIFEST: true
       fail-fast: false
@@ -74,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # absolute path to run sinatra for cypress in test/e2e working dir
-      BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/.github/gemfiles/ruby-3.0
+      BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/Gemfile
 
     steps:
       - uses: actions/checkout@v2
