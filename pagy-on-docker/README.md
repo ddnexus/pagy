@@ -4,7 +4,7 @@ This dir contains a few files to setup a ruby development environment without in
 
 You can use it to develop changes, run tests and check a live preview of the documentation.
 
-It also includes the docker files to setup a javascript testing environment using `cypress`. See the [JS Test Environment](#js-test-environment) below
+It also includes the docker files to setup a javascript testing environment using `cypress`. See the [E2E Environment](#e2e-environment) below
 
 ## Ruby Dev Environment
 
@@ -25,7 +25,7 @@ The pagy docker environment has been designed to be useful for developing:
 
 You have a couple of alternatives:
 
-1. (recommended) Permanently set a few environment variables about your user in your IDE or system (it will be easier for the future):
+1. (recommended) Permanently set a few environment variables about your user in your IDE or system (it will be easier later):
    - the `GROUP` name (get it with `id -gn` in the terminal)
    - if `echo $UID` return nothing, then set the `UID` (get it with `id -u` in the terminal)
    - if `echo $GID` return nothing, then set the `GID` (get it with `id -g` in the terminal)
@@ -103,8 +103,6 @@ If you determine that you need to run the E2E tests, here are three different wa
 
 ### 1. Github Actions
 
-_**Notice**: This section is still a work in progress_
-
 Just create a PR and all the tests (including the cypress tests) will run on GitHub. Use this option if you don't need to write any js code or tests interactively and the ruby tests pass.
 
 ### 2. Run Cypress Locally On Your System
@@ -126,7 +124,7 @@ Check your user id with:
 id -u
 ```
 
-If it is `1000` you are all setup for building the container. If it is any other id, you should first open the `pagy-on-docker/docker-compose.yml` file and switch (i.e. commenting/uncommenting) the `pagy-cypress.build.dockerimage` entries so they will look like this:
+If it is `1000` you are all setup for building the container. If it is any other id, you should first edit the `pagy-on-docker/docker-compose.yml` file and switch (i.e. commenting/uncommenting) the `pagy-cypress.build.dockerimage` entries so they will look like this:
 
 ```yml
 ...
@@ -136,38 +134,34 @@ If it is `1000` you are all setup for building the container. If it is any other
 ...
 ```
 
-After saving the file, the rest of the building will be almost identical to the [Build](#build) section above.
+Then save the file.
+
+Regardless your id, the rest of the build steps will be almost identical to the [Build](#build) section above.
 
 The ony difference is that you must replace the command `docker-compose build pagy pagy-jekyll` with `docker-compose build pagy-cypress`.
 
 All the rest (including ENV variables) is exactly the same.
 
-#### Run the tests
+#### Run the tests in headless mode
 
-If you just want to run the tests, run the container from the `pagy-on-docker` dir:
+If you just want to run the tests, run the following command from the `pagy-on-docker` dir:
 
 ```sh
-docker-compose up pagy-cypress
+docker-compose -f docker-compose.yml -f run-test-app.yml up pagy pagy-cypress
 ```
 
 That will run all the tests with the built in `electron` browser in headless mode and print a report right on the screen. It will also create a video for each test file run in the `test/e2e/cypress/videos`. In case of test failures you will also have screenshots images in `test/e2e/cypress/screenshots` showing you exactly what was on the page of the browser at the moment of the failure.
 
-#### Open Cypress
+#### Run the tests in interactive mode
 
-If you want to open and interact the cypress desktop app as it was installed in your local system, and you are lucky enough to run with user id 1000 on an ubuntu system, you can just run it with the command below without custoizing anything.
+If you want to open and interact the cypress desktop app as it was installed in your local system, and you are lucky enough to run with user id `1000` on an ubuntu system, you can just run it with the command below without custoizing anything.
 
 If not, (i.e. different uid or different OS or version) you should first read the comments in the `pagy-on-docker/open-cypress.yml` file and customize it a bit according to your OS need.
 
 Then run it with:
 
 ```sh
-docker-compose -f docker-compose.yml -f open-cypress.yml up pagy-cypress
+docker-compose -f docker-compose.yml -f run-test-app.yml -f open-cypress.yml up pagy pagy-cypress
 ```
 
 That will open the cypress desktop app and will allow you to interact with it.
-
-You can always run only the tests (without opening the cypress desktop) by running the usual:
-
-```sh
-docker-compose up pagy-cypress
-```

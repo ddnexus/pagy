@@ -1,4 +1,4 @@
-# Integration test cypress IDE
+# Integration interactive test cypress IDE
 
 # Use this file in addition to the docker-compose.yml file to override
 # the pagy-cypress entrypoint so it will not run the tests automatically
@@ -8,7 +8,7 @@
 # IMPORTANT: you may have to edit the volume mounts in order to match your host OS
 
 # USAGE
-#   docker-compose -f docker-compose.yml -f open-cypress.yml up pagy-cypress
+#   docker-compose -f docker-compose.yml -f run-test-app.yml -f open-cypress.yml up pagy pagy-cypress
 
 version: "3.8"
 

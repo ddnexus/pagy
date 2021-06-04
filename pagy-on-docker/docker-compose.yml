@@ -34,11 +34,6 @@ services:
       - user_home:/home/$USER
     environment:
       - COVERAGE_REPORT
-    ports:
-#      - "1234:1234"   # RubyMine debugger
-      - "4567:4567"   # default sinatra e2e/app.rb
-      - "8080:8080"   # should you run the rackup apps/base_app.ru
-    command: rerun -- rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru
     stdin_open: true
     tty: true
 
