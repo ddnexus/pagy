@@ -281,7 +281,7 @@ When you need somethig more radical with the URL than just massaging the params,
 The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths like `your_route/23` instead of `your_route?page=23`):
 
 ```ruby
-def pagy_url_for(pagy, page)
+def pagy_url_for(pagy, page)  # it was (page, pagy) in previous versions
   params = request.query_parameters.merge(pagy.vars[:page_param] => page )
   url_for(params)
 end
@@ -294,7 +294,7 @@ Notice that this overridden method is quite slower than the original because it 
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and your page links may need to use POST and not GET. In that case you can try this simple solution:
 
 ```ruby
-def pagy_url_for(_, page)
+def pagy_url_for(_, page) # it was (page, pagy) in previous versions
   page
 end
 ```
