@@ -2,6 +2,7 @@
 
 require_relative '../test_helper'
 
+require_relative '../mock_helpers/view'
 describe 'pagy/frontend' do
   let(:view) { MockView.new }
 

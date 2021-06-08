@@ -5,6 +5,7 @@ require 'i18n'
 require 'pagy/extras/i18n'
 
 describe 'pagy/extras/i18n' do
+  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe '#pagy_t with I18n' do

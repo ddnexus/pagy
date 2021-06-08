@@ -3,6 +3,7 @@
 require_relative '../../test_helper'
 require 'pagy/extras/trim'
 
+require_relative '../../mock_helpers/view'
 describe 'pagy/extras/trim' do
 
   describe '#pagy_link_proc' do
