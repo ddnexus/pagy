@@ -4,6 +4,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/shared'
 
 describe 'pagy/extras/shared_json' do
+  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new('http://example.com:3000/foo?') }
 
   describe '#pagy_json_attr' do

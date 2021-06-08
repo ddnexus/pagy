@@ -4,6 +4,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/bulma'
 
 describe 'pagy/extras/bulma' do
+  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe '#pagy_bulma_nav' do

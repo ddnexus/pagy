@@ -5,6 +5,7 @@ require 'pagy/extras/items'
 require 'pagy/extras/trim'
 
 describe 'pagy/extras/items_trim' do
+  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new('http://example.com:3000/foo?') }
 
   describe '#pagy_marked_link' do

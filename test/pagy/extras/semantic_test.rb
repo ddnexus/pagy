@@ -4,6 +4,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/semantic'
 
 describe 'pagy/extras/semantic' do
+  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe '#pagy_semantic_nav' do

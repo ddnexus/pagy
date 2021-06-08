@@ -1,7 +1,7 @@
 # Pagy
 
 [![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
-![ruby](https://img.shields.io/badge/ruby-3.0+-ruby.svg?colorA=99004d&colorB=cc0066)
+![ruby](https://img.shields.io/badge/ruby-2.5+-ruby.svg?colorA=99004d&colorB=cc0066)
 [![Build Status](https://img.shields.io/github/workflow/status/ddnexus/pagy/Pagy%20CI/master)](https://github.com/ddnexus/pagy/actions?query=branch:master)
 [![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
 ![Rubocop Status](https://img.shields.io/badge/rubocop-passing-rubocop.svg?colorA=1f7a1f&colorB=2aa22a)
@@ -13,12 +13,12 @@
 
 Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 
-## New in 4.0+
+## New in 4.8
 
-- __This version requires `ruby 3.0+`. For `ruby <3.0` use `pagy <4.0` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
+- __This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
 - Updating `pagy` from `3.0+` to `4.0+` requires a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](CHANGELOG.md))
 - Added the docker development environment to ease contributions
-- Big code restyling following ruby 3.0 syntax and cops; the code is simpler, more readable and verbose with yet improved performance.
+- Big code restyling: the code is simpler, more readable and verbose with yet improved performance.
 - All the public helpers accept optional keyword arguments (see the [Changelog](CHANGELOG.md#version-440))
 - New [standalone extra](http://ddnexus.github.io/pagy/extras/standalone) to use pagy without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without any app or config.
 

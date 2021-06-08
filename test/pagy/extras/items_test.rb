@@ -107,6 +107,7 @@ describe 'pagy/extras/items' do
   end
 
   describe 'view_methods' do
+    require_relative '../../mock_helpers/view'
     let(:view) { MockView.new }
 
     describe '#pagy_url_for' do

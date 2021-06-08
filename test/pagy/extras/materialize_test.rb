@@ -4,6 +4,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/materialize'
 
 describe 'pagy/extras/materialize' do
+  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe '#pagy_materialize_nav' do

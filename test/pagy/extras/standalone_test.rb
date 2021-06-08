@@ -14,6 +14,7 @@ class FilledController
 end
 
 describe 'pagy/extras/standalone' do
+  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe 'defines #params if missing' do

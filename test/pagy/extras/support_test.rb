@@ -5,6 +5,7 @@ require 'pagy/extras/support'
 require 'pagy/countless'
 
 describe 'pagy/extras/support' do
+  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe '#pagy_prev_url' do
@@ -70,7 +71,7 @@ describe 'pagy/extras/support' do
       _(view.pagy_prev_link(pagy, text: 'PREV', link_extra: 'link-extra')).must_rematch
       _(view.pagy_prev_link(pagy_countless, text: 'PREV', link_extra: 'link-extra')).must_rematch
     end
-    
+
     it 'renders the prev link for page 3' do
       pagy = Pagy.new count: 1000, page: 3
       pagy_countless = Pagy::Countless.new(page: 3).finalize(21)

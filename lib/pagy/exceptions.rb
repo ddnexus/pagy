@@ -16,7 +16,9 @@ class Pagy
       Regexp.last_match(1)&.to_sym
     end
 
-    def value = pagy.vars[variable]
+    def value
+      pagy.vars[variable]
+    end
   end
 
   # specific overflow error

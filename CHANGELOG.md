@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## Version 4.8.0
+
+### Changes
+
+- Lowered minimal ruby version requirement to 2.5+
+- Simpler tests using the `rematch` gem
+- Docker environment improvements
+
+### Commits
+
+- [b5b500a](http://github.com/ddnexus/pagy/commit/b5b500a): Merge branch 'backport-to-2.5' into dev
+- [001f22f](http://github.com/ddnexus/pagy/commit/001f22f): fix for different handling of module prepend in ruby <3
+- [d6d71a5](http://github.com/ddnexus/pagy/commit/d6d71a5): fix for frozen error handled differently on ruby <3
+- [8a2cf76](http://github.com/ddnexus/pagy/commit/8a2cf76): replaced syntax not available in ruby 2.5
+- [14b3a0c](http://github.com/ddnexus/pagy/commit/14b3a0c): lowered the minimum ruby version requirement to 2.5
+- [8c76943](http://github.com/ddnexus/pagy/commit/8c76943): updated Gemfile.lock
+- [934f602](http://github.com/ddnexus/pagy/commit/934f602): added comment in doc example about the inverted order of arguments in previous versions
+- [acd59f5](http://github.com/ddnexus/pagy/commit/acd59f5): moved command out of default docker-compose to its own file in order to avoid error before first bundle install
+- [527a14f](http://github.com/ddnexus/pagy/commit/527a14f): Gemfile update
+- [842de05](http://github.com/ddnexus/pagy/commit/842de05): better tests and stricter rubocop
+- [d82e95c](http://github.com/ddnexus/pagy/commit/d82e95c): Gemfile updated and used for CI
+- [675f587](http://github.com/ddnexus/pagy/commit/675f587): Gemfile: added gemspec and updated rematch
+- [b0a6603](http://github.com/ddnexus/pagy/commit/b0a6603): Updated to rematch 1.0 and copyright year
+- [8bda6a9](http://github.com/ddnexus/pagy/commit/8bda6a9): added rematch gem and reset rematch stores
+- [f62fa88](http://github.com/ddnexus/pagy/commit/f62fa88): added e2e tests to ci
+- [04755aa](http://github.com/ddnexus/pagy/commit/04755aa): updated puma
+- [4ec03f1](http://github.com/ddnexus/pagy/commit/4ec03f1): added HTML validation for all the helpers and styles
+- [87b2f62](http://github.com/ddnexus/pagy/commit/87b2f62): refactoring e2e: replaced snapshot plugin; updated to cypress 7.3.0
+
 ## Version 4.7.1
 
 ### Changes
