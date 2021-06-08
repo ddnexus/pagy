@@ -6,7 +6,9 @@ class Pagy
   module UseOverflowExtra
     VARS[:overflow] = :empty_page
 
-    def overflow? = @overflow
+    def overflow?
+      @overflow
+    end
 
     def initialize(vars)
       @overflow ||= false                         # don't override if :last_page re-run the method after an overflow

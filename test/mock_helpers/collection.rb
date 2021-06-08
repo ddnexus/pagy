@@ -8,7 +8,7 @@ class MockCollection < Array
   end
 
   def offset(value)
-    @collection = self[value..]
+    @collection = self[value..-1]
     self
   end
 

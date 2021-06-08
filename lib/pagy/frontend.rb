@@ -25,7 +25,9 @@ class Pagy
     end
 
     # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
-    def pagy_get_params(params) = params
+    def pagy_get_params(params)
+      params
+    end
   end
 
   # All the code here has been optimized for performance: it may not look very pretty

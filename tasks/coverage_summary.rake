@@ -4,7 +4,7 @@ require 'json'
 
 desc 'Display SimpleCov coverage summary'
 task :coverage_summary do
-  last_run = JSON.load_file('coverage/.last_run.json')
+  last_run = JSON.parse(File.read('coverage/.last_run.json'))
   result   = last_run['result']['line']
   puts "\n>>> SimpleCov Coverage: #{result}% <<<"
   if result < 100.0

@@ -14,7 +14,9 @@ class Pagy
     end
 
     module UseI18nGem
-      def pagy_t(key, **opts) = ::I18n.t(key, **opts)
+      def pagy_t(key, **opts)
+        ::I18n.t(key, **opts)
+      end
     end
     prepend UseI18nGem
 
