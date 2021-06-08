@@ -66,7 +66,7 @@ class Pagy
     private
 
       def pagy_bulma_prev_next_html(pagy, link)
-        html  = if (p_prev = pagy.prev)
+        html  = +if (p_prev = pagy.prev)
                   link.call p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous" aria-label="previous page"'
                 else
                   %(<a class="pagination-previous" disabled>#{pagy_t 'pagy.nav.prev'}</a>)

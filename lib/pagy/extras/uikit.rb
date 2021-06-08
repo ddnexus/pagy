@@ -11,7 +11,7 @@ class Pagy
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
-      html = %(<ul#{p_id} class="pagy-uikit-nav uk-pagination uk-flex-center">#{pagy_uikit_prev_html pagy, link})
+      html = +%(<ul#{p_id} class="pagy-uikit-nav uk-pagination uk-flex-center">#{pagy_uikit_prev_html pagy, link})
       pagy.series.each do |item|
         html << case    item
                 when Integer then %(<li>#{link.call item}</li>)
