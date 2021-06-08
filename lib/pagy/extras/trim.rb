@@ -12,7 +12,7 @@ class Pagy
       link_proc = super(pagy, link_extra: link_extra)
       return link_proc unless pagy.vars[:enable_trim_extra]
       lambda do |num, text=num, extra=''|
-        link = link_proc.call(num, text, extra)
+        link = +link_proc.call(num, text, extra)
         return link unless num == 1
         link.sub!(/[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/, '')
       end
