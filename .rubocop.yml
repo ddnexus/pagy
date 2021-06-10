@@ -4,7 +4,7 @@ require:
   - rubocop-rake
 
 AllCops:
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 2.5
   NewCops: enable
   Exclude:
     - ___*/**/*           # '___' prefixed dirs are excluded
