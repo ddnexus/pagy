@@ -15,7 +15,7 @@ Pagy is the ultimate pagination gem that outperforms the others in each and ever
 
 ## IMPORTANT
 
-**This version requires `ruby <3.0`. For `ruby 3.0+` use `pagy 4.0+`**
+**This is the legacy version of Pagy that you should use only if you are running `ruby <2.5`! For `ruby 2.5+` use `pagy 4.0+`**
 
 The `pagy3` branch will continue the support for legacy systems with bug-fixes and back-ports of new fetures by releasing to rubygems further `3.x` updates.
 

@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 3.14
+
+### Changes
+
+- Updated Gemfile, rubocop, .gitignore and added post_install_message to notify the user about the backporting of pagy 4.8+, supporting ruby 2.5+ now
+
+### Commits
+
+- [429e6dd](http://github.com/ddnexus/pagy/commit/429e6dd): updated Gemfile, rubocop, .gitignore and added post_install_message
+- [7f3c50c](http://github.com/ddnexus/pagy/commit/7f3c50c): updated build status and links in README [skip ci]
+
 ## Version 3.13.0
 
 ### Changes
