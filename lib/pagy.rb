@@ -5,7 +5,7 @@ require 'pathname'
 
 # main class
 class Pagy
-  VERSION = '4.8.0'
+  VERSION = '4.8.1'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
@@ -23,7 +23,7 @@ class Pagy
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
     @vars = VARS.merge( vars.delete_if{|k,v| VARS.key?(k) && (v.nil? || v == '') } )
-    @vars[:fragment] = deprecated_var(:anchor, @vars[:anchor], :fragment, @vars[:fragment]) if @vars[:anchor]
+    @vars[:fragment] = Pagy.deprecated_var(:anchor, @vars[:anchor], :fragment, @vars[:fragment]) if @vars[:anchor]
 
     INSTANCE_VARS_MIN.each do |name,min|
       raise VariableError.new(self), "expected :#{name} >= #{min}; got #{@vars[name].inspect}" \

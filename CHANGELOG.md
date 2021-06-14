@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 4.8.1
+
+### Changes
+
+- fix for deprecation and test improvements
+
+### Commits
+
+- [0f1a7f2](http://github.com/ddnexus/pagy/commit/0f1a7f2): improved deprecation_tests (see #311)
+- [7e9c9cd](http://github.com/ddnexus/pagy/commit/7e9c9cd): fix(pagy): deprecated_var is a class method (#311)
+
 ## Version 4.8.0
 
 ### Changes
