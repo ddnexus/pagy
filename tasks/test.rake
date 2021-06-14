@@ -19,6 +19,7 @@ test_tasks = {}
     console
     support
     trim
+    deprecation
 ].each do |name|
   task_name = :"test_#{name}"
   file_path = "test/**/#{name}_test.rb"
