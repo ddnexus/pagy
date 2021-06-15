@@ -13,6 +13,7 @@ test_tasks = {}
     items_trim
     overflow
     searchkick
+    meilisearch
     shared_json
     shared_oj
     standalone
