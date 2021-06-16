@@ -8,10 +8,18 @@ class Pagy
 
     # returns an array used to delay the call of #search
     # after the pagination variables are merged to the options
-    def pagy_searchkick(term = nil, **vars)
+    def pagy_meilisearch(term = nil, **vars)
       [self, term, vars]
     end
-    alias_method VARS[:meilisearch_search_method], :pagy_searchkick
+    alias_method VARS[:meilisearch_search_method], :pagy_meilisearch
+  end
+
+  # create a Pagy object from a Meilisearch results
+  def self.new_from_meilisearch(results, vars={})
+    vars[:items] = results.raw_answer[:limit]
+    vars[:page]  = [results.raw_answer[:offset] / results.raw_answer[:limit], 1].max
+    vars[:count] = results.raw_answer[:nbHits]
+    new(vars)
   end
 
   # Add specialized backend methods to paginate Meilisearch results
