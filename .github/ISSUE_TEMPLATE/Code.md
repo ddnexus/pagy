@@ -6,7 +6,7 @@ labels: ''
 assignees: ''
 
 ---
-<!-- WARNING: ISSUES NOT FOLLOWING THIS TEMPLATE MAY GET CLOSED AND DELETED -->
+<!-- WARNING: CODE ISSUES NOT FOLLOWING THIS TEMPLATE WILL BE DELETED WITHOUT NOTICE -->
 
 # Code Issue
 - [ ] I researched through the [documentation](https://ddnexus.github.io/pagy/), the [pagy issues](https://github.com/ddnexus/pagy/issues) and a known Search Engine, and there is no reference/report/post that solves this problem
@@ -14,6 +14,7 @@ assignees: ''
 - [ ] I am providing at least one of the following working and self-contained code support that can reproduce this issue:
    <!-- Check all that apply [x] -->
    - [ ] plain ruby file that can run as `ruby my-problem.rb`
+   - [ ] link of my own branch forked from pagy, which contains an added test file  
    - [ ] edited copy of the single file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru)
    - [ ] link of my own branch forked from one branch of the [pagy-rails app](https://github.com/benkoshy/pagy-rails)
    - [ ] link of a standalone `docker image` downloadable from a docker repository (e.g. dockerhub.com)
