@@ -1,6 +1,7 @@
 ---
 title: Pagy::Backend
 ---
+
 # Pagy::Backend
 
 This module _(see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_ provides a _generic_ pagination method (`pagy`) that works with `ActiveRecord` out of the box. For any other collection (e.g. `Sequel`, `Mongoid`, `Elasticsearch`, ...) you may need to override some sub-method or [write your own Pagy methods](#writing-your-own-pagy-methods).
@@ -9,7 +10,7 @@ For overriding convenience, the `pagy` method calls two sub-methods that you may
 
 **Notice**: Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods).
 
-Check also the [array](../extras/array.md), [searchkick](../extras/searchkick.md) and [elasticsearch_rails](../extras/elasticsearch_rails.md) extras for specific backend customizations.
+Check also the [array](../extras/array.md), [searchkick](../extras/searchkick.md), [elasticsearch_rails](../extras/elasticsearch_rails.md) and [meilisearch](../extras/meilisearch.md) extras for specific backend customizations.
 
 ## Synopsis
 
@@ -60,7 +61,7 @@ See also the [How To](../how-to.md) page for some usage example.
 
 Sub-method called only by the `pagy` method, it returns the page items (i.e. the records belonging to the current page).
 
- Here is its source (it works with most ORMs like `ActiveRecord`, `Sequel`, `Mongoid`, ...):
+Here is its source (it works with most ORMs like `ActiveRecord`, `Sequel`, `Mongoid`, ...):
 
 ```ruby
 def pagy_get_items(collection, pagy)
@@ -76,7 +77,7 @@ def pagy_get_items(array, pagy)
 end
 ```
 
-**Notice**: in order to paginate arrays, you may want to use the  [array extra](../extras/array.md).
+**Notice**: in order to paginate arrays, you may want to use the [array extra](../extras/array.md).
 
 ## Writing your own Pagy methods
 
