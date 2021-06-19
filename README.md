@@ -109,9 +109,9 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 - [countless](http://ddnexus.github.io/pagy/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](http://ddnexus.github.io/pagy/extras/elasticsearch_rails): Paginate `ElasticsearchRails` response objects
 - [headers](http://ddnexus.github.io/pagy/extras/headers): Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination
+- [meilisearch](http://ddnexus.github.io/pagy/extras/meilisearch): Paginate `Meilisearch` results
 - [metadata](http://ddnexus.github.io/pagy/extras/metadata): Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
 - [searchkick](http://ddnexus.github.io/pagy/extras/searchkick): Paginate `Searchkick::Results` objects
-- [meilisearch](http://ddnexus.github.io/pagy/extras/meilisearch): Paginate `Meilisearch` results
 
 ### Frontend Extras
 
