@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## Version 4.9.0
+
+### Changes
+
+- added meilisearch extra
+- docs fixes
+
+### Commits
+
+- [572ed78](http://github.com/ddnexus/pagy/commit/572ed78): updated pagy-ci.yml
+- [8fe1d19](http://github.com/ddnexus/pagy/commit/8fe1d19): Fix documents for searchkick (#315)
+- [744717f](http://github.com/ddnexus/pagy/commit/744717f): Meilisearch extra (#316)
+- [fb65260](http://github.com/ddnexus/pagy/commit/fb65260): updated issue templates
+- [1c3d283](http://github.com/ddnexus/pagy/commit/1c3d283): Added Pagy::Console links to README
+
 ## Version 4.8.1
 
 ### Changes
