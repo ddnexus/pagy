@@ -50,6 +50,7 @@ lib/pagy/extras/headers.rb
 lib/pagy/extras/i18n.rb
 lib/pagy/extras/items.rb
 lib/pagy/extras/materialize.rb
+lib/pagy/extras/meilisearch.rb
 lib/pagy/extras/metadata.rb
 lib/pagy/extras/navs.rb
 lib/pagy/extras/overflow.rb

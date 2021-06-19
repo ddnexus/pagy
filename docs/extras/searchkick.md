@@ -64,7 +64,7 @@ Extend your model with the Pagy::Searchkick` micro-moudule:
 extend Pagy::Searchkick
 ```
 
-The `Pagy::ElasticsearchRails::Search` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
+The `Pagy::Searchkick` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
 
 ### pagy_search(...)
 
