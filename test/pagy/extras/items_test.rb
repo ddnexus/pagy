@@ -3,6 +3,7 @@
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/elasticsearch_rails'
 require_relative '../../mock_helpers/searchkick'
+require_relative '../../mock_helpers/meilisearch'
 require_relative '../../mock_helpers/arel'
 require 'pagy/extras/countless'
 require 'pagy/extras/arel'
@@ -15,6 +16,11 @@ def test_items_vars_params(items, vars, params)
   _(controller.params).must_equal params
   [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
     pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+    _(pagy.items).must_equal items
+    _(records.size).must_equal items
+  end
+  [[:pagy_meilisearch, MockMeilisearch::Model]].each do |meth, mod|
+    pagy, records = controller.send meth, mod.pagy_search('a'), vars
     _(pagy.items).must_equal items
     _(records.size).must_equal items
   end
@@ -34,7 +40,7 @@ describe 'pagy/extras/items' do
     it 'uses the defaults' do
       vars = {}
       controller = MockController.new
-      %i[pagy_elasticsearch_rails_get_vars pagy_searchkick_get_vars].each do |method|
+      %i[pagy_elasticsearch_rails_get_vars pagy_searchkick_get_vars pagy_meilisearch_get_vars].each do |method|
         merged  = controller.send method, nil, vars
         _(merged[:items]).must_equal 20
       end
