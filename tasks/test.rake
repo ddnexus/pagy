@@ -11,6 +11,7 @@ test_tasks = {}
     i18n
     items
     items_trim
+    meilisearch
     overflow
     searchkick
     shared_json

@@ -5,7 +5,7 @@ title: Items
 
 Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or user-customizable UIs.
 
-It works also with the [countless](countless.md), [searchkick](searchkick.md) and [elasticsearch_rails](elasticsearch_rails.md) extras.
+It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md) and [meilisearch](extras/meilisearch.md) extras.
 
 ## Synopsis
 
@@ -20,9 +20,9 @@ require 'pagy/extras/items'
 
 # you can disable it explicitly for specific requests
 @pagy, @records = pagy(Product.all, enable_items_extra: false)
- 
-# or... 
- 
+
+# or...
+
 # disable it by default (opt-in)
 Pagy::VARS[:enable_items_extra] = false   # default true
 # in this case you have to enable it explicitly when you want it
@@ -111,4 +111,3 @@ When the items number is changed with the selector, pagy will reload the paginat
 This method can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `*_js` call in the same line for the same file.
 
 **Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
-
