@@ -133,7 +133,7 @@ Notice: Older versions run on ruby 1.9+ or jruby 1.7+ till ruby <3.0
 Pagy works out of the box in a web app assuming that:
 
 - You are using a `Rack` based framework (Rails, Sinatra, Padrino, etc.)
-- The collection to paginate is an ORM collection (e.g. ActiveRecord scope) or other collections supported by some backend extra ([array](extras/array.md), [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md), ...)
+- The collection to paginate is an ORM collection (e.g. ActiveRecord scope) or other collections supported by some backend extra ([array](extras/array.md), [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md), [meilisearch](extras/meilisearch.md), ...)
 - The controller where you include `Pagy::Backend` responds to a `params` method
 - The view where you include `Pagy::Frontend` responds to a `request` method returning a `Rack::Request` instance.
 
@@ -402,7 +402,7 @@ Ransack `result` returns an `ActiveRecord` collection, which can be paginated ou
 
 ## Paginate Elasticsearch results
 
-Pagy has a couple of extras for gems returning elasticsearch results: [elasticsearch_rails](extras/elasticsearch_rails.md) and [searchkick](extras/searchkick.md)
+Pagy has a couple of extras for gems returning elasticsearch results: [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md) and [meilisearch](extras/meilisearch.md)
 
 ## Paginate pre-offsetted and pre-limited collections
 
