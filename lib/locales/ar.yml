@@ -4,11 +4,11 @@ ar:
   pagy:
 
     item_name:
-      zero:
+      zero: "صفر"
       one: "عنصر"
-      two:
-      few:
-      many:
+      two: "عنصرين"
+      few: "قليل"
+      many: "كثير"
       other: "عناصر"
 
     nav:
