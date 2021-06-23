@@ -17,10 +17,10 @@ module MockMeilisearch
 
     def raw_answer
       {
-        hits: self,
-        offset: @params[:offset],
-        limit: @params[:limit],
-        nbHits: RESULTS[@query].length
+        'hits'   => self,
+        'offset' => @params[:offset],
+        'limit'  => @params[:limit],
+        'nbHits' => RESULTS[@query].length
       }
     end
   end

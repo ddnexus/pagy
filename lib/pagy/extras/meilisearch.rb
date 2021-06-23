@@ -15,9 +15,9 @@ class Pagy
 
   # create a Pagy object from a Meilisearch results
   def self.new_from_meilisearch(results, vars={})
-    vars[:items] = results.raw_answer[:limit]
-    vars[:page]  = [results.raw_answer[:offset] / vars[:items], 1].max
-    vars[:count] = results.raw_answer[:nbHits]
+    vars[:items] = results.raw_answer['limit']
+    vars[:page]  = [results.raw_answer['offset'] / vars[:items], 1].max
+    vars[:count] = results.raw_answer['nbHits']
     new(vars)
   end
 
@@ -32,7 +32,7 @@ class Pagy
       options[:limit]  = vars[:items]
       options[:offset] = (vars[:page] - 1) * vars[:items]
       results          = model.search(term, **options)
-      vars[:count]     = results.raw_answer[:nbHits]
+      vars[:count]     = results.raw_answer['nbHits']
 
       pagy = Pagy.new(vars)
       # with :last_page overflow we need to re-run the method in order to get the hits
