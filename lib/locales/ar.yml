@@ -1,0 +1,26 @@
+# :arabic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+ar:
+  pagy:
+
+    item_name:
+      zero: "صفر"
+      one: "عنصر"
+      two: "عنصرين"
+      few: "قليل"
+      many: "كثير"
+      other: "عناصر"
+
+    nav:
+      prev: "&lsaquo;&nbsp;السابق"
+      next: "التالي&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "لا يوجد %{item_name}"
+      single_page: "عرض <b>%{count}</b> %{item_name}"
+      multiple_pages: "عرض %{item_name} <b>%{from}-%{to}</b> من اجمالي <b>%{count}</b>"
+
+    combo_nav_js: "الصفحة %{page_input} من %{pages}"
+
+    items_selector_js: "عرض %{items_input} %{item_name} لكل صفحة"
