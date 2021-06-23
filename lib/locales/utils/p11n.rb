@@ -19,6 +19,20 @@ from12to14 = [12,13,14].freeze
 p11n = {
   one_other: -> (n){ n == 1 ? 'one' : 'other' },    # default
 
+  arabic: lambda do |n|
+    n ||= 0
+    mod100 = n % 100
+
+    case
+    when n == 0                         then 'zero'      # rubocop:disable Style/NumericPredicate
+    when n == 1                         then 'one'
+    when n == 2                         then 'two'
+    when (3..10).to_a.include?(mod100)  then 'few'
+    when (11..99).to_a.include?(mod100) then 'many'
+    else                                     'other'
+    end
+  end,
+
   east_slavic: lambda do |n|
     n ||= 0
     mod10 = n % 10
@@ -29,14 +43,6 @@ p11n = {
     when from2to4.include?(mod10) && !from12to14.include?(mod100)              then 'few'
     when mod10 == 0 || from5to9.include?(mod10) || from11to14.include?(mod100) then 'many' # rubocop:disable Style/NumericPredicate
     else                                                                            'other'
-    end
-  end,
-
-  west_slavic: lambda do |n|
-    case n
-    when 1       then 'one'
-    when 2, 3, 4 then 'few'
-    else              'other'
     end
   end,
 
@@ -63,7 +69,16 @@ p11n = {
     when (from0to1 + from5to9).include?(mod10) || from12to14.include?(mod100) then 'many'
     else                                                                           'other'
     end
+  end,
+
+  west_slavic: lambda do |n|
+    case n
+    when 1       then 'one'
+    when 2, 3, 4 then 'few'
+    else              'other'
+    end
   end
+
 }
 
 # Hash of locale/pluralization pairs
@@ -71,6 +86,7 @@ p11n = {
 # The default pluralization for locales not explicitly listed here
 # is the :one_other pluralization proc (used for English)
 plurals = Hash.new(p11n[:one_other]).tap do |hash|
+  hash['ar']    = p11n[:arabic]
   hash['bs']    = p11n[:east_slavic]
   hash['cs']    = p11n[:west_slavic]
   hash['id']    = p11n[:other]
