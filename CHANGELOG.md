@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Version 4.10.0
+
+### Changes
+
+- added arabic locale
+
+### Commits
+
+- [9bc548e](http://github.com/ddnexus/pagy/commit/9bc548e): added missing keys for Arabic (#317) (closes #295)
+- [1b95674](http://github.com/ddnexus/pagy/commit/1b95674): Add arabic locale, pluralization and tests; alpha ordered tests
+
 ## Version 4.9.0
 
 ### Changes
