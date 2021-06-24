@@ -64,7 +64,7 @@ Extend your model with the Pagy::Meilisearch` micro-moudule:
 extend Pagy::Meilisearch
 ```
 
-The `Pagy::ElasticsearchRails::Search` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
+The `Pagy::Meilisearch` adds the `pagy_search` class method that you must use in place of the standard `search` method when you want to paginate the search response.
 
 ### pagy_search(...)
 
