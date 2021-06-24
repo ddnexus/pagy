@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## Version 4.10.1
+
+### Changes
+
+- fixes for meilisearch extra
+
+### Commits
+
+- [ec748c2](http://github.com/ddnexus/pagy/commit/ec748c2): Fixes for Meilisearch extra (#318)
+
 ## Version 4.10.0
 
 ### Changes
