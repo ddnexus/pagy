@@ -13,6 +13,7 @@ Require the extra in the `pagy.rb` initializer:
 
 ```ruby
 require 'pagy/extras/searchkick'
+Searchkick.extend Pagy::Searchkick   # optional
 ```
 
 ### Passive mode
@@ -38,6 +39,22 @@ In a controller use `pagy_search` in place of `search`:
 
 ```ruby
 results         = Article.pagy_search(params[:q])
+@pagy, @results = pagy_searchkick(results, items: 10)
+```
+   
+#### Searchkick.search
+
+Extend also the `Searchkick` module if you are going to use `Searchkick.pagy_search`:
+
+```ruby
+# config/initializers/pagy.rb
+Searchkick.extend Pagy::Searchkick
+```
+
+Use `pagy_search` in place of `search`:
+
+```ruby
+results         = Searchkick.pagy_search(params[:q], models: [Article, Categories])
 @pagy, @results = pagy_searchkick(results, items: 10)
 ```
 

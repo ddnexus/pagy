@@ -56,6 +56,9 @@
 # also the elasticsearch_rails extra that defines the same
 # VARS[:searchkick_search_method] = :pagy_search
 # require 'pagy/extras/searchkick'
+# uncomment if you are going to use Searchkick.pagy_search
+# Searchkick.extend Pagy::Searchkick
+
 
 # Frontend Extras
 
