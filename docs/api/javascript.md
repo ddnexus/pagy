@@ -28,6 +28,12 @@ If you override any `*_js` helper, ensure to override/enforce the relative javas
 
 See also [Preventing crawlers to follow look-alike links](../how-to.md#preventing-crawlers-to-follow-look-alike-links)
 
+What if javascript is not enabled? Consider adding a fallback:
+
+```erb
+<noscript><%== pagy_nav(@pagy) %></noscript>
+```
+
 ### Add the oj gem
 
 Although it's not a requirement, if you use any `*_nav_js` helper, you should consider adding the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance. (Notice: It does nothing for normal, non-js helpers.)
