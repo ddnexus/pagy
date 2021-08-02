@@ -1,0 +1,56 @@
+
+# What does this action do?
+
+# This Github Action allows for: 
+#   (i) the publishing of the gem to ruby gems.
+#   (ii) automatic tagging of the default branch. 
+# The action is triggered through a manual action - click and run (i.e. through workflow_dispatch)
+# The default branch is assumed.
+
+# The version number of pagy is located in two distinct files: the lib/pagy.rb file and also the
+# lib/javascripts/pagy.js file. 
+
+# Ruby gems publishes the version number located in the pagy.rb file, while we tag the default 
+# branch using the version located in the pagy.js file. both versions listed in those two file smust be kept 
+# in sync to avoid confusion.
+
+name: publish-gem-and-tag
+on: 
+  workflow_dispatch:    
+
+jobs:
+  publish-gem-and-tag:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2  # checks out default branch
+      
+      - uses: ruby/setup-ruby@v1
+        with:          
+          ruby-version: 3.0.0      
+      - run: bundle install      
+
+      - name: publish gem
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+          gem build *.gemspec
+          gem push *.gem
+        env:          
+          GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"     
+
+      - name: Create tag
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const fs = require("fs")
+            eval(fs.readFileSync("./lib/javascripts/pagy.js").toString())
+            
+            github.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${Pagy.version}`,
+              sha: context.sha
+            })
