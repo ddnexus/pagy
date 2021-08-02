@@ -616,7 +616,9 @@ When the count caching is not an option, you may want to use the [countless extr
 
 ## Using AJAX
 
-See [Using AJAX](api/javascript.md#using-ajax)
+You can trigger ajax render in rails by [Customizing the link attributes](customizing-the-link-attributes).
+
+See also [Using AJAX](api/javascript.md#using-ajax).
 
 ## Paginate for API clients
 
@@ -647,29 +649,6 @@ If you don't have strict requirements but still need to give the user total feed
 #### Consider the countless extra
 
 If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically boost the efficiency eliminating the nav info and almost all the UI. Take a look at the examples in the [support extra](extras/support.md).
-
-## Preventing crawlers to follow look-alike links
-
-The `*_js` helpers come with a `data-pagy-json` attribute that includes an HTML encoded string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it even if it is not a DOM element. That causes server side errors reported in your log.
-
-You may want to prevent that by simply adding the following lines to your `robots.txt` file:
-
-```
-User-agent: *
-Disallow: *__pagy_page__
-```
-
-**Caveats**: already indexed links may take a while to get purged by some search engine (i.e. you may still get some hits for a while even after you disallow them)
-
-A quite drastic alternative to the `robot.txt` would be adding the following block to the `config/initializers/rack_attack.rb` (if you use the [Rack Attack Middlewhare](https://github.com/kickstarter/rack-attack)):
-
-```ruby
-Rack::Attack.blocklist("block crawlers to follow pagy look-alike links") do |request|
-  request.query_string.match /__pagy_page__/
-end
-```
-
-but it would be quite an overkill if you plan to install it only for this purpose.
 
 ## Ignoring Brakeman UnescapedOutputs false positives warnings
 

@@ -24,9 +24,40 @@ Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/p
 
 ### CAVEATS
 
-If you override any `*_js` helper, ensure to override/enforce the relative javascript function, even with a simple copy and paste. If the relation between the helper and the function changes in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
+#### Functions
 
-See also [Preventing crawlers to follow look-alike links](../how-to.md#preventing-crawlers-to-follow-look-alike-links)
+If you override any `*_js` helper, ensure to override/enforce the javascript functions that it uses. If the relation between the helper and the functions change in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
+
+#### HTML fallback
+
+Notice that if the client browser doesn't support Javascript or if it is disabled, certain helpers will serve nothing useful for the user. If your app does not require Javascript support and you still want to use javscript helpers, then you should consider implementing your own HTML fallback. For example:
+
+    ```erb
+    <noscript><%== pagy_nav(@pagy) %></noscript>
+    ```
+
+#### Preventing crawlers to follow look-alike links
+
+The `*_js` helpers come with a `data-pagy-json` attribute that includes an HTML encoded string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it even if it is not a DOM element. That causes server side errors reported in your log.
+
+You may want to prevent that by simply adding the following lines to your `robots.txt` file:
+
+```
+User-agent: *
+Disallow: *__pagy_page__
+```
+
+**Caveats**: already indexed links may take a while to get purged by some search engine (i.e. you may still get some hits for a while even after you disallow them)
+
+A quite drastic alternative to the `robot.txt` would be adding the following block to the `config/initializers/rack_attack.rb` (if you use the [Rack Attack Middlewhare](https://github.com/kickstarter/rack-attack)):
+
+```ruby
+Rack::Attack.blocklist("block crawlers to follow pagy look-alike links") do |request|
+  request.query_string.match /__pagy_page__/
+end
+```
+
+but it would be quite an overkill if you plan to install it only for this purpose.   
 
 ### Add the oj gem
 
