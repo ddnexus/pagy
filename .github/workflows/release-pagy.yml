@@ -1,0 +1,42 @@
+# This manual workflow build and push pagy to rubygems and creates a release tag at the current master commit
+
+name: Release Pagy
+on:
+  workflow_dispatch:
+
+jobs:
+
+  release-pagy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2  # checks out default branch
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+      - run: bundle install
+
+      - name: Build and push
+        run: |
+          mkdir -p $HOME/.gem
+          printf -- "---\n:rubygems_api_key: ${RUBYGEMS_TOKEN}\n" > $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          gem build pagy.gemspec
+          gem push pagy-*.gem
+        env:
+          RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
+
+      - name: Create the release tag
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const fs = require("fs")
+            eval(fs.readFileSync("./lib/javascripts/pagy.js").toString())
+
+            github.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${Pagy.version}`,
+              sha: context.sha
+            })
