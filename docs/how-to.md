@@ -400,9 +400,9 @@ Ransack `result` returns an `ActiveRecord` collection, which can be paginated ou
 @pagy, @people = pagy(@q.result)
 ```
 
-## Paginate Elasticsearch results
+## Paginate search results
 
-Pagy has a couple of extras for gems returning elasticsearch results: [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md) and [meilisearch](extras/meilisearch.md)
+Pagy has a few of extras for gems returning search results: [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md) and [meilisearch](extras/meilisearch.md)
 
 ## Paginate pre-offsetted and pre-limited collections
 
