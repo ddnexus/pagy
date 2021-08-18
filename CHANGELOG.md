@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## Version 4.10.2
+
+### Changes
+
+- improve the customization of url when using the trim extra
+- better tailwind rules
+- doc fixes and improvements
+
+### Commits
+
+- [9e7fd48](http://github.com/ddnexus/pagy/commit/9e7fd48): improve the customization of url when using the trim extra (closes #325)
+- [0d48b5f](http://github.com/ddnexus/pagy/commit/0d48b5f): better handling of extra docker-compose run files
+- [f5ed8f6](http://github.com/ddnexus/pagy/commit/f5ed8f6): added note about the possible workaround for bundler/inline bug
+- [2715660](http://github.com/ddnexus/pagy/commit/2715660): doc fixes
+- [7187101](http://github.com/ddnexus/pagy/commit/7187101): Javascript doc improvements
+- [24b7e78](http://github.com/ddnexus/pagy/commit/24b7e78): release workflow refactoring
+- [20d1d8e](http://github.com/ddnexus/pagy/commit/20d1d8e): chore: add github action - publish & tag versions (#322)
+- [922fd7f](http://github.com/ddnexus/pagy/commit/922fd7f): better tailwind rules
+- [28983e6](http://github.com/ddnexus/pagy/commit/28983e6): added doc for using Searchkick.pagy_search (closes #319)
+
 ## Version 4.10.1
 
 ### Changes
