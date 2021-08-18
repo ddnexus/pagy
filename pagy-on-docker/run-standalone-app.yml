@@ -1,0 +1,16 @@
+# Use this file in addition to the docker-compose.yml file to run
+# the sinatra pagy-standalone-app.ru used for testing
+
+# USAGE
+#   docker-compose -f docker-compose.yml -f run-standalone-app.yml up pagy
+
+version: "3.8"
+
+services:
+
+  pagy:
+    ports:
+      - "8080:8080"
+    # swap the comment between the next two lines if you use rerun
+    command: rackup -o 0.0.0.0 -p 8080 apps/pagy_standalone_app.ru
+#   command: rerun -- rackup -o 0.0.0.0 -p 8080 apps/pagy_standalone_app.ru
