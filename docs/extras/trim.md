@@ -49,5 +49,12 @@ The `trim` extra overrides the `pagy_link_proc` method in the `Pagy::Frontend` m
 
 ### pagy_link_proc(pagy, link_extra='')
 
-This method trims the `:page_param` param from the first page link.
+This method overrides the `pagy_link_proc` using the `pagy_trim` to process the link to the first page.
 
+### pagy_trim(pagy, link)
+
+Sub-method called only by the `pagy_link_proc` method, it removes the the `:page_param` param from the first page link (usually `page=1`).
+
+Override this method if you are [Customizing the urls](../how-to.md#customizing-the-url)).
+
+If you use a `pagy_*nav_js`  helper you should customize the `Pagy.trim` javascript function instead.
