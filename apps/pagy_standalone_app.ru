@@ -21,6 +21,8 @@ require 'bundler/inline'
 
 # edit this gemfile declaration as you need
 # and ensure to use gems updated to the latest versions
+# NOTICE: if you get any installation error with the following setup
+# install the gems manually with `gem install...` and remove the `true` argument
 gemfile true do
   source 'https://rubygems.org'
   gem 'oj'
