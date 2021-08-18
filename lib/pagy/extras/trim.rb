@@ -14,8 +14,12 @@ class Pagy
       lambda do |num, text=num, extra=''|
         link = +link_proc.call(num, text, extra)
         return link unless num == 1
-        link.sub!(/[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/, '')
+        pagy_trim(pagy, link)
       end
+    end
+
+    def pagy_trim(pagy, link)
+      link.sub!(/[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/, '')
     end
 
   end

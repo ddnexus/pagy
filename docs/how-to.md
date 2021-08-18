@@ -274,7 +274,11 @@ You can also use the `:params` and : `:fragment` variables to add arbitrary para
 
 ## Customizing the URL
 
-When you need somethig more radical with the URL than just massaging the params, you should override the `pagy_url_for` right in your helper. The following are a couple of scenarios that would need that.
+When you need something more radical with the URL than just massaging the params, you should override the `pagy_url_for` right in your helper.
+
+_Notice: if you are also using the [trim extra](extras/trim.md) you should also override the [pagy_trim](extras/trim#pagy_trimpagy-link) method or the `Pagy.trim`  javascript function._
+
+The following are a couple of examples.
 
 ### Enabling fancy-routes
 
@@ -294,7 +298,7 @@ Notice that this overridden method is quite slower than the original because it 
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and your page links may need to use POST and not GET. In that case you can try this simple solution:
 
 ```ruby
-def pagy_url_for(_, page) # it was (page, pagy) in previous versions
+def pagy_url_for(_pagy, page) # it was (page, pagy) in previous versions
   page
 end
 ```
