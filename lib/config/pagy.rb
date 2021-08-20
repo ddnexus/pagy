@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (4.10.2)
+# Pagy initializer file (4.11.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -42,6 +42,7 @@
 # Countless extra: Paginate without any count, saving one query per rendering
 # See https://ddnexus.github.io/pagy/extras/countless
 # require 'pagy/extras/countless'
+# Pagy::VARS[:countless_minimal] = false   # default (eager loading)
 
 # Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects
 # See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
