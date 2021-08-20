@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## Version 4.11.0
+
+### Changes
+
+- added countless_minimal feature
+- added missing deprecation to countless class
+- doc improvements
+
+### Commits
+
+- [5103ee9](http://github.com/ddnexus/pagy/commit/5103ee9): added countless_minimal feature
+- [ed6bc0b](http://github.com/ddnexus/pagy/commit/ed6bc0b): added missing deprecation to countless class
+- [bedb2d6](http://github.com/ddnexus/pagy/commit/bedb2d6): Fix - link directly to docs [ci-skip] (#328)
+- [74aa300](http://github.com/ddnexus/pagy/commit/74aa300): Remove minor extra parenthesis in trim docs [ci-skip] (#326)
+- [f8b96eb](http://github.com/ddnexus/pagy/commit/f8b96eb): docs - add links directly to docs page [ci-skip] (#324)
+
 ## Version 4.10.2
 
 ### Changes
