@@ -53,7 +53,7 @@ Retrieving these variables may be useful to supply a UI as complete as possible,
 
 ## Methods
 
-The construction of the final `Pagy::Countless` object is splitted into 2 steps: the regular `initialize` method and the `finalize` method, which will use the retrieved items number to calculate the rest of the pagination integers.
+The construction of the final `Pagy::Countless` object is split into 2 steps: the regular `initialize` method and the `finalize` method, which uses the retrieved items number to calculate the rest of the pagination integers.
 
 ### Pagy::Countless.new(vars)
 
