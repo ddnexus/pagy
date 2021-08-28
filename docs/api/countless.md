@@ -20,7 +20,7 @@ In this class the `:count` variable is always `nil`, hence some feature that dep
 
 #### Nav bar
 
-The nav bar links after the current page cannot be fully displayed because a couple if items of the `:size` array depends on the `count`, so they have some limitations.
+The nav bar links after the current page cannot be fully displayed because a couple of items of the `:size` array depends on the `count`, so they have some limitations.
 
  Regardless the actual `:size` value:
 
