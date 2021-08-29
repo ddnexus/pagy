@@ -20,7 +20,7 @@ In this class the `:count` variable is always `nil`, hence some feature that dep
 
 #### Nav bar
 
-The nav bar links after the current page cannot be fully displayed because a couple if items of the `:size` array depends on the `count`, so they have some limitations.
+The nav bar links after the current page cannot be fully displayed because a couple of items of the `:size` array depends on the `count`, so they have some limitations.
 
  Regardless the actual `:size` value:
 
@@ -47,13 +47,13 @@ The `pagy_info` and all the `*_combo_nav_js` helpers that use the total `count` 
 
 Instead of basing all the internal calculations on the `:count` variable (passed with the constructor), this class uses the number of actually retrieved items to deduce the pagination variables.
 
-The retrieved items number can be passed in a second step to the `finalize` method, wich allows to determine if there is a `next` page, or if the current page is the `last` page, or if the current request should raise a `Pagy::OverflowError` exception.
+The retrieved items number can be passed in a second step to the `finalize` method, which allows pagy to determine if there is a `next` page, or if the current page is the `last` page, or if the current request should raise a `Pagy::OverflowError` exception.
           
 Retrieving these variables may be useful to supply a UI as complete as possible, when used with classic helpers, and can be skipped when it's not needed (like for navless pagination, infinite-scroll, etc.). See the [countless.rb extra](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb) for more details.
 
 ## Methods
 
-The construction of the final `Pagy::Countless` object is splitted into 2 steps: the regular `initialize` method and the `finalize` method, which will use the retrieved items number to calculate the rest of the pagination integers.
+The construction of the final `Pagy::Countless` object is split into 2 steps: the regular `initialize` method and the `finalize` method, which will use the retrieved items number to calculate the rest of the pagination integers.
 
 ### Pagy::Countless.new(vars)
 
