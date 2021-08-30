@@ -3,7 +3,7 @@ title: Countless
 ---
 # Countless Extra
 
-This extra uses the `Pagy::Countless` subclass in order to save one count query per request. It is especially useful when used with large DB tables, where [Caching the count](../how-to.md#caching-the-count) may not be an option, or when there is no need to have a classic UI. Please read also the [Pagy::Countless doc](../api/countless.md) for a full understanding of its features and limitations.
+This extra uses the `Pagy::Countless` subclass in order to save one count query per request. It is especially useful when used with large DB tables, where [Caching the count](../how-to.md#caching-the-count) may not be an option, or when there is no need to have a classic UI. Please read also the [Pagy::Countless doc](../api/countless.md) for a fuller understanding of its features and limitations.
 
 ## Synopsis
 
