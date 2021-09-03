@@ -75,7 +75,7 @@ This constructor accepts a `Searchkick::Results` as the first argument, plus the
 
 ## Pagy::Searchkick
 
-Extend your model with the Pagy::Searchkick` micro-moudule:
+Extend your model with the `Pagy::Searchkick` micro-moudule:
 
 ```ruby
 extend Pagy::Searchkick

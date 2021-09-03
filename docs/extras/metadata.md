@@ -55,7 +55,7 @@ page_url = scaffold_url.replace(/__pagy_page__/, page_number)
 
 This is particularly useful when you want to build some dynamic pagination UI (e.g. similar to what the `pagy_*combo_js` generates), but right in your frontend app, saving backend resources with obvious performance benefits.
 
-**Notice**: for simple cases you might directly use the other few `:*_url` metadata instead of the `:scaffold_url`.
+**Notice**: for simple cases you might want to use the other few `:*_url` metadata directly, instead of using the `:scaffold_url`.
 
 ## Methods
 

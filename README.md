@@ -161,8 +161,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 
 ### SupeRails Screencast
 
-[![Ruby on Rails #19 gem Pagy - Ultimate Guide
-](docs/assets/images/superails-w360.jpg)](https://youtu.be/1tsWL4EjhMo)
+[![Ruby on Rails #19 gem Pagy - Ultimate Guide](docs/assets/images/superails-w360.jpg)](https://youtu.be/1tsWL4EjhMo)
 
 ### Raul Palacio Screencast (Spanish)
 
