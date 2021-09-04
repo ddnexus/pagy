@@ -12,13 +12,13 @@ require 'pagy/console'
 include Pagy::Console
 pagy_extras :array, :metadata, ...
 
-### then you can use it like inside an app 
+### then you can use it like inside an app
 pagy, items = pagy_array((1..1000).to_a, page: 3)
 pagy_navs(pagy)
 => "<nav class=\"pagy-nav pagination\" role=\"navigation\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"http://www.example.com/subdir?page=2&items=20\"   rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=1&items=20\"   >1</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=2&items=20\"   rel=\"prev\" >2</a></span> <span class=\"page active\">3</span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=4&items=20\"   rel=\"next\" >4</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=5&items=20\"   >5</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=6&items=20\"   >6</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=7&items=20\"   >7</a></span> <span class=\"page gap\">&hellip;</span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=50&items=20\"   >50</a></span> <span class=\"page next\"><a href=\"http://www.example.com/subdir?page=4&items=20\"   rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
- 
+
 pagy_metadata(pagy)
-=> 
+=>
 {:scaffold_url=>"http://www.example.com/subdir?page=__pagy_page__",
  :first_url=>"http://www.example.com/subdir?page=1",
  :prev_url=>"http://www.example.com/subdir?page=2",

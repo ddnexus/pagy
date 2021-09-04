@@ -21,7 +21,7 @@ class Pagy
     raise VariableError.new(self), "expected :steps to define the 0 width; got #{steps.inspect}" \
           unless steps.key?(0)
     {}.tap do |sequels|
-      steps.each {|width, size| sequels[width.to_s] = series(size)}
+      steps.each { |width, size| sequels[width.to_s] = series(size) }
     end
   end
 

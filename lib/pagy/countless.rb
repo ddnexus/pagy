@@ -10,7 +10,7 @@ class Pagy
 
     # Merge and validate the options, do some simple arithmetic and set a few instance variables
     def initialize(vars={})  # rubocop:disable Lint/MissingSuper
-      @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })      # default vars + cleaned vars (can be overridden)
+      @vars = VARS.merge( vars.delete_if { |_,v| v.nil? || v == '' } )      # default vars + cleaned vars (can be overridden)
       @vars[:fragment] = Pagy.deprecated_var(:anchor, @vars[:anchor], :fragment, @vars[:fragment]) if @vars[:anchor]
 
       INSTANCE_VARS_MIN.each do |k,min|                                 # validate instance variables

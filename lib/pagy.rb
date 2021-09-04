@@ -22,7 +22,7 @@ class Pagy
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
-    @vars = VARS.merge( vars.delete_if{|k,v| VARS.key?(k) && (v.nil? || v == '') } )
+    @vars = VARS.merge( vars.delete_if{ |k,v| VARS.key?(k) && (v.nil? || v == '') } )
     @vars[:fragment] = Pagy.deprecated_var(:anchor, @vars[:anchor], :fragment, @vars[:fragment]) if @vars[:anchor]
 
     INSTANCE_VARS_MIN.each do |name,min|

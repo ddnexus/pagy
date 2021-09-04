@@ -28,7 +28,7 @@ module MockElasticsearchRails
     end
 
     def records
-      @raw_response['hits']['hits'].map{|r| "R-#{r}"}
+      @raw_response['hits']['hits'].map { |r| "R-#{r}" }
     end
 
     # unused by current testing
@@ -75,7 +75,7 @@ module MockElasticsearchRails
 
     # unused by current testing
     # def records
-    #   @response['hits']['hits'].map{|r| "R-#{r}"}
+    #   @response['hits']['hits'].map { |r| "R-#{r}" }
     # end
     #
     # def count

@@ -12,19 +12,19 @@ describe 'pagy/extras/searchkick' do
     end
     it 'returns class and arguments' do
       _(MockSearchkick::Model.pagy_search('a', b:2)).must_equal [MockSearchkick::Model, 'a', {b: 2}, nil]
-      args  = MockSearchkick::Model.pagy_search('a', b:2){|a| a*2}
+      args  = MockSearchkick::Model.pagy_search('a', b:2) { |a| a*2 }
       block = args[-1]
       _(args).must_equal [MockSearchkick::Model, 'a', {b: 2}, block]
     end
     it 'allows the term argument to be optional' do
       _(MockSearchkick::Model.pagy_search(b:2)).must_equal [MockSearchkick::Model, '*', {b: 2}, nil]
-      args  = MockSearchkick::Model.pagy_search(b:2){|a| a*2}
+      args  = MockSearchkick::Model.pagy_search(b:2) { |a| a*2 }
       block = args[-1]
       _(args).must_equal [MockSearchkick::Model, '*', {b: 2}, block]
     end
     it 'adds an empty option hash' do
       _(MockSearchkick::Model.pagy_search('a')).must_equal [MockSearchkick::Model, 'a', {}, nil]
-      args  = MockSearchkick::Model.pagy_search('a'){|a| a*2}
+      args  = MockSearchkick::Model.pagy_search('a') { |a| a*2 }
       block = args[-1]
       _(args).must_equal [MockSearchkick::Model, 'a', {}, block]
     end

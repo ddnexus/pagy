@@ -57,7 +57,7 @@ Rack::Attack.blocklist("block crawlers to follow pagy look-alike links") do |req
 end
 ```
 
-but it would be quite an overkill if you plan to install it only for this purpose.   
+but it would be quite an overkill if you plan to install it only for this purpose.
 
 ### Add the oj gem
 
@@ -86,6 +86,7 @@ window.addEventListener("turbolinks:load", Pagy.init);
 ```
 
 or a generic one if your app doesn't use turbolinks:
+
 ```js
 window.addEventListener("load", Pagy.init);
 ```
@@ -216,9 +217,10 @@ pagy, records = pagy(collection, steps: { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 
 # or use the :size as any static pagy*_nav
 pagy, records = pagy(collection, steps: false )
 ```
+
 ```erb
 or pass it to the helper
-<%== pagy_nav_js(@pagy, steps: {...}) %> 
+<%== pagy_nav_js(@pagy, steps: {...}) %>
 ```
 
 The above statement means that from `0` to `540` pixels width, Pagy will use the `[2,3,3,2]` size, from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section).

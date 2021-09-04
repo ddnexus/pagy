@@ -3,7 +3,7 @@
 
 # this file returns the I18n hash used as default alternative to the i18n gem
 
-Hash.new{|h,_| h.first[1]}.tap do |i18n_hash|   # first loaded locale used as default
+Hash.new{ |h,_| h.first[1] }.tap do |i18n_hash|   # first loaded locale used as default
   i18n_hash.define_singleton_method(:load) do |*load_args|
     # eval: we don't need to keep the loader proc in memory
     eval(Pagy.root.join('locales', 'utils', 'loader.rb').read).call(i18n_hash, *load_args)   #rubocop:disable Security/Eval

@@ -12,7 +12,7 @@ flatten = lambda do |hash, key=''|
               if v.is_a?(Hash)
                 h.merge! flatten.call(v, "#{key}#{k}.")
               else
-                code = %({"#{key}#{k}" => lambda{|vars|"#{v.gsub(/%{[^}]+?}/){|m| "\#{vars[:#{m[2..-2]}]||'#{m}'}" }}"}})
+                code = %({"#{key}#{k}" => lambda { |vars| "#{v.gsub(/%{[^}]+?}/){ |m| "\#{vars[:#{m[2..-2]}]||'#{m}'}" }}" }})
                 h.merge! eval(code) # rubocop:disable Security/Eval
               end
             end

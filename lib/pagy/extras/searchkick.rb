@@ -11,7 +11,7 @@ class Pagy
     # it also pushes to the same array an eventually called method
     def pagy_searchkick(term = '*', **options, &block)
       [self, term, options, block].tap do |args|
-        args.define_singleton_method(:method_missing){|*a| args += a}
+        args.define_singleton_method(:method_missing) { |*a| args += a }
       end
     end
     alias_method VARS[:searchkick_search_method], :pagy_searchkick

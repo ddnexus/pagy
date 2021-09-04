@@ -218,7 +218,7 @@ Pagy::I18n.load({locale: 'en'},
                 {locale: 'es', filepath: 'path/to/pagy-es.yml'},
                 {locale: 'xyz',  # not built-in
                  filepath: 'path/to/pagy-xyz.yml',
-                 pluralize: lambda{|count| ... }})
+                 pluralize: lambda{ |count| ... }})
 ```
 
 **Notice**: You should use a custom `:pluralize` proc only for pluralization types not included in the built-in [p11n.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)

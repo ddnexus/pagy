@@ -16,7 +16,7 @@ class Pagy
 
     def pagy_headers(pagy)
       pagy_headers_hash(pagy).tap do |hash|
-        hash['Link'] = hash['Link'].map{|rel, link| %(<#{link}>; rel="#{rel}")}.join(', ')
+        hash['Link'] = hash['Link'].map { |rel, link| %(<#{link}>; rel="#{rel}") }.join(', ')
       end
     end
 

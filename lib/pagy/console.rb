@@ -13,7 +13,7 @@ class Pagy
     end
 
     def pagy_extras(*extras)
-      extras.each {|extra| require "pagy/extras/#{extra}"}
+      extras.each { |extra| require "pagy/extras/#{extra}" }
       puts "Required extras: #{extras.map(&:inspect).join(', ')}"
     end
   end

@@ -11,7 +11,7 @@ class Pagy
     # it also pushes to the same array an eventually called method
     def pagy_elasticsearch_rails(query_or_payload, **options)
       [self, query_or_payload, options].tap do |args|
-        args.define_singleton_method(:method_missing){|*a| args += a}
+        args.define_singleton_method(:method_missing) { |*a| args += a }
       end
     end
     alias_method VARS[:elasticsearch_rails_search_method], :pagy_elasticsearch_rails

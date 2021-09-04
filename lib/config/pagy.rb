@@ -173,7 +173,7 @@
 #                 {locale: 'es', filepath: 'path/to/pagy-es.yml'},
 #                 {locale: 'xyz',  # not built-in
 #                  filepath: 'path/to/pagy-xyz.yml',
-#                  pluralize: lambda{|count| ... } )
+#                  pluralize: lambda{ |count| ... } )
 
 
 # I18n extra: uses the standard i18n gem which is ~18x slower using ~10x more memory
