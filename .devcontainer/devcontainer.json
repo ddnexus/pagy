@@ -1,0 +1,31 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.191.1/containers/docker-existing-docker-compose
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+
+// IMPORTANT: we try to use VSC config as less as possible, limiting it to the VSC specific stuff
+// in order to get docker/ docker-compose files/config as portable as possible between IDEs or CLI
+{
+	"name": "pagy",
+	"dockerComposeFile": [ "../pagy-on-docker/docker-compose.yml" ],
+	"service": "pagy",
+	"workspaceFolder": "/opt/project",
+	"extensions": [
+		"rebornix.ruby",
+		"castwide.solargraph",
+		"misogi.ruby-rubocop",
+		"groksrc.ruby",
+		"vortizhe.simple-ruby-erb",
+		"jdforsythe.add-new-line-to-files",
+		"miguel-savignano.ruby-symbols",
+		"shardulm94.trailing-spaces",
+		"mutantdino.resourcemonitor",
+		"mhutchie.git-graph",
+		"eamodio.gitlens"
+	],
+	"settings": {
+		// https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration
+		// remove linux profile if it is zsh in the global settings
+		"terminal.integrated.profiles.linux": null,
+		"testExplorer.useNativeTesting": true
+	}
+}
