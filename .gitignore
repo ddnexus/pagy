@@ -1,7 +1,11 @@
+# next 2 entries should not be in this file but VSCode ignore the global ignore settings
+/.vscode
+/.idea
 /.bundle/
 /*.gem
 /coverage/
 /docs/.jekyll-metadata
+/pagy-on-docker/.env
 /pkg/
 /test/e2e/cypress/downloads/
 /test/e2e/cypress/fixtures/

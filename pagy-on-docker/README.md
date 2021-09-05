@@ -25,7 +25,7 @@ The pagy docker environment has been designed to be useful for developing:
 
 You have a couple of alternatives:
 
-1. (recommended) Permanently set a few environment variables about your user in your IDE or system (it will be easier later):
+1. (recommended) Permanently set a few environment variables about your user in your IDE or system or in a `pagy-on-docker/.env` file (it will be easier later):
    - the `GROUP` name (get it with `id -gn` in the terminal)
    - if `echo $UID` return nothing, then set the `UID` (get it with `id -u` in the terminal)
    - if `echo $GID` return nothing, then set the `GID` (get it with `id -g` in the terminal)
