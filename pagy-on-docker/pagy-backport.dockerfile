@@ -27,6 +27,7 @@ RUN groupadd --gid=$gid --force $group \
  && echo root:$password | chpasswd \
  && sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /home/$user/.bashrc \
  && sed -i 's/\\u@\\h\\\[\\033\[00m\\\]:\\\[\\033\[01;34m\\\]\\w\\\[\\033\[00m\\\]/\\u \\\[\\033\[01;34m\\\]\\w\\\[\\033\[00m\\\] /' /home/$user/.bashrc \
+ && echo "export PROMPT_COMMAND='history -a' && export HISTFILE=/home/$user/.bash_history" >> /home/$user/.bashrc \
  && cp /home/$user/.bashrc /root/.bashrc
 
 ENV \
