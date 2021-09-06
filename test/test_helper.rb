@@ -14,3 +14,9 @@ require 'pagy/countless'
 require 'rack'
 require_relative 'mock_helpers/controller'
 require 'minitest/autorun'
+# only direct terminal (RubyMine safe)
+unless ENV['RM_INFO']
+  require "minitest/reporters"
+  Minitest::Reporters.use! [ Minitest::Reporters::HtmlReporter.new,
+                             Minitest::Reporters::SpecReporter.new ]
+end
