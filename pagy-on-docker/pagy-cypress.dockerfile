@@ -1,4 +1,4 @@
-FROM cypress/included:7.3.0
+FROM cypress/included:8.3.1
 
 ARG user
 ARG group

@@ -1,4 +1,4 @@
-FROM cypress/included:7.3.0
+FROM cypress/included:8.3.1
 
 # the upstram dockerfile already provides a node user with UID 1000
 # so we configure the image to run as that user
