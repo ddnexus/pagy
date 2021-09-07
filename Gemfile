@@ -2,7 +2,8 @@
 
 source 'https://rubygems.org'
 
-gemspec
+# we cannot use gemspec here because it would load pagy before simplecov so missing files from coverage
+# gemspec
 
 gem 'i18n'
 gem 'oj', require: false     # false is for testing with or without it

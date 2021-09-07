@@ -10,6 +10,9 @@ elsif !ENV['CI']
   require 'simplecov'
 end
 
+# we cannot use gemspec in the gemfile which would load pagy before simplecov so missing files from coverage
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+require 'pagy'
 require 'pagy/countless'
 require 'rack'
 require_relative 'mock_helpers/controller'
