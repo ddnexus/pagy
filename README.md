@@ -1,5 +1,3 @@
-# Pagy
-
 [![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
 ![ruby](https://img.shields.io/badge/ruby-2.5+-ruby.svg?colorA=99004d&colorB=cc0066)
 [![Build Status](https://img.shields.io/github/workflow/status/ddnexus/pagy/Pagy%20CI/master)](https://github.com/ddnexus/pagy/actions?query=branch:master)
@@ -11,20 +9,24 @@
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
 [![Chat](http://img.shields.io/badge/gitter-ruby--pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
 
-Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
+# Pagy
 
-## New in 4.8
+Pagy is a pagination gem. Here's a sample of what you get:
 
-- __This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
-- Updating `pagy` from `3.0+` to `4.0+` requires a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](CHANGELOG.md))
-- Added the docker development environment to ease contributions
-- Big code restyling: the code is simpler, more readable and verbose with yet improved performance.
-- All the public helpers accept optional keyword arguments (see the [Changelog](CHANGELOG.md#version-440))
-- New [Pagy::Console](https://ddnexus.github.io/pagy/api/console) and [standalone extra](http://ddnexus.github.io/pagy/extras/standalone) to use pagy without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without any app or config.
+![pagy-features](docs/assets/images/pagy-features.png)
 
+...but that doesn't show you the full story: Pagy is eminently customizable, with a host of features and extras to suit your needs including: (i) fast client-side rendering, (ii) header based pagination (iii) integration with javascript frameworks (e.g. `vue.js`, `react`, ...) - please see the 'features' section below and `require` what you need.
+
+## Why Pagy?
+
+<details>
+  <summary> 1. Performance </summary>
+
+## Performance
+
+By our measurements, Pagy is orders of magnitude more performant than comparable gems:
+  
 ## Comparison with other gems
-
-The best way to quickly get an idea about Pagy is comparing it to the other well known gems.
 
 The values shown in the charts below have been recorded while each gem was producing the exact same output in the exact same environment. _(see the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html))_
 
@@ -47,7 +49,11 @@ The values shown in the charts below have been recorded while each gem was produ
 _Each dot in the visualization above represents the resources that Pagy consumes for one full rendering. The other gems consume hundreds of times as much for the same rendering._
 
 _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio) is calculated out of speed (IPS) and Memory (Kb): it shows how well each gem uses each Kb of memory it allocates/consumes._
+</details>
 
+<details>
+  <summary> 2. Features </summary>
+  
 ## Features
 
 ### Straightforward Code
@@ -73,31 +79,12 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
 - It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
 - It does not impose any difficult-to-override logic or output _(see [why...](https://ddnexus.github.io/pagy/index#really-easy-to-customize))_
+</details>
 
-### Easy to use
 
-After requiring `pagy` and including its module(s) _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_, you can use it in your controller and views:
-
-Paginate your collection in some controller:
-
-```ruby
-@pagy, @records = pagy(Product.some_scope)
-```
-
-Render the navigation links with a super-fast helper in some view:
-
-```erb
-<%== pagy_nav(@pagy) %>
-```
-
-Or - if you prefer - render the navigation links with a template:
-
-```erb
-<%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
-```
-
-However, Pagy goes far beyond the classic pagination above. You can also use fast client-side rendering, headers pagination or integrate it with javascript frameworks (e.g. `vue.js`, `react`, ...) by just requiring the extras that you need.
-
+<details>
+  <summary> 3. Easy to Customize </summary>
+  
 ## Easy to customize
 
 Use the official extras, or write your own in just a few lines. Extras add special options and manage different components, behaviors, Frontend or Backend environments... usually by just requiring them:
@@ -142,14 +129,51 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 
 - [pagy_combo_nav_js](http://ddnexus.github.io/pagy/api/javascript#javascript-combo-navs): The fastest and lightest alternative UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ that combines navigation and pagination info in a single compact element:<br>![bootstrap_combo_nav_js](docs/assets/images/bootstrap_combo_nav_js-w.png)
 
+</details>
+
+### Quick Start
+
+After requiring `pagy` and including its module(s) _(see [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_, you can use it in your controller and views:
+
+Paginate your collection in some controller:
+
+```ruby
+@pagy, @records = pagy(Product.some_scope)
+```
+
+Render the navigation links with a super-fast helper in some view:
+
+```erb
+<%== pagy_nav(@pagy) %>
+```
+
+Or - if you prefer - render the navigation links with a template:
+
+```erb
+<%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
+```
+
 ### Related Projects
 
 - [pagy-cursor](https://github.com/Uysim/pagy-cursor) An early stage project that implements cursor pagination for AR
 - [grape-pagy](https://github.com/bsm/grape-pagy) Pagy pagination for the [grape](https://github.com/ruby-grape/grape) API framework
+- [pagy-rails](https://github.com/benkoshy/pagy-rails) Pagy set up in a rails app for you to test/demo.
+
+## New in 4.8
+
+- __This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
+- Updating `pagy` from `3.0+` to `4.0+` requires a single renaming in your code, but only if it uses the `searchkick` or the `elasticsearch_rails` extras (see the [Changelog](CHANGELOG.md))
+- Added the docker development environment to ease contributions
+- Big code restyling: the code is simpler, more readable and verbose with yet improved performance.
+- All the public helpers accept optional keyword arguments (see the [Changelog](CHANGELOG.md#version-440))
+- New [Pagy::Console](https://ddnexus.github.io/pagy/api/console) and [standalone extra](http://ddnexus.github.io/pagy/extras/standalone) to use pagy without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without any app or config.
 
 ## Resources
 
-### GoRails Screencast
+<details>
+  <summary> Screen casts </summary>
+  
+ ### GoRails Screencast
 
 [![GoRails Screencast](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
 
@@ -166,6 +190,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can use a 
 ### Raul Palacio Screencast (Spanish)
 
 [![Raul Palacio Screncast](docs/assets/images/raul-palacio-w360.jpg)](https://youtu.be/_j3gtKf5rRs)
+</details>
 
 ### Posts and Tutorials
 
