@@ -31,10 +31,10 @@ You have a couple of alternatives:
    - if `echo $GID` return nothing, then set the `GID` (get it with `id -g` in the terminal)
    - (Notice: you can also specify a few other variables used in the `docker-compose.yml` file.)
 
-  ```sh
-  cd pagy-on-docker
-  docker-compose build pagy pagy-jekyll
-  ```
+    ```sh
+    cd pagy-on-docker
+    docker-compose build pagy pagy-jekyll
+    ```
 
 2. Just set them with the command (you will have to set them each time you will have to build or do other stuff) For example:
 
@@ -54,6 +54,7 @@ docker-compose up pagy
 docker-compose up pagy-jekyll # for the documentation site
 docker-compose up pagy pagy-jekyll # for both pagy and the documentation site
 ```
+
 Then:
 
 1. Open a terminal in the pagy container:
@@ -92,8 +93,8 @@ When you want to get rid of everything related to the `pagy` development on your
 ### Caveats
 
 - If you use different pagy images for different pagy versions/branches:
-    - Remember to checkout the right branch before using it
-    - If you get some problem running the tests you might need to `rm -rf coverage`
+  - Remember to checkout the right branch before using it
+  - If you get some problem running the tests you might need to `rm -rf coverage`
 
 ## E2E Environment
 
