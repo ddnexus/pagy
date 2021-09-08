@@ -2,30 +2,49 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.191.1/containers/docker-existing-docker-compose
 // If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 
-// IMPORTANT: we try to use VSC config as less as possible, limiting it to the VSC specific stuff
-// in order to get docker/ docker-compose files/config as portable as possible between IDEs or CLI
+// pagy-on-docker: we try to use VSC config as less as possible, limiting it to the VSC specific stuff
+// in order to get docker/docker-compose files/config as portable as possible between editors, IDEs or CLI.
+// This file should giver you all the basic extensions and setting for developing pagy
 {
-	"name": "pagy",
-	"dockerComposeFile": [ "../pagy-on-docker/docker-compose.yml" ],
-	"service": "pagy",
-	"workspaceFolder": "/opt/project",
-	"extensions": [
-		"rebornix.ruby",
+    "dockerComposeFile": [
+        "../pagy-on-docker/docker-compose.yml",
+        "../pagy-on-docker/run-test-app.yml"
+    ],
+    "extensions": [
+		"antfu.browse-lite",
 		"castwide.solargraph",
-		"misogi.ruby-rubocop",
-		"groksrc.ruby",
-		"vortizhe.simple-ruby-erb",
+		"davidanson.vscode-markdownlint",
+		"eamodio.gitlens",
 		"jdforsythe.add-new-line-to-files",
-		"miguel-savignano.ruby-symbols",
-		"shardulm94.trailing-spaces",
-		"mutantdino.resourcemonitor",
 		"mhutchie.git-graph",
-		"eamodio.gitlens"
+		"misogi.ruby-rubocop",
+		"rangav.vscode-thunder-client",
+		"rebornix.ruby",
+		"shardulm94.trailing-spaces",
+		"tht13.html-preview-vscode",
+		"tnrich.vscode-extension-open-cypress",
+		"wingrunr21.vscode-ruby",
+		"yzhang.markdown-all-in-one",
+		"msjsdiag.debugger-for-edge"
 	],
-	"settings": {
-		// https://code.visualstudio.com/docs/editor/integrated-terminal#_configuration
-		// remove linux profile if it is zsh in the global settings
-		"terminal.integrated.profiles.linux": null,
-		"testExplorer.useNativeTesting": true
-	}
+    "name": "pagy",
+    "service": "pagy",
+    "settings": {
+        "markdownlint.config": {
+            "blanks-around-fences": true,
+            "MD025": false,
+            "MD026": false,
+            "MD033": false,
+            "MD046": false
+        },
+        "markdownlint.run": "onType",
+        // available in the container
+        "terminal.integrated.profiles.linux": {
+            "bash": {
+                "path": "bash",
+                "icon": "terminal-bash"
+            },
+        },
+    },
+    "workspaceFolder": "/opt/project"
 }

@@ -1,5 +1,3 @@
-# next 2 entries should not be in this file but VSCode ignore the global ignore settings
-/.vscode
 /.idea
 /.bundle/
 /*.gem
