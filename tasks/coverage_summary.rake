@@ -8,7 +8,7 @@ task :coverage_summary do
   result   = last_run['result']['line']
   puts "\n>>> SimpleCov Coverage: #{result}% <<<"
   if result < 100.0
-    Warning.warn "!!!!! Missing #{(100.0 - result).round(2)}% coverage !!!!!"
-    puts "\n(run it again with COVERAGE_REPORT=true for a line-by-line HTML report @ coverage/index.html)" unless ENV['COVERAGE_REPORT']
+    Warning.warn "!!!!! Missing #{(100.0 - result).round(2)}% coverage !!!!!\n"
+    puts "\n(run it again with HTML_REPORTS=true for a line-by-line HTML report @ coverage/index.html)" unless ENV['HTML_REPORTS']
   end
 end

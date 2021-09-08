@@ -71,7 +71,7 @@ Notice: Certain tests must run in an isolated ruby process. For example, certain
 Check the details (not only the summary) of the coverage by running in the container:
 
 ```sh
-COVERAGE_REPORT=true rake
+HTML_REPORTS=true rake
 ```
 
 Then check it at `http://0.0.0.0:63342/pagy/coverage`.

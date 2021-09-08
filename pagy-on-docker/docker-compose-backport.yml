@@ -33,7 +33,7 @@ services:
       - bundle:/usr/local/bundle
       - user_home:/home/$USER
     environment:
-      - COVERAGE_REPORT
+      - HTML_REPORTS
     stdin_open: true
     tty: true
 

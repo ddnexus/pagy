@@ -20,6 +20,7 @@ require 'minitest/autorun'
 # only direct terminal (RubyMine safe)
 unless ENV['RM_INFO']
   require "minitest/reporters"
-  Minitest::Reporters.use! [ Minitest::Reporters::HtmlReporter.new,
-                             Minitest::Reporters::SpecReporter.new ]
+  reporters = [Minitest::Reporters::SpecReporter.new]
+  reporters.push Minitest::Reporters::HtmlReporter.new if ENV['HTML_REPORTS']
+  Minitest::Reporters.use! reporters
 end
