@@ -11,6 +11,7 @@ gem 'rack'
 gem 'rake'
 gem 'rake-manifest'
 gem 'rerun'
+gem 'solargraph'  # run bundle exec yard gems to index installed and cached gems
 
 group :test do
   gem 'codecov', require:  false
