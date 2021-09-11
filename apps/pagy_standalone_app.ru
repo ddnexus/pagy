@@ -27,7 +27,8 @@ gemfile true do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'rack'
-  gem 'pagy'
+  # gem 'pagy'             # <--install from rubygems
+  gem 'pagy', path: '../'  # <-- use the local repo
   gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
