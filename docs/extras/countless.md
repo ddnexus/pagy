@@ -27,9 +27,9 @@ In a controller:
 # enable minimal mode for this instance (lazy loading)
 @pagy, @records = pagy_countless(some_scope, countless_minimal: true, ...)
 ```
-   
+
 ## Modes
-      
+
 This extra can be used in two different modes by enabling or not the `:countless_minimal` variable.
 
 ### Default mode

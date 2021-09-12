@@ -15,8 +15,6 @@ This extra will also create a dummy `params` method (if not already defined) in 
 
 See [extras](../extras.md) for general usage info.
 
-#### Standard app or API
-
 In the `pagy.rb` initializer:
 
 ```ruby
