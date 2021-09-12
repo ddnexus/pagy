@@ -30,9 +30,8 @@ class Pagy
   module Frontend
 
     # Return the items selector HTML. For example "Show [20] items per page"
-    def pagy_items_selector_js(pagy, deprecated_id=nil, pagy_id: nil, item_name: nil, i18n_key: nil, link_extra: '')
+    def pagy_items_selector_js(pagy, pagy_id: nil, item_name: nil, i18n_key: nil, link_extra: '')
       return '' unless pagy.vars[:enable_items_extra]
-      pagy_id        = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
       p_id           = %( id="#{pagy_id}") if pagy_id
       p_vars         = pagy.vars
       p_items        = p_vars[:items]

@@ -28,8 +28,7 @@ class Pagy
   module UseStandaloneExtra
     # without any :url var it works exactly as the regular #pagy_url_for;
     # with a defined :url variable it does not use rack/request
-    def pagy_url_for(pagy, page, deprecated_url=nil, absolute: nil)
-      absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
+    def pagy_url_for(pagy, page, absolute: nil)
       p_vars = pagy.vars
       if p_vars[:url]
         url_string = p_vars[:url]

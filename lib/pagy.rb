@@ -69,7 +69,6 @@ class Pagy
 
 end
 
-require 'pagy/deprecation'
 require 'pagy/backend'
 require 'pagy/frontend'
 require 'pagy/exceptions'

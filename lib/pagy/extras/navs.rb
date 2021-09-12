@@ -7,8 +7,7 @@ class Pagy
   module Frontend
 
     # Javascript pagination: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '', steps: nil)
-      pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+    def pagy_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => pagy_nav_prev_html(pagy, link),
@@ -21,8 +20,7 @@ class Pagy
     end
 
     # Javascript combo pagination: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_combo_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '')
-      pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+    def pagy_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page

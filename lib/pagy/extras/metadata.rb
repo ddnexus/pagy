@@ -16,8 +16,7 @@ class Pagy
 
     include Helpers
 
-    def pagy_metadata(pagy, deprecated_url=nil, absolute: nil)
-      absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
+    def pagy_metadata(pagy, absolute: nil)
       names   = pagy.vars[:metadata]
       unknown = names - METADATA
       raise VariableError.new(pagy), "unknown metadata #{unknown.inspect}" \

@@ -38,7 +38,6 @@ lib/pagy.rb
 lib/pagy/backend.rb
 lib/pagy/console.rb
 lib/pagy/countless.rb
-lib/pagy/deprecation.rb
 lib/pagy/exceptions.rb
 lib/pagy/extras/arel.rb
 lib/pagy/extras/array.rb

@@ -13,8 +13,7 @@ class Pagy
 
   module Helpers
     # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(pagy, page, deprecated_url=nil, absolute: nil)
-      absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
+    def pagy_url_for(pagy, page, absolute: nil)
       p_vars = pagy.vars
       params = request.GET.merge(p_vars[:params])
       params[p_vars[:page_param].to_s]  = page
@@ -64,9 +63,8 @@ class Pagy
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, deprecated_item_name=nil, pagy_id: nil, item_name: nil, i18n_key: nil)
-      p_id      = %( id="#{pagy_id}") if pagy_id
-      item_name = Pagy.deprecated_arg(:item_name, deprecated_item_name, :item_name, item_name) if deprecated_item_name
+    def pagy_info(pagy, pagy_id: nil, item_name: nil, i18n_key: nil)
+      p_id    = %( id="#{pagy_id}") if pagy_id
       p_count = pagy.count
       key     = if    p_count.zero?   then 'pagy.info.no_items'
                 elsif pagy.pages == 1 then 'pagy.info.single_page'
@@ -81,8 +79,7 @@ class Pagy
 
     # Returns a performance optimized proc to generate the HTML links
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_link_proc(pagy, deprecated_link_extra=nil, link_extra: '')
-      link_extra = Pagy.deprecated_arg(:link_extra, deprecated_link_extra, :link_extra, link_extra) if deprecated_link_extra
+    def pagy_link_proc(pagy, link_extra: '')
       p_prev = pagy.prev
       p_next = pagy.next
       left, right = %(<a href="#{pagy_url_for pagy, PAGE_PLACEHOLDER}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
