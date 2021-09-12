@@ -86,7 +86,7 @@ describe 'pagy/extras/meilisearch' do
         pagy    = Pagy.new_from_meilisearch(results)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal 1000
+        _(pagy.items).must_equal 10
         _(pagy.page).must_equal 1
       end
       it 'paginates results with vars' do
