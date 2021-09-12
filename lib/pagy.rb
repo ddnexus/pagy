@@ -16,26 +16,21 @@ class Pagy
   VARS = { page: 1, items: 20, outset: 0, size: [1, 4, 4, 1], page_param: :page,              # rubocop:disable Style/MutableConstant
            params: {}, fragment: '', link_extra: '', i18n_key: 'pagy.item_name', cycle: false }
 
-  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :from, :to, :prev, :next
-
-  INSTANCE_VARS_MIN = { count: 0, items: 1, page: 1, outset: 0 }.freeze
+  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
-    @vars = VARS.merge( vars.delete_if{ |k,v| VARS.key?(k) && (v.nil? || v == '') } )
-    
-    INSTANCE_VARS_MIN.each do |name,min|
-      raise VariableError.new(self), "expected :#{name} >= #{min}; got #{@vars[name].inspect}" \
-            unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
-    end
-    @pages = @last = [(@count.to_f / @items).ceil, 1].max
+    normalize_vars(vars)
+    setup_vars(count: 0, page: 1, outset: 0)
+    setup_items_var
+    setup_pages_var
     raise OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}" \
           if @page > @last
 
     @offset = @items * (@page - 1) + @outset
-    @items  = @count - ((@pages - 1) * @items) if @page == @last && @count.positive?
-    @from   = @count.zero? ? 0 : @offset + 1 - @outset
-    @to     = @count.zero? ? 0 : @offset + @items - @outset
+    @from   = [@offset - @outset + 1, @count].min
+    @to     = [@offset - @outset + @items, @count].min
+    @in     = [@to - @from + 1, @count].min
     @prev   = (@page - 1 unless @page == 1)
     @next   = @page == @last ? (1 if @vars[:cycle]) : @page + 1
   end
@@ -66,6 +61,31 @@ class Pagy
     series[series.index(@page)] = @page.to_s
     series
   end
+
+  protected
+
+    # apply defaults, cleanup blanks and set @vars
+    def normalize_vars(vars)
+      @vars = VARS.merge(vars.delete_if { |k,v| VARS.key?(k) && (v.nil? || v == '') })
+    end
+
+    # setup and validates the passed vars: var must be present and value.to_i must be >= to min
+    def setup_vars(name_min)
+      name_min.each do |name, min|
+        raise VariableError.new(self), "expected :#{name} >= #{min}; got #{@vars[name].inspect}" \
+            unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
+      end
+    end
+
+    # setup and validate the items (overridden by the gearbox extra)
+    def setup_items_var
+      setup_vars(items: 1)
+    end
+
+    # setup and validates the pages (overridden by the gearbox extra)
+    def setup_pages_var
+      @pages = @last = [(@count.to_f / @items).ceil, 1].max
+    end
 
 end
 

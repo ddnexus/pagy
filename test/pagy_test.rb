@@ -57,6 +57,7 @@ describe 'pagy' do
       _(pagy.pages).must_equal 1
       _(pagy.last).must_equal 1
       _(pagy.offset).must_equal 0
+      _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0
       _(pagy.prev).must_be_nil
@@ -67,6 +68,7 @@ describe 'pagy' do
       _(pagy.pages).must_equal 1
       _(pagy.last).must_equal 1
       _(pagy.offset).must_equal 0
+      _(pagy.in).must_equal 8
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 8
       _(pagy.prev).must_be_nil
@@ -77,6 +79,7 @@ describe 'pagy' do
       _(pagy.pages).must_equal 2
       _(pagy.last).must_equal 2
       _(pagy.offset).must_equal 0
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 10
       _(pagy.prev).must_be_nil
@@ -87,6 +90,7 @@ describe 'pagy' do
       _(pagy.pages).must_equal 2
       _(pagy.last).must_equal 2
       _(pagy.offset).must_equal 10
+      _(pagy.in).must_equal 5
       _(pagy.from).must_equal 11
       _(pagy.to).must_equal 15
       _(pagy.prev).must_equal 1
@@ -100,6 +104,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 0
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 10
       _(pagy.prev).must_be_nil
@@ -113,6 +118,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 10
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 11
       _(pagy.to).must_equal 20
       _(pagy.prev).must_equal 1
@@ -126,6 +132,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 20
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 21
       _(pagy.to).must_equal 30
       _(pagy.prev).must_equal 2
@@ -139,6 +146,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 30
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 31
       _(pagy.to).must_equal 40
       _(pagy.prev).must_equal 3
@@ -152,6 +160,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 40
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 41
       _(pagy.to).must_equal 50
       _(pagy.prev).must_equal 4
@@ -165,6 +174,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 50
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 51
       _(pagy.to).must_equal 60
       _(pagy.prev).must_equal 5
@@ -178,6 +188,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 60
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 61
       _(pagy.to).must_equal 70
       _(pagy.prev).must_equal 6
@@ -191,6 +202,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 70
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 71
       _(pagy.to).must_equal 80
       _(pagy.prev).must_equal 7
@@ -204,6 +216,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 80
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 81
       _(pagy.to).must_equal 90
       _(pagy.prev).must_equal 8
@@ -217,6 +230,7 @@ describe 'pagy' do
       _(pagy.last).must_equal 11
       _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 90
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 91
       _(pagy.to).must_equal 100
       _(pagy.prev).must_equal 9
@@ -228,8 +242,9 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.pages).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 3
+      _(pagy.items).must_equal 10
       _(pagy.offset).must_equal 100
+      _(pagy.in).must_equal 3
       _(pagy.from).must_equal 101
       _(pagy.to).must_equal 103
       _(pagy.prev).must_equal 10
@@ -240,6 +255,7 @@ describe 'pagy' do
       pagy = Pagy.new(count: 87, page: 1, outset: 10, items: 10)
       _(pagy.offset).must_equal 10
       _(pagy.items).must_equal 10
+      _(pagy.in).must_equal 10
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 10
       _(pagy.pages).must_equal 9
@@ -247,19 +263,11 @@ describe 'pagy' do
     it 'initializes outset page 9' do
       pagy = Pagy.new(count: 87, page: 9, outset: 10, items: 10)
       _(pagy.offset).must_equal 90
-      _(pagy.items).must_equal 7
+      _(pagy.items).must_equal 10
+      _(pagy.in).must_equal 7
       _(pagy.from).must_equal 81
       _(pagy.to).must_equal 87
       _(pagy.pages).must_equal 9
-    end
-    it 'initializes items of last page of one' do
-      _(Pagy.new(items: 10, count: 0).items).must_equal 10
-      _(Pagy.new(items: 10, count: 4).items).must_equal 4
-      _(Pagy.new(items: 10, count: 10).items).must_equal 10
-    end
-    it 'initializes items of last page of many' do
-      _(Pagy.new(items: 10, count: 14, page: 2).items).must_equal 4
-      _(Pagy.new(items: 10, count: 20, page: 2).items).must_equal 10
     end
     it 'handles the :cycle variable' do
       pagy = Pagy.new(count: 100, page: 10, items: 10, cycle: true)

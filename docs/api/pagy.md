@@ -76,7 +76,7 @@ They are all integers:
 |:----------|:-----------------------------------------------------------------------------------------------|:--------|
 | `:count`  | the total count of the collection to paginate (mandatory argument)                             | `nil`   |
 | `:page`   | the requested page number                                                                      | `1`     |
-| `:items`  | the _requested_ number of items for the page                                                   | `20`    |
+| `:items`  | the requested number of items for the page                                                     | `20`    |
 | `:outset` | the initial offset of the collection to paginate: pass it only if the collection had an offset | `0`     |
 
 ### Other Variables
@@ -101,8 +101,9 @@ Pagy exposes all the instance variables needed for the pagination through a few 
 |:---------|:-------------------------------------------------------------------------------------------------------------------|
 | `count`  | the collection `:count`                                                                                            |
 | `page`   | the current page number                                                                                            |
-| `items`  | the _actual_ number of items in the current non-empty page (can be less than the requested `:items` variable)      |
+| `items`  | the requested number of items for the page                                                                         |
 | `pages`  | the number of total pages in the collection (same as `last` but with cardinal meaning)                             |
+| `in`     | the number of the items in the page                                                                                |
 | `last`   | the number of the last page in the collection (same as `pages` but with ordinal meaning)                           |
 | `offset` | the number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
 | `from`   | the collection-position of the first item in the page (`:outset` excluded)                                         |
@@ -137,6 +138,7 @@ The lowest possible limit of the pagination is reached when the collection has `
 | `page`    | `1`     |
 | `pages`   | `1`     |
 | `last`    | `1`     |
+| `in`      | `0`     |
 | `from`    | `0`     |
 | `to`      | `0`     |
 | `prev`    | `nil`   |
@@ -148,7 +150,7 @@ Which means:
 - there is always a `page` #`1` in the pagination, even if it's empty
 - `pages` and `last` are always at least both `1`
 - the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string. With `size: []` the `series` method returns `[]`
-- `from` and `to` of an empty page are both `0`
+- `in`, `from` and `to` of an empty page are all `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)
 
 ## Exceptions

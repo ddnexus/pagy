@@ -41,7 +41,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
-    oj (3.13.5)
+    oj (3.13.6)
     parallel (1.20.1)
     parser (3.0.2.0)
       ast (~> 2.4.1)

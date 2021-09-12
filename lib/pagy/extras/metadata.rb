@@ -7,7 +7,7 @@ class Pagy
   private
 
     METADATA = %i[ scaffold_url first_url prev_url page_url next_url last_url
-                   count page items vars pages last from to prev next series
+                   count page items vars pages last in from to prev next series
                ].tap do |metadata|
                  metadata << :sequels if VARS.key?(:steps)  # :steps gets defined along with the #sequels method
                end.freeze

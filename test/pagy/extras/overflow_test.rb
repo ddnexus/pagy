@@ -35,7 +35,7 @@ describe 'pagy/extras/overflow' do
       _(pagy.page).must_equal pagy.last
       _(pagy.vars[:page]).must_equal 100
       _(pagy.offset).must_equal 100
-      _(pagy.items).must_equal 3
+      _(pagy.items).must_equal 10
       _(pagy.from).must_equal 101
       _(pagy.to).must_equal 103
       _(pagy.prev).must_equal 10
