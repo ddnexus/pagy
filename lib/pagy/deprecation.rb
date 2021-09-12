@@ -2,13 +2,6 @@
 class Pagy
   class << self
 
-    # deprecated variables
-    def deprecated_var(var, val, new_var, new_val)
-      value = val || new_val
-      Warning.warn %([PAGY WARNING] deprecated use of '#{var}' var will not be supported in 5.0! Use '#{new_var}: #{value.inspect}' instead.)
-      value
-    end
-
     # deprecated pagy_url_for argument order
     def deprecated_order(pagy, page)
       Warning.warn %([PAGY WARNING] inverted use of pagy/page in pagy_url_for will not be supported in 5.0! Use pagy_url_for(pagy, page) instead.)

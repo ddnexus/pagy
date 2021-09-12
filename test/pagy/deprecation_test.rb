@@ -13,19 +13,6 @@ describe 'pagy/deprecation' do
   let(:view) { MockView.new }
   let(:pagy) { Pagy.new(count: 100)}
 
-  describe 'Pagy.deprecated_var' do
-    it 'deprecates arg and returns right value' do
-      assert_output('', "[PAGY WARNING] deprecated use of 'var' var will not be supported in 5.0! Use 'new_var: \"deprecated-val\"' instead.") do
-        _(Pagy.deprecated_var(:var, 'deprecated-val', :new_var, 'new-value')).must_equal 'deprecated-val'
-      end
-    end
-    it 'works with anchor/fragment variable' do
-      assert_output('', "[PAGY WARNING] deprecated use of 'anchor' var will not be supported in 5.0! Use 'fragment: \"#fragment\"' instead.") do
-        Pagy.new(count: 100, anchor: '#fragment')
-      end
-    end
-  end
-
   describe 'Pagy.deprecated_arg' do
     it 'deprecates arg and returns right value' do
       assert_output('', "[PAGY WARNING] deprecated use of positional 'arg' arg will not be supported in 5.0! Use only the keyword arg 'new_key: \"deprecated-val\"' instead.") do
