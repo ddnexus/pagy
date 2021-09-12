@@ -5,6 +5,7 @@
 
 # Copy this file in your own machine and
 # ensure rack is installed (or `gem install rack`)
+# or run it from the apps dir in the repo
 
 # USAGE:
 #    rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
@@ -38,8 +39,11 @@ end
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
+# Pagy::VARS[:enable_items_extra]
 require 'pagy/extras/trim'
 Pagy::VARS[:trim] = false # opt-in trim
+# require 'pagy/extras/gearbox'
+# Pagy::VARS[:gearbox_items] = [10, 20, 40, 80]
 
 # sinatra application
 require 'sinatra/base'

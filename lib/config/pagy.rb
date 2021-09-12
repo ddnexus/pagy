@@ -46,15 +46,35 @@
 
 # Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects
 # See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
-# default :pagy_search method: change only if you use
-# also the searchkick extra that defines the same
+# default :pagy_search method: change only if you use also
+# the searchkick or meilisearch extra that defines the same
 # VARS[:elasticsearch_rails_search_method] = :pagy_search
 # require 'pagy/extras/elasticsearch_rails'
 
+# Headers extra: http response headers (and other helpers) useful for API pagination
+# See http://ddnexus.github.io/pagy/extras/headers
+# require 'pagy/extras/headers'
+# Pagy::VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }     # default
+
+# Meilisearch extra: Paginate `Meilisearch` result objects
+# See https://ddnexus.github.io/pagy/extras/meilisearch
+# default :pagy_search method: change only if you use also
+# the elasticsearch_rails or searchkick extra that define the same method
+# VARS[:meilisearch_search_method] = :pagy_search
+# require 'pagy/extras/meilisearch'
+
+# Metadata extra: Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
+# See https://ddnexus.github.io/pagy/extras/metadata
+# you must require the shared internal extra (BEFORE the metadata extra) ONLY if you need also the :sequels
+# require 'pagy/extras/shared'
+# require 'pagy/extras/metadata'
+# For performance reason, you should explicitly set ONLY the metadata you use in the frontend
+# Pagy::VARS[:metadata] = [:scaffold_url, :count, :page, :prev, :next, :last]    # example
+
 # Searchkick extra: Paginate `Searchkick::Results` objects
 # See https://ddnexus.github.io/pagy/extras/searchkick
-# default :pagy_search method: change only if you use
-# also the elasticsearch_rails extra that defines the same
+# default :pagy_search method: change only if you use also
+# the elasticsearch_rails or meilisearch extra that defines the same
 # VARS[:searchkick_search_method] = :pagy_search
 # require 'pagy/extras/searchkick'
 # uncomment if you are going to use Searchkick.pagy_search
@@ -100,14 +120,12 @@
 
 # Feature Extras
 
-# Headers extra: http response headers (and other helpers) useful for API pagination
-# See http://ddnexus.github.io/pagy/extras/headers
-# require 'pagy/extras/headers'
-# Pagy::VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }     # default
-
-# Support extra: Extra support for features like: incremental, infinite, auto-scroll pagination
-# See https://ddnexus.github.io/pagy/extras/support
-# require 'pagy/extras/support'
+# Gearbox extra: Automatically change the number of items depending on the page number
+# See https://ddnexus.github.io/pagy/extras/gearbox
+# require 'pagy/extras/gearbox'
+# set to false if you want to make :gearbox_extra an opt-in variable
+# Pagy::VARS[:gearbox_extra] = false    # default true
+# Pagy::VARS[:gearbox_items] = [15, 30, 60, 100]   # default
 
 # Items extra: Allow the client to request a custom number of items per page with an optional selector UI
 # See https://ddnexus.github.io/pagy/extras/items
@@ -122,13 +140,9 @@
 # require 'pagy/extras/overflow'
 # Pagy::VARS[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
 
-# Metadata extra: Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
-# See https://ddnexus.github.io/pagy/extras/metadata
-# you must require the shared internal extra (BEFORE the metadata extra) ONLY if you need also the :sequels
-# require 'pagy/extras/shared'
-# require 'pagy/extras/metadata'
-# For performance reason, you should explicitly set ONLY the metadata you use in the frontend
-# Pagy::VARS[:metadata] = [:scaffold_url, :count, :page, :prev, :next, :last]    # example
+# Support extra: Extra support for features like: incremental, infinite, auto-scroll pagination
+# See https://ddnexus.github.io/pagy/extras/support
+# require 'pagy/extras/support'
 
 # Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/extras/trim

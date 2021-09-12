@@ -46,6 +46,7 @@ lib/pagy/extras/bulma.rb
 lib/pagy/extras/countless.rb
 lib/pagy/extras/elasticsearch_rails.rb
 lib/pagy/extras/foundation.rb
+lib/pagy/extras/gearbox.rb
 lib/pagy/extras/headers.rb
 lib/pagy/extras/i18n.rb
 lib/pagy/extras/items.rb

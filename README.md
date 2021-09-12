@@ -127,6 +127,7 @@ Use the official extras, or write your own in just a few lines. Extras add speci
 ### Extra Features and Tools
 
 - [Pagy::Console](https://ddnexus.github.io/pagy/api/console): Try any pagy feature or helper right in the irb/rails console even without any app or config
+- [gearbox](https://ddnexus.github.io/pagy/extras/gearbox): Automatically change the number of items depending on the page number
 - [i18n](http://ddnexus.github.io/pagy/extras/i18n): Use the `I18n` gem instead of the pagy-i18n implementation
 - [items](http://ddnexus.github.io/pagy/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
 - [overflow](http://ddnexus.github.io/pagy/extras/overflow): Allow for easy handling of overflowing pages

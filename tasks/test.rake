@@ -11,6 +11,7 @@ test_tasks = {}
     i18n
     items
     items_trim
+    gearbox
     meilisearch
     overflow
     searchkick
