@@ -30,7 +30,6 @@ class Pagy
     # with a defined :url variable it does not use rack/request
     def pagy_url_for(pagy, page, deprecated_url=nil, absolute: nil)
       absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
-      pagy, page = Pagy.deprecated_order(pagy, page) if page.is_a?(Pagy)
       p_vars = pagy.vars
       if p_vars[:url]
         url_string = p_vars[:url]

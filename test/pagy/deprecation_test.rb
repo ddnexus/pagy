@@ -44,17 +44,4 @@ describe 'pagy/deprecation' do
       end
     end
   end
-
-  describe 'Pagy.deprecated_order' do
-    it 'deprecates arg order and returns them inverted' do
-      assert_output('', "[PAGY WARNING] inverted use of pagy/page in pagy_url_for will not be supported in 5.0! Use pagy_url_for(pagy, page) instead.") do
-        _(Pagy.deprecated_order('page', 'pagy')).must_equal %w[pagy page]
-      end
-    end
-    it 'works with pagy_url_for' do
-      assert_output('', "[PAGY WARNING] inverted use of pagy/page in pagy_url_for will not be supported in 5.0! Use pagy_url_for(pagy, page) instead.") do
-        view.pagy_url_for(2, pagy)
-      end
-    end
-  end
 end
