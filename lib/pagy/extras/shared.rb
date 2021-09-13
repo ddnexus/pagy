@@ -30,14 +30,14 @@ class Pagy
     if defined?(Oj)
       # it returns a script tag with the JSON-serialized args generated with the faster oj gem
       def pagy_json_attr(pagy, *args)
-        args << pagy.vars[:page_param] if pagy.vars[:enable_trim_extra]
+        args << pagy.vars[:page_param] if pagy.vars[:trim_extra]
         %(data-pagy-json="#{Oj.dump(args, mode: :strict).gsub('"', '&quot;')}")
       end
     else
       require 'json'
       # it returns a script tag with the JSON-serialized args generated with the slower to_json
       def pagy_json_attr(pagy, *args)
-        args << pagy.vars[:page_param] if pagy.vars[:enable_trim_extra]
+        args << pagy.vars[:page_param] if pagy.vars[:trim_extra]
         %(data-pagy-json="#{args.to_json.gsub('"', '&quot;')}")
       end
     end

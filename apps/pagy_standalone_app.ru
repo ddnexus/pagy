@@ -41,7 +41,7 @@ require 'pagy/extras/navs'
 require 'pagy/extras/items'
 # Pagy::VARS[:items_extra]
 require 'pagy/extras/trim'
-Pagy::VARS[:trim] = false # opt-in trim
+Pagy::VARS[:trim_extra] = false # opt-in trim
 # require 'pagy/extras/gearbox'
 # Pagy::VARS[:gearbox_items] = [10, 20, 40, 80]
 

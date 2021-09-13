@@ -123,17 +123,17 @@
 # Gearbox extra: Automatically change the number of items depending on the page number
 # See https://ddnexus.github.io/pagy/extras/gearbox
 # require 'pagy/extras/gearbox'
-# set to false if you want to make :gearbox_extra an opt-in variable
-# Pagy::VARS[:gearbox_extra] = false    # default true
+# set to false only if you want to make :gearbox_extra an opt-in variable
+# Pagy::VARS[:gearbox_extra] = false               # default true
 # Pagy::VARS[:gearbox_items] = [15, 30, 60, 100]   # default
 
 # Items extra: Allow the client to request a custom number of items per page with an optional selector UI
 # See https://ddnexus.github.io/pagy/extras/items
 # require 'pagy/extras/items'
-# Pagy::VARS[:items_param] = :items    # default
-# Pagy::VARS[:max_items]   = 100       # default
-# set to false if you want to make :items_extra an opt-in variable
+# set to false only if you want to make :items_extra an opt-in variable
 # Pagy::VARS[:items_extra] = false    # default true
+# Pagy::VARS[:items_param] = :items   # default
+# Pagy::VARS[:max_items]   = 100      # default
 
 # Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/extras/overflow
@@ -147,9 +147,8 @@
 # Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/extras/trim
 # require 'pagy/extras/trim'
-# after requiring it will trim by default
-# set to false if you want to make :enable_trim_extra an opt-in variable
-# Pagy::VARS[:enable_trim_extra] = false # default true
+# set to false only if you want to make :trim_extra an opt-in variable
+# Pagy::VARS[:trim_extra] = false # default true
 
 
 # Rails

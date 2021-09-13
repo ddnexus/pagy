@@ -27,7 +27,7 @@ describe 'pagy/extras/trim' do
         pagy = Pagy.new(count: 1000, page: page)
         link = view.pagy_link_proc(pagy)
         _(link.call(page)).must_equal("<a href=\"/foo#{trimmed}\"   >#{page}</a>")
-        pagy = Pagy.new(count: 1000, page: page, enable_trim_extra: false)
+        pagy = Pagy.new(count: 1000, page: page, trim_extra: false)
         link = view.pagy_link_proc(pagy)
         _(link.call(page)).must_equal("<a href=\"/foo#{generated}\"   >#{page}</a>")
       end
