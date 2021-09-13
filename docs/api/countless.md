@@ -5,10 +5,10 @@ title: Pagy::Countless
 
 This is a `Pagy` subclass (see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/countless.rb)) that provides pagination without the need of any `:count`. That may be especially useful in the following scenarios:
 
- - slow `COUNT(*)` query - result of large tables or poorly optimized DBs
- - large collections of items where the count is missing or irrelevant
- - minimalistic UI, infinite scrolling, APIs that don't benefit from a nav-bar
- - when the full nav-bar is not a requirement and/or performance is more desirable
+- slow `COUNT(*)` query - result of large tables or poorly optimized DBs
+- large collections of items where the count is missing or irrelevant
+- minimalistic UI, infinite scrolling, APIs that don't benefit from a nav-bar
+- when the full nav-bar is not a requirement and/or performance is more desirable
 
 This class is providing support for extras that don't need the full set of pagination support or need to avoid the `:count` variable (e.g. the [countless](../extras/countless.md) extra). You should not need to use it directly because it is required and used internally.
 

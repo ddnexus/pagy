@@ -14,7 +14,7 @@ Pagy 5.0.0 removes the support for a few deprecation still supported in pagy 4.
 - update your code as indicated
 - ensure that the log is free from warnings
 
-Here is a list of the deprecations that are not suppoted anymore:
+Here is a list of the deprecations that are not supported anymore:
 
 #### Removed support for deprecated variables
 

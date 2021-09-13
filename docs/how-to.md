@@ -31,7 +31,7 @@ If you want to just play with Pagy before using it in your own app, you have 2 a
     - If you don't use Bundler, install and require the Pagy gem:
 
         ```bash
-        $ gem install pagy
+        gem install pagy
         ```
 
         ```ruby
@@ -74,11 +74,13 @@ If you want to just play with Pagy before using it in your own app, you have 2 a
                 <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
                 <%== pagy_nav(@pagy) %>
                 ```
+
             - or with an easy customizable template:
 
                 ```erb
                 <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
                 ```
+
     - Option B: if your app renders the views with a javascript framework (e.g. Vue.js, react.js, ...), you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
 
         1. require the [metadata extra](extras/metadata.md) by uncommenting the following line in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
@@ -309,13 +311,14 @@ For a detailed tutorial about this topic see [Handling Pagination When POSTing C
 
 ## Customizing the item name
 
-The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that by editing the values of the `"pagy.item_name"` i18n key in the [dictionaray files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
+The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that by editing the values of the `"pagy.item_name"` i18n key in the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
 
 Besides you can also (dynamically) set the `:i18n_key` variable to let Pagy know where to lookup the item name in some dictionary file (instead of looking it up in the default `"pagy.item_name"` key).
 
 You have a few ways to do that:
 
 1. you can override the `pagy_get_vars` method in your controller, adding the dynamically set `:i18n_key`. For example with ActiveRecord (mostly useful with the [i18n extra](extras/i18n.md) or if you copy over the AR keys into the pagy dictionary):
+
     ```ruby
     def pagy_get_vars(collection, vars)
       { count: ...,
@@ -325,6 +328,7 @@ You have a few ways to do that:
     ```
 
 2. you can set the `:i18n_key` variable, either globally using the `Pagy::VARS` hash or per instance with the `Pagy.new` method or with the `pagy` controller method:
+
     ```ruby
     # all the Pagy instances will have the default
     Pagy::VARS[:i18n_key] = 'activerecord.models.product'
@@ -332,13 +336,16 @@ You have a few ways to do that:
     # or single Pagy instance
     @pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product' )
     ```
+
     or passing it as an optional keyword argument to the helper:
+
     ```erb
     <%== pagy_info(@pagy, i18n_key: 'activerecord.models.product') %>
     <%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.models.product') %>
     ```
 
 3. you can override entirely the `:item_name` by passing an already pluralized string directly to the helper call:
+
     ```erb
     <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
     <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
@@ -408,7 +415,7 @@ Ransack `result` returns an `ActiveRecord` collection, which can be paginated ou
 
 Pagy has a few of extras for gems returning search results: [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md) and [meilisearch](extras/meilisearch.md)
 
-## Paginate pre-offsetted and pre-limited collections
+## Paginate pre-offset and pre-limited collections
 
 With the other pagination gems you cannot paginate a subset of a collection that you got using `offset` and `limit`. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
 
@@ -432,7 +439,7 @@ count = collection.count
 
 When your collection is already paginated and contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object:
 
-```
+```rb
 #<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>
 ```
 
@@ -447,7 +454,6 @@ tobj    = Tmdb::Search.movie("Harry Potter", page: params[:page])
 ```
 
 Notice that you can apply the same principe to any other type of collection metadata.
-
 
 ## Paginate Any Collection
 
@@ -638,7 +644,7 @@ In that case you don't need the `Pagy::Frontend` nor any frontend extra. You sho
 
 ## Maximizing Performance
 
-Here are some tips that will help chosing the best way to use Pagy, depending on your requirements and environment.
+Here are some tips that will help choosing the best way to use Pagy, depending on your requirements and environment.
 
 ### Consider the nav_js
 

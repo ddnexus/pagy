@@ -5,7 +5,7 @@ title: Basic Concepts
 
 ## Pagination is a simple task
 
-Basically, a pagination gem needs to calculate a series of 10-20 sequencial integers (the page numbers) and loop through that series to produce one link per integer. That's just a long string with a few numbers in it, and it's a very simple task... unless someone builds a whole complex world of thousands of objects around a simple series of integers :).
+Basically, a pagination gem needs to calculate a series of 10-20 sequential integers (the page numbers) and loop through that series to produce one link per integer. That's just a long string with a few numbers in it, and it's a very simple task... unless someone builds a whole complex world of thousands of objects around a simple series of integers :).
 
 ## Pagy keeps it simple
 
@@ -27,7 +27,7 @@ Those are perfect helpers but only if used _in an application_.  Because _they a
 
 **Every collection knows already how to paginate itself**: that's what OFFSET and LIMIT in DBs are for! You decide the limit (the items per page) and Pagy (or yourself) can calculate the offset with simple arithmetic: `offset = items * (page - 1)`. That's not rocket science! You don't need to add a bunch of methods to your models just to get the page records!
 
-Ignoring these simple rules has a lot of drawbacks for performance, memory, maintainance, complexity and usability, as you can confirm with the [Gems Comparison page](http://ddnexus.github.io/pagination-comparison).
+Ignoring these simple rules has a lot of drawbacks for performance, memory, maintenance, complexity and usability, as you can confirm with the [Gems Comparison page](http://ddnexus.github.io/pagination-comparison).
 
 ## No rails engine needed
 
@@ -41,6 +41,6 @@ You could even use it directly (without using any other Pagy code) in a small pa
 
 ## Really easy to customize
 
-If options and configuration are not enough, you have a few specialized [extras](extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. All the Pagy helpers are contained in 2 plain modules with no nesting. You include them in your code, so you can override any method right where you use it: no tricky gymmickry required.
+If options and configuration are not enough, you have a few specialized [extras](extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. All the Pagy helpers are contained in 2 plain modules with no nesting. You include them in your code, so you can override any method right where you use it: no tricky gimmickry required.
 
 What could be easier?

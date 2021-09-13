@@ -13,7 +13,7 @@ You can extend this module with a few more nav helpers _(see the [extras](../ext
 # typically in some helper
 include Pagy::Frontend
 
-# optional overriding of some submethod (e.g. massage the params)
+# optional overriding of some sub-method (e.g. massage the params)
 def pagy_get_params(params)
   params.except(:anything, :not, :useful).merge!(something: 'more useful')
 end
@@ -30,7 +30,7 @@ use some of its method in some view:
 
 All the methods in this module are prefixed with the `"pagy_"` string in order to avoid any possible conflict with your own methods when you include the module in your helper. The methods prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are intended to be overridden and not used directly.
 
-Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or tricky gymmickry.
+Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or tricky gimmickry.
 
 ### pagy_nav(pagy, ...)
 
@@ -41,6 +41,7 @@ This method takes the Pagy object and returns the HTML string with the paginatio
 ```
 
 The method accepts also a couple of optional keyword arguments:
+
 - `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 
@@ -61,6 +62,7 @@ Will produce something like:
 <span>Displaying items <b>476-500</b> of <b>1000</b> in total</span>
 
 The method accepts also a few optional keyword arguments:
+
 - `:pagy_id` which adds the `id` HTML attributedto the `span` tag wrapping the info
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
 - `:i18n_key` the key to lookup in a dictionary
@@ -108,13 +110,13 @@ This method returns a specialized proc that you call to produce the page links. 
 
 Here is how you should use it: in your helper or template call the method to get the proc (just once):
 
-```
+```rb
 link = pagy_link_proc( pagy [, extra_attributes_string ] )
 ```
 
 Then call the `"link"` proc to get the links (multiple times):
 
-```
+```rb
 link.call( page_number [, text [, extra_attributes_string ] ] )
 ```
 
@@ -125,7 +127,8 @@ If you need to add some HTML attribute to the page links, you can pass some extr
 **Important**: For performance reasons, the extra attributes strings must be formatted as valid HTML attribute/value pairs. _All_ the strings passed at any level will get inserted verbatim in the HTML of the link.
 
 1. For all pagy objects: set the global variable `:link_extra`:
-    ```ruby
+
+    ```rb
     # in the pagy.rb initializer file
     Pagy::VARS[:link_extra] = 'data-remote="true"'
     # in any view
@@ -133,7 +136,9 @@ If you need to add some HTML attribute to the page links, you can pass some extr
     link.call(2)
     #=> <a href="...?page=2" data-remote="true">2</a>
     ```
+
 2. For one Pagy object: pass the `:link_extra` variable to a Pagy constructor (`Pagy.new` or `pagy` controller method):
+
     ```ruby
     # in any controller
     @pagy, @records = pagy(my_scope, link_extra: 'data-remote="true"')
@@ -142,7 +147,9 @@ If you need to add some HTML attribute to the page links, you can pass some extr
     link.call(2)
     #=> <a href="...?page=2" data-remote="true">2</a>
     ```
+
 3. For all the `link.call`: pass an extra attributes string to the `pagy_link_proc`:
+
     ```ruby
     # in any view
     link = pagy_link_proc(pagy, 'class="page-link"')
@@ -151,7 +158,9 @@ If you need to add some HTML attribute to the page links, you can pass some extr
     link.call(3)
     #=> <a href="...?page=3" data-remote="true" class="page-link">3</a>
     ```
+
 4. For a single `link.call`: pass an extra attributes string when you call the proc:
+
     ```ruby
     # in any view
     link.call(page_number, 'aria-label="my-label"')
@@ -192,11 +201,11 @@ The pagy internal i18n is implemented around the `Pagy::I18n` constant. You may 
 
 By default pagy will render its output using the built-in `en` locale. If your app uses only `en` and you are fine with the built-in strings, you are done without configuring anything at all and you can just skip this whole section.
 
-If you need to load different built-in locales, and/or custom dictionary files or even non built-in languages and pluralizations, you can do it all by passing a few arguments to the `Pagy::I18n.load` method.
+If you need to load different built-in locales, and/or custom dictionary files or even non built-in language and pluralization, you can do it all by passing a few arguments to the `Pagy::I18n.load` method.
 
 **Notice**: the `Pagy::I18n.load` method is intended to be used once in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer. If you use it multiple times, the last statement will override the previous statements.
 
-Here are a few examples that should cover all the possible confgurations:
+Here are a few examples that should cover all the possible configurations:
 
 ```ruby
 # IMPORTANT: use only one load statement

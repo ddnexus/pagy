@@ -5,7 +5,7 @@ title: Array
 
 This extra adds a specialized pagination for arrays without the need to override the `pagy_get_items` in your controller, and without the need to use any expensive array-wrapping or patching.
 
-### WARNING!
+## WARNING!
 
 _This warning may sound obvious, but I keep finding people improperly using this extra, so let me write it explicitly._
 

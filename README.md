@@ -57,7 +57,7 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 - It has no dependencies: it produces its own HTML, URLs, i18n with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - 100% of its methods are accessible and overridable **right where you use them** (no pesky monkey-patching needed)
 - 100% test coverage and HTML validated
-- Ruby, HTML and Jvascript E2E tested with Cypress (see [Pagy Workflows CI](https://github.com/ddnexus/pagy/actions))
+- Ruby, HTML and Javascript E2E tested with Cypress (see [Pagy Workflows CI](https://github.com/ddnexus/pagy/actions))
 
 ### Totally Agnostic
 

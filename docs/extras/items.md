@@ -91,7 +91,7 @@ It returns an empty string if the `:items_extra` is `false`.
 
 The method accepts also a few optional keyword arguments:
 
-- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+- `:pagy_id` which adds the `id` HTML attributed to the `nav` tag
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
 - `:i18n_key` the key to lookup in a dictionary
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
