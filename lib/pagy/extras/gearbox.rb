@@ -10,7 +10,7 @@ class Pagy
 
     # setup @items based on the :items variable
     def setup_items_var
-      return super if !@vars[:gearbox_extra] || @vars[:enable_items_extra]
+      return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
       items = @vars[:gearbox_items]
       raise VariableError.new(self), "expected :items to be positive or Array of positives; got #{items.inspect}" \
@@ -21,7 +21,7 @@ class Pagy
 
     # setup @pages and @last based on the :items variable
     def setup_pages_var
-      return super if !@vars[:gearbox_extra] || @vars[:enable_items_extra]
+      return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
       # this algorithm is thousands of times faster than its equivalent in geared pagination
       items  = @vars[:gearbox_items]

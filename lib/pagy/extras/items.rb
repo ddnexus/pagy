@@ -8,8 +8,7 @@ class Pagy
   # Default variables for this extra
   VARS[:items_param] = :items
   VARS[:max_items]   = 100
-
-  VARS[:enable_items_extra] = true
+  VARS[:items_extra] = true   # extra enabled by default
 
   ITEMS_PLACEHOLDER = '__pagy_items__'
 
@@ -20,7 +19,7 @@ class Pagy
 
       def pagy_set_items_from_params(vars)
         return if vars[:items]
-        return unless vars.key?(:enable_item_extra) ? vars[:enable_item_extra] : VARS[:enable_items_extra]
+        return unless vars.key?(:items_extra) ? vars[:items_extra] : VARS[:items_extra]
         return unless (items = params[vars[:items_param] || VARS[:items_param]])                               # :items from :items_param
         vars[:items] = [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min   # :items capped to :max_items
       end
@@ -31,7 +30,7 @@ class Pagy
 
     # Return the items selector HTML. For example "Show [20] items per page"
     def pagy_items_selector_js(pagy, pagy_id: nil, item_name: nil, i18n_key: nil, link_extra: '')
-      return '' unless pagy.vars[:enable_items_extra]
+      return '' unless pagy.vars[:items_extra]
       p_id           = %( id="#{pagy_id}") if pagy_id
       p_vars         = pagy.vars
       p_items        = p_vars[:items]

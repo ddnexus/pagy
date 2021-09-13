@@ -144,7 +144,7 @@ describe 'pagy/extras/items' do
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch
       Pagy::I18n['en'][0]['elasticsearch.product.other'] = ->(_){ 'products'}
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', i18n_key: 'elasticsearch.product')).must_rematch
-      pagy = Pagy.new count: 1000, page: 3, enable_items_extra: false
+      pagy = Pagy.new count: 1000, page: 3, items_extra: false
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_equal ''
     end
   end

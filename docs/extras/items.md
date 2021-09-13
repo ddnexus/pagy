@@ -19,14 +19,14 @@ require 'pagy/extras/items'
 # it will work without any further configuration
 
 # you can disable it explicitly for specific requests
-@pagy, @records = pagy(Product.all, enable_items_extra: false)
+@pagy, @records = pagy(Product.all, items_extra: false)
 
 # or...
 
 # disable it by default (opt-in)
-Pagy::VARS[:enable_items_extra] = false   # default true
+Pagy::VARS[:items_extra] = false   # default true
 # in this case you have to enable it explicitly when you want it
-@pagy, @records = pagy(Product.all, enable_items_extra: true)
+@pagy, @records = pagy(Product.all, items_extra: true)
 
 # customize the defaults if you need to
 Pagy::VARS[:items_param] = :custom_param       # default :items
@@ -41,13 +41,13 @@ See [Javascript](../api/javascript.md) (only if you use the `pagy_items_selector
 
 ## Variables
 
-| Variable              | Description                                                          | Default  |
-|:----------------------|:---------------------------------------------------------------------|:---------|
-| `:enable_items_extra` | enable or disable the feature                                        | `true`   |
-| `:items_param`        | the name of the items param used in the url.                         | `:items` |
-| `:max_items`          | the max items allowed to be requested. Set it to `nil` for no limit. | `100`    |
+| Variable       | Description                                                          | Default  |
+| :------------- | :------------------------------------------------------------------- | :------- |
+| `:items_extra` | enable or disable the feature                                        | `true`   |
+| `:items_param` | the name of the items param used in the url.                         | `:items` |
+| `:max_items`   | the max items allowed to be requested. Set it to `nil` for no limit. | `100`    |
 
-You can use the `:enable_items_extra` variable to opt-out of the feature even when the extra is required.
+You can use the `:items_extra` variable to opt-out of the feature even when the extra is required.
 
 This extra uses the `:items_param` variable to determine the param it should get the number of `:items` from.
 
@@ -87,9 +87,10 @@ This helper provides an items selector UI, which allows the user to select any a
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page</span>
 
-It returns an empty string if the `:enable_items_extra` is `false`.
+It returns an empty string if the `:items_extra` is `false`.
 
 The method accepts also a few optional keyword arguments:
+
 - `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
 - `:i18n_key` the key to lookup in a dictionary

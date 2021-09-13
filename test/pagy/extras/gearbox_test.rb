@@ -4,7 +4,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/countless'
 require 'pagy/extras/gearbox'
 require 'pagy/extras/items'
-Pagy::VARS[:enable_items_extra] = false
+Pagy::VARS[:items_extra] = false
 
 describe 'pagy/extras/gearbox' do
   describe '#set_items_var' do
@@ -14,7 +14,7 @@ describe 'pagy/extras/gearbox' do
       _ { Pagy.new(count: 3, page: 1,  gearbox_items: [5, "10"]) }.must_raise Pagy::VariableError
     end
     it 'can skips gearbox in Pagy' do
-      _(Pagy.new(count: 0, page: 1, enable_items_extra: true).items).must_equal 20
+      _(Pagy.new(count: 0, page: 1, items_extra: true).items).must_equal 20
       _(Pagy.new(count: 0, page: 1, gearbox_extra: false).items).must_equal 20
     end
     it 'sets the items in Pagy' do
@@ -32,7 +32,7 @@ describe 'pagy/extras/gearbox' do
       _(Pagy.new(count: 103, page: 11, gearbox_items: [3, 10]).items).must_equal 10
     end
     it 'can skips gearbox in Pagy::Countless' do
-      _(Pagy::Countless.new(count: 0, page: 1, enable_items_extra: true).items).must_equal 20
+      _(Pagy::Countless.new(count: 0, page: 1, items_extra: true).items).must_equal 20
       _(Pagy::Countless.new(count: 0, page: 1, gearbox_extra: false).items).must_equal 20
     end
     it 'sets the items in Pagy::Countless' do
@@ -53,7 +53,7 @@ describe 'pagy/extras/gearbox' do
 
   describe '#set_pages_var' do
     it 'can skip gearbox for pages' do
-      _(Pagy.new(count: 90, page: 1, enable_items_extra: true).pages).must_equal 5
+      _(Pagy.new(count: 90, page: 1, items_extra: true).pages).must_equal 5
       _(Pagy.new(count: 103, page: 1, gearbox_extra: false).pages).must_equal 6
     end
     it 'sets the pages' do

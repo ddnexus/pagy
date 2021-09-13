@@ -39,7 +39,7 @@ end
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
-# Pagy::VARS[:enable_items_extra]
+# Pagy::VARS[:items_extra]
 require 'pagy/extras/trim'
 Pagy::VARS[:trim] = false # opt-in trim
 # require 'pagy/extras/gearbox'

@@ -11,7 +11,7 @@ The content of the array is not restricted neither in length nor in direction: y
 
 Even after requiring this extra, the regular fixed pagination is still supported: you have just to disable `gearbox` with `gearbox_extra: false` when you still need the fixed pagination.
 
-You can also use it in presence of the the [items](items.md) extra following a simple logic. The `gearbox` extra automatically handles the items per page, while the `items` extra allows the user to explicitly request a specific number of items. That's why the `items`  extra will take priority over the `gearbox` extra if both extras are enabled. If you want to use the `gearbox` in a some instance, you can temporarily set `enable_items_extra: false` and the `gearbox`  will be used instead. That is a common scenario when you use the `items` extra in an API controller, while you want to use the `gearbox` in an infinite scroll pagination in another controller.
+You can also use it in presence of the the [items](items.md) extra following a simple logic. The `gearbox` extra automatically handles the items per page, while the `items` extra allows the user to explicitly request a specific number of items. That's why the `items`  extra will take priority over the `gearbox` extra if both extras are enabled. If you want to use the `gearbox` in a some instance, you can temporarily set `items_extra: false` and the `gearbox`  will be used instead. That is a common scenario when you use the `items` extra in an API controller, while you want to use the `gearbox` in an infinite scroll pagination in another controller.
 
 ## Synopsis
 
@@ -34,7 +34,7 @@ Pagy::Vars[:gearbox_items] = [10, 20, 50]   # your own default
 @pagy, @records = pagy(Product.all, items: 30, gearbox_extra: false)
 
 # If you use also the items extra it must be disabled in the instance that use the gearbox
-@pagy, @records = pagy(Product.all, gearbox_items: [30, 60, 100], enable_items_extra: false)
+@pagy, @records = pagy(Product.all, gearbox_items: [30, 60, 100], items_extra: false)
 ```
 
 ## Files
