@@ -18,33 +18,19 @@
 		"jdforsythe.add-new-line-to-files",
 		"mhutchie.git-graph",
 		"misogi.ruby-rubocop",
+		"msjsdiag.debugger-for-edge",
 		"rangav.vscode-thunder-client",
 		"rebornix.ruby",
 		"shardulm94.trailing-spaces",
+		"streetsidesoftware.code-spell-checker",
 		"tht13.html-preview-vscode",
 		"tnrich.vscode-extension-open-cypress",
 		"wingrunr21.vscode-ruby",
 		"yzhang.markdown-all-in-one",
-		"msjsdiag.debugger-for-edge"
 	],
     "name": "pagy",
     "service": "pagy",
     "settings": {
-        "markdownlint.config": {
-            "blanks-around-fences": true,
-            "MD025": false,
-            "MD026": false,
-            "MD033": false,
-            "MD046": false
-        },
-        "markdownlint.run": "onType",
-        // available in the container
-        "terminal.integrated.profiles.linux": {
-            "bash": {
-                "path": "bash",
-                "icon": "terminal-bash"
-            },
-        },
     },
     "workspaceFolder": "/opt/project"
 }

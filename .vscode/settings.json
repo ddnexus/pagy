@@ -25,5 +25,20 @@
         "uikit",
         "uncommenting",
         "unstyled"
-    ]
+    ],
+    "markdownlint.config": {
+        "blanks-around-fences": true,
+        "MD025": false,
+        "MD026": false,
+        "MD033": false,
+        "MD046": false
+    },
+    "markdownlint.run": "onType",
+    // available in the container
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "icon": "terminal-bash",
+            "path": "bash"
+        }
+    }
 }
