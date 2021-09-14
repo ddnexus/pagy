@@ -17,5 +17,4 @@ class Pagy
       puts "Required extras: #{extras.map(&:inspect).join(', ')}"
     end
   end
-
 end

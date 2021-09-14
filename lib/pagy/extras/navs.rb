@@ -4,7 +4,7 @@
 require 'pagy/extras/shared'
 
 class Pagy
-  module Frontend
+  module NavsExtra
 
     # Javascript pagination: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
@@ -57,4 +57,5 @@ class Pagy
       end
 
   end
+  Frontend.prepend NavsExtra
 end

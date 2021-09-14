@@ -4,7 +4,7 @@
 require 'pagy/extras/shared'
 
 class Pagy
-  module Frontend
+  module MaterializeExtra
 
     # Pagination for materialize: it returns the html with the series of links to the pages
     def pagy_materialize_nav(pagy, pagy_id: nil, link_extra: '')
@@ -77,4 +77,5 @@ class Pagy
       end
 
   end
+  Frontend.prepend MaterializeExtra
 end

@@ -2,11 +2,10 @@
 # frozen_string_literal: true
 
 class Pagy
+  VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
   # Add specialized backend methods to add pagination response headers
-  module Backend
+  module HeadersExtra
     private
-
-    VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
 
     include Helpers
 
@@ -40,4 +39,5 @@ class Pagy
     end
 
   end
+  Backend.prepend HeadersExtra
 end

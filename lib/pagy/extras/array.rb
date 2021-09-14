@@ -3,7 +3,7 @@
 
 class Pagy
   # Add specialized backend methods to paginate array collections
-  module Backend
+  module ArrayExtra
     private
 
     # Return Pagy object and items
@@ -14,11 +14,12 @@ class Pagy
 
     # Sub-method called only by #pagy_array: here for easy customization of variables by overriding
     def pagy_array_get_vars(array, vars)
-      pagy_set_items_from_params(vars) if defined?(UseItemsExtra)
+      pagy_set_items_from_params(vars) if defined?(ItemsExtra)
       vars[:count] ||= array.size
       vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars
     end
 
   end
+  Backend.prepend ArrayExtra
 end

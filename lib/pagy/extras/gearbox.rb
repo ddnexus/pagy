@@ -6,7 +6,7 @@ class Pagy
   VARS[:gearbox_items] = [15, 30, 60, 100]
   # Automatically change the number of items depending on the page number
   # accepts an array as the :gearbox_items variable, that will determine the items for the first pages
-  module UseGearboxExtra
+  module GearboxExtra
 
     # setup @items based on the :items variable
     def setup_items_var
@@ -39,6 +39,5 @@ class Pagy
                          end )
     end
   end
-  prepend UseGearboxExtra
-
+  prepend GearboxExtra
 end

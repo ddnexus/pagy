@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 require_relative '../test_helper'
+require_relative '../mock_helpers/controller'
+require_relative '../mock_helpers/collection'
 
 describe 'pagy/backend' do
   let(:controller) { MockController.new }

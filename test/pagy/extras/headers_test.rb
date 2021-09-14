@@ -3,6 +3,7 @@
 require_relative '../../test_helper'
 require 'pagy/extras/headers'
 require 'pagy/extras/countless'
+require_relative '../../mock_helpers/controller'
 
 describe 'pagy/extras/headers' do
 

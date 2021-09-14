@@ -2,6 +2,8 @@
 
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/searchkick'
+require_relative '../../mock_helpers/controller'
+
 require 'pagy/extras/overflow'
 
 describe 'pagy/extras/searchkick' do

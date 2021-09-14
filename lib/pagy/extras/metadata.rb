@@ -3,7 +3,7 @@
 
 class Pagy
   # Add a specialized backend method for pagination metadata
-  module Backend
+  module MetadataExtra
   private
 
     METADATA = %i[ scaffold_url first_url prev_url page_url next_url last_url
@@ -12,7 +12,7 @@ class Pagy
                  metadata << :sequels if VARS.key?(:steps)  # :steps gets defined along with the #sequels method
                end.freeze
 
-    VARS[:metadata] = METADATA.dup
+    Pagy::VARS[:metadata] = METADATA.dup
 
     include Helpers
 
@@ -39,4 +39,5 @@ class Pagy
     end
 
   end
+  Backend.prepend MetadataExtra
 end

@@ -15,7 +15,6 @@ $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'pagy'
 require 'pagy/countless'
 require 'rack'
-require_relative 'mock_helpers/controller'
 require 'minitest/autorun'
 # only direct terminal (RubyMine safe)
 unless ENV['RM_INFO']

@@ -3,6 +3,9 @@
 require_relative '../../test_helper'
 require 'pagy/extras/countless'
 
+require_relative '../../mock_helpers/collection'
+require_relative '../../mock_helpers/controller'
+
 describe 'pagy/extras/countless' do
   let(:controller) { MockController.new }
   let(:last_page) { 1000 / 20 }

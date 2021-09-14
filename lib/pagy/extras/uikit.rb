@@ -4,7 +4,7 @@
 require 'pagy/extras/shared'
 
 class Pagy
-  module Frontend
+  module UikitExtra
 
     # Pagination for uikit: it returns the html with the series of links to the pages
     def pagy_uikit_nav(pagy, pagy_id: nil, link_extra: '')
@@ -76,4 +76,5 @@ class Pagy
       end
 
   end
+  Frontend.include UikitExtra
 end

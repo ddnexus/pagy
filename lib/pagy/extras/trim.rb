@@ -2,10 +2,10 @@
 # frozen_string_literal: true
 
 class Pagy
-
   VARS[:trim_extra] = true   # extra enabled by default
 
-  module UseTrimExtra
+  module TrimExtra
+    module Frontend
 
     def pagy_link_proc(pagy, link_extra: '')
       link_proc = super(pagy, link_extra: link_extra)
@@ -21,7 +21,10 @@ class Pagy
       link.sub!(/[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/, '')
     end
 
-  end
-  Frontend.prepend UseTrimExtra
+    end
 
+  end
+  Frontend.prepend TrimExtra::Frontend
 end
+
+

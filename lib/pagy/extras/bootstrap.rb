@@ -4,7 +4,7 @@
 require 'pagy/extras/shared'
 
 class Pagy
-  module Frontend
+  module BootstrapExtra
 
     # Pagination for bootstrap: it returns the html with the series of links to the pages
     def pagy_bootstrap_nav(pagy, pagy_id: nil, link_extra: '')
@@ -81,4 +81,5 @@ class Pagy
       end
 
   end
+  Frontend.prepend BootstrapExtra
 end

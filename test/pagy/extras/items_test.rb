@@ -1,14 +1,21 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
+
+require 'pagy/extras/countless'
+require 'pagy/extras/arel'
+require 'pagy/extras/array'
+
 require_relative '../../mock_helpers/elasticsearch_rails'
 require_relative '../../mock_helpers/searchkick'
 require_relative '../../mock_helpers/meilisearch'
 require_relative '../../mock_helpers/arel'
-require 'pagy/extras/countless'
-require 'pagy/extras/arel'
-require 'pagy/extras/array'
+
 require 'pagy/extras/items'
+
+require_relative '../../mock_helpers/collection'
+require_relative '../../mock_helpers/controller'
+
 
 
 def test_items_vars_params(items, vars, params)

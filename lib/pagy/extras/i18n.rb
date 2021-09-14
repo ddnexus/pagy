@@ -3,22 +3,18 @@
 
 class Pagy
   # Use ::I18n gem
-  module Frontend
-
-    ::I18n.load_path += Dir[Pagy.root.join('locales', '*.yml')]
-
-    # unload the pagy default constant for efficiency
-    Pagy::I18n.clear.instance_eval do
-      undef :load
-      undef :t
+  module I18nExtra
+    def pagy_t(key, **opts)
+      ::I18n.t(key, **opts)
     end
-
-    module UseI18nGem
-      def pagy_t(key, **opts)
-        ::I18n.t(key, **opts)
-      end
-    end
-    prepend UseI18nGem
-
   end
+  Frontend.prepend I18nExtra
+
+  ::I18n.load_path += Dir[Pagy.root.join('locales', '*.yml')]
+  # unload the pagy default constant for efficiency
+  I18n.clear.instance_eval do
+    undef :load
+    undef :t
+  end
+
 end

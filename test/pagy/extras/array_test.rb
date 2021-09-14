@@ -2,6 +2,8 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/array'
+require_relative '../../mock_helpers/controller'
+
 
 describe 'pagy/extras/array' do
   let(:controller) { MockController.new }

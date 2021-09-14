@@ -4,7 +4,6 @@
 require 'yaml'
 
 class Pagy
-
   PAGE_PLACEHOLDER = '__pagy_page__'  # string used for search and replace, hardcoded also in the pagy.js file
 
   # I18n static hash loaded at startup, used as default alternative to the i18n gem.
@@ -17,7 +16,7 @@ class Pagy
       p_vars = pagy.vars
       params = request.GET.merge(p_vars[:params])
       params[p_vars[:page_param].to_s]  = page
-      params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(UseItemsExtra)
+      params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(ItemsExtra)
       query_string = "?#{Rack::Utils.build_nested_query(pagy_get_params(params))}" unless params.empty?
       "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:fragment]}"
     end

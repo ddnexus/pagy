@@ -3,7 +3,7 @@
 
 class Pagy
 
-  module Frontend
+  module SupportExtra
 
     def pagy_prev_url(pagy)
       pagy_url_for(pagy, pagy.prev) if pagy.prev
@@ -38,5 +38,5 @@ class Pagy
     end
 
   end
-
+  Frontend.prepend SupportExtra
 end

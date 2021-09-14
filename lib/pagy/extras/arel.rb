@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  module Backend
+  module ArelExtra
     private
 
     def pagy_arel(collection, vars={})
@@ -11,7 +11,7 @@ class Pagy
     end
 
     def pagy_arel_get_vars(collection, vars)
-      pagy_set_items_from_params(vars) if defined?(UseItemsExtra)
+      pagy_set_items_from_params(vars) if defined?(ItemsExtra)
       vars[:count] ||= pagy_arel_count(collection)
       vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
       vars
@@ -29,4 +29,5 @@ class Pagy
     end
 
   end
+  Backend.prepend ArelExtra
 end

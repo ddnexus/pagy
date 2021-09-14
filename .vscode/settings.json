@@ -26,6 +26,7 @@
         "uncommenting",
         "unstyled"
     ],
+    "diffEditor.ignoreTrimWhitespace": false,
     "markdownlint.config": {
         "blanks-around-fences": true,
         "MD025": false,
@@ -40,5 +41,7 @@
             "icon": "terminal-bash",
             "path": "bash"
         }
-    }
+    },
+    "trailing-spaces.highlightCurrentLine": false,
+    "trailing-spaces.trimOnSave": true
 }

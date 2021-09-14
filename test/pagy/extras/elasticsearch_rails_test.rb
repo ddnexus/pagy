@@ -2,6 +2,8 @@
 
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/elasticsearch_rails'
+require_relative '../../mock_helpers/controller'
+
 require 'pagy/extras/overflow'
 
 describe 'pagy/extras/elasticsearch_rails' do
