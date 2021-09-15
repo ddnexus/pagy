@@ -2,6 +2,7 @@
     "cSpell.words": [
         "activerecord",
         "arel",
+        "autorun",
         "bulma",
         "Codecov",
         "ddnexus",
@@ -18,12 +19,14 @@
         "navs",
         "overridable",
         "pagy",
+        "rackup",
         "rebased",
         "rubygem",
         "searchkick",
         "solargraph",
         "uikit",
         "uncommenting",
+        "unscope",
         "unstyled"
     ],
     "diffEditor.ignoreTrimWhitespace": false,
@@ -43,5 +46,15 @@
         }
     },
     "trailing-spaces.highlightCurrentLine": false,
-    "trailing-spaces.trimOnSave": true
+    "trailing-spaces.trimOnSave": true,
+
+    "ruby.useBundler": true, //run non-lint commands with bundle exec
+    "ruby.useLanguageServer": true, // use the internal language server (see below)
+    "ruby.lint": {
+        "rubocop": {
+            "useBundler": true // enable rubocop via bundler
+        },
+        "standard": false
+    },
+    "ruby.format": "rubocop", // use rubocop for formatting
 }

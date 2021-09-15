@@ -16,6 +16,7 @@
 		"davidanson.vscode-markdownlint",
 		"eamodio.gitlens",
 		"jdforsythe.add-new-line-to-files",
+		"kaiwood.endwise",
 		"mhutchie.git-graph",
 		"misogi.ruby-rubocop",
 		"msjsdiag.debugger-for-edge",
