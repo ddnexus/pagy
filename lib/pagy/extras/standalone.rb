@@ -50,8 +50,8 @@ class Pagy
   end
 
   #  single line in order to avoid complicating simplecov reporting (already tested with other GitHub Actions)
-  Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.0.0') \
-      && Helpers.prepend(StandaloneExtra) \
+  (Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.0.0') \
+      && Helpers.prepend(StandaloneExtra)) \
       || (Frontend.prepend(StandaloneExtra); Backend.prepend(StandaloneExtra) if defined?(Pagy::Backend::METADATA)) # rubocop:disable Style/Semicolon
 
   # defines a dummy #params method if not already defined in the including module

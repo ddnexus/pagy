@@ -21,7 +21,7 @@ class Pagy
       # create a Pagy object from an Elasticsearch::Model::Response::Response object
       def new_from_elasticsearch_rails(response, vars = {})
         vars[:items] = response.search.options[:size] || 10
-        vars[:page]  = (response.search.options[:from] || 0) / vars[:items] + 1
+        vars[:page]  = ((response.search.options[:from] || 0) / vars[:items]) + 1
         total        = response.respond_to?(:raw_response) ? response.raw_response['hits']['total'] : response.response['hits']['total']
         vars[:count] = total.is_a?(Hash) ? total['value'] : total
         new(vars)

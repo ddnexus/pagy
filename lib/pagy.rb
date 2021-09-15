@@ -27,7 +27,7 @@ class Pagy
     raise OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}" \
           if @page > @last
 
-    @offset = @items * (@page - 1) + @outset
+    @offset = (@items * (@page - 1)) + @outset
     @from   = [@offset - @outset + 1, @count].min
     @to     = [@offset - @outset + @items, @count].min
     @in     = [@to - @from + 1, @count].min

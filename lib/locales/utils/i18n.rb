@@ -10,7 +10,7 @@ Hash.new { |h, _| h.first[1] }.tap do |i18n_hash| # first loaded locale used as 
   end
   i18n_hash.define_singleton_method(:t) do |locale, key, **opts|
     data, pluralize = self[locale]
-    translate = data[key] || opts[:count] && data[key += ".#{pluralize.call(opts[:count])}"] or return %([translation missing: "#{key}"])
+    translate = data[key] || (opts[:count] && data[key += ".#{pluralize.call(opts[:count])}"]) or return %([translation missing: "#{key}"])
     translate.call(opts)
   end
   i18n_hash.load(locale: 'en')
