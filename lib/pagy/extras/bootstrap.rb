@@ -5,7 +5,6 @@ require 'pagy/extras/shared'
 
 class Pagy
   module BootstrapExtra
-
     # Pagination for bootstrap: it returns the html with the series of links to the pages
     def pagy_bootstrap_nav(pagy, pagy_id: nil, link_extra: '')
       p_id = %( id="#{pagy_id}") if pagy_id
@@ -43,43 +42,41 @@ class Pagy
       link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" class="text-primary" style="padding: 0; border: none; text-align: center; width: #{p_pages.to_s.length+1}rem;">)
+      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" class="text-primary" style="padding: 0; border: none; text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
 
       %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group" role="group" #{
-          pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
-      }>#{
+          pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)}>#{
           if (p_prev = pagy.prev)
             link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous" class="prev btn btn-primary"'
           else
             %(<a class="prev btn btn-primary disabled" href="#">#{pagy_t('pagy.nav.prev')}</a>)
           end
-      }<div class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;">#{pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</div>#{
+        }<div class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;">#{pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</div>#{
           if (p_next  = pagy.next)
             link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next" class="next btn btn-primary"'
           else
-            %(<a class="next btn btn-primary disabled" href="#">#{pagy_t 'pagy.nav.next' }</a>)
+            %(<a class="next btn btn-primary disabled" href="#">#{pagy_t 'pagy.nav.next'}</a>)
           end
-      }</div></nav>)
+        }</div></nav>)
     end
 
     private
 
-      def pagy_bootstrap_prev_html(pagy, link)
-        if (p_prev = pagy.prev)
-          %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
-        else
-          %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.prev'}</a></li>)
-        end
+    def pagy_bootstrap_prev_html(pagy, link)
+      if (p_prev = pagy.prev)
+        %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+      else
+        %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.prev'}</a></li>)
       end
+    end
 
-      def pagy_bootstrap_next_html(pagy, link)
-        if (p_next = pagy.next)
-          %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
-        else
-          %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.next'}</a></li>)
-        end
+    def pagy_bootstrap_next_html(pagy, link)
+      if (p_next = pagy.next)
+        %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
+      else
+        %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.next'}</a></li>)
       end
-
+    end
   end
   Frontend.prepend BootstrapExtra
 end

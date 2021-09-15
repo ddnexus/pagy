@@ -16,5 +16,4 @@ class Pagy
     undef :load
     undef :t
   end
-
 end

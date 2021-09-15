@@ -3,11 +3,9 @@
 require 'pagy'
 
 class Pagy
-
   class Countless < Pagy
-
     # Merge and validate the options, do some simple arithmetic and set a few instance variables
-    def initialize(vars={})  # rubocop:disable Lint/MissingSuper
+    def initialize(vars = {}) # rubocop:disable Lint/MissingSuper
       normalize_vars(vars)
       setup_vars(page: 1, outset: 0)
       setup_items_var
@@ -27,6 +25,5 @@ class Pagy
       @next  = @page == @last ? (1 if @vars[:cycle]) : @page + 1
       self
     end
-
   end
 end

@@ -28,8 +28,8 @@ gemfile true do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'rack'
-  # gem 'pagy'             # <--install from rubygems
-  gem 'pagy', path: '../'  # <-- use the local repo
+  # gem 'pagy'            # <--install from rubygems
+  gem 'pagy', path: '../' # <-- use the local repo
   gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
@@ -64,7 +64,7 @@ class PagyStandaloneApp < Sinatra::Base
   get '/' do
     collection = MockCollection.new
     @pagy, @records = pagy(collection)
-    erb :pagy_demo    # template available in the __END__ section as @@ pagy_demo
+    erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
 
@@ -72,17 +72,20 @@ end
 # use it as a simple way to get a collection that acts as a AR scope, but without any DB
 # or create an ActiveRecord class or anything else that you need instead
 class MockCollection < Array
-  def initialize(arr=Array(1..1000))
+  def initialize(arr = Array(1..1000))
     super
     @collection = clone
   end
+
   def offset(value)
     @collection = self[value..-1]
     self
   end
+
   def limit(value)
     @collection[0, value]
   end
+
   def count(*)
     size
   end
@@ -104,7 +107,6 @@ __END__
   <%= yield %>
 </body>
 </html>
-
 
 @@ pagy_demo
 <h3>Pagy Standalone Application</h3>

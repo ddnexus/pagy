@@ -5,11 +5,11 @@
 # It defines the pluralization procs and gets eval(ed) and gc-collected at Pagy::I18n.load time.
 
 # utility variables
-from0to1   = [0,1].freeze
-from2to4   = [2,3,4].freeze
-from5to9   = [5,6,7,8,9].freeze
-from11to14 = [11,12,13,14].freeze
-from12to14 = [12,13,14].freeze
+from0to1   = [0, 1].freeze
+from2to4   = [2, 3, 4].freeze
+from5to9   = [5, 6, 7, 8, 9].freeze
+from11to14 = [11, 12, 13, 14].freeze
+from12to14 = [12, 13, 14].freeze
 
 # Pluralization (p11n)
 # Compliant with the I18n gem
@@ -17,14 +17,14 @@ from12to14 = [12,13,14].freeze
 # Each proc may apply to one or more locales below.
 # Pluralization logic adapted from https://github.com/svenfuchs/rails-i18n
 p11n = {
-  one_other: -> (n){ n == 1 ? 'one' : 'other' },    # default
+  one_other: ->(n) { n == 1 ? 'one' : 'other' }, # default
 
   arabic: lambda do |n|
     n ||= 0
     mod100 = n % 100
 
     case
-    when n == 0                         then 'zero'      # rubocop:disable Style/NumericPredicate
+    when n == 0                         then 'zero' # rubocop:disable Style/NumericPredicate
     when n == 1                         then 'one'
     when n == 2                         then 'two'
     when (3..10).to_a.include?(mod100)  then 'few'
@@ -54,9 +54,9 @@ p11n = {
     end
   end,
 
-  one_upto_two_other: -> (n){ n && n >= 0 && n < 2 ? 'one' : 'other' },
+  one_upto_two_other: ->(n) { n && n >= 0 && n < 2 ? 'one' : 'other' },
 
-  other: -> (*){ 'other' },
+  other: ->(*) { 'other' },
 
   polish: lambda do |n|
     n ||= 0
@@ -107,6 +107,6 @@ plurals = Hash.new(p11n[:one_other]).tap do |hash|
   hash['zh-TW'] = p11n[:other]
 end
 
-[ plurals, p11n ]
+[plurals, p11n]
 
 # PR for other locales and pluralizations are very welcome. Thanks!

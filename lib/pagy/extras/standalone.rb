@@ -7,19 +7,24 @@ class Pagy
     # extracted from Rack::Utils and reformatted for rubocop
     module QueryUtils
       module_function
+
       def escape(str)
         URI.encode_www_form_component(str)
       end
+
       def build_nested_query(value, prefix = nil)
         case value
         when Array
           value.map { |v| build_nested_query(v, "#{prefix}[]") }.join('&')
         when Hash
-          value.map { |k, v| build_nested_query(v, prefix ? "#{prefix}[#{escape(k)}]" : escape(k)) }.delete_if(&:empty?).join('&')
+          value.map do |k, v|
+            build_nested_query(v, prefix ? "#{prefix}[#{escape(k)}]" : escape(k))
+          end.delete_if(&:empty?).join('&')
         when nil
           prefix
         else
           raise ArgumentError, 'value must be a Hash' if prefix.nil?
+
           "#{prefix}=#{escape(value)}"
         end
       end
@@ -47,13 +52,12 @@ class Pagy
   #  single line in order to avoid complicating simplecov reporting (already tested with other GitHub Actions)
   Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.0.0') \
       && Helpers.prepend(StandaloneExtra) \
-      || ( Frontend.prepend(StandaloneExtra); Backend.prepend(StandaloneExtra) if defined?(Pagy::Backend::METADATA) ) # rubocop:disable Style/Semicolon
+      || (Frontend.prepend(StandaloneExtra); Backend.prepend(StandaloneExtra) if defined?(Pagy::Backend::METADATA)) # rubocop:disable Style/Semicolon
 
   # defines a dummy #params method if not already defined in the including module
   module Backend
     def self.included(controller)
-      controller.define_method(:params){{}} unless controller.method_defined?(:params)
+      controller.define_method(:params) { {} } unless controller.method_defined?(:params)
     end
   end
-
 end

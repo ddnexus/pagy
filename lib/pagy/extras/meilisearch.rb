@@ -15,7 +15,7 @@ class Pagy
 
     module Pagy
       # create a Pagy object from a Meilisearch results
-      def new_from_meilisearch(results, vars={})
+      def new_from_meilisearch(results, vars = {})
         vars[:items] = results.raw_answer['limit']
         vars[:page]  = [results.raw_answer['offset'] / vars[:items], 1].max
         vars[:count] = results.raw_answer['nbHits']
@@ -30,18 +30,17 @@ class Pagy
       # Return Pagy object and results
       def pagy_meilisearch(pagy_search_args, vars = {})
         model, term, options = pagy_search_args
-        vars             = pagy_meilisearch_get_vars(nil, vars)
-        options[:limit]  = vars[:items]
-        options[:offset] = (vars[:page] - 1) * vars[:items]
-        results          = model.search(term, **options)
-        vars[:count]     = results.raw_answer['nbHits']
-
-        pagy = ::Pagy.new(vars)
+        vars                 = pagy_meilisearch_get_vars(nil, vars)
+        options[:limit]      = vars[:items]
+        options[:offset]     = (vars[:page] - 1) * vars[:items]
+        results              = model.search(term, **options)
+        vars[:count]         = results.raw_answer['nbHits']
+        pagy                 = ::Pagy.new(vars)
         # with :last_page overflow we need to re-run the method in order to get the hits
         return pagy_meilisearch(pagy_search_args, vars.merge(page: pagy.page)) \
           if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
 
-        [ pagy, results ]
+        [pagy, results]
       end
 
       # Sub-method called only by #pagy_meilisearch: here for easy customization of variables by overriding
@@ -49,10 +48,9 @@ class Pagy
       def pagy_meilisearch_get_vars(_collection, vars)
         pagy_set_items_from_params(vars) if defined?(ItemsExtra)
         vars[:items] ||= VARS[:items]
-        vars[:page]  ||= (params[ vars[:page_param] || VARS[:page_param] ] || 1).to_i
+        vars[:page]  ||= (params[vars[:page_param] || VARS[:page_param]] || 1).to_i
         vars
       end
-
     end
   end
   Meilisearch = MeilisearchExtra::Meilisearch

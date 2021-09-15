@@ -4,24 +4,21 @@
 class Pagy
   # Defines a few generic methods to paginate an ORM collection out of the box,
   # or any collection by overriding pagy_get_items and/or pagy_get_vars in your controller
-
   # See also the extras if you need specialized methods to paginate Arrays or other collections
-
-
   module Backend
     private         # the whole module is private so no problem with including it in a controller
 
     # Return Pagy object and items
-    def pagy(collection, vars={})
+    def pagy(collection, vars = {})
       pagy = Pagy.new(pagy_get_vars(collection, vars))
-      [ pagy, pagy_get_items(collection, pagy) ]
+      [pagy, pagy_get_items(collection, pagy)]
     end
 
     # Sub-method called only by #pagy: here for easy customization of variables by overriding
     def pagy_get_vars(collection, vars)
       pagy_set_items_from_params(vars) if defined?(ItemsExtra)
       vars[:count] ||= (c = collection.count(:all)).is_a?(Hash) ? c.size : c
-      vars[:page]  ||= params[ vars[:page_param] || VARS[:page_param] ]
+      vars[:page]  ||= params[vars[:page_param] || VARS[:page_param]]
       vars
     end
 
@@ -30,6 +27,5 @@ class Pagy
       # This should work with ActiveRecord, Sequel, Mongoid...
       collection.offset(pagy.offset).limit(pagy.items)
     end
-
   end
 end

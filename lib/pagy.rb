@@ -13,7 +13,7 @@ class Pagy
   end
 
   # default vars
-  VARS = { page: 1, items: 20, outset: 0, size: [1, 4, 4, 1], page_param: :page,              # rubocop:disable Style/MutableConstant
+  VARS = { page: 1, items: 20, outset: 0, size: [1, 4, 4, 1], page_param: :page, # rubocop:disable Style/MutableConstant
            params: {}, fragment: '', link_extra: '', i18n_key: 'pagy.item_name', cycle: false }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next
@@ -36,19 +36,20 @@ class Pagy
   end
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-  def series(size=@vars[:size])
+  def series(size = @vars[:size])
     return [] if size.empty?
     raise VariableError.new(self), "expected 4 items >= 0 in :size; got #{size.inspect}" \
-          unless size.size == 4 && size.all?{ |num| !num.negative? rescue false }  # rubocop:disable Style/RescueModifier
+          unless size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
+
     # This algorithm is up to ~5x faster and ~2.3x lighter than the previous one (pagy < 4.3)
-    left_gap_start  =     1 + size[0]
+    left_gap_start  =     1 + size[0]   # rubocop:disable Layout/ExtraSpacing, Layout/SpaceAroundOperators
     left_gap_end    = @page - size[1] - 1
     right_gap_start = @page + size[2] + 1
     right_gap_end   = @last - size[3]
     left_gap_end    = right_gap_end  if left_gap_end   > right_gap_end
     right_gap_start = left_gap_start if left_gap_start > right_gap_start
-    series = []
-    start  = 1
+    series          = []
+    start           = 1
     if (left_gap_end - left_gap_start).positive?
       series.push(*start..(left_gap_start - 1), :gap)
       start = left_gap_end + 1
@@ -64,29 +65,28 @@ class Pagy
 
   protected
 
-    # apply defaults, cleanup blanks and set @vars
-    def normalize_vars(vars)
-      @vars = VARS.merge(vars.delete_if { |k,v| VARS.key?(k) && (v.nil? || v == '') })
-    end
+  # apply defaults, cleanup blanks and set @vars
+  def normalize_vars(vars)
+    @vars = VARS.merge(vars.delete_if { |k, v| VARS.key?(k) && (v.nil? || v == '') })
+  end
 
-    # setup and validates the passed vars: var must be present and value.to_i must be >= to min
-    def setup_vars(name_min)
-      name_min.each do |name, min|
-        raise VariableError.new(self), "expected :#{name} >= #{min}; got #{@vars[name].inspect}" \
-            unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
-      end
+  # setup and validates the passed vars: var must be present and value.to_i must be >= to min
+  def setup_vars(name_min)
+    name_min.each do |name, min|
+      raise VariableError.new(self), "expected :#{name} >= #{min}; got #{@vars[name].inspect}" \
+          unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
     end
+  end
 
-    # setup and validate the items (overridden by the gearbox extra)
-    def setup_items_var
-      setup_vars(items: 1)
-    end
+  # setup and validate the items (overridden by the gearbox extra)
+  def setup_items_var
+    setup_vars(items: 1)
+  end
 
-    # setup and validates the pages (overridden by the gearbox extra)
-    def setup_pages_var
-      @pages = @last = [(@count.to_f / @items).ceil, 1].max
-    end
-
+  # setup and validates the pages (overridden by the gearbox extra)
+  def setup_pages_var
+    @pages = @last = [(@count.to_f / @items).ceil, 1].max
+  end
 end
 
 require 'pagy/backend'

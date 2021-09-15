@@ -16,6 +16,7 @@ class Pagy  # Default variables for this extra
         return if vars[:items]
         return unless vars.key?(:items_extra) ? vars[:items_extra] : VARS[:items_extra]
         return unless (items = params[vars[:items_param] || VARS[:items_param]])                               # :items from :items_param
+
         vars[:items] = [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min   # :items capped to :max_items
       end
     end
@@ -26,6 +27,7 @@ class Pagy  # Default variables for this extra
       # Return the items selector HTML. For example "Show [20] items per page"
       def pagy_items_selector_js(pagy, pagy_id: nil, item_name: nil, i18n_key: nil, link_extra: '')
         return '' unless pagy.vars[:items_extra]
+
         p_id           = %( id="#{pagy_id}") if pagy_id
         p_vars         = pagy.vars
         p_items        = p_vars[:items]
@@ -34,13 +36,12 @@ class Pagy  # Default variables for this extra
         p_vars[:items] = p_items # restore the items
 
         html  = +%(<span#{p_id} class="pagy-items-selector-js" #{pagy_json_attr pagy, :items_selector, pagy.from, link}>)
-        input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length+1}rem;">)
-        html << pagy_t('pagy.items_selector_js', item_name:   item_name || pagy_t(i18n_key || p_vars[:i18n_key], count: p_items),
+        input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length + 1}rem;">)
+        html << pagy_t('pagy.items_selector_js', item_name: item_name || pagy_t(i18n_key || p_vars[:i18n_key], count: p_items),
                                                  items_input: input,
-                                                 count:       p_items)
+                                                 count: p_items)
         html << %(</span>)
       end
-
     end
   end
   Backend.prepend ItemsExtra::Backend

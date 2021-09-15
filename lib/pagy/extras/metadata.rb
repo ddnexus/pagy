@@ -4,11 +4,10 @@
 class Pagy
   # Add a specialized backend method for pagination metadata
   module MetadataExtra
-  private
+    private
 
-    METADATA = %i[ scaffold_url first_url prev_url page_url next_url last_url
-                   count page items vars pages last in from to prev next series
-               ].tap do |metadata|
+    METADATA = %i[scaffold_url first_url prev_url page_url next_url last_url
+                  count page items vars pages last in from to prev next series].tap do |metadata|
                  metadata << :sequels if VARS.key?(:steps)  # :steps gets defined along with the #sequels method
                end.freeze
 
@@ -37,7 +36,6 @@ class Pagy
         end
       end
     end
-
   end
   Backend.prepend MetadataExtra
 end

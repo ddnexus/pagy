@@ -12,9 +12,35 @@ AllCops:
     - ___*/**/*           # '___' prefixed dirs are excluded
     - vendor/bundle/**/*  # avoid Error: RuboCop found unsupported Ruby version 2.1 in `TargetRubyVersion` parameter (in vendor/bundle/ruby/3.0.0/gems/rainbow-3.0.0/.rubocop.yml).
                           # and also the extra weird "Unable to find gem panolint; is the gem installed? Gem::MissingSpecError" in all ruby versions
-
-# No, thank you!
 Layout:
+  Exclude:
+  - test/**/*
+
+Layout/LineLength:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  AllowForAlignment:
+    Enabled: true
+  AllowBeforeTrailingComments:
+    Enabled: true
+  # ForceEqualSignAlignment:
+  #   Enabled: true
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Layout/EmptyLines:
+  Exclude:
+    - lib/config/pagy.rb
+
+Layout/BlockAlignment:
+  Enabled: false
+  #   EnforcedStyleAlignWith: start_of_block
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: keyword
+
+Layout/HashAlignment:
   Enabled: false
 
 # bad for performance

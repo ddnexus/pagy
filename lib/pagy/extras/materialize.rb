@@ -5,7 +5,6 @@ require 'pagy/extras/shared'
 
 class Pagy
   module MaterializeExtra
-
     # Pagination for materialize: it returns the html with the series of links to the pages
     def pagy_materialize_nav(pagy, pagy_id: nil, link_extra: '')
       p_id = %( id="#{pagy_id}") if pagy_id
@@ -45,37 +44,36 @@ class Pagy
       p_page  = pagy.page
       p_pages = pagy.pages
       style   = ' style="vertical-align: middle"'
-      input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="text-align: center; width: #{p_pages.to_s.length+1}rem;">)
+      input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
 
       %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager" style="padding-right: 0" #{
           pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
-      }>#{
+        }>#{
           pagy_materialize_prev_html pagy, link, style
-      }<li class="pagy-combo-input">#{
+        }<li class="pagy-combo-input">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
-      }</li>#{
+        }</li>#{
           pagy_materialize_next_html pagy, link, style
-      }</ul>)
+        }</ul>)
     end
 
     private
 
-      def pagy_materialize_prev_html(pagy, link, style='')
-        if (p_prev = pagy.prev)
-          %(<li class="waves-effect prev"#{style}>#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
-        else
-          %(<li class="prev disabled"#{style}><a href="#"><i class="material-icons">chevron_left</i></a></li>)
-        end
+    def pagy_materialize_prev_html(pagy, link, style = '')
+      if (p_prev = pagy.prev)
+        %(<li class="waves-effect prev"#{style}>#{link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
+      else
+        %(<li class="prev disabled"#{style}><a href="#"><i class="material-icons">chevron_left</i></a></li>)
       end
+    end
 
-      def pagy_materialize_next_html(pagy, link, style='')
-        if (p_next = pagy.next)
-          %(<li class="waves-effect next"#{style}>#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
-        else
-          %(<li class="next disabled"#{style}><a href="#"><i class="material-icons">chevron_right</i></a></li>)
-        end
+    def pagy_materialize_next_html(pagy, link, style = '')
+      if (p_next = pagy.next)
+        %(<li class="waves-effect next"#{style}>#{link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
+      else
+        %(<li class="next disabled"#{style}><a href="#"><i class="material-icons">chevron_right</i></a></li>)
       end
-
+    end
   end
   Frontend.prepend MaterializeExtra
 end

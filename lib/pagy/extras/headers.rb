@@ -20,15 +20,16 @@ class Pagy
     end
 
     def pagy_headers_hash(pagy)
-      countless = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
-      rels = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
-      rels['last'] = pagy.last unless countless
-      url_str = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: true)
-      hash    = { 'Link' => rels.map do |rel, num| # filter_map if ruby >=2.7
-                              next unless num
-                              [ rel, url_str.sub(PAGE_PLACEHOLDER, num.to_s) ]
-                            end.compact.to_h }
-      headers = pagy.vars[:headers]
+      countless             = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
+      rel                   = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
+      rel['last']           = pagy.last unless countless
+      url_str               = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: true)
+      link                  = rel.map do |r, num| # filter_map if ruby >=2.7
+                                next unless num
+                                [r, url_str.sub(PAGE_PLACEHOLDER, num.to_s)]
+                              end.compact.to_h
+      hash                  = { 'Link' => link }
+      headers               = pagy.vars[:headers]
       hash[headers[:page]]  = pagy.page.to_s         if headers[:page]
       hash[headers[:items]] = pagy.vars[:items].to_s if headers[:items]
       unless countless
@@ -37,7 +38,6 @@ class Pagy
       end
       hash
     end
-
   end
   Backend.prepend HeadersExtra
 end

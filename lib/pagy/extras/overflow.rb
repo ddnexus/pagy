@@ -6,7 +6,6 @@ class Pagy
 
   module OverflowExtra
     module Pagy
-
       def overflow?
         @overflow
       end
@@ -34,7 +33,7 @@ class Pagy
       end
 
       module Series
-        def series(size=@vars[:size])
+        def series(size = @vars[:size])
           @page = @last                             # series for last page
           super(size).tap do |s|                    # call original series
             s[s.index(@page.to_s)] = @page          # string to integer (i.e. no current page)
@@ -46,7 +45,6 @@ class Pagy
 
     # support for Pagy::Countless
     module Countless
-
       def finalize(items)
         @overflow = false
         super
@@ -64,7 +62,6 @@ class Pagy
                 "expected :overflow variable in [:empty_page, :exception]; got #{@vars[:overflow].inspect}"
         end
       end
-
     end
   end
   prepend OverflowExtra::Pagy
