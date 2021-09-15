@@ -10,12 +10,18 @@ GEM
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
     concurrent-ruby (1.1.9)
+    debug (1.1.0)
+      irb
+      reline (>= 0.2.7)
     diff-lcs (1.4.4)
     docile (1.4.0)
     e2mmap (0.1.0)
     ffi (1.15.4)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    io-console (0.5.9)
+    irb (1.3.7)
+      reline (>= 0.2.7)
     jaro_winkler (1.5.4)
     kalibera (0.1.1)
       memoist (~> 0.11.0)
@@ -59,6 +65,8 @@ GEM
       ffi (~> 1.0)
     rbzip2 (0.2.0)
     regexp_parser (2.1.1)
+    reline (0.2.7)
+      io-console (~> 0.5)
     rematch (1.3.1)
     rerun (0.13.1)
       listen (~> 3.0)
@@ -130,6 +138,7 @@ PLATFORMS
 DEPENDENCIES
   benchmark-ips
   codecov
+  debug (= 1.1.0)
   i18n
   kalibera
   memory_profiler
