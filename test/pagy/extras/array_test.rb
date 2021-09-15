@@ -4,7 +4,6 @@ require_relative '../../test_helper'
 require 'pagy/extras/array'
 require_relative '../../mock_helpers/controller'
 
-
 describe 'pagy/extras/array' do
   let(:controller) { MockController.new }
 
@@ -46,7 +45,7 @@ describe 'pagy/extras/array' do
       _(merged[:page]).must_equal 3
     end
     it 'gets vars' do
-      vars   = {page: 2, items: 10, link_extra: 'X'}
+      vars   = { page: 2, items: 10, link_extra: 'X' }
       merged = controller.send :pagy_array_get_vars, @collection, vars
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page

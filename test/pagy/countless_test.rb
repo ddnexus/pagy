@@ -6,7 +6,6 @@ require 'pagy/extras/countless'
 require_relative '../mock_helpers/controller'
 require_relative '../mock_helpers/collection'
 
-
 describe 'pagy/countless' do
   let(:controller) { MockController.new } # page = 3, items = 20
 

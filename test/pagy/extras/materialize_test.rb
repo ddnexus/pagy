@@ -29,22 +29,26 @@ describe 'pagy/extras/materialize' do
     it 'renders first page' do
       pagy = Pagy.new(count: 1000, page: 1)
       _(view.pagy_materialize_nav_js(pagy)).must_rematch
-      _(view.pagy_materialize_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra', steps: {0 => [1,2,2,1], 600 => [1,3,3,1]})).must_rematch
+      _(view.pagy_materialize_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
+                                           steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
     end
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 1000, page: 20)
       _(view.pagy_materialize_nav_js(pagy)).must_rematch
-      _(view.pagy_materialize_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra', steps: {0 => [1,2,2,1], 600 => [1,3,3,1]})).must_rematch
+      _(view.pagy_materialize_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
+                                           steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
     end
     it 'renders last page' do
       pagy = Pagy.new(count: 1000, page: 50)
       _(view.pagy_materialize_nav_js(pagy)).must_rematch
-      _(view.pagy_materialize_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra', steps: {0 => [1,2,2,1], 600 => [1,3,3,1]})).must_rematch
+      _(view.pagy_materialize_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
+                                           steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
     end
     it 'renders with :steps' do
-      pagy = Pagy.new(count: 1000, page: 20, steps: {0 => [1,2,2,1], 500 => [2,3,3,2]})
+      pagy = Pagy.new(count: 1000, page: 20, steps: { 0 => [1, 2, 2, 1], 500 => [2, 3, 3, 2] })
       _(view.pagy_materialize_nav_js(pagy)).must_rematch
-      _(view.pagy_materialize_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra', steps: {0 => [1,2,2,1], 600 => [1,3,3,1]})).must_rematch
+      _(view.pagy_materialize_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
+                                           steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
     end
   end
 

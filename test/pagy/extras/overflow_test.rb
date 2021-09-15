@@ -4,8 +4,8 @@ require_relative '../../test_helper'
 require 'pagy/extras/overflow'
 
 describe 'pagy/extras/overflow' do
-  let(:vars) {{ page: 100, count: 103, items: 10, size: [3, 2, 2, 3] }}
-  let(:countless_vars) {{ page: 100, items: 10 }}
+  let(:vars) { { page: 100, count: 103, items: 10, size: [3, 2, 2, 3] } }
+  let(:countless_vars) { { page: 100, items: 10 } }
   before do
     @pagy = Pagy.new(vars)
     @pagy_countless = Pagy::Countless.new(countless_vars)
@@ -19,12 +19,12 @@ describe 'pagy/extras/overflow' do
   end
 
   describe "#overflow?" do
-    it 'must be overflow?'  do
+    it 'must be overflow?' do
       _(@pagy).must_be :overflow?
       _(@pagy_countless).must_be :overflow?
     end
     it 'is not overflow?' do
-      _(Pagy.new(vars.merge(page:2))).wont_be :overflow?
+      _(Pagy.new(vars.merge(page: 2))).wont_be :overflow?
     end
   end
 
@@ -42,7 +42,9 @@ describe 'pagy/extras/overflow' do
     end
     it 'raises OverflowError in :exception mode' do
       _(proc { Pagy.new(vars.merge(overflow: :exception)) }).must_raise Pagy::OverflowError
-      _(proc { Pagy::Countless.new(countless_vars.merge(overflow: :exception)).finalize(0) }).must_raise Pagy::OverflowError
+      _(proc {
+          Pagy::Countless.new(countless_vars.merge(overflow: :exception)).finalize(0)
+        }).must_raise Pagy::OverflowError
     end
     it 'works in :empty_page mode' do
       pagy = Pagy.new(vars.merge(overflow: :empty_page))
@@ -55,7 +57,9 @@ describe 'pagy/extras/overflow' do
     end
     it 'raises Pagy::VariableError' do
       _(proc { Pagy.new(vars.merge(overflow: :unknown)) }).must_raise Pagy::VariableError
-      _(proc { Pagy::Countless.new(countless_vars.merge(overflow: :unknown)).finalize(0) }).must_raise Pagy::VariableError
+      _(proc {
+          Pagy::Countless.new(countless_vars.merge(overflow: :unknown)).finalize(0)
+        }).must_raise Pagy::VariableError
     end
   end
 

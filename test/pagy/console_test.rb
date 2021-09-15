@@ -10,7 +10,6 @@ module PagyConsole
 end
 
 describe 'pagy/console' do
-
   describe 'Pagy::Console' do
     it 'defines default :url' do
       _(Pagy::VARS[:url]).must_equal 'http://www.example.com/subdir'

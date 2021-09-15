@@ -29,7 +29,7 @@ describe 'pagy' do
 
   describe '#initialize' do
     before do
-      @vars  = { count: 103, items: 10, size: [3, 2, 2, 3] }
+      @vars = { count: 103, items: 10, size: [3, 2, 2, 3] }
     end
     it 'initializes' do
       _(pagy).must_be_instance_of Pagy
@@ -279,8 +279,8 @@ describe 'pagy' do
   describe 'accessors' do
     it 'has accessors' do
       [
-      :count, :page, :items, :vars, # input
-      :offset, :pages, :last, :from, :to, :prev, :next, :series # output
+        :count, :page, :items, :vars, # input
+        :offset, :pages, :last, :from, :to, :in, :prev, :next, :series # output
       ].each do |meth|
         _(pagy).must_respond_to meth
       end
@@ -302,16 +302,16 @@ describe 'pagy' do
     before do
       @vars0 = { count: 103,
                  items: 10,
-                 size:  [0, 2, 2, 0] }
+                 size: [0, 2, 2, 0] }
       @vars1 = { count: 103,
                  items: 10,
-                 size:  [3, 0, 0, 3] }
+                 size: [3, 0, 0, 3] }
       @vars2 = { count: 103,
                  items: 10,
-                 size:  [3, 2, 0, 0] }
+                 size: [3, 2, 0, 0] }
       @vars3 = { count: 103,
                  items: 10,
-                 size:  [3, 2, 2, 3] }
+                 size: [3, 2, 2, 3] }
     end
     it 'computes series for page 1' do
       series_for 1,

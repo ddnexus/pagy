@@ -3,7 +3,6 @@
 require_relative '../test_helper'
 
 describe 'pagy/exceptions' do
-
   describe '#variable and #value' do
     it 'raises for non overflow pages' do
       begin

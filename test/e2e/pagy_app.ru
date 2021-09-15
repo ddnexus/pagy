@@ -50,7 +50,6 @@ class PagyApp < Sinatra::Base
 
   end
 
-
   get '/pagy.js' do
     content_type 'application/javascript'
     send_file Pagy.root.join('javascripts', 'pagy.js')

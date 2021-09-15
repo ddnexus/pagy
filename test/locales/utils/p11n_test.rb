@@ -5,7 +5,7 @@
 require_relative '../../test_helper'
 
 describe 'locales/utils/p11n' do
-  let(:p11n) { eval(Pagy.root.join('locales', 'utils', 'p11n.rb').read)[1].freeze }    #rubocop:disable Security/Eval
+  let(:p11n) { eval(Pagy.root.join('locales', 'utils', 'p11n.rb').read)[1].freeze } # rubocop:disable Security/Eval
 
   describe :arabic do
     it "detects that 0 belongs to 'zero'" do
