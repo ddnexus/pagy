@@ -12,9 +12,17 @@ class Pagy
     @root ||= Pathname.new(__dir__).freeze
   end
 
-  # default vars
-  VARS = { page: 1, items: 20, outset: 0, size: [1, 4, 4, 1], page_param: :page, # rubocop:disable Style/MutableConstant
-           params: {}, fragment: '', link_extra: '', i18n_key: 'pagy.item_name', cycle: false }
+  # default vars: it uses a constant for easy access, but mutable for customizable defaults
+  VARS = { page:       1, # rubocop:disable Style/MutableConstant
+           items:      20,
+           outset:     0,
+           size:       [1, 4, 4, 1],
+           page_param: :page,
+           params:     {},
+           fragment:   '',
+           link_extra: '',
+           i18n_key:   'pagy.item_name',
+           cycle:      false }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next
 

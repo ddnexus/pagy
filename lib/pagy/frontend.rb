@@ -71,9 +71,9 @@ class Pagy
                 end
 
       %(<span#{p_id} class="pagy-info">#{
-      pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
+          pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
                   count: p_count, from: pagy.from, to: pagy.to
-    }</span>)
+        }</span>)
     end
 
     # Returns a performance optimized proc to generate the HTML links

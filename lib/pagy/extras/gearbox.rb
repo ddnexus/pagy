@@ -11,28 +11,27 @@ class Pagy
     def setup_items_var
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
-      items = @vars[:gearbox_items]
-      raise VariableError.new(self), "expected :items to be positive or Array of positives; got #{items.inspect}" \
-            unless items.is_a?(Array) && items.all? { |num| num.positive? rescue false } # rubocop:disable Style/RescueModifier
+      gearbox_items = @vars[:gearbox_items]
+      raise VariableError.new(self), "expected :items to be an Array of positives; got #{gearbox_items.inspect}" \
+            unless gearbox_items.is_a?(Array) && gearbox_items.all? { |num| num.positive? rescue false } # rubocop:disable Style/RescueModifier
 
-      @items = items[@page - 1] || items.last
+      @items = gearbox_items[@page - 1] || gearbox_items.last
     end
 
     # setup @pages and @last based on the :items variable
     def setup_pages_var
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
-      # this algorithm is thousands of times faster than its equivalent in geared pagination
-      items  = @vars[:gearbox_items]
-      @pages = @last = (items_sum = items.sum
-                        if @count > items_sum
-                          [((@count - items_sum).to_f / items.last).ceil, 1].max + items.count
+      gearbox_items = @vars[:gearbox_items]
+      # this algorithm is thousands of times faster than the one in the geared_pagination gem
+      @pages = @last = (if @count > (sum = gearbox_items.sum)
+                          [((@count - sum).to_f / gearbox_items.last).ceil, 1].max + gearbox_items.count
                         else
-                          rest  = @count
-                          pages = 0
-                          while rest.positive?
-                            pages += 1
-                            rest  -= items[pages - 1]
+                          pages    = 0
+                          reminder = @count
+                          while reminder.positive?
+                            pages    += 1
+                            reminder -= gearbox_items[pages - 1]
                           end
                           [pages, 1].max
                         end)

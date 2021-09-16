@@ -34,27 +34,21 @@ class Pagy
     # with a defined :url variable it does not use rack/request
     def pagy_url_for(pagy, page, absolute: nil)
       p_vars = pagy.vars
-      if p_vars[:url]
-        url_string = p_vars[:url]
-        params     = {}
-      else
-        url_string = "#{request.base_url if absolute}#{request.path}"
-        params     = request.GET
-      end
-      params = params.merge(p_vars[:params])
+      return super unless (url = p_vars[:url])
+
+      params                            = p_vars[:params]
       params[p_vars[:page_param].to_s]  = page
       params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(ItemsExtra)
+      # no Rack required in standalone mode
       query_string = "?#{QueryUtils.build_nested_query(pagy_get_params(params))}" unless params.empty?
-      "#{url_string}#{query_string}#{p_vars[:fragment]}"
+      "#{url}#{query_string}#{p_vars[:fragment]}"
     end
   end
+  # in ruby 3+ we could just use `UrlHelpers.prepend StandaloneExtra` instead of using the next 2 lines
+  Frontend.prepend StandaloneExtra
+  Backend.prepend StandaloneExtra
 
-  #  single line in order to avoid complicating simplecov reporting (already tested with other GitHub Actions)
-  (Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.0.0') \
-      && Helpers.prepend(StandaloneExtra)) \
-      || (Frontend.prepend(StandaloneExtra); Backend.prepend(StandaloneExtra) if defined?(Pagy::Backend::METADATA)) # rubocop:disable Style/Semicolon
-
-  # defines a dummy #params method if not already defined in the including module
+  # defines a dummy #params method if it's not already defined in the including module
   module Backend
     def self.included(controller)
       controller.define_method(:params) { {} } unless controller.method_defined?(:params)
