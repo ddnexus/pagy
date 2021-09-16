@@ -2,15 +2,15 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "rake: All",
             "type": "rake",
             "task": "default",
             "problemMatcher": [],
-            "label": "rake: All",
             "group": "test",
         },
         {
-            "type": "shell",
             "label": "rake: All With HTML Reports",
+            "type": "shell",
             "command": "rake",
             "args": [
                 "default"
@@ -21,6 +21,78 @@
                 }
             },
             "group": "test"
+        },
+        {
+            "label": "Pagy IRB: wait for debugger...",
+            "type": "shell",
+            "command": "rdebug-ide",
+            "args": [
+                "--host=0.0.0.0",
+                "--port=1234",
+                "--dispatcher-port=1234",
+                "--",
+                "/usr/local/bundle/bin/bundle",
+                "exec",
+                "irb",
+                "--simple-prompt",
+                "-Ilib",
+                "-rpagy"
+            ],
+            "isBackground": true,
+            // Fake watch script setup used to wait the debugger to attach
+            // All this is needed so VSCode just lets it run.
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "location": 2,
+                            "message": 3
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": ".",
+                        "endsPattern": ".",
+                    }
+                }
+            ]
+        },
+        {
+            "label": "Pagy Standalone App: wait for debugger...",
+            "type": "shell",
+            "command": "rdebug-ide",
+            "args": [
+                "--host=0.0.0.0",
+                "--port=1234",
+                "--dispatcher-port=1234",
+                "--",
+                "/usr/local/bundle/bin/rackup",
+                "-o0.0.0.0",
+                "-p8080",
+                "apps/pagy_standalone_app.ru",
+            ],
+            "isBackground": true,
+            // Fake watch script setup used to wait the debugger to attach
+            // All this is needed so VSCode just lets it run.
+            "problemMatcher": [
+                {
+                    "pattern": [
+                        {
+                            "regexp": ".",
+                            "file": 1,
+                            "location": 2,
+                            "message": 3
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": ".",
+                        "endsPattern": ".",
+                    }
+                }
+            ]
         }
     ]
 }

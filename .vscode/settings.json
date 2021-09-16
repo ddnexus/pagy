@@ -38,6 +38,15 @@
         "MD046": false
     },
     "markdownlint.run": "onType",
+    "ruby.format": "rubocop",
+    "ruby.lint": {
+        "rubocop": {
+            "useBundler": true // enable rubocop via bundler
+        },
+        "standard": false
+    },
+    "ruby.useBundler": true, //run non-lint commands with bundle exec
+    "ruby.useLanguageServer": true, // use the internal language server (see below)
     // available in the container
     "terminal.integrated.profiles.linux": {
         "bash": {
@@ -46,15 +55,5 @@
         }
     },
     "trailing-spaces.highlightCurrentLine": false,
-    "trailing-spaces.trimOnSave": true,
-
-    "ruby.useBundler": true, //run non-lint commands with bundle exec
-    "ruby.useLanguageServer": true, // use the internal language server (see below)
-    "ruby.lint": {
-        "rubocop": {
-            "useBundler": true // enable rubocop via bundler
-        },
-        "standard": false
-    },
-    "ruby.format": "rubocop", // use rubocop for formatting
+    "trailing-spaces.trimOnSave": true
 }

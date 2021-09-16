@@ -2,20 +2,56 @@
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
+    "version"                     : "0.2.0",
+    "configurations"              : [
         {
-            "type": "rdbg",
-            "name": "Debug current file with rdbg",
-            "request": "launch",
-            "script": "${file}",
-            "args": [],
-            "askParameters": true
+            "name"                : "Debug current file with rdbg",
+            "type"                : "rdbg",
+            "request"             : "launch",
+            "script"              : "${file}",
+            "args"                : [],
+            "askParameters"       : true
         },
         {
-            "type": "rdbg",
-            "name": "Attach with rdbg",
-            "request": "attach"
-        }
+            "name"                : "Attach with rdbg",
+            "type"                : "rdbg",
+            "request"             : "attach"
+        },
+        {
+            "name"                : "Debug Active File",
+            "type"                : "Ruby",
+            "request"             : "launch",
+            "program"             : "${file}",
+            "programArgs"         : [],
+            "useBundler"          : true,
+        },
+        {
+            "name"                : "Attach to rdebug-ide",
+            "type"                : "Ruby",
+            "request"             : "attach",
+            "remoteHost"          : "0.0.0.0",
+            "remotePort"          : "1234",
+            "remoteWorkspaceRoot" : "${workspaceRoot}"
+        },
+        {
+            "name"                : "Pagy IRB",
+            "preLaunchTask"       : "Pagy IRB: wait for debugger...",
+            "type"                : "Ruby",
+            "request"             : "attach",
+            "remoteHost"          : "0.0.0.0",
+            "remotePort"          : "1234",
+            "remoteWorkspaceRoot" : "${workspaceRoot}",
+            "cwd"                 : "${workspaceRoot}",
+        },
+        {
+            "name"                : "pagy_standalone_app.ru",
+            "preLaunchTask"       : "Pagy Standalone App: wait for debugger...",
+            "type"                : "Ruby",
+            "request"             : "attach",
+            "remoteHost"          : "0.0.0.0",
+            "remotePort"          : "1234",
+            "remoteWorkspaceRoot" : "${workspaceRoot}",
+            "cwd"                 : "${workspaceRoot}",
+        },
     ]
 }
