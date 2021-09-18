@@ -1,6 +1,8 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/metadata
 # frozen_string_literal: true
 
+require 'pagy/url_helpers'
+
 class Pagy
   # Add a specialized backend method for pagination metadata
   module MetadataExtra
@@ -13,7 +15,7 @@ class Pagy
 
     Pagy::VARS[:metadata] = METADATA.dup
 
-    include Helpers
+    include UrlHelpers
 
     def pagy_metadata(pagy, absolute: nil)
       names   = pagy.vars[:metadata]

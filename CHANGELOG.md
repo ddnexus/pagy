@@ -11,7 +11,7 @@ Pagy 5.0.0 removes the support for a few deprecation still supported in pagy 4.
 - upgrade to the latest pagy 4
 - run your tests or app
 - check the log for any deprecations message starting with '[PAGY WARNING]'
-- update your code as indicated
+- update your code as indicated by the messages
 - ensure that the log is free from warnings
 
 Here is a list of the deprecations that are not supported anymore:
@@ -36,12 +36,17 @@ The following optional positional arguments are passed with keywords arguments i
 
 #### Consistency renaming
 
-A couple of variables used in extras have been renamed. You are affected by the change only if you explicitly used the specific extra AND its variable.
-Sorry, there was no deprecation in version 4, however it's just a matter of search and replace.
+A few elements have been renamed: you code may or may not contain them. Just search and replace the following:
 
-- `:enable_items_extra` is now `items_extra`
-- `:enable_trim_extra` is now `trim_extra`
+- `:enable_items_extra` rename to `items_extra`
+- `:enable_trim_extra` rename to `trim_extra`
+- `Pagy::Helpers` rename to `Pagy::UrlHelpers`
+- `pagy_get_params` rename to `pagy_massage_params`
 
 #### Items accessor
 
-This should not affect normal usage. The items accessor does not adjust for the actual items in the last page anymore. You can ignore this change unless you build something weird on that assumption: in that case, just use the new `in` accessor that behave exactly as the `items` of version 4.
+The items accessor does not adjust for the actual items in the last page anymore. This should not affect normal usage, so you can ignore this change unless you build something on that assumption.
+
+If your code is relying on the actual number of items **in** the page, then just replace `@pagy.items` with `@pagy.in`.
+
+FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the requested items), while the `@pagy.in` returns the actual items in the page.

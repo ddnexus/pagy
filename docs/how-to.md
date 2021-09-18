@@ -256,12 +256,12 @@ pagy = Pagy.new(count: 1000, link_extra: 'data-remote="true" class="my-class"')
 
 ## Customizing the params
 
-You may need to massage the params embedded in the URLs of the page links. You can do so by redefining the `pagy_get_params` sub-method in your helper. It will receive the `params` hash complete with the `:page` param and it should return a possibly modified version of it.
+You may need to massage the params embedded in the URLs of the page links. You can do so by redefining the `pagy_massage_params` sub-method in your helper. It will receive the `params` hash complete with the `:page` param and it should return a possibly modified version of it.
 
 An example using `except` and `merge!`:
 
 ```ruby
-def pagy_get_params(params)
+def pagy_massage_params(params)
   params.except(:anything, :not, :useful).merge!(something: 'more useful')
 end
 ```

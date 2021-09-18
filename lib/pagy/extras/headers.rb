@@ -1,13 +1,15 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/headers
 # frozen_string_literal: true
 
+require 'pagy/url_helpers'
+
 class Pagy
   VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
   # Add specialized backend methods to add pagination response headers
   module HeadersExtra
     private
 
-    include Helpers
+    include UrlHelpers
 
     def pagy_headers_merge(pagy)
       response.headers.merge!(pagy_headers(pagy))

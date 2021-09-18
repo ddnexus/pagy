@@ -14,7 +14,7 @@ You can extend this module with a few more nav helpers _(see the [extras](../ext
 include Pagy::Frontend
 
 # optional overriding of some sub-method (e.g. massage the params)
-def pagy_get_params(params)
+def pagy_massage_params(params)
   params.except(:anything, :not, :useful).merge!(something: 'more useful')
 end
 ```
@@ -84,11 +84,11 @@ This method is called internally in order to produce the url of a page by passin
 
 For more advanced usage, you may want to override it in order to fit its behavior with your app needs (e.g.: allowing fancy routes, etc.).
 
-Notice: If you just need to remove or add some param, you may prefer to override the `pagy_get_params` method instead.
+Notice: If you just need to remove or add some param, you may prefer to override the `pagy_massage_params` method instead.
 
 See also [Customizing the URL](../how-to.md#customizing-the-url).
 
-### pagy_get_params(params)
+### pagy_massage_params(params)
 
 Sub-method called by `pagy_url_for`: it is intended to be overridden when you need to add and/or remove some param from the page URLs. It receives the `params` hash complete with the `"page"` param and should return a possibly modified version of it.
 

@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require 'yaml'
+require 'pagy/url_helpers'
 
 class Pagy
   PAGE_PLACEHOLDER = '__pagy_page__' # string used for search and replace, hardcoded also in the pagy.js file
@@ -10,28 +11,10 @@ class Pagy
   # see https://ddnexus.github.io/pagy/api/frontend#i18n
   I18n = eval Pagy.root.join('locales', 'utils', 'i18n.rb').read # rubocop:disable Security/Eval
 
-  module Helpers
-    # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(pagy, page, absolute: nil)
-      p_vars                            = pagy.vars
-      params                            = request.GET.merge(p_vars[:params])
-      params[p_vars[:page_param].to_s]  = page
-      params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(ItemsExtra)
-      # we rely on Rack by default: use the standalone extra in non rack environments
-      query_string = "?#{Rack::Utils.build_nested_query(pagy_get_params(params))}" unless params.empty?
-      "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:fragment]}"
-    end
-
-    # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
-    def pagy_get_params(params)
-      params
-    end
-  end
-
   # All the code here has been optimized for performance: it may not look very pretty
   # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
   module Frontend
-    include Helpers
+    include UrlHelpers
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, pagy_id: nil, link_extra: '')

@@ -63,6 +63,7 @@ lib/pagy/extras/support.rb
 lib/pagy/extras/trim.rb
 lib/pagy/extras/uikit.rb
 lib/pagy/frontend.rb
+lib/pagy/url_helpers.rb
 lib/templates/bootstrap_nav.html.erb
 lib/templates/bootstrap_nav.html.haml
 lib/templates/bootstrap_nav.html.slim
