@@ -1,6 +1,7 @@
 ---
 title: Pagy::Frontend
 ---
+
 # Pagy::Frontend
 
 This module provides a few methods to deal with the navigation aspect of the pagination. You will usually include it in some helper module, making its methods available (and overridable) in your views. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb))_
@@ -181,96 +182,13 @@ This method is similar to the `I18n.t` and its equivalent rails `t` helper. It i
 
 ## I18n
 
-**IMPORTANT**: if you are using pagy with some language missing from the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales), please, submit your translation!
+Pagy can provide i18n using its own recommended super fast implementation (see the [Pagy::I18n](i18n.md) doc) or can use the slower standard `i18n` gem (see the [i18n extra](../extras/i18n.md) doc).
 
-Pagy is i18n ready. That means that all its strings are stored in the dictionary files of its [locales](https://github.com/ddnexus/pagy/blob/master/lib/locales), ready to be customized and/or used with or without the `I18n` gem.
+### Dictionaries/locales
 
-**Notice**: a Pagy dictionary file is a YAML file containing a few entries used internally in the the UI by helpers and templates through the [pagy_t](#pagy_tpath-vars) method. The file follows the same structure of the standard locale files for the `i18n` gem.
+Pagy provides many ready-to-use dictionaries for different locales/languages usable with single or multi languages apps.
 
-Pagy can consume i18n using its own recommended [internal implementation](#pagy-i18n-implementation) or using the [standard I18n gem](#using-the-standard-i18n-gem)
+All the pagy strings are are stored in the dictionary files of its [locales](https://github.com/ddnexus/pagy/blob/master/lib/locales), ready to be customized and/or used with or without the `I18n` gem. The files follow the same structure of the standard locale files for the `i18n` gem.
 
-### Pagy I18n implementation
+**IMPORTANT**: if you are using pagy with some language missing from the [locales](https://github.com/ddnexus/pagy/blob/master/lib/locales), please, submit your translation!
 
-The pagy internal i18n implementation is ~18x faster and uses ~10x less memory than the standard `i18n` gem.
-
-Since Pagy version 2.0, you can use it for both single-language and multi-language apps. If (the rest of) your app is using i18n, it will continue to work independently from the pagy i18n.
-
-The pagy internal i18n is implemented around the `Pagy::I18n` constant. You may need to configure it in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer.
-
-#### Pagy::I18n.load configuration
-
-By default pagy will render its output using the built-in `en` locale. If your app uses only `en` and you are fine with the built-in strings, you are done without configuring anything at all and you can just skip this whole section.
-
-If you need to load different built-in locales, and/or custom dictionary files or even non built-in language and pluralization, you can do it all by passing a few arguments to the `Pagy::I18n.load` method.
-
-**Notice**: the `Pagy::I18n.load` method is intended to be used once in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer. If you use it multiple times, the last statement will override the previous statements.
-
-Here are a few examples that should cover all the possible configurations:
-
-```ruby
-# IMPORTANT: use only one load statement
-
-# load the "de" built-in locale:
-Pagy::I18n.load(locale: 'de')
-
-# load the "de" locale defined in the custom file at :filepath:
-Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml')
-
-# load the "de", "en" and "es" built-in locales:
-# the first :locale will be used also as the default locale
-Pagy::I18n.load({locale: 'de'},
-                {locale: 'en'},
-                {locale: 'es'})
-
-# load the "en" built-in locale, a custom "es" locale, and a totally custom locale complete with the :pluralize proc:
-Pagy::I18n.load({locale: 'en'},
-                {locale: 'es', filepath: 'path/to/pagy-es.yml'},
-                {locale: 'xyz',  # not built-in
-                 filepath: 'path/to/pagy-xyz.yml',
-                 pluralize: lambda{ |count| ... }})
-```
-
-**Notice**: You should use a custom `:pluralize` proc only for pluralization types not included in the built-in [p11n.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
- rules. In that case, please submit a PR with your dictionary file and plural rule. The `:pluralize` proc should receive the `count` as a single argument and should return the plural type string (e.g. something like `'one'` or `'other'`, depending on the passed count).
-
-#### Setting the request locale in multi-language apps
-
-When you configure multiple locales, you must also set the locale for each request. You usually do that in the application controller, by checking the `:locale` param. For example, in a rails app you should do something like:
-
-```ruby
-before_action { @pagy_locale = params[:locale] || 'en' }
-```
-
-That instance variable will be used by the [pagy_t](#pagy_tpath-vars) method included in your view and will translate the pagy strings to the selected locale.
-
-**Notice**: In case of `@pagy_locale.nil?` or unknown/not-loaded, then the first loaded locale will be used for the translation. That means that you don't have to set the `@pagy_locale` variable if your app uses just a single locale.
-
-#### Adding the model translations
-
-When Pagy uses its own i18n implementation, it has only access to the strings in its own files and not in other `I18n` files used by the rest of the app.
-
-That means that if you use the `pagy_info` or `pagy_items_selector_js` helpers with the specific model names instead of the generic "items" string, you may need to add entries for the models in the pagy dictionary files. For example:
-
-```yaml
-en:
-  pagy:
-    ...
-
-  # added models strings
-  activerecord:
-    models:
-      product:
-        one: Product
-        other: Products
-      ...
-```
-
-_(See also the [pagy_info method](#pagy_infopagy) and [Customizing the item name](../how-to.md#customizing-the-item-name))_
-
-### Using the standard I18n gem
-
-If you want to use the standard `i18n` gem in place of the pagy i18n implementation, you should use the [i18n extra](../extras/i18n.md), which delegates the handling of the pagy strings to the `i18n` gem.
-
-In that case you need only to require the extra in the initializer file with `require 'pagy/extras/i18n'` and everything will be handled by the `i18n` gem.
-
- **Notice**: if you use the [i18n extra](../extras/i18n.md)/`i18n` gem, you don't need any of the above configurations.

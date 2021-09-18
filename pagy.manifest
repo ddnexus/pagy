@@ -28,9 +28,6 @@ lib/locales/sv.yml
 lib/locales/sw.yml
 lib/locales/tr.yml
 lib/locales/uk.yml
-lib/locales/utils/i18n.rb
-lib/locales/utils/loader.rb
-lib/locales/utils/p11n.rb
 lib/locales/zh-CN.yml
 lib/locales/zh-HK.yml
 lib/locales/zh-TW.yml
@@ -63,6 +60,7 @@ lib/pagy/extras/support.rb
 lib/pagy/extras/trim.rb
 lib/pagy/extras/uikit.rb
 lib/pagy/frontend.rb
+lib/pagy/i18n.rb
 lib/pagy/url_helpers.rb
 lib/templates/bootstrap_nav.html.erb
 lib/templates/bootstrap_nav.html.haml

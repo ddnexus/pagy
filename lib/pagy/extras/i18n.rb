@@ -11,9 +11,4 @@ class Pagy
   Frontend.prepend I18nExtra
 
   ::I18n.load_path += Dir[Pagy.root.join('locales', '*.yml')]
-  # unload the pagy default constant for efficiency
-  I18n.clear.instance_eval do
-    undef :load
-    undef :t
-  end
 end

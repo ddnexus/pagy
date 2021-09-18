@@ -1,6 +1,6 @@
 # Pagy locales
 
-### Please, submit your translation!
+## Please, submit your translation!
 
 If you find that some translation could be improved, please, create an issue.
 
@@ -14,11 +14,11 @@ You can create a Pull Request for your language, and get all the help you need t
 
   - [ ] Find the locale file you need in the [list of pluralizations](https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization) and check the pluralization rule in it. For example it is `::RailsI18n::Pluralization::OneOther.with_locale(:en)` for `en.rb`. Note the rule part i.e. `OneOther`. In pagy that translates to the symbol `:one_other`.
 
-    - [ ] If the pluralization rule of your language is not the `:one_other` default, confirm that the [p11n.rb](https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb) file already defines the pluralization rule of your dictionary file:
+    - [ ] If the pluralization rule of your language is not the `:one_other` default, confirm that the already defines the pluralization rule of your dictionary file in the IRB console, with `require 'pagy'; p Pagy::I18n::P11n::RULE.keys`
 
-      - [ ] If the rule is not defined, you can either: a) Add the rule as a new rule/lambda entry in the `p11n` variable hash and relative tests or b) Just create an issue requesting the addition to the rule/lambda entry and tests.
+      - [ ] If the rule is not defined, you can either: a) Add the rule as a new rule/lambda entry in the `Pagy::I18n::P11n::RULE` constant hash and relative tests or b) Just create an issue requesting the addition to the rule/lambda entry and tests.
 
-      - [ ] Add your language to the `plurals` hash in the file.
+      - [ ] Add and entry for your locale to the `Pagy::I18n::P11n::LOCALE` hash.
 
 - [ ] add/edit the first line comment in the language rule in your dictionary file (e.g. `# :one_other pluralization ...`
 
@@ -30,6 +30,5 @@ Feel free to ask for help in your Pull Request.
 
 ### Useful Links
 
-* [Pagy I18n Documentation](https://ddnexus.github.io/pagy/api/frontend#i18n)
-* [I18n Extra](https://ddnexus.github.io/pagy/extras/i18n)
-
+- [Pagy I18n Documentation](https://ddnexus.github.io/pagy/api/frontend#i18n)
+- [I18n Extra](https://ddnexus.github.io/pagy/extras/i18n)

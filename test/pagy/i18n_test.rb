@@ -2,10 +2,10 @@
 
 # Tests adapted from https://github.com/svenfuchs/rails-i18n
 
-require_relative '../../test_helper'
+require_relative '../test_helper'
 
-describe 'locales/utils/p11n' do
-  let(:p11n) { eval(Pagy.root.join('locales', 'utils', 'p11n.rb').read)[1].freeze } # rubocop:disable Security/Eval
+describe 'pagy/i18n' do
+  let(:p11n) { Pagy::I18n::P11n::RULE }
 
   describe :arabic do
     it "detects that 0 belongs to 'zero'" do
@@ -28,7 +28,7 @@ describe 'locales/utils/p11n' do
       end
     end
     [101, 102, 801, 1.2, 3.7, 11.5, 20.8, 1004.3].each do |count|
-      it "detects that #{count} in ru is 'other'" do
+      it "detects that #{count} belongs to 'other'" do
         _(p11n[:arabic].call(count)).must_equal 'other'
       end
     end
@@ -51,7 +51,7 @@ describe 'locales/utils/p11n' do
       end
     end
     [1.2, 3.7, 11.5, 20.8, 1004.3].each do |count|
-      it "detects that #{count} in ru is 'other'" do
+      it "detects that #{count} belongs to 'other'" do
         _(p11n[:east_slavic].call(count)).must_equal 'other'
       end
     end
@@ -121,6 +121,22 @@ describe 'locales/utils/p11n' do
     [1.2, 3.7, 11.5, 20.8, 1004.3].each do |count|
       it "detects that #{count} belongs to 'other'" do
         _(p11n[:polish].call(count)).must_equal 'other'
+      end
+    end
+  end
+
+  describe :west_slavic do
+    it "detects that 1 belongs to 'one'" do
+      _(p11n[:west_slavic].call(1)).must_equal 'one'
+    end
+    [2, 3, 4].each do |count|
+      it "detects that #{count} belongs to 'few'" do
+        _(p11n[:west_slavic].call(count)).must_equal 'few'
+      end
+    end
+    [0, 5, 8, 10, 1.2, 3.7, 11.5, 20.8, 1004.3].each do |count|
+      it "detects that #{count} belongs to 'other'" do
+        _(p11n[:west_slavic].call(count)).must_equal 'other'
       end
     end
   end

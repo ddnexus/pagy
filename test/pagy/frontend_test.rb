@@ -3,6 +3,15 @@
 require_relative '../test_helper'
 
 require_relative '../mock_helpers/view'
+
+# in test we cannot use the Pagy::I18n.load method because
+# it would freeze the Pagy::I18n::DATA hash so i18n_load
+# do the same as Pagy::I18n.load, just omitting the freeze
+def i18n_load(*locales)
+  Pagy::I18n::DATA.clear
+  Pagy::I18n.send(:build, *locales)
+end
+
 describe 'pagy/frontend' do
   let(:view) { MockView.new }
 
@@ -65,21 +74,21 @@ describe 'pagy/frontend' do
 
   describe "Pagy::I18n" do
     it 'loads custom :locale, :filepath and :pluralize' do
-      _(proc { Pagy::I18n.load(locale: 'xx') }).must_raise Errno::ENOENT
-      _(proc { Pagy::I18n.load(locale: 'xx', filepath: Pagy.root.join('locales', 'en.yml')) }).must_raise Pagy::VariableError
-      _(proc { Pagy::I18n.load(locale: 'en', filepath: Pagy.root.join('locales', 'xx.yml')) }).must_raise Errno::ENOENT
+      _(proc { i18n_load(locale: 'xx') }).must_raise Errno::ENOENT
+      _(proc { i18n_load(locale: 'xx', filepath: Pagy.root.join('locales', 'en.yml')) }).must_raise Pagy::VariableError
+      _(proc { i18n_load(locale: 'en', filepath: Pagy.root.join('locales', 'xx.yml')) }).must_raise Errno::ENOENT
       custom_dictionary = Pagy.root.parent.join('test', 'files', 'custom.yml')
-      Pagy::I18n.load(locale: 'custom', filepath: custom_dictionary)
+      i18n_load(locale: 'custom', filepath: custom_dictionary)
       _(Pagy::I18n.t('custom', 'pagy.nav.prev')).must_equal "&lsaquo;&nbsp;Custom Prev"
-      Pagy::I18n.load(locale: 'en', pluralize: ->(_) { 'one' }) # returns always 'one' regardless the count
+      i18n_load(locale: 'en', pluralize: ->(_) { 'one' }) # returns always 'one' regardless the count
       _(Pagy::I18n.t(nil, 'pagy.item_name', count: 0)).must_equal "item"
       _(Pagy::I18n.t('en', 'pagy.item_name', count: 0)).must_equal "item"
       _(Pagy::I18n.t('en', 'pagy.item_name', count: 1)).must_equal "item"
       _(Pagy::I18n.t('en', 'pagy.item_name', count: 10)).must_equal "item"
-      Pagy::I18n.load(locale: 'en') # reset for other tests
+      i18n_load(locale: 'en') # reset for other tests
     end
     it 'switches :locale according to @pagy_locale' do
-      Pagy::I18n.load({ locale: 'de' }, { locale: 'en' }, { locale: 'nl' })
+      i18n_load({ locale: 'de' }, { locale: 'en' }, { locale: 'nl' })
       view.instance_variable_set(:@pagy_locale, 'nl')
       _(view.pagy_t('pagy.item_name', count: 1)).must_equal "stuk"
       view.instance_variable_set(:@pagy_locale, 'en')
@@ -88,7 +97,7 @@ describe 'pagy/frontend' do
       _(view.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag"
       view.instance_variable_set(:@pagy_locale, 'unknown')
       _(view.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag" # silently serves the first loaded locale
-      Pagy::I18n.load(locale: 'en') # reset for other tests
+      i18n_load(locale: 'en') # reset for other tests
       view.instance_variable_set(:@pagy_locale, nil) # reset for other tests
     end
   end
@@ -101,8 +110,8 @@ describe 'pagy/frontend' do
       _(view.pagy_info(Pagy.new(count: 100, page: 3))).must_equal '<span class="pagy-info">Displaying items <b>41-60</b> of <b>100</b> in total</span>'
     end
     it 'renders with existing i18n key' do
-      Pagy::I18n['en'][0]['pagy.info.product.one']   = ->(_) { 'Product' }
-      Pagy::I18n['en'][0]['pagy.info.product.other'] = ->(_) { 'Products' }
+      Pagy::I18n::DATA['en'][0]['pagy.info.product.one']   = 'Product'
+      Pagy::I18n::DATA['en'][0]['pagy.info.product.other'] = 'Products'
       _(view.pagy_info(Pagy.new(count: 0, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">No Products found</span>'
       _(view.pagy_info(Pagy.new(count: 1, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
       _(view.pagy_info(Pagy.new(count: 13, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
@@ -111,7 +120,7 @@ describe 'pagy/frontend' do
       _(view.pagy_info(Pagy.new(count: 1), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
       _(view.pagy_info(Pagy.new(count: 13), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
       _(view.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
-      Pagy::I18n.load(locale: 'en') # reset for other tests
+      i18n_load(locale: 'en') # reset for other tests
     end
     it 'overrides the item_name and set pagy_id' do
       _(view.pagy_info(Pagy.new(count: 0), pagy_id: 'pagy-info', item_name: 'Widgets')).must_equal '<span id="pagy-info" class="pagy-info">No Widgets found</span>'

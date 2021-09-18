@@ -1,15 +1,11 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
 # frozen_string_literal: true
 
-require 'yaml'
 require 'pagy/url_helpers'
+require 'pagy/i18n'
 
 class Pagy
   PAGE_PLACEHOLDER = '__pagy_page__' # string used for search and replace, hardcoded also in the pagy.js file
-
-  # I18n static hash loaded at startup, used as default alternative to the i18n gem.
-  # see https://ddnexus.github.io/pagy/api/frontend#i18n
-  I18n = eval Pagy.root.join('locales', 'utils', 'i18n.rb').read # rubocop:disable Security/Eval
 
   # All the code here has been optimized for performance: it may not look very pretty
   # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
@@ -55,7 +51,7 @@ class Pagy
 
       %(<span#{p_id} class="pagy-info">#{
           pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
-                  count: p_count, from: pagy.from, to: pagy.to
+                      count: p_count, from: pagy.from, to: pagy.to
         }</span>)
     end
 
@@ -77,7 +73,7 @@ class Pagy
     # Similar to I18n.t: just ~18x faster using ~10x less memory
     # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_t(key, **opts)
-      Pagy::I18n.t @pagy_locale ||= nil, key, **opts
+      Pagy::I18n.t(@pagy_locale ||= nil, key, **opts)
     end
   end
 end

@@ -2,19 +2,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "rake: All",
-            "type": "rake",
-            "task": "default",
-            "problemMatcher": [],
+            "label": "test: All",
+            "type": "shell",
+            "command": "rake",
             "group": "test",
         },
         {
-            "label": "rake: All With HTML Reports",
+            "label": "test: All With HTML Reports",
             "type": "shell",
             "command": "rake",
-            "args": [
-                "default"
-            ],
             "options": {
                 "env": {
                     "HTML_REPORTS": "true"
