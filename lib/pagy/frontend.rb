@@ -5,7 +5,8 @@ require 'pagy/url_helpers'
 require 'pagy/i18n'
 
 class Pagy
-  PAGE_PLACEHOLDER = '__pagy_page__' # string used for search and replace, hardcoded also in the pagy.js file
+  # Used for search and replace, hardcoded also in the pagy.js file
+  PAGE_PLACEHOLDER = '__pagy_page__'
 
   # All the code here has been optimized for performance: it may not look very pretty
   # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
@@ -40,7 +41,7 @@ class Pagy
       html << %(</nav>)
     end
 
-    # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
+    # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy, pagy_id: nil, item_name: nil, i18n_key: nil)
       p_id    = %( id="#{pagy_id}") if pagy_id
       p_count = pagy.count
@@ -55,7 +56,7 @@ class Pagy
         }</span>)
     end
 
-    # Returns a performance optimized proc to generate the HTML links
+    # Return a performance optimized proc to generate the HTML links
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_link_proc(pagy, link_extra: '')
       p_prev      = pagy.prev

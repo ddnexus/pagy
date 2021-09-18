@@ -4,12 +4,16 @@
 class Pagy
   VARS[:overflow] = :empty_page
 
+  # Handles OverflowError exceptions with different options
   module OverflowExtra
+    # Support for Pagy class
     module Pagy
+      # Is the requested page overflowing?
       def overflow?
         @overflow
       end
 
+      # Add rescue clause for different behaviors
       def initialize(vars)
         @overflow ||= false                         # don't override if :last_page re-run the method after an overflow
         super
@@ -43,8 +47,9 @@ class Pagy
       end
     end
 
-    # support for Pagy::Countless
+    # Support for Pagy::Countless class
     module Countless
+      # Add rescue clause for different behaviors
       def finalize(items)
         @overflow = false
         super

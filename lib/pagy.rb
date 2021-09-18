@@ -3,7 +3,7 @@
 
 require 'pathname'
 
-# main class
+# Core class
 class Pagy
   VERSION = '5.0.0'
 
@@ -12,7 +12,7 @@ class Pagy
     @root ||= Pathname.new(__dir__).freeze
   end
 
-  # default vars: it uses a constant for easy access, but mutable for customizable defaults
+  # Default core vars: constant for easy access, but mutable for customizable defaults
   VARS = { page:       1, # rubocop:disable Style/MutableConstant
            items:      20,
            outset:     0,
@@ -73,25 +73,25 @@ class Pagy
 
   protected
 
-  # apply defaults, cleanup blanks and set @vars
+  # Apply defaults, cleanup blanks and set @vars
   def normalize_vars(vars)
     @vars = VARS.merge(vars.delete_if { |k, v| VARS.key?(k) && (v.nil? || v == '') })
   end
 
-  # setup and validates the passed vars: var must be present and value.to_i must be >= to min
+  # Setup and validates the passed vars: var must be present and value.to_i must be >= to min
   def setup_vars(name_min)
     name_min.each do |name, min|
       raise VariableError.new(self), "expected :#{name} >= #{min}; got #{@vars[name].inspect}" \
-          unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
+            unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
     end
   end
 
-  # setup and validate the items (overridden by the gearbox extra)
+  # Setup and validate the items (overridden by the gearbox extra)
   def setup_items_var
     setup_vars(items: 1)
   end
 
-  # setup and validates the pages (overridden by the gearbox extra)
+  # Setup and validates the pages (overridden by the gearbox extra)
   def setup_pages_var
     @pages = @last = [(@count.to_f / @items).ceil, 1].max
   end

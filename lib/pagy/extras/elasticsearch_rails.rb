@@ -6,7 +6,7 @@ class Pagy
 
   module ElasticsearchRailsExtra
     module ElasticsearchRails
-      # returns an array used to delay the call of #search
+      # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options
       # it also pushes to the same array an eventually called method
       def pagy_elasticsearch_rails(query_or_payload, **options)
@@ -17,8 +17,9 @@ class Pagy
       alias_method Pagy::VARS[:elasticsearch_rails_search_method], :pagy_elasticsearch_rails
     end
 
+    # Additions for the Pagy class
     module Pagy
-      # create a Pagy object from an Elasticsearch::Model::Response::Response object
+      # Create a Pagy object from an Elasticsearch::Model::Response::Response object
       def new_from_elasticsearch_rails(response, vars = {})
         vars[:items] = response.search.options[:size] || 10
         vars[:page]  = ((response.search.options[:from] || 0) / vars[:items]) + 1

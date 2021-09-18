@@ -6,6 +6,7 @@ class Pagy
   VARS[:steps] = false # default false will use {0 => @vars[:size]}
 
   module SharedExtra
+    # Additions for the Pagy class
     module Pagy
       # `Pagy` instance method used by the `pagy*_nav_js` helpers.
       # It returns the sequels of width/series generated from the :steps hash
@@ -27,6 +28,7 @@ class Pagy
       end
     end
 
+    # Additions for the Frontend
     module Frontend
       if defined?(Oj)
         # it returns a script tag with the JSON-serialized args generated with the faster oj gem
@@ -43,7 +45,7 @@ class Pagy
         end
       end
 
-      # it returns the marked link to used by pagy.js
+      # Return the marked link to used by pagy.js
       def pagy_marked_link(link)
         link.call PAGE_PLACEHOLDER, '', 'style="display: none;"'
       end

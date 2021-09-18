@@ -5,7 +5,7 @@ class Pagy
 
   module MeilisearchExtra
     module Meilisearch
-      # returns an array used to delay the call of #search
+      # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options
       def pagy_meilisearch(term = nil, **vars)
         [self, term, vars]
@@ -13,8 +13,9 @@ class Pagy
       alias_method VARS[:meilisearch_search_method], :pagy_meilisearch
     end
 
+    # Additions for the Pagy class
     module Pagy
-      # create a Pagy object from a Meilisearch results
+      # Create a Pagy object from a Meilisearch results
       def new_from_meilisearch(results, vars = {})
         vars[:items] = results.raw_answer['limit']
         vars[:page]  = [results.raw_answer['offset'] / vars[:items], 1].max

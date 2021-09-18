@@ -6,7 +6,7 @@ class Pagy
 
   module SearchkickExtra
     module Searchkick
-      # returns an array used to delay the call of #search
+      # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options
       # it also pushes to the same array an eventually called method
       def pagy_searchkick(term = '*', **options, &block)
@@ -17,8 +17,9 @@ class Pagy
       alias_method Pagy::VARS[:searchkick_search_method], :pagy_searchkick
     end
 
+    # Additions for the Pagy class
     module Pagy
-      # create a Pagy object from a Searchkick::Results object
+      # Create a Pagy object from a Searchkick::Results object
       def new_from_searchkick(results, vars = {})
         vars[:items] = results.options[:per_page]
         vars[:page]  = results.options[:page]

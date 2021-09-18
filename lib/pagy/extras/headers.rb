@@ -7,20 +7,23 @@ class Pagy
   VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
   # Add specialized backend methods to add pagination response headers
   module HeadersExtra
-    private
-
     include UrlHelpers
 
+    private
+
+    # Merge the pagy headers into the response.headers
     def pagy_headers_merge(pagy)
       response.headers.merge!(pagy_headers(pagy))
     end
 
+    # Generate a hash of RFC-8288 compliant http headers
     def pagy_headers(pagy)
       pagy_headers_hash(pagy).tap do |hash|
         hash['Link'] = hash['Link'].map { |rel, link| %(<#{link}>; rel="#{rel}") }.join(', ')
       end
     end
 
+    # Generates a hash structure of the headers
     def pagy_headers_hash(pagy)
       countless             = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
       rel                   = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }

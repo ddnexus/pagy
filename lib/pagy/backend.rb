@@ -2,11 +2,11 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Defines a few generic methods to paginate an ORM collection out of the box,
+  # Define a few generic methods to paginate an ORM collection out of the box,
   # or any collection by overriding pagy_get_items and/or pagy_get_vars in your controller
   # See also the extras if you need specialized methods to paginate Arrays or other collections
   module Backend
-    private         # the whole module is private so no problem with including it in a controller
+    private
 
     # Return Pagy object and items
     def pagy(collection, vars = {})

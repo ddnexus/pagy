@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Provides the helpers to handle the url in frontend and backend
+  # Provide the helpers to handle the url in frontend and backend
   module UrlHelpers
     # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
     def pagy_url_for(pagy, page, absolute: nil)

@@ -8,15 +8,18 @@ class Pagy
   module MetadataExtra
     private
 
+    # Store the array of all the internal variable names usable as METADATA
     METADATA = %i[scaffold_url first_url prev_url page_url next_url last_url
                   count page items vars pages last in from to prev next series].tap do |metadata|
                  metadata << :sequels if VARS.key?(:steps)  # :steps gets defined along with the #sequels method
                end.freeze
 
+    # Set the default metadata variable
     Pagy::VARS[:metadata] = METADATA.dup
 
     include UrlHelpers
 
+    # Return the metadata hash
     def pagy_metadata(pagy, absolute: nil)
       names   = pagy.vars[:metadata]
       unknown = names - METADATA

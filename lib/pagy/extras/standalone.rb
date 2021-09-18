@@ -4,7 +4,7 @@
 require 'uri'
 class Pagy
   module StandaloneExtra
-    # extracted from Rack::Utils and reformatted for rubocop
+    # Extracted from Rack::Utils and reformatted for rubocop
     module QueryUtils
       module_function
 
@@ -30,7 +30,7 @@ class Pagy
       end
     end
 
-    # without any :url var it works exactly as the regular #pagy_url_for;
+    # Without any :url var it works exactly as the regular #pagy_url_for;
     # with a defined :url variable it does not use rack/request
     def pagy_url_for(pagy, page, absolute: nil)
       p_vars = pagy.vars
@@ -44,11 +44,11 @@ class Pagy
       "#{url}#{query_string}#{p_vars[:fragment]}"
     end
   end
-  # in ruby 3+ we could just use `UrlHelpers.prepend StandaloneExtra` instead of using the next 2 lines
+  # In ruby 3+ we could just use `UrlHelpers.prepend StandaloneExtra` instead of using the next 2 lines
   Frontend.prepend StandaloneExtra
   Backend.prepend StandaloneExtra
 
-  # defines a dummy #params method if it's not already defined in the including module
+  # Define a dummy params method if it's not already defined in the including module
   module Backend
     def self.included(controller)
       controller.define_method(:params) { {} } unless controller.method_defined?(:params)

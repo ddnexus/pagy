@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # generic variable error
+  # Generic variable error
   class VariableError < ArgumentError
     attr_reader :pagy
 
@@ -20,6 +20,6 @@ class Pagy
     end
   end
 
-  # specific overflow error
+  # Specific overflow error
   class OverflowError < VariableError; end
 end

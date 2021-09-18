@@ -1,8 +1,10 @@
+# See Pagy::Countless API documentation: https://ddnexus.github.io/pagy/api/countless
 # frozen_string_literal: true
 
 require 'pagy'
 
 class Pagy
+  # No need to know the count to paginate
   class Countless < Pagy
     # Merge and validate the options, do some simple arithmetic and set a few instance variables
     def initialize(vars = {}) # rubocop:disable Lint/MissingSuper

@@ -10,5 +10,6 @@ class Pagy
   end
   Frontend.prepend I18nExtra
 
+  # Add the pagy locales to the I18n.load_path
   ::I18n.load_path += Dir[Pagy.root.join('locales', '*.yml')]
 end
