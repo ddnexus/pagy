@@ -3,14 +3,24 @@ title: API
 ---
 # API
 
-The whole core structure of Pagy is very simple: it is organized around 3 small files of just above 100 lines of code in total:
+The public API of Pagy is composed by 3 groups of modules:
 
-| File                                                                                 | Description                                                                                                                                                |
-|:-------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb)                   | It defines the small [Pagy](api/pagy.md) class that keeps track of the variables involved in the pagination                                                |
-| [pagy/backend.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb)   | It defines the optional [Pagy::Backend](api/backend.md) module that you can include in your controllers in order to automatically create the Pagy instance |
-| [pagy/frontend.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb) | It defines the [Pagy::Frontend](api/frontend.md) module to include in your views in order to get a few helpers for the HTML output                         |
+## Core modules
 
-Besides the core files you can explicitly require optional [extras](extras.md) that can handle special features, collections or environments.
+The low level structure needed for standard usage. It's composed of just one class and two modules:
 
-See also: [Global Configuration](how-to.md#global-configuration)
+- The [Pagy](api/pagy.md) core class that implements the pagination logic
+- The [Pagy::Backend](api/backend.md) module to include in your controllers
+- The [Pagy::Frontend](api/frontend.md) module to include in your helpers
+
+## Support modules
+
+These modules provide support for special environments or features that go beyond the standard usage:
+
+- The [Pagy::Countless](api/countless.md) subclass that provides the pagination without a count used by the [countless](extras/countless.md) extra. (It saves one count query per request).
+- The [Pagy::Console](api/console.md) module that provides easy interaction with pagy in the IRB/rails console
+- The [Pagy::I18n](api/i18n.md) module that provides multi-language translation of the pagy strings
+
+## Extras
+
+Pagy provides also a growing number of optional extensions/extras that can handle special features, collections or environments. See the [extras](extras.md) doc for the full list.
