@@ -1,15 +1,17 @@
-# Integration interactive test cypress IDE
-
-# Use this file in addition to the docker-compose.yml file to override
-# the pagy-cypress entrypoint so it will not run the tests automatically
-# adding the configuration to open the cypress UI from the container
-# like it was installed on the host
-
-# IMPORTANT: you may have to edit the volume mounts in order to match your host OS
+# Integration interactive test cypress mode
 
 # USAGE
-#   docker-compose -f docker-compose.yml -f run-test-app.yml -f open-cypress.yml up pagy pagy-cypress
+#   cd pagy-on-docker
+#   docker-compose -f docker-compose.yml -f cypress-headless -f cypress-interactive.yml up pagy pagy-cypress
 
+# HEADLESS - run from the container:
+#   cypress run
+# or
+
+# INTERACTIVE - run from the container:
+#   cypress open --project /e2e
+
+# IMPORTANT: you may have to edit the volume mounts in order to match your host OS
 version: "3.8"
 
 services:
@@ -19,25 +21,29 @@ services:
       - CYPRESS_baseUrl=http://0.0.0.0:4567
       - DISPLAY
       - DBUS_SESSION_BUS_ADDRESS
-    entrypoint: |
-      cypress open --project /test/e2e
     privileged: true
     network_mode: host
     volumes:
+      - cypress_user_home:/home/node
       # mounts working on ubuntu 20.10 host uid 1000
       - /run/user/1000/bus:/run/user/1000/bus
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
-      - cypress_config:/home/node/.config   # node is the user name for uid 1000: for other cases use your actual USER
+      # node is the user name for uid 1000: for other cases use your actual USER
+      - cypress_config:/home/node/.config
       # you may need to change all these mounts by reading at the error messages in the container
       # you might also need some of the following:
       # - $XAUTHORITY:/root/.Xauthority:rw
       # - $HOME/.Xauthority:/root/.Xauthority:rw
       # or on macOS:
       # - /tmp/.X11-unix:/tmp/.X11-unix
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    entrypoint: []
     stdin_open: true
     tty: true
 
 volumes:
-  # persists the configuration settings
+  # persists the configuration settings and the user home
   cypress_config:
     name: pagy_cypress_config
+  cypress_user_home:
+    name: pagy_cypress_user_home

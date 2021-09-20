@@ -11,36 +11,29 @@
 // each time you modify this file.
 
 {
+    "name": "pagy-cypress", // devcontainer id
 	"runServices": [
 		"pagy",
-		"pagy-jekyll",
+		"pagy-cypress"
 	],
-	"dockerComposeFile": [
-		// "../pagy-on-docker/docker-compose-backport.yml  // use in place of docker-compose.yml only for 2.7
-		"../pagy-on-docker/docker-compose.yml",
-	],
+    "dockerComposeFile": [
+        "../../../pagy-on-docker/docker-compose.yml",
+        "../../../pagy-on-docker/cypress-headless.yml",
+        "../../../pagy-on-docker/cypress-interactive.yml"
+    ],
+    "service": "pagy-cypress", // devcontainer home
+    "workspaceFolder": "/pagy/test/e2e",
+	"settings": {
+    },
 	"extensions": [
 		"antfu.browse-lite",
-		"castwide.solargraph",
-		"davidanson.vscode-markdownlint",
 		"eamodio.gitlens",
 		"jdforsythe.add-new-line-to-files",
-		"kaiwood.endwise",
-		"koichisasada.vscode-rdbg",
 		"mhutchie.git-graph",
-		"misogi.ruby-rubocop",
 		"msjsdiag.debugger-for-edge",
 		"rangav.vscode-thunder-client",
-		"rebornix.ruby",
 		"shardulm94.trailing-spaces",
 		"streetsidesoftware.code-spell-checker",
 		"tht13.html-preview-vscode",
-		"wingrunr21.vscode-ruby",
-		"yzhang.markdown-all-in-one"
 	],
-	"name": "pagy",
-	// comment the following to run all the services, but enable the dockerComposeFile files that you need
-	"service": "pagy",
-	"settings": {},
-	"workspaceFolder": "/pagy"
 }

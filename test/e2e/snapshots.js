@@ -565,5 +565,5 @@ module.exports = {
       "12": "<ul id=\"combo-nav-js\"\n  class=\"pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center\"\n  data-pagy-json=\"[&quot;combo_nav&quot;,48,&quot;<a href=\\&quot;/uikit?page=__pagy_page__&amp;items=20\\&quot;   style=\\&quot;display: none;\\&quot;></a>&quot;,&quot;page&quot;]\">\n  <li><a href=\"/uikit?page=47&amp;items=20\"\n      rel=\"prev\"><span uk-pagination-previous=\"\">‹&nbsp;Prev</span></a></li>\n  <li><label>Page <input type=\"number\"\n        min=\"1\"\n        max=\"50\"\n        value=\"48\"\n        style=\"text-align: center; width: 3rem;\"> of 50</label></li>\n  <li><a href=\"/uikit?page=49&amp;items=20\"\n      rel=\"next\"><span uk-pagination-next=\"\">Next&nbsp;›</span></a></li>\n</ul>"
     }
   },
-  "__version": "8.3.1"
+  "__version": "8.4.0"
 }

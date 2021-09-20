@@ -1,0 +1,43 @@
+# Pagy Cypress docker-compose setup for headless mode
+
+# IMPORTANT: depends on the main docker-compose.yml
+
+# USAGE
+# It will run the tests print a report and exit
+#   cd pagy-on-docker
+#   docker-compose -f docker-compose.yml -f cypress-headless up pagy pagy-cypress
+
+
+version: "3.8"
+
+services:
+
+  # depends on the main pagy docker-compose setup
+  # this changes the command to run the test app that cypress needs
+  pagy:
+    ports:
+      - "4567:4567"
+    command: rerun -- rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru
+
+  # IMPORTANT: pick the build.dockerfile entry according to your UID
+  pagy-cypress:
+    depends_on:
+      - pagy
+    image: pagy-cypress:latest
+    build:
+      context: .
+      # switch between the following 2 lines if your user id is 1000 or not
+      dockerfile: pagy-cypress-uid1000.dockerfile
+      # dockerfile: pagy-cypress.dockerfile
+      args:
+        user: $USER
+        group: $GROUP
+        uid: $UID
+        gid: $GID
+    container_name: pagy-cypress
+    environment:
+      - CYPRESS_baseUrl=http://pagy:4567
+    working_dir: /pagy/test/e2e
+    volumes:
+      - ..:/pagy
+
