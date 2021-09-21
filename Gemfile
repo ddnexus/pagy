@@ -9,9 +9,8 @@ gem 'rake'
 
 group :development do
   gem 'debase'         # companion of ruby-debug-ide
-  gem 'debug', '1.1.0' # independent debug
   gem 'ruby-debug-ide' # companion of debase
-  gem 'solargraph'     # run `bundle exec yard gems` and run the Solargraph rebuild command in VSC
+  gem 'solargraph'     # run the Solargraph rebuild command in VSC
 end
 
 group :test do

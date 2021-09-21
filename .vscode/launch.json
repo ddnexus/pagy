@@ -5,19 +5,6 @@
     "version"                     : "0.2.0",
     "configurations"              : [
         {
-            "name"                : "Debug current file with rdbg",
-            "type"                : "rdbg",
-            "request"             : "launch",
-            "script"              : "${file}",
-            "args"                : [],
-            "askParameters"       : true
-        },
-        {
-            "name"                : "Attach with rdbg",
-            "type"                : "rdbg",
-            "request"             : "attach"
-        },
-        {
             "name"                : "Debug Active File",
             "type"                : "Ruby",
             "request"             : "launch",

@@ -13,18 +13,12 @@ GEM
     debase (0.2.4.1)
       debase-ruby_core_source (>= 0.10.2)
     debase-ruby_core_source (0.10.12)
-    debug (1.1.0)
-      irb
-      reline (>= 0.2.7)
     diff-lcs (1.4.4)
     docile (1.4.0)
     e2mmap (0.1.0)
     ffi (1.15.4)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
-    io-console (0.5.9)
-    irb (1.3.7)
-      reline (>= 0.2.7)
     jaro_winkler (1.5.4)
     kalibera (0.1.1)
       memoist (~> 0.11.0)
@@ -50,11 +44,11 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
-    oj (3.13.6)
+    oj (3.13.7)
     parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
-    puma (5.4.0)
+    puma (5.5.0)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
@@ -68,8 +62,6 @@ GEM
       ffi (~> 1.0)
     rbzip2 (0.2.0)
     regexp_parser (2.1.1)
-    reline (0.2.7)
-      io-console (~> 0.5)
     rematch (1.3.1)
     rerun (0.13.1)
       listen (~> 3.0)
@@ -96,7 +88,7 @@ GEM
       rubocop-ast (>= 0.4.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    ruby-debug-ide (0.7.2)
+    ruby-debug-ide (0.7.3)
       rake (>= 0.8.1)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
@@ -117,7 +109,7 @@ GEM
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
-    solargraph (0.43.0)
+    solargraph (0.43.1)
       backport (~> 1.2)
       benchmark
       bundler (>= 1.17.2)
@@ -144,7 +136,6 @@ DEPENDENCIES
   benchmark-ips
   codecov
   debase
-  debug (= 1.1.0)
   i18n
   kalibera
   memory_profiler
