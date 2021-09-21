@@ -15,18 +15,19 @@
         "../../../pagy-on-docker/docker-compose.e2e-dev.yml"
     ],
     "extensions": [
-        "antfu.browse-lite",
-        "dbaeumer.vscode-eslint",
-        "eamodio.gitlens",
-        "jdforsythe.add-new-line-to-files",
-        "mhutchie.git-graph",
-        "msjsdiag.debugger-for-edge",
-        "rangav.vscode-thunder-client",
-        "shardulm94.trailing-spaces",
-        "shevtsov.vscode-cy-helper",
-        "streetsidesoftware.code-spell-checker",
-        "tht13.html-preview-vscode"
-    ],
+		"adrianwilczynski.terminal-commands"
+		"antfu.browse-lite",
+		"dbaeumer.vscode-eslint",
+		"eamodio.gitlens",
+		"jdforsythe.add-new-line-to-files",
+		"mhutchie.git-graph",
+		"msjsdiag.debugger-for-edge",
+		"rangav.vscode-thunder-client",
+		"shardulm94.trailing-spaces",
+		"shevtsov.vscode-cy-helper",
+		"streetsidesoftware.code-spell-checker",
+		"tht13.html-preview-vscode",
+	],
     "name": "pagy-e2e-dev", // devcontainer id
     "runServices": [
         "ruby",
