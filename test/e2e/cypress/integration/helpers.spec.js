@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 describe('Test generic helpers', () => {
   const pages = [1, 5, 36, 50];
   it('test pagy_info', () => {

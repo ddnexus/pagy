@@ -1,0 +1,26 @@
+{
+    "cSpell.words": [
+        "bulma",
+        "htmlvalidate",
+        "navs",
+        "pagy",
+        "uikit"
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "runTerminalCommand.commands": [
+        {
+            "auto": true,
+            "command": "cypress run --project /pagy/test/e2e",
+            "name": "Cypress run",
+            "preserve": true
+        },
+        {
+            "auto": true,
+            "command": "cypress open --project /pagy/test/e2e",
+            "name": "Cypress open",
+            "preserve": true
+        },
+    ],
+    "trailing-spaces.highlightCurrentLine": false,
+    "trailing-spaces.trimOnSave": true
+}

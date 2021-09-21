@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 describe('Test all navs for all styles', () => {
   const ids = ['#nav', '#nav-js'];
   const widths = [500, 750, 1000];

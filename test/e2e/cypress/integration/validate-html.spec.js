@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 describe('Validate the HTML of all the styles helpers', () => {
   const pages = [1, 25, 50]
   for(let s = 0; s < styles.length; s++) {

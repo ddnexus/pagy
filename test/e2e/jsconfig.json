@@ -1,0 +1,8 @@
+//
+{
+  "include": [
+    "/usr/local/lib/node_modules/cypress",
+    "/pagy/test/e2e/cypress/**/*.js",
+    "/pagy/test/e2e/cypress/**/*.ts"
+  ]
+}
