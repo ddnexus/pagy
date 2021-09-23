@@ -35,9 +35,14 @@ docker-compose build
 
 The Pagy repository comes with the VSCode setup files that should reproduce a complete **Ruby development environment** on your local installation almost automatically.
 
-1. Ensure to have the `Remote Containers` extension or install it. You can install it manually with `Ctrl+P`, paste `ext install ms-vscode-remote.remote-containers` and `Enter`.
+1. You need the `Remote Containers` extension. Installation instructions:
+    (i) Open VS Code, and hit: `Ctrl+P`,
+    (ii) paste `ext install ms-vscode-remote.remote-containers` and
+    (iii) hit `Enter`
+    [Please see here for further details](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack).
 2. Run the `Remote-Containers: Open Folder in Container...` command and pick your local `pagy` repository dir (VSCode will prepare the environment).
-3. Run `bundle install` in the terminal to complete the ruby setup.
+3. Navigate to: `pagy/pagy-on-docker` and run `bundle install` in the terminal to complete the ruby setup.
+4. Run the `rake` command - you should see all the tests pass: Congratulations!
 
 ### Setup Solargraph
 
