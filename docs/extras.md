@@ -1,9 +1,10 @@
 ---
 title: Extras
 ---
+
 # Extras
 
-Pagy comes with a few optional extensions/extras:
+Pagy comes with a growing number of optional extras, that add core, backend, frontend or special features to the regular core features.
 
 | Extra                 | Description                                                                                                                                              | Links                                                                                                                                                        |
 |:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -42,7 +43,9 @@ require 'pagy/extras/...'
 
 ## Description
 
-Extras don't define any new module or class, they just re-open the `Pagy` class and modules, adding the extra methods as they were part of the loaded `pagy` gem. This neatly separates the core code from the optional extras, still keeping its usage as simple as it were part of the core.
+Extras add features by defining their own `*Extra` module that get prepended to other pagy classes or modules. This neatly separates the core code from the optional extras, leaving a trace in the `ancestors` array to improve introspection and debugging info.
+
+**Notice**: In previous Pagy versions extras were re-opening the `Pagy` class and modules. That is good as long as you have just a few extras... which is not the case anymore.
 
 ## Methods
 
@@ -52,7 +55,7 @@ A few extras require the [pagy/extras/shared](https://github.com/ddnexus/pagy/bl
 
 ## Javascript Helpers
 
-A few helpers use javascript, and they are clearly recognizable by the `js` suffix:
+A few frontend extras add helpers that use javascript, and they are clearly recognizable by the `js` suffix:
 
 - `pagy*_nav_js`
 - `pagy*_combo_nav_js`

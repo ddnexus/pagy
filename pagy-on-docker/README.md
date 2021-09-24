@@ -1,168 +1,233 @@
 # Pagy on Docker
 
-This dir contains a few files to setup a ruby development environment without installing anything on your system.
+This dir contains the docker files to setup a complete development environment without installing anything on your system.
 
-You can use it to develop changes, run tests and check a live preview of the documentation.
+You can use it to develop changes, run ruby and E2E tests, and check the live preview of the documentation.
 
-It also includes the docker files to setup a javascript testing environment using `cypress`. See the [E2E Environment](#e2e-environment) below
-
-## Ruby Dev Environment
-
-The pagy docker environment has been designed to be useful for developing:
-
-- It provides the infrastructure required (right version of ruby, jekyll server, env variables, tests, etc.) without the hassle to install and maintain anything in your system
-- The local `pagy` dir is mounted at the container dir `/opt/project` so you can edit the files in your local pagy dir or in the container: they are the same files.
-- The gems are installed in the container `BUNDLE_PATH=/usr/local/bundle` and that dir is `chown`ed to your user, and mounted as the docker volume `pagy_bundle`. You can use the `bundle` command and it will be persisted in the volume, no need to rebuild the image nor pollute your own system.
-- Your container user `HOME` is preserved in the `pagy_user_home` volume, so you can even get back to the shell history in future sessions.
-
-### Prerequisites
+## Prerequisites
 
 - recent `docker`
 - recent `docker-compose`
-- basic knowledge of docker/docker-compose
+- basic knowledge of `docker`/`docker-compose`
 
-### Build
+## Optional
 
-You have a couple of alternatives:
+- `Visual Studio Code` (the repo contains a complete and ready to use VSCode setup that makes yur life super easy)
 
-1. (recommended) Permanently set a few environment variables about your user in your IDE or system or in a `pagy-on-docker/.env` file (it will be easier later):
-   - the `GROUP` name (get it with `id -gn` in the terminal)
-   - if `echo $UID` return nothing, then set the `UID` (get it with `id -u` in the terminal)
-   - if `echo $GID` return nothing, then set the `GID` (get it with `id -g` in the terminal)
-   - (Notice: you can also specify a few other variables used in the `docker-compose.yml` file.)
+# Ruby Dev Environment
 
-    ```sh
-    cd pagy-on-docker
-    docker-compose build pagy pagy-jekyll
-    ```
+The pagy docker environment has been designed to be a complete setup for developing:
 
-2. Just set them with the command (you will have to set them each time you will have to build or do other stuff) For example:
+- It provides the infrastructure required (right version of ruby, development gems, jekyll server, env variables, tests, etc.) without the hassle to install and maintain anything in your system
+- The local `pagy` dir is mounted at the container dir `/pagy` so you can edit the files in your local pagy dir or in the container: they are the same files.
+- The gems are installed  and persisted in the container `BUNDLE_PATH=/usr/local/bundle` and that dir is `chown`ed to your user, and mounted as the docker volume `pagy_bundle` (no need to rebuild the image nor pollute your own system).
+- Your container user `HOME` is persisted in the `pagy_user_home` volume, so you can even get back to the shell history in future sessions.
 
-  ```sh
-  cd pagy-on-docker
-  GROUP=$(id -gn) UID=$(id -u) GID=$(id -g) docker-compose build pagy pagy-jekyll
-  ```
+## Build
 
-  You need to run this only once usually, when you build the images. After that you just run the containers (see below).
-
-### Run
-
-Run the containers from the `pagy-on-docker` dir:
+Run in the local terminal:
 
 ```sh
-docker-compose up pagy
-docker-compose up pagy-jekyll # for the documentation site
-docker-compose up pagy pagy-jekyll # for both pagy and the documentation site
+cd pagy-on-docker
+./setup-env.sh
+docker-compose build
 ```
 
-Then:
+:pushpin: __Remember that every docker command must be run from the  `pagy-on-docker` dir.__
 
-1. Open a terminal in the pagy container:
-   - if the container is already up, run bash in the same container `docker-compose exec pagy bash`
-   - or `docker-compose run --rm pagy bash` to run it in a different container
+**Notice**: the `setup-env.sh` creates an `.env` file with what is needed to build the docker images. You can further customize the `.env` file after it is created.
 
-2. `bundle install` to install the gems into the `pagy_bundle` volume.
+## If you use VSCode (Ruby)
 
-At this poin the setup is completed, so you can run `irb -I lib -r pagy` from the container in order to have `pagy` loaded and ready to try.
+The Pagy repository comes with the VSCode files that setup a complete **Ruby Development Environment** on your local installation almost automatically.
 
-Run all the tests by simply running `rake` without arguments: it will run the `test`, `rubocop`, `coverge_summary` and `manifest:check` tasks.
+1. You need the [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension. Installation instructions:
+    1. Open VS Code, and hit: `Ctrl+P`
+    2. Paste `ext install ms-vscode-remote.remote-containers`
+    3. Hit `Enter`
+2. Run the `Remote-Containers: Open Folder in Container...` command and pick your local `pagy` repository dir (VSCode will prepare the environment).
+3. Run `bundle install` in the container terminal to complete the ruby setup.
 
-Notice: Certain tests must run in an isolated ruby process. For example, certain extras override the core pagy methods and we need to test how pagy works with or without the extra, or with many extras at the same time. You can get the full list of of all the test tasks (and test files that each task run) with `rake -D test_*`
+### Setup Solargraph
 
-Check the details (not only the summary) of the coverage by running in the container:
+- Run in container terminal `bundle exec yard gems`
+- VSCode command `Solargraph: Rebuild all gem documentation`
+- VSCode command `Solargraph: Download current Ruby documentation`
+- VSCode command `Solargraph: Restart Solargraph`
+
+### Ready to use
+
+- Rubocop linting and formatting
+- Solargraph intellisense
+- One-click-run rake tasks from the `Task Manager` list (find its Icon in the Activity Bar)
+- Ready to use generic and pagy-specific debugger launch configurations
+- The most useful extensions for developing pagy (take a look in the `Dev Container: Pagy - Installed` Extension group)
+
+### Useful commands
+
+- Instead of typing `irb -I lib -r pagy` you can run IRB from the command palette `Run Terminal Command...`
+- Run all the `test`, `rubocop`, `coverage_summary` and `manifest:check` tasks by picking the `test: All` from the `Task Manager`
+- Run the `test: All With HTML Reports` from the `Task Manager` to get also a nice HTML coverage report. Check it by opening the `coverage/index.html` in a browser.
+- Check the live docs site at `http://localhost:4000`. It updates in real-time any update you do to the `*.md` page files (no page reload needed).
+
+## If you don't use VSCode
+
+Run the ruby container from the `pagy-on-docker` dir:
 
 ```sh
-HTML_REPORTS=true rake
+docker-compose run --rm ruby bash
 ```
 
-Then check it at `http://0.0.0.0:63342/pagy/coverage`.
+Run `bundle install` in the container to complete the ruby setup.
 
-The `pagy-jekyll` service runs the jekyll server so you can edit the docs files from the local `pagy` dir and have a real-time preview of your changes at `http://localhost:4000`. You don't even need to reload the page in the browser to see the change you do in the `*.md` page file.
+### Start the docs service
 
-If you are serious about developing, you can integrate this environment with some good IDE that provides docker and ruby integration. I currently use it for all the basic pagy development, fully integrated with [RubyMine](https://www.jetbrains.com/ruby/?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy).
+```sh
+docker-compose docker-compose.docs.yml up
+```
 
-### Clean up
+Available at `http://0.0.0.0:4000`
 
-When you want to get rid of everything related to the `pagy` development on your system:
+### Useful commands from the container
 
-- `rm -rf /path/to/pagy`
-- `docker rmi pagy pagy-gh-pages` or `docker rmi pagy:4 pagy-gh-pages` if you don't want to remove other versions (e.g. `pagy:3`)
-- `docker volume rm pagy_bundle pagy_user_home pagy_docs_site`
-- `docker system prune` (not pagy related but good for reclaiming storage space from docker)
+- Run `irb -I lib -r pagy` in order to have the `pagy` gem loaded and ready to try
+- Run all the tests by simply running `rake` without arguments: it will run the `test`, `rubocop`, `coverage_summary` and `manifest:check` tasks.
+- You can run `rake -T` to get all the tasks or `rake -D test_*` to get only the tests (so you can run them individually)
+- You can get a nice coverage report with `HTML_REPORTS=true rake` then check it by opening the `coverage/index.html` in a browser.
+- Check the live docs site at `http://localhost:4000`. It updates in real-time any update you do to the `*.md` page files (no page reload needed).
 
-### Caveats
+# E2E Environment
 
-- If you use different pagy images for different pagy versions/branches:
-  - Remember to checkout the right branch before using it
-  - If you get some problem running the tests you might need to `rm -rf coverage`
+Pagy provides quite a few helpers that render the pagination elements for different js-frameworks on the client side. They are tested with a sinatra/rackup/puma ruby app and [Cypress](https://www.cypress.io).
 
-## E2E Environment
+If you you need to run the E2E tests, here are three different ways to run them.
 
-Pagy provides quite a few helpers that render the pagination elements for different js-frameworks on the server side or on the client side (with improved performance). They are tested with a sinatra/rackup/puma ruby app and  [Cypress](https://www.cypress.io).
+## 1. Github Actions
 
-If you determine that you need to run the E2E tests, here are three different ways to run them:
+Just create a PR and all the ruby and e2e tests will run on GitHub. Usually this option is fine for simple PRs that pass the ruby tests.
 
-### 1. Github Actions
+**Notice**: This option is not enabled in Github for new users by default, however after you create a PR it will get enabled ASAP.
 
-Just create a PR and all the tests (including the cypress tests) will run on GitHub. Use this option if you don't need to write any js code or tests interactively and the ruby tests pass.
+## 2. Run E2E Tests On Your System
 
-### 2. Run Cypress Locally On Your System
+This solution is convenient if you already have `node` installed on your system and you need to test your development frequently/locally.
 
-_**Notice**: This is the easiest way to run/edit the E2E tests but it requires `node` and adds quite a few modules to it._
+Here are the steps:
 
 - [Install Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress)
-- `bundle install`
-- `rackup test/e2e/pagy_app.rb`
-- Open and run your Cypress tests `./node_modules/.bin/cypress open`
+- `rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru`
+- Run your Cypress tests from the pagy root (path depending on your installation):
+  - **Headless**: `cypress run --project test/e2e`
+  - **Interactive**: `cypress open --project test/e2e`
 
-### 3. Build Pagy Cypress
+## 3. Run E2E Tests in Docker
 
-_**Notice**: This is a big download, but all the cypress stuff is contained in the docker space, i.e. you can remove it completely when you finished without any left-over in your system. It is functional but the interactive part may miss a few minor features._
+This solution is convenient if you don't have `node` installed on your system or you don't want to mess with your installation. Using docker is convenient because you don't have to install and configure anything on your machine.
 
-Check your user id with:
+You have two choices:
 
-```sh
-id -u
-```
+- **E2E Test**: Simple tool that runs the e2e tests in the local terminal (good enough for regression and super easy to install).
+- **E2E Dev**: Complete test-development environment with GUI and all the tools you may need (quite needed for e2e test development but it needs some configuration choice)
 
-If it is `1000` you are all setup for building the container. If it is any other id, you should first edit the `pagy-on-docker/docker-compose.yml` file and switch (i.e. commenting/uncommenting) the `pagy-cypress.build.dockerimage` entries so they will look like this:
+### Prerequisite
 
-```yml
-...
-    # switch between the following 2 lines if your user id is 1000 or not
-    # dockerfile: pagy-cypress-uid1000.dockerfile
-    dockerfile: pagy-cypress.dockerfile
-...
-```
+- The `ruby` docker service is already setup (`bundle install`)
 
-Then save the file.
+### E2E Test (Simple setup)
 
-Regardless your id, the rest of the build steps will be almost identical to the [Build](#build) section above.
+If you just need to run the E2E Test for regression, this is the right choice: you need only the following two steps:
 
-The ony difference is that you must replace the command `docker-compose build pagy pagy-jekyll` with `docker-compose build pagy-cypress`.
+#### Build
 
-All the rest (including ENV variables) is exactly the same.
-
-#### Run the tests in headless mode
-
-If you just want to run the tests, run the following command from the `pagy-on-docker` dir:
+Build the image for the `e2e-test` service. You need this step only once _(and you ignore the warnings)_:
 
 ```sh
-docker-compose -f docker-compose.yml -f run-test-app.yml up pagy pagy-cypress
+docker-compose -f docker-compose.yml \
+               -f docker-compose.e2e-dev.yml \
+               build e2e-dev
 ```
 
-That will run all the tests with the built in `electron` browser in headless mode and print a report right on the screen. It will also create a video for each test file run in the `test/e2e/cypress/videos`. In case of test failures you will also have screenshots images in `test/e2e/cypress/screenshots` showing you exactly what was on the page of the browser at the moment of the failure.
+#### Run
 
-#### Run the tests in interactive mode
-
-If you want to open and interact the cypress desktop app as it was installed in your local system, and you are lucky enough to run with user id `1000` on an ubuntu system, you can just run it with the command below without custoizing anything.
-
-If not, (i.e. different uid or different OS or version) you should first read the comments in the `pagy-on-docker/open-cypress.yml` file and customize it a bit according to your OS need.
-
-Then run it with:
+After building the image, you can run the E2E tests in with the following command:
 
 ```sh
-docker-compose -f docker-compose.yml -f run-test-app.yml -f open-cypress.yml up pagy pagy-cypress
+docker-compose -f docker-compose.yml \
+               -f docker-compose.e2e-test.yml \
+               up e2e-test
 ```
 
-That will open the cypress desktop app and will allow you to interact with it.
+That will print a report right on the screen.
+
+<details>
+
+In case of test failures you will have screenshots images in `test/e2e/cypress/screenshots` showing exactly what was on the page of the browser at the moment of the failure.
+
+If you want to have a video for each test file run in the `test/e2e/cypress/videos`, remove the `"video": false` entry in the `test/e2e/cypress.json`.
+
+</details>
+
+### E2E Dev (Advanced setup)
+
+:warning: __The Cypress GUI from docker will probably not work on Windoze__
+
+This setup is very useful if you are going to edit the e2e tests. If you just need to run them, stick to the [E2E Test (Simple setup)](#e2e-test-simple-setup).
+
+It will allow to open and interact with the cypress desktop app as it was installed in your local system.
+
+### If you use VSCode (E2E)
+
+The Pagy repository comes with the VSCode files that setup a complete **E2E Development Environment** on your local installation almost automatically.
+
+1. You need the [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension. Installation instructions:
+    1. Open VS Code, and hit: `Ctrl+P`
+    2. Paste `ext install ms-vscode-remote.remote-containers`
+    3. Hit `Enter`
+2. Run the `Remote-Containers: Open Folder in Container...` command and pick the `test/e2e` inside your local pagy repository dir (VSCode will prepare the environment).
+3. Run `npm install` in the container terminal (notice that it may look like frozen, but it's just downloading cypress).
+4. Open Cypress from the container terminal with  `npx cypress open` go to Settings and choose VSCode as the File Opener.
+
+#### Ready to use
+
+- [Intelligent code completion](https://docs.cypress.io/guides/tooling/IDE-integration#Intelligent-Code-Completion) for Cypress and the custom Pagy commands already setup
+- Eslint + VSCode Eslint extension configured for Cypress
+- Run tests or Open cypress from the command palette `Run Terminal Command...`
+
+### If you don't use VScode (E2e)
+
+#### Build
+
+Build the e2e-dev environment:
+
+```sh
+docker-compose -f docker-compose.yml \
+               -f docker-compose.e2e-dev.yml \
+               build e2e-dev
+```
+
+#### Run
+
+Then run a bash session and `npm install` (notice that it may look like frozen, but it's just downloading cypress):
+
+```sh
+docker-compose -f docker-compose.yml \
+               -f docker-compose.e2e-dev.yml \
+               run --rm bash
+
+# then in the container:
+/pagy/test/e2e $ npm install
+# and you can run the test or open cypress and run the test in its GUI
+/pagy/test/e2e $ npx cypress run  # headless
+/pagy/test/e2e $ npx cypress open # interactive
+```
+
+:warning: If Cypress doesn't open, read the comments in the `pagy-on-docker/docker-compose.e2e-test.yml` file and customize it a bit according to your OS need.
+
+# Clean up
+
+When you want to get rid of everything related to the `pagy` docker development on your system, here is a list of the commands to find them:
+
+- Volumes: `docker volume ls | grep pagy`
+- Images: `docker images | grep -E 'pagy|cypress'`
+- Containers: `docker ps -a | grep pagy`
+- Networks: `docker network ls | grep pagy`

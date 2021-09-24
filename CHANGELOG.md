@@ -50,3 +50,13 @@ The items accessor does not adjust for the actual items in the last page anymore
 If your code is relying on the actual number of items **in** the page, then just replace `@pagy.items` with `@pagy.in`.
 
 FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the requested items), while the `@pagy.in` returns the actual items in the page.
+
+### Changes
+
+- Removed support for deprecations
+- Refactoring of Pagy and Pagy::Countless classes, I18n, and url helpers
+- Changed general module structure (use of prepend instead of re-opening modules)
+- Added gearbox extra for geared pagination
+- Added configuration files for a full working VSCode devcontainer environment
+- A few minor fixes in code and doc
+- Updated doc, gemfiles and github workflow

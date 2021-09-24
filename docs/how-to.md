@@ -126,9 +126,9 @@ You can copy the comprehensive and annotated [pagy.rb](https://github.com/ddnexu
 
 ## Environment Assumptions
 
-- Pagy 4.0+ runs on ruby 3.0+
+- Pagy 4.0+ runs on ruby 2.5+
 
-Notice: Older versions run on ruby 1.9+ or jruby 1.7+ till ruby <3.0
+Notice: Older versions run on ruby 1.9+ or jruby 1.7+ till ruby <2.5
 
 ### Assumptions for Rack environment
 
@@ -626,7 +626,7 @@ When the count caching is not an option, you may want to use the [countless extr
 
 ## Using AJAX
 
-You can trigger ajax render in rails by [Customizing the link attributes](customizing-the-link-attributes).
+You can trigger ajax render in rails by [Customizing the link attributes](#customizing-the-link-attributes).
 
 See also [Using AJAX](api/javascript.md#using-ajax).
 
