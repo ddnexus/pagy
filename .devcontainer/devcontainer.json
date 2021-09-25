@@ -5,24 +5,20 @@
 // pagy-on-docker: we try to use VSC config as less as possible, limiting it to the VSC specific stuff
 // in order to get docker/docker-compose files/config as portable as possible between editors, IDEs or CLI.
 // This file should giver you all the basic extensions and setting for developing pagy
-// You can comment/uncomment the following entries:
-// --> docker-compose-backport.yml runs on ruby 2.7 and can be used in place of docker-compose.yml
-// --> docker-compose.yml alone must ensure "runServices" contains only "pagy"
-// --> docker-compose.yml + run-test-app.yml must be run
-//     if you run all also cypress in test mode
-// --> open-cypress.yml require the pgy-cypress service and the "run-test-app.yml"
 // Full details https://github.com/ddnexus/pagy/tree/master/pagy-on-docker
+
+// IMPORTANT: Run the `Remote-Containers: Rebuild Container...` VSCode command
+// each time you modify this file.
 {
     "dockerComposeFile": [
-		// "../pagy-on-docker/docker-compose-backport.yml
         "../pagy-on-docker/docker-compose.yml",
-        // "../pagy-on-docker/run-test-app.yml",
-		// "./pagy-on-docker/open-cypress.yml"
-
+        "../pagy-on-docker/docker-compose.docs.yml"
     ],
     "extensions": [
+		"adrianwilczynski.terminal-commands",
 		"antfu.browse-lite",
 		"castwide.solargraph",
+		"cnshenj.vscode-task-manager",
 		"davidanson.vscode-markdownlint",
 		"eamodio.gitlens",
 		"jdforsythe.add-new-line-to-files",
@@ -36,15 +32,16 @@
 		"shardulm94.trailing-spaces",
 		"streetsidesoftware.code-spell-checker",
 		"tht13.html-preview-vscode",
-		"tnrich.vscode-extension-open-cypress",
 		"wingrunr21.vscode-ruby",
-		"yzhang.markdown-all-in-one"
+		"yzhang.markdown-all-in-one",
 	],
-    "name": "pagy",
-	// comment the following to run all the services, but enable the dockerComposeFile files that you need
-	"runServices": ["pagy", "pagy-jekyll"],
-    "service": "pagy",
-    "settings": {
-    },
-    "workspaceFolder": "/opt/project"
+    "name": "pagy-ruby",
+    "runServices": [
+        "ruby",
+        "docs"
+    ],
+    "shutdownAction": "none",
+    "service": "ruby",
+    "settings": {},
+    "workspaceFolder": "/pagy"
 }

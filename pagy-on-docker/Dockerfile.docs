@@ -6,7 +6,7 @@ WORKDIR /opt
 RUN apk update \
  && apk add --no-cache --virtual .build_deps make build-base \
  && echo "source 'https://rubygems.org'" > Gemfile \
- && echo "gem 'github-pages', '212', group: :jekyll_plugins" >> Gemfile \
+ && echo "gem 'github-pages', '218', group: :jekyll_plugins" >> Gemfile \
  && bundle install \
  && apk del .build_deps
 

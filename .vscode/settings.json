@@ -3,11 +3,14 @@
         "activerecord",
         "arel",
         "autorun",
+        "backport",
         "bulma",
         "Codecov",
         "ddnexus",
         "Demichelis",
+        "devcontainer",
         "Domizio",
+        "entrypoint",
         "Gitter",
         "haml",
         "javascripts",
@@ -33,6 +36,7 @@
     "diffEditor.ignoreTrimWhitespace": false,
     "markdownlint.config": {
         "blanks-around-fences": true,
+        "MD024": false,
         "MD025": false,
         "MD026": false,
         "MD033": false,
@@ -48,6 +52,20 @@
     },
     "ruby.useBundler": true, //run non-lint commands with bundle exec
     "ruby.useLanguageServer": true, // use the internal language server (see below)
+    "solargraph.useBundler": true,
+    "runTerminalCommand.commands": [
+        {
+            "auto": true,
+            "command": "irb --simple-prompt -Ilib -rpagy",
+            "name": "IRB",
+            "preserve": true
+        },
+        {
+            "auto": true,
+            "command": "docker-compose -f docker-compose.yml -f docker-compose.e2e-headless.yml up e2e-headless",
+            "name": "Run E2E Tests",
+        }
+    ],
     // available in the container
     "terminal.integrated.profiles.linux": {
         "bash": {

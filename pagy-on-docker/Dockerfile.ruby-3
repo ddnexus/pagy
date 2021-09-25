@@ -1,22 +1,22 @@
 FROM ruby:3
 
-ARG term
-ENV TERM="${term:-xterm-256color}"
-
 # install required packages
-RUN apt-get update && apt-get install -y locales \
+RUN apt-get update && apt-get install --no-install-recommends -y locales \
  && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen \
  && locale-gen \
- && apt-get install -y \
+ && apt-get install --no-install-recommends -y \
         nodejs \
         git \
-        nano
+        nano \
+ && rm -rf /var/lib/apt/lists/* \
+ && apt-get clean
 
 ARG user
 ARG group
 ARG uid
 ARG gid
 ARG password=rubydev
+ARG term=${term:-xterm-256color}
 
 # setup users and .bashrc
 #   - same pasword for user and root
@@ -39,15 +39,15 @@ ENV \
     BUNDLE_CACHE_ALL=1 \
     LS_OPTIONS='--color=auto' \
     EDITOR=nano \
-    TERM=${term:-xterm-256color} \
     SHELL=/bin/bash \
+    TERM=$term \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8
 
 RUN chown -R $uid:$gid $BUNDLE_PATH
 
-WORKDIR /opt/project
+WORKDIR /pagy
 
 VOLUME \
     /home/$user \

@@ -1,0 +1,42 @@
+# Basic pagy-on-docker development environment
+# it will keep the installed gems and HOME in the pagy_bundle and pagy_user_home pagy-on-docker volumes
+# the pagy-jekill service will be updating a live preview for the docs
+
+# USAGE
+#   cd pagy-on-docker
+#   docker-compose up docs    # docs live site service
+
+version: "3.8"
+services:
+  # Serve the docs site live at http://0.0.0.0:4000
+  # Use it to check/edit the rendered content in the docs dir
+  docs:
+    image: pagy-docs:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.docs
+    container_name: pagy-docs
+    environment:
+      - JEKYLL_GITHUB_TOKEN
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    volumes:
+      - ../docs:/opt/docs
+      - docs_site:/opt/site
+    command: |
+      jekyll serve \
+          --incremental \
+          --livereload \
+          --watch \
+          --force-polling \
+          --host 0.0.0.0 \
+          --baseurl '' \
+          --source /opt/docs \
+          --destination /opt/site
+    stdin_open: true
+    tty: true
+
+volumes:
+  docs_site:
+    name: pagy_docs_site

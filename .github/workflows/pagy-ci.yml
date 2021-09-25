@@ -104,7 +104,7 @@ jobs:
           key: e2e-cache-${{ runner.os }}-${{ hashFiles('test/e2e/ci-cache.lock') }}
 
       - name: Install Cypress and Test Dependencies
-        # if: steps.e2e-cache.outputs.cache-hit != 'true'
+        if: steps.e2e-cache.outputs.cache-hit != 'true'
         run: npm i cypress @cypress/snapshot html-validate cypress-html-validate
 
       - name: Run Cypress Tests
