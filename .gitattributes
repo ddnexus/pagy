@@ -1,2 +1,2 @@
 docs/* linguist-documentation
-ci-gemfiles/* linguist-language=Ruby
+.github/gemfiles/* linguist-language=Ruby

@@ -100,7 +100,7 @@ __END__
 
   <p>It shows all the helpers for all the styles supported by pagy.</p>
 
-  <p>Each framework provides its own set of CSS that applies to the helpers, but we cannot load different framewors in the same app because they would conflict. Without the framework where the helpers are supposed to work we can only normalize the CSS styles in order to make them at least readable.</p>
+  <p>Each framework provides its own set of CSS that applies to the helpers, but we cannot load different frameworks in the same app because they would conflict. Without the framework where the helpers are supposed to work we can only normalize the CSS styles in order to make them at least readable.</p>
   <hr>
 </div>
 
