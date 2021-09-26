@@ -2,8 +2,8 @@
 # frozen_string_literal: true
 
 class Pagy
-  VARS[:gearbox_extra] = true # extra enabled by default
-  VARS[:gearbox_items] = [15, 30, 60, 100]
+  DEFAULT[:gearbox_extra] = true # extra enabled by default
+  DEFAULT[:gearbox_items] = [15, 30, 60, 100]
 
   # Automatically change the number of items depending on the page number
   # accepts an array as the :gearbox_items variable, that will determine the items for the first pages

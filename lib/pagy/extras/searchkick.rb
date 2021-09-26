@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  VARS[:searchkick_search_method] ||= :pagy_search
+  DEFAULT[:searchkick_search_method] ||= :pagy_search
 
   module SearchkickExtra
     module Searchkick
@@ -14,7 +14,7 @@ class Pagy
           args.define_singleton_method(:method_missing) { |*a| args += a }
         end
       end
-      alias_method Pagy::VARS[:searchkick_search_method], :pagy_searchkick
+      alias_method Pagy::DEFAULT[:searchkick_search_method], :pagy_searchkick
     end
 
     # Additions for the Pagy class
@@ -53,8 +53,8 @@ class Pagy
       # the _collection argument is not available when the method is called
       def pagy_searchkick_get_vars(_collection, vars)
         pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-        vars[:items] ||= VARS[:items]
-        vars[:page]  ||= (params[vars[:page_param] || VARS[:page_param]] || 1).to_i
+        vars[:items] ||= DEFAULT[:items]
+        vars[:page]  ||= (params[vars[:page_param] || DEFAULT[:page_param]] || 1).to_i
         vars
       end
     end

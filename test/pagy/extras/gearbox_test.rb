@@ -4,7 +4,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/countless'
 require 'pagy/extras/gearbox'
 require 'pagy/extras/items'
-Pagy::VARS[:items_extra] = false
+Pagy::DEFAULT[:items_extra] = false
 
 describe 'pagy/extras/gearbox' do
   describe '#set_items_var' do

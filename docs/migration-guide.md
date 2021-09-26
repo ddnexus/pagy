@@ -56,8 +56,8 @@ end
 ```
 
 ```ruby
-Pagy::VARS[:items] = 10
-Pagy::VARS[:size]  = [5,4,4,5]
+Pagy::DEFAULT[:items] = 10
+Pagy::DEFAULT[:size]  = [5,4,4,5]
 ```
 
 Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  VARS[:meilisearch_search_method] ||= :pagy_search
+  DEFAULT[:meilisearch_search_method] ||= :pagy_search
 
   module MeilisearchExtra
     module Meilisearch
@@ -10,7 +10,7 @@ class Pagy
       def pagy_meilisearch(term = nil, **vars)
         [self, term, vars]
       end
-      alias_method VARS[:meilisearch_search_method], :pagy_meilisearch
+      alias_method DEFAULT[:meilisearch_search_method], :pagy_meilisearch
     end
 
     # Additions for the Pagy class
@@ -48,8 +48,8 @@ class Pagy
       # the _collection argument is not available when the method is called
       def pagy_meilisearch_get_vars(_collection, vars)
         pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-        vars[:items] ||= VARS[:items]
-        vars[:page]  ||= (params[vars[:page_param] || VARS[:page_param]] || 1).to_i
+        vars[:items] ||= DEFAULT[:items]
+        vars[:page]  ||= (params[vars[:page_param] || DEFAULT[:page_param]] || 1).to_i
         vars
       end
     end

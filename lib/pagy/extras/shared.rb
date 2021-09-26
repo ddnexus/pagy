@@ -3,7 +3,7 @@
 require 'digest'
 
 class Pagy
-  VARS[:steps] = false # default false will use {0 => @vars[:size]}
+  DEFAULT[:steps] = false # default false will use {0 => @vars[:size]}
 
   module SharedExtra
     # Additions for the Pagy class

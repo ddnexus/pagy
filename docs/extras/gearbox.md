@@ -24,22 +24,22 @@ See [extras](../extras.md) for general usage info.
 require 'pagy/extras/gearbox'
 
 # optional: set a different default in the pagy.rb initializer
-# Pagy::VARS[:gearbox_extra] = false   # will make it opt-in only
-# Pagy::VARS[:gearbox_items] = [15, 30, 60, 100]   # default
-Pagy::VARS[:gearbox_items] = [10, 20, 50]   # your own default
+# Pagy::DEFAULT[:gearbox_extra] = false   # will make it opt-in only
+# Pagy::DEFAULT[:gearbox_items] = [15, 30, 60, 100]   # default
+Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default
 
 # controller action
 # or pass the :gearbox_items variable to a constructor to have it only for that instance
 @pagy, @records = pagy(Product.all, gearbox_items: [30, 60, 100], ...)
 
 # You can still use instances with fixed pagination even after requiring the extra
-# use the default Pagy::VARS
+# use the default Pagy::DEFAULT
 @pagy, @records = pagy(Product.all, gearbox_extra: false)
 # use the passed items: 30
 @pagy, @records = pagy(Product.all, gearbox_extra: false, items: 30)
 
 # If you use also the items extra it must be disabled in the instance that use the gearbox
-# use the default Pagy::VARS[:gearbox_items]
+# use the default Pagy::DEFAULT[:gearbox_items]
 @pagy, @records = pagy(Product.all, items_extra: false)
 # use the passed gearbox_items: [30, 60, 100]
 @pagy, @records = pagy(Product.all, items_extra: false, gearbox_items: [30, 60, 100])

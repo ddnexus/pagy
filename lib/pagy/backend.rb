@@ -18,7 +18,7 @@ class Pagy
     def pagy_get_vars(collection, vars)
       pagy_set_items_from_params(vars) if defined?(ItemsExtra)
       vars[:count] ||= (c = collection.count(:all)).is_a?(Hash) ? c.size : c
-      vars[:page]  ||= params[vars[:page_param] || VARS[:page_param]]
+      vars[:page]  ||= params[vars[:page_param] || DEFAULT[:page_param]]
       vars
     end
 

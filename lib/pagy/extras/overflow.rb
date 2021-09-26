@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  VARS[:overflow] = :empty_page
+  DEFAULT[:overflow] = :empty_page
 
   # Handles OverflowError exceptions with different options
   module OverflowExtra

@@ -103,7 +103,7 @@ For example, the following will change the header names and will suppress the `:
 
 ```ruby
 # globally
-Pagy::VARS[:headers] = {page: 'Current-Page', items: 'Per-Page', pages: false, count: 'Total'}
+Pagy::DEFAULT[:headers] = {page: 'Current-Page', items: 'Per-Page', pages: false, count: 'Total'}
 
 # or for single instance
 pagy, records = pagy(collection, headers: {page: 'Current-Page', items: 'Per-Page', pages: false, count: 'Total'})

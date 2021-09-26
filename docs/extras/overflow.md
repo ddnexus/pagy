@@ -15,14 +15,14 @@ In the `pagy.rb` initializer:
 require 'pagy/extras/overflow'
 
 # default :empty_page (other options :last_page and :exception )
-Pagy::VARS[:overflow] = :last_page
+Pagy::DEFAULT[:overflow] = :last_page
 
 # OR
 require 'pagy/countless'
 require 'pagy/extras/overflow'
 
 # default :empty_page (other option :exception )
-Pagy::VARS[:overflow] = :exception
+Pagy::DEFAULT[:overflow] = :exception
 
 ```
 
@@ -40,7 +40,7 @@ As usual, depending on the scope of the customization, you have a couple of opti
 
 ```ruby
 # globally
-Pagy::VARS[:overflow] = :empty_page
+Pagy::DEFAULT[:overflow] = :empty_page
 
 # or for a single instance
 @pagy, @records = pagy(scope, overflow: :empty_page)

@@ -4,7 +4,7 @@
 require 'pagy/countless'
 
 class Pagy
-  VARS[:countless_minimal] = false
+  DEFAULT[:countless_minimal] = false
 
   module CountlessExtra
     private
@@ -18,7 +18,7 @@ class Pagy
     # Sub-method called only by #pagy_countless: here for easy customization of variables by overriding
     def pagy_countless_get_vars(_collection, vars)
       pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-      vars[:page] ||= params[vars[:page_param] || VARS[:page_param]]
+      vars[:page] ||= params[vars[:page_param] || DEFAULT[:page_param]]
       vars
     end
 

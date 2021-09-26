@@ -289,12 +289,12 @@ describe 'pagy' do
 
   describe 'variables' do
     it 'has vars defaults' do
-      _(Pagy::VARS[:page]).must_equal 1
-      _(Pagy::VARS[:items]).must_equal 20
-      _(Pagy::VARS[:outset]).must_equal 0
-      _(Pagy::VARS[:size]).must_equal [1, 4, 4, 1]
-      _(Pagy::VARS[:page_param]).must_equal :page
-      _(Pagy::VARS[:params]).must_equal({})
+      _(Pagy::DEFAULT[:page]).must_equal 1
+      _(Pagy::DEFAULT[:items]).must_equal 20
+      _(Pagy::DEFAULT[:outset]).must_equal 0
+      _(Pagy::DEFAULT[:size]).must_equal [1, 4, 4, 1]
+      _(Pagy::DEFAULT[:page_param]).must_equal :page
+      _(Pagy::DEFAULT[:params]).must_equal({})
     end
   end
 

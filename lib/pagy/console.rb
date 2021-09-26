@@ -10,7 +10,7 @@ class Pagy
     def self.included(main)
       main.include(Backend)
       main.include(Frontend)
-      VARS[:url] = 'http://www.example.com/subdir'
+      DEFAULT[:url] = 'http://www.example.com/subdir'
     end
 
     # Require the extras passed as arguments

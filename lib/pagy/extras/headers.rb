@@ -4,7 +4,7 @@
 require 'pagy/url_helpers'
 
 class Pagy
-  VARS[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
+  DEFAULT[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
   # Add specialized backend methods to add pagination response headers
   module HeadersExtra
     include UrlHelpers

@@ -165,7 +165,7 @@ You can control the items per page with the `items` variable. (Default `20`)
 You can set its default in the `pagy.rb` initializer _(see [Configuration](#global-configuration))_. For example:
 
 ```ruby
-Pagy::VARS[:items] = 25
+Pagy::DEFAULT[:items] = 25
 ```
 
 You can also pass it as an instance variable to the `Pagy.new` method or to the `pagy` controller method:
@@ -182,7 +182,7 @@ You can control the number and position of the page links in the navigation thro
 
 The default is `[1,4,4,1]`, which means that you will get `1` initial page, `4` pages before the current page, `4` pages after the current page, and `1` final page.
 
-As usual you can set the `:size` variable as a global default by using the `Pagy::VARS` hash or pass it directly to the `pagy` method.
+As usual you can set the `:size` variable as a global default by using the `Pagy::DEFAULT` hash or pass it directly to the `pagy` method.
 
 The navigation links will contain the number of pages set in the variables:
 
@@ -228,11 +228,11 @@ That will explicitly set the `:page` variable, overriding the default behavior (
 
 ## Customizing the page param
 
-Pagy uses the `:page_param` variable to determine the param it should get the page number from and create the URL for. Its default is set as `Pagy::VARS[:page_param] = :page`, hence it will get the page number from the `params[:page]` and will create page URLs like `./?page=3` by default.
+Pagy uses the `:page_param` variable to determine the param it should get the page number from and create the URL for. Its default is set as `Pagy::DEFAULT[:page_param] = :page`, hence it will get the page number from the `params[:page]` and will create page URLs like `./?page=3` by default.
 
 You may want to customize that, for example to make it more readable in your language, or because you need to paginate different collections in the same action. Depending on the scope of the customization, you have a couple of options:
 
-1. `Pagy::VARS[:page_param] = :custom_param` will be used as the global default
+1. `Pagy::DEFAULT[:page_param] = :custom_param` will be used as the global default
 2. `pagy(scope, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single instance (overriding the global default)
 
 You can also override the `pagy_get_vars` if you need some special way to get the page number.
@@ -243,7 +243,7 @@ If you need to customize some HTML attribute of the page links, you may not need
 
 ```ruby
 # for all the Pagy instances
-Pagy::VARS[:link_extra] = 'data-remote="true" class="my-class"'
+Pagy::DEFAULT[:link_extra] = 'data-remote="true" class="my-class"'
 
 # for a single Pagy instance (if you use the Pagy::Backend#pagy method)
 @pagy, @records = pagy(my_scope, link_extra: 'data-remote="true" class="my-class"')
@@ -327,11 +327,11 @@ You have a few ways to do that:
     end
     ```
 
-2. you can set the `:i18n_key` variable, either globally using the `Pagy::VARS` hash or per instance with the `Pagy.new` method or with the `pagy` controller method:
+2. you can set the `:i18n_key` variable, either globally using the `Pagy::DEFAULT` hash or per instance with the `Pagy.new` method or with the `pagy` controller method:
 
     ```ruby
     # all the Pagy instances will have the default
-    Pagy::VARS[:i18n_key] = 'activerecord.models.product'
+    Pagy::DEFAULT[:i18n_key] = 'activerecord.models.product'
 
     # or single Pagy instance
     @pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product' )
@@ -597,7 +597,7 @@ Pagy gets the collection count through its `pagy_get_vars` method, so you can ov
 # in your controller: override the pagy_get_vars method so it will call your cache_count method
 def pagy_get_vars(collection, vars)
   vars[:count] ||= cache_count(collection)
-  vars[:page]  ||= params[ vars[:page_param] || Pagy::VARS[:page_param] ]
+  vars[:page]  ||= params[ vars[:page_param] || Pagy::DEFAULT[:page_param] ]
   vars
 end
 

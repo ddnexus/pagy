@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  VARS[:elasticsearch_rails_search_method] ||= :pagy_search
+  DEFAULT[:elasticsearch_rails_search_method] ||= :pagy_search
 
   module ElasticsearchRailsExtra
     module ElasticsearchRails
@@ -14,7 +14,7 @@ class Pagy
           args.define_singleton_method(:method_missing) { |*a| args += a }
         end
       end
-      alias_method Pagy::VARS[:elasticsearch_rails_search_method], :pagy_elasticsearch_rails
+      alias_method Pagy::DEFAULT[:elasticsearch_rails_search_method], :pagy_elasticsearch_rails
     end
 
     # Additions for the Pagy class
@@ -56,8 +56,8 @@ class Pagy
       # the _collection argument is not available when the method is called
       def pagy_elasticsearch_rails_get_vars(_collection, vars)
         pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-        vars[:items] ||= VARS[:items]
-        vars[:page]  ||= (params[vars[:page_param] || VARS[:page_param]] || 1).to_i
+        vars[:items] ||= DEFAULT[:items]
+        vars[:page]  ||= (params[vars[:page_param] || DEFAULT[:page_param]] || 1).to_i
         vars
       end
     end

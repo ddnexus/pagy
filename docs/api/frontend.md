@@ -43,7 +43,7 @@ This method takes the Pagy object and returns the HTML string with the paginatio
 
 The method accepts also a couple of optional keyword arguments:
 
-- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+- `:pagy_id` which adds the `id` HTML attributed to the `nav` tag
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 
 The `nav.*` templates produce the same output, and can be used as an easier (but slower) way to customize it.
@@ -64,11 +64,11 @@ Will produce something like:
 
 The method accepts also a few optional keyword arguments:
 
-- `:pagy_id` which adds the `id` HTML attributedto the `span` tag wrapping the info
+- `:pagy_id` which adds the `id` HTML attributed to the `span` tag wrapping the info
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
 - `:i18n_key` the key to lookup in a dictionary
 
-Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `VARS[:i18n_key]`
+Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `Pagy::DEFAULT[:i18n_key]`
 
 ```erb
 <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count) %>
@@ -131,7 +131,7 @@ If you need to add some HTML attribute to the page links, you can pass some extr
 
     ```rb
     # in the pagy.rb initializer file
-    Pagy::VARS[:link_extra] = 'data-remote="true"'
+    Pagy::DEFAULT[:link_extra] = 'data-remote="true"'
     # in any view
     link = pagy_link_proc(pagy)
     link.call(2)
@@ -191,4 +191,3 @@ Pagy provides many ready-to-use dictionaries for different locales/languages usa
 All the pagy strings are are stored in the dictionary files of its [locales](https://github.com/ddnexus/pagy/blob/master/lib/locales), ready to be customized and/or used with or without the `I18n` gem. The files follow the same structure of the standard locale files for the `i18n` gem.
 
 **IMPORTANT**: if you are using pagy with some language missing from the [locales](https://github.com/ddnexus/pagy/blob/master/lib/locales), please, submit your translation!
-

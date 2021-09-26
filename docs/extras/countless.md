@@ -14,7 +14,7 @@ In the `pagy.rb` initializer:
 ```ruby
 require 'pagy/extras/countless'
 # optionally enable the minimal mode by default
-# Pagy::VARS[:countless_minimal] = true
+# Pagy::DEFAULT[:countless_minimal] = true
 ```
 
 In a controller:

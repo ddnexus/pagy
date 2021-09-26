@@ -33,9 +33,9 @@ describe 'pagy/extras/meilisearch' do
         pagy, results = controller.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('a'))
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal Pagy::VARS[:items]
+        _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal controller.params[:page]
-        _(results.length).must_equal Pagy::VARS[:items]
+        _(results.length).must_equal Pagy::DEFAULT[:items]
         _(results).must_rematch
       end
       it 'paginates with vars' do

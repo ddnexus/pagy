@@ -34,9 +34,9 @@ describe 'pagy/extras/elasticsearch_rails' do
         records = response.records
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal Pagy::VARS[:items]
+        _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal controller.params[:page]
-        _(records.count).must_equal Pagy::VARS[:items]
+        _(records.count).must_equal Pagy::DEFAULT[:items]
         _(records).must_rematch
       end
       it 'paginates records with defaults' do
@@ -44,9 +44,9 @@ describe 'pagy/extras/elasticsearch_rails' do
                                         MockElasticsearchRails::Model.pagy_search('a').records)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal Pagy::VARS[:items]
+        _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal controller.params[:page]
-        _(records.count).must_equal Pagy::VARS[:items]
+        _(records.count).must_equal Pagy::DEFAULT[:items]
         _(records).must_rematch
       end
       it 'paginates with vars' do
@@ -84,9 +84,9 @@ describe 'pagy/extras/elasticsearch_rails' do
         records = response.records
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal Pagy::VARS[:items]
+        _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal controller.params[:page]
-        _(records.count).must_equal Pagy::VARS[:items]
+        _(records.count).must_equal Pagy::DEFAULT[:items]
         _(records).must_rematch
       end
       it 'paginates records with defaults' do
@@ -94,9 +94,9 @@ describe 'pagy/extras/elasticsearch_rails' do
                                         MockElasticsearchRails::ModelES7.pagy_search('a').records)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal Pagy::VARS[:items]
+        _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal controller.params[:page]
-        _(records.count).must_equal Pagy::VARS[:items]
+        _(records.count).must_equal Pagy::DEFAULT[:items]
         _(records).must_rematch
       end
       it 'paginates with vars' do

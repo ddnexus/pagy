@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/shared'       # include :sequels in VARS[:metadata]
+require 'pagy/extras/shared'       # include :sequels in DEFAULT[:metadata]
 require 'pagy/extras/countless'
 require 'pagy/extras/metadata'
 require_relative '../../mock_helpers/controller'
@@ -14,7 +14,7 @@ describe 'pagy/extras/metadata' do
       @collection = MockCollection.new
     end
     it 'defines all metadata' do
-      _(Pagy::VARS[:metadata]).must_rematch
+      _(Pagy::DEFAULT[:metadata]).must_rematch
     end
     it 'returns the full pagy metadata' do
       pagy, _records = @controller.send(:pagy, @collection)

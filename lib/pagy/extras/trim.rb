@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  VARS[:trim_extra] = true   # extra enabled by default
+  DEFAULT[:trim_extra] = true   # extra enabled by default
 
   module TrimExtra
     # Override the original using the pagy_trim method

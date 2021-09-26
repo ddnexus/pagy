@@ -18,9 +18,9 @@ describe 'pagy/extras/arel' do
       pagy, items = controller.send(:pagy_arel, @collection)
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
-      _(pagy.items).must_equal Pagy::VARS[:items]
+      _(pagy.items).must_equal Pagy::DEFAULT[:items]
       _(pagy.page).must_equal controller.params[:page]
-      _(items.size).must_equal Pagy::VARS[:items]
+      _(items.size).must_equal Pagy::DEFAULT[:items]
       _(items).must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
     end
     it 'paginates with vars' do

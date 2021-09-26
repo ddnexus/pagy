@@ -94,9 +94,9 @@ describe 'pagy/extras/items' do
       vars   = {}
       params = { a: "a", items: items }
 
-      Pagy::VARS[:max_items] = nil
+      Pagy::DEFAULT[:max_items] = nil
       test_items_vars_params(items, vars, params)
-      Pagy::VARS[:max_items] = 100 # reset default
+      Pagy::DEFAULT[:max_items] = 100 # reset default
     end
     it 'uses items_param from vars' do
       items  = 14
@@ -109,9 +109,9 @@ describe 'pagy/extras/items' do
       vars   = {}
       params = { a: "a", page: 3, custom: 15 }
 
-      Pagy::VARS[:items_param] = :custom
+      Pagy::DEFAULT[:items_param] = :custom
       test_items_vars_params(items, vars, params)
-      Pagy::VARS[:items_param] = :items # reset default
+      Pagy::DEFAULT[:items_param] = :items # reset default
     end
   end
 

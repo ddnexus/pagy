@@ -13,16 +13,16 @@ class Pagy
   end
 
   # Default core vars: constant for easy access, but mutable for customizable defaults
-  VARS = { page:       1, # rubocop:disable Style/MutableConstant
-           items:      20,
-           outset:     0,
-           size:       [1, 4, 4, 1],
-           page_param: :page,
-           params:     {},
-           fragment:   '',
-           link_extra: '',
-           i18n_key:   'pagy.item_name',
-           cycle:      false }
+  DEFAULT = { page:       1, # rubocop:disable Style/MutableConstant
+              items:      20,
+              outset:     0,
+              size:       [1, 4, 4, 1],
+              page_param: :page,
+              params:     {},
+              fragment:   '',
+              link_extra: '',
+              i18n_key:   'pagy.item_name',
+              cycle:      false }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next
 
@@ -75,7 +75,7 @@ class Pagy
 
   # Apply defaults, cleanup blanks and set @vars
   def normalize_vars(vars)
-    @vars = VARS.merge(vars.delete_if { |k, v| VARS.key?(k) && (v.nil? || v == '') })
+    @vars = DEFAULT.merge(vars.delete_if { |k, v| DEFAULT.key?(k) && (v.nil? || v == '') })
   end
 
   # Setup and validates the passed vars: var must be present and value.to_i must be >= to min

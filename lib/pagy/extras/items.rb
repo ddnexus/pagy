@@ -4,9 +4,9 @@
 require 'pagy/extras/shared'
 
 class Pagy  # Default variables for this extra
-  VARS[:items_param] = :items
-  VARS[:max_items]   = 100
-  VARS[:items_extra] = true   # extra enabled by default
+  DEFAULT[:items_param] = :items
+  DEFAULT[:max_items]   = 100
+  DEFAULT[:items_extra] = true   # extra enabled by default
 
   module ItemsExtra
     module Backend
@@ -15,10 +15,10 @@ class Pagy  # Default variables for this extra
       # Set the items variable considering the params and other pagy variables
       def pagy_set_items_from_params(vars)
         return if vars[:items]
-        return unless vars.key?(:items_extra) ? vars[:items_extra] : VARS[:items_extra]
-        return unless (items = params[vars[:items_param] || VARS[:items_param]])                             # :items from :items_param
+        return unless vars.key?(:items_extra) ? vars[:items_extra] : DEFAULT[:items_extra]
+        return unless (items = params[vars[:items_param] || DEFAULT[:items_param]])                             # :items from :items_param
 
-        vars[:items] = [items.to_i, vars.key?(:max_items) ? vars[:max_items] : VARS[:max_items]].compact.min # :items capped to :max_items
+        vars[:items] = [items.to_i, vars.key?(:max_items) ? vars[:max_items] : DEFAULT[:max_items]].compact.min # :items capped to :max_items
       end
     end
 

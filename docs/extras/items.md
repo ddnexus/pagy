@@ -24,13 +24,13 @@ require 'pagy/extras/items'
 # or...
 
 # disable it by default (opt-in)
-Pagy::VARS[:items_extra] = false   # default true
+Pagy::DEFAULT[:items_extra] = false   # default true
 # in this case you have to enable it explicitly when you want it
 @pagy, @records = pagy(Product.all, items_extra: true)
 
 # customize the defaults if you need to
-Pagy::VARS[:items_param] = :custom_param       # default :items
-Pagy::VARS[:max_items]   = 200                 # default 100
+Pagy::DEFAULT[:items_param] = :custom_param       # default :items
+Pagy::DEFAULT[:max_items]   = 200                 # default 100
 ```
 
 See [Javascript](../api/javascript.md) (only if you use the `pagy_items_selector_js` UI)
@@ -58,8 +58,8 @@ You may want to customize the variables. Depending on the scope of the customiza
 As a global default:
 
 ```ruby
-Pagy::VARS[:items_param] = :custom_param
-Pagy::VARS[:max_items]   = 50
+Pagy::DEFAULT[:items_param] = :custom_param
+Pagy::DEFAULT[:max_items]   = 50
 ```
 
 For a single instance (overriding the global default):
@@ -96,7 +96,7 @@ The method accepts also a few optional keyword arguments:
 - `:i18n_key` the key to lookup in a dictionary
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 
-Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `VARS[:i18n_key]`
+Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `Pagy::DEFAULT[:i18n_key]`
 
 ```erb
 <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count) %>

@@ -14,7 +14,7 @@ describe 'pagy/extras/overflow' do
 
   describe "variables" do
     it 'has vars defaults' do
-      _(Pagy::VARS[:overflow]).must_equal :empty_page  # default for countless
+      _(Pagy::DEFAULT[:overflow]).must_equal :empty_page  # default for countless
     end
   end
 

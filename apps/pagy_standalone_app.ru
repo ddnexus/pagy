@@ -35,16 +35,16 @@ gemfile true do
   gem 'sinatra-contrib'
 end
 
-# edit this section adding/removing the extras and Pagy::VARS as needed
+# edit this section adding/removing the extras and Pagy::DEFAULT as needed
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
-# Pagy::VARS[:items_extra]
+# Pagy::DEFAULT[:items_extra]
 require 'pagy/extras/trim'
-Pagy::VARS[:trim_extra] = false # opt-in trim
+Pagy::DEFAULT[:trim_extra] = false # opt-in trim
 # require 'pagy/extras/gearbox'
-# Pagy::VARS[:gearbox_items] = [10, 20, 40, 80]
-Pagy::VARS.freeze
+# Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
+Pagy::DEFAULT.freeze
 
 # sinatra application
 require 'sinatra/base'

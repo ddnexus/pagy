@@ -10,8 +10,8 @@ The scope of the `Pagy` class is keeping track of the all integers and variables
 ```ruby
 # set global defaults and extra variables typically in the pagy.rb initializer
 # they will get merged with every new Pagy instance
-Pagy::VARS[:items]    = 25
-Pagy::VARS[:some_var] = 'default value'
+Pagy::DEFAULT[:items]    = 25
+Pagy::DEFAULT[:some_var] = 'default value'
 
 # create a new instance (usually done automatically by the #pagy controller method)
 pagy = Pagy.new(count: 1000, page: 3, instance_var: 'instance var')
@@ -34,15 +34,17 @@ pagy.series
 #=> [1, 2, "3", 4, 5, 6, 7, :gap, 40]
 ```
 
-## Global Variables
+## Global Default
 
-The `Pagy::VARS` is a globally available hash used to set defaults variables. It gets merged with (and overridden by) the variables passed with the `new` method every times a `Pagy` instance gets created.
+The `Pagy::DEFAULT` is a globally available hash used to set defaults variables. It is a constant for easy access, but it is mutable to allow customizable defaults. You can override it in the `pagy.rb` initializer file in order to set your own application global defaults. After you are done, you should `freeze` it, so it will not changed accidentally. It gets merged with the variables passed with the `new` method every times a `Pagy` instance gets created.
 
 You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
 ```ruby
-Pagy::VARS[:items]     = 25
-Pagy::VARS[:my_option] = 'my option'
+Pagy::DEFAULT[:items]     = 25
+Pagy::DEFAULT[:my_option] = 'my option'
+...
+Pagy::DEFAULT.freeze
 ```
 
 ## Methods
@@ -59,11 +61,11 @@ The `Pagy.new` method accepts a single hash of variables that will be merged wit
 
 ### Variables
 
-All the variables passed to the new method will be merged with the `Pagy::VARS` hash and will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
+All the variables passed to the new method will be merged with the `Pagy::DEFAULT` hash and will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
 
-They can be set globally by using the `Pagy::VARS` hash or passed to the `Pagy.new` method and are accessible through the `vars` reader.
+They can be set globally by using the `Pagy::DEFAULT` hash or passed to the `Pagy.new` method and are accessible through the `vars` reader.
 
-**Notice**: Pagy replaces the blank values of the passed variables with their default values coming from the `Pagy::VARS` hash. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
+**Notice**: Pagy replaces the blank values of the passed variables with their default values coming from the `Pagy::DEFAULT` hash. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
 
 ### Instance Variables
 

@@ -16,7 +16,7 @@ class Pagy
     def pagy_array_get_vars(array, vars)
       pagy_set_items_from_params(vars) if defined?(ItemsExtra)
       vars[:count] ||= array.size
-      vars[:page]  ||= params[vars[:page_param] || VARS[:page_param]]
+      vars[:page]  ||= params[vars[:page_param] || DEFAULT[:page_param]]
       vars
     end
   end
