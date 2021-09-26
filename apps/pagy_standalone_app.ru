@@ -44,6 +44,7 @@ require 'pagy/extras/trim'
 Pagy::VARS[:trim_extra] = false # opt-in trim
 # require 'pagy/extras/gearbox'
 # Pagy::VARS[:gearbox_items] = [10, 20, 40, 80]
+Pagy::VARS.freeze
 
 # sinatra application
 require 'sinatra/base'

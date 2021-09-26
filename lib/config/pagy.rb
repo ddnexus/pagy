@@ -196,3 +196,8 @@
 
 # Default i18n key
 # Pagy::VARS[:i18n_key] = 'pagy.item_name'   # default
+
+
+# When you are done setting your own defaults freeze it,
+# so it will not changed accidentally
+Pagy::VARS.freeze
