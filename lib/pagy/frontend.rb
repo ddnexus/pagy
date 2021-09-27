@@ -47,7 +47,7 @@ class Pagy
       p_count = pagy.count
       key     = if    p_count.zero?   then 'pagy.info.no_items'
                 elsif pagy.pages == 1 then 'pagy.info.single_page'
-                else                       'pagy.info.multiple_pages'
+                else                       'pagy.info.multiple_pages' # rubocop:disable Lint/ElseLayout
                 end
 
       %(<span#{p_id} class="pagy-info">#{
