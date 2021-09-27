@@ -13,8 +13,11 @@ class Pagy
 
     def pagy_prev_link(pagy, text: pagy_t('pagy.nav.prev'), link_extra: '')
       if pagy.prev
-        %(<span class="page prev"><a href="#{pagy_url_for(pagy,
-                                                          pagy.prev)}" rel="prev" aria-label="previous" #{pagy.vars[:link_extra]} #{link_extra}>#{text}</a></span>)
+        %(<span class="page prev"><a href="#{
+            pagy_url_for(pagy, pagy.prev)
+          }" rel="prev" aria-label="previous" #{
+            pagy.vars[:link_extra]
+          } #{link_extra}>#{text}</a></span>)
       else
         %(<span class="page prev disabled">#{text}</span>)
       end
@@ -22,8 +25,11 @@ class Pagy
 
     def pagy_next_link(pagy, text: pagy_t('pagy.nav.next'), link_extra: '')
       if pagy.next
-        %(<span class="page next"><a href="#{pagy_url_for(pagy,
-                                                          pagy.next)}" rel="next" aria-label="next" #{pagy.vars[:link_extra]} #{link_extra}>#{text}</a></span>)
+        %(<span class="page next"><a href="#{
+            pagy_url_for(pagy, pagy.next)
+          }" rel="next" aria-label="next" #{
+            pagy.vars[:link_extra]
+          } #{link_extra}>#{text}</a></span>)
       else
         %(<span class="page next disabled">#{text}</span>)
       end

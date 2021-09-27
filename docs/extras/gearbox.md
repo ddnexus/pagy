@@ -3,7 +3,7 @@ title: Gearbox
 ---
 # Gearbox Extra
 
-This extra allows your app to automatically change the number of items depending on the page number. Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in order to speed things up for wild-browsing and improving the user experience.
+This extra allows your app to automatically change the number of items per page depending on the page number. Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in order to speed things up for wild-browsing and improving the user experience.
 
 You can set this up by simply setting the `:gearbox_items` variable to an array of integers. For example, you would set the  `gearbox_items` to `[10, 20, 40, 80]` to have page `1` with `10` items, page `2` with `20`, page `3` with `40` and all the other pages with `80` items.
 
@@ -33,7 +33,7 @@ Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default
 @pagy, @records = pagy(Product.all, gearbox_items: [30, 60, 100], ...)
 
 # You can still use instances with fixed pagination even after requiring the extra
-# use the default Pagy::DEFAULT
+# use the default Pagy::DEFAULT[:items]
 @pagy, @records = pagy(Product.all, gearbox_extra: false)
 # use the passed items: 30
 @pagy, @records = pagy(Product.all, gearbox_extra: false, items: 30)

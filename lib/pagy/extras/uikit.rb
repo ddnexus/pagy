@@ -42,7 +42,8 @@ class Pagy
       link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
+      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{
+                    p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
 
       %(<ul#{p_id} class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" #{
           pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)

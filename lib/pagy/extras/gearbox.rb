@@ -5,7 +5,7 @@ class Pagy
   DEFAULT[:gearbox_extra] = true # extra enabled by default
   DEFAULT[:gearbox_items] = [15, 30, 60, 100]
 
-  # Automatically change the number of items depending on the page number
+  # Automatically change the number of items per page depending on the page number
   # accepts an array as the :gearbox_items variable, that will determine the items for the first pages
   module GearboxExtra
     # Setup @items based on the :items variable

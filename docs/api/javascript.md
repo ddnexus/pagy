@@ -42,14 +42,14 @@ The `*_js` helpers come with a `data-pagy-json` attribute that includes an HTML 
 
 You may want to prevent that by simply adding the following lines to your `robots.txt` file:
 
-```
+```txt
 User-agent: *
 Disallow: *__pagy_page__
 ```
 
 **Caveats**: already indexed links may take a while to get purged by some search engine (i.e. you may still get some hits for a while even after you disallow them)
 
-A quite drastic alternative to the `robot.txt` would be adding the following block to the `config/initializers/rack_attack.rb` (if you use the [Rack Attack Middlewhare](https://github.com/kickstarter/rack-attack)):
+A quite drastic alternative to the `robot.txt` would be adding the following block to the `config/initializers/rack_attack.rb` (if you use the [Rack Attack Middleware](https://github.com/kickstarter/rack-attack)):
 
 ```ruby
 Rack::Attack.blocklist("block crawlers to follow pagy look-alike links") do |request|
@@ -99,7 +99,7 @@ If your app uses Webpacker, ensure that the webpacker `erb` loader is installed:
 bundle exec rails webpacker:install:erb
 ```
 
-Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to render the contents of `pagy.js` and add an event listener to it (to allow the library to reinitialise when you click a new link):
+Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to render the contents of `pagy.js` and add an event listener to it (to allow the library to reinitialize when you click a new link):
 
 ```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
@@ -120,6 +120,7 @@ import './pagy.js.erb'
 - You may want to use `turbolinks:load` if your app uses turbolinks despite webpacker
 - or you may want just `export { Pagy }` from the `pagy.js.erb` file and import and use it somewhere else.
 - or you may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
+
     ```js
     global.Pagy = Pagy
     ```
@@ -195,7 +196,7 @@ Use the `pagy*_nav_js` helpers in any view:
 
 | Variable | Description                                                       | Default |
 |:---------|:------------------------------------------------------------------|:--------|
-| `:steps` | Hash variable to control multipe pagy `:size` at different widths | `false`   |
+| `:steps` | Hash variable to control multiple pagy `:size` at different widths | `false`   |
 
 ### :steps
 
@@ -301,16 +302,18 @@ Use the `pagy*_combo_nav_js` helpers in any view:
 ### pagy*_nav_js(pagy, ...)
 
 The method accepts also a few optional keyword arguments:
-- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+
+- `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 - `:steps` the [:steps](#steps) variable
 
-**CAVEATS**: the `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add anoter class attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.
+**CAVEATS**: the `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add another class attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.
 
 ### pagy*_combo_nav_js(pagy, ...)
 
 The method accepts also a couple of optional keyword arguments:
-- `:pagy_id` which adds the `id` HTML attributedto the `nav` tag
+
+- `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 
 **CAVEATS**: the `pagy_semantic_combo_nav_js` assigns a class attribute to its links, so do not add another class attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.

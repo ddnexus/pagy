@@ -43,7 +43,8 @@ class Pagy
       link    = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem; margin: 0 0.3rem">)
+      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{
+                    p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem; margin: 0 0.3rem">)
 
       %(<div#{p_id} class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" #{
           pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)}>#{

@@ -16,9 +16,9 @@ class Pagy  # Default variables for this extra
       def pagy_set_items_from_params(vars)
         return if vars[:items]
         return unless vars.key?(:items_extra) ? vars[:items_extra] : DEFAULT[:items_extra]
-        return unless (items = params[vars[:items_param] || DEFAULT[:items_param]])                             # :items from :items_param
+        return unless (items = params[vars[:items_param] || DEFAULT[:items_param]])
 
-        vars[:items] = [items.to_i, vars.key?(:max_items) ? vars[:max_items] : DEFAULT[:max_items]].compact.min # :items capped to :max_items
+        vars[:items] = [items.to_i, vars.key?(:max_items) ? vars[:max_items] : DEFAULT[:max_items]].compact.min
       end
     end
 
@@ -37,7 +37,8 @@ class Pagy  # Default variables for this extra
         p_vars[:items] = p_items # restore the items
 
         html  = +%(<span#{p_id} class="pagy-items-selector-js" #{pagy_json_attr pagy, :items_selector, pagy.from, link}>)
-        input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length + 1}rem;">)
+        input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{
+                    p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length + 1}rem;">)
         html << pagy_t('pagy.items_selector_js', item_name: item_name || pagy_t(i18n_key || p_vars[:i18n_key], count: p_items),
                                                  items_input: input,
                                                  count: p_items)

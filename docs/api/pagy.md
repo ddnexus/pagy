@@ -3,7 +3,7 @@ title: Pagy
 ---
 # Pagy
 
-The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a few integers (such as the count of the collection, the page number, the items per page, ...), does some simple aritmetic and creates a very small object that allocates less than 3k of memory. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
+The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a few integers (such as the count of the collection, the page number, the items per page, ...), does some simple arithmetic and creates a very small object that allocates less than 3k of memory. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
 
 ## Synopsis
 
@@ -130,7 +130,7 @@ That is self-contained, simple and efficient.
 
 **Notice**: This method returns an empty array if the passed `size` (i.e. the `:size` variable by default) is set to an empty array. Useful to totally skip the generation of page links in the frontend.
 
-### Lowest limit analysys
+### Lowest limit analysis
 
 The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has the following peculiar attributes:
 
@@ -159,7 +159,7 @@ Which means:
 
 ### Pagy::VariableError
 
-A subclass of `ArgumentError` that offers a few informations for easy exception handling when some of the variable passed to the constructor is not valid.
+A subclass of `ArgumentError` that offers a few information for easy exception handling when some of the variable passed to the constructor is not valid.
 
 ```ruby
 rescue Pagy::VariableError => e

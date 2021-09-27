@@ -54,7 +54,10 @@
 # Headers extra: http response headers (and other helpers) useful for API pagination
 # See http://ddnexus.github.io/pagy/extras/headers
 # require 'pagy/extras/headers'
-# Pagy::DEFAULT[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }     # default
+# Pagy::DEFAULT[:headers] = { page: 'Current-Page',
+#                            items: 'Page-Items',
+#                            count: 'Total-Count',
+#                            pages: 'Total-Pages' }     # default
 
 # Meilisearch extra: Paginate `Meilisearch` result objects
 # See https://ddnexus.github.io/pagy/extras/meilisearch
@@ -120,7 +123,7 @@
 
 # Feature Extras
 
-# Gearbox extra: Automatically change the number of items depending on the page number
+# Gearbox extra: Automatically change the number of items per page depending on the page number
 # See https://ddnexus.github.io/pagy/extras/gearbox
 # require 'pagy/extras/gearbox'
 # set to false only if you want to make :gearbox_extra an opt-in variable

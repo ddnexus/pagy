@@ -9,7 +9,7 @@
 #                  -f docker-compose.e2e-dev.yml \
 #                   up ruby e2e-dev
 
-# USAGE (run from the container)
+# USAGE (run from the pagy-e2e-dev container)
 # CYPRESS HEADLESS
 #   npx cypress run [--project /pagy/test/e2e]
 # CYPRESS INTERACTIVE

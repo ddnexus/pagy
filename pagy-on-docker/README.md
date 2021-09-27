@@ -12,7 +12,7 @@ You can use it to develop changes, run ruby and E2E tests, and check the live pr
 
 ## Optional
 
-- `Visual Studio Code` (the repo contains a complete and ready to use VSCode setup that makes yur life super easy)
+- `Visual Studio Code` (the repo contains a complete and ready to use VSCode setup that makes your life super easy)
 
 # Ruby Dev Environment
 
@@ -122,12 +122,12 @@ Here are the steps:
 
 ## 3. Run E2E Tests in Docker
 
-This solution is convenient if you don't have `node` installed on your system or you don't want to mess with your installation. Using docker is convenient because you don't have to install and configure anything on your machine.
+This solution is convenient if you don't have `node` installed on your system or you don't want to mess with your local filesystem. Using docker is convenient because you don't have to install and configure anything on your machine.
 
-You have two choices:
+You have two independent choices(use one or the other):
 
 - **E2E Test**: Simple tool that runs the e2e tests in the local terminal (good enough for regression and super easy to install).
-- **E2E Dev**: Complete test-development environment with GUI and all the tools you may need (quite needed for e2e test development but it needs some configuration choice)
+- **E2E Dev**: Complete test-development environment with GUI and all the tools you may need (quite needed for e2e test development but it might need some extra configuration)
 
 ### Prerequisite
 
@@ -135,11 +135,13 @@ You have two choices:
 
 ### E2E Test (Simple setup)
 
-If you just need to run the E2E Test for regression, this is the right choice: you need only the following two steps:
+If you just need to run the E2E Test for regression, this is the right choice. Notice that if you need the E2E Dev environment you should completely skip this section).
+
+You need only the following two steps:
 
 #### Build
 
-Build the image for the `e2e-test` service. You need this step only once _(and you ignore the warnings)_:
+Build the image for the `e2e-test` service. You need this step only once _(and you can ignore the possible warnings doring the build)_:
 
 ```sh
 docker-compose -f docker-compose.yml \
@@ -207,7 +209,7 @@ docker-compose -f docker-compose.yml \
 
 #### Run
 
-Then run a bash session and `npm install` (notice that it may look like frozen, but it's just downloading cypress):
+Then run a bash session and `npm install` (notice that it may look like frozen for a couple of minutes, but it's just downloading cypress):
 
 ```sh
 docker-compose -f docker-compose.yml \
@@ -228,6 +230,7 @@ docker-compose -f docker-compose.yml \
 When you want to get rid of everything related to the `pagy` docker development on your system, here is a list of the commands to find them:
 
 - Volumes: `docker volume ls | grep pagy`
-- Images: `docker images | grep -E 'pagy|cypress'`
+- Images: `docker images | grep -E 'pagy|cypress'` 
+- Image dependencies: if you are not using them for other containers, you may also want to check `docker images | grep -E 'ruby|alpine|debian'`
 - Containers: `docker ps -a | grep pagy`
 - Networks: `docker network ls | grep pagy`

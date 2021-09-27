@@ -9,10 +9,23 @@ class Pagy
     private
 
     # Store the array of all the internal variable names usable as METADATA
-    METADATA = %i[scaffold_url first_url prev_url page_url next_url last_url
-                  count page items vars pages last in from to prev next series].tap do |metadata|
-                 metadata << :sequels if DEFAULT.key?(:steps)  # :steps gets defined along with the #sequels method
-               end.freeze
+    METADATA = %i[ scaffold_url
+                   first_url
+                   prev_url
+                   page_url
+                   next_url
+                   last_url
+                   count page
+                   items
+                   vars
+                   pages
+                   last
+                   in
+                   from
+                   to
+                   prev
+                   next
+                   series ].tap { |m| m << :sequels if DEFAULT.key?(:steps) }.freeze
 
     # Set the default metadata variable
     Pagy::DEFAULT[:metadata] = METADATA.dup

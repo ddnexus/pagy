@@ -5,6 +5,18 @@ class Pagy
   DEFAULT[:elasticsearch_rails_search_method] ||= :pagy_search
 
   module ElasticsearchRailsExtra
+    module_function
+
+    # Get the count from different version of ElasticsearchRails
+    def total_count(response)
+      total = if response.respond_to?(:raw_response)
+                response.raw_response['hits']['total']
+              else
+                response.response['hits']['total']
+              end
+      total.is_a?(Hash) ? total['value'] : total
+    end
+
     module ElasticsearchRails
       # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options
@@ -23,8 +35,7 @@ class Pagy
       def new_from_elasticsearch_rails(response, vars = {})
         vars[:items] = response.search.options[:size] || 10
         vars[:page]  = ((response.search.options[:from] || 0) / vars[:items]) + 1
-        total        = response.respond_to?(:raw_response) ? response.raw_response['hits']['total'] : response.response['hits']['total']
-        vars[:count] = total.is_a?(Hash) ? total['value'] : total
+        vars[:count] = ElasticsearchRailsExtra.total_count(response)
         new(vars)
       end
     end
@@ -41,8 +52,7 @@ class Pagy
         options[:size]   = vars[:items]
         options[:from]   = vars[:items] * (vars[:page] - 1)
         response         = model.search(query_or_payload, **options)
-        total            = response.respond_to?(:raw_response) ? response.raw_response['hits']['total'] : response.response['hits']['total']
-        vars[:count]     = total.is_a?(Hash) ? total['value'] : total
+        vars[:count]     = ElasticsearchRailsExtra.total_count(response)
 
         pagy = ::Pagy.new(vars)
         # with :last_page overflow we need to re-run the method in order to get the hits

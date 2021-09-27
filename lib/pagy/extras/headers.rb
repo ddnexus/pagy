@@ -4,7 +4,10 @@
 require 'pagy/url_helpers'
 
 class Pagy
-  DEFAULT[:headers] = { page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }
+  DEFAULT[:headers] = { page:  'Current-Page',
+                        items: 'Page-Items',
+                        count: 'Total-Count',
+                        pages: 'Total-Pages' }
   # Add specialized backend methods to add pagination response headers
   module HeadersExtra
     include UrlHelpers
@@ -30,7 +33,7 @@ class Pagy
       rel['last']           = pagy.last unless countless
       url_str               = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: true)
       link                  = rel.map do |r, num| # filter_map if ruby >=2.7
-                                next unless num
+                                next unless num # rubocop:disable Layout/EmptyLineAfterGuardClause
                                 [r, url_str.sub(PAGE_PLACEHOLDER, num.to_s)]
                               end.compact.to_h
       hash                  = { 'Link' => link }

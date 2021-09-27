@@ -33,7 +33,8 @@ class Pagy
                'gap'    => %(<li class="ellipsis gap" aria-hidden="true"></li>),
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
-      %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" aria-label="Pagination" #{pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></nav>)
+      %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" aria-label="Pagination" #{
+          pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></nav>)
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
@@ -42,12 +43,15 @@ class Pagy
       link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="width: #{p_pages.to_s.length + 1}rem; padding: 0 0.3rem; margin: 0 0.3rem;">)
+      input   = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{
+                    p_pages}" value="#{p_page}" style="width: #{
+                    p_pages.to_s.length + 1}rem; padding: 0 0.3rem; margin: 0 0.3rem;">)
 
       %(<nav#{p_id} class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group" #{
           pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)}>#{
           if (p_prev  = pagy.prev)
-            link.call p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0" aria-label="previous" class="prev button primary"'
+            link.call p_prev, pagy_t('pagy.nav.prev'),
+                      'style="margin-bottom: 0" aria-label="previous" class="prev button primary"'
           else
             %(<a style="margin-bottom: 0" class="prev button primary disabled" href="#">#{pagy_t 'pagy.nav.prev'}</a>)
           end

@@ -9,25 +9,24 @@ AllCops:
   TargetRubyVersion: 2.5
   NewCops: enable
   Exclude:
-    - ___*/**/*           # '___' prefixed dirs are excluded
-    - vendor/bundle/**/*  # avoid Error: RuboCop found unsupported Ruby version 2.1 in `TargetRubyVersion` parameter (in vendor/bundle/ruby/3.0.0/gems/rainbow-3.0.0/.rubocop.yml).
-                          # and also the extra weird "Unable to find gem panolint; is the gem installed? Gem::MissingSpecError" in all ruby versions
+    # '___' prefixed dirs are excluded
+    - ___*/**/*
+    # avoid Error: RuboCop found unsupported Ruby version 2.1 in `TargetRubyVersion` parameter
+    # (in vendor/bundle/ruby/3.0.0/gems/rainbow-3.0.0/.rubocop.yml) and also the extra weird
+    # "Unable to find gem panolint; is the gem installed? Gem::MissingSpecError" in all ruby versions
+    - vendor/bundle/**/*
 Layout:
   Exclude:
   - test/**/*
 
 Layout/LineLength:
-  Enabled: false
+  Max: 130
 
 Layout/ExtraSpacing:
   AllowForAlignment:
     Enabled: true
   AllowBeforeTrailingComments:
     Enabled: true
-  # ForceEqualSignAlignment:
-  #   Enabled: true
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
 
 Layout/EmptyLines:
   Exclude:
@@ -35,7 +34,6 @@ Layout/EmptyLines:
 
 Layout/BlockAlignment:
   Enabled: false
-  #   EnforcedStyleAlignWith: start_of_block
 
 Layout/EndAlignment:
   EnforcedStyleAlignWith: keyword

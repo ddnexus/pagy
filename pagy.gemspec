@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.version     = Pagy::VERSION
   s.authors     = ['Domizio Demichelis']
   s.email       = ['dd.nexus@gmail.com']
-  s.summary     = 'The Ultimate Pagination Ruby Gem'
-  s.description = 'Agnostic pagination in plain ruby: it works with any framework, ORM and DB type, with all kinds of collections, even pre-paginated, scopes, Arrays, JSON data... Easy, powerful, fast and light.'
+  s.summary     = 'The kick-ass pagination ruby gem'
+  s.description = 'Agnostic pagination in plain ruby. It does it all. Better.'
   s.homepage    = 'https://github.com/ddnexus/pagy'
   s.license     = 'MIT'
   s.files       = File.read('pagy.manifest').split
