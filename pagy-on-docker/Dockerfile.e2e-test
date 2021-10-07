@@ -1,9 +1,0 @@
-FROM cypress/included:8.4.1
-
-RUN npm install --save-dev \
-        cypress-dark \
-        @cypress/snapshot \
-        html-validate \
-        cypress-html-validate \
- && rm -rf /var/lib/apt/lists/* \
- && apt-get clean

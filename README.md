@@ -311,7 +311,7 @@ Extras add special options and manage different components, behaviors, Frontend 
 
 - Pull Requests are welcome!
 - For simple contribution you can quickly check your changes with the [Pagy::Console](https://ddnexus.github.io/pagy/api/console) or with the single file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru).
-- For more complex contributions you can use the [docker development environment](https://github.com/ddnexus/pagy/tree/master/pagy-on-docker) or your own environment of course.
+- For more complex contributions you can use the [docker development environment](https://github.com/ddnexus/pagy/tree/master/docker) or your own environment of course.
 - If you Create A Pull Request, please ensure that the "All checks have passed" indicator gets green light on the Pull Request page. That means that the tests passed and Codecov and Rubocop are happy.
 
 </details>
@@ -348,8 +348,6 @@ Many thanks to:
 - [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free OpenSource license
 - [The Contributors](https://github.com/ddnexus/pagy/graphs/contributors) for all the smart code and suggestions merged in the project
 - [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
-
-</details>
 
 ## 📃 License
 

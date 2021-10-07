@@ -61,6 +61,7 @@ The following optional positional arguments are passed with keywords arguments i
 
 - Removed support for deprecations
 - Refactoring of Pagy and Pagy::Countless classes, I18n, and url helpers
+- Refactoring of the docker environment, addition of ready to use VSCode setup
 - Changed general module structure (use of prepend instead of re-opening modules)
 - Added gearbox extra for geared pagination
 - Added configuration files for a full working VSCode devcontainer environment

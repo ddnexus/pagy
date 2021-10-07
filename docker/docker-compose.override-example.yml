@@ -1,0 +1,80 @@
+# Duplicate and rename the copy of this file as 'docker-compose.override.yml' so it will
+# automatically get loaded from docker-compose, overriding the main 'docker-compose.yml' file.
+
+# Docker in Docker
+# Customize the "group_add" entry for Docker in Docker.
+
+# Ubuntu 21.04
+# The file works almost as is with RubyMine and VSCode (see the sections below).
+# It might require some adjustment if you use a different OS.
+
+# JetBrains RubyMine
+# This file is a working example to use a local installation of RubyMine as it was installed inside the container.
+# Notice: RubyMine may also be able to handle docker-compose run configuration without the need of this setup:
+# in that case you have to create a remote docker-compose Ruby SDK and follow the official JetBrains doc.
+
+# VSCode + Remote Containers Extension
+# The file is a working example to use VSCode + the Remote Containers Extension.
+# Search for "VSCode" in the comments below in order to enable/disable what it needs.
+
+version: "3.8"
+services:
+  pagy-dev:
+    build:
+      # Pick the stage to build
+      target: pagy-custom-dev
+# Needed only for running a browser from the container
+#      target: pagy-custom-nvidia-dev   # nvidia proprietary driver
+#      shm_size: 2gb    # Building shared memory (usually not needed)
+#    shm_size: 2gb      # Runtime shared memory (recommended to use google chrome normally)
+    init: true
+    environment:
+      # Share ENV with the host
+#      - DISPLAY   # Just a ref: already defined in the main docker-compose.yml
+      - XAUTHORITY
+      - DBUS_SESSION_BUS_ADDRESS
+    # Needed only for full sharing of graphic and sound e.g. with a browser from the container
+#    devices:
+#      - /dev/dri:/dev/dri
+#      - /dev/snd:/dev/snd
+
+    volumes:
+      # share Google Chrome installed on host (configure RubyMine to find it at the right path)
+      - /opt/google/chrome:/opt/google/chrome
+      # Time sync with host
+      - /etc/localtime:/etc/localtime:ro
+      # X11 and Dbus related
+      - $XAUTHORITY:$XAUTHORITY
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /var/run/dbus:/var/run/dbus
+      - /run/user/$UID/bus:/run/user/$UID/bus
+      # JetBrains IDEs from the container (disable if you don't use JetBrains IDEs)
+      - /home/$USER/.local/share/JetBrains:/home/$USER/.local/share/JetBrains   # JetBrains applications
+      - /home/$USER/.config/JetBrains:/home/$USER/.config/JetBrains             # JetBrains configuration
+      - /home/$USER/jb:/home/$USER/jb                                           # JetBrains CLI launchers (JetBrains Toolbox > Settings)
+      # Git global config
+      - /home/$USER/.config/git:/home/$USER/.config/git:ro                      # Host global git config
+      - /home/$USER/.ssh:/home/$USER/.ssh:ro                                    # Keys for github
+      # Cosmetics
+      - /home/$USER/.local/share/fonts:/home/$USER/.local/share/fonts:ro        # User Fonts
+      - /usr/share/fonts:/usr/share/fonts:ro                                    # System Fonts
+      - /usr/share/themes:/usr/share/themes:ro                                  # System Themes
+      - /usr/share/icons:/usr/share/icons:ro                                    # System Icons and cursors
+      # Docker in docker
+      - /var/run/docker.sock:/var/run/docker.sock                               # Docker-in-docker setup
+    group_add:                                                                  # Docker-in-docker setup
+      # Find your docker-host group with: `stat -c '%g' /var/run/docker.sock`
+      # and add it here to allow permission on the docker socket
+      - 135
+
+    # May be useful for certain customizations (but it allows only one instance of RubyMine)
+    # network_mode: host
+
+    privileged: true  # Needed for easy connection to dbus (e.g. cypress open)
+
+    # Start RubyMine at `docker-compose up` (disable for VSCode)
+    command: ["/home/$USER/jb/rubymine"]
+
+  pagy-docs:
+    # shutdown the docs service when you close RubyMine
+    depends_on: [pagy-dev]
