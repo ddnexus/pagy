@@ -1,13 +1,6 @@
-/.idea
+/.idea/
 /.bundle/
-/*.gem
 /coverage/
-/docs/.jekyll-metadata
-/pagy-on-docker/.env
 /pkg/
-/test/e2e/cypress/downloads/
-/test/e2e/cypress/fixtures/
-/test/e2e/cypress/screenshots/
-/test/e2e/cypress/videos/
-/test/html_reports/
 /tmp/
+                             
