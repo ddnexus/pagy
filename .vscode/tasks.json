@@ -19,7 +19,7 @@
             "group": "test"
         },
         {
-            "label": "Pagy IRB: wait for debugger...",
+            "label": "preLaunchTask - debugger wait for pagy IRB",
             "type": "shell",
             "command": "rdebug-ide",
             "args": [
@@ -56,7 +56,29 @@
             ]
         },
         {
-            "label": "Pagy Standalone App: wait for debugger...",
+            "label": "IRB Pagy",
+            "type": "shell",
+            "command": "irb",
+            "args": [
+                "-Ilib",
+                "-rpagy"
+            ],
+            "options": {
+                "shell": {
+                    "executable": "bash",
+                    "args": [
+                         "-c"
+                    ]
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "close": true
+              },
+            "group": "test"
+        },
+        {
+            "label": "preLaunchTask - debugger wait for pagy_standalone_app",
             "type": "shell",
             "command": "rdebug-ide",
             "args": [
@@ -89,6 +111,24 @@
                     }
                 }
             ]
+        },
+        {
+            "label": "E2E Test: run in terminal",
+            "type": "shell",
+            "command": "/pagy/test/e2e/cy",
+            "args": [
+                "run"
+            ],
+            "group": "test"
+        },
+        {
+            "label": "E2E Test: open cypress",
+            "type": "shell",
+            "command": "/pagy/test/e2e/cy",
+            "args": [
+                "open"
+            ],
+            "group": "test"
         }
     ]
 }

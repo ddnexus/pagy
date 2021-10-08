@@ -15,12 +15,12 @@
     },
     "homepage": "https://github.com/ddnexus/pagy",
     "devDependencies": {
-        "cypress": "^8.4.1",
-        "cypress-dark": "^1.8.0",
+        "cypress": "^8.5.0",
         "@cypress/snapshot": "^2.1.7",
-        "html-validate": "^5.5.0",
-        "cypress-html-validate": "^2.1.0",
+        "html-validate": "^6.1.0",
+        "cypress-html-validate": "^2.1.1",
         "eslint": "^7.32.0",
-        "eslint-plugin-cypress": "^2.12.1"
+        "eslint-plugin-cypress": "^2.12.1",
+        "wait-on": "^6.0.0"
     }
 }

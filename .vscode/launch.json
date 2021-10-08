@@ -22,7 +22,7 @@
         },
         {
             "name"                : "Pagy IRB",
-            "preLaunchTask"       : "Pagy IRB: wait for debugger...",
+            "preLaunchTask"       : "preLaunchTask - debugger wait for pagy IRB",
             "type"                : "Ruby",
             "request"             : "attach",
             "remoteHost"          : "0.0.0.0",
@@ -32,7 +32,7 @@
         },
         {
             "name"                : "pagy_standalone_app.ru",
-            "preLaunchTask"       : "Pagy Standalone App: wait for debugger...",
+            "preLaunchTask"       : "preLaunchTask - debugger wait for pagy_standalone_app",
             "type"                : "Ruby",
             "request"             : "attach",
             "remoteHost"          : "0.0.0.0",

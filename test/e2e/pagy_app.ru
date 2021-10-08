@@ -2,7 +2,7 @@
 
 # Self-contained sinatra app to test the pagy helpers in the browser
 
-# USAGE:
+# TEST USAGE:
 #    rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru
 
 # DEV USAGE:

@@ -1,3 +1,4 @@
-cypress:8.4.1
+cypress:8.6.0
 @cypress/snapshot:2.1.7
-cypress-html-validate:2.1.0
+html-validate:6.1.0
+cypress-html-validate:2.1.1
