@@ -13,7 +13,7 @@ class Pagy
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
       gearbox_items = @vars[:gearbox_items]
-      raise VariableError.new(self), "expected :items to be an Array of positives; got #{gearbox_items.inspect}" \
+      raise VariableError.new(self), "expected :gearbox_items to be an Array of positives; got #{gearbox_items.inspect}" \
             unless gearbox_items.is_a?(Array) && gearbox_items.all? { |num| num.positive? rescue false } # rubocop:disable Style/RescueModifier
 
       @items = gearbox_items[@page - 1] || gearbox_items.last

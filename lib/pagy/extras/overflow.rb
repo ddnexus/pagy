@@ -32,7 +32,7 @@ class Pagy
           extend Series                             # special series for :empty_page
         else
           raise VariableError.new(self), \
-                "expected :overflow variable in [:last_page, :empty_page, :exception]; got #{@vars[:overflow].inspect}"
+                "expected :overflow to be in [:last_page, :empty_page, :exception]; got #{@vars[:overflow].inspect}"
         end
       end
 
@@ -64,7 +64,7 @@ class Pagy
           self
         else
           raise VariableError.new(self), \
-                "expected :overflow variable in [:empty_page, :exception]; got #{@vars[:overflow].inspect}"
+                "expected :overflow to be in [:empty_page, :exception]; got #{@vars[:overflow].inspect}"
         end
       end
     end

@@ -36,7 +36,7 @@ class Pagy
     def pagy_metadata(pagy, absolute: nil)
       names   = pagy.vars[:metadata]
       unknown = names - METADATA
-      raise VariableError.new(pagy), "unknown metadata #{unknown.inspect}" \
+      raise VariableError.new(pagy), "expected :metadata to be in #{DEFAULT[:metadata].inspect}, got #{unknown.inspect} unknown" \
             unless unknown.empty?
 
       scaffold_url = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: absolute)
