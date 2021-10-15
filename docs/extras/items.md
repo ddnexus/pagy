@@ -5,7 +5,7 @@ title: Items
 
 Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or user-customizable UIs.
 
-It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md) and [meilisearch](extras/meilisearch.md) extras.
+It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md) and [meilisearch](../extras/meilisearch.md) extras.
 
 ## Synopsis
 
@@ -66,7 +66,7 @@ For a single instance (overriding the global default):
 
 ```ruby
 pagy(scope, items_param: :custom_param, max_items: 50)
-Pagy.new(count:100, items_param: :custom_param, max_items: 50)
+Pagy.new(count: 100, items_param: :custom_param, max_items: 50)
 ```
 
 **Notice**: you can override the items that the client sends with the params by passing the `:items` explicitly. For example:

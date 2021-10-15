@@ -9,7 +9,7 @@ For overriding convenience, the `pagy` method calls two sub-methods that you may
 
 **Notice**: Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods).
 
-Check also the [array](../extras/array.md), [searchkick](../extras/searchkick.md), [elasticsearch_rails](../extras/elasticsearch_rails.md) and [meilisearch](extras/meilisearch.md) extras for specific backend customizations.
+Check also the [array](../extras/array.md), [searchkick](../extras/searchkick.md), [elasticsearch_rails](../extras/elasticsearch_rails.md) and [meilisearch](../extras/meilisearch.md) extras for specific backend customizations.
 
 ## Synopsis
 
@@ -88,8 +88,8 @@ For example: here is a `pagy` method that doesn't call any sub-method, that may 
 
 ```ruby
 def pagy_custom(collection, vars={})
-  pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-  return pagy, collection.offset(pagy.offset).limit(pagy.items)
+   pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+  [pagy, collection.offset(pagy.offset).limit(pagy.items)]
 end
 ```
 

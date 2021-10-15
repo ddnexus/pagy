@@ -25,7 +25,7 @@ class Pagy
         when :last_page
           initial_page = @vars[:page]               # save the very initial page (even after re-run)
           initialize vars.merge!(page: @last)       # re-run with the last page
-          @vars[:page] = initial_page               # restore the inital page
+          @vars[:page] = initial_page               # restore the initial page
         when :empty_page
           @offset = @items = @from = @to = 0        # vars relative to the actual page
           @prev = @last                             # prev relative to the actual page

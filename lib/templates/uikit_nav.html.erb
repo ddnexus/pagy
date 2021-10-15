@@ -9,7 +9,7 @@
 <%   elsif item == :gap        -%>   <li class="uk-disabled"><span><%== pagy_t('pagy.nav.gap') %></span></li>
 <%   end                       -%>
 <% end                         -%>
-<% if pagy.next                -%>   <li><%== link.call(p_next, "<span uk-pagination-next>#{pagy_t('pagy.nav.next')}</span>") %></li>
+<% if pagy.next                -%>   <li><%== link.call(pagy.next, "<span uk-pagination-next>#{pagy_t('pagy.nav.next')}</span>") %></li>
 <% else                        -%>   <li class="uk-disabled"><a href="#"><span uk-pagination-next><%== pagy_t('pagy.nav.next') %></span></a></li>
 <% end                         -%>
 <%#                            -%> </ul>

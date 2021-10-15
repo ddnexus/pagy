@@ -17,13 +17,13 @@ describe 'pagy' do
       _(Pagy::VERSION).wont_be_nil
     end
     it 'defines the same version in config/pagy.rb' do
-      _(File.read(Pagy.root.join('config', 'pagy.rb'))).must_match "# Pagy initializer file (#{Pagy::VERSION})"
+      _(Pagy.root.join('config', 'pagy.rb').read).must_match "# Pagy initializer file (#{Pagy::VERSION})"
     end
     it 'defines the same version in javascripts/pagy.js' do
-      _(File.read(Pagy.root.join('javascripts', 'pagy.js'))).must_match "Pagy.version = '#{Pagy::VERSION}'"
+      _(Pagy.root.join('javascripts', 'pagy.js').read).must_match "Pagy.version = '#{Pagy::VERSION}'"
     end
     it 'defines the same version in CHANGELOG.md' do
-      _(File.read(Pagy.root.parent.join('CHANGELOG.md'))).must_match "## Version #{Pagy::VERSION}"
+      _(Pagy.root.parent.join('CHANGELOG.md').read).must_match "## Version #{Pagy::VERSION}"
     end
   end
 

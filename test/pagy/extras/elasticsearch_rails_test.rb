@@ -164,7 +164,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 2
         _(pagy.vars[:link_extra]).must_equal 'X'
       end
-      it 'paginates response with defaults on Elasticearch 5' do
+      it 'paginates response with defaults on Elasticsearch 5' do
         response = MockElasticsearchRails::ModelES5.search('a')
         pagy     = Pagy.new_from_elasticsearch_rails(response)
         _(pagy).must_be_instance_of Pagy

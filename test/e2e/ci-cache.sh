@@ -1,4 +1,4 @@
-# run this in order to ensure the ci cache will get updated with the latest verions
+# run this in order to ensure the ci cache will get updated with the latest versions
 
 rm -rf ci-cache.lock
 for pkg in cypress @cypress/snapshot html-validate cypress-html-validate ; do
