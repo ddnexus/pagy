@@ -4,6 +4,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/bulma'
 
 require_relative '../../mock_helpers/view'
+require_relative '../../mock_helpers/pagy_buggy'
 
 describe 'pagy/extras/bulma' do
   let(:view) { MockView.new }
@@ -23,6 +24,9 @@ describe 'pagy/extras/bulma' do
       pagy = Pagy.new(count: 1000, page: 50)
       _(view.pagy_bulma_nav(pagy)).must_rematch
       _(view.pagy_bulma_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+    end
+    it 'should raise for wrong series' do
+      _ { view.pagy_bulma_nav(PagyBuggy.new(count:100)) }.must_raise Pagy::InternalError
     end
   end
 

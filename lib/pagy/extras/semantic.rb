@@ -17,6 +17,7 @@ class Pagy
                 when Integer then link.call item                                                 # page link
                 when String  then %(<a class="item active">#{item}</a>)                          # current page
                 when :gap    then %(<div class="disabled item">#{pagy_t 'pagy.nav.gap'}</div>)   # page gap
+                else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
       html << pagy_semantic_next_html(pagy, link)

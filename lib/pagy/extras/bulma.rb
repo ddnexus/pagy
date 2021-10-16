@@ -22,6 +22,7 @@ class Pagy
                                     %(class="pagination-link is-current" aria-label="page #{item}" aria-current="page")}</li>)
                 when :gap
                   %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.nav.gap'}</span></li>)
+                else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
       html << %(</ul></nav>)

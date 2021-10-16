@@ -20,6 +20,7 @@ class Pagy
                   %(<li class="page-item active">#{link.call item}</li>)
                 when :gap
                   %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.gap'}</a></li>)
+                else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
       html << pagy_bootstrap_next_html(pagy, link)

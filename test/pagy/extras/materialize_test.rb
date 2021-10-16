@@ -2,6 +2,7 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/materialize'
+require_relative '../../mock_helpers/pagy_buggy'
 
 describe 'pagy/extras/materialize' do
   require_relative '../../mock_helpers/view'
@@ -22,6 +23,9 @@ describe 'pagy/extras/materialize' do
       pagy = Pagy.new(count: 1000, page: 50)
       _(view.pagy_materialize_nav(pagy)).must_rematch
       _(view.pagy_materialize_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+    end
+    it 'should raise for wrong series' do
+      _ { view.pagy_materialize_nav(PagyBuggy.new(count:100)) }.must_raise Pagy::InternalError
     end
   end
 

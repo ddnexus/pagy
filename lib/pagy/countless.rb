@@ -16,8 +16,7 @@ class Pagy
 
     # Finalize the instance variables based on the fetched items
     def finalize(fetched)
-      raise OverflowError.new(self), "page #{@page} got no items" \
-            if fetched.zero? && @page > 1
+      raise OverflowError.new(self, :page, "to be < #{@page}") if fetched.zero? && @page > 1
 
       @pages = @last = (fetched > @items ? @page + 1 : @page)
       @in    = [fetched, @items].min
@@ -26,6 +25,10 @@ class Pagy
       @prev  = (@page - 1 unless @page == 1)
       @next  = @page == @last ? (1 if @vars[:cycle]) : @page + 1
       self
+    end
+
+    def series(_size = @vars[:size])
+      super unless @vars[:countless_minimal]
     end
   end
 end

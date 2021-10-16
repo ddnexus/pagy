@@ -2,9 +2,10 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/bootstrap'
+require_relative '../../mock_helpers/view'
+require_relative '../../mock_helpers/pagy_buggy'
 
 describe 'pagy/extras/bootstrap' do
-  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe '#pagy_bootstrap_nav' do
@@ -22,6 +23,9 @@ describe 'pagy/extras/bootstrap' do
       pagy = Pagy.new(count: 1000, page: 50)
       _(view.pagy_bootstrap_nav(pagy)).must_rematch
       _(view.pagy_bootstrap_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+    end
+    it 'should raise for wrong series' do
+      _ { view.pagy_bootstrap_nav(PagyBuggy.new(count:100)) }.must_raise Pagy::InternalError
     end
   end
 

@@ -41,6 +41,9 @@ describe 'pagy/frontend' do
       _(view.pagy_nav(pagy)).must_include '?page=2" X  rel'
       _(view.pagy_nav(pagy, link_extra: 'link-extra')).must_include '?page=2" X link-extra rel'
     end
+    it 'should raise for wrong series' do
+      _ { view.pagy_nav(PagyBuggy.new(count:100)) }.must_raise Pagy::InternalError
+    end
   end
 
   describe '#pagy_link_proc' do
@@ -75,7 +78,7 @@ describe 'pagy/frontend' do
   describe "Pagy::I18n" do
     it 'loads custom :locale, :filepath and :pluralize' do
       _(proc { i18n_load(locale: 'xx') }).must_raise Errno::ENOENT
-      _(proc { i18n_load(locale: 'xx', filepath: Pagy.root.join('locales', 'en.yml')) }).must_raise Pagy::VariableError
+      _(proc { i18n_load(locale: 'xx', filepath: Pagy.root.join('locales', 'en.yml')) }).must_raise Pagy::I18nError
       _(proc { i18n_load(locale: 'en', filepath: Pagy.root.join('locales', 'xx.yml')) }).must_raise Errno::ENOENT
       custom_dictionary = Pagy.root.parent.join('test', 'files', 'custom.yml')
       i18n_load(locale: 'custom', filepath: custom_dictionary)
