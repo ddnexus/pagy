@@ -58,7 +58,7 @@ This constructor accepts an `Elasticsearch::Model::Response::Response` as the fi
 
 ## Pagy::ElasticsearchRails
 
-Extend your model with the `Pagy::ElasticsearchRails` micro-moudule:
+Extend your model with the `Pagy::ElasticsearchRails` micro-module:
 
 ```ruby
 extend Pagy::ElasticsearchRails

@@ -5,7 +5,7 @@
   border: 0;
 }
 
-/* normalize all p excluding bulma spectific combo */
+/* normalize all p excluding bulma specific combo */
 p:not(.control) {
   display: block;
   margin-top: .5em;
@@ -15,7 +15,14 @@ p:not(.control) {
 body {
   font-family: sans-serif;
   margin: 2em;
+  /* background: #222;
+  color:  #ddd; */
 }
+
+a {
+  color:#1e90ff;
+}
+
 
 /* normalize all on one line with some space in between */
 ul li,
@@ -78,3 +85,5 @@ li.disabled a {
   text-decoration: none !important;
   color: inherit !important;
 }
+
+

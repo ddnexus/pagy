@@ -27,11 +27,9 @@
 require('@cypress/snapshot').register();
 import 'cypress-html-validate/dist/commands';
 
-global.styles = ['/bootstrap', '/bulma', '/foundation', '/materialize', '/navs', '/semantic', '/uikit'];
-
 Cypress.Commands.add('snapId', (id) => {
   cy.get('#records').snapshot();
-  cy.get(id).snapshot({json: false});
+  cy.get(id).snapshot({ json: false });
 })
 
 Cypress.Commands.add('navStyleId', (style, id) => {

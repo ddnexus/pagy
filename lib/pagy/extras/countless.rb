@@ -4,22 +4,21 @@
 require 'pagy/countless'
 
 class Pagy
+  DEFAULT[:countless_minimal] = false
 
-  VARS[:countless_minimal] = false
-
-  module Backend
-    private         # the whole module is private so no problem with including it in a controller
+  module CountlessExtra
+    private
 
     # Return Pagy object and items
-    def pagy_countless(collection, vars={})
+    def pagy_countless(collection, vars = {})
       pagy = Pagy::Countless.new(pagy_countless_get_vars(collection, vars))
-      [ pagy, pagy_countless_get_items(collection, pagy) ]
+      [pagy, pagy_countless_get_items(collection, pagy)]
     end
 
     # Sub-method called only by #pagy_countless: here for easy customization of variables by overriding
     def pagy_countless_get_vars(_collection, vars)
-      pagy_set_items_from_params(vars) if defined?(UseItemsExtra)
-      vars[:page] ||= params[ vars[:page_param] || VARS[:page_param] ]
+      pagy_set_items_from_params(vars) if defined?(ItemsExtra)
+      vars[:page] ||= params[vars[:page_param] || DEFAULT[:page_param]]
       vars
     end
 
@@ -35,6 +34,6 @@ class Pagy
       pagy.finalize(items_size)
       items
     end
-
   end
+  Backend.prepend CountlessExtra
 end

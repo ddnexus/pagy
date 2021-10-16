@@ -3,7 +3,7 @@ title: Migration Guide
 ---
 # Migrate WillPaginate and Kaminari
 
-This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is higly customized you may need more digging into the Pagy documentation.
+This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is highly customized you may need more digging into the Pagy documentation.
 
 Feel free to [ask on Gitter](https://gitter.im/ruby-pagy/Lobby) if you need more assistance.
 
@@ -56,8 +56,8 @@ end
 ```
 
 ```ruby
-Pagy::VARS[:items] = 10
-Pagy::VARS[:size]  = [5,4,4,5]
+Pagy::DEFAULT[:items] = 10
+Pagy::DEFAULT[:size]  = [5,4,4,5]
 ```
 
 Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_.
@@ -79,7 +79,7 @@ If the app used the `page` scope in some of its methods or scopes in some model,
 
 #### Search and replace in the Controllers
 
-In the controllers, the occurency of statements from legacy pagination should have a one-to-one relationship with the Pagy pagination, so you should be able to go through each of them and convert them quite easily.
+In the controllers, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy pagination, so you should be able to go through each of them and convert them quite easily.
 
 Search for keywords like `page` and `paginate` statements and use the `pagy` method instead. For example:
 
@@ -100,7 +100,7 @@ Search for keywords like `page` and `paginate` statements and use the `pagy` met
 
 #### Search and replace in the Views
 
-Also in the views, the occurency of statements from legacy pagination should have a one-to-one relationship with the Pagy pagination, so you should be able to go through each of them and convert them quite easily.
+Also in the views, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy pagination, so you should be able to go through each of them and convert them quite easily.
 
 Search for keywords like `will_paginate` and `paginate` statement and use one of the `pagy_nav` methods. For example:
 

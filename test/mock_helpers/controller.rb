@@ -5,8 +5,8 @@ require_relative 'collection'
 class MockController
   include Pagy::Backend
   # we ned to explicitly include this because Pagy::Backend
-  # does not include it when the test loads this module witout the headers
-  include Pagy::Helpers
+  # does not include it when the test loads this module without the headers
+  include Pagy::UrlHelpers
 
   attr_reader :params
 

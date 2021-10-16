@@ -58,7 +58,7 @@ This constructor accepts a Meilisearch as the first argument, plus the usual opt
 
 ## Pagy::Meilisearch
 
-Extend your model with the `Pagy::Meilisearch` micro-moudule:
+Extend your model with the `Pagy::Meilisearch` micro-module:
 
 ```ruby
 extend Pagy::Meilisearch

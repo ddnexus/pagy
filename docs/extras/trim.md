@@ -18,15 +18,15 @@ require 'pagy/extras/trim'
 
 # it will trim without any further configuration,
 
-# you can disable it explicitly for specific requests 
-@pagy, @records = pagy(Product.all, enable_trim_extra: false)
+# you can disable it explicitly for specific requests
+@pagy, @records = pagy(Product.all, trim_extra: false)
 
 # or...
 
 # disable it by default (opt-in)
-Pagy::VARS[:enable_trim_extra] = false   # default true
+Pagy::DEFAULT[:trim_extra] = false   # default true
 # in this case you have to enable it explicitly when you want the trimming
-@pagy, @records = pagy(Product.all, enable_trim_extra: true)
+@pagy, @records = pagy(Product.all, trim_extra: true)
 ```
 
 ## Files
@@ -35,13 +35,13 @@ Pagy::VARS[:enable_trim_extra] = false   # default true
 
 ## Variables
 
-| Variable             | Description                   | Default |
-|:---------------------|:------------------------------|:--------|
-| `:enable_trim_extra` | enable or disable the feature | `true`  |
+| Variable      | Description                   | Default |
+| :------------ | :---------------------------- | :------ |
+| `:trim_extra` | enable or disable the feature | `true`  |
 
-You can use the `:enable_trim_extra` variable to opt-out of trimming even when the extra is required (trimming by default).
+You can use the `:trim_extra` variable to opt-out of trimming even when the extra is required (trimming by default).
 
-You can set the `Pagy::VARS[:use_trim_extra]` default to `false` if you want to explicitly pass the `enable_trim_extra: true` variable in order to trim the page param.
+You can set the `Pagy::DEFAULT[:use_trim_extra]` default to `false` if you want to explicitly pass the `trim_extra: true` variable in order to trim the page param.
 
 ## Methods
 

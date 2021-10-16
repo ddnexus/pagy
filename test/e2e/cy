@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ $# = 0 ]; then
+    echo "No argument passed!"
+    exit 1
+fi
+
+pid_file=/tmp/e2e-rackup-pid
+start_path=$PWD
+script_path="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+stop-app() {
+    echo " --> Stopping..."
+    kill "$(cat $pid_file)"
+    cd "$start_path"
+}
+
+trap stop-app EXIT
+echo " --> Starting 'pagy_app.ru' for 'cypress $*'"
+cd "$script_path"
+rackup -P $pid_file -D -o 0.0.0.0 -p 4567 "${script_path}/pagy_app.ru"
+npx wait-on http://0.0.0.0:4567 && npx cypress "$@"

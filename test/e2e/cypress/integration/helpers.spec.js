@@ -1,19 +1,17 @@
-/// <reference types="cypress" />
-
 describe('Test generic helpers', () => {
   const pages = [1, 5, 36, 50];
-  it('test pagy_info', () => {
+  it('Test pagy_info', () => {
     const id = '#pagy-info';
-    for(let p = 0; p < pages.length; p++) {
+    for (let p = 0; p < pages.length; p++) {
       cy.visit('/navs?page=' + pages[p]);
-      cy.snapId(id)
+      cy.snapId(id);
     }
   });
   it('Test pagy_items_selector_js', () => {
     const id = '#items-selector-js';
-    for(let p = 0; p < pages.length; p++) {
+    for (let p = 0; p < pages.length; p++) {
       cy.visit('/navs?page=' + pages[p]);
-      cy.snapId(id)
+      cy.snapId(id);
       cy.get(id + ' input').type('10{enter}');
       cy.snapId(id);
       cy.get(id + ' input').type('17').blur();

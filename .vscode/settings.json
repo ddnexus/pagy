@@ -1,0 +1,90 @@
+{
+    "cSpell.words": [
+        "activerecord",
+        "arel",
+        "autorun",
+        "backport",
+        "blocklist",
+        "bulma",
+        "Chainable",
+        "Codecov",
+        "ddnexus",
+        "Demichelis",
+        "devcontainer",
+        "Domizio",
+        "downarrow",
+        "entrypoint",
+        "Gitter",
+        "haml",
+        "htmlvalidate",
+        "javascripts",
+        "Kaminari",
+        "Koshy",
+        "meilisearch",
+        "minimalistic",
+        "mongoid",
+        "navless",
+        "navs",
+        "overridable",
+        "Padrino",
+        "pagy",
+        "pluralizations",
+        "prepended",
+        "rackup",
+        "rebased",
+        "rubygem",
+        "screencast",
+        "screencasts",
+        "searchkick",
+        "solargraph",
+        "stylesheet",
+        "turbolinks",
+        "uikit",
+        "uncommenting",
+        "unscope",
+        "unstyled",
+        "uparrow",
+        "Webpacker"
+    ],
+    "cypressHelper.commandForOpen": "npx cypress open --project=/pagy/test/e2e",
+    "cypressHelper.commandForRun": "npx cypress run --project=/pagy/test/e2e",
+    "cypressHelper.menuItems": {
+        "FindCustomCommandReferences": true,
+        "FindStepDefinitionReferences": true,
+        "GenerateCustomCommandTypes": true,
+        "GoToCustomCommand": true,
+        "mockAutocomplete": false,
+        "OpenCypress": true,
+        "RunCypress": true,
+        "SchemaGenerator": true
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "markdownlint.config": {
+        "blanks-around-fences": true,
+        "MD024": false,
+        "MD025": false,
+        "MD026": false,
+        "MD033": false,
+        "MD046": false
+    },
+    "markdownlint.run": "onType",
+    "ruby.format": "rubocop",
+    "ruby.lint": {
+        "rubocop": {
+            "useBundler": true // enable rubocop via bundler
+        },
+        "standard": false
+    },
+    "ruby.useBundler": true, //run non-lint commands with bundle exec
+    "ruby.useLanguageServer": true, // use the internal language server (see below)
+    "solargraph.useBundler": true,
+    "taskManager.exclude": "^preLaunchTask",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "icon": "terminal-bash",
+            "path": "bash"
+        }
+    },
+    "trailing-spaces.highlightCurrentLine": false,
+    "trailing-spaces.trimOnSave": true
+}

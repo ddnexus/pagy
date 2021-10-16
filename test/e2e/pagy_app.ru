@@ -2,7 +2,7 @@
 
 # Self-contained sinatra app to test the pagy helpers in the browser
 
-# USAGE:
+# TEST USAGE:
 #    rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru
 
 # DEV USAGE:
@@ -22,7 +22,7 @@ STYLES=%w[bootstrap bulma foundation materialize navs semantic uikit].freeze
 STYLES.each { |name| require "pagy/extras/#{name}" }
 require 'pagy/extras/items'
 require 'pagy/extras/trim'
-Pagy::VARS[:trim] = false  # opt-in trim
+Pagy::DEFAULT[:trim] = false  # opt-in trim
 
 # simple array-based collection that acts as standard DB collection
 require_relative '../mock_helpers/collection'
@@ -49,7 +49,6 @@ class PagyApp < Sinatra::Base
     end
 
   end
-
 
   get '/pagy.js' do
     content_type 'application/javascript'
@@ -101,7 +100,7 @@ __END__
 
   <p>It shows all the helpers for all the styles supported by pagy.</p>
 
-  <p>Each framework provides its own set of CSS that applies to the helpers, but we cannot load different framewors in the same app because they would conflict. Without the framework where the helpers are supposed to work we can only normalize the CSS styles in order to make them at least readable.</p>
+  <p>Each framework provides its own set of CSS that applies to the helpers, but we cannot load different frameworks in the same app because they would conflict. Without the framework where the helpers are supposed to work we can only normalize the CSS styles in order to make them at least readable.</p>
   <hr>
 </div>
 

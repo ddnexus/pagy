@@ -4,8 +4,9 @@ require_relative '../../test_helper'
 require 'pagy/extras/support'
 require 'pagy/countless'
 
+require_relative '../../mock_helpers/view'
+
 describe 'pagy/extras/support' do
-  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe '#pagy_prev_url' do
@@ -87,7 +88,6 @@ describe 'pagy/extras/support' do
       _(view.pagy_prev_link(pagy_countless)).must_rematch
       _(view.pagy_prev_link(pagy, text: 'PREV', link_extra: 'link-extra')).must_rematch
       _(view.pagy_prev_link(pagy_countless, text: 'PREV', link_extra: 'link-extra')).must_rematch
-
     end
     it 'renders the prev link for last page' do
       pagy = Pagy.new count: 1000, page: 50
@@ -96,7 +96,6 @@ describe 'pagy/extras/support' do
       _(view.pagy_prev_link(pagy_countless)).must_rematch
       _(view.pagy_prev_link(pagy, text: 'PREV', link_extra: 'link-extra')).must_rematch
       _(view.pagy_prev_link(pagy_countless, text: 'PREV', link_extra: 'link-extra')).must_rematch
-
     end
   end
 

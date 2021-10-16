@@ -11,7 +11,7 @@ module MockMeilisearch
 
     def initialize(query, params = {})
       @query = query
-      @params = { offset: 0, limit: 10_000 }.merge(params)
+      @params = { offset: 0, limit: 10 }.merge(params)
       super RESULTS[@query].slice(@params[:offset], @params[:limit]) || []
     end
 

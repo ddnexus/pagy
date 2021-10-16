@@ -1,40 +1,17 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
 # frozen_string_literal: true
 
-require 'yaml'
+require 'pagy/url_helpers'
+require 'pagy/i18n'
 
 class Pagy
-
-  PAGE_PLACEHOLDER = '__pagy_page__'  # string used for search and replace, hardcoded also in the pagy.js file
-
-  # I18n static hash loaded at startup, used as default alternative to the i18n gem.
-  # see https://ddnexus.github.io/pagy/api/frontend#i18n
-  I18n = eval Pagy.root.join('locales', 'utils', 'i18n.rb').read #rubocop:disable Security/Eval
-
-  module Helpers
-    # This works with all Rack-based frameworks (Sinatra, Padrino, Rails, ...)
-    def pagy_url_for(pagy, page, deprecated_url=nil, absolute: nil)
-      absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
-      pagy, page = Pagy.deprecated_order(pagy, page) if page.is_a?(Pagy)
-      p_vars = pagy.vars
-      params = request.GET.merge(p_vars[:params])
-      params[p_vars[:page_param].to_s]  = page
-      params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(UseItemsExtra)
-      query_string = "?#{Rack::Utils.build_nested_query(pagy_get_params(params))}" unless params.empty?
-      "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:fragment]}"
-    end
-
-    # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding
-    def pagy_get_params(params)
-      params
-    end
-  end
+  # Used for search and replace, hardcoded also in the pagy.js file
+  PAGE_PLACEHOLDER = '__pagy_page__'
 
   # All the code here has been optimized for performance: it may not look very pretty
   # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
   module Frontend
-
-    include Helpers
+    include UrlHelpers
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, pagy_id: nil, link_extra: '')
@@ -43,13 +20,13 @@ class Pagy
       p_prev = pagy.prev
       p_next = pagy.next
 
-      html  = +%(<nav#{p_id} class="pagy-nav pagination" aria-label="pager">)
+      html = +%(<nav#{p_id} class="pagy-nav pagination" aria-label="pager">)
       html << if p_prev
                 %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
               else
                 %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> )
               end
-      pagy.series.each do |item|  # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<span class="page">#{link.call item}</span> )               # page link
                 when String  then %(<span class="page active">#{item}</span> )                  # current page
@@ -64,30 +41,29 @@ class Pagy
       html << %(</nav>)
     end
 
-    # Return examples: "Displaying items 41-60 of 324 in total" of "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, deprecated_item_name=nil, pagy_id: nil, item_name: nil, i18n_key: nil)
-      p_id      = %( id="#{pagy_id}") if pagy_id
-      item_name = Pagy.deprecated_arg(:item_name, deprecated_item_name, :item_name, item_name) if deprecated_item_name
+    # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
+    def pagy_info(pagy, pagy_id: nil, item_name: nil, i18n_key: nil)
+      p_id    = %( id="#{pagy_id}") if pagy_id
       p_count = pagy.count
       key     = if    p_count.zero?   then 'pagy.info.no_items'
                 elsif pagy.pages == 1 then 'pagy.info.single_page'
-                else                       'pagy.info.multiple_pages'
+                else                       'pagy.info.multiple_pages' # rubocop:disable Lint/ElseLayout
                 end
 
       %(<span#{p_id} class="pagy-info">#{
-      pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
-                  count: p_count, from: pagy.from, to: pagy.to
-      }</span>)
+          pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
+                      count: p_count, from: pagy.from, to: pagy.to
+        }</span>)
     end
 
-    # Returns a performance optimized proc to generate the HTML links
+    # Return a performance optimized proc to generate the HTML links
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_link_proc(pagy, deprecated_link_extra=nil, link_extra: '')
-      link_extra = Pagy.deprecated_arg(:link_extra, deprecated_link_extra, :link_extra, link_extra) if deprecated_link_extra
-      p_prev = pagy.prev
-      p_next = pagy.next
-      left, right = %(<a href="#{pagy_url_for pagy, PAGE_PLACEHOLDER}" #{pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
-      lambda do |num, text=num, extra_attrs=''|
+    def pagy_link_proc(pagy, link_extra: '')
+      p_prev      = pagy.prev
+      p_next      = pagy.next
+      left, right = %(<a href="#{pagy_url_for pagy, PAGE_PLACEHOLDER}" #{
+                        pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
+      lambda do |num, text = num, extra_attrs = ''|
         %(#{left}#{num}#{right}#{ case num
                                   when p_prev then ' rel="prev"'
                                   when p_next then ' rel="next"'
@@ -99,8 +75,7 @@ class Pagy
     # Similar to I18n.t: just ~18x faster using ~10x less memory
     # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_t(key, **opts)
-      Pagy::I18n.t @pagy_locale||=nil, key, **opts
+      Pagy::I18n.t(@pagy_locale ||= nil, key, **opts)
     end
-
   end
 end

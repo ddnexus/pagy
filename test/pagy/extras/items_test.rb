@@ -1,20 +1,24 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require_relative '../../mock_helpers/elasticsearch_rails'
-require_relative '../../mock_helpers/searchkick'
-require_relative '../../mock_helpers/meilisearch'
-require_relative '../../mock_helpers/arel'
+
 require 'pagy/extras/countless'
 require 'pagy/extras/arel'
 require 'pagy/extras/array'
 require 'pagy/extras/items'
 
+require_relative '../../mock_helpers/elasticsearch_rails'
+require_relative '../../mock_helpers/searchkick'
+require_relative '../../mock_helpers/meilisearch'
+require_relative '../../mock_helpers/arel'
+require_relative '../../mock_helpers/collection'
+require_relative '../../mock_helpers/controller'
 
 def test_items_vars_params(items, vars, params)
   controller = MockController.new params
   _(controller.params).must_equal params
-  [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model], [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
+  [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model],
+   [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
     pagy, records = controller.send meth, mod.pagy_search('a').records, vars
     _(pagy.items).must_equal items
     _(records.size).must_equal items
@@ -32,7 +36,6 @@ def test_items_vars_params(items, vars, params)
 end
 
 describe 'pagy/extras/items' do
-
   describe "controller_methods" do
     before do
       @collection = MockCollection.new
@@ -41,11 +44,11 @@ describe 'pagy/extras/items' do
       vars = {}
       controller = MockController.new
       %i[pagy_elasticsearch_rails_get_vars pagy_searchkick_get_vars pagy_meilisearch_get_vars].each do |method|
-        merged  = controller.send method, nil, vars
+        merged = controller.send method, nil, vars
         _(merged[:items]).must_equal 20
       end
       %i[pagy_get_vars pagy_array_get_vars pagy_arel_get_vars].each do |method|
-        merged  = controller.send method, @collection, { }
+        merged = controller.send method, @collection, {}
         _(merged[:items]).must_be_nil
       end
     end
@@ -91,9 +94,9 @@ describe 'pagy/extras/items' do
       vars   = {}
       params = { a: "a", items: items }
 
-      Pagy::VARS[:max_items] = nil
+      Pagy::DEFAULT[:max_items] = nil
       test_items_vars_params(items, vars, params)
-      Pagy::VARS[:max_items] = 100 # reset default
+      Pagy::DEFAULT[:max_items] = 100 # reset default
     end
     it 'uses items_param from vars' do
       items  = 14
@@ -106,9 +109,9 @@ describe 'pagy/extras/items' do
       vars   = {}
       params = { a: "a", page: 3, custom: 15 }
 
-      Pagy::VARS[:items_param] = :custom
+      Pagy::DEFAULT[:items_param] = :custom
       test_items_vars_params(items, vars, params)
-      Pagy::VARS[:items_param] = :items # reset default
+      Pagy::DEFAULT[:items_param] = :items # reset default
     end
   end
 
@@ -134,7 +137,7 @@ describe 'pagy/extras/items' do
         _(view.pagy_url_for(pagy, 6)).must_equal '/foo?page=6&items=20#fragment'
       end
       it 'renders url with params and fragment' do
-        pagy = Pagy.new count: 1000, page: 3, params: {a: 3, b: 4}, fragment: '#fragment', items: 40
+        pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment', items: 40
         _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4&items=40#fragment"
       end
     end
@@ -142,9 +145,9 @@ describe 'pagy/extras/items' do
       pagy = Pagy.new count: 1000, page: 3
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_rematch
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch
-      Pagy::I18n['en'][0]['elasticsearch.product.other'] = ->(_){ 'products'}
+      Pagy::I18n::DATA['en'][0]['elasticsearch.product.other'] = 'products'
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', i18n_key: 'elasticsearch.product')).must_rematch
-      pagy = Pagy.new count: 1000, page: 3, enable_items_extra: false
+      pagy = Pagy.new count: 1000, page: 3, items_extra: false
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_equal ''
     end
   end

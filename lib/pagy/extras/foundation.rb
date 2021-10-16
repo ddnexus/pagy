@@ -4,8 +4,7 @@
 require 'pagy/extras/shared'
 
 class Pagy
-  module Frontend
-
+  module FoundationExtra
     # Pagination for Foundation: it returns the html with the series of links to the pages
     def pagy_foundation_nav(pagy, pagy_id: nil, link_extra: '')
       p_id = %( id="#{pagy_id}") if pagy_id
@@ -25,8 +24,7 @@ class Pagy
     end
 
     # Javascript pagination for foundation: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_foundation_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '', steps: nil)
-      pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+    def pagy_foundation_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => %(<ul class="pagination">#{pagy_foundation_prev_html pagy, link}),
@@ -35,52 +33,54 @@ class Pagy
                'gap'    => %(<li class="ellipsis gap" aria-hidden="true"></li>),
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
-      %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" aria-label="Pagination" #{pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></nav>)
+      %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" aria-label="Pagination" #{
+          pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></nav>)
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
-    def pagy_foundation_combo_nav_js(pagy, deprecated_id=nil, pagy_id: nil, link_extra: '')
-      pagy_id = Pagy.deprecated_arg(:id, deprecated_id, :pagy_id, pagy_id) if deprecated_id
+    def pagy_foundation_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra: link_extra)
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{p_pages}" value="#{p_page}" style="width: #{p_pages.to_s.length+1}rem; padding: 0 0.3rem; margin: 0 0.3rem;">)
+      input   = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{
+                    p_pages}" value="#{p_page}" style="width: #{
+                    p_pages.to_s.length + 1}rem; padding: 0 0.3rem; margin: 0 0.3rem;">)
 
       %(<nav#{p_id} class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group" #{
-          pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)
-      }>#{
+          pagy_json_attr pagy, :combo_nav, p_page, pagy_marked_link(link)}>#{
           if (p_prev  = pagy.prev)
-            link.call p_prev, pagy_t('pagy.nav.prev'), 'style="margin-bottom: 0" aria-label="previous" class="prev button primary"'
+            link.call p_prev, pagy_t('pagy.nav.prev'),
+                      'style="margin-bottom: 0" aria-label="previous" class="prev button primary"'
           else
             %(<a style="margin-bottom: 0" class="prev button primary disabled" href="#">#{pagy_t 'pagy.nav.prev'}</a>)
           end
-      }<span class="input-group-label">#{pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</span>#{
+        }<span class="input-group-label">#{pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</span>#{
           if (p_next  = pagy.next)
             link.call p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0" aria-label="next" class="next button primary"'
           else
             %(<a style="margin-bottom: 0" class="next button primary disabled" href="#">#{pagy_t 'pagy.nav.next'}</a>)
           end
-      }</div></nav>)
+        }</div></nav>)
     end
 
     private
 
-      def pagy_foundation_prev_html(pagy, link)
-        if (p_prev = pagy.prev)
-          %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
-        else
-          %(<li class="prev disabled">#{pagy_t 'pagy.nav.prev' }</li>)
-        end
+    def pagy_foundation_prev_html(pagy, link)
+      if (p_prev = pagy.prev)
+        %(<li class="prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+      else
+        %(<li class="prev disabled">#{pagy_t 'pagy.nav.prev'}</li>)
       end
+    end
 
-      def pagy_foundation_next_html(pagy, link)
-        if (p_next = pagy.next)
-          %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
-        else
-          %(<li class="next disabled">#{pagy_t 'pagy.nav.next'}</li>)
-        end
+    def pagy_foundation_next_html(pagy, link)
+      if (p_next = pagy.next)
+        %(<li class="next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
+      else
+        %(<li class="next disabled">#{pagy_t 'pagy.nav.next'}</li>)
       end
-
+    end
   end
+  Frontend.prepend FoundationExtra
 end

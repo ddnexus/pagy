@@ -5,6 +5,7 @@
 
 # Copy this file in your own machine and
 # ensure rack is installed (or `gem install rack`)
+# or run it from the apps dir in the repo
 
 # USAGE:
 #    rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
@@ -15,11 +16,11 @@
 
 # Point your browser at http://0.0.0.0:8080
 
-# read the comment below to edit this app
+# Read the comments below to edit this app
 
 require 'bundler/inline'
 
-# edit this gemfile declaration as you need
+# Edit this gemfile declaration as you need
 # and ensure to use gems updated to the latest versions
 # NOTICE: if you get any installation error with the following setup
 # install the gems manually with `gem install...` and remove the `true` argument
@@ -27,28 +28,32 @@ gemfile true do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'rack'
-  # gem 'pagy'             # <--install from rubygems
-  gem 'pagy', path: '../'  # <-- use the local repo
+  # gem 'pagy'            # <--install from rubygems
+  gem 'pagy', path: '../' # <-- use the local repo
   gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
 end
 
-# edit this section adding/removing the extras and Pagy::VARS as needed
+# Edit this section adding/removing the extras and Pagy::DEFAULT as needed
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
+# Pagy::DEFAULT[:items_extra]
 require 'pagy/extras/trim'
-Pagy::VARS[:trim] = false # opt-in trim
+Pagy::DEFAULT[:trim_extra] = false # opt-in trim
+# require 'pagy/extras/gearbox'
+# Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
+Pagy::DEFAULT.freeze
 
-# sinatra application
+# Sinatra application
 require 'sinatra/base'
 class PagyStandaloneApp < Sinatra::Base
   configure do
     enable :inline_templates
   end
   include Pagy::Backend
-  # edit this section adding your own helpers as needed
+  # Edit this section adding your own helpers as needed
   helpers do
     include Pagy::Frontend
   end
@@ -60,25 +65,28 @@ class PagyStandaloneApp < Sinatra::Base
   get '/' do
     collection = MockCollection.new
     @pagy, @records = pagy(collection)
-    erb :pagy_demo    # template available in the __END__ section as @@ pagy_demo
+    erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
 
-# simple array-based collection that acts as a standard DB collection
-# use it as a simple way to get a collection that acts as a AR scope, but without any DB
+# Simple array-based collection that acts as a standard DB collection.
+# Use it as a simple way to get a collection that acts as a AR scope, but without any DB
 # or create an ActiveRecord class or anything else that you need instead
 class MockCollection < Array
-  def initialize(arr=Array(1..1000))
+  def initialize(arr = Array(1..1000))
     super
     @collection = clone
   end
+
   def offset(value)
     @collection = self[value..-1]
     self
   end
+
   def limit(value)
     @collection[0, value]
   end
+
   def count(*)
     size
   end
@@ -100,7 +108,6 @@ __END__
   <%= yield %>
 </body>
 </html>
-
 
 @@ pagy_demo
 <h3>Pagy Standalone Application</h3>

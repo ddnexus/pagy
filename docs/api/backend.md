@@ -9,7 +9,7 @@ For overriding convenience, the `pagy` method calls two sub-methods that you may
 
 **Notice**: Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods).
 
-Check also the [array](../extras/array.md), [searchkick](../extras/searchkick.md), [elasticsearch_rails](../extras/elasticsearch_rails.md) and [meilisearch](extras/meilisearch.md) extras for specific backend customizations.
+Check also the [array](../extras/array.md), [searchkick](../extras/searchkick.md), [elasticsearch_rails](../extras/elasticsearch_rails.md) and [meilisearch](../extras/meilisearch.md) extras for specific backend customizations.
 
 ## Synopsis
 
@@ -32,7 +32,7 @@ end
 
 All the methods in this module are prefixed with the `"pagy_"` string, to avoid any possible conflict with your own methods when you include the module in your controller. They are also all private, so they will not be available as actions. The methods prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are intended to be overridden, not used directly.
 
-Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or perform any tricky gymmickry.
+Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or perform any tricky gimmickry.
 
 ### pagy(collection, vars=nil)
 
@@ -88,8 +88,8 @@ For example: here is a `pagy` method that doesn't call any sub-method, that may 
 
 ```ruby
 def pagy_custom(collection, vars={})
-  pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-  return pagy, collection.offset(pagy.offset).limit(pagy.items)
+   pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+  [pagy, collection.offset(pagy.offset).limit(pagy.items)]
 end
 ```
 

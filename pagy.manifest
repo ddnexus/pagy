@@ -28,9 +28,6 @@ lib/locales/sv.yml
 lib/locales/sw.yml
 lib/locales/tr.yml
 lib/locales/uk.yml
-lib/locales/utils/i18n.rb
-lib/locales/utils/loader.rb
-lib/locales/utils/p11n.rb
 lib/locales/zh-CN.yml
 lib/locales/zh-HK.yml
 lib/locales/zh-TW.yml
@@ -38,7 +35,6 @@ lib/pagy.rb
 lib/pagy/backend.rb
 lib/pagy/console.rb
 lib/pagy/countless.rb
-lib/pagy/deprecation.rb
 lib/pagy/exceptions.rb
 lib/pagy/extras/arel.rb
 lib/pagy/extras/array.rb
@@ -47,6 +43,7 @@ lib/pagy/extras/bulma.rb
 lib/pagy/extras/countless.rb
 lib/pagy/extras/elasticsearch_rails.rb
 lib/pagy/extras/foundation.rb
+lib/pagy/extras/gearbox.rb
 lib/pagy/extras/headers.rb
 lib/pagy/extras/i18n.rb
 lib/pagy/extras/items.rb
@@ -63,6 +60,8 @@ lib/pagy/extras/support.rb
 lib/pagy/extras/trim.rb
 lib/pagy/extras/uikit.rb
 lib/pagy/frontend.rb
+lib/pagy/i18n.rb
+lib/pagy/url_helpers.rb
 lib/templates/bootstrap_nav.html.erb
 lib/templates/bootstrap_nav.html.haml
 lib/templates/bootstrap_nav.html.slim

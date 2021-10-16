@@ -3,15 +3,15 @@ title: Pagy
 ---
 # Pagy
 
-The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a few integers (such as the count of the collection, the page number, the items per page, ...), does some simple aritmetic and creates a very small object that allocates less than 3k of memory. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
+The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a few integers (such as the count of the collection, the page number, the items per page, ...), does some simple arithmetic and creates a very small object that allocates less than 3k of memory. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
 
 ## Synopsis
 
 ```ruby
 # set global defaults and extra variables typically in the pagy.rb initializer
 # they will get merged with every new Pagy instance
-Pagy::VARS[:items]    = 25
-Pagy::VARS[:some_var] = 'default value'
+Pagy::DEFAULT[:items]    = 25
+Pagy::DEFAULT[:some_var] = 'default value'
 
 # create a new instance (usually done automatically by the #pagy controller method)
 pagy = Pagy.new(count: 1000, page: 3, instance_var: 'instance var')
@@ -34,15 +34,17 @@ pagy.series
 #=> [1, 2, "3", 4, 5, 6, 7, :gap, 40]
 ```
 
-## Global Variables
+## Global Default
 
-The `Pagy::VARS` is a globally available hash used to set defaults variables. It gets merged with (and overridden by) the variables passed with the `new` method every times a `Pagy` instance gets created.
+The `Pagy::DEFAULT` is a globally available hash used to set defaults variables. It is a constant for easy access, but it is mutable to allow customizable defaults. You can override it in the `pagy.rb` initializer file in order to set your own application global defaults. After you are done, you should `freeze` it, so it will not changed accidentally. It gets merged with the variables passed with the `new` method every times a `Pagy` instance gets created.
 
 You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
 ```ruby
-Pagy::VARS[:items]     = 25
-Pagy::VARS[:my_option] = 'my option'
+Pagy::DEFAULT[:items]     = 25
+Pagy::DEFAULT[:my_option] = 'my option'
+...
+Pagy::DEFAULT.freeze
 ```
 
 ## Methods
@@ -59,11 +61,11 @@ The `Pagy.new` method accepts a single hash of variables that will be merged wit
 
 ### Variables
 
-All the variables passed to the new method will be merged with the `Pagy::VARS` hash and will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
+All the variables passed to the new method will be merged with the `Pagy::DEFAULT` hash and will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
 
-They can be set globally by using the `Pagy::VARS` hash or passed to the `Pagy.new` method and are accessible through the `vars` reader.
+They can be set globally by using the `Pagy::DEFAULT` hash or passed to the `Pagy.new` method and are accessible through the `vars` reader.
 
-**Notice**: Pagy replaces the blank values of the passed variables with their default values coming from the `Pagy::VARS` hash. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
+**Notice**: Pagy replaces the blank values of the passed variables with their default values coming from the `Pagy::DEFAULT` hash. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
 
 ### Instance Variables
 
@@ -76,7 +78,7 @@ They are all integers:
 |:----------|:-----------------------------------------------------------------------------------------------|:--------|
 | `:count`  | the total count of the collection to paginate (mandatory argument)                             | `nil`   |
 | `:page`   | the requested page number                                                                      | `1`     |
-| `:items`  | the _requested_ number of items for the page                                                   | `20`    |
+| `:items`  | the requested number of items for the page                                                     | `20`    |
 | `:outset` | the initial offset of the collection to paginate: pass it only if the collection had an offset | `0`     |
 
 ### Other Variables
@@ -101,8 +103,9 @@ Pagy exposes all the instance variables needed for the pagination through a few 
 |:---------|:-------------------------------------------------------------------------------------------------------------------|
 | `count`  | the collection `:count`                                                                                            |
 | `page`   | the current page number                                                                                            |
-| `items`  | the _actual_ number of items in the current non-empty page (can be less than the requested `:items` variable)      |
+| `items`  | the requested number of items for the page                                                                         |
 | `pages`  | the number of total pages in the collection (same as `last` but with cardinal meaning)                             |
+| `in`     | the number of the items in the page                                                                                |
 | `last`   | the number of the last page in the collection (same as `pages` but with ordinal meaning)                           |
 | `offset` | the number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
 | `from`   | the collection-position of the first item in the page (`:outset` excluded)                                         |
@@ -127,7 +130,7 @@ That is self-contained, simple and efficient.
 
 **Notice**: This method returns an empty array if the passed `size` (i.e. the `:size` variable by default) is set to an empty array. Useful to totally skip the generation of page links in the frontend.
 
-### Lowest limit analysys
+### Lowest limit analysis
 
 The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has the following peculiar attributes:
 
@@ -137,6 +140,7 @@ The lowest possible limit of the pagination is reached when the collection has `
 | `page`    | `1`     |
 | `pages`   | `1`     |
 | `last`    | `1`     |
+| `in`      | `0`     |
 | `from`    | `0`     |
 | `to`      | `0`     |
 | `prev`    | `nil`   |
@@ -148,14 +152,14 @@ Which means:
 - there is always a `page` #`1` in the pagination, even if it's empty
 - `pages` and `last` are always at least both `1`
 - the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string. With `size: []` the `series` method returns `[]`
-- `from` and `to` of an empty page are both `0`
+- `in`, `from` and `to` of an empty page are all `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)
 
 ## Exceptions
 
 ### Pagy::VariableError
 
-A subclass of `ArgumentError` that offers a few informations for easy exception handling when some of the variable passed to the constructor is not valid.
+A subclass of `ArgumentError` that offers a few information for easy exception handling when some of the variable passed to the constructor is not valid.
 
 ```ruby
 rescue Pagy::VariableError => e

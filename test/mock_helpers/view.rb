@@ -16,7 +16,7 @@ class MockView
   end
 
   class Overridden < MockView
-    def pagy_get_params(params)
+    def pagy_massage_params(params)
       params.delete(:a)
       params.merge!(k: 'k')
     end

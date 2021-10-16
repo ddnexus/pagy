@@ -35,15 +35,16 @@ jobs:
         include:
           - ruby-version: 2.5
             env:
-              NONE: true
+              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
           - ruby-version: 2.6
             env:
-              NONE: true
+              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
           - ruby-version: 2.7
             env:
-              NONE: true
+              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
           - ruby-version: 3.0
             env:
+              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
               CODECOV: true
               CHECK_MANIFEST: true
       fail-fast: false
@@ -82,7 +83,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # absolute path to run sinatra for cypress in test/e2e working dir
-      BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/Gemfile
+      BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/.github/gemfiles/ruby-2.5+
 
     steps:
       - uses: actions/checkout@v2
@@ -103,7 +104,7 @@ jobs:
           key: e2e-cache-${{ runner.os }}-${{ hashFiles('test/e2e/ci-cache.lock') }}
 
       - name: Install Cypress and Test Dependencies
-        # if: steps.e2e-cache.outputs.cache-hit != 'true'
+        if: steps.e2e-cache.outputs.cache-hit != 'true'
         run: npm i cypress @cypress/snapshot html-validate cypress-html-validate
 
       - name: Run Cypress Tests

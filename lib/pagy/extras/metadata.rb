@@ -1,26 +1,42 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/metadata
 # frozen_string_literal: true
 
+require 'pagy/url_helpers'
+
 class Pagy
   # Add a specialized backend method for pagination metadata
-  module Backend
-  private
+  module MetadataExtra
+    private
 
-    METADATA = %i[ scaffold_url first_url prev_url page_url next_url last_url
-                   count page items vars pages last from to prev next series
-               ].tap do |metadata|
-                 metadata << :sequels if VARS.key?(:steps)  # :steps gets defined along with the #sequels method
-               end.freeze
+    # Store the array of all the internal variable names usable as METADATA
+    METADATA = %i[ scaffold_url
+                   first_url
+                   prev_url
+                   page_url
+                   next_url
+                   last_url
+                   count page
+                   items
+                   vars
+                   pages
+                   last
+                   in
+                   from
+                   to
+                   prev
+                   next
+                   series ].tap { |m| m << :sequels if DEFAULT.key?(:steps) }.freeze
 
-    VARS[:metadata] = METADATA.dup
+    # Set the default metadata variable
+    Pagy::DEFAULT[:metadata] = METADATA.dup
 
-    include Helpers
+    include UrlHelpers
 
-    def pagy_metadata(pagy, deprecated_url=nil, absolute: nil)
-      absolute = Pagy.deprecated_arg(:url, deprecated_url, :absolute, absolute) if deprecated_url
+    # Return the metadata hash
+    def pagy_metadata(pagy, absolute: nil)
       names   = pagy.vars[:metadata]
       unknown = names - METADATA
-      raise VariableError.new(pagy), "unknown metadata #{unknown.inspect}" \
+      raise VariableError.new(pagy), "expected :metadata to be in #{DEFAULT[:metadata].inspect}, got #{unknown.inspect} unknown" \
             unless unknown.empty?
 
       scaffold_url = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: absolute)
@@ -38,6 +54,6 @@ class Pagy
         end
       end
     end
-
   end
+  Backend.prepend MetadataExtra
 end

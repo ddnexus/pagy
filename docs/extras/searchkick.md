@@ -41,7 +41,7 @@ In a controller use `pagy_search` in place of `search`:
 results         = Article.pagy_search(params[:q])
 @pagy, @results = pagy_searchkick(results, items: 10)
 ```
-   
+
 #### Searchkick.search
 
 Extend also the `Searchkick` module if you are going to use `Searchkick.pagy_search`:
@@ -75,7 +75,7 @@ This constructor accepts a `Searchkick::Results` as the first argument, plus the
 
 ## Pagy::Searchkick
 
-Extend your model with the `Pagy::Searchkick` micro-moudule:
+Extend your model with the `Pagy::Searchkick` micro-module:
 
 ```ruby
 extend Pagy::Searchkick

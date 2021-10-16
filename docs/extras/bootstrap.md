@@ -60,4 +60,3 @@ See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
 ![bootstrap_combo_nav_js](../assets/images/bootstrap_combo_nav_js-g.png)
 
 See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
-

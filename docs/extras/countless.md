@@ -14,7 +14,7 @@ In the `pagy.rb` initializer:
 ```ruby
 require 'pagy/extras/countless'
 # optionally enable the minimal mode by default
-# Pagy::VARS[:countless_minimal] = true
+# Pagy::DEFAULT[:countless_minimal] = true
 ```
 
 In a controller:
@@ -49,7 +49,7 @@ This is the preferred mode used to implement navless and automatic incremental/i
 
 If you enable the `:countless_minimal` variable, then:
 
-- The returned `pagy` object will contain just a handful of variables and will miss the finalization, so you cannnot use it with any helpers
+- The returned `pagy` object will contain just a handful of variables and will miss the finalization, so you cannot use it with any helpers
 - The returned paginated collection (`@records`) will be a regular scope (i.e. no record has been load yet) so an eventual fragment caching can work as expected
 - You will need to check the size of the paginated collection (`@records`) in order to know if it is the last page or not. You can tell if it by checking `@records.size < @pagy.vars[:items]`. Notice that IF the last page has exactly the `@pagy.vars[:items]` in it you will not be able to know it. In infinite scroll that would just try to load the next page returning 0 items, so it will be perfectly acceptable anyway.
 
