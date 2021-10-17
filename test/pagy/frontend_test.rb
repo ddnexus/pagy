@@ -3,6 +3,7 @@
 require_relative '../test_helper'
 
 require_relative '../mock_helpers/view'
+require_relative '../mock_helpers/pagy_buggy'
 
 # in test we cannot use the Pagy::I18n.load method because
 # it would freeze the Pagy::I18n::DATA hash so i18n_load

@@ -10,7 +10,7 @@ class Pagy
       params[p_vars[:page_param].to_s]  = page
       params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(ItemsExtra)
       # we rely on Rack by default: use the standalone extra in non rack environments
-      query_string = "?#{Rack::Utils.build_nested_query(pagy_massage_params(params))}" unless params.empty?
+      query_string = "?#{Rack::Utils.build_nested_query(pagy_massage_params(params))}"
       "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:fragment]}"
     end
 

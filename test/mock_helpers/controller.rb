@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+require 'rack'
 require_relative 'collection'
-
 class MockController
   include Pagy::Backend
   # we ned to explicitly include this because Pagy::Backend

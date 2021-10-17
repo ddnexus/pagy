@@ -189,7 +189,7 @@ A few run configurations are provided for interacting with `docker-compose` and 
 
 ### Caveats
 
-The coverage has an advanced Simplecov setup and RubyMine cannot handle it, so don't use its coverage commands because they will not work.
+The coverage has an advanced Simplecov setup and RubyMine may not handle it. If the usual RubyMine coverage tools don't work, you can trigger the coverage by running the task without the RubyMine coverage, or use`rake` or `HTML_REPORTS=true rake` in the terminal.
 
 # Clean up
 

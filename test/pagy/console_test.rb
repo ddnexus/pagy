@@ -19,7 +19,7 @@ describe 'pagy/console' do
       assert PagyConsole <= Pagy::Frontend
     end
     it 'requires extras' do
-      PagyConsole.pagy_extras :array, :navs
+      _ { PagyConsole.pagy_extras :array, :navs }.must_output "Required extras: :array, :navs\n"
       _(Pagy::Backend.method_defined?(:pagy_array))
       _(Pagy::Frontend.method_defined?(:pagy_nav_js))
     end

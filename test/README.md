@@ -10,7 +10,9 @@ Almost every test recreates a different environment and must run in a separate p
 
 If you want to run all code tests use the `:test` task. For the full suite (including rubocop coverage and other checks), you can just run `rake default` (or just `rake`), or `HTML_REPORTS=true rake` to generate also a nice HTML report.
 
-There is a rake task for each test file: you can get the full list of of all the test tasks (and test files that each task run) with: `rake -D test_*` 
+There is a rake task for each test file: you can get the full list of of all the test tasks (and test files that each task run) with: `rake -D test_*`.
+
+If you use RubyMine or VSCode, you can find the tasks already setup in the project.
 
 See also the [E2E Test Environment](https://github.com/ddnexus/pagy/tree/master/test/e2e).
 
