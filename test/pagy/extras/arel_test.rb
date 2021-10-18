@@ -60,9 +60,9 @@ describe 'pagy/extras/arel' do
       _(merged[:link_extra]).must_equal 'X'
     end
     it 'works with grouped collections' do
-      @collection = MockCollection::Grouped.new((1..1000).to_a)
+      collection = MockCollection::Grouped.new((1..1000).to_a)
       vars   = { page: 2, items: 10, link_extra: 'X' }
-      merged = controller.send :pagy_arel_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, collection, vars
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :items

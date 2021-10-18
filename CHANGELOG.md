@@ -10,11 +10,11 @@ There are a few renaming that have not been deprecated in previous versions beca
 
 A few elements have been renamed: you code may or may not contain them. Just search and replace the following strings:
 
-- `Pagy::VARS` rename to `Pagy::DEFAULT`
-- `enable_items_extra` rename to `items_extra`
-- `enable_trim_extra` rename to `trim_extra`
-- `Pagy::Helpers` rename to `Pagy::UrlHelpers`
-- `pagy_get_params` rename to `pagy_massage_params`
+- Rename `Pagy::VARS` to `Pagy::DEFAULT`
+- Rename `enable_items_extra` to `items_extra`
+- Rename `enable_trim_extra` to `trim_extra`
+- Rename `Pagy::Helpers` to `Pagy::UrlHelpers`
+- Rename `pagy_get_params` to `pagy_massage_params`
 
 #### Items accessor
 
@@ -30,31 +30,31 @@ Pagy 4 dropped the compatibility for old ruby versions `>2.5` and started to ref
 
 The changes for upgrading your app cannot be fixed with simple search and replace, but fear not! Fixing them should just take a few minutes with the following steps:
 
-- upgrade to the latest version of pagy 4
-- run your tests or app
-- check the log for any deprecations message starting with '[PAGY WARNING]'
-- update your code as indicated by the messages
-- ensure that the log is now free from warnings
-- upgrade to pagy 5
+- Upgrade to the latest version of pagy 4
+- Run your tests or app
+- Check the log for any deprecations message starting with '[PAGY WARNING]'
+- Update your code as indicated by the messages
+- Ensure that the log is now free from warnings
+- Upgrade to pagy 5
 
 FYI: Here is the list of the deprecations that are not supported anymore:
 
 #### Removed support for deprecated variables
 
-- `Pagy::VARS[:anchor]` is now `Pagy::VARS[:fragment]`
+- `Pagy::VARS[:anchor]` is now `Pagy::DEFAULT[:fragment]`
 
 #### Removed support for deprecated arguments order
 
-- The argument order `pagy_url_for(page, pagy)` is now inverted: `pagy_url_for(pagy, page)`
+- The argument order in `pagy_url_for(page, pagy)` is now inverted: `pagy_url_for(pagy, page)`
 
 #### Removed support for deprecated positional arguments
 
 The following optional positional arguments are passed with keywords arguments in all the pagy helpers:
 
 - The `id` html attribute string with the `pagy_id` keyword
-- The `url/absolute` flag with the `absolute` keyword
+- The `url|absolute` flag with the `absolute` keyword
 - The `item_name` string with the `item_name` keyword
-- The `extra/link_extra` string with the `link_extra` keyword
+- The `extra|link_extra` string with the `link_extra` keyword
 - The `text` string with the `text` keyword
 
 ### Changes
@@ -65,5 +65,18 @@ The following optional positional arguments are passed with keywords arguments i
 - Changed general module structure (use of prepend instead of re-opening modules)
 - Added gearbox extra for geared pagination
 - Added configuration files for a full working VSCode devcontainer environment
+- Added Run Configurations for RubyMine
+- Improved the usage of e2e tests
 - Updated doc, gemfiles and github workflow
 - Other minor fixes and improvements in code and doc
+
+## Version 5.0.1
+
+### Changes 
+
+- Added CHANGELOG_LEGACY
+- Refactoring of exceptions
+- Simplification of metadata extra
+- Refactoring of coverage to include 100% of line and condition branches covered
+- Added cypress-dark theme to e2e test
+- Updated docs and issue templates

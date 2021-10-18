@@ -77,4 +77,13 @@ describe 'pagy/extras/countless' do
       _(paged).must_equal Array(1..20)
     end
   end
+
+  describe '#pagy_countless_get_vars' do
+    it 'can use :countless_minimal' do
+      pagy, = controller.send(:pagy_countless, @collection, { page: 25, countless_minimal: true })
+      _(pagy.series).must_be_nil
+      _(pagy.prev).must_be_nil
+      _(pagy.next).must_be_nil
+    end
+  end
 end

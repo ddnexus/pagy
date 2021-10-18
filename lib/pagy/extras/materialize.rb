@@ -17,6 +17,7 @@ class Pagy
                 when Integer then %(<li class="waves-effect">#{link.call item}</li>)                           # page link
                 when String  then %(<li class="active">#{link.call item}</li>)                                 # active page
                 when :gap    then %(<li class="gap disabled"><a href="#">#{pagy_t 'pagy.nav.gap'}</a></li>)    # page gap
+                else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
       html << pagy_materialize_next_html(pagy, link)

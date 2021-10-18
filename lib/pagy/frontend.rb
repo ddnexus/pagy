@@ -31,6 +31,7 @@ class Pagy
                 when Integer then %(<span class="page">#{link.call item}</span> )               # page link
                 when String  then %(<span class="page active">#{item}</span> )                  # current page
                 when :gap    then %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> )   # page gap
+                else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
       html << if p_next

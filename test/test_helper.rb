@@ -2,22 +2,14 @@
 
 $VERBOSE = { 'false' => false, 'true' => true }[ENV['VERBOSE']] if ENV['VERBOSE']
 
-if ENV['CODECOV']
-  require 'codecov' # require also simplecov
-  # if you want the formatter to upload the results use SimpleCov::Formatter::Codecov instead
-  SimpleCov.formatter = Codecov::SimpleCov::Formatter # upload with step in github actions
-elsif !ENV['CI']
-  require 'simplecov'
+require_relative 'coverage_setup' unless ENV['RUBYMINE_SIMPLECOV_COVERAGE_PATH']  # skipped if RubyMine run with coverage
+
+unless ENV['RM_INFO']   # RubyMine safe
+  require "minitest/reporters"
+  Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 end
 
 # we cannot use gemspec in the gemfile which would load pagy before simplecov so missing files from coverage
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'pagy'
-require 'pagy/countless'
-require 'rack'
 require 'minitest/autorun'
-# only direct terminal (RubyMine safe)
-unless ENV['RM_INFO']
-  require "minitest/reporters"
-  Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-end

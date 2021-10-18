@@ -17,6 +17,7 @@ class Pagy
                 when Integer then %(<li>#{link.call item}</li>)                        # page link
                 when String  then %(<li class="current">#{item}</li>)                  # active page
                 when :gap    then %(<li class="ellipsis gap" aria-hidden="true"></li>) # page gap
+                else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
       html << pagy_foundation_next_html(pagy, link)

@@ -17,7 +17,7 @@ describe 'pagy/extras/metadata' do
       _(Pagy::DEFAULT[:metadata]).must_rematch
     end
     it 'returns the full pagy metadata' do
-      pagy, _records = @controller.send(:pagy, @collection)
+      pagy, _records = @controller.send(:pagy, @collection, metadata: (Pagy::DEFAULT[:metadata])+[:sequels])
       _(@controller.send(:pagy_metadata, pagy)).must_rematch
     end
     it 'checks for unknown metadata' do

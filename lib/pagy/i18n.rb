@@ -130,7 +130,7 @@ class Pagy
         locale[:filepath]  ||= Pagy.root.join('locales', "#{locale[:locale]}.yml")
         locale[:pluralize] ||= P11n::LOCALE[locale[:locale]]
         dictionary = YAML.safe_load(File.read(locale[:filepath], encoding: 'UTF-8'))
-        raise VariableError, %(expected :locale "#{locale[:locale]}" not found in :filepath "#{locale[:filepath].inspect}") \
+        raise I18nError, %(expected :locale "#{locale[:locale]}" not found in :filepath "#{locale[:filepath].inspect}") \
               unless dictionary.key?(locale[:locale])
 
         DATA[locale[:locale]] = [flatten(dictionary[locale[:locale]]), locale[:pluralize]]

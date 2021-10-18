@@ -3,8 +3,9 @@
 require_relative '../../test_helper'
 require 'pagy/extras/navs'
 
+require_relative '../../mock_helpers/view'
+
 describe 'pagy/extras/navs' do
-  require_relative '../../mock_helpers/view'
   let(:view) { MockView.new }
 
   describe '#pagy_nav_js' do
@@ -31,6 +32,10 @@ describe 'pagy/extras/navs' do
       _(view.pagy_nav_js(pagy)).must_rematch
       _(view.pagy_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
                                steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
+    end
+    it 'raises with missing step 0' do
+      pagy = Pagy.new(count: 1000, page: 20, steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })
+      _ { view.pagy_nav_js(pagy, steps: { 600 => [1, 3, 3, 1] }) }.must_raise Pagy::VariableError
     end
   end
 

@@ -16,6 +16,7 @@
     "homepage": "https://github.com/ddnexus/pagy",
     "devDependencies": {
         "cypress": "^8.5.0",
+        "cypress-dark": "^1.8.0",
         "@cypress/snapshot": "^2.1.7",
         "html-validate": "^6.1.0",
         "cypress-html-validate": "^2.1.1",

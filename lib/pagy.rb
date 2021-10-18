@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '5.0.0'
+  VERSION = '5.0.1'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
@@ -32,8 +32,7 @@ class Pagy
     setup_vars(count: 0, page: 1, outset: 0)
     setup_items_var
     setup_pages_var
-    raise OverflowError.new(self), "expected :page in 1..#{@last}; got #{@page.inspect}" \
-          if @page > @last
+    raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
     @offset = (@items * (@page - 1)) + @outset
     @from   = [@offset - @outset + 1, @count].min
@@ -46,7 +45,7 @@ class Pagy
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
   def series(size = @vars[:size])
     return [] if size.empty?
-    raise VariableError.new(self), "expected 4 items >= 0 in :size; got #{size.inspect}" \
+    raise VariableError.new(self, :size, 'to contain 4 items >= 0', size) \
           unless size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
 
     # This algorithm is up to ~5x faster and ~2.3x lighter than the previous one (pagy < 4.3)
@@ -81,7 +80,7 @@ class Pagy
   # Setup and validates the passed vars: var must be present and value.to_i must be >= to min
   def setup_vars(name_min)
     name_min.each do |name, min|
-      raise VariableError.new(self), "expected :#{name} >= #{min}; got #{@vars[name].inspect}" \
+      raise VariableError.new(self, name, ">= #{min}", @vars[name]) \
             unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
     end
   end

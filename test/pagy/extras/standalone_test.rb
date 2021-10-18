@@ -76,3 +76,13 @@ describe 'pagy/extras/standalone' do
     end
   end
 end
+
+describe 'pagy/extras/standalone/query_utils' do
+  it 'handles nested hashes' do
+    _(Pagy::StandaloneExtra::QueryUtils.build_nested_query({a:{b:2}})).must_equal "a[b]=2"
+    _(Pagy::StandaloneExtra::QueryUtils.build_nested_query({a:{b:{c:3}}})).must_equal "a[b][c]=3"
+  end
+  it 'raises for wrong params' do
+    _ { Pagy::StandaloneExtra::QueryUtils.build_nested_query('just a string') }.must_raise ArgumentError
+  end
+end

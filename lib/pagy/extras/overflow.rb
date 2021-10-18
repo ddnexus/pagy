@@ -31,8 +31,7 @@ class Pagy
           @prev = @last                             # prev relative to the actual page
           extend Series                             # special series for :empty_page
         else
-          raise VariableError.new(self), \
-                "expected :overflow to be in [:last_page, :empty_page, :exception]; got #{@vars[:overflow].inspect}"
+          raise VariableError.new(self, :overflow, 'to be in [:last_page, :empty_page, :exception]', @vars[:overflow])
         end
       end
 
@@ -63,8 +62,7 @@ class Pagy
           @vars[:size] = []                     # no page in the series
           self
         else
-          raise VariableError.new(self), \
-                "expected :overflow to be in [:empty_page, :exception]; got #{@vars[:overflow].inspect}"
+          raise VariableError.new(self, :overflow, 'to be in [:empty_page, :exception]', @vars[:overflow])
         end
       end
     end

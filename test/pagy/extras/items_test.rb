@@ -70,7 +70,6 @@ describe 'pagy/extras/items' do
       params = { a: "a", items: items }
       test_items_vars_params(items, vars, params)
     end
-
     it 'overrides the params' do
       items  = 21
       vars   = { items: items }
@@ -113,6 +112,15 @@ describe 'pagy/extras/items' do
       test_items_vars_params(items, vars, params)
       Pagy::DEFAULT[:items_param] = :items # reset default
     end
+    it 'doesn\'t use the :items_extra' do
+      items  = 20
+      vars   = { items_extra: false }
+      params = { a: "a", page: 3, items: 35 }
+
+      Pagy::DEFAULT[:items_extra] = false
+      test_items_vars_params(items, vars, params)
+      Pagy::DEFAULT[:items_extra] = true # reset default
+    end
   end
 
   describe 'view_methods' do
@@ -143,7 +151,7 @@ describe 'pagy/extras/items' do
     end
     it 'renders items selector' do
       pagy = Pagy.new count: 1000, page: 3
-      _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_rematch
+      _(view.pagy_items_selector_js(pagy)).must_rematch
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch
       Pagy::I18n::DATA['en'][0]['elasticsearch.product.other'] = 'products'
       _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', i18n_key: 'elasticsearch.product')).must_rematch

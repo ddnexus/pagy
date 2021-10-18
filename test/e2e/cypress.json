@@ -11,5 +11,6 @@
         ]
     },
     "nodeVersion": "system",
-    "video": false
+    "video": false,
+    "theme": "dark"
 }

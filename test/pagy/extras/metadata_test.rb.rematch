@@ -1,4 +1,11 @@
 ---
+"[1] pagy/extras/metadata::#pagy_metadata#test_0004_returns only specific metadata":
+  :scaffold_url: "/foo?page=__pagy_page__"
+  :page: 3
+  :count: 1000
+  :prev: 2
+  :next: 4
+  :pages: 50
 "[1] pagy/extras/metadata::#pagy_metadata#test_0001_defines all metadata":
 - :scaffold_url
 - :first_url
@@ -18,14 +25,6 @@
 - :prev
 - :next
 - :series
-- :sequels
-"[1] pagy/extras/metadata::#pagy_metadata#test_0004_returns only specific metadata":
-  :scaffold_url: "/foo?page=__pagy_page__"
-  :page: 3
-  :count: 1000
-  :prev: 2
-  :next: 4
-  :pages: 50
 "[1] pagy/extras/metadata::#pagy_metadata#test_0002_returns the full pagy metadata":
   :scaffold_url: "/foo?page=__pagy_page__"
   :first_url: "/foo?page=1"
@@ -51,8 +50,8 @@
     :link_extra: ''
     :i18n_key: pagy.item_name
     :cycle: false
-    :countless_minimal: false
     :steps: false
+    :countless_minimal: false
     :metadata:
     - :scaffold_url
     - :first_url

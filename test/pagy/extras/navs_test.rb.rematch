@@ -1,4 +1,87 @@
 ---
+"[1] pagy/extras/navs::#pagy_nav_js#test_0001_renders first page": <nav class="pagy-njs
+  pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
+  class=\&quot;page prev disabled\&quot;>&lsaquo;&nbsp;Prev</span> &quot;,&quot;link&quot;:&quot;<span
+  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;   >__pagy_page__</a></span>
+  &quot;,&quot;active&quot;:&quot;<span class=\&quot;page active\&quot;>1</span> &quot;,&quot;gap&quot;:&quot;<span
+  class=\&quot;page gap\&quot;>&hellip;</span> &quot;,&quot;after&quot;:&quot;<span
+  class=\&quot;page next\&quot;><a href=\&quot;/foo?page=2\&quot;   rel=\&quot;next\&quot;
+  aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,4,5,&quot;gap&quot;,50]}]"></nav>
+"[2] pagy/extras/navs::#pagy_nav_js#test_0001_renders first page": <nav id="test-nav-id"
+  class="pagy-njs pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
+  class=\&quot;page prev disabled\&quot;>&lsaquo;&nbsp;Prev</span> &quot;,&quot;link&quot;:&quot;<span
+  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  >__pagy_page__</a></span> &quot;,&quot;active&quot;:&quot;<span class=\&quot;page
+  active\&quot;>1</span> &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
+  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=2\&quot;  link-extra
+  rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,&quot;gap&quot;,50],&quot;600&quot;:[&quot;1&quot;,2,3,4,&quot;gap&quot;,50]}]"></nav>
+"[1] pagy/extras/navs::#pagy_nav_js#test_0003_renders last page": <nav class="pagy-njs
+  pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
+  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=49\&quot;   rel=\&quot;prev\&quot;
+  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
+  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;   >__pagy_page__</a></span>
+  &quot;,&quot;active&quot;:&quot;<span class=\&quot;page active\&quot;>50</span>
+  &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
+  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next disabled\&quot;>Next&nbsp;&rsaquo;</span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,46,47,48,49,&quot;50&quot;]}]"></nav>
+"[2] pagy/extras/navs::#pagy_nav_js#test_0003_renders last page": <nav id="test-nav-id"
+  class="pagy-njs pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
+  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=49\&quot;  link-extra rel=\&quot;prev\&quot;
+  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
+  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  >__pagy_page__</a></span> &quot;,&quot;active&quot;:&quot;<span class=\&quot;page
+  active\&quot;>50</span> &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
+  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next disabled\&quot;>Next&nbsp;&rsaquo;</span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,48,49,&quot;50&quot;],&quot;600&quot;:[1,&quot;gap&quot;,47,48,49,&quot;50&quot;]}]"></nav>
+"[1] pagy/extras/navs::#pagy_nav_js#test_0004_renders with :steps": <nav class="pagy-njs
+  pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
+  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=19\&quot;   rel=\&quot;prev\&quot;
+  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
+  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;   >__pagy_page__</a></span>
+  &quot;,&quot;active&quot;:&quot;<span class=\&quot;page active\&quot;>20</span>
+  &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
+  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=21\&quot;   rel=\&quot;next\&quot;
+  aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;500&quot;:[1,2,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,49,50]}]"></nav>
+"[2] pagy/extras/navs::#pagy_nav_js#test_0004_renders with :steps": <nav id="test-nav-id"
+  class="pagy-njs pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
+  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=19\&quot;  link-extra rel=\&quot;prev\&quot;
+  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
+  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  >__pagy_page__</a></span> &quot;,&quot;active&quot;:&quot;<span class=\&quot;page
+  active\&quot;>20</span> &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
+  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=21\&quot;  link-extra
+  rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
+"[1] pagy/extras/navs::#pagy_nav_js#test_0002_renders intermediate page": <nav class="pagy-njs
+  pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
+  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=19\&quot;   rel=\&quot;prev\&quot;
+  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
+  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;   >__pagy_page__</a></span>
+  &quot;,&quot;active&quot;:&quot;<span class=\&quot;page active\&quot;>20</span>
+  &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
+  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=21\&quot;   rel=\&quot;next\&quot;
+  aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,16,17,18,19,&quot;20&quot;,21,22,23,24,&quot;gap&quot;,50]}]"></nav>
+"[2] pagy/extras/navs::#pagy_nav_js#test_0002_renders intermediate page": <nav id="test-nav-id"
+  class="pagy-njs pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
+  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=19\&quot;  link-extra rel=\&quot;prev\&quot;
+  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
+  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  >__pagy_page__</a></span> &quot;,&quot;active&quot;:&quot;<span class=\&quot;page
+  active\&quot;>20</span> &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
+  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=21\&quot;  link-extra
+  rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
+"[1] pagy/extras/navs::#pagy_combo_nav_js#test_0002_renders intermediate page": '<nav
+  class="pagy-combo-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;combo_nav&quot;,3,&quot;<a
+  href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><span
+  class="page prev"><a href="/foo?page=2"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span>
+  <span class="pagy-combo-input" style="margin: 0 0.6rem;"><label>Page <input type="number"
+  min="1" max="6" value="3" style="padding: 0; text-align: center; width: 2rem;">
+  of 6</label></span> <span class="page next"><a href="/foo?page=4"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>'
+"[2] pagy/extras/navs::#pagy_combo_nav_js#test_0002_renders intermediate page": '<nav
+  id="test-nav-id" class="pagy-combo-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;combo_nav&quot;,3,&quot;<a
+  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><span
+  class="page prev"><a href="/foo?page=2"  link-extra rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span>
+  <span class="pagy-combo-input" style="margin: 0 0.6rem;"><label>Page <input type="number"
+  min="1" max="6" value="3" style="padding: 0; text-align: center; width: 2rem;">
+  of 6</label></span> <span class="page next"><a href="/foo?page=4"  link-extra rel="next"
+  aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>'
 "[1] pagy/extras/navs::#pagy_combo_nav_js#test_0001_renders first page": '<nav class="pagy-combo-nav-js
   pagination" aria-label="pager" data-pagy-json="[&quot;combo_nav&quot;,1,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><span
@@ -27,86 +110,3 @@
   <span class="pagy-combo-input" style="margin: 0 0.6rem;"><label>Page <input type="number"
   min="1" max="6" value="6" style="padding: 0; text-align: center; width: 2rem;">
   of 6</label></span> <span class="page next disabled">Next&nbsp;&rsaquo;</span></nav>'
-"[1] pagy/extras/navs::#pagy_combo_nav_js#test_0002_renders intermediate page": '<nav
-  class="pagy-combo-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;combo_nav&quot;,3,&quot;<a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><span
-  class="page prev"><a href="/foo?page=2"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span>
-  <span class="pagy-combo-input" style="margin: 0 0.6rem;"><label>Page <input type="number"
-  min="1" max="6" value="3" style="padding: 0; text-align: center; width: 2rem;">
-  of 6</label></span> <span class="page next"><a href="/foo?page=4"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>'
-"[2] pagy/extras/navs::#pagy_combo_nav_js#test_0002_renders intermediate page": '<nav
-  id="test-nav-id" class="pagy-combo-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;combo_nav&quot;,3,&quot;<a
-  href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><span
-  class="page prev"><a href="/foo?page=2"  link-extra rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></span>
-  <span class="pagy-combo-input" style="margin: 0 0.6rem;"><label>Page <input type="number"
-  min="1" max="6" value="3" style="padding: 0; text-align: center; width: 2rem;">
-  of 6</label></span> <span class="page next"><a href="/foo?page=4"  link-extra rel="next"
-  aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>'
-"[1] pagy/extras/navs::#pagy_nav_js#test_0004_renders with :steps": <nav class="pagy-njs
-  pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
-  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=19\&quot;   rel=\&quot;prev\&quot;
-  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
-  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;   >__pagy_page__</a></span>
-  &quot;,&quot;active&quot;:&quot;<span class=\&quot;page active\&quot;>20</span>
-  &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
-  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=21\&quot;   rel=\&quot;next\&quot;
-  aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;500&quot;:[1,2,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,49,50]}]"></nav>
-"[2] pagy/extras/navs::#pagy_nav_js#test_0004_renders with :steps": <nav id="test-nav-id"
-  class="pagy-njs pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
-  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=19\&quot;  link-extra rel=\&quot;prev\&quot;
-  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
-  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
-  >__pagy_page__</a></span> &quot;,&quot;active&quot;:&quot;<span class=\&quot;page
-  active\&quot;>20</span> &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
-  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=21\&quot;  link-extra
-  rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
-"[1] pagy/extras/navs::#pagy_nav_js#test_0001_renders first page": <nav class="pagy-njs
-  pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
-  class=\&quot;page prev disabled\&quot;>&lsaquo;&nbsp;Prev</span> &quot;,&quot;link&quot;:&quot;<span
-  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;   >__pagy_page__</a></span>
-  &quot;,&quot;active&quot;:&quot;<span class=\&quot;page active\&quot;>1</span> &quot;,&quot;gap&quot;:&quot;<span
-  class=\&quot;page gap\&quot;>&hellip;</span> &quot;,&quot;after&quot;:&quot;<span
-  class=\&quot;page next\&quot;><a href=\&quot;/foo?page=2\&quot;   rel=\&quot;next\&quot;
-  aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,4,5,&quot;gap&quot;,50]}]"></nav>
-"[2] pagy/extras/navs::#pagy_nav_js#test_0001_renders first page": <nav id="test-nav-id"
-  class="pagy-njs pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
-  class=\&quot;page prev disabled\&quot;>&lsaquo;&nbsp;Prev</span> &quot;,&quot;link&quot;:&quot;<span
-  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
-  >__pagy_page__</a></span> &quot;,&quot;active&quot;:&quot;<span class=\&quot;page
-  active\&quot;>1</span> &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
-  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=2\&quot;  link-extra
-  rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[&quot;1&quot;,2,3,&quot;gap&quot;,50],&quot;600&quot;:[&quot;1&quot;,2,3,4,&quot;gap&quot;,50]}]"></nav>
-"[1] pagy/extras/navs::#pagy_nav_js#test_0002_renders intermediate page": <nav class="pagy-njs
-  pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
-  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=19\&quot;   rel=\&quot;prev\&quot;
-  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
-  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;   >__pagy_page__</a></span>
-  &quot;,&quot;active&quot;:&quot;<span class=\&quot;page active\&quot;>20</span>
-  &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
-  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=21\&quot;   rel=\&quot;next\&quot;
-  aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,16,17,18,19,&quot;20&quot;,21,22,23,24,&quot;gap&quot;,50]}]"></nav>
-"[2] pagy/extras/navs::#pagy_nav_js#test_0002_renders intermediate page": <nav id="test-nav-id"
-  class="pagy-njs pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
-  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=19\&quot;  link-extra rel=\&quot;prev\&quot;
-  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
-  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
-  >__pagy_page__</a></span> &quot;,&quot;active&quot;:&quot;<span class=\&quot;page
-  active\&quot;>20</span> &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
-  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next\&quot;><a href=\&quot;/foo?page=21\&quot;  link-extra
-  rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]}]"></nav>
-"[1] pagy/extras/navs::#pagy_nav_js#test_0003_renders last page": <nav class="pagy-njs
-  pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
-  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=49\&quot;   rel=\&quot;prev\&quot;
-  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
-  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;   >__pagy_page__</a></span>
-  &quot;,&quot;active&quot;:&quot;<span class=\&quot;page active\&quot;>50</span>
-  &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
-  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next disabled\&quot;>Next&nbsp;&rsaquo;</span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,46,47,48,49,&quot;50&quot;]}]"></nav>
-"[2] pagy/extras/navs::#pagy_nav_js#test_0003_renders last page": <nav id="test-nav-id"
-  class="pagy-njs pagy-nav-js pagination" aria-label="pager" data-pagy-json="[&quot;nav&quot;,{&quot;before&quot;:&quot;<span
-  class=\&quot;page prev\&quot;><a href=\&quot;/foo?page=49\&quot;  link-extra rel=\&quot;prev\&quot;
-  aria-label=\&quot;previous\&quot;>&lsaquo;&nbsp;Prev</a></span> &quot;,&quot;link&quot;:&quot;<span
-  class=\&quot;page\&quot;><a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
-  >__pagy_page__</a></span> &quot;,&quot;active&quot;:&quot;<span class=\&quot;page
-  active\&quot;>50</span> &quot;,&quot;gap&quot;:&quot;<span class=\&quot;page gap\&quot;>&hellip;</span>
-  &quot;,&quot;after&quot;:&quot;<span class=\&quot;page next disabled\&quot;>Next&nbsp;&rsaquo;</span>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,48,49,&quot;50&quot;],&quot;600&quot;:[1,&quot;gap&quot;,47,48,49,&quot;50&quot;]}]"></nav>

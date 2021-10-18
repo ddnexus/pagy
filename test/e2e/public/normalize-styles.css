@@ -15,8 +15,8 @@ p:not(.control) {
 body {
   font-family: sans-serif;
   margin: 2em;
-  /* background: #222;
-  color:  #ddd; */
+  background: #222;
+  color:  #ddd;
 }
 
 a {

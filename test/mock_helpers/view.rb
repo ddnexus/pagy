@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'rack'
 class MockView
   include Pagy::Frontend
 

@@ -31,13 +31,13 @@ render json: { data: records,
 
 ## Variables
 
-| Variable    | Description                                          | Default                                                                                                                                                                                  |
-|:------------|:-----------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `:metadata` | Array of names used to control the returned metadata | `[ :scaffold_url, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :items, :vars, :pages, :last, :from, :to, :prev, :next, :series ]` (plus `:sequels` if defined) |
+| Variable    | Description                                          | Default                                                                                                                                                     |
+|:------------|:-----------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `:metadata` | Array of names used to control the returned metadata | `[ :scaffold_url, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :items, :vars, :pages, :last, :from, :to, :prev, :next, :series ]` |
 
-As usual, depending on the scope of the customization, you can set the `:metadata` variable globally or for a single pagy instance.
+As usual, depending on the scope of the customization, you can set the `:metadata` variable globally or for a single pagy instance. 
 
-**IMPORTANT**: Don't rely on the broad default! You should explicitly set the `:metadata` variable with only the names that you will actually use in the frontend, for obvious performance reasons.
+IMPORTANT: Don't rely on the broad default! You should explicitly set the `:metadata` variable with only the keys that you will actually use in the frontend, for obvious performance reasons. Besides you can also add other pagy method names not included in the default. 
 
 ### :scaffold_url key
 

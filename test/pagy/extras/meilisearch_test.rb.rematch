@@ -1,4 +1,21 @@
 ---
+"[1] pagy/extras/meilisearch::controller_methods::#pagy_meilisearch#test_0003_paginates with overflow": !ruby/array:MockMeilisearch::Results
+  internal:
+  - b-991
+  - b-992
+  - b-993
+  - b-994
+  - b-995
+  - b-996
+  - b-997
+  - b-998
+  - b-999
+  - b-1000
+  ivars:
+    :@query: b
+    :@params:
+      :offset: 990
+      :limit: 10
 "[1] pagy/extras/meilisearch::controller_methods::#pagy_meilisearch#test_0001_paginates response with defaults": !ruby/array:MockMeilisearch::Results
   internal:
   - a-41
@@ -42,21 +59,4 @@
     :@query: b
     :@params:
       :offset: 10
-      :limit: 10
-"[1] pagy/extras/meilisearch::controller_methods::#pagy_meilisearch#test_0003_paginates with overflow": !ruby/array:MockMeilisearch::Results
-  internal:
-  - b-991
-  - b-992
-  - b-993
-  - b-994
-  - b-995
-  - b-996
-  - b-997
-  - b-998
-  - b-999
-  - b-1000
-  ivars:
-    :@query: b
-    :@params:
-      :offset: 990
       :limit: 10

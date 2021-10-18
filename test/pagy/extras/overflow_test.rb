@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
+require 'pagy/countless'
 require 'pagy/extras/overflow'
 
 describe 'pagy/extras/overflow' do
