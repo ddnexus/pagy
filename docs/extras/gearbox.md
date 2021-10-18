@@ -7,7 +7,7 @@ This extra allows your app to automatically change the number of items per page 
 
 You can set this up by simply setting the `:gearbox_items` variable to an array of integers. For example, you would set the  `gearbox_items` to `[10, 20, 40, 80]` to have page `1` with `10` items, page `2` with `20`, page `3` with `40` and all the other pages with `80` items.
 
-The content of the array is not restricted neither in length nor in direction: you can pass any arbitrary sequence of integer you like, although makes more sense to have an increasing progression of items.
+The content of the array is not restricted neither in length nor in direction: you can pass any arbitrary sequence of integer you like, although it makes more sense to have an increasing progression of items.
 
 Even after requiring this extra, the regular fixed pagination is still supported: you have just to temporarily disable `gearbox` with `gearbox_extra: false` in the instances that need the fixed pagination.
 

@@ -46,6 +46,7 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 - **It supports all kinds of pagination**<br>[countless](http://ddnexus.github.io/pagy/extras/countless), [geared](http://ddnexus.github.io/pagy/extras/gearbox), [incremental, auto-incremental, infinite](http://ddnexus.github.io/pagy/extras/support), [headers](http://ddnexus.github.io/pagy/extras/headers), [JSON](http://ddnexus.github.io/pagy/extras/metadata), [cursor](https://github.com/Uysim/pagy-cursor)
 - **It supports all kinds of CSS Frameworks**<br>[bootstrap](http://ddnexus.github.io/pagy/extras/bootstrap), [bulma](http://ddnexus.github.io/pagy/extras/bulma), [foundation](http://ddnexus.github.io/pagy/extras/foundation), [materialize](http://ddnexus.github.io/pagy/extras/materialize), [semantic](http://ddnexus.github.io/pagy/extras/semantic), [uikit](http://ddnexus.github.io/pagy/extras/uikit), [tailwind](http://ddnexus.github.io/pagy/extras/tailwind)
 - **It supports faster client-side rendering**<br>With classic or innovative UI components (see [Javascript Navs](https://ddnexus.github.io/pagy/api/javascript#javascript-navs) and [Javascript Combo Navs](https://ddnexus.github.io/pagy/api/javascript#javascript-combo-navs)) or by serving [JSON](http://ddnexus.github.io/pagy/extras/metadata) to your favorite Javascript framework
+- **It has 100% of test coverage** for Ruby, HTML and Javascript E2E (see [Pagy Workflows CI](https://github.com/ddnexus/pagy/actions))
 
 <details>
 
@@ -55,12 +56,11 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 - **It has a quite fat set of optional extras** that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/extras))_
 - **It has no dependencies**: it produces its own HTML, URLs, i18n with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - **Its methods are accessible and overridable** right where you use them (no pesky monkey-patching needed)
-- **It has 100% of test coverage** for Ruby, HTML and Javascript E2E (see [Pagy Workflows CI](https://github.com/ddnexus/pagy/actions))
 
 ### Unlike the other gems
 
 - Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#global-configuration))_
-- It doesn't impose limits on your code even with collections/scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
+- It doesn't impose limits on your code even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
 - It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
 - It does not impose any difficult-to-override logic or output _(see [why...](https://ddnexus.github.io/pagy/index#really-easy-to-customize))_
@@ -79,7 +79,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can also u
 
 <details>
 
-<summary>Implement basic pagination...</summary>
+<summary>Code for basic pagination...</summary>
 
 ```rb
 # Override the pagy default with your own in the pagy initializer...
@@ -112,7 +112,7 @@ _(See [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_
 
 <details>
 
-<summary>Customize it for a CSS framework...</summary>
+<summary>Code for CSS frameworks...</summary>
 
 ```rb
 # Require a CSS framework extra in the initializer (e.g. bootstrap)...
@@ -130,7 +130,7 @@ _(See the [bootstrap extra](http://ddnexus.github.io/pagy/extras/bootstrap))_
 
 <details>
 
-<summary>Customize it for some special collection...</summary>
+<summary>Code for special collections...</summary>
 
 ```rb
 # Require a backend extra in the initializer (e.g. elasticsearch_rails)...
@@ -150,7 +150,7 @@ _(See the [elasticsearch_rails extra](http://ddnexus.github.io/pagy/extras/elast
 
 <details>
 
-<summary>Render it client-side...</summary>
+<summary>Code for client-side|JSON rendering...</summary>
 
 ```ruby
 # Require the metadata extra in the initializer...
@@ -168,7 +168,7 @@ _(See the [metadata extra](http://ddnexus.github.io/pagy/extras/metadata))_
 
 <details>
 
-<summary>Use headers pagination for APIs...</summary>
+<summary>Code for headers pagination for APIs...</summary>
 
 ```ruby
 # Require the headers extra in the initializer...
@@ -186,7 +186,7 @@ _(See the [headers extra](http://ddnexus.github.io/pagy/extras/headers))_
 
 <details>
 
-<summary>See the list of all the extras...</summary><br>
+<summary>List of all the extras...</summary><br>
 
 Extras add special options and manage different components, behaviors, Frontend or Backend environments... usually by just requiring them (and optionally overriding some default).
 
@@ -224,6 +224,8 @@ Extras add special options and manage different components, behaviors, Frontend 
 - [trim](http://ddnexus.github.io/pagy/extras/trim): Remove the `page=1` param from the first page link
 
 </details>
+
+See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 ## 🤓 It's very well documented and supported
 
@@ -301,7 +303,7 @@ Extras add special options and manage different components, behaviors, Frontend 
 - __This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
 - **New**: added `gearbox` extra to automatically change the number of items depending on the page number.
 - Removed support for 4.0 deprecations (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
-- Big code restyling makes rubocop a lot happier now.
+- Big code restyling with improved performance, readability and rubocop compliance.
 
 </details>
 
