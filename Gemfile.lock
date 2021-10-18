@@ -4,7 +4,7 @@ GEM
     ansi (1.5.0)
     ast (2.4.2)
     backport (1.2.0)
-    benchmark (0.1.1)
+    benchmark (0.2.0)
     benchmark-ips (2.9.2)
     builder (3.2.4)
     codecov (0.6.0)

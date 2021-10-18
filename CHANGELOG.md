@@ -65,5 +65,18 @@ The following optional positional arguments are passed with keywords arguments i
 - Changed general module structure (use of prepend instead of re-opening modules)
 - Added gearbox extra for geared pagination
 - Added configuration files for a full working VSCode devcontainer environment
+- Added Run Configurations for RubyMine
+- Improved the usage of e2e tests
 - Updated doc, gemfiles and github workflow
 - Other minor fixes and improvements in code and doc
+
+## Version 5.0.1
+
+### Changes 
+
+- Added CHANGELOG_LEGACY
+- Refactoring of exceptions
+- Simplification of metadata extra
+- Refactoring of coverage to include 100% of line and condition branches covered
+- Added cypress-dark theme to e2e test
+- Updated docs and issue templates
