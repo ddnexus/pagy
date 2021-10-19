@@ -294,6 +294,42 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 </details>
 
+<details>
+
+<summary><b>FAQs (Frequently Asked Questions)</b></summary>
+<br>
+
+**What is pagination? Why do I need it?**
+
+There is a hard limit on the number of records a server can deliver:
+
+```rb
+def index
+    @users = User.all # all 10,000,000 users
+                      # haha good luck!
+end
+```
+
+Pagination allows you to break-up records (or any collection) into small digestable chunks - i.e. "pages". i.e. it is highly unlikely that human beings will want to review all 10,000,000 records all at once, or be capable of doing so. We can ask them to thumb through all the user records as if they were pages in a book, split up by, say, 25 users per page. `Pagy` allows you to do this, writing barely a lick of code on back and front ends.
+
+**What do I get if I use `Pagy`?**
+
+This depends on whether you want HTML returned, or json returned.
+
+![Pagy-end-result](docs/assets/images/pagination-example.png)
+
+**1. HTML returned:** The image above shows pagination links styled according to the bootstrap framework. The UI is eminently customisable (according to your framework of choice: bulma, semantic, bootstrap etc.), or otherwise. Functionality, is also very customisable.
+
+**2. JSON returned:** If you are developing a back-end API with a front-end framework like React / Vue you can choose between the following to help display or handle pagination: 
+
+(i) using a [client-side javascript navigation component](https://ddnexus.github.io/pagy/api/javascript), or 
+
+(ii) you can roll your own using the [meta-data extra](https://ddnexus.github.io/pagy/extras/metadata) (which allows you to easily write your own code to go to which ever page you want etc.). This is an option if your client is non-human.
+
+(iii) Finally, if you do not want pagination logic to exist in response bodies, you can choose to put them in response headers using the [headers extra](https://ddnexus.github.io/pagy/extras/headers). This is also an option for non-human clients.
+
+</details>
+
 ## 📦 Repository Info
 
 <details>
