@@ -59,6 +59,6 @@ The construction of the final `Pagy::Countless` object is split into 2 steps: th
 
 The initial constructor takes the usual hash of variables, calculating only the requested `items` and the `offset`, useful to query the page of items.
 
-### finalize(fetched)
+### finalize(fetched_size)
 
-The actual calculation of all the internal variables for the pagination is calculated using the number of `fetched` items. The method returns the finalized instance object.
+The actual calculation of all the internal variables for the pagination is calculated using the size of the fetched items. The method returns the finalized instance object.
