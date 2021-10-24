@@ -35,6 +35,7 @@ class Pagy
         end
       end
 
+      # Special series for empty page
       module Series
         def series(size = @vars[:size])
           @page = @last                             # series for last page

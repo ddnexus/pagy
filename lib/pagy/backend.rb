@@ -15,17 +15,17 @@ class Pagy
     end
 
     # Sub-method called only by #pagy: here for easy customization of variables by overriding
+    # You may need to override the count call for non AR collections
     def pagy_get_vars(collection, vars)
       pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-      # You may need to override the count call for non AR collections
-      vars[:count] ||= (c = collection.count(:all)).is_a?(Hash) ? c.size : c
+      vars[:count] ||= (count = collection.count(:all)).is_a?(Hash) ? count.size : count
       vars[:page]  ||= params[vars[:page_param] || DEFAULT[:page_param]]
       vars
     end
 
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding
+    # You may need to override this method for collections without offset|limit
     def pagy_get_items(collection, pagy)
-      # You may need to override this method for collections without offset|limit
       collection.offset(pagy.offset).limit(pagy.items)
     end
   end

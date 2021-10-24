@@ -4,6 +4,8 @@
 require 'pagy/extras/shared'
 
 class Pagy
+  # Frontend modules are specially optimized for performance.
+  # The resulting code may not look very elegant, but produces the best benchmarks
   module NavsExtra
     # Javascript pagination: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)

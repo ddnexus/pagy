@@ -57,7 +57,7 @@ This method returns the `pathname` of the `pagy/lib` root dir. It is useful to g
 
 _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and return the Pagy object for you.
 
-The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::Vars` hash and will be used to create the object.
+The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to create the object.
 
 ### Variables
 

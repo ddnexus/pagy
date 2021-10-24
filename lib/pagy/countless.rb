@@ -27,6 +27,8 @@ class Pagy
       self
     end
 
+    # Override the original series.
+    # Return nil if :countless_minimal is enabled
     def series(_size = @vars[:size])
       super unless @vars[:countless_minimal]
     end

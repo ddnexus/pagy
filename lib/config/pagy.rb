@@ -153,6 +153,11 @@
 # set to false only if you want to make :trim_extra an opt-in variable
 # Pagy::DEFAULT[:trim_extra] = false # default true
 
+# Standalone extra: Use pagy in non Rack environment/gem
+# See https://ddnexus.github.io/pagy/extras/standalone
+# require 'pagy/extras/standalone'
+# Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'  # optional default
+
 
 # Rails
 

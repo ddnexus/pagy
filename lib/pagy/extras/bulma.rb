@@ -4,6 +4,8 @@
 require 'pagy/extras/shared'
 
 class Pagy
+  # Frontend modules are specially optimized for performance.
+  # The resulting code may not look very elegant, but produces the best benchmarks
   module BulmaExtra
     # Pagination for Bulma: it returns the html with the series of links to the pages
     def pagy_bulma_nav(pagy, pagy_id: nil, link_extra: '')

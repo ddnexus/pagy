@@ -437,7 +437,7 @@ count = collection.count
 
 ## Paginate collections with metadata
 
-When your collection is already paginated and contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object:
+When your collection is already paginated and contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object, but you can apply the same principe to any other type of collection metadata:
 
 ```rb
 #<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>
@@ -446,14 +446,13 @@ When your collection is already paginated and contains counts and pagination met
 As you can see it contains the pagination metadata that you can use to setup the pagination with pagy:
 
 ```ruby
-
-tobj    = Tmdb::Search.movie("Harry Potter", page: params[:page])
-@pagy   = Pagy.new(count: tobj.total_results, page: tobj.page)
+# get the paginated collection
+tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
+# use its count and page to initialize the @pagy object
+@pagy = Pagy.new(count: tobj.total_results, page: tobj.page)
+# set the paginated collection records
 @movies = tobj.results
-
 ```
-
-Notice that you can apply the same principe to any other type of collection metadata.
 
 ## Paginate Any Collection
 
@@ -462,7 +461,7 @@ Pagy doesn't need to know anything about the kind of collection you paginate. It
 1. Create a Pagy object using the count of the collection to paginate
 2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
 
-Here is an example with an array. (Please, notice that this is only a convenient example but you should use the [array](extras/array.md) extra to paginate arrays).
+Here is an example with an array. (Please, notice that this is only a convenient example, but you should use the [array](extras/array.md) extra to paginate arrays).
 
 ```ruby
 # paginate an array
@@ -618,7 +617,7 @@ That may work very well with static (or almost static) DBs, where there is not m
 
 ### Using the arel extra
 
-For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel](http://ddnexus.github.io/pagy/extras/arel).
+For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel](http://ddnexus.github.io/pagy/extras/arel) extra.
 
 ### Avoiding the count
 

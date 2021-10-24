@@ -5,8 +5,9 @@ require 'pagy'  # so you can require just the extra in the console
 require 'pagy/extras/standalone'
 
 class Pagy
-  # Provide ready to use pagy environment when included in irb/rails console
+  # Provide a ready to use pagy environment when included in irb/rails console
   module Console
+    # Include Backend, Frontend and set the default URL
     def self.included(main)
       main.include(Backend)
       main.include(Frontend)
