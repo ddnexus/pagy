@@ -34,15 +34,15 @@ class Pagy
     # it works exactly as the regular #pagy_url_for, relying on the params method and Rack.
     # If there is a defined pagy.vars[:url] variable it does not need the params method nor Rack.
     def pagy_url_for(pagy, page, absolute: nil)
-      p_vars = pagy.vars
-      return super unless (url = p_vars[:url])
+      vars = pagy.vars
+      return super unless (url = vars[:url])
 
-      params                            = p_vars[:params]
-      params[p_vars[:page_param].to_s]  = page
-      params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(ItemsExtra)
+      params                     = vars[:params]
+      params[vars[:page_param]]  = page
+      params[vars[:items_param]] = vars[:items] if vars[:items_extra]
 
       query_string = "?#{QueryUtils.build_nested_query(pagy_massage_params(params))}"
-      "#{url}#{query_string}#{p_vars[:fragment]}"
+      "#{url}#{query_string}#{vars[:fragment]}"
     end
   end
   # In ruby 3+ `UrlHelpers.prepend StandaloneExtra` would be enough instead of using the next 2 lines

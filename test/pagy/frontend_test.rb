@@ -2,8 +2,8 @@
 
 require_relative '../test_helper'
 
-require_relative '../mock_helpers/view'
 require_relative '../mock_helpers/pagy_buggy'
+require_relative '../mock_helpers/app'
 
 # in test we cannot use the Pagy::I18n.load method because
 # it would freeze the Pagy::I18n::DATA hash so i18n_load
@@ -14,7 +14,7 @@ def i18n_load(*locales)
 end
 
 describe 'pagy/frontend' do
-  let(:view) { MockView.new }
+  let(:view) { MockApp.new }
 
   describe '#pagy_nav' do
     it 'renders page 1' do
@@ -159,9 +159,9 @@ describe 'pagy/frontend' do
 
   describe '#pagy_get_params' do
     it 'overrides params' do
-      overridden = MockView::Overridden.new
-      pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment'
-      _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&b=4&k=k#fragment"
+      overridden = MockApp::Overridden.new(params: { delete_me: 'delete_me', a: 5 })
+      pagy = Pagy.new count: 1000, page: 3, params: { b: 4 }, fragment: '#fragment'
+      _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&b=4&page=5&add_me=add_me#fragment"
     end
   end
 end
