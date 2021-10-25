@@ -7,13 +7,13 @@ class Pagy
     # It supports all Rack-based frameworks (Sinatra, Padrino, Rails, ...).
     # For non-rack environments you can use the standalone extra
     def pagy_url_for(pagy, page, absolute: nil)
-      vars                       = pagy.vars
-      params                     = self.params.merge(vars[:params])
-      params[vars[:page_param]]  = page
-      params[vars[:items_param]] = vars[:items] if vars[:items_extra]
+      p_vars                            = pagy.vars
+      params                            = request.GET.merge(p_vars[:params])
+      params[p_vars[:page_param].to_s]  = page
+      params[p_vars[:items_param].to_s] = p_vars[:items] if defined?(ItemsExtra)
 
       query_string = "?#{Rack::Utils.build_nested_query(pagy_massage_params(params))}"
-      "#{request.base_url if absolute}#{request.path}#{query_string}#{vars[:fragment]}"
+      "#{request.base_url if absolute}#{request.path}#{query_string}#{p_vars[:fragment]}"
     end
 
     # Sub-method called only by #pagy_url_for: here for easy customization of params by overriding

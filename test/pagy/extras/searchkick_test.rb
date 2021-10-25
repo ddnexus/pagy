@@ -4,8 +4,7 @@ require_relative '../../test_helper'
 require 'pagy/extras/overflow'
 
 require_relative '../../mock_helpers/searchkick'
-require_relative '../../mock_helpers/collection'
-require_relative '../../mock_helpers/app'
+require_relative '../../mock_helpers/controller'
 
 describe 'pagy/extras/searchkick' do
   describe 'model#pagy_search' do
@@ -37,33 +36,33 @@ describe 'pagy/extras/searchkick' do
   end
 
   describe 'controller_methods' do
-    let(:app) { MockApp.new }
+    let(:controller) { MockController.new }
 
     describe '#pagy_searchkick' do
       before do
         @collection = MockCollection.new
       end
       it 'paginates response with defaults' do
-        pagy, response = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
+        pagy, response = controller.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
         results = response.results
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal controller.params[:page]
         _(results.count).must_equal Pagy::DEFAULT[:items]
         _(results).must_rematch
       end
       it 'paginates results with defaults' do
-        pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a').results)
+        pagy, results = controller.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a').results)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal controller.params[:page]
         _(results.count).must_equal Pagy::DEFAULT[:items]
         _(results).must_rematch
       end
       it 'paginates with vars' do
-        pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
+        pagy, results = controller.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
                                         page: 2, items: 10, link_extra: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
@@ -74,7 +73,7 @@ describe 'pagy/extras/searchkick' do
         _(results).must_rematch
       end
       it 'paginates with overflow' do
-        pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
+        pagy, results = controller.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
                                         page: 200, items: 10, link_extra: 'X', overflow: :last_page)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
@@ -89,7 +88,7 @@ describe 'pagy/extras/searchkick' do
     describe '#pagy_searchkick_get_vars' do
       it 'gets defaults' do
         vars   = {}
-        merged = app.send :pagy_searchkick_get_vars, nil, vars
+        merged = controller.send :pagy_searchkick_get_vars, nil, vars
         _(merged.keys).must_include :page
         _(merged.keys).must_include :items
         _(merged[:page]).must_equal 3
@@ -97,7 +96,7 @@ describe 'pagy/extras/searchkick' do
       end
       it 'gets vars' do
         vars   = { page: 2, items: 10, link_extra: 'X' }
-        merged = app.send :pagy_searchkick_get_vars, nil, vars
+        merged = controller.send :pagy_searchkick_get_vars, nil, vars
         _(merged.keys).must_include :page
         _(merged.keys).must_include :items
         _(merged.keys).must_include :link_extra

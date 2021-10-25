@@ -3,7 +3,7 @@
 require_relative '../../test_helper'
 require 'pagy/extras/trim'
 
-require_relative '../../mock_helpers/app'
+require_relative '../../mock_helpers/view'
 
 describe 'pagy/extras/trim' do
   describe '#pagy_link_proc' do
@@ -23,12 +23,12 @@ describe 'pagy/extras/trim' do
        [11, '?a=1&page=11',          '?a=1&page=11']         # don't trim last param
 ].each do |args|
         page, generated, trimmed = args
-        app = MockApp.new(url: "http://example.com:3000/foo#{generated}")
+        view = MockView.new("http://example.com:3000/foo#{generated}")
         pagy = Pagy.new(count: 1000, page: page)
-        link = app.pagy_link_proc(pagy)
+        link = view.pagy_link_proc(pagy)
         _(link.call(page)).must_equal("<a href=\"/foo#{trimmed}\"   >#{page}</a>")
         pagy = Pagy.new(count: 1000, page: page, trim_extra: false)
-        link = app.pagy_link_proc(pagy)
+        link = view.pagy_link_proc(pagy)
         _(link.call(page)).must_equal("<a href=\"/foo#{generated}\"   >#{page}</a>")
       end
     end
