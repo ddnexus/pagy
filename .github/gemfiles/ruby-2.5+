@@ -12,6 +12,7 @@ gem 'rake'
 gem 'rake-manifest'
 
 group :test do
+  gem 'activesupport'
   gem 'codecov', require: false
   gem 'minitest'
   gem 'minitest-reporters'
