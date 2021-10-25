@@ -4,27 +4,27 @@ require_relative '../../test_helper'
 require 'pagy/extras/arel'
 
 require_relative '../../mock_helpers/arel'
+require_relative '../../mock_helpers/controller'
 require_relative '../../mock_helpers/collection'
-require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/arel' do
-  let(:app) { MockApp.new }
+  let(:controller) { MockController.new }
 
   describe '#pagy_arel' do
     before do
       @collection = MockCollection.new
     end
     it 'paginates with defaults' do
-      pagy, items = app.send(:pagy_arel, @collection)
+      pagy, items = controller.send(:pagy_arel, @collection)
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.items).must_equal Pagy::DEFAULT[:items]
-      _(pagy.page).must_equal app.params[:page]
+      _(pagy.page).must_equal controller.params[:page]
       _(items.size).must_equal Pagy::DEFAULT[:items]
       _(items).must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
     end
     it 'paginates with vars' do
-      pagy, items = app.send(:pagy_arel, @collection, page: 2, items: 10, link_extra: 'X')
+      pagy, items = controller.send(:pagy_arel, @collection, page: 2, items: 10, link_extra: 'X')
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.items).must_equal 10
@@ -41,7 +41,7 @@ describe 'pagy/extras/arel' do
     end
     it 'gets defaults' do
       vars   = {}
-      merged = app.send :pagy_arel_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged[:count]).must_equal 1000
@@ -49,7 +49,7 @@ describe 'pagy/extras/arel' do
     end
     it 'gets vars' do
       vars   = { page: 2, items: 10, link_extra: 'X' }
-      merged = app.send :pagy_arel_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :items
@@ -62,7 +62,7 @@ describe 'pagy/extras/arel' do
     it 'works with grouped collections' do
       collection = MockCollection::Grouped.new((1..1000).to_a)
       vars   = { page: 2, items: 10, link_extra: 'X' }
-      merged = app.send :pagy_arel_get_vars, collection, vars
+      merged = controller.send :pagy_arel_get_vars, collection, vars
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :items
@@ -74,7 +74,7 @@ describe 'pagy/extras/arel' do
     end
     it 'overrides count and page' do
       vars   = { count: 10, page: 32 }
-      merged = app.send :pagy_arel_get_vars, @collection, vars
+      merged = controller.send :pagy_arel_get_vars, @collection, vars
       _(merged.keys).must_include :count
       _(merged[:count]).must_equal 10
       _(merged.keys).must_include :page

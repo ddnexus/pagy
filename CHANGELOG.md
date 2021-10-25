@@ -91,3 +91,10 @@ The following optional positional arguments are passed with keywords arguments i
   - Fix for ignoring the params not coming from the request
   - Fix for ignoring the items_extra variable
   - Refactoring of Mock test classes for better handling of params
+
+## Version 5.1.1
+
+### Changes
+
+- This reverts commit 1d77e672d5b7813108b40c13ca93fdec045f4c03.
+  Generating the URL by using the application params method breakes rails apps because it requires manual changes in the apps.
