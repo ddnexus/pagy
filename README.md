@@ -275,7 +275,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 </details>
 
-<details>
+<details open>
 
 <summary><b>Read the documentation...</b></summary>
 
@@ -285,7 +285,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 </details>
 
-<details>
+<details open>
 
 <summary><b>Ask for support...</b></summary>
 
@@ -296,7 +296,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 ## 📦 Repository Info
 
-<details>
+<details open>
 
 <summary><b>What's new in 5.0</b></summary>
 
