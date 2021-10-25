@@ -98,3 +98,12 @@ The following optional positional arguments are passed with keywords arguments i
 
 - This reverts commit 1d77e672d5b7813108b40c13ca93fdec045f4c03.
   Generating the URL by using the application params method breakes rails apps because it requires manual changes in the apps.
+
+## Version 5.1.2
+
+### Changes
+
+- Refactoring of pagy_url_for and relative test:
+  - Fix for ignoring the items_extra variable
+  - Replaced request.GET with request.params to enable POST pagination
+  - Refactoring of Mock test classes for better handling of params
