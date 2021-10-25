@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (5.0.1)
+# Pagy initializer file (5.1.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -152,6 +152,11 @@
 # require 'pagy/extras/trim'
 # set to false only if you want to make :trim_extra an opt-in variable
 # Pagy::DEFAULT[:trim_extra] = false # default true
+
+# Standalone extra: Use pagy in non Rack environment/gem
+# See https://ddnexus.github.io/pagy/extras/standalone
+# require 'pagy/extras/standalone'
+# Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'  # optional default
 
 
 # Rails

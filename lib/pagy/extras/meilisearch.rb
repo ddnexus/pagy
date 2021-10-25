@@ -39,13 +39,13 @@ class Pagy
         pagy                 = ::Pagy.new(vars)
         # with :last_page overflow we need to re-run the method in order to get the hits
         return pagy_meilisearch(pagy_search_args, vars.merge(page: pagy.page)) \
-          if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
+               if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
 
         [pagy, results]
       end
 
-      # Sub-method called only by #pagy_meilisearch: here for easy customization of variables by overriding
-      # the _collection argument is not available when the method is called
+      # Sub-method called only by #pagy_meilisearch: here for easy customization of variables by overriding.
+      # The _collection argument is not available when the method is called.
       def pagy_meilisearch_get_vars(_collection, vars)
         pagy_set_items_from_params(vars) if defined?(ItemsExtra)
         vars[:items] ||= DEFAULT[:items]

@@ -14,9 +14,9 @@ class Pagy  # Default variables for this extra
 
       # Set the items variable considering the params and other pagy variables
       def pagy_set_items_from_params(vars)
-        return if vars[:items]
-        return unless vars.key?(:items_extra) ? vars[:items_extra] : DEFAULT[:items_extra]
-        return unless (items = params[vars[:items_param] || DEFAULT[:items_param]])
+        return if vars[:items]                                                             # :items explicitly set
+        return unless vars.key?(:items_extra) ? vars[:items_extra] : DEFAULT[:items_extra] # :items_extra is false
+        return unless (items = params[vars[:items_param] || DEFAULT[:items_param]])        # no items from request params
 
         vars[:items] = [items.to_i, vars.key?(:max_items) ? vars[:max_items] : DEFAULT[:max_items]].compact.min
       end

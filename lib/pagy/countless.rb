@@ -14,12 +14,12 @@ class Pagy
       @offset = (@items * (@page - 1)) + @outset
     end
 
-    # Finalize the instance variables based on the fetched items
-    def finalize(fetched)
-      raise OverflowError.new(self, :page, "to be < #{@page}") if fetched.zero? && @page > 1
+    # Finalize the instance variables based on the fetched size
+    def finalize(fetched_size)
+      raise OverflowError.new(self, :page, "to be < #{@page}") if fetched_size.zero? && @page > 1
 
-      @pages = @last = (fetched > @items ? @page + 1 : @page)
-      @in    = [fetched, @items].min
+      @pages = @last = (fetched_size > @items ? @page + 1 : @page)
+      @in    = [fetched_size, @items].min
       @from  = @in.zero? ? 0 : @offset - @outset + 1
       @to    = @offset - @outset + @in
       @prev  = (@page - 1 unless @page == 1)
@@ -27,6 +27,8 @@ class Pagy
       self
     end
 
+    # Override the original series.
+    # Return nil if :countless_minimal is enabled
     def series(_size = @vars[:size])
       super unless @vars[:countless_minimal]
     end

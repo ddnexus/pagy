@@ -5,6 +5,7 @@ class Pagy
   class VariableError < ArgumentError
     attr_reader :pagy, :variable, :value
 
+    # Set the variables and prepare the message
     def initialize(pagy, variable, description, value = nil)
       @pagy     = pagy
       @variable = variable

@@ -21,7 +21,7 @@ In the `pagy.rb` initializer:
 require 'pagy/extras/standalone'
 
 # optional: set a default url
-Pagy::Vars[:url] = 'http://www.example.com/subdir'
+Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'
 
 # pass a :url variable to work in standalone mode (no need of any request object nor Rack env)
 @pagy, @records = pagy(Product.all, url: 'http://www.example.com/subdir', params: {...})

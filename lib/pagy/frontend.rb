@@ -8,8 +8,8 @@ class Pagy
   # Used for search and replace, hardcoded also in the pagy.js file
   PAGE_PLACEHOLDER = '__pagy_page__'
 
-  # All the code here has been optimized for performance: it may not look very pretty
-  # (as most code dealing with many long strings), but its performance makes it very sexy! ;)
+  # Frontend modules are specially optimized for performance.
+  # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
     include UrlHelpers
 

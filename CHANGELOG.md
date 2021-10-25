@@ -80,3 +80,14 @@ The following optional positional arguments are passed with keywords arguments i
 - Refactoring of coverage to include 100% of line and condition branches covered
 - Added cypress-dark theme to e2e test
 - Updated docs and issue templates
+
+## Version 5.1.0
+
+### Changes 
+
+- Countless extra: simplified code, internal renaming of locals and docs update
+- Improved code comments, formatting and docs fixes
+- Fix and refactoring of pagy_url_for and relative test:
+  - Fix for ignoring the params not coming from the request
+  - Fix for ignoring the items_extra variable
+  - Refactoring of Mock test classes for better handling of params

@@ -10,7 +10,7 @@ class Pagy
 
     # Pluralization rules
     module P11n
-      # utility variables
+      # Utility variables
       from0to1   = [0, 1].freeze
       from2to4   = [2, 3, 4].freeze
       from5to9   = [5, 6, 7, 8, 9].freeze

@@ -23,16 +23,13 @@ class Pagy
     end
 
     # Sub-method called only by #pagy_countless: here for easy customization of record-extraction by overriding
+    # You may need to override this method for collections without offset|limit
     def pagy_countless_get_items(collection, pagy)
-      # This should work with ActiveRecord, Sequel, Mongoid...
       return collection.offset(pagy.offset).limit(pagy.items) if pagy.vars[:countless_minimal]
 
-      items      = collection.offset(pagy.offset).limit(pagy.items + 1).to_a
-      items_size = items.size
-      items.pop if items_size == pagy.items + 1
-      # finalize may adjust pagy.items, so must be used after checking the size
-      pagy.finalize(items_size)
-      items
+      fetched = collection.offset(pagy.offset).limit(pagy.items + 1).to_a # eager load items + 1
+      pagy.finalize(fetched.size)                                         # finalize the pagy object
+      fetched[0, pagy.items]                                              # ignore eventual extra item
     end
   end
   Backend.prepend CountlessExtra
