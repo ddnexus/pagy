@@ -83,15 +83,17 @@ _(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
 
-For more advanced usage, you may want to override it in order to fit its behavior with your app needs (e.g.: allowing fancy routes, etc.).
+It works by merging the pagy `:params` hash with the raw `request.GET`, and adding the `:page_param` (`:page` by default) set to the passed `page`, and the `:items` if the `:items_extra` is enabled.
 
-Notice: If you just need to remove or add some param, you may prefer to override the `pagy_massage_params` method instead.
+Before producing the final URL (which can be `absolute` if you pass `absolute: true`), it passes the resulting params hash to the [pagy_massage_params](#pagy_massage_paramsparams) method, which can be overridden for total control of the params in the URL.
+
+The `:fragment` variable is also appended to the URL if defined.
 
 See also [Customizing the URL](../how-to.md#customizing-the-url).
 
 ### pagy_massage_params(params)
 
-Sub-method called by `pagy_url_for`: it is intended to be overridden when you need to add and/or remove some param from the page URLs. It receives the `params` hash complete with the `"page"` param and should return a possibly modified version of it.
+Sub-method called by `pagy_url_for`: it is intended to be overridden when you need to add and/or remove some param from the page URLs. It receives the stringified-key `params` hash (see [pagy_url_for](#pagy_url_forpagy-page-absolute-nil)complete with the pagy params and should return a possibly modified version of it.
 
 See also [Customizing the params](../how-to.md#customizing-the-params).
 

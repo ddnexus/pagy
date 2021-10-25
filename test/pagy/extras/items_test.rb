@@ -12,43 +12,44 @@ require_relative '../../mock_helpers/searchkick'
 require_relative '../../mock_helpers/meilisearch'
 require_relative '../../mock_helpers/arel'
 require_relative '../../mock_helpers/collection'
-require_relative '../../mock_helpers/controller'
+require_relative '../../mock_helpers/app'
 
 def test_items_vars_params(items, vars, params)
-  controller = MockController.new params
-  _(controller.params).must_equal params
+  app = MockApp.new params: params
+  _(app.params.to_options).must_equal params
   [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model],
    [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-    pagy, records = controller.send meth, mod.pagy_search('a').records, vars
+    pagy, records = app.send meth, mod.pagy_search('a').records, vars
     _(pagy.items).must_equal items
     _(records.size).must_equal items
   end
   [[:pagy_meilisearch, MockMeilisearch::Model]].each do |meth, mod|
-    pagy, records = controller.send meth, mod.pagy_search('a'), vars
+    pagy, records = app.send meth, mod.pagy_search('a'), vars
     _(pagy.items).must_equal items
     _(records.size).must_equal items
   end
   %i[pagy pagy_countless pagy_array pagy_arel].each do |meth|
-    pagy, records = controller.send meth, @collection, vars
+    pagy, records = app.send meth, @collection, vars
     _(pagy.items).must_equal items
     _(records.size).must_equal items
   end
 end
 
 describe 'pagy/extras/items' do
+  let(:app) { MockApp.new }
   describe "controller_methods" do
     before do
       @collection = MockCollection.new
     end
     it 'uses the defaults' do
       vars = {}
-      controller = MockController.new
+      app = MockApp.new
       %i[pagy_elasticsearch_rails_get_vars pagy_searchkick_get_vars pagy_meilisearch_get_vars].each do |method|
-        merged = controller.send method, nil, vars
+        merged = app.send method, nil, vars
         _(merged[:items]).must_equal 20
       end
       %i[pagy_get_vars pagy_array_get_vars pagy_arel_get_vars].each do |method|
-        merged = controller.send method, @collection, {}
+        merged = app.send method, @collection, {}
         _(merged[:items]).must_be_nil
       end
     end
@@ -124,39 +125,36 @@ describe 'pagy/extras/items' do
   end
 
   describe 'view_methods' do
-    require_relative '../../mock_helpers/view'
-    let(:view) { MockView.new }
-
     describe '#pagy_url_for' do
       it 'renders basic url' do
         pagy = Pagy.new count: 1000, page: 3
-        _(view.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&items=20'
+        _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&items=20'
       end
       it 'renders basic url and items var' do
         pagy = Pagy.new count: 1000, page: 3, items: 50
-        _(view.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&items=50'
+        _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&items=50'
       end
-      it 'renders url with items_params' do
+      it 'renders url with items_param' do
         pagy = Pagy.new count: 1000, page: 3, items_param: :custom
-        _(view.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&custom=20'
+        _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do
         pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment'
-        _(view.pagy_url_for(pagy, 6)).must_equal '/foo?page=6&items=20#fragment'
+        _(app.pagy_url_for(pagy, 6)).must_equal '/foo?page=6&items=20#fragment'
       end
       it 'renders url with params and fragment' do
         pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment', items: 40
-        _(view.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4&items=40#fragment"
+        _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4&items=40#fragment"
       end
     end
     it 'renders items selector' do
       pagy = Pagy.new count: 1000, page: 3
-      _(view.pagy_items_selector_js(pagy)).must_rematch
-      _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch
+      _(app.pagy_items_selector_js(pagy)).must_rematch
+      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch
       Pagy::I18n::DATA['en'][0]['elasticsearch.product.other'] = 'products'
-      _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id', i18n_key: 'elasticsearch.product')).must_rematch
+      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', i18n_key: 'elasticsearch.product')).must_rematch
       pagy = Pagy.new count: 1000, page: 3, items_extra: false
-      _(view.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_equal ''
+      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_equal ''
     end
   end
 end

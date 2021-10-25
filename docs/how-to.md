@@ -309,6 +309,8 @@ That would produce links that look like e.g. `<a href="2">2</a>`. Then you can a
 
 For a detailed tutorial about this topic see [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
 
+**Notice**: Pagy produces its url by using the `request.params`, which works for `GET` and `POST` requests, so you could use a different way to handle the `POST` and pagy will work also without overriding the `pagy_url_for` method.
+
 ## Customizing the item name
 
 The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that by editing the values of the `"pagy.item_name"` i18n key in the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
