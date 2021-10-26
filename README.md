@@ -77,33 +77,28 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can also u
 
 ## 😎 It's easy to use and customize
 
-<details>
+<details open>
 
 <summary>Code for basic pagination...</summary>
 
 ```rb
-# Override the pagy default with your own in the pagy initializer...
+# Optionally override some pagy default with your own in the pagy initializer
 Pagy::DEFAULT[:items] = 10        # items per page
 Pagy::DEFAULT[:size]  = [1,4,4,1] # nav bar links
 
-# In some controller...
+# Include it in the controllers (e.g. application_controller.rb)
 include Pagy::Backend
 
-# In some helper...
+# Include it in the helpers (e.g. application_helper.rb)
 include Pagy::Frontend
 
-# Wrap your collection with pagy in some action...
-@pagy, @records = pagy(Product.my_collection)
-# Or override some default only for that instance...
-@pagy, @records = pagy(Product.my_collection, items: 15)
+# Wrap your collections with pagy in your actions
+@pagy, @records = pagy(Product.all)
 ```
 
 ```erb
-<%# Render the navigation bar in some view with a fast helper... %>
+<%# Render the navigation bar in some view %>
 <%== pagy_nav(@pagy) %>
-
-<%# Or render it with your own template... %>
-<%== render partial: 'pagy/my_nav', locals: {pagy: @pagy} %>
 ```
 
 _(See [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_
@@ -112,15 +107,15 @@ _(See [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_
 
 <details>
 
-<summary>Code for CSS frameworks...</summary>
+<summary>Customization for CSS frameworks...</summary>
 
 ```rb
-# Require a CSS framework extra in the initializer (e.g. bootstrap)...
+# Require a CSS framework extra in the pagy initializer (e.g. bootstrap)
 require 'pagy/extras/bootstrap'
 ```
 
 ```erb
-<%# Use it in some view in place of the unstyled helper... %>
+<%# Use it in your views %>
 <%== pagy_bootstrap_nav(@pagy) %>
 ```
 
@@ -130,16 +125,16 @@ _(See the [bootstrap extra](http://ddnexus.github.io/pagy/extras/bootstrap))_
 
 <details>
 
-<summary>Code for special collections...</summary>
+<summary>Customization for special collections...</summary>
 
 ```rb
-# Require a backend extra in the initializer (e.g. elasticsearch_rails)...
+# Require some special backend extra in the pagy initializer (e.g. elasticsearch_rails)
 require 'pagy/extras/elasticsearch_rails'
 
-# In some model...
+# Extend your models (e.g. application_record.rb)
 extend Pagy::ElasticsearchRails
 
-# In some action...
+# Use it in your actions
 response         = Article.pagy_search(params[:q])
 @pagy, @response = pagy_elasticsearch_rails(response)
 ```
@@ -150,16 +145,16 @@ _(See the [elasticsearch_rails extra](http://ddnexus.github.io/pagy/extras/elast
 
 <details>
 
-<summary>Code for client-side|JSON rendering...</summary>
+<summary>Customization for client-side|JSON rendering...</summary>
 
 ```ruby
-# Require the metadata extra in the initializer...
+# Require the metadata extra in the pagy initializer
 require 'pagy/extras/metadata'
 
-# in some action...
+# Use it in your actions
 pagy, records = pagy(Product.all)
 render json: { data: records,
-               pagy: pagy_metadata(pagy, ...) }
+               pagy: pagy_metadata(pagy) }
 ```
 
 _(See the [metadata extra](http://ddnexus.github.io/pagy/extras/metadata))_
@@ -168,13 +163,13 @@ _(See the [metadata extra](http://ddnexus.github.io/pagy/extras/metadata))_
 
 <details>
 
-<summary>Code for headers pagination for APIs...</summary>
+<summary>Customization for headers pagination for APIs...</summary>
 
 ```ruby
-# Require the headers extra in the initializer...
+# Require the headers extra in the pagy initializer
 require 'pagy/extras/headers'
 
-# in some action...
+# Use it in your actions
 pagy, records = pagy(Product.all)
 pagy_headers_merge(pagy)
 render json: records
@@ -186,7 +181,7 @@ _(See the [headers extra](http://ddnexus.github.io/pagy/extras/headers))_
 
 <details>
 
-<summary>List of all the extras...</summary><br>
+<summary>More customization with extras...</summary><br>
 
 Extras add special options and manage different components, behaviors, Frontend or Backend environments... usually by just requiring them (and optionally overriding some default).
 
