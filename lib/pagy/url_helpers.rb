@@ -8,7 +8,7 @@ class Pagy
     # For non-rack environments you can use the standalone extra
     def pagy_url_for(pagy, page, absolute: nil)
       vars                            = pagy.vars
-      params                          = request.params.merge(vars[:params].transform_keys(&:to_s))
+      params                          = request.GET.merge(vars[:params].transform_keys(&:to_s))
       params[vars[:page_param].to_s]  = page
       params[vars[:items_param].to_s] = vars[:items] if vars[:items_extra]
 

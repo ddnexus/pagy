@@ -97,7 +97,7 @@ include Pagy::Frontend
 ```
 
 ```erb
-<%# Render the navigation bar in some view %>
+<%# Render the navigation bar in your views %>
 <%== pagy_nav(@pagy) %>
 ```
 
@@ -224,9 +224,29 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 ## 🤓 It's very well documented and supported
 
+<details open>
+
+<summary>Read the documentation...</summary>
+
+- [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-guide) (practical guide)
+- [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
+- [Documentation](https://ddnexus.github.io/pagy/index)
+- [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
+
+</details>
+
+<details open>
+
+<summary>Ask for support...</summary>
+
+- [Live Support on Gitter](https://gitter.im/ruby-pagy/Lobby)
+- [Pagy Issues](https://github.com/ddnexus/pagy/issues)
+
+</details>
+
 <details>
 
-<summary><b>Watch some great screencast...</b></summary>
+<summary>Watch some great screencast...</summary>
 
 ### GoRails Screencast
 
@@ -250,9 +270,9 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 <details>
 
-<summary><b>Read some interesting post and tutorial...</b></summary>
+<summary>Read some interesting post and tutorial...</summary>
 
-- [Migrating from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-guide) (practical guide)
+- [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-guide) (practical guide)
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
 - [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
 - [Faster Pagination with Pagy](https://viblo.asia/p/faster-pagination-with-pagy-Eb85ok9W52G) introductory tutorial by Sirajus Salekin
@@ -270,32 +290,13 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 </details>
 
-<details open>
-
-<summary><b>Read the documentation...</b></summary>
-
-- [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
-- [Documentation](https://ddnexus.github.io/pagy/index)
-- [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
-
-</details>
-
-<details open>
-
-<summary><b>Ask for support...</b></summary>
-
-- [Live Support on Gitter](https://gitter.im/ruby-pagy/Lobby)
-- [Pagy Issues](https://github.com/ddnexus/pagy/issues)
-
-</details>
-
 ## 📦 Repository Info
 
 <details open>
 
 <summary><b>What's new in 5.0</b></summary>
 
-- __This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))__
+- This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))
 - **New**: added `gearbox` extra to automatically change the number of items depending on the page number.
 - Removed support for 4.0 deprecations (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
 - Big code restyling with improved performance, readability and rubocop compliance.
@@ -304,7 +305,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 <details>
 
-<summary><b>How to contribute</b></summary>
+<summary>How to contribute</summary>
 
 - Pull Requests are welcome!
 - For simple contribution you can quickly check your changes with the [Pagy::Console](https://ddnexus.github.io/pagy/api/console) or with the single file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru).
@@ -315,7 +316,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 <details>
 
-<summary><b>Versioning</b></summary>
+<summary>Versioning</summary>
 
 - Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for breaking changes introduced by mayor versions.
 
@@ -323,7 +324,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 <details>
 
-<summary><b>Branches</b></summary>
+<summary>Branches</summary>
 
 - The `master` branch is the latest rubygem-published release. It also contains docs and comment changes that don't affect the published code. It is never force-pushed.
 - The `dev` branch is the development branch with the new code that will be merged in the next release. It could be force-pushed.
