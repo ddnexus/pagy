@@ -16,7 +16,7 @@ If you use any of them you should follow this documentation, if not, consider th
 
 ### Basic principle
 
-All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy-json` attribute. The javascript in the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file takes care to read the data embedded in the `data-pagy-json` attribute and make it work in the browser.
+All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy-json` attribute. The javascript in the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file takes care to read the data embedded in the `data-pagy-json` attribute and makes it work in the browser.
 
 ## Usage
 
@@ -38,7 +38,7 @@ Notice that if the client browser doesn't support Javascript or if it is disable
 
 #### Preventing crawlers to follow look-alike links
 
-The `*_js` helpers come with a `data-pagy-json` attribute that includes an HTML encoded string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it even if it is not a DOM element. That causes server side errors reported in your log.
+The `*_js` helpers come with a `data-pagy-json` attribute that includes an HTML encoded string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it, even if it is not a DOM element. That causes server side errors reported in your log.
 
 You may want to prevent that by simply adding the following lines to your `robots.txt` file:
 

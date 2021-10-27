@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 cat > .env << EOF
 COMPOSE_PROJECT_NAME=pagy
 USER=$(id -un)
@@ -7,6 +9,6 @@ GID=$(id -g)
 TERM=$TERM
 PASSWORD=rubydev
 RUBY_VERSION=3
-NVIDIA_VERSION="$(head -n1 </proc/driver/nvidia/version | awk '{ print $8 }')"
+NVIDIA_VERSION=$(head -n1 </proc/driver/nvidia/version | awk '{ print $8 }')
 EOF
-echo 'The ".env"file has been generated.'
+echo 'The ".env" file has been generated.'
