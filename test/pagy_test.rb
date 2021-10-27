@@ -410,4 +410,15 @@ describe 'pagy' do
       _(Pagy.new(@vars3.merge(count: 100, size: [])).series).must_equal []
     end
   end
+
+  describe 'labels' do
+    it 'returns the current page label' do
+      _(Pagy.new(count: 1000, page: 11).label).must_equal '11'
+    end
+    it 'returns any page label' do
+      p = Pagy.new(count: 1000, page: 11)
+      _(p.label_for(3)).must_equal '3'
+      _(p.label_for(11)).must_equal '11'
+    end
+  end
 end

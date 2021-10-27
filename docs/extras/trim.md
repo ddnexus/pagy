@@ -41,7 +41,7 @@ Pagy::DEFAULT[:trim_extra] = false   # default true
 
 You can use the `:trim_extra` variable to opt-out of trimming even when the extra is required (trimming by default).
 
-You can set the `Pagy::DEFAULT[:use_trim_extra]` default to `false` if you want to explicitly pass the `trim_extra: true` variable in order to trim the page param.
+You can set the `Pagy::DEFAULT[:trim_extra]` default to `false` if you want to explicitly pass the `trim_extra: true` variable in order to trim the page param.
 
 ## Methods
 
@@ -57,4 +57,4 @@ Sub-method called only by the `pagy_link_proc` method, it removes the the `:page
 
 Override this method if you are [Customizing the urls](../how-to.md#customizing-the-url).
 
-If you use a `pagy_*nav_js`  helper you should customize the `Pagy.trim` javascript function instead.
+If you use a `pagy_*nav_js` helper you should customize also the `Pagy.trim` javascript function.

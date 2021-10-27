@@ -32,15 +32,6 @@ class Pagy # :nodoc:
                              'the items for the unit by selecting the records with Time from pagy.from to pagy.to'
       end
     end
-
-    # Additions for the Frontend module
-    module Frontend
-      # Change the text shown in the nav bar links to the actual unit of each page.
-      def pagy_labeler(pagy, num)
-        pagy.is_a?(Calendar) ? pagy.page_label(num) : num
-      end
-    end
   end
   Backend.prepend CalendarExtra::Backend
-  Frontend.prepend CalendarExtra::Frontend
 end

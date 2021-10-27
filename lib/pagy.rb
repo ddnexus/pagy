@@ -71,6 +71,15 @@ class Pagy
     series
   end
 
+  # Allow the customization of the output (overridden by the calendar extra)
+  def label_for(page)
+    page.to_s
+  end
+
+  def label
+    @page.to_s
+  end
+
   protected
 
   # Apply defaults, cleanup blanks and set @vars

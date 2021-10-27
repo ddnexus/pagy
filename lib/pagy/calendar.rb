@@ -32,8 +32,8 @@ class Pagy # :nodoc:
     end
 
     # Generate a label for each page, with the specific `Time` period it refers to
-    def page_label(num = @page, format = nil)
-      snap = snap(num.to_i)
+    def label_for(page, format = nil)
+      snap = snap(page.to_i)
       format ||= @vars[:"#{@unit}_format"]
       case @unit
       when :year  then new_time(@initial.year + snap)
@@ -44,8 +44,8 @@ class Pagy # :nodoc:
       end.strftime(format)
     end
 
-    def current_page_label(format = nil)
-      page_label(@page, format)
+    def label(format = nil)
+      label_for(@page, format)
     end
 
     DAY  = 60 * 60 * 24

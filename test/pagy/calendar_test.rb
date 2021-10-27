@@ -231,11 +231,27 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe '#current_page_label' do
+  describe '#label' do
     it 'uses the default and custom format' do
       p = pagy(unit: :month, order: :desc, page: 2)
-      _(p.current_page_label).must_equal '2023-10'
-      _(p.current_page_label('%B %Y')).must_equal 'October 2023'
+      _(p.label).must_equal '2023-10'
+      _(p.label('%B %Y')).must_equal 'October 2023'
+    end
+  end
+
+  describe '#label_for' do
+    %i[year month week day].each do |unit|
+      it "labels the #{unit}" do
+        p = pagy(unit: unit)
+        _(p.label_for(1)).must_rematch
+        _(p.label_for(2)).must_rematch
+      end
+    end
+    it 'raise for unknown unit' do
+      p = pagy(unit: :year)
+      p.instance_variable_set(:@unit, :unknown)
+      _ { p.label_for(1) }.must_raise Pagy::InternalError
+      _ { p.label_for(2) }.must_raise Pagy::InternalError
     end
   end
 end

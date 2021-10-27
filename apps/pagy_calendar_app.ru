@@ -72,7 +72,7 @@ class PagyCalendarApp < Sinatra::Base
   end
 
   # Controller action
-  # Notice that with ActiveRecord collections the pagy_calendar calls don't generate any extra DB queries
+  # Notice that with ActiveRecord collections the extra pagy_calendar calls don't generate any extra DB query
   # They just refine the ActiveRecord::Relation that will get executed later in the view.
   get '/' do
     collection = MockCollection::Calendar.new
@@ -124,7 +124,7 @@ __END__
 
   <!-- page info -->
   <div class="alert alert-primary" role="alert">
-    <%= "#{pagy_info(@pagy)} for <b>#{@month_pagy.current_page_label('%B %Y')}</b>" %>
+    <%= "#{pagy_info(@pagy)} for <b>#{@month_pagy.label('%B %Y')}</b>" %>
   </div>
 
   <!-- page records -->

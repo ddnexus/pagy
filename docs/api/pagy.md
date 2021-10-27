@@ -59,6 +59,30 @@ _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and 
 
 The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to create the object.
 
+### series(...)
+
+This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` argument (only useful for extras), defaulted on the `:size` variable.
+
+**Notice**: A `:gap` is added only where the series is missing at least two pages. When the series is missing only one page, the `:gap` is replaced with the page link of the actual missing page. That's because the page link uses the same space of the `...` gap but it is more useful.
+
+The nav helpers and the templates basically loop through this array and render the correct item by simply checking its type:
+
+- if the item is an `Integer` then it is a page link
+- if the item is a `String` then it is the current page
+- if the item is the `:gap` symbol then it is a gap in the series
+
+That is self-contained, simple and efficient.
+
+**Notice**: This method returns an empty array if the passed `size` (i.e. the `:size` variable by default) is set to an empty array. Useful to totally skip the generation of page links in the frontend.
+
+### label
+
+It returns the current page label that will get displayed in the helpers/templates. Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances.
+
+### label_for(page)
+
+It returns the page label that will get displayed in the helpers/templates. Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances.
+
 ## Variables
 
 All the variables passed to the new method will be merged with the `Pagy::DEFAULT` hash and will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
@@ -115,22 +139,6 @@ Pagy exposes all the instance variables needed for the pagination through a few 
 | `vars`   | The variables hash                                                                                                 |
 | `params` | The `:params` variable (`Hash` or `Proc`)                                                                          |
 
-### series(...)
-
-This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` argument (only useful for extras), defaulted on the `:size` variable.
-
-**Notice**: A `:gap` is added only where the series is missing at least two pages. When the series is missing only one page, the `:gap` is replaced with the page link of the actual missing page. That's because the page link uses the same space of the `...` gap but it is more useful.
-
-The nav helpers and the templates basically loop through this array and render the correct item by simply checking its type:
-
-- if the item is an `Integer` then it is a page link
-- if the item is a `String` then it is the current page
-- if the item is the `:gap` symbol then it is a gap in the series
-
-That is self-contained, simple and efficient.
-
-**Notice**: This method returns an empty array if the passed `size` (i.e. the `:size` variable by default) is set to an empty array. Useful to totally skip the generation of page links in the frontend.
-
 ### Lowest limit analysis
 
 The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has the following peculiar attributes:
@@ -174,4 +182,4 @@ Mostly useful if you want to rescue from bad user input (e.g. illegal URL manipu
 
 ### Pagy::OverflowError
 
-A subclass of `Pagy::VariableError`: it is raised when the `:page` variable exceed the maximum possible value calculated for the `:count`, i.e. the `:page` variable is in the correct range, but it's not consistent with the current `:count`. That may happen when the `:count` has been reduced after a page link has been generated (e.g. some record has been just removed from the DB). See also the [overflow](../extras/overflow.md) extra.
+A subclass of `Pagy::VariableError`: it is raised when the `:page` variable exceeds the maximum possible value calculated for the `:count`, i.e. the `:page` variable is in the correct range, but it's not consistent with the current `:count`. That may happen when the `:count` has been reduced after a page link has been generated (e.g. some record has been just removed from the DB). See also the [overflow](../extras/overflow.md) extra.

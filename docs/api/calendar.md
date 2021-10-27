@@ -79,24 +79,15 @@ Here is the list of what makes no sense or it is not supported in calendar pagin
 - `pagy_info` and `*_nav_js` helpers
 - `gearbox` extra
 - `items` extra   
-- `arel`
-- `array` [^1]
-- `elasticsearch_rails` [^1]
-- `searchkick` [^1]
-- `meilisearch` [^1]
+- `arel` extra
+- `array`, `elasticsearch_rails`, `searchkick`, `meilisearch` extras, however you can still calendar-paginate that collections by following the logic explained in the [calendar extra](../extras/calendar.md)
 
 ## Methods
 
-### current_page_label(format = nil)
+### label(format = nil)
 
-This method generates a label for the page, with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
+This method generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
   
-### page_label(num = @page, format = nil)
+### label_for(page, format = nil)
 
-This method takes a page num (`Integer` or `String`) and generates a label for the page, with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
-
-It is currently used as the default `pagy_labeler` by the [calendar extra](../extras/calendar.md).
-
-#### Notes
-
-[^1]: _You can still calendar-paginate `Array`, `ElasticsearchRails`, `Searchkick` and `Meilisearch` objects  without using the backend extra, by following the logic explained in the calendar extra._
+This method takes a page num (`Integer` or `String`) and generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
