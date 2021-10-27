@@ -12,7 +12,7 @@ Code Issues are reserved for real, reproducible pagy-code issues. If you are not
 
 By following the steps below you will either solve your problem or ensure that it's a real reproducible issue to fix.
 
-WARNING: CODE ISSUES NOT FOLLOWING THIS TEMPLATE WILL BE DELETED WITHOUT NOTICE 
+WARNING: CODE ISSUES NOT FOLLOWING THIS TEMPLATE MAY BE DELETED WITHOUT NOTICE 
 
 -->
 
@@ -24,6 +24,7 @@ WARNING: CODE ISSUES NOT FOLLOWING THIS TEMPLATE WILL BE DELETED WITHOUT NOTICE
    - [ ] Simple step by step list that would work in IRB with the [Pagy::Console](https://ddnexus.github.io/pagy/api/console)
    - [ ] Plain ruby file that can run as `ruby my-problem.rb`
    - [ ] Edited copy of the single file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru)
+   - [ ] Edited copy of the single file [rails_inline_output.rb](https://github.com/ddnexus/pagy/blob/master/apps/rails_inline_output.rb)
    - [ ] Link of my own branch forked from pagy, which contains an added test file  
    - [ ] Link of my own branch forked from one branch of the [Pagy Rails App](https://github.com/benkoshy/pagy-rails)
    - [ ] Link of a standalone `docker image` downloadable from a docker repository (e.g. dockerhub.com)

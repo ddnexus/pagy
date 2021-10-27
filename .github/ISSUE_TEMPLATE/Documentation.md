@@ -10,7 +10,7 @@ assignees: ''
 
 By following the steps below you will either solve your problem or ensure that it's a real documentation issue.
 
-WARNING: DOCUMENTATION ISSUES NOT FOLLOWING THIS TEMPLATE WILL BE DELETED WITHOUT NOTICE 
+WARNING: DOCUMENTATION ISSUES NOT FOLLOWING THIS TEMPLATE MAY BE DELETED WITHOUT NOTICE 
 
 -->
 
