@@ -107,3 +107,11 @@ The following optional positional arguments are passed with keywords arguments i
   - Fix for ignoring the items_extra variable
   - Replaced request.GET with request.params to enable POST pagination
   - Refactoring of Mock test classes for better handling of params
+
+## Version 5.1.3
+
+- A few details tag in the README should be opened by default
+- Documentation improvements
+- Fix for rails problem with internal params in pagy URL (closes #341)
+- Small improvements in code and docs
+- Added single action standalone rails_inline_output.rb
