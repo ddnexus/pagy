@@ -11,7 +11,7 @@
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
 [![Chat](http://img.shields.io/badge/gitter-ruby--pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
 
-## 🏆 The Best Pagination Ruby Gem.
+## 🏆 The Best Pagination Ruby Gem 🥇
 
 ### ~ 40x Faster!
 
@@ -38,6 +38,10 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html) for full details.
 
 </details>
+
+## 👍 If you like Pagy, give it a star! ⭐  
+
+Thank you for showing your support!
 
 ## 🤩 It does it all. Better.
 
