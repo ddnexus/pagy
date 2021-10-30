@@ -2,29 +2,7 @@
 
 ## Version 5.0.0
 
-### Breaking changes - Simple search and replace
-
-There are a few renaming that have not been deprecated in previous versions because they are extremely easy to fix with simple search and replace (while implementing deprecations would have been detrimental to performance and complex for no reason)
-
-#### Consistency renaming
-
-A few elements have been renamed: you code may or may not contain them. Just search and replace the following strings:
-
-- Rename `Pagy::VARS` to `Pagy::DEFAULT`
-- Rename `enable_items_extra` to `items_extra`
-- Rename `enable_trim_extra` to `trim_extra`
-- Rename `Pagy::Helpers` to `Pagy::UrlHelpers`
-- Rename `pagy_get_params` to `pagy_massage_params`
-
-#### Items accessor
-
-The items accessor does not adjust for the actual items in the last page anymore. This should not affect normal usage, so you can ignore this change unless you build something on that assumption.
-
-If your code is relying on the actual number of items **in** the page, then just replace `@pagy.items` with `@pagy.in` wherever you meant that.
-
-FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the requested items), while the `@pagy.in` returns the actual items in the page (which could be less than the `items` when the page is the last page)
-
-### Breaking changes - Code update
+### Breaking changes - 1. Code update
 
 Pagy 4 dropped the compatibility for old ruby versions `>2.5` and started to refactor the code using more modern syntax and paradigms and better performance. It deprecated the legacy ones, printing deprecation warnings and upgrading instruction in the log, but still supporting its legacy API. Pagy 5.0.0 cleans up and removes all that transitional support code.
 
@@ -56,6 +34,28 @@ The following optional positional arguments are passed with keywords arguments i
 - The `item_name` string with the `item_name` keyword
 - The `extra|link_extra` string with the `link_extra` keyword
 - The `text` string with the `text` keyword
+
+### Breaking changes - 2. Simple search and replace
+
+There are a few renaming that have not been deprecated in previous versions because they are extremely easy to fix with simple search and replace (while implementing deprecations would have been detrimental to performance and complex for no reason)
+
+#### Consistency renaming
+
+A few elements have been renamed: you code may or may not contain them. Just search and replace the following strings:
+
+- Rename `Pagy::VARS` to `Pagy::DEFAULT`
+- Rename `enable_items_extra` to `items_extra`
+- Rename `enable_trim_extra` to `trim_extra`
+- Rename `Pagy::Helpers` to `Pagy::UrlHelpers`
+- Rename `pagy_get_params` to `pagy_massage_params`
+
+#### Items accessor
+
+The items accessor does not adjust for the actual items in the last page anymore. This should not affect normal usage, so you can ignore this change unless you build something on that assumption.
+
+If your code is relying on the actual number of items **in** the page, then just replace `@pagy.items` with `@pagy.in` wherever you meant that.
+
+FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the requested items), while the `@pagy.in` returns the actual items in the page (which could be less than the `items` when the page is the last page)
 
 ### Changes
 

@@ -11,7 +11,7 @@
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
 [![Chat](http://img.shields.io/badge/gitter-ruby--pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
 
-## 🏆 The best pagination gem.
+## 🏆 The Best Pagination Ruby Gem.
 
 ### ~ 40x Faster!
 

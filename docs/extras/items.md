@@ -109,6 +109,4 @@ _(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
 
 When the items number is changed with the selector, pagy will reload the pagination UI using the selected items per page. It will also request the _right_ page number calculated in order to contain the first item of the previously displayed page. That way the new displayed page will roughly show the same items in the collection before the items change.
 
-This method can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag. Since the internal automatic id generation is based on the code line where you use the helper, you _must_ pass an explicit id if you are going to use more than one `*_js` call in the same line for the same file.
-
-**Notice**: passing an explicit id is also a bit faster than having pagy to generate one.
+This method can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag.
