@@ -1,7 +1,8 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/support
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
+  # Extra support for features like: incremental, auto-incremental and infinite pagination
   module SupportExtra
     # Return the previous page URL string or nil
     def pagy_prev_url(pagy)

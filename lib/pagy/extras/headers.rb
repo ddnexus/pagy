@@ -3,7 +3,7 @@
 
 require 'pagy/url_helpers'
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:headers] = { page:  'Current-Page',
                         items: 'Page-Items',
                         count: 'Total-Count',

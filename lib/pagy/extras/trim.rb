@@ -1,9 +1,10 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/trim
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:trim_extra] = true   # extra enabled by default
 
+  # Remove the page=1 param from the first page link
   module TrimExtra
     # Override the original pagy_link_proc.
     # Call the pagy_trim method if the trim_extra is enabled.

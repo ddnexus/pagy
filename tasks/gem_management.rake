@@ -13,7 +13,7 @@ end
 desc 'Build the gem, checking the manifest first'
 task build: 'manifest:check'
 
-module Bundler
+module Bundler # :nodoc: all
   class GemHelper
     def version_tag
       "#{@tag_prefix}#{version}"   # remove that stupid 'v' prepended to the version number

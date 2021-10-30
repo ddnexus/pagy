@@ -1,8 +1,8 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/array
 # frozen_string_literal: true
 
-class Pagy
-  # Add specialized backend methods to paginate array collections
+class Pagy # :nodoc:
+  # Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
   module ArrayExtra
     private
 

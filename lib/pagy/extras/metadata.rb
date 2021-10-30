@@ -3,7 +3,7 @@
 
 require 'pagy/url_helpers'
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:metadata] = %i[ scaffold_url first_url prev_url page_url next_url last_url
                            count page items vars pages last in from to prev next series ]
 

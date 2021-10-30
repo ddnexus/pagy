@@ -3,9 +3,10 @@
 
 require 'pagy/countless'
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:countless_minimal] = false
 
+  # Paginate without the need of any count, saving one query per rendering
   module CountlessExtra
     private
 

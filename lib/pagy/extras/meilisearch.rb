@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:meilisearch_search_method] ||= :pagy_search
 
+  # Paginate Meilisearch results
   module MeilisearchExtra
-    module Meilisearch
+    module Meilisearch # :nodoc:
       # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options
       def pagy_meilisearch(term = nil, **vars)

@@ -47,8 +47,8 @@ Pagy::DEFAULT[:trim_extra] = false # opt-in trim
 # Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
 Pagy::DEFAULT.freeze
 
-# Sinatra application
 require 'sinatra/base'
+# Sinatra application
 class PagyStandaloneApp < Sinatra::Base
   configure do
     enable :inline_templates

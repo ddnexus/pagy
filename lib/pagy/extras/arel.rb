@@ -1,7 +1,8 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/arel
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
+  # Better performance of grouped ActiveRecord collections
   module ArelExtra
     private
 

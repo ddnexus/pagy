@@ -2,7 +2,7 @@
 
 require 'digest'
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:steps] = false # default false will use {0 => @vars[:size]}
 
   module SharedExtra

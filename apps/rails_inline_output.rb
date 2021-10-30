@@ -32,6 +32,7 @@ Pagy::DEFAULT[:items] = 20
 Pagy::DEFAULT[:metadata] = %i[first_url last_url]
 Pagy::DEFAULT[:overflow] = :empty_page
 
+# Rails app
 class TestApp < Rails::Application
   config.eager_load = 'development'
   config.consider_all_requests_local = true
@@ -46,6 +47,7 @@ end
 
 class Record < ActiveRecord::Base; end
 
+# App controller
 class TestController < ActionController::Base
   include Pagy::Backend
 

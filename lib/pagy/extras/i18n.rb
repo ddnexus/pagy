@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/i18n
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
   # Use ::I18n gem
   module I18nExtra
     def pagy_t(key, **opts)

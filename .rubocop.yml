@@ -50,8 +50,6 @@ Style/CommentedKeyword:
   Enabled: false
 Style/EmptyCaseCondition:
   Enabled: false
-Style/Documentation:
-  Enabled: false
 
 # these cops are disabled only in the test files in order to
 # allow to copy and paste the failed output for test reconciliation

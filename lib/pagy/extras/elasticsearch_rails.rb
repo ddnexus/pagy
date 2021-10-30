@@ -1,9 +1,10 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/elasticsearch_rails
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:elasticsearch_rails_search_method] ||= :pagy_search
 
+  # Paginate ElasticsearchRails response objects
   module ElasticsearchRailsExtra
     module_function
 
@@ -17,7 +18,7 @@ class Pagy
       total.is_a?(Hash) ? total['value'] : total
     end
 
-    module ElasticsearchRails
+    module ElasticsearchRails # :nodoc:
       # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options.
       # It also pushes to the same array an optional method call.

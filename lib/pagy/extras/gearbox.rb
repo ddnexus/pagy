@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/gearbox
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:gearbox_extra] = true # extra enabled by default
   DEFAULT[:gearbox_items] = [15, 30, 60, 100]
 

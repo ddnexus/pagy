@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/overflow
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:overflow] = :empty_page
 
   # Handles OverflowError exceptions with different options

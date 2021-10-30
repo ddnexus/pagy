@@ -2,7 +2,8 @@
 # frozen_string_literal: true
 
 require 'uri'
-class Pagy
+
+class Pagy # :nodoc:
   # Use pagy without any request object, nor Rack environment/gem, nor any defined params method,
   # even in the irb/rails console without any app or config.
   module StandaloneExtra

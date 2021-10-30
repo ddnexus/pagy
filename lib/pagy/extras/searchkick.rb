@@ -1,11 +1,12 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/searchkick
 # frozen_string_literal: true
 
-class Pagy
+class Pagy # :nodoc:
   DEFAULT[:searchkick_search_method] ||= :pagy_search
 
+  # Paginate Searchkick::Results objects
   module SearchkickExtra
-    module Searchkick
+    module Searchkick # :nodoc:
       # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options.
       # It also pushes to the same array an optional method call.

@@ -3,12 +3,14 @@
 
 require 'pagy/extras/shared'
 
-class Pagy  # Default variables for this extra
+class Pagy # :nodoc:
   DEFAULT[:items_param] = :items
   DEFAULT[:max_items]   = 100
   DEFAULT[:items_extra] = true   # extra enabled by default
 
+  # Allow the client to request a custom number of items per page with an optional selector UI
   module ItemsExtra
+    # Additions for the Backend module
     module Backend
       private
 
@@ -22,6 +24,7 @@ class Pagy  # Default variables for this extra
       end
     end
 
+    # Additions for the Frontend module
     module Frontend
       ITEMS_PLACEHOLDER = '__pagy_items__'
 
