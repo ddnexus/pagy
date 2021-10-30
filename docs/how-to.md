@@ -22,10 +22,11 @@ If you want to just play with Pagy before using it in your own app, you have 2 a
 
 1. Install Pagy:
 
-    - If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (e.g. '~> 3.5' see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
+    - If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (e.g. '~> 5.1' see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
-        ```ruby
-        gem 'pagy', '~> 3.5' # omit patch digit and use the latest if possible
+        ```ruby   
+        # IMPORTANT: The version below is an example and may be outdated. Please, check what is the latest version and use its first 2 digit 
+        gem 'pagy', '~> 5.1' # omit patch digit (will use the latest 5+)
         ```
 
     - If you don't use Bundler, install and require the Pagy gem:

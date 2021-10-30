@@ -8,7 +8,7 @@ class Pagy # :nodoc:
   # Automatically change the number of items per page depending on the page number
   # accepts an array as the :gearbox_items variable, that will determine the items for the first pages
   module GearboxExtra
-    # Setup @items based on the :items variable
+    # Setup @items based on the :gearbox_items variable
     def setup_items_var
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
@@ -19,7 +19,7 @@ class Pagy # :nodoc:
       @items = gearbox_items[@page - 1] || gearbox_items.last
     end
 
-    # Setup @pages and @last based on the :items variable
+    # Setup @pages and @last based on the :gearbox_items variable
     def setup_pages_var
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
