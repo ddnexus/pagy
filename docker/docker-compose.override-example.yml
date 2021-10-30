@@ -53,6 +53,8 @@ services:
       - /home/$USER/.config/JetBrains:/home/$USER/.config/JetBrains             # JetBrains configuration
       - /home/$USER/jb:/home/$USER/jb                                           # JetBrains CLI launchers (JetBrains Toolbox > Settings)
       # Git global config
+      - /home/$USER/.gitconfig:/home/$USER/.gitconfig                           # .gitconfig file
+      - /home/$USER/.git-credentials:/home/$USER/.git-credentials               # .git-credentials file
       - /home/$USER/.config/git:/home/$USER/.config/git:ro                      # Host global git config
       - /home/$USER/.ssh:/home/$USER/.ssh:ro                                    # Keys for github
       # Cosmetics

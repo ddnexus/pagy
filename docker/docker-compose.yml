@@ -28,10 +28,10 @@ services:
     hostname: pagy-dev
     user: $USER
     volumes:
-      - ..:/pagy # repo dir mount
-      - bundle:/usr/local/bundle
-      - user_home:/home/$USER
-      - node_modules:/pagy/test/e2e/node_modules
+      - ..:/pagy                                   # repo dir mount
+      - user_home:/home/$USER                      # home dir
+      - bundle:/usr/local/bundle                   # gem dir
+      - node_modules:/pagy/test/e2e/node_modules   # node_modules dir
     environment:
       - HTML_REPORTS    # HTML reports of test coverage from local ENV
       - CYPRESS_CACHE_FOLDER=/home/$USER/.cache/Cypress
