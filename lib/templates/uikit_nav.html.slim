@@ -14,7 +14,7 @@ ul.uk-pagination.uk-flex-center
 
     - elsif item.is_a?(String)
       li.uk-active
-        span== item
+        span== pagy_labeler(pagy, item)
 
     - elsif item == :gap
       li.uk-disabled

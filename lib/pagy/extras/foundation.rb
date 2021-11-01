@@ -17,7 +17,7 @@ class Pagy # :nodoc:
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<li>#{link.call item}</li>)                        # page link
-                when String  then %(<li class="current">#{item}</li>)                  # active page
+                when String  then %(<li class="current">#{pagy_labeler(pagy, item)}</li>)                  # active page
                 when :gap    then %(<li class="ellipsis gap" aria-hidden="true"></li>) # page gap
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end

@@ -5,7 +5,7 @@
 <% end                         -%>
 <% pagy.series.each do |item|  -%>
 <%   if    item.is_a?(Integer) -%>   <li><%== link.call(item) %></li>
-<%   elsif item.is_a?(String)  -%>   <li class="uk-active"><span><%== item %></span></li>
+<%   elsif item.is_a?(String)  -%>   <li class="uk-active"><span><%== pagy_labeler(pagy, item) %></span></li>
 <%   elsif item == :gap        -%>   <li class="uk-disabled"><span><%== pagy_t('pagy.nav.gap') %></span></li>
 <%   end                       -%>
 <% end                         -%>
