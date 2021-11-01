@@ -27,7 +27,8 @@ class Pagy # :nodoc:
           initialize vars.merge!(page: @last)       # re-run with the last page
           @vars[:page] = initial_page               # restore the initial page
         when :empty_page
-          @offset = @items = @from = @to = 0        # vars relative to the actual page
+          @offset = @in = @from = @to = 0           # vars relative to the actual page
+          @utc_from = @utc_to = @final              # calendar variables out of local_minmax
           @prev = @last                             # prev relative to the actual page
           extend Series                             # special series for :empty_page
         else
@@ -59,7 +60,7 @@ class Pagy # :nodoc:
         when :exception
           raise                                 # same as without the extra
         when :empty_page
-          @offset = @items = @from = @to = 0    # vars relative to the actual page
+          @offset = @in = @from = @to = 0    # vars relative to the actual page
           @vars[:size] = []                     # no page in the series
           self
         else
@@ -69,5 +70,6 @@ class Pagy # :nodoc:
     end
   end
   prepend OverflowExtra::Pagy
+  Calendar.prepend OverflowExtra::Pagy if defined?(Calendar)
   Countless.prepend OverflowExtra::Countless if defined?(Countless)
 end
