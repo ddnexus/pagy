@@ -84,7 +84,7 @@
 # require 'pagy/extras/shared'
 # require 'pagy/extras/metadata'
 # For performance reason, you should explicitly set ONLY the metadata you use in the frontend
-# Pagy::DEFAULT[:metadata] = [:scaffold_url, :count, :page, :prev, :next, :last]    # example
+# Pagy::DEFAULT[:metadata] = %i[scaffold_url count page prev next last]   # example
 
 # Searchkick extra: Paginate `Searchkick::Results` objects
 # See https://ddnexus.github.io/pagy/extras/searchkick

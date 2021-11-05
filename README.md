@@ -39,7 +39,7 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 
 </details>
 
-## 👍 If you like Pagy, give it a star! ⭐  
+### 👍 If you like Pagy, give it a star! ⭐  
 
 Thank you for showing your support!
 

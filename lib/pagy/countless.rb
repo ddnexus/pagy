@@ -16,7 +16,7 @@ class Pagy
 
     # Finalize the instance variables based on the fetched size
     def finalize(fetched_size)
-      raise OverflowError.new(self, :page, "to be < #{@page}") if fetched_size.zero? && @page > 1
+      raise OverflowError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
 
       @pages = @last = (fetched_size > @items ? @page + 1 : @page)
       @in    = [fetched_size, @items].min
