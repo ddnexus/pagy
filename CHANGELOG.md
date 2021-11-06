@@ -115,3 +115,13 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 - Fix for rails problem with internal params in pagy URL (closes #341)
 - Small improvements in code and docs
 - Added single action standalone rails_inline_output.rb
+
+## Version 5.2.0
+
+- Used gem-generic release-gem action
+- Docker better mounts
+- Updated npm modules and gemfiles
+- Enabled rubocop Style/Documentation cop
+- Added pagy_labeler frontend method overridable for changing the link text from a simple page number to any arbitrary string
+- Implemented calendar extra to paginate a Time periods by unit (year, month, week or day)
+- Small changes in code; updated gemfiles, tests and docs
