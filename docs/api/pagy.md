@@ -59,7 +59,7 @@ _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and 
 
 The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to create the object.
 
-### Variables
+## Variables
 
 All the variables passed to the new method will be merged with the `Pagy::DEFAULT` hash and will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
 

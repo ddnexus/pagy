@@ -6,13 +6,11 @@ class Pagy
     attr_reader :pagy, :variable, :value
 
     # Set the variables and prepare the message
-    def initialize(pagy, variable, description, value = nil)
+    def initialize(pagy, variable, description, value)
       @pagy     = pagy
       @variable = variable
       @value    = value
-      message   = +"expected :#{@variable} #{description}"
-      message  << "; got #{@value.inspect}" if value
-      super message
+      super "expected :#{@variable} #{description}; got #{@value.inspect}"
     end
   end
 

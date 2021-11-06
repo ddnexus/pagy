@@ -16,7 +16,7 @@ class Pagy # :nodoc:
       pagy.series.each do |item|
         html << case item
                 when Integer then %(<li>#{link.call item}</li>)
-                when String  then %(<li class="uk-active"><span>#{item}</span></li>)
+                when String  then %(<li class="uk-active"><span>#{pagy_labeler(pagy, item)}</span></li>)
                 when :gap    then %(<li class="uk-disabled"><span>#{pagy_t 'pagy.nav.gap'}</span></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end

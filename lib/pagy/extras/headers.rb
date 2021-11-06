@@ -38,11 +38,13 @@ class Pagy # :nodoc:
                               end.compact.to_h
       hash                  = { 'Link' => link }
       headers               = pagy.vars[:headers]
-      hash[headers[:page]]  = pagy.page.to_s         if headers[:page]
-      hash[headers[:items]] = pagy.vars[:items].to_s if headers[:items]
+      hash[headers[:page]]  = pagy.page.to_s if headers[:page]
+      if headers[:items] && !(defined?(Pagy::Calendar) && pagy.is_a?(Pagy::Calendar))  # not for Calendar
+        hash[headers[:items]] = pagy.vars[:items].to_s
+      end
       unless countless
         hash[headers[:pages]] = pagy.pages.to_s if headers[:pages]
-        hash[headers[:count]] = pagy.count.to_s if headers[:count]
+        hash[headers[:count]] = pagy.count.to_s if pagy.count && headers[:count] # count may be nil with Calendar
       end
       hash
     end

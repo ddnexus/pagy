@@ -12,7 +12,7 @@ class Pagy # :nodoc:
 
     # Return Pagy object and items
     def pagy_countless(collection, vars = {})
-      pagy = Pagy::Countless.new(pagy_countless_get_vars(collection, vars))
+      pagy = Countless.new(pagy_countless_get_vars(collection, vars))
       [pagy, pagy_countless_get_items(collection, pagy)]
     end
 

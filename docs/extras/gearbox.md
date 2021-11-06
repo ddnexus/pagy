@@ -7,11 +7,13 @@ This extra allows your app to automatically change the number of items per page 
 
 You can set this up by simply setting the `:gearbox_items` variable to an array of integers. For example, you would set the  `gearbox_items` to `[10, 20, 40, 80]` to have page `1` with `10` items, page `2` with `20`, page `3` with `40` and all the other pages with `80` items.
 
-The content of the array is not restricted neither in length nor in direction: you can pass any arbitrary sequence of integer you like, although it makes more sense to have an increasing progression of items.
+The content of the array is not restricted neither in length nor in direction: you can pass any arbitrary sequence of integer you like, although it makes more sense to have an increasing progression of items.    
+
+### Interaction with other extras
 
 Even after requiring this extra, the regular fixed pagination is still supported: you have just to temporarily disable `gearbox` with `gearbox_extra: false` in the instances that need the fixed pagination.
 
-You can also use it in presence of the the [items](items.md) extra if you follow a simple logic. The `gearbox` extra automatically handles the items per page, while the `items` extra allows the user to explicitly request a specific number of items. That's why the `items`  extra takes priority over the `gearbox` extra if both are enabled.
+You can also use it in presence of the [items](items.md) extra if you follow a simple logic. The `gearbox` extra automatically handles the items per page, while the `items` extra allows the user to explicitly request a specific number of items. That's why the `items`  extra takes priority over the `gearbox` extra if both are enabled.
 
 If you want to use the `gearbox` in some instances, you can temporarily set `items_extra: false` and the `gearbox`  will be used instead. That is a common scenario when you use the `items` extra in an API controller, while you want to use the `gearbox` in an infinite scroll pagination in another controller.
 
