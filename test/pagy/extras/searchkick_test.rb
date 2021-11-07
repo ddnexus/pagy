@@ -31,8 +31,8 @@ describe 'pagy/extras/searchkick' do
       _(args).must_equal [MockSearchkick::Model, 'a', {}, block]
     end
     it 'adds the caller and arguments' do
-      _(MockSearchkick::Model.pagy_search('a', b: 2).results).must_equal [MockSearchkick::Model, 'a', {b: 2}, nil, :results]
-      _(MockSearchkick::Model.pagy_search('a', b: 2).a('b', 2)).must_equal [MockSearchkick::Model, 'a', {b: 2}, nil, :a, 'b', 2]
+      _(MockSearchkick::Model.pagy_search('a', b: 2).results).must_equal [MockSearchkick::Model, 'a', { b: 2 }, nil, :results]
+      _(MockSearchkick::Model.pagy_search('a', b: 2).a('b', 2)).must_equal [MockSearchkick::Model, 'a', { b: 2 }, nil, :a, 'b', 2]
     end
   end
 
@@ -64,7 +64,7 @@ describe 'pagy/extras/searchkick' do
       end
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
-                                        page: 2, items: 10, link_extra: 'X')
+                                 page: 2, items: 10, link_extra: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10
@@ -75,7 +75,7 @@ describe 'pagy/extras/searchkick' do
       end
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
-                                        page: 200, items: 10, link_extra: 'X', overflow: :last_page)
+                                 page: 200, items: 10, link_extra: 'X', overflow: :last_page)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10

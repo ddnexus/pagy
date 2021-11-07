@@ -22,22 +22,22 @@ class MockApp
     I18n.t('test')
   end
 
+  class Overridden < MockApp
+    def pagy_massage_params(params)
+      params.delete('delete_me')
+      params.merge!('add_me' => 'add_me')
+    end
+  end
+
   class Calendar < MockApp
     def pagy_calendar_get_vars(collection, vars)
       super
-      vars[:local_minmax] ||= collection.minmax.map{ |t| t.getlocal(0) }
+      vars[:local_minmax] ||= collection.minmax.map { |t| t.getlocal(0) }
       vars
     end
 
     def pagy_calendar_get_items(collection, pagy)
       collection.select_page_of_records(pagy.utc_from, pagy.utc_to)
-    end
-  end
-
-  class Overridden < MockApp
-    def pagy_massage_params(params)
-      params.delete('delete_me')
-      params.merge!('add_me' => 'add_me')
     end
   end
 end

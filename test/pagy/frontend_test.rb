@@ -43,7 +43,7 @@ describe 'pagy/frontend' do
       _(app.pagy_nav(pagy, link_extra: 'link-extra')).must_include '?page=2" X link-extra rel'
     end
     it 'should raise for wrong series' do
-      _ { app.pagy_nav(PagyBuggy.new(count:100)) }.must_raise Pagy::InternalError
+      _ { app.pagy_nav(PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
     end
   end
 

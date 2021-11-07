@@ -42,7 +42,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       end
       it 'paginates records with defaults' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
-                                        MockElasticsearchRails::Model.pagy_search('a').records)
+                                 MockElasticsearchRails::Model.pagy_search('a').records)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
@@ -52,8 +52,8 @@ describe 'pagy/extras/elasticsearch_rails' do
       end
       it 'paginates with vars' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
-                                        MockElasticsearchRails::Model.pagy_search('b').records,
-                                        page: 2, items: 10, link_extra: 'X')
+                                 MockElasticsearchRails::Model.pagy_search('b').records,
+                                 page: 2, items: 10, link_extra: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10
@@ -64,8 +64,8 @@ describe 'pagy/extras/elasticsearch_rails' do
       end
       it 'paginates with overflow' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
-                                        MockElasticsearchRails::Model.pagy_search('b').records,
-                                        page: 200, items: 10, link_extra: 'X', overflow: :last_page)
+                                 MockElasticsearchRails::Model.pagy_search('b').records,
+                                 page: 200, items: 10, link_extra: 'X', overflow: :last_page)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10
@@ -92,7 +92,7 @@ describe 'pagy/extras/elasticsearch_rails' do
       end
       it 'paginates records with defaults' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
-                                        MockElasticsearchRails::ModelES7.pagy_search('a').records)
+                                 MockElasticsearchRails::ModelES7.pagy_search('a').records)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
@@ -102,8 +102,8 @@ describe 'pagy/extras/elasticsearch_rails' do
       end
       it 'paginates with vars' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
-                                        MockElasticsearchRails::ModelES7.pagy_search('b').records,
-                                        page: 2, items: 10, link_extra: 'X')
+                                 MockElasticsearchRails::ModelES7.pagy_search('b').records,
+                                 page: 2, items: 10, link_extra: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10
@@ -114,8 +114,8 @@ describe 'pagy/extras/elasticsearch_rails' do
       end
       it 'paginates with overflow' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
-                                        MockElasticsearchRails::Model.pagy_search('b').records,
-                                        page: 200, items: 10, link_extra: 'X', overflow: :last_page)
+                                 MockElasticsearchRails::Model.pagy_search('b').records,
+                                 page: 200, items: 10, link_extra: 'X', overflow: :last_page)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10

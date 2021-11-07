@@ -41,7 +41,7 @@ describe 'pagy/extras/meilisearch' do
       end
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
-                                        page: 2, items: 10, link_extra: 'X')
+                                 page: 2, items: 10, link_extra: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10
@@ -52,7 +52,7 @@ describe 'pagy/extras/meilisearch' do
       end
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
-                                        page: 200, items: 10, link_extra: 'X', overflow: :last_page)
+                                 page: 200, items: 10, link_extra: 'X', overflow: :last_page)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10

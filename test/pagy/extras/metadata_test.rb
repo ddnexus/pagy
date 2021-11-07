@@ -7,7 +7,6 @@ require 'pagy/extras/countless'
 require 'pagy/extras/metadata'
 
 require_relative '../../mock_helpers/collection'
-require_relative '../../mock_helpers/calendar_collection'
 require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/metadata' do
@@ -20,7 +19,7 @@ describe 'pagy/extras/metadata' do
       _(Pagy::DEFAULT[:metadata]).must_rematch
     end
     it 'returns the full pagy metadata' do
-      pagy, _records = app.send(:pagy, @collection, metadata: (Pagy::DEFAULT[:metadata])+[:sequels])
+      pagy, _records = app.send(:pagy, @collection, metadata: (Pagy::DEFAULT[:metadata]) + [:sequels])
       _(app.send(:pagy_metadata, pagy)).must_rematch
     end
     it 'checks for unknown metadata' do
@@ -36,7 +35,7 @@ describe 'pagy/extras/metadata' do
   describe '#pagy_metadata for Pagy::Calendar' do
     let(:calendar_app) { MockApp::Calendar.new }
     before do
-      @collection = MockCalendarCollection.new
+      @collection = MockCollection::Calendar.new
     end
     it 'checks for unknown metadata for Pagy::Calendar' do
       pagy, _records = calendar_app.send(:pagy_calendar, @collection, metadata: %i[page unknown_key])

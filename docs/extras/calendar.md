@@ -68,11 +68,19 @@ The other way is setting it dynamically for each instance. You can do so by over
 
 Pagy knows when the requested page unit starts and finishes and it calculates the `utc_from` and `utc_to` Time objects. What it cannot know is how to find the times values to query in your collection. That is why you must implement the `pagy_calendar_get_items` method as indicated in the [Synopsis](#synopsis). Just select the records with your field time `<= pagy.utc_from` and `< pagy.utc_to` and you are good to go.
 
-#### Time format conversions
+**IMPORTANT**: The logic for querying your collection shown in the following pseudo code is extremely important to get the right records, including an empty page when you use the `:empty_page` mode with the [overflow extra](overflow.md)
+  
+```
+# please adapt this logic to your actual query (and convert the time if your storage time is not UTC)
+
+collection_utc_time <= pagy.utc_from && collection_utc_time < pagy.utc_to
+```
+
+#### Time zone conversions
 
 As the name tries to suggest, `pagy.utc_from` and `pagy.utc_to` are UTC `Time` objects.
 
-That is the internal format used by most storages, but if that is not your case, you must ensure that they will get converted to the appropriate format (automatically by your ORM/driver/client or manually) before executing your query.
+That is the internal time zone used by most storages, but if that is not your case, you must ensure that they will get converted to the appropriate time zone (automatically by your ORM/driver/client or manually) before executing your query.
 
 ## Variables and Accessors
 
@@ -115,17 +123,16 @@ So if our collection can have units of unpredictable big size (which is usually 
 @pagy, @records = pagy(year_page)
 ```
 ```erb
-<%# pagination bar indicating the years as page-links %>
 <%== pagy_nav(@pagy_year) %>
+<%== pagy_info(@pagy) %> for <%== @pagy_year.page_current_label %>
 
 ... display your list of records ...
 
-<%# regular pagination bar indicating normal equal sized pages and info %>
-<%== pagy_info(@pagy) %> for <%== @pagy_year.page_label %>
 <%== pagy_nav(@pagy) %>
 ```
 
-See the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a working example of nested pagination. You can just run it and point your browser to it for a demo.
+Notice that the nesting could be also multi-level. See the single file [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a working example of 3 nesting levels: `:year` + `:month` + standard pagination.
+You can just run it from the repo root and point your browser to `http://0.0.0.0:8080` for a demo.
 
 ### Order
 

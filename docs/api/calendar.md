@@ -87,12 +87,16 @@ Here is the list of what makes no sense or it is not supported in calendar pagin
 
 ## Methods
 
-### page_label(num = @page)
+### current_page_label(format = nil)
 
-This method takes a page num (`Integer` or `String`) and generates a label for the page, with the specific `Time` period it refers to. 
-
-It can be used with the `pagy_labeler` backend method to show the navigation bar links (as the [calendar extra](../extras/calendar.md) does), and it can also be used without arguments to returns the label of the current page (useful in yur UI).
+This method generates a label for the page, with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
   
+### page_label(num = @page, format = nil)
+
+This method takes a page num (`Integer` or `String`) and generates a label for the page, with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
+
+It is currently used as the default `pagy_labeler` by the [calendar extra](../extras/calendar.md).
+
 #### Notes
 
-[^1]: _You can still calendar-paginate `Array`, `ElasticsearchRails`, `Searchkick` and `Meilisearch` objects  without using the backend extra, by following the logic explained in the [calendar extra](../extras/calendar.md)._
+[^1]: _You can still calendar-paginate `Array`, `ElasticsearchRails`, `Searchkick` and `Meilisearch` objects  without using the backend extra, by following the logic explained in the calendar extra._

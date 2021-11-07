@@ -3,12 +3,10 @@
 require 'pagy/extras/meilisearch'
 
 module MockMeilisearch
-
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
               'b' => ('b-1'..'b-1000').to_a }.freeze
 
   class Results < Array
-
     def initialize(query, params = {})
       @query = query
       @params = { offset: 0, limit: 10 }.merge(params)
@@ -26,7 +24,6 @@ module MockMeilisearch
   end
 
   class Model
-
     def self.search(*args)
       Results.new(*args)
     end
