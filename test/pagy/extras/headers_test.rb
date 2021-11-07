@@ -6,7 +6,6 @@ require 'pagy/extras/calendar'
 require 'pagy/extras/countless'
 
 require_relative '../../mock_helpers/collection'
-require_relative '../../mock_helpers/calendar_collection'
 require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/headers' do
@@ -20,7 +19,7 @@ describe 'pagy/extras/headers' do
       _(app.send(:pagy_headers, pagy)).must_rematch
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy, @collection, headers: { items:'Per-Page', count: 'Total', pages:false })
+      pagy, _records = app.send(:pagy, @collection, headers: { items: 'Per-Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch
     end
     it 'returns custom headers hash' do
@@ -44,14 +43,14 @@ describe 'pagy/extras/headers' do
   describe '#pagy_headers with Calendar' do
     let(:app) { MockApp::Calendar.new }
     before do
-      @collection = MockCalendarCollection.new
+      @collection = MockCollection::Calendar.new
     end
     it 'returns the full headers hash' do
       pagy, _records = app.send(:pagy, @collection)
       _(app.send(:pagy_headers, pagy)).must_rematch
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy, @collection, headers: { items:'Per-Page', count: 'Total', pages:false })
+      pagy, _records = app.send(:pagy, @collection, headers: { items: 'Per-Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch
     end
     it 'returns custom headers hash' do
@@ -86,7 +85,7 @@ describe 'pagy/extras/headers' do
   describe '#pagy_headers_merge with Calendar' do
     let(:app) { MockApp::Calendar.new }
     before do
-      @collection = MockCalendarCollection.new
+      @collection = MockCollection::Calendar.new
     end
     it 'returns the full headers hash' do
       pagy, _records = app.send(:pagy, @collection)

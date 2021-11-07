@@ -5,8 +5,8 @@ require 'pagy/calendar'
 require 'pagy/countless'
 require 'pagy/extras/overflow'
 
-DAY = 60*60*24
-Pagy::DEFAULT[:local_minmax] = [Time.new(2021, 11, 4), Time.new(2021, 11, 4) + (DAY*10)].freeze
+DAY = 60 * 60 * 24
+Pagy::DEFAULT[:local_minmax] = [Time.new(2021, 11, 4), Time.new(2021, 11, 4) + (DAY * 10)].freeze
 
 describe 'pagy/extras/overflow' do
   let(:pagy_vars)      { { page: 100, items: 10, count: 103, size: [3, 2, 2, 3] } }

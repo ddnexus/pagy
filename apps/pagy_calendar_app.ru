@@ -42,7 +42,7 @@ Pagy::DEFAULT[:month_format] = '%b'
 Pagy::DEFAULT.freeze
 
 # Simple array-based collection that acts as standard DB collection
-require_relative '../test/mock_helpers/calendar_collection'
+require_relative '../test/mock_helpers/collection'
 
 require 'sinatra/base'
 # Sinatra application
@@ -90,7 +90,7 @@ class PagyCalendarApp < Sinatra::Base
   # Notice that with ActiveRecord collections the pagy_calendar calls don't generate any extra DB queries
   # They just refine the ActiveRecord::Relation that will get executed later in the view.
   get '/' do
-    collection = MockCalendarCollection.new
+    collection = MockCollection::Calendar.new
     @year_pagy, year_page   = pagy_calendar(collection, page_param: :year_page, unit: :year, size: [1, 1, 1, 1],
                                             params: { new_year: true })
     @month_pagy, month_page = pagy_calendar(year_page, page_param: :month_page, unit: :month, size: [0, 12, 12, 0],

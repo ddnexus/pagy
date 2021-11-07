@@ -3,14 +3,14 @@
 require_relative '../../test_helper'
 require 'pagy/extras/calendar'
 
-require_relative '../../mock_helpers/calendar_collection'
+require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 require "ostruct"
 
 describe 'pagy/extras/calendar' do
   let(:app) { MockApp::Calendar.new }
   before do
-    @collection = MockCalendarCollection.new
+    @collection = MockCollection::Calendar.new
   end
 
   describe '#pagy_calendar' do
@@ -23,14 +23,14 @@ describe 'pagy/extras/calendar' do
     end
     it 'selects :year for the pages and check the total' do
       total = 0
-      pagy, entries = app.send(:pagy_calendar, @collection, unit: :year, size: [1, 4, 4, 1], page: 1 )
+      pagy, entries = app.send(:pagy_calendar, @collection, unit: :year, size: [1, 4, 4, 1], page: 1)
       _(pagy.series).must_equal ["1", 2, 3]
       _(pagy.pages).must_equal 3
       _(pagy.prev).must_be_nil
       _(pagy.next).must_equal 2
       _(entries.to_a).must_rematch
       total += entries.size
-      pagy, entries = app.send(:pagy_calendar, @collection, unit: :year, page: 2 )
+      pagy, entries = app.send(:pagy_calendar, @collection, unit: :year, page: 2)
       _(pagy.series).must_equal [1, "2", 3]
       _(pagy.pages).must_equal 3
       _(pagy.prev).must_equal 1
@@ -46,7 +46,7 @@ describe 'pagy/extras/calendar' do
       _(total).must_equal @collection.size
     end
     it 'selects :month for the first page' do
-      pagy, entries = app.send(:pagy_calendar, @collection, size: [1, 4, 4, 1], page: 1 )
+      pagy, entries = app.send(:pagy_calendar, @collection, size: [1, 4, 4, 1], page: 1)
       _(pagy.series).must_equal ["1", 2, 3, 4, 5, :gap, 26]
       _(pagy.pages).must_equal 26
       _(pagy.prev).must_be_nil
@@ -68,7 +68,7 @@ describe 'pagy/extras/calendar' do
       _(entries.to_a).must_rematch
     end
     it 'selects :week for the first page' do
-      pagy, entries = app.send(:pagy_calendar, @collection, unit: :week, size: [1, 4, 4, 1], page: 1 )
+      pagy, entries = app.send(:pagy_calendar, @collection, unit: :week, size: [1, 4, 4, 1], page: 1)
       _(pagy.series).must_equal ["1", 2, 3, 4, 5, :gap, 109]
       _(pagy.pages).must_equal 109
       _(pagy.prev).must_be_nil
@@ -76,7 +76,7 @@ describe 'pagy/extras/calendar' do
       _(entries.to_a).must_rematch
     end
     it 'selects :week for an intermediate page' do
-      pagy, entries = app.send(:pagy_calendar, @collection, unit: :week, page: 25 )
+      pagy, entries = app.send(:pagy_calendar, @collection, unit: :week, page: 25)
       _(pagy.series).must_equal [1, :gap, 21, 22, 23, 24, "25", 26, 27, 28, 29, :gap, 109]
       _(pagy.prev).must_equal 24
       _(pagy.next).must_equal 26
@@ -90,8 +90,8 @@ describe 'pagy/extras/calendar' do
       _(entries.to_a).must_rematch
     end
     it 'selects :day for the first page' do
-      collection = MockCalendarCollection.new(@collection[0,40])
-      pagy, entries = app.send(:pagy_calendar, collection, unit: :day, size: [1, 4, 4, 1], page: 1 )
+      collection = MockCollection::Calendar.new(@collection[0, 40])
+      pagy, entries = app.send(:pagy_calendar, collection, unit: :day, size: [1, 4, 4, 1], page: 1)
       _(pagy.series).must_equal ["1", 2, 3, 4, 5, :gap, 60]
       _(pagy.pages).must_equal 60
       _(pagy.prev).must_be_nil
@@ -99,15 +99,15 @@ describe 'pagy/extras/calendar' do
       _(entries.to_a).must_rematch
     end
     it 'selects :day for an intermediate page' do
-      collection = MockCalendarCollection.new(@collection[0,40])
-      pagy, entries = app.send(:pagy_calendar, collection, unit: :day, page: 25 )
+      collection = MockCollection::Calendar.new(@collection[0, 40])
+      pagy, entries = app.send(:pagy_calendar, collection, unit: :day, page: 25)
       _(pagy.series).must_equal [1, :gap, 21, 22, 23, 24, "25", 26, 27, 28, 29, :gap, 60]
       _(pagy.prev).must_equal 24
       _(pagy.next).must_equal 26
       _(entries.to_a).must_rematch
     end
     it 'selects :day for the last page' do
-      collection = MockCalendarCollection.new(@collection[0,40])
+      collection = MockCollection::Calendar.new(@collection[0, 40])
       pagy, entries = app.send(:pagy_calendar, collection, unit: :day, page: 60)
       _(pagy.series).must_equal [1, :gap, 56, 57, 58, 59, "60"]
       _(pagy.prev).must_equal 59
@@ -118,19 +118,19 @@ describe 'pagy/extras/calendar' do
 
   describe '#pagy_labeler' do
     it 'labels the :year nav' do
-      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :year, size: [1, 4, 4, 1], page: 1 )
+      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :year, size: [1, 4, 4, 1], page: 1)
       _(app.pagy_nav(pagy)).must_rematch
     end
     it 'labels the :month nav' do
-      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :month, size: [1, 4, 4, 1], page: 1 )
+      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :month, size: [1, 4, 4, 1], page: 1)
       _(app.pagy_nav(pagy)).must_rematch
     end
     it 'labels the :week nav' do
-      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :week, size: [1, 4, 4, 1], page: 1 )
+      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :week, size: [1, 4, 4, 1], page: 1)
       _(app.pagy_nav(pagy)).must_rematch
     end
     it 'labels the :day nav' do
-      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :day, size: [1, 4, 4, 1], page: 1 )
+      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :day, size: [1, 4, 4, 1], page: 1)
       _(app.pagy_nav(pagy)).must_rematch
     end
     it 'return nothing for unknown unit' do

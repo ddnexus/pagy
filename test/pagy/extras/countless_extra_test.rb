@@ -37,7 +37,7 @@ describe 'pagy/extras/countless' do
       _(pagy.next).must_be_nil
     end
     it 'returns empty series for empty :size variable for first page' do
-      pagy, = app.send(:pagy_countless, @collection, size: [], page: 1 )
+      pagy, = app.send(:pagy_countless, @collection, size: [], page: 1)
       _(pagy.series).must_equal []
       _(pagy.prev).must_be_nil
       _(pagy.next).must_equal 2

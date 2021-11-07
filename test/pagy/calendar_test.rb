@@ -3,15 +3,15 @@
 require_relative '../test_helper'
 require 'pagy/calendar'
 
-def pagy(vars={})
-  default = { local_minmax: [ Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)] }
+def pagy(vars = {})
+  default = { local_minmax: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)] }
   Pagy::Calendar.new default.merge(vars)
 end
 
 describe 'pagy/calendar' do
   describe 'instance methods and variables' do
     it 'defines calendar specific attr readers' do
-      %i[utc_from utc_to unit week_offset order count= in=].each { |meth| assert_respond_to pagy, meth}
+      %i[utc_from utc_to unit week_offset order count= in=].each { |meth| assert_respond_to pagy, meth }
     end
     it 'raises Pagy::VariableError' do
       _ { pagy(unit: :unknown) }.must_raise Pagy::VariableError
@@ -160,7 +160,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 3
       _(p.last).must_equal 3
       _(pagy(unit: :year, page: 3, cycle: true).next).must_equal 1
-      _{ pagy(unit: :year, page: 4) }.must_raise Pagy::OverflowError
+      _ { pagy(unit: :year, page: 4) }.must_raise Pagy::OverflowError
     end
     it 'computes variables for :month (default)' do
       p = pagy(page: 26)
@@ -171,7 +171,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 26
       _(p.last).must_equal 26
       _(pagy(page: 26, cycle: true).next).must_equal 1
-      _{ pagy(page: 27) }.must_raise Pagy::OverflowError
+      _ { pagy(page: 27) }.must_raise Pagy::OverflowError
     end
     it 'computes variables for :week' do
       p = pagy(unit: :week, page: 109)
@@ -182,7 +182,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 109
       _(p.last).must_equal 109
       _(pagy(unit: :week, page: 109, cycle: true).next).must_equal 1
-      _{ pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
+      _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
     end
     it 'computes variables for :week with week_offset: 1 (Monday)' do
       p = pagy(unit: :week, week_offset: 1, page: 109)
@@ -193,7 +193,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 109
       _(p.last).must_equal 109
       _(pagy(unit: :week, page: 109, cycle: true).next).must_equal 1
-      _{ pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
+      _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
     end
     it 'computes variables for :week with week_offset: 6 (Saturday)' do
       p = pagy(unit: :week, week_offset: 6, page: 109)
@@ -204,7 +204,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 109
       _(p.last).must_equal 109
       _(pagy(unit: :week, page: 109, cycle: true).next).must_equal 1
-      _{ pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
+      _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
     end
     it 'computes variables for :day' do
       p = pagy(unit: :day, page: 754)
@@ -215,7 +215,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 754
       _(p.last).must_equal 754
       _(pagy(unit: :day, page: 754, cycle: true).next).must_equal 1
-      _{ pagy(unit: :day, page: 755) }.must_raise Pagy::OverflowError
+      _ { pagy(unit: :day, page: 755) }.must_raise Pagy::OverflowError
     end
   end
 

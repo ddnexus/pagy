@@ -12,13 +12,13 @@ elsif !ENV['CI']   # exclude in CI
     merge_timeout 20
     enable_coverage :branch
     add_group 'Core', %w[ lib/pagy.rb
-                        lib/pagy/backend.rb
-                        lib/pagy/console.rb
-                        lib/pagy/countless.rb
-                        lib/pagy/exceptions.rb
-                        lib/pagy/frontend.rb
-                        lib/pagy/i18n.rb
-                        lib/pagy/url_helpers.rb ]
+                          lib/pagy/backend.rb
+                          lib/pagy/console.rb
+                          lib/pagy/countless.rb
+                          lib/pagy/exceptions.rb
+                          lib/pagy/frontend.rb
+                          lib/pagy/i18n.rb
+                          lib/pagy/url_helpers.rb ]
     add_group 'Extras', 'lib/pagy/extras'
     add_group 'Tests', 'test'
   end

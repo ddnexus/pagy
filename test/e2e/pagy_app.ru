@@ -18,7 +18,7 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __dir__)
 require 'pagy'
 
 # pagy initializer
-STYLES=%w[bootstrap bulma foundation materialize navs semantic uikit].freeze
+STYLES = %w[bootstrap bulma foundation materialize navs semantic uikit].freeze
 STYLES.each { |name| require "pagy/extras/#{name}" }
 require 'pagy/extras/items'
 require 'pagy/extras/trim'
@@ -47,7 +47,6 @@ class PagyApp < Sinatra::Base
       end
       html << %(</div>)
     end
-
   end
 
   get '/pagy.js' do
@@ -65,7 +64,7 @@ class PagyApp < Sinatra::Base
       collection = MockCollection.new
       @pagy, @records = pagy(collection)
       name_fragment = name == 'navs' ? '' : "#{name}_"
-      erb :helpers, locals: {name: name, name_fragment: name_fragment}
+      erb :helpers, locals: { name: name, name_fragment: name_fragment }
     end
   end
 end

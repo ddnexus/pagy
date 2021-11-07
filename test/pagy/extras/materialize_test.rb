@@ -26,7 +26,7 @@ describe 'pagy/extras/materialize' do
       _(app.pagy_materialize_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
     it 'should raise for wrong series' do
-      _ { app.pagy_materialize_nav(PagyBuggy.new(count:100)) }.must_raise Pagy::InternalError
+      _ { app.pagy_materialize_nav(PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
     end
   end
 
