@@ -125,3 +125,9 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 - Added pagy_labeler frontend method overridable for changing the link text from a simple page number to any arbitrary string
 - Implemented calendar extra to paginate a Time periods by unit (year, month, week or day)
 - Small changes in code; updated gemfiles, tests and docs
+  
+## Version 5.2.1
+
+- A few improvements for the Calendar pagination; added the current_page_label method
+- Small refactoring of the overview extra
+- Reorganization of mock collection classes; enabled rubocop layout in tests
