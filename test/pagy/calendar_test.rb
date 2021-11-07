@@ -219,7 +219,7 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe 'snap' do
+  describe '#snap' do
     it 'inverts the order' do
       p = pagy(unit: :month, order: :desc)
       _(p.send(:snap, 1)).must_equal 25
@@ -228,6 +228,14 @@ describe 'pagy/calendar' do
       _(p.send(:snap, 24)).must_equal 2
       _(p.send(:snap, 25)).must_equal 1
       _(p.send(:snap, 26)).must_equal 0
+    end
+  end
+
+  describe '#current_page_label' do
+    it 'uses the default and custom format' do
+      p = pagy(unit: :month, order: :desc, page: 2)
+      _(p.current_page_label).must_equal '2023-10'
+      _(p.current_page_label('%B %Y')).must_equal 'October 2023'
     end
   end
 end

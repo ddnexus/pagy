@@ -31,15 +31,20 @@ class Pagy # :nodoc:
     end
 
     # Generate a label for each page, with the specific `Time` period it refers to
-    def page_label(num = @page)
+    def page_label(num = @page, format = nil)
       snap = snap(num.to_i)
+      format ||= @vars[:"#{@unit}_format"]
       case @unit
       when :year  then new_time(@initial.year + snap)
       when :month then bump_month(@initial, snap)
       when :week  then @initial + (snap * WEEK)
       when :day   then @initial + (snap * DAY)
       else raise InternalError, "expected @unit to be in [:year, :month, :week, :day]; got #{@unit.inspect}"
-      end.strftime(@vars[:"#{@unit}_format"])
+      end.strftime(format)
+    end
+
+    def current_page_label(format = nil)
+      page_label(@page, format)
     end
 
     DAY  = 60 * 60 * 24
