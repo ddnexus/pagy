@@ -79,8 +79,13 @@ describe 'pagy/extras/overflow' do
     it 'works in :empty_page mode in Pagy::Calendar' do
       pagy = Pagy::Calendar.new(calendar_vars.merge(overflow: :empty_page))
       _(pagy.page).must_equal 100
-      _(pagy.utc_from).must_equal pagy.instance_variable_get('@final')
-      _(pagy.utc_to).must_equal pagy.instance_variable_get('@final')
+      _(pagy.utc_from).must_equal pagy.instance_variable_get('@final').getutc
+      _(pagy.utc_to).must_equal pagy.instance_variable_get('@final').getutc
+      _(pagy.prev).must_equal pagy.last
+      pagy = Pagy::Calendar.new(calendar_vars.merge(overflow: :empty_page, order: :desc))
+      _(pagy.page).must_equal 100
+      _(pagy.utc_from).must_equal pagy.instance_variable_get('@initial').getutc
+      _(pagy.utc_to).must_equal pagy.instance_variable_get('@initial').getutc
       _(pagy.prev).must_equal pagy.last
     end
     it 'works in :empty_page mode in Pagy::Countless' do

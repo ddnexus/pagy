@@ -4,7 +4,7 @@
 class Pagy # :nodoc:
   DEFAULT[:overflow] = :empty_page
 
-  # Handles OverflowError exceptions with different options
+  # Handles OverflowError exceptions for different classes with different options
   module OverflowExtra
     # Support for Pagy class
     module Pagy
@@ -15,22 +15,25 @@ class Pagy # :nodoc:
 
       # Add rescue clause for different behaviors
       def initialize(vars)
-        @overflow ||= false                         # don't override if :last_page re-run the method after an overflow
+        @overflow ||= false                            # still true if :last_page re-run the method after an overflow
         super
       rescue OverflowError
-        @overflow = true                            # add the overflow flag
+        @overflow = true                               # add the overflow flag
         case @vars[:overflow]
         when :exception
-          raise                                     # same as without the extra
+          raise                                        # same as without the extra
         when :last_page
-          initial_page = @vars[:page]               # save the very initial page (even after re-run)
-          initialize vars.merge!(page: @last)       # re-run with the last page
-          @vars[:page] = initial_page               # restore the initial page
+          requested_page = @vars[:page]                # save the requested page (even after re-run)
+          initialize vars.merge!(page: @last)          # re-run with the last page
+          @vars[:page] = requested_page                # restore the requested page
         when :empty_page
-          @offset = @in = @from = @to = 0           # vars relative to the actual page
-          @utc_from = @utc_to = @final              # calendar variables out of local_minmax
-          @prev = @last                             # prev relative to the actual page
-          extend Series                             # special series for :empty_page
+          @offset = @in = @from = @to = 0              # vars relative to the actual page
+          if is_a?(Calendar)                           # only for Calendar instances
+            edge = @order == :asc ? @final : @initial  # get the edge of the overflow side (neat, but it would work with any time)
+            @utc_from = @utc_to = edge.getutc          # set both to the edge utc time (a query with >= && < will get no record)
+          end
+          @prev = @last                                # prev relative to the actual page
+          extend Series                                # special series for :empty_page
         else
           raise VariableError.new(self, :overflow, 'to be in [:last_page, :empty_page, :exception]', @vars[:overflow])
         end
@@ -39,10 +42,10 @@ class Pagy # :nodoc:
       # Special series for empty page
       module Series
         def series(size = @vars[:size])
-          @page = @last                             # series for last page
-          super(size).tap do |s|                    # call original series
-            s[s.index(@page.to_s)] = @page          # string to integer (i.e. no current page)
-            @page = @vars[:page]                    # restore the actual page
+          @page = @last                                # series for last page
+          super(size).tap do |s|                       # call original series
+            s[s.index(@page.to_s)] = @page             # string to integer (i.e. no current page)
+            @page = @vars[:page]                       # restore the actual page
           end
         end
       end
@@ -55,13 +58,13 @@ class Pagy # :nodoc:
         @overflow = false
         super
       rescue OverflowError
-        @overflow = true                        # add the overflow flag
+        @overflow = true                               # add the overflow flag
         case @vars[:overflow]
         when :exception
-          raise                                 # same as without the extra
+          raise                                        # same as without the extra
         when :empty_page
-          @offset = @in = @from = @to = 0    # vars relative to the actual page
-          @vars[:size] = []                     # no page in the series
+          @offset = @in = @from = @to = 0              # vars relative to the actual page
+          @vars[:size] = []                            # no page in the series
           self
         else
           raise VariableError.new(self, :overflow, 'to be in [:empty_page, :exception]', @vars[:overflow])
