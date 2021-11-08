@@ -131,17 +131,24 @@ So if our collection can have units of unpredictable big size (which is usually 
 <%== pagy_nav(@pagy) %>
 ```
 
-Notice that the nesting could be also multi-level. See the single file [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a working example of 3 nesting levels: `:year` + `:month` + standard pagination.
-You can just run it from the repo root and point your browser to `http://0.0.0.0:8080` for a demo.
+Notice that the nesting could be also multi-level. See the single file [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a working example of 3 nesting levels: `:year` + `:month` + standard pagination. 
+             
+If yu want a quick demo on your machine: 
+
+```shell
+git clone --depth 1 https://github.com/ddnexus/pagy
+cd pagy
+rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar_app.ru
+```
+
+Then point your browser to `http://0.0.0.0:8080`.
 
 ### Order
 
-If you set `:order` to `:desc`, the `Pagy::Calendar` will reverse the order of the page units (e.g. May, then April, then March, ...), but keep in mind that you still have to reverse the records in the page since pagy has no control over that (indeed it's your code that pulls the records). 
-
-However, the records are already filtered by the specific time unit (e.g. they are all of the same month), so you can conveniently reorder them even in the view.
+If you set `:order` to `:desc`, the `Pagy::Calendar` will reverse the order of the page units (e.g. May, then April, then March, ...), but keep in mind that you still have to reverse the records in the page since pagy has no control over that (indeed it's your code that pulls the records).
 
 ### Label format
 
 When you use this extra with a standard pagination bar you will see that each page links is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by just setting any of the `:*_format` variables wth a standard `strftime` format.
 
-You can also get the current page label with `@pagy.page_label`, which might be useful to use in your UI.
+You can also get the [current page label](../api/calendar.md#current_page_labelformat--nil) with `@pagy.current_page_label`, which might be useful to use in your UI.
