@@ -257,20 +257,20 @@ pagy = Pagy.new(count: 1000, link_extra: 'data-remote="true" class="my-class"')
 
 ## Customizing the params
 
-You may need to massage the params embedded in the URLs of the page links. You can do so by redefining the `pagy_massage_params` sub-method in your helper. It will receive the stringified-key `params` hash complete with the `page` param and it should return a possibly modified version of it.
+When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the variable `:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params. 
+
+If it is a `Proc` it will receive the **key-stringified** `params` hash complete with the `page` param and it should return a possibly modified version of it.
 
 An example using `except` and `merge!`:
 
 ```ruby
-def pagy_massage_params(params)
-  params.except('anything', 'not', 'useful').merge!('something' => 'more useful')
-end
+@pagy, @records = pagy(collection, params: ->(params){ params.except('not_useful').merge!('custom' => 'useful') })
 ```
 
-You can also use the `:params` and : `:fragment` variables to add arbitrary params to the URLs of the pages. For example:
+You can also use the `:fragment` variable to add a fragment the URLs of the pages. For example:
 
 ```ruby
-@pagy, @records = pagy(some_scope, params: {custom: 'param'}, fragment: '#your-fragment')
+@pagy, @records = pagy(collection, fragment: '#your-fragment')
 ```
 
 **IMPORTANT**: For performance reasons the `:fragment` string must include the `"#"`.

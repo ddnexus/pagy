@@ -49,6 +49,7 @@ describe 'pagy' do
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
       _ { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
+      _ { Pagy.new(count: 100, params: 12) }.must_raise Pagy::VariableError
       begin
         Pagy.new(count: 100, page: 12)
       rescue Pagy::OverflowError => e

@@ -237,6 +237,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 - [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
+- [Deprecations](https://github.com/ddnexus/pagy/blob/master/DEPRECATIONS.md)
 
 </details>
 
@@ -303,8 +304,8 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 <summary><b>What's new in 5.0</b></summary>
 
 - This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))
-- **New**: added the `calendar` extra to paginate a collection by Time unit (year, month, week or day)
-- **New**: added the `gearbox` extra to automatically change the number of items depending on the page number.
+- **New**: added the [calendar](http://ddnexus.github.io/pagy/extras/calendar) extra to paginate a collection by Time unit (year, month, week or day)
+- **New**: added the [gearbox](http://ddnexus.github.io/pagy/extras/gearbox) extra to automatically change the number of items depending on the page number.
 - Removed support for 4.0 deprecations (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
 - Big code restyling with improved performance, readability and rubocop compliance.
 
@@ -325,7 +326,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 <summary>Versioning</summary>
 
-- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for breaking changes introduced by mayor versions.
+- Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/). Please, check the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for breaking changes introduced by mayor versions. Using [pessimistic version constraint](https://guides.rubygems.org/patterns/#pessimistic-version-constraint) in your Gemfile will ensure smooth upgrades.
 
 </details>
 

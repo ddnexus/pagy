@@ -24,6 +24,7 @@ class Pagy # :nodoc:
       normalize_vars(vars)
       setup_vars(page: 1, week_offset: 0)
       setup_unit_vars
+      setup_params_var
       raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
       @prev = (@page - 1 unless @page == 1)

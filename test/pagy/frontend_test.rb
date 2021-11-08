@@ -157,11 +157,22 @@ describe 'pagy/frontend' do
     end
   end
 
-  describe '#pagy_get_params' do
+  describe '#pagy_get_params and #pagy_massage_params r' do
     it 'overrides params' do
       overridden = MockApp::Overridden.new(params: { delete_me: 'delete_me', a: 5 })
       pagy = Pagy.new count: 1000, page: 3, params: { b: 4 }, fragment: '#fragment'
-      _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&b=4&page=5&add_me=add_me#fragment"
+      assert_output nil, /\[PAGY WARNING\]/ do
+        _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&b=4&page=5&add_me=add_me#fragment"
+      end
+      app  = MockApp.new(params: { delete_me: 'delete_me', a: 5 })
+      pagy = Pagy.new(count: 1000,
+                      page: 3,
+                      fragment: '#fragment',
+                      params: lambda do |params|
+                                params.delete('delete_me')
+                                params.merge('b' => 4, 'add_me' => 'add_me')
+                              end)
+      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
     end
   end
 end
