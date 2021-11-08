@@ -131,3 +131,8 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 - A few improvements for the Calendar pagination; added the current_page_label method
 - Small refactoring of the overview extra
 - Reorganization of mock collection classes; enabled rubocop layout in tests
+
+## Version 5.2.2
+
+- Calendar docs improvements and fixes
+- Fix for missing defined?(Calendar) checks; small simplification in headers extra
