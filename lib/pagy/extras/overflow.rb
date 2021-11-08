@@ -28,7 +28,7 @@ class Pagy # :nodoc:
           @vars[:page] = requested_page                # restore the requested page
         when :empty_page
           @offset = @in = @from = @to = 0              # vars relative to the actual page
-          if is_a?(Calendar)                           # only for Calendar instances
+          if defined?(Calendar) && is_a?(Calendar)     # only for Calendar instances
             edge = @order == :asc ? @final : @initial  # get the edge of the overflow side (neat, but it would work with any time)
             @utc_from = @utc_to = edge.getutc          # set both to the edge utc time (a query with >= && < will get no record)
           end
