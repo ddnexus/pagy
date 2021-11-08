@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require 'pagy/url_helpers'
+require 'pagy/extras/calendar'
 
 class Pagy # :nodoc:
   DEFAULT[:metadata] = %i[ scaffold_url first_url prev_url page_url next_url last_url
