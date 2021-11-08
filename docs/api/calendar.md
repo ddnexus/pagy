@@ -25,16 +25,16 @@ Being a subclass of `Pagy`, `Pagy::Calendar` shares most of its superclass infra
 
 The following variables are specific of `Pagy::Calendar`.
 
-| Variable        | Description                                                                                                                                               | Default      |
-|:----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------|
-| `:local_minmax` | Required 2 items Array that you must set to the minimum and maximum `Time` from the collection. It must also be converted to the local time of your user. | `[]`         |
-| `:unit`         | Time unit for the pagination. It can be`:year`, `:month`, `:week` or `:day`                                                                               | `:month`     |
-| `:week_offset`  | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) used to adjust the starting day of the week                                                 | `0`          |
-| `:order`        | Order of pagination: it can be`:asc` or `:desc`                                                                                                           | `:asc`       |
-| `:year_format`  | String containing the `strftime` format for the `:year` time units labels                                                                                 | `'%Y'`       |
-| `:month_format` | String containing the `strftime` format for the `:month` time units labels                                                                                | `'%Y-%m'`    |
-| `:week_format`  | String containing the `strftime` format for the `:week` time units labels                                                                                 | `'%Y-%W'`    |
-| `:day_format`   | String containing the `strftime` format for the `:day` time units labels                                                                                  | `'%Y-%m-%d'` |
+| Variable        | Description                                                                                                                                              | Default      |
+|:----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------|
+| `:local_minmax` | Required 2 items Array that you must set to the minimum and maximum `Time` from the collection. You must also convert it to the local time of your user. | `[]`         |
+| `:unit`         | Time unit for the pagination. It can be`:year`, `:month`, `:week` or `:day`                                                                              | `:month`     |
+| `:week_offset`  | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) used to adjust the starting day of the week                                                | `0`          |
+| `:order`        | Order of pagination: it can be`:asc` or `:desc`                                                                                                          | `:asc`       |
+| `:year_format`  | String containing the `strftime` format for the `:year` time units labels                                                                                | `'%Y'`       |
+| `:month_format` | String containing the `strftime` format for the `:month` time units labels                                                                               | `'%Y-%m'`    |
+| `:week_format`  | String containing the `strftime` format for the `:week` time units labels                                                                                | `'%Y-%W'`    |
+| `:day_format`   | String containing the `strftime` format for the `:day` time units labels                                                                                 | `'%Y-%m-%d'` |
 
 **WARNING** You should always convert the `:local_minmax` times to be local time of your user. In order to prevent mistakes, Pagy will raise an exception if you pass UTC times.
 

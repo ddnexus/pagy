@@ -28,7 +28,7 @@ class Pagy # :nodoc:
 
     # Generates a hash structure of the headers
     def pagy_headers_hash(pagy)
-      countless             = defined?(Pagy::Countless) && pagy.is_a?(Pagy::Countless)
+      countless             = defined?(Countless) && pagy.is_a?(Countless)
       rel                   = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
       rel['last']           = pagy.last unless countless
       url_str               = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: true)
@@ -39,7 +39,7 @@ class Pagy # :nodoc:
       hash                  = { 'Link' => link }
       headers               = pagy.vars[:headers]
       hash[headers[:page]]  = pagy.page.to_s if headers[:page]
-      if headers[:items] && !(defined?(Pagy::Calendar) && pagy.is_a?(Pagy::Calendar))  # not for Calendar
+      if headers[:items] && !(defined?(Calendar) && pagy.is_a?(Calendar))  # items is not for Calendar
         hash[headers[:items]] = pagy.vars[:items].to_s
       end
       unless countless
