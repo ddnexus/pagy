@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-## What is this?
-# Self-contained, minimal rails app, to reproduce bugs/issues.
+# Self-contained, bare rails app, usable to play with pagy
+# and/or easily reproduce any pagy issue.
 
-## How do I use this?
-# Edit file as required.
-# Ensure: latest gem versions are used.
-# To run: go to terminal: `ruby debug_pagy_with_rails.rb`
+# Edit this file as you need
+
+# USAGE:
+#     ruby pagy_bare_rails.rb
 
 # NOTICE: if you get any installation error(s) with the following setup
 # temporarily remove `pagy/Gemfile` and `pagy/Gemfile.lock` from the repository
@@ -17,18 +17,17 @@ require 'bundler/inline'
 gemfile(true) do
   source 'https://rubygems.org'
 
-  ## Pick a debugger e.g.:
+  # Debuggers
+  # gem 'debug'
+
   # gem 'debase'
-  # gem 'debug', '>= 1.0.0'
   # gem 'ruby-debug-ide'
 
   # gem 'pagy'            # <--install from rubygems
   gem 'pagy', path: '../' # <-- use the local repo
 
-  # git_source(:github) { |repo| "https://github.com/#{repo}.git" }   ## Prevents MITM attacks
   # gem "rails", github: "rails/rails", branch: "main"
-
-  gem 'rails', '~> 6.1.0'
+  gem 'rails', '~> 6.1'
   gem 'actionpack'
   gem 'railties'
 end
@@ -40,6 +39,7 @@ end
 # https://ddnexus.github.io/pagy/extras
 # https://ddnexus.github.io/pagy/api/backend
 
+# Edit this section as you need
 require 'pagy/extras/metadata'
 require 'pagy/extras/overflow'
 require 'pagy/extras/trim'
@@ -49,7 +49,7 @@ Pagy::DEFAULT[:items] = 20
 Pagy::DEFAULT[:metadata] = %i[first_url last_url]
 Pagy::DEFAULT[:overflow] = :empty_page
 
-# rails set up:
+# Rails set up:
 require 'action_controller/railtie'
 require 'active_record'
 
@@ -89,9 +89,9 @@ class TestController < ActionController::Base # :nodoc:
 end
 
 class TestControllerTest < ActionDispatch::IntegrationTest # :nodoc:
-  # request helpers: https://api.rubyonrails.org/v6.1.4/classes/ActionDispatch/Integration/RequestHelpers.html
-  # available assertions: https://guides.rubyonrails.org/testing.html#available-assertions
-  # rails assertions: https://guides.rubyonrails.org/testing.html#rails-specific-assertions
+  # Request helpers: https://api.rubyonrails.org/v6.1.4/classes/ActionDispatch/Integration/RequestHelpers.html
+  # Available assertions: https://guides.rubyonrails.org/testing.html#available-assertions
+  # Rails assertions: https://guides.rubyonrails.org/testing.html#rails-specific-assertions
 
   test 'pagy json output - example' do
     get '/'

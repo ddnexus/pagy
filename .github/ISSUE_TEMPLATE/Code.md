@@ -24,7 +24,7 @@ WARNING: CODE ISSUES NOT FOLLOWING THIS TEMPLATE MAY BE DELETED WITHOUT NOTICE
    - [ ] Simple step by step list that would work in IRB with the [Pagy::Console](https://ddnexus.github.io/pagy/api/console)
    - [ ] Plain ruby file that can run as `ruby my-problem.rb`
    - [ ] Edited copy of the single file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru)
-   - [ ] Edited copy of the single file [rails_inline_output.rb](https://github.com/ddnexus/pagy/blob/master/apps/rails_inline_output.rb)
+   - [ ] Edited copy of the single file [pagy_bare_rails.rb](https://github.com/ddnexus/pagy/blob/master/apps/pagy_bare_rails.rb)
    - [ ] Link of my own branch forked from pagy, which contains an added test file  
    - [ ] Link of my own branch forked from one branch of the [Pagy Rails App](https://github.com/benkoshy/pagy-rails)
    - [ ] Link of a standalone `docker image` downloadable from a docker repository (e.g. dockerhub.com)
