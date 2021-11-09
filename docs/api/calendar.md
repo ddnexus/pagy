@@ -76,7 +76,8 @@ Being a subclass of `Pagy` this class inherit also its default variables and acc
    
 Here is the list of what makes no sense or it is not supported in calendar pagination:
 
-- `pagy_info` and `*_nav_js` helpers
+- `pagy_info` (but it works in the standard pagination nested level)
+- `*combo_nav_js` helpers (but the `*nav_js` helpers work)
 - `gearbox` extra
 - `items` extra   
 - `arel` extra

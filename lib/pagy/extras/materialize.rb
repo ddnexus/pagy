@@ -32,13 +32,13 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
       tags = { 'before' => %(<ul class="pagination">#{pagy_materialize_prev_html pagy, link}),
-               'link'   => %(<li class="waves-effect">#{mark = link.call(PAGE_PLACEHOLDER)}</li>),
+               'link'   => %(<li class="waves-effect">#{mark = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
                'active' => %(<li class="active">#{mark}</li>),
                'gap'    => %(<li class="gap disabled"><a href="#">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
 
       %(<div#{p_id} class="pagy-njs pagy-materialize-nav-js" role="navigation" aria-label="pager" #{
-          pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></div>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></div>)
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

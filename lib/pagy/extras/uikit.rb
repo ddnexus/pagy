@@ -30,13 +30,13 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => pagy_uikit_prev_html(pagy, link),
-               'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER)}</li>),
-               'active' => %(<li class="uk-active"><span>#{PAGE_PLACEHOLDER}</span></li>),
+               'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
+               'active' => %(<li class="uk-active"><span>#{LABEL_PLACEHOLDER}</span></li>),
                'gap'    => %(<li class="uk-disabled"><span>#{pagy_t 'pagy.nav.gap'}</span></li>),
                'after'  => pagy_uikit_next_html(pagy, link) }
 
       %(<ul#{p_id} class="pagy-njs pagy-uikit-nav-js uk-pagination uk-flex-center" #{
-        pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></ul>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></ul>)
     end
 
     # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

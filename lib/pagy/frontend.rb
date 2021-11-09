@@ -6,7 +6,8 @@ require 'pagy/i18n'
 
 class Pagy
   # Used for search and replace, hardcoded also in the pagy.js file
-  PAGE_PLACEHOLDER = '__pagy_page__'
+  PAGE_PLACEHOLDER  = '__pagy_page__'
+  LABEL_PLACEHOLDER = '__pagy_label__'
 
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks

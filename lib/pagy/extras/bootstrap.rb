@@ -34,13 +34,13 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
       tags = { 'before' => %(<ul class="pagination">#{pagy_bootstrap_prev_html pagy, link}),
-               'link'   => %(<li class="page-item">#{mark = link.call(PAGE_PLACEHOLDER)}</li>),
+               'link'   => %(<li class="page-item">#{mark = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
                'active' => %(<li class="page-item active">#{mark}</li>),
                'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_bootstrap_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="pagy-njs pagy-bootstrap-nav-js" aria-label="pager" #{
-          pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></nav>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

@@ -25,6 +25,19 @@ class Pagy # :nodoc:
           steps.each { |width, size| sequels[width.to_s] = series(size) }
         end
       end
+
+      def label_sequels(*); end
+    end
+
+    # Additions for Calendar class
+    module Calendar
+      def label_sequels(sequels = self.sequels)
+        {}.tap do |label_sequels|
+          sequels.each do |width, series|
+            label_sequels[width] = series.map { |item| item == :gap ? :gap : label_for(item) }
+          end
+        end
+      end
     end
 
     # Additions for the Frontend
@@ -51,5 +64,6 @@ class Pagy # :nodoc:
     end
   end
   prepend SharedExtra::Pagy
+  Calendar.prepend SharedExtra::Calendar if defined?(Calendar)
   Frontend.prepend SharedExtra::Frontend
 end

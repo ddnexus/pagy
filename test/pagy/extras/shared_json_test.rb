@@ -9,16 +9,16 @@ describe 'pagy/extras/shared_json' do
   let(:app) { MockApp.new(params: {}) }
 
   describe '#pagy_json_attr' do
-    it 'should use json' do
+    it 'uses json' do
       _(app.pagy_json_attr(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch
     end
   end
 
   describe '#pagy_marked_link' do
-    it 'should return only the "standard" link' do
+    it 'returns only the "standard" link' do
       pagy = Pagy.new(count: 100, page: 4)
       _(app.pagy_marked_link(app.pagy_link_proc(pagy))).must_rematch
-      pagy = Pagy.new(count: 100, page: 4, page_param: 'p')
+      pagy = Pagy.new(count: 100, page: 4, page_param: :p)
       _(app.pagy_marked_link(app.pagy_link_proc(pagy))).must_rematch
     end
   end

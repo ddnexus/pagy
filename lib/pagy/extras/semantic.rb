@@ -31,13 +31,13 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
       tags = { 'before' => pagy_semantic_prev_html(pagy, link),
-               'link'   => link.call(PAGE_PLACEHOLDER),
-               'active' => %(<a class="item active">#{pagy.page}</a>),
+               'link'   => link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER),
+               'active' => %(<a class="item active">#{LABEL_PLACEHOLDER}</a>),
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.nav.gap')}</div>),
                'after'  => pagy_semantic_next_html(pagy, link) }
 
       %(<div#{p_id} class="pagy-njs pagy-semantic-nav-js ui pagination menu" role="navigation" #{
-        pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></div>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></div>)
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
