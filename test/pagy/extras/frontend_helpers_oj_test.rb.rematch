@@ -1,0 +1,7 @@
+---
+"[1] pagy/extras/frontend_helpers_oj::#pagy_json_attr#test_0001_uses oj": data-pagy-json="[&quot;test_function&quot;,&quot;some-string&quot;,123,true]"
+"[2] pagy/extras/frontend_helpers_oj::#pagy_json_attr#test_0001_uses oj": data-pagy-json="[&quot;test_function&quot;,&quot;some-string&quot;,123,true,&quot;page&quot;]"
+'[1] pagy/extras/frontend_helpers_oj::#pagy_marked_link#test_0001_returns only the "standard" link': '<a
+  href="/foo?page=__pagy_page__"   style="display: none;"></a>'
+'[2] pagy/extras/frontend_helpers_oj::#pagy_marked_link#test_0001_returns only the "standard" link': '<a
+  href="/foo?p=__pagy_page__"   style="display: none;"></a>'

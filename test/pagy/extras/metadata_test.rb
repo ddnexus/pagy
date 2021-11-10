@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/shared'       # include :sequels in DEFAULT[:metadata]
+require 'pagy/extras/frontend_helpers'       # include :sequels in DEFAULT[:metadata]
 require 'pagy/extras/calendar'
 require 'pagy/extras/countless'
 require 'pagy/extras/metadata'

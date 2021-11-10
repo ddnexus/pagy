@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/shared'
+require 'pagy/extras/frontend_helpers'
 
 require_relative '../../mock_helpers/app'
 
-describe 'pagy/extras/shared_json' do
+describe 'pagy/extras/frontend_helpers_json' do
   let(:app) { MockApp.new(params: {}) }
 
   describe '#pagy_json_attr' do

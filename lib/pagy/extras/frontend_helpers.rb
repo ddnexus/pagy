@@ -5,7 +5,8 @@ require 'digest'
 class Pagy # :nodoc:
   DEFAULT[:steps] = false # default false will use {0 => @vars[:size]}
 
-  module SharedExtra
+  # Private module documented in the main classes
+  module FrontendHelpers
     # Additions for the Pagy class
     module Pagy
       # `Pagy` instance method used by the `pagy*_nav_js` helpers.
@@ -26,6 +27,7 @@ class Pagy # :nodoc:
         end
       end
 
+      # Support for the Calendar API
       def label_sequels(*); end
     end
 
@@ -63,7 +65,7 @@ class Pagy # :nodoc:
       end
     end
   end
-  prepend SharedExtra::Pagy
-  Calendar.prepend SharedExtra::Calendar if defined?(Calendar)
-  Frontend.prepend SharedExtra::Frontend
+  prepend FrontendHelpers::Pagy
+  Calendar.prepend FrontendHelpers::Calendar if defined?(Calendar)
+  Frontend.prepend FrontendHelpers::Frontend
 end
