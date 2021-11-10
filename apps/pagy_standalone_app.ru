@@ -43,6 +43,10 @@ require 'pagy/extras/items'
 # Pagy::DEFAULT[:items_extra]
 require 'pagy/extras/trim'
 Pagy::DEFAULT[:trim_extra] = false # opt-in trim
+
+require 'pagy/extras/overflow'
+Pagy::DEFAULT[:overflow] = :empty_page
+
 # require 'pagy/extras/gearbox'
 # Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
 Pagy::DEFAULT.freeze

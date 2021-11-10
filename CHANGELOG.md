@@ -136,3 +136,10 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 
 - Calendar docs improvements and fixes
 - Fix for missing defined?(Calendar) checks; small simplification in headers extra
+  
+## Version 5.2.3
+
+- Refactoring of rails_inline_input.rb (include and close #342)
+- docs: add tutorial, simplify header (#343)
+- Fix for overflow :empty_page in regular Pagy instances, not returning an empty page
+
