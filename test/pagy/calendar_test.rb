@@ -235,7 +235,7 @@ describe 'pagy/calendar' do
     it 'uses the default and custom format' do
       p = pagy(unit: :month, order: :desc, page: 2)
       _(p.label).must_equal '2023-10'
-      _(p.label('%B %Y')).must_equal 'October 2023'
+      _(p.label(format: '%B %Y')).must_equal 'October 2023'
     end
   end
 

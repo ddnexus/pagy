@@ -396,7 +396,7 @@ Pagy works out of the box with `ActiveRecord` collections. See also the [arel](h
 
 ### Paginate a decorated collection
 
-Do it in 2 steps: first get the page of records without decoration, and then apply the decoration on it. For example:
+Do it in 2 steps: first get the page of records without decoration, and then apply the decoration to it. For example:
 
 ```ruby
 @pagy, records = pagy(Post.all)
@@ -415,6 +415,10 @@ Ransack `result` returns an `ActiveRecord` collection, which can be paginated ou
 ## Paginate search results
 
 Pagy has a few of extras for gems returning search results: [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md) and [meilisearch](extras/meilisearch.md)
+
+## Paginate by date instead of a fixed number of items
+
+Use the [calendar extra](extras/calendar.md) that cann paginate a collection by calendar Time unit (year, month, week or day).
 
 ## Paginate pre-offset and pre-limited collections
 

@@ -124,7 +124,7 @@ __END__
 
   <!-- page info -->
   <div class="alert alert-primary" role="alert">
-    <%= "#{pagy_info(@pagy)} for <b>#{@month_pagy.label('%B %Y')}</b>" %>
+    <%= "#{pagy_info(@pagy)} for <b>#{@month_pagy.label(format: '%B %Y')}</b>" %>
   </div>
 
   <!-- page records -->

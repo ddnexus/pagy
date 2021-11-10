@@ -85,10 +85,13 @@ Here is the list of what makes no sense or it is not supported in calendar pagin
 
 ## Methods
 
-### label(format = nil)
+### label(**opts)
 
-This method generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
+This method generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization passed as a hash option e.g. `pagy.label(format: '%Y')`. 
   
-### label_for(page, format = nil)
+### label_for(page, **opts)
 
-This method takes a page num (`Integer` or `String`) and generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
+This method takes a page num (`Integer` or `String`) and generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization passed as a hash option e.g. `pagy.label_for(page, format: '%Y')`. 
+     
+### strftime(time, **opts)
+

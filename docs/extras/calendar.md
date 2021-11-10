@@ -74,7 +74,7 @@ Pagy knows when the requested page unit starts and finishes and it calculates th
 ```
 # please adapt this logic to your actual query (and convert the time if your storage time is not UTC)
 
-collection_utc_time <= pagy.utc_from && collection_utc_time < pagy.utc_to
+collection_utc_time >= pagy.utc_from && collection_utc_time < pagy.utc_to
 ```
 
 #### Time zone conversions
@@ -153,3 +153,9 @@ If you set `:order` to `:desc`, the `Pagy::Calendar` will reverse the order of t
 When you use this extra with a standard pagination bar you will see that each page link is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by just setting any of the `:*_format` variables wth a standard `strftime` format.
 
 You can also get the [current page label](../api/calendar.md#labelformat--nil) with `@pagy.label`, which might be useful to use in your UI.
+
+### I18n Localization
+
+Pagy implements its own faster version of the `translate` method, but does not provide any built-in support for the `localize` method.
+
+If you need to use formats with unit names (weekday names, month names, etc.) that require localization in an I18n application, you need to use the [i18n extra](i18n.md), which delegates the localization to the `I18n` gem.
