@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/foundation
 # frozen_string_literal: true
 
-require 'pagy/extras/shared'
+require 'pagy/extras/frontend_helpers'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
@@ -17,7 +17,7 @@ class Pagy # :nodoc:
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<li>#{link.call item}</li>)                        # page link
-                when String  then %(<li class="current">#{pagy_labeler(pagy, item)}</li>)                  # active page
+                when String  then %(<li class="current">#{pagy.label_for(item)}</li>)                  # active page
                 when :gap    then %(<li class="ellipsis gap" aria-hidden="true"></li>) # page gap
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
@@ -31,13 +31,13 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => %(<ul class="pagination">#{pagy_foundation_prev_html pagy, link}),
-               'link'   => %(<li>#{link.call PAGE_PLACEHOLDER}</li>),
-               'active' => %(<li class="current">#{pagy.page}</li>),
+               'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
+               'active' => %(<li class="current">#{LABEL_PLACEHOLDER}</li>),
                'gap'    => %(<li class="ellipsis gap" aria-hidden="true"></li>),
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" aria-label="Pagination" #{
-          pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></nav>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

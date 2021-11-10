@@ -71,31 +71,27 @@ class PagyCalendarApp < Sinatra::Base
     collection.select_page_of_records(pagy.utc_from, pagy.utc_to)
   end
 
-  # The `new_*` params are extra params that we add to the pagy_calendar instance (see below)
-  # they trigger the removal of the inner pagination page params and themselves from the URL.
-  def pagy_massage_params(params)
-    if params['new_year']
-      params.delete('new_year')
-      params.delete('month_page')
-      params.delete('page')
-    end
-    if params['new_month']
-      params.delete('new_month')
-      params.delete('page')
-    end
-    params
-  end
-
   # Controller action
-  # Notice that with ActiveRecord collections the pagy_calendar calls don't generate any extra DB queries
+  # Notice that with ActiveRecord collections the extra pagy_calendar calls don't generate any extra DB query
   # They just refine the ActiveRecord::Relation that will get executed later in the view.
   get '/' do
     collection = MockCollection::Calendar.new
-    @year_pagy, year_page   = pagy_calendar(collection, page_param: :year_page, unit: :year, size: [1, 1, 1, 1],
-                                            params: { new_year: true })
-    @month_pagy, month_page = pagy_calendar(year_page, page_param: :month_page, unit: :month, size: [0, 12, 12, 0],
-                                            params: { new_month: true })
-    @pagy, @records         = pagy(month_page, items: 10)
+    @year_pagy, year_page = pagy_calendar(collection, page_param:  :year_page,
+                                                      unit:        :year,
+                                                      size:        [1, 1, 1, 1],
+                                                      params:      lambda do |params|       # remove inner page params
+                                                                      params.delete('month_page')
+                                                                      params.delete('page')
+                                                                      params
+                                                                    end)
+    @month_pagy, month_page = pagy_calendar(year_page, page_param:  :month_page,
+                                                       unit:        :month,
+                                                       size:        [0, 12, 12, 0],
+                                                       params:      lambda do |params|      # remove inner page params
+                                                                      params.delete('page')
+                                                                      params
+                                                                    end)
+    @pagy, @records = pagy(month_page, items: 10)
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
@@ -128,7 +124,7 @@ __END__
 
   <!-- page info -->
   <div class="alert alert-primary" role="alert">
-    <%= "#{pagy_info(@pagy)} for <b>#{@month_pagy.current_page_label('%B %Y')}</b>" %>
+    <%= "#{pagy_info(@pagy)} for <b>#{@month_pagy.label(format: '%B %Y')}</b>" %>
   </div>
 
   <!-- page records -->

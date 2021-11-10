@@ -24,6 +24,7 @@ class Pagy # :nodoc:
       normalize_vars(vars)
       setup_vars(page: 1, week_offset: 0)
       setup_unit_vars
+      setup_params_var
       raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
       @prev = (@page - 1 unless @page == 1)
@@ -31,20 +32,24 @@ class Pagy # :nodoc:
     end
 
     # Generate a label for each page, with the specific `Time` period it refers to
-    def page_label(num = @page, format = nil)
-      snap = snap(num.to_i)
-      format ||= @vars[:"#{@unit}_format"]
-      case @unit
-      when :year  then new_time(@initial.year + snap)
-      when :month then bump_month(@initial, snap)
-      when :week  then @initial + (snap * WEEK)
-      when :day   then @initial + (snap * DAY)
-      else raise InternalError, "expected @unit to be in [:year, :month, :week, :day]; got #{@unit.inspect}"
-      end.strftime(format)
+    # It can pass along the I18n gem opts when it's used with the i18n extra
+    def label_for(page, **opts)
+      snap = snap(page.to_i)
+      time = case @unit
+             when :year  then new_time(@initial.year + snap)
+             when :month then bump_month(@initial, snap)
+             when :week  then @initial + (snap * WEEK)
+             when :day   then @initial + (snap * DAY)
+             else raise InternalError, "expected @unit to be in [:year, :month, :week, :day]; got #{@unit.inspect}"
+             end
+      opts[:format] ||= @vars[:"#{@unit}_format"]
+      strftime(time, **opts)
     end
 
-    def current_page_label(format = nil)
-      page_label(@page, format)
+    # The label for the current page
+    # It can pass along the I18n gem opts when it's used with the i18n extra
+    def label(**opts)
+      label_for(@page, **opts)
     end
 
     DAY  = 60 * 60 * 24
@@ -111,6 +116,11 @@ class Pagy # :nodoc:
       @pages    = @last = (@final - @initial).to_i / DAY
       @utc_from = (@initial + (snap * DAY)).utc
       @utc_to   = @utc_from + DAY
+    end
+
+    # The last method in the labelling chain: it is overridden by the I18n when localization is required.
+    def strftime(time, **opts)
+      time.strftime(opts[:format])
     end
 
     private

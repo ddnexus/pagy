@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/bulma
 # frozen_string_literal: true
 
-require 'pagy/extras/shared'
+require 'pagy/extras/frontend_helpers'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
@@ -18,9 +18,9 @@ class Pagy # :nodoc:
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
-                  %(<li>#{link.call item, item, %(class="pagination-link" aria-label="goto page #{item}")}</li>)
+                  %(<li>#{link.call item, pagy.label_for(item), %(class="pagination-link" aria-label="goto page #{item}")}</li>)
                 when String
-                  %(<li>#{link.call item, item,
+                  %(<li>#{link.call item, pagy.label_for(item),
                                     %(class="pagination-link is-current" aria-label="page #{item}" aria-current="page")}</li>)
                 when :gap
                   %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.nav.gap'}</span></li>)
@@ -34,17 +34,16 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => %(#{pagy_bulma_prev_next_html(pagy, link)}<ul class="pagination-list">),
-               'link'   => %(<li>#{link.call PAGE_PLACEHOLDER, PAGE_PLACEHOLDER,
+               'link'   => %(<li>#{link.call PAGE_PLACEHOLDER, LABEL_PLACEHOLDER,
                                              %(class="pagination-link" aria-label="goto page #{PAGE_PLACEHOLDER}")}</li>),
-               'active' => %(<li>#{link.call PAGE_PLACEHOLDER, PAGE_PLACEHOLDER,
+               'active' => %(<li>#{link.call PAGE_PLACEHOLDER, LABEL_PLACEHOLDER,
                                              %(class="pagination-link is-current" aria-current="page" aria-label="page #{
                                                  PAGE_PLACEHOLDER}")}</li>),
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.nav.gap'}</span></li>),
                'after'  => '</ul>' }
 
-      %(<nav#{p_id} class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination" #{pagy_json_attr(
-        pagy, :nav, tags, pagy.sequels(steps)
-      )}></nav>)
+      %(<nav#{p_id} class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination" #{
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination for Bulma: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

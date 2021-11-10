@@ -1,0 +1,25 @@
+---
+"[1] pagy/extras/i18n::#pagy_info with I18n#test_0001_renders info": <span class="pagy-info">No
+  items found</span>
+"[2] pagy/extras/i18n::#pagy_info with I18n#test_0001_renders info": <span class="pagy-info">Displaying
+  <b>1</b> item</span>
+"[3] pagy/extras/i18n::#pagy_info with I18n#test_0001_renders info": <span class="pagy-info">Displaying
+  <b>13</b> items</span>
+"[4] pagy/extras/i18n::#pagy_info with I18n#test_0001_renders info": <span class="pagy-info">Displaying
+  items <b>41-60</b> of <b>100</b> in total</span>
+"[1] pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key": <span
+  class="pagy-info">No Products found</span>
+"[2] pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key": <span
+  class="pagy-info">Displaying <b>1</b> Product</span>
+"[3] pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key": <span
+  class="pagy-info">Displaying <b>13</b> Products</span>
+"[4] pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key": <span
+  class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>
+"[5] pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key": <span
+  class="pagy-info">No Products found</span>
+"[6] pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key": <span
+  class="pagy-info">Displaying <b>1</b> Product</span>
+"[7] pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key": <span
+  class="pagy-info">Displaying <b>13</b> Products</span>
+"[8] pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key": <span
+  class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>

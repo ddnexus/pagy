@@ -6,7 +6,8 @@ require 'pagy/i18n'
 
 class Pagy
   # Used for search and replace, hardcoded also in the pagy.js file
-  PAGE_PLACEHOLDER = '__pagy_page__'
+  PAGE_PLACEHOLDER  = '__pagy_page__'
+  LABEL_PLACEHOLDER = '__pagy_label__'
 
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
@@ -29,7 +30,7 @@ class Pagy
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<span class="page">#{link.call item}</span> )
-                when String  then %(<span class="page active">#{pagy_labeler(pagy, item)}</span> )
+                when String  then %(<span class="page active">#{pagy.label_for(item)}</span> )
                 when :gap    then %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> )
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
@@ -64,18 +65,13 @@ class Pagy
       p_next      = pagy.next
       left, right = %(<a href="#{pagy_url_for pagy, PAGE_PLACEHOLDER}" #{
                         pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
-      lambda do |num, text = pagy_labeler(pagy, num), extra_attrs = ''|
-        %(#{left}#{num}#{right}#{ case num
-                                  when p_prev then ' rel="prev"'
-                                  when p_next then ' rel="next"'
-                                  else             ''
-                                  end } #{extra_attrs}>#{text}</a>)
+      lambda do |page, text = pagy.label_for(page), extra_attrs = ''|
+        %(#{left}#{page}#{right}#{ case page
+                                   when p_prev then ' rel="prev"'
+                                   when p_next then ' rel="next"'
+                                   else             ''
+                                   end } #{extra_attrs}>#{text}</a>)
       end
-    end
-
-    # Allow customization of the output by overriding (used by the calendar extra)
-    def pagy_labeler(_pagy, num)
-      num
     end
 
     # Similar to I18n.t: just ~18x faster using ~10x less memory

@@ -143,3 +143,12 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 - docs: add tutorial, simplify header (#343)
 - Fix for overflow :empty_page in regular Pagy instances, not returning an empty page
 
+## Version 5.3.0
+
+- Completed overflow fix for pagy Countless
+- Added apps README
+- Deprecated pagy_massage_params use the :params variable set to a Proc that does the same, but per instance
+- Simplified page labelling, moved into the pagy classes and removed frontend methods
+- Added support for *nav_js to Calendar
+- Renamed internal module and files of SharedExtra to FrontendHelpers
+- Implemented localization of time labels through the i18n extra delegation

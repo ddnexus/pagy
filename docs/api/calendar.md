@@ -76,27 +76,22 @@ Being a subclass of `Pagy` this class inherit also its default variables and acc
    
 Here is the list of what makes no sense or it is not supported in calendar pagination:
 
-- `pagy_info` and `*_nav_js` helpers
+- `pagy_info` (but it works in the standard pagination nested level)
+- `*combo_nav_js` helpers (but the `*nav_js` helpers work)
 - `gearbox` extra
 - `items` extra   
-- `arel`
-- `array` [^1]
-- `elasticsearch_rails` [^1]
-- `searchkick` [^1]
-- `meilisearch` [^1]
+- `arel` extra
+- `array`, `elasticsearch_rails`, `searchkick`, `meilisearch` extras, however you can still calendar-paginate that collections by following the logic explained in the [calendar extra](../extras/calendar.md)
 
 ## Methods
 
-### current_page_label(format = nil)
+### label(**opts)
 
-This method generates a label for the page, with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
+This method generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization passed as a hash option e.g. `pagy.label(format: '%Y')`. 
   
-### page_label(num = @page, format = nil)
+### label_for(page, **opts)
 
-This method takes a page num (`Integer` or `String`) and generates a label for the page, with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization.
+This method takes a page num (`Integer` or `String`) and generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization passed as a hash option e.g. `pagy.label_for(page, format: '%Y')`. 
+     
+### strftime(time, **opts)
 
-It is currently used as the default `pagy_labeler` by the [calendar extra](../extras/calendar.md).
-
-#### Notes
-
-[^1]: _You can still calendar-paginate `Array`, `ElasticsearchRails`, `Searchkick` and `Meilisearch` objects  without using the backend extra, by following the logic explained in the calendar extra._

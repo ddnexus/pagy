@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '5.2.3'
+  VERSION = '5.3.0'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
@@ -24,7 +24,7 @@ class Pagy
               i18n_key:   'pagy.item_name',
               cycle:      false }
 
-  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next
+  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next, :params
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
@@ -32,6 +32,7 @@ class Pagy
     setup_vars(count: 0, page: 1, outset: 0)
     setup_items_var
     setup_pages_var
+    setup_params_var
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
     @offset = (@items * (@page - 1)) + @outset
@@ -70,6 +71,15 @@ class Pagy
     series
   end
 
+  # Allow the customization of the output (overridden by the calendar extra)
+  def label_for(page)
+    page.to_s
+  end
+
+  def label
+    @page.to_s
+  end
+
   protected
 
   # Apply defaults, cleanup blanks and set @vars
@@ -93,6 +103,12 @@ class Pagy
   # Setup and validates the pages (overridden by the gearbox extra)
   def setup_pages_var
     @pages = @last = [(@count.to_f / @items).ceil, 1].max
+  end
+
+  # Setup and validates the params
+  def setup_params_var
+    raise VariableError.new(self, :params, 'must be a Hash or a Proc', @params) \
+          unless (@params = @vars[:params]).is_a?(Hash) || @params.is_a?(Proc)
   end
 end
 

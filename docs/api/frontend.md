@@ -14,9 +14,9 @@ You can extend this module with a few more nav helpers _(see the [extras](../ext
 # typically in some helper
 include Pagy::Frontend
 
-# optional overriding of some sub-method (e.g. massage the params)
-def pagy_massage_params(params)
-  params.except(:anything, :not, :useful).merge!(something: 'more useful')
+# optional overriding of some sub-method
+def pagy_nav(...)
+   ...
 end
 ```
 
@@ -93,7 +93,7 @@ See also [Customizing the URL](../how-to.md#customizing-the-url).
 
 ### pagy_massage_params(params)
 
-Sub-method called by `pagy_url_for`: it is intended to be overridden when you need to add and/or remove some param from the page URLs. It receives the stringified-key `params` hash (see [pagy_url_for](#pagy_url_forpagy-page-absolute-nil)complete with the pagy params and should return a possibly modified version of it.
+The `pagy_massage_params` method has been deprecated and it will be ignored from version 6. Use the `:params` variable instead.
 
 See also [Customizing the params](../how-to.md#customizing-the-params).
 

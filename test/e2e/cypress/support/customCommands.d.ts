@@ -18,10 +18,12 @@ declare namespace Cypress {
          * CSS flavor page path (e.g."/bootstrap")
          * @param id
          * id selector string of the navigation bar (e.g.: '#nav-js' )
+         * @param calendar
+         * is it a calendar nav?
          * @example
-         *  cy.navStyleId('/bootstrap', '#nav-js-responsive')
+         *  cy.navStyleId('/bootstrap', '#nav-js-responsive', false)
          */
-        navStyleId(style: string, id: string): void;
+        navStyleId(style: string, id: string, calendar: boolean): void;
 
         /**
          * Visit the frontend __style__ page, use the __#combo-nav-js__ to navigate to different page numbers

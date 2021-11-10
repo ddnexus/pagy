@@ -49,6 +49,7 @@ describe 'pagy' do
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
       _ { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
+      _ { Pagy.new(count: 100, params: 12) }.must_raise Pagy::VariableError
       begin
         Pagy.new(count: 100, page: 12)
       rescue Pagy::OverflowError => e
@@ -407,6 +408,17 @@ describe 'pagy' do
     end
     it 'computes an empty series' do
       _(Pagy.new(@vars3.merge(count: 100, size: [])).series).must_equal []
+    end
+  end
+
+  describe 'labels' do
+    it 'returns the current page label' do
+      _(Pagy.new(count: 1000, page: 11).label).must_equal '11'
+    end
+    it 'returns any page label' do
+      p = Pagy.new(count: 1000, page: 11)
+      _(p.label_for(3)).must_equal '3'
+      _(p.label_for(11)).must_equal '11'
     end
   end
 end

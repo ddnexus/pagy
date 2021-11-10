@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/navs
 # frozen_string_literal: true
 
-require 'pagy/extras/shared'
+require 'pagy/extras/frontend_helpers'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
@@ -12,13 +12,13 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => pagy_nav_prev_html(pagy, link),
-               'link'   => %(<span class="page">#{link.call(PAGE_PLACEHOLDER)}</span> ),
-               'active' => %(<span class="page active">#{pagy.page}</span> ),
+               'link'   => %(<span class="page">#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</span> ),
+               'active' => %(<span class="page active">#{LABEL_PLACEHOLDER}</span> ),
                'gap'    => %(<span class="page gap">#{pagy_t 'pagy.nav.gap'}</span> ),
                'after'  => pagy_nav_next_html(pagy, link) }
 
       %(<nav#{p_id} class="pagy-njs pagy-nav-js pagination" aria-label="pager" #{
-          pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></nav>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

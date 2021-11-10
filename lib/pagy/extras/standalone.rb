@@ -37,15 +37,18 @@ class Pagy # :nodoc:
     # it works exactly as the regular #pagy_url_for, relying on the params method and Rack.
     # If there is a defined pagy.vars[:url] variable it does not need the params method nor Rack.
     def pagy_url_for(pagy, page, absolute: nil)
-      vars = pagy.vars
-      return super unless (url = vars[:url])
+      return super unless pagy.vars[:url]
 
-      params                     = vars[:params].clone  # safe when it gets reused
-      params[vars[:page_param]]  = page
-      params[vars[:items_param]] = vars[:items] if vars[:items_extra]
-
-      query_string = "?#{QueryUtils.build_nested_query(pagy_massage_params(params))}"
-      "#{url}#{query_string}#{vars[:fragment]}"
+      vars                = pagy.vars
+      page_param          = vars[:page_param].to_s
+      items_param         = vars[:items_param].to_s
+      params              = pagy.params.is_a?(Hash) ? pagy.params.clone : {}  # safe when it gets reused
+      params[page_param]  = page
+      params[items_param] = vars[:items] if vars[:items_extra]
+      query_string        = "?#{QueryUtils.build_nested_query(pagy_deprecated_params(pagy, params))}"  # remove in 6.0
+      # params              = pagy.params.call(params) if pagy.params.is_a?(Proc)                      # add in 6.0
+      # query_string        = "?#{Rack::Utils.build_nested_query(params)}"                             # add in 6.0
+      "#{vars[:url]}#{query_string}#{vars[:fragment]}"
     end
   end
   # In ruby 3+ `UrlHelpers.prepend StandaloneExtra` would be enough instead of using the next 2 lines

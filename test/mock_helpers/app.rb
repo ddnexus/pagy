@@ -23,7 +23,8 @@ class MockApp
   end
 
   class Overridden < MockApp
-    def pagy_massage_params(params)
+    # deprecated but still used for testing deprecations
+    def pagy_massage_params(params)  # remove in 6.0
       params.delete('delete_me')
       params.merge!('add_me' => 'add_me')
     end

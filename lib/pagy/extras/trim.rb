@@ -12,9 +12,9 @@ class Pagy # :nodoc:
       link_proc = super(pagy, link_extra: link_extra)
       return link_proc unless pagy.vars[:trim_extra]
 
-      lambda do |num, text = num, extra = ''|
-        link = +link_proc.call(num, text, extra)
-        return link unless num == 1
+      lambda do |page, text = pagy.label_for(page), extra = ''|
+        link = +link_proc.call(page, text, extra)
+        return link unless page == 1
 
         pagy_trim(pagy, link)
       end

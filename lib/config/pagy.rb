@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (5.2.3)
+# Pagy initializer file (5.3.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -22,6 +22,7 @@
 # See https://ddnexus.github.io/pagy/api/pagy#other-variables
 # Pagy::DEFAULT[:size]       = [1,4,4,1]                       # default
 # Pagy::DEFAULT[:page_param] = :page                           # default
+# The :params can be also set as a lambda e.g ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
 # Pagy::DEFAULT[:params]     = {}                              # default
 # Pagy::DEFAULT[:fragment]   = '#fragment'                     # example
 # Pagy::DEFAULT[:link_extra] = 'data-remote="true"'            # example

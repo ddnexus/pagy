@@ -31,8 +31,6 @@ require 'pagy/extras/calendar'
 Use it in your controllers:
 
 ```ruby
-@pagy, @records = pagy_calendar(your_collection, ...)
-
 # Override the pagy_calendar_get_vars
 # my_local_min_max is your own method that should return an Array with the 
 # min and max Time objects from your collection, converted in the user local time
@@ -48,6 +46,9 @@ end
 def pagy_calendar_get_items(collection, pagy)
   collection.my_page_of_records(pagy.utc_from, pagy.utc_to)
 end
+
+# in your actions...
+@pagy, @records = pagy_calendar(collection, ...)
 ```
 
 ## Overview
@@ -73,7 +74,7 @@ Pagy knows when the requested page unit starts and finishes and it calculates th
 ```
 # please adapt this logic to your actual query (and convert the time if your storage time is not UTC)
 
-collection_utc_time <= pagy.utc_from && collection_utc_time < pagy.utc_to
+collection_utc_time >= pagy.utc_from && collection_utc_time < pagy.utc_to
 ```
 
 #### Time zone conversions
@@ -114,26 +115,26 @@ A calendar pagination could generate pages of huge size, which frankly would be 
 
 For example: a `:year` page might contain an unspecified big number of records since in calendar pagination we get all the records that fall between two points in time, so we have no idea about how many records we are about to pull.
 
-So if our collection can have units of unpredictable big size (which is usually a wise assumption), we could do something like:
+So if the collection has units of unpredictable big size (which is usually a wise assumption), you can re-paginate it. For example:
 
 ```ruby
-# paginate by year (or any other unit)
+# Paginate by year (or any other unit)
 @pagy_year, year_page = pagy_calendar(collection, unit: :year, page_param: :year_page)
-# paginate the year_page again by number of items 
+# Paginate the year_page again by number of items 
 @pagy, @records = pagy(year_page)
 ```
 ```erb
 <%== pagy_nav(@pagy_year) %>
-<%== pagy_info(@pagy) %> for <%== @pagy_year.page_current_label %>
+<%== pagy_info(@pagy) %> for <%== @pagy_year.label %>
 
 ... display your list of records ...
 
 <%== pagy_nav(@pagy) %>
 ```
 
-Notice that the nesting could be also multi-level. See the single file [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a working example of 3 nesting levels: `:year` + `:month` + standard pagination. 
-             
-If yu want a quick demo on your machine: 
+Notice that the nesting could be also multi-level and the number of queries needed with not increase. See the single file [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a working example of 3 nesting levels: `:year` + `:month` + standard pagination. 
+
+You can get a quick demo on your machine: 
 
 ```shell
 git clone --depth 1 https://github.com/ddnexus/pagy
@@ -149,6 +150,12 @@ If you set `:order` to `:desc`, the `Pagy::Calendar` will reverse the order of t
 
 ### Label format
 
-When you use this extra with a standard pagination bar you will see that each page links is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by just setting any of the `:*_format` variables wth a standard `strftime` format.
+When you use this extra with a standard pagination bar you will see that each page link is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by just setting any of the `:*_format` variables wth a standard `strftime` format.
 
-You can also get the [current page label](../api/calendar.md#current_page_labelformat--nil) with `@pagy.current_page_label`, which might be useful to use in your UI.
+You can also get the [current page label](../api/calendar.md#labelformat--nil) with `@pagy.label`, which might be useful to use in your UI.
+
+### I18n Localization
+
+Pagy implements its own faster version of the `translate` method, but does not provide any built-in support for the `localize` method.
+
+If you need to use formats with unit names (weekday names, month names, etc.) that require localization in an I18n application, you need to use the [i18n extra](i18n.md), which delegates the localization to the `I18n` gem.

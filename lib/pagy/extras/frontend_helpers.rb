@@ -5,7 +5,8 @@ require 'digest'
 class Pagy # :nodoc:
   DEFAULT[:steps] = false # default false will use {0 => @vars[:size]}
 
-  module SharedExtra
+  # Private module documented in the main classes
+  module FrontendHelpers
     # Additions for the Pagy class
     module Pagy
       # `Pagy` instance method used by the `pagy*_nav_js` helpers.
@@ -23,6 +24,20 @@ class Pagy # :nodoc:
 
         {}.tap do |sequels|
           steps.each { |width, size| sequels[width.to_s] = series(size) }
+        end
+      end
+
+      # Support for the Calendar API
+      def label_sequels(*); end
+    end
+
+    # Additions for Calendar class
+    module Calendar
+      def label_sequels(sequels = self.sequels)
+        {}.tap do |label_sequels|
+          sequels.each do |width, series|
+            label_sequels[width] = series.map { |item| item == :gap ? :gap : label_for(item) }
+          end
         end
       end
     end
@@ -50,6 +65,7 @@ class Pagy # :nodoc:
       end
     end
   end
-  prepend SharedExtra::Pagy
-  Frontend.prepend SharedExtra::Frontend
+  prepend FrontendHelpers::Pagy
+  Calendar.prepend FrontendHelpers::Calendar if defined?(Calendar)
+  Frontend.prepend FrontendHelpers::Frontend
 end

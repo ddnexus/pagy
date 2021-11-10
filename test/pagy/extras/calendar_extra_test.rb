@@ -115,32 +115,4 @@ describe 'pagy/extras/calendar' do
       _(entries.to_a).must_rematch
     end
   end
-
-  describe '#pagy_labeler' do
-    it 'labels the :year nav' do
-      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :year, size: [1, 4, 4, 1], page: 1)
-      _(app.pagy_nav(pagy)).must_rematch
-    end
-    it 'labels the :month nav' do
-      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :month, size: [1, 4, 4, 1], page: 1)
-      _(app.pagy_nav(pagy)).must_rematch
-    end
-    it 'labels the :week nav' do
-      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :week, size: [1, 4, 4, 1], page: 1)
-      _(app.pagy_nav(pagy)).must_rematch
-    end
-    it 'labels the :day nav' do
-      pagy, _entries = app.send(:pagy_calendar, @collection, unit: :day, size: [1, 4, 4, 1], page: 1)
-      _(app.pagy_nav(pagy)).must_rematch
-    end
-    it 'return nothing for unknown unit' do
-      pagy, _entries = app.send(:pagy_calendar, @collection)
-      pagy.instance_variable_set('@unit', :unknown)
-      _ { app.pagy_labeler(pagy, 2) }.must_raise Pagy::InternalError
-    end
-    it 'wont interfere with other classes' do
-      pagy = Pagy.new(count: 1000)
-      _(app.pagy_nav(pagy)).must_rematch
-    end
-  end
 end

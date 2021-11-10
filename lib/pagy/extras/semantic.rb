@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/semantic
 # frozen_string_literal: true
 
-require 'pagy/extras/shared'
+require 'pagy/extras/frontend_helpers'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
@@ -17,7 +17,7 @@ class Pagy # :nodoc:
       pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then link.call item
-                when String  then %(<a class="item active">#{pagy_labeler(pagy, item)}</a>)
+                when String  then %(<a class="item active">#{pagy.label_for(item)}</a>)
                 when :gap    then %(<div class="disabled item">#{pagy_t 'pagy.nav.gap'}</div>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
@@ -31,13 +31,13 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
       tags = { 'before' => pagy_semantic_prev_html(pagy, link),
-               'link'   => link.call(PAGE_PLACEHOLDER),
-               'active' => %(<a class="item active">#{pagy.page}</a>),
+               'link'   => link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER),
+               'active' => %(<a class="item active">#{LABEL_PLACEHOLDER}</a>),
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.nav.gap')}</div>),
                'after'  => pagy_semantic_next_html(pagy, link) }
 
       %(<div#{p_id} class="pagy-njs pagy-semantic-nav-js ui pagination menu" role="navigation" #{
-        pagy_json_attr(pagy, :nav, tags, pagy.sequels(steps))}></div>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></div>)
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

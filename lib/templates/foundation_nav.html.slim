@@ -22,7 +22,7 @@ nav.pagy-foundation-nav role="navigation" aria-label="Pagination"
 
       - elsif item.is_a?(String)                 # current page
         li.current
-          = pagy_labeler(pagy, item)
+          = pagy.label_for(item)
 
       - elsif item == :gap                       # page gap
         li.ellipsis.gap aria-hidden="true"

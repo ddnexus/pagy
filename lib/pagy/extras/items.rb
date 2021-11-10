@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/extras/items
 # frozen_string_literal: true
 
-require 'pagy/extras/shared'
+require 'pagy/extras/frontend_helpers'
 
 class Pagy # :nodoc:
   DEFAULT[:items_param] = :items
