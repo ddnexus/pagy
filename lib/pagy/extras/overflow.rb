@@ -63,7 +63,7 @@ class Pagy # :nodoc:
         when :exception
           raise                                        # same as without the extra
         when :empty_page
-          @offset = @in = @from = @to = 0              # vars relative to the actual page
+          @offset = @items = @from = @to = 0            # vars relative to the actual page
           @vars[:size] = []                            # no page in the series
           self
         else
