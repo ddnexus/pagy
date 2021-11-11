@@ -33,7 +33,7 @@ describe 'pagy/extras/i18n' do
       _(app.pagy_info(Pagy.new(count: 100, page: 3))).must_rematch
     end
     it 'renders with existing i18n key' do
-      ::I18n.locale = 'en'
+      ::I18n.locale = :en
       custom_dictionary = Pagy.root.parent.join('test', 'files', 'i18n.yml')
       ::I18n.load_path += [custom_dictionary]
       _(app.pagy_info(Pagy.new(count: 0, i18n_key: 'activerecord.models.product'))).must_rematch
@@ -53,13 +53,17 @@ describe 'pagy/extras/i18n' do
       pagy = Pagy::Calendar.new(local_minmax: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)],
                                 page: 3, month_format: '%B, %A')
       _(pagy.label).must_equal "December, Wednesday"
-      _(pagy.label(format: '%b')).must_equal "Dec"
       _(pagy.label(locale: :de)).must_equal "Dezember, Mittwoch"
-      _(pagy.label(locale: :de, format: '%b')).must_equal "Dez"
+      _(pagy.label(format: '%b')).must_equal "Dec"
+      _(pagy.label(format: '%b', locale: :de)).must_equal "Dez"
       _(pagy.label_for(5)).must_equal "February, Tuesday"
-      _(pagy.label_for(5, format: '%b')).must_equal "Feb"
       _(pagy.label_for(5, locale: :de)).must_equal "Februar, Dienstag"
-      _(pagy.label_for(5, format: '%b', locale: :de)).must_equal "Feb"
+      ::I18n.locale = :de
+      _(pagy.label).must_equal "Dezember, Mittwoch"
+      _(pagy.label(format: '%b')).must_equal "Dez"
+      _(pagy.label_for(5)).must_equal "Februar, Dienstag"
+      _(pagy.label_for(5, format: '%b')).must_equal "Feb"
+      ::I18n.locale = :en
     end
   end
 end

@@ -13,7 +13,7 @@ class Pagy # :nodoc:
 
     # Calendar overriding
     module Calendar
-      def strftime(time, **opts)
+      def localize(time, **opts)
         ::I18n.l(time, **opts)
       end
     end

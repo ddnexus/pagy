@@ -43,7 +43,7 @@ class Pagy # :nodoc:
              else raise InternalError, "expected @unit to be in [:year, :month, :week, :day]; got #{@unit.inspect}"
              end
       opts[:format] ||= @vars[:"#{@unit}_format"]
-      strftime(time, **opts)
+      localize(time, **opts)
     end
 
     # The label for the current page
@@ -118,8 +118,8 @@ class Pagy # :nodoc:
       @utc_to   = @utc_from + DAY
     end
 
-    # The last method in the labelling chain: it is overridden by the I18n when localization is required.
-    def strftime(time, **opts)
+    # Apply the strftime format to the time. Overridden by the i18n extra when localization is required.
+    def localize(time, **opts)
       time.strftime(opts[:format])
     end
 

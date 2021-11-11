@@ -154,8 +154,8 @@ When you use this extra with a standard pagination bar you will see that each pa
 
 You can also get the [current page label](../api/calendar.md#labelformat--nil) with `@pagy.label`, which might be useful to use in your UI.
 
-### I18n Localization
+### I18n localization
 
 Pagy implements its own faster version of the `translate` method, but does not provide any built-in support for the `localize` method.
 
-If you need to use formats with unit names (weekday names, month names, etc.) that require localization in an I18n application, you need to use the [i18n extra](i18n.md), which delegates the localization to the `I18n` gem.
+If you need to use formats with unit names (weekday names, month names, etc.) that require localization in an I18n application, you need to use the [i18n extra](i18n.md), which delegates the localization to the `I18n` gem. In that case a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 

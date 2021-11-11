@@ -77,11 +77,11 @@ That is self-contained, simple and efficient.
 
 ### label
 
-It returns the current page label that will get displayed in the helpers/templates. Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances.
+Experimental: Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances. It returns the current page label that will get displayed in the helpers/templates.
 
 ### label_for(page)
 
-It returns the page label that will get displayed in the helpers/templates. Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances.
+Experimental: Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances. It returns the page label that will get displayed in the helpers/templates.
 
 ## Variables
 
