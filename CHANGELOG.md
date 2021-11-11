@@ -1,14 +1,30 @@
 # CHANGELOG
 
-If you upgraded from version `< 5.0.0`, see the [breaking changes](#version-500)
+## Breaking Changes
+           
+If you upgrade from version `< 5.0.0` see the following:
+
+- [Breaking changes in version 5.0.0](#version-500)
+- [Breaking changes in version 4.0.0](CHANGELOG_LEGACY.md#version-400)
+- [Breaking changes in version 3.0.0](CHANGELOG_LEGACY.md#version-300)
+- [Breaking changes in version 2.0.0](CHANGELOG_LEGACY.md#version-200)
+- [Breaking changes in version 1.0.0](CHANGELOG_LEGACY.md#version-100)  
+
+## Deprecations
+
+Still supported in version `5.x` but not supported from `6.0` on:
+
+- `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [Customizing the params](https://ddnexus.github.io/pagy/how-to#customizing-the-params).
+                      
+<hr>
 
 ## Version 5.3.0
 
 - Implemented localization of time labels through the i18n extra delegation
 - Renamed internal module and files of SharedExtra to FrontendHelpers
-- Added support for *nav_js to Calendar
+- Added support for `*nav_js` to Calendar
 - Simplified page labelling, moved into the pagy classes and removed frontend methods
-- Deprecated pagy_massage_params use the :params variable set to a Proc that does the same, but per instance
+- Deprecated `pagy_massage_params`: use the :params variable set to a Proc that does the same, but per instance
 - Added apps README
 - Completed overflow fix for pagy Countless
 
