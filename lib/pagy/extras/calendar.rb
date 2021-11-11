@@ -25,11 +25,11 @@ class Pagy # :nodoc:
       end
 
       # This method should be implemented in the application and should return the records
-      # for the unit by selecting the records with DateTime from pagy.from to pagy.to
+      # for the unit by selecting the records with Time from pagy.utc_from to pagy.utc_to
       def pagy_calendar_get_items(_collection, _pagy)
-        # collection.your_own_method_to_get_the_items_with(pagy.from, pagy.to)
+        # collection.your_own_method_to_get_the_items_with(pagy.utc_from, pagy.utc_to)
         raise NoMethodError, 'The pagy_calendar_get_items method must be implemented in the application and must return ' \
-                             'the items for the unit by selecting the records with Time from pagy.from to pagy.to'
+                             'the items for the unit by selecting the records with Time from pagy.utc_from to pagy.utc_to'
       end
     end
   end
