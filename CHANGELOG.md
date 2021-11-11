@@ -1,5 +1,82 @@
 # CHANGELOG
 
+If you upgraded from version `< 5.0.0`, see the [breaking changes](#version-500)
+
+## Version 5.3.0
+
+- Implemented localization of time labels through the i18n extra delegation
+- Renamed internal module and files of SharedExtra to FrontendHelpers
+- Added support for *nav_js to Calendar
+- Simplified page labelling, moved into the pagy classes and removed frontend methods
+- Deprecated pagy_massage_params use the :params variable set to a Proc that does the same, but per instance
+- Added apps README
+- Completed overflow fix for pagy Countless
+
+## Version 5.2.3
+
+- Fix for overflow :empty_page in regular Pagy instances, not returning an empty page
+- docs: add tutorial, simplify header (#343)
+- Refactoring of rails_inline_input.rb (include and close #342)
+
+## Version 5.2.2
+
+- Fix for missing defined?(Calendar) checks; small simplification in headers extra
+- Calendar docs improvements and fixes
+
+## Version 5.2.1
+
+- Reorganization of mock collection classes; enabled rubocop layout in tests
+- Small refactoring of the overview extra
+- A few improvements for the Calendar pagination; added the current_page_label method
+
+## Version 5.2.0
+
+- Small changes in code; updated gemfiles, tests and docs
+- Implemented calendar extra to paginate a Time periods by unit (year, month, week or day)
+- Added pagy_labeler frontend method overridable for changing the link text from a simple page number to any arbitrary string
+- Enabled rubocop Style/Documentation cop
+- Updated npm modules and gemfiles
+- Docker better mounts
+- Used gem-generic release-gem action
+
+## Version 5.1.3
+
+- Added single action standalone rails_inline_output.rb
+- Small improvements in code and docs
+- Fix for rails problem with internal params in pagy URL (closes #341)
+- Documentation improvements
+- A few details tag in the README should be opened by default
+
+## Version 5.1.2
+
+- Refactoring of pagy_url_for and relative test:
+  - Fix for ignoring the items_extra variable
+  - Replaced request.GET with request.params to enable POST pagination
+  - Refactoring of Mock test classes for better handling of params
+  
+## Version 5.1.1
+
+- This reverts commit 1d77e672d5b7813108b40c13ca93fdec045f4c03.
+  Generating the URL by using the application params method breakes rails apps because it requires manual changes in the apps.
+
+## Version 5.1.0
+
+- Fix and refactoring of pagy_url_for and relative test:
+  - Fix for ignoring the params not coming from the request
+  - Fix for ignoring the items_extra variable
+  - Refactoring of Mock test classes for better handling of params
+- Improved code comments, formatting and docs fixes
+- Countless extra: simplified code, internal renaming of locals and docs update
+
+## Version 5.0.1
+
+- Updated docs and issue templates
+- Added cypress-dark theme to e2e test
+- Refactoring of coverage to include 100% of line and condition branches covered
+- Simplification of metadata extra
+- Refactoring of exceptions
+- Added CHANGELOG_LEGACY
+
 ## Version 5.0.0
 
 ### Breaking changes - 1. Code update
@@ -69,86 +146,3 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 - Improved the usage of e2e tests
 - Updated doc, gemfiles and github workflow
 - Other minor fixes and improvements in code and doc
-
-## Version 5.0.1
-
-### Changes 
-
-- Added CHANGELOG_LEGACY
-- Refactoring of exceptions
-- Simplification of metadata extra
-- Refactoring of coverage to include 100% of line and condition branches covered
-- Added cypress-dark theme to e2e test
-- Updated docs and issue templates
-
-## Version 5.1.0
-
-### Changes 
-
-- Countless extra: simplified code, internal renaming of locals and docs update
-- Improved code comments, formatting and docs fixes
-- Fix and refactoring of pagy_url_for and relative test:
-  - Fix for ignoring the params not coming from the request
-  - Fix for ignoring the items_extra variable
-  - Refactoring of Mock test classes for better handling of params
-
-## Version 5.1.1
-
-### Changes
-
-- This reverts commit 1d77e672d5b7813108b40c13ca93fdec045f4c03.
-  Generating the URL by using the application params method breakes rails apps because it requires manual changes in the apps.
-
-## Version 5.1.2
-
-### Changes
-
-- Refactoring of pagy_url_for and relative test:
-  - Fix for ignoring the items_extra variable
-  - Replaced request.GET with request.params to enable POST pagination
-  - Refactoring of Mock test classes for better handling of params
-
-## Version 5.1.3
-
-- A few details tag in the README should be opened by default
-- Documentation improvements
-- Fix for rails problem with internal params in pagy URL (closes #341)
-- Small improvements in code and docs
-- Added single action standalone rails_inline_output.rb
-
-## Version 5.2.0
-
-- Used gem-generic release-gem action
-- Docker better mounts
-- Updated npm modules and gemfiles
-- Enabled rubocop Style/Documentation cop
-- Added pagy_labeler frontend method overridable for changing the link text from a simple page number to any arbitrary string
-- Implemented calendar extra to paginate a Time periods by unit (year, month, week or day)
-- Small changes in code; updated gemfiles, tests and docs
-  
-## Version 5.2.1
-
-- A few improvements for the Calendar pagination; added the current_page_label method
-- Small refactoring of the overview extra
-- Reorganization of mock collection classes; enabled rubocop layout in tests
-
-## Version 5.2.2
-
-- Calendar docs improvements and fixes
-- Fix for missing defined?(Calendar) checks; small simplification in headers extra
-  
-## Version 5.2.3
-
-- Refactoring of rails_inline_input.rb (include and close #342)
-- docs: add tutorial, simplify header (#343)
-- Fix for overflow :empty_page in regular Pagy instances, not returning an empty page
-
-## Version 5.3.0
-
-- Completed overflow fix for pagy Countless
-- Added apps README
-- Deprecated pagy_massage_params use the :params variable set to a Proc that does the same, but per instance
-- Simplified page labelling, moved into the pagy classes and removed frontend methods
-- Added support for *nav_js to Calendar
-- Renamed internal module and files of SharedExtra to FrontendHelpers
-- Implemented localization of time labels through the i18n extra delegation
