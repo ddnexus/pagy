@@ -80,17 +80,17 @@ class PagyCalendarApp < Sinatra::Base
                                                       unit:        :year,
                                                       size:        [1, 1, 1, 1],
                                                       params:      lambda do |params|       # remove inner page params
-                                                                      params.delete('month_page')
-                                                                      params.delete('page')
-                                                                      params
-                                                                    end)
-    @month_pagy, month_page = pagy_calendar(year_page, page_param:  :month_page,
-                                                       unit:        :month,
-                                                       size:        [0, 12, 12, 0],
-                                                       params:      lambda do |params|      # remove inner page params
-                                                                      params.delete('page')
-                                                                      params
-                                                                    end)
+                                                                     params.delete('month_page')
+                                                                     params.delete('page')
+                                                                     params
+                                                                   end)
+    @month_pagy, month_page = pagy_calendar(year_page, page_param: :month_page,
+                                                       unit:       :month,
+                                                       size:       [0, 12, 12, 0],
+                                                       params:     lambda do |params|      # remove inner page params
+                                                                     params.delete('page')
+                                                                     params
+                                                                   end)
     @pagy, @records = pagy(month_page, items: 10)
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
@@ -115,7 +115,7 @@ __END__
 
   <h3>Pagy Calendar Application</h3>
   <p>Self-contained, standalone Sinatra app implementing nested calendar pagination for year and month units.</p>
-  <p>See the <a href="https://ddnexus.github.io/pagy/extras/calendar#gsc.tab=0">Pagy Calendar Extra</a> for details.</p>
+  <p>See the <a href="https://ddnexus.github.io/pagy/extras/calendar">Pagy Calendar Extra</a> for details.</p>
   <hr>
 
   <!-- calendar pagination -->

@@ -45,7 +45,7 @@ end
 
 # Create the pagy_calendar_get_items  
 # my_page_of_records is your own scope or method that should 
-# select the records with time <= pagy.utc_from and < pagy.utc_to
+# select the records with time >= pagy.utc_from and < pagy.utc_to
 def pagy_calendar_get_items(collection, pagy)
   collection.my_page_of_records(pagy.utc_from, pagy.utc_to)
 end
