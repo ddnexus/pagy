@@ -5,7 +5,10 @@ title: Calendar
 
 This extra uses the `Pagy::Calendar` [subclass](../api/calendar.md) in order to paginate the collection by calendar Time units (year, month, week or day) instead of the usual number of `:items`.
 
-It is possible to further paginate the units with regular pagination in order to limit the records to a manageable size, generating a sort of [nested pagination](#nested-pagination).
+It is possible to further paginate the units with regular pagination in order to limit the records to a manageable size, generating a sort of [nested pagination](#nested-pagination) shown here:
+
+![calendar_app](../assets/images/calendar-app.png)
+_Screenshot from the single-file self-contained [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) demo_
 
 **WARNING**: _This extra has 100% of test coverage, however it's very new and its API could still change, so consider it as a version 0.x. Please, check the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for breaking changes before upgrading Pagy for minor version bumps. Patch versions are safe to upgrade without checking. (This warning will be removed as soon as the API will become stable.)_
 
