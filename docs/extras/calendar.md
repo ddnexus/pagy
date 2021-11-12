@@ -144,6 +144,8 @@ rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar_app.ru
 
 Then point your browser to `http://0.0.0.0:8080`.
 
+![calendar_sinatra_app](../assets/images/calendar_sinatra_app.png)
+
 ### Order
 
 If you set `:order` to `:desc`, the `Pagy::Calendar` will reverse the order of the page units (e.g. May, then April, then March, ...), but keep in mind that you still have to reverse the records in the page since pagy has no control over that (indeed it's your code that pulls the records).
