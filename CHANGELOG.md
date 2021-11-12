@@ -18,6 +18,15 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.3.1
+
+- Added screenshot to the calendar extra (closes #346)
+- Added bump.sh script to bump the version in multiple files; check for consistency and optionally commit the changes
+- Minor fixes
+- Changelog improvements
+- Reversed CHANGELOG (closes #345)
+- Calendar I18n small internal renaming and docs improvements
+
 ## Version 5.3.0
 
 - Implemented localization of time labels through the i18n extra delegation
