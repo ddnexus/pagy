@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## Breaking Changes
-           
+
 If you upgrade from version `< 5.0.0` see the following:
 
 - [Breaking changes in version 5.0.0](#version-500)
@@ -15,8 +15,17 @@ If you upgrade from version `< 5.0.0` see the following:
 Still supported in version `5.x` but not supported from `6.0` on:
 
 - `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [Customizing the params](https://ddnexus.github.io/pagy/how-to#customizing-the-params).
-                      
+
 <hr>
+
+## Version 5.3.1
+
+- Added screenshot to the calendar extra (closes #346)
+- Added bump.sh script to bump the version in multiple files; check for consistency and optionally commit the changes
+- Minor fixes
+- Changelog improvements
+- Reversed CHANGELOG (closes #345)
+- Calendar I18n small internal renaming and docs improvements
 
 ## Version 5.3.0
 
@@ -69,7 +78,7 @@ Still supported in version `5.x` but not supported from `6.0` on:
   - Fix for ignoring the items_extra variable
   - Replaced request.GET with request.params to enable POST pagination
   - Refactoring of Mock test classes for better handling of params
-  
+
 ## Version 5.1.1
 
 - This reverts commit 1d77e672d5b7813108b40c13ca93fdec045f4c03.

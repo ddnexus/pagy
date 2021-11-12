@@ -32,7 +32,7 @@ class Pagy # :nodoc:
     end
 
     # Generate a label for each page, with the specific `Time` period it refers to
-    # It can pass along the I18n gem opts when it's used with the i18n extra
+    # (it can pass along the I18n gem opts when it's used with the i18n extra)
     def label_for(page, **opts)
       snap = snap(page.to_i)
       time = case @unit
@@ -47,7 +47,7 @@ class Pagy # :nodoc:
     end
 
     # The label for the current page
-    # It can pass along the I18n gem opts when it's used with the i18n extra
+    # (it can pass along the I18n gem opts when it's used with the i18n extra)
     def label(**opts)
       label_for(@page, **opts)
     end
@@ -69,7 +69,7 @@ class Pagy # :nodoc:
 
       min, max = @vars[:local_minmax]
       raise VariableError.new(self, :local_minmax, 'to be a an Array of min and max local Time instances', @vars[:local_minmax]) \
-            unless min.is_a?(Time) && max.is_a?(Time) && !min.utc? && !min.utc? && min <= max \
+            unless min.is_a?(Time) && max.is_a?(Time) && !min.utc? && !max.utc? && min <= max \
                    && (@utc_offset = min.utc_offset) == max.utc_offset
 
       send :"setup_#{@unit}_vars", min, max
@@ -118,7 +118,8 @@ class Pagy # :nodoc:
       @utc_to   = @utc_from + DAY
     end
 
-    # Apply the strftime format to the time. Overridden by the i18n extra when localization is required.
+    # Apply the strftime format to the time
+    # (overridden by the i18n extra when localization is required)
     def localize(time, **opts)
       time.strftime(opts[:format])
     end
