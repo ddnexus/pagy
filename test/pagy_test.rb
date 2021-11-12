@@ -12,7 +12,7 @@ end
 describe 'pagy' do
   let(:pagy) { Pagy.new count: 100, page: 4 }
 
-  describe 'version match' do
+  describe 'Version match' do
     it 'has version' do
       _(Pagy::VERSION).wont_be_nil
     end
@@ -27,6 +27,9 @@ describe 'pagy' do
     end
     it 'defines the same version in .github/.env' do
       _(File.read('.github/.env')).must_match "VERSION=#{Pagy::VERSION}"
+    end
+    it 'defines the same minor version in docs/how-to.md' do
+      _(File.read('docs/how-to.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
     end
   end
 
