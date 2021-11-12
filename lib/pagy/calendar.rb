@@ -120,7 +120,7 @@ class Pagy # :nodoc:
 
     # Apply the strftime format to the time
     # (overridden by the i18n extra when localization is required)
-    def localize(time, **opts)
+    def localize(time, opts)
       time.strftime(opts[:format])
     end
 
