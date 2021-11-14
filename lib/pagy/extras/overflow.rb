@@ -41,9 +41,9 @@ class Pagy # :nodoc:
 
       # Special series for empty page
       module Series
-        def series(size = @vars[:size])
+        def series(*)
           @page = @last                                # series for last page
-          super(size).tap do |s|                       # call original series
+          super.tap do |s|                       # call original series
             s[s.index(@page.to_s)] = @page             # string to integer (i.e. no current page)
             @page = @vars[:page]                       # restore the actual page
           end

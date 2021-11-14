@@ -8,14 +8,14 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module BulmaExtra
     # Pagination for Bulma: it returns the html with the series of links to the pages
-    def pagy_bulma_nav(pagy, pagy_id: nil, link_extra: '')
+    def pagy_bulma_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
       html = +%(<nav#{p_id} class="pagy-bulma-nav pagination is-centered" aria-label="pagination">)
       html << pagy_bulma_prev_next_html(pagy, link)
       html << %(<ul class="pagination-list">)
-      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
                   %(<li>#{link.call item, pagy.label_for(item), %(class="pagination-link" aria-label="goto page #{item}")}</li>)
@@ -30,7 +30,7 @@ class Pagy # :nodoc:
       html << %(</ul></nav>)
     end
 
-    def pagy_bulma_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
+    def pagy_bulma_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => %(#{pagy_bulma_prev_next_html(pagy, link)}<ul class="pagination-list">),
@@ -43,7 +43,7 @@ class Pagy # :nodoc:
                'after'  => '</ul>' }
 
       %(<nav#{p_id} class="pagy-njs pagy-bulma-nav-js pagination is-centered" aria-label="pagination" #{
-        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></nav>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(**vars)), pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination for Bulma: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

@@ -8,7 +8,7 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module NavsExtra
     # Javascript pagination: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
+    def pagy_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => pagy_nav_prev_html(pagy, link),
@@ -18,7 +18,7 @@ class Pagy # :nodoc:
                'after'  => pagy_nav_next_html(pagy, link) }
 
       %(<nav#{p_id} class="pagy-njs pagy-nav-js pagination" aria-label="pager" #{
-        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></nav>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(**vars)), pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

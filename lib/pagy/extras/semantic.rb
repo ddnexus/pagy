@@ -8,13 +8,13 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module SemanticExtra
     # Pagination for semantic: it returns the html with the series of links to the pages
-    def pagy_semantic_nav(pagy, pagy_id: nil, link_extra: '')
+    def pagy_semantic_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
 
       html = +%(<div#{p_id} class="pagy-semantic-nav ui pagination menu">)
       html << pagy_semantic_prev_html(pagy, link)
-      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then link.call item
                 when String  then %(<a class="item active">#{pagy.label_for(item)}</a>)
@@ -27,7 +27,7 @@ class Pagy # :nodoc:
     end
 
     # Javascript pagination for semantic: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_semantic_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
+    def pagy_semantic_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
       tags = { 'before' => pagy_semantic_prev_html(pagy, link),
@@ -37,7 +37,7 @@ class Pagy # :nodoc:
                'after'  => pagy_semantic_next_html(pagy, link) }
 
       %(<div#{p_id} class="pagy-njs pagy-semantic-nav-js ui pagination menu" role="navigation" #{
-        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></div>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(**vars)), pagy.label_sequels(sequels))}></div>)
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
