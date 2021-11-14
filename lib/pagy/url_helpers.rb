@@ -23,7 +23,7 @@ class Pagy
     private
 
     # Transitional code to handle params deprecations. It will be removed in version 6.0
-    def pagy_deprecated_params(pagy, params)   # remove in 6.0
+    def pagy_deprecated_params(pagy, params)    # remove in 6.0
       if pagy.params.is_a?(Proc)                # new code
         pagy.params.call(params)
       elsif respond_to?(:pagy_massage_params)   # deprecated code

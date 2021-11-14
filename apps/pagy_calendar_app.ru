@@ -134,7 +134,7 @@ __END__
     <% end %>
   </div>
 
-  <!-- standard pagination -->
+  <!-- items pagination -->
   <p><%= pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %><p/>
 
 </div>

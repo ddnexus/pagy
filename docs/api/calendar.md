@@ -71,25 +71,25 @@ Being a subclass of `Pagy` this class inherit also its default variables and acc
 - Unknown (but you can pass them as variables or set them with their accessors if you need it):
   - `:count`
   - `in`
-  
+
 ### Unsupported
    
 Here is the list of what makes no sense or it is not supported in calendar pagination:
 
-- `pagy_info` (but it works in the standard pagination nested level)
+- `pagy_info` (but it works with the `:items` pagination of the last nested level)
 - `*combo_nav_js` helpers (but the `*nav_js` helpers work)
 - `gearbox` extra
-- `items` extra   
-- `arel` extra
-- `array`, `elasticsearch_rails`, `searchkick`, `meilisearch` extras, however you can still calendar-paginate that collections by following the logic explained in the [calendar extra](../extras/calendar.md)
+- `items` extra
+- `arel` extra (but it works with `:items` pagination of the last nested level)
+- `array`, `elasticsearch_rails`, `searchkick`, `meilisearch` extras, however you can likely calendar-paginate that collections by following the logic explained in the [calendar extra](../extras/calendar.md)
 
 ## Methods
 
 ### label(**opts)
 
-This method generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization passed as a hash option e.g. `pagy.label(format: '%Y')`.
+This method generates a label for the page with the specific `Time` period it refers to (using the `:*_format` variable). It accepts an optional `format` keyword argument that can override the unit `:*_format` variable
 
 ### label_for(page, **opts)
 
-This method takes a page num (`Integer` or `String`) and generates a label for the page with the specific `Time` period it refers to. It accepts an optional `strftime` format for customization passed as a hash option e.g. `pagy.label_for(page, format: '%Y')`. 
+This method takes a page num (`Integer` or `String`) and generates a label for the page with the specific `Time` period it refers to (using the `:*_format` variable). It accepts an optional `format` keyword argument that can override the unit `:*_format` variable.
 

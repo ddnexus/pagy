@@ -114,11 +114,9 @@ This sub-method is similar to the `pagy_get_items` sub-method, but it is called 
 
 ### Nested pagination
 
-A calendar pagination could generate pages of huge size, which frankly would be quite self defeating for a pagination gem.
+A calendar pagination could generate pages of huge size, and that is exactly what you are trying to avoid by using a pagination gem.
 
-For example: a `:year` page might contain an unspecified big number of records since in calendar pagination we get all the records that fall between two points in time, so we have no idea about how many records we are about to pull.
-
-So if the collection has units of unpredictable big size (which is usually a wise assumption), you can re-paginate it. For example:
+For example, a `:year` page might contain a big number of records, so it's recommended that you re-paginate it with the standard `:items` pagination. For example:
 
 ```ruby
 # Paginate by year (or any other unit)
@@ -130,12 +128,12 @@ So if the collection has units of unpredictable big size (which is usually a wis
 <%== pagy_nav(@pagy_year) %>
 <%== pagy_info(@pagy) %> for <%== @pagy_year.label %>
 
-... display your list of records ...
+... display only @records (not the year_page)...
 
 <%== pagy_nav(@pagy) %>
 ```
 
-Notice that the nesting could be also multi-level and the number of queries needed with not increase. See the single file [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a working example of 3 nesting levels: `:year` + `:month` + standard pagination. 
+Notice that the nesting could be also multi-level and the number of needed queries will not increase. See the single file [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a working example of 3 nesting levels: `:year` + `:month` + `:items` pagination. 
 
 You can get a quick demo on your machine: 
 
@@ -150,15 +148,21 @@ Then point your browser to `http://0.0.0.0:8080`.
 ### Order
 
 If you set `:order` to `:desc`, the `Pagy::Calendar` will reverse the order of the page units (e.g. May, then April, then March, ...), but keep in mind that you still have to reverse the records in the page since pagy has no control over that (indeed it's your code that pulls the records).
+            
+## View
+
+You can use the calendar extra with any `pagy_*nav`, `pagy_*nav_js` helpers or any templates in your views.
+
+ Notice however that since the `pagy_*combo_nav_js` keeps into account only page numbers and not labels, it is not very useful (if at all) with `Pagy::Calenadr` objects.
 
 ### Label format
 
-When you use this extra with a standard pagination bar you will see that each page link is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by just setting any of the `:*_format` variables wth a standard `strftime` format.
+When you use this extra with a classic pagination bar, each page link is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by just setting any of the `:*_format` variables with a standard `strftime` format.
 
-You can also get the [current page label](../api/calendar.md#labelformat--nil) with `@pagy.label`, which might be useful to use in your UI.
+You can also get the [current page label](../api/calendar.md#label_forpage-opts) with `@pagy.label`, which might be useful to use in your UI.
 
 ### I18n localization
 
-Pagy implements its own faster version of the `translate` method, but does not provide any built-in support for the `localize` method.
+Pagy implements its own faster version of the i18n `translate` method, but does not provide any built-in support for the i18n `localize` method.
 
-If you need to use formats with unit names (weekday names, month names, etc.) that require localization in an I18n application, you need to use the [i18n extra](i18n.md), which delegates the localization to the `I18n` gem. In that case a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 
+If you need to localize the unit labels in other locales you need to use the [i18n extra](i18n.md), which delegates the localization to the `I18n` gem. In that case a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 
