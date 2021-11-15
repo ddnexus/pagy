@@ -50,8 +50,9 @@ describe 'pagy/extras/i18n' do
   describe 'Calendar with I18n.l' do
     ::I18n.load_path += Dir[Pagy.root.join('..', 'test', 'files', 'locales', '*.yml')]
     it 'works in :en' do
-      pagy = Pagy::Calendar.new(local_minmax: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)],
-                                page: 3, month_format: '%B, %A')
+      pagy = Pagy::Calendar.create(:month,
+                                   minmax: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)],
+                                   page: 3, month_format: '%B, %A')
       _(pagy.label).must_equal "December, Wednesday"
       _(pagy.label(locale: :de)).must_equal "Dezember, Mittwoch"
       _(pagy.label(format: '%b')).must_equal "Dec"

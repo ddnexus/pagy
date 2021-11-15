@@ -55,17 +55,15 @@ class PagyApp < Sinatra::Base
     end
   end
 
-  # Override the super method in order to set the local_minmax array dynamically
-  def pagy_calendar_get_vars(collection, vars)
-    super
-    vars[:local_minmax] ||= collection.minmax.map { |t| t.getlocal(0) }  # 0 utc_offset means 00:00 local time
-    vars
+  # Override the super method in order to set the minmax array dynamically
+  def pagy_calendar_minmax(collection)
+    collection.minmax.map { |t| t.getlocal(0) }  # 0 utc_offset means 00:00 local time
   end
 
   # Implemented by the user: use pagy.utc_from, pagy.utc_to to get the page records from your collection
   # Our collection time is stored in UTC, so we don't need to convert the time provided by utc_from/utc_to
-  def pagy_calendar_get_items(collection, pagy)
-    collection.select_page_of_records(pagy.utc_from, pagy.utc_to)
+  def pagy_calendar_filtered(collection, utc_from, utc_to)
+    collection.select_page_of_records(utc_from, utc_to)
   end
 
   get '/pagy.js' do
@@ -88,7 +86,7 @@ class PagyApp < Sinatra::Base
 
     get "/#{name}-calendar" do
       collection = MockCollection::Calendar.new
-      @pagy, @records = pagy_calendar(collection, unit: :month, size: [1, 2, 2, 1])
+      @calendar, @pagy, @records = pagy_calendar(collection, month: { size: [1, 2, 2, 1] })
       name_fragment = name == 'navs' ? '' : "#{name}_"
       erb :calendar_helpers, locals: { name: name, name_fragment: name_fragment }
     end
@@ -174,13 +172,13 @@ __END__
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav" %></p>
-<%= send(:"pagy_#{name_fragment}nav", @pagy, pagy_id: 'nav') %>
+<%= send(:"pagy_#{name_fragment}nav", @calendar[:month], pagy_id: 'nav') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav_js" %></p>
-<%= send(:"pagy_#{name_fragment}nav_js", @pagy, pagy_id: 'nav-js') %>
+<%= send(:"pagy_#{name_fragment}nav_js", @calendar[:month], pagy_id: 'nav-js') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav_js" %> (responsive)</p>
-<%= send(:"pagy_#{name_fragment}nav_js", @pagy, pagy_id: 'nav-js-responsive', steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
+<%= send(:"pagy_#{name_fragment}nav_js", @calendar[:month], pagy_id: 'nav-js-responsive', steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
 <hr>

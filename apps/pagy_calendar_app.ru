@@ -30,6 +30,7 @@ gemfile true do
   gem 'pagy', path: '../' # <-- use the local repo
   gem 'puma'
   gem 'sinatra'
+  gem 'sinatra-url-for'
   gem 'sinatra-contrib'
 end
 
@@ -50,7 +51,6 @@ class PagyCalendarApp < Sinatra::Base
   configure do
     enable :inline_templates
   end
-
   include Pagy::Backend
 
   # Edit this section adding your own helpers as needed
@@ -58,40 +58,31 @@ class PagyCalendarApp < Sinatra::Base
     include Pagy::Frontend
   end
 
-  # Override the super method in order to set the local_minmax array dynamically
-  def pagy_calendar_get_vars(collection, vars)
-    super
-    vars[:local_minmax] ||= collection.minmax.map { |t| t.getlocal(0) }  # 0 utc_offset means 00:00 local time
-    vars
+  # Define the pagy_calendar_minmax method in your application
+  # It must return an Array with the minimum and maximum local Time objects from the collection,
+  # converted to the local time of the user
+  def pagy_calendar_minmax(collection)
+    collection.minmax.map { |t| t.getlocal(0) }  # 0 utc_offset means 00:00 local time
   end
 
-  # Implemented by the user: use pagy.utc_from, pagy.utc_to to get the page records from your collection
-  # Our collection time is stored in UTC, so we don't need to convert the time provided by utc_from/utc_to
-  def pagy_calendar_get_items(collection, pagy)
-    collection.select_page_of_records(pagy.utc_from, pagy.utc_to)
+  # Define the pagy_calendar_filtered method in your application
+  # It receives the main collection and must return a filtered version of it using utc_from and utc_to
+  # The filter logic must be equivalent to {utc_time >= utc_from && utc_time < utc_to}
+  # Notice: our collection time is stored in UTC, so we don't need to convert the time provided by utc_from/utc_to
+  def pagy_calendar_filtered(collection, utc_from, utc_to)
+    collection.select_page_of_records(utc_from, utc_to)
   end
 
   # Controller action
-  # Notice that with ActiveRecord collections the extra pagy_calendar calls don't generate any extra DB query
-  # They just refine the ActiveRecord::Relation that will get executed later in the view.
   get '/' do
     collection = MockCollection::Calendar.new
-    @year_pagy, year_page = pagy_calendar(collection, page_param:  :year_page,
-                                                      unit:        :year,
-                                                      size:        [1, 1, 1, 1],
-                                                      params:      lambda do |params|       # remove inner page params
-                                                                     params.delete('month_page')
-                                                                     params.delete('page')
-                                                                     params
-                                                                   end)
-    @month_pagy, month_page = pagy_calendar(year_page, page_param: :month_page,
-                                                       unit:       :month,
-                                                       size:       [0, 12, 12, 0],
-                                                       params:     lambda do |params|      # remove inner page params
-                                                                     params.delete('page')
-                                                                     params
-                                                                   end)
-    @pagy, @records = pagy(month_page, items: 10)
+    # The conf Hash defines the pagy objects variables keyed by calendar unit and the final pagy standard object
+    # The :skip_calendar is an optional and arbitrarily named param that skips the calendar pagination
+    # and uses only the pagy object to paginate the unfiltered collection
+    @calendar, @pagy, @records = pagy_calendar(collection, year:  { size: [1, 1, 1, 1] },
+                                                           month: { size: [0, 12, 12, 0] },
+                                                           pagy:  { items: 10 },
+                                                           skip:  params[:skip_calendar])
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
@@ -103,7 +94,8 @@ __END__
 @@ layout
 <html style="font-size: 0.7rem">
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body style="background-color: #f7f7f7; color: #51585F;">
   <%= yield %>
@@ -118,13 +110,24 @@ __END__
   <p>See the <a href="https://ddnexus.github.io/pagy/extras/calendar">Pagy Calendar Extra</a> for details.</p>
   <hr>
 
-  <!-- calendar pagination -->
-  <%= pagy_bootstrap_nav(@year_pagy) %>   <!-- year nav -->
-  <%= pagy_bootstrap_nav(@month_pagy) %>  <!-- month nav -->
+  <!-- manual toggle calendar UI -->
+  <p>
+  <% if params[:skip_calendar] %>
+    <a href="/" >Show Calendar</a>
+  <% else %>
+    <a href="?skip_calendar=true" >Hide Calendar</a>
+  <% end %>
+  </p>
 
-  <!-- page info -->
+  <!-- calendar navs -->
+  <% if @calendar %>
+    <%= pagy_bootstrap_nav(@calendar[:year]) %>   <!-- year nav -->
+    <%= pagy_bootstrap_nav(@calendar[:month]) %>  <!-- month nav -->
+  <% end %>
+
+  <!-- page info extended for the calendar unit -->
   <div class="alert alert-primary" role="alert">
-    <%= "#{pagy_info(@pagy)} for <b>#{@month_pagy.label(format: '%B %Y')}</b>" %>
+    <%= pagy_info(@pagy) %><%= " for <b>#{@calendar[:month].label(format: '%B %Y')}</b>" if @calendar %>
   </div>
 
   <!-- page records -->
@@ -134,7 +137,7 @@ __END__
     <% end %>
   </div>
 
-  <!-- items pagination -->
+  <!-- standard pagination of the selected month -->
   <p><%= pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %><p/>
 
 </div>

@@ -31,14 +31,12 @@ class MockApp
   end
 
   class Calendar < MockApp
-    def pagy_calendar_get_vars(collection, vars)
-      super
-      vars[:local_minmax] ||= collection.minmax.map { |t| t.getlocal(0) }
-      vars
+    def pagy_calendar_minmax(collection)
+      collection.minmax.map { |t| t.getlocal(0) }
     end
 
-    def pagy_calendar_get_items(collection, pagy)
-      collection.select_page_of_records(pagy.utc_from, pagy.utc_to)
+    def pagy_calendar_filtered(collection, utc_from, utc_to)
+      collection.select_page_of_records(utc_from, utc_to)
     end
   end
 end

@@ -3,27 +3,27 @@
 require_relative '../test_helper'
 require 'pagy/calendar'
 
-def pagy(vars = {})
-  default = { local_minmax: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)] }
-  Pagy::Calendar.new default.merge(vars)
+def pagy(unit: :month, **vars)
+  default = { minmax: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)] }
+  Pagy::Calendar.create unit, default.merge(vars)
 end
 
 describe 'pagy/calendar' do
   describe 'instance methods and variables' do
-    it 'defines calendar specific attr readers' do
-      %i[utc_from utc_to unit week_offset order count= in=].each { |meth| assert_respond_to pagy, meth }
+    it 'defines calendar specific accessors' do
+      %i[utc_from utc_to time_order].each { |meth| assert_respond_to pagy, meth }
     end
     it 'raises Pagy::VariableError' do
-      _ { pagy(unit: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(local_minmax: [1, 10]) }.must_raise Pagy::VariableError
-      _ { pagy(local_minmax: [Time.now]) }.must_raise Pagy::VariableError
-      _ { pagy(local_minmax: [Time.now, 2]) }.must_raise Pagy::VariableError
-      _ { pagy(local_minmax: [Time.now.utc, Time.now]) }.must_raise Pagy::VariableError
-      _ { pagy(order: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(year_format: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(month_format: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(week_format: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(day_format: :unknown) }.must_raise Pagy::VariableError
+      _ { pagy(unit: :unknown) }.must_raise Pagy::InternalError
+      _ { pagy(minmax: [1, 10]) }.must_raise Pagy::VariableError
+      _ { pagy(minmax: [Time.now]) }.must_raise Pagy::VariableError
+      _ { pagy(minmax: [Time.now, 2]) }.must_raise Pagy::VariableError
+      _ { pagy(minmax: [Time.now.utc, Time.now]) }.must_raise Pagy::VariableError
+      _ { pagy(time_order: :unknown) }.must_raise Pagy::VariableError
+      _ { pagy(unit: :year, year_format: :unknown) }.must_raise Pagy::VariableError
+      _ { pagy(unit: :month, month_format: :unknown) }.must_raise Pagy::VariableError
+      _ { pagy(unit: :week, week_format: :unknown) }.must_raise Pagy::VariableError
+      _ { pagy(unit: :day, day_format: :unknown) }.must_raise Pagy::VariableError
     end
   end
 
@@ -38,7 +38,7 @@ describe 'pagy/calendar' do
       _(p.last).must_equal 3
     end
     it 'computes variables for :year desc' do
-      p = pagy(unit: :year, order: :desc)
+      p = pagy(unit: :year, time_order: :desc)
       _(p.instance_variable_get('@initial')).must_equal Time.gm(2021)
       _(p.instance_variable_get('@final')).must_equal Time.gm(2024)
       _(p.utc_from).must_equal Time.gm(2023)
@@ -221,7 +221,7 @@ describe 'pagy/calendar' do
 
   describe '#snap' do
     it 'inverts the order' do
-      p = pagy(unit: :month, order: :desc)
+      p = pagy(unit: :month, time_order: :desc)
       _(p.send(:snap, 1)).must_equal 25
       _(p.send(:snap, 2)).must_equal 24
       _(p.send(:snap, 3)).must_equal 23
@@ -233,7 +233,7 @@ describe 'pagy/calendar' do
 
   describe '#label' do
     it 'uses the default and custom format' do
-      p = pagy(unit: :month, order: :desc, page: 2)
+      p = pagy(unit: :month, time_order: :desc, page: 2)
       _(p.label).must_equal '2023-10'
       _(p.label(format: '%B %Y')).must_equal 'October 2023'
     end
@@ -247,11 +247,8 @@ describe 'pagy/calendar' do
         _(p.label_for(2)).must_rematch
       end
     end
-    it 'raise for unknown unit' do
-      p = pagy(unit: :year)
-      p.instance_variable_set(:@unit, :unknown)
-      _ { p.label_for(1) }.must_raise Pagy::InternalError
-      _ { p.label_for(2) }.must_raise Pagy::InternalError
+    it 'raises direct instantiation' do
+      _ { Pagy::Calendar.new({}) }.must_raise Pagy::InternalError
     end
   end
 end
