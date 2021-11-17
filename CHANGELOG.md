@@ -8,7 +8,7 @@ If you upgrade from version `< 5.0.0` see the following:
 - [Breaking changes in version 4.0.0](CHANGELOG_LEGACY.md#version-400)
 - [Breaking changes in version 3.0.0](CHANGELOG_LEGACY.md#version-300)
 - [Breaking changes in version 2.0.0](CHANGELOG_LEGACY.md#version-200)
-- [Breaking changes in version 1.0.0](CHANGELOG_LEGACY.md#version-100)  
+- [Breaking changes in version 1.0.0](CHANGELOG_LEGACY.md#version-100)
 
 ## Deprecations
 
@@ -17,6 +17,19 @@ Still supported in version `5.x` but not supported from `6.0` on:
 - `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [Customizing the params](https://ddnexus.github.io/pagy/how-to#customizing-the-params).
 
 <hr>
+
+## Version 5.4.0
+
+- **Calendar API breaking changes** for refactoring of `Pagy::Calendar` and calendar extra:
+  - Added complete compatibility with all the backend extras
+  - Simpler usage with automatic handling of pagy objects
+  - Less variables and simpler requirements for the methods to implement
+- Updated gemfiles
+- The localize method overridden by the i18n extra must receive a format
+- Series and sequels use keyword arguments and pagy_*nav methods accepts a size keyword argument
+- Docs improvements
+- Removed unnecessary empty section in calendar docs
+- Fixes for typos and misalignment
 
 ## Version 5.3.1
 

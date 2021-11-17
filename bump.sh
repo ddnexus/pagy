@@ -6,6 +6,7 @@ ROOT="$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)")"
 
 cur=$(ruby -Ilib -rpagy -e 'puts Pagy::VERSION')
 current=${cur//./\\.}
+log=$(git log --format="- %s%b" "$cur"..HEAD)
 
 echo     "Current Pagy::VERSION: $cur"
 read -rp 'Enter the new version> ' ver
@@ -33,18 +34,18 @@ sed -i "0,/$current_minor/{s/$current_minor/$version_minor/}" "$ROOT/docs/how-to
 
 
 # Update CHANGELOG
-log=$(cat <<-LOG
+changelog=$(cat <<-LOG
 	<hr>
 
 	## Version $ver
 
-	$(git log --format="- %s%b" "$cur"..HEAD)
+	$log
 LOG
 )
 
 CHANGELOG="$ROOT/CHANGELOG.md"
 TMPFILE=$(mktemp)
-awk -v l="$log" '{sub(/<hr>/, l); print}' "$CHANGELOG" > "$TMPFILE"
+awk -v l="$changelog" '{sub(/<hr>/, l); print}' "$CHANGELOG" > "$TMPFILE"
 mv "$TMPFILE" "$CHANGELOG"
 
 

@@ -15,7 +15,7 @@ class Pagy
     include UrlHelpers
 
     # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, pagy_id: nil, link_extra: '')
+    def pagy_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id   = %( id="#{pagy_id}") if pagy_id
       link   = pagy_link_proc(pagy, link_extra: link_extra)
       p_prev = pagy.prev
@@ -27,7 +27,7 @@ class Pagy
               else
                 %(<span class="page prev disabled">#{pagy_t('pagy.nav.prev')}</span> )
               end
-      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<span class="page">#{link.call item}</span> )
                 when String  then %(<span class="page active">#{pagy.label_for(item)}</span> )

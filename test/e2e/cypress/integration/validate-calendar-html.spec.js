@@ -6,7 +6,7 @@ describe('Validate the HTML of all calendar the styles helpers', () => {
     for (let p = 0; p < pages.length; p++) {
       let page = pages[p];
       it('Test valid HTML for ' + style + ' page: ' + page, () => {
-        cy.visit(style + '?page=' + page);
+        cy.visit(style + '?month_page=' + page);
         cy.htmlvalidate();
       });
     }

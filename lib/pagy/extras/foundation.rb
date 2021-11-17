@@ -8,13 +8,13 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module FoundationExtra
     # Pagination for Foundation: it returns the html with the series of links to the pages
-    def pagy_foundation_nav(pagy, pagy_id: nil, link_extra: '')
+    def pagy_foundation_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
       html = +%(<nav#{p_id} class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination">)
       html << pagy_foundation_prev_html(pagy, link)
-      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<li>#{link.call item}</li>)                        # page link
                 when String  then %(<li class="current">#{pagy.label_for(item)}</li>)                  # active page
@@ -27,7 +27,7 @@ class Pagy # :nodoc:
     end
 
     # Javascript pagination for foundation: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_foundation_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
+    def pagy_foundation_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => %(<ul class="pagination">#{pagy_foundation_prev_html pagy, link}),
@@ -37,7 +37,7 @@ class Pagy # :nodoc:
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="pagy-njs pagy-foundation-nav-js" aria-label="Pagination" #{
-        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></nav>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(**vars)), pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

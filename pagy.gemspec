@@ -14,5 +14,6 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/ddnexus/pagy'
   s.license     = 'MIT'
   s.files       = File.read('pagy.manifest').split
+  s.metadata    = { 'rubygems_mfa_required' => 'true' }
   s.required_ruby_version = '>= 2.5'
 end

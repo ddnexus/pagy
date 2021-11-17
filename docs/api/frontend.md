@@ -41,10 +41,11 @@ This method takes the Pagy object and returns the HTML string with the paginatio
 <%== pagy_nav(@pagy, ...) %>
 ```
 
-The method accepts also a couple of optional keyword arguments:
+The method accepts also a few optional keyword arguments:
 
 - `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
+- `:size` which use the passed size Array instead of the `:size` variable of the instance
 
 The `nav.*` templates produce the same output, and can be used as an easier (but slower) way to customize it.
 

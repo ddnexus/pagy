@@ -15,25 +15,25 @@ class Pagy # :nodoc:
 
       # Add rescue clause for different behaviors
       def initialize(vars)
-        @overflow ||= false                            # still true if :last_page re-run the method after an overflow
+        @overflow ||= false                                 # still true if :last_page re-run the method after an overflow
         super
       rescue OverflowError
-        @overflow = true                               # add the overflow flag
+        @overflow = true                                    # add the overflow flag
         case @vars[:overflow]
         when :exception
-          raise                                        # same as without the extra
+          raise                                             # same as without the extra
         when :last_page
-          requested_page = @vars[:page]                # save the requested page (even after re-run)
-          initialize vars.merge!(page: @last)          # re-run with the last page
-          @vars[:page] = requested_page                # restore the requested page
+          requested_page = @vars[:page]                     # save the requested page (even after re-run)
+          initialize vars.merge!(page: @last)               # re-run with the last page
+          @vars[:page] = requested_page                     # restore the requested page
         when :empty_page
-          @offset = @items = @from = @to = 0           # vars relative to the actual page
-          if defined?(Calendar) && is_a?(Calendar)     # only for Calendar instances
-            edge = @order == :asc ? @final : @initial  # get the edge of the overflow side (neat, but it would work with any time)
-            @utc_from = @utc_to = edge.getutc          # set both to the edge utc time (a query with >= && < will get no record)
+          @offset = @items = @from = @to = 0                # vars relative to the actual page
+          if defined?(Calendar) && is_a?(Calendar)          # only for Calendar instances
+            edge = @time_order == :asc ? @final : @initial  # get the edge of the overflow side (neat, but any time would do)
+            @utc_from = @utc_to = edge.getutc               # set both to the edge utc time (a >=&&< query will get no records)
           end
-          @prev = @last                                # prev relative to the actual page
-          extend Series                                # special series for :empty_page
+          @prev = @last                                     # prev relative to the actual page
+          extend Series                                     # special series for :empty_page
         else
           raise VariableError.new(self, :overflow, 'to be in [:last_page, :empty_page, :exception]', @vars[:overflow])
         end
@@ -41,9 +41,9 @@ class Pagy # :nodoc:
 
       # Special series for empty page
       module Series
-        def series(size = @vars[:size])
+        def series(*)
           @page = @last                                # series for last page
-          super(size).tap do |s|                       # call original series
+          super.tap do |s|                       # call original series
             s[s.index(@page.to_s)] = @page             # string to integer (i.e. no current page)
             @page = @vars[:page]                       # restore the actual page
           end

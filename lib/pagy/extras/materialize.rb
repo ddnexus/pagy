@@ -8,13 +8,13 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module MaterializeExtra
     # Pagination for materialize: it returns the html with the series of links to the pages
-    def pagy_materialize_nav(pagy, pagy_id: nil, link_extra: '')
+    def pagy_materialize_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
       html = +%(<div#{p_id} class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">)
       html << pagy_materialize_prev_html(pagy, link)
-      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<li class="waves-effect">#{link.call item}</li>)                           # page link
                 when String  then %(<li class="active">#{link.call item}</li>)                                 # active page
@@ -27,7 +27,7 @@ class Pagy # :nodoc:
     end
 
     # Javascript pagination for materialize: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_materialize_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
+    def pagy_materialize_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
@@ -38,7 +38,7 @@ class Pagy # :nodoc:
                'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
 
       %(<div#{p_id} class="pagy-njs pagy-materialize-nav-js" role="navigation" aria-label="pager" #{
-        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></div>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(**vars)), pagy.label_sequels(sequels))}></div>)
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

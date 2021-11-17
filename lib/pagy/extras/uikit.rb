@@ -8,12 +8,12 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module UikitExtra
     # Pagination for uikit: it returns the html with the series of links to the pages
-    def pagy_uikit_nav(pagy, pagy_id: nil, link_extra: '')
+    def pagy_uikit_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
       html = +%(<ul#{p_id} class="pagy-uikit-nav uk-pagination uk-flex-center">#{pagy_uikit_prev_html pagy, link})
-      pagy.series.each do |item|
+      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer then %(<li>#{link.call item}</li>)
                 when String  then %(<li class="uk-active"><span>#{pagy.label_for(item)}</span></li>)
@@ -26,7 +26,7 @@ class Pagy # :nodoc:
     end
 
     # Javascript pagination for uikit: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_uikit_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
+    def pagy_uikit_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
       tags = { 'before' => pagy_uikit_prev_html(pagy, link),
@@ -36,7 +36,7 @@ class Pagy # :nodoc:
                'after'  => pagy_uikit_next_html(pagy, link) }
 
       %(<ul#{p_id} class="pagy-njs pagy-uikit-nav-js uk-pagination uk-flex-center" #{
-        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></ul>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(**vars)), pagy.label_sequels(sequels))}></ul>)
     end
 
     # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

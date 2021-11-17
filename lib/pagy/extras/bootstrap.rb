@@ -8,13 +8,13 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module BootstrapExtra
     # Pagination for bootstrap: it returns the html with the series of links to the pages
-    def pagy_bootstrap_nav(pagy, pagy_id: nil, link_extra: '')
+    def pagy_bootstrap_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
 
       html = +%(<nav#{p_id} class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination">)
       html << pagy_bootstrap_prev_html(pagy, link)
-      pagy.series.each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
                   %(<li class="page-item">#{link.call item}</li>)
@@ -30,7 +30,7 @@ class Pagy # :nodoc:
     end
 
     # Javascript pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_bootstrap_nav_js(pagy, pagy_id: nil, link_extra: '', steps: nil)
+    def pagy_bootstrap_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
       tags = { 'before' => %(<ul class="pagination">#{pagy_bootstrap_prev_html pagy, link}),
@@ -40,7 +40,7 @@ class Pagy # :nodoc:
                'after'  => %(#{pagy_bootstrap_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="pagy-njs pagy-bootstrap-nav-js" aria-label="pager" #{
-        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(steps)), pagy.label_sequels(sequels))}></nav>)
+        pagy_json_attr(pagy, :nav, tags, (sequels = pagy.sequels(**vars)), pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript

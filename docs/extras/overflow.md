@@ -102,7 +102,7 @@ require 'pagy/extras/overflow'
 
 local_time = Time.new(2021, 10, 20, 10, 10, 10, '-09:00')
 # => 2021-10-20 10:10:10 -0900
-pagy = Pagy::Calendar.new(local_minmax: [local_time, local_time + 60*60*24*130], page: 100)
+pagy = Pagy::Calendar.new(minmax: [local_time, local_time + 60*60*24*130], page: 100)
 
 pagy.overflow?          #=> true
 pagy.vars[:page]        #=> 100 (requested page)
@@ -115,8 +115,8 @@ pagy.utc_from           #=> 2022-03-01 09:00:00 UTC (end time of the final unit)
 pagy.utc_to             #=> 2022-03-01 09:00:00 UTC (same as utc_from: if used it gets no records)
 pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
 
-# small difference with order: :desc, which yield the same result of an empty page
-pagy = Pagy::Calendar.new(order: :desc, local_minmax: [local_time, local_time + 60*60*24*130], page: 100)
+# small difference with time_order: :desc, which yield the same result of an empty page
+pagy = Pagy::Calendar.new(time_order: :desc, minmax: [local_time, local_time + 60*60*24*130], page: 100)
 pagy.utc_from           #=> 2021-10-01 09:00:00 UTC (start time of initial unit)
 pagy.utc_to             #=> 2021-10-01 09:00:00 UTC (same as utc_from: if used it gets no records)
 ```

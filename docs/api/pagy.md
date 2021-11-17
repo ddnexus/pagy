@@ -61,7 +61,7 @@ The `Pagy.new` method accepts a single hash of variables that will be merged wit
 
 ### series(...)
 
-This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` argument (only useful for extras), defaulted on the `:size` variable.
+This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` keyword argument (only useful for extras), defaulted on the `:size` variable.
 
 **Notice**: A `:gap` is added only where the series is missing at least two pages. When the series is missing only one page, the `:gap` is replaced with the page link of the actual missing page. That's because the page link uses the same space of the `...` gap but it is more useful.
 
