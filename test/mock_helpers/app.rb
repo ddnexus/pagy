@@ -31,12 +31,12 @@ class MockApp
   end
 
   class Calendar < MockApp
-    def pagy_calendar_minmax(collection)
+    def pagy_calendar_period(collection)
       collection.minmax.map { |t| t.getlocal(0) }
     end
 
-    def pagy_calendar_filtered(collection, utc_from, utc_to)
-      collection.select_page_of_records(utc_from, utc_to)
+    def pagy_calendar_filter(collection, from, to)
+      collection.select_page_of_records(from.utc, to.utc)
     end
   end
 end

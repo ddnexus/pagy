@@ -1,64 +1,75 @@
 ---
 title: Pagy::Calendar
 ---
-# Pagy::Calendar::*
+# Pagy::Calendar
 
-This is a `Pagy` subclass (see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar.rb)) that paginates the collection by calendar units (year, month, week or day) instead of the usual number of `:items`. 
+This is a `Pagy` subclass (see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar.rb)) that provides pagination filtering by time (Year, Month, Week Day). 
 
-**Notice**: This classes provide support for the [calendar extra](../extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone. The class API is documented here, however you should not need to use this class directly because it is required and used internally by the extra.
-
-**WARNING**: _This class has 100% of test coverage, however it's very new and its API could still change, so consider it as a version 0.x. Please, check the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md) for breaking changes before upgrading Pagy for minor version bumps. Patch versions are safe to upgrade without checking. (This warning will be removed as soon as the API will become stable.)_
+**Notice**: The `Pagy::Calendar::*` classes provide support for the [calendar extra](../extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone (because they could generate a very high number of items per page). The class APIs are documented here, however you should not need to use them directly because they are required and used internally by the extra.
 
 ## Overview
 
-The pagy `Pagy::Calendar::*` instances split the collection into pages of equal time unit, so with `Pagy::Calendar::Year`, you will have one page per each different calendar year and each page can be filtered to contain all the records that fall into the specific page/year. You can also paginate with `Pagy::Calendar::Month` or `Pagy::Calendar::Week` or `Pagy::Calendar::Day`. 
+The pagy `Pagy::Calendar::*` instances split a time period into pages of equal time unit. For example: with `Pagy::Calendar::Year` you will have one page per each different calendar year so each page can be filtered to contain all the records that fall into the specific page/year. The `Pagy::Calendar::Month`, `Pagy::Calendar::Week` and `Pagy::Calendar::Day` classes have the same functions for their respective time units. 
 
 Each page is also conveniently labeled in the navigation bar with the specific `Time` period it refers to.
 
-**IMPORTANT**: This classes respects the natural calendar units, not the duration of a unit. If you paginate by year, each page will be a calendar year starting January 1st and ending the December 31st, not a year starting and ending at two arbitrary dates one year apart. All the other units follow the same principle. Units with no records are displayed as empty pages.
-  
-### Time objects
-
-This class uses only the ruby `Time` class for all its time calculations for great performance without dependencies. 
-              
-It requires an initializing `:minmax` variable expressed in the user local time. Everything inside the class works in local time, explicitly converting only the `utc_from` and `utc_to` objects to UTC.
+**IMPORTANT**: This classes respects the natural calendar units, not the duration of a unit. If you paginate by year, each page will be a calendar year starting January 1st and ending December 31st, not a period starting and ending at two arbitrary dates one year apart. All the classes follow the same principle. Time units with no records are displayed as empty pages.
 
 ## Variables
 
-Being a subclass of `Pagy`, `Pagy::Calendar::*` classes share most of their superclass infrastructure and variables, however they use a completely different way to paginate, hence they have a different set of core variables.
+Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their superclass infrastructure and variables, however they use a completely different way to paginate, hence they have a few extra core variables.
 
-The following variables are specific of `Pagy::Calendar`.
+The following variables are specific to `Pagy::Calendar::*` instances: 
 
-| Variable        | Description                                                                                                                                           | Default      |
-|:----------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------|
-| `:minmax`       | Required two items Array that you must set to the minimum and maximum LOCAL `Time` from the collection.                                               | `nil`        |
-| `:year_format`  | String containing the `strftime` format for the `:year` time units labels                                                                             | `'%Y'`       |
-| `:month_format` | String containing the `strftime` format for the `:month` time units labels                                                                            | `'%Y-%m'`    |
-| `:week_format`  | String containing the `strftime` format for the `:week` time units labels                                                                             | `'%Y-%W'`    |
-| `:day_format`   | String containing the `strftime` format for the `:day` time units labels                                                                              | `'%Y-%m-%d'` |
-| `:week_offset`  | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) used to adjust the starting day of the week (only for `Page::Calendar::Week` instances) | `0`          |
-| `:time_order`   | Order of pagination: it can be`:asc` or `:desc`                                                                                                       | `:asc`       |
+| Variable  | Description                                                                                    | Default |
+|:----------|:-----------------------------------------------------------------------------------------------|:--------|
+| `:period` | Required two items Array with the calendar starting and ending local `Time` objects            | `nil`   |
+| `:order`  | Order of pagination: it can be`:asc` or `:desc`                                                | `:asc`  |
+| `:format` | String containing the `strftime` format used for labelling (each subclass has its own default) |         |
+| `:offset` | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) (`Pagy::Calendar::Week` only)    | `0`     |
 
-**WARNING** You should always convert the `:minmax` times to be local time of your user. In order to prevent mistakes, Pagy will raise an exception if you pass UTC times.
+## DEFAULT variables
+
+The calendar defaults are not part of the `Pagy::DEFAULT` variables. Each subclass has its own `Pagy::Calendar::*::DEFAULT` variable hash that you can set independently. See the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) configuration file for details. 
 
 ## Attribute Readers
 
-`Pagy::Calendar` calculates a few specific `Time` variables and exposes them and other variables accessors with attribute readers:
+| Reader   | Description                                                    |
+|:---------|:---------------------------------------------------------------|
+| `from`   | The local `Time` of the start of the current page              |
+| `to`     | The local `Time` of the end of the current page                |
+| `offset` | The `:offset` variable of the `Pagy::Calendar::Week` instances |
+| `order`  | The `:order` variable                                          |
 
-| Reader        | Description                                                                                            |
-|:--------------|:-------------------------------------------------------------------------------------------------------|
-| `utc_from`    | The `UTC Time` of the start of the current page (use it to select the records with time `>= utc_from`) |
-| `utc_to`      | The `UTC Time` of the end of the current page (use it to select the records with time `< utc_to`)      |
-| `week_offset` | The `:week_offset` variable (only for `Pagy::Calendar::Week` instances)                                |
-| `time_order`  | The `:time_order` variable.                                                                            |
+### About from and to objects
+
+- The `from` is the beginning of the current time unit. Notice that for the first page it falls BEFORE the min time.
+- The `to` is the beginning of the next time unit. Notice that for the last page it falls AFTER the max time. 
+
+The cases for first and last pages have no effect when you use the `from`/`to` as a collection filter, since there are no records outside the `:period` of the collection.
+
+### Time conversions
+
+This classes use only the ruby `Time` class for all their time calculations for great performance without dependencies.
+
+Since they are meant to be used in the UI, they have to do their internal calculation using the user/server local time in order to make sense for the UI. For that reason their input/output is always local time.
+
+If you use `ActiveRecord`, your app should set the `Time.zone` for your user or your server. Then you can convert an UTC time from the storage to a local `Time` object for the calendar very easily with:
+
+```ruby
+utc_time_field.in_time_zone.to_time
+```
+
+You can also convert from local `Time` object to a UTC time with `local_time.utc`, however, when you use it as an argument in a scope, `ActiveRecord` converts it for you.
+
+For general usage without `ActiveRecord` you can simply use the `Time` methods to convert `utc_time.getlocal(utc_offset)` and `local_time.utc`.
 
 ## Methods
 
 ### label(**opts)
 
-This method generates a label for the page with the specific `Time` period it refers to (using the `:*_format` variable). It accepts an optional `format` keyword argument that can override the unit `:*_format` variable
+This method uses the `:format` variable to generate the current page label with the specific `Time` period it refers to. It accepts an optional `format` keyword argument for overriding.
 
 ### label_for(page, **opts)
 
-This method takes a  <!-- items pagination -->
- page num (`Integer` or `String`) and generates a label for the page with the specific `Time` period it refers to (using the `:*_format` variable). It accepts an optional `format` keyword argument that can override the unit `:*_format` variable.
+This method takes a page argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `format` keyword argument for overriding.

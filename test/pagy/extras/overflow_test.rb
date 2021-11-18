@@ -6,12 +6,12 @@ require 'pagy/countless'
 require 'pagy/extras/overflow'
 
 DAY    = 60 * 60 * 24
-MINMAX = [Time.new(2021, 11, 4), Time.new(2021, 11, 4) + (DAY * 10)].freeze
+PERIOD = [Time.new(2021, 11, 4), Time.new(2021, 11, 4) + (DAY * 10)].freeze
 
 describe 'pagy/extras/overflow' do
   let(:pagy_vars)      { { page: 100, items: 10, count: 103, size: [3, 2, 2, 3] } }
   let(:countless_vars) { { page: 100, items: 10 } }
-  let(:calendar_vars)  { { minmax: MINMAX, page: 100 } }
+  let(:calendar_vars)  { { period: PERIOD, page: 100 } }
   before do
     @pagy = Pagy.new(pagy_vars)
     @pagy_calendar = Pagy::Calendar::Day.new(calendar_vars)
@@ -57,8 +57,8 @@ describe 'pagy/extras/overflow' do
       _(pagy.pages).must_equal 11
       _(pagy.page).must_equal pagy.last
       _(pagy.vars[:page]).must_equal 100
-      _(pagy.utc_from).must_equal pagy.instance_variable_get('@final') - DAY
-      _(pagy.utc_to).must_equal pagy.instance_variable_get('@final')
+      _(pagy.from).must_equal pagy.instance_variable_get('@final') - DAY
+      _(pagy.to).must_equal pagy.instance_variable_get('@final')
       _(pagy.prev).must_equal 10
     end
     it 'raises OverflowError in :exception mode' do
@@ -79,13 +79,13 @@ describe 'pagy/extras/overflow' do
     it 'works in :empty_page mode in Pagy::Calendar' do
       pagy = Pagy::Calendar::Day.new(calendar_vars.merge(overflow: :empty_page))
       _(pagy.page).must_equal 100
-      _(pagy.utc_from).must_equal pagy.instance_variable_get('@final').getutc
-      _(pagy.utc_to).must_equal pagy.instance_variable_get('@final').getutc
+      _(pagy.from).must_equal pagy.instance_variable_get('@final')
+      _(pagy.to).must_equal pagy.instance_variable_get('@final')
       _(pagy.prev).must_equal pagy.last
-      pagy = Pagy::Calendar::Day.new(calendar_vars.merge(overflow: :empty_page, time_order: :desc))
+      pagy = Pagy::Calendar::Day.new(calendar_vars.merge(overflow: :empty_page, order: :desc))
       _(pagy.page).must_equal 100
-      _(pagy.utc_from).must_equal pagy.instance_variable_get('@initial').getutc
-      _(pagy.utc_to).must_equal pagy.instance_variable_get('@initial').getutc
+      _(pagy.from).must_equal pagy.instance_variable_get('@initial')
+      _(pagy.to).must_equal pagy.instance_variable_get('@initial')
       _(pagy.prev).must_equal pagy.last
     end
     it 'works in :empty_page mode in Pagy::Countless' do

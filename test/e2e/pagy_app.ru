@@ -55,15 +55,12 @@ class PagyApp < Sinatra::Base
     end
   end
 
-  # Override the super method in order to set the minmax array dynamically
-  def pagy_calendar_minmax(collection)
+  def pagy_calendar_period(collection)
     collection.minmax.map { |t| t.getlocal(0) }  # 0 utc_offset means 00:00 local time
   end
 
-  # Implemented by the user: use pagy.utc_from, pagy.utc_to to get the page records from your collection
-  # Our collection time is stored in UTC, so we don't need to convert the time provided by utc_from/utc_to
-  def pagy_calendar_filtered(collection, utc_from, utc_to)
-    collection.select_page_of_records(utc_from, utc_to)
+  def pagy_calendar_filter(collection, from, to)
+    collection.select_page_of_records(from.utc, to.utc)  # storage in UTC
   end
 
   get '/pagy.js' do

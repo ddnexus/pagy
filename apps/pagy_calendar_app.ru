@@ -18,8 +18,7 @@
 
 require 'bundler/inline'
 
-# Edit this gemfile declaration as you need
-# and ensure to use gems updated to the latest versions
+# Edit this gemfile declaration as you need and ensure to use gems updated to the latest versions
 # NOTICE: if you get any installation error with the following setup
 # temporarily remove the Gemfile and Gemfile.lock from the repo (they may interfere with the bundler/inline)
 
@@ -30,16 +29,14 @@ gemfile true do
   gem 'pagy', path: '../' # <-- use the local repo
   gem 'puma'
   gem 'sinatra'
-  gem 'sinatra-url-for'
   gem 'sinatra-contrib'
 end
 
-# Edit this section adding/removing the extras and Pagy::DEFAULT as needed
+# Edit this section adding/removing the extras and DEFAULT as needed
 # pagy initializer
 require 'pagy/extras/calendar'
 require 'pagy/extras/bootstrap'
 
-Pagy::DEFAULT[:month_format] = '%b'
 Pagy::DEFAULT.freeze
 
 # Simple array-based collection that acts as standard DB collection
@@ -58,31 +55,31 @@ class PagyCalendarApp < Sinatra::Base
     include Pagy::Frontend
   end
 
-  # Define the pagy_calendar_minmax method in your application
-  # It must return an Array with the minimum and maximum local Time objects from the collection,
-  # converted to the local time of the user
-  def pagy_calendar_minmax(collection)
-    collection.minmax.map { |t| t.getlocal(0) }  # 0 utc_offset means 00:00 local time
+  # This method must be implemented by the application.
+  # It must return the starting and ending local Time objects array defining the calendar :period
+  def pagy_calendar_period(collection)
+    collection.minmax.map(&:getlocal)   # time converted in your local time
   end
 
-  # Define the pagy_calendar_filtered method in your application
-  # It receives the main collection and must return a filtered version of it using utc_from and utc_to
-  # The filter logic must be equivalent to {utc_time >= utc_from && utc_time < utc_to}
-  # Notice: our collection time is stored in UTC, so we don't need to convert the time provided by utc_from/utc_to
-  def pagy_calendar_filtered(collection, utc_from, utc_to)
-    collection.select_page_of_records(utc_from, utc_to)
+  # This method must be implemented by the application.
+  # It receives the main collection and must return a filtered version of it.
+  # The filter logic must be equivalent to {storage_time >= from && storage_time < to}
+  def pagy_calendar_filter(collection, from, to)
+    collection.select_page_of_records(from.utc, to.utc)  # storage in UTC
   end
 
   # Controller action
   get '/' do
     collection = MockCollection::Calendar.new
     # The conf Hash defines the pagy objects variables keyed by calendar unit and the final pagy standard object
-    # The :skip_calendar is an optional and arbitrarily named param that skips the calendar pagination
-    # and uses only the pagy object to paginate the unfiltered collection
-    @calendar, @pagy, @records = pagy_calendar(collection, year:  { size: [1, 1, 1, 1] },
-                                                           month: { size: [0, 12, 12, 0] },
-                                                           pagy:  { items: 10 },
-                                                           skip:  params[:skip_calendar])
+    # The :skip is an optional and arbitrarily named param that skips the calendar pagination and uses only the pagy
+    # object to paginate the unfiltered collection. (It's active by default even without a :skip param).
+    # You way want to invert the logic (also in the view) with something like `active: params[:active]`,
+    # which would be inactive by default and only active on demand.
+    @calendar, @pagy, @records = pagy_calendar(collection, year:   { size: [1, 1, 1, 1] },
+                                                           month:  { size: [0, 12, 12, 0], format: '%b' },
+                                                           pagy:   { items: 10 },
+                                                           active: !params[:skip])
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
@@ -112,10 +109,10 @@ __END__
 
   <!-- manual toggle calendar UI -->
   <p>
-  <% if params[:skip_calendar] %>
+  <% if params[:skip] %>
     <a href="/" >Show Calendar</a>
   <% else %>
-    <a href="?skip_calendar=true" >Hide Calendar</a>
+    <a href="?skip=true" >Hide Calendar</a>
   <% end %>
   </p>
 
@@ -130,10 +127,10 @@ __END__
     <%= pagy_info(@pagy) %><%= " for <b>#{@calendar[:month].label(format: '%B %Y')}</b>" if @calendar %>
   </div>
 
-  <!-- page records -->
+  <!-- page records (time converted in your local time)-->
   <div class="list-group">
     <% @records.each do |record| %>
-    <p class="list-group-item"><%= record.to_s %></p>
+    <p class="list-group-item"><%= record.getlocal.to_s %></p>
     <% end %>
   </div>
 

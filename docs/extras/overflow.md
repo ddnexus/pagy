@@ -94,7 +94,7 @@ pagy.to                 #=> 0
 pagy.series             #=>  [] (no pages)
 ```
 
-Example for `Pagy::Calendar` instance:
+Example for `Pagy::Calendar::Month` instance:
 
 ```ruby
 require 'pagy/calendar'
@@ -102,7 +102,7 @@ require 'pagy/extras/overflow'
 
 local_time = Time.new(2021, 10, 20, 10, 10, 10, '-09:00')
 # => 2021-10-20 10:10:10 -0900
-pagy = Pagy::Calendar.new(minmax: [local_time, local_time + 60*60*24*130], page: 100)
+pagy = Pagy::Calendar::Month.new(period: [local_time, local_time + 60*60*24*130], page: 100)
 
 pagy.overflow?          #=> true
 pagy.vars[:page]        #=> 100 (requested page)
@@ -111,14 +111,14 @@ pagy.last == pagy.page  #=> false
 pagy.last               #=> 5
 pagy.last == pagy.prev  #=> true (the prev page is the last page relative to the overflowing page)
 pagy.next               #=> nil
-pagy.utc_from           #=> 2022-03-01 09:00:00 UTC (end time of the final unit)
-pagy.utc_to             #=> 2022-03-01 09:00:00 UTC (same as utc_from: if used it gets no records)
+pagy.from               #=> 2022-03-01 00:00:00 -0900 (end time of the final unit)
+pagy.to                 #=> 2022-03-01 00:00:00 -0900 (same as from: if used it gets no records)
 pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
 
-# small difference with time_order: :desc, which yield the same result of an empty page
-pagy = Pagy::Calendar.new(time_order: :desc, minmax: [local_time, local_time + 60*60*24*130], page: 100)
-pagy.utc_from           #=> 2021-10-01 09:00:00 UTC (start time of initial unit)
-pagy.utc_to             #=> 2021-10-01 09:00:00 UTC (same as utc_from: if used it gets no records)
+# small difference with order: :desc, which yield the same result of an empty page
+pagy = Pagy::Calendar::Month.new(order: :desc, period: [local_time, local_time + 60*60*24*130], page: 100)
+pagy.from               #=> 2021-10-01 00:00:00 -0900 (start time of initial unit)
+pagy.to                 #=> 2021-10-01 00:00:00 -0900 (same as from: if used it gets no records)
 ```
 
 ### :last_page
