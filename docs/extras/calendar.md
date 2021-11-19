@@ -35,6 +35,7 @@ Implement and use it in your controllers:
 # converted to the local time of the user
 def pagy_calendar_minmax(collection)
   return_minmax_array_using(collection)
+  # [Time.new(1605, 10, 21, 13, 18, 23, 0), Time.new(2021, 11, 13, 15, 43, 40, 0)] ## for example 1605-2021
 end
 
 # Define the pagy_calendar_filtered method in your application
@@ -42,6 +43,7 @@ end
 # The filter logic must be equivalent to {utc_time >= utc_from && utc_time < utc_to}
 def pagy_calendar_filtered(collection, utc_from, utc_to)
   return_filtered_collection_using(collection, utc_from, utc_to)
+  # collection.where(created_at: utc_from...utc_to) ## rails example
 end
 
 # Use it in your actions:
