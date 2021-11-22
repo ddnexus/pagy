@@ -47,7 +47,7 @@ describe 'pagy/extras/metadata' do
     it 'returns only specific metadata for Pagy::Calendar' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
                                   .send(:pagy_calendar, @collection,
-                                        month: { metadata: %i[scaffold_url page utc_from utc_to prev next pages] })
+                                        month: { metadata: %i[scaffold_url page from to prev next pages] })
       _(calendar_app.send(:pagy_metadata, calendar[:month])).must_rematch
     end
   end

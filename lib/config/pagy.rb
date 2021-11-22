@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (5.4.0)
+# Pagy initializer file (5.5.0)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -40,15 +40,30 @@
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
 
-# Calendar extra: Paginate a collection by calendar Time unit (year, month, week or day)
+# Calendar extra: Add pagination filtering by calendar time unit (Year, Month, Week Day)
 # See https://ddnexus.github.io/pagy/extras/calendar
 # require 'pagy/extras/calendar'
-# DEFAULT[:year_format]  = '%Y'        # strftime format for :year unit
-# DEFAULT[:month_format] = '%Y-%m'     # strftime format for :month unit
-# DEFAULT[:week_format]  = '%Y-%W'     # strftime format for :week unit
-# DEFAULT[:day_format]   = '%Y-%m-%d'  # strftime format for :day unit
-# DEFAULT[:week_offset]  = 0           # Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday)
-# DEFAULT[:time_order]   = :asc        # Time direction of pagination
+# Default for each unit
+# Pagy::Calendar::Year::DEFAULT[:order]   = :asc        # Time direction of pagination
+# Pagy::Calendar::Year::DEFAULT[:format]  = '%Y'        # strftime format
+#
+# Pagy::Calendar::Month::DEFAULT[:order]  = :asc        # Time direction of pagination
+# Pagy::Calendar::Month::DEFAULT[:format] = '%Y-%m'     # strftime format
+#
+# Pagy::Calendar::Week::DEFAULT[:order]   = :asc        # Time direction of pagination
+# Pagy::Calendar::Week::DEFAULT[:format]  = '%Y-%W'     # strftime format
+# Pagy::Calendar::Week::DEFAULT[:offset]  = 0           # Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday)
+#
+# Pagy::Calendar::Day::DEFAULT[:order]    = :asc        # Time direction of pagination
+# Pagy::Calendar::Day::DEFAULT[:format]   = '%Y-%m-%d'  # strftime format
+#
+# Uncomment the following block, if you need calendar localization without using the I18n extra
+# module LocalizePagyCalendar
+#   def localize(time, opts)
+#     ::I18n.l(time, **opts)
+#   end
+# end
+# Pagy::Calendar.prepend LocalizePagyCalendar
 
 # Countless extra: Paginate without any count, saving one query per rendering
 # See https://ddnexus.github.io/pagy/extras/countless
@@ -217,6 +232,5 @@
 # Pagy::DEFAULT[:i18n_key] = 'pagy.item_name'   # default
 
 
-# When you are done setting your own defaults freeze it,
-# so it will not changed accidentally
+# When you are done setting your own default freeze it, so it will not get changed accidentally
 Pagy::DEFAULT.freeze

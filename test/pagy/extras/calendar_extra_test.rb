@@ -19,28 +19,28 @@ describe 'pagy/extras/calendar' do
   describe 'instance methods' do
     it 'returns a Pagy::Calendar::Month instance' do
       calendar, pagy, _records = app(params: { page: 1 }).send(:pagy_calendar, @collection,
-                                                               month: { minmax: [Time.now, Time.now + 5000] },
+                                                               month: { period: [Time.now, Time.now + 5000] },
                                                                pagy: {})
       _(calendar[:month]).must_be_instance_of Pagy::Calendar::Month
       _(pagy).must_be_instance_of Pagy
     end
     it 'skips the calendar' do
       calendar, pagy, records = app(params: { page: 1 }).send(:pagy_calendar, @collection,
-                                                              month: { minmax: [Time.now, Time.now + 5000] },
+                                                              month: { period: [Time.now, Time.now + 5000] },
                                                               pagy: {},
-                                                              skip: true)
+                                                              active: false)
       _(calendar).must_be_nil
       _(records.size).must_equal 20
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 505
       _(pagy.pages).must_equal 26
     end
-    it 'raises NoMethodError for #pagy_calendar_minmax' do
-      error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_minmax) }
+    it 'raises NoMethodError for #pagy_calendar_period' do
+      error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_period) }
       _(error.message).must_rematch
     end
-    it 'raises NoMethodError for #pagy_calendar_filtered' do
-      error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_filtered) }
+    it 'raises NoMethodError for #pagy_calendar_filter' do
+      error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_filter) }
       _(error.message).must_rematch
     end
     it 'raises ArgumentError for wrong conf' do

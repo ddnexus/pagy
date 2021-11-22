@@ -193,7 +193,7 @@ Extras add special options and manage different components, behaviors, Frontend 
 
 - [arel](http://ddnexus.github.io/pagy/extras/arel): Better performance of grouped ActiveRecord collections
 - [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
-- [calendar](http://ddnexus.github.io/pagy/extras/calendar): Paginate a collection by calendar Time unit (year, month, week or day)
+- [calendar](http://ddnexus.github.io/pagy/extras/calendar): Add pagination filtering by calendar time unit (Year, Month, Week Day)
 - [countless](http://ddnexus.github.io/pagy/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](http://ddnexus.github.io/pagy/extras/elasticsearch_rails): Paginate `ElasticsearchRails` response objects
 - [headers](http://ddnexus.github.io/pagy/extras/headers): Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination
