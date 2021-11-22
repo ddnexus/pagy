@@ -18,6 +18,31 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.5.0
+
+- Updated cypress and related packages
+- **Calendar API: FINAL breaking changes** (stable from now on):
+  - Refactoring of calendar classes and variables:
+  - Moved calendar defaults from `Pagy::DEFAULT` to class-specific `Pagy::Calendar::*::DEFAULT`
+  - Renamed variables:
+    - `:minmax` -> `:period`
+    - `:time_order` -> `:order`
+    - `:week_offset` -> `:offset`
+    - `:*_format` -> `:format`
+  - Returning local time instead of UTC time for the utc accessors, now renamed:
+    - `#utc_from` -> `#from` (use `from.utc` if you need it)
+    - `#utc_to` -> `#to` (use `to.utc` if you need it)
+  - Inverted the logic for the `:skip` key in the `#pagy_calendar` conf, now renamed:
+    - `:skip` -> `:active`
+  - Renamed methods:
+    - `#pagy_calendar_minmax` -> `#pagy_calendar_period`
+    - `#pagy_calendar_filtered` -> `#pagy_calendar_filter`
+  - Added alternative way to delegate the localization to i18n without the i18n extra
+  - Updated `pagy_calendar_app.ru`
+  - Fix for wrong reordering in `:desc` order
+  - Documentation fixes and improvements
+  - Removed the warning for the API changes: the API is stable after these changes
+
 ## Version 5.4.0
 
 - **Calendar API breaking changes** for refactoring of `Pagy::Calendar` and calendar extra:
