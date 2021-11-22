@@ -146,7 +146,7 @@ Depending on the type of storage, the `collection` argument can contain differen
 
 #### ActiveRecord managed storage
 
-If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object. You can chain it to whatever other scope you need in order to get the starting and ending local `Time` objects array to return. Here are a few examples with the `created_at` field (but you can pull the time from anywhere):
+If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object. You can use it to return the starting and ending local `Time` objects array. Here are a few examples with the `created_at` field (but you can pull the time from anywhere):
 
 ```ruby
 # Simpler version (2 queries)
@@ -177,7 +177,7 @@ See also [Time conversion](../api/calendar.md#time-conversions) for details.
 
 _If you use `ElasticSearchRails`, `Searchkick`, `Meilisearch` the `collection` argument is just the Array of the captured search arguments that you passed to the `Model.pagy_search` method. That array is what pagy uses internally to setup its variables before passing it to the standard `Model.search` method to do the actual search._
 
-So you should use what you need from the `collection` array and do your own `Model.search(...)` in order to get the starting and ending local `Time` objects array to return.
+So you should use what you need from the `collection` array and do your own `Model.search(...)` in order to get the starting and ending local `Time` objects array to return. 
 
 ### pagy_calendar_filter(collection, from, to)
 
@@ -185,17 +185,13 @@ So you should use what you need from the `collection` array and do your own `Mod
 
 It receives the main `collection` and must return a filtered version of it using the `from` and `to` **local Time** objects.
 
-**IMPORTANT**: The logic for querying your collection shown in the following pseudo code is extremely important to get the right records. You should adapt it to your storage time zone and syntax:
- 
-```
-storage_time >= from && storage_time < to
-```
+You should filter your collection with a logic equivalent to `storage_time >= from && storage_time < to`, adapted to the time zone and syntax of your storage.
 
 Depending on the type of storage, the `collection` argument can contain a different kind of object:
 
 #### ActiveRecord managed storage
 
-If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object. You can chain it to whatever other scope you need in order to return a new scope, filtered with the logic indicated above. Here is an example with the `created_at` field again (but you can use anything, of course):
+If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object that you can easily filter. Here is an example with the `created_at` field again (but you can use anything, of course):
 
 ```ruby
 def pagy_calendar_filter(collection, from, to)
@@ -236,13 +232,13 @@ The `pagy_*combo_nav_js` keeps into account only page numbers and not labels, so
 
 ### Label format
 
-Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by just setting any of the `:format` variables with a standard `strftime` format. (See the [Pagy::Calendar variables](../api/calendar.md#variables))
+Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](../api/calendar.md#variables))
 
 You can also get the [current page label](../api/calendar.md#labelopts) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
 
 ### I18n localization
 
-Pagy implements its own faster version of the i18n `translate` (i.e. `pagy_t`) method, but does not provide any built-in support for the i18n `localize` method. If you need localization of calendar labels in other locales you should delegate it to the `I18n` gem, so that a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 
+Pagy implements its own faster version of the i18n `translate` (i.e. `pagy_t`) method, but does not provide any built-in support for the i18n `localize` method. If you need localization of calendar labels in other locales, you should delegate it to the `I18n` gem, so that a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 
 
 You have a couple of options:
 
@@ -251,6 +247,5 @@ You have a couple of options:
 
 ## Caveats
 
-- Calendar pages with no records are currently shown as empty: you may want to display some message when `@records.empty?`.
-- Skipping the empty pages in the nav is not possible, besides it would not look as a calendar anymore. However there is an experimental branch with a partial implementation of automatic disabling of the nav links of empty pages, which provides a better feedback. That, and other related improvements, may make it to master in the future.
-- Currently you can use the [Active conf](#active-conf) to programmatically skip the calendar when it's not convenient, or add a link to the UI to allow manual toggling (see the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for an example of toggle link).
+- Calendar pages with no records are accessible but empty: you may want to display some message when `@records.empty?`.
+- The [empty-pages](https://github.com/ddnexus/pagy/tree/empty-pages) branch is a WIP of the automatic disabling of the nav links of empty pages. That, and other related UI improvements, may make it to master in the future.

@@ -68,8 +68,8 @@ For general usage without `ActiveRecord` you can simply use the `Time` methods t
 
 ### label(**opts)
 
-This method uses the `:format` variable to generate the current page label with the specific `Time` period it refers to. It accepts an optional `format` keyword argument for overriding.
+This method uses the `:format` variable to generate the current page label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
 
 ### label_for(page, **opts)
 
-This method takes a page argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `format` keyword argument for overriding.
+This method takes a page argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
