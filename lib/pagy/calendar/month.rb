@@ -16,12 +16,12 @@ class Pagy # :nodoc:
         @initial = new_time(@starting.year, @starting.month)
         @final   = bump_month(@ending)
         @pages   = @last = months(@final) - months(@initial)
-        @from    = time_for(@page)
+        @from    = start_for(@page)
         @to      = bump_month(@from)
       end
 
       # Time for the page
-      def time_for(page)
+      def start_for(page)
         bump_month(@initial, snap(page))
       end
 
