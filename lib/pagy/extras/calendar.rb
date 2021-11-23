@@ -8,11 +8,11 @@ class Pagy # :nodoc:
   module CalendarExtra
     # Additions for the Backend module
     module Backend
-      CONF_KEYS = %i[year month week day pagy active].freeze
+      CONF_KEYS = (Calendar::UNITS + %i[pagy active]).freeze
 
       private
 
-      # Take a collection and a conf Hash with keys in [:year, :month: week, :day, :pagy: :active];
+      # Take a collection and a conf Hash with keys in [:year, :quarter, :month: week, :day, :pagy: :active];
       # The calendar is active by default, but it can be explicitly inactivated with `active: false`
       # Return a hash with 3 items:
       # 0. Array of pagy calendar unit objects
@@ -31,7 +31,7 @@ class Pagy # :nodoc:
 
       # Setup and return the calendar objects and the filtered collection
       def pagy_setup_calendar(collection, conf)
-        units      = Calendar::UNITS.keys & conf.keys
+        units      = Calendar::UNITS & conf.keys # get the units in time length desc order
         page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
         units.each do |unit|  # set all the :page_param vars for later deletion
           unit_page_param = :"#{unit}_#{page_param}"
@@ -47,7 +47,7 @@ class Pagy # :nodoc:
                                   params
                                 end
           conf[unit][:period] = period
-          calendar[unit]      = Calendar.create(unit, conf[unit])
+          calendar[unit]      = Calendar.send(:create, unit, conf[unit])
           period              = calendar[unit].active_period # set the period for the next unit
         end
         [calendar, pagy_calendar_filter(collection, calendar[units.last].from, calendar[units.last].to)]

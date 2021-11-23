@@ -4,10 +4,12 @@
 require 'pagy'
 
 class Pagy # :nodoc:
-  # Base class for time units subclasses (Year, Month, Week, Day)
+  # Base class for time units subclasses (Year, Quarter, Month, Week, Day)
   class Calendar < Pagy
-    DAY  = 60 * 60 * 24
-    WEEK = DAY * 7
+    # List of units in desc order of duration. It can be used for custom units.
+    UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
+    DAY   = 60 * 60 * 24  # One day in seconds
+    WEEK  = DAY * 7       # One week in seconds
 
     attr_reader :order
 
@@ -15,8 +17,8 @@ class Pagy # :nodoc:
     def initialize(vars) # rubocop:disable Lint/MissingSuper
       raise InternalError, 'Pagy::Calendar is a base class; use one of its subclasses' if instance_of?(Pagy::Calendar)
 
-      normalize_vars(vars)
-      @vars = self.class::DEFAULT.merge(@vars)
+      vars = self.class::DEFAULT.merge(vars)  # subclass specific default
+      normalize_vars(vars)                    # general default
       setup_vars(page: 1)
       setup_unit_vars
       setup_params_var
@@ -34,12 +36,14 @@ class Pagy # :nodoc:
     # The label for any page (it can pass along the I18n gem opts when it's used with the i18n extra)
     def label_for(page, **opts)
       opts[:format] ||= @vars[:format]
-      localize(start_for(page.to_i), **opts)
+      start = start_for(page.to_i)
+      opts[:format] = opts[:format].gsub('%q') { (start.month / 4) + 1 }
+      localize(start, **opts)
     end
 
     # Period of the active page (used for nested units)
     def active_period
-      [[@starting, @from].max, [@to - DAY, @ending].min] # include only last unit day
+      [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
     end
 
     protected
@@ -61,7 +65,7 @@ class Pagy # :nodoc:
       time.strftime(opts[:format])
     end
 
-    # Simple trick to snap the page to its ordered start, without actually reordering anything in the internal structure.
+    # Simple trick to snap the page to its ordered start, without actually reordering anything in the internal structure
     def snap(page)
       @order == :asc ? page - 1 : @pages - page
     end
@@ -70,20 +74,18 @@ class Pagy # :nodoc:
     def new_time(year, month = 1, day = 1)
       Time.new(year, month, day, 0, 0, 0, @utc_offset)
     end
-  end
-  require 'pagy/calendar/year'
-  require 'pagy/calendar/month'
-  require 'pagy/calendar/week'
-  require 'pagy/calendar/day'
 
-  class Calendar # :nodoc:
-    UNITS = { year: Year, month: Month, week: Week, day: Day }.freeze
+    class << self
+      # Create a subclass instance by unit name (internal use)
+      def create(unit, vars)
+        raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
 
-    # Create a subclass instance by unit name (internal use)
-    def self.create(unit, vars)
-      raise InternalError, "unit must be in #{UNITS.keys.inspect}; got #{unit}" unless UNITS.key?(unit)
-
-      UNITS[unit].new(vars)
+        name    = unit.to_s
+        name[0] = name[0].capitalize
+        Object.const_get("Pagy::Calendar::#{name}").new(vars)
+      end
     end
   end
+
+  Calendar::UNITS.each { |unit| require "pagy/calendar/#{unit}" }
 end

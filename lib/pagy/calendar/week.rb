@@ -29,7 +29,7 @@ class Pagy # :nodoc:
 
       private
 
-      # Return the start of the week for local time
+      # Return the start of the week for time
       def week_start(time)
         start = time - (((time.wday - @offset) * DAY) % WEEK)
         new_time(start.year, start.month, start.day)
