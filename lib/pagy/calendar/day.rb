@@ -16,12 +16,12 @@ class Pagy # :nodoc:
         @initial = new_time(@starting.year, @starting.month, @starting.day)
         @final   = new_time(@ending.year, @ending.month, @ending.day) + DAY
         @pages   = @last = (@final - @initial).to_i / DAY
-        @from    = time_for(@page)
+        @from    = start_for(@page)
         @to      = @from + DAY
       end
 
       # Time for the page
-      def time_for(page)
+      def start_for(page)
         @initial + (snap(page) * DAY)
       end
     end

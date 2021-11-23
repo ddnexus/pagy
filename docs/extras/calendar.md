@@ -14,7 +14,7 @@ _Screenshot from the single-file self-contained [pagy_calendar_app.ru](https://g
 
 This extra makes sense when the result to paginate have some _time continuity_ and you want to provide a simple chronological browsing. For example: a movie catalog could allow the user to browse all the movies by year, or you may want to browse a long list of events by jumping and narrowing between years, months, days.
 
-On the other hand it does not make much sense for the result of a search that hits just a few sparse records scattered over a possibly long period of time. In that case the calendar extra has an `:active` switch that can inactivate the calendar and fallback to the regular pagination. No need to maintain different UIs for wide browsing and narrow searching. 
+On the other hand it does not make much sense for the result of a search that hits just a few sparse records scattered over a possibly long period of time. For that case the calendar extra has an `:active` switch that can be used to inactivate the calendar and fallback to the regular pagination. No need to maintain different UIs for wide browsing and narrow searching. 
 
 ## Synopsis
 
@@ -62,7 +62,9 @@ Use the calendar and pagy objects in your views:
 <%== pagy_nav(@pagy) %>
 ```
 
-**Notice** For a more complete and detailed example, see the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru).
+See also a few examples for [wrapping existing pagination with pagy_calendar](../how-to.md#wrapping-existing-pagination-with-pagy_calendar).
+
+**Notice** For a complete and detailed example, see the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru).
 
 ## Usage
 
@@ -134,7 +136,7 @@ If the `:pagy` key/value is omitted, a default `Pagy` instance will be created b
 
 The calendar is active by default, however you can add an optional `:active` boolean flag to the `conf` hash in order to switch it ON or OFF, depending on its usefulness in different conditions (see the [Use cases](#use-cases)).
 
-Take a look at the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a simple example of a manual toggle in the UI.
+Take a look at the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a simple example of a manual toggle in the UI. 
 
 ### pagy_calendar_period(collection)
 

@@ -34,7 +34,7 @@ class Pagy # :nodoc:
     # The label for any page (it can pass along the I18n gem opts when it's used with the i18n extra)
     def label_for(page, **opts)
       opts[:format] ||= @vars[:format]
-      localize(time_for(page.to_i), **opts)
+      localize(start_for(page.to_i), **opts)
     end
 
     # Period of the active page (used for nested units)
@@ -61,8 +61,7 @@ class Pagy # :nodoc:
       time.strftime(opts[:format])
     end
 
-    # Simple trick to snap the page into its ordered position, without actually reordering anything in the internal structure.
-    # Tech note: use for @from but not for @to, which must be one period after @from also in :desc order!
+    # Simple trick to snap the page to its ordered start, without actually reordering anything in the internal structure.
     def snap(page)
       @order == :asc ? page - 1 : @pages - page
     end

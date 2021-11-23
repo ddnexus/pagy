@@ -45,7 +45,9 @@ results         = Article.pagy_search(params[:q])
 
 - [meilisearch.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/meilisearch.rb)
 
-## Pagy.new_from_meilisearch
+## Pasive mode
+
+### Pagy.new_from_meilisearch
 
 This constructor accepts a Meilisearch as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of the Meilisearch object.
 
@@ -56,7 +58,9 @@ This constructor accepts a Meilisearch as the first argument, plus the usual opt
 
 **Notice**: you have to take care of manually manage all the params for your search, however the method extracts the `:items`, `:page` and `:count` from the results object, so you don't need to pass that again. If you prefer to manage the pagination automatically, see below.
 
-## Pagy::Meilisearch
+## Active Mode
+
+### Pagy::Meilisearch module
 
 Extend your model with the `Pagy::Meilisearch` micro-module:
 
@@ -70,11 +74,11 @@ The `Pagy::Meilisearch` adds the `pagy_search` class method that you must use in
 
 This method accepts the same arguments of the `search` method and you must use it in its place. This extra uses it in order to capture the arguments, automatically merging the calculated `:offset` and `:limit` options before passing them to the standard `search` method internally.
 
-## Variables
+### Variables
 
-| Variable                    |                                                | Description    | Default |
-|:----------------------------|:-----------------------------------------------|:---------------|:--------|
-| `:meilisearch_search_method` | customizable name of the `:pagy_search` method | `:pagy_search` |         |
+| Variable                     | Description                            | Default        |
+|:-----------------------------|:---------------------------------------|:---------------|
+| `:meilisearch_search_method` | customizable name of the search method | `:pagy_search` | 
 
 ## Methods
 

@@ -645,6 +645,27 @@ If your app uses ruby as pure backend and some javascript frameworks as the fron
 
 In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require the [metadata extra](extras/metadata.md) and pass the pagination metadata in your JSON response.
 
+## Wrapping existing pagination with pagy_calendar
+
+You can easily wrap your existing pagination with the `pagy_calendar` method. Here are a few examples adding `:year` and `:month` to different existing statements.
+
+```ruby
+# given this statements:
+@pagy, @record = pagy(collection, any_vars: value, ...)
+@pagy, @record = pagy_searchkick(pagy_search_args, any_vars: value, ...)
+
+# wrap them with the calendar
+@calendar, @pagy, @records = pagy_calendar(collection, year: {...},
+                                                       month: {...},
+                                                       pagy: { any_vars: value, ... } )
+@calendar, @pagy, @records = pagy_calendar(pagy_search_args, year: {...},
+                                                             month: {...},
+                                                             pagy: { backend: :pagy_searchkick,
+                                                                     any_vars: value, ...} )
+```
+
+Then follow the [calendar extra documentation](extras/calendar.md) for more details.
+
 ## Maximizing Performance
 
 Here are some tips that will help choosing the best way to use Pagy, depending on your requirements and environment.

@@ -18,6 +18,13 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.5.1
+
+- Docs updates
+- upgrade bootstrap template navs: call pagy_link_proc with link_extra key (#348)
+- Renamed internal #time_for -> #start_for
+- Docs fixes and improvements
+
 ## Version 5.5.0
 
 - Updated cypress and related packages
