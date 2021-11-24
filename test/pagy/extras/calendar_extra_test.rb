@@ -5,7 +5,6 @@ require 'pagy/extras/calendar'
 
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
-require "ostruct"
 
 def app(**opts)
   MockApp::Calendar.new(**opts)
@@ -77,6 +76,36 @@ describe 'pagy/extras/calendar' do
       _(entries.to_a).must_rematch
       total += entries.size
       _(total).must_equal @collection.size
+    end
+    it 'selects :quarter for the first page' do
+      calendar, _pagy, entries = app(params: { quarter_page: 1 }).send(:pagy_calendar, @collection,
+                                                                       quarter: { size: [1, 4, 4, 1] },
+                                                                       pagy: { items: 600 })
+      _(calendar[:quarter].series).must_equal ["1", 2, 3, 4, 5, :gap, 9]
+      _(calendar[:quarter].pages).must_equal 9
+      _(calendar[:quarter].prev).must_be_nil
+      _(calendar[:quarter].next).must_equal 2
+      _(entries.to_a).must_rematch
+    end
+    it 'selects :quarter for an intermediate page' do
+      calendar, _pagy, entries = app(params: { quarter_page: 4 }).send(:pagy_calendar, @collection,
+                                                                       quarter: { size: [1, 4, 4, 1] },
+                                                                       pagy: { items: 600 })
+      _(calendar[:quarter].series).must_equal [1, 2, 3, "4", 5, 6, 7, 8, 9]
+      _(calendar[:quarter].pages).must_equal 9
+      _(calendar[:quarter].prev).must_equal 3
+      _(calendar[:quarter].next).must_equal 5
+      _(entries.to_a).must_rematch
+    end
+    it 'selects :quarter for last page' do
+      calendar, _pagy, entries = app(params: { quarter_page: 9 }).send(:pagy_calendar, @collection,
+                                                                       quarter: { size: [1, 4, 4, 1] },
+                                                                      pagy: { items: 600 })
+      _(calendar[:quarter].series).must_equal [1, :gap, 5, 6, 7, 8, "9"]
+      _(calendar[:quarter].pages).must_equal 9
+      _(calendar[:quarter].prev).must_equal 8
+      _(calendar[:quarter].next).must_be_nil
+      _(entries.to_a).must_rematch
     end
     it 'selects :month for the first page' do
       calendar, _pagy, entries = app(params: { month_page: 1 }).send(:pagy_calendar, @collection,
