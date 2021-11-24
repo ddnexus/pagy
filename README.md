@@ -193,7 +193,7 @@ Extras add special options and manage different components, behaviors, Frontend 
 
 - [arel](http://ddnexus.github.io/pagy/extras/arel): Better performance of grouped ActiveRecord collections
 - [array](http://ddnexus.github.io/pagy/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
-- [calendar](http://ddnexus.github.io/pagy/extras/calendar): Add pagination filtering by calendar time unit (Year, Month, Week Day)
+- [calendar](http://ddnexus.github.io/pagy/extras/calendar): Add pagination filtering by calendar time unit (year, quarter, month, week, day)
 - [countless](http://ddnexus.github.io/pagy/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](http://ddnexus.github.io/pagy/extras/elasticsearch_rails): Paginate `ElasticsearchRails` response objects
 - [headers](http://ddnexus.github.io/pagy/extras/headers): Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination
@@ -304,7 +304,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 <summary><b>What's new in 5.0</b></summary>
 
 - This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))
-- **New**: added the [calendar](http://ddnexus.github.io/pagy/extras/calendar) extra to paginate a collection by Time unit (year, month, week or day)
+- **New**: added the [calendar](http://ddnexus.github.io/pagy/extras/calendar) extra to paginate a collection by Time unit (year, quarter, month, week, day)
 - **New**: added the [gearbox](http://ddnexus.github.io/pagy/extras/gearbox) extra to automatically change the number of items depending on the page number.
 - Removed support for 4.0 deprecations (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
 - Big code restyling with improved performance, readability and rubocop compliance.

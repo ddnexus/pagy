@@ -3,7 +3,7 @@ title: Calendar
 ---
 # Calendar Extra
 
-Add pagination filtering by calendar time unit (Year, Month, Week, Day).
+Add pagination filtering by calendar time unit: year, quarter, month, week, day (and allow you to implement also your own [custom units](../api/calendar.md#custom-units)).
 
 This extra is a sort of wrapper around another backend extra. It adds single or multiple chained calendar navs that act as calendar filters on the collection records, placing each record in its time unit. 
 
@@ -112,13 +112,13 @@ You can configure the backend extra method that will handle the `collection` by 
 
 The `conf` argument must be a Hash structure with the keys representing the type of configuration and the values being the Hash of vars that you want to pass to the creation of the specific object (or a `boolean` for the [Active conf](#active-conf)). 
 
-The `conf` hash can be composed by the following type of configurations:
+The `conf` hash can be composed by the following types of configuration:
 
 #### Calendar conf
 
 The calendar configuration determines the time objects generated for the calendar. These are used for filtering the collection to the selected time units.
 
-You can add one or more levels with keys like `:year`, `:month`, `:week`, `:day`. Each key must be set to the hash of the variables that will be used to initialize the relative `Pagy::Calendar::*` object. Use an empty hash for default values. E.g.: `year: {}, month: {}`.
+You can add one or more levels with keys like `:year`, `quarter`, `:month`, `:week`, `:day`. Each key must be set to the hash of the variables that will be used to initialize the relative `Pagy::Calendar::*` object. Use an empty hash for default values. E.g.: `year: {}, month: {}`.
 
 **Restrictions**: The `:page`, `:page_param`, `:params` and `:period` variables for the calendar objects are managed automatically by the extra. Setting them explicitly has no effect. (See also [Calendar params](#calendar-params) for solutions in case of conflicts)
 
@@ -144,7 +144,7 @@ Take a look at the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/m
 
 It receives a `collection` argument that must not be changed by this method, but can be used to return the starting and ending local Time objects array defining the calendar `:period`. See the [Pagy::Calendar Variables](../api/calendar.md#variables) for details.
 
-Depending on the type of storage, the `collection` argument can contain different kind of objects:
+Depending on the type of storage, the `collection` argument can contain a different kind of object:
 
 #### ActiveRecord managed storage
 
@@ -245,7 +245,7 @@ Pagy implements its own faster version of the i18n `translate` (i.e. `pagy_t`) m
 You have a couple of options:
 
 - Use the [i18n extra](i18n.md), which delegates the translation and localization to the `I18n` gem. Notice however that you would lose the performance gain offered by the built-in `pagy_t` translation.
-- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, which will add the localization from the `I18n` gem without using the [i18n extra](../extras/i18n.md), so preserving the builtin `pagy_t` translation.
+- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, which will add the localization from the `I18n` gem without using the [i18n extra](../extras/i18n.md), so preserving the the builtin `pagy_t` translation.
 
 ## Caveats
 
