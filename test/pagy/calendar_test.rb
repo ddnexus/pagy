@@ -5,7 +5,7 @@ require 'pagy/calendar'
 
 def pagy(unit: :month, **vars)
   default = { period: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)] }
-  Pagy::Calendar.create unit, default.merge(vars)
+  Pagy::Calendar.send(:create, unit, default.merge(vars))
 end
 
 describe 'pagy/calendar' do
@@ -21,6 +21,7 @@ describe 'pagy/calendar' do
       _ { pagy(period: [Time.now.utc, Time.now]) }.must_raise Pagy::VariableError
       _ { pagy(order: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :year, format: :unknown) }.must_raise Pagy::VariableError
+      _ { pagy(unit: :quarter, format: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :month, format: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :week, format: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :day, format: :unknown) }.must_raise Pagy::VariableError
@@ -46,6 +47,24 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 3
       _(p.last).must_equal 3
     end
+    it 'computes variables for :quarter' do
+      p = pagy(unit: :quarter)
+      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.from.utc).must_equal Time.gm(2021, 10, 1)
+      _(p.to.utc).must_equal Time.gm(2022, 1, 1)
+      _(p.pages).must_equal 9
+      _(p.last).must_equal 9
+    end
+    it 'computes variables for :quarter' do
+      p = pagy(unit: :quarter, order: :desc)
+      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.from.utc).must_equal Time.gm(2023, 10, 1)
+      _(p.to.utc).must_equal Time.gm(2024, 1, 1)
+      _(p.pages).must_equal 9
+      _(p.last).must_equal 9
+    end
     it 'computes variables for :month' do
       p = pagy
       _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
@@ -55,15 +74,15 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 26
       _(p.last).must_equal 26
     end
-    # it 'computes variables for :month desc' do
-    #   p = pagy(unit: :month, order: :desc)
-    #   _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-    #   _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 12, 1)
-    #   _(p.from.utc).must_equal Time.gm(2023, 11, 1)
-    #   _(p.to.utc).must_equal Time.gm(2023, 12, 1)
-    #   _(p.pages).must_equal 26
-    #   _(p.last).must_equal 26
-    # end
+    it 'computes variables for :month desc' do
+      p = pagy(unit: :month, order: :desc)
+      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 12, 1)
+      _(p.from.utc).must_equal Time.gm(2023, 11, 1)
+      _(p.to.utc).must_equal Time.gm(2023, 12, 1)
+      _(p.pages).must_equal 26
+      _(p.last).must_equal 26
+    end
     it 'computes variables for :week' do
       p = pagy(unit: :week)
       _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 17)
@@ -120,6 +139,24 @@ describe 'pagy/calendar' do
       _(p.to.utc).must_equal Time.gm(2023)
       _(p.pages).must_equal 3
       _(p.last).must_equal 3
+    end
+    it 'computes variables for :quarter' do
+      p = pagy(unit: :quarter, page: 2)
+      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.from.utc).must_equal Time.gm(2022, 1, 1)
+      _(p.to.utc).must_equal Time.gm(2022, 4, 1)
+      _(p.pages).must_equal 9
+      _(p.last).must_equal 9
+    end
+    it 'computes variables for :quarter' do
+      p = pagy(unit: :quarter, page: 2, order: :desc)
+      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.from.utc).must_equal Time.gm(2023, 7, 1)
+      _(p.to.utc).must_equal Time.gm(2023, 10, 1)
+      _(p.pages).must_equal 9
+      _(p.last).must_equal 9
     end
     it 'computes variables for :month' do
       p = pagy(page: 2)
@@ -188,6 +225,15 @@ describe 'pagy/calendar' do
       _(p.last).must_equal 3
       _(pagy(unit: :year, page: 3, cycle: true).next).must_equal 1
       _ { pagy(unit: :year, page: 4) }.must_raise Pagy::OverflowError
+    end
+    it 'computes variables for :quarter' do
+      p = pagy(unit: :quarter, page: 9)
+      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.from.utc).must_equal Time.gm(2023, 10, 1)
+      _(p.to.utc).must_equal Time.gm(2024, 1, 1)
+      _(p.pages).must_equal 9
+      _(p.last).must_equal 9
     end
     it 'computes variables for :month' do
       p = pagy(page: 26)
@@ -267,7 +313,7 @@ describe 'pagy/calendar' do
   end
 
   describe '#label_for' do
-    %i[year month week day].each do |unit|
+    %i[year quarter month week day].each do |unit|
       it "labels the #{unit}" do
         p = pagy(unit: unit)
         _(p.label_for(1)).must_rematch

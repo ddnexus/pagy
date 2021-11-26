@@ -25,7 +25,7 @@ If you want to just play with Pagy before using it in your own app, you have 2 a
     - If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
         ```ruby   
-        gem 'pagy', '~> 5.5' # omit patch digit
+        gem 'pagy', '~> 5.6' # omit patch digit
         ```
 
     - If you don't use Bundler, install and require the Pagy gem:
@@ -417,7 +417,7 @@ Pagy has a few of extras for gems returning search results: [elasticsearch_rails
 
 ## Paginate by date instead of a fixed number of items
 
-Use the [calendar extra](extras/calendar.md) that cann paginate a collection by calendar Time unit (year, month, week or day).
+Use the [calendar extra](extras/calendar.md) that can paginate a collection by calendar time unit (year, quarter, month, week, day).
 
 ## Paginate pre-offset and pre-limited collections
 
@@ -650,14 +650,16 @@ In that case you don't need the `Pagy::Frontend` nor any frontend extra. You sho
 You can easily wrap your existing pagination with the `pagy_calendar` method. Here are a few examples adding `:year` and `:month` to different existing statements.
 
 ```ruby
-# given this statements:
+# pagy without calendar
 @pagy, @record = pagy(collection, any_vars: value, ...)
-@pagy, @record = pagy_searchkick(pagy_search_args, any_vars: value, ...)
-
-# wrap them with the calendar
+# wrapped with pagy_calendar
 @calendar, @pagy, @records = pagy_calendar(collection, year: {...},
                                                        month: {...},
-                                                       pagy: { any_vars: value, ... } )
+                                                       pagy: { any_vars: value, ... } ) 
+
+# any other backend constructors (e.g. pagy_searchkick)
+@pagy, @record = pagy_searchkick(pagy_search_args, any_vars: value, ...)
+# wrapped with pagy_calendar
 @calendar, @pagy, @records = pagy_calendar(pagy_search_args, year: {...},
                                                              month: {...},
                                                              pagy: { backend: :pagy_searchkick,

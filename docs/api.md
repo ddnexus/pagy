@@ -17,7 +17,7 @@ The low level structure needed for standard usage. It's composed of just one cla
 
 These modules/classes provide support for special environments or features that go beyond the standard usage:
 
-- The [Pagy::Calendar](api/calendar.md) subclass that that paginates the collection by calendar units (year, month, week or day) used by the [calendar](extras/calendar.md) extra. (It saves one count query per request).
+- The [Pagy::Calendar](api/calendar.md) subclass that that paginates the collection by calendar units (year, quarter, month, week, day) used by the [calendar](extras/calendar.md) extra.
 - The [Pagy::Countless](api/countless.md) subclass that provides the pagination without a count used by the [countless](extras/countless.md) extra. (It saves one count query per request).
 - The [Pagy::Console](api/console.md) module that provides easy interaction with pagy in the IRB/rails console
 - The [Pagy::I18n](api/i18n.md) module that provides multi-language translation of the pagy strings
