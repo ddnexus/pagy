@@ -18,6 +18,13 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.0
+
+- Updated gemfiles
+- Updated docs
+- Added calendar quarter tests
+- Internal calendar refactoring to allow custom units; added quarter unit
+
 ## Version 5.5.1
 
 - Docs updates
