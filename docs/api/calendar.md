@@ -3,7 +3,7 @@ title: Pagy::Calendar
 ---
 # Pagy::Calendar
 
-This is a `Pagy` subclass (see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar.rb)) that provides pagination filtering by time (year, quarter, month, week, day). 
+This is a `Pagy` subclass (see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar.rb)) that provides pagination filtering by time: year, quarter, month, week, day (and supports yor own [custom time units](#custom-units)). 
 
 **Notice**: The `Pagy::Calendar::*` classes provide support for the [calendar extra](../extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone (because they could generate a very high number of items per page). The class APIs are documented here, however you should not need to use them directly because they are required and used internally by the extra.
 

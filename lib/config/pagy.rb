@@ -44,18 +44,21 @@
 # See https://ddnexus.github.io/pagy/extras/calendar
 # require 'pagy/extras/calendar'
 # Default for each unit
-# Pagy::Calendar::Year::DEFAULT[:order]   = :asc        # Time direction of pagination
-# Pagy::Calendar::Year::DEFAULT[:format]  = '%Y'        # strftime format
+# Pagy::Calendar::Year::DEFAULT[:order]     = :asc        # Time direction of pagination
+# Pagy::Calendar::Year::DEFAULT[:format]    = '%Y'        # strftime format
 #
-# Pagy::Calendar::Month::DEFAULT[:order]  = :asc        # Time direction of pagination
-# Pagy::Calendar::Month::DEFAULT[:format] = '%Y-%m'     # strftime format
+# Pagy::Calendar::Quarter::DEFAULT[:order]  = :asc        # Time direction of pagination
+# Pagy::Calendar::Quarter::DEFAULT[:format] = '%Y-Q%q'    # strftime format
 #
-# Pagy::Calendar::Week::DEFAULT[:order]   = :asc        # Time direction of pagination
-# Pagy::Calendar::Week::DEFAULT[:format]  = '%Y-%W'     # strftime format
-# Pagy::Calendar::Week::DEFAULT[:offset]  = 0           # Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday)
+# Pagy::Calendar::Month::DEFAULT[:order]    = :asc        # Time direction of pagination
+# Pagy::Calendar::Month::DEFAULT[:format]   = '%Y-%m'     # strftime format
 #
-# Pagy::Calendar::Day::DEFAULT[:order]    = :asc        # Time direction of pagination
-# Pagy::Calendar::Day::DEFAULT[:format]   = '%Y-%m-%d'  # strftime format
+# Pagy::Calendar::Week::DEFAULT[:order]     = :asc        # Time direction of pagination
+# Pagy::Calendar::Week::DEFAULT[:format]    = '%Y-%W'     # strftime format
+# Pagy::Calendar::Week::DEFAULT[:offset]    = 0           # Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday)
+#
+# Pagy::Calendar::Day::DEFAULT[:order]      = :asc        # Time direction of pagination
+# Pagy::Calendar::Day::DEFAULT[:format]     = '%Y-%m-%d'  # strftime format
 #
 # Uncomment the following block, if you need calendar localization without using the I18n extra
 # module LocalizePagyCalendar
