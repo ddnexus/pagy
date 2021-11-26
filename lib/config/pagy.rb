@@ -40,7 +40,7 @@
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
 
-# Calendar extra: Add pagination filtering by calendar time unit (Year, Month, Week Day)
+# Calendar extra: Add pagination filtering by calendar time unit (year, quartr, month, week, day)
 # See https://ddnexus.github.io/pagy/extras/calendar
 # require 'pagy/extras/calendar'
 # Default for each unit

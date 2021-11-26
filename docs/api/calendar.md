@@ -21,14 +21,14 @@ Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their 
 
 The following variables are specific to `Pagy::Calendar::*` instances: 
 
-| Variable  | Description                                                                                             | Default |
-|:----------|:--------------------------------------------------------------------------------------------------------|:--------|
-| `:period` | Required two items Array with the calendar starting and ending local `Time` objects                     | `nil`   |
-| `:order`  | Order of pagination: it can be`:asc` or `:desc`                                                         | `:asc`  |
-| `:format` | String containing the `strftime` extended format used for labelling (each subclass has its own default) |         |
-| `:offset` | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) (`Pagy::Calendar::Week` only)             | `0`     |
+| Variable  | Description                                                                                               | Default |
+|:----------|:----------------------------------------------------------------------------------------------------------|:--------|
+| `:period` | Required two items Array with the calendar starting and ending local `Time` objects                       | `nil`   |
+| `:order`  | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`  |
+| `:format` | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |         |
+| `:offset` | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) (`Pagy::Calendar::Week` only)               | `0`     |
 
-**Notice**: Besides the usual `strftime`, the `:format` variable recognize a non-standard `%q` token which is substituted with the quarter (1-4).
+**Notice**: For the `Pagy::Calendar::Quarter` the `:format` variable can contain a non-standard `%q` format which is substituted with the quarter (1-4).
 
 ## DEFAULT variables
 
@@ -78,4 +78,6 @@ This method takes a page argument (`Integer` or `String`) and uses the `:format`
 
 ## Custom units
 
-You can define your own custom unit of whatever time length. For example you may want to add a unit of 2 months (i.e. a "bimester" unit), which should define a `Pagy::Calendar::Bimester` class (very easy task including the `Pagy::Calendar::MonthMixin` module). In order to allow its correct integration, you should also insert your `:bimester` unit symbol in the `Pagy::Calendar::UNITS` list, between `:quarter` and `:month`, which will keep the list in desc ordered of their duration.
+You can define your own custom unit of whatever time length. For example you may want to add a unit of 2 months (i.e. a "bimester" unit), which should define a `Pagy::Calendar::Bimester` class (very easy task including the `Pagy::Calendar::MonthMixin` module). In order to allow its correct integration, you should also insert your `:bimester` unit symbol in the `Pagy::Calendar::UNITS` list, between `:quarter` and `:month`, which will keep the list in desc ordered of their duration. 
+
+You can also implement custom substitution formats for your custom units, by overriding the `label_for(page, opts)`. It should substitute your special tokens with your content. (See the [pagy/calendar/quarter](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar/quarter.rb) implementation for an example)
