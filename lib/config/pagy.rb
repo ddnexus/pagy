@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (5.6.0)
+# Pagy initializer file (5.6.1)
 # Customize only what you really need and notice that Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -40,7 +40,7 @@
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
 
-# Calendar extra: Add pagination filtering by calendar time unit (Year, Month, Week Day)
+# Calendar extra: Add pagination filtering by calendar time unit (year, quartr, month, week, day)
 # See https://ddnexus.github.io/pagy/extras/calendar
 # require 'pagy/extras/calendar'
 # Default for each unit

@@ -40,13 +40,13 @@ Here are a few highlights:
 Run in the local terminal: 
 
 ```sh
-<local-pagy-dir>/docker $ ./setup-env.sh && docker-compose build
+<local-pagy-dir>/docker $ ./setup-env.sh && DOCKER_BUILDKIT=1 docker-compose build
 ```
 
 **Notice**: the `setup-env.sh` creates an `.env` file with what is needed to build the docker images with `docker-compose`. You can further customize the `.env` file after it is created.
 
 ## If you don't use any specific IDE
-                                      
+
 **Notice**: see [VSCode](#vscode) or [RubyMine](#rubymine) for specific setups.
 
 In order to complete the setup, you need to issue a couple of commands from the container terminal, so first open a bash session:
