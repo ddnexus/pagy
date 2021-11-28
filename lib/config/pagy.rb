@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 # Pagy initializer file (5.6.1)
-# Customize only what you really need and notice that Pagy works also without any of the following lines.
+# Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
 
 # Pagy DEFAULT Variables
 # See https://ddnexus.github.io/pagy/api/pagy#variables
-# All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance
-# by just passing them to Pagy.new|Pagy::Countless.new|Pagy::Calendar.new or the #pagy controller method
+# All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance by just passing them to
+# Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 
 
 # Instance variables
@@ -40,7 +40,7 @@
 # See https://ddnexus.github.io/pagy/extras/array
 # require 'pagy/extras/array'
 
-# Calendar extra: Add pagination filtering by calendar time unit (year, quartr, month, week, day)
+# Calendar extra: Add pagination filtering by calendar time unit (year, quarter, month, week, day)
 # See https://ddnexus.github.io/pagy/extras/calendar
 # require 'pagy/extras/calendar'
 # Default for each unit
@@ -60,7 +60,7 @@
 # Pagy::Calendar::Day::DEFAULT[:order]      = :asc        # Time direction of pagination
 # Pagy::Calendar::Day::DEFAULT[:format]     = '%Y-%m-%d'  # strftime format
 #
-# Uncomment the following block, if you need calendar localization without using the I18n extra
+# Uncomment the following lines, if you need calendar localization without using the I18n extra
 # module LocalizePagyCalendar
 #   def localize(time, opts)
 #     ::I18n.l(time, **opts)
@@ -100,8 +100,8 @@
 # you must require the shared internal extra (BEFORE the metadata extra) ONLY if you need also the :sequels
 # require 'pagy/extras/shared'
 # require 'pagy/extras/metadata'
-# For performance reason, you should explicitly set ONLY the metadata you use in the frontend
-# Pagy::DEFAULT[:metadata] = %i[scaffold_url count page prev next last]   # example
+# For performance reasons, you should explicitly set ONLY the metadata you use in the frontend
+# Pagy::DEFAULT[:metadata] = %i[scaffold_url page prev next last]   # example
 
 # Searchkick extra: Paginate `Searchkick::Results` objects
 # See https://ddnexus.github.io/pagy/extras/searchkick
@@ -212,18 +212,18 @@
 #
 # load the "de", "en" and "es" built-in locales:
 # (the first passed :locale will be used also as the default_locale)
-# Pagy::I18n.load({locale: 'de'},
-#                 {locale: 'en'},
-#                 {locale: 'es'})
+# Pagy::I18n.load({ locale: 'de' },
+#                 { locale: 'en' },
+#                 { locale: 'es' })
 #
 # load the "en" built-in locale, a custom "es" locale,
 # and a totally custom locale complete with a custom :pluralize proc:
 # (the first passed :locale will be used also as the default_locale)
-# Pagy::I18n.load({locale: 'en'},
-#                 {locale: 'es', filepath: 'path/to/pagy-es.yml'},
-#                 {locale: 'xyz',  # not built-in
-#                  filepath: 'path/to/pagy-xyz.yml',
-#                  pluralize: lambda{ |count| ... } )
+# Pagy::I18n.load({ locale: 'en' },
+#                 { locale: 'es', filepath: 'path/to/pagy-es.yml' },
+#                 { locale: 'xyz',  # not built-in
+#                   filepath: 'path/to/pagy-xyz.yml',
+#                   pluralize: lambda{ |count| ... } )
 
 
 # I18n extra: uses the standard i18n gem which is ~18x slower using ~10x more memory
