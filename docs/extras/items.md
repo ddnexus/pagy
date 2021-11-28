@@ -105,7 +105,7 @@ Notice the `:i18n_key` can be passed also to the constructor or be a less useful
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per page</span>
 
-_(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
+_(see [How to customize the item name](../how-to.md#customize-the-item-name))_
 
 When the items number is changed with the selector, pagy will reload the pagination UI using the selected items per page. It will also request the _right_ page number calculated in order to contain the first item of the previously displayed page. That way the new displayed page will roughly show the same items in the collection before the items change.
 

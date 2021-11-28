@@ -47,7 +47,7 @@ This method is the same as the `pagy_nav`, but customized for UIkit.
 
 See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
 
-The `uikit_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [Using Templates](../how-to.md#using-templates).
+The `uikit_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](../how-to.md#use-templates).
 
 ### pagy_uikit_nav_js(pagy, ...)
 

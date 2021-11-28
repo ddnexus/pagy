@@ -20,7 +20,7 @@ All the `pagy*_js` helpers render their component on the client side. The helper
 
 ## Usage
 
-Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window-load and eventually on [AJAX-load](#using-ajax).
+Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window-load and eventually on AJAX-load (see [Using AJAX](#using-ajax)).
 
 ### CAVEATS
 
@@ -194,9 +194,9 @@ Use the `pagy*_nav_js` helpers in any view:
 
 ## Variables
 
-| Variable | Description                                                       | Default |
-|:---------|:------------------------------------------------------------------|:--------|
-| `:steps` | Hash variable to control multiple pagy `:size` at different widths | `false`   |
+| Variable | Description                                                        | Default |
+|:---------|:-------------------------------------------------------------------|:--------|
+| `:steps` | Hash variable to control multiple pagy `:size` at different widths | `false` |
 
 ### :steps
 
@@ -224,7 +224,7 @@ or pass it to the helper
 <%== pagy_nav_js(@pagy, steps: {...}) %>
 ```
 
-The above statement means that from `0` to `540` pixels width, Pagy will use the `[2,3,3,2]` size, from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#controlling-the-page-links) section).
+The above statement means that from `0` to `540` pixels width, Pagy will use the `[2,3,3,2]` size, from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size` variable in the [How to control the page links](../how-to.md#control-the-page-links) section).
 
 **IMPORTANT**: You can set any number of steps with any arbitrary width/size. The only requirement is that the `:steps` hash must contain always the `0` width or a `Pagy::VariableError` exception will be raised.
 

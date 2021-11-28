@@ -107,15 +107,15 @@ They are all integers:
 
 ### Other Variables
 
-| Variable      | Description                                                                                                                                                                                       | Default            |
-|:--------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
-| `:size`       | TThe size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [Control the page links](../how-to.md#controlling-the-page-links))_ | `[1,4,4,1]`        |
-| `:page_param` | The name of the page param name used in the url. _(see [Customizing the page param](../how-to.md#customizing-the-page-param))_                                                                    | `:page`            |
-| `:params`     | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customizing the params](../how-to.md#customizing-the-params))_                     | `{}`               |
-| `:fragment`   | The arbitrary fragment string (including the "#") to add to the url. _(see [Customizing the params](../how-to.md#customizing-the-params))_                                                        | `""`               |
-| `:link_extra` | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [Customizing the link attributes](../how-to.md#customizing-the-link-attributes))_     | `""`               |
-| `:i18n_key`   | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs _(see [Customizing the item name](../how-to.md#customizing-the-item-name))_                                 | `"pagy.item_name"` |
-| `:cycle`      | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                     | `false`            |
+| Variable      | Description                                                                                                                                                                                          | Default            |
+|:--------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
+| `:size`       | TThe size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [How to control the page links](../how-to.md#control-the-page-links))_ | `[1,4,4,1]`        |
+| `:page_param` | The name of the page param name used in the url. _(see [How to customize the page param](../how-to.md#customize-the-page-param))_                                                                    | `:page`            |
+| `:params`     | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](../how-to.md#customize-the-params))_                     | `{}`               |
+| `:fragment`   | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](../how-to.md#customize-the-params))_                                                        | `""`               |
+| `:link_extra` | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](../how-to.md#customize-the-link-attributes))_     | `""`               |
+| `:i18n_key`   | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs _(see [How to customize the item name](../how-to.md#customize-the-item-name))_                                 | `"pagy.item_name"` |
+| `:cycle`      | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                        | `false`            |
 
 There is no specific validation for non-instance variables.
 

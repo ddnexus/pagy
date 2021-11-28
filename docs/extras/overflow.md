@@ -158,4 +158,4 @@ Use this method in order to know if the requested page is overflowing. The origi
 
 ## Errors
 
-See [Handling Pagy::OverflowError exceptions](../how-to.md#handling-pagyoverflowerror-exceptions)
+See [How to handle Pagy::OverflowError exceptions](../how-to.md#handle-pagyoverflowerror-exceptions)

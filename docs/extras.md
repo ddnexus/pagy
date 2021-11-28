@@ -35,7 +35,7 @@ Pagy comes with a growing number of optional extras, that add core, backend, fro
 
 ## Synopsis
 
-Extras are not loaded by default, so you should require them explicitly in your `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_:
+Extras are not loaded by default, so you should require them explicitly in your `pagy.rb` initializer _(see [How to configure pagy](how-to.md#configure-pagy))_:
 
 ```ruby
 require 'pagy/extras/bootstrap'

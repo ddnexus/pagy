@@ -14,7 +14,7 @@ If you upgrade from version `< 5.0.0` see the following:
 
 Still supported in version `5.x` but not supported from `6.0` on:
 
-- `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [Customizing the params](https://ddnexus.github.io/pagy/how-to#customizing-the-params).
+- `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [How to customize the params](https://ddnexus.github.io/pagy/how-to#customize-the-params).
 
 <hr>
 

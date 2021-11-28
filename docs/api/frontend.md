@@ -49,7 +49,7 @@ The method accepts also a few optional keyword arguments:
 
 The `nav.*` templates produce the same output, and can be used as an easier (but slower) way to customize it.
 
-See also [Using templates](../how-to.md#using-templates).
+See also [Using templates](../how-to.md#use-templates).
 
 ### pagy_info(pagy, pagy_id: ..., item_name: ..., i18n_key: ...)
 
@@ -78,7 +78,7 @@ Notice the `:i18n_key` can be passed also to the constructor or be a less useful
 
 Displaying Products <b>476-500</b> of <b>1000</b> in total
 
-_(see [Customizing the item name](../how-to.md#customizing-the-item-name))_
+_(see [Customizing the item name](../how-to.md#customize-the-item-name))_
 
 ### pagy_url_for(pagy, page, absolute: nil)
 
@@ -90,19 +90,19 @@ Before producing the final URL (which can be `absolute` if you pass `absolute: t
 
 The `:fragment` variable is also appended to the URL if defined.
 
-See also [Customizing the URL](../how-to.md#customizing-the-url).
+See also [How to customize the URL](../how-to.md#customize-the-url).
 
 ### pagy_massage_params(params)
 
 The `pagy_massage_params` method has been deprecated and it will be ignored from version 6. Use the `:params` variable instead.
 
-See also [Customizing the params](../how-to.md#customizing-the-params).
+See also [How to customize the params](../how-to.md#customize-the-params).
 
 ### pagy_link_proc(pagy, link_extra='')
 
 This method is called internally to get a very specialized and fast proc that produce the HTML links for the pages.
 
-For standard usage you may just need to read [Customizing the link attributes](../how-to.md#customizing-the-link-attributes), for advanced usage see below.
+For standard usage you may just need to read [How to customize the link attributes](../how-to.md#customize-the-link-attributes), for advanced usage see below.
 
 ## Advanced Usage
 

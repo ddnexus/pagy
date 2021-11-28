@@ -62,7 +62,7 @@ Use the calendar and pagy objects in your views:
 <%== pagy_nav(@pagy) %>
 ```
 
-See also a few examples for [wrapping existing pagination with pagy_calendar](../how-to.md#wrapping-existing-pagination-with-pagy_calendar).
+See also a few examples about [How to wrap existing pagination with pagy_calendar](../how-to.md#wrap-existing-pagination-with-pagy_calendar).
 
 **Notice** For a complete and detailed example, see the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru).
 

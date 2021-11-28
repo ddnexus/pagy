@@ -63,10 +63,10 @@ Thank you for showing your support!
 
 ### Unlike the other gems
 
-- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#global-configuration))_
+- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#configure-pagy))_
 - It doesn't impose limits on your code even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
-- It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#using-templates))_
-- It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handling-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
+- It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#use-templates))_
+- It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handle-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
 - It does not impose any difficult-to-override logic or output _(see [why...](https://ddnexus.github.io/pagy/index#really-easy-to-customize))_
 
 ### Better Components
@@ -304,8 +304,8 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 <summary><b>What's new in 5.0</b></summary>
 
 - This version requires `ruby 2.5+`. For `ruby <2.5` use `pagy 3+` (see the [pagy3 branch](https://github.com/ddnexus/pagy/tree/pagy3))
-- **New**: added the [calendar](http://ddnexus.github.io/pagy/extras/calendar) extra to paginate a collection by Time unit (year, quarter, month, week, day)
-- **New**: added the [gearbox](http://ddnexus.github.io/pagy/extras/gearbox) extra to automatically change the number of items depending on the page number.
+- **New**: Added the [calendar](http://ddnexus.github.io/pagy/extras/calendar) extra for pagination filtering by calendar time unit (year, quarter, month, week, day)
+- **New**: Added the [gearbox](http://ddnexus.github.io/pagy/extras/gearbox) extra to automatically change the number of items depending on the page number.
 - Removed support for 4.0 deprecations (see the [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md))
 - Big code restyling with improved performance, readability and rubocop compliance.
 

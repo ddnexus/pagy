@@ -49,7 +49,7 @@ This method is the same as the `pagy_nav`, but customized for Bootstrap.
 
 See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
 
-The `bootstrap_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [Using Templates](../how-to.md#using-templates).
+The `bootstrap_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](../how-to.md#use-templates).
 
 ### pagy_bootstrap_nav_js(pagy, ...)
 

@@ -60,7 +60,7 @@ Pagy::DEFAULT[:items] = 10
 Pagy::DEFAULT[:size]  = [5,4,4,5]
 ```
 
-Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see [Configuration](how-to.md#global-configuration))_.
+Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see [How to configure pagy](how-to.md#configure-pagy))_.
 
 #### Cleanup the Models
 
