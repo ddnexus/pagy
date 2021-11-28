@@ -18,6 +18,12 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.1
+
+- Updated cypress and bundler
+- Improved efficiency of unit labelling and support for custom calendar unit sub formats
+- Added missing initializer default for calendar quarter and missing doc for custom units
+
 ## Version 5.6.0
 
 - Updated gemfiles
