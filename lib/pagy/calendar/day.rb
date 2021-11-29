@@ -22,7 +22,7 @@ class Pagy # :nodoc:
 
       # Starting time for the page
       def starting_time_for(page)
-        @initial + (snap(page) * DAY)
+        @initial + (offset_units_for(page) * DAY)
       end
     end
   end

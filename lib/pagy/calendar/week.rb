@@ -15,8 +15,8 @@ class Pagy # :nodoc:
       def setup_unit_vars
         setup_vars(offset: 0)
         super
-        @initial = week_start(@starting)
-        @final   = week_start(@ending) + WEEK
+        @initial = unit_starting_time_for(@starting)
+        @final   = unit_starting_time_for(@ending) + WEEK
         @pages   = @last = (@final - @initial).to_i / WEEK
         @from    = starting_time_for(@page)
         @to      = @from + WEEK
@@ -24,15 +24,15 @@ class Pagy # :nodoc:
 
       # Starting time for the page
       def starting_time_for(page)
-        @initial + (snap(page) * WEEK)
+        @initial + (offset_units_for(page) * WEEK)
       end
 
       private
 
-      # Return the start of the week for time
-      def week_start(time)
-        start = time - (((time.wday - @offset) * DAY) % WEEK)
-        new_time(start.year, start.month, start.day)
+      # Unit starting time for time
+      def unit_starting_time_for(time)
+        starting_time = time - (((time.wday - @offset) * DAY) % WEEK)
+        new_time(starting_time.year, starting_time.month, starting_time.day)
       end
     end
   end

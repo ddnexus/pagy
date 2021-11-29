@@ -22,7 +22,7 @@ class Pagy # :nodoc:
 
       # Starting time for the page
       def starting_time_for(page)
-        new_time(@initial.year + snap(page))
+        new_time(@initial.year + offset_units_for(page))
       end
     end
   end
