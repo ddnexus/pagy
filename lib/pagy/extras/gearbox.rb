@@ -28,11 +28,11 @@ class Pagy # :nodoc:
       @pages = @last = (if @count > (sum = gearbox_items.sum)
                           [((@count - sum).to_f / gearbox_items.last).ceil, 1].max + gearbox_items.count
                         else
-                          pages    = 0
-                          reminder = @count
-                          while reminder.positive?
-                            pages    += 1
-                            reminder -= gearbox_items[pages - 1]
+                          pages     = 0
+                          remainder = @count
+                          while remainder.positive?
+                            pages     += 1
+                            remainder -= gearbox_items[pages - 1]
                           end
                           [pages, 1].max
                         end)
