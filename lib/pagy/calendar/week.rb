@@ -18,12 +18,12 @@ class Pagy # :nodoc:
         @initial = week_start(@starting)
         @final   = week_start(@ending) + WEEK
         @pages   = @last = (@final - @initial).to_i / WEEK
-        @from    = start_for(@page)
+        @from    = starting_time_for(@page)
         @to      = @from + WEEK
       end
 
-      # Time for the page
-      def start_for(page)
+      # Starting time for the page
+      def starting_time_for(page)
         @initial + (snap(page) * WEEK)
       end
 

@@ -5,7 +5,7 @@ class Pagy
     # Mixin for month based unit periods
     # It is used for month and quarter, but you could use it to implement less common unit of 6, 4, 2 months
     # (see the https://ddnexus.github.io/pagy/api/calendar#custom-units sections for details).
-    # The class that includes it needs to set the MONTH duration for the unit and the usual DEFAULT.
+    # The including class must set the MONTHS duration for the unit and the usual DEFAULT.
     module MonthMixin
       protected
 
@@ -13,36 +13,34 @@ class Pagy
       def setup_unit_vars
         super
         @months  = self.class::MONTHS  # number of months in the unit
-        @initial = new_time(@starting.year, beginning_month(@starting.month))
-        @final   = add_to(new_time(@ending.year, beginning_month(@ending.month)), @months)
+        @initial = new_time(@starting.year, starting_month_including(@starting.month))
+        @final   = add_months_to(new_time(@ending.year, starting_month_including(@ending.month)), @months)
         @pages   = @last = (months_in(@final) - months_in(@initial)) / @months
-        @from    = start_for(@page)
-        @to      = add_to(@from, @months)
+        @from    = starting_time_for(@page)
+        @to      = add_months_to(@from, @months)
       end
 
-      # Time for the page
-      def start_for(page)
-        add_to(@initial, snap(page) * @months)
+      # Starting time for the page
+      def starting_time_for(page)
+        add_months_to(@initial, snap(page) * @months)
       end
 
-      # Return the beginning month for the unit (e.g. quarter) that includes the month argument
-      def beginning_month(month)
-        (@months * ((month - 1) / @months)) + 1
+      # Starting month of the unit including the passed month
+      def starting_month_including(month)
+        (@months * ((month - 1) / @months)) + 1  # remove 1 month for 0-11 calculations and add it back for 1-12 conversion
       end
 
       private
 
-      # Months in time
+      # Number of months in time
       def months_in(time)
         (time.year * 12) + time.month
       end
 
       # Add months to time
-      def add_to(time, months)
-        months += months_in(time)
-        year  = months / 12
-        month = months % 12
-        month.zero? ? new_time(year - 1, 12) : new_time(year, month)
+      def add_months_to(time, months)
+        months += months_in(time) - 1             # remove 1 month for 0-11 calculations
+        new_time(months / 12, (months % 12) + 1)  # add 1 month back for 1-12 conversion
       end
     end
   end

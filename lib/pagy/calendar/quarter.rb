@@ -14,9 +14,9 @@ class Pagy # :nodoc:
 
       # The label for any page, with the substitution of the '%q' token
       def label_for(page, opts = {})
-        start_time    = start_for(page.to_i)
-        opts[:format] = (opts[:format] || @vars[:format]).gsub('%q') { (start_time.month / 4) + 1 }
-        localize(start_time, opts)
+        starting_time = starting_time_for(page.to_i)  # page could be a string
+        opts[:format] = (opts[:format] || @vars[:format]).gsub('%q') { (starting_time.month / 4) + 1 }
+        localize(starting_time, opts)
       end
     end
   end
