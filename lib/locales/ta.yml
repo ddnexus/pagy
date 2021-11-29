@@ -1,0 +1,22 @@
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+ta:
+  pagy:
+
+    item_name:
+      one: "பதிவு"
+      other: "பதிவுகள்"
+
+    nav:
+      prev: "&lsaquo;&nbsp;முந்தையது"
+      next: "அடுத்தது&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "%{item_name} கிடைக்கவில்லை"
+      single_page: "<b>%{count}</b> %{item_name} காட்டப்படுகின்றது"
+      multiple_pages: "மொத்தம் <b>%{count}</b> %{item_name}, காட்டப்படுபவை <b>%{from}-%{to}</b>"
+
+    combo_nav_js: "<label>%{pages}-இல் %{page_input}-வது பக்கம்</label>"
+
+    items_selector_js: "<label>ஒரு பக்கத்திற்கு %{items_input} %{item_name} காட்டு</label>"
