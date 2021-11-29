@@ -10,12 +10,16 @@ class Pagy
 
     # Pluralization rules
     module P11n
-      # Utility variables
-      from0to1   = [0, 1].freeze
-      from2to4   = [2, 3, 4].freeze
-      from5to9   = [5, 6, 7, 8, 9].freeze
-      from11to14 = [11, 12, 13, 14].freeze
-      from12to14 = [12, 13, 14].freeze
+      # Pluralization variables
+      from0to1   = (0..1).to_a.freeze
+      from2to4   = (2..4).to_a.freeze
+      from3to10  = (3..10).to_a.freeze
+      from5to9   = (5..9).to_a.freeze
+      from11to14 = (11..14).to_a.freeze
+      from11to99 = (11..99).to_a.freeze
+      from12to14 = (12..14).to_a.freeze
+
+      from0to1_from5to9 = from0to1 + from5to9
 
       # Store the proc defining each pluralization RULE
       # Logic adapted from https://github.com/svenfuchs/rails-i18n
@@ -24,12 +28,12 @@ class Pagy
           lambda do |n = 0|
             mod100 = n % 100
             case
-            when n == 0                         then 'zero' # rubocop:disable Style/NumericPredicate
-            when n == 1                         then 'one'
-            when n == 2                         then 'two'
-            when (3..10).to_a.include?(mod100)  then 'few'
-            when (11..99).to_a.include?(mod100) then 'many'
-            else                                     'other'
+            when n == 0                      then 'zero' # rubocop:disable Style/NumericPredicate
+            when n == 1                      then 'one'
+            when n == 2                      then 'two'
+            when from3to10.include?(mod100)  then 'few'
+            when from11to99.include?(mod100) then 'many'
+            else                                  'other'
             end
           end,
 
@@ -68,10 +72,10 @@ class Pagy
             mod10  = n % 10
             mod100 = n % 100
             case
-            when n == 1                                                               then 'one'
-            when from2to4.include?(mod10) && !from12to14.include?(mod100)             then 'few'
-            when (from0to1 + from5to9).include?(mod10) || from12to14.include?(mod100) then 'many'
-            else                                                                           'other'
+            when n == 1                                                           then 'one'
+            when from2to4.include?(mod10) && !from12to14.include?(mod100)         then 'few'
+            when from0to1_from5to9.include?(mod10) || from12to14.include?(mod100) then 'many'
+            else                                                                       'other'
             end
           end,
 
@@ -149,7 +153,7 @@ class Pagy
     end
 
     # Translate and pluralize the key with the locale DATA
-    def t(locale, key, **opts)
+    def t(locale, key, opts = {})
       data, pluralize = DATA[locale]
       translation = data[key] || (opts[:count] && data[key += ".#{pluralize.call(opts[:count])}"]) \
                       or return %([translation missing: "#{key}"])

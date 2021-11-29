@@ -36,7 +36,7 @@ class Pagy # :nodoc:
     # The label for any page (it can pass along the I18n gem opts when it's used with the i18n extra)
     def label_for(page, opts = {})
       opts[:format] ||= @vars[:format]
-      localize(start_for(page.to_i), opts)
+      localize(starting_time_for(page.to_i), opts)  # page could be a string
     end
 
     # Period of the active page (used for nested units)

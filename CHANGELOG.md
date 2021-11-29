@@ -18,6 +18,18 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.2
+
+- Updated pagy.manifest for Tamil locale
+- Add Tamil (ta) translation (#349)
+- Internal changes in calendar files:
+  - Simpler calculations for month mixin
+  - Normalized naming of non-api methods
+  - Better comments
+- Pagy::I18n: small performance improvement
+- Docs reorganization
+- Update paths_ignore for skip CI and docs
+
 ## Version 5.6.1
 
 - Updated cypress and bundler
