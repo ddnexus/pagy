@@ -39,11 +39,6 @@ class Pagy # :nodoc:
       localize(starting_time_for(page.to_i), opts)  # page could be a string
     end
 
-    # Period of the active page (used for nested units)
-    def active_period
-      [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
-    end
-
     protected
 
     # Base class method for the setup of the unit variables
@@ -63,14 +58,20 @@ class Pagy # :nodoc:
       time.strftime(opts[:format])
     end
 
-    # Simple trick to snap the page to its ordered start, without actually reordering anything in the internal structure
-    def snap(page)
+    # Number of units to offset from the @initial time, in order to get the ordered starting time for the page.
+    # Used in starting_time_for(page) with a logic equivalent to: @initial + (offset_units_for(page) * unit_time_length)
+    def offset_units_for(page)
       @order == :asc ? page - 1 : @pages - page
     end
 
     # Create a new local time at the beginning of the day
     def new_time(year, month = 1, day = 1)
       Time.new(year, month, day, 0, 0, 0, @utc_offset)
+    end
+
+    # Period of the active page (used internally for nested units)
+    def active_period
+      [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
     end
 
     class << self

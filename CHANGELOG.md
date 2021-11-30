@@ -18,6 +18,11 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.3
+
+- Improved readability and efficiency of calendar files
+- Fix for English spelling in local variable name
+
 ## Version 5.6.2
 
 - Updated pagy.manifest for Tamil locale

@@ -159,8 +159,7 @@
 - 2023-10-29 22:11:01.000000000 Z
 - 2023-10-30 12:29:25.000000000 Z
 "[1] pagy/extras/calendar::instance methods#test_0003_raises NoMethodError for #pagy_calendar_period": the
-  pagy_calendar_period method must be implemented by the application and must return
-  the starting and ending local Time objects array defining the calendar :period
+  pagy_calendar_period method must be implemented by the application (see https://ddnexus.github.io/pagy/extras/calendar#pagy_calendar_periodcollection)
 "[1] pagy/extras/calendar::instance methods#test_0016_selects :day for the first page":
 - 2021-10-21 13:18:23.000000000 Z
 - 2021-10-21 23:14:50.000000000 Z
@@ -207,9 +206,7 @@
 - 2023-11-12 08:38:58.000000000 Z
 - 2023-11-13 15:43:40.000000000 Z
 "[1] pagy/extras/calendar::instance methods#test_0004_raises NoMethodError for #pagy_calendar_filter": the
-  pagy_calendar_filter method must be implemented by the application and must return
-  the collection filtered by a logic equivalent to {storage_time >= from && storage_time
-  < to}
+  pagy_calendar_filter method must be implemented by the application (see https://ddnexus.github.io/pagy/extras/calendar#pagy_calendar_filtercollection-from-to)
 "[1] pagy/extras/calendar::instance methods#test_0015_selects :week for the last page":
 - 2023-11-12 01:20:18.000000000 Z
 - 2023-11-12 04:22:50.000000000 Z
@@ -724,3 +721,14 @@
 - 2023-11-12 08:38:58.000000000 Z
 - 2023-11-13 15:43:40.000000000 Z
 "[1] pagy/extras/calendar::instance methods#test_0017_selects :day for an intermediate page": []
+"[1] pagy/extras/calendar#test_0001_runs multiple units":
+- 2022-07-16 15:40:39.000000000 Z
+- 2022-07-17 19:44:15.000000000 Z
+- 2022-07-19 00:31:12.000000000 Z
+- 2022-07-21 21:58:24.000000000 Z
+- 2022-07-22 05:25:48.000000000 Z
+- 2022-07-22 18:33:04.000000000 Z
+- 2022-07-24 07:42:24.000000000 Z
+- 2022-07-25 07:21:20.000000000 Z
+- 2022-07-27 12:02:44.000000000 Z
+- 2022-07-29 03:29:28.000000000 Z

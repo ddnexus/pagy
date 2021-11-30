@@ -196,4 +196,15 @@ describe 'pagy/extras/calendar' do
       _(entries.to_a).must_rematch
     end
   end
+  it 'runs multiple units' do
+    collection = MockCollection::Calendar.new(@collection)
+    calendar, pagy, entries = app(params: { year_page: 2, month_page: 7, page: 2 })\
+                              .send(:pagy_calendar, collection, year: {},
+                                                                month: {},
+                                                                pagy: { items: 10 })
+    _(calendar[:year].series).must_equal [1, "2", 3]
+    _(calendar[:month].series).must_equal [1, 2, 3, 4, 5, 6, "7", 8, 9, 10, 11, 12]
+    _(pagy.series).must_equal [1, "2", 3]
+    _(entries.to_a).must_rematch
+  end
 end

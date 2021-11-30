@@ -13,8 +13,8 @@ class Pagy
       def setup_unit_vars
         super
         @months  = self.class::MONTHS  # number of months in the unit
-        @initial = new_time(@starting.year, starting_month_including(@starting.month))
-        @final   = add_months_to(new_time(@ending.year, starting_month_including(@ending.month)), @months)
+        @initial = unit_starting_time_for(@starting)
+        @final   = add_months_to(unit_starting_time_for(@ending), @months)
         @pages   = @last = (months_in(@final) - months_in(@initial)) / @months
         @from    = starting_time_for(@page)
         @to      = add_months_to(@from, @months)
@@ -22,15 +22,17 @@ class Pagy
 
       # Starting time for the page
       def starting_time_for(page)
-        add_months_to(@initial, snap(page) * @months)
-      end
-
-      # Starting month of the unit including the passed month
-      def starting_month_including(month)
-        (@months * ((month - 1) / @months)) + 1  # remove 1 month for 0-11 calculations and add it back for 1-12 conversion
+        add_months_to(@initial, offset_units_for(page) * @months)
       end
 
       private
+
+      # Unit starting time for time
+      def unit_starting_time_for(time)
+        # remove 1 month for 0-11 calculations and add it back for 1-12 conversion
+        starting_month = (@months * ((time.month - 1) / @months)) + 1
+        new_time(time.year, starting_month)
+      end
 
       # Number of months in time
       def months_in(time)
