@@ -59,11 +59,11 @@ class Pagy
     series          = []
     start           = 1
     if (left_gap_end - left_gap_start).positive?
-      series.push(*start..(left_gap_start - 1), :gap)
+      series.push(*start...left_gap_start, :gap)
       start = left_gap_end + 1
     end
     if (right_gap_end - right_gap_start).positive?
-      series.push(*start..(right_gap_start - 1), :gap)
+      series.push(*start...right_gap_start, :gap)
       start = right_gap_end + 1
     end
     series.push(*start..@last)

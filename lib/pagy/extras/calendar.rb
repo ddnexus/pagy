@@ -4,7 +4,7 @@
 require 'pagy/calendar'
 
 class Pagy # :nodoc:
-  # Paginate based on calendar periods (year month week day) plus the regular pagination
+  # Add pagination filtering by calendar unit (:year, :quarter, :month, :week, :day) to the regular pagination
   module CalendarExtra
     # Additions for the Backend module
     module Backend

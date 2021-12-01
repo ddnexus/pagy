@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
-# Self-contained, standalone Sinatra app usable to play with the pagy calendar extra
+# Sinatra app usable to play with the pagy calendar extra
 
-# This file uses mock collections from the repo, so you should run it from the cloned repo dir
-# You can just clone the pagy repo and then run it as indicated below (from the pagy root dir).
-
-# USAGE:
-#    rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar_app.ru
-
-# ADVANCED USAGE (with automatic app reload if you edit it):
-#    gem install rerun
-#    rerun -- rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar_app.ru
-
-# Point your browser at http://0.0.0.0:8080
+# This app uses mock collections from the repo, so you should run it from the cloned repo dir:
+#
+# git clone --depth 1 https://github.com/ddnexus/pagy
+# cd pagy
+# rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar_app.ru
+#
+# Point your browser to http://0.0.0.0:8080
 
 # Read the comments below to edit this app
 

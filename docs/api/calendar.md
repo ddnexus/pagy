@@ -83,6 +83,8 @@ This method takes a page argument (`Integer` or `String`) and uses the `:format`
 
 ## Custom units
 
-You can define your own custom unit of whatever time length. For example you may want to add a unit of 2 months (i.e. a "bimester" unit), which should define a `Pagy::Calendar::Bimester` class (very easy task including the `Pagy::Calendar::MonthMixin` module). In order to allow its correct integration, you should also insert your `:bimester` unit symbol in the `Pagy::Calendar::UNITS` list, between `:quarter` and `:month`, which will keep the list in desc ordered of their duration. 
+You can define your own custom unit of any time length. For example you may want to add a unit of 2 months (i.e. a "bimester" unit), which should define a `Pagy::Calendar::Bimester` class. In this case (and for any month-based unit), you can get your class implemented very easily by just including the `Pagy::Calendar::MonthMixin` module. (See the [pagy/calendar/quarter](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar/quarter.rb) implementation for an example)
 
-You can also implement custom substitution formats for your custom units, by overriding the `label_for(page, opts)`. It should substitute your special tokens with your content. (See the [pagy/calendar/quarter](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar/quarter.rb) implementation for an example)
+In order to allow its full integration, you should also insert your `:bimester` unit symbol in the `Pagy::Calendar::UNITS` list, between `:quarter` and `:month`, which will keep the list in desc order of duration. 
+
+You can also implement your own custom substitution formats for your custom units, by overriding the `label_for(page, opts)`.

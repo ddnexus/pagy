@@ -14,7 +14,7 @@
 #    gem install rerun
 #    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
 
-# Point your browser at http://0.0.0.0:8080
+# Point your browser to http://0.0.0.0:8080
 
 # Read the comments below to edit this app
 
