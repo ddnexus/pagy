@@ -18,6 +18,12 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.4
+
+- Updated RM run configurations
+- Fix for missing innerHTML reset, unintentionally committed during a cleanup (closes #350)
+- Updated gemfiles, docs and comments
+
 ## Version 5.6.3
 
 - Improved readability and efficiency of calendar files
