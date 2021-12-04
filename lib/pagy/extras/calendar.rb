@@ -26,7 +26,9 @@ class Pagy # :nodoc:
 
       # Setup and return the calendar objects and the filtered collection
       def pagy_setup_calendar(collection, conf)
-        units      = Calendar::UNITS & conf.keys # get the units in time length desc order
+        units = Calendar::UNITS & conf.keys # get the units in time length desc order
+        raise ArgumentError, 'no calendar unit found in pagy_calendar configuration' if units.empty?
+
         page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
         units.each do |unit|  # set all the :page_param vars for later deletion
           unit_page_param         = :"#{unit}_#{page_param}"
