@@ -6,7 +6,7 @@ class Pagy # :nodoc:
   module ArrayExtra
     private
 
-    # Return Pagy object and items
+    # Return Pagy object and paginated items
     def pagy_array(array, vars = {})
       pagy = Pagy.new(pagy_array_get_vars(array, vars))
       [pagy, array[pagy.offset, pagy.items]]

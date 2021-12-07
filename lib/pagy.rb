@@ -76,6 +76,7 @@ class Pagy
     page.to_s
   end
 
+  # Allow the customization of the output (overridden by the calendar extra)
   def label
     @page.to_s
   end

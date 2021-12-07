@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# gem build and release tasks, with added checks and patches
+# gGem build and release tasks, with added checks and patches
+# Notice: this task is functional but the .github/workflows/release-gem.yml provides an easier way to do the same
 
 require 'bundler/gem_tasks'
 require 'rake/manifest'

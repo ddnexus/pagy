@@ -8,7 +8,7 @@ class Pagy
   module Backend
     private
 
-    # Return Pagy object and items
+    # Return Pagy object and paginated items/results
     def pagy(collection, vars = {})
       pagy = Pagy.new(pagy_get_vars(collection, vars))
       [pagy, pagy_get_items(collection, pagy)]
