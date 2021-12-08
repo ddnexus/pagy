@@ -46,6 +46,7 @@ describe 'pagy/extras/calendar' do
       _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, []) }.must_raise ArgumentError
       _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, unknown: {}) }.must_raise ArgumentError
       _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, year: []) }.must_raise ArgumentError
+      _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, {}) }.must_raise ArgumentError
     end
     it 'selects :year for the pages and check the total' do
       total = 0

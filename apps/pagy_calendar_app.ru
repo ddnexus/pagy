@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Sinatra app usable to play with the pagy calendar extra
+# Sinatra app usable to play with the pagy calendar extra (https://ddnexus.github.io/pagy/extras/calendar)
 
 # This app uses mock collections from the repo, so you should run it from the cloned repo dir:
 #

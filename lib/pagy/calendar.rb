@@ -41,7 +41,7 @@ class Pagy # :nodoc:
 
     protected
 
-    # Base class method for the setup of the unit variables
+    # Base class method for the setup of the unit variables (subclasses must implement it and call super)
     def setup_unit_vars
       raise VariableError.new(self, :format, 'to be a strftime format', @vars[:format]) unless @vars[:format].is_a?(String)
       raise VariableError.new(self, :order, 'to be in [:asc, :desc]', @order) \
@@ -85,6 +85,6 @@ class Pagy # :nodoc:
       end
     end
   end
-
+  # Require the subclass files in UNITS (no custom unit at this point yet)
   Calendar::UNITS.each { |unit| require "pagy/calendar/#{unit}" }
 end

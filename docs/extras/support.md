@@ -29,7 +29,7 @@ If you don't need the navbar you can just set the `:size` variable to an empty v
 
 You can also use the `pagy_prev_link` and `pagy_next_link` helpers provided by this extra, mostly useful if you also use the `countless` extra.
 
-Here is a basic example that use `pagy_countless` (saving one query per render):
+Here is a basic example that uses `pagy_countless` (saving one query per render):
 
 `pagy.rb` initializer:
 
@@ -88,9 +88,14 @@ $('#div_next_link').html("<%= j(render 'next_link') %>");
 
 ### Auto-incremental
 
-Automatic incremental pagination (sometimes improperly called "infinite-scroll" pagination) is a UI-less pagination that loads the next page at the end of the listing with an AJAX call.
+Automatic incremental pagination (sometimes improperly called "infinite-scroll" pagination) is a UI-less pagination that loads the next page at the end of the listing.
 
-We can implement it by using the same [Incremental](#navlessincremental) example above with just a couple of changes:
+Depending on yur environment, there are a few ways to implement it. You can find a simple generic example below, or some more modern specific technique shown in the following posts:
+
+- [Endless Scroll / Infinite Loading with Turbo Streams & Stimulus](https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/) by Stefan Wienert
+- [Pagination with Hotwire](https://www.beflagrant.com/blog/pagination-with-hotwire) by Jonathan Greenberg
+
+For a plain old javascript example, we are going to use the same [Incremental](#navlessincremental) code above with just a couple of changes:
 
 **1**. Hide the link in `_next_link.html.erb` by adding a style attribute:
 

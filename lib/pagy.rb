@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '5.6.4'
+  VERSION = '5.6.5'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
@@ -76,6 +76,7 @@ class Pagy
     page.to_s
   end
 
+  # Allow the customization of the output (overridden by the calendar extra)
   def label
     @page.to_s
   end
