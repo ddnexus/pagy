@@ -18,6 +18,14 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.5
+
+- Improved a few code comments; added post link in README
+- Full name for translate, aliased as t
+- Added check for no calendar units in pagy_calendar configuration
+- Updated gemfiles
+- Small docs layout adjustment
+
 ## Version 5.6.4
 
 - Updated RM run configurations
