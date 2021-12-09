@@ -14,6 +14,11 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/ddnexus/pagy'
   s.license     = 'MIT'
   s.files       = File.read('pagy.manifest').split
-  s.metadata    = { 'rubygems_mfa_required' => 'true' }
+  s.metadata    = { 'rubygems_mfa_required' => 'true',
+                    'homepage_uri'          => 'https://github.com/ddneus/pagy',
+                    'documentation_uri'     => 'https://ddnexus.github.io/pagy',
+                    'bug_tracker_uri'       => 'https://github.com/ddnexus/pagy/issues',
+                    'changelog_uri'         => 'https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md',
+                    'live_support'          => 'https://gitter.im/ruby-pagy/Lobby' }
   s.required_ruby_version = '>= 2.5'
 end
