@@ -18,6 +18,13 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.6
+
+- Docs improvements
+- Added **_ to series and sequels
+- Updated rematch and gemfiles
+- Updated release-gem.yml workflow
+
 ## Version 5.6.5
 
 - Improved a few code comments; added post link in README
