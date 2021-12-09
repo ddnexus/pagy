@@ -9,12 +9,14 @@ jobs:
   release-gem:
     environment: release
     runs-on: ubuntu-latest
+    env:
+      BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
     steps:
       - uses: actions/checkout@v2  # checks out default branch
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.0
+          ruby-version: 3.0
       - run: bundle install
 
       - name: Dotenv Action
