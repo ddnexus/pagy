@@ -49,7 +49,7 @@ end
 Use the calendar and pagy objects in your views:
 
 ```erb
-<!-- calendar pagination -->
+<!-- calendar filtering -->
 <%== pagy_nav(@calendar[:year]) %>
 <%== pagy_nav(@calendar[:month]) %>
 
@@ -103,9 +103,15 @@ All the methods in this module are prefixed with the `"pagy_calendar"` string in
 
 This method wraps one or more levels of calendar filtering on top of another backend pagination method (e.g. `pagy`, `pagy_arel`, `pagy_array`, `pagy_searchkick`, `pagy_elasticsearch_rails`, `pagy_meilisearch`, ...).
 
-It filters the `collection` by the selected time units in the `configuration` (e.g. `year`, `month`, ...), and and forwards it to the wrapped method. 
+It filters the `collection` by the selected time units in the `configuration` (e.g. `year`, `month`, `day`, ...), and forwards it to the wrapped method. 
 
-It returns an array with one more item than the usual two. E.g.: `@calendar, @pagy, @results = pagy_calendar(...)`.
+It returns an array with one more item than the usual two:
+
+```ruby
+@calendar, @pagy, @results = pagy_calendar(...)
+```
+
+The `@calendar` contains an array of `Pagy::Calendar::*` objects that you can use in the UI.
 
 ### `collection` argument
 
@@ -121,7 +127,7 @@ The `configuration` hash can be composed by the following types of configuration
 
 The calendar configuration determines the calendar objects generated. These are used for filtering the collection to the selected time units.
 
-You can add one or more levels with keys like `:year`, `:quarter`, `:month`, `:week`, `:day`. Each key must be set to the hash of the variables that will be used to initialize the relative `Pagy::Calendar::*` object. Use an empty hash for default values. E.g.: `year: {}, month: {}`.
+You can add one or more levels with keys like `:year`, `:quarter`, `:month`, `:week`, `:day`. Each key must be set to the hash of the variables that will be used to initialize the relative `Pagy::Calendar::*` object. Use an empty hash for default values. E.g.: `year: {}, month: {}, ...`.
 
 **Restrictions**: The `:page`, `:page_param`, `:params` and `:period` variables for the calendar objects are managed automatically by the extra. Setting them explicitly has no effect. (See also [Calendar params](#calendar-params) for solutions in case of conflicts)
 
@@ -131,7 +137,13 @@ This is the optional configuration of the final pagination object (produced by t
 
 You can pass one optional `:pagy` key, set to the hash of the variables to initialize the `Pagy` object. It has none of the restriction mentioned in the [Calendar configuration](#calendar-configuration).
 
-Besides the usual pagy variables, you can add a `:backend` variable, set to the name of the backend extra method that you want to use for managing the collection. E.g.: `pagy: { backend: :pagy_searchkick, items: 10, ... }`. Notice that the `collection` argument must be exactly what you would pass to the wrapped backend method.
+Besides the usual pagy variables, you can add a `:backend` variable, set to the name of the backend extra method that you want to use for managing the collection:
+
+```ruby
+{ pagy: { backend: :pagy_searchkick, items: 10, ... } }
+```
+
+Notice that the `collection` argument must be exactly what you would pass to the wrapped backend method.
 
 If the `:pagy` key/value is omitted, a default `Pagy` instance will be created by the default `:pagy` backend method.
 
@@ -220,7 +232,7 @@ If you set `:order` to `:desc`, you will get the page units in reversed order (e
 
 ### Offset
 
-If you use the `:week` time unit, consider that the first day of the week is different for different locales, so you should adjust it by setting the `:offset` to the day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday).
+If you use the `:week` time unit, consider that the first day of the week could be different for different locales, so you may want to adjust it by setting the `:offset` to the day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday).
 
 ### Calendar params
 
@@ -243,7 +255,7 @@ You can also get the [current page label](../api/calendar.md#labelopts) with e.g
 
 ### I18n localization
 
-Pagy implements its own faster version of the i18n `translate` (i.e. `pagy_t`) method, but does not provide any built-in support for the i18n `localize` method. If you need localization of calendar labels in other locales, you should delegate it to the `I18n` gem, so that a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 
+Pagy implements its own faster version of the i18n `translate` method (i.e. `pagy_t`), but does not provide any built-in `localize` method. If you need localization of calendar labels in other locales, you should delegate it to the `I18n` gem, so that a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 
 
 You have a couple of options:
 
@@ -253,4 +265,4 @@ You have a couple of options:
 ## Caveats
 
 - Calendar pages with no records are accessible but empty: you may want to display some message when `@records.empty?`.
-- The [empty-pages](https://github.com/ddnexus/pagy/tree/empty-pages) branch is a WIP of the automatic disabling of the nav links of empty pages. That, and other related UI improvements, may make it to master in the future.
+- The [empty-pages](https://github.com/ddnexus/pagy/tree/empty-pages) experimental branch is a WIP of the automatic disabling of the nav links of empty pages. That, and other related UI improvements, may or may not make it to master in the future.

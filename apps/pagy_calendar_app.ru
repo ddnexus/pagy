@@ -103,7 +103,7 @@ __END__
   <p>See the <a href="https://ddnexus.github.io/pagy/extras/calendar">Pagy Calendar Extra</a> for details.</p>
   <hr>
 
-  <!-- manual toggle calendar UI -->
+  <!-- calendar UI manual toggle -->
   <p>
   <% if params[:skip] %>
     <a href="/" >Show Calendar</a>
@@ -112,7 +112,7 @@ __END__
   <% end %>
   </p>
 
-  <!-- calendar navs -->
+  <!-- calendar filtering navs -->
   <% if @calendar %>
     <%= pagy_bootstrap_nav(@calendar[:year]) %>   <!-- year nav -->
     <%= pagy_bootstrap_nav(@calendar[:month]) %>  <!-- month nav -->
