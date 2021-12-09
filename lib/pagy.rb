@@ -44,7 +44,7 @@ class Pagy
   end
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-  def series(size: @vars[:size])
+  def series(size: @vars[:size], **_)
     return [] if size.empty?
     raise VariableError.new(self, :size, 'to contain 4 items >= 0', size) \
           unless size.is_a?(Array) && size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
