@@ -3,7 +3,7 @@ title: Pagy::Calendar
 ---
 # Pagy::Calendar
 
-This is a `Pagy` subclass that provides pagination filtering by time: year, quarter, month, week, day (and supports yor own [custom time units](#custom-units)). 
+This is a `Pagy` subclass that provides pagination filtering by time: year, quarter, month, week, day (and supports your own [custom time units](#custom-units)). 
 
 **Notice**: The `Pagy::Calendar::*` subclasses provide support for the [calendar extra](../extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone (because they could generate a very high number of items per page). The class APIs are documented here, however you should not need to use them directly because they are required and used internally by the extra.
 
@@ -48,7 +48,7 @@ The calendar defaults are not part of the `Pagy::DEFAULT` variables. Each subcla
 - The `from` is the beginning of the current time unit. Notice that for the first page it falls BEFORE the starting of the `:period`.
 - The `to` is the beginning of the next time unit. Notice that for the last page it falls AFTER the ending of the `:period`. 
 
-The cases for first and last pages have no effect when you use the `from`/`to` as a collection filter, since there are no records outside the `:period` of the collection.
+The cases for first and last pages have no effect when you use the `from`/`to` as a collection filter, since the collection is already filtered by the `:period` so there are no records outside it.
 
 ### Time conversions
 
@@ -59,7 +59,7 @@ Since they are meant to be used in the UI, they have to do their internal calcul
 If you use `ActiveRecord`, your app should set the `Time.zone` for your user or your server. Then you can convert an UTC time from the storage to a local `Time` object for the calendar very easily with:
 
 ```ruby
-utc_time_field.in_time_zone.to_time
+utc_time.in_time_zone.to_time
 ```
 
 You can also convert from local `Time` object to a UTC time with `local_time.utc`, however, when you use it as an argument in a scope, `ActiveRecord` converts it for you.
@@ -79,7 +79,7 @@ This method uses the `:format` variable to generate the current page label with 
 
 ### label_for(page, opts = {})
 
-This method takes a page argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+This method takes a page number argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
 
 ## Custom units
 

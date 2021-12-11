@@ -22,7 +22,6 @@ function bump(){
 	sed -i "0,/$current/{s/$current/$version/}" "$1"
 }
 
-
 bump "$ROOT/.github/.env"
 bump "$ROOT/lib/pagy.rb"
 bump "$ROOT/lib/config/pagy.rb"
@@ -31,7 +30,6 @@ bump "$ROOT/lib/javascripts/pagy.js"
 current_minor=${current%\\*}
 version_minor=${version%\\*}
 sed -i "0,/$current_minor/{s/$current_minor/$version_minor/}" "$ROOT/docs/how-to.md"
-
 
 # Update CHANGELOG
 changelog=$(cat <<-LOG
@@ -48,14 +46,11 @@ TMPFILE=$(mktemp)
 awk -v l="$changelog" '{sub(/<hr>/, l); print}' "$CHANGELOG" > "$TMPFILE"
 mv "$TMPFILE" "$CHANGELOG"
 
-
 # Run test to check the consistency across files
 bundle exec ruby -Itest test/pagy_test.rb --name  "/pagy::Version match(#|::)/"
 
-
 # Show diff
 git diff -U0
-
 
 # Optional commit
 read -rp 'Do you want to commit the changes? (y/n)> ' input

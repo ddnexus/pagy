@@ -14,7 +14,7 @@ _Screenshot from the single-file self-contained [pagy_calendar_app.ru](https://g
 
 This extra makes sense when the result to paginate have some _time continuity_ and you want to provide a simple chronological browsing. For example: a movie catalog could allow the user to browse all the movies by year, or you may want to browse a long list of events by jumping and narrowing between years, months, days.
 
-On the other hand it does not make much sense for the result of a search that hits just a few sparse records scattered over a possibly long period of time. For that case the calendar extra has an `:active` switch that can be used to inactivate the calendar and fallback to the regular pagination. No need to maintain different UIs for wide browsing and narrow searching. 
+On the other hand it does not make much sense for the result of a search that hits just a few sparse records scattered over a possibly long period of time. For that case the calendar extra has an `:active` flag that can be used to inactivate the calendar and fallback to the regular pagination. No need to maintain different UIs for wide browsing and narrow searching. 
 
 ## Synopsis
 
@@ -111,7 +111,7 @@ It returns an array with one more item than the usual two:
 @calendar, @pagy, @results = pagy_calendar(...)
 ```
 
-The `@calendar` contains an array of `Pagy::Calendar::*` objects that you can use in the UI.
+The `@calendar` contains the hash of the generated `Pagy::Calendar::*` objects that can be used in the UI.
 
 ### `collection` argument
 
@@ -180,7 +180,7 @@ def pagy_calendar_period(collection)
 end
 
 # Fastest version (no queries)
-# If you have the time range in the request (from UI selectors), 
+# If you have the starting and ending times in the request (from UI selectors), 
 # filter the collection by the param before passing it to `pagy_calendar`. 
 # In this example you just use the :starting and :ending params to return the period
 def pagy_calendar_period(collection)
@@ -228,17 +228,17 @@ So in order to filter the actual search with the `from` and `to` local `Time` ob
 
 ### Order
 
-If you set `:order` to `:desc`, you will get the page units in reversed order (e.g. May, then April, then March, ...), but keep in mind that you still have to reverse the records in the collection since pagy has no control over that (indeed it's your own collection scope).
+If you set `:order` to `:desc`, you will get the page units in descendent order (e.g. May, then April, then March, ...), but keep in mind that you still have to desc-order the records in the collection since pagy has no control over that (indeed it's your own collection scope).
 
 ### Offset
 
-If you use the `:week` time unit, consider that the first day of the week could be different for different locales, so you may want to adjust it by setting the `:offset` to the day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday).
+If you use the `:week` time unit, consider that the first day of the week could be different for different locales, so you may want to adjust it by setting the `:offset` to the day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) when the locale requires it.
 
 ### Calendar params
 
-This extra handles the request params of its objects automatically, and you should not need to customize them unless they clash with other params in your requests. In that case you have a couple of alternatives:
+This extra handles the request params of its objects automatically, and you should not need to customize them unless they conflict with other params in your requests. In that case you have a couple of alternatives:
 
-- Renaming the clashing param of your app
+- Renaming the conflicting param of your app
 - Passing a custom `:page_param` to the [Pagy configuration](#pagy-configuration). That will internally rename the `:page_param` vars and update the `:params` procs of all the calendar objects accordingly.
 
 ## View
