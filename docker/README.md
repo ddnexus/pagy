@@ -116,7 +116,8 @@ Or run a service only for the execution of a specific command (it does not requi
 
 The Pagy repository comes with the VSCode files that setup a complete **Development Environment** on your local installation almost automatically.
 
-1. Read the comments in the `docker/docker-compose.override-example.yml` file and create yor own `docker-compose.override.yml` before anything else.
+1. Read the comments in the `docker/docker-compose.override-example.yml` file and create your own `docker-compose.override.
+   yml` before anything else.
 2. You need the [Remote Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension. Installation instructions:
    1. Open VS Code, and hit: `Ctrl+P`
    2. Paste `ext install ms-vscode-remote.remote-containers`
