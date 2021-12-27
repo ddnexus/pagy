@@ -42,7 +42,7 @@ jobs:
           - ruby-version: 2.7
             env:
               BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
-          - ruby-version: 3.0
+          - ruby-version: '3.0'
             env:
               BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
               CODECOV: true
@@ -91,7 +91,7 @@ jobs:
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: '3.0'
           bundler-cache: true
 
       - name: Cache NPM and Cypress
