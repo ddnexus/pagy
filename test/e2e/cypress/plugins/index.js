@@ -12,7 +12,7 @@
 // the project's config changing)
 
 /**
- * @type {Cypress.PluginConfig}
+ * @type {{install:(on: (action: string, arg: Record<string, Function>) => void, userConfig?: ConfigData, userOptions?: Partial<CypressHtmlValidateOptions>) => void}}
  */
 // eslint-disable-next-line no-unused-vars
 // module.exports = (on, config) => {
