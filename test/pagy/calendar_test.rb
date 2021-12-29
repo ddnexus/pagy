@@ -31,8 +31,8 @@ describe 'pagy/calendar' do
   describe 'it computes date variables for page 1 (default)' do
     it 'computes variables for :year' do
       p = pagy(unit: :year)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024)
       _(p.from.utc).must_equal Time.gm(2021)
       _(p.to.utc).must_equal Time.gm(2022)
       _(p.pages).must_equal 3
@@ -40,8 +40,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :year desc' do
       p = pagy(unit: :year, order: :desc)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024)
       _(p.from.utc).must_equal Time.gm(2023)
       _(p.to.utc).must_equal Time.gm(2024)
       _(p.pages).must_equal 3
@@ -49,8 +49,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024, 1, 1)
       _(p.from.utc).must_equal Time.gm(2021, 10, 1)
       _(p.to.utc).must_equal Time.gm(2022, 1, 1)
       _(p.pages).must_equal 9
@@ -58,8 +58,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter, order: :desc)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024, 1, 1)
       _(p.from.utc).must_equal Time.gm(2023, 10, 1)
       _(p.to.utc).must_equal Time.gm(2024, 1, 1)
       _(p.pages).must_equal 9
@@ -67,8 +67,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month' do
       p = pagy
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 12, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 12, 1)
       _(p.from.utc).must_equal Time.gm(2021, 10, 1)
       _(p.to.utc).must_equal Time.gm(2021, 11, 1)
       _(p.pages).must_equal 26
@@ -76,8 +76,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month desc' do
       p = pagy(unit: :month, order: :desc)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 12, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 12, 1)
       _(p.from.utc).must_equal Time.gm(2023, 11, 1)
       _(p.to.utc).must_equal Time.gm(2023, 12, 1)
       _(p.pages).must_equal 26
@@ -85,8 +85,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week' do
       p = pagy(unit: :week)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 17)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 19)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 17)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 19)
       _(p.from.utc).must_equal Time.gm(2021, 10, 17)
       _(p.to.utc).must_equal Time.gm(2021, 10, 24)
       _(p.pages).must_equal 109
@@ -94,8 +94,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week with offset: 1 (Monday)' do
       p = pagy(unit: :week, offset: 1)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 18)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 20)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 18)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 20)
       _(p.from.utc).must_equal Time.gm(2021, 10, 18)
       _(p.to.utc).must_equal Time.gm(2021, 10, 25)
       _(p.pages).must_equal 109
@@ -103,8 +103,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week with offset: 6 (Saturday)' do
       p = pagy(unit: :week, offset: 6)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 16)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 18)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 16)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 18)
       _(p.from.utc).must_equal Time.gm(2021, 10, 16)
       _(p.to.utc).must_equal Time.gm(2021, 10, 23)
       _(p.pages).must_equal 109
@@ -112,8 +112,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :day' do
       p = pagy(unit: :day)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 21)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 14)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 21)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 14)
       _(p.from.utc).must_equal Time.gm(2021, 10, 21)
       _(p.to.utc).must_equal Time.gm(2021, 10, 22)
       _(p.pages).must_equal 754
@@ -124,8 +124,8 @@ describe 'pagy/calendar' do
   describe 'it computes date variables for page 2' do
     it 'computes variables for :year' do
       p = pagy(unit: :year, page: 2)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024)
       _(p.from.utc).must_equal Time.gm(2022)
       _(p.to.utc).must_equal Time.gm(2023)
       _(p.pages).must_equal 3
@@ -133,8 +133,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :year desc' do
       p = pagy(unit: :year, page: 2, order: :desc)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024)
       _(p.from.utc).must_equal Time.gm(2022)
       _(p.to.utc).must_equal Time.gm(2023)
       _(p.pages).must_equal 3
@@ -142,8 +142,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter, page: 2)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024, 1, 1)
       _(p.from.utc).must_equal Time.gm(2022, 1, 1)
       _(p.to.utc).must_equal Time.gm(2022, 4, 1)
       _(p.pages).must_equal 9
@@ -151,8 +151,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter, page: 2, order: :desc)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024, 1, 1)
       _(p.from.utc).must_equal Time.gm(2023, 7, 1)
       _(p.to.utc).must_equal Time.gm(2023, 10, 1)
       _(p.pages).must_equal 9
@@ -160,8 +160,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month' do
       p = pagy(page: 2)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 12, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 12, 1)
       _(p.from.utc).must_equal Time.gm(2021, 11, 1)
       _(p.to.utc).must_equal Time.gm(2021, 12, 1)
       _(p.pages).must_equal 26
@@ -169,8 +169,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month desc' do
       p = pagy(page: 2, order: :desc)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 12, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 12, 1)
       _(p.from.utc).must_equal Time.gm(2023, 10, 1)
       _(p.to.utc).must_equal Time.gm(2023, 11, 1)
       _(p.pages).must_equal 26
@@ -178,8 +178,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week' do
       p = pagy(unit: :week, page: 2)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 17)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 19)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 17)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 19)
       _(p.from.utc).must_equal Time.gm(2021, 10, 24)
       _(p.to.utc).must_equal Time.gm(2021, 10, 31)
       _(p.pages).must_equal 109
@@ -187,8 +187,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week with offset: 1 (Monday)' do
       p = pagy(unit: :week, offset: 1, page: 2)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 18)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 20)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 18)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 20)
       _(p.from.utc).must_equal Time.gm(2021, 10, 25)
       _(p.to.utc).must_equal Time.gm(2021, 11, 1)
       _(p.pages).must_equal 109
@@ -196,8 +196,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week with offset: 6 (Saturday)' do
       p = pagy(unit: :week, offset: 6, page: 2)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 16)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 18)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 16)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 18)
       _(p.from.utc).must_equal Time.gm(2021, 10, 23)
       _(p.to.utc).must_equal Time.gm(2021, 10, 30)
       _(p.pages).must_equal 109
@@ -205,8 +205,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :day' do
       p = pagy(unit: :day, page: 2)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 21)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 14)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 21)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 14)
       _(p.from.utc).must_equal Time.gm(2021, 10, 22)
       _(p.to.utc).must_equal Time.gm(2021, 10, 23)
       _(p.pages).must_equal 754
@@ -217,8 +217,8 @@ describe 'pagy/calendar' do
   describe 'it computes date variables for last page and overflow' do
     it 'computes variables for :year' do
       p = pagy(unit: :year, page: 3)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024)
       _(p.from.utc).must_equal Time.gm(2023)
       _(p.to.utc).must_equal Time.gm(2024)
       _(p.pages).must_equal 3
@@ -228,8 +228,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter, page: 9)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2024, 1, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2024, 1, 1)
       _(p.from.utc).must_equal Time.gm(2023, 10, 1)
       _(p.to.utc).must_equal Time.gm(2024, 1, 1)
       _(p.pages).must_equal 9
@@ -237,8 +237,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :month' do
       p = pagy(page: 26)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 1)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 12, 1)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 1)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 12, 1)
       _(p.from.utc).must_equal Time.gm(2023, 11, 1)
       _(p.to.utc).must_equal Time.gm(2023, 12, 1)
       _(p.pages).must_equal 26
@@ -248,8 +248,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week' do
       p = pagy(unit: :week, page: 109)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 17)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 19)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 17)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 19)
       _(p.from.utc).must_equal Time.gm(2023, 11, 12)
       _(p.to.utc).must_equal Time.gm(2023, 11, 19)
       _(p.pages).must_equal 109
@@ -259,8 +259,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week with offset: 1 (Monday)' do
       p = pagy(unit: :week, offset: 1, page: 109)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 18)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 20)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 18)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 20)
       _(p.from.utc).must_equal Time.gm(2023, 11, 13)
       _(p.to.utc).must_equal Time.gm(2023, 11, 20)
       _(p.pages).must_equal 109
@@ -270,8 +270,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :week with offset: 6 (Saturday)' do
       p = pagy(unit: :week, offset: 6, page: 109)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 16)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 18)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 16)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 18)
       _(p.from.utc).must_equal Time.gm(2023, 11, 11)
       _(p.to.utc).must_equal Time.gm(2023, 11, 18)
       _(p.pages).must_equal 109
@@ -281,8 +281,8 @@ describe 'pagy/calendar' do
     end
     it 'computes variables for :day' do
       p = pagy(unit: :day, page: 754)
-      _(p.instance_variable_get('@initial')).must_equal Time.gm(2021, 10, 21)
-      _(p.instance_variable_get('@final')).must_equal Time.gm(2023, 11, 14)
+      _(p.instance_variable_get(:@initial)).must_equal Time.gm(2021, 10, 21)
+      _(p.instance_variable_get(:@final)).must_equal Time.gm(2023, 11, 14)
       _(p.from.utc).must_equal Time.gm(2023, 11, 13)
       _(p.to.utc).must_equal Time.gm(2023, 11, 14)
       _(p.pages).must_equal 754

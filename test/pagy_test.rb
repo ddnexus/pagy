@@ -20,7 +20,7 @@ describe 'pagy' do
       _(Pagy.root.join('config', 'pagy.rb').read).must_match "# Pagy initializer file (#{Pagy::VERSION})"
     end
     it 'defines the same version in javascripts/pagy.js' do
-      _(Pagy.root.join('javascripts', 'pagy.js').read).must_match "Pagy.version = '#{Pagy::VERSION}'"
+      _(Pagy.root.join('javascripts', 'pagy.js').read).must_match "version:\"#{Pagy::VERSION}\","
     end
     it 'defines the same version in CHANGELOG.md' do
       _(Pagy.root.parent.join('CHANGELOG.md').read).must_match "## Version #{Pagy::VERSION}"
