@@ -62,9 +62,10 @@ class PagyStandaloneApp < Sinatra::Base
   helpers do
     include Pagy::Frontend
   end
-  get '/pagy.js' do
+  # Serve pagy.js and pagy.js.map
+  get(%r{/pagy\.(js|js\.map)}) do
     content_type 'application/javascript'
-    send_file Pagy.root.join('javascripts', 'pagy.js')
+    send_file Pagy.root.join('javascripts', "pagy.#{params['captures'].first}")
   end
   # edit this action as needed
   get '/' do

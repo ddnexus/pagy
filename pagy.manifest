@@ -1,5 +1,6 @@
 lib/config/pagy.rb
 lib/javascripts/pagy.js
+lib/javascripts/pagy.js.map
 lib/locales/ar.yml
 lib/locales/bg.yml
 lib/locales/bs.yml

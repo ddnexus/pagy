@@ -1,6 +1,6 @@
 // This file is the source that generates pagy.js, polyfilled with the `@babel/preset-env` `"useBuiltIns": "entry"`.
 // You can generate a custom targeted javascript file for the browsers you need by changing that settings in package.json,
-// then rebuild it with `cd ts && node run build:js`.
+// then rebuild it with `cd ts && npm run build:js`.
 
 // Add pagyRender to Element
 interface Element {
@@ -40,7 +40,7 @@ const Pagy = {
         const target:Document|HTMLElement = arg instanceof HTMLElement ? arg : document;
         const elements = target.querySelectorAll("[data-pagy-json]");
         for (const element of elements) {
-            let json = element.getAttribute("data-pagy-json");
+            const json = element.getAttribute("data-pagy-json");
             if (json === null) {
                 continue;
             }
@@ -172,7 +172,7 @@ const Pagy = {
                 return;
             }
             if (current !== items) {
-                let page = Math.max(Math.ceil(from / parseInt(items)), 1).toString();
+                const page = Math.max(Math.ceil(from / parseInt(items)), 1).toString();
                 let html = link.replace(/__pagy_page__/, page)
                                .replace(/__pagy_items__/, items);
                 if (typeof trimParam === "string" && page === "1") {

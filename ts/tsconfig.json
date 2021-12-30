@@ -3,6 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
+    "declaration": true,
     "lib": [ "esnext", "dom", "dom.iterable" ]
   }
 }

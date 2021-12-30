@@ -6,4 +6,6 @@ minified in javascript through `babel`.
 This dir encloses all the configuration files and `node_modules` dir needed for the task, keeping it all isolated from the `e2e`
 environment.
 
-The generated `pagy.js` is polyfilled with the `@babel/preset-env` `"useBuiltIns": "entry"`. You can generate a custom targeted javascript file for the browsers you need by changing that settings in package.json, then rebuild it with `cd ts && node run build:js`.
+The generated `pagy.js` is polyfilled with the `@babel/preset-env` `"useBuiltIns": "entry"`. You can generate a custom 
+targeted javascript file for the browsers you need by changing that settings in package.json, then rebuild it with `cd ts && 
+npm run build:js`.
