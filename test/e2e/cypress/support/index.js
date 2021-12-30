@@ -1,3 +1,4 @@
+"use strict";
 // ***********************************************************
 // This example support/index.js is processed and
 // loaded automatically before your test files.
@@ -12,10 +13,8 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
-
-// Import commands.js using ES2015 syntax:
-import './commands';
-require('cypress-dark');
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+Object.defineProperty(exports, "__esModule", { value: true });
+require("./commands");
+Promise.resolve().then(function () { return require("cypress-dark"); });
+require("cypress-html-validate/dist/commands");
+require("@cypress/snapshot").register();

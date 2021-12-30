@@ -57,8 +57,8 @@ describe 'pagy/extras/overflow' do
       _(pagy.pages).must_equal 11
       _(pagy.page).must_equal pagy.last
       _(pagy.vars[:page]).must_equal 100
-      _(pagy.from).must_equal pagy.instance_variable_get('@final') - DAY
-      _(pagy.to).must_equal pagy.instance_variable_get('@final')
+      _(pagy.from).must_equal pagy.instance_variable_get(:@final) - DAY
+      _(pagy.to).must_equal pagy.instance_variable_get(:@final)
       _(pagy.prev).must_equal 10
     end
     it 'raises OverflowError in :exception mode' do
@@ -79,13 +79,13 @@ describe 'pagy/extras/overflow' do
     it 'works in :empty_page mode in Pagy::Calendar' do
       pagy = Pagy::Calendar::Day.new(calendar_vars.merge(overflow: :empty_page))
       _(pagy.page).must_equal 100
-      _(pagy.from).must_equal pagy.instance_variable_get('@final')
-      _(pagy.to).must_equal pagy.instance_variable_get('@final')
+      _(pagy.from).must_equal pagy.instance_variable_get(:@final)
+      _(pagy.to).must_equal pagy.instance_variable_get(:@final)
       _(pagy.prev).must_equal pagy.last
       pagy = Pagy::Calendar::Day.new(calendar_vars.merge(overflow: :empty_page, order: :desc))
       _(pagy.page).must_equal 100
-      _(pagy.from).must_equal pagy.instance_variable_get('@initial')
-      _(pagy.to).must_equal pagy.instance_variable_get('@initial')
+      _(pagy.from).must_equal pagy.instance_variable_get(:@initial)
+      _(pagy.to).must_equal pagy.instance_variable_get(:@initial)
       _(pagy.prev).must_equal pagy.last
     end
     it 'works in :empty_page mode in Pagy::Countless' do

@@ -18,6 +18,16 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.7
+
+- GitHub Actions: added quotes to version ruby 3.0
+- Added typescript + babel environment for better pagy.js
+- Updated e2e environment
+- Updated gemfiles
+- Fix for support doc snippets and other typos
+- Minor update of gemfiles and docs
+- Added more gemspec metadata entries (closes #351)
+
 ## Version 5.6.6
 
 - Docs improvements

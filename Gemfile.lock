@@ -1,12 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.4.1)
+    activesupport (7.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-      zeitwerk (~> 2.3)
     ansi (1.5.0)
     ast (2.4.2)
     backport (1.2.0)
@@ -18,8 +17,8 @@ GEM
     concurrent-ruby (1.1.9)
     debase (0.2.4.1)
       debase-ruby_core_source (>= 0.10.2)
-    debase-ruby_core_source (0.10.13)
-    diff-lcs (1.4.4)
+    debase-ruby_core_source (0.10.14)
+    diff-lcs (1.5.0)
     docile (1.4.0)
     e2mmap (0.1.0)
     ffi (1.15.4)
@@ -38,7 +37,7 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.10)
     memoist (0.11.0)
     memory_profiler (1.0.0)
-    minitest (5.14.4)
+    minitest (5.15.0)
     minitest-reporters (1.4.3)
       ansi
       builder
@@ -50,7 +49,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
-    oj (3.13.9)
+    oj (3.13.10)
     parallel (1.21.0)
     parser (3.0.3.2)
       ast (~> 2.4.1)
@@ -74,22 +73,22 @@ GEM
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.5)
-    rubocop (1.23.0)
+    rubocop (1.24.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.12.0, < 2.0)
+      rubocop-ast (>= 1.15.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.14.0)
+    rubocop-ast (1.15.1)
       parser (>= 3.0.1.1)
     rubocop-minitest (0.17.0)
       rubocop (>= 0.90, < 2.0)
     rubocop-packaging (0.5.1)
       rubocop (>= 0.89, < 2.0)
-    rubocop-performance (1.12.0)
+    rubocop-performance (1.13.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     rubocop-rake (0.6.0)
@@ -138,7 +137,6 @@ GEM
     webrick (1.7.0)
     yard (0.9.27)
       webrick (~> 1.7.0)
-    zeitwerk (2.5.1)
 
 PLATFORMS
   x86_64-linux
