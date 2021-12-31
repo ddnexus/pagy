@@ -31,7 +31,7 @@ services:
       - ..:/pagy                                   # repo dir mount
       - user_home:/home/$USER                      # home dir
       - bundle:/usr/local/bundle                   # gem dir
-      - node_modules:/pagy/test/e2e/node_modules   # node_modules dir
+      - node_modules:/pagy/node_modules            # node_modules dir
     environment:
       - HTML_REPORTS    # HTML reports of test coverage from local ENV
       - CYPRESS_CACHE_FOLDER=/home/$USER/.cache/Cypress

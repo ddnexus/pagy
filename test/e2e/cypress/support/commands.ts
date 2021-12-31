@@ -65,3 +65,5 @@ Cypress.Commands.add("comboNavStyle", (style) => {
     }
     cy.snapId(id);
 });
+
+export {};

@@ -2,5 +2,7 @@
 !/.idea/runConfigurations
 /.bundle/
 /coverage/
+/node_modules/*
+!/node_modules/.keep
 /pkg/
 /tmp/

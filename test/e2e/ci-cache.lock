@@ -1,5 +1,5 @@
 cypress:9.2.0
 @cypress/snapshot:2.1.7
-html-validate:6.1.4
+html-validate:6.1.5
 cypress-html-validate:2.1.2
 cypress-dark:1.8.3
