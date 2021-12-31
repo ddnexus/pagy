@@ -82,7 +82,7 @@ jobs:
     name: E2E Test
     runs-on: ubuntu-latest
     env:
-      # absolute path to run sinatra for cypress in test/e2e working dir
+      # absolute path to run sinatra for cypress in e2e working dir
       BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/.github/gemfiles/ruby-2.5+
 
     steps:
@@ -101,7 +101,7 @@ jobs:
           path: |
             ~/.cache/Cypress
             node_modules
-          key: e2e-cache-${{ runner.os }}-${{ hashFiles('test/e2e/ci-cache.lock') }}
+          key: e2e-cache-${{ runner.os }}-${{ hashFiles('e2e/ci-cache.lock') }}
 
       - name: Install Cypress and Test Dependencies
         if: steps.e2e-cache.outputs.cache-hit != 'true'
@@ -114,4 +114,4 @@ jobs:
           config: baseUrl=http://0.0.0.0:4567,video=false
           start: bundle exec rackup -D -o 0.0.0.0 -p 4567 pagy_app.ru
           wait-on: http://0.0.0.0:4567
-          working-directory: test/e2e
+          working-directory: e2e

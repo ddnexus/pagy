@@ -28,14 +28,14 @@ function bump(){
 bump "$ROOT/.github/.env"
 bump "$ROOT/lib/pagy.rb"
 bump "$ROOT/lib/config/pagy.rb"
-bump "$ROOT/ts/src/pagy.ts"
+bump "$ROOT/src/pagy.ts"
 
 # Bumps docs example
 esc_old_minor_vers=${esc_old_vers%\\*}
 esc_new_minor_vers=${esc_new_vers%\\*}
 sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$ROOT/docs/how-to.md"
 
-npm run compile -w ts
+npm run compile -w src
 
 # Update CHANGELOG
 changelog=$(cat <<-LOG

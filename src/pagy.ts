@@ -1,6 +1,6 @@
 // This file is the source that generates pagy.js, polyfilled with the `@babel/preset-env` `"useBuiltIns": "entry"`.
 // You can generate a custom targeted javascript file for the browsers you need by changing that settings in package.json,
-// then compile it with `npm run compile -w ts`.
+// then compile it with `npm run compile -w src`.
 
 // Add pagyRender to Element
 interface Element {
@@ -36,7 +36,7 @@ const Pagy = {
     version: "5.6.8",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and apply their functions
-    init(arg?:any) {
+    init(arg?:HTMLElement|Document|Event) {
         const target:Document|HTMLElement = arg instanceof HTMLElement ? arg : document;
         const elements = target.querySelectorAll("[data-pagy-json]");
         for (const element of elements) {
@@ -44,7 +44,7 @@ const Pagy = {
             if (json === null) {
                 continue;
             }
-            let args = JSON.parse(json);
+            const args = JSON.parse(json);
             const fname:"nav"|"combo_nav"|"items_selector" = args.shift();
             if (fname === "nav") {
                 Pagy.nav(element, ...<[NavTags, NavSequels, null|NavLabelSequels, string]>args);
@@ -80,7 +80,7 @@ const Pagy = {
                   .replace(/__pagy_label__/g, label);
 
         pagyEl.pagyRender = function (this:Element) {
-            let width:number = 0;
+            let width = 0;
             for (const w of widths) {
                 if (this.parentElement !== null && this.parentElement.clientWidth > w) {
                     width = w;
@@ -186,13 +186,13 @@ const Pagy = {
     },
 
     // Add behavior to input fields
-    addInputBehavior(input:HTMLInputElement, goToPage:Function) {
+    addInputBehavior(input:HTMLInputElement, goToPage:()=>void) {
         // select the content on click: easier for direct typing
-        input.addEventListener("click", function (_e) {
+        input.addEventListener("click", function () {
             this.select();
         });
         // goToPage when the input loses focus
-        input.addEventListener("focusout", function (_e) {
+        input.addEventListener("focusout", function () {
             goToPage();
         });
         // goToPage when pressing enter while the input has focus

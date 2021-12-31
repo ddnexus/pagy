@@ -3,10 +3,10 @@
 # Self-contained sinatra app to test the pagy helpers in the browser
 
 # TEST USAGE:
-#    rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru
+#    rackup -o 0.0.0.0 -p 4567 e2e/pagy_app.ru
 
 # DEV USAGE:
-#    rerun -- rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru
+#    rerun -- rackup -o 0.0.0.0 -p 4567 e2e/pagy_app.ru
 
 # Available at http://0.0.0.0:4567
 
@@ -14,7 +14,7 @@ require 'bundler'
 Bundler.require(:default, :apps)
 require 'oj' # require false in Gemfile
 
-$LOAD_PATH.unshift File.expand_path('../../lib', __dir__)
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'pagy'
 
 # pagy initializer
@@ -27,7 +27,7 @@ require 'pagy/extras/trim'
 Pagy::DEFAULT[:trim_extra] = false  # opt-in trim
 
 # simple array-based collection that acts as standard DB collection
-require_relative '../mock_helpers/collection'
+require_relative '../test/mock_helpers/collection'
 
 # sinatra setup
 require 'sinatra/base'

@@ -1,0 +1,12 @@
+// extend the root onfig file
+{
+    "env": {
+        "amd": true,
+        "node": true
+    },
+    "extends": ["plugin:cypress/recommended"],
+    "plugins": ["cypress"],
+    "parserOptions": {
+        "sourceType": "module"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "include": ["./cypress/**/*.ts"],
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "types": ["cypress", "node"],
+    "strict": true,
+
+    "noEmit": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "moduleResolution": "node",
+    "resolveJsonModule": true
+  },
+}

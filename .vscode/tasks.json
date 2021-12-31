@@ -115,7 +115,7 @@
         {
             "label": "E2E Test: run in terminal",
             "type": "shell",
-            "command": "/pagy/test/e2e/cy",
+            "command": "/pagy/e2e/cy",
             "args": [
                 "run"
             ],
@@ -124,7 +124,7 @@
         {
             "label": "E2E Test: open cypress",
             "type": "shell",
-            "command": "/pagy/test/e2e/cy",
+            "command": "/pagy/e2e/cy",
             "args": [
                 "open"
             ],

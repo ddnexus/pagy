@@ -12,8 +12,8 @@
         "wait-on": "^6.0.0"
     },
     "scripts": {
-        "tsc-check": "tsc --noEmit",
-        "tsc-check:watch": "npm run tsc-check -- --watch",
-        "compile": "tsc"
+        "tsc-check": "tsc",
+        "tsc-check:watch": "tsc -- --watch",
+        "lint": "eslint . --ext .ts"
     }
 }

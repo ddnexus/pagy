@@ -54,12 +54,12 @@ RUN groupadd --gid=$gid --force $group \
  && mkdir -p \
         /home/$user/.config \
         /home/$user/.local/share \
-        /pagy/test/e2e/node_modules \
- && touch /pagy/test/e2e/node_modules/.keep \
+        /pagy/node_modules \
+ && touch /pagy/node_modules/.keep \
  && chown -R $uid:$gid \
         $BUNDLE_PATH \
         /home/$user \
-        /pagy/test/e2e/node_modules
+        /pagy/node_modules
 WORKDIR /pagy
 
 VOLUME \

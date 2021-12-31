@@ -25,8 +25,8 @@ describe 'pagy' do
     it 'defines the same version in javascripts/pagy.js.map' do
       _(Pagy.root.join('javascripts', 'pagy.js.map').read).must_match "version: \\\"#{Pagy::VERSION}\\\","
     end
-    it 'defines the same version in ts/src/pagy.ts' do
-      _(File.read('ts/src/pagy.ts')).must_match "version: \"#{Pagy::VERSION}\","
+    it 'defines the same version in src/pagy.ts' do
+      _(File.read('src/pagy.ts')).must_match "version: \"#{Pagy::VERSION}\","
     end
     it 'defines the same version in CHANGELOG.md' do
       _(Pagy.root.parent.join('CHANGELOG.md').read).must_match "## Version #{Pagy::VERSION}"

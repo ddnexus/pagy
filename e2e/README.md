@@ -18,10 +18,10 @@ This solution is convenient if you already have `node` installed on your system 
 Here are the steps:
 
 - [Install Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress)
-- `rackup -o 0.0.0.0 -p 4567 test/e2e/pagy_app.ru`
+- `rackup -o 0.0.0.0 -p 4567 e2e/pagy_app.ru`
 - Run your Cypress tests from the pagy root (path depending on your installation):
-  - **Headless**: `cypress run --project test/e2e`
-  - **Interactive**: `cypress open --project test/e2e`
+  - **Headless**: `cypress run --project e2e`
+  - **Interactive**: `cypress open --project e2e`
 
 ## 3. Run E2E Tests in Docker
 
@@ -38,16 +38,18 @@ Here is a more general way to do the same.
 If you want to run the E2E Tests with Cypress right in the terminal:
 
 ```shell
-<local-pagy-dir>/docker $ docker-compose run --rm pagy-dev ./test/e2e/cy run
+<local-pagy-dir>/docker $ docker-compose run --rm pagy-dev ./e2e/cy run
 ```
 
 That will print a report right on the screen.
 
 <details>
 
-In case of cypress test failures you will have screenshots images in `test/e2e/cypress/screenshots` showing exactly what was on the page of the browser at the moment of the failure.
+In case of cypress test failures you will have screenshots images in `e2e/cypress/screenshots` showing exactly what was 
+on the page of the browser at the moment of the failure.
 
-If you want to have a video for each test file run in the `test/e2e/cypress/videos`, remove the `"video": false` entry in the `test/e2e/cypress.json`.
+If you want to have a video for each test file run in the `e2e/cypress/videos`, remove the `"video": false` entry in the 
+`e2e/cypress.json`.
 
 </details>
 
@@ -56,7 +58,7 @@ If you want to have a video for each test file run in the `test/e2e/cypress/vide
 If you want to open the Cypress and running the tests through its UI just pass `open` instead of `run` as the last argument.
 
 ```shell
-<local-pagy-dir>/docker $ docker-compose run --rm pagy-dev ./test/e2e/cy open
+<local-pagy-dir>/docker $ docker-compose run --rm pagy-dev ./e2e/cy open
 ```
 
 :warning: If Cypress doesn't open, read the comments in the `docker/docker-compose.override-example.yml` file so you can customize the environment according to your OS need.
