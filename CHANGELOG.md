@@ -18,6 +18,12 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.8
+
+- Reorganized TypeScript/JavaScript with npm workspaces and better script naming
+- Fix typo in gemspec
+- Better typescript configuration with source maps and declrations
+
 ## Version 5.6.7
 
 - GitHub Actions: added quotes to version ruby 3.0
