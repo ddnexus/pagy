@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 Cypress.Commands.add("snapId", function (id) {
     cy.get("#records").snapshot();
     cy.get(id).snapshot({ json: false });

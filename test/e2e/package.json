@@ -1,27 +1,19 @@
 {
-    "name": "pagy-e2e",
+    "name": "e2e",
     "description": "Pagy E2E Testing",
     "private": true,
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ddnexus/pagy.git"
-    },
-    "author": "Domizio Demichelis",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/ddnexus/pagy/issues"
-    },
-    "homepage": "https://github.com/ddnexus/pagy",
     "devDependencies": {
         "@cypress/snapshot": "^2.1.7",
-        "@types/node": "^16.11.7",
         "cypress": "^9.2.0",
         "cypress-dark": "^1.8.3",
         "cypress-html-validate": "^2.1.2",
-        "eslint": "^8.5.0",
         "eslint-plugin-cypress": "^2.12.1",
         "html-validate": "^6.1.4",
-        "wait-on": "^6.0.0",
-        "typescript": "^4.5.4"
+        "wait-on": "^6.0.0"
+    },
+    "scripts": {
+        "tsc-check": "tsc --noEmit",
+        "tsc-check:watch": "npm run tsc-check -- --watch",
+        "compile": "tsc"
     }
 }

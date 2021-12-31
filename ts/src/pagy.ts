@@ -1,6 +1,6 @@
 // This file is the source that generates pagy.js, polyfilled with the `@babel/preset-env` `"useBuiltIns": "entry"`.
 // You can generate a custom targeted javascript file for the browsers you need by changing that settings in package.json,
-// then rebuild it with `cd ts && npm run build:js`.
+// then compile it with `npm run compile -w ts`.
 
 // Add pagyRender to Element
 interface Element {
@@ -129,7 +129,7 @@ const Pagy = {
     // Avoid to fire the pagyRender multiple times
     throttleRenderNavs() {
         clearTimeout(Pagy.throttleRenderNavsTID);
-        Pagy.throttleRenderNavsTID = setTimeout(Pagy.renderNavs, Pagy.throttleRenderNavsDelay);
+        Pagy.throttleRenderNavsTID = window.setTimeout(Pagy.renderNavs, Pagy.throttleRenderNavsDelay);
     },
 
     // Render all *nav_js helpers (i.e. all the elements of class "pagy-njs")

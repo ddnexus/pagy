@@ -15,6 +15,6 @@
 // ***********************************************************
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./commands");
-Promise.resolve().then(function () { return require("cypress-dark"); });
 require("cypress-html-validate/dist/commands");
+require("cypress-dark");
 require("@cypress/snapshot").register();
