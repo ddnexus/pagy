@@ -13,8 +13,7 @@ Cypress.Commands.add("navStyleId", (style:string, id:string, calendar:boolean) =
 
     if (style === `/materialize${cal_str}` || style === `/semantic${cal_str}`) {
         cy.get(`${id} a:last`).click();
-    }
-    else {
+    } else {
         cy.get(id).contains("Next").click();
     }
     cy.snapId(id);
@@ -28,8 +27,7 @@ Cypress.Commands.add("navStyleId", (style:string, id:string, calendar:boolean) =
 
     if (style === `/materialize${cal_str}` || style === `/semantic${cal_str}`) {
         cy.get(`${id} a:first`).click();
-    }
-    else {
+    } else {
         cy.get(id).contains("Prev").click();
     }
     cy.snapId(id);
@@ -44,8 +42,7 @@ Cypress.Commands.add("comboNavStyle", (style:string) => {
 
     if (style === "/materialize" || style === "/semantic") {
         cy.get(`${id} a:last`).click();
-    }
-    else {
+    } else {
         cy.get(id).contains("Next").click();
     }
     cy.snapId(id);
@@ -61,8 +58,7 @@ Cypress.Commands.add("comboNavStyle", (style:string) => {
 
     if (style === "/materialize" || style === "/semantic") {
         cy.get(`${id} a:first`).click();
-    }
-    else {
+    } else {
         cy.get(id).contains("Prev").click();
     }
     cy.snapId(id);
