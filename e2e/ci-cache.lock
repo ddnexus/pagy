@@ -1,5 +1,11 @@
-cypress:9.2.0
-@cypress/snapshot:2.1.7
-html-validate:6.1.5
-cypress-html-validate:2.1.2
-cypress-dark:1.8.3
+pagy@ /pagy
+└─┬ e2e@ -> ./e2e
+  ├── @cypress/snapshot@2.1.7
+  ├── cypress-dark@1.8.3
+  ├── cypress-html-validate@2.1.2
+  ├── cypress@9.2.0
+  ├── eslint-plugin-cypress@2.12.1
+  ├── html-validate@6.1.5
+  ├── typescript@4.5.4
+  └── wait-on@6.0.0
+

@@ -1,9 +1,7 @@
-# run this in order to ensure the ci cache will get updated with the latest versions
+#!/usr/bin/env bash
 
-rm -rf ci-cache.lock
-for pkg in cypress @cypress/snapshot html-validate cypress-html-validate cypress-dark; do
-  echo $pkg:"$(npm view $pkg version)" >> ci-cache.lock
-done
-echo 'The "ci-cache.lock" file has been generated with the following content:'
-echo
-cat ci-cache.lock
+set -e
+
+e2e_dir="$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)")"
+cd "$e2e_dir/.."
+npm ls -w e2e | tee "$e2e_dir/ci-cache.lock"

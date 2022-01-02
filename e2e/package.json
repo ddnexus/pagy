@@ -9,7 +9,8 @@
         "cypress-html-validate": "^2.1.2",
         "eslint-plugin-cypress": "^2.12.1",
         "html-validate": "^6.1.4",
-        "wait-on": "^6.0.0"
+        "wait-on": "^6.0.0",
+        "typescript": "^4.5.4"
     },
     "scripts": {
         "tsc-check": "tsc",
