@@ -1,3 +1,5 @@
+import {snapId} from "../support/test-helper";
+
 describe("Test generic helpers", () => {
     const pages = [1, 5, 36, 50];
 
@@ -5,7 +7,7 @@ describe("Test generic helpers", () => {
         const id = "#pagy-info";
         for (const page of pages) {
             cy.visit(`/navs?page=${page}`);
-            cy.snapId(id);
+            snapId(id);
         }
     });
     it("Test pagy_items_selector_js", () => {
@@ -14,13 +16,13 @@ describe("Test generic helpers", () => {
 
         for (const page of pages) {
             cy.visit(`/navs?page=${page}`);
-            cy.snapId(id);
+            snapId(id);
             cy.get(id_input).type("10{enter}");
-            cy.snapId(id);
+            snapId(id);
             cy.get(id_input).type("17").blur();
-            cy.snapId(id);
+            snapId(id);
             cy.get(id_input).focus().type("{uparrow}{enter}");
-            cy.snapId(id);
+            snapId(id);
         }
     });
 });

@@ -1,15 +1,4 @@
 {
-    "env": {
-        "STYLES": [
-            "/bootstrap",
-            "/bulma",
-            "/foundation",
-            "/materialize",
-            "/navs",
-            "/semantic",
-            "/uikit"
-        ]
-    },
     "video": false,
     "theme": "dark"
 }
