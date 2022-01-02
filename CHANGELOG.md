@@ -18,6 +18,18 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.9
+
+- Better doc for e2e related commands in docker/README.md
+- Updated package-lock.json and improved ci-cache.sh
+- Used better syntax and code style in typescript files
+- Updated copyright year
+- Refactoring of typescript related files and dirs:
+  - Moved e2e dir in the project root
+  - Added typescript linting plugins and configuration
+  - Converted all the e2e test to typescript
+- Updated Docker, VSC and .idea configurations
+
 ## Version 5.6.8
 
 - Reorganized TypeScript/JavaScript with npm workspaces and better script naming

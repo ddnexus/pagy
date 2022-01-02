@@ -28,7 +28,7 @@ interface NavLabelSequels {
 
 // The Pagy object
 const Pagy = {
-    version: "5.6.8",
+    version: "5.6.9",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and apply their functions
     init(arg?:HTMLElement|Document|Event) {
