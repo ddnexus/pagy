@@ -1,7 +1,7 @@
 {
   "include": ["./cypress/**/*.ts"],
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": ["esnext", "dom", "dom.iterable"],
     "types": ["cypress", "node"],
     "strict": true,

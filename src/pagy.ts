@@ -7,11 +7,6 @@ interface Element {
     pagyRender():void;
 }
 
-// Add pagyRender to HTMLElement
-interface HTMLElement {
-    pagyRender():void;
-}
-
 // Tags from the data-pagy-json of *nav_js helpers
 interface NavTags {
     readonly before:string;
@@ -33,11 +28,11 @@ interface NavLabelSequels {
 
 // The Pagy object
 const Pagy = {
-    version: "5.6.8",
+    version: "5.6.9",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and apply their functions
     init(arg?:HTMLElement|Document|Event) {
-        const target:Document|HTMLElement = arg instanceof HTMLElement ? arg : document;
+        const target = arg instanceof HTMLElement ? arg : document;
         const elements = target.querySelectorAll("[data-pagy-json]");
         for (const element of elements) {
             const json = element.getAttribute("data-pagy-json");
@@ -45,29 +40,26 @@ const Pagy = {
                 continue;
             }
             const args = JSON.parse(json);
-            const fname:"nav"|"combo_nav"|"items_selector" = args.shift();
+            const fname = args.shift() as "nav"|"combo_nav"|"items_selector";
             if (fname === "nav") {
-                Pagy.nav(element, ...<[NavTags, NavSequels, null|NavLabelSequels, string]>args);
-            }
-            else if (fname === "combo_nav") {
-                Pagy.combo_nav(element, ...<[string, string, string]>args);
-            }
-            else if (fname === "items_selector") {
-                Pagy.items_selector(element, ...<[number, string, string]>args);
+                Pagy.nav(element, ...args as [NavTags, NavSequels, null|NavLabelSequels, string]);
+            } else if (fname === "combo_nav") {
+                Pagy.combo_nav(element, ...args as [string, string, string]);
+            } else if (fname === "items_selector") {
+                Pagy.items_selector(element, ...args as [number, string, string]);
             }
         }
     },
 
     // Power the *_nav_js helpers
     nav(pagyEl:Element, tags:NavTags, sequels:NavSequels, opt_label_sequels:null|NavLabelSequels, trimParam?:string) {
-        let label_sequels:NavLabelSequels = {};
+        let label_sequels = {} as NavLabelSequels;
         // Handle null label_sequels
         if (opt_label_sequels === null) {
             for (const width in sequels) {
                 label_sequels[width] = sequels[width].map((item) => item.toString());
             }
-        }
-        else {
+        } else {
             label_sequels = opt_label_sequels;
         }
         // Set and sort the widths as number[]
@@ -79,14 +71,9 @@ const Pagy = {
             string.replace(/__pagy_page__/g, item)
                   .replace(/__pagy_label__/g, label);
 
-        pagyEl.pagyRender = function (this:Element) {
-            let width = 0;
-            for (const w of widths) {
-                if (this.parentElement !== null && this.parentElement.clientWidth > w) {
-                    width = w;
-                    break;
-                }
-            }
+        pagyEl.pagyRender = () => {
+            // Find the width that fits in parent
+            const width = widths.find((w) => pagyEl.parentElement !== null && pagyEl.parentElement.clientWidth > w) || 0;
             // Only if the width changed
             if (width !== lastWidth) {
                 let html = tags.before;
@@ -98,23 +85,20 @@ const Pagy = {
                     if (typeof trimParam === "string" && item === 1) {
                         const link = fillIn(tags.link, item.toString(), label);
                         html += Pagy.trim(link, trimParam);
-                    }
-                    else if (typeof item === "number") {
+                    } else if (typeof item === "number") {
                         html += fillIn(tags.link, item.toString(), label);
-                    }
-                    else if (item === "gap") {
+                    } else if (item === "gap") {
                         html += tags.gap;
-                    }
-                    else { // active page
+                    } else { // active page
                         html += fillIn(tags.active, item, label);
                     }
                 }
                 html += tags.after;
-                this.innerHTML = "";
-                this.insertAdjacentHTML("afterbegin", html);
+                pagyEl.innerHTML = "";
+                pagyEl.insertAdjacentHTML("afterbegin", html);
                 lastWidth = width;
             }
-        }.bind(pagyEl);
+        };
         pagyEl.pagyRender();
         // If there is a window object then add a single "resize" event listener
         if (typeof window !== "undefined") {
@@ -134,16 +118,14 @@ const Pagy = {
 
     // Render all *nav_js helpers (i.e. all the elements of class "pagy-njs")
     renderNavs() {
-        const navs:HTMLCollectionOf<Element> = document.getElementsByClassName("pagy-njs");
-        for (const nav of navs) {
-            nav.pagyRender();
-        }
+        const navs = document.getElementsByClassName("pagy-njs");
+        Array.from(navs).forEach((nav) => nav.pagyRender());
     },
 
     // Power the *_combo_nav_js helpers
     combo_nav(pagyEl:Element, page:string, link:string, trimParam?:string) {
-        const input:HTMLInputElement = pagyEl.getElementsByTagName("input")[0];
-        const goToPage = function () {
+        const input = pagyEl.getElementsByTagName("input")[0];
+        const goToPage = () => {
             if (page !== input.value) {
                 let html = link.replace(/__pagy_page__/, input.value);
                 if (typeof trimParam === "string" && input.value === "1") {
@@ -156,17 +138,11 @@ const Pagy = {
         Pagy.addInputBehavior(input, goToPage);
     },
 
-    // Power the trim extra for js helpers
-    trim(link:string, param:string):string {
-        const re = new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`);
-        return link.replace(re, "");
-    },
-
     // Power the pagy_items_selector_js helper
     items_selector(pagyEl:Element, from:number, link:string, trimParam?:string) {
-        const input:HTMLInputElement = pagyEl.getElementsByTagName("input")[0];
+        const input = pagyEl.getElementsByTagName("input")[0];
         const current = input.value;
-        const goToPage = function () {
+        const goToPage = () => {
             const items = input.value;
             if (items === "0" || items === "") {
                 return;
@@ -186,20 +162,22 @@ const Pagy = {
     },
 
     // Add behavior to input fields
-    addInputBehavior(input:HTMLInputElement, goToPage:()=>void) {
+    addInputBehavior(input:HTMLInputElement, goToPage:() => void) {
         // select the content on click: easier for direct typing
-        input.addEventListener("click", function () {
-            this.select();
-        });
+        input.addEventListener("click", input.select);
         // goToPage when the input loses focus
-        input.addEventListener("focusout", function () {
-            goToPage();
-        });
+        input.addEventListener("focusout", goToPage);
         // goToPage when pressing enter while the input has focus
-        input.addEventListener("keypress", function (e:KeyboardEvent) {
+        input.addEventListener("keypress", (e:KeyboardEvent) => {
             if (e.key === "Enter") {
                 goToPage();
             }
-        }.bind(this));
+        });
+    },
+
+    // Power the trim extra for js helpers
+    trim(link:string, param:string):string {
+        const re = new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`);
+        return link.replace(re, "");
     }
 };

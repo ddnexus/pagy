@@ -2,8 +2,11 @@
 
 set -e
 
+# Ensure that the ci-cache is up-to-date
+./e2e/ci-cache.sh
+
 # Exit if the working tree is dirty
-#test -n "$(git status --porcelain)" && echo "Working tree dirty!" && exit 1
+test -n "$(git status --porcelain)" && echo "Working tree dirty!" && exit 1
 
 # Set the root path
 ROOT="$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)")"
