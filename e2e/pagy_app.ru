@@ -45,10 +45,9 @@ class PagyApp < Sinatra::Base
 
     def site_map
       html = +%(<div id="site-map">| )
-      query_string = "?#{Rack::Utils.build_nested_query(params)}" unless params.empty?
       [:home, *STYLES].each do |name|
-        html << %(<a href="/#{name}#{query_string}">#{name}</a>)
-        html << %(-<a href="/#{name}-calendar#{query_string}">cal</a>) unless name == :home
+        html << %(<a href="/#{name}">#{name}</a>)
+        html << %(-<a href="/#{name}-calendar">cal</a>) unless name == :home
         html << %( | )
       end
       html << %(</div>)
@@ -63,9 +62,9 @@ class PagyApp < Sinatra::Base
     collection.select_page_of_records(from.utc, to.utc)  # storage in UTC
   end
 
-  get '/pagy.js' do
+  get(%r{/pagy\.(js|js\.map)}) do
     content_type 'application/javascript'
-    send_file Pagy.root.join('javascripts', 'pagy.js')
+    send_file Pagy.root.join('javascripts', "pagy.#{params['captures'].first}")
   end
 
   %w[/ /home].each do |route|
@@ -74,18 +73,22 @@ class PagyApp < Sinatra::Base
 
   # one route/action per style
   STYLES.each do |name|
-    get "/#{name}" do
-      collection = MockCollection.new
-      @pagy, @records = pagy(collection)
-      name_fragment = name == 'navs' ? '' : "#{name}_"
-      erb :helpers, locals: { name: name, name_fragment: name_fragment }
+    %W[/#{name} /#{name}/:trim].each do |route|
+      get(route) do
+        collection = MockCollection.new
+        @pagy, @records = pagy(collection, trim_extra: params['trim'])
+        name_fragment = name == 'navs' ? '' : "#{name}_"
+        erb :helpers, locals: { name: name, name_fragment: name_fragment }
+      end
     end
 
-    get "/#{name}-calendar" do
-      collection = MockCollection::Calendar.new
-      @calendar, @pagy, @records = pagy_calendar(collection, month: { size: [1, 2, 2, 1] })
-      name_fragment = name == 'navs' ? '' : "#{name}_"
-      erb :calendar_helpers, locals: { name: name, name_fragment: name_fragment }
+    %W[/#{name}-calendar /#{name}-calendar/:trim].each do |route|
+      get(route) do
+        collection = MockCollection::Calendar.new
+        @calendar, @pagy, @records = pagy_calendar(collection, month: { size: [1, 2, 2, 1], trim_extra: params['trim'] })
+        name_fragment = name == 'navs' ? '' : "#{name}_"
+        erb :calendar_helpers, locals: { name: name, name_fragment: name_fragment }
+      end
     end
   end
 end
