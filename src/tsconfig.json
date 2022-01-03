@@ -1,9 +1,9 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
-    "noEmit": true,
-    "lib": [ "esnext", "dom", "dom.iterable" ]
-  }
+    "compilerOptions": {
+        "strict": true,
+        "target": "esnext",
+        "module": "esnext",
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "noEmit": true
+    }
 }

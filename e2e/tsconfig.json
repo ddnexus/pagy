@@ -1,17 +1,15 @@
 {
-  "include": ["./cypress/**/*.ts"],
-  "compilerOptions": {
-    "target": "esnext",
-    "lib": ["esnext", "dom", "dom.iterable"],
-    "types": ["cypress", "node"],
-    "strict": true,
-
-    "noEmit": true,
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-
-    "moduleResolution": "node",
-    "resolveJsonModule": true
-  },
+    "include": ["./cypress/**/*.ts"],
+    "compilerOptions": {
+        "strict": true,
+        "target": "esnext",
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "types": ["cypress", "node"],
+        "noEmit": true,
+        "allowJs": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true
+    }
 }
