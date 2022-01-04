@@ -2,10 +2,10 @@
 // You can generate a custom targeted javascript file for the browsers you need by changing that settings in package.json,
 // then compile it with `npm run compile -w src`.
 
-// Add pagyRender to Element
-interface Element {
-    pagyRender():void;
-}
+// Args types from data-pagy-json
+type NavArgs = [NavTags, NavSequels, null|NavLabelSequels, string]
+type ComboNavArgs = [string, string, string]
+type ItemsSelectorArgs = [number, string, string]
 
 // Tags from the data-pagy-json of *nav_js helpers
 interface NavTags {
@@ -23,28 +23,36 @@ interface NavSequels {
 
 // Tags from the data-pagy-json of *nav_js helpers
 interface NavLabelSequels {
-    [width:string]:(string|"gap")[];
+    [width:string]:string[];
+}
+
+// Add pagyRender to Element
+interface Element {
+    pagyRender():void;
 }
 
 // The Pagy object
 const Pagy = {
-    version: "5.6.9",
+    version: "5.6.10",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and apply their functions
     init(arg?:HTMLElement|Document|Event) {
         const target = arg instanceof HTMLElement ? arg : document;
         const elements = target.querySelectorAll("[data-pagy-json]");
         for (const element of elements) {
-            const json = element.getAttribute("data-pagy-json");
-            if (json === null) { continue }
-            const args = JSON.parse(json);
-            const fname = args.shift() as "nav"|"combo_nav"|"items_selector";
-            if (fname === "nav") {
-                Pagy.nav(element, ...args as [NavTags, NavSequels, null|NavLabelSequels, string]);
-            } else if (fname === "combo_nav") {
-                Pagy.comboNav(element, ...args as [string, string, string]);
-            } else if (fname === "items_selector") {
-                Pagy.itemsSelector(element, ...args as [number, string, string]);
+            const json = element.getAttribute("data-pagy-json") as string;
+            try {
+                const args = JSON.parse(json);
+                const fname = args.shift() as "nav"|"combo_nav"|"items_selector";
+                if (fname === "nav") {
+                    Pagy.nav(element, ...args as NavArgs);
+                } else if (fname === "combo_nav") {
+                    Pagy.comboNav(element, ...args as ComboNavArgs);
+                } else if (fname === "items_selector") {
+                    Pagy.itemsSelector(element, ...args as ItemsSelectorArgs);
+                }
+            } catch (err) {
+                console.warn("Pagy.init() skipped element: %o\n%s", element, err);
             }
         }
     },
@@ -55,14 +63,14 @@ const Pagy = {
         // Handle null labelSequels
         if (optLabelSequels === null) {
             for (const width in sequels) {
-                labelSequels[width] = sequels[width].map((item) => item.toString());
+                labelSequels[width] = sequels[width].map(item => item.toString());
             }
         } else {
             labelSequels = optLabelSequels;
         }
         // Set and sort the widths as number[]
         const widths = Object.getOwnPropertyNames(sequels)
-                             .map((w) => parseInt(w))
+                             .map(w => parseInt(w))
                              .sort((a, b) => b - a);
         let lastWidth:number;
         const fillIn = (string:string, item:string, label:string):string =>
@@ -71,9 +79,7 @@ const Pagy = {
 
         pagyEl.pagyRender = function () {
             // Find the width that fits in parent
-            const width = widths.find((w) =>
-                pagyEl.parentElement !== null && pagyEl.parentElement.clientWidth > w
-            ) || 0;
+            const width = widths.find(w => pagyEl.parentElement !== null && pagyEl.parentElement.clientWidth > w) || 0;
             // Only if the width changed
             if (width !== lastWidth) {
                 let html = tags.before;
@@ -113,7 +119,7 @@ const Pagy = {
     // Render all *nav_js helpers (i.e. all the elements of class "pagy-njs")
     renderNavs() {
         const navs = document.getElementsByClassName("pagy-njs");
-        Array.from(navs).forEach((nav) => nav.pagyRender());
+        Array.from(navs).forEach(nav => nav.pagyRender());
     },
 
     // Power the *_combo_nav_js helpers
@@ -137,9 +143,7 @@ const Pagy = {
         const current = input.value;
         Pagy.addInputBehavior(input, () => {
             const items = input.value;
-            if (items === "0" || items === "") {
-                return;
-            }
+            if (items === "0" || items === "") { return }
             if (current !== items) {
                 const page = Math.max(Math.ceil(from / parseInt(items)), 1).toString();
                 let html = link.replace(/__pagy_page__/, page)
@@ -160,9 +164,7 @@ const Pagy = {
         // goToPage when the input loses focus
         input.addEventListener("focusout", goToPage);
         // goToPage when pressing enter while the input has focus
-        input.addEventListener("keypress", (e:KeyboardEvent) => {
-            if (e.key === "Enter") { goToPage() }
-        });
+        input.addEventListener("keypress", e => { if (e.key === "Enter") { goToPage() } });
     },
 
     trim: (link:string, param:string):string =>

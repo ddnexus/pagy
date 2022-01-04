@@ -18,6 +18,16 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.6.10
+
+- Improvement and fixes for client-side related structure
+- Replaced e2e/cy script with a couple of npm scripts backed by the start-server-and-test
+- Added trim test for items_selector_js; cleanup of e2e dir
+- Normalized json files indentation
+- Added trim to e2e tests
+- Reorganized cypress tests: faster and more accurate
+- Simpler pagy.ts
+
 ## Version 5.6.9
 
 - Better doc for e2e related commands in docker/README.md

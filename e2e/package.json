@@ -9,12 +9,15 @@
         "cypress-html-validate": "^2.1.2",
         "eslint-plugin-cypress": "^2.12.1",
         "html-validate": "^6.1.4",
-        "wait-on": "^6.0.0",
+        "start-server-and-test": "^1.14.0",
         "typescript": "^4.5.4"
     },
     "scripts": {
         "tsc-check": "tsc",
-        "tsc-check:watch": "tsc -- --watch",
-        "lint": "eslint . --ext .ts"
+        "tsc-check:watch": "tsc-check -- --watch",
+        "lint-fix": "eslint --fix cypress --ext .ts",
+        "pagy-app": "bundle exec rackup -q -p 4567 pagy_app.ru",
+        "test": "start-test pagy-app 4567 'cypress run'",
+        "test-open": "start-test pagy-app 4567 'cypress open'"
     }
 }

@@ -87,9 +87,9 @@ then run from the container shell a few useful commands:
 # get list of tests available (so you can run them individually)
 /pagy $ rake -D test_*
 # run the e2e tests in the terminal
-/pagy $ e2e/cy run 
+/pagy/e2e $ npm run test 
 # open cypress and run the test in its GUI
-/pagy $ e2e/cy open 
+/pagy/e2e $ npm run test-open
 ```
 
 Check the live docs site at `http://localhost:4000`. It reflects in real-time any update you do to the `*.md` page files (no page reload needed).
@@ -106,9 +106,9 @@ Or run a service only for the execution of a specific command (it does not requi
 # run all the ruby tests, including rubocop and coverage tasks
 <local-pagy-dir>/docker $ docker-compose run --rm pagy-dev rake
 # run the e2e tests in the terminal
-<local-pagy-dir>/docker $ docker-compose run --rm pagy-dev e2e/cy run
+<local-pagy-dir>/docker $ docker-compose run --rm pagy-dev npm -w e2e run test
 # open cypress and run the test in its GUI
-<local-pagy-dir>/docker $ docker-compose run --rm pagy-dev e2e/cy open
+<local-pagy-dir>/docker $ docker-compose run --rm pagy-dev npm -w e2e run test-open
 ```
 
 ## VSCode
@@ -124,7 +124,7 @@ The Pagy repository comes with the VSCode files that setup a complete **Developm
 3. Run the `Remote-Containers: Open Folder in Container...` command and pick your local `pagy` repository dir (VSCode will prepare the environment).
 4. Run `bundle install` in the container terminal to complete the ruby setup.
 5. Run `npm ci` in the container terminal to complete the e2e setup.
-6. Open Cypress from the container terminal with `e2e/cy open` go to Settings and choose VSCode as the File Opener.
+6. Open Cypress from the container terminal with `cypress open` go to Settings and choose VSCode as the File Opener.
 
 ### Setup Solargraph
 
