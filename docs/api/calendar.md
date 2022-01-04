@@ -17,7 +17,7 @@ Each page is also conveniently labeled in the navigation bar with the specific `
 
 ## Variables
 
-Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their superclass infrastructure and variables, however they use a completely different way to paginate, hence they have a few extra core variables.
+Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their superclass infrastructure and variables, however they use a completely different way to paginate (e.g.: no `:count` nor `:items` variables) and they have a few extra core variables.
 
 The following variables are specific to `Pagy::Calendar::*` instances: 
 

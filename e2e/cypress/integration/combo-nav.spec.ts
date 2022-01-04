@@ -6,21 +6,15 @@ describe("Test all comboNavs for all styles", () => {
 
     for (const style of styles) {
         it(`Test ${style} ${id}`, () => {
-
             cy.visit(style);
             snapId(id);
-
             goCheckNext(id, style);
-
             cy.get(id_input).type("3{enter}");
             snapId(id);
-
             cy.get(id_input).type("50").blur();
             snapId(id);
-
             cy.get(id_input).focus().type("{downarrow}{enter}");
             snapId(id);
-
             goCheckPrev(id, style);
         });
     }
