@@ -33,7 +33,7 @@ interface Element {
 
 // The Pagy object
 const Pagy = {
-    version: "5.6.9",
+    version: "5.6.10",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and apply their functions
     init(arg?:HTMLElement|Document|Event) {
