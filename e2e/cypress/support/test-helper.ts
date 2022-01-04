@@ -12,7 +12,7 @@ export const styles = [
     "/uikit"
 ];
 
-export const stylesCal = styles.map((s:string) => `${s}-calendar`);
+export const stylesCal = styles.map(s => `${s}-calendar`);
 
 export function snapId(id:string) {
     cy.get("#records").snapshot();

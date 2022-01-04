@@ -14,10 +14,10 @@
     },
     "scripts": {
         "tsc-check": "tsc",
-        "tsc-check:watch": "tsc -- --watch",
-        "lint": "eslint . --ext .ts",
-        "start-pagy-app": "bundle exec rackup -q -o 0.0.0.0 -p 4567 pagy_app.ru",
-        "test": "start-server-and-test start-pagy-app 4567 'cypress run'",
-        "test-open": "start-server-and-test start-pagy-app 4567 'cypress open'"
+        "tsc-check:watch": "tsc-check -- --watch",
+        "lint-fix": "eslint --fix cypress --ext .ts",
+        "pagy-app": "bundle exec rackup -q -p 4567 pagy_app.ru",
+        "test": "start-test pagy-app 4567 'cypress run'",
+        "test-open": "start-test pagy-app 4567 'cypress open'"
     }
 }

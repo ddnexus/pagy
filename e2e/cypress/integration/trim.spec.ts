@@ -2,12 +2,12 @@ import {styles, stylesCal, navIds} from "../support/test-helper";
 
 describe("Test trim in all helpers and styles", () => {
     const testLoop = (styles:string[], ids:string[], param:string) => {
-        for (const style of styles.map((s) => `${s}/trim`)) {
+        for (const style of styles) {
             for (const page of [1, 2, 3]) {
-                const url = `${style}?${param}=${page}`;
+                const url = `${style}/trim?${param}=${page}`;
                 it(`Test trimmed links for ${url}`, () => {
                     cy.visit(url);
-                    ids.forEach((id) => cy.get(id).snapshot());
+                    ids.forEach(id => cy.get(id).snapshot());
                 });
             }
         }
@@ -17,12 +17,8 @@ describe("Test trim in all helpers and styles", () => {
 
     it("Test the trimmed location.href after using the items_selector", () => {
         cy.visit("/navs/trim?page=1&items=20");
-        cy.location().should((loc) => {
-            expect(loc.href).to.match(/page=1/);
-        });
+        cy.location().should(loc => expect(loc.href).to.match(/page=1/));
         cy.get("#items-selector-js input").type("19{enter}");
-        cy.location().should((loc) => {
-            expect(loc.href).to.not.match(/page=1/);
-        });
+        cy.location().should(loc => expect(loc.href).to.not.match(/page=1/));
     });
 });

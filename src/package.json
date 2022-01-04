@@ -21,8 +21,8 @@
     },
     "scripts": {
         "tsc-check": "tsc",
-        "tsc-check:watch": "tsc -- --watch",
-        "compile": "tsc && babel pagy.ts --out-file /pagy/lib/javascripts/pagy.js --extensions .ts --source-maps",
-        "lint": "eslint . --ext .ts"
+        "tsc-check:watch": "tsc-check -- --watch",
+        "compile": "babel pagy.ts --out-file /pagy/lib/javascripts/pagy.js --extensions .ts --source-maps",
+        "lint-fix": "eslint . --fix --ext .ts"
     }
 }
