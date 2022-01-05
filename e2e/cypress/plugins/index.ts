@@ -5,7 +5,7 @@ import {ConfigData} from "html-validate";
  * @type {Cypress.PluginConfig}
  */
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const htmlvalidate = require("cypress-html-validate/dist/plugin");
 
 // `on` is used to hook into various events Cypress emits
