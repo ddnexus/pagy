@@ -45,22 +45,22 @@ function checkStyleId(style:string, id:string) {
     cy.visit(style);
     snapId(id);
 
-    goCheckNext(id, style);
+    goCheckNext(style, id);
     for (const page of pages) {
         cy.get(id).contains(page).click();
         snapId(id);
     }
-    goCheckPrev(id, style);
+    goCheckPrev(style, id);
 }
 
-export function goCheckNext(id:string, style:string) {
+export function goCheckNext(style:string, id:string) {
     specialStylesRe.test(style)
         ? cy.get(`${id} a:last`).click()
         : cy.get(id).contains("Next").click();
     snapId(id);
 }
 
-export function goCheckPrev(id:string, style:string) {
+export function goCheckPrev(style:string, id:string) {
     specialStylesRe.test(style)
         ? cy.get(`${id} a:first`).click()
         : cy.get(id).contains("Prev").click();

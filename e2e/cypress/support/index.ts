@@ -22,6 +22,9 @@ afterEach(() => {
     cy.htmlvalidate();
 });
 
+// Silence issue https://github.com/quasarframework/quasar/issues/2233
+Cypress.on("uncaught:exception", err => !err.message.includes("ResizeObserver"));
+
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace Cypress {

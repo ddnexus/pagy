@@ -18,6 +18,16 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.7.0
+
+- Bundle and npm update
+- TypeScript/Javascript improvements:
+  - More efficient handling of responsive *nav_js helpers
+  - Replaced window resize event listener with ResizeObserver
+  - More robust input based js helpers (catching possible invalid user input)
+  - Improved typing, function naming
+  - Added error catching
+
 ## Version 5.6.10
 
 - Improvement and fixes for client-side related structure

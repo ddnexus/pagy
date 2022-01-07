@@ -2,171 +2,138 @@
 // You can generate a custom targeted javascript file for the browsers you need by changing that settings in package.json,
 // then compile it with `npm run compile -w src`.
 
-// Args types from data-pagy-json
-type NavArgs = [NavTags, NavSequels, null|NavLabelSequels, string]
-type ComboNavArgs = [string, string, string]
-type ItemsSelectorArgs = [number, string, string]
+// Args types and interfaces from data-pagy-json
+type PagyJSON          = readonly ["nav", ...NavArgs] | ["combo_nav", ...ComboNavArgs] | ["items_selector", ...ItemsSelectorArgs]
+type NavArgs           = readonly [NavTags, NavSequels, null|NavLabelSequels, string?]
+type ComboNavArgs      = readonly [string, string?]
+type ItemsSelectorArgs = readonly [number, string, string?]
 
-// Tags from the data-pagy-json of *nav_js helpers
 interface NavTags {
-    readonly before:string;
-    readonly link:string;
-    readonly active:string;
-    readonly gap:string;
-    readonly after:string;
+    readonly before: string
+    readonly link:   string
+    readonly active: string
+    readonly gap:    string
+    readonly after:  string
 }
-
-// Tags from the data-pagy-json of *nav_js helpers
-interface NavSequels {
-    readonly [width:string]:(string|number|"gap")[];
-}
-
-// Tags from the data-pagy-json of *nav_js helpers
-interface NavLabelSequels {
-    [width:string]:string[];
-}
-
-// Add pagyRender to Element
-interface Element {
-    pagyRender():void;
-}
+interface NavSequels      { readonly [width:string]: (string|number|"gap")[] }
+interface NavLabelSequels { readonly [width:string]: string[] }
+interface Element         { pagyRender(): void }
 
 // The Pagy object
 const Pagy = {
-    version: "5.6.10",
+    version: "5.7.0",
 
-    // Scan for "data-pagy-json" elements, parse their JSON content and apply their functions
-    init(arg?:HTMLElement|Document|Event) {
-        const target = arg instanceof HTMLElement ? arg : document;
+    // Scan for "data-pagy-json" elements, parse their JSON content and call their init functions
+    init(arg?:Element|never) {
+        const target   = arg instanceof Element ? arg : document;
         const elements = target.querySelectorAll("[data-pagy-json]");
+        const warn     = (el:Element, err:unknown) => console.warn("Pagy.init() skipped element: %o\n%s", el, err);
         for (const element of elements) {
             const json = element.getAttribute("data-pagy-json") as string;
             try {
-                const args = JSON.parse(json);
-                const fname = args.shift() as "nav"|"combo_nav"|"items_selector";
-                if (fname === "nav") {
-                    Pagy.nav(element, ...args as NavArgs);
-                } else if (fname === "combo_nav") {
-                    Pagy.comboNav(element, ...args as ComboNavArgs);
-                } else if (fname === "items_selector") {
-                    Pagy.itemsSelector(element, ...args as ItemsSelectorArgs);
+                const [keyword, ...args] = JSON.parse(json) as PagyJSON;
+                if (keyword === "nav") {
+                    Pagy.initNav(element, args as NavArgs);
+                } else if (keyword === "combo_nav") {
+                    Pagy.initComboNav(element, args as ComboNavArgs);
+                } else if (keyword === "items_selector") {
+                    Pagy.initItemsSelector(element, args as ItemsSelectorArgs);
+                } else {
+                    warn(element, `Illegal PagyJSON keyword: expected "nav"|"combo_nav"|"items_selector" got "${keyword}"`);
                 }
-            } catch (err) {
-                console.warn("Pagy.init() skipped element: %o\n%s", element, err);
-            }
+            } catch (err) { warn(element, err) }
         }
     },
 
-    // Power the *_nav_js helpers
-    nav(pagyEl:Element, tags:NavTags, sequels:NavSequels, optLabelSequels:null|NavLabelSequels, trimParam?:string) {
-        let labelSequels = {} as NavLabelSequels;
-        // Handle null labelSequels
-        if (optLabelSequels === null) {
-            for (const width in sequels) {
-                labelSequels[width] = sequels[width].map(item => item.toString());
-            }
-        } else {
-            labelSequels = optLabelSequels;
-        }
-        // Set and sort the widths as number[]
-        const widths = Object.getOwnPropertyNames(sequels)
-                             .map(w => parseInt(w))
-                             .sort((a, b) => b - a);
-        let lastWidth:number;
-        const fillIn = (string:string, item:string, label:string):string =>
-            string.replace(/__pagy_page__/g, item)
-                  .replace(/__pagy_label__/g, label);
-
-        pagyEl.pagyRender = function () {
-            // Find the width that fits in parent
-            const width = widths.find(w => pagyEl.parentElement !== null && pagyEl.parentElement.clientWidth > w) || 0;
-            // Only if the width changed
-            if (width !== lastWidth) {
-                let html = tags.before;
-                const series = sequels[width.toString()];
-                const labels = labelSequels[width.toString()];
-                for (const i in series) {
-                    const item = series[i];
-                    const label = labels[i];
-                    if (typeof trimParam === "string" && item === 1) {
-                        const link = fillIn(tags.link, item.toString(), label);
-                        html += Pagy.trim(link, trimParam);
-                    } else if (typeof item === "number") {
-                        html += fillIn(tags.link, item.toString(), label);
-                    } else if (item === "gap") {
-                        html += tags.gap;
-                    } else { // active page
-                        html += fillIn(tags.active, item, label);
-                    }
+    // Init the *_nav_js helpers
+    initNav(el:Element, [tags, sequels, labelSequels, trimParam]:NavArgs) {
+        const container = el.parentElement || el;
+        const widths    = Object.getOwnPropertyNames(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
+        let lastWidth   = -1;
+        const fillIn    = (string:string, item:string, label:string):string =>
+                              string.replace(/__pagy_page__/g, item).replace(/__pagy_label__/g, label);
+        (el.pagyRender = function () {
+            const width = widths.find(w => w < container.clientWidth) || 0;
+            if (width === lastWidth) { return } // no change: abort
+            let html     = tags.before;
+            const series = sequels[width.toString()];
+            const labels = labelSequels === null ? series.map(l => l.toString()) : labelSequels[width.toString()];
+            for (const i in series) {
+                const item  = series[i];
+                const label = labels[i];
+                if (typeof trimParam === "string" && item === 1) {
+                    const link = fillIn(tags.link, item.toString(), label);
+                    html      += Pagy.trim(link, trimParam);
+                } else if (typeof item === "number") {
+                    html += fillIn(tags.link, item.toString(), label);
+                } else if (item === "gap") {
+                    html += tags.gap;
+                } else { // active page
+                    html += fillIn(tags.active, item, label);
                 }
-                html += tags.after;
-                pagyEl.innerHTML = "";
-                pagyEl.insertAdjacentHTML("afterbegin", html);
-                lastWidth = width;
             }
-        };
-        pagyEl.pagyRender();
-        // If there is a window object then add a single throttled "resize" event listener
-        if (typeof window !== "undefined") {
-            let tid = 0;
-            window.addEventListener("resize", () => {
-                clearTimeout(tid);
-                tid = window.setTimeout(Pagy.renderNavs, 100);
-            }, true);
-        }
+            html        += tags.after;
+            el.innerHTML = "";
+            el.insertAdjacentHTML("afterbegin", html);
+            lastWidth = width;
+        })();
+        if (el.classList.contains("pagy-rjs")) { Pagy.rjsObserver.observe(container) }
     },
 
-    // Render all *nav_js helpers (i.e. all the elements of class "pagy-njs")
-    renderNavs() {
-        const navs = document.getElementsByClassName("pagy-njs");
-        Array.from(navs).forEach(nav => nav.pagyRender());
-    },
+    // The observer instance for responsive navs
+    rjsObserver: new ResizeObserver(entries => {
+        entries.filter(e => e.contentBoxSize)
+               .forEach(e => e.target.querySelectorAll(".pagy-rjs")
+                                     .forEach(rjs => rjs.pagyRender()));
+    }),
 
-    // Power the *_combo_nav_js helpers
-    comboNav(pagyEl:Element, page:string, link:string, trimParam?:string) {
-        const input = pagyEl.getElementsByTagName("input")[0];
-        Pagy.addInputBehavior(input, () => {
-            if (page !== input.value) {
-                let html = link.replace(/__pagy_page__/, input.value);
-                if (typeof trimParam === "string" && input.value === "1") {
-                    html = Pagy.trim(html, trimParam);
-                }
-                pagyEl.insertAdjacentHTML("afterbegin", html);
-                pagyEl.getElementsByTagName("a")[0].click();
-            }
+    // Init the *_combo_nav_js helpers
+    initComboNav(el:Element, [link, trimParam]:ComboNavArgs) {
+        const input   = el.querySelector("input") as HTMLInputElement;
+        const initial = input.value;
+        Pagy.initInput(input, () => {
+            if (!Pagy.validValueFor(input, initial)) { return } // abort action
+            const html = link.replace(/__pagy_page__/, input.value);
+            Pagy.finalizeAction(el, html, input.value, trimParam);
         });
     },
 
-    // Power the pagy_items_selector_js helper
-    itemsSelector(pagyEl:Element, from:number, link:string, trimParam?:string) {
-        const input = pagyEl.getElementsByTagName("input")[0];
-        const current = input.value;
-        Pagy.addInputBehavior(input, () => {
-            const items = input.value;
-            if (items === "0" || items === "") { return }
-            if (current !== items) {
-                const page = Math.max(Math.ceil(from / parseInt(items)), 1).toString();
-                let html = link.replace(/__pagy_page__/, page)
-                               .replace(/__pagy_items__/, items);
-                if (typeof trimParam === "string" && page === "1") {
-                    html = Pagy.trim(html, trimParam);
-                }
-                pagyEl.insertAdjacentHTML("afterbegin", html);
-                pagyEl.getElementsByTagName("a")[0].click();
-            }
+    // Init the pagy_items_selector_js helper
+    initItemsSelector(el:Element, [from, link, trimParam]:ItemsSelectorArgs) {
+        const input   = el.querySelector("input") as HTMLInputElement;
+        const initial = input.value;
+        Pagy.initInput(input, () => {
+            if (!Pagy.validValueFor(input, initial)) { return } // abort action
+            const page = Math.max(Math.ceil(from / parseInt(input.value)), 1).toString();
+            const html = link.replace(/__pagy_page__/, page).replace(/__pagy_items__/, input.value);
+            Pagy.finalizeAction(el, html, page, trimParam);
         });
     },
 
-    // Add behavior to input fields
-    addInputBehavior(input:HTMLInputElement, goToPage:() => void) {
-        // select the content on click: easier for direct typing
-        input.addEventListener("click", input.select);
-        // goToPage when the input loses focus
-        input.addEventListener("focusout", goToPage);
-        // goToPage when pressing enter while the input has focus
-        input.addEventListener("keypress", e => { if (e.key === "Enter") { goToPage() } });
+    // Init input field
+    initInput(input:HTMLInputElement, action:() => void) {
+        ["change", "focus"].forEach(e => input.addEventListener(e, input.select));        // auto-select
+        input.addEventListener("focusout", action);                                       // trigger action
+        input.addEventListener("keypress", e => { if (e.key === "Enter") { action() } }); // trigger action
     },
 
-    trim: (link:string, param:string):string =>
-              link.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "")
+    // Check for valid value or reset it
+    validValueFor(input:HTMLInputElement, initial:string):boolean {
+        if (input.value === initial) { return false }  // not changed
+        const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
+        if (val >= min && val <= max) { return true }  // in range
+        input.value = initial;  // reset invalid/out-of-range
+        input.select();
+        return false;
+    },
+
+    // Finalize the input action
+    finalizeAction(el:Element, html:string, page:string, trimParam?:string) {
+        if (typeof trimParam === "string" && page === "1") { html = Pagy.trim(html, trimParam) }
+        el.insertAdjacentHTML("afterbegin", html);
+        (el.querySelector("a") as HTMLAnchorElement).click();
+    },
+
+    // Trim the ${page-param}=1 params in links
+    trim: (link:string, param:string) => link.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "")
 };
