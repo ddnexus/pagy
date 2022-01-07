@@ -14,7 +14,7 @@
         "presets": [
             "@babel/preset-typescript",
             ["@babel/preset-env", {"useBuiltIns": "entry"}],
-            "minify"
+            ["minify", {"mangle": {"exclude": {"container":  true}}}]
         ],
         "plugins": ["babel-plugin-replace-ts-export-assignment"],
         "comments": false
