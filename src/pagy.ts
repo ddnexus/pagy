@@ -89,49 +89,38 @@ const Pagy = {
 
     // Init the *_combo_nav_js helpers
     initComboNav(el:Element, [link, trimParam]:ComboNavArgs) {
-        const input   = el.querySelector("input") as HTMLInputElement;
-        const initial = input.value;
-        Pagy.initInput(input, () => {
-            if (!Pagy.validValueFor(input, initial)) { return } // abort action
-            const html = link.replace(/__pagy_page__/, input.value);
-            Pagy.finalizeAction(el, html, input.value, trimParam);
-        });
+        Pagy.initInput(el, inputValue => [inputValue, link.replace(/__pagy_page__/, inputValue)], trimParam);
     },
 
-    // Init the pagy_items_selector_js helper
+    // Init the items_selector_js helper
     initItemsSelector(el:Element, [from, link, trimParam]:ItemsSelectorArgs) {
-        const input   = el.querySelector("input") as HTMLInputElement;
-        const initial = input.value;
-        Pagy.initInput(input, () => {
-            if (!Pagy.validValueFor(input, initial)) { return } // abort action
-            const page = Math.max(Math.ceil(from / parseInt(input.value)), 1).toString();
-            const html = link.replace(/__pagy_page__/, page).replace(/__pagy_items__/, input.value);
-            Pagy.finalizeAction(el, html, page, trimParam);
-        });
+        Pagy.initInput(el, inputValue => {
+            const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
+            const html = link.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
+            return [page, html];
+        }, trimParam);
     },
 
-    // Init input field
-    initInput(input:HTMLInputElement, action:() => void) {
+    // Init the input element
+    initInput(el:Element, getVars:(v:string)=>[string, string], trimParam?:string) {
+        const input   = el.querySelector("input") as HTMLInputElement;
+        const initial = input.value;
+        const action  = function() {
+            if (input.value === initial) { return }  // not changed
+            const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
+            if (val < min || val > max) {  // reset invalid/out-of-range
+                input.value = initial;
+                input.select();
+                return;
+            }
+            let [page, html] = getVars(input.value);   // eslint-disable-line prefer-const
+            if (typeof trimParam === "string" && page === "1") { html = Pagy.trim(html, trimParam) }
+            el.insertAdjacentHTML("afterbegin", html);
+            (el.querySelector("a") as HTMLAnchorElement).click();
+        };
         ["change", "focus"].forEach(e => input.addEventListener(e, input.select));        // auto-select
         input.addEventListener("focusout", action);                                       // trigger action
         input.addEventListener("keypress", e => { if (e.key === "Enter") { action() } }); // trigger action
-    },
-
-    // Check for valid value or reset it
-    validValueFor(input:HTMLInputElement, initial:string):boolean {
-        if (input.value === initial) { return false }  // not changed
-        const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
-        if (val >= min && val <= max) { return true }  // in range
-        input.value = initial;  // reset invalid/out-of-range
-        input.select();
-        return false;
-    },
-
-    // Finalize the input action
-    finalizeAction(el:Element, html:string, page:string, trimParam?:string) {
-        if (typeof trimParam === "string" && page === "1") { html = Pagy.trim(html, trimParam) }
-        el.insertAdjacentHTML("afterbegin", html);
-        (el.querySelector("a") as HTMLAnchorElement).click();
     },
 
     // Trim the ${page-param}=1 params in links
