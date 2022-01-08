@@ -18,6 +18,12 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.7.1
+
+- Simpler syntax for nav js helpers
+- Added input e2e test file
+- Simpler abstraction of input based js helpers
+
 ## Version 5.7.0
 
 - Bundle and npm update
