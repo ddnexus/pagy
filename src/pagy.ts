@@ -21,7 +21,7 @@ interface Element         { pagyRender(): void }
 
 // The Pagy object
 const Pagy = {
-    version: "5.7.0",
+    version: "5.7.1",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and call their init functions
     init(arg?:Element|never) {
@@ -47,23 +47,22 @@ const Pagy = {
 
     // Init the *_nav_js helpers
     initNav(el:Element, [tags, sequels, labelSequels, trimParam]:NavArgs) {
-        const container = el.parentElement || el;
+        const container = el.parentElement ?? el;
         const widths    = Object.getOwnPropertyNames(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
         let lastWidth   = -1;
-        const fillIn    = (string:string, item:string, label:string):string =>
-                              string.replace(/__pagy_page__/g, item).replace(/__pagy_label__/g, label);
-        (el.pagyRender = function () {
+        const fillIn    = (link:string, page:string, label:string):string =>
+                              link.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
+        (el.pagyRender = function() {
             const width = widths.find(w => w < container.clientWidth) || 0;
             if (width === lastWidth) { return } // no change: abort
             let html     = tags.before;
             const series = sequels[width.toString()];
-            const labels = labelSequels === null ? series.map(l => l.toString()) : labelSequels[width.toString()];
+            const labels = labelSequels?.[width.toString()] ?? series.map(l => l.toString());
             for (const i in series) {
                 const item  = series[i];
                 const label = labels[i];
                 if (typeof trimParam === "string" && item === 1) {
-                    const link = fillIn(tags.link, item.toString(), label);
-                    html      += Pagy.trim(link, trimParam);
+                    html += Pagy.trim(fillIn(tags.link, item.toString(), label), trimParam);
                 } else if (typeof item === "number") {
                     html += fillIn(tags.link, item.toString(), label);
                 } else if (item === "gap") {
@@ -72,7 +71,7 @@ const Pagy = {
                     html += fillIn(tags.active, item, label);
                 }
             }
-            html        += tags.after;
+            html += tags.after;   // eslint-disable-line align-assignments/align-assignments
             el.innerHTML = "";
             el.insertAdjacentHTML("afterbegin", html);
             lastWidth = width;
@@ -89,49 +88,38 @@ const Pagy = {
 
     // Init the *_combo_nav_js helpers
     initComboNav(el:Element, [link, trimParam]:ComboNavArgs) {
-        const input   = el.querySelector("input") as HTMLInputElement;
-        const initial = input.value;
-        Pagy.initInput(input, () => {
-            if (!Pagy.validValueFor(input, initial)) { return } // abort action
-            const html = link.replace(/__pagy_page__/, input.value);
-            Pagy.finalizeAction(el, html, input.value, trimParam);
-        });
+        Pagy.initInput(el, inputValue => [inputValue, link.replace(/__pagy_page__/, inputValue)], trimParam);
     },
 
-    // Init the pagy_items_selector_js helper
+    // Init the items_selector_js helper
     initItemsSelector(el:Element, [from, link, trimParam]:ItemsSelectorArgs) {
-        const input   = el.querySelector("input") as HTMLInputElement;
-        const initial = input.value;
-        Pagy.initInput(input, () => {
-            if (!Pagy.validValueFor(input, initial)) { return } // abort action
-            const page = Math.max(Math.ceil(from / parseInt(input.value)), 1).toString();
-            const html = link.replace(/__pagy_page__/, page).replace(/__pagy_items__/, input.value);
-            Pagy.finalizeAction(el, html, page, trimParam);
-        });
+        Pagy.initInput(el, inputValue => {
+            const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
+            const html = link.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
+            return [page, html];
+        }, trimParam);
     },
 
-    // Init input field
-    initInput(input:HTMLInputElement, action:() => void) {
+    // Init the input element
+    initInput(el:Element, getVars:(v:string)=>[string, string], trimParam?:string) {
+        const input   = el.querySelector("input") as HTMLInputElement;
+        const initial = input.value;
+        const action  = function() {
+            if (input.value === initial) { return }  // not changed
+            const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
+            if (val < min || val > max) {  // reset invalid/out-of-range
+                input.value = initial;
+                input.select();
+                return;
+            }
+            let [page, html] = getVars(input.value);   // eslint-disable-line prefer-const
+            if (typeof trimParam === "string" && page === "1") { html = Pagy.trim(html, trimParam) }
+            el.insertAdjacentHTML("afterbegin", html);
+            (el.querySelector("a") as HTMLAnchorElement).click();
+        };
         ["change", "focus"].forEach(e => input.addEventListener(e, input.select));        // auto-select
         input.addEventListener("focusout", action);                                       // trigger action
         input.addEventListener("keypress", e => { if (e.key === "Enter") { action() } }); // trigger action
-    },
-
-    // Check for valid value or reset it
-    validValueFor(input:HTMLInputElement, initial:string):boolean {
-        if (input.value === initial) { return false }  // not changed
-        const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
-        if (val >= min && val <= max) { return true }  // in range
-        input.value = initial;  // reset invalid/out-of-range
-        input.select();
-        return false;
-    },
-
-    // Finalize the input action
-    finalizeAction(el:Element, html:string, page:string, trimParam?:string) {
-        if (typeof trimParam === "string" && page === "1") { html = Pagy.trim(html, trimParam) }
-        el.insertAdjacentHTML("afterbegin", html);
-        (el.querySelector("a") as HTMLAnchorElement).click();
     },
 
     // Trim the ${page-param}=1 params in links

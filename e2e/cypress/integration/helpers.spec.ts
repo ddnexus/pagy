@@ -11,7 +11,7 @@ describe("Test generic helpers", () => {
         }
     });
     it("Test pagy_items_selector_js", () => {
-        const id = "#items-selector-js";
+        const id = "#items-selector-js";   // eslint-disable-line align-assignments/align-assignments
         const id_input = `${id} input`;
 
         for (const page of pages) {
