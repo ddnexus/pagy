@@ -17,7 +17,7 @@ interface NavElement extends Element { pagyRender(): void }
 
 // The Pagy object
 const Pagy = {
-    version: "5.7.1",
+    version: "5.7.2",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and call their init functions
     init(arg?:Element|never) {

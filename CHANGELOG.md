@@ -18,6 +18,11 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.7.2
+
+- Simplified keyword naming
+- Better compilation and development support for pagy.js. Replaced babel with parcel.
+
 ## Version 5.7.1
 
 - Simpler syntax for nav js helpers
