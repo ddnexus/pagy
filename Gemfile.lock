@@ -21,7 +21,7 @@ GEM
     diff-lcs (1.5.0)
     docile (1.4.0)
     e2mmap (0.1.0)
-    ffi (1.15.4)
+    ffi (1.15.5)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
@@ -59,7 +59,7 @@ GEM
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     rake (13.0.6)
     rake-manifest (0.2.1)
     rb-fsevent (0.11.0)
