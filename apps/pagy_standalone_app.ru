@@ -54,6 +54,8 @@ Pagy::DEFAULT.freeze
 require 'sinatra/base'
 # Sinatra application
 class PagyStandaloneApp < Sinatra::Base
+  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js"
+
   configure do
     enable :inline_templates
   end
@@ -62,10 +64,10 @@ class PagyStandaloneApp < Sinatra::Base
   helpers do
     include Pagy::Frontend
   end
-  # Serve pagy.js and pagy.js.map
-  get(%r{/pagy\.(js|js\.map)}) do
+  # Serve pagy.js or pagy-dev.js
+  get("/#{PAGY_JS}") do
     content_type 'application/javascript'
-    send_file Pagy.root.join('javascripts', "pagy.#{params['captures'].first}")
+    send_file Pagy.root.join('javascripts', PAGY_JS)
   end
   # edit this action as needed
   get '/:trim?' do
@@ -105,7 +107,7 @@ __END__
 @@ layout
 <html>
 <head>
-  <script type="application/javascript" src="/pagy.js"></script>
+  <script src="<%= %(/#{PAGY_JS}) %>"></script>
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>

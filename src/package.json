@@ -3,26 +3,19 @@
     "description": "TypeScript source for pagy.js",
     "private": true,
     "devDependencies": {
-        "@babel/cli": "^7.16.0",
-        "@babel/core": "^7.16.5",
-        "@babel/preset-env": "^7.16.5",
-        "@babel/preset-typescript": "^7.16.5",
-        "babel-plugin-replace-ts-export-assignment": "^0.0.2",
-        "babel-preset-minify": "^0.5.1"
+        "parcel": "^2.1.1"
     },
-    "babel": {
-        "presets": [
-            "@babel/preset-typescript",
-            ["@babel/preset-env", {"useBuiltIns": "entry"}],
-            ["minify", {"mangle": {"exclude": {"container":  true}}}]
-        ],
-        "plugins": ["babel-plugin-replace-ts-export-assignment"],
-        "comments": false
+    "browserslist": [">0.25%", "not dead"],
+    "pagy": "../lib/javascripts/pagy.js",
+    "targets": {
+        "pagy": {
+            "source": "../lib/javascripts/pagy-dev.js",
+            "outputFormat": "global",
+            "sourceMap": false
+        }
     },
     "scripts": {
-        "tsc-check": "tsc",
-        "tsc-check:watch": "tsc-check -- --watch",
-        "compile": "babel pagy.ts --out-file /pagy/lib/javascripts/pagy.js --extensions .ts --source-maps",
+        "build": "tsc && parcel build",
         "lint-fix": "eslint . --fix --ext .ts"
     }
 }

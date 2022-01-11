@@ -39,7 +39,7 @@ class Pagy # :nodoc:
         link           = pagy_marked_link(pagy_link_proc(pagy, link_extra: link_extra))
         p_vars[:items] = p_items # restore the items
 
-        html  = +%(<span#{p_id} class="pagy-items-selector-js" #{pagy_json_attr pagy, :items_selector, pagy.from, link}>)
+        html  = +%(<span#{p_id} class="pagy-items-selector-js" #{pagy_json_attr pagy, :selector, pagy.from, link}>)
         input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{
                     p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length + 1}rem;">)
         html << pagy_t('pagy.items_selector_js', item_name: item_name || pagy_t(i18n_key || p_vars[:i18n_key], count: p_items),

@@ -1,27 +1,23 @@
-// This file is the source that generates pagy.js, polyfilled with the `@babel/preset-env` `"useBuiltIns": "entry"`.
-// You can generate a custom targeted javascript file for the browsers you need by changing that settings in package.json,
-// then compile it with `npm run compile -w src`.
-
 // Args types and interfaces from data-pagy-json
-type PagyJSON          = readonly ["nav", ...NavArgs] | ["combo_nav", ...ComboNavArgs] | ["items_selector", ...ItemsSelectorArgs]
-type NavArgs           = readonly [NavTags, NavSequels, null|NavLabelSequels, string?]
-type ComboNavArgs      = readonly [string, string?]
-type ItemsSelectorArgs = readonly [number, string, string?]
-
-interface NavTags {
+type PagyJSON     = readonly ["nav", ...NavArgs] | ["combo", ...ComboArgs] | ["selector", ...SelectorArgs]
+type NavArgs      = readonly [Tags, Sequels, null|LabelSequels, string?]
+type ComboArgs    = readonly [string, string?]
+type SelectorArgs = readonly [number, string, string?]
+interface Tags {
     readonly before: string
     readonly link:   string
     readonly active: string
     readonly gap:    string
     readonly after:  string
 }
-interface NavSequels      { readonly [width:string]: (string|number|"gap")[] }
-interface NavLabelSequels { readonly [width:string]: string[] }
-interface Element         { pagyRender(): void }
+interface Sequels      { readonly [width:string]: (string|number|"gap")[] }
+interface LabelSequels { readonly [width:string]: string[] }
+interface Window       { Pagy: typeof Pagy }   // eslint-disable-line @typescript-eslint/no-unused-vars
+interface NavElement extends Element { pagyRender(): void }
 
 // The Pagy object
 const Pagy = {
-    version: "5.7.1",
+    version: "5.7.2",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and call their init functions
     init(arg?:Element|never) {
@@ -33,20 +29,20 @@ const Pagy = {
             try {
                 const [keyword, ...args] = JSON.parse(json) as PagyJSON;
                 if (keyword === "nav") {
-                    Pagy.initNav(element, args as NavArgs);
-                } else if (keyword === "combo_nav") {
-                    Pagy.initComboNav(element, args as ComboNavArgs);
-                } else if (keyword === "items_selector") {
-                    Pagy.initItemsSelector(element, args as ItemsSelectorArgs);
+                    Pagy.initNav(element as NavElement, args as NavArgs);
+                } else if (keyword === "combo") {
+                    Pagy.initCombo(element, args as ComboArgs);
+                } else if (keyword === "selector") {
+                    Pagy.initSelector(element, args as SelectorArgs);
                 } else {
-                    warn(element, `Illegal PagyJSON keyword: expected "nav"|"combo_nav"|"items_selector" got "${keyword}"`);
+                    warn(element, `Illegal PagyJSON keyword: expected "nav"|"combo"|"selector", got "${keyword}"`);
                 }
             } catch (err) { warn(element, err) }
         }
     },
 
     // Init the *_nav_js helpers
-    initNav(el:Element, [tags, sequels, labelSequels, trimParam]:NavArgs) {
+    initNav(el:NavElement, [tags, sequels, labelSequels, trimParam]:NavArgs) {
         const container = el.parentElement ?? el;
         const widths    = Object.getOwnPropertyNames(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
         let lastWidth   = -1;
@@ -82,17 +78,17 @@ const Pagy = {
     // The observer instance for responsive navs
     rjsObserver: new ResizeObserver(entries => {
         entries.filter(e => e.contentBoxSize)
-               .forEach(e => e.target.querySelectorAll(".pagy-rjs")
+               .forEach(e => e.target.querySelectorAll<NavElement>(".pagy-rjs")
                                      .forEach(rjs => rjs.pagyRender()));
     }),
 
     // Init the *_combo_nav_js helpers
-    initComboNav(el:Element, [link, trimParam]:ComboNavArgs) {
+    initCombo(el:Element, [link, trimParam]:ComboArgs) {
         Pagy.initInput(el, inputValue => [inputValue, link.replace(/__pagy_page__/, inputValue)], trimParam);
     },
 
     // Init the items_selector_js helper
-    initItemsSelector(el:Element, [from, link, trimParam]:ItemsSelectorArgs) {
+    initSelector(el:Element, [from, link, trimParam]:SelectorArgs) {
         Pagy.initInput(el, inputValue => {
             const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
             const html = link.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
@@ -125,3 +121,6 @@ const Pagy = {
     // Trim the ${page-param}=1 params in links
     trim: (link:string, param:string) => link.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "")
 };
+
+// Toplevel var (needed for generating the production file)
+window.Pagy = Pagy;

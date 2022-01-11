@@ -34,6 +34,8 @@ require 'sinatra/base'
 
 # sinatra application
 class PagyApp < Sinatra::Base
+  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js"
+
   configure do
     enable :inline_templates
   end
@@ -62,9 +64,9 @@ class PagyApp < Sinatra::Base
     collection.select_page_of_records(from.utc, to.utc)  # storage in UTC
   end
 
-  get(%r{/pagy\.(js|js\.map)}) do
+  get("/#{PAGY_JS}") do
     content_type 'application/javascript'
-    send_file Pagy.root.join('javascripts', "pagy.#{params['captures'].first}")
+    send_file Pagy.root.join('javascripts', PAGY_JS)
   end
 
   %w[/ /home].each do |route|
@@ -101,7 +103,7 @@ __END__
 <html lang="en">
 <head>
   <title>Pagy E2E</title>
-  <script src="/pagy.js"></script>
+  <script src="<%= %(/#{PAGY_JS}) %>"></script>
   <script>
     window.addEventListener("load", Pagy.init);
   </script>

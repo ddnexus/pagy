@@ -4,6 +4,8 @@
         "target": "esnext",
         "module": "esnext",
         "lib": ["esnext", "dom", "dom.iterable"],
-        "noEmit": true
+        "outDir": "../lib/javascripts",
+        "inlineSourceMap": true,
+        "inlineSources": true
     }
 }

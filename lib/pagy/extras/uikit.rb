@@ -25,7 +25,7 @@ class Pagy # :nodoc:
       html << %(</ul>)
     end
 
-    # Javascript pagination for uikit: it returns a nav and a JSON tag used by the Pagy.nav javascript
+    # Javascript pagination for uikit: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_uikit_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
@@ -40,7 +40,7 @@ class Pagy # :nodoc:
         pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></ul>)
     end
 
-    # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_uikit_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra: link_extra)
@@ -50,7 +50,7 @@ class Pagy # :nodoc:
                     p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
 
       %(<ul#{p_id} class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" #{
-          pagy_json_attr pagy, :combo_nav, pagy_marked_link(link)
+          pagy_json_attr pagy, :combo, pagy_marked_link(link)
         }>#{
           pagy_uikit_prev_html pagy, link
         }<li>#{

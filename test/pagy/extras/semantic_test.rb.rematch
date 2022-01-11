@@ -72,7 +72,7 @@
   link-extra rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;><i class=\&quot;right
   small chevron icon\&quot;></i></a>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]},null]"></div>
 "[1] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0001_renders first page": '<div
-  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;  style=\&quot;display:
   none;\&quot;></a>&quot;]"><div class="item disabled"><i class="left small chevron
   icon"></i></div><div class="pagy-combo-input item"><label>Page <input type="number"
@@ -81,14 +81,14 @@
   class="right small chevron icon"></i></a></div>'
 "[2] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0001_renders first page": '<div
   id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-  data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;
+  data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;
   link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><div class="item disabled"><i
   class="left small chevron icon"></i></div><div class="pagy-combo-input item"><label>Page
   <input type="number" min="1" max="6" value="1" style="padding: 0; text-align: center;
   width: 2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=2"  class="item"
   link-extra rel="next" aria-label="next"><i class="right small chevron icon"></i></a></div>'
 "[1] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0003_renders last page": '<div
-  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;  style=\&quot;display:
   none;\&quot;></a>&quot;]"><a href="/foo?page=5"  class="item"  rel="prev" aria-label="previous"><i
   class="left small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page
@@ -97,14 +97,14 @@
   class="right small chevron icon"></i></div></div>'
 "[2] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0003_renders last page": '<div
   id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-  data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;
+  data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;
   link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><a href="/foo?page=5"  class="item"
   link-extra rel="prev" aria-label="previous"><i class="left small chevron icon"></i></a><div
   class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6" value="6"
   style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem"> of 6</label></div>
   <div class="item disabled"><i class="right small chevron icon"></i></div></div>'
 "[1] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0002_renders intermediate page": '<div
-  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;  style=\&quot;display:
   none;\&quot;></a>&quot;]"><a href="/foo?page=2"  class="item"  rel="prev" aria-label="previous"><i
   class="left small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page
@@ -113,7 +113,7 @@
   aria-label="next"><i class="right small chevron icon"></i></a></div>'
 "[2] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0002_renders intermediate page": '<div
   id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-  data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;
+  data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  class=\&quot;item\&quot;
   link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><a href="/foo?page=2"  class="item"
   link-extra rel="prev" aria-label="previous"><i class="left small chevron icon"></i></a><div
   class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6" value="3"

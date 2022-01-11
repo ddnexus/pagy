@@ -1,15 +1,15 @@
 ---
 "[1] pagy/extras/items::view_methods#test_0001_renders items selector": '<span class="pagy-items-selector-js"
-  data-pagy-json="[&quot;items_selector&quot;,41,&quot;<a href=\&quot;/foo?page=__pagy_page__&items=__pagy_items__\&quot;   style=\&quot;display:
+  data-pagy-json="[&quot;selector&quot;,41,&quot;<a href=\&quot;/foo?page=__pagy_page__&items=__pagy_items__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><label>Show <input type="number" min="1" max="100" value="20"
   style="padding: 0; text-align: center; width: 3rem;"> items per page</label></span>'
 "[2] pagy/extras/items::view_methods#test_0001_renders items selector": '<span id="test-id"
-  class="pagy-items-selector-js" data-pagy-json="[&quot;items_selector&quot;,41,&quot;<a
+  class="pagy-items-selector-js" data-pagy-json="[&quot;selector&quot;,41,&quot;<a
   href=\&quot;/foo?page=__pagy_page__&items=__pagy_items__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><label>Show <input type="number" min="1" max="100" value="20"
   style="padding: 0; text-align: center; width: 3rem;"> products per page</label></span>'
 "[3] pagy/extras/items::view_methods#test_0001_renders items selector": '<span id="test-id"
-  class="pagy-items-selector-js" data-pagy-json="[&quot;items_selector&quot;,41,&quot;<a
+  class="pagy-items-selector-js" data-pagy-json="[&quot;selector&quot;,41,&quot;<a
   href=\&quot;/foo?page=__pagy_page__&items=__pagy_items__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><label>Show <input type="number" min="1" max="100" value="20"
   style="padding: 0; text-align: center; width: 3rem;"> products per page</label></span>'

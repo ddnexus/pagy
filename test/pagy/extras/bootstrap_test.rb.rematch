@@ -79,7 +79,7 @@
   link-extra rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;>Next&nbsp;&rsaquo;</a></li></ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]},null]"></nav>
 "[1] pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0001_renders first page": '<nav
   class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group"
-  role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><a class="prev btn btn-primary disabled" href="#">&lsaquo;&nbsp;Prev</a><div
   class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;"><label>Page
   <input type="number" min="1" max="6" value="1" class="text-primary" style="padding:
@@ -87,7 +87,7 @@
   aria-label="next" class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
 "[2] pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0001_renders first page": '<nav
   id="test-nav-id" class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div
-  class="btn-group" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class="btn-group" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
   style=\&quot;display: none;\&quot;></a>&quot;]"><a class="prev btn btn-primary disabled"
   href="#">&lsaquo;&nbsp;Prev</a><div class="pagy-combo-input btn btn-primary disabled"
   style="white-space: nowrap;"><label>Page <input type="number" min="1" max="6" value="1"
@@ -96,7 +96,7 @@
   class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
 "[1] pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0002_renders intermediate page": '<nav
   class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group"
-  role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><a href="/foo?page=2"   rel="prev" aria-label="previous"
   class="prev btn btn-primary">&lsaquo;&nbsp;Prev</a><div class="pagy-combo-input
   btn btn-primary disabled" style="white-space: nowrap;"><label>Page <input type="number"
@@ -105,7 +105,7 @@
   aria-label="next" class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
 "[2] pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0002_renders intermediate page": '<nav
   id="test-nav-id" class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div
-  class="btn-group" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class="btn-group" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
   style=\&quot;display: none;\&quot;></a>&quot;]"><a href="/foo?page=2"  link-extra
   rel="prev" aria-label="previous" class="prev btn btn-primary">&lsaquo;&nbsp;Prev</a><div
   class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;"><label>Page
@@ -114,7 +114,7 @@
   rel="next" aria-label="next" class="next btn btn-primary">Next&nbsp;&rsaquo;</a></div></nav>'
 "[1] pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0003_renders last page": '<nav
   class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group"
-  role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><a href="/foo?page=5"   rel="prev" aria-label="previous"
   class="prev btn btn-primary">&lsaquo;&nbsp;Prev</a><div class="pagy-combo-input
   btn btn-primary disabled" style="white-space: nowrap;"><label>Page <input type="number"
@@ -123,7 +123,7 @@
   disabled" href="#">Next&nbsp;&rsaquo;</a></div></nav>'
 "[2] pagy/extras/bootstrap::#pagy_bootstrap_combo_nav_js#test_0003_renders last page": '<nav
   id="test-nav-id" class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div
-  class="btn-group" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class="btn-group" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
   style=\&quot;display: none;\&quot;></a>&quot;]"><a href="/foo?page=5"  link-extra
   rel="prev" aria-label="previous" class="prev btn btn-primary">&lsaquo;&nbsp;Prev</a><div
   class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;"><label>Page

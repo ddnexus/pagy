@@ -18,8 +18,6 @@ If you use any of them you should follow this documentation, if not, consider th
 
 All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy-json` attribute. The javascript in the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file takes care to read the data embedded in the `data-pagy-json` attribute and makes it work in the browser.
 
-**Notice**: The `pagy.js` file is minified: its source is the [pagy.ts](https://github.com/ddnexus/pagy/blob/master/src/pagy.ts) file.
-
 ## Usage
 
 Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window-load and eventually on AJAX-load (see [Using AJAX](#using-ajax)).
@@ -144,6 +142,12 @@ $( window ).load(function() {
   Pagy.init()
 });
 ```
+
+# Debugging Javascript
+
+The `pagy.js` is a minified production-ready file, so not very useful for debugging: use the `pagy-dev.js` in its place. It is readable as javascript and contains the source map of the TypeScript source code.
+
+See also [TypeScript src](https://github.com/ddnexus/pagy/tree/master/src) for details.
 
 # Javascript Navs
 
