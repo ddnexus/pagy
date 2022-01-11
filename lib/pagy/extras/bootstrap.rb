@@ -29,7 +29,7 @@ class Pagy # :nodoc:
       html << %(</ul></nav>)
     end
 
-    # Javascript pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.nav javascript
+    # Javascript pagination for bootstrap: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_bootstrap_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
@@ -44,7 +44,7 @@ class Pagy # :nodoc:
         pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
     end
 
-    # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_bootstrap_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra: link_extra)
@@ -55,7 +55,7 @@ class Pagy # :nodoc:
                     p_pages.to_s.length + 1}rem;">)
 
       %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group" role="group" #{
-          pagy_json_attr pagy, :combo_nav, pagy_marked_link(link)}>#{
+          pagy_json_attr pagy, :combo, pagy_marked_link(link)}>#{
           if (p_prev = pagy.prev)
             link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous" class="prev btn btn-primary"'
           else

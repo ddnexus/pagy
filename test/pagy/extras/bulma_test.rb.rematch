@@ -1,16 +1,15 @@
 ---
 "[1] pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0001_renders first page": '<nav
   class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field is-grouped
-  is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><p
-  class="control"><a class="button" disabled>&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
-  control level is-mobile"><label>Page <input class="input" type="number" min="1"
-  max="6" value="1" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;">
-  of 6</label></div><p class="control"><a href="/foo?page=2"   rel="next" class="button"
-  aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
+  is-grouped-centered" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  none;\&quot;></a>&quot;]"><p class="control"><a class="button" disabled>&lsaquo;&nbsp;Prev</a></p><div
+  class="pagy-combo-input control level is-mobile"><label>Page <input class="input"
+  type="number" min="1" max="6" value="1" style="padding: 0; text-align: center; width:
+  2rem; margin:0 0.3rem;"> of 6</label></div><p class="control"><a href="/foo?page=2"   rel="next"
+  class="button" aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
 "[2] pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0001_renders first page": '<nav
   id="test-nav-id" class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field
-  is-grouped is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  is-grouped is-grouped-centered" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><p
   class="control"><a class="button" disabled>&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
   control level is-mobile"><label>Page <input class="input" type="number" min="1"
@@ -19,16 +18,16 @@
   class="button" aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
 "[1] pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0002_renders intermediate page": '<nav
   class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field is-grouped
-  is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><p
-  class="control"><a href="/foo?page=2"   rel="prev" class="button" aria-label="previous
-  page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input control level is-mobile"><label>Page
-  <input class="input" type="number" min="1" max="6" value="3" style="padding: 0;
-  text-align: center; width: 2rem; margin:0 0.3rem;"> of 6</label></div><p class="control"><a
-  href="/foo?page=4"   rel="next" class="button" aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
+  is-grouped-centered" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  none;\&quot;></a>&quot;]"><p class="control"><a href="/foo?page=2"   rel="prev"
+  class="button" aria-label="previous page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
+  control level is-mobile"><label>Page <input class="input" type="number" min="1"
+  max="6" value="3" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;">
+  of 6</label></div><p class="control"><a href="/foo?page=4"   rel="next" class="button"
+  aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
 "[2] pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0002_renders intermediate page": '<nav
   id="test-nav-id" class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field
-  is-grouped is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  is-grouped is-grouped-centered" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><p
   class="control"><a href="/foo?page=2"  link-extra rel="prev" class="button" aria-label="previous
   page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input control level is-mobile"><label>Page
@@ -37,16 +36,15 @@
   href="/foo?page=4"  link-extra rel="next" class="button" aria-label="next page">Next&nbsp;&rsaquo;</a></p></div></nav>'
 "[1] pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0003_renders last page": '<nav
   class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field is-grouped
-  is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
-  href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><p
-  class="control"><a href="/foo?page=5"   rel="prev" class="button" aria-label="previous
-  page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input control level is-mobile"><label>Page
-  <input class="input" type="number" min="1" max="6" value="6" style="padding: 0;
-  text-align: center; width: 2rem; margin:0 0.3rem;"> of 6</label></div><p class="control"><a
-  class="button" disabled>Next&nbsp;&rsaquo;</a></p></div></nav>'
+  is-grouped-centered" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  none;\&quot;></a>&quot;]"><p class="control"><a href="/foo?page=5"   rel="prev"
+  class="button" aria-label="previous page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input
+  control level is-mobile"><label>Page <input class="input" type="number" min="1"
+  max="6" value="6" style="padding: 0; text-align: center; width: 2rem; margin:0 0.3rem;">
+  of 6</label></div><p class="control"><a class="button" disabled>Next&nbsp;&rsaquo;</a></p></div></nav>'
 "[2] pagy/extras/bulma::#pagy_bulma_combo_nav_js#test_0003_renders last page": '<nav
   id="test-nav-id" class="pagy-bulma-combo-nav-js" aria-label="pagination"><div class="field
-  is-grouped is-grouped-centered" role="group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  is-grouped is-grouped-centered" role="group" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><p
   class="control"><a href="/foo?page=5"  link-extra rel="prev" class="button" aria-label="previous
   page">&lsaquo;&nbsp;Prev</a></p><div class="pagy-combo-input control level is-mobile"><label>Page

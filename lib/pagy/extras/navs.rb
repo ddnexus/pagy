@@ -7,7 +7,7 @@ class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module NavsExtra
-    # Javascript pagination: it returns a nav and a JSON tag used by the Pagy.nav javascript
+    # Javascript pagination: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
@@ -22,7 +22,7 @@ class Pagy # :nodoc:
         pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
     end
 
-    # Javascript combo pagination: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    # Javascript combo pagination: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra: link_extra)
@@ -32,7 +32,7 @@ class Pagy # :nodoc:
                     p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
 
       %(<nav#{p_id} class="pagy-combo-nav-js pagination" aria-label="pager" #{
-          pagy_json_attr pagy, :combo_nav, pagy_marked_link(link)}>#{
+          pagy_json_attr pagy, :combo, pagy_marked_link(link)}>#{
           pagy_nav_prev_html pagy, link
         }<span class="pagy-combo-input" style="margin: 0 0.6rem;">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages

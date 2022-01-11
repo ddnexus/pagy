@@ -7,7 +7,7 @@ class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module BulmaExtra
-    # Pagination for Bulma: it returns the html with the series of links to the pages
+    # Pagination for bulma: it returns the html with the series of links to the pages
     def pagy_bulma_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
@@ -30,6 +30,7 @@ class Pagy # :nodoc:
       html << %(</ul></nav>)
     end
 
+    # Javascript pagination for bulma: it returns a nav and a JSON tag used by the Pagy.nav javascript
     def pagy_bulma_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
@@ -47,7 +48,7 @@ class Pagy # :nodoc:
         pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
     end
 
-    # Javascript combo pagination for Bulma: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    # Javascript combo pagination for bulma: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_bulma_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra: link_extra)
@@ -58,7 +59,7 @@ class Pagy # :nodoc:
 
       html = %(<nav#{p_id} class="pagy-bulma-combo-nav-js" aria-label="pagination">)
       %(#{html}<div class="field is-grouped is-grouped-centered" role="group" #{
-          pagy_json_attr pagy, :combo_nav, pagy_marked_link(link)}>#{
+          pagy_json_attr pagy, :combo, pagy_marked_link(link)}>#{
           if (p_prev  = pagy.prev)
             %(<p class="control">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'class="button" aria-label="previous page"'}</p>)
           else

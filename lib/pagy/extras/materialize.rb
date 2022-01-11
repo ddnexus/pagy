@@ -26,7 +26,7 @@ class Pagy # :nodoc:
       html << %(</ul></div>)
     end
 
-    # Javascript pagination for materialize: it returns a nav and a JSON tag used by the Pagy.nav javascript
+    # Javascript pagination for materialize: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_materialize_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
@@ -42,7 +42,7 @@ class Pagy # :nodoc:
         pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
     end
 
-    # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the Pagy.combo_nav javascript
+    # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_materialize_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra: link_extra)
@@ -54,7 +54,7 @@ class Pagy # :nodoc:
 
       html = %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation")
       %(#{html} aria-label="pager" style="padding-right: 0" #{
-          pagy_json_attr pagy, :combo_nav, pagy_marked_link(link)}>#{
+          pagy_json_attr pagy, :combo, pagy_marked_link(link)}>#{
           pagy_materialize_prev_html pagy, link, style}<li class="pagy-combo-input">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</li>#{
           pagy_materialize_next_html pagy, link, style}</ul>)

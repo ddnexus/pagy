@@ -145,7 +145,7 @@
   class=\&quot;next disabled\&quot;><a href=\&quot;#\&quot;><i class=\&quot;material-icons\&quot;>chevron_right</i></a></li></ul>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,48,49,&quot;50&quot;],&quot;600&quot;:[1,&quot;gap&quot;,47,48,49,&quot;50&quot;]},null]"></div>
 "[1] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0003_renders last page": '<ul
   class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager"
-  style="padding-right: 0" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  style="padding-right: 0" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><li class="waves-effect prev" style="vertical-align: middle"><a
   href="/foo?page=5"   rel="prev" aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li
   class="pagy-combo-input"><label>Page <input type="number" class="browser-default"
@@ -153,7 +153,7 @@
   class="next disabled" style="vertical-align: middle"><a href="#"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[2] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0003_renders last page": '<ul
   id="test-nav-id" class="pagy-materialize-combo-nav-js pagination chip" role="navigation"
-  aria-label="pager" style="padding-right: 0" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  aria-label="pager" style="padding-right: 0" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><li
   class="waves-effect prev" style="vertical-align: middle"><a href="/foo?page=5"  link-extra
   rel="prev" aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li
@@ -162,7 +162,7 @@
   class="next disabled" style="vertical-align: middle"><a href="#"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[1] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0001_renders first page": '<ul
   class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager"
-  style="padding-right: 0" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  style="padding-right: 0" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><li class="prev disabled" style="vertical-align: middle"><a
   href="#"><i class="material-icons">chevron_left</i></a></li><li class="pagy-combo-input"><label>Page
   <input type="number" class="browser-default" min="1" max="6" value="1" style="text-align:
@@ -170,7 +170,7 @@
   middle"><a href="/foo?page=2"   rel="next" aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[2] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0001_renders first page": '<ul
   id="test-nav-id" class="pagy-materialize-combo-nav-js pagination chip" role="navigation"
-  aria-label="pager" style="padding-right: 0" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  aria-label="pager" style="padding-right: 0" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><li
   class="prev disabled" style="vertical-align: middle"><a href="#"><i class="material-icons">chevron_left</i></a></li><li
   class="pagy-combo-input"><label>Page <input type="number" class="browser-default"
@@ -179,7 +179,7 @@
   rel="next" aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[1] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0002_renders intermediate page": '<ul
   class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager"
-  style="padding-right: 0" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  style="padding-right: 0" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><li class="waves-effect prev" style="vertical-align: middle"><a
   href="/foo?page=2"   rel="prev" aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li
   class="pagy-combo-input"><label>Page <input type="number" class="browser-default"
@@ -188,7 +188,7 @@
   aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[2] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0002_renders intermediate page": '<ul
   id="test-nav-id" class="pagy-materialize-combo-nav-js pagination chip" role="navigation"
-  aria-label="pager" style="padding-right: 0" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  aria-label="pager" style="padding-right: 0" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><li
   class="waves-effect prev" style="vertical-align: middle"><a href="/foo?page=2"  link-extra
   rel="prev" aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li

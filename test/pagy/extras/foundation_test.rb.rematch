@@ -51,7 +51,7 @@
   rel="prev" >49</a></li><li class="current">50</li><li class="next disabled">Next&nbsp;&rsaquo;</li></ul></nav>
 "[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0001_renders first page": '<nav
   class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
-  data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><a style="margin-bottom: 0" class="prev button primary
   disabled" href="#">&lsaquo;&nbsp;Prev</a><span class="input-group-label"><label>Page
   <input class="input-group-field cell shrink" type="number" min="1" max="6" value="1"
@@ -60,7 +60,7 @@
   button primary">Next&nbsp;&rsaquo;</a></div></nav>'
 "[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0001_renders first page": '<nav
   id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
-  class="input-group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class="input-group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
   style=\&quot;display: none;\&quot;></a>&quot;]"><a style="margin-bottom: 0" class="prev
   button primary disabled" href="#">&lsaquo;&nbsp;Prev</a><span class="input-group-label"><label>Page
   <input class="input-group-field cell shrink" type="number" min="1" max="6" value="1"
@@ -69,7 +69,7 @@
   class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
 "[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0002_renders intermediate page": '<nav
   class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
-  data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><a href="/foo?page=2"   rel="prev" style="margin-bottom:
   0" aria-label="previous" class="prev button primary">&lsaquo;&nbsp;Prev</a><span
   class="input-group-label"><label>Page <input class="input-group-field cell shrink"
@@ -78,7 +78,7 @@
   0" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
 "[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0002_renders intermediate page": '<nav
   id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
-  class="input-group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class="input-group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
   style=\&quot;display: none;\&quot;></a>&quot;]"><a href="/foo?page=2"  link-extra
   rel="prev" style="margin-bottom: 0" aria-label="previous" class="prev button primary">&lsaquo;&nbsp;Prev</a><span
   class="input-group-label"><label>Page <input class="input-group-field cell shrink"
@@ -87,7 +87,7 @@
   0" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
 "[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0003_renders last page": '<nav
   class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
-  data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
+  data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display:
   none;\&quot;></a>&quot;]"><a href="/foo?page=5"   rel="prev" style="margin-bottom:
   0" aria-label="previous" class="prev button primary">&lsaquo;&nbsp;Prev</a><span
   class="input-group-label"><label>Page <input class="input-group-field cell shrink"
@@ -96,7 +96,7 @@
   disabled" href="#">Next&nbsp;&rsaquo;</a></div></nav>'
 "[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0003_renders last page": '<nav
   id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
-  class="input-group" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  class="input-group" data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
   style=\&quot;display: none;\&quot;></a>&quot;]"><a href="/foo?page=5"  link-extra
   rel="prev" style="margin-bottom: 0" aria-label="previous" class="prev button primary">&lsaquo;&nbsp;Prev</a><span
   class="input-group-label"><label>Page <input class="input-group-field cell shrink"

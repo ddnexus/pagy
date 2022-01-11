@@ -57,40 +57,40 @@
   class=\&quot;uk-disabled\&quot;><span>&hellip;</span></li>&quot;,&quot;after&quot;:&quot;<li><a
   href=\&quot;/foo?page=21\&quot;  link-extra rel=\&quot;next\&quot; ><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li>&quot;},{&quot;0&quot;:[1,&quot;gap&quot;,18,19,&quot;20&quot;,21,22,&quot;gap&quot;,50],&quot;600&quot;:[1,&quot;gap&quot;,17,18,19,&quot;20&quot;,21,22,23,&quot;gap&quot;,50]},null]"></ul>
 "[1] pagy/extras/uikit::#pagy_uikit_combo_nav#test_0002_renders intermediate page": '<ul
-  class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><li><a
   href="/foo?page=19"   rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
   <input type="number" min="1" max="50" value="20" style="text-align: center; width:
   3rem;"> of 50</label></li><li><a href="/foo?page=21"   rel="next" ><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
 "[2] pagy/extras/uikit::#pagy_uikit_combo_nav#test_0002_renders intermediate page": '<ul
   id="test-nav-id" class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center"
-  data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
   style=\&quot;display: none;\&quot;></a>&quot;]"><li><a href="/foo?page=19"  link-extra
   rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
   <input type="number" min="1" max="50" value="20" style="text-align: center; width:
   3rem;"> of 50</label></li><li><a href="/foo?page=21"  link-extra rel="next" ><span
   uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
 "[1] pagy/extras/uikit::#pagy_uikit_combo_nav#test_0003_renders last page": '<ul class="pagy-uikit-combo-nav-js
-  uk-button-group uk-pagination uk-flex-center" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  uk-button-group uk-pagination uk-flex-center" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><li><a
   href="/foo?page=49"   rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
   <input type="number" min="1" max="50" value="50" style="text-align: center; width:
   3rem;"> of 50</label></li><li class="uk-disabled"><a href="#"><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
 "[2] pagy/extras/uikit::#pagy_uikit_combo_nav#test_0003_renders last page": '<ul id="test-nav-id"
-  class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra style=\&quot;display: none;\&quot;></a>&quot;]"><li><a
   href="/foo?page=49"  link-extra rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
   <input type="number" min="1" max="50" value="50" style="text-align: center; width:
   3rem;"> of 50</label></li><li class="uk-disabled"><a href="#"><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
 "[1] pagy/extras/uikit::#pagy_uikit_combo_nav#test_0001_renders first page": '<ul
-  class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" data-pagy-json="[&quot;combo_nav&quot;,&quot;<a
+  class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" data-pagy-json="[&quot;combo&quot;,&quot;<a
   href=\&quot;/foo?page=__pagy_page__\&quot;   style=\&quot;display: none;\&quot;></a>&quot;]"><li
   class="uk-disabled"><a href="#"><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
   <input type="number" min="1" max="50" value="1" style="text-align: center; width:
   3rem;"> of 50</label></li><li><a href="/foo?page=2"   rel="next" ><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
 "[2] pagy/extras/uikit::#pagy_uikit_combo_nav#test_0001_renders first page": '<ul
   id="test-nav-id" class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center"
-  data-pagy-json="[&quot;combo_nav&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
+  data-pagy-json="[&quot;combo&quot;,&quot;<a href=\&quot;/foo?page=__pagy_page__\&quot;  link-extra
   style=\&quot;display: none;\&quot;></a>&quot;]"><li class="uk-disabled"><a href="#"><span
   uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page <input
   type="number" min="1" max="50" value="1" style="text-align: center; width: 3rem;">
