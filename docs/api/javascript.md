@@ -26,11 +26,11 @@ Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/p
 
 ### Module import
 
-If you prefer to use pagy as an importable javascript module, pagy provides the `pagy.mjs` ES6 module available at `Pagy.root.join('javascripts', 'pagy.mjs')`. It exports the static `Pagy` object by default.
+If you prefer to use pagy as an importable javascript module, pagy provides the `pagy-module.js` ES6 module available at `Pagy.root.join('javascripts', 'pagy-module.js')`. It exports the static `Pagy` object by default. If you use TypeScript you have also the types at `Pagy.root.join('javascripts', 'pagy-module.d.ts')`
 
 ### Debugging Javascript
 
-The `pagy.js` is a minified production-ready file, so not very useful for debugging, so use the `pagy-dev.js` in its place. It is a readable javascript file that works with modern browsers.
+The `pagy.js` is a minified production-ready file, so not very useful for debugging, so use the `pagy-dev.js` in its place. It is a readable javascript file meant to be used only for debugging with modern browsers. It won't work on old browser, so don't use it in production. It contains the source map data so you can debug the source TypeScript directly.
 
 See also [TypeScript src](https://github.com/ddnexus/pagy/tree/master/src) for details.
 
@@ -74,10 +74,10 @@ If your app uses Webpacker, ensure that the webpacker `erb` loader is installed:
 bundle exec rails webpacker:install:erb
 ```
 
-Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to import `pagy.mjs` and add an event listener to it (to allow the library to reinitialize when you click a new link):
+Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to import `pagy-module.js` and add an event listener to it (to allow the library to reinitialize when you click a new link):
 
 ```erb
-import Pagy from "<%= Pagy.root.join('javascripts', 'pagy.mjs') %>"
+import Pagy from "<%= Pagy.root.join('javascripts', 'pagy-module.js') %>"
 window.addEventListener("turbo:load", Pagy.init) # if using turbo-rails OR
 
 # window.addEventListener("turbolinks:load", Pagy.init) # if turbolinks OR
