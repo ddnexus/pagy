@@ -12,12 +12,11 @@ interface Tags {
 }
 interface Sequels      { readonly [width:string]: (string|number|"gap")[] }
 interface LabelSequels { readonly [width:string]: string[] }
-interface Window       { Pagy: typeof Pagy }   // eslint-disable-line @typescript-eslint/no-unused-vars
 interface NavElement extends Element { pagyRender(): void }
 
 // The Pagy object
 const Pagy = {
-    version: "5.7.2",
+    version: "5.7.3",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and call their init functions
     init(arg?:Element|never) {
@@ -122,5 +121,4 @@ const Pagy = {
     trim: (link:string, param:string) => link.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "")
 };
 
-// Toplevel var (needed for generating the production file)
-window.Pagy = Pagy;
+export default Pagy;

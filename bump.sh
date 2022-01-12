@@ -31,7 +31,7 @@ function bump(){
 bump "$ROOT/.github/.env"
 bump "$ROOT/lib/pagy.rb"
 bump "$ROOT/lib/config/pagy.rb"
-bump "$ROOT/src/pagy-dev.ts"
+bump "$ROOT/src/pagy.ts"
 
 # Bumps docs example
 esc_old_minor_vers=${esc_old_vers%\\*}

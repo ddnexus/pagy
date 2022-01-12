@@ -18,6 +18,12 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.7.3
+
+- npm update
+- Simper pagy-dev.js; added pagy.mjs module
+- Updated .eslintrc.json and package.json files
+
 ## Version 5.7.2
 
 - Simplified keyword naming

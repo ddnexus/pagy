@@ -1,4 +1,4 @@
-// extend the root onfig file
+// extend the root config file
 {
     "env": {
         "amd": true,

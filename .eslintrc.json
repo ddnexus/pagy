@@ -18,6 +18,6 @@
     },
     "rules": {
         "semi": ["error", "always", {"omitLastInOneLineBlock": true}],
-        "align-assignments/align-assignments": [2, { "requiresOnly": false } ]
+        "align-assignments/align-assignments": ["error", { "requiresOnly": false } ]
     }
 }
