@@ -19,49 +19,24 @@ If you use any of them you should follow this documentation, if not, consider th
 All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy-json` attribute. The javascript in the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file takes care to read the data embedded in the `data-pagy-json` attribute and makes it work in the browser.
 
 ## Usage
+   
+### Basic usage
 
-Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file, and run `Pagy.init()` on window-load and eventually on AJAX-load (see [Using AJAX](#using-ajax)).
+Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) minified (2.9k) file (see the documentation for [rails apps](#in-rails-apps) or [non-rails-apps](#in-non-rails-apps), and run `Pagy.init()` on window-load and eventually on AJAX-load (see [Using AJAX](#using-ajax)).
 
-### CAVEATS
+### Module import
 
-#### Functions
+If you prefer to use pagy as an importable javascript module, pagy provides the `pagy.mjs` ES6 module available at `Pagy.root.join('javascripts', 'pagy.mjs')`. It exports the static `Pagy` object by default.
 
-If you override any `*_js` helper, ensure to override/enforce the javascript functions that it uses. If the relation between the helper and the functions change in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
+### Debugging Javascript
 
-#### HTML fallback
+The `pagy.js` is a minified production-ready file, so not very useful for debugging, so use the `pagy-dev.js` in its place. It is a readable javascript file that works with modern browsers.
 
-Notice that if the client browser doesn't support Javascript or if it is disabled, certain helpers will serve nothing useful for the user. If your app does not require Javascript support and you still want to use javascript helpers, then you should consider implementing your own HTML fallback. For example:
+See also [TypeScript src](https://github.com/ddnexus/pagy/tree/master/src) for details.
 
-    ```erb
-    <noscript><%== pagy_nav(@pagy) %></noscript>
-    ```
+### Faster performance with the oj gem
 
-#### Preventing crawlers to follow look-alike links
-
-The `*_js` helpers come with a `data-pagy-json` attribute that includes an HTML encoded string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it, even if it is not a DOM element. That causes server side errors reported in your log.
-
-You may want to prevent that by simply adding the following lines to your `robots.txt` file:
-
-```txt
-User-agent: *
-Disallow: *__pagy_page__
-```
-
-**Caveats**: already indexed links may take a while to get purged by some search engine (i.e. you may still get some hits for a while even after you disallow them)
-
-A quite drastic alternative to the `robot.txt` would be adding the following block to the `config/initializers/rack_attack.rb` (if you use the [Rack Attack Middleware](https://github.com/kickstarter/rack-attack)):
-
-```ruby
-Rack::Attack.blocklist("block crawlers to follow pagy look-alike links") do |request|
-  request.query_string.match /__pagy_page__/
-end
-```
-
-but it would be quite an overkill if you plan to install it only for this purpose.
-
-### Add the oj gem
-
-Although it's not a requirement, if you use any `*_nav_js` helper, you should consider adding the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance. (Notice: It does nothing for normal, non-js helpers.)
+Although it's not a requirement, you should consider adding the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance. (Notice: It does nothing for normal, non-js helpers.)
 
 ### In rails apps
 
@@ -99,10 +74,10 @@ If your app uses Webpacker, ensure that the webpacker `erb` loader is installed:
 bundle exec rails webpacker:install:erb
 ```
 
-Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to render the contents of `pagy.js` and add an event listener to it (to allow the library to reinitialize when you click a new link):
+Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to import `pagy.mjs` and add an event listener to it (to allow the library to reinitialize when you click a new link):
 
 ```erb
-<%= Pagy.root.join('javascripts', 'pagy.js').read %>
+import Pagy from "<%= Pagy.root.join('javascripts', 'pagy.mjs') %>"
 window.addEventListener("turbo:load", Pagy.init) # if using turbo-rails OR
 
 # window.addEventListener("turbolinks:load", Pagy.init) # if turbolinks OR
@@ -118,7 +93,6 @@ import './pagy.js.erb'
 **Notice**:
 
 - You may want to use `turbolinks:load` if your app uses turbolinks despite webpacker
-- or you may want just `export { Pagy }` from the `pagy.js.erb` file and import and use it somewhere else.
 - or you may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
 
     ```js
@@ -127,7 +101,7 @@ import './pagy.js.erb'
 
 ### In non-rails apps
 
-Ensure the `pagy/extras/javascripts/pagy.js` script gets served with the page.
+Ensure the `Pagy.root.join('javascripts', 'pagy.js')` script gets served with the page.
 
 Add an event listener like:
 
@@ -135,19 +109,42 @@ Add an event listener like:
 window.addEventListener('load', Pagy.init);
 ```
 
-or execute the `Pagy.init()` using jQuery:
+### CAVEATS
 
-```js
-$( window ).load(function() {
-  Pagy.init()
-});
+#### Functions
+
+If you override any `*_js` helper, ensure to override/enforce the javascript functions that it uses. If the relation between the helper and the functions change in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
+
+#### HTML fallback
+
+Notice that if the client browser doesn't support Javascript or if it is disabled, certain helpers will serve nothing useful for the user. If your app does not require Javascript support and you still want to use javascript helpers, then you should consider implementing your own HTML fallback. For example:
+
+    ```erb
+    <noscript><%== pagy_nav(@pagy) %></noscript>
+    ```
+
+#### Preventing crawlers to follow look-alike links
+
+The `*_js` helpers come with a `data-pagy-json` attribute that includes an HTML encoded string that looks like an `a` link tag. It's just a placeholder string used by `pagy.js` in order to create actual DOM elements links, but some crawlers are reportedly following it, even if it is not a DOM element. That causes server side errors reported in your log.
+
+You may want to prevent that by simply adding the following lines to your `robots.txt` file:
+
+```txt
+User-agent: *
+Disallow: *__pagy_page__
 ```
 
-# Debugging Javascript
+**Caveats**: already indexed links may take a while to get purged by some search engine (i.e. you may still get some hits for a while even after you disallow them)
 
-The `pagy.js` is a minified production-ready file, so not very useful for debugging: use the `pagy-dev.js` in its place. It is readable as javascript and contains the source map of the TypeScript source code.
+A quite drastic alternative to the `robot.txt` would be adding the following block to the `config/initializers/rack_attack.rb` (if you use the [Rack Attack Middleware](https://github.com/kickstarter/rack-attack)):
 
-See also [TypeScript src](https://github.com/ddnexus/pagy/tree/master/src) for details.
+```ruby
+Rack::Attack.blocklist("block crawlers to follow pagy look-alike links") do |request|
+  request.query_string.match /__pagy_page__/
+end
+```
+
+but it would be quite an overkill if you plan to install it only for this purpose.
 
 # Javascript Navs
 

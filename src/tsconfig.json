@@ -3,9 +3,6 @@
         "strict": true,
         "target": "esnext",
         "module": "esnext",
-        "lib": ["esnext", "dom", "dom.iterable"],
-        "outDir": "../lib/javascripts",
-        "inlineSourceMap": true,
-        "inlineSources": true
+        "lib": ["esnext", "dom", "dom.iterable"]
     }
 }

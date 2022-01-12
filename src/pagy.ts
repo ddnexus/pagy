@@ -12,7 +12,6 @@ interface Tags {
 }
 interface Sequels      { readonly [width:string]: (string|number|"gap")[] }
 interface LabelSequels { readonly [width:string]: string[] }
-interface Window       { Pagy: typeof Pagy }   // eslint-disable-line @typescript-eslint/no-unused-vars
 interface NavElement extends Element { pagyRender(): void }
 
 // The Pagy object
@@ -122,5 +121,4 @@ const Pagy = {
     trim: (link:string, param:string) => link.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "")
 };
 
-// Toplevel var (needed for generating the production file)
-window.Pagy = Pagy;
+export default Pagy;

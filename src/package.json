@@ -9,13 +9,14 @@
     "pagy": "../lib/javascripts/pagy.js",
     "targets": {
         "pagy": {
-            "source": "../lib/javascripts/pagy-dev.js",
+            "source": "main.js",
             "outputFormat": "global",
             "sourceMap": false
         }
     },
     "scripts": {
-        "build": "tsc && parcel build",
+        "finalize": "mv pagy.js ../lib/javascripts/pagy.mjs && head -n -1 ../lib/javascripts/pagy.mjs > ../lib/javascripts/pagy-dev.js",
+        "build": "tsc && parcel build && npm run finalize",
         "lint-fix": "eslint . --fix --ext .ts"
     }
 }
