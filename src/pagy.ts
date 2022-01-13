@@ -1,4 +1,3 @@
-// Args types and interfaces from data-pagy-json
 type PagyJSON     = readonly ["nav", ...NavArgs] | ["combo", ...ComboArgs] | ["selector", ...SelectorArgs]
 type NavArgs      = readonly [Tags, Sequels, null|LabelSequels, string?]
 type ComboArgs    = readonly [string, string?]
@@ -15,7 +14,7 @@ interface LabelSequels { readonly [width:string]: string[] }
 interface NavElement extends Element { pagyRender(): void }
 
 const Pagy = {
-    version: "5.7.4",
+    version: "5.7.5",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and call their init functions
     init(arg?:Element|never) {
