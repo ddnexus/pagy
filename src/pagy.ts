@@ -1,4 +1,3 @@
-// Args types and interfaces from data-pagy-json
 type PagyJSON     = readonly ["nav", ...NavArgs] | ["combo", ...ComboArgs] | ["selector", ...SelectorArgs]
 type NavArgs      = readonly [Tags, Sequels, null|LabelSequels, string?]
 type ComboArgs    = readonly [string, string?]

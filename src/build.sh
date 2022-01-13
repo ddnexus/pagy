@@ -12,10 +12,6 @@ cp pagy.ts pagy-module.ts
 echo 'export default Pagy;' >> pagy-module.ts
 tsc --target esnext --declaration  pagy-module.ts
 
-header="/* Generated from 'src/pagy.ts' with TypeScript $(tsc -v) */"
-sed -i "1i$header" pagy-dev.js pagy-module.js
-echo "added header: \"$header\""
-
 echo 'generating pagy.js'
 parcel build
 
