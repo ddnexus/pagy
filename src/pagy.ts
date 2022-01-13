@@ -14,9 +14,8 @@ interface Sequels      { readonly [width:string]: (string|number|"gap")[] }
 interface LabelSequels { readonly [width:string]: string[] }
 interface NavElement extends Element { pagyRender(): void }
 
-// The Pagy object
 const Pagy = {
-    version: "5.7.3",
+    version: "5.7.4",
 
     // Scan for "data-pagy-json" elements, parse their JSON content and call their init functions
     init(arg?:Element|never) {
@@ -120,5 +119,3 @@ const Pagy = {
     // Trim the ${page-param}=1 params in links
     trim: (link:string, param:string) => link.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "")
 };
-
-export default Pagy;

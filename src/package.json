@@ -3,20 +3,24 @@
     "description": "TypeScript source for pagy.js",
     "private": true,
     "devDependencies": {
-        "parcel": "^2.1.1"
+        "parcel": "^2.1.1",
+        "parcel-plugin-nuke-dist": "^1.0.1"
     },
-    "browserslist": [">0.25%", "not dead"],
-    "pagy": "../lib/javascripts/pagy.js",
+    "browserslist": [
+        ">0.25%",
+        "not dead"
+    ],
+    "pagy": "pagy.js",
     "targets": {
         "pagy": {
+            "distDir": "../lib/javascripts",
             "source": "main.js",
             "outputFormat": "global",
             "sourceMap": false
         }
     },
     "scripts": {
-        "finalize": "mv pagy.js ../lib/javascripts/pagy.mjs && head -n -1 ../lib/javascripts/pagy.mjs > ../lib/javascripts/pagy-dev.js",
-        "build": "tsc && parcel build && npm run finalize",
+        "build": "./build.sh",
         "lint-fix": "eslint . --fix --ext .ts"
     }
 }
