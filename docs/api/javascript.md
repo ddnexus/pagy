@@ -16,23 +16,21 @@ If you use any of them you should follow this documentation, if not, consider th
 
 ### Basic principle
 
-All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy-json` attribute. The javascript in the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) file takes care to read the data embedded in the `data-pagy-json` attribute and makes it work in the browser.
+All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy-json` attribute. The [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) code takes care to read the data embedded in the `data-pagy-json` attribute and makes it work in the browser.
 
 ## Usage
-   
+
 ### Basic usage
 
-Load the [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) minified (2.9k) file (see the documentation for [rails apps](#in-rails-apps) or [non-rails-apps](#in-non-rails-apps), and run `Pagy.init()` on window-load and eventually on AJAX-load (see [Using AJAX](#using-ajax)).
+Load the [pagy.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagyjs) minified (2.9k) file _(see the documentation for [rails apps](#in-rails-apps) or [non-rails-apps](#in-non-rails-apps))_, and run `Pagy.init()` on window-load and eventually on [AJAX-load](#using-ajax).
 
 ### Module import
 
-If you prefer to use pagy as an importable javascript module, pagy provides the `pagy-module.js` ES6 module available at `Pagy.root.join('javascripts', 'pagy-module.js')`. It exports the static `Pagy` object by default. If you use TypeScript you have also the types at `Pagy.root.join('javascripts', 'pagy-module.d.ts')`
+If you prefer to use pagy as an importable javascript module, pagy provides the ES6 [pagy-module.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-modulejs) and the definition types file [pagy-module.d.ts](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-moduledts).
 
 ### Debugging Javascript
 
-The `pagy.js` is a minified production-ready file, so not very useful for debugging, so use the `pagy-dev.js` in its place. It is a readable javascript file meant to be used only for debugging with modern browsers. It won't work on old browser, so don't use it in production. It contains the source map data so you can debug the source TypeScript directly.
-
-See also [TypeScript src](https://github.com/ddnexus/pagy/tree/master/src) for details.
+Use the [pagy-dev.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-devjs) in place of `pagy.js`. It is a readable javascript file meant to be used only for debugging with modern browsers.
 
 ### Faster performance with the oj gem
 
