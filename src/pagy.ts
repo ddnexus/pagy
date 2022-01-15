@@ -20,11 +20,10 @@ const Pagy = {
     init(arg?:Element|never) {
         const target   = arg instanceof Element ? arg : document;
         const elements = target.querySelectorAll("[data-pagy-json]");
-        const warn     = (el:Element, err:unknown) => console.warn("Pagy.init() skipped element: %o\n%s", el, err);
         for (const element of elements) {
-            const json = element.getAttribute("data-pagy-json") as string;
             try {
-                const [keyword, ...args] = JSON.parse(json) as PagyJSON;
+                const jsonString         = element.getAttribute("data-pagy-json") as string;
+                const [keyword, ...args] = JSON.parse(jsonString) as PagyJSON;
                 if (keyword === "nav") {
                     Pagy.initNav(element as NavElement, args as NavArgs);
                 } else if (keyword === "combo") {
@@ -32,16 +31,18 @@ const Pagy = {
                 } else if (keyword === "selector") {
                     Pagy.initSelector(element, args as SelectorArgs);
                 } else {
-                    warn(element, `Illegal PagyJSON keyword: expected "nav"|"combo"|"selector", got "${keyword}"`);
+                    Pagy.initWarn(element, `Illegal PagyJSON keyword: expected "nav"|"combo"|"selector", got "${keyword}"`);
                 }
-            } catch (err) { warn(element, err) }
+            } catch (err) { Pagy.initWarn(element, err) }
         }
     },
+
+    initWarn(el:Element, err:unknown) { console.warn("Pagy.init() skipped element: %o\n%s", el, err) },
 
     // Init the *_nav_js helpers
     initNav(el:NavElement, [tags, sequels, labelSequels, trimParam]:NavArgs) {
         const container = el.parentElement ?? el;
-        const widths    = Object.getOwnPropertyNames(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
+        const widths    = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
         let lastWidth   = -1;
         const fillIn    = (link:string, page:string, label:string):string =>
                               link.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
@@ -74,9 +75,7 @@ const Pagy = {
 
     // The observer instance for responsive navs
     rjsObserver: new ResizeObserver(entries => {
-        entries.filter(e => e.contentBoxSize)
-               .forEach(e => e.target.querySelectorAll<NavElement>(".pagy-rjs")
-                                     .forEach(rjs => rjs.pagyRender()));
+        entries.forEach(e => e.target.querySelectorAll<NavElement>(".pagy-rjs").forEach(el => el.pagyRender()));
     }),
 
     // Init the *_combo_nav_js helpers
