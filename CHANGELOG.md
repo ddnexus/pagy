@@ -18,6 +18,18 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.7.6
+
+- Updated Gemfile.lock and package-lock.json
+- Broader browserslist and better doc for javascript
+- Updated build.sh
+- Improvement of pagy.ts:
+  - Moved warn() out of init()
+  - More inclusive try block
+  - Simplified rjsObserver function
+  - Replaced getOwnPropertyNames with keys
+- Fix for missing entry in CHANGELOG.md
+
 ## Version 5.7.5
 
 - Fix for unwanted offset in source map data
