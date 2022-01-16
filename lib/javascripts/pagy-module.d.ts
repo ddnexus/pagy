@@ -20,7 +20,6 @@ interface NavElement extends Element {
 declare const Pagy: {
     version: string;
     init(arg?: Element | never): void;
-    initWarn(el: Element, err: unknown): void;
     initNav(el: NavElement, [tags, sequels, labelSequels, trimParam]: NavArgs): void;
     rjsObserver: ResizeObserver;
     initCombo(el: Element, [link, trimParam]: ComboArgs): void;

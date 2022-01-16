@@ -30,13 +30,11 @@ const Pagy = {
                 } else if (keyword === "selector") {
                     Pagy.initSelector(el, args as SelectorArgs);
                 } else {
-                    Pagy.initWarn(el, `Illegal PagyJSON keyword: expected "nav"|"combo"|"selector", got "${keyword}"`);
+                    console.warn("Skipped Pagy.init() for: %o\nUnknown keyword '%s'", el, keyword);
                 }
-            } catch (err) { Pagy.initWarn(el, err) }
+            } catch (err) { console.warn("Skipped Pagy.init() for: %o\n%s", el, err) }
         }
     },
-
-    initWarn(el:Element, err:unknown) { console.warn("Pagy.init() skipped element: %o\n%s", el, err) },
 
     // Init the *_nav_js helpers
     initNav(el:NavElement, [tags, sequels, labelSequels, trimParam]:NavArgs) {
