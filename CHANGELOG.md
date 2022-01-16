@@ -18,6 +18,11 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.8.0
+
+- The JSON in data-pagy attributes is base64 encoded: it is smaller than HTML escaped and it avoids crawlers to follow look-alike links
+- Removed redundant PagyJSON type
+
 ## Version 5.7.6
 
 - Updated Gemfile.lock and package-lock.json

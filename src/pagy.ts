@@ -13,7 +13,7 @@ interface LabelSequels { readonly [width:string]: string[] }
 interface NavElement extends Element { pagyRender(): void }
 
 const Pagy = {
-    version: "5.7.6",
+    version: "5.8.0",
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
     init(arg?:Element|never) {
