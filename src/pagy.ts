@@ -15,13 +15,13 @@ interface NavElement extends Element { pagyRender(): void }
 const Pagy = {
     version: "5.7.6",
 
-    // Scan for "data-pagy-json" elements, parse their JSON content and call their init functions
+    // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
     init(arg?:Element|never) {
         const target   = arg instanceof Element ? arg : document;
-        const elements = target.querySelectorAll("[data-pagy-json]");
+        const elements = target.querySelectorAll("[data-pagy]");
         for (const el of elements) {
             try {
-                const [keyword, ...args] = JSON.parse(el.getAttribute("data-pagy-json") as string);
+                const [keyword, ...args] = JSON.parse(atob(el.getAttribute("data-pagy") as string)); // base64 JSON -> Array
                 if (keyword === "nav") {
                     Pagy.initNav(el as NavElement, args as NavArgs);
                 } else if (keyword === "combo") {

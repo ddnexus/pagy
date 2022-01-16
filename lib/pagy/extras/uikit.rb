@@ -37,7 +37,7 @@ class Pagy # :nodoc:
                'after'  => pagy_uikit_next_html(pagy, link) }
 
       %(<ul#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-uikit-nav-js uk-pagination uk-flex-center" #{
-        pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></ul>)
+        pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></ul>)
     end
 
     # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the pagy.js file
@@ -50,7 +50,7 @@ class Pagy # :nodoc:
                     p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
 
       %(<ul#{p_id} class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" #{
-          pagy_json_attr pagy, :combo, pagy_marked_link(link)
+          pagy_data(pagy, :combo, pagy_marked_link(link))
         }>#{
           pagy_uikit_prev_html pagy, link
         }<li>#{

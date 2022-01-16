@@ -10,10 +10,10 @@ require_relative '../../mock_helpers/app'
 describe 'pagy/extras/frontend_helpers_oj' do
   let(:app) { MockApp.new(params: {}) }
 
-  describe '#pagy_json_attr' do
+  describe '#pagy_data' do
     it 'uses oj' do
-      _(app.pagy_json_attr(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch
-      _(app.pagy_json_attr(Pagy.new(count: 10, trim_extra: true), :test_function, 'some-string', 123, true)).must_rematch
+      _(app.pagy_data(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch
+      _(app.pagy_data(Pagy.new(count: 10, trim_extra: true), :test_function, 'some-string', 123, true)).must_rematch
     end
   end
 

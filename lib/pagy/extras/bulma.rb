@@ -45,7 +45,7 @@ class Pagy # :nodoc:
                'after'  => '</ul>' }
 
       %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bulma-nav-js pagination is-centered" aria-label="pagination" #{
-        pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
+        pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination for bulma: it returns a nav and a JSON tag used by the pagy.js file
@@ -59,7 +59,7 @@ class Pagy # :nodoc:
 
       html = %(<nav#{p_id} class="pagy-bulma-combo-nav-js" aria-label="pagination">)
       %(#{html}<div class="field is-grouped is-grouped-centered" role="group" #{
-          pagy_json_attr pagy, :combo, pagy_marked_link(link)}>#{
+          pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           if (p_prev  = pagy.prev)
             %(<p class="control">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'class="button" aria-label="previous page"'}</p>)
           else

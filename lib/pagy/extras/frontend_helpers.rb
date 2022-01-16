@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'digest'
+require 'base64'
 
 class Pagy # :nodoc:
   DEFAULT[:steps] = false # default false will use {0 => @vars[:size]}
@@ -44,17 +44,19 @@ class Pagy # :nodoc:
     # Additions for the Frontend
     module Frontend
       if defined?(Oj)
-        # Return a script tag with the JSON-serialized args generated with the faster oj gem
-        def pagy_json_attr(pagy, *args)
+        # Return a data tag with the base64 encoded JSON-serialized args generated with the faster oj gem
+        # Base64 encoded JSON is smaller than HTML escaped JSON
+        def pagy_data(pagy, *args)
           args << pagy.vars[:page_param] if pagy.vars[:trim_extra]
-          %(data-pagy-json="#{Oj.dump(args, mode: :strict).gsub('"', '&quot;')}")
+          %(data-pagy="#{Base64.strict_encode64(Oj.dump(args, mode: :strict))}")
         end
       else
         require 'json'
-        # Return a script tag with the JSON-serialized args generated with the slower to_json
-        def pagy_json_attr(pagy, *args)
+        # Return a data tag with the base64 encoded JSON-serialized args generated with the slower to_json
+        # Base64 encoded JSON is smaller than HTML escaped JSON
+        def pagy_data(pagy, *args)
           args << pagy.vars[:page_param] if pagy.vars[:trim_extra]
-          %(data-pagy-json="#{args.to_json.gsub('"', '&quot;')}")
+          %(data-pagy="#{Base64.strict_encode64(args.to_json)}")
         end
       end
 
