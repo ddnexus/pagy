@@ -1,4 +1,3 @@
-type PagyJSON     = readonly ["nav", ...NavArgs] | ["combo", ...ComboArgs] | ["selector", ...SelectorArgs]
 type NavArgs      = readonly [Tags, Sequels, null|LabelSequels, string?]
 type ComboArgs    = readonly [string, string?]
 type SelectorArgs = readonly [number, string, string?]
@@ -20,20 +19,19 @@ const Pagy = {
     init(arg?:Element|never) {
         const target   = arg instanceof Element ? arg : document;
         const elements = target.querySelectorAll("[data-pagy-json]");
-        for (const element of elements) {
+        for (const el of elements) {
             try {
-                const jsonString         = element.getAttribute("data-pagy-json") as string;
-                const [keyword, ...args] = JSON.parse(jsonString) as PagyJSON;
+                const [keyword, ...args] = JSON.parse(el.getAttribute("data-pagy-json") as string);
                 if (keyword === "nav") {
-                    Pagy.initNav(element as NavElement, args as NavArgs);
+                    Pagy.initNav(el as NavElement, args as NavArgs);
                 } else if (keyword === "combo") {
-                    Pagy.initCombo(element, args as ComboArgs);
+                    Pagy.initCombo(el, args as ComboArgs);
                 } else if (keyword === "selector") {
-                    Pagy.initSelector(element, args as SelectorArgs);
+                    Pagy.initSelector(el, args as SelectorArgs);
                 } else {
-                    Pagy.initWarn(element, `Illegal PagyJSON keyword: expected "nav"|"combo"|"selector", got "${keyword}"`);
+                    Pagy.initWarn(el, `Illegal PagyJSON keyword: expected "nav"|"combo"|"selector", got "${keyword}"`);
                 }
-            } catch (err) { Pagy.initWarn(element, err) }
+            } catch (err) { Pagy.initWarn(el, err) }
         }
     },
 
