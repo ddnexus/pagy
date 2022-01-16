@@ -41,7 +41,7 @@ class Pagy # :nodoc:
                'after'  => %(#{pagy_bootstrap_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bootstrap-nav-js" aria-label="pager" #{
-        pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
+        pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
     end
 
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the pagy.js file
@@ -55,7 +55,7 @@ class Pagy # :nodoc:
                     p_pages.to_s.length + 1}rem;">)
 
       %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group" role="group" #{
-          pagy_json_attr pagy, :combo, pagy_marked_link(link)}>#{
+          pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           if (p_prev = pagy.prev)
             link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous" class="prev btn btn-primary"'
           else

@@ -38,7 +38,7 @@ class Pagy # :nodoc:
                'after'  => pagy_semantic_next_html(pagy, link) }
 
       %(<div#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-semantic-nav-js ui pagination menu" role="navigation" #{
-        pagy_json_attr(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
+        pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the pagy.js file
@@ -51,7 +51,7 @@ class Pagy # :nodoc:
                     p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem; margin: 0 0.3rem">)
 
       %(<div#{p_id} class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" #{
-          pagy_json_attr pagy, :combo, pagy_marked_link(link)}>#{
+          pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           pagy_semantic_prev_html pagy, link
         }<div class="pagy-combo-input item">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages
