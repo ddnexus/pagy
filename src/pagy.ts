@@ -13,7 +13,7 @@ interface LabelSequels { readonly [width:string]: string[] }
 interface NavElement extends Element { pagyRender(): void }
 
 const Pagy = {
-    version: "5.8.0",
+    version: "5.8.1",
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
     init(arg?:Element|never) {
@@ -21,7 +21,8 @@ const Pagy = {
         const elements = target.querySelectorAll("[data-pagy]");
         for (const el of elements) {
             try {
-                const [keyword, ...args] = JSON.parse(atob(el.getAttribute("data-pagy") as string)); // base64 JSON -> Array
+                const uint8array         = Uint8Array.from(atob(el.getAttribute("data-pagy") as string), c => c.charCodeAt(0));
+                const [keyword, ...args] = JSON.parse(new TextDecoder().decode(uint8array)); // base64-utf8 JSON -> Array
                 if (keyword === "nav") {
                     Pagy.initNav(el as NavElement, args as NavArgs);
                 } else if (keyword === "combo") {
@@ -29,13 +30,11 @@ const Pagy = {
                 } else if (keyword === "selector") {
                     Pagy.initSelector(el, args as SelectorArgs);
                 } else {
-                    Pagy.initWarn(el, `Illegal PagyJSON keyword: expected "nav"|"combo"|"selector", got "${keyword}"`);
+                    console.warn("Skipped Pagy.init() for: %o\nUnknown keyword '%s'", el, keyword);
                 }
-            } catch (err) { Pagy.initWarn(el, err) }
+            } catch (err) { console.warn("Skipped Pagy.init() for: %o\n%s", el, err) }
         }
     },
-
-    initWarn(el:Element, err:unknown) { console.warn("Pagy.init() skipped element: %o\n%s", el, err) },
 
     // Init the *_nav_js helpers
     initNav(el:NavElement, [tags, sequels, labelSequels, trimParam]:NavArgs) {
