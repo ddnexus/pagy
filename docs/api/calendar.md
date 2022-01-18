@@ -21,12 +21,13 @@ Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their 
 
 The following variables are specific to `Pagy::Calendar::*` instances: 
 
-| Variable  | Description                                                                                               | Default |
-|:----------|:----------------------------------------------------------------------------------------------------------|:--------|
-| `:period` | Required two items Array with the calendar starting and ending local `Time` objects                       | `nil`   |
-| `:order`  | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`  |
-| `:format` | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |         |
-| `:offset` | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) (`Pagy::Calendar::Week` only)               | `0`     |
+| Variable        | Description                                                                                               | Default |
+|:----------------|:----------------------------------------------------------------------------------------------------------|:--------|
+| `:in_time_zone` | Required proc to convert UTC time to local time (e.g. `->(utc) { utc.in_time_zone.to_time }`              | `nil`   |
+| `:period`       | Required two items Array with the calendar starting and ending UTC `Time` objects                         | `nil`   |
+| `:order`        | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`  |
+| `:format`       | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |         |
+| `:offset`       | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) (`Pagy::Calendar::Week` only)               | `0`     |
 
 **Notice**: For the `Pagy::Calendar::Quarter` the `:format` variable can contain a non-standard `%q` format which is substituted with the quarter (1-4).
 
@@ -38,8 +39,8 @@ The calendar defaults are not part of the `Pagy::DEFAULT` variables. Each subcla
 
 | Reader   | Description                                                    |
 |:---------|:---------------------------------------------------------------|
-| `from`   | The local `Time` of the start of the current page              |
-| `to`     | The local `Time` of the end of the current page                |
+| `from`   | The UTC `Time` of the start of the current page                |
+| `to`     | The UTC `Time` of the end of the current page                  |
 | `offset` | The `:offset` variable of the `Pagy::Calendar::Week` instances |
 | `order`  | The `:order` variable                                          |
 
@@ -54,15 +55,7 @@ The cases for first and last pages have no effect when you use the `from`/`to` a
 
 This classes use only the ruby `Time` class for all their time calculations for great performance without dependencies.
 
-Since they are meant to be used in the UI, they have to do their internal calculation using the user/server local time in order to make sense for the UI. For that reason their input/output is always local time.
-
-If you use `ActiveRecord`, your app should set the `Time.zone` for your user or your server. Then you can convert an UTC time from the storage to a local `Time` object for the calendar very easily with:
-
-```ruby
-utc_time.in_time_zone.to_time
-```
-
-You can also convert from local `Time` object to a UTC time with `local_time.utc`, however, when you use it as an argument in a scope, `ActiveRecord` converts it for you.
+All the`Pagy::Calendar::*` input, output and internal calculations are represented in UTC Time. However since the helpers are meant to be used in the UI, you have to provide the `:in_time_zone` Proc variable to convert the UTC time argument and return the local time. For example: `in_time_zone: ->(utc) { utc.in_time_zone.to_time }`. In the rare case you don't use time conversion at all you can set the proc to `->(t){t}` (i.e. returning the same time that has been passed).
 
 For general usage without `ActiveRecord` you can simply use the `Time` methods to convert `utc_time.getlocal(utc_offset)` and `local_time.utc`.
 

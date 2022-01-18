@@ -31,9 +31,10 @@ class Pagy # :nodoc:
 
         page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
         units.each do |unit|  # set all the :page_param vars for later deletion
-          unit_page_param         = :"#{unit}_#{page_param}"
-          conf[unit][:page_param] = unit_page_param
-          conf[unit][:page]       = params[unit_page_param]
+          unit_page_param           = :"#{unit}_#{page_param}"
+          conf[unit][:page_param]   = unit_page_param
+          conf[unit][:page]         = params[unit_page_param]
+          conf[unit][:in_time_zone] = conf[:in_time_zone]
         end
         calendar = {}
         last_obj = nil
