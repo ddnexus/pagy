@@ -15,7 +15,7 @@ If you upgrade from version `< 5.0.0` see the following:
 Still supported in version `5.x` but not supported from `6.0` on:
 
 - `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [How to customize the params](https://ddnexus.github.io/pagy/how-to#customize-the-params).
-
+- `Pagy::Calendar::*` instances: The `:period` variable must contain UTC Time objects (it was local time), besides you must set the `:in_local_time` proc variable that receives a UTC object and returns a local Time object. See [Calendar extra](https://ddnexus.github.io/pagy/extras/calendar).
 <hr>
 
 ## Version 5.8.1

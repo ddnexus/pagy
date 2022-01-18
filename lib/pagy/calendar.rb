@@ -36,7 +36,8 @@ class Pagy # :nodoc:
     # The label for any page (it can pass along the I18n gem opts when it's used with the i18n extra)
     def label_for(page, opts = {})
       opts[:format] ||= @vars[:format]
-      localize(starting_time_for(page.to_i), opts)  # page could be a string
+      local = @in_time_zone.call(starting_time_for(page.to_i))
+      localize(local, opts)  # page could be a string
     end
 
     protected
@@ -48,6 +49,18 @@ class Pagy # :nodoc:
             unless %i[asc desc].include?(@order = @vars[:order])
 
       @starting, @ending = @vars[:period]
+      @in_time_zone      = @vars[:in_time_zone]
+      return deprecated_setup_unit_vars unless @in_time_zone.is_a?(Proc)  # remove in 6.0
+      raise VariableError.new(self, :in_time_zone, 'to be a proc', @in_time_zone) unless @in_time_zone.is_a?(Proc)
+      raise VariableError.new(self, :period, 'to be a an Array of min and max UTC Time instances', @vars[:period]) \
+          unless @starting.is_a?(Time) && @ending.is_a?(Time) && @starting.utc? && @ending.utc? && @starting <= @ending
+    end
+
+    # Deprecated way of passing period as local time
+    def deprecated_setup_unit_vars  # remove in 6.0
+      Warning.warn '[PAGY WARNING] You must set the :in_time_zone Proc variable for accurate calculation and labelling! ' \
+                   'See https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md#deprecations'
+      @in_time_zone = ->(time) { time }
       raise VariableError.new(self, :period, 'to be a an Array of min and max local Time instances', @vars[:period]) \
             unless @starting.is_a?(Time) && @ending.is_a?(Time) && !@starting.utc? && !@ending.utc? && @starting <= @ending \
                    && (@utc_offset = @starting.utc_offset) == @ending.utc_offset
@@ -66,7 +79,8 @@ class Pagy # :nodoc:
 
     # Create a new local time at the beginning of the day
     def new_time(year, month = 1, day = 1)
-      Time.new(year, month, day, 0, 0, 0, @utc_offset)
+      # remove condition in 6.0
+      @utc_offset ? Time.new(year, month, day, 0, 0, 0, @utc_offset) : Time.utc(year, month, day, 0, 0, 0)
     end
 
     # Period of the active page (used internally for nested units)
