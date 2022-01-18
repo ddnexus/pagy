@@ -47,6 +47,10 @@ jobs:
               BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
               CODECOV: true
               CHECK_MANIFEST: true
+          - ruby-version: '3.1'
+            env:
+              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
+              RUBYOPT: '--disable-error_highlight'
       fail-fast: false
     env: ${{ matrix.env }}
 
