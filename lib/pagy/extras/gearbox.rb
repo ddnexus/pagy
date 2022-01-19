@@ -37,6 +37,17 @@ class Pagy # :nodoc:
                           [pages, 1].max
                         end)
     end
+
+    def setup_offset_var
+      return super if !@vars[:gearbox_extra] || @vars[:items_extra]
+
+      gearbox_items = @vars[:gearbox_items]
+      @offset       = if @count > (sum = gearbox_items.sum)
+                        sum + (gearbox_items.last * (@page - gearbox_items.count - 1)) + @outset  # may be already set
+                      else
+                        gearbox_items[0, @page - 1].sum + @outset
+                      end
+    end
   end
   prepend GearboxExtra
 end
