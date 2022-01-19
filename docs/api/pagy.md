@@ -109,7 +109,7 @@ They are all integers:
 
 | Variable      | Description                                                                                                                                                                                          | Default            |
 |:--------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
-| `:size`       | TThe size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [How to control the page links](../how-to.md#control-the-page-links))_ | `[1,4,4,1]`        |
+| `:size`       | The size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [How to control the page links](../how-to.md#control-the-page-links))_ | `[1,4,4,1]`        |
 | `:page_param` | The name of the page param name used in the url. _(see [How to customize the page param](../how-to.md#customize-the-page-param))_                                                                    | `:page`            |
 | `:params`     | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](../how-to.md#customize-the-params))_                     | `{}`               |
 | `:fragment`   | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](../how-to.md#customize-the-params))_                                                        | `""`               |
