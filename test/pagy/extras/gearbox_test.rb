@@ -31,6 +31,30 @@ describe 'pagy/extras/gearbox' do
       _(Pagy.new(count: 103, page: 3,  gearbox_items: [3, 10]).items).must_equal 10
       _(Pagy.new(count: 103, page: 11, gearbox_items: [3, 10]).items).must_equal 10
     end
+    it "checks the offsets in pagy" do
+      _(Pagy.new(count: 2, page: 1,  gearbox_items: [3, 10]).offset).must_equal 0
+      _(Pagy.new(count: 3, page: 1,  gearbox_items: [3, 10]).offset).must_equal 0
+      _(Pagy.new(count: 4, page: 1,  gearbox_items: [3, 10]).offset).must_equal 0
+      _(Pagy.new(count: 10, page: 2,  gearbox_items: [3, 10]).offset).must_equal 3
+      _(Pagy.new(count: 13, page: 2,  gearbox_items: [3, 10]).offset).must_equal 3
+      _(Pagy.new(count: 20, page: 2,  gearbox_items: [3, 10]).offset).must_equal 3
+    end
+    it "checks to in pagy" do
+      _(Pagy.new(count: 2, page: 1,  gearbox_items: [3, 10]).to).must_equal 2
+      _(Pagy.new(count: 3, page: 1,  gearbox_items: [3, 10]).to).must_equal 3
+      _(Pagy.new(count: 4, page: 1,  gearbox_items: [3, 10]).to).must_equal 3
+      _(Pagy.new(count: 10, page: 2,  gearbox_items: [3, 10]).to).must_equal 10
+      _(Pagy.new(count: 14, page: 2,  gearbox_items: [3, 10]).to).must_equal 13
+      _(Pagy.new(count: 14, page: 3,  gearbox_items: [3, 10]).to).must_equal 14
+    end
+    it "checks from in pagy" do
+      _(Pagy.new(count: 2, page: 1,  gearbox_items: [3, 10]).from).must_equal 1
+      _(Pagy.new(count: 3, page: 1,  gearbox_items: [3, 10]).from).must_equal 1
+      _(Pagy.new(count: 4, page: 1,  gearbox_items: [3, 10]).from).must_equal 1
+      _(Pagy.new(count: 10, page: 2,  gearbox_items: [3, 10]).from).must_equal 4
+      _(Pagy.new(count: 14, page: 2,  gearbox_items: [3, 10]).from).must_equal 4
+      _(Pagy.new(count: 14, page: 3,  gearbox_items: [3, 10]).from).must_equal 14
+    end
     it 'can skips gearbox in Pagy::Countless' do
       _(Pagy::Countless.new(count: 0, page: 1, items_extra: true).items).must_equal 20
       _(Pagy::Countless.new(count: 0, page: 1, gearbox_extra: false).items).must_equal 20
