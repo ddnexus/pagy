@@ -6,6 +6,8 @@ require 'pagy/extras/calendar'
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
+Time.zone = 'GMT'
+
 def app(**opts)
   MockApp::Calendar.new(**opts)
 end
@@ -101,7 +103,7 @@ describe 'pagy/extras/calendar' do
     it 'selects :quarter for last page' do
       calendar, _pagy, entries = app(params: { quarter_page: 9 }).send(:pagy_calendar, @collection,
                                                                        quarter: { size: [1, 4, 4, 1] },
-                                                                      pagy: { items: 600 })
+                                                                       pagy: { items: 600 })
       _(calendar[:quarter].series).must_equal [1, :gap, 5, 6, 7, 8, "9"]
       _(calendar[:quarter].pages).must_equal 9
       _(calendar[:quarter].prev).must_equal 8

@@ -3,8 +3,9 @@
 require_relative '../test_helper'
 require 'pagy/calendar'
 
+Time.zone = 'EST'
+
 def pagy(unit: :month, **vars)
-  Time.zone = 'Eastern Time (US & Canada)'
   default = { period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
               first_wday: :sunday }
   Pagy::Calendar.send(:create, unit, default.merge(vars))
