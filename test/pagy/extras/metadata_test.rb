@@ -33,6 +33,7 @@ describe 'pagy/extras/metadata' do
   end
 
   describe '#pagy_metadata for Pagy::Calendar' do
+    Time.zone = 'EST'
     def calendar_app(**opts)
       MockApp::Calendar.new(**opts)
     end

@@ -1,4 +1,11 @@
 ---
+"[1] pagy/extras/metadata::#pagy_metadata for Pagy#test_0004_returns only specific metadata":
+  :scaffold_url: "/foo?page=__pagy_page__"
+  :page: 3
+  :count: 1000
+  :prev: 2
+  :next: 4
+  :pages: 50
 "[1] pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy metadata":
   :scaffold_url: "/foo?page=__pagy_page__"
   :first_url: "/foo?page=1"
@@ -94,18 +101,18 @@
 - :prev
 - :next
 - :series
-"[1] pagy/extras/metadata::#pagy_metadata for Pagy#test_0004_returns only specific metadata":
-  :scaffold_url: "/foo?page=__pagy_page__"
-  :page: 3
-  :count: 1000
-  :prev: 2
-  :next: 4
-  :pages: 50
 "[1] pagy/extras/metadata::#pagy_metadata for Pagy::Calendar#test_0002_returns only specific metadata for Pagy::Calendar":
   :scaffold_url: "/foo?month_page=__pagy_page__"
   :page: 3
-  :from: 2021-12-01 00:00:00.000000000 Z
-  :to: 2022-01-01 00:00:00.000000000 Z
+  :from: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2021-12-01 05:00:00.000000000 Z
+    zone: &1 !ruby/object:ActiveSupport::TimeZone
+      name: EST
+    time: 2021-12-01 00:00:00.000000000 Z
+  :to: !ruby/object:ActiveSupport::TimeWithZone
+    utc: 2022-01-01 05:00:00.000000000 Z
+    zone: *1
+    time: 2022-01-01 00:00:00.000000000 Z
   :prev: 2
   :next: 4
   :pages: 26

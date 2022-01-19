@@ -55,7 +55,6 @@
 #
 # Pagy::Calendar::Week::DEFAULT[:order]     = :asc        # Time direction of pagination
 # Pagy::Calendar::Week::DEFAULT[:format]    = '%Y-%W'     # strftime format
-# Pagy::Calendar::Week::DEFAULT[:offset]    = 0           # Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday)
 #
 # Pagy::Calendar::Day::DEFAULT[:order]      = :asc        # Time direction of pagination
 # Pagy::Calendar::Day::DEFAULT[:format]     = '%Y-%m-%d'  # strftime format

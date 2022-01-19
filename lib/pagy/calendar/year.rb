@@ -13,16 +13,16 @@ class Pagy # :nodoc:
       # Setup the calendar variables
       def setup_unit_vars
         super
-        @initial = new_time(@starting.year)
-        @final   = new_time(@ending.year + 1)
+        @initial = @starting.beginning_of_year
+        @final   = @ending.next_year.beginning_of_year
         @pages   = @last = @final.year - @initial.year
         @from    = starting_time_for(@page)
-        @to      = new_time(@from.year + 1)
+        @to      = @from.next_year
       end
 
       # Starting time for the page
       def starting_time_for(page)
-        new_time(@initial.year + offset_units_for(page))
+        @initial.years_since(offset_units_for(page))
       end
     end
   end
