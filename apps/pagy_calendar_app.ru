@@ -26,6 +26,7 @@ gemfile true do
   gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
+  gem 'activesupport'
 end
 
 # Edit this section adding/removing the extras and DEFAULT as needed

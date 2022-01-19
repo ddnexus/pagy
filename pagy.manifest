@@ -40,7 +40,6 @@ lib/pagy/backend.rb
 lib/pagy/calendar.rb
 lib/pagy/calendar/day.rb
 lib/pagy/calendar/month.rb
-lib/pagy/calendar/month_mixin.rb
 lib/pagy/calendar/quarter.rb
 lib/pagy/calendar/week.rb
 lib/pagy/calendar/year.rb

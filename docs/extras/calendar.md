@@ -157,26 +157,26 @@ Take a look at the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/m
 
 **This method must be implemented by the application.**
 
-It receives a `collection` argument that must not be changed by the method, but can be used to return the starting and ending local Time objects array defining the calendar `:period`. See the [Pagy::Calendar Variables](../api/calendar.md#variables) for details.
+It receives a `collection` argument that must not be changed by the method, but can be used to return the starting and ending local `Time`/`TimeWithZone` objects array defining the calendar `:period`. See the [Pagy::Calendar Variables](../api/calendar.md#variables) for details.
 
 Depending on the type of storage, the `collection` argument can contain a different kind of object:
 
 #### ActiveRecord managed storage
 
-If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object. You can use it to return the starting and ending local `Time` objects array. Here are a few examples with the `created_at` field (but you can pull the time from anywhere):
+If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object. You can use it to return the starting and ending local `Time`/`TimeWithZone` objects array. Here are a few examples with the `created_at` field (but you can pull the time from anywhere):
 
 ```ruby
 # Simpler version (2 queries)
 def pagy_calendar_period(collection)
   starting = collection.minimum('created_at')
   ending   = collection.maximum('created_at') 
-  [starting.in_time_zone.to_time, ending.in_time_zone.to_time]
+  [starting.in_time_zone, ending.in_time_zone]
 end
 
 # Faster version with manual pluck (1 query)
 def pagy_calendar_period(collection)
   minmax = collection.pluck('MIN(created_at)', 'MAX(created_at)').first
-  minmax.map { |time| Time.parse(time).in_time_zone.to_time }
+  minmax.map { |time| Time.parse(time).in_time_zone }
 end
 
 # Fastest version (no queries)
@@ -184,7 +184,7 @@ end
 # filter the collection by the param before passing it to `pagy_calendar`. 
 # In this example you just use the :starting and :ending params to return the period
 def pagy_calendar_period(collection)
-  params.fetch_values(:starting, :ending).map { |time| Time.parse(time).in_time_zone.to_time }
+  params.fetch_values(:starting, :ending).map { |time| Time.parse(time).in_time_zone }
 end
 ```
 
@@ -194,7 +194,7 @@ See also [Time conversion](../api/calendar.md#time-conversions) for details.
 
 _If you use `ElasticSearchRails`, `Searchkick`, `Meilisearch` the `collection` argument is just the Array of the captured search arguments that you passed to the `Model.pagy_search` method. That array is what pagy uses internally to setup its variables before passing it to the standard `Model.search` method to do the actual search._
 
-So you should use what you need from the `collection` array and do your own `Model.search(...)` in order to get the starting and ending local `Time` objects array to return. 
+So you should use what you need from the `collection` array and do your own `Model.search(...)` in order to get the starting and ending local `Time`/`TimeWithZone` objects array to return. 
 
 ### pagy_calendar_filter(collection, from, to)
 
@@ -222,7 +222,7 @@ See also [Time conversion](../api/calendar.md#time-conversions) for details.
 
 _If you use `ElasticSearchRails`, `Searchkick`, `Meilisearch` the `collection` argument is just the Array of the captured search arguments that you passed to the `Model.pagy_search` method. That array is what pagy uses internally to setup its variables before passing it to the standard `Model.search` method to do the actual search._
 
-So in order to filter the actual search with the `from` and `to` local `Time` objects, you should simply return the same array with the filtering added to its relevant item. Pagy will use it to do the actual (filtered) search. 
+So in order to filter the actual search with the `from` and `to` local `Time`/`TimeWithZone` objects, you should simply return the same array with the filtering added to its relevant item. Pagy will use it to do the actual (filtered) search. 
 
 ## Customization
 

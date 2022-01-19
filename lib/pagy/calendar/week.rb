@@ -7,32 +7,32 @@ class Pagy # :nodoc:
     class Week < Calendar
       DEFAULT = { order:  :asc,      # rubocop:disable Style/MutableConstant
                   format: '%Y-%W',
-                  offset: 0 }
+                  first_wday: :monday }
+      WDAYS   = %i[sunday monday tuesday wednesday thursday friday saturday].freeze
 
       protected
 
       # Setup the calendar variables
       def setup_unit_vars
-        setup_vars(offset: 0)
         super
-        @initial = unit_starting_time_for(@starting)
-        @final   = unit_starting_time_for(@ending) + WEEK
-        @pages   = @last = (@final - @initial).to_i / WEEK
+        raise VariableError.new(self, :first_wday, "to be in #{WDAYS.inspect}", @vars[:first_wday]) \
+              unless WDAYS.include?(@vars[:first_wday])
+
+        if @vars[:offset]  # remove in pagy 6
+          Warning.warn '[PAGY WARNING] The week :offset variable has been deprecated and will be ignored from pagy 6. ' \
+                       "Set the :first_wday variable to be one of #{WDAYS.inspect} instead."
+          @vars[:first_wday] = WDAYS[@vars[:offset] || 0]
+        end
+        @initial = @starting.beginning_of_week(@vars[:first_wday])
+        @final   = @ending.next_week.beginning_of_week(@vars[:first_wday])
+        @pages   = @last = (@final - @initial).to_i / 7.days.to_i
         @from    = starting_time_for(@page)
-        @to      = @from + WEEK
+        @to      = @from + 7.days
       end
 
       # Starting time for the page
       def starting_time_for(page)
-        @initial + (offset_units_for(page) * WEEK)
-      end
-
-      private
-
-      # Unit starting time for time
-      def unit_starting_time_for(time)
-        starting_time = time - (((time.wday - @offset) * DAY) % WEEK)
-        new_time(starting_time.year, starting_time.month, starting_time.day)
+        @initial + offset_units_for(page).weeks
       end
     end
   end
