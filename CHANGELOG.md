@@ -19,6 +19,20 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.9.0
+
+- Npm and bundle update
+- Fix and refactoring of pagy calendar calculation of local time (closes #358):
+  - The `Pagy::Calendar::*` classes require ActiveSupport (temporarily added activesupport dependency that will e replaced in 6.0)
+  - The `:period` items can be `Time` or `TimeWithZone` objects (which work across DST ranges)
+  - Deprecated use of `:offset` to set the first weekday, in favour of `Date.beginning_of_week` (default to `:monday`)
+  - Added DST specific tests
+  - Fix for calculation of label quarter
+  - Updated docs and tests
+- Fix for wrong offset in gearbox extra (closes #356)
+- Reduced the public interface of pagy.js and relative files to just `version` and `init()`
+- Add Ruby 3.1 to CI (#354)
+
 ## Version 5.8.1
 
 - Shorter warning messages and minified pagy.js
