@@ -23,12 +23,12 @@ Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their 
 
 The following variables are specific to `Pagy::Calendar::*` instances: 
 
-| Variable      | Description                                                                                               | Default   |
-|:--------------|:----------------------------------------------------------------------------------------------------------|:----------|
-| `:period`     | Required two items Array with the calendar starting and ending local `Time`/`TimeWithZone`` objects       | `nil`     |
-| `:order`      | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`    |
-| `:format`     | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |           |
-| `:first_wday` | The symbol representing the first day of the week (used only by the `Pagy::Calendar::Week` class)         | `:monday` |
+| Variable      | Description                                                                                               | Default                               |
+|:--------------|:----------------------------------------------------------------------------------------------------------|:--------------------------------------|
+| `:period`     | Required two items Array with the calendar starting and ending local `Time`/`TimeWithZone`` objects       | `nil`                                 |
+| `:order`      | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`                                |
+| `:format`     | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |                                       |
+| `:first_wday` | The symbol representing the first day of the week (used only by the `Pagy::Calendar::Week` class)         | `:sunday` in 5.* `:monday` from `6.0` |
 
 **Notice**: For the `Pagy::Calendar::Quarter` the `:format` variable can contain a non-standard `%q` format which is substituted with the quarter (1-4).
 

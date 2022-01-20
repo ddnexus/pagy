@@ -15,7 +15,8 @@ If you upgrade from version `< 5.0.0` see the following:
 Still supported in version `5.x` but not supported from `6.0` on:
 
 - The `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [How to customize the params](https://ddnexus.github.io/pagy/how-to#customize-the-params).
-- The `:offset` variable used by the `Pagy::Calendar::Week`: set the `:first_wday` variable to the symbol of the first day of the week (e.g.: `first_wday: :sunday`).
+- The `:offset` variable used by the `Pagy::Calendar::Week`: set the `:first_wday` variable to the symbol of the first day of the week (e.g.: `first_wday: :sunday`) instead.
+- The `:first_wday` default is `:sunday` in `5.*` to avoid breaking apps, but it will be `:monday` from `6.0` on, in order to be consistent with the ISO-8601 standard (and Rails).
 
 <hr>
 

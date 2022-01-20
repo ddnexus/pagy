@@ -7,7 +7,7 @@ class Pagy # :nodoc:
     class Week < Calendar
       DEFAULT = { order:  :asc,      # rubocop:disable Style/MutableConstant
                   format: '%Y-%W',
-                  first_wday: :monday }
+                  first_wday: :sunday }
       WDAYS   = %i[sunday monday tuesday wednesday thursday friday saturday].freeze
 
       protected
