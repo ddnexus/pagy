@@ -54,6 +54,8 @@ class Pagy # :nodoc:
       @starting, @ending = @vars[:period]
       raise VariableError.new(self, :period, 'to be a an Array of min and max local Time instances', @vars[:period]) \
             unless @starting.is_a?(Time) && @ending.is_a?(Time) && !@starting.utc? && !@ending.utc? && @starting <= @ending
+
+      @with_zone = @starting.is_a?(ActiveSupport::TimeWithZone) # remove in 6.0 and reu]place Time in the line above
     end
 
     # Apply the strftime format to the time (overridden by the i18n extra when localization is required)

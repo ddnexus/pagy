@@ -4,10 +4,10 @@ require_relative '../test_helper'
 require 'pagy/calendar'
 
 Time.zone = 'EST'
+Date.beginning_of_week = :sunday
 
 def pagy(unit: :month, **vars)
-  default = { period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
-              first_weekday: :sunday }
+  default = { period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)] }
   Pagy::Calendar.send(:create, unit, default.merge(vars))
 end
 
@@ -27,7 +27,6 @@ describe 'pagy/calendar' do
       _ { pagy(unit: :quarter, format: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :month, format: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :week, format: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(unit: :week, first_weekday: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :day, format: :unknown) }.must_raise Pagy::VariableError
     end
   end
@@ -93,24 +92,6 @@ describe 'pagy/calendar' do
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 19)
       _(p.from).must_equal Time.zone.local(2021, 10, 17)
       _(p.to).must_equal Time.zone.local(2021, 10, 24)
-      _(p.pages).must_equal 109
-      _(p.last).must_equal 109
-    end
-    it 'computes variables for :week with offset: 1 (Monday)' do
-      p = pagy(unit: :week, first_weekday: :monday)
-      _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 18)
-      _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 20)
-      _(p.from).must_equal Time.zone.local(2021, 10, 18)
-      _(p.to).must_equal Time.zone.local(2021, 10, 25)
-      _(p.pages).must_equal 109
-      _(p.last).must_equal 109
-    end
-    it 'computes variables for :week with offset: 6 (Saturday)' do
-      p = pagy(unit: :week, first_weekday: :saturday)
-      _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 16)
-      _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 18)
-      _(p.from).must_equal Time.zone.local(2021, 10, 16)
-      _(p.to).must_equal Time.zone.local(2021, 10, 23)
       _(p.pages).must_equal 109
       _(p.last).must_equal 109
     end
@@ -189,24 +170,6 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 109
       _(p.last).must_equal 109
     end
-    it 'computes variables for :week with offset: 1 (Monday)' do
-      p = pagy(unit: :week, first_weekday: :monday, page: 2)
-      _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 18)
-      _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 20)
-      _(p.from).must_equal Time.zone.local(2021, 10, 25)
-      _(p.to).must_equal Time.zone.local(2021, 11, 1)
-      _(p.pages).must_equal 109
-      _(p.last).must_equal 109
-    end
-    it 'computes variables for :week with offset: 6 (Saturday)' do
-      p = pagy(unit: :week, first_weekday: :saturday, page: 2)
-      _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 16)
-      _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 18)
-      _(p.from).must_equal Time.zone.local(2021, 10, 23)
-      _(p.to).must_equal Time.zone.local(2021, 10, 30)
-      _(p.pages).must_equal 109
-      _(p.last).must_equal 109
-    end
     it 'computes variables for :day' do
       p = pagy(unit: :day, page: 2)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 21)
@@ -261,28 +224,6 @@ describe 'pagy/calendar' do
       _(pagy(unit: :week, page: 109, cycle: true).next).must_equal 1
       _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
     end
-    it 'computes variables for :week with offset: 1 (Monday)' do
-      p = pagy(unit: :week, first_weekday: :monday, page: 109)
-      _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 18)
-      _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 20)
-      _(p.from).must_equal Time.zone.local(2023, 11, 13)
-      _(p.to).must_equal Time.zone.local(2023, 11, 20)
-      _(p.pages).must_equal 109
-      _(p.last).must_equal 109
-      _(pagy(unit: :week, page: 109, cycle: true).next).must_equal 1
-      _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
-    end
-    it 'computes variables for :week with offset: 6 (Saturday)' do
-      p = pagy(unit: :week, first_weekday: :saturday, page: 109)
-      _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 16)
-      _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 18)
-      _(p.from).must_equal Time.zone.local(2023, 11, 11)
-      _(p.to).must_equal Time.zone.local(2023, 11, 18)
-      _(p.pages).must_equal 109
-      _(p.last).must_equal 109
-      _(pagy(unit: :week, page: 109, cycle: true).next).must_equal 1
-      _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
-    end
     it 'computes variables for :day' do
       p = pagy(unit: :day, page: 754)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 21)
@@ -329,18 +270,14 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe 'Deprecated :offset support' do
-    it 'sets the :first_weekday from :offset' do
-      p = pagy(unit: :week, offset: 0)
-      _(p.vars[:first_weekday]).must_equal :sunday
-      p = pagy(unit: :week, offset: 1)
-      _(p.vars[:first_weekday]).must_equal :monday
-      p = pagy(unit: :week, offset: 6)
-      _(p.vars[:first_weekday]).must_equal :saturday
+  describe 'Deprecated support' do
+    it 'sets the beginning_of_week from :offset' do
+      pagy(unit: :week, offset: 0)
+      _(Date.beginning_of_week).must_equal :sunday
     end
-    it 'does not break old app with :first_weekday default' do
-      p = pagy(unit: :week)
-      _(p.vars[:first_weekday]).must_equal :sunday
+    it 'works with Time objects' do
+      Pagy::Calendar.send(:create, :week, period: [Time.new(2021, 10, 21, 13, 18, 23, 0),
+                                                   Time.new(2023, 11, 13, 15, 43, 0, 0)])
     end
   end
 end

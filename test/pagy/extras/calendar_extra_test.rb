@@ -7,6 +7,7 @@ require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
 Time.zone = 'GMT'
+Date.beginning_of_week = :sunday
 
 def app(**opts)
   MockApp::Calendar.new(**opts)
