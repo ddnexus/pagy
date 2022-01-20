@@ -7,7 +7,7 @@ Time.zone = 'EST'
 
 def pagy(unit: :month, **vars)
   default = { period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
-              first_wday: :sunday }
+              first_weekday: :sunday }
   Pagy::Calendar.send(:create, unit, default.merge(vars))
 end
 
@@ -96,7 +96,7 @@ describe 'pagy/calendar' do
       _(p.last).must_equal 109
     end
     it 'computes variables for :week with offset: 1 (Monday)' do
-      p = pagy(unit: :week, first_wday: :monday)
+      p = pagy(unit: :week, first_weekday: :monday)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 18)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 20)
       _(p.from).must_equal Time.zone.local(2021, 10, 18)
@@ -105,7 +105,7 @@ describe 'pagy/calendar' do
       _(p.last).must_equal 109
     end
     it 'computes variables for :week with offset: 6 (Saturday)' do
-      p = pagy(unit: :week, first_wday: :saturday)
+      p = pagy(unit: :week, first_weekday: :saturday)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 16)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 18)
       _(p.from).must_equal Time.zone.local(2021, 10, 16)
@@ -189,7 +189,7 @@ describe 'pagy/calendar' do
       _(p.last).must_equal 109
     end
     it 'computes variables for :week with offset: 1 (Monday)' do
-      p = pagy(unit: :week, first_wday: :monday, page: 2)
+      p = pagy(unit: :week, first_weekday: :monday, page: 2)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 18)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 20)
       _(p.from).must_equal Time.zone.local(2021, 10, 25)
@@ -198,7 +198,7 @@ describe 'pagy/calendar' do
       _(p.last).must_equal 109
     end
     it 'computes variables for :week with offset: 6 (Saturday)' do
-      p = pagy(unit: :week, first_wday: :saturday, page: 2)
+      p = pagy(unit: :week, first_weekday: :saturday, page: 2)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 16)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 18)
       _(p.from).must_equal Time.zone.local(2021, 10, 23)
@@ -261,7 +261,7 @@ describe 'pagy/calendar' do
       _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
     end
     it 'computes variables for :week with offset: 1 (Monday)' do
-      p = pagy(unit: :week, first_wday: :monday, page: 109)
+      p = pagy(unit: :week, first_weekday: :monday, page: 109)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 18)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 20)
       _(p.from).must_equal Time.zone.local(2023, 11, 13)
@@ -272,7 +272,7 @@ describe 'pagy/calendar' do
       _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
     end
     it 'computes variables for :week with offset: 6 (Saturday)' do
-      p = pagy(unit: :week, first_wday: :saturday, page: 109)
+      p = pagy(unit: :week, first_weekday: :saturday, page: 109)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 10, 16)
       _(p.instance_variable_get(:@final)).must_equal Time.zone.local(2023, 11, 18)
       _(p.from).must_equal Time.zone.local(2023, 11, 11)
