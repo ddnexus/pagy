@@ -21,7 +21,7 @@ class Pagy # :nodoc:
         if @vars[:offset]  # remove in pagy 6
           Warning.warn '[PAGY WARNING] The week :offset variable has been deprecated and will be ignored from pagy 6. ' \
                        "Set the :first_weekday variable to be one of #{WEEKDAYS.inspect} instead."
-          @vars[:first_weekday] = WEEKDAYS[@vars[:offset] || 0]
+          @vars[:first_weekday] = WEEKDAYS[@vars[:offset]]
         end
         @initial = @starting.beginning_of_week(@vars[:first_weekday])
         @final   = @ending.next_week.beginning_of_week(@vars[:first_weekday])

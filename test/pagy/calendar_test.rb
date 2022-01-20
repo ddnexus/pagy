@@ -27,6 +27,7 @@ describe 'pagy/calendar' do
       _ { pagy(unit: :quarter, format: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :month, format: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :week, format: :unknown) }.must_raise Pagy::VariableError
+      _ { pagy(unit: :week, first_weekday: :unknown) }.must_raise Pagy::VariableError
       _ { pagy(unit: :day, format: :unknown) }.must_raise Pagy::VariableError
     end
   end
@@ -325,6 +326,21 @@ describe 'pagy/calendar' do
     end
     it 'raises direct instantiation' do
       _ { Pagy::Calendar.new({}) }.must_raise Pagy::InternalError
+    end
+  end
+
+  describe 'Deprecated :offset support' do
+    it 'sets the :first_weekday from :offset' do
+      p = pagy(unit: :week, offset: 0)
+      _(p.vars[:first_weekday]).must_equal :sunday
+      p = pagy(unit: :week, offset: 1)
+      _(p.vars[:first_weekday]).must_equal :monday
+      p = pagy(unit: :week, offset: 6)
+      _(p.vars[:first_weekday]).must_equal :saturday
+    end
+    it 'does not break old app with :first_weekday default' do
+      p = pagy(unit: :week)
+      _(p.vars[:first_weekday]).must_equal :sunday
     end
   end
 end
