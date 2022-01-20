@@ -6,6 +6,9 @@ require 'pagy/extras/calendar'
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
+Time.zone = 'GMT'
+Date.beginning_of_week = :sunday
+
 def app(**opts)
   MockApp::Calendar.new(**opts)
 end
@@ -101,7 +104,7 @@ describe 'pagy/extras/calendar' do
     it 'selects :quarter for last page' do
       calendar, _pagy, entries = app(params: { quarter_page: 9 }).send(:pagy_calendar, @collection,
                                                                        quarter: { size: [1, 4, 4, 1] },
-                                                                      pagy: { items: 600 })
+                                                                       pagy: { items: 600 })
       _(calendar[:quarter].series).must_equal [1, :gap, 5, 6, 7, 8, "9"]
       _(calendar[:quarter].pages).must_equal 9
       _(calendar[:quarter].prev).must_equal 8
@@ -138,7 +141,7 @@ describe 'pagy/extras/calendar' do
     end
     it 'selects :week for the first page' do
       calendar, _pagy, entries = app(params: { week_page: 1 }).send(:pagy_calendar, @collection,
-                                                                    week: {},
+                                                                    week: { first_weekday: :sunday },
                                                                     pagy: { items: 600 })
       _(calendar[:week].series).must_equal ["1", 2, 3, 4, 5, :gap, 109]
       _(calendar[:week].pages).must_equal 109
@@ -148,7 +151,7 @@ describe 'pagy/extras/calendar' do
     end
     it 'selects :week for an intermediate page' do
       calendar, _pagy, entries = app(params: { week_page: 25 }).send(:pagy_calendar, @collection,
-                                                                     week: {},
+                                                                     week: { first_weekday: :sunday },
                                                                      pagy: { items: 600 })
       _(calendar[:week].series).must_equal [1, :gap, 21, 22, 23, 24, "25", 26, 27, 28, 29, :gap, 109]
       _(calendar[:week].prev).must_equal 24
@@ -157,7 +160,7 @@ describe 'pagy/extras/calendar' do
     end
     it 'selects :week for the last page' do
       calendar, _pagy, entries = app(params: { week_page: 109 }).send(:pagy_calendar, @collection,
-                                                                      week: {},
+                                                                      week: { first_weekday: :sunday },
                                                                       pagy: { items: 600 })
       _(calendar[:week].series).must_equal [1, :gap, 105, 106, 107, 108, "109"]
       _(calendar[:week].prev).must_equal 108

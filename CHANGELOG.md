@@ -14,9 +14,24 @@ If you upgrade from version `< 5.0.0` see the following:
 
 Still supported in version `5.x` but not supported from `6.0` on:
 
-- `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [How to customize the params](https://ddnexus.github.io/pagy/how-to#customize-the-params).
+- The `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [How to customize the params](https://ddnexus.github.io/pagy/how-to#customize-the-params).
+- The `:offset` variable used by the `Pagy::Calendar::Week`: set the `Date.beginning_of_week` variable to the symbol of the first day of the week (e.g. `Date.beginning_of_week = :sunday`). Notice the default is `:monday` consistently with the ISO-8601 standard (and Rails).
 
 <hr>
+
+## Version 5.9.0
+
+- Npm and bundle update
+- Fix and refactoring of pagy calendar calculation of local time (closes #358):
+  - The `Pagy::Calendar::*` classes require ActiveSupport (temporarily added activesupport dependency that will e replaced in 6.0)
+  - The `:period` items can be `Time` or `TimeWithZone` objects (which work across DST ranges)
+  - Deprecated use of `:offset` to set the first weekday, in favour of `Date.beginning_of_week` (default to `:monday`)
+  - Added DST specific tests
+  - Fix for calculation of label quarter
+  - Updated docs and tests
+- Fix for wrong offset in gearbox extra (closes #356)
+- Reduced the public interface of pagy.js and relative files to just `version` and `init()`
+- Add Ruby 3.1 to CI (#354)
 
 ## Version 5.8.1
 

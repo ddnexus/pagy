@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '5.8.1'
+  VERSION = '5.9.0'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
@@ -32,10 +32,10 @@ class Pagy
     setup_vars(count: 0, page: 1, outset: 0)
     setup_items_var
     setup_pages_var
+    setup_offset_var
     setup_params_var
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
-    @offset = (@items * (@page - 1)) + @outset
     @from   = [@offset - @outset + 1, @count].min
     @to     = [@offset - @outset + @items, @count].min
     @in     = [@to - @from + 1, @count].min
@@ -96,17 +96,22 @@ class Pagy
     end
   end
 
-  # Setup and validate the items (overridden by the gearbox extra)
+  # Setup @items (overridden by the gearbox extra)
   def setup_items_var
     setup_vars(items: 1)
   end
 
-  # Setup and validates the pages (overridden by the gearbox extra)
+  # Setup @pages and @last (overridden by the gearbox extra)
   def setup_pages_var
     @pages = @last = [(@count.to_f / @items).ceil, 1].max
   end
 
-  # Setup and validates the params
+  # Setup @offset based on the :gearbox_items variable
+  def setup_offset_var
+    @offset = (@items * (@page - 1)) + @outset  # may be already set from gear_box
+  end
+
+  # Setup and validate @params
   def setup_params_var
     raise VariableError.new(self, :params, 'must be a Hash or a Proc', @params) \
           unless (@params = @vars[:params]).is_a?(Hash) || @params.is_a?(Proc)

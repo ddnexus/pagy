@@ -26,6 +26,7 @@ gemfile true do
   gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
+  gem 'activesupport'
 end
 
 # Edit this section adding/removing the extras and DEFAULT as needed
@@ -54,7 +55,7 @@ class PagyCalendarApp < Sinatra::Base
   # This method must be implemented by the application.
   # It must return the starting and ending local Time objects array defining the calendar :period
   def pagy_calendar_period(collection)
-    collection.minmax.map(&:getlocal)   # time converted in your local time
+    collection.minmax.map(&:in_time_zone)
   end
 
   # This method must be implemented by the application.
@@ -66,6 +67,7 @@ class PagyCalendarApp < Sinatra::Base
 
   # Controller action
   get '/' do
+    Time.zone  = 'EST'   # convert the UTC storage time to time with zone 'EST'
     collection = MockCollection::Calendar.new
     # The conf Hash defines the pagy objects variables keyed by calendar unit and the final pagy standard object
     # The :skip is an optional and arbitrarily named param that skips the calendar pagination and uses only the pagy
@@ -126,7 +128,7 @@ __END__
   <!-- page records (time converted in your local time)-->
   <div class="list-group">
     <% @records.each do |record| %>
-    <p class="list-group-item"><%= record.getlocal.to_s %></p>
+    <p class="list-group-item"><%= record.in_time_zone.to_s %></p>
     <% end %>
   </div>
 

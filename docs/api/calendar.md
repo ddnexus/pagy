@@ -3,7 +3,7 @@ title: Pagy::Calendar
 ---
 # Pagy::Calendar
 
-This is a `Pagy` subclass that provides pagination filtering by time: year, quarter, month, week, day (and supports your own [custom time units](#custom-units)). 
+This is a `Pagy` subclass that provides pagination filtering by time: year, quarter, month, week, day (and supports your own [custom time units](#custom-units)).
 
 **Notice**: The `Pagy::Calendar::*` subclasses provide support for the [calendar extra](../extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone (because they could generate a very high number of items per page). The class APIs are documented here, however you should not need to use them directly because they are required and used internally by the extra.
 
@@ -21,12 +21,11 @@ Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their 
 
 The following variables are specific to `Pagy::Calendar::*` instances: 
 
-| Variable  | Description                                                                                               | Default |
-|:----------|:----------------------------------------------------------------------------------------------------------|:--------|
-| `:period` | Required two items Array with the calendar starting and ending local `Time` objects                       | `nil`   |
-| `:order`  | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`  |
-| `:format` | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |         |
-| `:offset` | Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) (`Pagy::Calendar::Week` only)               | `0`     |
+| Variable      | Description                                                                                               | Default                               |
+|:--------------|:----------------------------------------------------------------------------------------------------------|:--------------------------------------|
+| `:period`     | Required two items Array with the calendar starting and ending local `Time`/`TimeWithZone` objects        | `nil`                                 |
+| `:order`      | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`                                |
+| `:format`     | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |                                       |
 
 **Notice**: For the `Pagy::Calendar::Quarter` the `:format` variable can contain a non-standard `%q` format which is substituted with the quarter (1-4).
 
@@ -36,12 +35,11 @@ The calendar defaults are not part of the `Pagy::DEFAULT` variables. Each subcla
 
 ## Attribute Readers
 
-| Reader   | Description                                                    |
-|:---------|:---------------------------------------------------------------|
-| `from`   | The local `Time` of the start of the current page              |
-| `to`     | The local `Time` of the end of the current page                |
-| `offset` | The `:offset` variable of the `Pagy::Calendar::Week` instances |
-| `order`  | The `:order` variable                                          |
+| Reader  | Description                                                      |
+|:--------|:-----------------------------------------------------------------|
+| `from`  | The local `Time`/`TimeWithZone` of the start of the current page |
+| `to`    | The local `Time`/`TimeWithZone` of the end of the current page   |
+| `order` | The `:order` variable                                            |
 
 ### About from and to objects
 
@@ -52,19 +50,21 @@ The cases for first and last pages have no effect when you use the `from`/`to` a
 
 ### Time conversions
 
-This classes use only the ruby `Time` class for all their time calculations for great performance without dependencies.
+This classes can use the recommended `ActiveSupport::TimeWithZone` class or the ruby `Time` class for all their time calculations. 
 
-Since they are meant to be used in the UI, they have to do their internal calculation using the user/server local time in order to make sense for the UI. For that reason their input/output is always local time.
+Since they are meant to be used in the UI, they use the user/server local time in order to make sense for the UI. For that reason their input (the `:period` variable) and output (the `from` and `to` accessors) are always local time.
 
-If you use `ActiveRecord`, your app should set the `Time.zone` for your user or your server. Then you can convert an UTC time from the storage to a local `Time` object for the calendar very easily with:
+If you use `ActiveRecord`, your app should set the `Time.zone` for your user or your server. Then you can convert an UTC time from the storage to a local `Time`/`TimeWithZone` object for the calendar very easily with:
 
 ```ruby
-utc_time.in_time_zone.to_time
+utc_time.in_time_zone
 ```
 
-You can also convert from local `Time` object to a UTC time with `local_time.utc`, however, when you use it as an argument in a scope, `ActiveRecord` converts it for you.
+You can also convert from local to UTC time with `local_time.utc`, however, when you use it as an argument in a scope, `ActiveRecord` converts it for you.
 
-For general usage without `ActiveRecord` you can simply use the `Time` methods to convert `utc_time.getlocal(utc_offset)` and `local_time.utc`.
+### First weekday
+
+Set the `Date.beginning_of_week` toto the symbol of the first day of the week (e.g. `Date.beginning_of_week = :sunday`). Notice the default is `:monday` consistently with the ISO-8601 standard (and Rails).
 
 ## Files
 
@@ -75,7 +75,7 @@ For general usage without `ActiveRecord` you can simply use the `Time` methods t
 
 ### label(opts = {})
 
-This method uses the `:format` variable to generate the current page label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+This method uses the `:format` variable to generate the current page label with the specific `Time`/`TimeWithZone` period it refers to. It accepts an optional `:format` keyword argument for overriding.
 
 ### label_for(page, opts = {})
 
@@ -83,7 +83,7 @@ This method takes a page number argument (`Integer` or `String`) and uses the `:
 
 ## Custom units
 
-You can define your own custom unit of any time length. For example you may want to add a unit of 2 months (i.e. a "bimester" unit), which should define a `Pagy::Calendar::Bimester` class. In this case (and for any month-based unit), you can get your class implemented very easily by just including the `Pagy::Calendar::MonthMixin` module. (See the [pagy/calendar/quarter](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar/quarter.rb) implementation for an example)
+You can define your own custom unit of any time length. For example you may want to add a unit of 2 months (i.e. a "bimester" unit), which should define a `Pagy::Calendar::Bimester` class. 
 
 In order to allow its full integration, you should also insert your `:bimester` unit symbol in the `Pagy::Calendar::UNITS` list, between `:quarter` and `:month`, which will keep the list in desc order of duration. 
 

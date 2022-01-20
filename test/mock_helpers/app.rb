@@ -32,7 +32,7 @@ class MockApp
 
   class Calendar < MockApp
     def pagy_calendar_period(collection)
-      collection.minmax.map { |t| t.getlocal(0) }
+      collection.minmax.map(&:in_time_zone)
     end
 
     def pagy_calendar_filter(collection, from, to)

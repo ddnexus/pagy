@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (5.8.1)
+# Pagy initializer file (5.9.0)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -55,7 +55,6 @@
 #
 # Pagy::Calendar::Week::DEFAULT[:order]     = :asc        # Time direction of pagination
 # Pagy::Calendar::Week::DEFAULT[:format]    = '%Y-%W'     # strftime format
-# Pagy::Calendar::Week::DEFAULT[:offset]    = 0           # Day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday)
 #
 # Pagy::Calendar::Day::DEFAULT[:order]      = :asc        # Time direction of pagination
 # Pagy::Calendar::Day::DEFAULT[:format]     = '%Y-%m-%d'  # strftime format

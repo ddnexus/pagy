@@ -19,7 +19,7 @@ class Pagy # :nodoc:
       @items = gearbox_items[@page - 1] || gearbox_items.last
     end
 
-    # Setup @pages and @last based on the :gearbox_items variable
+    # Setup @pages and @last based on the :gearbox_items variable (not used by Pagy::Countless)
     def setup_pages_var
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
@@ -36,6 +36,18 @@ class Pagy # :nodoc:
                           end
                           [pages, 1].max
                         end)
+    end
+
+    # Setup @offset based on the :gearbox_items variable
+    def setup_offset_var
+      return super if !@vars[:gearbox_extra] || @vars[:items_extra]
+
+      gearbox_items = @vars[:gearbox_items]
+      @offset       = if @page <= gearbox_items.count
+                        gearbox_items[0, @page - 1].sum
+                      else
+                        gearbox_items.sum + (gearbox_items.last * (@page - gearbox_items.count - 1))
+                      end + @outset
     end
   end
   prepend GearboxExtra

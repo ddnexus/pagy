@@ -1,6 +1,12 @@
 # See Pagy::Countless API documentation: https://ddnexus.github.io/pagy/api/calendar
 # frozen_string_literal: true
 
+require 'active_support'
+require 'active_support/core_ext/time'
+require 'active_support/core_ext/date_and_time/calculations'
+require 'active_support/core_ext/numeric/time'
+require 'active_support/core_ext/integer/time'
+
 require 'pagy'
 
 class Pagy # :nodoc:
@@ -8,8 +14,6 @@ class Pagy # :nodoc:
   class Calendar < Pagy
     # List of units in desc order of duration. It can be used for custom units.
     UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
-    DAY   = 60 * 60 * 24  # One day in seconds
-    WEEK  = DAY * 7       # One week in seconds
 
     attr_reader :order
 
@@ -49,8 +53,9 @@ class Pagy # :nodoc:
 
       @starting, @ending = @vars[:period]
       raise VariableError.new(self, :period, 'to be a an Array of min and max local Time instances', @vars[:period]) \
-            unless @starting.is_a?(Time) && @ending.is_a?(Time) && !@starting.utc? && !@ending.utc? && @starting <= @ending \
-                   && (@utc_offset = @starting.utc_offset) == @ending.utc_offset
+            unless @starting.is_a?(Time) && @ending.is_a?(Time) && !@starting.utc? && !@ending.utc? && @starting <= @ending
+
+      @with_zone = @starting.is_a?(ActiveSupport::TimeWithZone) # remove in 6.0 and reu]place Time in the line above
     end
 
     # Apply the strftime format to the time (overridden by the i18n extra when localization is required)
@@ -62,11 +67,6 @@ class Pagy # :nodoc:
     # Used in starting_time_for(page) with a logic equivalent to: @initial + (offset_units_for(page) * unit_time_length)
     def offset_units_for(page)
       @order == :asc ? page - 1 : @pages - page
-    end
-
-    # Create a new local time at the beginning of the day
-    def new_time(year, month = 1, day = 1)
-      Time.new(year, month, day, 0, 0, 0, @utc_offset)
     end
 
     # Period of the active page (used internally for nested units)
