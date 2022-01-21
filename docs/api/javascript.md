@@ -93,9 +93,37 @@ import './pagy.js.erb'
 - You may want to use `turbolinks:load` if your app uses turbolinks despite webpacker
 - or you may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
 
-    ```js
-    global.Pagy = Pagy
-    ```
+```js
+global.Pagy = Pagy
+```
+
+#### With jsbuilding-rails / esbuild
+
+The simplest solution at the moment is linking the `pagy.js` inside the `app/javascript`. You should uncomment the following line in the `pagy.rb` initializer:
+
+```ruby
+FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy.js'), Rails.root.join('app', 'javascript'))
+```
+
+That will create/refresh `app/javascript/pagy.js` pointing to the current `pagy.js` every time you restart the app.
+
+**IMPORTANT**: Remember that after a pagy install/update you must restart the app in order to get the link refreshed, or it will point to the old version and/or will be broken.
+
+Then add this to the `app/javascript/application.js`:
+
+```js
+import "./pagy"
+window.addEventListener("turbo:load", Pagy.init);
+```
+
+Notice that in the rare case you need to debug pagy using esbuild, you can use the readable `pagy-module.js` in place of the minified `pagy.js` both in the pagy initializer and in the `app/javascript/application.js`:
+
+```js
+import Pagy from "./pagy-module"
+window.addEventListener("turbo:load", Pagy.init);
+```
+
+**Notice**: If you find a better way to convince esbuild to bundle pagy please, create a documentation issue so we will update this doc.
 
 ### In non-rails apps
 

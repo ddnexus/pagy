@@ -188,12 +188,17 @@
 
 
 # Rails
-
-# Rails: extras assets path required by the helpers that use javascript
+# Enable the .js file required by the helpers that use javascript
 # (pagy*_nav_js, pagy*_combo_nav_js, and pagy_items_selector_js)
 # See https://ddnexus.github.io/pagy/extras#javascript
+
+# With the asset pipeline
+# Sprockets need to look into the pagy javascripts dir, so add it to the assets paths
 # Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
+# With jsbuilding-rails / esbuild
+# Create/refresh a link in app/javascript/pagy pointing to the pagy.js (or pagy-module.js)
+# FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy.js'), Rails.root.join('app', 'javascript'))
 
 # I18n
 

@@ -4,7 +4,7 @@ The following files are generated from the files in the `src` dir for different 
 
 ## pagy.js
 
-The `pagy.js` is meant to be loaded in your production pages. It is polyfilled for quite old browser and minified. Its size is ~2.9k.
+The `pagy.js` is meant to be loaded in your production pages. It is and IIFE file, polyfilled for quite old browser and minified. Its size is ~2.9k.
 
 <details>
 
@@ -54,7 +54,7 @@ Its path from your code is: `Pagy.root.join('javascript', 'pagy.js')`
 
 ## pagy-dev.js
 
-The `pagy-dev.js` is a readable javascript file meant to be used only for debugging with modern browsers. It won't work on old browser, so don't use it in production. It contains the source map data so you can debug the source TypeScript directly.
+The `pagy-dev.js` is a readable javascript file meant to be used only for debugging with modern browsers. It won't work on old browsers, so don't use it in production. It contains the source map data so you can debug the source TypeScript directly.
 
 Its path from your code is: `Pagy.root.join('javascript', 'pagy-dev.js')`
 
@@ -62,7 +62,7 @@ Its path from your code is: `Pagy.root.join('javascript', 'pagy-dev.js')`
 
 The `pagy-module.js` is a ES6 module that exports the static `Pagy` object by default, only meant to be imported in other modules.
 
-Its path from your code is: `Pagy.root.join('javascript', 'pagy-mdule.js')`
+Its path from your code is: `Pagy.root.join('javascript', 'pagy-module.js')`
 
 ## pagy-module.d.ts
 
