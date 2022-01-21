@@ -26,7 +26,7 @@ Load the [pagy.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#p
 
 ### Module import
 
-If you prefer to use pagy as an importable javascript module, pagy provides the ES6 [pagy-module.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-modulejs) and the definition types file [pagy-module.d.ts](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-moduledts).
+If you prefer to use pagy as an importable javascript module, pagy provides the ES6 [pagy-module.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-modulejs) and the definition types file [pagy-module.d.ts](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-moduledts). You can import it with `import Pagy from "./pagy-module"`.
 
 ### Debugging Javascript
 
@@ -74,12 +74,12 @@ bundle exec rails webpacker:install:erb
 
 Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to import `pagy-module.js` and add an event listener to it (to allow the library to reinitialize when you click a new link):
 
-```erb
+```js
 import Pagy from "<%= Pagy.root.join('javascripts', 'pagy-module.js') %>"
-window.addEventListener("turbo:load", Pagy.init) # if using turbo-rails OR
+window.addEventListener("turbo:load", Pagy.init) // if using turbo-rails OR
 
-# window.addEventListener("turbolinks:load", Pagy.init) # if turbolinks OR
-# window.addEventListener("load", Pagy.init) # if using no library
+// window.addEventListener("turbolinks:load", Pagy.init) // if turbolinks OR
+// window.addEventListener("load", Pagy.init) // if using no library
 ```
 
 and import it in `app/javascript/application.js`:
@@ -116,12 +116,7 @@ import "./pagy"
 window.addEventListener("turbo:load", Pagy.init);
 ```
 
-Notice that in the rare case you need to debug pagy using esbuild, you can use the readable `pagy-module.js` in place of the minified `pagy.js` both in the pagy initializer and in the `app/javascript/application.js`:
-
-```js
-import Pagy from "./pagy-module"
-window.addEventListener("turbo:load", Pagy.init);
-```
+See also [Module Import](#module-import) and [Debugging Javascript](#debugging-javascript) for other usage.
 
 **Notice**: If you find a better way to convince esbuild to bundle pagy please, create a documentation issue so we will update this doc.
 

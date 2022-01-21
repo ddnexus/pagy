@@ -5,6 +5,7 @@ set -e
 echo 'generating pagy-dev.js...'
 tsc --alwaysStrict --target esnext --inlineSources --inlineSourceMap pagy.ts
 mv -v pagy.js pagy-dev.js
+sed -i "0,/const Pagy =/{s/const Pagy =/window.Pagy =/}" pagy-dev.js
 
 echo 'generating pagy-module.d.ts and pagy-module.js...'
 cp -v pagy.ts pagy-module.ts
