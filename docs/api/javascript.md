@@ -145,7 +145,7 @@ If you override any `*_js` helper, ensure to override/enforce the javascript fun
 
 Notice that if the client browser doesn't support Javascript or if it is disabled, certain helpers will serve nothing useful for the user. If your app does not require Javascript support and you still want to use javascript helpers, then you should consider implementing your own HTML fallback. For example:
 
-    ```erb
+    ```html+erb
     <noscript><%== pagy_nav(@pagy) %></noscript>
     ```
 
