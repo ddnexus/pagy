@@ -19,6 +19,13 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.9.1
+
+- Updated build.sh to set window.Pagy in pagy-dev.js
+- Update pagy.md (#360)
+- Minor - fix syntax highlighting (#361)
+- Updated info about the current way to use pagy.js with jsbuilder-rails/esbundle
+
 ## Version 5.9.0
 
 - Npm and bundle update
