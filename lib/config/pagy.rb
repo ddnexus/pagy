@@ -197,8 +197,8 @@
 # Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
 # With jsbuilding-rails / esbuild
-# Create/refresh a link in app/javascript/pagy pointing to the pagy.js (or pagy-module.js)
-# FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy.js'), Rails.root.join('app', 'javascript'))
+# Create/refresh a link in app/javascript/pagy pointing to the pagy-module.js
+# FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript'))
 
 # I18n
 

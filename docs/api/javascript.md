@@ -14,135 +14,31 @@ A few helpers use javascript, and they are clearly recognizable by the `js` suff
 
 If you use any of them you should follow this documentation, if not, consider that Javascript is not used anywhere else, so you can skip this.
 
-### Basic principle
+### Usage
 
-All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy` attribute. The [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js) code takes care to convert the data embedded in the `data-pagy` attribute and makes it work in the browser.
+All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy` attribute. A small javascript file (that you must include in your assets) will take care to convert the data embedded in the `data-pagy` attribute and make it work in the browser.
 
-## Usage
+You can pick and configure [a Javascript File](https://github.com/ddnexus/pagy/tree/master/lib/javascripts) depending on the environment of your app. 
 
-### Basic usage
-
-Load the [pagy.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagyjs) minified (2.9k) file _(see the documentation for [rails apps](#in-rails-apps) or [non-rails-apps](#in-non-rails-apps))_, and run `Pagy.init()` on window-load and eventually on [AJAX-load](#using-ajax).
-
-### Module import
-
-If you prefer to use pagy as an importable javascript module, pagy provides the ES6 [pagy-module.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-modulejs) and the definition types file [pagy-module.d.ts](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-moduledts). You can import it with `import Pagy from "./pagy-module"`.
-
-### Debugging Javascript
-
-Use the [pagy-dev.js](https://github.com/ddnexus/pagy/tree/master/lib/javascripts#pagy-devjs) in place of `pagy.js`. It is a readable javascript file meant to be used only for debugging with modern browsers.
+**Notice** The javascript file is required only for the `pagy*_js` helpers. Just using `'data-remote="true"'` without any `pagy*_js` helper works without any javascript file.
 
 ### Faster performance with the oj gem
 
 Although it's not a requirement, you should consider adding the `gem 'oj'` to your Gemfile. When available, Pagy will automatically use it to boost the performance. (Notice: It does nothing for normal, non-js helpers.)
 
-### In rails apps
-
-#### With the asset pipeline
-
-If your app uses the sprocket asset-pipeline, add the assets-path in the `pagy.rb` initializer:
-
-```ruby
-Rails.application.config.assets.paths << Pagy.root.join('javascripts')
-```
-
-Add the pagy javascript to the `application.js`:
-
-```js
-//= require pagy
-```
-
-Add an event listener for turbolinks:
-
-```js
-window.addEventListener("turbolinks:load", Pagy.init);
-```
-
-or a generic one if your app doesn't use turbolinks:
-
-```js
-window.addEventListener("load", Pagy.init);
-```
-
-#### With Webpacker
-
-If your app uses Webpacker, ensure that the webpacker `erb` loader is installed:
-
-```sh
-bundle exec rails webpacker:install:erb
-```
-
-Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to import `pagy-module.js` and add an event listener to it (to allow the library to reinitialize when you click a new link):
-
-```js
-import Pagy from "<%= Pagy.root.join('javascripts', 'pagy-module.js') %>"
-window.addEventListener("turbo:load", Pagy.init) // if using turbo-rails OR
-
-// window.addEventListener("turbolinks:load", Pagy.init) // if turbolinks OR
-// window.addEventListener("load", Pagy.init) // if using no library
-```
-
-and import it in `app/javascript/application.js`:
-
-```js
-import './pagy.js.erb'
-```
-
-**Notice**:
-
-- You may want to use `turbolinks:load` if your app uses turbolinks despite webpacker
-- or you may want to expose the `Pagy` namespace, if you need it available elsewhere (e.g. in js.erb templates):
-
-```js
-global.Pagy = Pagy
-```
-
-#### With jsbuilding-rails / esbuild
-
-The simplest solution at the moment is linking the `pagy.js` inside the `app/javascript`. You should uncomment the following line in the `pagy.rb` initializer:
-
-```ruby
-FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy.js'), Rails.root.join('app', 'javascript'))
-```
-
-That will create/refresh `app/javascript/pagy.js` pointing to the current `pagy.js` every time you restart the app.
-
-**IMPORTANT**: Remember that after a pagy install/update you must restart the app in order to get the link refreshed, or it will point to the old version and/or will be broken.
-
-Then add this to the `app/javascript/application.js`:
-
-```js
-import "./pagy"
-window.addEventListener("turbo:load", Pagy.init);
-```
-
-See also [Module Import](#module-import) and [Debugging Javascript](#debugging-javascript) for other usage.
-
-**Notice**: If you find a better way to convince esbuild to bundle pagy please, create a documentation issue so we will update this doc.
-
-### In non-rails apps
-
-Ensure the `Pagy.root.join('javascripts', 'pagy.js')` script gets served with the page.
-
-Add an event listener like:
-
-```js
-window.addEventListener('load', Pagy.init);
-```
-
 ### CAVEATS
 
-#### Functions
+#### Overriding
 
-If you override any `*_js` helper, ensure to override/enforce the javascript functions that it uses. If the relation between the helper and the functions change in a next release (e.g. arguments, naming, etc.), your app will still work with your own overriding even without the need to update it.
+Any `*_js` helper is composed by a HTML part and some javascript code that work in sync. Overriding is likely going to break in the future as soon as the relation between the helper and the functions will change in a next release (e.g. arguments, naming, etc.), so overriding is not recommended.
 
 #### HTML fallback
 
 Notice that if the client browser doesn't support Javascript or if it is disabled, certain helpers will serve nothing useful for the user. If your app does not require Javascript support and you still want to use javascript helpers, then you should consider implementing your own HTML fallback. For example:
 
-    ```html+erb
-    <noscript><%== pagy_nav(@pagy) %></noscript>
-    ```
+```erb
+<noscript><%== pagy_nav(@pagy) %></noscript>
+```
 
 # Javascript Navs
 
@@ -321,9 +217,9 @@ The method accepts also a couple of optional keyword arguments:
 
 # Using AJAX
 
-If you AJAX-render any of the javascript helpers mentioned above, you should also execute `Pagy.init(container_element);` in the javascript template. Here is an example for a `pagy_bootstrap_nav_js` AJAX-render:
+If you AJAX-render any of the javascript helpers mentioned above, you should also execute `Pagy.init(container_element);` in the javascript template. Here is an example for an AJAX-rendered `pagy_bootstrap_nav_js`:
 
-`pagy_remote_nav_js` controller action (notice the `link_extra` to enable AJAX):
+In `pagy_remote_nav_js` controller action (notice the `link_extra` to enable AJAX):
 
 ```ruby
 def pagy_remote_nav_js
@@ -331,7 +227,7 @@ def pagy_remote_nav_js
 end
 ```
 
-`pagy_remote_nav_js.html.erb` template for non-AJAX render (first page-load):
+In `pagy_remote_nav_js.html.erb` template for non-AJAX render (first page-load):
 
 ```erb
 <div id="container">
@@ -339,15 +235,15 @@ end
 </div>
 ```
 
-`_nav_js.html.erb` partial shared for AJAX and non-AJAX rendering:
+In `_nav_js.html.erb` partial shared for AJAX and non-AJAX rendering:
 
 ```erb
 <%== pagy_bootstrap_nav_js(@pagy) %>
 ```
 
-`pagy_remote_nav_js.js.erb` javascript template used for AJAX:
+In `pagy_remote_nav_js.js.erb` javascript template used for AJAX:
 
-```erb
+```js
 $('#container').html("<%= j(render 'nav_js')%>");
 Pagy.init(document.getElementById('container'));
 ```
