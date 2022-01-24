@@ -2,13 +2,13 @@
 
 The following files are generated from the files in the `src` dir for different Javascript/TypeScript usage. They are all providing the `Pagy` object and its only function `init`, but they are meant to be used in different app environments: e.g. served as is (for simple apps), or processed and included in a javascript bundle.
 
-You can get their absolute path from ruby with: `Pagy.root.join('javascript', ---FILE-NAME---)`.
+You can get their absolute path from ruby with: `Pagy.root.join('javascripts', '......')`.
 
 ## Files
 
 ### pagy.js
 
-The `pagy.js` is a drop-in file meant to be loaded as is, directly in your production pages and without any further processing. It is an IIFE file, already polyfilled for quite old browser and minified (~2.9k).
+The `pagy.js` is a drop-in file meant to be loaded as is, directly in your production pages and without any further processing. It is an IIFE file, already polyfilled to work also with quite old browsers and minified (~2.9k).
 
 <details>
 
@@ -107,31 +107,30 @@ If your app uses webpacker, ensure that the `erb` loader is installed:
 bundle exec rails webpacker:install:erb
 ```
 
-Then create a `pagy.js.erb` (in `app/javascript/packs/`) in order to import `pagy-module.js` and add a load event listener to it (`"turbo:load"`, `"turbolinks:load"` or `"load"`)
+Then create a `app/javascript/packs/pagy.js.erb` with the following content:
 
-```js+erb
+```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
 
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)
 ```
 
-and import it in `app/javascript/application.js`:
+where YOUR_EVENT_LISTENER is `"turbo:load"`, `"turbolinks:load"` or `"load"`, and import it in `app/javascript/application.js`:
 
 ```js
 import './pagy.js.erb'
 ```
 
-### Rails jsbuilding-rails / esbuild
+### Rails jsbuilding-rails
 
-The simplest solution at the moment is linking the `pagy-module.js` inside the `app/javascript`. You should uncomment the following line in the `pagy.rb` initializer:
+The simplest solution at the moment is linking the `pagy-module.js` inside the `app/javascript` dir. You should uncomment the following line in the `pagy.rb` initializer:
 
 ```ruby
-FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript'))
+FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
+  unless Rails.env.production? 
 ```
 
-That will create/refresh the `app/javascript/pagy-module.js` (symlink pointing to the gem installation path) every time you restart the app.
-
-**IMPORTANT**: Remember that after a pagy install/update you must restart the app in order to get the link refreshed, or it will not point to the current gem installation path.
+That will create/refresh the `app/javascript/pagy-module.js` symlink pointing to the installation file path, every time the app restart.
 
 Then add this to the `app/javascript/application.js`:
 
@@ -139,5 +138,3 @@ Then add this to the `app/javascript/application.js`:
 import Pagy from "./pagy-module"
 window.addEventListener("turbo:load", Pagy.init);
 ```
-
-**Notice**: If you find a better way to convince esbuild to bundle pagy from its gem installation path please, create a documentation issue so we will update this doc.
