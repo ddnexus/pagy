@@ -196,11 +196,6 @@
 # Sprockets need to look into the pagy javascripts dir, so add it to the assets paths
 # Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
-# With jsbuilding-rails / esbuild
-# Create/refresh the app/javascript/pagy-module.js symlink pointing to the installation file path
-# FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
-#   unless Rails.env.production?
-
 # I18n
 
 # Pagy internal I18n: ~18x faster using ~10x less memory than the i18n gem
