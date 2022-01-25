@@ -81,7 +81,7 @@ window.addEventListener('load', Pagy.init);
 
 ### Rails asset pipeline
 
-If your app uses the sprocket asset-pipeline, uncomment the following line in the `pagy.rb` initializer:
+If your app uses the sprockets asset-pipeline, uncomment the following line in the `pagy.rb` initializer:
 
 ```ruby
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
@@ -99,9 +99,43 @@ Add an event listener like `"turbolinks:load"` or `"load"` that fires on page lo
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
 ```
 
-### Rails Webpacker (legacy)
+### Rails jsbuilding-rails
 
-If your app uses webpacker, ensure that the `erb` loader is installed:
+In order to allow the bundler (esbuild|rollup|webpack) to find any pagy javascript file, you can set the `NODE_PATH` environment variable to the `Pagy.root.join('javascripts')` dir. The simplest way to set the variable is prepending it to your `package.json` `scripts.build`:
+
+```json
+{
+    "build": "NODE_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your original script>"
+}
+```
+
+Then you can use any pagy javascript file. For example: import and use the pagy module in the `app/javascript/application.js`:
+
+```js
+import Pagy from "pagy-module"
+window.addEventListener("turbo:load", Pagy.init);
+```
+  
+### Others environments/methods
+
+Here are other ways to load the pagy javascript files from your app if the above methods don't work for you:
+
+#### Symlink file
+
+You can create a symlink of the javascript file you are going to use in your app. For example, adding the following line in the `pagy.rb` initializer...
+
+```ruby
+FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
+  unless Rails.env.production? 
+```
+
+will create/refresh the `app/javascript/pagy-module.js` symlink pointing to the installation file path, every time the app restart. Then you can use the symlink exactly as it was a local file in your app. 
+
+#### Rails Webpacker (legacy)
+
+This was a legacy way to generate a local pagy javascript file using `erb` with webpacker. If the methods explained above don't work, this one should.
+
+Ensure that the `erb` loader is installed:
 
 ```sh
 bundle exec rails webpacker:install:erb
@@ -115,25 +149,10 @@ Then create a `app/javascript/packs/pagy.js.erb` with the following content:
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)
 ```
 
-where YOUR_EVENT_LISTENER is `"turbo:load"`, `"turbolinks:load"` or `"load"`, and import it in `app/javascript/application.js`:
+where YOUR_EVENT_LISTENER is `"turbo:load"`, `"turbolinks:load"` or `"load"`.
+
+Import it in `app/javascript/application.js`:
 
 ```js
 import './pagy.js.erb'
-```
-
-### Rails jsbuilding-rails / esbuild
-
-In order to allow `esbuild` to find any pagy javascript file, you should set the `NODE_PATH` environment variable to the `Pagy.root.join('javascripts')` dir, prepending it to your `package.json` `scripts.build`:
-
-```json
-{
-    "build": "NODE_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your original script>"
-}
-```
-
-Then use any pagy file as you like. For example import and use the pagy module in the `app/javascript/application.js`:
-
-```js
-import Pagy from "pagy-module"
-window.addEventListener("turbo:load", Pagy.init);
 ```
