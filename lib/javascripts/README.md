@@ -127,7 +127,7 @@ In order to allow `esbuild` to find any pagy javascript file, you should set the
 
 ```json
 {
-    "build": "NODE_PATH=$(bundle exec ruby -e \"puts Pagy.root.join('javascripts')\") <your original script>"
+    "build": "NODE_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your original script>"
 }
 ```
 
