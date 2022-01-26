@@ -8,7 +8,7 @@ You can get their absolute path from ruby with: `Pagy.root.join('javascripts', '
 
 ### pagy.js
 
-The `pagy.js` is a drop-in file meant to be loaded as is, directly in your production pages and without any further processing. It is an IIFE file, already polyfilled to work also with quite old browsers and minified (~2.9k).
+The `pagy.js` is a drop-in file meant to be loaded as is, directly in your production pages and without any further processing. It is an IIFE file, already minified (~2.9k) and polyfilled to work also with quite old browsers.
 
 <details>
 
@@ -47,7 +47,7 @@ The `pagy.js` is a drop-in file meant to be loaded as is, directly in your produ
 - safari 14.1
 - safari 13.1
 - samsung 15.0
-- samsung 14.0  
+- samsung 14.0
 
 </details>
 
@@ -59,7 +59,7 @@ The `pagy-dev.js` is a readable javascript file meant to be used as a drop-in fi
 
 ### pagy-module.js
 
-The `pagy-module.js` is a ES6 module that exports the `Pagy` object by default, it's only meant to be imported in other modules or into an entry point and needs post processing (polyfilling, minification, bundling, ...). It makes sense when your app use something like webpacker, esbuild, parcel, etc.
+The `pagy-module.js` is a ES6 module that exports the `Pagy` object by default, it's only meant to be imported in other modules or into an entry point and needs post processing (polyfilling, minification, bundling, ...). It makes sense when your app uses something like webpacker, esbuild, parcel, etc.
 
 You import it with `import Pagy from "pagy-module"`
 
@@ -101,7 +101,7 @@ window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
 
 ### Rails jsbuilding-rails
 
-In order to allow the bundler (esbuild|rollup|webpack) to find any pagy javascript file, you can set the `NODE_PATH` environment variable to the `Pagy.root.join('javascripts')` dir. The simplest way to set the variable is prepending it to your `package.json` `scripts.build`:
+In order to allow the bundler (esbuild|rollup|webpack) to find any pagy javascript file, you can set the `NODE_PATH` environment variable to the `Pagy.root.join('javascripts')` dir. You can just prepend it to your `package.json` `scripts.build` script:
 
 ```json
 {
@@ -115,8 +115,8 @@ Then you can use any pagy javascript file. For example: import and use the pagy 
 import Pagy from "pagy-module"
 window.addEventListener("turbo:load", Pagy.init);
 ```
-  
-### Others environments/methods
+
+### Other environments/methods
 
 Here are other ways to load the pagy javascript files from your app if the above methods don't work for you:
 
@@ -129,7 +129,7 @@ FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join
   unless Rails.env.production? 
 ```
 
-will create/refresh the `app/javascript/pagy-module.js` symlink pointing to the installation file path, every time the app restart. Then you can use the symlink exactly as it was a local file in your app. 
+will create/refresh the `app/javascript/pagy-module.js` symlink pointing to the installation file path, every time the app restarts. Then you can use the symlink exactly as it was a local file in your app.
 
 #### Rails Webpacker (legacy)
 
@@ -149,7 +149,7 @@ Then create a `app/javascript/packs/pagy.js.erb` with the following content:
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)
 ```
 
-where YOUR_EVENT_LISTENER is `"turbo:load"`, `"turbolinks:load"` or `"load"`.
+where YOUR_EVENT_LISTENER is the load event that works with your app (e.g. `"turbo:load"`, `"turbolinks:load"`, `"load"`, ...).
 
 Import it in `app/javascript/application.js`:
 
