@@ -1,13 +1,13 @@
 ---
 "[1] pagy/extras/items::view_methods#test_0001_renders items selector": '<span class="pagy-items-selector-js"
-  data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><label>Show
+  data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZhbXA7aXRlbXM9X19wYWd5X2l0ZW1zX19cIiAgIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><label>Show
   <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
   center; width: 3rem;"> items per page</label></span>'
 "[2] pagy/extras/items::view_methods#test_0001_renders items selector": '<span id="test-id"
-  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><label>Show
+  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZhbXA7aXRlbXM9X19wYWd5X2l0ZW1zX19cIiAgIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><label>Show
   <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
   center; width: 3rem;"> products per page</label></span>'
 "[3] pagy/extras/items::view_methods#test_0001_renders items selector": '<span id="test-id"
-  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><label>Show
+  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZhbXA7aXRlbXM9X19wYWd5X2l0ZW1zX19cIiAgIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><label>Show
   <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
   center; width: 3rem;"> products per page</label></span>'

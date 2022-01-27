@@ -87,7 +87,8 @@ const Pagy = (() => {
     };
 
     // Trim the ${page-param}=1 params in links
-    const trim = (link:string, param:string) => link.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "");
+    const trim = (link:string, param:string) =>
+        link.replace(new RegExp(`(\\?|&amp;)${param}=1\\b(?!&amp;)|\\b${param}=1&amp;`), "");
 
     // Public interface
     return {
