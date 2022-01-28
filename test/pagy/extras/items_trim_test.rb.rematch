@@ -1,21 +1,21 @@
 ---
-"[1] pagy/extras/items_trim::#pagy_marked_link#test_0001_should return the marked link": '<a
-  href="/foo?page=__pagy_page__&items=20"   style="display: none;"></a>'
-"[2] pagy/extras/items_trim::#pagy_marked_link#test_0001_should return the marked link": '<a
-  href="/foo?p=__pagy_page__&items=20"   style="display: none;"></a>'
-"[3] pagy/extras/items_trim::#pagy_marked_link#test_0001_should return the marked link": '<a
-  href="/foo?page=__pagy_page__&i=20"   style="display: none;"></a>'
-"[4] pagy/extras/items_trim::#pagy_marked_link#test_0001_should return the marked link": '<a
-  href="/foo?p=__pagy_page__&i=20"   style="display: none;"></a>'
 "[1] pagy/extras/items_trim#test_0001_renders items selector with trim": '<span id="test-id"
-  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iLCJwYWdlIl0="><label>Show
+  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZhbXA7aXRlbXM9X19wYWd5X2l0ZW1zX19cIiAgIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+IiwicGFnZSJd"><label>Show
   <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
   center; width: 3rem;"> items per page</label></span>'
 "[2] pagy/extras/items_trim#test_0001_renders items selector with trim": '<span id="test-id"
-  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iLCJwYWdlIl0="><label>Show
+  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZhbXA7aXRlbXM9X19wYWd5X2l0ZW1zX19cIiAgIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+IiwicGFnZSJd"><label>Show
   <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
   center; width: 3rem;"> products per page</label></span>'
 "[3] pagy/extras/items_trim#test_0001_renders items selector with trim": '<span id="test-id"
-  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iLCJwYWdlIl0="><label>Show
+  class="pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZhbXA7aXRlbXM9X19wYWd5X2l0ZW1zX19cIiAgIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+IiwicGFnZSJd"><label>Show
   <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
   center; width: 3rem;"> products per page</label></span>'
+"[1] pagy/extras/items_trim::#pagy_marked_link#test_0001_should return the marked link": '<a
+  href="/foo?page=__pagy_page__&amp;items=20"   style="display: none;"></a>'
+"[2] pagy/extras/items_trim::#pagy_marked_link#test_0001_should return the marked link": '<a
+  href="/foo?p=__pagy_page__&amp;items=20"   style="display: none;"></a>'
+"[3] pagy/extras/items_trim::#pagy_marked_link#test_0001_should return the marked link": '<a
+  href="/foo?page=__pagy_page__&amp;i=20"   style="display: none;"></a>'
+"[4] pagy/extras/items_trim::#pagy_marked_link#test_0001_should return the marked link": '<a
+  href="/foo?p=__pagy_page__&amp;i=20"   style="display: none;"></a>'

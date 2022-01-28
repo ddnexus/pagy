@@ -17,7 +17,7 @@ class Pagy
       query_string        = "?#{Rack::Utils.build_nested_query(pagy_deprecated_params(pagy, params))}"  # remove in 6.0
       # params              = pagy.params.call(params) if pagy.params.is_a?(Proc)                       # add in 6.0
       # query_string        = "?#{Rack::Utils.build_nested_query(params)}"                              # add in 6.0
-      "#{request.base_url if absolute}#{request.path}#{query_string}#{vars[:fragment]}"
+      "#{request.base_url if absolute}#{request.path}#{Rack::Utils.escape_html(query_string)}#{vars[:fragment]}"
     end
 
     private

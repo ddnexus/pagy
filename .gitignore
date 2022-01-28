@@ -1,7 +1,6 @@
 /.idea/*
 !/.idea/runConfigurations
 /.bundle/
-/.parcel-cache/*
 /coverage/
 /node_modules/*
 !/node_modules/.keep
