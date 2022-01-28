@@ -19,6 +19,18 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.9.2
+
+- Added info about using pagy-module.js with importmap
+- Bundle and npm update
+- Fix for non escaped query strings in links
+- Small improvements in src files
+- Added legacy methods to use the javascript files
+- Added missing require in docs
+- Updated docs with the proper way to use pagy with esbuild
+- Docs improvements
+- Improved the javascript files docs and moved into the lib/javascripts/README.md file
+
 ## Version 5.9.1
 
 - Updated build.sh to set window.Pagy in pagy-dev.js
