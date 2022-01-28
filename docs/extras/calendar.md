@@ -230,9 +230,11 @@ So in order to filter the actual search with the `from` and `to` local `TimeWith
 
 If you set `:order` to `:desc`, you will get the page units in descendent order (e.g. May, then April, then March, ...), but keep in mind that you still have to desc-order the records in the collection since pagy has no control over that (indeed it's your own collection scope).
 
-### Offset
+### Beginning of week
 
-If you use the `:week` time unit, consider that the first day of the week could be different for different locales, so you may want to adjust it by setting the `:offset` to the day offset from Sunday (0: Sunday; 1: Monday;... 6: Saturday) when the locale requires it.
+If you use the `:week` time unit, consider that the first day of the week could be different for different locales.
+
+You may want to adjust it by setting the `Date.beginning_of_week` variable to the symbol of the first day of the week (e.g. `Date.beginning_of_week = :sunday`). Notice the default is `:monday` consistently with the ISO-8601 standard (and Rails).
 
 ### Calendar params
 
