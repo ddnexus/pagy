@@ -21,11 +21,11 @@ Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their 
 
 The following variables are specific to `Pagy::Calendar::*` instances: 
 
-| Variable      | Description                                                                                               | Default                               |
-|:--------------|:----------------------------------------------------------------------------------------------------------|:--------------------------------------|
-| `:period`     | Required two items Array with the calendar starting and ending local `Time`/`TimeWithZone` objects        | `nil`                                 |
-| `:order`      | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`                                |
-| `:format`     | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |                                       |
+| Variable      | Description                                                                                               | Default |
+|:--------------|:----------------------------------------------------------------------------------------------------------|:--------|
+| `:period`     | Required two items Array with the calendar starting and ending local `TimeWithZone` objects               | `nil`   |
+| `:order`      | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`  |
+| `:format`     | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |         |
 
 **Notice**: For the `Pagy::Calendar::Quarter` the `:format` variable can contain a non-standard `%q` format which is substituted with the quarter (1-4).
 
@@ -35,11 +35,11 @@ The calendar defaults are not part of the `Pagy::DEFAULT` variables. Each subcla
 
 ## Attribute Readers
 
-| Reader  | Description                                                      |
-|:--------|:-----------------------------------------------------------------|
-| `from`  | The local `Time`/`TimeWithZone` of the start of the current page |
-| `to`    | The local `Time`/`TimeWithZone` of the end of the current page   |
-| `order` | The `:order` variable                                            |
+| Reader  | Description                                               |
+|:--------|:----------------------------------------------------------|
+| `from`  | The local `TimeWithZone` of the start of the current page |
+| `to`    | The local `TimeWithZone` of the end of the current page   |
+| `order` | The `:order` variable                                     |
 
 ### About from and to objects
 
@@ -54,7 +54,7 @@ This classes can use the recommended `ActiveSupport::TimeWithZone` class or the 
 
 Since they are meant to be used in the UI, they use the user/server local time in order to make sense for the UI. For that reason their input (the `:period` variable) and output (the `from` and `to` accessors) are always local time.
 
-If you use `ActiveRecord`, your app should set the `Time.zone` for your user or your server. Then you can convert an UTC time from the storage to a local `Time`/`TimeWithZone` object for the calendar very easily with:
+If you use `ActiveRecord`, your app should set the `Time.zone` for your user or your server. Then you can convert an UTC time from the storage to a local `TimeWithZone` object for the calendar very easily with:
 
 ```ruby
 utc_time.in_time_zone
@@ -75,7 +75,7 @@ Set the `Date.beginning_of_week` toto the symbol of the first day of the week (e
 
 ### label(opts = {})
 
-This method uses the `:format` variable to generate the current page label with the specific `Time`/`TimeWithZone` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+This method uses the `:format` variable to generate the current page label with the specific `TimeWithZone` period it refers to. It accepts an optional `:format` keyword argument for overriding.
 
 ### label_for(page, opts = {})
 
