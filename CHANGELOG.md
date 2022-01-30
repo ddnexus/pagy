@@ -21,6 +21,11 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.9.3
+
+- Fix for too generalized html_escape in pagy_url_for. (closes #363)
+- Docs updates
+
 ## Version 5.9.2
 
 - Added info about using pagy-module.js with importmap
