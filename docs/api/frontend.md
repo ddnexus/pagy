@@ -80,13 +80,15 @@ Displaying Products <b>476-500</b> of <b>1000</b> in total
 
 _(see [Customizing the item name](../how-to.md#customize-the-item-name))_
 
-### pagy_url_for(pagy, page, absolute: nil)
+### pagy_url_for(pagy, page, absolute: false, html_escaped: false)
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
 
 It works by merging the pagy `:params` hash with the raw `request.GET`, and adding the `:page_param` (`:page` by default) set to the passed `page`, and the `:items` if the `:items_extra` is enabled.
 
 Before producing the final URL (which can be `absolute` if you pass `absolute: true`), it passes the resulting params hash to the [pagy_massage_params](#pagy_massage_paramsparams) method, which can be overridden for total control of the params in the URL.
+
+The `query_string` can also be `html_escaped` to be used in html tags (avoiding the problem of concatenation of params that start with an html entity key).
 
 The `:fragment` variable is also appended to the URL if defined.
 

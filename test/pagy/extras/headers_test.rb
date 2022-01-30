@@ -10,7 +10,7 @@ require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/headers' do
   describe '#pagy_headers' do
-    let(:app) { MockApp.new }
+    let(:app) { MockApp.new(params: { a: 'one', b: 'two' }) }
     before do
       @collection = MockCollection.new
     end
@@ -41,7 +41,7 @@ describe 'pagy/extras/headers' do
   end
 
   describe '#pagy_headers with Calendar' do
-    let(:app) { MockApp::Calendar.new }
+    let(:app) { MockApp::Calendar.new(params: { a: 'one', b: 'two' }) }
     before do
       @collection = MockCollection::Calendar.new
     end
