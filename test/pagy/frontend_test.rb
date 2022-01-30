@@ -142,8 +142,8 @@ describe 'pagy/frontend' do
     end
     it 'renders url with params' do
       pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }
-      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&amp;a=3&amp;b=4"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&amp;a=3&amp;b=4"
+      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4"
+      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
     end
     it 'renders url with fragment' do
       pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment'
@@ -152,8 +152,10 @@ describe 'pagy/frontend' do
     end
     it 'renders url with params and fragment' do
       pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment'
-      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&amp;a=3&amp;b=4#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&amp;a=3&amp;b=4#fragment"
+      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4#fragment"
+      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?page=5&amp;a=3&amp;b=4#fragment"
+      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
+      _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal "http://example.com:3000/foo?page=5&amp;a=3&amp;b=4#fragment"
     end
   end
 
@@ -162,7 +164,10 @@ describe 'pagy/frontend' do
       overridden = MockApp::Overridden.new(params: { delete_me: 'delete_me', a: 5 })
       pagy = Pagy.new count: 1000, page: 3, params: { b: 4 }, fragment: '#fragment'
       assert_output nil, /\[PAGY WARNING\]/ do
-        _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&amp;b=4&amp;page=5&amp;add_me=add_me#fragment"
+        _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&b=4&page=5&add_me=add_me#fragment"
+      end
+      assert_output nil, /\[PAGY WARNING\]/ do
+        _(overridden.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?a=5&amp;b=4&amp;page=5&amp;add_me=add_me#fragment"
       end
       app  = MockApp.new(params: { delete_me: 'delete_me', a: 5 })
       pagy = Pagy.new(count: 1000,
@@ -172,7 +177,8 @@ describe 'pagy/frontend' do
                                 params.delete('delete_me')
                                 params.merge('b' => 4, 'add_me' => 'add_me')
                               end)
-      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&amp;page=5&amp;b=4&amp;add_me=add_me#fragment"
+      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
+      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?a=5&amp;page=5&amp;b=4&amp;add_me=add_me#fragment"
     end
   end
 end

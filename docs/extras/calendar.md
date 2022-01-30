@@ -262,9 +262,8 @@ Pagy implements its own faster version of the i18n `translate` method (i.e. `pag
 You have a couple of options:
 
 - Use the [i18n extra](i18n.md), which delegates the translation and localization to the `I18n` gem. Notice however that you would lose the performance gain offered by the built-in `pagy_t` translation.
-- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, which will add the localization from the `I18n` gem without using the [i18n extra](../extras/i18n.md), so preserving the the builtin `pagy_t` translation.
+- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, which will add the localization from the `I18n` gem without using the [i18n extra](../extras/i18n.md), so preserving the builtin `pagy_t` translation.
 
 ## Caveats
 
 - Calendar pages with no records are accessible but empty: you may want to display some message when `@records.empty?`.
-- The [empty-pages](https://github.com/ddnexus/pagy/tree/empty-pages) experimental branch is a WIP of the automatic disabling of the nav links of empty pages. That, and other related UI improvements, may or may not make it to master in the future.

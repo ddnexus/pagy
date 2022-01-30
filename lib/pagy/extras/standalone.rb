@@ -11,22 +11,6 @@ class Pagy # :nodoc:
     module QueryUtils
       module_function
 
-      ESCAPE_HTML = {
-        '&' => '&amp;',
-        '<' => '&lt;',
-        '>' => '&gt;',
-        "'" => '&#x27;',
-        '"' => '&quot;',
-        '/' => '&#x2F;'
-      }.freeze
-
-      ESCAPE_HTML_PATTERN = Regexp.union(*ESCAPE_HTML.keys)
-
-      # Escape ampersands, brackets and quotes to their HTML/XML entities.
-      def escape_html(string)
-        string.to_s.gsub(ESCAPE_HTML_PATTERN) { |c| ESCAPE_HTML[c] }
-      end
-
       def escape(str)
         URI.encode_www_form_component(str)
       end
@@ -52,7 +36,7 @@ class Pagy # :nodoc:
     # Return the URL for the page. If there is no pagy.vars[:url]
     # it works exactly as the regular #pagy_url_for, relying on the params method and Rack.
     # If there is a defined pagy.vars[:url] variable it does not need the params method nor Rack.
-    def pagy_url_for(pagy, page, absolute: nil)
+    def pagy_url_for(pagy, page, absolute: false, html_escaped: false)
       return super unless pagy.vars[:url]
 
       vars                = pagy.vars
@@ -64,7 +48,8 @@ class Pagy # :nodoc:
       query_string        = "?#{QueryUtils.build_nested_query(pagy_deprecated_params(pagy, params))}"  # remove in 6.0
       # params              = pagy.params.call(params) if pagy.params.is_a?(Proc)                      # add in 6.0
       # query_string        = "?#{Rack::Utils.build_nested_query(params)}"                             # add in 6.0
-      "#{vars[:url]}#{QueryUtils.escape_html(query_string)}#{vars[:fragment]}"
+      query_string        = query_string.gsub('&', '&amp;') if html_escaped  # the only unescaped entity
+      "#{vars[:url]}#{query_string}#{vars[:fragment]}"
     end
   end
   # In ruby 3+ `UrlHelpers.prepend StandaloneExtra` would be enough instead of using the next 2 lines

@@ -1,18 +1,30 @@
 # Generated Javascript Files
 
-The following files are generated from the files in the `src` dir for different Javascript/TypeScript usage. They are all providing the `Pagy` object and its only function `init`, but they are meant to be used in different app environments: e.g. served as is (for simple apps), or processed and included in a javascript bundle.
-
-You can get their absolute path from ruby with: `Pagy.root.join('javascripts', '......')`.
+The following files are generated from the files in the `src` dir for different Javascript/TypeScript [Environments](#environments). 
 
 ## Files
 
+These files are all providing the `Pagy` object and its only function `init`. You can get their absolute path from ruby with: `Pagy.root.join('javascripts', '......')`.
+
+### pagy-module.js
+
+The `pagy-module.js` is a ES6 module to use with webpacker, esbuild, parcel, etc. Import it with `import Pagy from "pagy-module"`.
+ 
+<details>
+
+<summary>pagy-module.d.ts </summary>
+
+The `pagy-module.d.ts` is the small TypeScript Declaration File useful only if you import the `pagy-module.js` in a TypeScript file.
+
+</details>
+
 ### pagy.js
 
-The `pagy.js` is a drop-in file meant to be loaded as is, directly in your production pages and without any further processing. It is an IIFE file, already minified (~2.9k) and polyfilled to work also with quite old browsers.
+The `pagy.js` is a drop-in script meant to be loaded as is, directly in your production pages and without any further processing. It is an IIFE file, already minified (~2.9k) and polyfilled to work also with quite old browsers.
 
 <details>
 
-<summary>Here is the default supported browserslist</summary>
+<summary>Default supported browserslist...</summary>
 
 - and_chr 96
 - and_ff 95
@@ -49,23 +61,17 @@ The `pagy.js` is a drop-in file meant to be loaded as is, directly in your produ
 - samsung 15.0
 - samsung 14.0
 
-</details>
-
 **Notice**: You can generate custom targeted `pagy.js` files for the browsers you want to support by changing the [browserslist](https://github.com/browserslist/browserslist) query in `src/package.json`, then compile it with `npm run build -w src`.
 
-### pagy-dev.js
+</details>
+
+<details>
+
+<summary>pagy-dev.js (pagy debug only)</summary>
 
 The `pagy-dev.js` is a readable javascript file meant to be used as a drop-in file **only for debugging** with modern browsers. It won't work on old browsers and its size is big because it contains also the source map data to debug the TypeScript directly. Obviously... do not use it in production.
 
-### pagy-module.js
-
-The `pagy-module.js` is a ES6 module that exports the `Pagy` object by default, it's only meant to be imported in other modules or into an entry point and needs post processing (polyfilling, minification, bundling, ...). It makes sense when your app uses something like webpacker, esbuild, parcel, etc.
-
-You import it with `import Pagy from "pagy-module"`
-
-### pagy-module.d.ts
-
-The `pagy-module.d.ts` is the small TypeScript Declaration File useful only if you import the `pagy-module.js` in a TypeScript file.
+</details>
 
 ## Environments
 

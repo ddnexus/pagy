@@ -18,7 +18,7 @@ class Pagy # :nodoc:
     def pagy_prev_link(pagy, text: pagy_t('pagy.nav.prev'), link_extra: '')
       if pagy.prev
         %(<span class="page prev"><a href="#{
-            pagy_url_for(pagy, pagy.prev)
+            pagy_url_for(pagy, pagy.prev, html_escaped: true)
           }" rel="prev" aria-label="previous" #{
             pagy.vars[:link_extra]
           } #{link_extra}>#{text}</a></span>)
@@ -31,7 +31,7 @@ class Pagy # :nodoc:
     def pagy_next_link(pagy, text: pagy_t('pagy.nav.next'), link_extra: '')
       if pagy.next
         %(<span class="page next"><a href="#{
-            pagy_url_for(pagy, pagy.next)
+            pagy_url_for(pagy, pagy.next, html_escaped: true)
           }" rel="next" aria-label="next" #{
             pagy.vars[:link_extra]
           } #{link_extra}>#{text}</a></span>)
@@ -42,12 +42,12 @@ class Pagy # :nodoc:
 
     # Return the HTML link tag for the previous page or nil
     def pagy_prev_link_tag(pagy)
-      %(<link href="#{pagy_url_for(pagy, pagy.prev)}" rel="prev"/>) if pagy.prev
+      %(<link href="#{pagy_url_for(pagy, pagy.prev, html_escaped: true)}" rel="prev"/>) if pagy.prev
     end
 
     # Return the HTML link tag for the next page or nil
     def pagy_next_link_tag(pagy)
-      %(<link href="#{pagy_url_for(pagy, pagy.next)}" rel="next"/>) if pagy.next
+      %(<link href="#{pagy_url_for(pagy, pagy.next, html_escaped: true)}" rel="next"/>) if pagy.next
     end
   end
   Frontend.prepend SupportExtra
