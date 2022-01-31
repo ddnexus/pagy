@@ -105,7 +105,7 @@ Add an event listener like `"turbolinks:load"` or `"load"` that fires on page lo
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
 ```
 
-### Rails jsbuilding-rails
+### Rails [jsbundling-rails](https://github.com/rails/jsbundling-rails)
 
 In order to allow the bundler (esbuild|rollup|webpack) to find any pagy javascript file, you can set the `NODE_PATH` environment variable to the `Pagy.root.join('javascripts')` dir, by prepending it to your `package.json` `scripts.build` script:
 
