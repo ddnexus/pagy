@@ -145,9 +145,19 @@ Webpack is not aware of anything outside itself, so here is what you have to do 
 2. In `webpack.confg.js`, transform the `module.exports` value from an object to a function accepting an `env` param. It should return the original config object extended with an extra element in the `resolve.modules` array:
 
 ```js
+// module.exports = { // ...   }  // old code
+
+// new code (returns an arrow function):
+module.exports = (env) => // 1. add env parameter 
+  {                       
+     return {  // ... }   // 2. return object
+  }
+```
+
+```js
 module.exports = (env) => {
   return {
-    <your original object merged with the following...> ,
+    // <your original object merged with the following...> ,
     resolve: {
        modules: [env.pagyPath, path.resolve(__dirname, 'node_modules')]
     }
