@@ -105,9 +105,24 @@ Add an event listener like `"turbolinks:load"` or `"load"` that fires on page lo
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
 ```
 
-### Rails jsbuilding-rails
+### Rails jsbundling-rails
 
-In order to allow the bundler (esbuild|rollup|webpack) to find any pagy javascript file, you can set the `NODE_PATH` environment variable to the `Pagy.root.join('javascripts')` dir, by prepending it to your `package.json` `scripts.build` script:
+You can import and use the pagy module in `app/javascript/application.js`: 
+
+```js
+import Pagy from "pagy-module";
+window.addEventListener("turbo:load", Pagy.init);
+```
+
+However Pagy doesn't push any node module to `npm`, because there is no automatic way to keep the `npm` version in sync with the `gem` version, and doing it manually in your app at every `npm update` and `bundle update` would be quite a nightmare for you. 
+
+So you can just configure your javascript tools to look into the pagy gem installation path (`Pagy.root.join('javascripts')`) once, and pagy will work maintenance free from then on.
+
+Here is how to do that with different bundlers:
+
+#### Esbuild
+
+Esbuild respects the the node's `NODE_PATH` environment variable, so you can set it in your `package.json` `scripts.build` script:
 
 ```json
 {
@@ -115,11 +130,29 @@ In order to allow the bundler (esbuild|rollup|webpack) to find any pagy javascri
 }
 ```
 
-Then you can use any pagy javascript file. For example: import and use the pagy module in `app/javascript/application.js`:
+#### Webpack
+
+Webpack is not aware of anything outside itself, so here is what you have to do according to the webpack doc:
+
+1. Set the `pagyPath` variable in your `package.json` `scripts.build` script like:
+
+```json
+{
+    "build": "webpack --env pagyPath=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") --config webpack.config.js"
+}
+```
+
+2. In `webpack.confg.js`, transform the `module.exports` value from an object to a function accepting an `env` param. It should return the original config object extended with an extra element in the `resolve.modules` array:
 
 ```js
-import Pagy from "pagy-module";
-window.addEventListener("turbo:load", Pagy.init);
+module.exports = (env) => {
+  return {
+    <your original object merged with the following...> ,
+    resolve: {
+       modules: [env.pagyPath, path.resolve(__dirname, 'node_modules')]
+    }
+  }
+}
 ```
 
 ### Rails Importmap
