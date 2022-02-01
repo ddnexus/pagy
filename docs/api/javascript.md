@@ -14,7 +14,7 @@ A few helpers use javascript, and they are clearly recognizable by the `js` suff
 
 If you use any of them you should follow this documentation, if not, consider that Javascript is not used anywhere else, so you can skip this.
 
-### Usage
+### How does it work?
 
 All the `pagy*_js` helpers render their component on the client side. The helper methods serve just a minimal HTML tag that contains a `data-pagy` attribute. A small javascript file (that you must include in your assets) will take care to convert the data embedded in the `data-pagy` attribute and make it work in the browser.
 
@@ -61,9 +61,14 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ![bootstrap_nav_js](../assets/images/bootstrap_nav_js-g.png)
 
-## Synopsis
+## Installation Instructions
+
+1. Add Relevant Extra
+2. Use JS helper in a View
 
 See [extras](../extras.md) for general usage info.
+
+#### 1. Add The Relevant Extra
 
 In the `pagy.rb` initializer, require the specific extra for the style you want to use:
 
@@ -77,6 +82,8 @@ require 'pagy/extras/navs'
 require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
+
+#### 2. Use JS helper in a View
 
 Use the `pagy*_nav_js` helpers in any view:
 
