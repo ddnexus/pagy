@@ -61,14 +61,14 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ![bootstrap_nav_js](../assets/images/bootstrap_nav_js-g.png)
 
-## Installation Instructions
+## Installation instructions
 
-1. Add Relevant Extra
+1. Add the relevant extra
 2. Use JS helper in a View
 
 See [extras](../extras.md) for general usage info.
 
-#### 1. Add The Relevant Extra
+#### 1. Add the relevant extra
 
 In the `pagy.rb` initializer, require the specific extra for the style you want to use:
 
@@ -83,9 +83,9 @@ require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
 
-#### 2. Use JS helper in a View
+#### 2. Use the JS helper in a View
 
-Use the `pagy*_nav_js` helpers in any view:
+Use one of the `pagy*_nav_js` helpers in any view:
 
 ```erb
 <%== pagy_nav_js(@pagy) %>
