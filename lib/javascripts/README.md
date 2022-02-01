@@ -114,42 +114,47 @@ import Pagy from "pagy-module";
 window.addEventListener("turbo:load", Pagy.init);
 ```
 
-However Pagy doesn't push any node module to `npm`, because there is no automatic way to keep the `npm` version in sync with the `gem` version, and doing it manually in your app at every `npm update` and `bundle update` would be quite a nightmare for you. 
+**IMPORTANT**: Pagy doesn't push any package to `npm`, because there would be no automatic way to keep the package version in sync with the gem version used by your app. Doing it manually at every `yarn update` and every `bundle update` would be quite annoying and error prone for you. 
 
-So you can just configure your javascript tools to look into the pagy gem installation path (`Pagy.root.join('javascripts')`) once, and pagy will work maintenance free from then on.
+Luckily, you can just configure your javascript tools to look into the `Pagy.root.join('javascripts')` gem installation path once, and pagy will work maintenance-free from then on.
 
 Here is how to do that with different bundlers:
 
 #### Esbuild
 
-Esbuild respects the the node's `NODE_PATH` environment variable, so you can set it in your `package.json` `scripts.build` script:
+In `package.json`: prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 
 ```json
 {
-    "build": "NODE_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your original script>"
+    "build": "NODE_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your original command>"
 }
 ```
 
 #### Webpack
 
-Webpack is not aware of anything outside itself, so here is what you have to do according to the webpack doc:
-
-1. Set the `pagyPath` variable in your `package.json` `scripts.build` script like:
+In `package.json`: append the `pagyPath` as a webpack `--env` variable to the `scripts.build` command:
 
 ```json
 {
-    "build": "webpack --env pagyPath=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") --config webpack.config.js"
+    "build": "<your webpack command> --env pagyPath=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\")"
 }
 ```
 
-2. In `webpack.confg.js`, transform the `module.exports` value from an object to a function accepting an `env` param. It should return the original config object extended with an extra element in the `resolve.modules` array:
+In `webpack.confg.js`: ensure that the `module.exports` value is a config function instead of a config object. It should accept an `env` param and return the config object extended with the `pagyPath` in the `resolve.modules` array. Here is how you should customize the rails/webpack default config:
 
 ```js
-module.exports = (env) => {
-  return {
-    <your original object merged with the following...> ,
-    resolve: {
-       modules: [env.pagyPath, path.resolve(__dirname, 'node_modules')]
+// Default config object
+// module.exports = { <your original config> }  
+
+// Customized config function
+module.exports = (env) => {       // add env parameter
+  return {                        // return the config object
+    // <your original config> ,
+    resolve: {                    // add resolve.modules
+      modules: [
+        path.resolve(__dirname, 'node_modules'), // node_modules dir
+        env.pagyPath                             // pagy dir
+      ]
     }
   }
 }
