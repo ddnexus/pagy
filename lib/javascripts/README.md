@@ -112,7 +112,7 @@ window.addEventListener("turbo:load", Pagy.init);
 
 **IMPORTANT**: Pagy doesn't push any package to `npm`, because there would be no automatic way to keep the package version in sync with the gem version used by your app. Doing it manually at every `yarn update` and every `bundle update` would be quite annoying and error prone for you. 
 
-Luckily, you can just configure your javascript tools to look into the `Pagy.root.join('javascripts')` gem installation path once, and pagy will work maintenance-free from then on.
+Luckily, you can just configure your javascript tools to look into the `$(bundle show 'pagy')/lib/javascripts` gem installation path once, and pagy will work maintenance-free from then on.
 
 Here is how to do that with different bundlers:
 
@@ -122,7 +122,7 @@ In `package.json`, prepend the `NODE_PATH` environment variable to the `scripts.
 
 ```json
 {
-  "build": "NODE_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your original command>"
+  "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
 }
 ```
 
@@ -132,7 +132,7 @@ In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.
 
 ```json
 {
-  "build": "PAGY_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your webpack command>"
+  "build": "PAGY_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your webpack command>"
 }
 ```
 
@@ -143,7 +143,7 @@ module.exports = {
   ...,                          // your original config
   resolve: {                    // add resolve.modules
     modules: [
-      'node_modules',           // node_modules dir
+      "node_modules",           // node_modules dir
       process.env.PAGY_PATH     // pagy dir
     ]
   }
@@ -156,20 +156,20 @@ In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.
 
 ```json
 {
-  "build": "PAGY_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your rollup command>"
+  "build": "PAGY_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your rollup command>"
 }
 ```
 
-In `rollup.confg.js`, add the `moduleDirectories` array to the `plugins`:
+In `rollup.confg.js`, configure the `plugins[resolve]`:
 
 ```js
 export default {
-  ...,                                       // your original config
+  ...,                                    // your original config
   plugins: [
     resolve({
-              moduleDirectories: [
-                'node_modules',             // node_modules dir
-                process.env.PAGY_PATH       // pagy dir
+              moduleDirectories: [        // add moduleDirectories
+                "node_modules",           // node_modules dir
+                process.env.PAGY_PATH     // pagy dir
               ] 
     })
   ]
