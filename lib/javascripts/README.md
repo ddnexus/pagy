@@ -77,15 +77,23 @@ The `pagy-dev.js` is a readable javascript file meant to be used as a drop-in fi
 
 ### Non-rails apps / simple apps
 
-Ensure the `Pagy.root.join('javascripts', 'pagy.js')` script gets served with the page.
-
 Add an event listener that fires on page load:
 
 ```js
 window.addEventListener('load', Pagy.init);
 ```
 
+Ensure the `Pagy.root.join('javascripts', 'pagy.js')` script gets served with the page.
+
 ### Rails asset pipeline
+
+In `application.js`, require pagy and add an event listener like `"turbolinks:load"` or `"load"` that fires on page load:
+
+```js
+//= require pagy
+
+window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
+```
 
 Uncomment the following line in `config/initializers/pagy.rb`:
 
@@ -93,21 +101,9 @@ Uncomment the following line in `config/initializers/pagy.rb`:
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 ```
 
-Add the pagy javascript to `application.js`:
-
-```js
-//= require pagy
-```
-
-Add an event listener like `"turbolinks:load"` or `"load"` that fires on page load:
-
-```js
-window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
-```
-
 ### Rails jsbundling-rails
 
-You can import and use the pagy module in `app/javascript/application.js`: 
+In `app/javascript/application.js`, import and use the pagy module: 
 
 ```js
 import Pagy from "pagy-module";
@@ -122,45 +118,72 @@ Here is how to do that with different bundlers:
 
 #### Esbuild
 
-In `package.json`: prepend the `NODE_PATH` environment variable to the `scripts.build` command:
+In `package.json`, prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 
 ```json
 {
-    "build": "NODE_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your original command>"
+  "build": "NODE_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your original command>"
 }
 ```
 
 #### Webpack
 
-In `package.json`: append the `pagyPath` as a webpack `--env` variable to the `scripts.build` command:
+In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.build` command:
 
 ```json
 {
-    "build": "<your webpack command> --env pagyPath=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\")"
+  "build": "PAGY_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your webpack command>"
 }
 ```
 
-In `webpack.confg.js`: ensure that the `module.exports` value is a config function instead of a config object. It should accept an `env` param and return the config object extended with the `pagyPath` in the `resolve.modules` array. Here is how you should customize the rails/webpack default config:
+In `webpack.confg.js`, add the `resolve.modules` array:
 
 ```js
-// Default config object
-// module.exports = { <your original config> }  
-
-// Customized config function
-module.exports = (env) => {       // add env parameter
-  return {                        // return the config object
-    // <your original config> ,
-    resolve: {                    // add resolve.modules
-      modules: [
-        path.resolve(__dirname, 'node_modules'), // node_modules dir
-        env.pagyPath                             // pagy dir
-      ]
-    }
+module.exports = {
+  ...,                          // your original config
+  resolve: {                    // add resolve.modules
+    modules: [
+      'node_modules',           // node_modules dir
+      process.env.PAGY_PATH     // pagy dir
+    ]
   }
 }
 ```
 
+#### Rollup
+
+In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.build` command:
+
+```json
+{
+  "build": "PAGY_PATH=$(bundle exec ruby -e \"require 'pagy'; puts Pagy.root.join('javascripts')\") <your rollup command>"
+}
+```
+
+In `rollup.confg.js`, add the `moduleDirectories` array to the `plugins`:
+
+```js
+export default {
+  ...,                                       // your original config
+  plugins: [
+    resolve({
+              moduleDirectories: [
+                'node_modules',             // node_modules dir
+                process.env.PAGY_PATH       // pagy dir
+              ] 
+    })
+  ]
+}
+```
+
 ### Rails Importmap
+
+In `app/javascript/application.js`, import and use the pagy module:
+
+```js
+import Pagy from "pagy-module";
+window.addEventListener("turbo:load", Pagy.init);
+```
 
 Uncomment the following line in `config/initializers/pagy.rb` initializer:
 
@@ -178,13 +201,6 @@ Pin the pagy-module in `config/importmap.rb`:
 
 ```ruby
 pin 'pagy-module'
-```
-
-Import and use the pagy module in `app/javascript/application.js`:
-
-```js
-import Pagy from "pagy-module";
-window.addEventListener('turbo:load', Pagy.init);
 ```
 
 ### Other environments/methods
@@ -212,7 +228,7 @@ Ensure that the `erb` loader is installed:
 bundle exec rails webpacker:install:erb
 ```
 
-Then create a `app/javascript/packs/pagy.js.erb` with the following content:
+Create `app/javascript/packs/pagy.js.erb` with the following content:
 
 ```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
