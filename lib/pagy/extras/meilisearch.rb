@@ -35,7 +35,7 @@ class Pagy # :nodoc:
         vars                 = pagy_meilisearch_get_vars(nil, vars)
         options[:limit]      = vars[:items]
         options[:offset]     = (vars[:page] - 1) * vars[:items]
-        results              = model.search(term, **options)
+        results              = model.ms_search(term, **options)
         vars[:count]         = results.raw_answer['nbHits']
         pagy                 = ::Pagy.new(vars)
         # with :last_page overflow we need to re-run the method in order to get the hits

@@ -20,7 +20,7 @@ require 'pagy/extras/meilisearch'
 If you have an already paginated `Meilisearch` results, you can get the `Pagy` object out of it:
 
 ```ruby
-@results = Model.search(nil, offset: 10, limit: 10, ...)
+@results = Model.ms_search(nil, offset: 10, limit: 10, ...)
 @pagy    = Pagy.new_from_meilisearch(@results, ...)
 ```
 
@@ -52,7 +52,7 @@ results         = Article.pagy_search(params[:q])
 This constructor accepts a Meilisearch as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of the Meilisearch object.
 
 ```ruby
-@results = Model.search(nil, offset: 10, limit: 10, ...)
+@results = Model.ms_search(nil, offset: 10, limit: 10, ...)
 @pagy    = Pagy.new_from_meilisearch(@results, ...)
 ```
 
