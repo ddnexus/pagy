@@ -2,7 +2,17 @@
 # frozen_string_literal: true
 
 class Pagy # :nodoc:
-  DEFAULT[:elasticsearch_rails_search_method] ||= :pagy_search
+  DEFAULT[:elasticsearch_rails_search]      ||= :search
+  DEFAULT[:elasticsearch_rails_pagy_search] ||= if DEFAULT[:elasticsearch_rails_search_method]  #  remove in 6.0
+                                                  # :nocov:
+                                                  Warning.warn '[PAGY WARNING] The :elasticsearch_rails_search_method variable ' \
+                                                               'has been deprecated and will be ignored from pagy 6. ' \
+                                                               'Use :elasticsearch_rails_pagy_search instead.'
+                                                  DEFAULT[:elasticsearch_rails_search_method]
+                                                  # :nocov:
+                                                else
+                                                  :pagy_search
+                                                end
 
   # Paginate ElasticsearchRails response objects
   module ElasticsearchRailsExtra
@@ -27,7 +37,7 @@ class Pagy # :nodoc:
           args.define_singleton_method(:method_missing) { |*a| args += a }
         end
       end
-      alias_method Pagy::DEFAULT[:elasticsearch_rails_search_method], :pagy_elasticsearch_rails
+      alias_method Pagy::DEFAULT[:elasticsearch_rails_pagy_search], :pagy_elasticsearch_rails
     end
 
     # Additions for the Pagy class
@@ -52,7 +62,7 @@ class Pagy # :nodoc:
         vars             = pagy_elasticsearch_rails_get_vars(nil, vars)
         options[:size]   = vars[:items]
         options[:from]   = vars[:items] * (vars[:page] - 1)
-        response         = model.search(query_or_payload, **options)
+        response         = model.send(DEFAULT[:elasticsearch_rails_search], query_or_payload, **options)
         vars[:count]     = ElasticsearchRailsExtra.total_count(response)
 
         pagy = ::Pagy.new(vars)

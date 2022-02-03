@@ -76,9 +76,10 @@ This method accepts the same arguments of the `search` method and you must use i
 
 ### Variables
 
-| Variable                             | Description                            | Default      |
-|:-------------------------------------|:---------------------------------------|:-------------|
-| `:elasticsearch_rails_search_method` | customizable name of the search method | :pagy_search |
+| Variable                           | Description                                     | Default      |
+|:-----------------------------------|:------------------------------------------------|:-------------|
+| `:elasticsearch_rails_pagy_search` | customizable name of the pagy search method     | :pagy_search |
+| `:elasticsearch_rails_search`      | customizable name of the original search method | :search      |
 
 ### Methods
 
