@@ -52,7 +52,7 @@ class MockCollection < Array
     END_DATE   = Time.new(2023, 11, 13, 15, 43, 40).utc
     YAML_FILE  = File.expand_path('../files/calendar_collection.yml', __dir__)
     # :nocov:
-    COLLECTION = if Psych::VERSION > '4.0'
+    COLLECTION = if Psych::VERSION > '3.3.0'
                    YAML.safe_load(File.read(YAML_FILE), permitted_classes: [Time])
                  else
                    YAML.safe_load(File.read(YAML_FILE), [Time], [])
