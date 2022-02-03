@@ -24,6 +24,21 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.10.0
+
+- Adjusted Psych::VERSION condition to avoid deprecations
+- Improvement of search extras: (closes #367) (closes #369)
+  - Added DEFAULT[:*_search] variables used to call the original :search method
+  - Deprecated and renamed DEFAULT[:*_search_method] to DEFAULT[:*_pagy_search]
+  - Updated config, docs and CHANGELOG deprecations
+- Fix for wrong calculation of :page in Pagy.new_from_meilisearch (closes #368)
+- Faster assignment of javascript path
+- Simplified webpack config, added rollup config and normalized doc
+- Better javascript doc (closes #365)
+- Added specific webpack javascript configuration info; a few minor doc adjustments
+- Added specific webpack javascript configuration info
+- Update javascript.md (#362)
+
 ## Version 5.9.3
 
 - Fix for too generalized html_escape in pagy_url_for. (closes #363)
