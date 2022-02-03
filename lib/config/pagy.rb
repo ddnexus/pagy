@@ -95,7 +95,7 @@
 # the elasticsearch_rails or searchkick extra that define the same method
 # Pagy::DEFAULT[:meilisearch_pagy_search] = :pagy_search
 # Default original :search method called internally to do the actual search
-# Pagy::DEFAULT[:meilisearch_search] = :search
+# Pagy::DEFAULT[:meilisearch_search] = :ms_search
 # require 'pagy/extras/meilisearch'
 
 # Metadata extra: Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.

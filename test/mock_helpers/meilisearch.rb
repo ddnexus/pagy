@@ -24,7 +24,7 @@ module MockMeilisearch
   end
 
   class Model
-    def self.search(*args)
+    def self.ms_search(*args)
       Results.new(*args)
     end
 

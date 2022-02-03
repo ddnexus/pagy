@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy # :nodoc:
-  DEFAULT[:meilisearch_search]      ||= :search
+  DEFAULT[:meilisearch_search]      ||= :ms_search
   DEFAULT[:meilisearch_pagy_search] ||= if DEFAULT[:meilisearch_search_method]   # remove in 6.0
                                           # :nocov:
                                           Warning.warn '[PAGY WARNING] The :meilisearch_search_method variable ' \
