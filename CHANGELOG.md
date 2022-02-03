@@ -24,6 +24,10 @@ Still supported in version `5.x` but not supported from `6.0` on:
 
 <hr>
 
+## Version 5.10.1
+
+- Changed default for :meilisearch_search method to always defined :ms_search method
+
 ## Version 5.10.0
 
 - Adjusted Psych::VERSION condition to avoid deprecations
