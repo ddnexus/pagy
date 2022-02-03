@@ -15,11 +15,29 @@ If you upgrade from version `< 5.0.0` see the following:
 Still supported in version `5.x` but not supported from `6.0` on:
 
 - The `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [How to customize the params](https://ddnexus.github.io/pagy/how-to#customize-the-params).
-- The `activesupport` core dependency - it will become an optional requirement if you use the calendar: add `gem 'activesuport'` to your Gemfile if your app doesn't use rails.
+- The `activesupport` core dependency: it will become an optional requirement if you use the calendar: add `gem 'activesuport'` to your Gemfile if your app doesn't use rails.
 - The plain `Time` objects in the `:period` variable: use only `ActiveSupport::TimeWithZone` objects. 
 - The `:offset` variable used by the `Pagy::Calendar::Week`: set the `Date.beginning_of_week` variable to the symbol of the first day of the week (e.g. `Date.beginning_of_week = :sunday`). Notice the default is `:monday` consistently with the ISO-8601 standard (and Rails).
+- The `Pagy::DEFAULT[:elasticsearch_rails_search_method]`: use `Pagy::DEFAULT[:elasticsearch_rails_pagy_search]` instead.
+- The `Pagy::DEFAULT[:searchkick_search_method]`: use `Pagy::DEFAULT[:searchkick_pagy_search`] instead.
+- The `Pagy::DEFAULT[:meilisearch_search_method]`: use `Pagy::DEFAULT[:meilisearch_pagy_search]` instead.
 
 <hr>
+
+## Version 5.10.0
+
+- Adjusted Psych::VERSION condition to avoid deprecations
+- Improvement of search extras: (closes #367) (closes #369)
+  - Added DEFAULT[:*_search] variables used to call the original :search method
+  - Deprecated and renamed DEFAULT[:*_search_method] to DEFAULT[:*_pagy_search]
+  - Updated config, docs and CHANGELOG deprecations
+- Fix for wrong calculation of :page in Pagy.new_from_meilisearch (closes #368)
+- Faster assignment of javascript path
+- Simplified webpack config, added rollup config and normalized doc
+- Better javascript doc (closes #365)
+- Added specific webpack javascript configuration info; a few minor doc adjustments
+- Added specific webpack javascript configuration info
+- Update javascript.md (#362)
 
 ## Version 5.9.3
 

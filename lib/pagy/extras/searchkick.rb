@@ -2,8 +2,17 @@
 # frozen_string_literal: true
 
 class Pagy # :nodoc:
-  DEFAULT[:searchkick_search_method] ||= :pagy_search
-
+  DEFAULT[:searchkick_search]      ||= :search
+  DEFAULT[:searchkick_pagy_search] ||= if DEFAULT[:searchkick_search_method]   # remove in 6.0
+                                         # :nocov:
+                                         Warning.warn '[PAGY WARNING] The :searchkick_search_method variable ' \
+                                                      'has been deprecated and will be ignored from pagy 6. ' \
+                                                      'Use :searchkick_pagy_search instead.'
+                                         DEFAULT[:searchkick_search_method]
+                                         # :nocov:
+                                       else
+                                         :pagy_search
+                                       end
   # Paginate Searchkick::Results objects
   module SearchkickExtra
     module Searchkick # :nodoc:
@@ -15,7 +24,7 @@ class Pagy # :nodoc:
           args.define_singleton_method(:method_missing) { |*a| args += a }
         end
       end
-      alias_method Pagy::DEFAULT[:searchkick_search_method], :pagy_searchkick
+      alias_method Pagy::DEFAULT[:searchkick_pagy_search], :pagy_searchkick
     end
 
     # Additions for the Pagy class
@@ -39,7 +48,7 @@ class Pagy # :nodoc:
         vars               = pagy_searchkick_get_vars(nil, vars)
         options[:per_page] = vars[:items]
         options[:page]     = vars[:page]
-        results            = model.search(term, **options, &block)
+        results            = model.send(DEFAULT[:searchkick_search], term, **options, &block)
         vars[:count]       = results.total_count
 
         pagy = ::Pagy.new(vars)

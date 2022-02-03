@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (5.9.3)
+# Pagy initializer file (5.10.0)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -74,9 +74,11 @@
 
 # Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects
 # See https://ddnexus.github.io/pagy/extras/elasticsearch_rails
-# default :pagy_search method: change only if you use also
+# Default :pagy_search method: change only if you use also
 # the searchkick or meilisearch extra that defines the same
-# Pagy::DEFAULT[:elasticsearch_rails_search_method] = :pagy_search
+# Pagy::DEFAULT[:elasticsearch_rails_pagy_search] = :pagy_search
+# Default original :search method called internally to do the actual search
+# Pagy::DEFAULT[:elasticsearch_rails_search] = :search
 # require 'pagy/extras/elasticsearch_rails'
 
 # Headers extra: http response headers (and other helpers) useful for API pagination
@@ -89,9 +91,11 @@
 
 # Meilisearch extra: Paginate `Meilisearch` result objects
 # See https://ddnexus.github.io/pagy/extras/meilisearch
-# default :pagy_search method: change only if you use also
+# Default :pagy_search method: change only if you use also
 # the elasticsearch_rails or searchkick extra that define the same method
-# Pagy::DEFAULT[:meilisearch_search_method] = :pagy_search
+# Pagy::DEFAULT[:meilisearch_pagy_search] = :pagy_search
+# Default original :search method called internally to do the actual search
+# Pagy::DEFAULT[:meilisearch_search] = :search
 # require 'pagy/extras/meilisearch'
 
 # Metadata extra: Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
@@ -104,9 +108,11 @@
 
 # Searchkick extra: Paginate `Searchkick::Results` objects
 # See https://ddnexus.github.io/pagy/extras/searchkick
-# default :pagy_search method: change only if you use also
+# Default :pagy_search method: change only if you use also
 # the elasticsearch_rails or meilisearch extra that defines the same
-# DEFAULT[:searchkick_search_method] = :pagy_search
+# DEFAULT[:searchkick_pagy_search] = :pagy_search
+# Default original :search method called internally to do the actual search
+# Pagy::DEFAULT[:searchkick_search] = :search
 # require 'pagy/extras/searchkick'
 # uncomment if you are going to use Searchkick.pagy_search
 # Searchkick.extend Pagy::Searchkick

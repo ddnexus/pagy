@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
 class Pagy # :nodoc:
-  DEFAULT[:meilisearch_search_method] ||= :pagy_search
-
+  DEFAULT[:meilisearch_search]      ||= :search
+  DEFAULT[:meilisearch_pagy_search] ||= if DEFAULT[:meilisearch_search_method]   # remove in 6.0
+                                          # :nocov:
+                                          Warning.warn '[PAGY WARNING] The :meilisearch_search_method variable ' \
+                                                       'has been deprecated and will be ignored from pagy 6. ' \
+                                                       'Use :meilisearch_pagy_search instead.'
+                                          DEFAULT[:meilisearch_search_method]
+                                          # :nocov:
+                                        else
+                                          :pagy_search
+                                        end
   # Paginate Meilisearch results
   module MeilisearchExtra
     module Meilisearch # :nodoc:
@@ -11,7 +20,7 @@ class Pagy # :nodoc:
       def pagy_meilisearch(term = nil, **vars)
         [self, term, vars]
       end
-      alias_method DEFAULT[:meilisearch_search_method], :pagy_meilisearch
+      alias_method DEFAULT[:meilisearch_pagy_search], :pagy_meilisearch
     end
 
     # Additions for the Pagy class
@@ -19,7 +28,7 @@ class Pagy # :nodoc:
       # Create a Pagy object from a Meilisearch results
       def new_from_meilisearch(results, vars = {})
         vars[:items] = results.raw_answer['limit']
-        vars[:page]  = [results.raw_answer['offset'] / vars[:items], 1].max
+        vars[:page]  = (results.raw_answer['offset'] / vars[:items]) + 1
         vars[:count] = results.raw_answer['nbHits']
         new(vars)
       end
@@ -35,7 +44,7 @@ class Pagy # :nodoc:
         vars                 = pagy_meilisearch_get_vars(nil, vars)
         options[:limit]      = vars[:items]
         options[:offset]     = (vars[:page] - 1) * vars[:items]
-        results              = model.search(term, **options)
+        results              = model.send(DEFAULT[:meilisearch_search], term, **options)
         vars[:count]         = results.raw_answer['nbHits']
         pagy                 = ::Pagy.new(vars)
         # with :last_page overflow we need to re-run the method in order to get the hits
