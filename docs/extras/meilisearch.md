@@ -78,7 +78,7 @@ This method accepts the same arguments of the `search` method and you must use i
 
 | Variable                   | Description                                     | Default        |
 |:---------------------------|:------------------------------------------------|:---------------|
-| `:meilisearch_pqgy_search` | customizable name of the pagy search method     | `:pagy_search` | 
+| `:meilisearch_pagy_search` | customizable name of the pagy search method     | `:pagy_search` | 
 | `:meilisearch_search`      | customizable name of the original search method | `:search`      | 
 
 ## Methods
