@@ -19,7 +19,7 @@ class Pagy # :nodoc:
       # Create a Pagy object from a Meilisearch results
       def new_from_meilisearch(results, vars = {})
         vars[:items] = results.raw_answer['limit']
-        vars[:page]  = [results.raw_answer['offset'] / vars[:items], 1].max
+        vars[:page]  = (results.raw_answer['offset'] / vars[:items]) + 1
         vars[:count] = results.raw_answer['nbHits']
         new(vars)
       end

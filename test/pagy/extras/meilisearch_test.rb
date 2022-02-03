@@ -99,7 +99,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 15
-        _(pagy.page).must_equal 2
+        _(pagy.page).must_equal 3
         _(pagy.vars[:link_extra]).must_equal 'X'
       end
     end
