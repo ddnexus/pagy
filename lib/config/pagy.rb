@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (5.10.0)
+# Pagy initializer file (5.10.1)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -95,7 +95,7 @@
 # the elasticsearch_rails or searchkick extra that define the same method
 # Pagy::DEFAULT[:meilisearch_pagy_search] = :pagy_search
 # Default original :search method called internally to do the actual search
-# Pagy::DEFAULT[:meilisearch_search] = :search
+# Pagy::DEFAULT[:meilisearch_search] = :ms_search
 # require 'pagy/extras/meilisearch'
 
 # Metadata extra: Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
