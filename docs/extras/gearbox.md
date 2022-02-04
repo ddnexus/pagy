@@ -17,6 +17,11 @@ You can also use it in presence of the [items](items.md) extra if you follow a s
 
 If you want to use the `gearbox` in some instances, you can temporarily set `items_extra: false` and the `gearbox`  will be used instead. That is a common scenario when you use the `items` extra in an API controller, while you want to use the `gearbox` in an infinite scroll pagination in another controller.
 
+#### Caveats
+
+- This extra cannot be used with `Pagy::Calendar::*` objects, which are paginated by period.
+- The search extras (`elasticserch_rails`, `meilisearch` and `searchkick`) are based on storages with built-in linear pagination, which is inconsistent with the `gearbox`.
+
 ## Synopsis
 
 See [extras](../extras.md) for general usage info.
