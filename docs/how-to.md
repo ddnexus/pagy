@@ -292,7 +292,7 @@ The following are a couple of examples.
 The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths like `your_route/23` instead of `your_route?page=23`):
 
 ```ruby
-def pagy_url_for(pagy, page)  # it was (page, pagy) in previous versions
+def pagy_url_for(pagy, page, absolute: false, html_escaped: false)  # it was (page, pagy) in previous versions
   params = request.query_parameters.merge(pagy.vars[:page_param] => page )
   url_for(params)
 end
