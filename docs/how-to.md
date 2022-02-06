@@ -305,7 +305,7 @@ Notice that this overridden method is quite slower than the original because it 
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and your page links may need to use POST and not GET. In that case you can try this simple solution:
 
 ```ruby
-def pagy_url_for(_pagy, page) # it was (page, pagy) in previous versions
+def pagy_url_for(_pagy, page, **_) # it was (page, pagy) in previous versions
   page
 end
 ```
