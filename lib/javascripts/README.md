@@ -8,13 +8,13 @@ These files are all providing the `Pagy` object and its only function `init`. Yo
 
 ### pagy-module.js
 
-The `pagy-module.js` is a ES6 module to use with webpacker, esbuild, parcel, etc. Import it with `import Pagy from "pagy-module"`.
+The [`pagy-module.js`](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js) is a ES6 module to use with webpacker, esbuild, parcel, etc. Import it with `import Pagy from "pagy-module"`.
  
 <details>
 
 <summary>pagy-module.d.ts </summary>
 
-The `pagy-module.d.ts` is the small TypeScript Declaration File useful only if you import the `pagy-module.js` in a TypeScript file.
+The [`pagy-module.d.ts`](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.d.ts) is the small TypeScript Declaration File useful only if you import the `pagy-module.js` in a TypeScript file.
 
 </details>
 
@@ -69,7 +69,7 @@ The `pagy.js` is a drop-in script meant to be loaded as is, directly in your pro
 
 <summary>pagy-dev.js (pagy debug only)</summary>
 
-The `pagy-dev.js` is a readable javascript file meant to be used as a drop-in file **only for debugging** with modern browsers. It won't work on old browsers and its size is big because it contains also the source map data to debug the TypeScript directly. Obviously... do not use it in production.
+The [`pagy-dev.js`](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-dev.js) is a readable javascript file meant to be used as a drop-in file **only for debugging** with modern browsers. It won't work on old browsers and its size is big because it contains also the source map data to debug the TypeScript directly. Obviously... do not use it in production.
 
 </details>
 
