@@ -101,6 +101,25 @@ In `application.js`, require pagy and add an event listener like `"turbolinks:lo
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
 ```
 
+Or you can do so using Stimulus JS:
+
+```js
+// pagy_initializer_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  connect() {
+    Pagy.init(this.element)
+  }
+}
+```
+
+```html+erb
+<div data-controller="pagy-initializer">
+  <%== pagy_nav_js(@pagy) %>
+</div>
+```
+
 Uncomment the following line in `config/initializers/pagy.rb`:
 
 ```ruby
@@ -113,22 +132,19 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 ```
 
-```html+erb
+```erb
 <-- e.g. appliciation.html.erb -->
 <%= javascript_include_tag "pagy" %>
 ```
 
-And initialize Pagy any way you like: 
-
-```js
-window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
-```
+And initialize Pagy any way you like (as above).
 
 #### 2. Rails jsbundling-rails
 
 In `app/javascript/application.js`, import and use the pagy module: 
 
 ```js
+// or use stimulus JS above
 import Pagy from "pagy-module";
 window.addEventListener("turbo:load", Pagy.init);
 ```
@@ -204,6 +220,7 @@ export default {
 In `app/javascript/application.js`, import and use the pagy module:
 
 ```js
+// or use stimulus JS above
 import Pagy from "pagy-module";
 window.addEventListener("turbo:load", Pagy.init);
 ```
@@ -255,7 +272,6 @@ Create `app/javascript/packs/pagy.js.erb` with the following content:
 
 ```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
-
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)
 ```
 
