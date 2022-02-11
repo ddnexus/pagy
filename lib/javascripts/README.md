@@ -85,7 +85,11 @@ window.addEventListener('load', Pagy.init);
 
 Ensure the `Pagy.root.join('javascripts', 'pagy.js')` script gets served with the page.
 
-### Rails asset pipeline
+### Rails Apps
+
+Trouble-shooting your javascript installation on Rails? Some [of these rails demo apps](https://github.com/stars/benkoshy/lists/rails-demo-apps-for-pagy) may help (the commit diffs are structured to make it elementary).
+
+#### Rails asset pipeline
 
 In `application.js`, require pagy and add an event listener like `"turbolinks:load"` or `"load"` that fires on page load:
 
@@ -101,7 +105,7 @@ Uncomment the following line in `config/initializers/pagy.rb`:
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 ```
 
-### Rails jsbundling-rails
+#### Rails jsbundling-rails
 
 In `app/javascript/application.js`, import and use the pagy module: 
 
@@ -116,7 +120,7 @@ Luckily, you can just configure your javascript tools to look into the `$(bundle
 
 Here is how to do that with different bundlers:
 
-#### Esbuild
+##### Esbuild
 
 In `package.json`, prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 
@@ -126,7 +130,7 @@ In `package.json`, prepend the `NODE_PATH` environment variable to the `scripts.
 }
 ```
 
-#### Webpack
+##### Webpack
 
 In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.build` command:
 
@@ -150,7 +154,7 @@ module.exports = {
 }
 ```
 
-#### Rollup
+##### Rollup
 
 In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.build` command:
 
@@ -176,7 +180,7 @@ export default {
 }
 ```
 
-### Rails Importmap
+#### Rails Importmap
 
 In `app/javascript/application.js`, import and use the pagy module:
 
