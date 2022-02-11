@@ -63,12 +63,17 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ## Installation instructions
 
-1. Add the relevant extra
-2. Use JS helper in a View
+1. Load the Javascript assets.
+2. Add the relevant extra
+3. Use JS helper in a View
 
 See [extras](../extras.md) for general usage info.
 
-#### 1. Add the relevant extra
+#### 1. Load / Initialise Pagy Javascript
+
+The strategy might vary, depending on what you're using: sprockets / or bundlers like (webpack-esbuild-rollup etc) / importmaps / propshaft etc - see [Javascript Readme Instructions](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/README.md) for installation and initialization details.
+
+#### 2. Add the relevant extra
 
 In the `pagy.rb` initializer, require the specific extra for the style you want to use:
 
@@ -83,7 +88,9 @@ require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
 
-#### 2. Use the JS helper in a View
+This will make available, the below helpers:
+
+#### 3. Use the JS helper in a View
 
 Use one of the `pagy*_nav_js` helpers in any view:
 
