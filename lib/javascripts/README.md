@@ -85,13 +85,15 @@ window.addEventListener('load', Pagy.init);
 
 Ensure the `Pagy.root.join('javascripts', 'pagy.js')` script gets served with the page.
 
-### Rails asset pipeline
+
+### Rails Apps
+
+Trouble-shooting your javascript installation on Rails? Some [of these rails demo apps](https://github.com/stars/benkoshy/lists/rails-demo-apps-for-pagy) may help (the commit diffs are structured to make it elementary).
 
 In `application.js`, require pagy and add an event listener like `"turbolinks:load"` or `"load"` that fires on page load:
 
 ```js
 //= require pagy
-
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
 ```
 
