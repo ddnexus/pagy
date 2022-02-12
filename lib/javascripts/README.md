@@ -8,7 +8,7 @@ These files are all providing the `Pagy` object and its only function `init`. Yo
 
 ### pagy-module.js
 
-The `pagy-module.js` is a ES6 module to use with webpacker, esbuild, parcel, etc. Import it with `import Pagy from "pagy-module"`.
+The [`pagy-module.js`](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js) is a ES6 module to use with webpacker, esbuild, parcel, etc. Import it with `import Pagy from "pagy-module"`.
  
 <details>
 
@@ -69,7 +69,7 @@ The `pagy.js` is a drop-in script meant to be loaded as is, directly in your pro
 
 <summary>pagy-dev.js (pagy debug only)</summary>
 
-The `pagy-dev.js` is a readable javascript file meant to be used as a drop-in file **only for debugging** with modern browsers. It won't work on old browsers and its size is big because it contains also the source map data to debug the TypeScript directly. Obviously... do not use it in production.
+The [`pagy-dev.js`](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-dev.js) is a readable javascript file meant to be used as a drop-in file **only for debugging** with modern browsers. It won't work on old browsers and its size is big because it contains also the source map data to debug the TypeScript directly. Obviously... do not use it in production.
 
 </details>
 
@@ -85,14 +85,39 @@ window.addEventListener('load', Pagy.init);
 
 Ensure the `Pagy.root.join('javascripts', 'pagy.js')` script gets served with the page.
 
-### Rails asset pipeline
+
+### Rails Apps
+
+Trouble-shooting your javascript installation on Rails? Some [of these rails demo apps](https://github.com/stars/benkoshy/lists/rails-demo-apps-for-pagy) may help (the commit diffs are structured to make it elementary).
+
+#### 1. Rails asset pipeline
+
+##### Sprockets
 
 In `application.js`, require pagy and add an event listener like `"turbolinks:load"` or `"load"` that fires on page load:
 
 ```js
 //= require pagy
-
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);
+```
+
+Or you can do so using Stimulus JS:
+
+```js
+// pagy_initializer_controller.js
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  connect() {
+    Pagy.init(this.element)
+  }
+}
+```
+
+```html+erb
+<div data-controller="pagy-initializer">
+  <%== pagy_nav_js(@pagy) %>
+</div>
 ```
 
 Uncomment the following line in `config/initializers/pagy.rb`:
@@ -100,12 +125,26 @@ Uncomment the following line in `config/initializers/pagy.rb`:
 ```ruby
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 ```
+##### Propshaft
 
-### Rails jsbundling-rails
+```ruby
+# config/initializers/pagy.rb
+Rails.application.config.assets.paths << Pagy.root.join('javascripts')
+```
+
+```erb
+<-- e.g. appliciation.html.erb -->
+<%= javascript_include_tag "pagy" %>
+```
+
+And initialize Pagy any way you like (as above).
+
+#### 2. Rails jsbundling-rails
 
 In `app/javascript/application.js`, import and use the pagy module: 
 
 ```js
+// or use stimulus JS above
 import Pagy from "pagy-module";
 window.addEventListener("turbo:load", Pagy.init);
 ```
@@ -116,7 +155,7 @@ Luckily, you can just configure your javascript tools to look into the `$(bundle
 
 Here is how to do that with different bundlers:
 
-#### Esbuild
+##### Esbuild
 
 In `package.json`, prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 
@@ -126,7 +165,7 @@ In `package.json`, prepend the `NODE_PATH` environment variable to the `scripts.
 }
 ```
 
-#### Webpack
+##### Webpack
 
 In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.build` command:
 
@@ -150,7 +189,7 @@ module.exports = {
 }
 ```
 
-#### Rollup
+##### Rollup
 
 In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.build` command:
 
@@ -176,11 +215,12 @@ export default {
 }
 ```
 
-### Rails Importmap
+#### Rails Importmap
 
 In `app/javascript/application.js`, import and use the pagy module:
 
 ```js
+// or use stimulus JS above
 import Pagy from "pagy-module";
 window.addEventListener("turbo:load", Pagy.init);
 ```
@@ -232,7 +272,6 @@ Create `app/javascript/packs/pagy.js.erb` with the following content:
 
 ```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
-
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)
 ```
 
