@@ -103,6 +103,16 @@
   class="page-item"><a href="/foo?page=49"  class="page-link" link-extra rel="prev"
   >49</a></li><li class="page-item active"><a href="/foo?page=50"  class="page-link"
   link-extra >50</a></li><li class="page-item next disabled"><a href="#" class="page-link">Next&nbsp;&rsaquo;</a></li></ul></nav>
+"[3] pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0003_renders last page": <nav
+  id="test-nav-id" class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination"><li
+  class="page-item prev"><a href="/foo?page=49"  class="page-link"  rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li
+  class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li class="page-item
+  gap disabled"><a href="#" class="page-link">&hellip;</a></li><li class="page-item"><a
+  href="/foo?page=46"  class="page-link"  >46</a></li><li class="page-item"><a href="/foo?page=47"  class="page-link"  >47</a></li><li
+  class="page-item"><a href="/foo?page=48"  class="page-link"  >48</a></li><li class="page-item"><a
+  href="/foo?page=49"  class="page-link"  rel="prev" >49</a></li><li class="page-item
+  active"><a href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item
+  next disabled"><a href="#" class="page-link">Next&nbsp;&rsaquo;</a></li></ul></nav>
 "[1] pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0001_renders first page": <nav
   class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination"><li class="page-item
   prev disabled"><a href="#" class="page-link">&lsaquo;&nbsp;Prev</a></li><li class="page-item
@@ -141,3 +151,28 @@
   class="pagy-bootstrap-nav-js" aria-label="pager" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cInBhZ2UtbGlua1wiICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gZ2FwIGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICBjbGFzcz1cInBhZ2UtbGlua1wiICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WyIxIiwyLDMsNCw1LCJnYXAiLDUwXX0sbnVsbF0="></nav>
 "[2] pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0001_renders first page": <nav
   id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="pager" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBhY3RpdmVcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGNsYXNzPVwicGFnZS1saW5rXCI+JmhlbGxpcDs8L2E+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBuZXh0XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WyIxIiwyLDMsImdhcCIsNTBdLCI2MDAiOlsiMSIsMiwzLDQsImdhcCIsNTBdfSxudWxsXQ=="></nav>
+"[3] pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0002_renders intermediate page": <nav
+  id="test-nav-id" class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination"><li
+  class="page-item prev"><a href="/foo?page=19"  class="page-link"  rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li
+  class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li class="page-item
+  gap disabled"><a href="#" class="page-link">&hellip;</a></li><li class="page-item"><a
+  href="/foo?page=16"  class="page-link"  >16</a></li><li class="page-item"><a href="/foo?page=17"  class="page-link"  >17</a></li><li
+  class="page-item"><a href="/foo?page=18"  class="page-link"  >18</a></li><li class="page-item"><a
+  href="/foo?page=19"  class="page-link"  rel="prev" >19</a></li><li class="page-item
+  active"><a href="/foo?page=20"  class="page-link"  >20</a></li><li class="page-item"><a
+  href="/foo?page=21"  class="page-link"  rel="next" >21</a></li><li class="page-item"><a
+  href="/foo?page=22"  class="page-link"  >22</a></li><li class="page-item"><a href="/foo?page=23"  class="page-link"  >23</a></li><li
+  class="page-item"><a href="/foo?page=24"  class="page-link"  >24</a></li><li class="page-item
+  gap disabled"><a href="#" class="page-link">&hellip;</a></li><li class="page-item"><a
+  href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item next"><a
+  href="/foo?page=21"  class="page-link"  rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>
+"[3] pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0001_renders first page": <nav
+  id="test-nav-id" class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination"><li
+  class="page-item prev disabled"><a href="#" class="page-link">&lsaquo;&nbsp;Prev</a></li><li
+  class="page-item active"><a href="/foo?page=1"  class="page-link"  >1</a></li><li
+  class="page-item"><a href="/foo?page=2"  class="page-link"  rel="next" >2</a></li><li
+  class="page-item"><a href="/foo?page=3"  class="page-link"  >3</a></li><li class="page-item"><a
+  href="/foo?page=4"  class="page-link"  >4</a></li><li class="page-item"><a href="/foo?page=5"  class="page-link"  >5</a></li><li
+  class="page-item gap disabled"><a href="#" class="page-link">&hellip;</a></li><li
+  class="page-item"><a href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item
+  next"><a href="/foo?page=2"  class="page-link"  rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>

@@ -66,3 +66,41 @@
   <span class="page"><a href="/foo?page=4"  link-extra >4</a></span> <span class="page"><a
   href="/foo?page=5"  link-extra rel="prev" >5</a></span> <span class="page active">6</span>
   <span class="page next disabled">Next&nbsp;&rsaquo;</span></nav>
+"[3] pagy/frontend::#pagy_nav#test_0001_renders page 1": <nav id="test-nav-id" class="pagy-nav
+  pagination new-class" aria-label="pager"><span class="page prev disabled">&lsaquo;&nbsp;Prev</span>
+  <span class="page active">1</span> <span class="page"><a href="/foo?page=2"   rel="next"
+  >2</a></span> <span class="page"><a href="/foo?page=3"   >3</a></span> <span class="page"><a
+  href="/foo?page=4"   >4</a></span> <span class="page"><a href="/foo?page=5"   >5</a></span>
+  <span class="page"><a href="/foo?page=6"   >6</a></span> <span class="page next"><a
+  href="/foo?page=2"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>
+"[3] pagy/frontend::#pagy_nav#test_0004_renders page 10": <nav id="test-nav-id" class="pagy-nav
+  pagination new-class" aria-label="pager"><span class="page prev"><a href="/foo?page=9"   rel="prev"
+  aria-label="previous">&lsaquo;&nbsp;Prev</a></span> <span class="page"><a href="/foo?page=1"   >1</a></span>
+  <span class="page gap">&hellip;</span> <span class="page"><a href="/foo?page=6"   >6</a></span>
+  <span class="page"><a href="/foo?page=7"   >7</a></span> <span class="page"><a href="/foo?page=8"   >8</a></span>
+  <span class="page"><a href="/foo?page=9"   rel="prev" >9</a></span> <span class="page
+  active">10</span> <span class="page"><a href="/foo?page=11"   rel="next" >11</a></span>
+  <span class="page"><a href="/foo?page=12"   >12</a></span> <span class="page"><a
+  href="/foo?page=13"   >13</a></span> <span class="page"><a href="/foo?page=14"   >14</a></span>
+  <span class="page gap">&hellip;</span> <span class="page"><a href="/foo?page=50"   >50</a></span>
+  <span class="page next"><a href="/foo?page=11"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>
+"[3] pagy/frontend::#pagy_nav#test_0003_renders page 6": <nav id="test-nav-id" class="pagy-nav
+  pagination new-class" aria-label="pager"><span class="page prev"><a href="/foo?page=5"   rel="prev"
+  aria-label="previous">&lsaquo;&nbsp;Prev</a></span> <span class="page"><a href="/foo?page=1"   >1</a></span>
+  <span class="page"><a href="/foo?page=2"   >2</a></span> <span class="page"><a href="/foo?page=3"   >3</a></span>
+  <span class="page"><a href="/foo?page=4"   >4</a></span> <span class="page"><a href="/foo?page=5"   rel="prev"
+  >5</a></span> <span class="page active">6</span> <span class="page next disabled">Next&nbsp;&rsaquo;</span></nav>
+"[3] pagy/frontend::#pagy_nav#test_0002_renders page 3": <nav id="test-nav-id" class="pagy-nav
+  pagination new-class" aria-label="pager"><span class="page prev"><a href="/foo?page=2"   rel="prev"
+  aria-label="previous">&lsaquo;&nbsp;Prev</a></span> <span class="page"><a href="/foo?page=1"   >1</a></span>
+  <span class="page"><a href="/foo?page=2"   rel="prev" >2</a></span> <span class="page
+  active">3</span> <span class="page"><a href="/foo?page=4"   rel="next" >4</a></span>
+  <span class="page"><a href="/foo?page=5"   >5</a></span> <span class="page"><a href="/foo?page=6"   >6</a></span>
+  <span class="page next"><a href="/foo?page=4"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>
+"[1] pagy/frontend::#pagy_nav#test_0006_renders with pagy_classes": <nav id="test-nav-id"
+  class="pagy-nav pagination new-class" aria-label="pager"><span class="page prev
+  disabled">&lsaquo;&nbsp;Prev</span> <span class="page active">1</span> <span class="page"><a
+  href="/foo?page=2"   rel="next" >2</a></span> <span class="page"><a href="/foo?page=3"   >3</a></span>
+  <span class="page"><a href="/foo?page=4"   >4</a></span> <span class="page"><a href="/foo?page=5"   >5</a></span>
+  <span class="page"><a href="/foo?page=6"   >6</a></span> <span class="page next"><a
+  href="/foo?page=2"   rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></span></nav>

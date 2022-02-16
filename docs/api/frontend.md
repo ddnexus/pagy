@@ -44,6 +44,7 @@ This method takes the Pagy object and returns the HTML string with the paginatio
 The method accepts also a few optional keyword arguments:
 
 - `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
+- `:pagy_classes` which use the passed Array to add the `class` HTML attribute to the `ul` tag
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 - `:size` which use the passed size Array instead of the `:size` variable of the instance
 

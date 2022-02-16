@@ -14,16 +14,19 @@ describe 'pagy/extras/bootstrap' do
       pagy = Pagy.new(count: 1000, page: 1)
       _(app.pagy_bootstrap_nav(pagy)).must_rematch
       _(app.pagy_bootstrap_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+      _(app.pagy_bootstrap_nav(pagy, pagy_id: 'test-nav-id', classes: ['new-class'])).must_rematch
     end
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 1000, page: 20)
       _(app.pagy_bootstrap_nav(pagy)).must_rematch
       _(app.pagy_bootstrap_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+      _(app.pagy_bootstrap_nav(pagy, pagy_id: 'test-nav-id', classes: ['new-class'])).must_rematch
     end
     it 'renders last page' do
       pagy = Pagy.new(count: 1000, page: 50)
       _(app.pagy_bootstrap_nav(pagy)).must_rematch
       _(app.pagy_bootstrap_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+      _(app.pagy_bootstrap_nav(pagy, pagy_id: 'test-nav-id', classes: ['new-class'])).must_rematch
     end
     it 'should raise for wrong series' do
       _ { app.pagy_bootstrap_nav(PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError

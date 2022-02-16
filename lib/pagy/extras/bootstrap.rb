@@ -8,11 +8,12 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module BootstrapExtra
     # Pagination for bootstrap: it returns the html with the series of links to the pages
-    def pagy_bootstrap_nav(pagy, pagy_id: nil, link_extra: '', **vars)
+    def pagy_bootstrap_nav(pagy, pagy_id: nil, pagy_classes: [], link_extra: '', **vars)
+      classes = %w[pagination]
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
-
-      html = +%(<nav#{p_id} class="pagy-bootstrap-nav" aria-label="pager"><ul class="pagination">)
+      classes = (classes + pagy_classes).join(' ').force_encoding('UTF-8')
+      html = +%(<nav#{p_id} class="pagy-bootstrap-nav" aria-label="pager"><ul class="#{classes}">)
       html << pagy_bootstrap_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item

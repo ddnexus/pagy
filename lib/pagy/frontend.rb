@@ -15,13 +15,15 @@ class Pagy
     include UrlHelpers
 
     # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, pagy_id: nil, link_extra: '', **vars)
-      p_id   = %( id="#{pagy_id}") if pagy_id
-      link   = pagy_link_proc(pagy, link_extra: link_extra)
-      p_prev = pagy.prev
-      p_next = pagy.next
+    def pagy_nav(pagy, pagy_id: nil, pagy_classes: [], link_extra: '', **vars)
+      classes = %w[pagy-nav pagination]
+      p_id    = %( id="#{pagy_id}") if pagy_id
+      link    = pagy_link_proc(pagy, link_extra: link_extra)
+      p_prev  = pagy.prev
+      p_next  = pagy.next
+      classes = (classes + pagy_classes).join(' ').force_encoding('UTF-8')
 
-      html = +%(<nav#{p_id} class="pagy-nav pagination" aria-label="pager">)
+      html = +%(<nav#{p_id} class="#{classes}" aria-label="pager">)
       html << if p_prev
                 %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</span> )
               else

@@ -21,26 +21,34 @@ describe 'pagy/frontend' do
       pagy = Pagy.new count: 103, page: 1
       _(app.pagy_nav(pagy)).must_rematch
       _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', pagy_classes: ['new-class'])).must_rematch
     end
     it 'renders page 3' do
       pagy = Pagy.new count: 103, page: 3
       _(app.pagy_nav(pagy)).must_rematch
       _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', pagy_classes: ['new-class'])).must_rematch
     end
     it 'renders page 6' do
       pagy = Pagy.new count: 103, page: 6
       _(app.pagy_nav(pagy)).must_rematch
       _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', pagy_classes: ['new-class'])).must_rematch
     end
     it 'renders page 10' do
       pagy = Pagy.new count: 1000, page: 10
       _(app.pagy_nav(pagy)).must_rematch
       _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
+      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', pagy_classes: ['new-class'])).must_rematch
     end
     it 'renders with link_extras' do
       pagy = Pagy.new count: 103, page: 1, link_extra: "X"
       _(app.pagy_nav(pagy)).must_include '?page=2" X  rel'
       _(app.pagy_nav(pagy, link_extra: 'link-extra')).must_include '?page=2" X link-extra rel'
+    end
+    it 'renders with pagy_classes' do
+      pagy = Pagy.new count: 103, page: 1
+      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', pagy_classes: ['new-class'])).must_rematch
     end
     it 'should raise for wrong series' do
       _ { app.pagy_nav(PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
