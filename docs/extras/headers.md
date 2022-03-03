@@ -123,7 +123,7 @@ If your app doesn't implement the `response` object that way, you should overrid
 
 ### pagy_headers(pagy)
 
-This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http headers to send with the response. It is internally used by the `pagy_headers_merge` method, so you usually don't need to use it directly.
+This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http headers to send with the response. It is internally used by the `pagy_headers_merge` method, so you usually don't need to use it directly. However, if you need to edit the headers that pagy generates (for example adding extra `Link` headers), you can override it in your own controller.
 
 ### pagy_headers_hash(pagy)
 
