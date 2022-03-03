@@ -11,10 +11,10 @@
         "node": ">=16.13.1"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.8.1",
-        "@typescript-eslint/parser": "^5.8.1",
-        "eslint": "^8.6.0",
+        "@typescript-eslint/eslint-plugin": "^5.13.0",
+        "@typescript-eslint/parser": "^5.13.0",
+        "eslint": "^8.10.0",
         "eslint-plugin-align-assignments": "^1.1.2",
-        "typescript": "^4.5.4"
+        "typescript": "^4.6.2"
     }
 }

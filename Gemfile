@@ -8,9 +8,9 @@ source 'https://rubygems.org'
 gem 'rake'
 
 group :development do
-  gem 'debase'         # companion of ruby-debug-ide
-  gem 'ruby-debug-ide' # companion of debase
-  gem 'solargraph'     # run the Solargraph rebuild command in VSC
+  gem 'debase', '~> 0.2.5.beta'  # companion of ruby-debug-ide
+  gem 'ruby-debug-ide'           # companion of debase
+  gem 'solargraph'               # run the Solargraph rebuild command in VSC
 end
 
 group :test do

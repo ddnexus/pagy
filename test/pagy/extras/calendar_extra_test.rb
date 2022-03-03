@@ -39,11 +39,11 @@ describe 'pagy/extras/calendar' do
     end
     it 'raises NoMethodError for #pagy_calendar_period' do
       error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_period) }
-      _(error.message).must_rematch
+      _(error.message).must_match 'the pagy_calendar_period method must be implemented by the application'
     end
     it 'raises NoMethodError for #pagy_calendar_filter' do
       error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_filter) }
-      _(error.message).must_rematch
+      _(error.message).must_match 'the pagy_calendar_filter method must be implemented by the application'
     end
     it 'raises ArgumentError for wrong conf' do
       _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, []) }.must_raise ArgumentError
