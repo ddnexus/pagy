@@ -74,7 +74,7 @@ The whole usage boils down to these steps:
 
 1. Define the [pagy_calendar_period](#pagy_calendar_periodcollection) method in your controller
 2. Define the [pagy_calendar_filter](#pagy_calendar_filtercollection-from-to) method in your controller
-3. Configure the [pagy_calendar](#pagy_calendarcollection-conf) method in your action
+3. Configure the [pagy_calendar](#pagy_calendarcollection-configuration) method in your action
 4. Use it in your UI
 
 You can play with a quick demo app, working without any additional configuration with:
@@ -253,7 +253,7 @@ The `pagy_*combo_nav_js` keeps into account only page numbers and not labels, so
 
 Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](../api/calendar.md#variables))
 
-You can also get the [current page label](../api/calendar.md#labelopts) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
+You can also get the [current page label](../api/calendar.md#labelopts--) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
 
 ### I18n localization
 
