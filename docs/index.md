@@ -1,5 +1,6 @@
 ---
-title: Basic Concepts
+title: Home
+icon: home
 ---
 # Basic Concepts
 

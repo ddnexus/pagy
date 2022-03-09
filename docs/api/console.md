@@ -1,5 +1,8 @@
 ---
 title: Pagy::Console
+categories: 
+- Modules
+- Tools
 ---
 # Pagy::Console
 

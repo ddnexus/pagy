@@ -1,5 +1,7 @@
 ---
 title: Bulma
+category: Frontend Extras
+image: none
 ---
 # Bulma Extra
 

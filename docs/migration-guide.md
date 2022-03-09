@@ -1,7 +1,7 @@
 ---
-title: Migration Guide
+order: 1
 ---
-# Migrate WillPaginate and Kaminari
+# Migrate WillPaginate/Kaminari
 
 This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is highly customized you may need more digging into the Pagy documentation.
 

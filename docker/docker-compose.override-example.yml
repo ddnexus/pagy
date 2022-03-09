@@ -76,7 +76,3 @@ services:
 
     # Start RubyMine at `docker-compose up` (disable for VSCode)
     command: ["/home/$USER/jb/rubymine"]
-
-  pagy-docs:
-    # shutdown the docs service when you close RubyMine
-    depends_on: [pagy-dev]

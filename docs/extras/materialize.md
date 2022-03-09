@@ -1,5 +1,7 @@
 ---
 title: Materialize
+category: Frontend Extras   
+image: none
 ---
 # Materialize Extra
 

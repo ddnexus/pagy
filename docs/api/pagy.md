@@ -1,5 +1,6 @@
 ---
 title: Pagy
+category: Classes
 ---
 # Pagy
 

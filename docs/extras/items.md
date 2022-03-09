@@ -1,5 +1,6 @@
 ---
 title: Items
+category: Feature Extras
 ---
 # Items Extra
 

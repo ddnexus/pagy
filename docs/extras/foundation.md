@@ -1,5 +1,6 @@
 ---
 title: Foundation
+category: Frontend Extras
 ---
 # Foundation Extra
 

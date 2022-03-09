@@ -1,5 +1,7 @@
 ---
 title: Bootstrap
+category: Frontend Extras
+image: none
 ---
 # Bootstrap Extra
 

@@ -1,5 +1,8 @@
 ---
 title: Meilisearch
+categories:
+- Backend Extras
+- Search Extras
 ---
 # Meilisearch Extra
 

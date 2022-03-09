@@ -40,35 +40,7 @@ services:
     stdin_open: true
     tty: true
 
-  pagy-docs:
-    image: pagy-docs:latest
-    build:
-      context: .
-      dockerfile: Dockerfile.docs
-    container_name: pagy-docs
-    environment:
-      - JEKYLL_GITHUB_TOKEN
-    ports:
-      - "4000:4000"
-      - "35729:35729"
-    volumes:
-      - ../docs:/opt/docs
-      - docs_site:/opt/site
-    command: |
-      jekyll serve \
-          --incremental \
-          --livereload \
-          --watch \
-          --force-polling \
-          --host 0.0.0.0 \
-          --baseurl '' \
-          --source /opt/docs \
-          --destination /opt/site
-    stdin_open: true
-    tty: true
-
 volumes:
   bundle:
   user_home:
   node_modules:
-  docs_site:

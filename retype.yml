@@ -1,0 +1,27 @@
+input: .
+output: .retype
+url: https://ddnexus.github.io/pagy
+branding:
+  title: Pagy
+  label: &1124964540 Docs
+
+links:
+- text: Github
+  link: https://github.com/ddnexus/pagy
+- text: Issues
+  link: https://github.com/ddnexus/pagy/issues
+- text: Gitter
+  link: https://gitter.im/ruby-pagy/Lobby
+- text: Retype docs (temporary link)
+  link: https://retype.com
+  target: blank
+
+include:
+- ./lib/config/pagy.rb
+edit:
+  repo: "https://github.com/ddnexus/pagy"
+  base: /docs
+  branch: master
+
+footer:
+  copyright: "&copy; 2017-2022 Domizio Demichelis - MIT License"

@@ -1,5 +1,7 @@
 ---
 title: Pagy::Backend
+category: Modules
+description: This module provides the base functionality for the backend.
 ---
 # Pagy::Backend
 
