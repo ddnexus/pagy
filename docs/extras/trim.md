@@ -1,5 +1,6 @@
 ---
 title: Trim
+category: Feature Extras
 ---
 # Trim Extra
 

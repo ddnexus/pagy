@@ -1,5 +1,6 @@
 ---
 title: Navs
+category: Frontend Extras
 ---
 # Navs Extra
 

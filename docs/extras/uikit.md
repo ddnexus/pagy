@@ -1,5 +1,7 @@
 ---
 title: UIkit
+category: Frontend Extras
+image: none
 ---
 # UIkit Extra
 

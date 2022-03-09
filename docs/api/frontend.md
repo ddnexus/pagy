@@ -1,5 +1,6 @@
 ---
 title: Pagy::Frontend
+category: Modules
 ---
 
 # Pagy::Frontend

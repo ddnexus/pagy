@@ -1,5 +1,8 @@
 ---
 title: Elasticsearch Rails
+categories: 
+- Backend Extras
+- Search Extras
 ---
 # Elasticsearch Rails Extra
 

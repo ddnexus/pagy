@@ -1,5 +1,8 @@
 ---
 title: Searchkick
+categories:
+- Backend Extras
+- Search Extras
 ---
 # Searchkick Extra
 

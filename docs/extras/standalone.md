@@ -1,5 +1,6 @@
 ---
 title: Standalone
+category: Feature Extras
 ---
 # Standalone Extra
 

@@ -1,5 +1,7 @@
 ---
 title: Javascript
+category: Tools
+image: none
 ---
 
 # Javascript

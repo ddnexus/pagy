@@ -1,5 +1,6 @@
 ---
 title: Semantic
+category: Frontend Extras
 ---
 # Semantic UI Extra
 
