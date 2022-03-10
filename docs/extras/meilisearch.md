@@ -32,6 +32,7 @@ Extend your model:
 
 ```ruby
 extend Pagy::Meilisearch
+ActiveRecord_Relation.include Pagy::Meilisearch  # <--- (optional) if you use `includes` makes it work as expected
 ```
 
 In a controller use `pagy_search` in place of `search`:
