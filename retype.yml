@@ -1,9 +1,13 @@
 input: .
 output: .retype
 url: https://ddnexus.github.io/pagy
+
 branding:
   title: Pagy
-  label: &1124964540 Docs
+  label: 5.10.1
+
+meta:
+  title: " | Pagy"
 
 links:
   - text: Github
@@ -24,4 +28,4 @@ edit:
   branch: master
 
 footer:
-  copyright: "&copy; 2017-2022 Domizio Demichelis - MIT License"
+  copyright: "&copy; 2017-2022 [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"
