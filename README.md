@@ -63,7 +63,7 @@ Thank you for showing your support!
 
 ### Unlike the other gems
 
-- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#configure-pagy))_
+- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
 - It doesn't impose limits on your code even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#use-templates))_
 - It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handle-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
@@ -105,7 +105,7 @@ include Pagy::Frontend
 <%== pagy_nav(@pagy) %>
 ```
 
-_(See [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_
+_(See [Quick Start](https://ddnexus.github.io/pagy/quick-start))_
 
 </details>
 
@@ -234,7 +234,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 <summary>Read the documentation...</summary>
 
 - [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-guide) (practical guide)
-- [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
+- [Quick Start](https://ddnexus.github.io/pagy/quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
 - [Deprecations](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md#deprecations)

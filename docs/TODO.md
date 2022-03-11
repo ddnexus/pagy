@@ -19,12 +19,12 @@ order: 3
   - [] Basic concepts should be a sub topic
 - [] Refactoring of How To
   - [x] Extract Quick Start from How to
-    - [] Replace the links in other documents
+    - [x] Replace the links in other documents
   - [x] Extract the Configuration section
-    - [] Replace the links in other document
+    - [x] Replace the links in other document
     - [x] Link the `config/pagy.js` as a download link
 - [] Link the Javascript Readme to the javascript docs
-- [] `retype.yml` update with pagy version (if hardcoded, add automatic replacement and condition in tests)
+- [x] `retype.yml` update with pagy version (if hardcoded, add automatic replacement and condition in tests)
 - [] Reorganize ALL the content with retype tabs, panels, columns, alert, warnings, notes etc.
 - [] Decide whether removing the `extras.md` and `api.md` in favour of categories auto/generated pages would simplify the docs.
  
