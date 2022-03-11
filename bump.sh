@@ -32,6 +32,7 @@ bump "$ROOT/.github/.env"
 bump "$ROOT/lib/pagy.rb"
 bump "$ROOT/lib/config/pagy.rb"
 bump "$ROOT/src/pagy.ts"
+bump "$ROOT/retype.yml"
 
 # Bumps docs example
 esc_old_minor_vers=${esc_old_vers%\\*}

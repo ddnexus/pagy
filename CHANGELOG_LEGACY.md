@@ -1,4 +1,5 @@
----
+---          
+title: CHANGELOG (legacy)
 icon: versions-24
 ---
 

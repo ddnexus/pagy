@@ -2,7 +2,6 @@
 title: Documentation
 icon: book-24
 ---
- 
 !!! success
 Pagy `4.0+` runs on ruby `2.5+`
 !!!
