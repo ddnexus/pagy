@@ -1,47 +1,41 @@
 ---
-title: Home
-icon: home
+title: Documentation
+icon: book-24
 ---
-# Basic Concepts
+ 
+!!! success
+Pagy `4.0+` runs on ruby `2.5+`
+!!!
+!!! info
+Older versions run on ruby `1.9+` or `jruby 1.7+` till `ruby <2.5`
+!!!
 
-## Pagination is a simple task
+### Rack environments
 
-A classic pagination gem needs to calculate a series of 10-20 sequential integers (the page numbers) and loop through that series to produce one link per integer. That's just a long string with a few numbers in it, and it's a very simple task... unless someone builds a whole complex world of thousands of objects around a simple series of integers :).
+Pagy works out of the box in a web app assuming that:
 
-## Pagy keeps it simple
+- You are using a `Rack` based framework (Rails, Sinatra, Padrino, etc.)
+- The collection to paginate is an ORM collection (e.g. ActiveRecord scope) or other collections supported by some backend extra ([array](extras/array.md), [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md), [meilisearch](extras/meilisearch.md), ...)
+- The controller where you include `Pagy::Backend` responds to a `params` method
+- The view where you include `Pagy::Frontend` responds to a `request` method returning a `Rack::Request` instance.
 
-Pagy keeps pagination as straightforward as it could be: there are no "declarative DSL" to learn, no "global pollution" to avoid, no need for any special module or adapter. There are no nested modules, classes nor countless methods and many hundreds lines of code... all really difficult to justify for such a simple task.
+### Non Rack environments
 
-Pagy is simple. Just take a look at the core source: [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb), [pagy/backend.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb), [pagy/frontend.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb) .
+- Require the [standalone extra](extras/standalone.md), and pass a `:url` variable and you can use it without Rack in your app or exotic API, with or without the other extras you might need. You can even use every feature/helper right in the irb/rails console.
+- Besides Rack the other assumptions above apply
 
- Its size and simplicity is one of the reasons of its stunning performance.
+### Irb/rails console environment
 
-## Specialized code instead of generic helpers
+Standard pagination requires controller, model, view and request to work, however you don't have to satisfy all that requirements in order to get any helper working in the irb/rails console. Just use the [Pagy::Console](api/console.md) and you can try any feature right away, even without any app nor configuration.
 
-Pagy is very specialized. It uses its own code to produce its own HTML, URLs, pluralization and interpolation. Unlike other gems it does not use any generic helpers such as rails helpers (`tag`, `link_to`, `url_for`, `I18n.t`, ...).
+### Any other environment
 
-Those are perfect helpers but only if used _in an application_.  Because _they are generic_ they can get the job done in any situation, but exactly _because they are generic_, they are just the wrong tool to use _in a pagination gem_. Indeed they are inevitably A LOT slower and use A LOT more memory than specialized methods (or no method at all, like in case of HTML string interpolation extensively used by Pagy).
+Pagy can also work in any other scenario assuming that:
 
-## Stay away from the models
+- If your framework doesn't have a `params` method you can use the [standalone extra](extras/standalone.md) or you may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
+- If the collection you are paginating doesn't respond to `offset` and `limit` and is not yet supported by any extra, you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
+- If your framework doesn't have a `request` method you can use the [standalone extra](extras/standalone.md) or you may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
 
-**Paginating is not business logic**: it has nothing to do with the data itself. It has to do with the way you decide to _present_ the data... one page at the time, n items per page... That is indeed _presentation_ logic, so the models are really not the place where to add that logic!
-
-**Every collection knows already how to paginate itself**: that's what OFFSET and LIMIT in DBs are for! You decide the limit (the items per page) and Pagy (or yourself) can calculate the offset with simple arithmetic: `offset = items * (page - 1)`. That's not rocket science! You don't need to add a bunch of methods to your models just to get the page records!
-
-Ignoring these simple rules has a lot of drawbacks for performance, memory, maintenance, complexity and usability, as you can confirm with the [Gems Comparison page](http://ddnexus.github.io/pagination-comparison).
-
-## No rails engine needed
-
-You don't need a rails engine for a simple task like pagination: you just need a few lines of plain ruby to get it right, fast and light in **any** framework, not just rails.
-
-## Really agnostic pagination
-
-Pagy provides the clean logic of pagination in one micro-class that creates a micro-object of less than 3k: it works perfectly, knowing **absolutely nothing** about your environment. _(see the [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb))_
-
-You could even use it directly (without using any other Pagy code) in a small partial template that you could write in just 5 minutes and about 15 lines. There you could use the regular helpers provided by your framework and it would still work a few times faster than using other gems, even without using any Pagy template nor any other Pagy method.
-
-## Really easy to customize
-
-If options and configuration are not enough, you have a several specialized [extras](extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. You include them in your code, so you can override any method right where you use it: no tricky gimmickry required.
-
-What could be easier?
+!!!
+The total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module
+!!!

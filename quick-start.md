@@ -1,0 +1,177 @@
+---
+order: 4
+icon: rocket-24
+---
+
+# Quick Start
+
+==- If you want to just try Pagy before using it in your own app, you have a couple of alternatives...
+
++++ Standalone Application
+
+Ensure to have `rack` installed (or `gem install rack`)
+
+Download and run the following file
+
+[!file](apps/pagy_standalone_app.ru)
+
++++ Pagy Console
+
+||| Install the gem
+```sh
+gem install pagy
+```
+|||
+
+[Use it fully without any app](docs/api/console.md)
++++
+===
+
+### Install
+
++++ With Bundler
+
+If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
+    
+||| Gemfile
+```ruby   
+gem 'pagy', '~> 5.10' # omit patch digit
+```
+|||
+ 
++++ Without Bundler
+
+If you don't use Bundler, install and require the Pagy gem:
+ 
+||| Terminal
+```bash
+gem install pagy
+```
+|||
+
+||| Ruby file
+```ruby
+require 'pagy'
+```
+|||
++++
+
+### Configure 
+
++++ With Rails
+
+Download the configuration file linked below and save it into the `config/initializers` dir
+
+[!file](lib/config/pagy.rb)
++++ Without Rails
+Download the configuration file linked below and require it when your app starts
+
+[!file](lib/config/pagy.rb)
++++
+
+!!! Pagy doesn't load unnecessary code in your app!
+Uncomment/edit the `pagy.rb` file in order to **explicitly require the extras** you need and eventually customize the static `Pagy::DEFAULT` variables in the same file.
+
+You can further customize the variables per instance, by explicitly passing any variable to the `Pagy*.new` constructor or to any `pagy*` controller method.
+!!!
+
+### Backend Setup
+
+=== Include the backend
+||| ApplicationController/AnyController
+```ruby
+include Pagy::Backend
+```
+|||
+
+=== Use the `pagy` method
+||| Controller action
+```ruby
+@pagy, @records = pagy(Product.some_scope)
+```
+|||
+===
+
+### Render the pagination
+
++++ Server Side
+!!! success
+Your pagination is rendered on the server
+!!!
+
+Include the frontend 
+        
+||| ApplicationHelper/AnyHelper
+```ruby
+include Pagy::Frontend
+```
+|||
+
+Use a fast helper
+||| Helper
+```erb
+<%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
+<%== pagy_nav(@pagy) %>
+```
+|||
+
+Or use a template
+||| Template
+```erb
+<%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
+```
+|||
+
+!!! Notice
+Helpers and templates are available for different frameworks and different flavors (static, responsive, compact, etc.) [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [uikit](extras/uikit.md) i
+!!!
+
++++ Javascript Framework
+   
+!!! success
+Your pagination is rendered by Vue.js, react.js, ...
+!!!
+
+Require the [metadata extra](extras/metadata.md)
+    
+||| pagy.rb (uncomment)
+```ruby
+require 'pagy/extras/metadata'
+```
+|||
+
+Add the metadata to your JSON response
+||| Controller action
+```ruby
+render json: { data: @records, pagy: pagy_metadata(@pagy, ...) }
+```
+|||
+
++++ API Service 
+
+!!! success
+Your API is consumed by some client
+!!!
+
+Require the [headers extra](extras/headers.md)
+||| pagy.rb (uncomment)
+```ruby
+require 'pagy/extras/headers'
+```
+|||
+
+Add the pagination headers to your responses
+||| Controller
+ ```ruby
+ after_action { pagy_headers_merge(@pagy) if @pagy }
+ ```
+|||
+
+Render your JSON response as usual
+||| Controller action
+ ```ruby
+ render json: { data: @records }
+ ```
+|||
++++
+

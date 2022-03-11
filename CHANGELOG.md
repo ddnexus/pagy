@@ -1,3 +1,7 @@
+---
+icon: versions-24
+---
+
 # CHANGELOG
 
 ## Breaking Changes

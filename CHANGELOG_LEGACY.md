@@ -1,4 +1,8 @@
-# CHANGELOG
+---
+icon: versions-24
+---
+
+# CHANGELOG LEGACY
 
 ## Version 4.11.0
 
