@@ -57,7 +57,7 @@ look like a normal `pagy*_nav` but have a few added features:
 
 1. Client-side rendering
 2. Optional responsiveness
-3. Better performance and resource usage _(see [Maximizing Performance](../how-to.md#maximize-performance))_
+3. Better performance and resource usage (see [Maximizing Performance](../how-to.md#maximize-performance))
 
 Here is a screenshot (from the `bootstrap`extra) showing responsiveness at different widths:
 
@@ -176,7 +176,7 @@ The following `pagy*_combo_nav_js` offer an alternative pagination UI that combi
 - `pagy_materialize_combo_nav_js`
 - `pagy_semantic_combo_nav_js`
 
-They are the fastest and lightest `nav` on modern environments, recommended when you care about efficiency and server load _(see [Maximizing Performance](../how-to.md#maximize-performance))_.
+They are the fastest and lightest `nav` on modern environments, recommended when you care about efficiency and server load (see [Maximizing Performance](../how-to.md#maximize-performance)).
 
 Here is a screenshot (from the `bootstrap` extra):
 

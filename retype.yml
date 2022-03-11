@@ -6,21 +6,21 @@ branding:
   label: &1124964540 Docs
 
 links:
-- text: Github
-  link: https://github.com/ddnexus/pagy
-- text: Issues
-  link: https://github.com/ddnexus/pagy/issues
-- text: Gitter
-  link: https://gitter.im/ruby-pagy/Lobby
-- text: Retype docs (temporary link)
-  link: https://retype.com
-  target: blank
+  - text: Github
+    link: https://github.com/ddnexus/pagy
+    icon: mark-github
+  - text: Issues
+    link: https://github.com/ddnexus/pagy/issues
+    icon: issue-opened-24
+  - text: Gitter
+    link: https://gitter.im/ruby-pagy/Lobby
+    icon: comment-discussion-24
 
-include:
-- ./lib/config/pagy.rb
+exclude:
+  - README.md
+
 edit:
   repo: "https://github.com/ddnexus/pagy"
-  base: /docs
   branch: master
 
 footer:
