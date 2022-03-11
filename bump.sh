@@ -36,7 +36,7 @@ bump "$ROOT/src/pagy.ts"
 # Bumps docs example
 esc_old_minor_vers=${esc_old_vers%\\*}
 esc_new_minor_vers=${esc_new_vers%\\*}
-sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$ROOT/docs/how-to.md"
+sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$ROOT/quick-start.md"
 
 npm run build -w src
 
