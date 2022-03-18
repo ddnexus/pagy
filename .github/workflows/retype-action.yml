@@ -1,0 +1,22 @@
+name: Publish Retype powered website to GitHub Pages
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    name: Publish to retype branch
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: retypeapp/action-build@v2
+
+      - uses: retypeapp/action-github-pages@v2
+        with:
+          branch: docs-site
+          update-branch: true
