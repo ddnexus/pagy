@@ -1,7 +1,7 @@
 ---
 title: Javascript
 category: Tools
-image: none
+image: null
 ---
 
 # Javascript
@@ -12,7 +12,7 @@ A few helpers use javascript, and they are clearly recognizable by the `js` suff
 
 - `pagy*_nav_js`
 - `pagy*_combo_nav_js`
-- `pagy_items_selector_js`
+- `pagy_items_selector_js` 
 
 If you use any of them you should follow this documentation, if not, consider that Javascript is not used anywhere else, so you can skip this.
 

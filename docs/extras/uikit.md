@@ -1,7 +1,7 @@
 ---
 title: UIkit
 category: Frontend Extras
-image: none
+image: null
 ---
 # UIkit Extra
 

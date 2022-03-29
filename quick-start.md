@@ -123,7 +123,7 @@ Or use a template
 |||
 
 !!! Notice
-Helpers and templates are available for different frameworks and different flavors (static, responsive, compact, etc.) [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [uikit](extras/uikit.md) i
+Helpers and templates are available for different frameworks and different flavors (static, responsive, compact, etc.) [bootstrap](docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md), [foundation](docs/extras/foundation.md), [materialize](docs/extras/materialize.md), [semantic](docs/extras/semantic.md), [uikit](docs/extras/uikit.md) i
 !!!
 
 +++ Javascript Framework
@@ -132,7 +132,7 @@ Helpers and templates are available for different frameworks and different flavo
 Your pagination is rendered by Vue.js, react.js, ...
 !!!
 
-Require the [metadata extra](extras/metadata.md)
+Require the [metadata extra](docs/extras/metadata.md)
     
 ||| pagy.rb (uncomment)
 ```ruby
@@ -153,7 +153,7 @@ render json: { data: @records, pagy: pagy_metadata(@pagy, ...) }
 Your API is consumed by some client
 !!!
 
-Require the [headers extra](extras/headers.md)
+Require the [headers extra](docs/extras/headers.md)
 ||| pagy.rb (uncomment)
 ```ruby
 require 'pagy/extras/headers'
