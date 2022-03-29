@@ -12,7 +12,7 @@ GEM
     builder (3.2.4)
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
-    concurrent-ruby (1.1.10)
+    concurrent-ruby (1.1.10)  
     docile (1.4.0)
     ffi (1.15.5)
     i18n (1.10.0)
