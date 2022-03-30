@@ -51,7 +51,7 @@ class Pagy # :nodoc:
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{
-                    p_page}" class="text-primary" style="padding: 0; border: none; text-align: center; width: #{
+                    p_page}" class="text-primary" style="pointer-events: auto; padding: 0; border: none; text-align: center; width: #{
                     p_pages.to_s.length + 1}rem;">)
 
       %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination" aria-label="pager"><div class="btn-group" role="group" #{
