@@ -3,11 +3,11 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - retype
 
 jobs:
   publish:
-    name: Publish to retype branch
+    name: Publish to docs-site branch
 
     runs-on: ubuntu-latest
 
