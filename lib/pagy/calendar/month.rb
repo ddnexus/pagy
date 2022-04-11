@@ -8,6 +8,11 @@ class Pagy # :nodoc:
       DEFAULT = { order: :asc, # rubocop:disable Style/MutableConstant
                   format: '%Y-%m' }
 
+      def page_for(time)
+        super
+        offset_page_for(months_in(time.beginning_of_month) - months_in(@initial))
+      end
+
       protected
 
       # Setup the calendar variables

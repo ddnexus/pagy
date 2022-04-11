@@ -81,6 +81,10 @@ This method uses the `:format` variable to generate the current page label with 
 
 This method takes a page number argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
 
+### page_for(time)
+
+This method takes a `TimeWithZone` object and returns the page number that includes it, or a `Pagy::Calendar::OutOfRangeError` if `time` is outside the pagination range.
+
 ## Custom units
 
 You can define your own custom unit of any time length. For example you may want to add a unit of 2 months (i.e. a "bimester" unit), which should define a `Pagy::Calendar::Bimester` class. 

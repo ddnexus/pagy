@@ -8,6 +8,11 @@ class Pagy # :nodoc:
       DEFAULT  = { order:  :asc,      # rubocop:disable Style/MutableConstant
                    format: '%Y-%W' }
 
+      def page_for(time)
+        super
+        offset_page_for(page_offset(@initial, time.beginning_of_week))
+      end
+
       protected
 
       # Setup the calendar variables
@@ -20,7 +25,7 @@ class Pagy # :nodoc:
         end
         @initial = @starting.beginning_of_week
         @final   = @ending.next_week.beginning_of_week
-        @pages   = @last = (@with_zone ? (@final.time - @initial.time) : (@final - @initial)).to_i / 1.week
+        @pages   = @last = page_offset(@initial, @final)
         @from    = starting_time_for(@page)
         @to      = @from.next_week
       end
@@ -28,6 +33,12 @@ class Pagy # :nodoc:
       # Starting time for the page
       def starting_time_for(page)
         @initial + offset_units_for(page).weeks
+      end
+
+      private
+
+      def page_offset(time_a, time_b)  # remove in 6.0
+        (@with_zone ? (time_b.time - time_a.time) : (time_b - time_a)).to_i / 1.week
       end
     end
   end

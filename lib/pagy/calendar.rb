@@ -12,6 +12,9 @@ require 'pagy'
 class Pagy # :nodoc:
   # Base class for time units subclasses (Year, Quarter, Month, Week, Day)
   class Calendar < Pagy
+    # Specific overflow error
+    class OutOfRangeError < StandardError; end
+
     # List of units in desc order of duration. It can be used for custom units.
     UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
 
@@ -43,6 +46,10 @@ class Pagy # :nodoc:
       localize(starting_time_for(page.to_i), opts)  # page could be a string
     end
 
+    def page_for(time)
+      raise OutOfRangeError unless time.between?(@initial, @final)
+    end
+
     protected
 
     # Base class method for the setup of the unit variables (subclasses must implement it and call super)
@@ -67,6 +74,10 @@ class Pagy # :nodoc:
     # Used in starting_time_for(page) with a logic equivalent to: @initial + (offset_units_for(page) * unit_time_length)
     def offset_units_for(page)
       @order == :asc ? page - 1 : @pages - page
+    end
+
+    def offset_page_for(offset)
+      @order == :asc ? offset + 1 : @pages - offset
     end
 
     # Period of the active page (used internally for nested units)

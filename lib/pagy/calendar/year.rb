@@ -8,6 +8,11 @@ class Pagy # :nodoc:
       DEFAULT = { order:  :asc,      # rubocop:disable Style/MutableConstant
                   format: '%Y' }
 
+      def page_for(time)
+        super
+        offset_page_for(time.beginning_of_year.year - @initial.year)
+      end
+
       protected
 
       # Setup the calendar variables
