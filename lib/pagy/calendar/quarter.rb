@@ -15,11 +15,6 @@ class Pagy # :nodoc:
         localize(starting_time, opts)
       end
 
-      def page_for(time)
-        super
-        offset_page_for((months_in(time.beginning_of_quarter) - months_in(@initial)) / 3)
-      end
-
       protected
 
       # Setup the calendar variables
@@ -34,7 +29,11 @@ class Pagy # :nodoc:
 
       # Starting time for the page
       def starting_time_for(page)
-        @initial + (offset_units_for(page) * 3).months
+        @initial.months_since(time_offset_for(page) * 3)
+      end
+
+      def page_offset_for(time)
+        (months_in(time.beginning_of_quarter) - months_in(@initial)) / 3
       end
 
       private

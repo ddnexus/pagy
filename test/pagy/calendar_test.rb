@@ -237,15 +237,15 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe '#offset_units_for' do
+  describe '#time_offset_for' do
     it 'inverts the order' do
       p = pagy(unit: :month, order: :desc)
-      _(p.send(:offset_units_for, 1)).must_equal 25
-      _(p.send(:offset_units_for, 2)).must_equal 24
-      _(p.send(:offset_units_for, 3)).must_equal 23
-      _(p.send(:offset_units_for, 24)).must_equal 2
-      _(p.send(:offset_units_for, 25)).must_equal 1
-      _(p.send(:offset_units_for, 26)).must_equal 0
+      _(p.send(:time_offset_for, 1)).must_equal 25
+      _(p.send(:time_offset_for, 2)).must_equal 24
+      _(p.send(:time_offset_for, 3)).must_equal 23
+      _(p.send(:time_offset_for, 24)).must_equal 2
+      _(p.send(:time_offset_for, 25)).must_equal 1
+      _(p.send(:time_offset_for, 26)).must_equal 0
     end
   end
 
