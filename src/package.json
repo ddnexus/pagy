@@ -3,7 +3,7 @@
     "description": "TypeScript source for pagy.js",
     "private": true,
     "devDependencies": {
-        "parcel": "^2.3.2",
+        "parcel": "^2.4.1",
         "parcel-plugin-nuke-dist": "^1.0.1"
     },
     "browserslist": ["defaults"],

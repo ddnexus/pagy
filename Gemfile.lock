@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (7.0.2.2)
+    activesupport (7.0.2.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -14,10 +14,7 @@ GEM
     builder (3.2.4)
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
-    concurrent-ruby (1.1.9)
-    debase (0.2.5.beta2)
-      debase-ruby_core_source (>= 0.10.12)
-    debase-ruby_core_source (0.10.14)
+    concurrent-ruby (1.1.10)
     diff-lcs (1.5.0)
     docile (1.4.0)
     e2mmap (0.1.0)
@@ -28,7 +25,7 @@ GEM
     kalibera (0.1.2)
       memoist (~> 0.16)
       rbzip2 (~> 0.3)
-    kramdown (2.3.1)
+    kramdown (2.3.2)
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
@@ -50,10 +47,10 @@ GEM
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     oj (3.13.11)
-    parallel (1.21.0)
+    parallel (1.22.1)
     parser (3.1.1.0)
       ast (~> 2.4.1)
-    puma (5.6.2)
+    puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
@@ -66,35 +63,33 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rbzip2 (0.3.0)
-    regexp_parser (2.2.1)
+    regexp_parser (2.3.0)
     rematch (1.4.2)
     rerun (0.13.1)
       listen (~> 3.0)
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.5)
-    rubocop (1.25.1)
+    rubocop (1.27.0)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.15.1, < 2.0)
+      rubocop-ast (>= 1.16.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.16.0)
+    rubocop-ast (1.17.0)
       parser (>= 3.1.1.0)
-    rubocop-minitest (0.17.2)
+    rubocop-minitest (0.19.1)
       rubocop (>= 0.90, < 2.0)
     rubocop-packaging (0.5.1)
       rubocop (>= 0.89, < 2.0)
-    rubocop-performance (1.13.2)
+    rubocop-performance (1.13.3)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    ruby-debug-ide (0.7.3)
-      rake (>= 0.8.1)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     simplecov (0.21.2)
@@ -145,7 +140,6 @@ DEPENDENCIES
   activesupport
   benchmark-ips
   codecov
-  debase (~> 0.2.5.beta)
   i18n
   kalibera
   memory_profiler
@@ -163,7 +157,6 @@ DEPENDENCIES
   rubocop-packaging
   rubocop-performance
   rubocop-rake
-  ruby-debug-ide
   simplecov
   sinatra
   sinatra-contrib
