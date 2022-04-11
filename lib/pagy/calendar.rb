@@ -48,6 +48,9 @@ class Pagy # :nodoc:
 
     def page_for(time)
       raise OutOfRangeError unless time.between?(@initial, @final)
+
+      offset = page_offset_for(time)   # offset starts from 0
+      @order == :asc ? offset + 1 : @pages - offset
     end
 
     protected
@@ -70,14 +73,10 @@ class Pagy # :nodoc:
       time.strftime(opts[:format])
     end
 
-    # Number of units to offset from the @initial time, in order to get the ordered starting time for the page.
-    # Used in starting_time_for(page) with a logic equivalent to: @initial + (offset_units_for(page) * unit_time_length)
-    def offset_units_for(page)
+    # Number of time units to offset from the @initial time, in order to get the ordered starting time for the page.
+    # Used in starting_time_for(page) where page starts from 1 (e.g. page to starting_time means subtracting 1)
+    def time_offset_for(page)
       @order == :asc ? page - 1 : @pages - page
-    end
-
-    def offset_page_for(offset)
-      @order == :asc ? offset + 1 : @pages - offset
     end
 
     # Period of the active page (used internally for nested units)
