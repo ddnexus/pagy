@@ -25,7 +25,7 @@ class Pagy # :nodoc:
         @initial.days_since(time_offset_for(page))
       end
 
-      def page_offset_for(time)
+      def page_offset_at(time)
         page_offset(@initial, time.beginning_of_day)
       end
 

@@ -25,7 +25,7 @@ class Pagy # :nodoc:
         @initial.months_since(time_offset_for(page))
       end
 
-      def page_offset_for(time)
+      def page_offset_at(time)
         months_in(time.beginning_of_month) - months_in(@initial)
       end
 

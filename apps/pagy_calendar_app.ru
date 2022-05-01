@@ -107,11 +107,14 @@ __END__
 
   <!-- calendar UI manual toggle -->
   <p>
-  <% if params[:skip] %>
-    <a href="/" >Show Calendar</a>
-  <% else %>
-    <a href="?skip=true" >Hide Calendar</a>
-  <% end %>
+    <% if params[:skip] %>
+      <a href="/" >Show Calendar</a>
+    <% else %>
+      <a href="?skip=true" >Hide Calendar</a>
+    <p>
+      <a href="<%= pagy_calendar_url_at(@calendar, Time.zone.now) %>">Go to current Page</a>
+    </p>
+    <% end %>
   </p>
 
   <!-- calendar filtering navs -->
