@@ -4,13 +4,13 @@
     "private": true,
     "devDependencies": {
         "@cypress/snapshot": "^2.1.7",
-        "cypress": "^9.5.3",
+        "cypress": "^9.6.0",
         "cypress-dark": "^1.8.3",
         "cypress-html-validate": "^2.1.3",
         "eslint-plugin-cypress": "^2.12.1",
-        "html-validate": "^6.7.1",
+        "html-validate": "^6.9.1",
         "start-server-and-test": "^1.14.0",
-        "typescript": "^4.6.3"
+        "typescript": "^4.6.4"
     },
     "scripts": {
         "lint-fix": "eslint --fix cypress --ext .ts",

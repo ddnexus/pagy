@@ -22,6 +22,6 @@ elsif !ENV['CI']   # exclude in CI
     add_group 'Extras', 'lib/pagy/extras'
     add_group 'Tests', 'test'
   end
-  SimpleCov.formatter = SimpleCov::Formatter::SimpleFormatter unless ENV['HTML_REPORTS'] == 'true'
+  SimpleCov.formatter = SimpleCov::Formatter::SimpleFormatter unless ENV.fetch('HTML_REPORTS', nil) == 'true'
   SimpleCov.start
 end

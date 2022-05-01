@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-$VERBOSE = { 'false' => false, 'true' => true }[ENV['VERBOSE']] if ENV['VERBOSE']
+$VERBOSE = { 'false' => false, 'true' => true }[ENV.fetch('VERBOSE')] if ENV['VERBOSE']
 
 require_relative 'coverage_setup' unless ENV['RUBYMINE_SIMPLECOV_COVERAGE_PATH']  # skipped if RubyMine run with coverage
 
