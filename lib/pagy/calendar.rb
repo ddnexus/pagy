@@ -12,7 +12,7 @@ require 'pagy'
 class Pagy # :nodoc:
   # Base class for time units subclasses (Year, Quarter, Month, Week, Day)
   class Calendar < Pagy
-    # Specific overflow error
+    # Specific out of range error
     class OutOfRangeError < StandardError; end
 
     # List of units in desc order of duration. It can be used for custom units.
@@ -46,14 +46,15 @@ class Pagy # :nodoc:
       localize(starting_time_for(page.to_i), opts)  # page could be a string
     end
 
-    def page_for(time)
+    protected
+
+    # The page for the passed time
+    def page_at(time)
       raise OutOfRangeError unless time.between?(@initial, @final)
 
-      offset = page_offset_for(time)   # offset starts from 0
+      offset = page_offset_at(time)   # offset starts from 0
       @order == :asc ? offset + 1 : @pages - offset
     end
-
-    protected
 
     # Base class method for the setup of the unit variables (subclasses must implement it and call super)
     def setup_unit_vars

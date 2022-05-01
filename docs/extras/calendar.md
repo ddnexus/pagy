@@ -249,6 +249,14 @@ You can use the calendar objects with any `pagy_*nav` and `pagy_*nav_js` helpers
 
 The `pagy_*combo_nav_js` keeps into account only page numbers and not labels, so it is not very useful (if at all) with `Pagy::Calendar::*` objects.
 
+### pagy_calendar_url_at(@calendar, time)
+
+This helper takes the `@calendar` and a `TimeWithZone` objects and returns the url complete with all the params for the pages in each bars that include the passed time.
+
+For example: `pagy_calendar_url_at(@calendar, Time.zone.now)` will select the the bars pointing to today. You can see a working example in the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) file.
+
+If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRangeError`.
+
 ### Label format
 
 Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](../api/calendar.md#variables))
