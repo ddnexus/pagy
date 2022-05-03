@@ -21,15 +21,15 @@ class Pagy # :nodoc:
 
         conf[:pagy] = {} unless conf[:pagy]  # use default Pagy object when omitted
         unless conf.key?(:active) && !conf[:active]
-          calendar, from, to = Calendar::Helper.send(:create, conf, pagy_calendar_period(collection), params)
+          calendar, from, to = Calendar::Helper.send(:init, conf, pagy_calendar_period(collection), params)
           collection         = pagy_calendar_filter(collection, from, to)
         end
         pagy, results = send(conf[:pagy][:backend] || :pagy, collection, conf[:pagy])  # use backend: :pagy when omitted
         [calendar, pagy, results]
       end
 
-      def pagy_calendar_url_at(calendar, date)
-        pagy_url_for(calendar.send(:last_object_at, date), 1)
+      def pagy_calendar_url_at(calendar, time)
+        pagy_url_for(calendar.send(:last_object_at, time), 1)
       end
 
       # This method must be implemented by the application
