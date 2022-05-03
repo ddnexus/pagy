@@ -48,7 +48,7 @@ class Pagy # :nodoc:
 
     protected
 
-    # The page for the passed time
+    # The page that includes time
     def page_at(time)
       raise OutOfRangeError unless time.between?(@initial, @final)
 

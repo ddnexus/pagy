@@ -2,11 +2,14 @@
 
 class Pagy # :nodoc:
   class Calendar # :nodoc:
-    class Helper < Hash # :nodoc:
+    # Initializes the calendar objects, reducing complexity in the extra
+    # The returned calendar is a simple hash of units/objects with an added helper
+    # returning the last_object_at(time) used in the extra
+    class Helper < Hash
       class << self
         private
 
-        def create(conf, period, params)
+        def init(conf, period, params)
           new.send(:init, conf, period, params)
         end
       end
@@ -27,7 +30,7 @@ class Pagy # :nodoc:
           conf[unit][:page]       = @params[unit_page_param]
         end
         calendar = {}
-        last_obj = nil
+        object   = nil
         @units.each_with_index do |unit, index|
           params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_param] } + [@page_param]
           conf[unit][:params] = lambda do |unit_params|  # delete page_param from the sub-units
@@ -35,25 +38,23 @@ class Pagy # :nodoc:
                                   params_to_delete.each { |p| unit_params.delete(p.to_s) }
                                   unit_params
                                 end
-          conf[unit][:period] = last_obj&.send(:active_period) || @period
-          calendar[unit]      = last_obj = Calendar.send(:create, unit, conf[unit])
+          conf[unit][:period] = object&.send(:active_period) || @period
+          calendar[unit]      = object = Calendar.send(:create, unit, conf[unit])
         end
-        [replace(calendar), last_obj.from, last_obj.to]
+        [replace(calendar), object.from, object.to]
       end
 
-      def last_object_at(date)
-        conf = Marshal.load(Marshal.dump(@conf))
-        units_params = {}
-        last_obj     = nil
-        @units.each do |unit|
-          conf[unit][:period] = last_obj&.send(:active_period) || @period
-          conf[unit][:page]   = current_page = Calendar.send(:create, unit, conf[unit]).send(:page_at, date)
-          units_params[:"#{unit}_#{@page_param}"] = current_page
+      def last_object_at(time)
+        conf        = Marshal.load(Marshal.dump(@conf))
+        page_params = {}
+        @units.inject(nil) do |object, unit|
+          conf[unit][:period] = object&.send(:active_period) || @period
+          conf[unit][:page]   = page_params[:"#{unit}_#{@page_param}"] \
+                              = Calendar.send(:create, unit, conf[unit]).send(:page_at, time)
           conf[unit][:params] ||= {}
-          conf[unit][:params].merge!(units_params)
-          last_obj = Calendar.send(:create, unit, conf[unit])
+          conf[unit][:params].merge!(page_params)
+          Calendar.send(:create, unit, conf[unit])
         end
-        last_obj
       end
     end
   end
