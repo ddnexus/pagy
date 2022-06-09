@@ -3,16 +3,8 @@
 
 class Pagy # :nodoc:
   DEFAULT[:searchkick_search]      ||= :search
-  DEFAULT[:searchkick_pagy_search] ||= if DEFAULT[:searchkick_search_method]   # remove in 6.0
-                                         # :nocov:
-                                         Warning.warn '[PAGY WARNING] The :searchkick_search_method variable ' \
-                                                      'has been deprecated and will be ignored from pagy 6. ' \
-                                                      'Use :searchkick_pagy_search instead.'
-                                         DEFAULT[:searchkick_search_method]
-                                         # :nocov:
-                                       else
-                                         :pagy_search
-                                       end
+  DEFAULT[:searchkick_pagy_search] ||= :pagy_search
+
   # Paginate Searchkick::Results objects
   module SearchkickExtra
     module Searchkick # :nodoc:
