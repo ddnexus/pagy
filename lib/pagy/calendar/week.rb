@@ -13,11 +13,6 @@ class Pagy # :nodoc:
       # Setup the calendar variables
       def setup_unit_vars
         super
-        if @vars[:offset]  # remove in pagy 6
-          Warning.warn '[PAGY WARNING] The week :offset variable has been deprecated and will be ignored from pagy 6. ' \
-                       "Set the Date.beginning_of_week variable to be one of #{::Date::DAYS_INTO_WEEK.keys.inspect} instead."
-          Date.beginning_of_week = ::Date::DAYS_INTO_WEEK.keys[@vars[:offset]]
-        end
         @initial = @starting.beginning_of_week
         @final   = @ending.next_week.beginning_of_week
         @pages   = @last = page_offset(@initial, @final)
