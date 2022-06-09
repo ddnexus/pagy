@@ -1,5 +1,3 @@
-/.idea/*
-!/.idea/runConfigurations
 /.bundle/
 /coverage/
 /node_modules/*
