@@ -3,16 +3,7 @@
 
 class Pagy # :nodoc:
   DEFAULT[:elasticsearch_rails_search]      ||= :search
-  DEFAULT[:elasticsearch_rails_pagy_search] ||= if DEFAULT[:elasticsearch_rails_search_method]  #  remove in 6.0
-                                                  # :nocov:
-                                                  Warning.warn '[PAGY WARNING] The :elasticsearch_rails_search_method variable ' \
-                                                               'has been deprecated and will be ignored from pagy 6. ' \
-                                                               'Use :elasticsearch_rails_pagy_search instead.'
-                                                  DEFAULT[:elasticsearch_rails_search_method]
-                                                  # :nocov:
-                                                else
-                                                  :pagy_search
-                                                end
+  DEFAULT[:elasticsearch_rails_pagy_search] ||= :pagy_search
 
   # Paginate ElasticsearchRails response objects
   module ElasticsearchRailsExtra

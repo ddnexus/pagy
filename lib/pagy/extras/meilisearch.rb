@@ -2,16 +2,8 @@
 
 class Pagy # :nodoc:
   DEFAULT[:meilisearch_search]      ||= :ms_search
-  DEFAULT[:meilisearch_pagy_search] ||= if DEFAULT[:meilisearch_search_method]   # remove in 6.0
-                                          # :nocov:
-                                          Warning.warn '[PAGY WARNING] The :meilisearch_search_method variable ' \
-                                                       'has been deprecated and will be ignored from pagy 6. ' \
-                                                       'Use :meilisearch_pagy_search instead.'
-                                          DEFAULT[:meilisearch_search_method]
-                                          # :nocov:
-                                        else
-                                          :pagy_search
-                                        end
+  DEFAULT[:meilisearch_pagy_search] ||= :pagy_search
+
   # Paginate Meilisearch results
   module MeilisearchExtra
     module Meilisearch # :nodoc:
