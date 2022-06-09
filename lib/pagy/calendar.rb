@@ -63,10 +63,9 @@ class Pagy # :nodoc:
             unless %i[asc desc].include?(@order = @vars[:order])
 
       @starting, @ending = @vars[:period]
-      raise VariableError.new(self, :period, 'to be a an Array of min and max local Time instances', @vars[:period]) \
-            unless @starting.is_a?(Time) && @ending.is_a?(Time) && !@starting.utc? && !@ending.utc? && @starting <= @ending
-
-      @with_zone = @starting.is_a?(ActiveSupport::TimeWithZone) # remove in 6.0 and replace Time in the line above
+      raise VariableError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @vars[:period]) \
+            unless @starting.is_a?(ActiveSupport::TimeWithZone) \
+                && @ending.is_a?(ActiveSupport::TimeWithZone) && @starting <= @ending
     end
 
     # Apply the strftime format to the time (overridden by the i18n extra when localization is required)
