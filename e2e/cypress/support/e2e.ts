@@ -14,23 +14,9 @@
 // ***********************************************************
 
 import "cypress-html-validate/dist/commands";
-require("cypress-dark");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require("@cypress/snapshot").register();
-
-afterEach(() => {
-    cy.htmlvalidate();
-});
-
+import * as cypressSnapshots from "@cypress/snapshot";
+// @ts-expect-error: register does not exist
+cypressSnapshots.register();
+afterEach(() => cy.htmlvalidate());
 // Silence issue https://github.com/quasarframework/quasar/issues/2233
 Cypress.on("uncaught:exception", err => !err.message.includes("ResizeObserver"));
-
-declare global {
-    // eslint-disable-next-line @typescript-eslint/no-namespace
-    namespace Cypress {
-        interface Chainable {
-            // missing from snapshots
-            snapshot(opts?:Partial<ObjectLike>):void;
-        }
-    }
-}

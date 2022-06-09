@@ -1,5 +1,5 @@
 export const navIds = ["#nav", "#nav-js"];
-const widths = [500, 750, 1000];
+const widths          = [500, 750, 1000];
 const specialStylesRe = /^\/(materialize|semantic)/;
 
 export const styles = [
@@ -40,8 +40,8 @@ export function navsLoop(styles:string[]) {
 
 function checkStyleId(style:string, id:string) {
     const pages = /-calendar$/.test(style)
-        ? ["2022-01", "2023-11"]
-        : ["3", "50"];
+                  ? ["2022-01", "2023-11"]
+                  : ["3", "50"];
     cy.visit(style);
     snapId(id);
 
@@ -55,14 +55,14 @@ function checkStyleId(style:string, id:string) {
 
 export function goCheckNext(style:string, id:string) {
     specialStylesRe.test(style)
-        ? cy.get(`${id} a:last`).click()
-        : cy.get(id).contains("Next").click();
+    ? cy.get(`${id} a:last`).click()
+    : cy.get(id).contains("Next").click();
     snapId(id);
 }
 
 export function goCheckPrev(style:string, id:string) {
     specialStylesRe.test(style)
-        ? cy.get(`${id} a:first`).click()
-        : cy.get(id).contains("Prev").click();
+    ? cy.get(`${id} a:first`).click()
+    : cy.get(id).contains("Prev").click();
     snapId(id);
 }

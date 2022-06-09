@@ -1,11 +1,18 @@
-pagy@ /pagy
-└─┬ e2e@ -> ./e2e
-  ├── @cypress/snapshot@2.1.7
-  ├── cypress-dark@1.8.3
-  ├── cypress-html-validate@2.1.3
-  ├── cypress@9.6.0
-  ├── eslint-plugin-cypress@2.12.1
-  ├── html-validate@6.9.1
-  ├── start-server-and-test@1.14.0
-  └── typescript@4.6.4
+/pagy/e2e
+/pagy/e2e/node_modules/.pnpm/@cypress+snapshot@2.1.7
+/pagy/.pnpm/virtual/@eslint+eslintrc@1.3.0/node_modules/@eslint/eslintrc
+/pagy/e2e/node_modules/.pnpm/@types+node@16.11.7
+/pagy/.pnpm/virtual/acorn@8.7.1/node_modules/acorn
+/pagy/.pnpm/virtual/ajv@8.11.0/node_modules/ajv
+/pagy/e2e/node_modules/.pnpm/cypress@10.0.3
+/pagy/e2e/node_modules/.pnpm/cypress-html-validate@4.0.0_edlaflnxchd2oyrn3q5defzy5m
+/pagy/e2e/node_modules/.pnpm/eslint@8.17.0
+/pagy/e2e/node_modules/.pnpm/eslint-plugin-cypress@2.12.1_eslint@8.17.0
+/pagy/.pnpm/virtual/eslint-scope@7.1.1/node_modules/eslint-scope
+/pagy/.pnpm/virtual/eslint-utils@3.0.0_eslint@8.17.0/node_modules/eslint-utils
+/pagy/.pnpm/virtual/eslint-visitor-keys@3.3.0/node_modules/eslint-visitor-keys
+/pagy/e2e/node_modules/.pnpm/html-validate@7.1.1
+/pagy/e2e/node_modules/.pnpm/start-server-and-test@1.14.0
+/pagy/e2e/node_modules/.pnpm/typescript@4.7.3
 
+invalidate cache 2
