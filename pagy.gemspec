@@ -20,9 +20,5 @@ Gem::Specification.new do |s|
                     'bug_tracker_uri'       => 'https://github.com/ddnexus/pagy/issues',
                     'changelog_uri'         => 'https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md',
                     'live_support'          => 'https://gitter.im/ruby-pagy/Lobby' }
-  # Avoid breaking changes for the rare apps that use Pagy::Calendar without Rails
-  # It will be removed and replaced by a simple requirement in the calendar doc in Pagy 6.0
-  # because it is only used by the calendar extra, and it's not a core dependency
-  s.add_dependency('activesupport')
   s.required_ruby_version = '>= 2.5'
 end
