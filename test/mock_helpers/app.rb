@@ -28,7 +28,7 @@ class MockApp
     end
 
     def pagy_calendar_filter(collection, from, to)
-      collection.select_page_of_records(from.utc, to.utc)
+      collection.select_page_of_records(from, to)
     end
   end
 end

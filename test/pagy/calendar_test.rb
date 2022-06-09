@@ -351,9 +351,5 @@ describe 'pagy/calendar' do
       pagy(unit: :week, offset: 0)
       _(Date.beginning_of_week).must_equal :sunday
     end
-    it 'works with Time objects' do
-      Pagy::Calendar.send(:create, :week, period: [Time.new(2021, 10, 21, 13, 18, 23, 0),
-                                                   Time.new(2023, 11, 13, 15, 43, 0, 0)])
-    end
   end
 end

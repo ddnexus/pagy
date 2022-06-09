@@ -7,6 +7,9 @@ require 'pagy/extras/i18n'
 
 require_relative '../../mock_helpers/app'
 
+Time.zone = 'EST'
+Date.beginning_of_week = :sunday
+
 describe 'pagy/extras/i18n' do
   let(:app) { MockApp.new }
 
@@ -51,7 +54,8 @@ describe 'pagy/extras/i18n' do
     ::I18n.load_path += Dir[Pagy.root.join('..', 'test', 'files', 'locales', '*.yml')]
     it 'works in :en' do
       pagy = Pagy::Calendar.create(:month,
-                                   period: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)],
+                                   period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
+                                            Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
                                    page: 3, format: '%B, %A')
       _(pagy.label).must_equal "December, Wednesday"
       _(pagy.label(locale: :de)).must_equal "Dezember, Mittwoch"

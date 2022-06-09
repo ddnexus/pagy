@@ -6,6 +6,9 @@ require 'pagy/extras/frontend_helpers'
 
 require_relative '../../mock_helpers/app'
 
+Time.zone = 'EST'
+Date.beginning_of_week = :sunday
+
 describe 'pagy/extras/frontend_helpers_json' do
   let(:app) { MockApp.new(params: {}) }
 
@@ -28,7 +31,8 @@ describe 'pagy/extras/frontend_helpers_json' do
     it 'generate the labels for the sequels' do
       steps = { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] }
       pagy = Pagy::Calendar.create(:month,
-                                   period: [Time.new(2021, 10, 21, 13, 18, 23, 0), Time.new(2023, 11, 13, 15, 43, 40, 0)],
+                                   period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
+                                            Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
                                    steps: steps, page: 3)
       _(pagy.sequels).must_rematch
       _(pagy.label_sequels).must_rematch

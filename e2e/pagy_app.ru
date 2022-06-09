@@ -57,11 +57,11 @@ class PagyApp < Sinatra::Base
   end
 
   def pagy_calendar_period(collection)
-    collection.minmax.map { |t| t.getlocal(0) }  # 0 utc_offset means 00:00 local time
+    collection.minmax
   end
 
   def pagy_calendar_filter(collection, from, to)
-    collection.select_page_of_records(from.utc, to.utc)  # storage in UTC
+    collection.select_page_of_records(from, to)  # storage in UTC
   end
 
   get("/#{PAGY_JS}") do

@@ -37,7 +37,7 @@ class Pagy # :nodoc:
       private
 
       def page_offset(time_a, time_b)  # remove in 6.0
-        (@with_zone ? (time_b.time - time_a.time) : (time_b - time_a)).to_i / 1.week
+        (time_b.time - time_a.time).to_i / 1.week
       end
     end
   end
