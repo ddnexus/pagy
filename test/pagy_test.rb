@@ -53,6 +53,7 @@ describe 'pagy' do
       _ { Pagy.new({}) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 0, page: -1) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 0) }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: {}) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 2, items: 0) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
