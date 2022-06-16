@@ -2,12 +2,10 @@
     "name": "pagy.e2e",
     "description": "Pagy E2E Testing",
     "private": true,
-    "peerDependencies": {
-    },
     "devDependencies": {
-        "@types/node": "16.11.7",
         "@cypress/snapshot": "^2.1.7",
-        "cypress": "10.0.3",
+        "@types/node": "18.0.0",
+        "cypress": "10.1.0",
         "cypress-html-validate": "4.0.0",
         "eslint": ">= 3.2.1",
         "eslint-plugin-cypress": "^2.12.1",
