@@ -26,7 +26,7 @@ WARNING: CODE ISSUES NOT FOLLOWING THIS TEMPLATE MAY BE DELETED WITHOUT NOTICE
    - [ ] Edited copy of the single file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru)
    - [ ] Edited copy of the single file [pagy_bare_rails.rb](https://github.com/ddnexus/pagy/blob/master/apps/pagy_bare_rails.rb)
    - [ ] Link of my own branch forked from pagy, which contains an added test file  
-   - [ ] Link of my own branch forked from one branch of the [Pagy Rails App](https://github.com/benkoshy/pagy-rails)
+   - [ ] Link of my own branch forked of [any of the rails apps listed here.](https://github.com/stars/benkoshy/lists/rails-demo-apps-for-pagy)
    - [ ] Link of a standalone `docker image` downloadable from a docker repository (e.g. dockerhub.com)
    - [ ] `docker-compose` file that can be run with `docker-compose up` (and doesn't need to be built because it uses only docker images and no local context)
 
