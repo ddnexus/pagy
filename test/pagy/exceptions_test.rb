@@ -26,6 +26,13 @@ describe 'pagy/exceptions' do
         _(e.variable).must_equal :page
         _(e.value).must_equal 'string'
       end
+
+      begin
+        Pagy.new(count: 1, page: {})
+      rescue Pagy::VariableError => e
+        _(e.variable).must_equal :page
+        _(e.value).must_equal({})
+      end
     end
 
     it 'raises for other variables' do
