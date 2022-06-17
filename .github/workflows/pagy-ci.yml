@@ -109,7 +109,7 @@ jobs:
 
       - name: Install Cypress and Test Dependencies
         if: steps.e2e-cache.outputs.cache-hit != 'true'
-        run: npm i --legacy-peer-deps cypress@latest @cypress/snapshot html-validate cypress-html-validate
+        run: npm i cypress @cypress/snapshot html-validate cypress-html-validate
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v4.0.1
