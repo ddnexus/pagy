@@ -50,6 +50,11 @@ Style/CommentedKeyword:
 Style/EmptyCaseCondition:
   Enabled: false
 
+# cannot inline the disabling in the file because rubocop complains anyway
+Style/RedundantInitialize:
+  Exclude:
+    - test/mock_helpers/arel.rb
+
 # these cops are disabled only in the test files in order to
 # allow to copy and paste the failed output for test reconciliation
 Style/StringLiterals:
