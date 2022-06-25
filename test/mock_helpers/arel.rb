@@ -15,9 +15,7 @@ module Arel
 
   module Nodes
     class Grouping
-      def initialize(_)
-        puts ""     # rubocop bug!
-      end
+      def initialize(_); end
     end
   end
 end
