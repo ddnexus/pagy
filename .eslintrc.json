@@ -17,7 +17,7 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "semi": ["error", "always", {"omitLastInOneLineBlock": true}],
-        "align-assignments/align-assignments": ["error", { "requiresOnly": false } ]
+        "semi": ["warn", "always", {"omitLastInOneLineBlock": true}],
+        "align-assignments/align-assignments": ["warn", { "requiresOnly": false } ]
     }
 }
