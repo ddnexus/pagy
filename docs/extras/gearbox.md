@@ -27,17 +27,20 @@ If you want to use the `gearbox` in some instances, you can temporarily set `ite
 
 See [extras](/docs/extras.md) for general usage info.
 
+||| pagy.rb (initializer)
 ```ruby
-# pagy.rb initializer
 require 'pagy/extras/gearbox'
 
 # optional: set a different default in the pagy.rb initializer
 # Pagy::DEFAULT[:gearbox_extra] = false   # will make it opt-in only
 # Pagy::DEFAULT[:gearbox_items] = [15, 30, 60, 100]   # default
 Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default
+```
+|||
 
-# controller action
-# or pass the :gearbox_items variable to a constructor to have it only for that instance
+||| Controller (action)
+```ruby
+# Optionally override the :gearbox_items variable to a constructor to have it only for that instance
 @pagy, @records = pagy(Product.all, gearbox_items: [30, 60, 100], ...)
 
 # You can still use instances with fixed pagination even after requiring the extra
@@ -52,6 +55,7 @@ Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default
 # use the passed gearbox_items: [30, 60, 100]
 @pagy, @records = pagy(Product.all, items_extra: false, gearbox_items: [30, 60, 100])
 ```
+|||
 
 ## Files
 

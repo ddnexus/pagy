@@ -32,7 +32,7 @@ gem install pagy
 +++ With Bundler
 
 If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
-    
+
 ||| Gemfile
 ```ruby   
 gem 'pagy', '~> 5.10' # omit patch digit
@@ -63,10 +63,13 @@ require 'pagy'
 Download the configuration file linked below and save it into the `config/initializers` dir
 
 [!file](lib/config/pagy.rb)
+
 +++ Without Rails
+
 Download the configuration file linked below and require it when your app starts
 
 [!file](lib/config/pagy.rb)
+
 +++
 
 !!! Pagy doesn't load unnecessary code in your app!
@@ -133,8 +136,8 @@ Your pagination is rendered by Vue.js, react.js, ...
 !!!
 
 Require the [metadata extra](docs/extras/metadata.md)
-    
-||| pagy.rb (uncomment)
+
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/metadata'
 ```
@@ -154,7 +157,8 @@ Your API is consumed by some client
 !!!
 
 Require the [headers extra](docs/extras/headers.md)
-||| pagy.rb (uncomment)
+
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/headers'
 ```

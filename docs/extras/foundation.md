@@ -10,26 +10,25 @@ This extra adds nav helper and templates for the Foundation [pagination componen
 
 See [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/foundation'
 ```
+|||
 
-Render the navigation links in some view...
-with a fast helper:
-
+||| View (helper)
 ```erb
 <%== pagy_foundation_nav(@pagy, ...) %>
 <%== pagy_foundation_nav_js(@pagy, ...) %>
 <%== pagy_foundation_combo_nav_js(@pagy, ...) %>
 ```
+|||
 
-or with a template:
-
+||| View (template)
 ```erb
 <%== render partial: 'pagy/foundation_nav', locals: {pagy: @pagy} %>
 ```
+|||
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_foundation_nav_js` or `pagy_foundation_combo_nav_js`.
 

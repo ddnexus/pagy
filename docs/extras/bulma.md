@@ -11,26 +11,25 @@ This extra adds nav helper and templates for the Bulma CSS [pagination component
 
 See [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/bulma'
 ```
+|||
 
-Render the navigation links in some view...
-with a fast helper:
-
+||| View (helper)
 ```erb
 <%== pagy_bulma_nav(@pagy, ...) %>
 <%== pagy_bulma_nav_js(@pagy, ...) %>
 <%== pagy_bulma_combo_nav_js(@pagy, ...) %>
 ```
+|||
 
-or with a template:
-
+||| View (template)
 ```erb
 <%== render partial: 'pagy/bulma_nav', locals: {pagy: @pagy} %>
 ```
+|||
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
 

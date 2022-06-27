@@ -12,10 +12,12 @@ This page contains the practical tips and examples to get the job done with Pagy
 You can control the items per page with the `items` variable. (Default `20`)
 
 You can set its default in the `pagy.rb` initializer (see [How to configure pagy](/quick-start.md#configure)). For example:
-
+ 
+||| pagy.rb (initializer)
 ```ruby
 Pagy::DEFAULT[:items] = 25
 ```
+|||
 
 You can also pass it as an instance variable to the `Pagy.new` method or to the `pagy` controller method:
 

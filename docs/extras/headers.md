@@ -16,14 +16,13 @@ This extra implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compli
 
 See [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/headers'
 ```
+|||
 
-In your controller action:
-
+||| Controller (action)
 ```ruby
 # paginate as usual with any pagy_* backend constructor
 pagy, records = pagy(Product.all)
@@ -31,11 +30,13 @@ pagy, records = pagy(Product.all)
 pagy_headers_merge(pagy)
 render json: records
 ```
+|||
 
 ### Suggestions
 
 Instead of explicitly merging the headers before each rendering, if you use rails you can get them automatically merged (application-wide and when `@pagy` is available), by adding an `after_action` in your application controller:
 
+||| Controller (after_action)
 ```ruby
 after_action { pagy_headers_merge(@pagy) if @pagy }
 
@@ -43,9 +44,11 @@ after_action { pagy_headers_merge(@pagy) if @pagy }
 @pagy, records = pagy(Product.all)
 render json: records
 ```
+|||
 
 If your code in different actions is similar enough, you can encapsulate the statements in a custom `pagy_render` method in your application controller. For example:
 
+||| Controller (pagy_render)
 ```ruby
 def pagy_render(collection, vars={})
   pagy, records = pagy(collection, vars) # any pagy_* backend constructor works
@@ -56,6 +59,7 @@ end
 # and use it in your standard actions:
 pagy_render(Product.all)
 ```
+|||
 
 ## Files
 
@@ -66,8 +70,7 @@ pagy_render(Product.all)
 This extra generates the standard `Link` header defined in the
 [RFC-8288](https://tools.ietf.org/html/rfc8288), and adds 4 customizable headers useful for pagination: `Current-Page`, `Page-Items`, `Total-Pages` and `Total-Count` headers.
 
-Example of the default HTTP headers produced:
-
+||| Example of the default HTTP headers
 ```text
 Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
 Current-Page 3
@@ -75,6 +78,7 @@ Page-Items 20
 Total-Pages 50
 Total-Count 1000
 ```
+|||
 
 ### Customize the header names
 

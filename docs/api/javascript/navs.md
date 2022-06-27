@@ -29,8 +29,7 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 See [Setup Javascript](setup.md) and [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer, require the specific extra for the style you want to use:
-
+||| pagy.rb (initializer)
 ```ruby
 # Use just one:
 require 'pagy/extras/bootstrap'
@@ -41,11 +40,12 @@ require 'pagy/extras/navs'
 require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
+|||
 
-Use one of the `pagy*_nav_js` helpers in any view:
+||| Any View
 
 ```erb
-<-- Use just one: -->
+<!-- Use just one: -->
 <%== pagy_nav_js(@pagy) %>
 <%== pagy_bootstrap_nav_js(@pagy) %>
 <%== pagy_bulma_nav_js(@pagy) %>
@@ -53,6 +53,7 @@ Use one of the `pagy*_nav_js` helpers in any view:
 <%== pagy_materialize_nav_js(@pagy) %>
 <%== pagy_semantic_nav_js(@pagy) %>
 ```
+|||
 
 ## Variables
 
@@ -60,7 +61,7 @@ Use one of the `pagy*_nav_js` helpers in any view:
 |:---------|:-------------------------------------------------------------------|:--------|
 | `:steps` | Hash variable to control multiple pagy `:size` at different widths | `false` |
 
-### :steps
+==- How to use the :steps variable
 
 The `:steps` is an optional non-core variable used by the `pagy*_nav_js` navs. If it's `false`, the `pagy*_nav_js` will behave exactly as a static `pagy*_nav` respecting the single `:size` variable, just faster and lighter. If it's defined as a hash, it allows you to control multiple pagy `:size` at different widths.
 
@@ -106,6 +107,8 @@ Here is what you should consider/ensure:
 
 5. If the container width snaps to specific widths in discrete steps, you should sync the quantity and widths of the pagy `:steps` to the quantity and internal widths for each discrete step of the container.
 
+===
+
 !!!warning Window Resizing
 The `pagy_*nav_js` elements are automatically re-rendered on window resize. However, if the container width changes *without* being triggered by a window resize, you need to explicitly re-render:
 
@@ -122,7 +125,7 @@ The method accepts also a few optional keyword arguments:
 
 - `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
-- `:steps` the [:steps](#steps) variable
+- `:steps` variable
 
 !!!warning
 The `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add another class attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.

@@ -11,20 +11,19 @@ This extra adds 3 nav helpers for the Materialize CSS [pagination component](htt
 
 See [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/materialize'
 ```
+|||
 
-Render the navigation links in some view...
-with a fast helper:
-
+||| View (helper)
 ```erb
 <%== pagy_materialize_nav(@pagy, ...) %>
 <%== pagy_materialize_nav_js(@pagy, ...) %>
 <%== pagy_materialize_combo_nav_js(@pagy, ...) %>
 ```
+|||
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
 
