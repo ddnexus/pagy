@@ -8,7 +8,7 @@ This extra adds 3 nav helpers for Semantic UI CSS [pagination component](https:/
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 
@@ -37,12 +37,12 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 This method is the same as the `pagy_nav`, but customized for Semantic UI.
 
-See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
+See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy_navpagy-) documentation.
 
 ### pagy_semantic_nav_js(pagy, ...)
 
-See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
+See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 ### pagy_semantic_combo_nav_js(pagy, ...)
 
-See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
+See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.

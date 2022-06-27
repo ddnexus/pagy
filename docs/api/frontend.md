@@ -7,7 +7,7 @@ category: Modules
 
 This module provides a few methods to deal with the navigation aspect of the pagination. You will usually include it in some helper module, making its methods available (and overridable) in your views. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb))_
 
-You can extend this module with a few more nav helpers _(see the [extras](../extras.md) doc for more details)_
+You can extend this module with a few more nav helpers _(see the [extras](/docs/extras.md) doc for more details)_
 
 ## Synopsis
 

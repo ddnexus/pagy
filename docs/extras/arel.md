@@ -8,7 +8,7 @@ This extra adds a specialized pagination for collections from sql databases with
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

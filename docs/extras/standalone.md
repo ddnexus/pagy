@@ -14,7 +14,7 @@ This extra will also create a dummy `params` method (if not already defined) in 
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

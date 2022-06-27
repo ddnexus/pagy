@@ -10,7 +10,7 @@ It works also with the [countless](countless.md), [searchkick](searchkick.md), [
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

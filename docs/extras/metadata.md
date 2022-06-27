@@ -10,7 +10,7 @@ This extra makes that easy and efficient by adding a single method to the backen
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

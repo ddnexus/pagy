@@ -519,7 +519,7 @@ When the count caching is not an option, you may want to use the [countless extr
 
 You can trigger ajax render in rails by [customizing the link attributes](#customize-the-link-attributes).
 
-See also [Using AJAX](api/javascript.md#using-ajax).
+See also [Using AJAX](api/javascript/ajax.md#using-ajax).
 
 ## Maximize Performance
 

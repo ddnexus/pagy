@@ -25,7 +25,7 @@ If you want to use the `gearbox` in some instances, you can temporarily set `ite
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 ```ruby
 # pagy.rb initializer

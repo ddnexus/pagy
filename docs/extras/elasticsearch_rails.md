@@ -10,7 +10,7 @@ This extra deals with the pagination of `ElasticsearchRails` response objects ei
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 Require the extra in the `pagy.rb` initializer:
 

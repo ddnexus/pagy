@@ -9,7 +9,7 @@ This extra adds nav helper and templates for the Bulma CSS [pagination component
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 
@@ -49,16 +49,16 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 This method is the same as the `pagy_nav`, but customized for Bulma.
 
-See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
+See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy_navpagy-) documentation.
 
 The `bulma_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](../how-to.md#use-templates).
 
 ### pagy_bulma_nav_js(pagy, ...)
 
-See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
+See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 ### pagy_bulma_combo_nav_js(pagy, ...)
 
-![bulma_combo_nav_js](../assets/images/bulma_combo_nav_js-g.png)
+![bulma_combo_nav_js](/docs/assets/images/bulma_combo_nav_js-g.png)
 
-See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
+See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.

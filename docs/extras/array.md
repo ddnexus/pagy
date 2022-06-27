@@ -18,7 +18,7 @@ And if you think that it's the only way to do what you need, then... think again
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

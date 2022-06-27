@@ -14,7 +14,7 @@ This extra implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compli
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

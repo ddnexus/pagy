@@ -10,7 +10,7 @@ This extra is needed only for very specific scenarios, for example if you need t
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

@@ -8,7 +8,7 @@ This extra adds support for features like countless or navless pagination, where
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

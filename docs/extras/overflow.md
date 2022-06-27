@@ -8,7 +8,7 @@ This extra allows for easy handling of overflowing pages. It internally rescues 
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

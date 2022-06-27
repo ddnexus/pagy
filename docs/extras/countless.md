@@ -8,7 +8,7 @@ This extra uses the `Pagy::Countless` subclass in order to save one count query 
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

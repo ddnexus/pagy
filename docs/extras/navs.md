@@ -10,7 +10,7 @@ Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](fo
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 
@@ -36,8 +36,8 @@ See [Javascript](../api/javascript.md).
 
 ### pagy_nav_js(pagy, ...)
 
-See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
+See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 ### pagy_combo_nav_js(pagy, ...)
 
-See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
+See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.

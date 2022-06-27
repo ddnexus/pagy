@@ -10,7 +10,7 @@ This extra deals with the pagination of `Searchkick::Results` objects either by 
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 Require the extra in the `pagy.rb` initializer:
 

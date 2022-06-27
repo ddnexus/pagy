@@ -9,7 +9,7 @@ This extra adds 3 nav helpers for the Materialize CSS [pagination component](htt
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 
@@ -40,14 +40,14 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 This method is the same as the `pagy_nav`, but customized for Materialize.
 
-See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
+See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy_navpagy-) documentation.
 
 ### pagy_materialize_nav_js(pagy, ...)
 
-See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
+See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 ### pagy_materialize_combo_nav_js(pagy, ...)
 
 ![materialize_combo_nav_js](../assets/images/materialize_combo_nav_js-g.png)
 
-See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
+See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.

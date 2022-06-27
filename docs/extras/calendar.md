@@ -19,7 +19,7 @@ On the other hand it does not make much sense for the result of a search that hi
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
+See [extras](/docs/extras.md) for general usage info.
 
 Require and configure it in the `pagy.rb` initializer:
 
@@ -262,7 +262,7 @@ If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRang
 
 Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](../api/calendar.md#variables))
 
-You can also get the [current page label](../api/calendar.md#labelopts--) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
+You can also get the [current page label](/docs/api/calendar.md#labelopts--) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
 
 ### I18n localization
 
