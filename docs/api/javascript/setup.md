@@ -101,25 +101,24 @@ Depending on your environment you have a few ways of loading the required JS fil
 Pulling the file directly from the `$(bundle show 'pagy')/lib/javascripts` gem installation path:
 
 +++ Esbuild
-In `package.json`, prepend the `NODE_PATH` environment variable to the `scripts.build` command:
-
+||| package.json
 ```json
 {
   "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
 }
 ```
+|||
 
 +++ Webpack
-In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.build` command:
-
+||| package.json
 ```json
 {
   "build": "PAGY_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your webpack command>"
 }
 ```
+|||
 
-In `webpack.confg.js`, add the `resolve.modules` array:
-
+||| webpack.config.js
 ```js
 module.exports = {
   ...,                          // your original config
@@ -131,19 +130,19 @@ module.exports = {
   }
 }
 ```
+|||
 
 +++ Rollup
 
-In `package.json`, prepend the `PAGY_PATH` environment variable to the `scripts.build` command:
-
+||| package.json
 ```json
 {
   "build": "PAGY_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your rollup command>"
 }
 ```
+|||
 
-In `rollup.confg.js`, configure the `plugins[resolve]`:
-
+||| rollup.confg.js
 ```js
 export default {
   ...,                                    // your original config
@@ -157,6 +156,7 @@ export default {
   ]
 }
 ```
+|||
 +++
 
 ### Rails with assets pipeline
@@ -164,47 +164,52 @@ export default {
 In older versions of Rails, you can configure the assets to look into the installed pagy gem files:
 
 +++ Sprockets
+||| pagy.rb (initializer)
 ```ruby
-# config/initializers/pagy.rb
 Rails.application.config.assets.paths << Pagy.root.join('javascripts') # uncomment.
 ```
+|||
 
-In your `manifest.js` file (or `application.js` file if using older versions of sprockets):
-
+||| manifest.js (or `application.js` for old sprocket sprockets):
 ```js
 //= require pagy
 ```
-And initialize Pagy any way you like (see below):
-+++ Importmaps
+|||
 
++++ Importmaps
+||| pagy.rb (initializer)
 ```ruby
-# config/initializers/pagy.rb
 Rails.application.config.assets.paths << Pagy.root.join('javascripts') #uncomment
 ```
+|||
 
-Add sprockets directive e.g. in `app/assets/config/manifest.js`:
-
+||| app/assets/config/manifest.js
 ```js
 //= link pagy-module.js
 ```
+|||
 
+||| config/importmap.rb
 ```ruby
-# config/importmap.rb
 pin 'pagy-module'
 ```
+|||
+
 +++ Propshaft
+||| pagy.rb (initializer)
 ```ruby
-# config/initializers/pagy.rb
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 ```
+|||
 
+||| application.html.erb
 ```erb
-<!-- in application.html.erb -->
 <%= javascript_include_tag "pagy" %>
 ```
+|||
 +++
 
-### Other ruby app/framework
+### Non-Rails apps
 
 * Just ensure `Pagy.root.join('javascripts', 'pagy.js')` is served with the page.
 
@@ -213,8 +218,8 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 After the file is loaded, you have to initialize `Pagy`:
 
 +++ Stimulus JS
+||| pagy_initializer_controller.js
 ```js
-// pagy_initializer_controller.js
 import { Controller } from "@hotwired/stimulus"
 import Pagy from "pagy-module"  // if using sprockets, you can remove above line, but make sure you have the appropriate directive if your manifest.js file.
 
@@ -224,12 +229,15 @@ export default class extends Controller {
   }
 }
 ```
+|||
 
+||| View
 ```erb
 <div data-controller="pagy-initializer">
   <%== pagy_nav_js(@pagy) %>
 </div>
 ```
+|||
 
 +++ Others
 ```js

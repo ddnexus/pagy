@@ -10,20 +10,19 @@ This extra adds 3 nav helpers for Semantic UI CSS [pagination component](https:/
 
 See [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/semantic'
 ```
+|||
 
-Render the navigation links in some view...
-with a fast helper:
-
+||| View (helper)
 ```erb
 <%== pagy_semantic_nav(@pagy, ...) %>
 <%== pagy_semantic_nav_js(@pagy, ...) %>
 <%== pagy_semantic_combo_nav_js(@pagy, ...) %>
 ```
+|||
 
 ## Files
 

@@ -10,16 +10,15 @@ This extra uses the `Pagy::Countless` subclass in order to save one count query 
 
 See [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/countless'
 # optionally enable the minimal mode by default
 # Pagy::DEFAULT[:countless_minimal] = true
 ```
+|||
 
-In a controller:
-
+||| Controller
 ```ruby
 # default mode (eager loading)
 @pagy, @records = pagy_countless(some_scope, ...)
@@ -28,6 +27,7 @@ In a controller:
 # enable minimal mode for this instance (lazy loading)
 @pagy, @records = pagy_countless(some_scope, countless_minimal: true, ...)
 ```
+|||
 
 ## Modes
 

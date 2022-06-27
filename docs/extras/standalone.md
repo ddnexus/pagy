@@ -16,17 +16,21 @@ This extra will also create a dummy `params` method (if not already defined) in 
 
 See [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/standalone'
 
 # optional: set a default url
 Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'
+```
+|||
 
+||| Controller
+```ruby
 # pass a :url variable to work in standalone mode (no need of any request object nor Rack env)
 @pagy, @records = pagy(Product.all, url: 'http://www.example.com/subdir', params: {...})
 ```
+|||
 
 ## Files
 

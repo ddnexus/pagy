@@ -41,12 +41,14 @@ The `Pagy::DEFAULT` is a globally available hash used to set defaults variables.
 
 You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
+||| pagy.rb (initializer)
 ```ruby
 Pagy::DEFAULT[:items]     = 25
 Pagy::DEFAULT[:my_option] = 'my option'
 ...
 Pagy::DEFAULT.freeze
 ```
+|||
 
 ## Methods
 

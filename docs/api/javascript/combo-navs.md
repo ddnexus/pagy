@@ -25,8 +25,7 @@ Here is a screenshot (from the `bootstrap` extra):
 
 See [Setup Javascript](setup.md) and [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer, require the specific extra for the style you want to use:
-
+||| pagy.rb (initializer)
 ```ruby
 # you only need one of the following extras
 require 'pagy/extras/bootstrap'
@@ -37,11 +36,11 @@ require 'pagy/extras/navs'
 require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
+|||
 
-Use one of the `pagy*_combo_nav_js` helpers in any view:
-
+||| Any View
 ```erb
-<-- Use just one: -->
+<!-- Use just one: -->
 <%== pagy_combo_nav_js(@pagy, ...) %>
 <%== pagy_bootstrap_combo_nav_js(@pagy, ...) %>
 <%== pagy_bulma_combo_nav_js(@pagy, ...) %>
@@ -49,7 +48,7 @@ Use one of the `pagy*_combo_nav_js` helpers in any view:
 <%== pagy_materialize_combo_nav_js(@pagy, ...) %>
 <%== pagy_semantic_combo_nav_js(@pagy, ...) %>
 ```
-
+|||
 ## Methods
 
 ### pagy*_combo_nav_js(pagy, ...)

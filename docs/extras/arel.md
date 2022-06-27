@@ -10,20 +10,20 @@ This extra adds a specialized pagination for collections from sql databases with
 
 See [extras](/docs/extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/arel'
 ```
+|||
 
-In a controller:
-
+||| Controller
 ```ruby
 @pagy_a, @items   = pagy_arel(a_collection, ...)
 
 # independently paginate some other collections as usual
 @pagy_b, @records = pagy(some_scope, ...)
 ```
+|||
 
 ## Files
 
