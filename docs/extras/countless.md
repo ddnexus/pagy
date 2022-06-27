@@ -4,7 +4,7 @@ category: Backend Extras
 ---
 # Countless Extra
 
-This extra uses the `Pagy::Countless` subclass in order to save one count query per request. It is especially useful when used with large DB tables, where [Caching the count](../how-to.md#cache-the-count) may not be an option, or when there is no need to have a classic UI. Please read also the [Pagy::Countless doc](../api/countless.md) for a fuller understanding of its features and limitations.
+This extra uses the `Pagy::Countless` subclass in order to save one count query per request. It is especially useful when used with large DB tables, where [Caching the count](/docs/how-to.md#cache-the-count) may not be an option, or when there is no need to have a classic UI. Please read also the [Pagy::Countless doc](/docs/api/countless.md) for a fuller understanding of its features and limitations.
 
 ## Synopsis
 
@@ -70,12 +70,12 @@ All the methods in this module are prefixed with the `"pagy_countless"` string, 
 
 ### pagy_countless(collection, vars=nil)
 
-This method is the same as the generic `pagy` method (see the [pagy doc](../api/backend.md#pagycollection-varsnil)), however its returned objects will depend on the value of the `:countless_minimal` variable (see [Modes](#modes))
+This method is the same as the generic `pagy` method (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil)), however its returned objects will depend on the value of the `:countless_minimal` variable (see [Modes](#modes))
 
 ### pagy_countless_get_vars(_collection, vars)
 
-This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_countless` method. (see the [pagy_get_vars doc](../api/backend.md#pagy_get_varscollection-vars)).
+This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_countless` method. (see the [pagy_get_vars doc](/docs/api/backend.md#pagy_get_varscollection-vars)).
 
 ### pagy_countless_get_items(collection, pagy)
 
-This sub-method is similar to the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see the [pagy_get_items doc](../api/backend.md#pagy_get_itemscollection-pagy)).
+This sub-method is similar to the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see the [pagy_get_items doc](/docs/api/backend.md#pagy_get_itemscollection-pagy)).

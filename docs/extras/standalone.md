@@ -4,7 +4,7 @@ category: Feature Extras
 ---
 # Standalone Extra
 
-This extra allows you to use pagy completely standalone, i.e. without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without an app (see the [Pagy::Console](../api/console.md) module).
+This extra allows you to use pagy completely standalone, i.e. without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without an app (see the [Pagy::Console](/docs/api/console.md) module).
 
 You may need it in order to paginate a collection outside of a regular rack request or controller, like in an unconventional API module, or in the irb/rails console or for testing/playing with backend and frontend methods.
 

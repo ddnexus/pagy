@@ -11,7 +11,7 @@ This is a `Pagy` subclass (see [source](https://github.com/ddnexus/pagy/blob/mas
 - minimalistic UI, infinite scrolling, APIs that don't benefit from a nav-bar
 - when the full nav-bar is not a requirement and/or performance is more desirable
 
-This class provides support for extras that don't need the full set of pagination support or need to avoid the `:count` variable (e.g. the [countless](../extras/countless.md) extra). The class API is documented here, however you should not need to use this class directly because it is required and used internally by the extra.
+This class provides support for extras that don't need the full set of pagination support or need to avoid the `:count` variable (e.g. the [countless](/docs/extras/countless.md) extra). The class API is documented here, however you should not need to use this class directly because it is required and used internally by the extra.
 
 ## Caveats
 

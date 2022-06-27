@@ -26,7 +26,7 @@ with a fast helper:
 <%== pagy_materialize_combo_nav_js(@pagy, ...) %>
 ```
 
-See [Javascript](../api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
+See [Javascript](/docs/api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
 
 ## Files
 
@@ -48,6 +48,6 @@ See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 ### pagy_materialize_combo_nav_js(pagy, ...)
 
-![materialize_combo_nav_js](../assets/images/materialize_combo_nav_js-g.png)
+![materialize_combo_nav_js](/docs/assets/images/materialize_combo_nav_js-g.png)
 
 See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.

@@ -19,15 +19,15 @@ look like a normal `pagy*_nav` but have a few added features:
 
 1. Client-side rendering
 2. Optional responsiveness
-3. Better performance and resource usage (see [Maximizing Performance](../../how-to.md#maximize-performance))
+3. Better performance and resource usage (see [Maximizing Performance](/docs/how-to.md#maximize-performance))
 
 Here is a screenshot (from the `bootstrap`extra) showing responsiveness at different widths:
 
-![bootstrap_nav_js](../../assets/images/bootstrap_nav_js-g.png)
+![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js-g.png)
 
 ## Synopsis
 
-See [Setup Javascript](setup.md) and [extras](..//docs/extras.md) for general usage info.
+See [Setup Javascript](setup.md) and [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer, require the specific extra for the style you want to use:
 
@@ -86,7 +86,7 @@ or pass it to the helper
 <%== pagy_nav_js(@pagy, steps: {...}) %>
 ```
 
-The above statement means that from `0` to `540` pixels width, Pagy will use the `[2,3,3,2]` size, from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size` variable in the [How to control the page links](../../how-to.md#control-the-page-links) section).
+The above statement means that from `0` to `540` pixels width, Pagy will use the `[2,3,3,2]` size, from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size` variable in the [How to control the page links](/docs/how-to.md#control-the-page-links) section).
 
 **IMPORTANT**: You can set any number of steps with any arbitrary width/size. The only requirement is that the `:steps` hash must contain always the `0` width or a `Pagy::VariableError` exception will be raised.
 

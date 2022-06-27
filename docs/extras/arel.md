@@ -37,11 +37,11 @@ This extra adds the `pagy_arel` method to the `Pagy::Backend` to be used in plac
 
 ### pagy_arel(collection, vars=nil)
 
-This method is the same as the generic `pagy` method, but with improved speed for SQL `GROUP BY` collections. (see the [pagy doc](../api/backend.md#pagycollection-varsnil))
+This method is the same as the generic `pagy` method, but with improved speed for SQL `GROUP BY` collections. (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil))
 
 ### pagy_arel_get_vars(collection)
 
-This sub-method is the same as the `pagy_get_vars` sub-method, but it is called only by the `pagy_arel` method. (see the [pagy_get_vars doc](../api/backend.md#pagy_get_varscollection-vars)).
+This sub-method is the same as the `pagy_get_vars` sub-method, but it is called only by the `pagy_arel` method. (see the [pagy_get_vars doc](/docs/api/backend.md#pagy_get_varscollection-vars)).
 
 ### pagy_arel_count(collection)
 

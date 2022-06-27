@@ -11,7 +11,7 @@ A few helpers use Javascript and offer some extra feature and require some extra
 
 ### Advantages
 
-- Better performance and resource usage (see [Maximizing Performance](../how-to.md#maximize-performance))
+- Better performance and resource usage (see [Maximizing Performance](/docs/how-to.md#maximize-performance))
 - Client-side rendering
 - Optional responsiveness
 

@@ -107,7 +107,7 @@ This extra adds the `pagy_searchkick` method to the `Pagy::Backend` to be used w
 
 #### pagy_searchkick(pagy_search_args, vars={}})
 
-This method is similar to the generic `pagy` method, but specialized for Searchkick. (see the [pagy doc](../api/backend.md#pagycollection-varsnil))
+This method is similar to the generic `pagy` method, but specialized for Searchkick. (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil))
 
 It expects to receive a `Model.pagy_search(...)` result and returns a paginated response. You can use it in a couple of ways:
 
@@ -122,4 +122,4 @@ It expects to receive a `Model.pagy_search(...)` result and returns a paginated 
 
 #### pagy_searchkick_get_vars(array)
 
-This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_searchkick` method. (see the [pagy_get_vars doc](../api/backend.md#pagy_get_varscollection-vars)).
+This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_searchkick` method. (see the [pagy_get_vars doc](/docs/api/backend.md#pagy_get_varscollection-vars)).

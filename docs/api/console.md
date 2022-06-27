@@ -41,7 +41,7 @@ pagy_metadata(pagy)
 
 ## Pagy::Console module
 
-The pagy console uses the [standalone extra](../extras/standalone.md) and sets the `Pagy::DEFAULT[:url]` variable default to `"http://www.example.com/subdir"` in order to activate the standalone mode.
+The pagy console uses the [standalone extra](/docs/extras/standalone.md) and sets the `Pagy::DEFAULT[:url]` variable default to `"http://www.example.com/subdir"` in order to activate the standalone mode.
 
 Include the module in your console window in order to include also the `Pagy::Backend` and `Pagy::Frontend` modules.
 

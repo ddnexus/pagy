@@ -91,7 +91,7 @@ This extra adds the `pagy_meilisearch` method to the `Pagy::Backend` to be used 
 
 ### pagy_meilisearch(Model.pagy_search(...), vars={}})
 
-This method is similar to the generic `pagy` method, but specialized for Meilisearch. (see the [pagy doc](../api/backend.md#pagycollection-varsnil))
+This method is similar to the generic `pagy` method, but specialized for Meilisearch. (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil))
 
 It expects to receive a `Model.pagy_search(...)` result and returns a paginated response. You can use it in a couple of ways:
 
@@ -106,4 +106,4 @@ It expects to receive a `Model.pagy_search(...)` result and returns a paginated 
 
 ### pagy_meilisearch_get_vars(array)
 
-This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_meilisearch` method. (see the [pagy_get_vars doc](../api/backend.md#pagy_get_varscollection-vars)).
+This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_meilisearch` method. (see the [pagy_get_vars doc](/docs/api/backend.md#pagy_get_varscollection-vars)).

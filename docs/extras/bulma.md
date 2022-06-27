@@ -32,7 +32,7 @@ or with a template:
 <%== render partial: 'pagy/bulma_nav', locals: {pagy: @pagy} %>
 ```
 
-See [Javascript](../api/javascript.md) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
+See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
 
 ## Files
 
@@ -51,7 +51,7 @@ This method is the same as the `pagy_nav`, but customized for Bulma.
 
 See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy_navpagy-) documentation.
 
-The `bulma_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](../how-to.md#use-templates).
+The `bulma_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](/docs/how-to.md#use-templates).
 
 ### pagy_bulma_nav_js(pagy, ...)
 

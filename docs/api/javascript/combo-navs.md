@@ -15,15 +15,15 @@ The following `pagy*_combo_nav_js` offer an alternative pagination UI that combi
 - `pagy_materialize_combo_nav_js`
 - `pagy_semantic_combo_nav_js`
 
-They are the fastest and lightest `nav` on modern environments, recommended when you care about efficiency and server load (see [Maximizing Performance](../../how-to.md#maximize-performance)).
+They are the fastest and lightest `nav` on modern environments, recommended when you care about efficiency and server load (see [Maximizing Performance](/docs/how-to.md#maximize-performance)).
 
 Here is a screenshot (from the `bootstrap` extra):
 
-![bootstrap_combo_nav_js](../../assets/images/bootstrap_combo_nav_js-g.png)
+![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js-g.png)
 
 ## Synopsis
 
-See [Setup Javascript](setup.md) and [extras](..//docs/extras.md) for general usage info.
+See [Setup Javascript](setup.md) and [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer, require the specific extra for the style you want to use:
 

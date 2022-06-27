@@ -22,7 +22,7 @@ Besides the classic `pagy*_nav` pagination, the `pagy*_nav_js` and the `pagy*_co
 
 ### Countless
 
-You can totally avoid one query per render by using the [countless](countless.md) extra. It has a few limitation, but still supports navbar links (see also [Pagy::Countless](../api/countless.md) for more details).
+You can totally avoid one query per render by using the [countless](countless.md) extra. It has a few limitation, but still supports navbar links (see also [Pagy::Countless](/docs/api/countless.md) for more details).
 
 ### Navless/incremental
 

@@ -26,7 +26,7 @@ with a fast helper:
 <%== pagy_combo_nav_js(@pagy, ...) %>
 ```
 
-See [Javascript](../api/javascript.md).
+See [Javascript](/docs/api/javascript.md).
 
 ## Files
 
