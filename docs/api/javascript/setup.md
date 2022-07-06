@@ -3,8 +3,22 @@ title: Setup
 image: null
 order: 4
 ---
-  
+
 # Javascript Setup
+
+!!!info Notice
+A javascript setup is required only for the `pagy*_js` helpers. Just using `'data-remote="true"'` in any other helper works out of the box.
+!!!
+
+!!! success 
+Add the `oj` gem to your gemfile for faster performance.
+!!!
+
+### How does it work?
+
+All the `pagy*_js` helpers render their component on the client side. The helper methods render just a minimal HTML tag that contains a `data-pagy` attribute.
+
+Your app should serve a small javascript file that will take care of converting the data embedded in the `data-pagy` attribute and make it work in the browser.
 
 ## Pick a JS File for your environment
 
@@ -257,3 +271,19 @@ window.addEventListener(turbolinks:load, Pagy.init)
 window.addEventListener(yourEventListener, Pagy.init) 
 ```
 +++
+
+
+### Caveats
+
+!!!warning HTML Fallback
+
+If Javascript is disabled in the client browser, certain helpers will be useless. Consider implementing your own HTML fallback:
+
+```erb
+<noscript><%== pagy_nav(@pagy) %></noscript>
+```
+!!!
+
+!!!danger Overriding `*_js` helpers is not recommended
+The `pagy*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile and might break in a next release.
+!!!
