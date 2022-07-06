@@ -43,11 +43,12 @@ Use the `pagy_search` method in place of the standard `search` method when you w
 
 ||| Controller
 ```ruby
-response         = Article.pagy_search(params[:q])
-@pagy, @response = pagy_elasticsearch_rails(response, items: 10)
-# or directly with the collection you need (e.g. records)
-@pagy, @records = pagy_elasticsearch_rails(response.records, items: 10, ...)
-
+# get the collection in one of the following ways
+collection = Article.pagy_search(params[:q])
+collection = Article.pagy_search(params[:q]).records
+collection = Article.pagy_search(params[:q]).results
+# paginate it
+@pagy, @response = pagy_elasticsearch_rails(collection, items: 10)
 ```
 |||
 
