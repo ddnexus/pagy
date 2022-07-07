@@ -59,15 +59,17 @@ This mode calculates the `:from` and `:size` options and internally uses the sta
 +++ Passive mode
 
 !!! success 
-Get the `Pagy` object out of an already paginated `Response` object
+Get the `Pagy` object out of a standard `Response` object
 !!!
 
 ### Usage
 
 ||| Controller
 ```ruby
+# standard response (already paginated)
 @response = Model.search('*', from: 0, size: 10, ...)
-@pagy     = Pagy.new_from_elasticsearch_rails(@response, ...)
+# get the pagy object out of it
+@pagy = Pagy.new_from_elasticsearch_rails(@response, ...)
 ```
 |||
 
@@ -94,7 +96,7 @@ You have to take care of manually manage all the params for your search, however
 
 This extra adds the `pagy_elasticsearch_rails` method to the `Pagy::Backend` to be used when you have to paginate a `ElasticsearchRails` object. It also adds a `pagy_elasticsearch_rails_get_variables` sub-method, used for easy customization of variables by overriding.
 
-#### pagy_elasticsearch_rails(pagy_search_args, vars = {}})
+#### pagy_elasticsearch_rails(pagy_search_args, vars = \{\})
 
 This method is similar to the generic `pagy` method, but specialized for Elasticsearch Rails (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil)).
 
