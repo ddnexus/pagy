@@ -74,7 +74,7 @@ Get the `Pagy` object out of an already paginated `Response` object
 The `Pagy.new_from_elasticsearch_rails(response, ...)` constructor accepts an `Elasticsearch::Model::Response::Response` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of the `Elasticsearch::Model::Response::Response` object.
 
 !!! info
-You have to take care of manually manage all the params for your search, however the method extracts/calculates the `:items`, `:page` and `:count` from the response object, so you don't need to pass that again. If you prefer to manage the pagination automatically, see below.
+You have to take care of manually manage all the params for your search, however the method extracts/calculates the `:items`, `:page` and `:count` from the response object, so you don't need to pass that again.
 !!!
 
 +++
