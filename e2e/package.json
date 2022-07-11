@@ -2,18 +2,26 @@
     "name": "pagy.e2e",
     "description": "Pagy E2E Testing",
     "private": true,
-    "peerDependencies": {
+    "engines": {
+        "node": ">=16.15.0"
     },
     "devDependencies": {
-        "@types/node": "16.11.7",
         "@cypress/snapshot": "^2.1.7",
-        "cypress": "10.0.3",
-        "cypress-html-validate": "4.0.0",
+        "@types/node": "18.0.3",
+        "@typescript-eslint/eslint-plugin": "5.30.5",
+        "@typescript-eslint/parser": "5.30.5",
+        "cypress": "10.3.0",
+        "cypress-html-validate": "5.0.2",
+        "eslint": "8.19.0",
         "eslint": ">= 3.2.1",
-        "eslint-plugin-cypress": "^2.12.1",
-        "html-validate": "7.1.1",
+        "eslint-plugin-align-assignments": "^1.1.2",
+        "eslint-plugin-cypress": "2.12.1",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^6.0.0",
+        "html-validate": "7.1.2",
         "start-server-and-test": "^1.14.0",
-        "typescript": "^4.7.3"
+        "typescript": "4.7.4"
     },
     "scripts": {
         "lint-fix": "eslint --fix cypress --ext .ts",

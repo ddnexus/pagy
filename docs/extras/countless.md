@@ -7,10 +7,6 @@ category: Backend Extras
 
 Save one count query per request using the [Pagy::Countless subclass](/docs/api/countless.md) internally.
 
-!!!
-Useful with large/slow DB tables an/or when there is no need to have a complete classic UI (e.g. infinite/scrolling).
-!!!
-
 ## Setup
 
 See [extras](/docs/extras.md) for general usage info.
@@ -31,7 +27,7 @@ This extra can be used in two different modes by enabling or not the `:countless
 +++ Default mode
 
 !!! success
-Your app uses a classic pagination UI
+Your app needs a full classic pagination UI
 !!!
 
 ### Usage
@@ -45,13 +41,13 @@ Your app uses a classic pagination UI
 This mode retrieves `items + 1`, and uses the number of retrieved items to calculate the variables. It then removes the extra item from the result.
 
 !!! info
-- The `pagy` object will know whether the current page is the last one or there will be a next page so you can use it right away with any supported helper
-- The returned paginated collection (`@records`) will be an `Array` instead of a scope (so the records are already eager-loaded from the DB)
+- The `@records` collection is an eager-loaded `Array` of records.
+- The `@pagy` object can be used with any supported helper.
 !!!
 +++ Minimal mode
 
 !!! success
-Your app uses no pagination UI
+Your app uses no or limited pagination UI
 !!!
 
 ### Usage
@@ -65,9 +61,9 @@ Your app uses no pagination UI
 This mode is enabled by the `:countless_minimal` variable.
 
 !!! info
-- The returned `pagy` object will contain just a handful of variables and will miss the finalization, so you cannot use it with any helpers
-- The returned paginated collection (`@records`) will be a regular scope (i.e. no record has been load yet) so an eventual fragment caching can work as expected
-- You will need to check the size of the paginated collection (`@records`) in order to know if it is the last page or not. You can tell it by checking `@records.size < @pagy.vars[:items]`. Notice that IF the last page has exactly the `@pagy.vars[:items]` in it you will not be able to know it. In infinite scroll that would just try to load the next page returning 0 items, so it will be perfectly acceptable anyway.
+- The `@records` collection is a regular scope.
+- The `@pagy` object cannot be used with any helpers.
+- The collection is over when `@records.size < @pagy.vars[:items]`. 
 !!!
 
 +++
