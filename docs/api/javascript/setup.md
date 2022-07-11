@@ -34,51 +34,43 @@ _ESM File: [pagy-module.js](https://github.com/ddnexus/pagy/blob/master/lib/java
 
 +++ `pagy.js`
 !!! success
-Your app needs old browser compatibility
+Your app needs standard script or old browser compatibility
 !!!
 
 * It's an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE);
-* Polyfilled and minified (~2.9k).
+* Minified (~2k).
 
 _JS File: [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js)_
 
 <details>
 <summary> Browser compatibility list: </summary>
 
-- and_chr 96
-- and_ff 95
+- and_chr 103
+- and_ff 101
 - and_qq 10.4
 - and_uc 12.12
-- android 96
-- baidu 7.12
-- chrome 97
-- chrome 96
-- chrome 95
-- chrome 94
-- edge 97
-- edge 96
-- firefox 96
-- firefox 95
-- firefox 94
+- android 103
+- chrome 103
+- chrome 102
+- chrome 101
+- edge 103
+- edge 102
+- firefox 102
+- firefox 101
 - firefox 91
-- firefox 78
-- ie 11
-- ios_saf 15.2
-- ios_saf 15.0-15.1
+- ios_saf 15.5
+- ios_saf 15.4
+- ios_saf 15.2-15.3
 - ios_saf 14.5-14.8
 - ios_saf 14.0-14.4
 - ios_saf 12.2-12.5
 - kaios 2.5
 - op_mini all
 - op_mob 64
-- opera 82
-- opera 81
-- safari 15.2
-- safari 15.1
-- safari 14.1
-- safari 13.1
-- samsung 15.0
-- samsung 14.0
+- opera 87
+- opera 86
+- opera 85
+- safari 15.5
 
 !!! info
 You can generate custom targeted `pagy.js` files for the browsers you want to support by changing the [browserslist](https://github.com/browserslist/browserslist) query in `src/package.json`, then compile it with `npm run build -w src`.

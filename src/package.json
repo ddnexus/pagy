@@ -2,10 +2,22 @@
     "name": "pagy.src",
     "description": "TypeScript source for pagy.js",
     "private": true,
+    "engines": {
+        "node": ">=16.15.0"
+    },
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "5.30.5",
+        "@typescript-eslint/parser": "5.30.5",
+        "browserslist": "^4.21.1",
+        "eslint": "8.19.0",
+        "eslint-plugin-align-assignments": "^1.1.2",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^6.0.0",
         "parcel": "2.6.2",
         "parcel-plugin-nuke-dist": "^1.0.1",
-        "typescript": "^4.7.3"
+        "retypeapp-linux-x64": "^2.3.0",
+        "typescript": "^4.7.4"
     },
     "browserslist": [
         "defaults"

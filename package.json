@@ -3,18 +3,9 @@
     "description": "Workspaces environment",
     "private": true,
     "engines": {
-        "pnpm": ">=7.1.9",
         "node": ">=16.15.0"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "5.30.5",
-        "@typescript-eslint/parser": "5.30.5",
-        "eslint": "8.19.0",
-        "eslint-plugin-align-assignments": "^1.1.2",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-promise": "^6.0.0",
-        "retypeapp-linux-x64": "^2.3.0",
-        "typescript": "^4.7.3"
+        "retypeapp-linux-x64": "^2.3.0"
     }
 }

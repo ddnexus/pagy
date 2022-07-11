@@ -3,4 +3,5 @@
 node_modules/
 /pkg/
 /tmp/
-/.pnpm/*
+pnpm
+.pnpm-debug.log
