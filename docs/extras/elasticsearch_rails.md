@@ -21,17 +21,15 @@ require 'pagy/extras/elasticsearch_rails'
 
 ## Modes
 
-This extra offers two ways to paginate `ElasticsearchRails` response objects:
+This extra offers two ways to paginate `ElasticsearchRails` response objects.
 
 +++ Active mode
 
-!!! success
-Get the paginated `Response` object from your search
+!!! success Pagy searches and paginates
+You use the `pagy_search` method in place of the standard `search` method.
 !!!
 
 ### Usage
-
-Extend your model with the `Pagy::ElasticsearchRails` micro-module:
 
 ||| Model
 ```ruby
@@ -39,9 +37,7 @@ extend Pagy::ElasticsearchRails
 ```
 |||
 
-Use the `pagy_search` method in place of the standard `search` method when you want to paginate the search response:
-
-||| Controller
+||| Controller (pagy_search)
 ```ruby
 # get the collection in one of the following ways
 collection = Article.pagy_search(params[:q])
@@ -52,32 +48,22 @@ collection = Article.pagy_search(params[:q]).results
 ```
 |||
 
-!!!
-This mode calculates the `:from` and `:size` options and internally uses the standard `search` method.
-!!!
-
 +++ Passive mode
 
-!!! success 
-Get the `Pagy` object out of a standard `Response` object
+!!! success You search and paginate
+Pagy creates its object out of your result.
 !!!
 
 ### Usage
 
-||| Controller
+||| Controller (search)
 ```ruby
 # standard response (already paginated)
-@response = Model.search('*', from: 0, size: 10, ...)
+@response = Article.search('*', from: 0, size: 10, ...)
 # get the pagy object out of it
 @pagy = Pagy.new_from_elasticsearch_rails(@response, ...)
 ```
 |||
-
-The `Pagy.new_from_elasticsearch_rails(response, ...)` constructor accepts an `Elasticsearch::Model::Response::Response` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of the `Elasticsearch::Model::Response::Response` object.
-
-!!! info
-You have to take care of manually manage all the params for your search, however the method extracts/calculates the `:items`, `:page` and `:count` from the response object, so you don't need to pass that again.
-!!!
 
 +++
 
@@ -94,13 +80,15 @@ You have to take care of manually manage all the params for your search, however
 
 ### Methods
 
-This extra adds the `pagy_elasticsearch_rails` method to the `Pagy::Backend` to be used when you have to paginate a `ElasticsearchRails` object. It also adds a `pagy_elasticsearch_rails_get_variables` sub-method, used for easy customization of variables by overriding.
+#### Pagy.new_from_elasticsearch_rails(response, vars = \{\})
+
+This constructor accepts an `Elasticsearch::Model::Response::Response` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of it.
 
 #### pagy_elasticsearch_rails(pagy_search_args, vars = \{\})
 
 This method is similar to the generic `pagy` method, but specialized for Elasticsearch Rails (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil)).
 
-It expects to receive a result from `Model.pagy_search(...)` as the first argument and an optional hash of variables. It returns a paginated response. 
+It expects to receive `YourModel.pagy_search(...)` result and returns a paginated response. 
 
 #### pagy_elasticsearch_rails_get_vars(array)
 
@@ -108,4 +96,6 @@ This sub-method is similar to the `pagy_get_vars` sub-method, but it is called o
 
 ### Pagy::ElasticsearchRails module
 
-The `Pagy::ElasticsearchRails` adds the `pagy_search` class method that accepts the same arguments of the `search` method and you must use it in its place when you want to paginate the search response.
+#### pagy_search(...)
+
+This method accepts the same arguments of the `search` method and you must use it in its place in active mode.
