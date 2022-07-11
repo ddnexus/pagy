@@ -7,9 +7,9 @@
         "node": ">=16.15.0"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "5.27.1",
-        "@typescript-eslint/parser": "5.27.1",
-        "eslint": "8.17.0",
+        "@typescript-eslint/eslint-plugin": "5.30.5",
+        "@typescript-eslint/parser": "5.30.5",
+        "eslint": "8.19.0",
         "eslint-plugin-align-assignments": "^1.1.2",
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-node": "^11.1.0",
