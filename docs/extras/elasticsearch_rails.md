@@ -80,22 +80,21 @@ Pagy creates its object out of your result.
 
 ### Methods
 
-#### Pagy.new_from_elasticsearch_rails(response, vars = \{\})
+==- `Pagy::ElasticsearchRails.pagy_search(...)`
+
+This method accepts the same arguments of the `search` method and you must use it in its place in active mode.
+
+==- `Pagy.new_from_elasticsearch_rails(response, vars={})`
 
 This constructor accepts an `Elasticsearch::Model::Response::Response` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of it.
 
-#### pagy_elasticsearch_rails(pagy_search_args, vars = \{\})
+==- `pagy_elasticsearch_rails(pagy_search_args, vars={})`
 
 This method is similar to the generic `pagy` method, but specialized for Elasticsearch Rails (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil)).
 
 It expects to receive `YourModel.pagy_search(...)` result and returns a paginated response. 
 
-#### pagy_elasticsearch_rails_get_vars(array)
+==- `pagy_elasticsearch_rails_get_vars(array)`
 
 This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_elasticsearch_rails` method. (see the [pagy_get_vars doc](/docs/api/backend.md#pagy_get_varscollection-vars)).
-
-### Pagy::ElasticsearchRails module
-
-#### pagy_search(...)
-
-This method accepts the same arguments of the `search` method and you must use it in its place in active mode.
+===

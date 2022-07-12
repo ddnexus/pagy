@@ -85,22 +85,22 @@ Pagy creates its object out of your result.
 
 ### Methods
 
-#### Pagy.new_from_searchkick(results, vars = {})
+==- `Pagy::Searchkick.pagy_search(...)`
+
+This method accepts the same arguments of the `search` method and you must use it in its place in active mode.
+
+==- `Pagy.new_from_searchkick(results, vars={})`
 
 This constructor accepts a `Searchkick::Results` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of it.
 
-#### pagy_searchkick(pagy_search_args, vars={}})
+==- `pagy_searchkick(pagy_search_args, vars={})`
 
 This method is similar to the generic `pagy` method, but specialized for Searchkick. (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil))
 
 It expects to receive `YourModel.pagy_search(...)` result and returns a paginated response.
 
-#### pagy_searchkick_get_vars(array)
+==- `pagy_searchkick_get_vars(array)`
 
 This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_searchkick` method. (see the [pagy_get_vars doc](/docs/api/backend.md#pagy_get_varscollection-vars)).
 
-### Pagy::Searchkick module
-
-#### pagy_search(...)
-
-This method accepts the same arguments of the `search` method and you must use it in its place in active mode.
+===
