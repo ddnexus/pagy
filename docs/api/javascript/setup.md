@@ -20,7 +20,11 @@ All the `pagy*_js` helpers render their component on the client side. The helper
 
 Your app should serve a small javascript file that will take care of converting the data embedded in the `data-pagy` attribute and make it work in the browser.
 
-## Pick a JS File for your environment
+!!! info
+We don't publish a `npm` package, because it would not support automatic sync with the gem version.
+!!!
+
+### 1. Pick a Javascript File
 
 +++ `pagy-module.js`
 
@@ -93,79 +97,11 @@ You need to debug the javascript helpers
 _JS File: [pagy-dev.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-dev.js)_
 +++
 
-!!! info
-We don't publish a `npm` package, because it would be very difficult for you to keep it manually in sync with the ruby gem at every update. Instead we load the files directly from the installed gem.
-!!!
-
-
-## Load the file
+### 2. Load the file
 
 Depending on your environment you have a few ways of loading the required JS file:
 
-### Rails with build tools
-
-Pulling the file directly from the `$(bundle show 'pagy')/lib/javascripts` gem installation path:
-
-+++ Esbuild
-||| package.json
-```json
-{
-  "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
-}
-```
-|||
-
-+++ Webpack
-||| package.json
-```json
-{
-  "build": "PAGY_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your webpack command>"
-}
-```
-|||
-
-||| webpack.config.js
-```js
-module.exports = {
-  ...,                          // your original config
-  resolve: {                    // add resolve.modules
-    modules: [
-      "node_modules",           // node_modules dir
-      process.env.PAGY_PATH     // pagy dir
-    ]
-  }
-}
-```
-|||
-
-+++ Rollup
-
-||| package.json
-```json
-{
-  "build": "PAGY_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your rollup command>"
-}
-```
-|||
-
-||| rollup.confg.js
-```js
-export default {
-  ...,                                    // your original config
-  plugins: [
-    resolve({
-              moduleDirectories: [        // add moduleDirectories
-                "node_modules",           // node_modules dir
-                process.env.PAGY_PATH     // pagy dir
-              ] 
-    })
-  ]
-}
-```
-|||
-+++
-
-### Rails with assets pipeline
+#### Rails with assets pipeline
 
 In older versions of Rails, you can configure the assets to look into the installed pagy gem files:
 
@@ -215,11 +151,11 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 |||
 +++
 
-### Non-Rails apps
+#### Non-Rails apps
 
 * Just ensure `Pagy.root.join('javascripts', 'pagy.js')` is served with the page.
 
-## Initialize Pagy
+### 3. Initialize Pagy
 
 After the file is loaded, you have to initialize `Pagy`:
 
@@ -264,8 +200,7 @@ window.addEventListener(yourEventListener, Pagy.init)
 ```
 +++
 
-
-### Caveats
+#### Caveats
 
 !!!warning HTML Fallback
 
