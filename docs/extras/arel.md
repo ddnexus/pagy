@@ -33,16 +33,20 @@ require 'pagy/extras/arel'
 
 This extra adds the `pagy_arel` method to the `Pagy::Backend` to be used in place (or in parallel) of the `pagy` method when you want to paginate a collection with sql `GROUP BY` clause, where the number of groups/rows is big (for instance when group by day of the last 3 years). It also adds a `pagy_arel_get_variables` sub-method, used for easy customization of variables by overriding.
 
-**Notice**: there is no `pagy_arel_get_items` method to override, since the items are fetched directly by the specialized `pagy_arel` method.
+!!!info Overriding `pagy_arel_get_items`?
+There is no `pagy_arel_get_items` method to override, since the items are fetched directly by the specialized `pagy_arel` method.
+!!!
 
-### pagy_arel(collection, vars=nil)
+==- `pagy_arel(collection, vars=nil)`
 
 This method is the same as the generic `pagy` method, but with improved speed for SQL `GROUP BY` collections. (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil))
 
-### pagy_arel_get_vars(collection)
+==- `pagy_arel_get_vars(collection)`
 
 This sub-method is the same as the `pagy_get_vars` sub-method, but it is called only by the `pagy_arel` method. (see the [pagy_get_vars doc](/docs/api/backend.md#pagy_get_varscollection-vars)).
 
-### pagy_arel_count(collection)
+==- `pagy_arel_count(collection)`
 
 This sub-method it is called only by the `pagy_get_vars` method. It will detect which query to perform based on the active record groups (sql `GROUP BY`s). In case there aren't group values performs a normal `.count(:all)`, otherwise it will perform a `COUNT(*) OVER ()`. The last tells database to perform a count of all the lines after the `GROUP BY` clause is applied.
+
+===
