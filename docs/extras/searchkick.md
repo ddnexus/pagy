@@ -30,7 +30,7 @@ This extra offers two ways to paginate `Searchkick::Results` objects:
 +++ Active mode
 
 !!! success Pagy searches and paginates
-You use the `pagy_search` method in place of the standard `search` method.
+You use the `pagy_search` method in place of the `search` method.
 !!!
 
 ### Usage
@@ -75,15 +75,14 @@ Pagy creates its object out of your result.
 
 - [searchkick.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/searchkick.rb)
 
-
-### Variables
+## Variables
 
 | Variable                  | Description                                     | Default        |
 |:--------------------------|:------------------------------------------------|:---------------|
 | `:searchkick_pagy_search` | customizable name of the pagy search method     | `:pagy_search` |
 | `:searchkick_search`      | customizable name of the original search method | `:search`      |
 
-### Methods
+## Methods
 
 ==- `Pagy::Searchkick.pagy_search(...)`
 
@@ -91,13 +90,13 @@ This method accepts the same arguments of the `search` method and you must use i
 
 ==- `Pagy.new_from_searchkick(results, vars={})`
 
-This constructor accepts a `Searchkick::Results` as the first argument, plus the usual optional variable hash. It sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of it.
+This constructor accepts a `Searchkick::Results` as the first argument, plus the optional pagy variables. It automatically sets the `:items`, `:page` and `:count` pagy variables extracted/calculated out of it.
 
 ==- `pagy_searchkick(pagy_search_args, vars={})`
 
 This method is similar to the generic `pagy` method, but specialized for Searchkick. (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil))
 
-It expects to receive `YourModel.pagy_search(...)` result and returns a paginated response.
+It expects to receive `YourModel.pagy_search(...)` result and returns the paginated response.
 
 ==- `pagy_searchkick_get_vars(array)`
 
