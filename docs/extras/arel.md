@@ -4,7 +4,12 @@ category: Backend Extras
 ---
 # Arel Extra
 
-This extra adds a specialized pagination for collections from sql databases with `GROUP BY` clauses, by computing the total number of results with `COUNT(*) OVER ()`. It was tested against MySQL (8.0.17) and Postgres (11.5). Before using in a different database, make sure the sql `COUNT(*) OVER ()` performs a count of all the lines after the `GROUP BY` clause is applied.
+This extra adds a specialized pagination for collections from sql databases with `GROUP BY` clauses, by computing the total number of results with `COUNT(*) OVER ()`.
+
+!!! warning
+Tested against MySQL (8.0.17) and Postgres (11.5).
+Before using in a different database, make sure the sql `COUNT(*) OVER ()` performs a count of all the lines after the `GROUP BY` clause is applied.
+!!!
 
 ## Synopsis
 
@@ -18,10 +23,7 @@ require 'pagy/extras/arel'
 
 ||| Controller
 ```ruby
-@pagy_a, @items   = pagy_arel(a_collection, ...)
-
-# independently paginate some other collections as usual
-@pagy_b, @records = pagy(some_scope, ...)
+@pagy, @items = pagy_arel(a_collection, ...)
 ```
 |||
 
@@ -30,12 +32,6 @@ require 'pagy/extras/arel'
 - [arel.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/arel.rb)
 
 ## Methods
-
-This extra adds the `pagy_arel` method to the `Pagy::Backend` to be used in place (or in parallel) of the `pagy` method when you want to paginate a collection with sql `GROUP BY` clause, where the number of groups/rows is big (for instance when group by day of the last 3 years). It also adds a `pagy_arel_get_variables` sub-method, used for easy customization of variables by overriding.
-
-!!!info Overriding `pagy_arel_get_items`?
-There is no `pagy_arel_get_items` method to override, since the items are fetched directly by the specialized `pagy_arel` method.
-!!!
 
 ==- `pagy_arel(collection, vars=nil)`
 
