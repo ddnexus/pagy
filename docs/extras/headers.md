@@ -147,5 +147,7 @@ This method generates a hash structure of the headers, useful only if you want t
 render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})
 ```
 
-**Notice**: If you need a more complete set of metadata (e.g. if you use some javascript frontend) see the [metadata extra](metadata.md).
+!!!info Need more metadata?
+If you need a more complete set of metadata (e.g. if you use some javascript frontend) see the [metadata extra](metadata.md).
+!!!
 ===
