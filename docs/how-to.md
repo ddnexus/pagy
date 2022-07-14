@@ -104,6 +104,9 @@ Pagy::DEFAULT[:link_extra] = 'data-remote="true" class="my-class"'
 
 # or directly to the constructor
 pagy = Pagy.new(count: 1000, link_extra: 'data-remote="true" class="my-class"')
+
+# or from a view: e.g.:
+<%== pagy_bootstrap_nav(@pagy, link_extra: 'data-action="hello#world"') %> 
 ```
 
 **IMPORTANT**: For performance reasons, the `:link_extra` variable must be a string formatted as a valid HTML attribute/value pairs. That string will get inserted verbatim in the HTML of the link. _(see more advanced details in the [pagy_link_proc documentation](api/frontend.md#pagy_link_procpagy-link_extra))_
