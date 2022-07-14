@@ -106,19 +106,28 @@ As usual, depending on the scope of the customization, you can set the variables
 
 For example, the following will change the header names and will suppress the `:pages` ('Total-Pages') header:
 
+||| pagy.rb (initializer)
 ```ruby
-# globally
-Pagy::DEFAULT[:headers] = {page: 'Current-Page', items: 'Per-Page', pages: false, count: 'Total'}
-
-# or for single instance
-pagy, records = pagy(collection, headers: {page: 'Current-Page', items: 'Per-Page', pages: false, count: 'Total'})
+# global
+Pagy::DEFAULT[:headers] = {page: 'Current-Page', items: 'Per-Page', 
+                           pages: false, count: 'Total'}
 ```
+|||
+
+
+||| Controller
+```ruby
+# or for single instance
+pagy, records = pagy(collection, headers: {page: 'Current-Page',
+                                           items: 'Per-Page', pages: false, count: 'Total'})
+```
+|||
 
 ## Methods
 
-This extra adds a few methods to the `Pagy::Backend` (available in your controllers).
+This extra adds a few methods to the `Pagy::Backend` (available in your controllers):
 
-### pagy_headers_merge(pagy)
+==- `pagy_headers_merge(pagy)`
 
 This method relies on the `response` method in your controller returning a `Rack::Response` object.
 
@@ -126,11 +135,11 @@ You should use it before rendering: it simply merges the `pagy_headers` to the `
 
 If your app doesn't implement the `response` object that way, you should override the `pagy_headers_merge` method in your controller or use the `pagy_headers` method directly.
 
-### pagy_headers(pagy)
+==- `pagy_headers(pagy)`
 
 This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http headers to send with the response. It is internally used by the `pagy_headers_merge` method, so you usually don't need to use it directly. However, if you need to edit the headers that pagy generates (for example adding extra `Link` headers), you can override it in your own controller.
 
-### pagy_headers_hash(pagy)
+==- `pagy_headers_hash(pagy)`
 
 This method generates a hash structure of the headers, useful only if you want to include the headers as metadata within your JSON. For example:
 
@@ -139,3 +148,4 @@ render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})
 ```
 
 **Notice**: If you need a more complete set of metadata (e.g. if you use some javascript frontend) see the [metadata extra](metadata.md).
+===
