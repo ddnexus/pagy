@@ -43,7 +43,7 @@ See [Javascript](/docs/api/javascript.md) if you use `pagy_foundation_nav_js` or
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by direct overriding in your own view helper.
 
-### pagy_foundation_nav(pagy)
+==- `pagy_foundation_nav(pagy)`
 
 This method is the same as the `pagy_nav`, but customized for Foundation.
 
@@ -51,10 +51,12 @@ See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy_navpagy-) documentation
 
 The `foundation_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](/docs/how-to.md#use-templates).
 
-### pagy_foundation_nav_js(pagy, ...)
+==- `pagy_foundation_nav_js(pagy, ...)`
 
 See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
-### pagy_foundation_combo_nav_js(pagy, ...)
+==- `pagy_foundation_combo_nav_js(pagy, ...)`
 
 See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.
+
+===
