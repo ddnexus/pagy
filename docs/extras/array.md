@@ -4,7 +4,7 @@ category: Backend Extras
 ---
 # Array Extra
 
-This extra adds a specialized pagination for arrays without the need to override the `pagy_get_items` in your controller, and without the need to use any expensive array-wrapping or patching.
+Paginate arrays.
 
 !!! warning WARNING
 This warning may sound obvious, but I keep finding people improperly using this extra, so let me write it explicitly.
@@ -28,10 +28,7 @@ require 'pagy/extras/array'
 
 ||| Controller
 ```ruby
-@pagy_a, @items   = pagy_array(an_array, ...)
-
-# independently paginate some other collections as usual
-@pagy_b, @records = pagy(some_scope, ...)
+@pagy, @items = pagy_array(an_array, ...)
 ```
 |||
 
@@ -41,14 +38,12 @@ require 'pagy/extras/array'
 
 ## Methods
 
-This extra adds the `pagy_array` method to the `Pagy::Backend` to be used in place (or in parallel) of the `pagy` method when you have to paginate an array. It also adds a `pagy_array_get_variables` sub-method, used for easy customization of variables by overriding.
-
-**Notice**: there is no `pagy_array_get_items` method to override, since the items are fetched directly by the specialized `pagy_array` method.
-
-### pagy_array(array, vars=nil)
+==- pagy_array(array, vars=nil)
 
 This method is the same as the generic `pagy` method, but specialized for an Array. (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil))
 
-### pagy_array_get_vars(array)
+==- pagy_array_get_vars(array)
 
 This sub-method is the same as the `pagy_get_vars` sub-method, but it is called only by the `pagy_array` method. (see the [pagy_get_vars doc](/docs/api/backend.md#pagy_get_varscollection-vars)).
+
+===
