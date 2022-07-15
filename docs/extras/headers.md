@@ -5,6 +5,8 @@ category: Backend Extras
 # Headers Extra
 
 This extra implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API pagination.
+  
+## Advantages
 
 - No need for an extra dependency
 - No need to learn yet another interface
@@ -109,8 +111,10 @@ For example, the following will change the header names and will suppress the `:
 ||| pagy.rb (initializer)
 ```ruby
 # global
-Pagy::DEFAULT[:headers] = {page: 'Current-Page', items: 'Per-Page', 
-                           pages: false, count: 'Total'}
+Pagy::DEFAULT[:headers] = {page: 'Current-Page', 
+                           items: 'Per-Page', 
+                           pages: false, 
+                           count: 'Total'}
 ```
 |||
 
@@ -118,14 +122,15 @@ Pagy::DEFAULT[:headers] = {page: 'Current-Page', items: 'Per-Page',
 ||| Controller
 ```ruby
 # or for single instance
-pagy, records = pagy(collection, headers: {page: 'Current-Page',
-                                           items: 'Per-Page', pages: false, count: 'Total'})
+pagy, records = pagy(collection, 
+                     headers: {page: 'Current-Page', 
+                               items: 'Per-Page', 
+                               pages: false, 
+                               count: 'Total'})
 ```
 |||
 
 ## Methods
-
-This extra adds a few methods to the `Pagy::Backend` (available in your controllers):
 
 ==- `pagy_headers_merge(pagy)`
 
@@ -147,7 +152,7 @@ This method generates a hash structure of the headers, useful only if you want t
 render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})
 ```
 
-!!!info Need more metadata?
-If you need a more complete set of metadata (e.g. if you use some javascript frontend) see the [metadata extra](metadata.md).
+!!!info Metadata
+For a more complete set of metadata you should use the [metadata extra](metadata.md).
 !!!
 ===
