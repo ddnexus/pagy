@@ -80,8 +80,6 @@ This mode is enabled by the `:countless_minimal` variable.
 
 ## Methods
 
-All the methods in this module are prefixed with the `"pagy_countless"` string, to avoid any possible conflict with your own methods when you include the module in your controller. They are also all private, so they will not be available as actions. The methods prefixed with the `"pagy_countless_get_"` string are sub-methods/getter methods that are intended to be overridden, not used directly.
-
 ==- `pagy_countless(collection, vars=nil)`
 
 This method is the same as the generic `pagy` method (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil)), however its returned objects will depend on the value of the `:countless_minimal` variable (see [Modes](#modes))
