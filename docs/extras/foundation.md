@@ -4,7 +4,7 @@ category: Frontend Extras
 ---
 # Foundation Extra
 
-This extra adds nav helper and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
+This extra adds nav helpers and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
 
 ## Synopsis
 
@@ -40,8 +40,6 @@ See [Javascript](/docs/api/javascript.md) if you use `pagy_foundation_nav_js` or
 - [foundation_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.slim)  (optional template)
 
 ## Methods
-
-This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by direct overriding in your own view helper.
 
 ==- `pagy_foundation_nav(pagy)`
 
