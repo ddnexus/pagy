@@ -1,14 +1,16 @@
-Legend: production dependency, optional only, dev only
-
-pagy.e2e /pagy/e2e (PRIVATE)
-
-devDependencies:
-@cypress/snapshot 2.1.7
-@types/node 18.0.0
-cypress 10.2.0
-cypress-html-validate 5.0.2
-eslint 8.18.0
-eslint-plugin-cypress 2.12.1
-html-validate 7.1.1
-start-server-and-test 1.14.0
-typescript 4.7.4
+/pagy/e2e
+/pagy/e2e/node_modules/.pnpm/@cypress+snapshot@2.1.7
+/pagy/e2e/node_modules/.pnpm/@types+node@18.0.5
+/pagy/e2e/node_modules/.pnpm/@typescript-eslint+eslint-plugin@5.30.6_b7n364ggt6o4xlkgyoaww3ph3q
+/pagy/e2e/node_modules/.pnpm/@typescript-eslint+parser@5.30.6_he2ccbldppg44uulnyq4rwocfa
+/pagy/e2e/node_modules/.pnpm/cypress@10.3.0
+/pagy/e2e/node_modules/.pnpm/cypress-html-validate@5.0.3_dtgrfzqdd5eqblm7pevrhvayia
+/pagy/e2e/node_modules/.pnpm/eslint@8.20.0
+/pagy/e2e/node_modules/.pnpm/eslint-plugin-align-assignments@1.1.2_eslint@8.20.0
+/pagy/e2e/node_modules/.pnpm/eslint-plugin-cypress@2.12.1_eslint@8.20.0
+/pagy/e2e/node_modules/.pnpm/eslint-plugin-import@2.26.0_y5cwkwncsnk6w3wfynadgn7abe
+/pagy/e2e/node_modules/.pnpm/eslint-plugin-node@11.1.0_eslint@8.20.0
+/pagy/e2e/node_modules/.pnpm/eslint-plugin-promise@6.0.0_eslint@8.20.0
+/pagy/e2e/node_modules/.pnpm/html-validate@7.1.2
+/pagy/e2e/node_modules/.pnpm/start-server-and-test@1.14.0
+/pagy/e2e/node_modules/.pnpm/typescript@4.7.4
