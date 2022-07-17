@@ -1,7 +1,9 @@
 ---
-title: Migration Guide
+order: 2
+icon: paper-airplane-24
+title: Migrate from other gems
 ---
-# Migrate WillPaginate and Kaminari
+# Migrate WillPaginate/Kaminari
 
 This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is highly customized you may need more digging into the Pagy documentation.
 
@@ -60,11 +62,11 @@ Pagy::DEFAULT[:items] = 10
 Pagy::DEFAULT[:size]  = [5,4,4,5]
 ```
 
-Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see [How to configure pagy](how-to.md#configure-pagy))_.
+Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see [How to configure pagy](/quick-start.md#configure).
 
 #### Cleanup the Models
 
-One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn't mess at all with the models (read the reasons [here](index.md#stay-away-from-the-models)).
+One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn't mess at all with the models (read the reasons [here](/index.md#stay-away-from-the-models)).
 
 The other gems are careless about adding methods, scopes, and even configuration settings to them, so you will find different kinds of statements scattered around in your models. You should remove them all and eventually add the equivalent code where it makes sense to Pagy, which of course _is absolutely not_ in the models.
 

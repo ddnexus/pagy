@@ -1,13 +1,14 @@
 ---
 title: Overflow
+categories:
+- Feature
+- Extras
 ---
 # Overflow Extra
 
 This extra allows for easy handling of overflowing pages. It internally rescues from the `Pagy::OverflowError` offering a few different ready to use modes, quite useful for UIs and/or APIs. It works with `Pagy` and its subclasses, although with some little difference.
 
 ## Synopsis
-
-See [extras](../extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 
@@ -158,4 +159,4 @@ Use this method in order to know if the requested page is overflowing. The origi
 
 ## Errors
 
-See [How to handle Pagy::OverflowError exceptions](../how-to.md#handle-pagyoverflowerror-exceptions)
+See [How to handle Pagy::OverflowError exceptions](/docs/how-to.md#handle-pagyoverflowerror-exceptions)

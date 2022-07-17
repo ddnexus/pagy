@@ -6,6 +6,7 @@ export default defineConfig(
         video: false,
         fixturesFolder: false,
         e2e: {
+            baseUrl: "http://0.0.0.0:4567",
             setupNodeEvents(on, config) {
                 htmlvalidate.install(on, {
                     rules: {

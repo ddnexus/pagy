@@ -1,5 +1,9 @@
 ---
 title: Materialize
+categories:
+- Frontend
+- Extras
+image: null
 ---
 # Materialize Extra
 
@@ -7,24 +11,21 @@ This extra adds 3 nav helpers for the Materialize CSS [pagination component](htt
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
-
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/materialize'
 ```
+|||
 
-Render the navigation links in some view...
-with a fast helper:
-
+||| View (helper)
 ```erb
 <%== pagy_materialize_nav(@pagy, ...) %>
 <%== pagy_materialize_nav_js(@pagy, ...) %>
 <%== pagy_materialize_combo_nav_js(@pagy, ...) %>
 ```
+|||
 
-See [Javascript](../api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
+See [Javascript](/docs/api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
 
 ## Files
 
@@ -38,14 +39,14 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 This method is the same as the `pagy_nav`, but customized for Materialize.
 
-See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
+See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy_navpagy-) documentation.
 
 ### pagy_materialize_nav_js(pagy, ...)
 
-See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
+See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 ### pagy_materialize_combo_nav_js(pagy, ...)
 
-![materialize_combo_nav_js](../assets/images/materialize_combo_nav_js-g.png)
+![materialize_combo_nav_js](/docs/assets/images/materialize_combo_nav_js-g.png)
 
-See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
+See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.

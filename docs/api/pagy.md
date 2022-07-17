@@ -1,5 +1,6 @@
 ---
 title: Pagy
+category: Classes
 ---
 # Pagy
 
@@ -40,12 +41,14 @@ The `Pagy::DEFAULT` is a globally available hash used to set defaults variables.
 
 You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
+||| pagy.rb (initializer)
 ```ruby
 Pagy::DEFAULT[:items]     = 25
 Pagy::DEFAULT[:my_option] = 'my option'
 ...
 Pagy::DEFAULT.freeze
 ```
+|||
 
 ## Methods
 
@@ -107,15 +110,15 @@ They are all integers:
 
 ### Other Variables
 
-| Variable      | Description                                                                                                                                                                                          | Default            |
-|:--------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
-| `:size`       | The size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [How to control the page links](../how-to.md#control-the-page-links))_ | `[1,4,4,1]`        |
-| `:page_param` | The name of the page param name used in the url. _(see [How to customize the page param](../how-to.md#customize-the-page-param))_                                                                    | `:page`            |
-| `:params`     | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](../how-to.md#customize-the-params))_                     | `{}`               |
-| `:fragment`   | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](../how-to.md#customize-the-params))_                                                        | `""`               |
-| `:link_extra` | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](../how-to.md#customize-the-link-attributes))_     | `""`               |
-| `:i18n_key`   | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs _(see [How to customize the item name](../how-to.md#customize-the-item-name))_                                 | `"pagy.item_name"` |
-| `:cycle`      | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                        | `false`            |
+| Variable      | Description                                                                                                                                                                                         | Default            |
+|:--------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
+| `:size`       | The size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_ | `[1,4,4,1]`        |
+| `:page_param` | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                   | `:page`            |
+| `:params`     | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                    | `{}`               |
+| `:fragment`   | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                       | `""`               |
+| `:link_extra` | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_    | `""`               |
+| `:i18n_key`   | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs (see [How to customize the item name](/docs/how-to.md#customize-the-item-name))                                  | `"pagy.item_name"` |
+| `:cycle`      | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                       | `false`            |
 
 There is no specific validation for non-instance variables.
 
@@ -182,4 +185,4 @@ Mostly useful if you want to rescue from bad user input (e.g. illegal URL manipu
 
 ### Pagy::OverflowError
 
-A subclass of `Pagy::VariableError`: it is raised when the `:page` variable exceeds the maximum possible value calculated for the `:count`, i.e. the `:page` variable is in the correct range, but it's not consistent with the current `:count`. That may happen when the `:count` has been reduced after a page link has been generated (e.g. some record has been just removed from the DB). See also the [overflow](../extras/overflow.md) extra.
+A subclass of `Pagy::VariableError`: it is raised when the `:page` variable exceeds the maximum possible value calculated for the `:count`, i.e. the `:page` variable is in the correct range, but it's not consistent with the current `:count`. That may happen when the `:count` has been reduced after a page link has been generated (e.g. some record has been just removed from the DB). See also the [overflow](/docs/extras/overflow.md) extra.

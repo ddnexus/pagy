@@ -1,5 +1,6 @@
 ---
 title: Pagy::Calendar
+category: Classes
 ---
 # Pagy::Calendar
 
@@ -7,7 +8,7 @@ This is a `Pagy` subclass that provides pagination filtering by time: year, quar
 
 **Notice**: It requires the `activesupport` gem, which you have to require in your Gemfile only if your app does not use Rails. 
 
-**Notice**: The `Pagy::Calendar::*` subclasses provide support for the [calendar extra](../extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone (because they could generate a very high number of items per page). The class APIs are documented here, however you should not need to use them directly because they are required and used internally by the extra.
+**Notice**: The `Pagy::Calendar::*` subclasses provide support for the [calendar extra](/docs/extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone (because they could generate a very high number of items per page). The class APIs are documented here, however you should not need to use them directly because they are required and used internally by the extra.
 
 ## Overview
 
@@ -75,13 +76,15 @@ Set the `Date.beginning_of_week` toto the symbol of the first day of the week (e
 
 ## Methods
 
-### label(opts = {})
+==- `label(opts = {})`
 
 This method uses the `:format` variable to generate the current page label with the specific `TimeWithZone` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+===
 
-### label_for(page, opts = {})
+==- `label_for(page, opts = {})`
 
 This method takes a page number argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+===
 
 ## Custom units
 

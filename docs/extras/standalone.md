@@ -1,9 +1,12 @@
 ---
 title: Standalone
+categories:
+- Feature
+- Extras
 ---
 # Standalone Extra
 
-This extra allows you to use pagy completely standalone, i.e. without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without an app (see the [Pagy::Console](../api/console.md) module).
+This extra allows you to use pagy completely standalone, i.e. without any request object, nor Rack environment/gem, nor any defined `params` method, even in the irb/rails console without an app (see the [Pagy::Console](/docs/api/console.md) module).
 
 You may need it in order to paginate a collection outside of a regular rack request or controller, like in an unconventional API module, or in the irb/rails console or for testing/playing with backend and frontend methods.
 
@@ -13,19 +16,21 @@ This extra will also create a dummy `params` method (if not already defined) in 
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
-
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/standalone'
 
 # optional: set a default url
 Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'
+```
+|||
 
+||| Controller
+```ruby
 # pass a :url variable to work in standalone mode (no need of any request object nor Rack env)
 @pagy, @records = pagy(Product.all, url: 'http://www.example.com/subdir', params: {...})
 ```
+|||
 
 ## Files
 

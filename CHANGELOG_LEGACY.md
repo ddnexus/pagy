@@ -1,4 +1,10 @@
-# CHANGELOG
+---          
+title: CHANGELOG (legacy)
+icon: versions-24
+layout: page
+---
+
+# CHANGELOG LEGACY
 
 ## Version 4.11.0
 
@@ -1668,7 +1674,7 @@ The pagy initializer has changed: please replace/update it: [pagy.rb](https://gi
 
 ### Breaking Changes
 
-- `Pagy::I18N` has been moved to `Pagy::Frontend::I18N`: you should update the [initializer](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) in case you set any of the `Pagy::I18N` variable. Read [I18n](docs/api/frontend.md#I18n) for details.
+- `Pagy::I18N` has been moved to `Pagy::Frontend::I18N`: you should update the [initializer](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/initializer_example.rb) in case you set any of the `Pagy::I18N` variable. Read [I18n](docs/api/I18n.md) for details.
 
 ### Commits
 

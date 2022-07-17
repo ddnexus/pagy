@@ -1,5 +1,8 @@
 ---
 title: Support
+categories:
+- Feature
+- Extras
 ---
 # Support Extra
 
@@ -7,13 +10,11 @@ This extra adds support for features like countless or navless pagination, where
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
-
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/support'
 ```
+|||
 
 ## Support for alternative pagination types and features
 
@@ -21,7 +22,7 @@ Besides the classic `pagy*_nav` pagination, the `pagy*_nav_js` and the `pagy*_co
 
 ### Countless
 
-You can totally avoid one query per render by using the [countless](countless.md) extra. It has a few limitation, but still supports navbar links (see also [Pagy::Countless](../api/countless.md) for more details).
+You can totally avoid one query per render by using the [countless](countless.md) extra. It has a few limitation, but still supports navbar links (see also [Pagy::Countless](/docs/api/countless.md) for more details).
 
 ### Navless/incremental
 
@@ -31,22 +32,21 @@ You can also use the `pagy_prev_link` and `pagy_next_link` helpers provided by t
 
 Here is a basic example that uses `pagy_countless` (saving one query per render): 
 
-`pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/countless'
 ```
+|||
 
-`incremental` controller action:
-
+||| incremental (controller action)
 ```ruby
 def incremental
   @pagy, @records = pagy_countless(Product.all, link_extra: 'data-remote="true"')
 end
 ```
+|||
 
-`incremental.html.erb` template:
-
+||| incremental.html.erb (template)
 ```erb
 <div id="content">
   <table id="records_table">
@@ -61,9 +61,9 @@ end
   </div>
 </div>
 ```
+|||
 
-`_page_items.html.erb` partial shared for AJAX and non-AJAX rendering:
-
+||| _page_items.html.erb (partial)
 ```erb
 <% @records.each do |record| %>
   <tr>
@@ -72,19 +72,20 @@ end
   </tr>
 <% end %>
 ```
+|||
 
-`_next_link.html.erb` partial shared for AJAX and non-AJAX rendering:
-
+||| _next_link.html.erb (partial)
 ```erb
 <%== pagy_next_link(@pagy, text: 'More...', link_extra: 'id="next_link"') %>
 ```
+|||
 
-`incremental.js.erb` javascript template:
-
+||| incremental.js.erb (javascript template)
 ```erb
 $('#records_table').append("<%= j(render 'page_items')%>");
 $('#div_next_link').html("<%= j(render 'next_link') %>");
 ```
+|||
 
 ### Auto-incremental
 
@@ -99,12 +100,15 @@ For a plain old javascript example, we are going to use the same [Incremental](#
 
 **1**. Hide the link in `_next_link.html.erb` by adding a style attribute:
 
+||| _next_link.html.erb (partial)
 ```erb
 <%== pagy_next_link(@pagy, text: 'More...', link_extra: 'id="next_link" style="display: none;"') %>
 ```
+|||
 
 **2**. Add a javascript that will click the link when the listing-bottom appears in the viewport on load/resize/scroll. It will keep the page filled with results, one page at a time:
 
+||| Javascript
 ```js
 var loadNextPage = function(){
   if ($('#next_link').data("loading")){ return }  // prevent multiple loading
@@ -120,6 +124,7 @@ window.addEventListener('resize', loadNextPage);
 window.addEventListener('scroll', loadNextPage);
 window.addEventListener('load',   loadNextPage);
 ```
+|||
 
 ### Circular/Infinite
 
@@ -129,17 +134,21 @@ For example, it is often used to show a few suggestions of "similar products" in
 
 For example:
 
+||| Controller (action)
 ```ruby
 @pagy, @suggestions = pagy_countless(Product.all, count: 25, items: 5, cycle: true)
 ```
+|||
 
 Passing a forced `:count` of 25 will generate 5 pages of 5 items each that will always have a next page. Regardless the actual collection count, you will show the first 25 items of the collection, looping in stripes of 5 items each.
 
 You may want to combine it with something like:
 
+||| View
 ```erb
 <%== pagy_next_link(@pagy, text: 'More...') %>
 ```
+|||
 
 ## Methods
 

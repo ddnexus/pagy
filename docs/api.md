@@ -1,5 +1,6 @@
 ---
 title: API
+icon: package-24
 ---
 # API
 
@@ -21,7 +22,3 @@ These modules/classes provide support for special environments or features that 
 - The [Pagy::Countless](api/countless.md) subclass that provides the pagination without a count used by the [countless](extras/countless.md) extra. (It saves one count query per request).
 - The [Pagy::Console](api/console.md) module that provides easy interaction with pagy in the IRB/rails console
 - The [Pagy::I18n](api/i18n.md) module that provides multi-language translation of the pagy strings
-
-## Extras
-
-Pagy provides also a growing number of optional extensions/extras that can handle special features, collections or environments. See the [extras](extras.md) doc for the full list.

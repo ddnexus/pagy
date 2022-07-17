@@ -1,5 +1,9 @@
 ---
 title: Bootstrap
+categories:
+- Frontend
+- Extras
+image: null
 ---
 # Bootstrap Extra
 
@@ -7,30 +11,27 @@ This extra adds nav helpers and templates for the Bootstrap [pagination componen
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
-
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/bootstrap'
 ```
+|||
 
-Render the navigation links in some view...
-with a fast helper:
-
+||| View (helper)
 ```erb
 <%== pagy_bootstrap_nav(@pagy, ...) %>
 <%== pagy_bootstrap_nav_js(@pagy, ...) %>
 <%== pagy_bootstrap_combo_nav_js(@pagy, ...) %>
 ```
+|||
 
-or with a template:
-
+||| View (template)
 ```erb
 <%== render partial: 'pagy/bootstrap_nav', locals: {pagy: @pagy} %>
 ```
+|||
 
-See [Javascript](../api/javascript.md) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
+See [Javascript](/docs/api/javascript.md) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
 
 ## Files
 
@@ -47,16 +48,18 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 This method is the same as the `pagy_nav`, but customized for Bootstrap.
 
-See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
+See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy_navpagy-) documentation.
 
-The `bootstrap_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](../how-to.md#use-templates).
+The `bootstrap_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](/docs/how-to.md#use-templates).
 
 ### pagy_bootstrap_nav_js(pagy, ...)
 
-See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
+![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_nav_js-g.png)
+
+See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 ### pagy_bootstrap_combo_nav_js(pagy, ...)
 
-![bootstrap_combo_nav_js](../assets/images/bootstrap_combo_nav_js-g.png)
+![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js-g.png)
 
-See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
+See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.

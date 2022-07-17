@@ -1,0 +1,34 @@
+input: .
+output: .retype
+url: https://ddnexus.github.io/pagy
+
+branding:
+  title: Pagy
+  label: 5.10.1
+
+meta:
+  title: " | Pagy"
+
+links:
+  - text: Github
+    link: https://github.com/ddnexus/pagy
+    icon: mark-github
+  - text: Issues
+    link: https://github.com/ddnexus/pagy/issues
+    icon: issue-opened-24
+  - text: Discussions
+    link: https://github.com/ddnexus/pagy/discussions
+    icon: comment-discussion-24
+
+exclude:
+  - README.md
+
+edit:
+  repo: "https://github.com/ddnexus/pagy"
+  branch: master
+
+search:
+  mode: full
+
+footer:
+  copyright: "&copy; 2017-2022 [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"

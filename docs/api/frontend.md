@@ -1,12 +1,13 @@
 ---
 title: Pagy::Frontend
+category: Modules
 ---
 
 # Pagy::Frontend
 
 This module provides a few methods to deal with the navigation aspect of the pagination. You will usually include it in some helper module, making its methods available (and overridable) in your views. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb))_
 
-You can extend this module with a few more nav helpers _(see the [extras](../extras.md) doc for more details)_
+You can extend this module with a few more nav helpers _(see the [extras](/categories/extras) doc for more details)_
 
 ## Synopsis
 
@@ -49,7 +50,7 @@ The method accepts also a few optional keyword arguments:
 
 The `nav.*` templates produce the same output, and can be used as an easier (but slower) way to customize it.
 
-See also [Using templates](../how-to.md#use-templates).
+See also [Using templates](/docs/how-to.md#use-templates).
 
 ### pagy_info(pagy, pagy_id: ..., item_name: ..., i18n_key: ...)
 
@@ -78,7 +79,7 @@ Notice the `:i18n_key` can be passed also to the constructor or be a less useful
 
 Displaying Products <b>476-500</b> of <b>1000</b> in total
 
-_(see [Customizing the item name](../how-to.md#customize-the-item-name))_
+_(see [Customizing the item name](/docs/how-to.md#customize-the-item-name))_
 
 ### pagy_url_for(pagy, page, absolute: false, html_escaped: false)
 
@@ -92,19 +93,19 @@ The `query_string` can also be `html_escaped` to be used in html tags (avoiding 
 
 The `:fragment` variable is also appended to the URL if defined.
 
-See also [How to customize the URL](../how-to.md#customize-the-url).
+See also [How to customize the URL](/docs/how-to.md#customize-the-url).
 
 ### pagy_massage_params(params)
 
 The `pagy_massage_params` method has been deprecated and it will be ignored from version 6. Use the `:params` variable instead.
 
-See also [How to customize the params](../how-to.md#customize-the-params).
+See also [How to customize the params](/docs/how-to.md#customize-the-params).
 
 ### pagy_link_proc(pagy, link_extra='')
 
 This method is called internally to get a very specialized and fast proc that produce the HTML links for the pages.
 
-For standard usage you may just need to read [How to customize the link attributes](../how-to.md#customize-the-link-attributes), for advanced usage see below.
+For standard usage you may just need to read [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes), for advanced usage see below.
 
 ## Advanced Usage
 
@@ -187,7 +188,7 @@ This method is similar to the `I18n.t` and its equivalent rails `t` helper. It i
 
 ## I18n
 
-Pagy can provide i18n using its own recommended super fast implementation (see the [Pagy::I18n](i18n.md) doc) or can use the slower standard `i18n` gem (see the [i18n extra](../extras/i18n.md) doc).
+Pagy can provide i18n using its own recommended super fast implementation (see the [Pagy::I18n](i18n.md) doc) or can use the slower standard `i18n` gem (see the [i18n extra](/docs/extras/i18n.md) doc).
 
 ### Dictionaries/locales
 

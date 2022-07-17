@@ -57,13 +57,13 @@ Thank you for showing your support!
 ### Code Structure
 
 - **Pagy has a very slim core code** very easy to understand and use _(see [more...](https://ddnexus.github.io/pagy/api))_
-- **It has a quite fat set of optional extras** that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/extras))_
+- **It has a quite fat set of optional extras** that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/categories/extras))_
 - **It has no dependencies**: it produces its own HTML, URLs, i18n with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - **Its methods are accessible and overridable** right where you use them (no pesky monkey-patching needed)
 
 ### Unlike the other gems
 
-- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/how-to#configure-pagy))_
+- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
 - It doesn't impose limits on your code even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/how-to#paginate-a-pre-offsetted-and-pre-limited-collection))_
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/how-to#use-templates))_
 - It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/how-to#handle-pagyoutofrangeerror-exception))_ or use the [overflow extra](http://ddnexus.github.io/pagy/extras/overflow) for a few ready to use common behaviors
@@ -105,7 +105,7 @@ include Pagy::Frontend
 <%== pagy_nav(@pagy) %>
 ```
 
-_(See [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start))_
+_(See [Quick Start](https://ddnexus.github.io/pagy/quick-start))_
 
 </details>
 
@@ -234,7 +234,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 <summary>Read the documentation...</summary>
 
 - [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/migration-guide) (practical guide)
-- [Quick Start](https://ddnexus.github.io/pagy/how-to#quick-start)
+- [Quick Start](https://ddnexus.github.io/pagy/quick-start)
 - [Documentation](https://ddnexus.github.io/pagy/index)
 - [Changelog](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md)
 - [Deprecations](https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md#deprecations)
@@ -290,6 +290,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 - [Endless Scroll / Infinite Loading with Turbo Streams & Stimulus](https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/) by Stefan Wienert
 - [Pagination with Hotwire](https://www.beflagrant.com/blog/pagination-with-hotwire) by Jonathan Greenberg
 - [Pagination and infinite scrolling with Rails and the Hotwire stack](https://www.colby.so/posts/pagination-and-infinite-scrolling-with-hotwire) by David Colby
+- [Hotwire Handbook - Part 2 - Pagination](https://purpleriver.dev/posts/2022/hotwire-handbook-part-2) by Phil Reynolds
 - [Pagination for Beginners: What is it? Why bother?](https://benkoshy.github.io/2021/11/03/pagination-basics.html) by Ben Koshy.
 - [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
 - [How to Override pagy methods only in specific circumstances](https://benkoshy.github.io/2020/02/01/overriding-pagy-methods.html) by Ben Koshy.

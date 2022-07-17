@@ -1,13 +1,17 @@
 ---
 title: Calendar
+categories:
+- Backend
+- Extras
+image: null
 ---
 # Calendar Extra
 
-Add pagination filtering by calendar time unit: year, quarter, month, week, day (and your own [custom time units](../api/calendar.md#custom-units)).
+Add pagination filtering by calendar time unit: year, quarter, month, week, day (and your own [custom time units](/docs/api/calendar.md#custom-units)).
 
 This extra adds single or multiple chained calendar navs that act as calendar filters on the collection records, placing each record in its time unit. 
 
-![calendar_app](../assets/images/calendar-app.png)
+![calendar_app](/docs/assets/images/calendar-app.png)
 _Screenshot from the single-file self-contained [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) demo_
 
 ## Use cases
@@ -17,8 +21,6 @@ This extra makes sense when the result to paginate have some _time continuity_ a
 On the other hand it does not make much sense for the result of a search that hits just a few sparse records scattered over a possibly long period of time. For that case the calendar extra has an `:active` flag that can be used to inactivate the calendar and fallback to the regular pagination. No need to maintain different UIs for wide browsing and narrow searching. 
 
 ## Synopsis
-
-See [extras](../extras.md) for general usage info.
 
 Require and configure it in the `pagy.rb` initializer:
 
@@ -62,7 +64,7 @@ Use the calendar and pagy objects in your views:
 <%== pagy_nav(@pagy) %>
 ```
 
-See also a few examples about [How to wrap existing pagination with pagy_calendar](../how-to.md#wrap-existing-pagination-with-pagy_calendar).
+See also a few examples about [How to wrap existing pagination with pagy_calendar](/docs/how-to.md#wrap-existing-pagination-with-pagy_calendar).
 
 **Notice** For a complete and detailed example, see the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru).
 
@@ -89,7 +91,7 @@ Then point your browser to `http://0.0.0.0:8080`.
 
 ## Variables and Accessors
 
-See [Pagy::Calendar](../api/calendar.md#variables)
+See [Pagy::Calendar](/docs/api/calendar.md#variables)
 
 ## Files
 
@@ -157,7 +159,7 @@ Take a look at the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/m
 
 **This method must be implemented by the application.**
 
-It receives a `collection` argument that must not be changed by the method, but can be used to return the starting and ending local `TimeWithZone` objects array defining the calendar `:period`. See the [Pagy::Calendar Variables](../api/calendar.md#variables) for details.
+It receives a `collection` argument that must not be changed by the method, but can be used to return the starting and ending local `TimeWithZone` objects array defining the calendar `:period`. See the [Pagy::Calendar Variables](/docs/api/calendar.md#variables) for details.
 
 Depending on the type of storage, the `collection` argument can contain a different kind of object:
 
@@ -188,7 +190,7 @@ def pagy_calendar_period(collection)
 end
 ```
 
-See also [Time conversion](../api/calendar.md#time-conversions) for details.
+See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 
 #### Search frameworks storage
 
@@ -216,7 +218,7 @@ def pagy_calendar_filter(collection, from, to)
 end
 ```
 
-See also [Time conversion](../api/calendar.md#time-conversions) for details.
+See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 
 #### Search frameworks storage
 
@@ -259,9 +261,9 @@ If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRang
 
 ### Label format
 
-Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](../api/calendar.md#variables))
+Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](/docs/api/calendar.md#variables))
 
-You can also get the [current page label](../api/calendar.md#labelopts--) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
+You can also get the [label method](/docs/api/calendar.md#methods) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
 
 ### I18n localization
 
@@ -270,7 +272,7 @@ Pagy implements its own faster version of the i18n `translate` method (i.e. `pag
 You have a couple of options:
 
 - Use the [i18n extra](i18n.md), which delegates the translation and localization to the `I18n` gem. Notice however that you would lose the performance gain offered by the built-in `pagy_t` translation.
-- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, which will add the localization from the `I18n` gem without using the [i18n extra](../extras/i18n.md), so preserving the builtin `pagy_t` translation.
+- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, which will add the localization from the `I18n` gem without using the [i18n extra](/docs/extras/i18n.md), so preserving the builtin `pagy_t` translation.
 
 ## Caveats
 
