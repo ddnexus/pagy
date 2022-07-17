@@ -1,8 +1,9 @@
 ---
 title: Elasticsearch Rails
 categories: 
-- Backend Extras
-- Search Extras
+- Search
+- Backend
+- Extras
 ---
 
 # Elasticsearch Rails Extra
@@ -10,8 +11,6 @@ categories:
 Paginate `ElasticsearchRails` response objects.
 
 ## Setup
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

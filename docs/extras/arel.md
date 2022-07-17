@@ -1,6 +1,8 @@
 ---
 title: Arel
-category: Backend Extras
+categories:
+- Backend
+- Extras
 ---
 # Arel Extra
 
@@ -12,8 +14,6 @@ Before using in a different database, make sure the sql `COUNT(*) OVER ()` perfo
 !!!
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

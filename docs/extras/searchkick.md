@@ -1,8 +1,9 @@
 ---
 title: Searchkick
 categories:
-- Backend Extras
-- Search Extras
+- Search
+- Backend
+- Extras
 ---
 # Searchkick Extra
 
@@ -10,11 +11,7 @@ Paginate `Searchkick::Results` objects.
 
 ## Synopsis
 
-See [extras](/docs/extras.md) for general usage info.
-
 ## Setup
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

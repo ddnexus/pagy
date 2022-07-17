@@ -1,6 +1,8 @@
 ---
 title: Headers
-category: Backend Extras
+categories:
+- Backend
+- Extras
 ---
 # Headers Extra
 
@@ -15,8 +17,6 @@ This extra implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compli
 - It offers more explicit flexibility and simplicity
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

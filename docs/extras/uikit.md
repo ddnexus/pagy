@@ -1,15 +1,13 @@
 ---
 title: UIkit
-category: Frontend Extras
 image: null
+category: Frontend
 ---
 # UIkit Extra
 
 This extra adds nav helpers and templates for the UIkit [pagination component](https://getuikit.com/docs/pagination).
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

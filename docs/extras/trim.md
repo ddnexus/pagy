@@ -1,6 +1,8 @@
 ---
 title: Trim
-category: Feature Extras
+categories:
+- Feature
+- Extras
 ---
 # Trim Extra
 
@@ -9,8 +11,6 @@ This extra removes the `page=1` param from the link of the first page. You need 
 This extra is needed only for very specific scenarios, for example if you need to avoid frontend cache duplicates of the first page.
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

@@ -1,6 +1,8 @@
 ---
 title: Bootstrap
-category: Frontend Extras
+categories:
+- Frontend
+- Extras
 image: null
 ---
 # Bootstrap Extra
@@ -8,8 +10,6 @@ image: null
 This extra adds nav helpers and templates for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination).
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

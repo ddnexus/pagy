@@ -42,6 +42,6 @@ You could even use it directly (without using any other Pagy code) in a small pa
 
 ## Really easy to customize
 
-If options and configuration are not enough, you have a several specialized [extras](docs/extras.md), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. You include them in your code, so you can override any method right where you use it: no tricky gimmickry required.
+If options and configuration are not enough, you have a several specialized [extras](/categories/extras), and if all that is still not enough, any other special customization is at most _one step far_ from your own code. You include them in your code, so you can override any method right where you use it: no tricky gimmickry required.
 
 What could be easier?

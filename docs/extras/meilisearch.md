@@ -1,16 +1,15 @@
 ---
 title: Meilisearch
 categories:
-- Backend Extras
-- Search Extras
+- Search
+- Backend
+- Extras
 ---
 # Meilisearch Extra
 
 Paginate `Meilisearch` results.
 
 ## Setup
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

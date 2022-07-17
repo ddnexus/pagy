@@ -76,13 +76,15 @@ Set the `Date.beginning_of_week` toto the symbol of the first day of the week (e
 
 ## Methods
 
-### label(opts = {})
+==- `label(opts = {})`
 
 This method uses the `:format` variable to generate the current page label with the specific `TimeWithZone` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+===
 
-### label_for(page, opts = {})
+==- `label_for(page, opts = {})`
 
 This method takes a page number argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+===
 
 ## Custom units
 

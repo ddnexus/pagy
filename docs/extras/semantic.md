@@ -1,14 +1,14 @@
 ---
 title: Semantic
-category: Frontend Extras
+categories:
+- Frontend
+- Extras
 ---
 # Semantic UI Extra
 
 This extra adds 3 nav helpers for Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html#pagination).
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

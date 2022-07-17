@@ -1,6 +1,8 @@
 ---
 title: Materialize
-category: Frontend Extras   
+categories:
+- Frontend
+- Extras
 image: null
 ---
 # Materialize Extra
@@ -8,8 +10,6 @@ image: null
 This extra adds 3 nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

@@ -1,6 +1,8 @@
 ---
 title: Items
-category: Feature Extras
+categories:
+- Feature
+- Extras
 ---
 # Items Extra
 
@@ -9,8 +11,6 @@ Allow the client to request a custom number of items per page with an optional s
 It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md) and [meilisearch](/docs/extras/meilisearch.md) extras.
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

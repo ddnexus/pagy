@@ -1,14 +1,14 @@
 ---
 title: Support
-category: Feature Extras
+categories:
+- Feature
+- Extras
 ---
 # Support Extra
 
 This extra adds support for features like countless or navless pagination, where you don't need the full link bar but only a simple `next` or `prev` link or no link at all (as for [auto-incremental](#auto-incremental)).
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

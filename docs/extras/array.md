@@ -1,6 +1,8 @@
 ---
 title: Array
-category: Backend Extras
+categories:
+- Backend
+- Extras
 ---
 # Array Extra
 
@@ -17,8 +19,6 @@ And if you think that it's the only way to do what you need, then... think again
 !!!
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

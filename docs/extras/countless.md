@@ -1,6 +1,8 @@
 ---
 title: Countless
-category: Backend Extras
+categories:
+- Backend
+- Extras
 ---
 
 # Countless Extra
@@ -8,8 +10,6 @@ category: Backend Extras
 Save one count query per request using the [Pagy::Countless subclass](/docs/api/countless.md) internally.
 
 ## Setup
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

@@ -25,4 +25,4 @@ These modules/classes provide support for special environments or features that 
 
 ## Extras
 
-Pagy provides also a growing number of optional extensions/extras that can handle special features, collections or environments. See the [extras](extras.md) doc for the full list.
+Pagy provides also a growing number of optional extensions/extras that can handle special features, collections or environments. See the (extras.md) doc for the full list.

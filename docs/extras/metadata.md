@@ -1,6 +1,8 @@
 ---
 title: Metadata
-category: Backend Extras
+categories:
+- Backend
+- Extras
 ---
 # Metadata Extra
 
@@ -9,8 +11,6 @@ If your app uses ruby as pure backend and some javascript frameworks as the fron
 This extra makes that easy and efficient by adding a single method to the backend that you can serve as JSON to your favorite javascript framework.
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 In the `pagy.rb` initializer:
 

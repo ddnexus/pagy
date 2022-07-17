@@ -1,6 +1,8 @@
 ---
 title: Standalone
-category: Feature Extras
+categories:
+- Feature
+- Extras
 ---
 # Standalone Extra
 
@@ -13,8 +15,6 @@ You trigger the standalone mode by setting an `:url` variable, which will be use
 This extra will also create a dummy `params` method (if not already defined) in the module where you will include the `Pagy::Backend` (usually a controller).
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

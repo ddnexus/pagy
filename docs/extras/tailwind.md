@@ -1,6 +1,8 @@
 ---
 title: Tailwind
-category: Frontend Extras
+categories:
+- Frontend
+- Extras
 ---
 # Tailwind Extra Styles
 

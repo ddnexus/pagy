@@ -57,7 +57,7 @@ Thank you for showing your support!
 ### Code Structure
 
 - **Pagy has a very slim core code** very easy to understand and use _(see [more...](https://ddnexus.github.io/pagy/api))_
-- **It has a quite fat set of optional extras** that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/extras))_
+- **It has a quite fat set of optional extras** that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/categories/extras))_
 - **It has no dependencies**: it produces its own HTML, URLs, i18n with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/index#specialized-code-instead-of-generic-helpers))_
 - **Its methods are accessible and overridable** right where you use them (no pesky monkey-patching needed)
 

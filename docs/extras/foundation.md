@@ -1,14 +1,14 @@
 ---
 title: Foundation
-category: Frontend Extras
+categories:
+- Frontend
+- Extras
 ---
 # Foundation Extra
 
 This extra adds nav helpers and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

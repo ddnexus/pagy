@@ -1,6 +1,8 @@
 ---
 title: Gearbox
-category: Feature Extras
+categories:
+- Features
+- Extras
 ---
 # Gearbox Extra
 
@@ -24,8 +26,6 @@ If you want to use the `gearbox` in some instances, you can temporarily set `ite
 - The search extras (`elasticserch_rails`, `meilisearch` and `searchkick`) are based on storages with built-in linear pagination, which is inconsistent with the `gearbox`.
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

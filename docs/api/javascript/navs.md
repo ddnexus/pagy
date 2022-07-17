@@ -27,7 +27,7 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ## Synopsis
 
-See [Setup Javascript](setup.md) and [extras](/docs/extras.md) for general usage info.
+See [Setup Javascript](setup.md).
 
 ||| pagy.rb (initializer)
 ```ruby

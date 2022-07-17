@@ -1,6 +1,9 @@
 ---
 title: Calendar
-category: Backend Extras
+categories:
+- Backend
+- Extras
+image: null
 ---
 # Calendar Extra
 
@@ -18,8 +21,6 @@ This extra makes sense when the result to paginate have some _time continuity_ a
 On the other hand it does not make much sense for the result of a search that hits just a few sparse records scattered over a possibly long period of time. For that case the calendar extra has an `:active` flag that can be used to inactivate the calendar and fallback to the regular pagination. No need to maintain different UIs for wide browsing and narrow searching. 
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 Require and configure it in the `pagy.rb` initializer:
 
@@ -262,7 +263,7 @@ If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRang
 
 Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](/docs/api/calendar.md#variables))
 
-You can also get the [current page label](/docs/api/calendar.md#labelopts--) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
+You can also get the [label method](/docs/api/calendar.md#methods) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
 
 ### I18n localization
 

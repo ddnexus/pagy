@@ -1,6 +1,8 @@
 ---
 title: Bulma
-category: Frontend Extras
+categories:
+- Frontend
+- Extras
 image: null
 ---
 # Bulma Extra
@@ -8,8 +10,6 @@ image: null
 This extra adds nav helper and templates for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination).
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby

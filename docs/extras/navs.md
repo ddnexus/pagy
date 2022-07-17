@@ -1,6 +1,8 @@
 ---
 title: Navs
-category: Frontend Extras
+categories:
+- Frontend
+- Extras
 ---
 # Navs Extra
 
@@ -9,8 +11,6 @@ This extra adds a couple of javascript nav helpers to the `Pagy::Frontend` modul
 Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](foundation.md), [materialize](materialize.md), [semantic](semantic.md)) provide framework-styled versions of the same `nav` helpers, so you may not need this extra if you use one of the above framework-styled extra.
 
 ## Synopsis
-
-See [extras](/docs/extras.md) for general usage info.
 
 ||| pagy.rb (initializer)
 ```ruby
