@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 2
 icon: paper-airplane-24
 title: Migrate from other gems
 ---

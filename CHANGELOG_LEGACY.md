@@ -1,6 +1,7 @@
 ---          
 title: CHANGELOG (legacy)
 icon: versions-24
+layout: page
 ---
 
 # CHANGELOG LEGACY

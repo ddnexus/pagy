@@ -16,8 +16,8 @@ links:
   - text: Issues
     link: https://github.com/ddnexus/pagy/issues
     icon: issue-opened-24
-  - text: Gitter
-    link: https://gitter.im/ruby-pagy/Lobby
+  - text: Discussions
+    link: https://github.com/ddnexus/pagy/discussions
     icon: comment-discussion-24
 
 exclude:
@@ -26,6 +26,9 @@ exclude:
 edit:
   repo: "https://github.com/ddnexus/pagy"
   branch: master
+
+search:
+  mode: full
 
 footer:
   copyright: "&copy; 2017-2022 [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"

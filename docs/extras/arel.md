@@ -33,6 +33,7 @@ require 'pagy/extras/arel'
 
 ## Methods
 
+
 ==- `pagy_arel(collection, vars=nil)`
 
 This method is the same as the generic `pagy` method, but with improved speed for SQL `GROUP BY` collections. (see the [pagy doc](/docs/api/backend.md#pagycollection-varsnil))
