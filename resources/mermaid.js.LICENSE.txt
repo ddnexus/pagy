@@ -1,0 +1,10 @@
+/*! For license information please see mermaid.esm.min.mjs.LICENSE.txt */
+
+/**
+ * Mermaid is a Javascript based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams.
+ *
+ * @license MIT <https://opensource.org/licenses/MIT>
+ * @author Knut Sveidqvist <https://github.com/knsv>
+ * @namespace
+ * @public
+ */
