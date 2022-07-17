@@ -55,7 +55,7 @@ jobs:
     env: ${{ matrix.env }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
@@ -71,7 +71,7 @@ jobs:
 
       - name: Run Codecov
         if: ${{ env.CODECOV == 'true' }}
-        uses: codecov/codecov-action@v1.3.2
+        uses: codecov/codecov-action@v3.1.0
         with:
           fail_ci_if_error: true
 
@@ -90,7 +90,7 @@ jobs:
       BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/.github/gemfiles/ruby-2.5+
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
@@ -100,7 +100,7 @@ jobs:
 
       - name: Cache NPM and Cypress
         id: e2e-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ~/.cache/Cypress
