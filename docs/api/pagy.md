@@ -1,6 +1,8 @@
 ---
 title: Pagy
-category: Classes
+categories: 
+- Core
+- Class
 ---
 # Pagy
 

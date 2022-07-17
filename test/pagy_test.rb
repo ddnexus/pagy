@@ -34,6 +34,9 @@ describe 'pagy' do
     it 'defines the same version in .github/.env' do
       _(File.read('.github/.env')).must_match "VERSION=#{Pagy::VERSION}"
     end
+    it 'defines the same version in .github/.env' do
+      _(File.read('retype.yml')).must_match "label: #{Pagy::VERSION}"
+    end
     it 'defines the same minor version in docs/how-to.md' do
       _(File.read('quick-start.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
     end

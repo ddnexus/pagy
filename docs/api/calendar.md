@@ -1,6 +1,8 @@
 ---
 title: Pagy::Calendar
-category: Classes
+category: 
+- Feature
+- Class
 ---
 # Pagy::Calendar
 

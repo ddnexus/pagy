@@ -1,6 +1,8 @@
 ---
 title: Pagy::Countless
-category: Classes
+category: 
+- Feature
+- Class
 ---
 # Pagy::Countless
 

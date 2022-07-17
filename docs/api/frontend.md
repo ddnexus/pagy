@@ -1,6 +1,8 @@
 ---
 title: Pagy::Frontend
-category: Modules
+categories: 
+- Core
+- Module
 ---
 
 # Pagy::Frontend

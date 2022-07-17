@@ -1,5 +1,7 @@
 ---
 title: Javascript
+categories:
+- Support
 image: null
 ---
 
