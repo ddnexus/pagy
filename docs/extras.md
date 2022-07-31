@@ -50,7 +50,7 @@ Extras add features by defining their own `*Extra` module that get prepended to 
 
 ## Methods
 
-A few extras require the [pagy/extras/shared](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/shared.rb) file. It defines only a few methods used internally, so you don't actually need to use them directly.
+A few extras require the [pagy/extras/frontend_helpers](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/frontend_helpers.rb) file. It defines only a few methods used internally, so you don't actually need to use them directly.
 
 **Notice**: All the other added methods are documented in the respective extras doc.
 
