@@ -1,6 +1,6 @@
 ---
 title: Pagy
-categories: 
+categories:
 - Core
 - Class
 ---
@@ -112,15 +112,16 @@ They are all integers:
 
 ### Other Variables
 
-| Variable      | Description                                                                                                                                                                                         | Default            |
-|:--------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
-| `:size`       | The size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_ | `[1,4,4,1]`        |
-| `:page_param` | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                   | `:page`            |
-| `:params`     | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                    | `{}`               |
-| `:fragment`   | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                       | `""`               |
-| `:link_extra` | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_    | `""`               |
-| `:i18n_key`   | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs (see [How to customize the item name](/docs/how-to.md#customize-the-item-name))                                  | `"pagy.item_name"` |
-| `:cycle`      | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                       | `false`            |
+| Variable        | Description                                                                                                                                                                                            | Default            |
+|:----------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
+| `:size`         | The size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_ | `[1,4,4,1]`        |
+| `:page_param`   | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                   | `:page`            |
+| `:params`       | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                    | `{}`               |
+| `:fragment`     | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                       | `""`               |
+| `:link_extra`   | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_    | `""`               |
+| `:i18n_key`     | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs (see [How to customize the item name](/docs/how-to.md#customize-the-item-name))                                  | `"pagy.item_name"` |
+| `:cycle`        | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                          | `false`            |
+| `:request_path` | Allows overriding the the request path for pagination links.  If left blank, helpers will use `request.path`.                                                                                          | `""`               |
 
 There is no specific validation for non-instance variables.
 
@@ -128,21 +129,22 @@ There is no specific validation for non-instance variables.
 
 Pagy exposes all the instance variables needed for the pagination through a few attribute readers. They all return integers (or `nil`), except the `vars` hash:
 
-| Reader   | Description                                                                                                        |
-|:---------|:-------------------------------------------------------------------------------------------------------------------|
-| `count`  | The collection `:count`                                                                                            |
-| `page`   | The current page number                                                                                            |
-| `items`  | The requested number of items for the page                                                                         |
-| `pages`  | The number of total pages in the collection (same as `last` but with cardinal meaning)                             |
-| `in`     | The number of the items in the page                                                                                |
-| `last`   | The number of the last page in the collection (same as `pages` but with ordinal meaning)                           |
-| `offset` | The number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
-| `from`   | The collection-position of the first item in the page (`:outset` excluded)                                         |
-| `to`     | The collection-position of the last item in the page (`:outset` excluded)                                          |
-| `prev`   | The previous page number or `nil` if there is no previous page                                                     |
-| `next`   | The next page number or `nil` if there is no next page                                                             |
-| `vars`   | The variables hash                                                                                                 |
-| `params` | The `:params` variable (`Hash` or `Proc`)                                                                          |
+| Reader         | Description                                                                                                        |
+|:---------------|:-------------------------------------------------------------------------------------------------------------------|
+| `count`        | The collection `:count`                                                                                            |
+| `page`         | The current page number                                                                                            |
+| `items`        | The requested number of items for the page                                                                         |
+| `pages`        | The number of total pages in the collection (same as `last` but with cardinal meaning)                             |
+| `in`           | The number of the items in the page                                                                                |
+| `last`         | The number of the last page in the collection (same as `pages` but with ordinal meaning)                           |
+| `offset`       | The number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
+| `from`         | The collection-position of the first item in the page (`:outset` excluded)                                         |
+| `to`           | The collection-position of the last item in the page (`:outset` excluded)                                          |
+| `prev`         | The previous page number or `nil` if there is no previous page                                                     |
+| `next`         | The next page number or `nil` if there is no next page                                                             |
+| `vars`         | The variables hash                                                                                                 |
+| `params`       | The `:params` variable (`Hash` or `Proc`)                                                                          |
+| `request_path` | The request path used for pagination helpers.  If blank, helpers will use `request.path`                           |
 
 ### Lowest limit analysis
 

@@ -111,6 +111,18 @@ pagy = Pagy.new(count: 1000, link_extra: 'data-remote="true" class="my-class"')
 
 **IMPORTANT**: For performance reasons, the `:link_extra` variable must be a string formatted as a valid HTML attribute/value pairs. That string will get inserted verbatim in the HTML of the link. _(see more advanced details in the [pagy_link_proc documentation](api/frontend.md#pagy_link_procpagy-link_extra))_
 
+## Customize the request path
+
+Let's say you are using something like a [Turbo frame](https://turbo.hotwired.dev/reference/frames) and you are loading a collection with pagination on a page where you want the pagination links to point to a different path.  For example, if you are on a page like `/dashboard` and you have a collection of `foos` in a Turbo frame.  By default Pagy will use `request.path` when constructing pagination links, which will results in links like `/dashboard?page=2`.
+
+If you'd like to override the path so that the links point to a different endpoint than the current page's `request.path`, you can pass in the `request_path` variable:
+
+```ruby
+@pagy, @records = pagy(my_scope, vars { request_path: '/foos' })
+```
+
+This will result in pagination links like `/foos?page=2` instead of `/dashboard?page=2`.
+
 ## Customize the params
 
 When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the variable `:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params.
