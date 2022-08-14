@@ -157,6 +157,10 @@ describe 'pagy/frontend' do
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
       _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal "http://example.com:3000/foo?page=5&amp;a=3&amp;b=4#fragment"
     end
+    it 'renders url with overridden path' do
+      pagy = Pagy.new count: 1000, page: 3, request_path: '/bar'
+      _(app.pagy_url_for(pagy, 5)).must_equal '/bar?page=5'
+    end
   end
 
   describe '#pagy_get_params and #pagy_massage_params r' do

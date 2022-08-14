@@ -8,6 +8,7 @@ class Pagy
     # For non-rack environments you can use the standalone extra
     def pagy_url_for(pagy, page, absolute: false, html_escaped: false)
       vars                = pagy.vars
+      request_path        = vars[:request_path].presence || request.path
       page_param          = vars[:page_param].to_s
       items_param         = vars[:items_param].to_s
       params              = pagy.params.is_a?(Hash) ? pagy.params.transform_keys(&:to_s) : {}
@@ -18,7 +19,7 @@ class Pagy
       # params              = pagy.params.call(params) if pagy.params.is_a?(Proc)                       # add in 6.0
       # query_string        = "?#{Rack::Utils.build_nested_query(params)}"                              # add in 6.0
       query_string        = query_string.gsub('&', '&amp;') if html_escaped  # the only unescaped entity
-      "#{request.base_url if absolute}#{request.path}#{query_string}#{vars[:fragment]}"
+      "#{request.base_url if absolute}#{request_path}#{query_string}#{vars[:fragment]}"
     end
 
     private
