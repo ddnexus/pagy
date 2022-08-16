@@ -8,7 +8,7 @@ class Pagy
     # For non-rack environments you can use the standalone extra
     def pagy_url_for(pagy, page, absolute: false, html_escaped: false)
       vars                = pagy.vars
-      request_path        = vars[:request_path].presence || request.path
+      request_path        = vars[:request_path].to_s.empty? ? request.path : vars[:request_path]
       page_param          = vars[:page_param].to_s
       items_param         = vars[:items_param].to_s
       params              = pagy.params.is_a?(Hash) ? pagy.params.transform_keys(&:to_s) : {}
