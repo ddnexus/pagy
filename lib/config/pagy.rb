@@ -28,6 +28,7 @@
 # Pagy::DEFAULT[:link_extra] = 'data-remote="true"'            # example
 # Pagy::DEFAULT[:i18n_key]   = 'pagy.item_name'                # default
 # Pagy::DEFAULT[:cycle]      = true                            # example
+# Pagy::DEFAULT[:request_path] = "/foo"                        # example
 
 
 # Extras
