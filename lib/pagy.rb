@@ -123,7 +123,7 @@ class Pagy
     request_path = @vars[:request_path]
     return if request_path.blank?
 
-    raise VariableError.new(self, :request_path, 'bust be a bare path like "/foo"', request_path) \
+    raise VariableError.new(self, :request_path, 'must be a bare path like "/foo"', request_path) \
           if !request_path.start_with?('/') || request_path.include?('?')
 
     @request_path = request_path
