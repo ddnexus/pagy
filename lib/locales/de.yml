@@ -13,7 +13,7 @@ de:
       gap: "&hellip;"
 
     info:
-      no_items: "Kein %{item_name} gefunden"
+      no_items: "Keine %{item_name} gefunden"
       single_page: "Zeige <b>%{count}</b> %{item_name}"
       multiple_pages: "Zeige %{item_name} <b>%{from}-%{to}</b> von <b>%{count}</b> gesamt"
 
