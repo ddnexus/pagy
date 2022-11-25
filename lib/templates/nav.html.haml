@@ -6,7 +6,7 @@
 
 - link = pagy_link_proc(pagy)
 
-%nav.pagy_nav.pagination{"aria-label" => "pager", :role => "navigation"}
+%nav.pagy_nav.pagination{:role => "navigation"}
 
   - if pagy.prev
     %span.page.prev!= link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
