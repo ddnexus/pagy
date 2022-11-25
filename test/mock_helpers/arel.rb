@@ -15,7 +15,11 @@ module Arel
 
   module Nodes
     class Grouping
+      # rubocop:disable Lint/RedundantCopDisableDirective
+      # rubocop:disable Style/RedundantInitialize
       def initialize(_); end
+      # rubocop:enable Style/RedundantInitialize
+      # rubocop:enable Lint/RedundantCopDisableDirective
     end
   end
 end
