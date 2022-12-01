@@ -7,7 +7,7 @@ ko:
 
     nav:
       prev: "&lsaquo;&nbsp;이전"
-      next: "이후&nbsp;&rsaquo;"
+      next: "다음&nbsp;&rsaquo;"
       gap: "&hellip;"
 
     info:
