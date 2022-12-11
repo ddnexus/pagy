@@ -1,0 +1,22 @@
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+nn:
+  pagy:
+
+    item_name:
+      one: "resultat"
+      other: "resultat"
+
+    nav:
+      prev: "&lsaquo;&nbsp;Førre"
+      next: "Neste&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "Ingen %{item_name} funne"
+      single_page: "Viser <b>%{count}</b> %{item_name}"
+      multiple_pages: "Viser %{item_name} <b>%{from}-%{to}</b> av totalt <b>%{count}</b>"
+
+    combo_nav_js: "<label>Side %{page_input} av %{pages}</label>"
+
+    items_selector_js: "<label>Vis %{items_input} %{item_name} per side</label>"
