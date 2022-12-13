@@ -9,24 +9,24 @@
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>Migration Guide</title>
-    <meta name="title" content="Migration Guide">
-    <meta name="description" content="This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy..." />
+    <title>Generated Javascript Files</title>
+    <meta name="title" content="Generated Javascript Files">
+    <meta name="description" content="The following files are generated from the files in the src dir for different Javascript/TypeScript Environments" />
 
     <!-- Canonical -->
-    <link rel="canonical" href="/docs/migration-guide/" />
+    <link rel="canonical" href="/lib/javascripts/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/docs/migration-guide/">
-    <meta property="og:title" content="Migration Guide">
-    <meta property="og:description" content="This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy...">
+    <meta property="og:url" content="/lib/javascripts/">
+    <meta property="og:title" content="Generated Javascript Files">
+    <meta property="og:description" content="The following files are generated from the files in the src dir for different Javascript/TypeScript Environments">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/docs/migration-guide/">
-    <meta property="twitter:title" content="Migration Guide">
-    <meta property="twitter:description" content="This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy...">
+    <meta property="twitter:url" content="/lib/javascripts/">
+    <meta property="twitter:title" content="Generated Javascript Files">
+    <meta property="twitter:description" content="The following files are generated from the files in the src dir for different Javascript/TypeScript Environments">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
@@ -167,158 +167,299 @@
                                 <div id="docs-sidebar-right-toggle"></div>
                 
                                 <!-- Page content  -->
-<doc-anchor-target id="migrate-willpaginate-and-kaminari" class="break-words">
+<doc-anchor-target id="generated-javascript-files" class="break-words">
     <h1>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#migrate-willpaginate-and-kaminari">#</doc-anchor-trigger>
-        <span>Migrate WillPaginate and Kaminari</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#generated-javascript-files">#</doc-anchor-trigger>
+        <span>Generated Javascript Files</span>
     </h1>
 </doc-anchor-target>
-<p>This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is highly customized you may need more digging into the Pagy documentation.</p>
-<p>Feel free to <a href="https://gitter.im/ruby-pagy/Lobby">ask on Gitter</a> if you need more assistance.</p>
-<doc-anchor-target id="steps">
+<p>The following files are generated from the files in the <code v-pre>src</code> dir for different Javascript/TypeScript <doc-anchor-trigger to="#environments">Environments</doc-anchor-trigger>.</p>
+<doc-anchor-target id="files">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#steps">#</doc-anchor-trigger>
-        <span>Steps</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#files">#</doc-anchor-trigger>
+        <span>Files</span>
     </h2>
 </doc-anchor-target>
-<p>The Pagy API is quite different from other pagination gems, so there is not always a one-to-one correlation between the changes you will have to make, however, if you split the process in the following general steps it should be quite simple.</p>
-<ol>
-<li>Removing the legacy code, trying to convert the statements that have a direct relation with Pagy</li>
-<li>Running the app so to raise exceptions in order to find legacy code that may still be in place</li>
-<li>When the app runs without errors, adjusting the pagination to look and work as before: just many times faster and using many times less memory ;)</li>
-</ol>
-<doc-anchor-target id="removing-the-old-code">
+<p>These files are all providing the <code v-pre>Pagy</code> object and its only function <code v-pre>init</code>. You can get their absolute path from ruby with: <code v-pre>Pagy.root.join('javascripts', '......')</code>.</p>
+<doc-anchor-target id="pagy-modulejs">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#removing-the-old-code">#</doc-anchor-trigger>
-        <span>Removing the old code</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#pagy-modulejs">#</doc-anchor-trigger>
+        <span>pagy-module.js</span>
     </h3>
 </doc-anchor-target>
-<p>In this step you will search statements from legacy pagination gems, remove them and possibly write the equivalent Pagy statements if that makes sense for Pagy:</p>
+<p>The <a href="https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js"><code v-pre>pagy-module.js</code></a> is a ES6 module to use with webpacker, esbuild, parcel, etc. Import it with <code v-pre>import Pagy from &quot;pagy-module&quot;</code>.</p>
+<details>
+<summary>pagy-module.d.ts </summary>
+<p>The <code v-pre>pagy-module.d.ts</code> is the small TypeScript Declaration File useful only if you import the <code v-pre>pagy-module.js</code> in a TypeScript file.</p>
+</details>
+<doc-anchor-target id="pagyjs">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#pagyjs">#</doc-anchor-trigger>
+        <span>pagy.js</span>
+    </h3>
+</doc-anchor-target>
+<p>The <code v-pre>pagy.js</code> is a drop-in script meant to be loaded as is, directly in your production pages and without any further processing. It is an IIFE file, already minified (~2.9k) and polyfilled to work also with quite old browsers.</p>
+<details>
+<summary>Default supported browserslist...</summary>
 <ul>
-<li>If it makes sense, you should add the equivalent Pagy statement and remove the legacy statement(s).</li>
-<li>If it doesn&#x27;t make sense, then just remove the legacy statement.</li>
+<li>and_chr 96</li>
+<li>and_ff 95</li>
+<li>and_qq 10.4</li>
+<li>and_uc 12.12</li>
+<li>android 96</li>
+<li>baidu 7.12</li>
+<li>chrome 97</li>
+<li>chrome 96</li>
+<li>chrome 95</li>
+<li>chrome 94</li>
+<li>edge 97</li>
+<li>edge 96</li>
+<li>firefox 96</li>
+<li>firefox 95</li>
+<li>firefox 94</li>
+<li>firefox 91</li>
+<li>firefox 78</li>
+<li>ie 11</li>
+<li>ios_saf 15.2</li>
+<li>ios_saf 15.0-15.1</li>
+<li>ios_saf 14.5-14.8</li>
+<li>ios_saf 14.0-14.4</li>
+<li>ios_saf 12.2-12.5</li>
+<li>kaios 2.5</li>
+<li>op_mini all</li>
+<li>op_mob 64</li>
+<li>opera 82</li>
+<li>opera 81</li>
+<li>safari 15.2</li>
+<li>safari 15.1</li>
+<li>safari 14.1</li>
+<li>safari 13.1</li>
+<li>samsung 15.0</li>
+<li>samsung 14.0</li>
 </ul>
-<p><strong>Notice:</strong> Don&#x27;t worry about missing something in this step: if anything wont work as before you can fix it later in the process.</p>
-<doc-anchor-target id="preparation">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#preparation">#</doc-anchor-trigger>
-        <span>Preparation</span>
-    </h4>
-</doc-anchor-target>
-<ul>
-<li>Copy the <a href="https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb">pagy.rb</a> initializer: you will edit it during the process.</li>
-<li>Replace the legacy gem with <code v-pre>gem &quot;pagy&quot;</code> in the <code v-pre>Gemfile</code> and <code v-pre>bundle</code>, or install and require the gem if you don&#x27;t use bundler.</li>
-<li>Ensure that the legacy gem will not get loaded anymore (or it could mask some old statement still in place and not converted)</li>
-<li>Add the <code v-pre>include Pagy::Backend</code> statement to the application controller.</li>
-<li>Add the <code v-pre>include Pagy::Frontend</code> statement to the application helper.</li>
-<li>Keep handy the legacy gem doc and the <a href="../api/pagy/">Pagy API doc</a> in parallel.</li>
-</ul>
-<doc-anchor-target id="application-wide-search-and-replace">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#application-wide-search-and-replace">#</doc-anchor-trigger>
-        <span>Application-wide search and replace</span>
-    </h4>
-</doc-anchor-target>
-<p>Search for the class name of the pagination gem to migrate from, for example <code v-pre>WillPaginate</code> or <code v-pre>Kaminari</code>. You should find most of the code relative to global gem configuration, or monkey patching.</p>
-<p>For example, the following configuration are equivalent:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">WillPaginate.per_page = 10
-WillPaginate::ViewHelpers.pagination_options[:inner_window] = 4
-WillPaginate::ViewHelpers.pagination_options[:outer_window] = 5</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">Kaminari.configure do |config|
-  config.max_per_page = 10
-  config.window = 4
-  config.outer_window = 5
-  #config.left = 0
-  #config.right = 0
-end</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">Pagy::DEFAULT[:items] = 10
-Pagy::DEFAULT[:size]  = [5,4,4,5]</code></pre>
-</doc-codeblock></div>
-<p>Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the <code v-pre>pagy.rb</code> initializer <em>(see <a href="../how-to/#configure-pagy">How to configure pagy</a>)</em>.</p>
-<doc-anchor-target id="cleanup-the-models">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#cleanup-the-models">#</doc-anchor-trigger>
-        <span>Cleanup the Models</span>
-    </h4>
-</doc-anchor-target>
-<p>One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn&#x27;t mess at all with the models (read the reasons <a href="../#stay-away-from-the-models">here</a>).</p>
-<p>The other gems are careless about adding methods, scopes, and even configuration settings to them, so you will find different kinds of statements scattered around in your models. You should remove them all and eventually add the equivalent code where it makes sense to Pagy, which of course <em>is absolutely not</em> in the models.</p>
-<p>For example, you may want to search for keywords like <code v-pre>per_page</code>, <code v-pre>per</code> and such, which are actually configuration settings. They should either go into the <code v-pre>pagy.rb</code> initializer if they are global to the app, or into the specific <code v-pre>pagy</code> call in the controller if they are specific to an action.</p>
-<p>If the app used the <code v-pre>page</code> scope in some of its methods or scopes in some model, that should be removed (including removing the argument used to pass the page number to the method/scope), leaving the rest of the scope in place. Search where the app uses the already paginated scope in the controllers, and use the scope in a regular <code v-pre>pagy</code> statement. For example:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">#@records = Product.paginated_scope(params[:page])
-@pagy, @records = pagy(Product.non_paginated_scope)</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="search-and-replace-in-the-controllers">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#search-and-replace-in-the-controllers">#</doc-anchor-trigger>
-        <span>Search and replace in the Controllers</span>
-    </h4>
-</doc-anchor-target>
-<p>In the controllers, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy pagination, so you should be able to go through each of them and convert them quite easily.</p>
-<p>Search for keywords like <code v-pre>page</code> and <code v-pre>paginate</code> statements and use the <code v-pre>pagy</code> method instead. For example:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">#@records = Product.some_scope.page(params[:page])
-#@records = Product.paginate(:page =&gt; params[:page])
-
-@pagy, @records = pagy(Product.some_scope)</code></pre>
-</doc-codeblock></div>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">#@records = Product.some_scope.page(params[:page]).per(15)
-#@records = Product.some_scope.page(params[:page]).per_page(15)
-#@records = Product.paginate(page: params[:page], per_page: 15)
-
-@pagy, @records = pagy(Product.some_scope, items: 15)</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="search-and-replace-in-the-views">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#search-and-replace-in-the-views">#</doc-anchor-trigger>
-        <span>Search and replace in the Views</span>
-    </h4>
-</doc-anchor-target>
-<p>Also in the views, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy pagination, so you should be able to go through each of them and convert them quite easily.</p>
-<p>Search for keywords like <code v-pre>will_paginate</code> and <code v-pre>paginate</code> statement and use one of the <code v-pre>pagy_nav</code> methods. For example:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%= will_paginate @records %&gt;
-&lt;%= paginate @records %&gt;
-
-&lt;%== pagy_nav @pagy %&gt;</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="find-the-remaining-code">
+<p><strong>Notice</strong>: You can generate custom targeted <code v-pre>pagy.js</code> files for the browsers you want to support by changing the <a href="https://github.com/browserslist/browserslist">browserslist</a> query in <code v-pre>src/package.json</code>, then compile it with <code v-pre>npm run build -w src</code>.</p>
+</details>
+<details>
+<summary>pagy-dev.js (pagy debug only)</summary>
+<p>The <a href="https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-dev.js"><code v-pre>pagy-dev.js</code></a> is a readable javascript file meant to be used as a drop-in file <strong>only for debugging</strong> with modern browsers. It won&#x27;t work on old browsers and its size is big because it contains also the source map data to debug the TypeScript directly. Obviously... do not use it in production.</p>
+</details>
+<doc-anchor-target id="environments">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#find-the-remaining-code">#</doc-anchor-trigger>
-        <span>Find the remaining code</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#environments">#</doc-anchor-trigger>
+        <span>Environments</span>
     </h2>
 </doc-anchor-target>
-<p>If the app has tests it&#x27;s time to run them. If not, start the app and navigate through its pages.</p>
-<p>If anything of the old code is still in place you should get some exception. In that case, just remove the old code and retry until there will be no exception.</p>
-<doc-anchor-target id="fine-tuning">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#fine-tuning">#</doc-anchor-trigger>
-        <span>Fine tuning</span>
-    </h2>
-</doc-anchor-target>
-<p>If the app is working and displays the pagination, it&#x27;s time to adjust Pagy as you need, but if the old pagination was using custom items (e.g. custom params, urls, links, html elements, etc.) it will likely not work without some possibly easy adjustment.</p>
-<p>Please take a look at the topics in the <a href="../how-to/">how-to</a> documentation: that should cover most of your custom needs.</p>
-<doc-anchor-target id="csss">
+<doc-anchor-target id="non-rails-apps--simple-apps">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#csss">#</doc-anchor-trigger>
-        <span>CSSs</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#non-rails-apps--simple-apps">#</doc-anchor-trigger>
+        <span>Non-rails apps / simple apps</span>
     </h3>
 </doc-anchor-target>
-<p>The css styling that you may have applied to the pagination elements may need some minor change. However if the app uses the pagination from bootstrap (or some other framework), the same CSSs should work seamlessly with the pagy nav helpers or with any of the bootstrap templates.</p>
-<doc-anchor-target id="i18n">
+<p>Add an event listener that fires on page load:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">window.addEventListener('load', Pagy.init);</code></pre>
+</doc-codeblock></div>
+<p>Ensure the <code v-pre>Pagy.root.join('javascripts', 'pagy.js')</code> script gets served with the page.</p>
+<doc-anchor-target id="rails-apps">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#i18n">#</doc-anchor-trigger>
-        <span>I18n</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rails-apps">#</doc-anchor-trigger>
+        <span>Rails Apps</span>
     </h3>
 </doc-anchor-target>
-<p>If the app uses <code v-pre>I18n</code> you should follow the <a href="../api/frontend/#i18n">I18n doc</a>.</p>
+<p>Trouble-shooting your javascript installation on Rails? Some <a href="https://github.com/stars/benkoshy/lists/rails-demo-apps-for-pagy">of these rails demo apps</a> may help (the commit diffs are structured to make it elementary).</p>
+<doc-anchor-target id="1-rails-asset-pipeline">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#1-rails-asset-pipeline">#</doc-anchor-trigger>
+        <span>1. Rails asset pipeline</span>
+    </h4>
+</doc-anchor-target>
+<doc-anchor-target id="sprockets">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#sprockets">#</doc-anchor-trigger>
+        <span>Sprockets</span>
+    </h5>
+</doc-anchor-target>
+<p>In <code v-pre>application.js</code>, require pagy and add an event listener like <code v-pre>&quot;turbolinks:load&quot;</code> or <code v-pre>&quot;load&quot;</code> that fires on page load:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">//= require pagy
+window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init);</code></pre>
+</doc-codeblock></div>
+<p>Or you can do so using Stimulus JS:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// pagy_initializer_controller.js
+import { Controller } from &quot;@hotwired/stimulus&quot;
+
+export default class extends Controller {
+  connect() {
+    Pagy.init(this.element)
+  }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;div data-controller=&quot;pagy-initializer&quot;&gt;
+  &lt;%== pagy_nav_js(@pagy) %&gt;
+&lt;/div&gt;</code></pre>
+</doc-codeblock></div>
+<p>Uncomment the following line in <code v-pre>config/initializers/pagy.rb</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy.root.join('javascripts')</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="propshaft">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#propshaft">#</doc-anchor-trigger>
+        <span>Propshaft</span>
+    </h5>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby"># config/initializers/pagy.rb
+Rails.application.config.assets.paths &lt;&lt; Pagy.root.join('javascripts')</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;-- e.g. appliciation.html.erb --&gt;
+&lt;%= javascript_include_tag &quot;pagy&quot; %&gt;</code></pre>
+</doc-codeblock></div>
+<p>And initialize Pagy any way you like (as above).</p>
+<doc-anchor-target id="2-rails-jsbundling-rails">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2-rails-jsbundling-rails">#</doc-anchor-trigger>
+        <span>2. Rails jsbundling-rails</span>
+    </h4>
+</doc-anchor-target>
+<p>In <code v-pre>app/javascript/application.js</code>, import and use the pagy module:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// or use stimulus JS above
+import Pagy from &quot;pagy-module&quot;;
+window.addEventListener(&quot;turbo:load&quot;, Pagy.init);</code></pre>
+</doc-codeblock></div>
+<p><strong>IMPORTANT</strong>: Pagy doesn&#x27;t push any package to <code v-pre>npm</code>, because there would be no automatic way to keep the package version in sync with the gem version used by your app. Doing it manually at every <code v-pre>yarn update</code> and every <code v-pre>bundle update</code> would be quite annoying and error prone for you.</p>
+<p>Luckily, you can just configure your javascript tools to look into the <code v-pre>$(bundle show 'pagy')/lib/javascripts</code> gem installation path once, and pagy will work maintenance-free from then on.</p>
+<p>Here is how to do that with different bundlers:</p>
+<doc-anchor-target id="esbuild">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#esbuild">#</doc-anchor-trigger>
+        <span>Esbuild</span>
+    </h5>
+</doc-anchor-target>
+<p>In <code v-pre>package.json</code>, prepend the <code v-pre>NODE_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;build&quot;: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your original command&gt;&quot;
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="webpack">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#webpack">#</doc-anchor-trigger>
+        <span>Webpack</span>
+    </h5>
+</doc-anchor-target>
+<p>In <code v-pre>package.json</code>, prepend the <code v-pre>PAGY_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;build&quot;: &quot;PAGY_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your webpack command&gt;&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>In <code v-pre>webpack.confg.js</code>, add the <code v-pre>resolve.modules</code> array:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">module.exports = {
+  ...,                          // your original config
+  resolve: {                    // add resolve.modules
+    modules: [
+      &quot;node_modules&quot;,           // node_modules dir
+      process.env.PAGY_PATH     // pagy dir
+    ]
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="rollup">
+    <h5>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rollup">#</doc-anchor-trigger>
+        <span>Rollup</span>
+    </h5>
+</doc-anchor-target>
+<p>In <code v-pre>package.json</code>, prepend the <code v-pre>PAGY_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;build&quot;: &quot;PAGY_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your rollup command&gt;&quot;
+}</code></pre>
+</doc-codeblock></div>
+<p>In <code v-pre>rollup.confg.js</code>, configure the <code v-pre>plugins[resolve]</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">export default {
+  ...,                                    // your original config
+  plugins: [
+    resolve({
+              moduleDirectories: [        // add moduleDirectories
+                &quot;node_modules&quot;,           // node_modules dir
+                process.env.PAGY_PATH     // pagy dir
+              ] 
+    })
+  ]
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="rails-importmap">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rails-importmap">#</doc-anchor-trigger>
+        <span>Rails Importmap</span>
+    </h4>
+</doc-anchor-target>
+<p>In <code v-pre>app/javascript/application.js</code>, import and use the pagy module:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// or use stimulus JS above
+import Pagy from &quot;pagy-module&quot;;
+window.addEventListener(&quot;turbo:load&quot;, Pagy.init);</code></pre>
+</doc-codeblock></div>
+<p>Uncomment the following line in <code v-pre>config/initializers/pagy.rb</code> initializer:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy.root.join('javascripts')</code></pre>
+</doc-codeblock></div>
+<p>Link <code v-pre>pagy-module.js</code> in <code v-pre>app/assets/config/manifest.js</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">//= link pagy-module.js</code></pre>
+</doc-codeblock></div>
+<p>Pin the pagy-module in <code v-pre>config/importmap.rb</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby">pin 'pagy-module'</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="other-environmentsmethods">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#other-environmentsmethods">#</doc-anchor-trigger>
+        <span>Other environments/methods</span>
+    </h3>
+</doc-anchor-target>
+<p>Here are other ways to load the pagy javascript files from your app if the above methods don&#x27;t work for you:</p>
+<doc-anchor-target id="symlink-file">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#symlink-file">#</doc-anchor-trigger>
+        <span>Symlink file</span>
+    </h4>
+</doc-anchor-target>
+<p>You can create a symlink of any pagy javascript file and use it as it was a local file in your app.</p>
+<p>For example, adding the following line in <code v-pre>config/initializers/pagy.rb</code> will create/refresh the <code v-pre>app/javascript/pagy-module.js</code> symlink every time the app restarts.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby">FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
+  unless Rails.env.production? </code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="rails-webpacker-legacy">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#rails-webpacker-legacy">#</doc-anchor-trigger>
+        <span>Rails Webpacker (legacy)</span>
+    </h4>
+</doc-anchor-target>
+<p>This was a legacy way to generate a local pagy javascript file using <code v-pre>erb</code> with webpacker. If the methods explained above don&#x27;t work, this one should.</p>
+<p>Ensure that the <code v-pre>erb</code> loader is installed:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">bundle exec rails webpacker:install:erb</code></pre>
+</doc-codeblock></div>
+<p>Create <code v-pre>app/javascript/packs/pagy.js.erb</code> with the following content:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%= Pagy.root.join('javascripts', 'pagy.js').read %&gt;
+window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)</code></pre>
+</doc-codeblock></div>
+<p>where YOUR_EVENT_LISTENER is the load event that works with your app (e.g. <code v-pre>&quot;turbo:load&quot;</code>, <code v-pre>&quot;turbolinks:load&quot;</code>, <code v-pre>&quot;load&quot;</code>, ...).</p>
+<p>Import it in <code v-pre>app/javascript/application.js</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">import './pagy.js.erb'</code></pre>
+</doc-codeblock></div>
 
                                 
                                 <!-- Required only on API pages -->
@@ -328,20 +469,20 @@ Pagy::DEFAULT[:size]  = [5,4,4,5]</code></pre>
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../docs/how-to/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../docs/migration-guide/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">How To</span>
+                                                <span class="block mt-1">Migration Guide</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../lib/javascripts/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../lib/locales/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Generated Javascript Files</span>
+                                                <span class="block mt-1">Pagy locales</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
@@ -385,6 +526,6 @@ Pagy::DEFAULT[:size]  = [5,4,4,5]</code></pre>
 
     <div id="docs-overlay-target"></div>
 
-    <script>window.__DOCS__ = { "title": "Migration Guide", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    <script>window.__DOCS__ = { "title": "Generated Javascript Files", level: 2, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
 </body>
 </html>

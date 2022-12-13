@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ddnexus.github.io/pagy/sitemap.xml.gz
+Sitemap: /sitemap.xml.gz

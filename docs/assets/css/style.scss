@@ -1,0 +1,176 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+body {
+  background-color: #f7f7f7;
+  color: #51585F;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+a:hover, a:focus {
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+code {
+  font-size: .8rem;
+  padding: 4px 5px 2px;
+  background-color: #FFF;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+pre {
+  background-color: #FFF;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  code {
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+.highlight {
+  border-radius: 5px;
+  background-color: #FFF;
+}
+
+header {
+  height: 100%;
+  h1#site-title {
+    margin-left: -10px;
+    margin-bottom: .5rem;
+  }
+  p {
+    margin-bottom: .5rem;
+  }
+}
+
+h1 span {
+  float: right;
+  margin: 0 .05em;
+}
+
+#toc {
+  height: calc(100% - 200px - 4em);
+  overflow: auto;
+  margin: 1.6em 0;
+  white-space: nowrap;
+  p {
+    margin: .1em 0;
+  }
+  p.indent1 {
+    margin-left: 2rem;
+  }
+  p#active {
+    position: relative;
+    font-weight: bold;
+    display: inline-block;
+    &:after {
+      content: "\25B6";
+      position: relative;
+      left: .4rem;
+    }
+  }
+}
+
+ a#gitter {
+   &:hover {
+     text-decoration: none;
+   }
+   p {
+     border-radius: 3px;
+     font-weight: bold;
+     margin-top: .5em;
+     border: solid 1px #267CB9;
+     padding: 4px;
+     text-align: center;
+     background-color: #FFF;
+     &:hover {
+       background-color: #267CB9;
+       color: #FFF;
+     }
+
+   }
+}
+
+footer {
+  bottom: 0;
+}
+
+@media print, screen and (max-width: 960px) {
+
+  header {
+    padding-right: 0;
+  }
+
+}
+
+.cse .gsc-control-cse,
+.gsc-control-cse {
+  padding: 0 !important;
+  border: none !important;
+  //margin-bottom: 1em !important;
+  //width: 300px !important;
+  background: #f7f7f7 !important;
+  color: #51585F !important;
+  table {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  td {
+    border: 0 !important;
+    padding: 0 !important;
+
+    &.gsib_a {
+      padding: 0 .5em !important;
+    }
+    &.gsc-search-button {
+      margin: 0 !important;
+      padding: 0 !important;
+
+    }
+  }
+}
+
+.gsc-input-box {
+  border-radius: 3px 0 0 3px !important;
+}
+.gsc-input-box table{
+  height: 28px !important;
+}
+
+table.gsc-search-box td.gsc-input {
+  padding: 0 !important;
+}
+
+// remove the clear button (x)
+div.gsst_b {
+  display: none !important;
+}
+
+// same fonts of the page
+input.gsc-input{
+  font-family: 'Noto Sans' !important;
+  font-size: 1em !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  color: #51585F !important;
+  //width: 100% !important;
+
+}
+
+button.gsc-search-button-v2 {
+  margin: 0 !important;
+  //margin-bottom: .75px !important;
+  height: 30px !important;
+  border-radius: 0 3px 3px 0 !important;
+  padding: 6px 12px !important;
+}
+
+img + em { font-size: .8rem}
