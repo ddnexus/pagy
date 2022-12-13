@@ -109,13 +109,62 @@ jobs:
 
       - name: Install Cypress and Test Dependencies
         if: steps.e2e-cache.outputs.cache-hit != 'true'
-        run: npm i cypress @cypress/snapshot html-validate cypress-html-validate cypress-dark
+        run: npm i cypress @cypress/snapshot html-validate cypress-html-validate
 
       - name: Run Cypress Tests
-        uses: cypress-io/github-action@v2.9.7
+        # You may pin to the exact commit or the version.
+        # uses: cypress-io/github-action@c5724eda82337bcff977ce14509f47052c12e04c
+        uses: cypress-io/github-action@v5.0.0
         with:
-          install: false
+          # Sends test results to Cypress Dashboard
+          record: # optional
+          # Set configuration values. Separate multiple values with a comma. The values set here override any values set in your configuration file.
           config: baseUrl=http://0.0.0.0:4567,video=false
+          # Path to the cypress config file where configuration values are set.
+          config-file: # optional, default is
+          # Sets Cypress environment variables
+          env: # optional
+          # Name of the browser to use
+          browser: # optional
+          # Command that overrides cypress run
+          command: # optional
+          # Command for starting local server in the background
           start: bundle exec rackup -D -o 0.0.0.0 -p 4567 pagy_app.ru
+          # A different start command on Windows
+          start-windows: # optional
+          # Command to run in build step before starting tests
+          build: # optional
+          # Whether or not to run install
+          install: false
+          # Custom install command to use
+          install-command: # optional
+          # Whether or not to run tests
+          runTests: # optional
+          # Local server URL to wait for
           wait-on: http://0.0.0.0:4567
+          # Amount of time to wait for wait-on url to be available
+          wait-on-timeout: # optional
+          # Whether or not to load balance tests using multiple containers
+          parallel: # optional
+          # Group setting for tests
+          group: # optional
+          # Tag setting for tests
+          tag: # optional
+          # Working directory containing Cypress folder
           working-directory: e2e
+          # Whether or not to use headed mode
+          headed: # optional
+          # Provide a specific specs to run
+          spec: # optional
+          # Path of project to run
+          project: # optional
+          # You can prefix the default test command using the command-prefix option.
+          command-prefix: # optional
+          # ID associates multiple CI machines to one test run
+          ci-build-id: # optional
+          # Custom cache key
+          cache-key: # optional
+          # Whether or not to silence any Cypress specific output from stdout
+          quiet: # optional
+          # Lets the action know that Cypress is running component tests and not e2e tests
+          component: # optional
