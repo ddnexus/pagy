@@ -1,0 +1,5 @@
+packages:
+  - 'e2e/**'
+  - 'src/**'
+  # generic exclude packages that are inside test directories
+  - '!**/test/**'
