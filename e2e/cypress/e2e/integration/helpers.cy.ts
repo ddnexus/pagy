@@ -1,4 +1,4 @@
-import {snapId} from "../support/test-helper";
+import {snapId} from "../../support/test-helper";
 
 describe("Test generic helpers", () => {
     const pages = [1, 5, 36, 50];

@@ -2,7 +2,9 @@
 !/.idea/runConfigurations
 /.bundle/
 /coverage/
-/node_modules/*
-!/node_modules/.keep
+node_modules/
 /pkg/
 /tmp/
+pnpm
+.pnpm-store
+.pnpm-debug.log

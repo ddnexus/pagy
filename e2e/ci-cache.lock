@@ -1,11 +1,20 @@
-pagy@ /pagy
-└─┬ e2e@ -> ./e2e
-  ├── @cypress/snapshot@2.1.7
-  ├── cypress-dark@1.8.3
-  ├── cypress-html-validate@2.1.3
-  ├── cypress@9.4.1
-  ├── eslint-plugin-cypress@2.12.1
-  ├── html-validate@6.3.1
-  ├── start-server-and-test@1.14.0
-  └── typescript@4.5.5
+Legend: production dependency, optional only, dev only
 
+pagy.e2e /pagy/e2e (PRIVATE)
+
+devDependencies:
+@cypress/snapshot 2.1.7
+@types/node 18.11.12
+@typescript-eslint/eslint-plugin 5.46.0
+@typescript-eslint/parser 5.46.0
+cypress 10.3.0
+cypress-html-validate 5.1.1
+eslint 8.29.0
+eslint-plugin-align-assignments 1.1.2
+eslint-plugin-cypress 2.12.1
+eslint-plugin-import 2.26.0
+eslint-plugin-node 11.1.0
+eslint-plugin-promise 6.1.1
+html-validate 7.10.1
+start-server-and-test 1.15.1
+typescript 4.9.4
