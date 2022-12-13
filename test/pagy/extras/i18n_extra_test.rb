@@ -32,9 +32,9 @@ describe 'pagy/extras/i18n' do
       _(app.pagy_info(Pagy.new(count: 100, page: 3))).must_rematch
     end
     it 'renders with existing i18n key' do
-      ::I18n.locale = 'en'
+      I18n.locale = 'en'
       custom_dictionary = Pagy.root.parent.join('test', 'files', 'i18n.yml')
-      ::I18n.load_path += [custom_dictionary]
+      I18n.load_path += [custom_dictionary]
       _(app.pagy_info(Pagy.new(count: 0, i18n_key: 'activerecord.models.product'))).must_rematch
       _(app.pagy_info(Pagy.new(count: 1, i18n_key: 'activerecord.models.product'))).must_rematch
       _(app.pagy_info(Pagy.new(count: 13, i18n_key: 'activerecord.models.product'))).must_rematch
