@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Lint/RedundantCopDisableDirective, Style/FetchEnvVar
 $VERBOSE = { 'false' => false, 'true' => true }[ENV['VERBOSE']] if ENV['VERBOSE']
+# rubocop:enable Lint/RedundantCopDisableDirective, Style/FetchEnvVar
 
 require_relative 'coverage_setup' unless ENV['RUBYMINE_SIMPLECOV_COVERAGE_PATH']  # skipped if RubyMine run with coverage
 

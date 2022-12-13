@@ -1,7 +1,7 @@
 ---
 "[1] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0001_renders first page": '<ul
-  class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager"
-  style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li
+  class="pagy-materialize-combo-nav-js pagination chip" role="navigation" style="padding-right:
+  0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li
   class="prev disabled" style="vertical-align: middle"><a href="#"><i class="material-icons">chevron_left</i></a></li><li
   class="pagy-combo-input"><label>Page <input type="number" class="browser-default"
   min="1" max="6" value="1" style="text-align: center; width: 2rem;"> of 6</label></li><li
@@ -9,15 +9,15 @@
   aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[2] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0001_renders first page": '<ul
   id="test-nav-id" class="pagy-materialize-combo-nav-js pagination chip" role="navigation"
-  aria-label="pager" style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li
+  style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li
   class="prev disabled" style="vertical-align: middle"><a href="#"><i class="material-icons">chevron_left</i></a></li><li
   class="pagy-combo-input"><label>Page <input type="number" class="browser-default"
   min="1" max="6" value="1" style="text-align: center; width: 2rem;"> of 6</label></li><li
   class="waves-effect next" style="vertical-align: middle"><a href="/foo?page=2"  link-extra
   rel="next" aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[1] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0002_renders intermediate page": '<ul
-  class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager"
-  style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li
+  class="pagy-materialize-combo-nav-js pagination chip" role="navigation" style="padding-right:
+  0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li
   class="waves-effect prev" style="vertical-align: middle"><a href="/foo?page=2"   rel="prev"
   aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li class="pagy-combo-input"><label>Page
   <input type="number" class="browser-default" min="1" max="6" value="3" style="text-align:
@@ -25,7 +25,7 @@
   middle"><a href="/foo?page=4"   rel="next" aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[2] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0002_renders intermediate page": '<ul
   id="test-nav-id" class="pagy-materialize-combo-nav-js pagination chip" role="navigation"
-  aria-label="pager" style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li
+  style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li
   class="waves-effect prev" style="vertical-align: middle"><a href="/foo?page=2"  link-extra
   rel="prev" aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li
   class="pagy-combo-input"><label>Page <input type="number" class="browser-default"
@@ -33,8 +33,8 @@
   class="waves-effect next" style="vertical-align: middle"><a href="/foo?page=4"  link-extra
   rel="next" aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[1] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0003_renders last page": '<ul
-  class="pagy-materialize-combo-nav-js pagination chip" role="navigation" aria-label="pager"
-  style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li
+  class="pagy-materialize-combo-nav-js pagination chip" role="navigation" style="padding-right:
+  0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li
   class="waves-effect prev" style="vertical-align: middle"><a href="/foo?page=5"   rel="prev"
   aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li class="pagy-combo-input"><label>Page
   <input type="number" class="browser-default" min="1" max="6" value="6" style="text-align:
@@ -42,35 +42,31 @@
   middle"><a href="#"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[2] pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0003_renders last page": '<ul
   id="test-nav-id" class="pagy-materialize-combo-nav-js pagination chip" role="navigation"
-  aria-label="pager" style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li
+  style="padding-right: 0" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li
   class="waves-effect prev" style="vertical-align: middle"><a href="/foo?page=5"  link-extra
   rel="prev" aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li
   class="pagy-combo-input"><label>Page <input type="number" class="browser-default"
   min="1" max="6" value="6" style="text-align: center; width: 2rem;"> of 6</label></li><li
   class="next disabled" style="vertical-align: middle"><a href="#"><i class="material-icons">chevron_right</i></a></li></ul>'
 "[1] pagy/extras/materialize::#pagy_materialize_nav_js#test_0001_renders first page": <div
-  class="pagy-materialize-nav-js" role="navigation" aria-label="pager" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiYWN0aXZlXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJtYXRlcmlhbC1pY29uc1wiPmNoZXZyb25fcmlnaHQ8L2k+PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsiMSIsMiwzLDQsNSwiZ2FwIiw1MF19LG51bGxd"></div>
+  class="pagy-materialize-nav-js" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiYWN0aXZlXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJtYXRlcmlhbC1pY29uc1wiPmNoZXZyb25fcmlnaHQ8L2k+PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsiMSIsMiwzLDQsNSwiZ2FwIiw1MF19LG51bGxd"></div>
 "[2] pagy/extras/materialize::#pagy_materialize_nav_js#test_0001_renders first page": <div
-  id="test-nav-id" class="pagy-rjs pagy-materialize-nav-js" role="navigation" aria-label="pager"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImFjdGl2ZVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cImdhcCBkaXNhYmxlZFwiPjxhIGhyZWY9XCIjXCI+JmhlbGxpcDs8L2E+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBuZXh0XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJtYXRlcmlhbC1pY29uc1wiPmNoZXZyb25fcmlnaHQ8L2k+PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsiMSIsMiwzLCJnYXAiLDUwXSwiNjAwIjpbIjEiLDIsMyw0LCJnYXAiLDUwXX0sbnVsbF0="></div>
+  id="test-nav-id" class="pagy-rjs pagy-materialize-nav-js" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImFjdGl2ZVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cImdhcCBkaXNhYmxlZFwiPjxhIGhyZWY9XCIjXCI+JmhlbGxpcDs8L2E+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBuZXh0XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJtYXRlcmlhbC1pY29uc1wiPmNoZXZyb25fcmlnaHQ8L2k+PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsiMSIsMiwzLCJnYXAiLDUwXSwiNjAwIjpbIjEiLDIsMyw0LCJnYXAiLDUwXX0sbnVsbF0="></div>
 "[1] pagy/extras/materialize::#pagy_materialize_nav_js#test_0002_renders intermediate page": <div
-  class="pagy-materialize-nav-js" role="navigation" aria-label="pager" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiYWN0aXZlXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwibmV4dFwiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX3JpZ2h0PC9pPjwvYT48L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiwxNiwxNywxOCwxOSwiMjAiLDIxLDIyLDIzLDI0LCJnYXAiLDUwXX0sbnVsbF0="></div>
+  class="pagy-materialize-nav-js" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiYWN0aXZlXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwibmV4dFwiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX3JpZ2h0PC9pPjwvYT48L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiwxNiwxNywxOCwxOSwiMjAiLDIxLDIyLDIzLDI0LCJnYXAiLDUwXX0sbnVsbF0="></div>
 "[2] pagy/extras/materialize::#pagy_materialize_nav_js#test_0002_renders intermediate page": <div
-  id="test-nav-id" class="pagy-rjs pagy-materialize-nav-js" role="navigation" aria-label="pager"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9sZWZ0PC9pPjwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3RcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJhY3RpdmVcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
+  id="test-nav-id" class="pagy-rjs pagy-materialize-nav-js" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9sZWZ0PC9pPjwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3RcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJhY3RpdmVcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
 "[1] pagy/extras/materialize::#pagy_materialize_nav_js#test_0003_renders last page": <div
-  class="pagy-materialize-nav-js" role="navigation" aria-label="pager" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiYWN0aXZlXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsNDYsNDcsNDgsNDksIjUwIl19LG51bGxd"></div>
+  class="pagy-materialize-nav-js" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiYWN0aXZlXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsNDYsNDcsNDgsNDksIjUwIl19LG51bGxd"></div>
 "[2] pagy/extras/materialize::#pagy_materialize_nav_js#test_0003_renders last page": <div
-  id="test-nav-id" class="pagy-rjs pagy-materialize-nav-js" role="navigation" aria-label="pager"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9sZWZ0PC9pPjwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3RcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJhY3RpdmVcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsNDgsNDksIjUwIl0sIjYwMCI6WzEsImdhcCIsNDcsNDgsNDksIjUwIl19LG51bGxd"></div>
+  id="test-nav-id" class="pagy-rjs pagy-materialize-nav-js" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9sZWZ0PC9pPjwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3RcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJhY3RpdmVcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsNDgsNDksIjUwIl0sIjYwMCI6WzEsImdhcCIsNDcsNDgsNDksIjUwIl19LG51bGxd"></div>
 "[1] pagy/extras/materialize::#pagy_materialize_nav_js#test_0004_renders with :steps": <div
-  class="pagy-rjs pagy-materialize-nav-js" role="navigation" aria-label="pager" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiYWN0aXZlXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwibmV4dFwiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX3JpZ2h0PC9pPjwvYT48L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiwxOCwxOSwiMjAiLDIxLDIyLCJnYXAiLDUwXSwiNTAwIjpbMSwyLCJnYXAiLDE3LDE4LDE5LCIyMCIsMjEsMjIsMjMsImdhcCIsNDksNTBdfSxudWxsXQ=="></div>
+  class="pagy-rjs pagy-materialize-nav-js" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiYWN0aXZlXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwibmV4dFwiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX3JpZ2h0PC9pPjwvYT48L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiwxOCwxOSwiMjAiLDIxLDIyLCJnYXAiLDUwXSwiNTAwIjpbMSwyLCJnYXAiLDE3LDE4LDE5LCIyMCIsMjEsMjIsMjMsImdhcCIsNDksNTBdfSxudWxsXQ=="></div>
 "[2] pagy/extras/materialize::#pagy_materialize_nav_js#test_0004_renders with :steps": <div
-  id="test-nav-id" class="pagy-rjs pagy-materialize-nav-js" role="navigation" aria-label="pager"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9sZWZ0PC9pPjwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3RcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJhY3RpdmVcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
+  id="test-nav-id" class="pagy-rjs pagy-materialize-nav-js" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9sZWZ0PC9pPjwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3RcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJhY3RpdmVcIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ3YXZlcy1lZmZlY3QgbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
 "[1] pagy/extras/materialize::#pagy_materialize_nav#test_0001_renders first page": <div
-  class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul
-  class="pagination"><li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li><li
+  class="pagy-materialize-nav pagination" role="navigation"><ul class="pagination"><li
+  class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li><li
   class="active"><a href="/foo?page=1"   >1</a></li><li class="waves-effect"><a href="/foo?page=2"   rel="next"
   >2</a></li><li class="waves-effect"><a href="/foo?page=3"   >3</a></li><li class="waves-effect"><a
   href="/foo?page=4"   >4</a></li><li class="waves-effect"><a href="/foo?page=5"   >5</a></li><li
@@ -78,8 +74,8 @@
   class="waves-effect next"><a href="/foo?page=2"   rel="next" aria-label="next"><i
   class="material-icons">chevron_right</i></a></li></ul></div>
 "[2] pagy/extras/materialize::#pagy_materialize_nav#test_0001_renders first page": <div
-  id="test-nav-id" class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul
-  class="pagination"><li class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li><li
+  id="test-nav-id" class="pagy-materialize-nav pagination" role="navigation"><ul class="pagination"><li
+  class="prev disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li><li
   class="active"><a href="/foo?page=1"  link-extra >1</a></li><li class="waves-effect"><a
   href="/foo?page=2"  link-extra rel="next" >2</a></li><li class="waves-effect"><a
   href="/foo?page=3"  link-extra >3</a></li><li class="waves-effect"><a href="/foo?page=4"  link-extra
@@ -88,50 +84,49 @@
   >50</a></li><li class="waves-effect next"><a href="/foo?page=2"  link-extra rel="next"
   aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul></div>
 "[1] pagy/extras/materialize::#pagy_materialize_nav#test_0002_renders intermediate page": <div
-  class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul
-  class="pagination"><li class="waves-effect prev"><a href="/foo?page=19"   rel="prev"
-  aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li class="waves-effect"><a
-  href="/foo?page=1"   >1</a></li><li class="gap disabled"><a href="#">&hellip;</a></li><li
-  class="waves-effect"><a href="/foo?page=16"   >16</a></li><li class="waves-effect"><a
-  href="/foo?page=17"   >17</a></li><li class="waves-effect"><a href="/foo?page=18"   >18</a></li><li
-  class="waves-effect"><a href="/foo?page=19"   rel="prev" >19</a></li><li class="active"><a
-  href="/foo?page=20"   >20</a></li><li class="waves-effect"><a href="/foo?page=21"   rel="next"
-  >21</a></li><li class="waves-effect"><a href="/foo?page=22"   >22</a></li><li class="waves-effect"><a
-  href="/foo?page=23"   >23</a></li><li class="waves-effect"><a href="/foo?page=24"   >24</a></li><li
-  class="gap disabled"><a href="#">&hellip;</a></li><li class="waves-effect"><a href="/foo?page=50"   >50</a></li><li
-  class="waves-effect next"><a href="/foo?page=21"   rel="next" aria-label="next"><i
-  class="material-icons">chevron_right</i></a></li></ul></div>
+  class="pagy-materialize-nav pagination" role="navigation"><ul class="pagination"><li
+  class="waves-effect prev"><a href="/foo?page=19"   rel="prev" aria-label="previous"><i
+  class="material-icons">chevron_left</i></a></li><li class="waves-effect"><a href="/foo?page=1"   >1</a></li><li
+  class="gap disabled"><a href="#">&hellip;</a></li><li class="waves-effect"><a href="/foo?page=16"   >16</a></li><li
+  class="waves-effect"><a href="/foo?page=17"   >17</a></li><li class="waves-effect"><a
+  href="/foo?page=18"   >18</a></li><li class="waves-effect"><a href="/foo?page=19"   rel="prev"
+  >19</a></li><li class="active"><a href="/foo?page=20"   >20</a></li><li class="waves-effect"><a
+  href="/foo?page=21"   rel="next" >21</a></li><li class="waves-effect"><a href="/foo?page=22"   >22</a></li><li
+  class="waves-effect"><a href="/foo?page=23"   >23</a></li><li class="waves-effect"><a
+  href="/foo?page=24"   >24</a></li><li class="gap disabled"><a href="#">&hellip;</a></li><li
+  class="waves-effect"><a href="/foo?page=50"   >50</a></li><li class="waves-effect
+  next"><a href="/foo?page=21"   rel="next" aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul></div>
 "[2] pagy/extras/materialize::#pagy_materialize_nav#test_0002_renders intermediate page": <div
-  id="test-nav-id" class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul
-  class="pagination"><li class="waves-effect prev"><a href="/foo?page=19"  link-extra
-  rel="prev" aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li
-  class="waves-effect"><a href="/foo?page=1"  link-extra >1</a></li><li class="gap
-  disabled"><a href="#">&hellip;</a></li><li class="waves-effect"><a href="/foo?page=16"  link-extra
-  >16</a></li><li class="waves-effect"><a href="/foo?page=17"  link-extra >17</a></li><li
-  class="waves-effect"><a href="/foo?page=18"  link-extra >18</a></li><li class="waves-effect"><a
-  href="/foo?page=19"  link-extra rel="prev" >19</a></li><li class="active"><a href="/foo?page=20"  link-extra
-  >20</a></li><li class="waves-effect"><a href="/foo?page=21"  link-extra rel="next"
-  >21</a></li><li class="waves-effect"><a href="/foo?page=22"  link-extra >22</a></li><li
-  class="waves-effect"><a href="/foo?page=23"  link-extra >23</a></li><li class="waves-effect"><a
-  href="/foo?page=24"  link-extra >24</a></li><li class="gap disabled"><a href="#">&hellip;</a></li><li
-  class="waves-effect"><a href="/foo?page=50"  link-extra >50</a></li><li class="waves-effect
-  next"><a href="/foo?page=21"  link-extra rel="next" aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul></div>
+  id="test-nav-id" class="pagy-materialize-nav pagination" role="navigation"><ul class="pagination"><li
+  class="waves-effect prev"><a href="/foo?page=19"  link-extra rel="prev" aria-label="previous"><i
+  class="material-icons">chevron_left</i></a></li><li class="waves-effect"><a href="/foo?page=1"  link-extra
+  >1</a></li><li class="gap disabled"><a href="#">&hellip;</a></li><li class="waves-effect"><a
+  href="/foo?page=16"  link-extra >16</a></li><li class="waves-effect"><a href="/foo?page=17"  link-extra
+  >17</a></li><li class="waves-effect"><a href="/foo?page=18"  link-extra >18</a></li><li
+  class="waves-effect"><a href="/foo?page=19"  link-extra rel="prev" >19</a></li><li
+  class="active"><a href="/foo?page=20"  link-extra >20</a></li><li class="waves-effect"><a
+  href="/foo?page=21"  link-extra rel="next" >21</a></li><li class="waves-effect"><a
+  href="/foo?page=22"  link-extra >22</a></li><li class="waves-effect"><a href="/foo?page=23"  link-extra
+  >23</a></li><li class="waves-effect"><a href="/foo?page=24"  link-extra >24</a></li><li
+  class="gap disabled"><a href="#">&hellip;</a></li><li class="waves-effect"><a href="/foo?page=50"  link-extra
+  >50</a></li><li class="waves-effect next"><a href="/foo?page=21"  link-extra rel="next"
+  aria-label="next"><i class="material-icons">chevron_right</i></a></li></ul></div>
 "[1] pagy/extras/materialize::#pagy_materialize_nav#test_0003_renders last page": <div
-  class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul
-  class="pagination"><li class="waves-effect prev"><a href="/foo?page=49"   rel="prev"
-  aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li class="waves-effect"><a
-  href="/foo?page=1"   >1</a></li><li class="gap disabled"><a href="#">&hellip;</a></li><li
-  class="waves-effect"><a href="/foo?page=46"   >46</a></li><li class="waves-effect"><a
-  href="/foo?page=47"   >47</a></li><li class="waves-effect"><a href="/foo?page=48"   >48</a></li><li
-  class="waves-effect"><a href="/foo?page=49"   rel="prev" >49</a></li><li class="active"><a
-  href="/foo?page=50"   >50</a></li><li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li></ul></div>
+  class="pagy-materialize-nav pagination" role="navigation"><ul class="pagination"><li
+  class="waves-effect prev"><a href="/foo?page=49"   rel="prev" aria-label="previous"><i
+  class="material-icons">chevron_left</i></a></li><li class="waves-effect"><a href="/foo?page=1"   >1</a></li><li
+  class="gap disabled"><a href="#">&hellip;</a></li><li class="waves-effect"><a href="/foo?page=46"   >46</a></li><li
+  class="waves-effect"><a href="/foo?page=47"   >47</a></li><li class="waves-effect"><a
+  href="/foo?page=48"   >48</a></li><li class="waves-effect"><a href="/foo?page=49"   rel="prev"
+  >49</a></li><li class="active"><a href="/foo?page=50"   >50</a></li><li class="next
+  disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li></ul></div>
 "[2] pagy/extras/materialize::#pagy_materialize_nav#test_0003_renders last page": <div
-  id="test-nav-id" class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul
-  class="pagination"><li class="waves-effect prev"><a href="/foo?page=49"  link-extra
-  rel="prev" aria-label="previous"><i class="material-icons">chevron_left</i></a></li><li
-  class="waves-effect"><a href="/foo?page=1"  link-extra >1</a></li><li class="gap
-  disabled"><a href="#">&hellip;</a></li><li class="waves-effect"><a href="/foo?page=46"  link-extra
-  >46</a></li><li class="waves-effect"><a href="/foo?page=47"  link-extra >47</a></li><li
-  class="waves-effect"><a href="/foo?page=48"  link-extra >48</a></li><li class="waves-effect"><a
-  href="/foo?page=49"  link-extra rel="prev" >49</a></li><li class="active"><a href="/foo?page=50"  link-extra
-  >50</a></li><li class="next disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li></ul></div>
+  id="test-nav-id" class="pagy-materialize-nav pagination" role="navigation"><ul class="pagination"><li
+  class="waves-effect prev"><a href="/foo?page=49"  link-extra rel="prev" aria-label="previous"><i
+  class="material-icons">chevron_left</i></a></li><li class="waves-effect"><a href="/foo?page=1"  link-extra
+  >1</a></li><li class="gap disabled"><a href="#">&hellip;</a></li><li class="waves-effect"><a
+  href="/foo?page=46"  link-extra >46</a></li><li class="waves-effect"><a href="/foo?page=47"  link-extra
+  >47</a></li><li class="waves-effect"><a href="/foo?page=48"  link-extra >48</a></li><li
+  class="waves-effect"><a href="/foo?page=49"  link-extra rel="prev" >49</a></li><li
+  class="active"><a href="/foo?page=50"  link-extra >50</a></li><li class="next disabled"><a
+  href="#"><i class="material-icons">chevron_right</i></a></li></ul></div>

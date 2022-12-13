@@ -12,7 +12,7 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: link_extra)
 
-      html = +%(<div#{p_id} class="pagy-materialize-nav pagination" role="navigation" aria-label="pager"><ul class="pagination">)
+      html = +%(<div#{p_id} class="pagy-materialize-nav pagination" role="navigation"><ul class="pagination">)
       html << pagy_materialize_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -38,7 +38,7 @@ class Pagy # :nodoc:
                'gap'    => %(<li class="gap disabled"><a href="#">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
 
-      %(<div#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-materialize-nav-js" role="navigation" aria-label="pager" #{
+      %(<div#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-materialize-nav-js" role="navigation" #{
         pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
     end
 
@@ -53,7 +53,7 @@ class Pagy # :nodoc:
                     p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
 
       html = %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation")
-      %(#{html} aria-label="pager" style="padding-right: 0" #{
+      %(#{html} style="padding-right: 0" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           pagy_materialize_prev_html pagy, link, style}<li class="pagy-combo-input">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</li>#{
