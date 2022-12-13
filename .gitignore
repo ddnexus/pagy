@@ -5,6 +5,3 @@
 node_modules/
 /pkg/
 /tmp/
-pnpm
-.pnpm-store
-.pnpm-debug.log
