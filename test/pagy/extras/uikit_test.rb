@@ -37,6 +37,14 @@ describe 'pagy/extras/uikit' do
       _(app.pagy_uikit_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
                                      steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
     end
+    it 'renders first page when used with Pagy::Countless' do
+      require 'pagy/extras/countless'
+
+      pagy, = Pagy::Countless.new(page: 1).finalize(0)
+      _(app.pagy_uikit_nav_js(pagy)).must_rematch
+      _(app.pagy_uikit_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
+                                    steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
+    end
     it 'renders intermediate page' do
       pagy = Pagy.new(count: 1000, page: 20)
       _(app.pagy_uikit_nav_js(pagy)).must_rematch
