@@ -1,11 +1,12 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="e2e test open" type="js.build_tools.npm">
+  <configuration default="false" name="e2e test (open)" type="js.build_tools.npm">
     <package-json value="$PROJECT_DIR$/e2e/package.json" />
     <command value="run" />
     <scripts>
       <script value="test-open" />
     </scripts>
     <node-interpreter value="project" />
+    <package-manager value="pnpm" />
     <envs />
     <method v="2" />
   </configuration>
