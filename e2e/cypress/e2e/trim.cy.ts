@@ -1,4 +1,4 @@
-import {styles, stylesCal, navIds} from "../../support/test-helper";
+import {styles, stylesCal, navIds} from "../support/test-helper";
 
 describe("Test trim in all helpers and styles", () => {
     const testLoop = (styles:string[], ids:string[], param:string) => {
