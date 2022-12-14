@@ -215,7 +215,7 @@ describe 'pagy/extras/calendar' do
   describe 'pagy_calendar_url_at' do
     it 'returns the url' do
       collection = MockCollection::Calendar.new(@collection)
-      calendar, _pagy, _entries = app(params: { year_page: 2, month_page: 7, page: 2 })\
+      calendar, _pagy, _entries = app(params: { year_page: 2, month_page: 7, page: 2 }) \
                                   .send(:pagy_calendar, collection, year: {},
                                                                     month: {},
                                                                     pagy: { items: 10 })
