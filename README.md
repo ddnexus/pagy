@@ -9,7 +9,6 @@
  [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
 ![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
-[![Chat](http://img.shields.io/badge/gitter-ruby--pagy-purple.svg?colorA=800080&colorB=b300b3)](https://gitter.im/ruby-pagy/Lobby)
 
 ## 🏆 The Best Pagination Ruby Gem 🥇
 
@@ -245,7 +244,7 @@ See also the [How To Page](http://ddnexus.github.io/pagy/how-to)
 
 <summary>Ask for support...</summary>
 
-- [Live Support on Gitter](https://gitter.im/ruby-pagy/Lobby)
+- [Pagy Support](https://github.com/ddnexus/pagy/discussions/categories/q-a)
 - [Pagy Issues](https://github.com/ddnexus/pagy/issues)
 
 </details>
