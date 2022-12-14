@@ -109,7 +109,7 @@ jobs:
 
       - name: Install Cypress and Test Dependencies
         if: steps.e2e-cache.outputs.cache-hit != 'true'
-        run: npm i cypress @cypress/snapshot html-validate cypress-html-validate
+        run: npm i cypress @cypress/snapshot html-validate cypress-html-validate typescript
 
       - name: Run Cypress Tests
         # You may pin to the exact commit or the version.
