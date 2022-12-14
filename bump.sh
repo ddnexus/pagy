@@ -6,7 +6,7 @@ set -e
 ./e2e/ci-cache.sh
 
 # Exit if the working tree is dirty
-test -n "$(git status --porcelain)" && echo "Working tree dirty!" && exit 1
+#test -n "$(git status --porcelain)" && echo "Working tree dirty!" && exit 1
 
 # Set the root path
 ROOT="$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)")"
@@ -38,7 +38,9 @@ esc_old_minor_vers=${esc_old_vers%\\*}
 esc_new_minor_vers=${esc_new_vers%\\*}
 sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$ROOT/docs/how-to.md"
 
-npm run build -w src
+cd "$ROOT/src"
+pnpm run build
+cd "$ROOT"
 
 # Update CHANGELOG
 changelog=$(cat <<-LOG
