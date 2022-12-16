@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724313034952">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724492700388">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -30,12 +30,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.724313034952" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.724492700388" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.724313034952" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.724492700388" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.724313034952" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.724313034952" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.724492700388" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.724492700388" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -470,6 +470,18 @@ Pagy::DEFAULT[:link_extra] = 'data-remote=&quot;true&quot; class=&quot;my-class&
 pagy = Pagy.new(count: 1000, link_extra: 'data-remote=&quot;true&quot; class=&quot;my-class&quot;')</code></pre>
 </doc-codeblock></div>
 <p><strong>IMPORTANT</strong>: For performance reasons, the <code v-pre>:link_extra</code> variable must be a string formatted as a valid HTML attribute/value pairs. That string will get inserted verbatim in the HTML of the link. <em>(see more advanced details in the <a href="../api/frontend/#pagy_link_procpagy-link_extra">pagy_link_proc documentation</a>)</em></p>
+<doc-anchor-target id="customize-the-request-path">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#customize-the-request-path">#</doc-anchor-trigger>
+        <span>Customize the request path</span>
+    </h2>
+</doc-anchor-target>
+<p>Let&#x27;s say you are using something like a <a href="https://turbo.hotwired.dev/reference/frames">Turbo frame</a> and you are loading a collection with pagination on a page where you want the pagination links to point to a different path.  For example, if you are on a page like <code v-pre>/dashboard</code> and you have a collection of <code v-pre>foos</code> in a Turbo frame.  By default Pagy will use <code v-pre>request.path</code> when constructing pagination links, which will results in links like <code v-pre>/dashboard?page=2</code>.</p>
+<p>If you&#x27;d like to override the path so that the links point to a different endpoint than the current page&#x27;s <code v-pre>request.path</code>, you can pass in the <code v-pre>request_path</code> variable:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(my_scope, vars { request_path: '/foos' })</code></pre>
+</doc-codeblock></div>
+<p>This will result in pagination links like <code v-pre>/foos?page=2</code> instead of <code v-pre>/dashboard?page=2</code>.</p>
 <doc-anchor-target id="customize-the-params">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#customize-the-params">#</doc-anchor-trigger>

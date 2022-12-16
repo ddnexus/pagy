@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724313034952">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724492700388">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -30,12 +30,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.724313034952" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.724492700388" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.724313034952" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.724492700388" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.724313034952" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.724313034952" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.724492700388" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.724492700388" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -365,13 +365,18 @@ They are all integers:</p>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>:i18n_key</code></td>
-<td style="text-align: left;">The i18n key to lookup the <code v-pre>item_name</code> that gets interpolated in a few helper outputs <em>(see <a href="../../how-to/#customize-the-item-name">How to customize the item name</a>)</em></td>
+<td style="text-align: left;">The i18n key to lookup the <code v-pre>item_name</code> that gets interpolated in a few helper outputs (see <a href="../../how-to/#customize-the-item-name">How to customize the item name</a>)</td>
 <td style="text-align: left;"><code v-pre>&quot;pagy.item_name&quot;</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>:cycle</code></td>
 <td style="text-align: left;">Enable cycling/circular/infinite pagination: <code v-pre>true</code> sets <code v-pre>next</code> to <code v-pre>1</code> when the current page is the last page</td>
 <td style="text-align: left;"><code v-pre>false</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>:request_path</code></td>
+<td style="text-align: left;">Allows overriding the the request path for pagination links.  If left blank, helpers will use <code v-pre>request.path</code>.</td>
+<td style="text-align: left;"><code v-pre>&quot;&quot;</code></td>
 </tr>
 </tbody>
 </table>
@@ -444,6 +449,10 @@ They are all integers:</p>
 <tr>
 <td style="text-align: left;"><code v-pre>params</code></td>
 <td style="text-align: left;">The <code v-pre>:params</code> variable (<code v-pre>Hash</code> or <code v-pre>Proc</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>request_path</code></td>
+<td style="text-align: left;">The request path used for pagination helpers.  If blank, helpers will use <code v-pre>request.path</code></td>
 </tr>
 </tbody>
 </table>
