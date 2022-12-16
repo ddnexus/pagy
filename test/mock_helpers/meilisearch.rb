@@ -9,16 +9,17 @@ module MockMeilisearch
   class Results < Array
     def initialize(query, params = {})
       @query = query
-      @params = { offset: 0, limit: 10 }.merge(params)
-      super RESULTS[@query].slice(@params[:offset], @params[:limit]) || []
+      @params = { page: 1, hits_per_page: 10 }.merge(params)
+
+      super RESULTS[@query].slice(@params[:hits_per_page] * (@params[:page] - 1), @params[:hits_per_page]) || []
     end
 
     def raw_answer
       {
-        'hits'   => self,
-        'offset' => @params[:offset],
-        'limit'  => @params[:limit],
-        'nbHits' => RESULTS[@query].length
+        'hits'        => self,
+        'hitsPerPage' => @params[:hits_per_page],
+        'page'        => @params[:page],
+        'totalHits'   => RESULTS[@query].length
       }
     end
   end

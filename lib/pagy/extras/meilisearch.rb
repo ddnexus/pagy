@@ -19,9 +19,10 @@ class Pagy # :nodoc:
     module Pagy
       # Create a Pagy object from a Meilisearch results
       def new_from_meilisearch(results, vars = {})
-        vars[:items] = results.raw_answer['limit']
-        vars[:page]  = (results.raw_answer['offset'] / vars[:items]) + 1
-        vars[:count] = results.raw_answer['nbHits']
+        vars[:items] = results.raw_answer['hitsPerPage']
+        vars[:page]  = results.raw_answer['page']
+        vars[:count] = results.raw_answer['totalHits']
+
         new(vars)
       end
     end
@@ -32,13 +33,14 @@ class Pagy # :nodoc:
 
       # Return Pagy object and results
       def pagy_meilisearch(pagy_search_args, vars = {})
-        model, term, options = pagy_search_args
-        vars                 = pagy_meilisearch_get_vars(nil, vars)
-        options[:limit]      = vars[:items]
-        options[:offset]     = (vars[:page] - 1) * vars[:items]
-        results              = model.send(DEFAULT[:meilisearch_search], term, **options)
-        vars[:count]         = results.raw_answer['nbHits']
-        pagy                 = ::Pagy.new(vars)
+        model, term, options    = pagy_search_args
+        vars                    = pagy_meilisearch_get_vars(nil, vars)
+        options[:hits_per_page] = vars[:items]
+        options[:page]          = vars[:page]
+        results                 = model.send(:ms_search, term, **options)
+        vars[:count]            = results.raw_answer['totalHits']
+
+        pagy                    = ::Pagy.new(vars)
         # with :last_page overflow we need to re-run the method in order to get the hits
         return pagy_meilisearch(pagy_search_args, vars.merge(page: pagy.page)) \
                if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
