@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724493597978">
+    <meta name="turbo-root" content="/pagy">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724634135306">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
 
     <!-- Primary Meta Tags -->
-    <title>Pagy::Console</title>
-    <meta name="title" content="Pagy::Console">
+    <title>Pagy::Console | Pagy</title>
+    <meta name="title" content="Pagy::Console | Pagy">
     <meta name="description" content="Standard pagination requires controller, model, view and request to work, however you don't have to satisfy all that requirements in order to get any..." />
 
     <!-- Canonical -->
-    <link rel="canonical" href="/docs/api/console/" />
+    <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/api/console/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="/docs/api/console/">
-    <meta property="og:title" content="Pagy::Console">
+    <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/api/console/">
+    <meta property="og:title" content="Pagy::Console | Pagy">
     <meta property="og:description" content="Standard pagination requires controller, model, view and request to work, however you don't have to satisfy all that requirements in order to get any...">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="/docs/api/console/">
-    <meta property="twitter:title" content="Pagy::Console">
+    <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/api/console/">
+    <meta property="twitter:title" content="Pagy::Console | Pagy">
     <meta property="twitter:description" content="Standard pagination requires controller, model, view and request to work, however you don't have to satisfy all that requirements in order to get any...">
 
-    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.724493597978" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.724634135306" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.724493597978" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.724634135306" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.724493597978" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.724493597978" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.724634135306" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.724634135306" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -51,8 +52,8 @@
                 <div class="flex items-center justify-between h-full py-2 md:w-75">
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
-                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Project Name</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Docs</span>
+                            <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -63,7 +64,34 @@
                     <nav class="hidden md:flex">
                         <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
                             <li class="mr-6">
-                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="../../../docs/">Docs</a>
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/ddnexus/pagy">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                        </g>
+                                    </svg>
+                                    <span>Github</span>
+                                </a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/ddnexus/pagy/issues">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path fill-rule="evenodd" d="M2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 13a2 2 0 100-4 2 2 0 000 4z"/>
+                                        </g>
+                                    </svg>
+                                    <span>Issues</span>
+                                </a>
+                            </li>
+                            <li class="mr-6">
+                                <a class="py-2 md:mb-0 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/ddnexus/pagy/discussions">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                        <g fill="currentColor">
+                                            <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v9.5C0 13.216.784 14 1.75 14H3v1.543a1.457 1.457 0 002.487 1.03L8.061 14h6.189A1.75 1.75 0 0016 12.25v-9.5A1.75 1.75 0 0014.25 1H1.75zM1.5 2.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v9.5a.25.25 0 01-.25.25h-6.5a.75.75 0 00-.53.22L4.5 15.44v-2.19a.75.75 0 00-.75-.75h-2a.25.25 0 01-.25-.25v-9.5z"/><path d="M22.5 8.75a.25.25 0 00-.25-.25h-3.5a.75.75 0 010-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0122.25 20H21v1.543a1.457 1.457 0 01-2.487 1.03L15.939 20H10.75A1.75 1.75 0 019 18.25v-1.465a.75.75 0 011.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 01.53.22l2.72 2.72v-2.19a.75.75 0 01.75-.75h2a.25.25 0 00.25-.25v-9.5z"/>
+                                        </g>
+                                    </svg>
+                                    <span>Help</span>
+                                </a>
                             </li>
         
                         </ul>
@@ -142,7 +170,34 @@
                             <nav>
                                 <ul class="flex flex-wrap justify-center items-center">
                                     <li class="mr-6">
-                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="../../../docs/">Docs</a>
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/ddnexus/pagy">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <symbol id="mark-github-icon-symbol" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol><use xlink:href="#mark-github-icon-symbol" />
+                                                </g>
+                                            </svg>
+                                            <span>Github</span>
+                                        </a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/ddnexus/pagy/issues">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm0 13a2 2 0 100-4 2 2 0 000 4z"/>
+                                                </g>
+                                            </svg>
+                                            <span>Issues</span>
+                                        </a>
+                                    </li>
+                                    <li class="mr-6">
+                                        <a class="block py-1 inline-flex items-center text-sm whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://github.com/ddnexus/pagy/discussions">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px mr-1" width="18" height="18" viewBox="0 0 24 24" role="presentation">
+                                                <g fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M1.75 1A1.75 1.75 0 000 2.75v9.5C0 13.216.784 14 1.75 14H3v1.543a1.457 1.457 0 002.487 1.03L8.061 14h6.189A1.75 1.75 0 0016 12.25v-9.5A1.75 1.75 0 0014.25 1H1.75zM1.5 2.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v9.5a.25.25 0 01-.25.25h-6.5a.75.75 0 00-.53.22L4.5 15.44v-2.19a.75.75 0 00-.75-.75h-2a.25.25 0 01-.25-.25v-9.5z"/><path d="M22.5 8.75a.25.25 0 00-.25-.25h-3.5a.75.75 0 010-1.5h3.5c.966 0 1.75.784 1.75 1.75v9.5A1.75 1.75 0 0122.25 20H21v1.543a1.457 1.457 0 01-2.487 1.03L15.939 20H10.75A1.75 1.75 0 019 18.25v-1.465a.75.75 0 011.5 0v1.465c0 .138.112.25.25.25h5.5a.75.75 0 01.53.22l2.72 2.72v-2.19a.75.75 0 01.75-.75h2a.25.25 0 00.25-.25v-9.5z"/>
+                                                </g>
+                                            </svg>
+                                            <span>Help</span>
+                                        </a>
                                     </li>
             
                                 </ul>
@@ -173,6 +228,12 @@
         <span>Pagy::Console</span>
     </h1>
 </doc-anchor-target>
+<div class="-mt-3 mb-12 flex flex-wrap text-sm text-gray-400 dark:text-dark-350 items-center">
+    <div>In&nbsp;</div>
+    <div><a href="../../../categories/support/">Support</a>,&nbsp;</div>
+    <div><a href="../../../categories/module/">Module</a></div>
+</div>
+
 <p>Standard pagination requires controller, model, view and request to work, however you don&#x27;t have to satisfy all that requirements in order to get any helper working in the irb/rails console.</p>
 <p>You can try any feature right away, even without any app nor configuration right in the irb/rails console:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -183,7 +244,7 @@ pagy_extras :array, :metadata, ...
 ### then you can use it like inside an app
 pagy, items = pagy_array((1..1000).to_a, page: 3)
 pagy_navs(pagy)
-=&gt; &quot;&lt;nav class=\&quot;pagy-nav pagination\&quot; role=\&quot;navigation\&quot;&gt;&lt;span class=\&quot;page prev\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2&amp;items=20\&quot;   rel=\&quot;prev\&quot; aria-label=\&quot;previous\&quot;&gt;&amp;lsaquo;&amp;nbsp;Prev&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=1&amp;items=20\&quot;   &gt;1&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2&amp;items=20\&quot;   rel=\&quot;prev\&quot; &gt;2&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page active\&quot;&gt;3&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4&amp;items=20\&quot;   rel=\&quot;next\&quot; &gt;4&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=5&amp;items=20\&quot;   &gt;5&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=6&amp;items=20\&quot;   &gt;6&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=7&amp;items=20\&quot;   &gt;7&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page gap\&quot;&gt;&amp;hellip;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=50&amp;items=20\&quot;   &gt;50&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page next\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4&amp;items=20\&quot;   rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;&gt;Next&amp;nbsp;&amp;rsaquo;&lt;/a&gt;&lt;/span&gt;&lt;/nav&gt;&quot;
+=&gt; &quot;&lt;nav class=\&quot;pagy-nav pagination\&quot; role=\&quot;navigation\&quot; aria-label=\&quot;pager\&quot;&gt;&lt;span class=\&quot;page prev\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2&amp;items=20\&quot;   rel=\&quot;prev\&quot; aria-label=\&quot;previous\&quot;&gt;&amp;lsaquo;&amp;nbsp;Prev&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=1&amp;items=20\&quot;   &gt;1&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2&amp;items=20\&quot;   rel=\&quot;prev\&quot; &gt;2&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page active\&quot;&gt;3&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4&amp;items=20\&quot;   rel=\&quot;next\&quot; &gt;4&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=5&amp;items=20\&quot;   &gt;5&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=6&amp;items=20\&quot;   &gt;6&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=7&amp;items=20\&quot;   &gt;7&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page gap\&quot;&gt;&amp;hellip;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=50&amp;items=20\&quot;   &gt;50&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page next\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4&amp;items=20\&quot;   rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;&gt;Next&amp;nbsp;&amp;rsaquo;&lt;/a&gt;&lt;/span&gt;&lt;/nav&gt;&quot;
 
 pagy_metadata(pagy)
 =&gt;
@@ -211,23 +272,26 @@ pagy_metadata(pagy)
 </doc-anchor-target>
 <p>The pagy console uses the <a href="../../extras/standalone/">standalone extra</a> and sets the <code v-pre>Pagy::DEFAULT[:url]</code> variable default to <code v-pre>&quot;http://www.example.com/subdir&quot;</code> in order to activate the standalone mode.</p>
 <p>Include the module in your console window in order to include also the <code v-pre>Pagy::Backend</code> and <code v-pre>Pagy::Frontend</code> modules.</p>
-<doc-anchor-target id="pagy_extrasextras">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#pagy_extrasextras">#</doc-anchor-trigger>
-        <span>pagy_extras(*extras)</span>
-    </h3>
-</doc-anchor-target>
+<doc-panel id="pagy-extras-extras" collapsed>
+    <template #title><code v-pre>pagy_extras(*extras)</code></template>
 <p>Simple utility method to save some typing in the console. It will require the extras arguments. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">pagy_extras :array, :bootstrap, :support, :headers, ...</code></pre>
 </doc-codeblock></div>
 <p>You will be able to use any frontend or backend method implemented by pagy and the required extras right away.</p>
+</doc-panel>
 
                                 
                                 <!-- Required only on API pages -->
                                 <doc-toolbar-member-filter-no-results />
                             </div>
                             <footer class="clear-both">
+                                <div class="flex flex-wrap items-center justify-between mt-14">
+                                    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/ddnexus/pagy/blob/master/docs/api/console.md" target="_blank" rel="noopener">
+                                        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        <span>Edit this page</span>
+                                    </a>
+                                </div>
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
@@ -259,7 +323,7 @@ pagy_metadata(pagy)
                                     <ul class="flex flex-wrap items-center text-sm">
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2022. All rights reserved.</p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© 2017-2022 <a href="https://github.com/ddnexus">Domizio Demichelis</a> - <a href="https://opensource.org/licenses/MIT">MIT License</a></p></div>
                             </footer>
                         </div>
                     </div>
