@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724634476648">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724662347103">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>LEGACY CHANGELOG | Pagy</title>
     <meta name="title" content="LEGACY CHANGELOG | Pagy">
-    <meta name="description" content="added countless_minimal feature" />
+    <meta name="description" content="Changed default for :meilisearch_search method to always defined :ms_search method" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/changelog_legacy/" />
@@ -21,21 +21,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/changelog_legacy/">
     <meta property="og:title" content="LEGACY CHANGELOG | Pagy">
-    <meta property="og:description" content="added countless_minimal feature">
+    <meta property="og:description" content="Changed default for :meilisearch_search method to always defined :ms_search method">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/changelog_legacy/">
     <meta property="twitter:title" content="LEGACY CHANGELOG | Pagy">
-    <meta property="twitter:description" content="added countless_minimal feature">
+    <meta property="twitter:description" content="Changed default for :meilisearch_search method to always defined :ms_search method">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=2.4.0.724634476648" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.724662347103" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.724634476648" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.724662347103" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.724634476648" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.724662347103" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -227,15 +227,693 @@
         <span>LEGACY CHANGELOG</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="version-5101">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-5101">#</doc-anchor-trigger>
+        <span>Version 5.10.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Changed default for :meilisearch_search method to always defined :ms_search method</li>
+</ul>
+<doc-anchor-target id="version-5100">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-5100">#</doc-anchor-trigger>
+        <span>Version 5.10.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Adjusted Psych::VERSION condition to avoid deprecations</li>
+<li>Improvement of search extras: (closes #367) (closes #369)
+<ul>
+<li>Added DEFAULT[:*_search] variables used to call the original :search method</li>
+<li>Deprecated and renamed DEFAULT[:<em>_search_method] to DEFAULT[:</em>_pagy_search]</li>
+<li>Updated config, docs and CHANGELOG deprecations</li>
+</ul>
+</li>
+<li>Fix for wrong calculation of :page in Pagy.new_from_meilisearch (closes #368)</li>
+<li>Faster assignment of javascript path</li>
+<li>Simplified webpack config, added rollup config and normalized doc</li>
+<li>Better javascript doc (closes #365)</li>
+<li>Added specific webpack javascript configuration info; a few minor doc adjustments</li>
+<li>Added specific webpack javascript configuration info</li>
+<li>Update javascript.md (#362)</li>
+</ul>
+<doc-anchor-target id="version-593">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-593">#</doc-anchor-trigger>
+        <span>Version 5.9.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix for too generalized html_escape in pagy_url_for. (closes #363)</li>
+<li>Docs updates</li>
+</ul>
+<doc-anchor-target id="version-592">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-592">#</doc-anchor-trigger>
+        <span>Version 5.9.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Added info about using pagy-module.js with importmap</li>
+<li>Bundle and npm update</li>
+<li>Fix for non escaped query strings in links</li>
+<li>Small improvements in src files</li>
+<li>Added legacy methods to use the javascript files</li>
+<li>Added missing require in docs</li>
+<li>Updated docs with the proper way to use pagy with esbuild</li>
+<li>Docs improvements</li>
+<li>Improved the javascript files docs and moved into the lib/javascripts/README.md file</li>
+</ul>
+<doc-anchor-target id="version-591">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-591">#</doc-anchor-trigger>
+        <span>Version 5.9.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated build.sh to set window.Pagy in pagy-dev.js</li>
+<li>Update pagy.md (#360)</li>
+<li>Minor - fix syntax highlighting (#361)</li>
+<li>Updated info about the current way to use pagy.js with jsbuilder-rails/esbundle</li>
+</ul>
+<doc-anchor-target id="version-590">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-590">#</doc-anchor-trigger>
+        <span>Version 5.9.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Npm and bundle update</li>
+<li>Fix and refactoring of pagy calendar calculation of local time (closes #358):
+<ul>
+<li>The <code v-pre>Pagy::Calendar::*</code> classes require ActiveSupport (temporarily added activesupport dependency that will e replaced in 6.0)</li>
+<li>The <code v-pre>:period</code> items can be <code v-pre>Time</code> or <code v-pre>TimeWithZone</code> objects (which work across DST ranges)</li>
+<li>Deprecated use of <code v-pre>:offset</code> to set the first weekday, in favour of <code v-pre>Date.beginning_of_week</code> (default to <code v-pre>:monday</code>)</li>
+<li>Added DST specific tests</li>
+<li>Fix for calculation of label quarter</li>
+<li>Updated docs and tests</li>
+</ul>
+</li>
+<li>Fix for wrong offset in gearbox extra (closes #356)</li>
+<li>Reduced the public interface of pagy.js and relative files to just <code v-pre>version</code> and <code v-pre>init()</code></li>
+<li>Add Ruby 3.1 to CI (#354)</li>
+</ul>
+<doc-anchor-target id="version-581">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-581">#</doc-anchor-trigger>
+        <span>Version 5.8.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Shorter warning messages and minified pagy.js</li>
+<li>Fix for wrong decoding of non latin charsets</li>
+</ul>
+<doc-anchor-target id="version-580">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-580">#</doc-anchor-trigger>
+        <span>Version 5.8.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>The JSON in data-pagy attributes is base64 encoded: it is smaller than HTML escaped and it avoids crawlers to follow look-alike links</li>
+<li>Removed redundant PagyJSON type</li>
+</ul>
+<doc-anchor-target id="version-576">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-576">#</doc-anchor-trigger>
+        <span>Version 5.7.6</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated Gemfile.lock and package-lock.json</li>
+<li>Broader browserslist and better doc for javascript</li>
+<li>Updated build.sh</li>
+<li>Improvement of pagy.ts:
+<ul>
+<li>Moved warn() out of init()</li>
+<li>More inclusive try block</li>
+<li>Simplified rjsObserver function</li>
+<li>Replaced getOwnPropertyNames with keys</li>
+</ul>
+</li>
+<li>Fix for missing entry in CHANGELOG.md</li>
+</ul>
+<doc-anchor-target id="version-575">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-575">#</doc-anchor-trigger>
+        <span>Version 5.7.5</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix for unwanted offset in source map data</li>
+</ul>
+<doc-anchor-target id="version-574">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-574">#</doc-anchor-trigger>
+        <span>Version 5.7.4</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Added parcel-plugin-nuke-dist</li>
+<li>Renamed pagy.mjs -&gt; pagy-module.js; added TypeScript declaration file and build.sh</li>
+</ul>
+<doc-anchor-target id="version-573">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-573">#</doc-anchor-trigger>
+        <span>Version 5.7.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>npm update</li>
+<li>Simper pagy-dev.js; added pagy.mjs module</li>
+<li>Updated .eslintrc.json and package.json files</li>
+</ul>
+<doc-anchor-target id="version-572">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-572">#</doc-anchor-trigger>
+        <span>Version 5.7.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Simplified keyword naming</li>
+<li>Better compilation and development support for pagy.js. Replaced babel with parcel.</li>
+</ul>
+<doc-anchor-target id="version-571">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-571">#</doc-anchor-trigger>
+        <span>Version 5.7.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Simpler syntax for nav js helpers</li>
+<li>Added input e2e test file</li>
+<li>Simpler abstraction of input based js helpers</li>
+</ul>
+<doc-anchor-target id="version-570">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-570">#</doc-anchor-trigger>
+        <span>Version 5.7.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Bundle and npm update</li>
+<li>TypeScript/Javascript improvements:
+<ul>
+<li>More efficient handling of responsive *nav_js helpers</li>
+<li>Replaced window resize event listener with ResizeObserver</li>
+<li>More robust input based js helpers (catching possible invalid user input)</li>
+<li>Improved typing, function naming</li>
+<li>Added error catching</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="version-5610">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-5610">#</doc-anchor-trigger>
+        <span>Version 5.6.10</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Improvement and fixes for client-side related structure</li>
+<li>Replaced e2e/cy script with a couple of npm scripts backed by the start-server-and-test</li>
+<li>Added trim test for items_selector_js; cleanup of e2e dir</li>
+<li>Normalized json files indentation</li>
+<li>Added trim to e2e tests</li>
+<li>Reorganized cypress tests: faster and more accurate</li>
+<li>Simpler pagy.ts</li>
+</ul>
+<doc-anchor-target id="version-569">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-569">#</doc-anchor-trigger>
+        <span>Version 5.6.9</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Better doc for e2e related commands in docker/README.md</li>
+<li>Updated package-lock.json and improved ci-cache.sh</li>
+<li>Used better syntax and code style in typescript files</li>
+<li>Updated copyright year</li>
+<li>Refactoring of typescript related files and dirs:
+<ul>
+<li>Moved e2e dir in the project root</li>
+<li>Added typescript linting plugins and configuration</li>
+<li>Converted all the e2e test to typescript</li>
+</ul>
+</li>
+<li>Updated Docker, VSC and .idea configurations</li>
+</ul>
+<doc-anchor-target id="version-568">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-568">#</doc-anchor-trigger>
+        <span>Version 5.6.8</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Reorganized TypeScript/JavaScript with npm workspaces and better script naming</li>
+<li>Fix typo in gemspec</li>
+<li>Better typescript configuration with source maps and declrations</li>
+</ul>
+<doc-anchor-target id="version-567">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-567">#</doc-anchor-trigger>
+        <span>Version 5.6.7</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>GitHub Actions: added quotes to version ruby 3.0</li>
+<li>Added typescript + babel environment for better pagy.js</li>
+<li>Updated e2e environment</li>
+<li>Updated gemfiles</li>
+<li>Fix for support doc snippets and other typos</li>
+<li>Minor update of gemfiles and docs</li>
+<li>Added more gemspec metadata entries (closes #351)</li>
+</ul>
+<doc-anchor-target id="version-566">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-566">#</doc-anchor-trigger>
+        <span>Version 5.6.6</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Docs improvements</li>
+<li>Added **_ to series and sequels</li>
+<li>Updated rematch and gemfiles</li>
+<li>Updated release-gem.yml workflow</li>
+</ul>
+<doc-anchor-target id="version-565">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-565">#</doc-anchor-trigger>
+        <span>Version 5.6.5</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Improved a few code comments; added post link in README</li>
+<li>Full name for translate, aliased as t</li>
+<li>Added check for no calendar units in pagy_calendar configuration</li>
+<li>Updated gemfiles</li>
+<li>Small docs layout adjustment</li>
+</ul>
+<doc-anchor-target id="version-564">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-564">#</doc-anchor-trigger>
+        <span>Version 5.6.4</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated RM run configurations</li>
+<li>Fix for missing innerHTML reset, unintentionally committed during a cleanup (closes #350)</li>
+<li>Updated gemfiles, docs and comments</li>
+</ul>
+<doc-anchor-target id="version-563">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-563">#</doc-anchor-trigger>
+        <span>Version 5.6.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Improved readability and efficiency of calendar files</li>
+<li>Fix for English spelling in local variable name</li>
+</ul>
+<doc-anchor-target id="version-562">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-562">#</doc-anchor-trigger>
+        <span>Version 5.6.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated pagy.manifest for Tamil locale</li>
+<li>Add Tamil (ta) translation (#349)</li>
+<li>Internal changes in calendar files:
+<ul>
+<li>Simpler calculations for month mixin</li>
+<li>Normalized naming of non-api methods</li>
+<li>Better comments</li>
+</ul>
+</li>
+<li>Pagy::I18n: small performance improvement</li>
+<li>Docs reorganization</li>
+<li>Update paths_ignore for skip CI and docs</li>
+</ul>
+<doc-anchor-target id="version-561">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-561">#</doc-anchor-trigger>
+        <span>Version 5.6.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated cypress and bundler</li>
+<li>Improved efficiency of unit labelling and support for custom calendar unit sub formats</li>
+<li>Added missing initializer default for calendar quarter and missing doc for custom units</li>
+</ul>
+<doc-anchor-target id="version-560">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-560">#</doc-anchor-trigger>
+        <span>Version 5.6.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated gemfiles</li>
+<li>Updated docs</li>
+<li>Added calendar quarter tests</li>
+<li>Internal calendar refactoring to allow custom units; added quarter unit</li>
+</ul>
+<doc-anchor-target id="version-551">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-551">#</doc-anchor-trigger>
+        <span>Version 5.5.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Docs updates</li>
+<li>upgrade bootstrap template navs: call pagy_link_proc with link_extra key (#348)</li>
+<li>Renamed internal #time_for -&gt; #start_for</li>
+<li>Docs fixes and improvements</li>
+</ul>
+<doc-anchor-target id="version-550">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-550">#</doc-anchor-trigger>
+        <span>Version 5.5.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated cypress and related packages</li>
+<li><strong>Calendar API: FINAL breaking changes</strong> (stable from now on):
+<ul>
+<li>Refactoring of calendar classes and variables:</li>
+<li>Moved calendar defaults from <code v-pre>Pagy::DEFAULT</code> to class-specific <code v-pre>Pagy::Calendar::*::DEFAULT</code></li>
+<li>Renamed variables:
+<ul>
+<li><code v-pre>:minmax</code> -&gt; <code v-pre>:period</code></li>
+<li><code v-pre>:time_order</code> -&gt; <code v-pre>:order</code></li>
+<li><code v-pre>:week_offset</code> -&gt; <code v-pre>:offset</code></li>
+<li><code v-pre>:*_format</code> -&gt; <code v-pre>:format</code></li>
+</ul>
+</li>
+<li>Returning local time instead of UTC time for the utc accessors, now renamed:
+<ul>
+<li><code v-pre>#utc_from</code> -&gt; <code v-pre>#from</code> (use <code v-pre>from.utc</code> if you need it)</li>
+<li><code v-pre>#utc_to</code> -&gt; <code v-pre>#to</code> (use <code v-pre>to.utc</code> if you need it)</li>
+</ul>
+</li>
+<li>Inverted the logic for the <code v-pre>:skip</code> key in the <code v-pre>#pagy_calendar</code> conf, now renamed:
+<ul>
+<li><code v-pre>:skip</code> -&gt; <code v-pre>:active</code></li>
+</ul>
+</li>
+<li>Renamed methods:
+<ul>
+<li><code v-pre>#pagy_calendar_minmax</code> -&gt; <code v-pre>#pagy_calendar_period</code></li>
+<li><code v-pre>#pagy_calendar_filtered</code> -&gt; <code v-pre>#pagy_calendar_filter</code></li>
+</ul>
+</li>
+<li>Added alternative way to delegate the localization to i18n without the i18n extra</li>
+<li>Updated <code v-pre>pagy_calendar_app.ru</code></li>
+<li>Fix for wrong reordering in <code v-pre>:desc</code> order</li>
+<li>Documentation fixes and improvements</li>
+<li>Removed the warning for the API changes: the API is stable after these changes</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="version-540">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-540">#</doc-anchor-trigger>
+        <span>Version 5.4.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li><strong>Calendar API breaking changes</strong> for refactoring of <code v-pre>Pagy::Calendar</code> and calendar extra:
+<ul>
+<li>Added complete compatibility with all the backend extras</li>
+<li>Simpler usage with automatic handling of pagy objects</li>
+<li>Less variables and simpler requirements for the methods to implement</li>
+</ul>
+</li>
+<li>Updated gemfiles</li>
+<li>The localize method overridden by the i18n extra must receive a format</li>
+<li>Series and sequels use keyword arguments and pagy_*nav methods accepts a size keyword argument</li>
+<li>Docs improvements</li>
+<li>Removed unnecessary empty section in calendar docs</li>
+<li>Fixes for typos and misalignment</li>
+</ul>
+<doc-anchor-target id="version-531">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-531">#</doc-anchor-trigger>
+        <span>Version 5.3.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Added screenshot to the calendar extra (closes #346)</li>
+<li>Added bump.sh script to bump the version in multiple files; check for consistency and optionally commit the changes</li>
+<li>Minor fixes</li>
+<li>Changelog improvements</li>
+<li>Reversed CHANGELOG (closes #345)</li>
+<li>Calendar I18n small internal renaming and docs improvements</li>
+</ul>
+<doc-anchor-target id="version-530">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-530">#</doc-anchor-trigger>
+        <span>Version 5.3.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Implemented localization of time labels through the i18n extra delegation</li>
+<li>Renamed internal module and files of SharedExtra to FrontendHelpers</li>
+<li>Added support for <code v-pre>*nav_js</code> to Calendar</li>
+<li>Simplified page labelling, moved into the pagy classes and removed frontend methods</li>
+<li>Deprecated <code v-pre>pagy_massage_params</code>: use the :params variable set to a Proc that does the same, but per instance</li>
+<li>Added apps README</li>
+<li>Completed overflow fix for pagy Countless</li>
+</ul>
+<doc-anchor-target id="version-523">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-523">#</doc-anchor-trigger>
+        <span>Version 5.2.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix for overflow :empty_page in regular Pagy instances, not returning an empty page</li>
+<li>docs: add tutorial, simplify header (#343)</li>
+<li>Refactoring of rails_inline_input.rb (include and close #342)</li>
+</ul>
+<doc-anchor-target id="version-522">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-522">#</doc-anchor-trigger>
+        <span>Version 5.2.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix for missing defined?(Calendar) checks; small simplification in headers extra</li>
+<li>Calendar docs improvements and fixes</li>
+</ul>
+<doc-anchor-target id="version-521">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-521">#</doc-anchor-trigger>
+        <span>Version 5.2.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Reorganization of mock collection classes; enabled rubocop layout in tests</li>
+<li>Small refactoring of the overview extra</li>
+<li>A few improvements for the Calendar pagination; added the current_page_label method</li>
+</ul>
+<doc-anchor-target id="version-520">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-520">#</doc-anchor-trigger>
+        <span>Version 5.2.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Small changes in code; updated gemfiles, tests and docs</li>
+<li>Implemented calendar extra to paginate a Time periods by unit (year, month, week or day)</li>
+<li>Added pagy_labeler frontend method overridable for changing the link text from a simple page number to any arbitrary string</li>
+<li>Enabled rubocop Style/Documentation cop</li>
+<li>Updated npm modules and gemfiles</li>
+<li>Docker better mounts</li>
+<li>Used gem-generic release-gem action</li>
+</ul>
+<doc-anchor-target id="version-513">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-513">#</doc-anchor-trigger>
+        <span>Version 5.1.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Added single action standalone rails_inline_output.rb</li>
+<li>Small improvements in code and docs</li>
+<li>Fix for rails problem with internal params in pagy URL (closes #341)</li>
+<li>Documentation improvements</li>
+<li>A few details tag in the README should be opened by default</li>
+</ul>
+<doc-anchor-target id="version-512">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-512">#</doc-anchor-trigger>
+        <span>Version 5.1.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Refactoring of pagy_url_for and relative test:
+<ul>
+<li>Fix for ignoring the items_extra variable</li>
+<li>Replaced request.GET with request.params to enable POST pagination</li>
+<li>Refactoring of Mock test classes for better handling of params</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="version-511">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-511">#</doc-anchor-trigger>
+        <span>Version 5.1.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>This reverts commit 1d77e672d5b7813108b40c13ca93fdec045f4c03.
+Generating the URL by using the application params method breakes rails apps because it requires manual changes in the apps.</li>
+</ul>
+<doc-anchor-target id="version-510">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-510">#</doc-anchor-trigger>
+        <span>Version 5.1.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix and refactoring of pagy_url_for and relative test:
+<ul>
+<li>Fix for ignoring the params not coming from the request</li>
+<li>Fix for ignoring the items_extra variable</li>
+<li>Refactoring of Mock test classes for better handling of params</li>
+</ul>
+</li>
+<li>Improved code comments, formatting and docs fixes</li>
+<li>Countless extra: simplified code, internal renaming of locals and docs update</li>
+</ul>
+<doc-anchor-target id="version-501">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-501">#</doc-anchor-trigger>
+        <span>Version 5.0.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated docs and issue templates</li>
+<li>Added cypress-dark theme to e2e test</li>
+<li>Refactoring of coverage to include 100% of line and condition branches covered</li>
+<li>Simplification of metadata extra</li>
+<li>Refactoring of exceptions</li>
+<li>Added CHANGELOG_LEGACY</li>
+</ul>
+<doc-anchor-target id="version-500">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-500">#</doc-anchor-trigger>
+        <span>Version 5.0.0</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="breaking-changes---1-code-update">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes---1-code-update">#</doc-anchor-trigger>
+        <span>Breaking changes - 1. Code update</span>
+    </h3>
+</doc-anchor-target>
+<p>Pagy 4 dropped the compatibility for old ruby versions <code v-pre>&gt;2.5</code> and started to refactor the code using more modern syntax and paradigms and better performance. It deprecated the legacy ones, printing deprecation warnings and upgrading instruction in the log, but still supporting its legacy API. Pagy 5.0.0 cleans up and removes all that transitional support code.</p>
+<p>The changes for upgrading your app cannot be fixed with simple search and replace, but fear not! Fixing them should just take a few minutes with the following steps:</p>
+<ul>
+<li>Upgrade to the latest version of pagy 4</li>
+<li>Run your tests or app</li>
+<li>Check the log for any deprecations message starting with &#x27;[PAGY WARNING]&#x27;</li>
+<li>Update your code as indicated by the messages</li>
+<li>Ensure that the log is now free from warnings</li>
+<li>Upgrade to pagy 5</li>
+</ul>
+<p>FYI: Here is the list of the deprecations that are not supported anymore:</p>
+<doc-anchor-target id="removed-support-for-deprecated-variables">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removed-support-for-deprecated-variables">#</doc-anchor-trigger>
+        <span>Removed support for deprecated variables</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li><code v-pre>Pagy::VARS[:anchor]</code> is now <code v-pre>Pagy::DEFAULT[:fragment]</code></li>
+</ul>
+<doc-anchor-target id="removed-support-for-deprecated-arguments-order">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removed-support-for-deprecated-arguments-order">#</doc-anchor-trigger>
+        <span>Removed support for deprecated arguments order</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li>The argument order in <code v-pre>pagy_url_for(page, pagy)</code> is now inverted: <code v-pre>pagy_url_for(pagy, page)</code></li>
+</ul>
+<doc-anchor-target id="removed-support-for-deprecated-positional-arguments">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#removed-support-for-deprecated-positional-arguments">#</doc-anchor-trigger>
+        <span>Removed support for deprecated positional arguments</span>
+    </h4>
+</doc-anchor-target>
+<p>The following optional positional arguments are passed with keywords arguments in all the pagy helpers:</p>
+<ul>
+<li>The <code v-pre>id</code> html attribute string with the <code v-pre>pagy_id</code> keyword</li>
+<li>The <code v-pre>url|absolute</code> flag with the <code v-pre>absolute</code> keyword</li>
+<li>The <code v-pre>item_name</code> string with the <code v-pre>item_name</code> keyword</li>
+<li>The <code v-pre>extra|link_extra</code> string with the <code v-pre>link_extra</code> keyword</li>
+<li>The <code v-pre>text</code> string with the <code v-pre>text</code> keyword</li>
+</ul>
+<doc-anchor-target id="breaking-changes---2-simple-search-and-replace">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes---2-simple-search-and-replace">#</doc-anchor-trigger>
+        <span>Breaking changes - 2. Simple search and replace</span>
+    </h3>
+</doc-anchor-target>
+<p>There are a few renaming that have not been deprecated in previous versions because they are extremely easy to fix with simple search and replace (while implementing deprecations would have been detrimental to performance and complex for no reason)</p>
+<doc-anchor-target id="consistency-renaming">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#consistency-renaming">#</doc-anchor-trigger>
+        <span>Consistency renaming</span>
+    </h4>
+</doc-anchor-target>
+<p>A few elements have been renamed: you code may or may not contain them. Just search and replace the following strings:</p>
+<ul>
+<li>Rename <code v-pre>Pagy::VARS</code> to <code v-pre>Pagy::DEFAULT</code></li>
+<li>Rename <code v-pre>enable_items_extra</code> to <code v-pre>items_extra</code></li>
+<li>Rename <code v-pre>enable_trim_extra</code> to <code v-pre>trim_extra</code></li>
+<li>Rename <code v-pre>Pagy::Helpers</code> to <code v-pre>Pagy::UrlHelpers</code></li>
+<li>Rename <code v-pre>pagy_get_params</code> to <code v-pre>pagy_massage_params</code></li>
+</ul>
+<doc-anchor-target id="items-accessor">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#items-accessor">#</doc-anchor-trigger>
+        <span>Items accessor</span>
+    </h4>
+</doc-anchor-target>
+<p>The items accessor does not adjust for the actual items in the last page anymore. This should not affect normal usage, so you can ignore this change unless you build something on that assumption.</p>
+<p>If your code is relying on the actual number of items <strong>in</strong> the page, then just replace <code v-pre>@pagy.items</code> with <code v-pre>@pagy.in</code> wherever you meant that.</p>
+<p>FYI: The <code v-pre>@pagy.items</code> is now always equal to <code v-pre>@pagy.vars[:items]</code> (i.e. the requested items), while the <code v-pre>@pagy.in</code> returns the actual items in the page (which could be less than the <code v-pre>items</code> when the page is the last page)</p>
+<doc-anchor-target id="changes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes">#</doc-anchor-trigger>
+        <span>Changes</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Removed support for deprecations</li>
+<li>Refactoring of Pagy and Pagy::Countless classes, I18n, and url helpers</li>
+<li>Refactoring of the docker environment, addition of ready to use VSCode setup</li>
+<li>Changed general module structure (use of prepend instead of re-opening modules)</li>
+<li>Added gearbox extra for geared pagination</li>
+<li>Added configuration files for a full working VSCode devcontainer environment</li>
+<li>Added Run Configurations for RubyMine</li>
+<li>Improved the usage of e2e tests</li>
+<li>Updated doc, gemfiles and github workflow</li>
+<li>Other minor fixes and improvements in code and doc</li>
+</ul>
 <doc-anchor-target id="version-4110">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-4110">#</doc-anchor-trigger>
         <span>Version 4.11.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes">
+<doc-anchor-target id="changes-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-1">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -263,9 +941,9 @@
         <span>Version 4.10.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-1">
+<doc-anchor-target id="changes-2">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-1">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-2">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -297,9 +975,9 @@
         <span>Version 4.10.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-2">
+<doc-anchor-target id="changes-3">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-2">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-3">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -321,9 +999,9 @@
         <span>Version 4.10.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-3">
+<doc-anchor-target id="changes-4">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-3">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-4">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -346,9 +1024,9 @@
         <span>Version 4.9.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-4">
+<doc-anchor-target id="changes-5">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-4">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-5">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -375,9 +1053,9 @@
         <span>Version 4.8.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-5">
+<doc-anchor-target id="changes-6">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-5">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-6">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -400,9 +1078,9 @@
         <span>Version 4.8.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-6">
+<doc-anchor-target id="changes-7">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-6">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-7">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -443,9 +1121,9 @@
         <span>Version 4.7.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-7">
+<doc-anchor-target id="changes-8">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-7">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-8">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -475,9 +1153,9 @@
         <span>Version 4.7.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-8">
+<doc-anchor-target id="changes-9">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-8">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-9">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -508,9 +1186,9 @@
         <span>Version 4.6.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-9">
+<doc-anchor-target id="changes-10">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-9">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-10">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -550,9 +1228,9 @@
         <span>Version 4.5.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-10">
+<doc-anchor-target id="changes-11">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-10">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-11">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -574,9 +1252,9 @@
         <span>Version 4.5.0</span>
     </h3>
 </doc-anchor-target>
-<doc-anchor-target id="changes-11">
+<doc-anchor-target id="changes-12">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-11">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-12">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -600,9 +1278,9 @@
         <span>Version 4.4.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-12">
+<doc-anchor-target id="changes-13">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-12">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-13">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -669,9 +1347,9 @@
         <span>Version 4.3.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-13">
+<doc-anchor-target id="changes-14">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-13">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-14">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -713,9 +1391,9 @@
         <span>Version 4.2.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-14">
+<doc-anchor-target id="changes-15">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-14">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-15">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -765,9 +1443,9 @@
         <span>Version 4.1.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-15">
+<doc-anchor-target id="changes-16">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-15">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-16">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -799,9 +1477,9 @@
 <ul>
 <li>renamed <code v-pre>Pagy::Search</code> as <code v-pre>Pagy::Searchkick</code> or <code v-pre>Pagy::ElasticsearchRails</code></li>
 </ul>
-<doc-anchor-target id="changes-16">
+<doc-anchor-target id="changes-17">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-16">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-17">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -855,9 +1533,9 @@
         <span>Version 3.11.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-17">
+<doc-anchor-target id="changes-18">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-17">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-18">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -881,9 +1559,9 @@
         <span>Version 3.10.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-18">
+<doc-anchor-target id="changes-19">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-18">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-19">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -907,9 +1585,9 @@
         <span>Version 3.9.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-19">
+<doc-anchor-target id="changes-20">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-19">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-20">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -942,9 +1620,9 @@
         <span>Version 3.8.3</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-20">
+<doc-anchor-target id="changes-21">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-20">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-21">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -975,9 +1653,9 @@
         <span>Version 3.8.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-21">
+<doc-anchor-target id="changes-22">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-21">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-22">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1001,9 +1679,9 @@
         <span>Version 3.8.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-22">
+<doc-anchor-target id="changes-23">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-22">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-23">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1030,9 +1708,9 @@
         <span>Version 3.8.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-23">
+<doc-anchor-target id="changes-24">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-23">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-24">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1060,9 +1738,9 @@
         <span>Version 3.7.5</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-24">
+<doc-anchor-target id="changes-25">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-24">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-25">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1089,9 +1767,9 @@
         <span>Version 3.7.4</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-25">
+<doc-anchor-target id="changes-26">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-25">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-26">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1137,9 +1815,9 @@
         <span>Version 3.7.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-26">
+<doc-anchor-target id="changes-27">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-26">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-27">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1161,9 +1839,9 @@
         <span>Version 3.7.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-27">
+<doc-anchor-target id="changes-28">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-27">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-28">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1186,9 +1864,9 @@
         <span>Version 3.7.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-28">
+<doc-anchor-target id="changes-29">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-28">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-29">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1222,9 +1900,9 @@
         <span>Version 3.6.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-29">
+<doc-anchor-target id="changes-30">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-29">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-30">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1259,9 +1937,9 @@
         <span>Version 3.5.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-30">
+<doc-anchor-target id="changes-31">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-30">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-31">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1287,9 +1965,9 @@
         <span>Version 3.5.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-31">
+<doc-anchor-target id="changes-32">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-31">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-32">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1325,9 +2003,9 @@
         <span>Version 3.4.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-32">
+<doc-anchor-target id="changes-33">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-32">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-33">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1351,9 +2029,9 @@
         <span>Version 3.4.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-33">
+<doc-anchor-target id="changes-34">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-33">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-34">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1375,9 +2053,9 @@
         <span>Version 3.3.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-34">
+<doc-anchor-target id="changes-35">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-34">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-35">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1401,9 +2079,9 @@
         <span>Version 3.3.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-35">
+<doc-anchor-target id="changes-36">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-35">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-36">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1423,9 +2101,9 @@
         <span>Version 3.3.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-36">
+<doc-anchor-target id="changes-37">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-36">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-37">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1910,9 +2588,9 @@
         <span>Version 2.1.5</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-37">
+<doc-anchor-target id="changes-38">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-37">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-38">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1948,9 +2626,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.4</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-38">
+<doc-anchor-target id="changes-39">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-38">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-39">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1983,9 +2661,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.3</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-39">
+<doc-anchor-target id="changes-40">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-39">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-40">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2016,9 +2694,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-40">
+<doc-anchor-target id="changes-41">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-40">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-41">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2042,9 +2720,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-41">
+<doc-anchor-target id="changes-42">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-41">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-42">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2068,9 +2746,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-42">
+<doc-anchor-target id="changes-43">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-42">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-43">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2101,9 +2779,9 @@ base_url instead of request.url</li>
         <span>Version 2.0.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-43">
+<doc-anchor-target id="changes-44">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-43">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-44">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2459,9 +3137,9 @@ base_url instead of request.url</li>
         <span>Version 1.3.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-44">
+<doc-anchor-target id="changes-45">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-44">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-45">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2483,9 +3161,9 @@ base_url instead of request.url</li>
         <span>Version 1.3.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-45">
+<doc-anchor-target id="changes-46">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-45">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-46">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2507,9 +3185,9 @@ base_url instead of request.url</li>
         <span>Version 1.3.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-46">
+<doc-anchor-target id="changes-47">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-46">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-47">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2557,9 +3235,9 @@ base_url instead of request.url</li>
         <span>Version 1.2.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-47">
+<doc-anchor-target id="changes-48">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-47">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-48">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2576,9 +3254,9 @@ base_url instead of request.url</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/01178cb">01178cb</a>: replaced enumerable #count for #size (suggested in #112)</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/0723228">0723228</a>: count (and page) in *get_variables methods are set only when nil (alternative implementation of #112)</li>
 </ul>
-<doc-anchor-target id="changes-48">
+<doc-anchor-target id="changes-49">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-48">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-49">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2625,9 +3303,9 @@ base_url instead of request.url</li>
         <span>Version 1.1.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-49">
+<doc-anchor-target id="changes-50">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-49">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-50">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2717,9 +3395,9 @@ base_url instead of request.url</li>
         <span>Version 0.23.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-50">
+<doc-anchor-target id="changes-51">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-50">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-51">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2743,9 +3421,9 @@ base_url instead of request.url</li>
         <span>Version 0.22.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-51">
+<doc-anchor-target id="changes-52">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-51">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-52">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2767,9 +3445,9 @@ base_url instead of request.url</li>
         <span>Version 0.21.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-52">
+<doc-anchor-target id="changes-53">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-52">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-53">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2832,9 +3510,9 @@ base_url instead of request.url</li>
         <span>Version 0.19.4</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-53">
+<doc-anchor-target id="changes-54">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-53">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-54">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2862,9 +3540,9 @@ base_url instead of request.url</li>
         <span>Version 0.19.3</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-54">
+<doc-anchor-target id="changes-55">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-54">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-55">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2888,9 +3566,9 @@ base_url instead of request.url</li>
         <span>Version 0.19.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-55">
+<doc-anchor-target id="changes-56">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-55">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-56">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2917,9 +3595,9 @@ base_url instead of request.url</li>
         <span>Version 0.19.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-56">
+<doc-anchor-target id="changes-57">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-56">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-57">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
