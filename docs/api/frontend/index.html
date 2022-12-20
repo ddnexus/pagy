@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724839843912">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724842181147">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.724839843912" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.724842181147" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.724839843912" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.724842181147" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.724839843912" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.724839843912" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.724842181147" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.724842181147" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -351,16 +351,7 @@ end</code></pre>
    <doc-panel id="pagy-url-for-pagy-page-absolute-false-html-escaped-false" collapsed>
        <template #title><code v-pre>pagy_url_for(pagy, page, absolute: false, html_escaped: false)</code></template>
 <p>This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.</p>
-<p>It works by merging the pagy <code v-pre>:params</code> hash with the raw <code v-pre>request.GET</code>, and adding the <code v-pre>:page_param</code> (<code v-pre>:page</code> by default) set to the passed <code v-pre>page</code>, and the <code v-pre>:items</code> if the <code v-pre>:items_extra</code> is enabled.</p>
-<p>Before producing the final URL (which can be <code v-pre>absolute</code> if you pass <code v-pre>absolute: true</code>), it passes the resulting params hash to the <doc-anchor-trigger to="#pagy-massage-params-params">pagy_massage_params</doc-anchor-trigger> method, which can be overridden for total control of the params in the URL.</p>
-<p>The <code v-pre>query_string</code> can also be <code v-pre>html_escaped</code> to be used in html tags (avoiding the problem of concatenation of params that start with an html entity key).</p>
-<p>The <code v-pre>:fragment</code> variable is also appended to the URL if defined.</p>
-<p>See also <a href="../../how-to/#customize-the-url">How to customize the URL</a>.</p>
-   </doc-panel>
-   <doc-panel id="pagy-massage-params-params" collapsed>
-       <template #title><code v-pre>pagy_massage_params(params)</code></template>
-<p>The <code v-pre>pagy_massage_params</code> method has been deprecated and it will be ignored from version 6. Use the <code v-pre>:params</code> variable instead.</p>
-<p>See also <a href="../../how-to/#customize-the-params">How to customize the params</a>.</p>
+<p>See also <a href="../../how-to/#customize-the-url">How to customize the URL</a> and <a href="../../how-to/#customize-the-params">How to customize the params</a>.</p>
    </doc-panel>
    <doc-panel id="pagy-link-proc-pagy-link-extra" collapsed>
        <template #title><code v-pre>pagy_link_proc(pagy, link_extra='')</code></template>
