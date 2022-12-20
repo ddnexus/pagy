@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724734828018">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724839843912">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.724734828018" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.724839843912" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.724734828018" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.724839843912" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.724734828018" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.724734828018" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.724839843912" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.724839843912" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -788,7 +788,7 @@ custom_count = ...
         <span>Paginate a grouped collection</span>
     </h3>
 </doc-anchor-target>
-<p>For better performance of grouped ActiveRecord collection counts, you may want to take a look at the <a href="http://ddnexus.github.io/pagy/extras/arel">arel extra</a> extra.</p>
+<p>For better performance of grouped ActiveRecord collection counts, you may want to take a look at the <a href="http://ddnexus.github.io/pagy/extras/arel">arel extra</a>.</p>
 <doc-anchor-target id="paginate-for-api-clients">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-for-api-clients">#</doc-anchor-trigger>
@@ -1231,6 +1231,13 @@ after_destroy { Rails.cache.delete_matched /^pagy-#{self.class.name}:/}</code></
     </h3>
 </doc-anchor-target>
 <p>If your requirements allow to use the <code v-pre>countless</code> extra (minimal or automatic UI) you can save one query per page, and drastically boost the efficiency eliminating the nav info and almost all the UI. Take a look at the examples in the <a href="../extras/support/">support extra</a>.</p>
+<doc-anchor-target id="consider-the-arel-extra-andor-the-fast_page-gem">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#consider-the-arel-extra-andor-the-fast_page-gem">#</doc-anchor-trigger>
+        <span>Consider the Arel extra and/or the fast_page gem</span>
+    </h3>
+</doc-anchor-target>
+<p>You can improve the performance for <doc-anchor-trigger to="#paginate-a-grouped-collection">grouped collections</doc-anchor-trigger> with the <a href="http://ddnexus.github.io/pagy/extras/arel">arel extra</a>, and queries on big data with <a href="https://github.com/planetscale/fast_page#pagy">fast_page</a>.</p>
 <doc-anchor-target id="ignore-brakeman-unescapedoutputs-false-positives-warnings">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#ignore-brakeman-unescapedoutputs-false-positives-warnings">#</doc-anchor-trigger>
