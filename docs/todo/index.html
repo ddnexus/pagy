@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724901067955">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.724901167281">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,11 +31,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.724901067955" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.724901167281" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.724901067955" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.724901167281" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.724901067955" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.724901167281" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -260,8 +260,6 @@
 <li><p>[] Refactor of <code v-pre>index.md</code>: Rewrite the content... eventually moving part out or the README.</p>
 </li>
 <li><p>[] Refactoring of How To: Try the panels or split in sup pages?</p>
-</li>
-<li><p>[] Reorganize ALL the content with retype tabs, panels, columns, alert, warnings, notes etc.</p>
 </li>
 <li><p>[] Ensure details re: request_path are added as per: <a href="https://github.com/ddnexus/pagy/pull/403">PR 403</a></p>
 </li>
@@ -671,15 +669,15 @@
         <span>Ensure before release</span>
     </h2>
 </doc-anchor-target>
-<ul>
+<ul class="contains-task-list">
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> Check for broken links to the new retype doc (especially README.md)</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> Remove all the gitter links, replace them with Q&amp;A section of the Discussions</li>
+<li class="task-list-item"><input disabled="disabled" type="checkbox" checked="checked" /> Ensure that the tickets for moving new features to retype are closed</li>
 <li>[] Edit the README.md with the new features and notable changes in v6 (also integrate with CHANGELOG)</li>
-<li>[] Check for broken links to the new retype doc (especially README.md)</li>
-<li>[] Remove all the gitter links, replace them with Q&amp;A section of the Discussions</li>
-<li>[] Ensure that the tickets for moving new features to retype are closed</li>
 <li>[] Last review of the retype doc</li>
+<li>[] Switch GitHub Pages branch to docs-site</li>
 <li>[] Remove the old-docs dir and its exclusion from retype.yml; update the retype and test CI</li>
 <li>[] Remove this very file</li>
-<li>[] Switch GitHub Pages branch to docs-site</li>
 </ul>
 
                                 
