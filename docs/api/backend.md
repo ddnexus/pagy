@@ -1,5 +1,9 @@
 ---
 title: Pagy::Backend
+categories: 
+- Core
+- Module
+description: This module provides the base functionality for the backend.
 ---
 # Pagy::Backend
 
@@ -7,14 +11,16 @@ This module _(see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/
 
 For overriding convenience, the `pagy` method calls two sub-methods that you may need to override in order to customize it for any type of collection (e.g. different ORM types, Array, elasticsearch results, etc.).
 
-**Notice**: Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods).
+!!!primary `Pagy::Backend` returns `pagy` instances
+Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items. You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods).
+!!!
 
-Check also the [array](../extras/array.md), [searchkick](../extras/searchkick.md), [elasticsearch_rails](../extras/elasticsearch_rails.md) and [meilisearch](../extras/meilisearch.md) extras for specific backend customizations.
+Check also the [array](/docs/extras/array.md), [searchkick](/docs/extras/searchkick.md), [elasticsearch_rails](/docs/extras/elasticsearch_rails.md) and [meilisearch](/docs/extras/meilisearch.md) extras for specific backend customizations.
 
 ## Synopsis
 
+||| Controller
 ```ruby
-# in some controller
 include Pagy::Backend
 
 # optional overriding of some sub-method
@@ -27,6 +33,7 @@ def index
   @pagy, @records = pagy(Product.some_scope, some_option: 'some option for this instance')
 end
 ```
+|||
 
 ## Methods
 
@@ -34,7 +41,7 @@ All the methods in this module are prefixed with the `"pagy_"` string, to avoid 
 
 Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or perform any tricky gimmickry.
 
-### pagy(collection, vars=nil)
+==- `pagy(collection, vars=nil)`
 
 This is the main method of this module. It takes a collection object (e.g. a scope), and an optional hash of variables (passed to the `Pagy.new` method) and returns the `Pagy` instance and the page of records. For example:
 
@@ -46,17 +53,21 @@ The built-in `pagy` method is designed to be easy to customize by overriding any
 
 If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and self contained custom `pagy` method. (see [Writing your own Pagy methods](#writing-your-own-pagy-methods))
 
-### pagy_get_vars(collection, vars)
+==- `pagy_get_vars(collection, vars)`
 
 Sub-method called only by the `pagy` method, it returns the hash of variables used to initialize the Pagy object.
 
-Override it if you need to add or change some variable. For example you may want to add the `:i18n_key` in order to customize output _(see [How to customize the item name](../how-to.md#customize-the-item-name))_, or even cache the `count`.
+Override it if you need to add or change some variable. For example you may want to add the `:i18n_key` in order to customize 
+output _(see [How to customize the item name](/docs/how-to.md#customize-the-item-name))_, or even cache the `count`.
 
-_IMPORTANT_: `:count` and `:page` are the only 2 required Pagy core variables, so be careful not to remove them from the returned hash.
 
-See also the [How To](../how-to.md) page for some usage example.
+!!!warning Don't remove `:count` and `:page`
+`:count` and `:page` are the only 2 required Pagy core variables, so be careful not to remove them from the returned hash.
+!!!
 
-### pagy_get_items(collection, pagy)
+See also the [How To](/docs/how-to.md) page for some usage examples.
+
+==- `pagy_get_items(collection, pagy)`
 
 Sub-method called only by the `pagy` method, it returns the page items (i.e. the records belonging to the current page).
 
@@ -76,7 +87,11 @@ def pagy_get_items(array, pagy)
 end
 ```
 
-**Notice**: in order to paginate arrays, you may want to use the  [array extra](../extras/array.md).
+!!!info `Array` extra for Arrays
+In order to paginate arrays, you may want to use the  [array extra](/docs/extras/array.md).
+!!!
+
+===
 
 ## Writing your own Pagy methods
 
@@ -86,13 +101,20 @@ In that case you can define a number of `pagy_*` custom methods specific for eac
 
 For example: here is a `pagy` method that doesn't call any sub-method, that may be enough for your needs:
 
+||| Controller
 ```ruby
 def pagy_custom(collection, vars={})
    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
   [pagy, collection.offset(pagy.offset).limit(pagy.items)]
 end
 ```
+|||
 
-You can easily write a `pagy` method for _any possible_ environment: please read how to [Paginate Any Collection](../how-to.md#paginate-any-collection) for details.
+You can easily write a `pagy` method for _any possible_ environment: please read how to [Paginate Any Collection](/docs/how-to.md#paginate-any-collection) for details.
 
-**IMPORTANT**: If you write some useful backend customization, please [let us know](https://gitter.im/ruby-pagy/Lobby) if you can submit a PR for a specific extra or if you need any help to do it.
+
+!!!success PRs Welcome
+If you write some useful backend customizations, please [let us know](https://github.com/ddnexus/pagy/discussions/categories/feature-requests) if you can submit a PR for a specific extra or if you need any help to do it.
+!!!
+
+

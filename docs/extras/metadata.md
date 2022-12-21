@@ -1,5 +1,8 @@
 ---
 title: Metadata
+categories:
+- Backend
+- Extras
 ---
 # Metadata Extra
 
@@ -9,21 +12,21 @@ This extra makes that easy and efficient by adding a single method to the backen
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
-
-In the `pagy.rb` initializer:
+||| pagy.rb (initializer)
 
 ```ruby
 require 'pagy/extras/metadata'
 ```
+|||
 
-In your controller action:
+||| Controller (action)
 
 ```ruby
 pagy, records = pagy(Product.all)
 render json: { data: records,
                pagy: pagy_metadata(pagy, ...) }
 ```
+|||
 
 ## Files
 
@@ -39,7 +42,7 @@ As usual, depending on the scope of the customization, you can set the `:metadat
 
 IMPORTANT: Don't rely on the broad default! You should explicitly set the `:metadata` variable with only the keys that you will actually use in the frontend, for obvious performance reasons. Besides you can also add other pagy method names not included in the default. 
 
-### :scaffold_url key
+### The `:scaffold_url` key
 
 This is a special url string that you can use as the scaffold to build real page urls in your frontend (instead of producing them on the backend).
 
@@ -55,12 +58,15 @@ page_url = scaffold_url.replace(/__pagy_page__/, page_number)
 
 This is particularly useful when you want to build some dynamic pagination UI (e.g. similar to what the `pagy_*combo_js` generates), but right in your frontend app, saving backend resources with obvious performance benefits.
 
-**Notice**: for simple cases you might want to use the other few `:*_url` metadata directly, instead of using the `:scaffold_url`.
+
+!!!info `scaffold_url` not necessary for simple cases
+For simple cases you might want to use the other few `:*_url` metadata directly, instead of using the `:scaffold_url`.
+!!!
 
 ## Methods
 
 This extra adds a single method to the `Pagy::Backend` (available in your controllers).
 
-### pagy_metadata(pagy, absolute: nil)
-
+==- `pagy_metadata(pagy, absolute: nil)`
 This method returns a hash with the keys/values defined by the `:metadata` variable.  When true, the `absolute` boolean argument will cause all the `:*_url` metadata to be absolute instead of relative.
+===

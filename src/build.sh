@@ -19,6 +19,7 @@ echo 'export default Pagy;' >> pagy-module.ts
 tsc --alwaysStrict --target esnext --declaration pagy-module.ts
 
 echo 'generating pagy.js from main.js'
-parcel build --cache-dir .parcel-cache
+#parcel build --cache-dir .parcel-cache
+parcel build --no-cache --cache-dir .parcel-cache # avoid test version error when the file did not change
 
 mv -vt ../lib/javascripts pagy-module.d.ts pagy-module.js pagy-dev.js

@@ -6,7 +6,7 @@ set -e
 ./e2e/ci-cache.sh
 
 # Exit if the working tree is dirty
-#test -n "$(git status --porcelain)" && echo "Working tree dirty!" && exit 1
+test -n "$(git status --porcelain)" && echo "Working tree dirty!" && exit 1
 
 # Set the root path
 ROOT="$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)")"
@@ -28,6 +28,7 @@ function bump(){
 	sed -i "0,/$esc_old_vers/{s/$esc_old_vers/$esc_new_vers/}" "$1"
 }
 
+bump "$ROOT/retype.yml"
 bump "$ROOT/.github/.env"
 bump "$ROOT/lib/pagy.rb"
 bump "$ROOT/lib/config/pagy.rb"
@@ -36,7 +37,7 @@ bump "$ROOT/src/pagy.ts"
 # Bumps docs example
 esc_old_minor_vers=${esc_old_vers%\\*}
 esc_new_minor_vers=${esc_new_vers%\\*}
-sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$ROOT/docs/how-to.md"
+sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$ROOT/quick-start.md"
 
 cd "$ROOT/src"
 pnpm run build

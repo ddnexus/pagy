@@ -1,5 +1,8 @@
 ---
 title: Navs
+categories:
+- Frontend
+- Extras
 ---
 # Navs Extra
 
@@ -9,23 +12,26 @@ Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](fo
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
-
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/navs'
 ```
+|||
 
-Render the navigation links in some view...
-with a fast helper:
-
+||| View (helper)
 ```erb
 <%== pagy_nav_js(@pagy, ...) %>
 <%== pagy_combo_nav_js(@pagy, ...) %>
 ```
+|||
 
-See [Javascript](../api/javascript.md).
+||| View (template)
+```erb
+<%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
+```
+|||
+
+See [Javascript](/docs/api/javascript.md).
 
 ## Files
 
@@ -33,10 +39,12 @@ See [Javascript](../api/javascript.md).
 
 ## Methods
 
-### pagy_nav_js(pagy, ...)
+==- `pagy_nav_js(pagy, ...)`
 
-See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation.
+See [Javascript Navs](/docs/api/javascript/navs.md).
 
-### pagy_combo_nav_js(pagy, ...)
+==- `pagy_combo_nav_js(pagy, ...)`
 
-See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
+See [Javascript Combo Navs](/docs/api/javascript/combo-navs.md).
+
+===

@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - v6
+      - 'master' # run only for master
 
 jobs:
   publish:

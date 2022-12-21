@@ -1,13 +1,20 @@
 ---
 title: Pagy::Calendar
+category: 
+- Feature
+- Class
 ---
 # Pagy::Calendar
 
 This is a `Pagy` subclass that provides pagination filtering by time: year, quarter, month, week, day (and supports your own [custom time units](#custom-units)).
 
-**Notice**: It requires the `activesupport` gem, which you have to require in your Gemfile only if your app does not use Rails. 
+!!!primary  Active Support Required
+It requires the `activesupport` gem, which you have to require in your Gemfile only if your app does not use Rails. 
+!!!
 
-**Notice**: The `Pagy::Calendar::*` subclasses provide support for the [calendar extra](../extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone (because they could generate a very high number of items per page). The class APIs are documented here, however you should not need to use them directly because they are required and used internally by the extra.
+!!!primary Module to be used with `pagy` classes
+The `Pagy::Calendar::*` subclasses provide support for the [calendar extra](/docs/extras/calendar.md) and are meant to be used with standard, non-calendar Pagy classes and never alone (because they could generate a very high number of items per page). The class APIs are documented here, however you should not need to use them directly because they are required and used internally by the extra.
+!!!
 
 ## Overview
 
@@ -15,7 +22,9 @@ The pagy `Pagy::Calendar::*` instances split a time period into pages of equal t
 
 Each page is also conveniently labeled in the navigation bar with the specific `Time` period it refers to.
 
-**IMPORTANT**: This classes respects the natural calendar units, not the duration of a unit. If you paginate by year, each page will be a calendar year starting January 1st and ending December 31st, not a period starting and ending at two arbitrary dates one year apart. All the classes follow the same principle. Time units with no records are displayed as empty pages.
+!!!primary Natural Calendar Unit Respected
+This classes respects the natural calendar units, not the duration of a unit. If you paginate by year, each page will be a calendar year starting January 1st and ending December 31st, not a period starting and ending at two arbitrary dates one year apart. All the classes follow the same principle. Time units with no records are displayed as empty pages.
+!!!
 
 ## Variables
 
@@ -75,13 +84,15 @@ Set the `Date.beginning_of_week` toto the symbol of the first day of the week (e
 
 ## Methods
 
-### label(opts = {})
+==- `label(opts = {})`
 
 This method uses the `:format` variable to generate the current page label with the specific `TimeWithZone` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+===
 
-### label_for(page, opts = {})
+==- `label_for(page, opts = {})`
 
 This method takes a page number argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+===
 
 ## Custom units
 

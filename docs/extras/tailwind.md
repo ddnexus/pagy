@@ -1,5 +1,8 @@
 ---
 title: Tailwind
+categories:
+- Frontend
+- Extras
 ---
 # Tailwind Extra Styles
 
@@ -11,6 +14,7 @@ See the [navs](navs.md) extra if you use `pagy_nav_js` or `pagy_combo_nav_js`.
 
 Copy and customize the following basic rules to apply the styles to the pagy CSS classes:
 
+||| SCSS rules
 ```scss
 @import "~tailwindcss/base";
 
@@ -85,3 +89,4 @@ Copy and customize the following basic rules to apply the styles to the pagy CSS
   @apply text-gray-400 cursor-default;
 }
 ```
+|||

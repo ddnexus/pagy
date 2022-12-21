@@ -8,7 +8,7 @@ assignees: ''
 ---
 <!-- 
 
-By following the steps below you will either solve your problem or ensure that it's a real documentation issue.
+By following the steps below you will either solve your problem or ensure that it's a real documentation issue. If you are not sure about it, please use the "Pagy Q&A" button issue.
 
 WARNING: DOCUMENTATION ISSUES NOT FOLLOWING THIS TEMPLATE MAY BE DELETED WITHOUT NOTICE 
 

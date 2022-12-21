@@ -1,13 +1,16 @@
 ---
 title: Calendar
+categories:
+- Backend
+- Extras
+image: none
 ---
 # Calendar Extra
-
-Add pagination filtering by calendar time unit: year, quarter, month, week, day (and your own [custom time units](../api/calendar.md#custom-units)).
+Add pagination filtering by calendar time unit: year, quarter, month, week, day (and your own [custom time units](/docs/api/calendar.md#custom-units)).
 
 This extra adds single or multiple chained calendar navs that act as calendar filters on the collection records, placing each record in its time unit. 
 
-![calendar_app](../assets/images/calendar-app.png)
+![calendar_app](/docs/assets/images/calendar-app.png)
 _Screenshot from the single-file self-contained [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) demo_
 
 ## Use cases
@@ -18,36 +21,34 @@ On the other hand it does not make much sense for the result of a search that hi
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
-
-Require and configure it in the `pagy.rb` initializer:
-
+||| initializer (pagy.rb)
 ```ruby
 require 'pagy/extras/calendar'
-# Optional: customize the default
 ```
+|||
 
-Implement and use it in your controllers:
-
+||| controller
 ```ruby
-# Define the pagy_calendar_period method in your application
+# e.g. application_controller.rb
 def pagy_calendar_period(collection)
   return_period_array_using(collection)
 end
 
-# Define the pagy_calendar_filter method in your application  
+# e.g. application_controller.rb
 def pagy_calendar_filter(collection, from, to)
   return_filtered_collection_using(collection, from, to)
 end
 
-# Use it in your actions:
-@calendar, @pagy, @records = pagy_calendar(collection, year:  { size:  [1, 1, 1, 1], ... },
+# some action:
+def index
+  @calendar, @pagy, @records = pagy_calendar(collection, year:  { size:  [1, 1, 1, 1], ... },
                                                        month: { size:  [0, 12, 12, 0], ... },
                                                        pagy:  { items: 10, ...})
+end
 ```
+|||
 
-Use the calendar and pagy objects in your views:
-
+||| view (template)
 ```erb
 <!-- calendar filtering -->
 <%== pagy_nav(@calendar[:year]) %>
@@ -61,10 +62,13 @@ Use the calendar and pagy objects in your views:
 <!-- standard pagination of the selected month -->
 <%== pagy_nav(@pagy) %>
 ```
+|||
 
-See also a few examples about [How to wrap existing pagination with pagy_calendar](../how-to.md#wrap-existing-pagination-with-pagy_calendar).
+See also a few examples about [How to wrap existing pagination with pagy_calendar](/docs/how-to.md#wrap-existing-pagination-with-pagy_calendar).
 
-**Notice** For a complete and detailed example, see the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru).
+!!!primary Demo App 
+For a complete and detailed example, see the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru).
+!!!
 
 ## Usage
 
@@ -72,24 +76,26 @@ Since the time can be stored or calculated in many different ways in different c
 
 The whole usage boils down to these steps:
 
-1. Define the [pagy_calendar_period](#pagy_calendar_periodcollection) method in your controller
-2. Define the [pagy_calendar_filter](#pagy_calendar_filtercollection-from-to) method in your controller
-3. Configure the [pagy_calendar](#pagy_calendarcollection-configuration) method in your action
+1. Configure the [pagy_calendar](#pagy-calendar-collection-configuration) method in your action
+2. Define the [pagy_calendar_period](#pagy-calendar-period-collection) method in your controller
+3. Define the [pagy_calendar_filter](#pagy-calendar-filter-collection-from-to) method in your controller
 4. Use it in your UI
 
 You can play with a quick demo app, working without any additional configuration with:
 
+||| shell
 ```shell
 git clone --depth 1 https://github.com/ddnexus/pagy
 cd pagy
 rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar_app.ru
 ```
+|||
 
-Then point your browser to `http://0.0.0.0:8080`.
+Then point your browser to http://0.0.0.0:8080.
 
 ## Variables and Accessors
 
-See [Pagy::Calendar](../api/calendar.md#variables)
+See [Pagy::Calendar](/docs/api/calendar.md#variables)
 
 ## Files
 
@@ -99,7 +105,7 @@ See [Pagy::Calendar](../api/calendar.md#variables)
 
 All the methods in this module are prefixed with the `"pagy_calendar"` string in order to avoid any possible conflict with your own methods when you include the module in your controller. They are also all private, so they will not be available as actions.
 
-### pagy_calendar(collection, configuration)
+==- `pagy_calendar(collection, configuration)`
 
 This method wraps one or more levels of calendar filtering on top of another backend pagination method (e.g. `pagy`, `pagy_arel`, `pagy_array`, `pagy_searchkick`, `pagy_elasticsearch_rails`, `pagy_meilisearch`, ...).
 
@@ -107,9 +113,11 @@ It filters the `collection` by the selected time units in the `configuration` (e
 
 It returns an array with one more item than the usual two:
 
+||| controller
 ```ruby
 @calendar, @pagy, @results = pagy_calendar(...)
 ```
+|||
 
 The `@calendar` contains the hash of the generated `Pagy::Calendar::*` objects that can be used in the UI.
 
@@ -129,7 +137,9 @@ The calendar configuration determines the calendar objects generated. These are 
 
 You can add one or more levels with keys like `:year`, `:quarter`, `:month`, `:week`, `:day`. Each key must be set to the hash of the variables that will be used to initialize the relative `Pagy::Calendar::*` object. Use an empty hash for default values. E.g.: `year: {}, month: {}, ...`.
 
-**Restrictions**: The `:page`, `:page_param`, `:params` and `:period` variables for the calendar objects are managed automatically by the extra. Setting them explicitly has no effect. (See also [Calendar params](#calendar-params) for solutions in case of conflicts)
+!!!warning Do not set `:page`, `:page_param`, `:params` and `:period` keys
+The `:page`, `:page_param`, `:params` and `:period` variables for the calendar objects are managed automatically by the extra. Setting them explicitly has no effect. (See also [Calendar params](#calendar-params) for solutions in case of conflicts)
+!!!
 
 #### Pagy configuration
 
@@ -153,11 +163,13 @@ The calendar is active by default, however you can add an optional `:active` boo
 
 Take a look at the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a simple example of a manual toggle in the UI. 
 
-### pagy_calendar_period(collection)
+==- `pagy_calendar_period(collection)`
 
-**This method must be implemented by the application.**
+!!!primary Must implement
+This method must be implemented by the application.
+!!!
 
-It receives a `collection` argument that must not be changed by the method, but can be used to return the starting and ending local `TimeWithZone` objects array defining the calendar `:period`. See the [Pagy::Calendar Variables](../api/calendar.md#variables) for details.
+It receives a `collection` argument that must not be changed by the method, but can be used to return the starting and ending local `TimeWithZone` objects array defining the calendar `:period`. See the [Pagy::Calendar Variables](/docs/api/calendar.md#variables) for details.
 
 Depending on the type of storage, the `collection` argument can contain a different kind of object:
 
@@ -165,6 +177,7 @@ Depending on the type of storage, the `collection` argument can contain a differ
 
 If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object. You can use it to return the starting and ending local `TimeWithZone` objects array. Here are a few examples with the `created_at` field (but you can pull the time from anywhere):
 
+||| controller
 ```ruby
 # Simpler version (2 queries)
 def pagy_calendar_period(collection)
@@ -187,8 +200,9 @@ def pagy_calendar_period(collection)
   params.fetch_values(:starting, :ending).map { |time| Time.parse(time).in_time_zone }
 end
 ```
+|||
 
-See also [Time conversion](../api/calendar.md#time-conversions) for details.
+See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 
 #### Search frameworks storage
 
@@ -196,9 +210,11 @@ _If you use `ElasticSearchRails`, `Searchkick`, `Meilisearch` the `collection` a
 
 So you should use what you need from the `collection` array and do your own `Model.search(...)` in order to get the starting and ending local `TimeWithZone` objects array to return. 
 
-### pagy_calendar_filter(collection, from, to)
+==- `pagy_calendar_filter(collection, from, to)`
 
-**This method must be implemented by the application.**
+!!!primary Must implement
+This method must be implemented by the application.
+!!!
 
 It receives the main `collection` and must return a filtered version of it using the `from` and `to` **local Time** objects.
 
@@ -210,19 +226,22 @@ Depending on the type of storage, the `collection` argument can contain a differ
 
 If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object that you can easily filter. Here is an example with the `created_at` field again (but you can use anything, of course):
 
+||| controller
 ```ruby
 def pagy_calendar_filter(collection, from, to)
   collection.where(created_at: from...to)  # 3-dots range excluding the end value
 end
 ```
+|||
 
-See also [Time conversion](../api/calendar.md#time-conversions) for details.
+See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 
 #### Search frameworks storage
 
 _If you use `ElasticSearchRails`, `Searchkick`, `Meilisearch` the `collection` argument is just the Array of the captured search arguments that you passed to the `Model.pagy_search` method. That array is what pagy uses internally to setup its variables before passing it to the standard `Model.search` method to do the actual search._
 
 So in order to filter the actual search with the `from` and `to` local `TimeWithZone` objects, you should simply return the same array with the filtering added to its relevant item. Pagy will use it to do the actual (filtered) search. 
+===
 
 ## Customization
 
@@ -249,19 +268,20 @@ You can use the calendar objects with any `pagy_*nav` and `pagy_*nav_js` helpers
 
 The `pagy_*combo_nav_js` keeps into account only page numbers and not labels, so it is not very useful (if at all) with `Pagy::Calendar::*` objects.
 
-### pagy_calendar_url_at(@calendar, time)
+==- `pagy_calendar_url_at(@calendar, time)`
 
 This helper takes the `@calendar` and a `TimeWithZone` objects and returns the url complete with all the params for the pages in each bars that include the passed time.
 
 For example: `pagy_calendar_url_at(@calendar, Time.zone.now)` will select the the bars pointing to today. You can see a working example in the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) file.
 
 If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRangeError`.
+===
 
 ### Label format
 
-Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](../api/calendar.md#variables))
+Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time format to your needs by setting the `:format` variable to a standard `strftime` format. (See the [Pagy::Calendar variables](/docs/api/calendar.md#variables))
 
-You can also get the [current page label](../api/calendar.md#labelopts--) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
+You can also get the [label method](/docs/api/calendar.md#methods) with e.g.: `@calendar[:month].label`, which might be useful to use in your UI.
 
 ### I18n localization
 
@@ -270,8 +290,10 @@ Pagy implements its own faster version of the i18n `translate` method (i.e. `pag
 You have a couple of options:
 
 - Use the [i18n extra](i18n.md), which delegates the translation and localization to the `I18n` gem. Notice however that you would lose the performance gain offered by the built-in `pagy_t` translation.
-- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, which will add the localization from the `I18n` gem without using the [i18n extra](../extras/i18n.md), so preserving the builtin `pagy_t` translation.
+- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer, which will add the localization from the `I18n` gem without using the [i18n extra](/docs/extras/i18n.md), so preserving the builtin `pagy_t` translation.
 
 ## Caveats
 
-- Calendar pages with no records are accessible but empty: you may want to display some message when `@records.empty?`.
+!!!warning Display Message when empty
+Calendar pages with no records are accessible but empty: you may want to display some message when `@records.empty?`.
+!!!
