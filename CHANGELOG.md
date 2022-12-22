@@ -42,6 +42,7 @@ Removed support for the deprecation of `5.0`:
 - Check the log for any deprecations message starting with '[PAGY WARNING]'
 - Update your code as indicated by the messages
 - Ensure that the log is now free from warnings
+- If you are overriding the `pagy_url_for` method ensure you [add the extra parameters required.](https://github.com/ddnexus/pagy/discussions/424).
 - Upgrade to pagy 6
 
 ### Changes
