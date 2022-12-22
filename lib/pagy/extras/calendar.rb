@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require 'pagy/calendar'
+require 'pagy/calendar/helper'
 
 class Pagy # :nodoc:
   # Add pagination filtering by calendar unit (:year, :quarter, :month, :week, :day) to the regular pagination
@@ -18,35 +19,17 @@ class Pagy # :nodoc:
           raise ArgumentError, "keys must be in #{CONF_KEYS.inspect} and object values must be Hashes; got #{conf.inspect}"
         end
 
-        conf[:pagy]          = {} unless conf[:pagy]  # use default Pagy object when omitted
-        calendar, collection = pagy_setup_calendar(collection, conf) unless conf.key?(:active) && !conf[:active]
-        pagy, results        = send(conf[:pagy][:backend] || :pagy, collection, conf[:pagy])  # use backend: :pagy when omitted
+        conf[:pagy] = {} unless conf[:pagy]  # use default Pagy object when omitted
+        unless conf.key?(:active) && !conf[:active]
+          calendar, from, to = Calendar::Helper.send(:init, conf, pagy_calendar_period(collection), params)
+          collection         = pagy_calendar_filter(collection, from, to)
+        end
+        pagy, results = send(conf[:pagy][:backend] || :pagy, collection, conf[:pagy])  # use backend: :pagy when omitted
         [calendar, pagy, results]
       end
 
-      # Setup and return the calendar objects and the filtered collection
-      def pagy_setup_calendar(collection, conf)
-        units = Calendar::UNITS & conf.keys # get the units in time length desc order
-        raise ArgumentError, 'no calendar unit found in pagy_calendar configuration' if units.empty?
-
-        page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
-        units.each do |unit|  # set all the :page_param vars for later deletion
-          unit_page_param         = :"#{unit}_#{page_param}"
-          conf[unit][:page_param] = unit_page_param
-          conf[unit][:page]       = params[unit_page_param]
-        end
-        calendar = {}
-        last_obj = nil
-        units.each_with_index do |unit, index|
-          params_to_delete    = units[(index + 1), units.size].map { |sub| conf[sub][:page_param] } + [page_param]
-          conf[unit][:params] = lambda do |params|  # delete page_param from the sub-units
-                                  params_to_delete.each { |p| params.delete(p.to_s) } # Hash#except missing from ruby 2.5 baseline
-                                  params
-                                end
-          conf[unit][:period] = last_obj&.send(:active_period) || pagy_calendar_period(collection)
-          calendar[unit]      = last_obj = Calendar.send(:create, unit, conf[unit])
-        end
-        [calendar, pagy_calendar_filter(collection, last_obj.from, last_obj.to)]
+      def pagy_calendar_url_at(calendar, time)
+        pagy_url_for(calendar.send(:last_object_at, time), 1)
       end
 
       # This method must be implemented by the application

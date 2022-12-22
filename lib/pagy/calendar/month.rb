@@ -22,7 +22,11 @@ class Pagy # :nodoc:
 
       # Starting time for the page
       def starting_time_for(page)
-        @initial + offset_units_for(page).months
+        @initial.months_since(time_offset_for(page))
+      end
+
+      def page_offset_at(time)
+        months_in(time.beginning_of_month) - months_in(@initial)
       end
 
       private

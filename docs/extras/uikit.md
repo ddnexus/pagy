@@ -1,5 +1,7 @@
 ---
 title: UIkit
+image: none
+category: Frontend
 ---
 # UIkit Extra
 
@@ -7,28 +9,29 @@ This extra adds nav helpers and templates for the UIkit [pagination component](h
 
 ## Synopsis
 
-See [extras](../extras.md) for general usage info.
 
-In the `pagy.rb` initializer:
-
+||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/uikit'
 ```
+|||
 
-Render the navigation links in some view...
-with a fast helper:
-
+||| View
 ```erb
+<-- Nav Helpers: -->
 <%== pagy_uikit_nav(@pagy, ...) %>
 <%== pagy_uikit_nav_js(@pagy, ...) %>
 <%== pagy_uikit_combo_nav_js(@pagy, ...) %>
 ```
+|||
 
-or with a template:
+||| Template
 
-```erb
+```rb
+# or you can render with a template
 <%== render partial: 'pagy/uikit_nav', locals: {pagy: @pagy} %>
 ```
+|||
 
 ## Files
 
@@ -39,24 +42,26 @@ or with a template:
 
 ## Methods
 
-This extra adds nav helper to the `Pagy::Frontend` module. You can customize it by direct overriding in your own view helper.
+This extra adds the above nav helpers to the `Pagy::Frontend` module. You can customize it by direct overriding in your own view helper.
 
-### pagy_uikit_nav(pagy)
+==- `pagy_uikit_nav(pagy)`
 
 This method is the same as the `pagy_nav`, but customized for UIkit.
 
-See the [pagy_nav(pagy, ...)](../api/frontend.md#pagy_navpagy-) documentation.
+See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy) documentation.
 
-The `uikit_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](../how-to.md#use-templates).
+The `uikit_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](/docs/how-to.md#use-templates).
 
-### pagy_uikit_nav_js(pagy, ...)
+==- `pagy_uikit_nav_js(pagy, ...)`
 
-See the [Javascript Navs](../api/javascript.md#javascript-navs) documentation
+See the [Javascript Navs](/docs/api/javascript/navs.md) documentation
 
-### pagy_uikit_combo_nav_js(pagy, ...)
+=== `pagy_uikit_combo_nav_js(pagy, ...)`
 
-See the [Javascript Combo Navs](../api/javascript.md#javascript-combo-navs) documentation.
+See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.
 
 Here is an example:
 
-![uikit_combo_nav_js](../assets/images/uikit_combo_nav_js-g.png)
+![uikit_combo_nav_js](/docs/assets/images/uikit_combo_nav_js-g.png)
+
+===

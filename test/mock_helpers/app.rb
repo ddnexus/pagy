@@ -22,21 +22,13 @@ class MockApp
     I18n.t('test')
   end
 
-  class Overridden < MockApp
-    # deprecated but still used for testing deprecations
-    def pagy_massage_params(params)  # remove in 6.0
-      params.delete('delete_me')
-      params.merge!('add_me' => 'add_me')
-    end
-  end
-
   class Calendar < MockApp
     def pagy_calendar_period(collection)
       collection.minmax.map(&:in_time_zone)
     end
 
     def pagy_calendar_filter(collection, from, to)
-      collection.select_page_of_records(from.utc, to.utc)
+      collection.select_page_of_records(from, to)
     end
   end
 end

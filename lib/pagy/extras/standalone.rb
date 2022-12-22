@@ -8,6 +8,7 @@ class Pagy # :nodoc:
   # even in the irb/rails console without any app or config.
   module StandaloneExtra
     # Extracted from Rack::Utils and reformatted for rubocop
+    # :nocov:
     module QueryUtils
       module_function
 
@@ -32,6 +33,7 @@ class Pagy # :nodoc:
         end
       end
     end
+    # :nocov:
 
     # Return the URL for the page. If there is no pagy.vars[:url]
     # it works exactly as the regular #pagy_url_for, relying on the params method and Rack.
@@ -45,9 +47,8 @@ class Pagy # :nodoc:
       params              = pagy.params.is_a?(Hash) ? pagy.params.clone : {}  # safe when it gets reused
       params[page_param]  = page
       params[items_param] = vars[:items] if vars[:items_extra]
-      query_string        = "?#{QueryUtils.build_nested_query(pagy_deprecated_params(pagy, params))}"  # remove in 6.0
-      # params              = pagy.params.call(params) if pagy.params.is_a?(Proc)                      # add in 6.0
-      # query_string        = "?#{Rack::Utils.build_nested_query(params)}"                             # add in 6.0
+      params              = pagy.params.call(params) if pagy.params.is_a?(Proc)
+      query_string        = "?#{Rack::Utils.build_nested_query(params)}"
       query_string        = query_string.gsub('&', '&amp;') if html_escaped  # the only unescaped entity
       "#{vars[:url]}#{query_string}#{vars[:fragment]}"
     end

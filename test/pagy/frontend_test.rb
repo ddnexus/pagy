@@ -157,18 +157,14 @@ describe 'pagy/frontend' do
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
       _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal "http://example.com:3000/foo?page=5&amp;a=3&amp;b=4#fragment"
     end
+    it 'renders url with overridden path' do
+      pagy = Pagy.new count: 1000, page: 3, request_path: '/bar'
+      _(app.pagy_url_for(pagy, 5)).must_equal '/bar?page=5'
+    end
   end
 
-  describe '#pagy_get_params and #pagy_massage_params r' do
+  describe '#pagy_get_params and r' do
     it 'overrides params' do
-      overridden = MockApp::Overridden.new(params: { delete_me: 'delete_me', a: 5 })
-      pagy = Pagy.new count: 1000, page: 3, params: { b: 4 }, fragment: '#fragment'
-      assert_output nil, /\[PAGY WARNING\]/ do
-        _(overridden.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&b=4&page=5&add_me=add_me#fragment"
-      end
-      assert_output nil, /\[PAGY WARNING\]/ do
-        _(overridden.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?a=5&amp;b=4&amp;page=5&amp;add_me=add_me#fragment"
-      end
       app  = MockApp.new(params: { delete_me: 'delete_me', a: 5 })
       pagy = Pagy.new(count: 1000,
                       page: 3,

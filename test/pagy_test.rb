@@ -16,6 +16,9 @@ describe 'pagy' do
     it 'has version' do
       _(Pagy::VERSION).wont_be_nil
     end
+    it 'defines the same version in retype.yml' do
+      _(File.read('./retype.yml')).must_match "label: #{Pagy::VERSION}"
+    end
     it 'defines the same version in config/pagy.rb' do
       _(Pagy.root.join('config', 'pagy.rb').read).must_match "# Pagy initializer file (#{Pagy::VERSION})"
     end
@@ -34,8 +37,8 @@ describe 'pagy' do
     it 'defines the same version in .github/.env' do
       _(File.read('.github/.env')).must_match "VERSION=#{Pagy::VERSION}"
     end
-    it 'defines the same minor version in docs/how-to.md' do
-      _(File.read('docs/how-to.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
+    it 'defines the same minor version in ./quick-start.md' do
+      _(File.read('./quick-start.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
     end
   end
 
@@ -53,12 +56,16 @@ describe 'pagy' do
       _ { Pagy.new({}) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 0, page: -1) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 0) }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: {}) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 2, items: 0) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
       _ { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
       _ { Pagy.new(count: 100, params: 12) }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, request_path: "http://example.com/foo") }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, request_path: "/foo?bar=1") }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, request_path: "foo") }.must_raise Pagy::VariableError
       begin
         Pagy.new(count: 100, page: 12)
       rescue Pagy::OverflowError => e
@@ -287,12 +294,16 @@ describe 'pagy' do
       _(pagy.prev).must_equal(9)
       _(pagy.next).must_equal 1
     end
+    it 'initializes the request_path' do
+      pagy = Pagy.new(count: 100, request_path: '/foo')
+      _(pagy.request_path).must_equal('/foo')
+    end
   end
 
   describe 'accessors' do
     it 'has accessors' do
       [
-        :count, :page, :items, :vars, # input
+        :count, :page, :items, :vars, :request_path, # input
         :offset, :pages, :last, :from, :to, :in, :prev, :next, :series # output
       ].each do |meth|
         _(pagy).must_respond_to meth
@@ -308,6 +319,7 @@ describe 'pagy' do
       _(Pagy::DEFAULT[:size]).must_equal [1, 4, 4, 1]
       _(Pagy::DEFAULT[:page_param]).must_equal :page
       _(Pagy::DEFAULT[:params]).must_equal({})
+      _(Pagy::DEFAULT[:request_path]).must_equal('')
     end
   end
 

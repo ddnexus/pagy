@@ -12,7 +12,7 @@ jobs:
     env:
       BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
     steps:
-      - uses: actions/checkout@v2  # checks out default branch
+      - uses: actions/checkout@v3  # checks out default branch
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -21,7 +21,7 @@ jobs:
 
       - name: Dotenv Action
         id: dotenv
-        uses: falti/dotenv-action@v0.2.7
+        uses: falti/dotenv-action@v0.2.8
         with:
           path: .github/.env
 
@@ -36,7 +36,7 @@ jobs:
           RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
 
       - name: Create the release tag
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           github-token: ${{ github.token }}
           script: |

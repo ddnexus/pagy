@@ -12,6 +12,9 @@ require 'pagy'
 class Pagy # :nodoc:
   # Base class for time units subclasses (Year, Quarter, Month, Week, Day)
   class Calendar < Pagy
+    # Specific out of range error
+    class OutOfRangeError < StandardError; end
+
     # List of units in desc order of duration. It can be used for custom units.
     UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
 
@@ -45,6 +48,14 @@ class Pagy # :nodoc:
 
     protected
 
+    # The page that includes time
+    def page_at(time)
+      raise OutOfRangeError unless time.between?(@initial, @final)
+
+      offset = page_offset_at(time)   # offset starts from 0
+      @order == :asc ? offset + 1 : @pages - offset
+    end
+
     # Base class method for the setup of the unit variables (subclasses must implement it and call super)
     def setup_unit_vars
       raise VariableError.new(self, :format, 'to be a strftime format', @vars[:format]) unless @vars[:format].is_a?(String)
@@ -52,10 +63,9 @@ class Pagy # :nodoc:
             unless %i[asc desc].include?(@order = @vars[:order])
 
       @starting, @ending = @vars[:period]
-      raise VariableError.new(self, :period, 'to be a an Array of min and max local Time instances', @vars[:period]) \
-            unless @starting.is_a?(Time) && @ending.is_a?(Time) && !@starting.utc? && !@ending.utc? && @starting <= @ending
-
-      @with_zone = @starting.is_a?(ActiveSupport::TimeWithZone) # remove in 6.0 and replace Time in the line above
+      raise VariableError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @vars[:period]) \
+            unless @starting.is_a?(ActiveSupport::TimeWithZone) \
+                && @ending.is_a?(ActiveSupport::TimeWithZone) && @starting <= @ending
     end
 
     # Apply the strftime format to the time (overridden by the i18n extra when localization is required)
@@ -63,9 +73,9 @@ class Pagy # :nodoc:
       time.strftime(opts[:format])
     end
 
-    # Number of units to offset from the @initial time, in order to get the ordered starting time for the page.
-    # Used in starting_time_for(page) with a logic equivalent to: @initial + (offset_units_for(page) * unit_time_length)
-    def offset_units_for(page)
+    # Number of time units to offset from the @initial time, in order to get the ordered starting time for the page.
+    # Used in starting_time_for(page) where page starts from 1 (e.g. page to starting_time means subtracting 1)
+    def time_offset_for(page)
       @order == :asc ? page - 1 : @pages - page
     end
 

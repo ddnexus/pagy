@@ -8,7 +8,7 @@ assignees: ''
 ---
 <!--
 
-Code Issues are reserved for real, reproducible pagy-code issues. If you are not sure about it, please use the "Pagy Chat Support" button issue.
+Code Issues are reserved for real, reproducible pagy-code issues. If you are not sure about it, please use the "Pagy Q&A" button issue.
 
 By following the steps below you will either solve your problem or ensure that it's a real reproducible issue to fix.
 

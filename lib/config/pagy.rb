@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (5.10.1)
+# Pagy initializer file (6.0.0)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -28,6 +28,7 @@
 # Pagy::DEFAULT[:link_extra] = 'data-remote="true"'            # example
 # Pagy::DEFAULT[:i18n_key]   = 'pagy.item_name'                # default
 # Pagy::DEFAULT[:cycle]      = true                            # example
+# Pagy::DEFAULT[:request_path] = "/foo"                        # example
 
 
 # Extras

@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '5.10.1'
+  VERSION = '6.0.0'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
@@ -22,9 +22,10 @@ class Pagy
               fragment:   '',
               link_extra: '',
               i18n_key:   'pagy.item_name',
-              cycle:      false }
+              cycle:      false,
+              request_path: '' }
 
-  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next, :params
+  attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next, :params, :request_path
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(vars)
@@ -34,6 +35,7 @@ class Pagy
     setup_pages_var
     setup_offset_var
     setup_params_var
+    setup_request_path_var
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
     @from   = [@offset - @outset + 1, @count].min
@@ -92,7 +94,7 @@ class Pagy
   def setup_vars(name_min)
     name_min.each do |name, min|
       raise VariableError.new(self, name, ">= #{min}", @vars[name]) \
-            unless @vars[name] && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
+            unless @vars[name]&.respond_to?(:to_i) && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
     end
   end
 
@@ -115,6 +117,16 @@ class Pagy
   def setup_params_var
     raise VariableError.new(self, :params, 'must be a Hash or a Proc', @params) \
           unless (@params = @vars[:params]).is_a?(Hash) || @params.is_a?(Proc)
+  end
+
+  def setup_request_path_var
+    request_path = @vars[:request_path]
+    return if request_path.to_s.empty?
+
+    raise VariableError.new(self, :request_path, 'must be a bare path like "/foo"', request_path) \
+          if !request_path.start_with?('/') || request_path.include?('?')
+
+    @request_path = request_path
   end
 end
 

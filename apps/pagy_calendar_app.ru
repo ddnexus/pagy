@@ -111,7 +111,9 @@ __END__
     <a href="/" >Show Calendar</a>
   <% else %>
     <a href="?skip=true" >Hide Calendar</a>
-  <% end %>
+    <br>
+    <a href="<%= pagy_calendar_url_at(@calendar, Time.zone.now) %>">Go to current Page</a>
+    <% end %>
   </p>
 
   <!-- calendar filtering navs -->

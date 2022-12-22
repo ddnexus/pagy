@@ -5,8 +5,11 @@ require 'pagy/calendar'
 require 'pagy/countless'
 require 'pagy/extras/overflow'
 
+Time.zone = 'EST'
+Date.beginning_of_week = :sunday
+
 DAY    = 60 * 60 * 24
-PERIOD = [Time.new(2021, 11, 4), Time.new(2021, 11, 4) + (DAY * 10)].freeze
+PERIOD = [Time.zone.local(2021, 11, 4), Time.zone.local(2021, 11, 4) + 10.days].freeze
 
 describe 'pagy/extras/overflow' do
   let(:pagy_vars)      { { page: 100, items: 10, count: 103, size: [3, 2, 2, 3] } }

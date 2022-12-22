@@ -1,174 +1,23 @@
 ---
 title: How To
+order: 1
+icon: tools-24
 ---
 # How To
 
 This page contains the practical tips and examples to get the job done with Pagy. If there is something missing, or some topic that you think should be added, fixed or explained better, please open an issue.
 
-## Quick Start
-
-### Play with it
-
-If you want to just play with Pagy before using it in your own app, you have 2 alternatives:
-
-1. Standalone Application
-   - Ensure to have `rack` installed (or `gem install rack`)
-   - [Use the pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru) (usage notes in the file)
-2. Pagy Console
-   - Just `gem install pagy`
-   - [Use it fully without any app](api/console.md)
-
-### Use it in your app
-
-1. Install Pagy:
-
-    - If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
-
-        ```ruby   
-        gem 'pagy', '~> 5.10' # omit patch digit
-        ```
-
-    - If you don't use Bundler, install and require the Pagy gem:
-
-        ```bash
-        gem install pagy
-        ```
-
-        ```ruby
-        require 'pagy'
-        ```
-
-2. Add the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) configuration file to your app:
-
-   - If you use Rails, put it into the `config/initializers` dir
-
-   - if you don't use Rails it doesn't matter where you put it, as long as you require it when your app starts
-
-3. Include the backend in some controller (e.g. `ApplicationController` in Rails):
-
-    ```ruby
-    include Pagy::Backend
-    ```
-
-4. Use the `pagy` method in some action:
-
-    ```ruby
-    @pagy, @records = pagy(Product.some_scope)
-    ```
-
-5. Render the pagination:
-
-    - Option A: if your app renders the views server-side:
-
-        1. Include the frontend in some helper (e.g. `ApplicationHelper` in Rails):
-
-            ```ruby
-            include Pagy::Frontend
-            ```
-
-        2. Render the navigation links in some view:
-
-            - with a fast helper (also styled for  [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [uikit](extras/uikit.md) and available in different flavors (static, responsive, compact, etc.)
-
-                ```erb
-                <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
-                <%== pagy_nav(@pagy) %>
-                ```
-
-            - or with an easy customizable template:
-
-                ```erb
-                <%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
-                ```
-
-    - Option B: if your app renders the views with a javascript framework (e.g. Vue.js, react.js, ...), you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
-
-        1. require the [metadata extra](extras/metadata.md) by uncommenting the following line in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
-
-            ```ruby
-            require 'pagy/extras/metadata'
-            ```
-
-        2. add the metadata to your JSON response:
-
-           ```ruby
-           render json: { data: @records,
-                          pagy: pagy_metadata(@pagy, ...) }
-           ```
-
-    - Option C: if your app is an API service consumed by some client and doesn't provide any UI on its own, you don't need the `include Pagy::Frontend` in `ApplicationHelper`, instead:
-
-        1. require the [headers extra](extras/headers.md) by uncommenting it in your [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) file:
-
-            ```ruby
-            require 'pagy/extras/headers'
-            ```
-
-        2. add the pagination headers to your responses:
-
-            ```ruby
-            after_action { pagy_headers_merge(@pagy) if @pagy }
-            ```
-
-        3. render your JSON response as usual:
-
-            ```ruby
-            render json: { data: @records }
-            ```
-
-## Configure Pagy
-
-Unlike the other pagination gems, Pagy is very modular so it doesn't load nor execute unnecessary code in your app. Every feature that is not strictly needed for the basic pagination can be explicitly required in your initializer file.
-
-Basic pagination of ActiveRecord collections should work out of the box for most Rack based apps (e.g. Rails) even without configuring/requiring anything, however you can tweak all its features and all the extras by loading a `pagy.rb` initializer file.
-
-You can copy the comprehensive and annotated [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer and uncomment and edit what you may need. The file contains also all the relevant documentation links.
-
-Besides, you can further override the `Pagy::DEFAULT` variables per instance by explicitly passing any variable to the `Pagy*.new` constructor or to any `pagy*` controller method. 
-
-## Use pagy in any environment
-
-- Pagy 4.0+ runs on ruby 2.5+
-
-Notice: Older versions run on ruby 1.9+ or jruby 1.7+ till ruby <2.5
-
-### Rack environments
-
-Pagy works out of the box in a web app assuming that:
-
-- You are using a `Rack` based framework (Rails, Sinatra, Padrino, etc.)
-- The collection to paginate is an ORM collection (e.g. ActiveRecord scope) or other collections supported by some backend extra ([array](extras/array.md), [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md), [meilisearch](extras/meilisearch.md), ...)
-- The controller where you include `Pagy::Backend` responds to a `params` method
-- The view where you include `Pagy::Frontend` responds to a `request` method returning a `Rack::Request` instance.
-
-### Non Rack environments
-
-- Require the [standalone extra](extras/standalone.md), and pass a `:url` variable and you can use it without Rack in your app or exotic API, with or without the other extras you might need. You can even use every feature/helper right in the irb/rails console.
-- Besides Rack the other assumptions above apply
-
-### Irb/rails console environment
-
-Standard pagination requires controller, model, view and request to work, however you don't have to satisfy all that requirements in order to get any helper working in the irb/rails console. Just use the [Pagy::Console](api/console.md) and you can try any feature right away, even without any app nor configuration.
-
-### Any other environment
-
-Pagy can also work in any other scenario assuming that:
-
-- If your framework doesn't have a `params` method you can use the [standalone extra](extras/standalone.md) or you may need to define the `params` method or override the `pagy_get_vars` (which uses the `params` method) in your controller
-- If the collection you are paginating doesn't respond to `offset` and `limit` and is not yet supported by any extra, you may need to override the `pagy_get_items` method in your controller (to get the items out of your specific collection)
-- If your framework doesn't have a `request` method you can use the [standalone extra](extras/standalone.md) or you may need to override the `pagy_url_for` (which uses `Rack` and `request`) in your view
-
-**Notice**: the total overriding you may need is usually just a handful of lines at worse, and it doesn't need monkey patching or writing any sub-class or module.
-
 ## Control the items per page
 
 You can control the items per page with the `items` variable. (Default `20`)
 
-You can set its default in the `pagy.rb` initializer _(see [How to configure pagy](#configure-pagy))_. For example:
-
+You can set its default in the `pagy.rb` initializer (see [How to configure pagy](/quick-start.md#configure)). For example:
+ 
+||| pagy.rb (initializer)
 ```ruby
 Pagy::DEFAULT[:items] = 25
 ```
+|||
 
 You can also pass it as an instance variable to the `Pagy.new` method or to the `pagy` controller method:
 
@@ -191,9 +40,7 @@ As usual you can set the `:size` variable as a global default by using the `Pagy
 
 The navigation links will contain the number of pages set in the variables:
 
-`size[0]`...`size[1]` current page `size[2]`...`size[3]`
-
-For example:
+`size[0]`...`size[1]` current page `size[2]`...`size[3]` - e.g.:
 
 ```ruby
 pagy = Pagy.new count:1000, page: 10, size: [3,4,4,3] # etc
@@ -209,8 +56,6 @@ You can easily try different options (also asymmetrical) in a console by changin
 
 If you want to skip the generation of the page links, just set the `:size` variable to an empty array:
 
-For example:
-
 ```ruby
 pagy = Pagy.new count:1000, size: [] # etc
 pagy.series
@@ -225,9 +70,11 @@ If changing the `:size` is not enough for your requirements (e.g. if you need to
 
 You don't need to explicitly pass the page number to the `pagy` method, because it is pulled in by the `pagy_get_vars` (which is called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For example:
 
+||| controller
 ```ruby
-@pagy, @records = pagy(my_scope, page: 3)
+@pagy, @records = pagy(my_scope, page: 3) # forces page.
 ```
+|||
 
 That will explicitly set the `:page` variable, overriding the default behavior (which usually pulls the page number from the `params[:page]`).
 
@@ -255,35 +102,92 @@ Pagy::DEFAULT[:link_extra] = 'data-remote="true" class="my-class"'
 
 # or directly to the constructor
 pagy = Pagy.new(count: 1000, link_extra: 'data-remote="true" class="my-class"')
+
+# or from a view: e.g.:
+<%== pagy_bootstrap_nav(@pagy, link_extra: 'data-action="hello#world"') %> 
 ```
 
-**IMPORTANT**: For performance reasons, the `:link_extra` variable must be a string formatted as a valid HTML attribute/value pairs. That string will get inserted verbatim in the HTML of the link. _(see more advanced details in the [pagy_link_proc documentation](api/frontend.md#pagy_link_procpagy-link_extra))_
+!!!primary `link_extra`: must be valid HTML
+For performance reasons, the `:link_extra` variable must be a string formatted as a valid HTML attribute/value pairs. That string will get inserted verbatim in the HTML of the link. _(see more advanced details in the [pagy_link_proc documentation](api/frontend.md#pagy-link-proc-pagy-link-extra))_
+!!!
+
+## Customize the request path
+
++++ Good
+!!!success Request Path Passed In:
+```rb
+# dashboard_controller
+def index
+  @pagy_foos, @foos = pagy(Foo.all,  request_path: '/foos')
+  @pagy_bars, @foos = pagy(Bar.all, request_path: '/bars')
+end
+```
+```erb
+<-- /dashboard.html.erb -->
+ <%== pagy_nav(@pagy_foos) %> 
+ <%== pagy_nav(@pagy_bars) %>
+<-- Pagination links of `/foos?page=2` instead of `/dashboard?page=2` -->
+<-- Pagination links of `/bars?page=2` etc. -->
+<-- Success -->
+```
+!!!
++++ Bad
+!!!danger No Path Passed In
+Path customization typically required when rendering multiple `@pagy` instances in the same view. e.g.:
+```rb
+# dashboard_controller
+def index
+  @pagy_foos, @foos = pagy(Foo.all)
+  @pagy_bars, @foos = pagy(Bars.all)
+end
+```
+```erb
+<-- /dashboard.html.erb -->
+<% turbo_frame "foos" do %>
+ <%== pagy_nav(@pagy_foos) %> 
+<% end%>
+<% turbo_frame "bars" do %>
+ <%== pagy_nav(@pagy_bars) %>
+<% end%>
+ <-- Pagination links will be `/dashboard?page=2` -->
+ <-- We don't want that! -->
+```
+!!!
++++
 
 ## Customize the params
 
-When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the variable `:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params. 
+When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the variable `:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params.
 
 If it is a `Proc` it will receive the **key-stringified** `params` hash complete with the `page` param and it should return a possibly modified version of it.
 
 An example using `except` and `merge!`:
 
+||| controller
 ```ruby
 @pagy, @records = pagy(collection, params: ->(params){ params.except('not_useful').merge!('custom' => 'useful') })
 ```
+|||
 
-You can also use the `:fragment` variable to add a fragment the URLs of the pages. For example:
+You can also use the `:fragment` variable to add a fragment the URLs of the pages: 
 
+||| controller
 ```ruby
 @pagy, @records = pagy(collection, fragment: '#your-fragment')
 ```
+|||
 
-**IMPORTANT**: For performance reasons the `:fragment` string must include the `"#"`.
+!!!primary 
+For performance reasons the `:fragment` string must include the `"#"`.
+!!!
 
 ## Customize the URL
 
 When you need something more radical with the URL than just massaging the params, you should override the `pagy_url_for` right in your helper.
 
-_Notice: if you are also using the [trim extra](extras/trim.md) you should also override the [pagy_trim](extras/trim#pagy_trimpagy-link) method or the `Pagy.trim`  javascript function._
+!!!warning Override `pagy_trim` if using Trim Extra
+If you are also using the [trim extra](extras/trim.md) you should also override the [pagy_trim](extras/trim#pagy-trim-pagy-link) method or the `Pagy.trim` javascript function.
+!!!
 
 The following are a couple of examples.
 
@@ -291,24 +195,30 @@ The following are a couple of examples.
 
 The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths like `your_route/23` instead of `your_route?page=23`):
 
+||| controller
 ```ruby
 def pagy_url_for(pagy, page, absolute: false, html_escaped: false)  # it was (page, pagy) in previous versions
   params = request.query_parameters.merge(pagy.vars[:page_param] => page, only_path: !absolute )
   html_escaped ? url_for(params).gsub('&', '&amp;') : url_for(params)
 end
 ```
+|||
 
-Notice that this overridden method is quite slower than the original because it passes through the rails helpers. However that gets mitigated by the internal usage of `pagy_link_proc` which calls the method only once even in the presence of many pages.
+!!!warning Performance affected!
+The above overridden method is quite slower than the original because it passes through the rails helpers. However that gets mitigated by the internal usage of `pagy_link_proc` which calls the method only once even in the presence of many pages.
+!!!
 
 #### POST with page links
 
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and your page links may need to use POST and not GET. In that case you can try this simple solution:
 
+||| controller
 ```ruby
 def pagy_url_for(_pagy, page, **_) # it was (page, pagy) in previous versions
   page
 end
 ```
+|||
 
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
@@ -324,39 +234,49 @@ You have a few ways to do that:
 
 1. you can override the `pagy_get_vars` method in your controller, adding the dynamically set `:i18n_key`. For example with ActiveRecord (mostly useful with the [i18n extra](extras/i18n.md) or if you copy over the AR keys into the pagy dictionary):
 
-    ```ruby
-    def pagy_get_vars(collection, vars)
+||| controller
+  ```ruby
+      def pagy_get_vars(collection, vars)
       { count: ...,
         page: ...,
         i18n_key: "activerecord.models.#{collection.model_name.i18n_key}" }.merge!(vars)
-    end
-    ```
+      end
+  ```
+|||
 
 2. you can set the `:i18n_key` variable, either globally using the `Pagy::DEFAULT` hash or per instance with the `Pagy.new` method or with the `pagy` controller method:
 
-    ```ruby
+||| initializer (pagy.rb)
+```ruby
     # all the Pagy instances will have the default
     Pagy::DEFAULT[:i18n_key] = 'activerecord.models.product'
 
     # or single Pagy instance
     @pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product' )
-    ```
+```
+|||
 
-    or passing it as an optional keyword argument to the helper:
+   or passing it as an optional keyword argument to the helper:
 
-    ```erb
+||| View
+```erb
     <%== pagy_info(@pagy, i18n_key: 'activerecord.models.product') %>
     <%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.models.product') %>
-    ```
+```
+|||
 
 3. you can override entirely the `:item_name` by passing an already pluralized string directly to the helper call:
 
-    ```erb
+||| View
+```erb
     <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
     <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
-    ```
+```
+|||
 
-**Notice**: The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to set the `i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most flexible way is passing a pluralized string to the helper.
+!!!warning Parameters have precedence
+The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to set the `i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most flexible way is passing a pluralized string to the helper.
+!!!
 
 ## Customize CSS styles
 
@@ -380,7 +300,7 @@ Also, consider that you can use `prepend` if you need to do it globally:
 ```ruby
 module MyOverridingModule
   def pagy_any_method
-    ...
+  ...
     super
     ...
   end
@@ -402,25 +322,32 @@ Pagy works out of the box with `ActiveRecord` collections. See also the [arel ex
 
 Do it in 2 steps: first get the page of records without decoration, and then apply the decoration to it. For example:
 
+||| controller
 ```ruby
 @pagy, records = pagy(Post.all)
 @decorated_records = records.decorate   # or YourDecorator.method(records) whatever works
 ```
+|||
+
 ### Custom count for custom scopes
 
 Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count. In that case you can get the right count with some custom statement, and pass it to `pagy`:
 
+||| controller
 ```ruby
 custom_scope = ...
 custom_count = ...
 @pagy, @records = pagy(custom_scope, count: custom_count)
 ```
+|||
 
-**Notice**: pagy will efficiently skip its internal count query and will just use the passed `:count` variable
+!!!primary Internal `count` skipped
+Pagy will efficiently skip its internal count query and will just use the passed `:count` variable
+!!!
 
 ### Paginate a grouped collection
 
-For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel extra](http://ddnexus.github.io/pagy/extras/arel) extra.
+For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel extra](http://ddnexus.github.io/pagy/extras/arel).
 
 ## Paginate for API clients
 
@@ -438,14 +365,16 @@ In that case you don't need the `Pagy::Frontend` nor any frontend extra. You sho
 
 Ransack `result` returns an `ActiveRecord` collection, which can be paginated out of the box. For example:
 
+||| controller
 ```ruby
 @q = Person.ransack(params[:q])
 @pagy, @people = pagy(@q.result)
 ```
+|||
 
 ## Paginate search framework results
 
-Pagy has a few of extras for gems returning search results: 
+Pagy has a few of extras for gems returning search results:
 
 - [elasticsearch_rails](extras/elasticsearch_rails.md)
 - [searchkick](extras/searchkick.md)
@@ -459,22 +388,24 @@ Use the [calendar extra](extras/calendar.md) that adds pagination filtering by c
 
 You can easily wrap your existing pagination with the `pagy_calendar` method. Here are a few examples adding `:year` and `:month` to different existing statements.
 
+||| controller
 ```ruby
 # pagy without calendar
 @pagy, @record = pagy(collection, any_vars: value, ...)
 # wrapped with pagy_calendar
 @calendar, @pagy, @records = pagy_calendar(collection, year: {...},
-                                                       month: {...},
-                                                       pagy: { any_vars: value, ... } ) 
+                                           month: {...},
+                                           pagy: { any_vars: value, ... } )
 
 # any other backend constructors (e.g. pagy_searchkick)
 @pagy, @record = pagy_searchkick(pagy_search_args, any_vars: value, ...)
 # wrapped with pagy_calendar
 @calendar, @pagy, @records = pagy_calendar(pagy_search_args, year: {...},
-                                                             month: {...},
-                                                             pagy: { backend: :pagy_searchkick,
-                                                                     any_vars: value, ...} )
+                                           month: {...},
+                                           pagy: { backend: :pagy_searchkick,
+                                                   any_vars: value, ...} )
 ```
+|||
 
 Then follow the [calendar extra documentation](extras/calendar.md) for more details.
 
@@ -482,10 +413,12 @@ Then follow the [calendar extra documentation](extras/calendar.md) for more deta
 
 With the other pagination gems you cannot paginate a subset of a collection that you got using `offset` and `limit`. With Pagy it is as simple as just adding the `:outset` variable, set to the initial offset. For example:
 
+||| controller
 ```ruby
 subset = Product.offset(100).limit(315)
 @pagy, @paginated_subset = pagy(subset, outset: 100)
 ```
+|||
 
 Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and from 301 to 315 for the last page.
 
@@ -493,10 +426,13 @@ Assuming the `:items` default of `20`, you will get the pages with the right rec
 
 The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.) you may need to override it in your controller, usually by simply removing the `:all` argument passed to `count`:
 
+||| controller
 ```ruby
 #count = collection.count(:all)
 count = collection.count
 ```
+|||
+
 
 ## Paginate collections with metadata
 
@@ -508,6 +444,7 @@ When your collection is already paginated and contains counts and pagination met
 
 As you can see it contains the pagination metadata that you can use to setup the pagination with pagy:
 
+||| controller
 ```ruby
 # get the paginated collection
 tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
@@ -516,6 +453,7 @@ tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
 # set the paginated collection records
 @movies = tobj.results
 ```
+|||
 
 ## Paginate Any Collection
 
@@ -541,15 +479,19 @@ paginated = arr[pagy.offset, pagy.items]
 
 This is basically what the `pagy` method included in your controller does for you in one go:
 
+||| controller
 ```ruby
-@pagy, @records = pagy(Product.some_scope)
+@pagy, @products = pagy(Product.some_scope)
 ```
+|||
 
 Then of course, regardless the kind of collection, you can render the navigation links in your view:
 
+||| view
 ```erb
 <%== pagy_nav(@pagy) %>
 ```
+|||
 
 See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb) and the [Pagy::Backend API documentation](api/backend.md) for more details.
 
@@ -557,11 +499,15 @@ See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/p
 
 These helpers take the Pagy object and return the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
+||| view
 ```erb
 <%== pagy_nav(@pagy) %>
 ```
+|||
 
-**Notice**: the [extras](extras.md) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
+!!!primary Extras Provide Added Functionality
+the [extras](/categories/extras) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
+!!!
 
 | Extra                                | Helpers                                                                            |
 |:-------------------------------------|:-----------------------------------------------------------------------------------|
@@ -575,7 +521,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 
 Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
- Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your helpers.
+Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your helpers.
 
 ## Skip single page navs
 
@@ -621,8 +567,11 @@ They produce exactly the same output of the helpers, but since they are slower, 
 If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
 
 ```erb
-<%== render file: Pagy.root.join('templates', 'nav.html.erb'), locals: {pagy: @pagy} %>
-<%== render file: Pagy.root.join('templates', 'bootstrap_nav.html.erb'), locals: {pagy: @pagy} %>
+<%== render file: Pagy.root.join('templates', 'nav.html.erb'), 
+            locals: {pagy: @pagy} %>
+
+<%== render file: Pagy.root.join('templates', 'bootstrap_nav.html.erb'), 
+            locals: {pagy: @pagy} %>
 ```
 
 You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
@@ -641,8 +590,9 @@ Depending on the nature of the app, a possible cheap solution would be caching t
 
 Pagy gets the collection count through its `pagy_get_vars` method, so you can override it in your controller. Here is an example using the rails cache:
 
+||| controller
 ```ruby
-# in your controller: override the pagy_get_vars method so it will call your cache_count method
+# override the pagy_get_vars method so it will call your cache_count method
 def pagy_get_vars(collection, vars)
   vars[:count] ||= cache_count(collection)
   vars[:page]  ||= params[ vars[:page_param] || Pagy::DEFAULT[:page_param] ]
@@ -653,14 +603,19 @@ end
 def cache_count(collection)
   cache_key = "pagy-#{collection.model.name}:#{collection.to_sql}"
   Rails.cache.fetch(cache_key, expires_in: 20 * 60) do
-   collection.count(:all)
+    collection.count(:all)
   end
 end
+```
+|||
 
-# in your model: reset the cache when the model changes (you may omit the callbacks if your DB is static)
+||| model
+```ruby
+# reset the cache when the model changes (you may omit the callbacks if your DB is static)
 after_create  { Rails.cache.delete_matched /^pagy-#{self.class.name}:/}
 after_destroy { Rails.cache.delete_matched /^pagy-#{self.class.name}:/}
 ```
+|||
 
 That may work very well with static (or almost static) DBs, where there is not much writing and mostly reading. Less so with more DB writing, and probably not particularly useful with a DB in constant change.
 
@@ -672,7 +627,7 @@ When the count caching is not an option, you may want to use the [countless extr
 
 You can trigger ajax render in rails by [customizing the link attributes](#customize-the-link-attributes).
 
-See also [Using AJAX](api/javascript.md#using-ajax).
+See also [Using AJAX](api/javascript/ajax.md#using-ajax).
 
 ## Maximize Performance
 
@@ -691,6 +646,10 @@ If you don't have strict requirements but still need to give the user total feed
 ### Consider the countless extra
 
 If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically boost the efficiency eliminating the nav info and almost all the UI. Take a look at the examples in the [support extra](extras/support.md).
+
+### Consider the Arel extra and/or the fast_page gem
+
+You can improve the performance for [grouped collections](#paginate-a-grouped-collection) with the [arel extra](http://ddnexus.github.io/pagy/extras/arel), and queries on big data with [fast_page](https://github.com/planetscale/fast_page#pagy).
 
 ## Ignore Brakeman UnescapedOutputs false positives warnings
 
@@ -712,8 +671,8 @@ Here are a few options for manually handling the error in apps:
 - Rescue and render a 404
 - Rescue and redirect to the last known page (Notice: the [overflow extra](extras/overflow.md) provides the same behavior without redirecting)
 
+||| controller
    ```ruby
-   # in a controller
    rescue_from Pagy::OverflowError, with: :redirect_to_last_page
 
    private
@@ -722,5 +681,8 @@ Here are a few options for manually handling the error in apps:
      redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
    end
    ```
+|||
 
-**WARNING**: All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with `rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it will never get rescued.
+!!!warning Rescue from `Pagy::OverflowError` first
+All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with `rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it will never get rescued.
+!!!
