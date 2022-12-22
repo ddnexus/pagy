@@ -37,7 +37,7 @@ Removed support for the deprecation of `5.0`:
 
 #### Suggestions for a smooth removal of deprecations from pagy 5
 
-- Upgrade to the latest version of pagy 5 first
+- Upgrade to the latest version of pagy 5 first (5.10.1)
 - Run your tests or app
 - Check the log for any deprecations message starting with '[PAGY WARNING]'
 - Update your code as indicated by the messages
