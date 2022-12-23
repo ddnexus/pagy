@@ -72,7 +72,7 @@ jobs:
 
       - name: Run Codecov
         if: ${{ env.CODECOV == 'true' }}
-        uses: codecov/codecov-action@v3.1.0
+        uses: codecov/codecov-action@v3.1.1
         with:
           fail_ci_if_error: true
 
@@ -115,7 +115,7 @@ jobs:
       - name: Run Cypress Tests
         # You may pin to the exact commit or the version.
         # uses: cypress-io/github-action@c5724eda82337bcff977ce14509f47052c12e04c
-        uses: cypress-io/github-action@v5.0.0
+        uses: cypress-io/github-action@v5.0.2
         with:
           # Sends test results to Cypress Dashboard
           record: # optional
