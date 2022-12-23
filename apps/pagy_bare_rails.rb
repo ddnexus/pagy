@@ -90,7 +90,7 @@ end
 
 ActiveRecord::Base.logger = Logger.new($stdout)
 
-class Author < ActiveRecord::Base
+class Author < ActiveRecord::Base # :nodoc:
   has_many :books
 
   ## Optional: Meilisearch example
@@ -102,7 +102,7 @@ class Author < ActiveRecord::Base
   # end
 end # :nodoc:
 
-class Book < ActiveRecord::Base
+class Book < ActiveRecord::Base # :nodoc:
   belongs_to :author
 
   ## Optional: Meilisearch example
