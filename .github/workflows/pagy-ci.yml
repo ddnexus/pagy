@@ -34,23 +34,17 @@ jobs:
     strategy:
       matrix:
         include:
-          - ruby-version: 2.5
-            env:
-              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
-          - ruby-version: 2.6
-            env:
-              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
           - ruby-version: 2.7
             env:
-              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
+              BUNDLE_GEMFILE: .github/gemfiles/default
           - ruby-version: '3.0'
             env:
-              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
+              BUNDLE_GEMFILE: .github/gemfiles/default
               CODECOV: true
               CHECK_MANIFEST: true
           - ruby-version: '3.1'
             env:
-              BUNDLE_GEMFILE: .github/gemfiles/ruby-2.5+
+              BUNDLE_GEMFILE: .github/gemfiles/default
               RUBYOPT: '--disable-error_highlight'
       fail-fast: false
     env: ${{ matrix.env }}
@@ -88,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # absolute path to run sinatra for cypress in e2e working dir
-      BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/.github/gemfiles/ruby-2.5+
+      BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/.github/gemfiles/default
 
     steps:
       - uses: actions/checkout@v3

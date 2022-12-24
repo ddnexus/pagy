@@ -7,7 +7,7 @@ icon: unverified-24
 ## Ruby
 +++ Pagy 4.0+
 !!! success
-Ruby `2.5+`
+Ruby `2.7+`
 !!!
 
 +++ Old Pagy
