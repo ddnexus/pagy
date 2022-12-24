@@ -36,13 +36,6 @@ jobs:
           RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
 
       - name: Create the release tag
-        uses: actions/github-script@v6
+        uses: rickstaa/action-create-tag@v1.5.0
         with:
-          github-token: ${{ github.token }}
-          script: |
-            github.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: `refs/tags/${{ steps.dotenv.outputs.version }}`,
-              sha: context.sha
-            })
+          tag: ${{ steps.dotenv.outputs.version }}
