@@ -77,7 +77,7 @@ _JS File: [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/
 - safari 15.5
 
 !!! info
-You can generate custom targeted `pagy.js` files for the browsers you want to support by changing the [browserslist](https://github.com/browserslist/browserslist) query in `src/package.json`, then compile it with `npm run build -w src`.
+You can generate custom targeted `pagy.js` files for the browsers you want to support by changing the [browserslist](https://github.com/browserslist/browserslist) query in `src/package.json`, then compile it with `cd src && npm run build`.
 !!!
 
 </details>
