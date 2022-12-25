@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/overflow
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/overflow
 # frozen_string_literal: true
 
 class Pagy # :nodoc:

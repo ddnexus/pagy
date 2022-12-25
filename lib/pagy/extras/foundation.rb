@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/foundation
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/foundation
 # frozen_string_literal: true
 
 require 'pagy/extras/frontend_helpers'

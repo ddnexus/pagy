@@ -1,4 +1,4 @@
-# See Pagy API documentation: https://ddnexus.github.io/pagy/api/pagy
+# See Pagy API documentation: https://ddnexus.github.io/pagy/docs/api/pagy
 # frozen_string_literal: true
 
 require 'pathname'

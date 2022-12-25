@@ -1,4 +1,4 @@
-# See Pagy::Countless API documentation: https://ddnexus.github.io/pagy/api/countless
+# See Pagy::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/countless
 # frozen_string_literal: true
 
 require 'pagy'

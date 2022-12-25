@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/materialize
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/materialize
 # frozen_string_literal: true
 
 require 'pagy/extras/frontend_helpers'

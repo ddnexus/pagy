@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/semantic
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/semantic
 # frozen_string_literal: true
 
 require 'pagy/extras/frontend_helpers'

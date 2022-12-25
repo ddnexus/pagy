@@ -1,4 +1,4 @@
-# See Pagy::Console API documentation: https://ddnexus.github.io/pagy/api/console
+# See Pagy::Console API documentation: https://ddnexus.github.io/pagy/docs/api/console
 # frozen_string_literal: true
 
 require 'pagy'  # so you can require just the extra in the console

@@ -1,4 +1,4 @@
-# See Pagy::Backend API documentation: https://ddnexus.github.io/pagy/api/backend
+# See Pagy::Backend API documentation: https://ddnexus.github.io/pagy/docs/api/backend
 # frozen_string_literal: true
 
 class Pagy

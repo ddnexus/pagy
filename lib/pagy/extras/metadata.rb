@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/metadata
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/metadata
 # frozen_string_literal: true
 
 require 'pagy/url_helpers'

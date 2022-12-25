@@ -21,7 +21,7 @@ WARNING: CODE ISSUES NOT FOLLOWING THIS TEMPLATE MAY BE DELETED WITHOUT NOTICE
 - [ ] I did install|upgraded to the latest version of pagy (or the latest `3.*` for pagy legacy)
 - [ ] I am providing at least one of the following working and self-contained code support that can reproduce this issue:
    <!-- Check all that apply [x] -->
-   - [ ] Simple step by step list that would work in IRB with the [Pagy::Console](https://ddnexus.github.io/pagy/api/console)
+   - [ ] Simple step by step list that would work in IRB with the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console)
    - [ ] Plain ruby file that can run as `ruby my-problem.rb`
    - [ ] Edited copy of the single file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru)
    - [ ] Edited copy of the single file [pagy_bare_rails.rb](https://github.com/ddnexus/pagy/blob/master/apps/pagy_bare_rails.rb)

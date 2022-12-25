@@ -1,4 +1,4 @@
-# See Pagy::I18n API documentation https://ddnexus.github.io/pagy/api/i18n
+# See Pagy::I18n API documentation https://ddnexus.github.io/pagy/docs/api/i18n
 # frozen_string_literal: true
 
 require 'yaml'

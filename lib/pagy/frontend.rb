@@ -1,4 +1,4 @@
-# See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/api/frontend
+# See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/docs/api/frontend
 # frozen_string_literal: true
 
 require 'pagy/url_helpers'

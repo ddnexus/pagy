@@ -27,7 +27,7 @@ None
 
 Removed support for the deprecation of `5.0`:
 
-- The `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [How to customize the params](https://ddnexus.github.io/pagy/how-to#customize-the-params).
+- The `pagy_massage_params` method: use the `:params` variable set to a lambda `Proc` that does the same (but per instance). See [How to customize the params](https://ddnexus.github.io/pagy/docs/how-to#customize-the-params).
 - The `activesupport` core dependency: it will become an optional requirement if you use the calendar: add `gem 'activesuport'` to your Gemfile if your app doesn't use rails.
 - The plain `Time` objects in the `:period` variable: use only `ActiveSupport::TimeWithZone` objects.
 - The `:offset` variable used by the `Pagy::Calendar::Week`: set the `Date.beginning_of_week` variable to the symbol of the first day of the week (e.g. `Date.beginning_of_week = :sunday`). Notice the default is `:monday` consistently with the ISO-8601 standard (and Rails).

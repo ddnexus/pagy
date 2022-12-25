@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/bulma
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/bulma
 # frozen_string_literal: true
 
 require 'pagy/extras/frontend_helpers'

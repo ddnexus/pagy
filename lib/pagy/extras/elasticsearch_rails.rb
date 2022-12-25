@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/elasticsearch_rails
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails
 # frozen_string_literal: true
 
 class Pagy # :nodoc:

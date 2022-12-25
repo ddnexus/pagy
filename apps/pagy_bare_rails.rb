@@ -41,8 +41,8 @@ end
 require 'debug'
 
 ## Pagy Set-up
-# https://ddnexus.github.io/pagy/extras
-# https://ddnexus.github.io/pagy/api/backend
+# https://ddnexus.github.io/pagy/docs/extras
+# https://ddnexus.github.io/pagy/docs/api/backend
 require 'pagy/extras/meilisearch'
 require 'pagy/extras/metadata'
 require 'pagy/extras/overflow'

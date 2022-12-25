@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/uikit
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/uikit
 # frozen_string_literal: true
 
 require 'pagy/extras/frontend_helpers'

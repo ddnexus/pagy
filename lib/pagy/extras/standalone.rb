@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/standalone
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/standalone
 # frozen_string_literal: true
 
 require 'uri'

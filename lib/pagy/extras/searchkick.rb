@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/searchkick
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/searchkick
 # frozen_string_literal: true
 
 class Pagy # :nodoc:

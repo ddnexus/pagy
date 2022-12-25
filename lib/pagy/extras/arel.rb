@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/arel
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/arel
 # frozen_string_literal: true
 
 class Pagy # :nodoc:

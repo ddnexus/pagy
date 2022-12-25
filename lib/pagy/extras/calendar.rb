@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/calendar
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/calendar
 # frozen_string_literal: true
 
 require 'pagy/calendar'
@@ -35,13 +35,13 @@ class Pagy # :nodoc:
       # This method must be implemented by the application
       def pagy_calendar_period(*)
         raise NoMethodError, 'the pagy_calendar_period method must be implemented by the application ' \
-                             '(see https://ddnexus.github.io/pagy/extras/calendar#pagy_calendar_periodcollection)'
+                             '(see https://ddnexus.github.io/pagy/docs/extras/calendar/#pagy-calendar-period-collection)'
       end
 
       # This method must be implemented by the application
       def pagy_calendar_filter(*)
         raise NoMethodError, 'the pagy_calendar_filter method must be implemented by the application ' \
-                             '(see https://ddnexus.github.io/pagy/extras/calendar#pagy_calendar_filtercollection-from-to)'
+                             '(see https://ddnexus.github.io/pagy/docs/extras/calendar/#pagy-calendar-filter-collection-from-to)'
       end
     end
   end

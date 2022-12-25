@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/support
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/support
 # frozen_string_literal: true
 
 class Pagy # :nodoc:

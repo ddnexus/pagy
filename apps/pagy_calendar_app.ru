@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Sinatra app usable to play with the pagy calendar extra (https://ddnexus.github.io/pagy/extras/calendar)
+# Sinatra app usable to play with the pagy calendar extra (https://ddnexus.github.io/pagy/docs/extras/calendar)
 
 # This app uses mock collections from the repo, so you should run it from the cloned repo dir:
 #
@@ -102,7 +102,7 @@ __END__
 
   <h3>Pagy Calendar Application</h3>
   <p>Self-contained, standalone Sinatra app implementing nested calendar pagination for year and month units.</p>
-  <p>See the <a href="https://ddnexus.github.io/pagy/extras/calendar">Pagy Calendar Extra</a> for details.</p>
+  <p>See the <a href="https://ddnexus.github.io/pagy/docs/extras/calendar">Pagy Calendar Extra</a> for details.</p>
   <hr>
 
   <!-- calendar UI manual toggle -->

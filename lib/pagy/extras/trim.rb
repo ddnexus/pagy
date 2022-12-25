@@ -1,4 +1,4 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/extras/trim
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/trim
 # frozen_string_literal: true
 
 class Pagy # :nodoc:
