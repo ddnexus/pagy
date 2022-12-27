@@ -31,6 +31,12 @@ links:
     icon: cross-reference-24
     target: blank
 
+exclude:
+  - apps/README.md
+  - e2e/README.md
+  - test/README.md
+  - lib/**/README.md
+
 edit:
   repo: "https://github.com/ddnexus/pagy"
   branch: master
