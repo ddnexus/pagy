@@ -31,9 +31,6 @@ links:
     icon: cross-reference-24
     target: blank
 
-exclude:
-  - README.md
-
 edit:
   repo: "https://github.com/ddnexus/pagy"
   branch: master

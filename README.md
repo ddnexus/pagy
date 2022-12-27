@@ -1,16 +1,18 @@
 # Pagy
 
-[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)
-![ruby](https://img.shields.io/badge/ruby-2.7+-ruby.svg?colorA=99004d&colorB=cc0066)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/ddnexus/pagy/pagy-ci.yml?branch=master)](https://github.com/ddnexus/pagy/actions?query=branch:master)
-[![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)
-![Rubocop Status](https://img.shields.io/badge/rubocop-passing-rubocop.svg?colorA=1f7a1f&colorB=2aa22a)
-[![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)
- [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)
-![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)
-![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)
+<span>[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)</span> <span>
+![ruby](https://img.shields.io/badge/ruby-2.7+-ruby.svg?colorA=99004d&colorB=cc0066)</span> <span>
+[![Build Status](https://img.shields.io/github/actions/workflow/status/ddnexus/pagy/pagy-ci.yml?branch=master)](https://github.com/ddnexus/pagy/actions?query=branch:master)</span> <span>
+[![CodeCov](https://img.shields.io/codecov/c/github/ddnexus/pagy.svg?colorA=1f7a1f&colorB=2aa22a)](https://codecov.io/gh/ddnexus/pagy)</span> <span>
+![Rubocop Status](https://img.shields.io/badge/rubocop-passing-rubocop.svg?colorA=1f7a1f&colorB=2aa22a)</span> <span>
+[![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)</span> <span>
+ [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)</span> <span>
+![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)</span> <span>
+![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6) </span>
 
 ## 🏆 The Best Pagination Ruby Gem 🥇
+
+Pagy is focused on performance and flexibility.
 
 ### ~ 40x Faster!
 
@@ -37,6 +39,8 @@ _The [IPS/Kb ratio](http://ddnexus.github.io/pagination-comparison/gems.html#eff
 See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html) for full details.
 
 </details>
+
+<br>
 
 ### 👍 If you like Pagy, give it a star! ⭐  
 
@@ -77,6 +81,8 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can also u
 - [pagy_combo_nav_js](https://ddnexus.github.io/pagy/docs/api/javascript: The fastest and lightest alternative UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ that combines navigation and pagination info in a single compact element:<br>![bootstrap_combo_nav_js](docs/assets/images/bootstrap_combo_nav_js-w.png)
 
 </details>
+
+<br>
 
 ## 😎 It's easy to use and customize
 
@@ -298,6 +304,8 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 </details>
 
+<br>
+
 ## 📦 Repository Info
 
 <details open>
@@ -339,6 +347,8 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 - Expect any other branch to be experimental, force-pushed, rebased and/or deleted even without merging.
 
 </details>
+
+<br>
 
 ## 💞 Related Projects
 
