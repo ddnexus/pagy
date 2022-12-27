@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725273034689">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725442638887">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,11 +31,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=2.4.0.725273034689" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.725442638887" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.725273034689" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.725442638887" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.725273034689" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.725442638887" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -289,6 +289,15 @@
     </h2>
 </doc-anchor-target>
 <p>None</p>
+<doc-anchor-target id="caveats">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#caveats">#</doc-anchor-trigger>
+        <span>Caveats</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>For CI reasons, tests cover only the <a href="https://endoflife.date/ruby">ruby end-of-life</a> supported rubies. However the current version still works with ruby 2.5+ (rubocop checked), but it will be phased out in v7 and will be kept in sync with the official <a href="https://endoflife.date/ruby">ruby end-of-life</a>.</li>
+</ul>
 <hr>
 <doc-anchor-target id="version-600">
     <h2>
@@ -305,7 +314,7 @@
 <p>Removed support for the deprecation of <code v-pre>5.0</code>:</p>
 <ul>
 <li>The <code v-pre>pagy_massage_params</code> method: use the <code v-pre>:params</code> variable set to a lambda <code v-pre>Proc</code> that does the same (but per instance). See <a href="https://ddnexus.github.io/pagy/docs/how-to#customize-the-params">How to customize the params</a>.</li>
-<li>The <code v-pre>activesupport</code> core dependency: it will become an optional requirement if you use the calendar: add <code v-pre>gem 'activesuport'</code> to your Gemfile if your app doesn&#x27;t use rails.</li>
+<li>The <code v-pre>activesupport</code> core dependency is now an optional requirement if you use the calendar: you must add <code v-pre>gem 'activesuport'</code> to your Gemfile if your app doesn&#x27;t use rails.</li>
 <li>The plain <code v-pre>Time</code> objects in the <code v-pre>:period</code> variable: use only <code v-pre>ActiveSupport::TimeWithZone</code> objects.</li>
 <li>The <code v-pre>:offset</code> variable used by the <code v-pre>Pagy::Calendar::Week</code>: set the <code v-pre>Date.beginning_of_week</code> variable to the symbol of the first day of the week (e.g. <code v-pre>Date.beginning_of_week = :sunday</code>). Notice the default is <code v-pre>:monday</code> consistently with the ISO-8601 standard (and Rails).</li>
 <li>The <code v-pre>Pagy::DEFAULT[:elasticsearch_rails_search_method]</code>: use <code v-pre>Pagy::DEFAULT[:elasticsearch_rails_pagy_search]</code> instead.</li>
@@ -319,7 +328,7 @@
     </h4>
 </doc-anchor-target>
 <ul>
-<li>Upgrade to the latest version of pagy 5 first (5.10.1)</li>
+<li>Upgrade to the latest version of pagy 5 (5.10.1)</li>
 <li>Run your tests or app</li>
 <li>Check the log for any deprecations message starting with &#x27;[PAGY WARNING]&#x27;</li>
 <li>Update your code as indicated by the messages</li>
@@ -397,16 +406,23 @@
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../docs/extras/uikit/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../lib/locales/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">U​Ikit</span>
+                                                <span class="block mt-1">Pagy locales</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../e2e/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">E​2​E Test Environment</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
                                     </div>
                                 </nav>
                             </footer>
