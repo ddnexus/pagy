@@ -198,22 +198,7 @@ Specifically do not add a `class` attribute that will end up in the `pagy_bootst
 
 ==- `pagy_t(key, vars={})`
 
-This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML dictionary file. _(see I18n below)_
+This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](i18n.md) doc for details)_
 
 ===
-
-
-## I18n
-
-Pagy can provide i18n using its own recommended super fast implementation (see the [Pagy::I18n](i18n.md) doc) or can use the slower standard `i18n` gem (see the [i18n extra](/docs/extras/i18n.md) doc).
-
-### Dictionaries/locales
-
-Pagy provides many ready-to-use dictionaries for different locales/languages usable with single or multi languages apps.
-
-All the pagy strings are are stored in the dictionary files of its [locales](https://github.com/ddnexus/pagy/blob/master/lib/locales), ready to be customized and/or used with or without the `I18n` gem. The files follow the same structure of the standard locale files for the `i18n` gem.
-
-!!!success Missing Language PRs accepted
-If you are using pagy with some language missing from the [locales](https://github.com/ddnexus/pagy/blob/master/lib/locales), please, [submit your translation!](https://github.com/ddnexus/pagy/pulls)
-!!!
 

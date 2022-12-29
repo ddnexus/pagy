@@ -61,7 +61,7 @@ Thank you for showing your support!
 
 - **Pagy has a very slim core code** very easy to understand and use.
 - **It has a quite fat set of optional extras** that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/categories/extras/))_
-- **It has no dependencies**: it produces its own HTML, URLs, i18n with its own specialized and fast code _(see [why...](https://ddnexus.github.io/pagy/#specialized-code-instead-of-generic-helpers))_
+- **It has no dependencies**: it produces its own HTML, URLs, i18n with its own specialized and fast code
 - **Its methods are accessible and overridable** right where you use them (no pesky monkey-patching needed)
 
 ### Unlike the other gems
@@ -70,7 +70,7 @@ Thank you for showing your support!
 - It doesn't impose limits on your code even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/docs/how-to/#use-templates))_
 - It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions))_ or use the [overflow extra](https://ddnexus.github.io/pagy/docs/extras/overflow) for a few ready to use common behaviors
-- It does not impose any difficult-to-override logic or output _(see [why...](https://ddnexus.github.io/pagy/#really-easy-to-customize))_
+- It does not impose any difficult-to-override logic or output
 
 ### Better Components
 

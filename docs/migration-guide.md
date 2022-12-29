@@ -7,7 +7,7 @@ title: Migrate from other gems
 
 This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is highly customized you may need more digging into the Pagy documentation.
 
-Feel free to [ask via Github Discussion](https://github.com/ddnexus/pagy/discussions) if you need help.
+Feel free to [ask via Pagy Support](https://github.com/ddnexus/pagy/discussions/categories/q-a) if you need help.
 
 ## Steps
 
@@ -67,7 +67,7 @@ Remove all the legacy settings of the old gem(s) and uncomment and edit the new 
 
 #### Cleanup the Models
 
-One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn't mess at all with the models (read the reasons [here](/index.md#stay-away-from-the-models)).
+One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn't mess at all with the models.
 
 The other gems are careless about adding methods, scopes, and even configuration settings to them, so you will find different kinds of statements scattered around in your models. You should remove them all and eventually add the equivalent code where it makes sense to Pagy, which of course _is absolutely not_ in the models.
 
@@ -136,4 +136,4 @@ The css styling that you may have applied to the pagination elements may need so
 
 ### I18n
 
-If the app uses `I18n` you should follow the [I18n doc](api/frontend.md#i18n).
+If the app uses `I18n` you should follow the [Pagy::I18n documentation](/docs/api/i18n).

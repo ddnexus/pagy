@@ -222,7 +222,7 @@ end
 
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should be posted.
 
-For a detailed tutorial about this topic see [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
+For a broader tutorial about this topic see [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
 
 ## Customize the item name
 
@@ -436,7 +436,7 @@ count = collection.count
 
 ## Paginate collections with metadata
 
-When your collection is already paginated and contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object, but you can apply the same principe to any other type of collection metadata:
+When your collection is already paginated and contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:
 
 ```rb
 #<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>

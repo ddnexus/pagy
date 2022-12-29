@@ -285,7 +285,7 @@ You can also get the [label method](/docs/api/calendar.md#methods) with e.g.: `@
 
 ### I18n localization
 
-Pagy implements its own faster version of the i18n `translate` method (i.e. `pagy_t`), but does not provide any built-in `localize` method. If you need localization of calendar labels in other locales, you should delegate it to the `I18n` gem, so that a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 
+Pagy implements its own faster version of the i18n `translate` method (see [pagy_t](/docs/api/frontend/#pagy-t-key-vars)), but does not provide any built-in `localize` method. If you need localization of calendar labels in other locales, you should delegate it to the `I18n` gem, so that a change in the global `I18n.locale` will automatically localize all the time labels accordingly. 
 
 You have a couple of options:
 
