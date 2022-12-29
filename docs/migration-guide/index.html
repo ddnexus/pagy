@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725452097084">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725589522940">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.725452097084" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.725589522940" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.725452097084" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.725589522940" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.725452097084" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.725452097084" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.725589522940" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.725589522940" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -269,7 +269,7 @@
     </h1>
 </doc-anchor-target>
 <p>This page tries to cover most of the standard changes you will need to make in order to to migrate from a legacy pagination, however, if the legacy pagination is highly customized you may need more digging into the Pagy documentation.</p>
-<p>Feel free to <a href="https://github.com/ddnexus/pagy/discussions">ask via Github Discussion</a> if you need help.</p>
+<p>Feel free to <a href="https://github.com/ddnexus/pagy/discussions/categories/q-a">ask via Pagy Support</a> if you need help.</p>
 <doc-anchor-target id="steps">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#steps">#</doc-anchor-trigger>
@@ -363,7 +363,7 @@ Pagy::DEFAULT[:size]  = [5,4,4,5]</code></pre>
         <span>Cleanup the Models</span>
     </h4>
 </doc-anchor-target>
-<p>One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn&#x27;t mess at all with the models (read the reasons <a href="/index.md#stay-away-from-the-models">here</a>).</p>
+<p>One of the most noticeable difference between the legacy gems and Pagy is that Pagy doesn&#x27;t mess at all with the models.</p>
 <p>The other gems are careless about adding methods, scopes, and even configuration settings to them, so you will find different kinds of statements scattered around in your models. You should remove them all and eventually add the equivalent code where it makes sense to Pagy, which of course <em>is absolutely not</em> in the models.</p>
 <p>For example, you may want to search for keywords like <code v-pre>per_page</code>, <code v-pre>per</code> and such, which are actually configuration settings. They should either go into the <code v-pre>pagy.rb</code> initializer if they are global to the app, or into the specific <code v-pre>pagy</code> call in the controller if they are specific to an action.</p>
 <p>If the app uses the <code v-pre>page</code> scope in some of its methods or scopes in some model, that should be removed (including removing the argument used to pass the page number to the method/scope), leaving the rest of the scope in place. Search where the app uses the already paginated scope in the controllers, and use the scope in a regular <code v-pre>pagy</code> statement. For example:</p>
@@ -455,7 +455,7 @@ Pagy::DEFAULT[:size]  = [5,4,4,5]</code></pre>
         <span>I18n</span>
     </h3>
 </doc-anchor-target>
-<p>If the app uses <code v-pre>I18n</code> you should follow the <a href="../api/frontend/#i18n">I18n doc</a>.</p>
+<p>If the app uses <code v-pre>I18n</code> you should follow the <a href="../api/i18n/">Pagy::I18n documentation</a>.</p>
 
                                 
                                 <!-- Required only on API pages -->
