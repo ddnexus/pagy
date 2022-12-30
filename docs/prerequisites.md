@@ -1,7 +1,7 @@
 ---
 order: 3
 title: Prerequisites
-icon: unverified-24
+icon: shield-check-24
 ---
 
 ## Ruby
@@ -27,6 +27,8 @@ Older versions run on:
 !!! success
 Your app uses a `Rack` based framework (Rails, Sinatra, Padrino, etc.)
 !!!
+
+Use pagy normally.
 
 +++ Non Rack
 

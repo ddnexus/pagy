@@ -196,9 +196,9 @@ Extras add special options and manage different components, behaviors, Frontend 
 
 ### Backend Extras
 
-- [arel](https://ddnexus.github.io/pagy/docs/extras/arel): Better performance of grouped ActiveRecord collections
-- [array](https://ddnexus.github.io/pagy/docs/extras/array): Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
-- [calendar](https://ddnexus.github.io/pagy/docs/extras/calendar): Add pagination filtering by calendar time unit (year, quarter, month, week, day)
+- [arel](https://ddnexus.github.io/pagy/docs/extras/arel): Provides better performance of grouped ActiveRecord collections
+- [array](https://ddnexus.github.io/pagy/docs/extras/array): Paginate arrays efficiently.
+- [calendar](https://ddnexus.github.io/pagy/docs/extras/calendar): Add pagination filtering by calendar time unit (year, quarter, month, week, day, custom)
 - [countless](https://ddnexus.github.io/pagy/docs/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails): Paginate `ElasticsearchRails` response objects
 - [headers](https://ddnexus.github.io/pagy/docs/extras/headers): Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination
@@ -208,24 +208,24 @@ Extras add special options and manage different components, behaviors, Frontend 
 
 ### Frontend Extras
 
-- [bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap): Add nav, nav_js and combo_nav_js helpers for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)
-- [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma): Add nav, nav_js and combo_nav_js helpers for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
-- [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation): Add nav, nav_js and combo_nav_js helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
-- [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize): Add nav, nav_js and combo_nav_js helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
-- [navs](https://ddnexus.github.io/pagy/docs/extras/navs): Add nav_js and combo_nav_js unstyled helpers
-- [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic): Add nav, nav_js and combo_nav_js helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
-- [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind): Snippet for extra styles for [Tailwind CSS](https://tailwindcss.com)
-- [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit): Add nav, nav_js and combo_nav_js helpers for the UIkit [pagination component](https://getuikit.com/docs/pagination)
+- [bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap):  Add nav helpers and templates for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)
+- [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma): Add nav helpers and templates for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination)
+- [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation): Add nav helpers and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
+- [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize): Add nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html)
+- [navs](https://ddnexus.github.io/pagy/docs/extras/navs): Adds the unstyled versions of the javascript-powered nav helpers.
+- [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic): Add nav helpers for the Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html)
+- [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind): Ready to use style snippet for [Tailwind CSS](https://tailwindcss.com)
+- [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit): Add nav helpers and templates for the UIkit [pagination component](https://getuikit.com/docs/pagination)
 
 ### Extra Features and Tools
 
-- [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/): Try any pagy feature or helper right in the irb/rails console even without any app or config
+- [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/): Use pagy in the irb/rails console even without any app nor configuration
 - [gearbox](https://ddnexus.github.io/pagy/docs/extras/gearbox/): Automatically change the number of items per page depending on the page number
-- [i18n](https://ddnexus.github.io/pagy/docs/extras/i18n): Use the `I18n` gem instead of the pagy-i18n implementation
+- [i18n](https://ddnexus.github.io/pagy/docs/extras/i18n): Use the `I18n` gem instead of the faster pagy-i18n implementation
 - [items](https://ddnexus.github.io/pagy/docs/extras/items): Allow the client to request a custom number of items per page with an optional selector UI
-- [overflow](https://ddnexus.github.io/pagy/docs/extras/overflow): Allow for easy handling of overflowing pages
+- [overflow](https://ddnexus.github.io/pagy/docs/extras/overflow): Allow easy handling of overflowing pages
 - [standalone](https://ddnexus.github.io/pagy/docs/extras/standalone): Use pagy without any request object, nor Rack environment/gem, nor any defined `params` method
-- [support](https://ddnexus.github.io/pagy/docs/extras/support): Extra support for features like: incremental, auto-incremental and infinite pagination
+- [support](https://ddnexus.github.io/pagy/docs/extras/support): Add support for countless or navless pagination (incremental, auto-incremental, infinite pagination).
 - [trim](https://ddnexus.github.io/pagy/docs/extras/trim): Remove the `page=1` param from the first page link
 
 </details>

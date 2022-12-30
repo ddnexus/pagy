@@ -7,7 +7,7 @@ categories:
 
 # Trim Extra
 
-RemoveS the `page=1` param from the link of the first page.
+Remove the `page=1` param from the link of the first page.
 
 !!!warning
 This extra is needed only for very specific scenarios, for example if you need to avoid frontend cache duplicates of the first page.

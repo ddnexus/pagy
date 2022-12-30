@@ -8,7 +8,7 @@ image: none
 
 # Materialize Extra
 
-Add javascript nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
+Add nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
 
 ## Synopsis
 

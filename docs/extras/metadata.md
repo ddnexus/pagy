@@ -7,7 +7,7 @@ categories:
 
 # Metadata Extra
 
-Serve the pagy object as JSON, allowing to generate the pagination UI directly in any javascript framework/component.
+Provide the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
 
 It adds a single method to the backend that you can serve as JSON to your favorite javascript framework.
 

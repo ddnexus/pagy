@@ -7,7 +7,7 @@ categories:
 
 # Support Extra
 
-Add support for features like countless or navless pagination (incremental, auto-incremental, infinite pagination).
+Add support for countless or navless pagination (incremental, auto-incremental, infinite pagination).
 
 ## Synopsis
 

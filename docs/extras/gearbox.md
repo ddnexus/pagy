@@ -7,7 +7,7 @@ categories:
 
 # Gearbox Extra
 
-Allow your app to automatically change the number of items per page depending on the page number. 
+Automatically change the number of items per page depending on the page number. 
 
 Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in order to speed things up for wild-browsing and improving the user experience.
 

@@ -7,9 +7,9 @@ categories:
 
 # Arel Extra
 
-Add a specialized pagination for collections from sql databases with `GROUP BY` clauses.
+Provides better performance of grouped ActiveRecord collections.
 
-It computes the total number of results with `COUNT(*) OVER ()`.
+Add a specialized pagination for collections from sql databases with `GROUP BY` clauses by computing the total number of results with `COUNT(*) OVER ()`.
 
 !!! warning
 Tested against MySQL (8.0.17) and Postgres (11.5).

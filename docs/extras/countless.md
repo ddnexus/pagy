@@ -7,7 +7,7 @@ categories:
 
 # Countless Extra
 
-Save one count query per request using the [Pagy::Countless subclass](/docs/api/countless.md) internally.
+Paginate without the need of any count, saving one query per rendering.
 
 ## Setup
 
@@ -20,7 +20,7 @@ require 'pagy/extras/countless'
 
 ## Modes
 
-This extra can be used in two different modes by enabling the `:countless_minimal` variable (or not).
+This extra uses the [Pagy::Countless subclass](/docs/api/countless.md) internally. You can use it in two different modes by enabling the `:countless_minimal` variable (or not).
 
 +++ Default mode
 

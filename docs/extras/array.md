@@ -7,7 +7,7 @@ categories:
 
 # Array Extra
 
-Paginate arrays.
+Paginate arrays efficiently.
 
 !!! warning WARNING
 This warning may sound obvious, but I keep finding people improperly using this extra, so let me write it explicitly.
