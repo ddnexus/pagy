@@ -4,9 +4,10 @@ categories:
 - Frontend
 - Extras
 ---
+
 # Foundation Extra
 
-This extra adds nav helpers and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
+Add nav helpers and templates for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
 
 ## Synopsis
 

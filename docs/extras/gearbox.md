@@ -4,9 +4,12 @@ categories:
 - Features
 - Extras
 ---
+
 # Gearbox Extra
 
-This extra allows your app to automatically change the number of items per page depending on the page number. Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in order to speed things up for wild-browsing and improving the user experience.
+Allow your app to automatically change the number of items per page depending on the page number. 
+
+Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in order to speed things up for wild-browsing and improving the user experience.
 
 You can set this up by simply setting the `:gearbox_items` variable to an array of integers. For example, you would set the  `gearbox_items` to `[10, 20, 40, 80]` to have page `1` with `10` items, page `2` with `20`, page `3` with `40` and all the other pages with `80` items.
 

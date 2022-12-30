@@ -1,12 +1,13 @@
 ---
 title: Navs
+image: none
 categories:
 - Frontend
 - Extras
 ---
 # Navs Extra
 
-This extra adds a couple of javascript nav helpers to the `Pagy::Frontend` module: `pagy_combo_nav_js` and `pagy_nav_js`. These are the unstyled versions of the javascript-powered nav helpers.
+Adds the unstyled versions of the javascript-powered nav helpers to the `Pagy::Frontend` module.
 
 Other extras (e.g. [bootstrap](bootstrap.md), [bulma](bulma.md), [foundation](foundation.md), [materialize](materialize.md), [semantic](semantic.md)) provide framework-styled versions of the same `nav` helpers, so you may not need this extra if you use one of the above framework-styled extra.
 

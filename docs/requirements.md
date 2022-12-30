@@ -1,6 +1,6 @@
 ---
 order: 3
-title: Requirements
+title: Prerequisites
 icon: unverified-24
 ---
 

@@ -4,11 +4,12 @@ categories:
 - Backend
 - Extras
 ---
+
 # Metadata Extra
 
-If your app uses ruby as pure backend and some javascript frameworks as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate the whole pagination UI directly in javascript either with your own code or using some available component.
+Serve the pagy object as JSON, allowing to generate the pagination UI directly in any javascript framework/component.
 
-This extra makes that easy and efficient by adding a single method to the backend that you can serve as JSON to your favorite javascript framework.
+It adds a single method to the backend that you can serve as JSON to your favorite javascript framework.
 
 ## Synopsis
 

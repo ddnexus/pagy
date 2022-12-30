@@ -4,11 +4,14 @@ categories:
 - Feature
 - Extras
 ---
+
 # Trim Extra
 
-This extra removes the `page=1` param from the link of the first page. You need only to require the extra in the initializer file.
+RemoveS the `page=1` param from the link of the first page.
 
+!!!warning
 This extra is needed only for very specific scenarios, for example if you need to avoid frontend cache duplicates of the first page.
+!!!
 
 ## Synopsis
 

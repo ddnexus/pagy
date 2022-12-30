@@ -5,9 +5,10 @@ categories:
 - Extras
 image: none
 ---
+
 # Bulma Extra
 
-This extra adds nav helpers and templates for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination).
+Add nav helpers and templates for the Bulma CSS [pagination component](https://bulma.io/documentation/components/pagination).
 
 ## Synopsis
 

@@ -4,11 +4,12 @@ category:
 - Feature
 - Class
 ---
+
 # Pagy::Calendar
 
-This is a `Pagy` subclass that provides pagination filtering by time: year, quarter, month, week, day (and supports your own [custom time units](#custom-units)).
+This is a `Pagy` subclass that provides pagination filtering by time in order to support the [Calendar extra](/docs/extras/calendar.md).
 
-!!!primary  Active Support Required
+!!!warning Active Support Required
 It requires the `activesupport` gem, which you have to require in your Gemfile only if your app does not use Rails. 
 !!!
 

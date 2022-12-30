@@ -5,6 +5,7 @@ categories:
 - Backend
 - Extras
 ---
+
 # Meilisearch Extra
 
 Paginate `Meilisearch` results.

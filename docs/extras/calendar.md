@@ -5,8 +5,10 @@ categories:
 - Extras
 image: none
 ---
+
 # Calendar Extra
-Add pagination filtering by calendar time unit: year, quarter, month, week, day (and your own [custom time units](/docs/api/calendar.md#custom-units)).
+
+Add pagination filtering by calendar time unit: year, quarter, month, week, day and your own [custom time units](/docs/api/calendar.md#custom-units).
 
 This extra adds single or multiple chained calendar navs that act as calendar filters on the collection records, placing each record in its time unit. 
 

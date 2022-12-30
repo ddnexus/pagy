@@ -4,9 +4,10 @@ categories:
 - Feature
 - Extras
 ---
+
 # Support Extra
 
-This extra adds support for features like countless or navless pagination, where you don't need the full link bar but only a simple `next` or `prev` link or no link at all (as for [auto-incremental](#auto-incremental)).
+Add support for features like countless or navless pagination (incremental, auto-incremental, infinite pagination).
 
 ## Synopsis
 

@@ -4,7 +4,10 @@ categories:
 - Frontend
 - Extras
 ---
+
 # Tailwind Extra Styles
+
+Ready to use snippet for tailwind.
 
 Tailwind allows to apply styles to any DOM element, so you don't actually need a special extra to produce a different output. You can use the standard unstyled pagy helpers: i.e. the default `pagy_nav` and the `pagy_nav_js`and `pagy_nav_combo_js` provided by the [navs](navs.md) extra, and apply the styles to their classes.
 

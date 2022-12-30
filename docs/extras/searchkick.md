@@ -5,6 +5,7 @@ categories:
 - Backend
 - Extras
 ---
+
 # Searchkick Extra
 
 Paginate `Searchkick::Results` objects.

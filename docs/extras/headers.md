@@ -4,9 +4,10 @@ categories:
 - Backend
 - Extras
 ---
+ 
 # Headers Extra
 
-This extra implements the [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API pagination.
+Add [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API pagination.
   
 ## Advantages
 

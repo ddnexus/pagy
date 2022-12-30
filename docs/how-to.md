@@ -3,6 +3,7 @@ title: How To
 order: 1
 icon: tools-24
 ---
+
 # How To
 
 This page contains the practical tips and examples to get the job done with Pagy. If there is something missing, or some topic that you think should be added, fixed or explained better, please open an issue.

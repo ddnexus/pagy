@@ -1,14 +1,16 @@
 ---
 title: Pagy::Console
 categories: 
-- Support
 - Module
 ---
+
 # Pagy::Console
+
+Use pagy in the irb/rails console even without any app nor configuration.
 
 Standard pagination requires controller, model, view and request to work, however you don't have to satisfy all that requirements in order to get any helper working in the irb/rails console.
 
-You can try any feature right away, even without any app nor configuration right in the irb/rails console:
+You can try any pagy feature right away:
 
 ```ruby
 require 'pagy/console'

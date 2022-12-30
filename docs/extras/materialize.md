@@ -5,9 +5,10 @@ categories:
 - Extras
 image: none
 ---
+
 # Materialize Extra
 
-This extra adds 3 nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
+Add javascript nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
 
 ## Synopsis
 

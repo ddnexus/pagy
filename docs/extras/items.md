@@ -4,6 +4,7 @@ categories:
 - Feature
 - Extras
 ---
+
 # Items Extra
 
 Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or user-customizable UIs.

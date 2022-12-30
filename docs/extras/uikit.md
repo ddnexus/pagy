@@ -3,9 +3,10 @@ title: UIkit
 image: none
 category: Frontend
 ---
+
 # UIkit Extra
 
-This extra adds nav helpers and templates for the UIkit [pagination component](https://getuikit.com/docs/pagination).
+Add nav helpers and templates for the UIkit [pagination component](https://getuikit.com/docs/pagination).
 
 ## Synopsis
 

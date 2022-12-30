@@ -4,9 +4,12 @@ categories:
 - Backend
 - Extras
 ---
+
 # Arel Extra
 
-This extra adds a specialized pagination for collections from sql databases with `GROUP BY` clauses, by computing the total number of results with `COUNT(*) OVER ()`.
+Add a specialized pagination for collections from sql databases with `GROUP BY` clauses.
+
+It computes the total number of results with `COUNT(*) OVER ()`.
 
 !!! warning
 Tested against MySQL (8.0.17) and Postgres (11.5).

@@ -4,9 +4,10 @@ categories:
 - Frontend
 - Extras
 ---
+
 # Semantic UI Extra
 
-This extra adds 3 nav helpers for Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html#pagination).
+Add javascript nav helpers for Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html#pagination).
 
 ## Synopsis
 

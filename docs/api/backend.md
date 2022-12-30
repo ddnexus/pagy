@@ -3,8 +3,10 @@ title: Pagy::Backend
 categories: 
 - Core
 - Module
+- Backend
 description: This module provides the base functionality for the backend.
 ---
+
 # Pagy::Backend
 
 This module _(see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb))_ provides a _generic_ pagination method (`pagy`) that works with `ActiveRecord` out of the box. For any other collection (e.g. `Sequel`, `Mongoid`, `Elasticsearch`, ...) you may need to override some sub-method or [write your own Pagy methods](#writing-your-own-pagy-methods).
