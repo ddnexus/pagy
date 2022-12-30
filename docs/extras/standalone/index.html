@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725589522940">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725680865916">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Standalone | Pagy</title>
     <meta name="title" content="Standalone | Pagy">
-    <meta name="description" content="This extra allows you to use pagy completely standalone, i.e. without any request object, nor Rack environment/gem, nor any defined" />
+    <meta name="description" content="Use pagy completely standalone." />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/extras/standalone/" />
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/standalone/">
     <meta property="og:title" content="Standalone | Pagy">
-    <meta property="og:description" content="This extra allows you to use pagy completely standalone, i.e. without any request object, nor Rack environment/gem, nor any defined">
+    <meta property="og:description" content="Use pagy completely standalone.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/standalone/">
     <meta property="twitter:title" content="Standalone | Pagy">
-    <meta property="twitter:description" content="This extra allows you to use pagy completely standalone, i.e. without any request object, nor Rack environment/gem, nor any defined">
+    <meta property="twitter:description" content="Use pagy completely standalone.">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.725589522940" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.725680865916" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.725589522940" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.725680865916" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.725589522940" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.725589522940" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.725680865916" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.725680865916" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -274,7 +274,23 @@
     <div><a href="../../../categories/extras/">Extras</a></div>
 </div>
 
-<p>This extra allows you to use pagy completely standalone, i.e. without any request object, nor Rack environment/gem, nor any defined <code v-pre>params</code> method, even in the irb/rails console without an app (see the <a href="../../api/console/">Pagy::Console</a> module).</p>
+<p>Use pagy completely standalone.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>You can use pagy without any request object, nor Rack environment/gem, nor any defined <code v-pre>params</code> method, even in the irb/rails console without an app (see the <a href="../../api/console/">Pagy::Console</a> module).</p>
+        </div>
+    </div>
+</div>
 <p>You may need it in order to paginate a collection outside of a regular rack request or controller, like in an unconventional API module, or in the irb/rails console or for testing/playing with backend and frontend methods.</p>
 <p>You trigger the standalone mode by setting an <code v-pre>:url</code> variable, which will be used directly and verbatim, instead of extracting it from the <code v-pre>request</code> <code v-pre>Rack::Request</code> object. You can also pass other params by using the <code v-pre>:params</code> variable as usual. That will be used to produce the final URLs in the usual way.</p>
 <p>This extra will also create a dummy <code v-pre>params</code> method (if not already defined) in the module where you will include the <code v-pre>Pagy::Backend</code> (usually a controller).</p>

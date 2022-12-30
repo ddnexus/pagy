@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725589522940">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725680865916">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Gearbox | Pagy</title>
     <meta name="title" content="Gearbox | Pagy">
-    <meta name="description" content="This extra allows your app to automatically change the number of items per page depending on the page number." />
+    <meta name="description" content="Allow your app to automatically change the number of items per page depending on the page number." />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/extras/gearbox/" />
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/gearbox/">
     <meta property="og:title" content="Gearbox | Pagy">
-    <meta property="og:description" content="This extra allows your app to automatically change the number of items per page depending on the page number.">
+    <meta property="og:description" content="Allow your app to automatically change the number of items per page depending on the page number.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/gearbox/">
     <meta property="twitter:title" content="Gearbox | Pagy">
-    <meta property="twitter:description" content="This extra allows your app to automatically change the number of items per page depending on the page number.">
+    <meta property="twitter:description" content="Allow your app to automatically change the number of items per page depending on the page number.">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.725589522940" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.725680865916" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.725589522940" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.725680865916" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.725589522940" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.725589522940" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.725680865916" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.725680865916" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -274,7 +274,8 @@
     <div><a href="../../../categories/extras/">Extras</a></div>
 </div>
 
-<p>This extra allows your app to automatically change the number of items per page depending on the page number. Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in order to speed things up for wild-browsing and improving the user experience.</p>
+<p>Allow your app to automatically change the number of items per page depending on the page number.</p>
+<p>Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in order to speed things up for wild-browsing and improving the user experience.</p>
 <p>You can set this up by simply setting the <code v-pre>:gearbox_items</code> variable to an array of integers. For example, you would set the  <code v-pre>gearbox_items</code> to <code v-pre>[10, 20, 40, 80]</code> to have page <code v-pre>1</code> with <code v-pre>10</code> items, page <code v-pre>2</code> with <code v-pre>20</code>, page <code v-pre>3</code> with <code v-pre>40</code> and all the other pages with <code v-pre>80</code> items.</p>
 <p>The content of the array is not restricted neither in length nor in direction: you can pass any arbitrary sequence of integer you like, although it makes more sense to have an increasing progression of items.</p>
 <doc-anchor-target id="interaction-with-other-extras">
