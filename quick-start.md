@@ -80,6 +80,7 @@ You can further customize the variables per instance, by explicitly passing any 
 
 ### Backend Setup
 
++++ Standard
 === Include the backend
 ||| ApplicationController/AnyController
 ```ruby
@@ -94,6 +95,16 @@ include Pagy::Backend
 ```
 |||
 ===
+
++++ Search
+
+For search backends see: [elasticsearch_rails](/docs/extras/elasticsearch_rails), [meilisearch](/docs/extras/meilisearch), [searchkick](/docs/extras/searchkick), [ransack](/docs/how-to/#paginate-ransack-results).
+
++++ Special
+
+You may also use the [calendar](/docs/extras/calendar), [countless](/docs/extras/countless), [geared](/docs/extras/gearbox), [incremental, auto-incremental, infinite](/docs/extras/support) pagination
+
++++
 
 ### Render the pagination
 
