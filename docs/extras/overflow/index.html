@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.725701305042">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.726027190181">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Overflow | Pagy</title>
     <meta name="title" content="Overflow | Pagy">
-    <meta name="description" content="Allow easy handling of overflowing pages." />
+    <meta name="description" content="Allow easy handling of overflowing pages (i.e. requested page > count)." />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/extras/overflow/" />
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/overflow/">
     <meta property="og:title" content="Overflow | Pagy">
-    <meta property="og:description" content="Allow easy handling of overflowing pages.">
+    <meta property="og:description" content="Allow easy handling of overflowing pages (i.e. requested page > count).">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/overflow/">
     <meta property="twitter:title" content="Overflow | Pagy">
-    <meta property="twitter:description" content="Allow easy handling of overflowing pages.">
+    <meta property="twitter:description" content="Allow easy handling of overflowing pages (i.e. requested page > count).">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.725701305042" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.726027190181" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.725701305042" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.726027190181" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.725701305042" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.725701305042" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.726027190181" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.726027190181" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -274,8 +274,8 @@
     <div><a href="../../../categories/extras/">Extras</a></div>
 </div>
 
-<p>Allow easy handling of overflowing pages.</p>
-<p>It internally rescues from the <code v-pre>Pagy::OverflowError</code> offering a few different ready to use modes, quite useful for UIs and/or APIs. It works with <code v-pre>Pagy</code> and its subclasses some minor differences.</p>
+<p>Allow easy handling of overflowing pages (i.e. requested page &gt; count).</p>
+<p>It internally rescues <code v-pre>Pagy::OverflowError</code> exceptions offering the following ready to use behaviors/modes: <code v-pre>:empty</code>, <code v-pre>:last_page</code>, and <code v-pre>:exception</code>.</p>
 <doc-anchor-target id="synopsis">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#synopsis">#</doc-anchor-trigger>
@@ -336,7 +336,7 @@ Pagy::DEFAULT[:overflow] = :exception
 </tbody>
 </table>
 </div>
-<p>As usual, depending on the scope of the customization, you have a couple of options to set the variables:</p>
+<p>Set the variables - either globally, or locally:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># globally: e,g, pagy.rb Initializer
 Pagy::DEFAULT[:overflow] = :empty_page
@@ -359,7 +359,23 @@ Pagy::DEFAULT[:overflow] = :empty_page
 <doc-tabs>
 <doc-tab id="empty-page">
 <template #title>:empty_page</template>
-<p>This is the default mode; it will paginate the actual requested page, which - being overflowing - is empty. It is useful with APIs, where the client expects an empty set of results in order to stop requesting further pages.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Serve an empty page</h5>
+<p>Useful for APIs, where clients expect an empty page, in order to stop requesting more pages. This is the default mode.</p>
+        </div>
+    </div>
+</div>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span><code v-pre>Pagy</code> instance example:</span>
@@ -443,6 +459,23 @@ pagy.to                 #=&gt; 2021-10-01 00:00:00 -0900 (same as from: if used 
 <doc-tab id="last-page">
 <template #title>:last_page</template>
 <div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Serve the last_page</h5>
+<p>Paginate exactly as if the last page has been requested.</p>
+        </div>
+    </div>
+</div>
+<div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
@@ -454,13 +487,11 @@ pagy.to                 #=&gt; 2021-10-01 00:00:00 -0900 (same as from: if used 
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5><code v-pre>:last_page</code> not available for <code v-pre>Pagy::Countless</code> instances</h5>
-<p>...because the last page is not known.</p>
+<p>The <code v-pre>:last_page</code> mode is not available for <code v-pre>Pagy::Countless</code> instances because the last page is not known.</p>
         </div>
     </div>
 </div>
-<p>It is useful in apps with a UI, in order to avoid being redirect to the last page.</p>
-<p>Regardless of the overflowing page requested, <code v-pre>Pagy</code> will set the page to the last page and paginate exactly as if the last page has been requested. For example:</p>
+<p>For example:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>Controller</span>
@@ -479,7 +510,23 @@ pagy.last == pagy.page  #=&gt; true</code></pre>
 </doc-tab>
 <doc-tab id="exception">
 <template #title>:exception</template>
-<p>This mode raises the <code v-pre>Pagy::OverflowError</code> as usual, so you can rescue from and implement your own custom mode even in presence of this extra.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Raise the <code v-pre>Pagy::OverflowError</code> as usual</h5>
+<p>You can rescue from the exception and implement your own custom mode even in presence of this extra.</p>
+        </div>
+    </div>
+</div>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">begin
   pagy = Pagy.new(count: 100, page: 100, overflow: :exception)
