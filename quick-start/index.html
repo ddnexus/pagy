@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.726027190181">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.726027346583">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=2.4.0.726027190181" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.726027346583" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.726027190181" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.726027346583" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.726027190181" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.726027190181" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.726027346583" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.726027346583" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -424,6 +424,9 @@
         <span>Backend Setup</span>
     </h3>
 </doc-anchor-target>
+<doc-tabs>
+<doc-tab id="standard">
+<template #title>Standard</template>
 <doc-panels>
    <doc-panel id="include-the-backend">
        <template #title>Include the backend</template>
@@ -452,6 +455,16 @@
 </div>
    </doc-panel>
 </doc-panels>
+</doc-tab>
+<doc-tab id="search">
+<template #title>Search</template>
+<p>For search backends see: <a href="../docs/extras/elasticsearch_rails/">elasticsearch_rails</a>, <a href="../docs/extras/meilisearch/">meilisearch</a>, <a href="../docs/extras/searchkick/">searchkick</a>, <a href="../docs/how-to/#paginate-ransack-results">ransack</a>.</p>
+</doc-tab>
+<doc-tab id="special">
+<template #title>Special</template>
+<p>You may also use the <a href="../docs/extras/calendar/">calendar</a>, <a href="../docs/extras/countless/">countless</a>, <a href="../docs/extras/gearbox/">geared</a>, <a href="../docs/extras/support/">incremental, auto-incremental, infinite</a> pagination</p>
+</doc-tab>
+</doc-tabs>
 <doc-anchor-target id="render-the-pagination">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#render-the-pagination">#</doc-anchor-trigger>
@@ -667,7 +680,7 @@
                                     <ul class="flex flex-wrap items-center text-sm">
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© 2017-2022 <a href="https://github.com/ddnexus">Domizio Demichelis</a> - <a href="https://opensource.org/licenses/MIT">MIT License</a></p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© 2017-2023 <a href="https://github.com/ddnexus">Domizio Demichelis</a> - <a href="https://opensource.org/licenses/MIT">MIT License</a></p></div>
                             </footer>
                         </div>
                     </div>
