@@ -7,9 +7,9 @@ categories:
 
 # Overflow Extra
 
-Allow easy handling of overflowing pages. 
+Allow easy handling of overflowing pages (i.e. requested page > count).
 
-It internally rescues from the `Pagy::OverflowError` offering a few different ready to use modes, quite useful for UIs and/or APIs. It works with `Pagy` and its subclasses some minor differences.
+It internally rescues `Pagy::OverflowError` exceptions offering the following ready to use behaviors/modes: `:empty`, `:last_page`, and `:exception`.
 
 ## Synopsis
 
@@ -41,8 +41,7 @@ Pagy::DEFAULT[:overflow] = :exception
 |:------------|:------------------------------------------------------------------------------------|:--------------|
 | `:overflow` | the modes in case of overflowing page (`:last_page`, `:empty_page` or `:exception`) | `:empty_page` |
 
-As usual, depending on the scope of the customization, you have a couple of options to set the variables:
-
+Set the variables - either globally, or locally:
 
 ```ruby
 # globally: e,g, pagy.rb Initializer
@@ -62,8 +61,9 @@ The modes accepted by the `:overflow` variable:
 
 +++ :empty_page
 
-This is the default mode; it will paginate the actual requested page, which - being overflowing - is empty. It is useful with APIs, where the client expects an empty set of results in order to stop requesting further pages.
-
+!!!success Serve an empty page
+Useful for APIs, where clients expect an empty page, in order to stop requesting more pages. This is the default mode.
+!!!
 
 ||| `Pagy` instance example:
 ```ruby
@@ -135,16 +135,17 @@ pagy.to                 #=> 2021-10-01 00:00:00 -0900 (same as from: if used it 
 ```
 |||
 
-
 +++ :last_page
 
-!!!warning `:last_page` not available for `Pagy::Countless` instances
-...because the last page is not known.
+!!!success Serve the last_page
+Paginate exactly as if the last page has been requested. 
 !!!
 
-It is useful in apps with a UI, in order to avoid being redirect to the last page.
+!!!warning 
+The `:last_page` mode is not available for `Pagy::Countless` instances because the last page is not known.
+!!!
 
-Regardless of the overflowing page requested, `Pagy` will set the page to the last page and paginate exactly as if the last page has been requested. For example:
+For example:
 
 ||| Controller
 ```ruby
@@ -159,7 +160,9 @@ pagy.last == pagy.page  #=> true
 
 +++ :exception
 
-This mode raises the `Pagy::OverflowError` as usual, so you can rescue from and implement your own custom mode even in presence of this extra.
+!!!success Raise the `Pagy::OverflowError` as usual
+You can rescue from the exception and implement your own custom mode even in presence of this extra.
+!!!
 
 ```ruby
 begin
@@ -176,6 +179,7 @@ end
 ==- `overflow?`
 
 Use this method in order to know if the requested page is overflowing. The original requested page is available as `pagy.vars[:page]` (useful when used with the `:last_page` mode, in case you want to give some feedback about the rescue to the user/client).
+
 ===
 
 ## Errors
