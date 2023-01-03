@@ -7,7 +7,9 @@ categories:
 
 # Overflow Extra
 
-This extra helps handle overflowing pages (e.g. where page 100 is requested, and there are zero records available). It internally rescues `Pagy::OverflowError` exceptions, and offers the following modes: `:empty`, `:last_page`, and `:exception`. 
+Allow easy handling of overflowing pages (i.e. requested page > count).
+
+It internally rescues `Pagy::OverflowError` exceptions offering the following ready to use behaviors/modes: `:empty`, `:last_page`, and `:exception`.
 
 ## Synopsis
 
@@ -59,8 +61,8 @@ The modes accepted by the `:overflow` variable:
 
 +++ :empty_page
 
-!!!success When Empty Pages are needed 
-Returns an empty page on an Overflow Exception. This is useful for APIs, where clients expect an empty page, in order to stop requesting more pages. This is the default mode.
+!!!success Serve an empty page
+Useful for APIs, where clients expect an empty page, in order to stop requesting more pages. This is the default mode.
 !!!
 
 ||| `Pagy` instance example:
@@ -133,15 +135,14 @@ pagy.to                 #=> 2021-10-01 00:00:00 -0900 (same as from: if used it 
 ```
 |||
 
-
 +++ :last_page
 
-!!!success When you want the last_page
-Regardless of the overflowing page requested, `Pagy` will set the page to the last page and paginate exactly as if the last page has been requested. 
+!!!success Serve the last_page
+Paginate exactly as if the last page has been requested. 
 !!!
 
-!!!warning `:last_page` not available for `Pagy::Countless` instances
-...because the last page is not known.
+!!!warning 
+The `:last_page` mode is not available for `Pagy::Countless` instances because the last page is not known.
 !!!
 
 For example:
@@ -159,8 +160,8 @@ pagy.last == pagy.page  #=> true
 
 +++ :exception
 
-!!!success When you want custom behavior
-This mode raises the `Pagy::OverflowError` as usual, so you can rescue from and implement your own custom mode even in presence of this extra.
+!!!success Raise the `Pagy::OverflowError` as usual
+You can rescue from the exception and implement your own custom mode even in presence of this extra.
 !!!
 
 ```ruby
