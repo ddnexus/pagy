@@ -1,0 +1,33 @@
+name: Documentation
+description: File a documentation issue
+labels: ["documentation"]
+title: '[docs] '
+assignees:
+  - benkoshy
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this documentation issue!
+
+  - type: checkboxes
+    id: prereq
+    attributes:
+      label: Before submitting...
+      description: "I researched through the following resources and there is no reference that solves this issue:"
+      options:
+        - label: "[Documentation](https://ddnexus.github.io/pagy/)"
+          required: true
+        - label: "[Issues](https://github.com/ddnexus/pagy/issues)"
+          required: true
+        - label: "[Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)"
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: Please, describe the issue...
+    validations:
+      required: true
