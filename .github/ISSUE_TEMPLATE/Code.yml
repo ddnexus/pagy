@@ -44,3 +44,11 @@ body:
            - label: "Link of a standalone `docker image` downloadable from a docker repository (e.g. dockerhub.com)"
            - label: "`docker-compose` file that can be run with `docker-compose up` (and doesn't need to be built because it uses 
         only docker images and no local context)"
+
+   - type: textarea
+     id: description
+     attributes:
+       label: Description
+       placeholder: Please, describe the issue...
+     validations:
+       required: true
