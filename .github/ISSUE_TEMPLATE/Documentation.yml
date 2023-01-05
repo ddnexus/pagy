@@ -1,6 +1,6 @@
 name: Documentation
 description: File a documentation issue
-labels: ["documentation"]
+labels: [ "documentation" ]
 title: '[docs] '
 assignees:
   - benkoshy
