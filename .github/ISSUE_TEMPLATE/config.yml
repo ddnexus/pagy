@@ -1,6 +1,6 @@
 blank_issues_enabled: false
 contact_links:
   - name: Pagy Q&A Discussions
-    url: https://github.com/ddnexus/pagy/discussions/new?category=q-a
-    about: Ask your questions here
+    url: https://github.com/ddnexus/pagy/discussions/categories/q-a
+    about: Ask and answer questions here
 

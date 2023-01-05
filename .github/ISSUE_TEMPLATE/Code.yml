@@ -9,7 +9,8 @@ body:
         value: |
            Thanks for taking the time to fill out this bug report!
            
-           Code Issues are reserved for real, reproducible pagy bug. If you are not sure about it, please ask in the [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a) discussion area. 
+           Code Issues are reserved for real, reproducible pagy bug. If you are not sure it's a bug, please ask in the [Q&A]
+          (https://github.com/ddnexus/pagy/discussions/categories/q-a) discussion area. 
            
            By following the steps below you will either solve your problem or ensure that it's a real reproducible bug to fix.
 
@@ -21,17 +22,17 @@ body:
         options:
            - label: I upgraded to the latest version of pagy
              required: true
-           - label: I searched through the "[Documentation](https://ddnexus.github.io/pagy/)"
+           - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/)
              required: true
-           - label: I searched through the "[Issues](https://github.com/ddnexus/pagy/issues)"
+           - label: I searched through the [Issues](https://github.com/ddnexus/pagy/issues)
              required: true
-           - label: I searched through the "[Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)"
+           - label: I searched through the [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
              required: true
 
    - type: checkboxes
      id: support
      attributes:
-        label: Provide a code support...
+        label: Code support
         description: |
            I am providing at least one of the following working and self-contained code support that can reproduce this issue:
         options:
