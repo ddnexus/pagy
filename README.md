@@ -8,7 +8,8 @@
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)</span> <span>
  [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)</span> <span>
 ![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=commits&colorA=004d99&colorB=0073e6)</span> <span>
-![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6) </span>
+![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)</span> <span>
+![Stars](https://shields.io/github/stars/ddnexus/pagy?style=social)</span>
 
 ## 🏆 The Best Pagination Ruby Gem 🥇
 
