@@ -1,6 +1,7 @@
 ---          
 icon: versions-24
 layout: page
+visibility: hidden
 ---
 
 # LEGACY CHANGELOG 
