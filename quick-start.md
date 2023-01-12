@@ -136,7 +136,7 @@ Or use a template
 ```
 |||
 
-!!! Notice
+!!! CSS Frameworks / Flavors Available
 Helpers and templates are available for different frameworks and different flavors (static, responsive, compact, etc.) [bootstrap](docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md), [foundation](docs/extras/foundation.md), [materialize](docs/extras/materialize.md), [semantic](docs/extras/semantic.md), [uikit](docs/extras/uikit.md)
 !!!
 
