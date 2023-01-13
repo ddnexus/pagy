@@ -48,7 +48,7 @@ class Pagy # :nodoc:
       params[page_param]  = page
       params[items_param] = vars[:items] if vars[:items_extra]
       params              = pagy.params.call(params) if pagy.params.is_a?(Proc)
-      query_string        = "?#{Rack::Utils.build_nested_query(params)}"
+      query_string        = "?#{QueryUtils.build_nested_query(params)}"
       query_string        = query_string.gsub('&', '&amp;') if html_escaped  # the only unescaped entity
       "#{vars[:url]}#{query_string}#{vars[:fragment]}"
     end
