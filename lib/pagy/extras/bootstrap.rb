@@ -51,7 +51,7 @@ class Pagy # :nodoc:
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{
-                    p_page}" class="text-primary" style="padding: 0; border: none; text-align: center; width: #{
+                    p_page}" style="padding: 0; border: none; text-align: center; width: #{
                     p_pages.to_s.length + 1}rem;">)
 
       %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination"><div class="btn-group" role="group" #{
@@ -61,7 +61,7 @@ class Pagy # :nodoc:
           else
             %(<a class="prev btn btn-primary disabled" href="#">#{pagy_t('pagy.nav.prev')}</a>)
           end
-        }<div class="pagy-combo-input btn btn-primary disabled" style="white-space: nowrap;">#{
+        }<div class="pagy-combo-input btn btn-secondary" style="white-space: nowrap;">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</div>#{
           if (p_next  = pagy.next)
             link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next" class="next btn btn-primary"'

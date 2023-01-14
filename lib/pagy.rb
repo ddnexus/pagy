@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '6.0.0'
+  VERSION = '6.0.1'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
@@ -52,7 +52,7 @@ class Pagy
           unless size.is_a?(Array) && size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
 
     # This algorithm is up to ~5x faster and ~2.3x lighter than the previous one (pagy < 4.3)
-    left_gap_start  =     1 + size[0]   # rubocop:disable Layout/ExtraSpacing, Layout/SpaceAroundOperators, Style/YodaExpression
+    left_gap_start  =     1 + size[0]   # rubocop:disable Layout/ExtraSpacing, Layout/SpaceAroundOperators
     left_gap_end    = @page - size[1] - 1
     right_gap_start = @page + size[2] + 1
     right_gap_end   = @last - size[3]

@@ -25,6 +25,12 @@ None
 
 <hr>
 
+## Version 6.0.1
+
+- Fix for pagy_bootstrap_combo_nav_js disabled input in certain bootstrap versions
+- Fix for wrong module in standalone extra
+- Fix for broken links in code comments and docs
+
 ## Version 6.0.0
 
 ### Breaking changes
