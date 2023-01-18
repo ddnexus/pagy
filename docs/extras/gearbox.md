@@ -2,7 +2,7 @@
 title: Gearbox
 categories:
 - Feature
-- Extras
+- Extra
 ---
 
 # Gearbox Extra

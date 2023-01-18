@@ -2,7 +2,7 @@
 title: Semantic
 categories:
 - Frontend
-- Extras
+- Extra
 ---
 
 # Semantic UI Extra

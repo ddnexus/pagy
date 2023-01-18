@@ -2,7 +2,7 @@
 title: Array
 categories:
 - Backend
-- Extras
+- Extra
 ---
 
 # Array Extra

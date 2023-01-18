@@ -3,7 +3,7 @@ title: Searchkick
 categories:
 - Search
 - Backend
-- Extras
+- Extra
 ---
 
 # Searchkick Extra

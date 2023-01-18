@@ -3,7 +3,7 @@ title: Navs
 image: none
 categories:
 - Frontend
-- Extras
+- Extra
 ---
 # Navs Extra
 

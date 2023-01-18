@@ -2,7 +2,7 @@
 title: Metadata
 categories:
 - Backend
-- Extras
+- Extra
 ---
 
 # Metadata Extra

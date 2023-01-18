@@ -3,7 +3,7 @@ title: Meilisearch
 categories:
 - Search
 - Backend
-- Extras
+- Extra
 ---
 
 # Meilisearch Extra

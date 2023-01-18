@@ -2,7 +2,7 @@
 title: Foundation
 categories:
 - Frontend
-- Extras
+- Extra
 ---
 
 # Foundation Extra

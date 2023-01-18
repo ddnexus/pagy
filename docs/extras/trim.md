@@ -2,7 +2,7 @@
 title: Trim
 categories:
 - Feature
-- Extras
+- Extra
 ---
 
 # Trim Extra

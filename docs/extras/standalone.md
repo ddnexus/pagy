@@ -2,7 +2,7 @@
 title: Standalone
 categories:
 - Feature
-- Extras
+- Extra
 ---
 
 # Standalone Extra

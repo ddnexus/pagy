@@ -2,7 +2,7 @@
 title: Tailwind
 categories:
 - Frontend
-- Extras
+- Extra
 ---
 
 # Tailwind Extra Styles

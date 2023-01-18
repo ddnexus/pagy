@@ -2133,7 +2133,7 @@ The pagy initializer has changed: please replace/update it: [pagy.rb](https://gi
 
 ### Breaking Changes
 
-- Extras are now integrated in Pagy. The `pagy-extras` gem has been discontinued: you should remove it and update your code as indicated [here](https://github.com/ddnexus/pagy-extras)
+- Extra are now integrated in Pagy. The `pagy-extras` gem has been discontinued: you should remove it and update your code as indicated [here](https://github.com/ddnexus/pagy-extras)
 - Pagy I18n has been refactored and it's simpler to use. The main change is that the `Pagy::I18N[:gem]` variable has been removed, so if you want to use the `I18n` gem in place of the internal Pagy implementation you need just to `require 'pagy/extra/i18n'` in your initializer. (see the [I18n doc](https://ddnexus.github.io/pagy/api/frontend.md#i18n))
 - `pagy_url_for` now requires the pagy argument and it's called with 2 params: if you have overridden it, you should add the extra param.
 - `pagy_get_vars` now requires the vars argument and it's called with 2 params: if you have overridden it, you should add the extra param.

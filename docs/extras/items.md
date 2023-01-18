@@ -2,7 +2,7 @@
 title: Items
 categories:
 - Feature
-- Extras
+- Extra
 ---
 
 # Items Extra

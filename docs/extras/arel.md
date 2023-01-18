@@ -2,7 +2,7 @@
 title: Arel
 categories:
 - Backend
-- Extras
+- Extra
 ---
 
 # Arel Extra

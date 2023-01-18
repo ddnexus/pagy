@@ -2,7 +2,7 @@
 title: Bootstrap
 categories:
 - Frontend
-- Extras
+- Extra
 image: none
 ---
 

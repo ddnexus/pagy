@@ -2,7 +2,7 @@
 title: Support
 categories:
 - Feature
-- Extras
+- Extra
 ---
 
 # Support Extra

@@ -3,7 +3,7 @@ title: Elasticsearch Rails
 categories: 
 - Search
 - Backend
-- Extras
+- Extra
 ---
 
 # Elasticsearch Rails Extra

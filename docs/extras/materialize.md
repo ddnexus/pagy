@@ -2,7 +2,7 @@
 title: Materialize
 categories:
 - Frontend
-- Extras
+- Extra
 image: none
 ---
 
