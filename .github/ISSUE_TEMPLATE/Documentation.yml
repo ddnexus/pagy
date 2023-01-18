@@ -1,7 +1,7 @@
 name: Documentation
 description: File a documentation issue
 labels: [ "documentation" ]
-title: '[docs] '
+title: 'Docs: '
 assignees:
   - benkoshy
 
@@ -15,13 +15,12 @@ body:
     id: prereq
     attributes:
       label: Before submitting...
-      description: "I researched through the following resources and there is no reference that solves this issue:"
       options:
-        - label: "[Documentation](https://ddnexus.github.io/pagy/)"
+        - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/)
           required: true
-        - label: "[Issues](https://github.com/ddnexus/pagy/issues)"
+        - label: I searched through the [Issues](https://github.com/ddnexus/pagy/issues)
           required: true
-        - label: "[Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)"
+        - label: I searched through the [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
           required: true
 
   - type: textarea
