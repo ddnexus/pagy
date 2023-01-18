@@ -31,9 +31,9 @@ body:
   - type: checkboxes
     id: support
     attributes:
-      label: Code support
+      label: I am providing...
       description: |
-        I am providing at least one of the following working and self-contained code support that can reproduce this issue:
+        ...at least one of the following code supports reproducing the issue:
       options:
         - label: |
             Simple step by step list that would work in IRB with the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console)
@@ -46,7 +46,7 @@ body:
         - label: |
             Link of my own branch forked from pagy, which contains an added test file
         - label: |
-            Link of my own branch forked from [any of the rails apps listed here.](https://github.com/stars/benkoshy/lists/rails-demo-apps-for-pagy)"
+            Link of my own branch forked from [any of the rails apps listed here.](https://github.com/stars/benkoshy/lists/rails-demo-apps-for-pagy)
         - label: |
             A `docker-compose` file that uses only docker images and no local context and runs with `docker-compose up`
 
