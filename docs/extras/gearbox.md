@@ -1,7 +1,7 @@
 ---
 title: Gearbox
 categories:
-- Features
+- Feature
 - Extras
 ---
 
