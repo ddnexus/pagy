@@ -28,7 +28,11 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 
 ||| SCSS rules
 ```scss
-@import "~tailwindcss/base"; /* Add the following markup AFTER your import statements*/
+@import "~tailwindcss/base";
+/* 
+   Add the following markup AFTER your import statements
+   Notice: this style contains all the rules for pagy-nav, pagy-nav-js and pagy-combo-nav-js
+*/
 
 .pagy-nav,
 .pagy-nav-js {
@@ -109,7 +113,11 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 
 ||| CSS Rules
 ```scss
-@import "~tailwindcss/base"; /* Add the following markup AFTER your import statements*/
+@import "~tailwindcss/base"; 
+/* 
+   Add the following markup AFTER your import statements
+   Notice: this style contains only the rules for pagy-nav
+*/
 
 .pagy-nav.pagination {
   @apply isolate inline-flex -space-x-px rounded-md shadow-sm
@@ -138,10 +146,7 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 .page.active {
   @apply z-10 border-indigo-500 bg-indigo-50 text-indigo-600 relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20
 }
-
 ```
 |||
 
 +++
-
-
