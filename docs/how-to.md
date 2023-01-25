@@ -236,24 +236,24 @@ You have a few ways to do that:
 1. you can override the `pagy_get_vars` method in your controller, adding the dynamically set `:i18n_key`. For example with ActiveRecord (mostly useful with the [i18n extra](extras/i18n.md) or if you copy over the AR keys into the pagy dictionary):
 
 ||| controller
-  ```ruby
-      def pagy_get_vars(collection, vars)
-      { count: ...,
-        page: ...,
-        i18n_key: "activerecord.models.#{collection.model_name.i18n_key}" }.merge!(vars)
-      end
-  ```
+```ruby
+def pagy_get_vars(collection, vars)
+  { count: ...,
+    page: ...,
+    i18n_key: "activerecord.models.#{collection.model_name.i18n_key}" }.merge!(vars)
+end
+```
 |||
 
 2. you can set the `:i18n_key` variable, either globally using the `Pagy::DEFAULT` hash or per instance with the `Pagy.new` method or with the `pagy` controller method:
 
 ||| initializer (pagy.rb)
 ```ruby
-    # all the Pagy instances will have the default
-    Pagy::DEFAULT[:i18n_key] = 'activerecord.models.product'
+# all the Pagy instances will have the default
+Pagy::DEFAULT[:i18n_key] = 'activerecord.models.product'
 
-    # or single Pagy instance
-    @pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product' )
+# or single Pagy instance
+@pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product' )
 ```
 |||
 
@@ -261,8 +261,8 @@ You have a few ways to do that:
 
 ||| View
 ```erb
-    <%== pagy_info(@pagy, i18n_key: 'activerecord.models.product') %>
-    <%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.models.product') %>
+<%== pagy_info(@pagy, i18n_key: 'activerecord.models.product') %>
+<%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.models.product') %>
 ```
 |||
 
@@ -270,8 +270,8 @@ You have a few ways to do that:
 
 ||| View
 ```erb
-    <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
-    <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
+<%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
+<%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
 ```
 |||
 
@@ -673,15 +673,15 @@ Here are a few options for manually handling the error in apps:
 - Rescue and redirect to the last known page (Notice: the [overflow extra](extras/overflow.md) provides the same behavior without redirecting)
 
 ||| controller
-   ```ruby
-   rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+```ruby
+rescue_from Pagy::OverflowError, with: :redirect_to_last_page
 
-   private
+private
 
-   def redirect_to_last_page(exception)
-     redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
-   end
-   ```
+def redirect_to_last_page(exception)
+ redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
+end
+```
 |||
 
 !!!warning Rescue from `Pagy::OverflowError` first
