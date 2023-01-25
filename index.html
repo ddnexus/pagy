@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.727848918016">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.727954339875">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -33,12 +33,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=2.4.0.727848918016" rel="stylesheet" />
+    <link href="resources/css/retype.css?v=2.4.0.727954339875" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.727848918016" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.727954339875" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.727848918016" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="resources/js/prism.js?v=2.4.0.727848918016" defer></script>
+    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.727954339875" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="resources/js/prism.js?v=2.4.0.727954339875" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -433,7 +433,7 @@ include Pagy::Frontend
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%# Render the navigation bar in your views %&gt;
 &lt;%== pagy_nav(@pagy) %&gt;</code></pre>
 </doc-codeblock></div>
-<p><em>(See <a href="https://ddnexus.github.io/pagy/quick-start">Quick Start</a>)</em></p>
+<p><em>(See the <a href="https://ddnexus.github.io/pagy/quick-start">Quick Start</a>)</em></p>
 </details>
 <details>
 <summary>Customization for CSS frameworks...</summary>
@@ -445,7 +445,7 @@ require 'pagy/extras/bootstrap'</code></pre>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%# Use it in your views %&gt;
 &lt;%== pagy_bootstrap_nav(@pagy) %&gt;</code></pre>
 </doc-codeblock></div>
-<p><em>(See the <a href="https://ddnexus.github.io/pagy/docs/extras/bootstrap">bootstrap extra</a>)</em></p>
+<p><em>(See all the <a href="https://ddnexus.github.io/pagy/categories/frontend/">CSS Framework Extras</a>)</em></p>
 </details>
 <details>
 <summary>Customization for special collections...</summary>
@@ -460,7 +460,7 @@ extend Pagy::ElasticsearchRails
 response         = Article.pagy_search(params[:q])
 @pagy, @response = pagy_elasticsearch_rails(response)</code></pre>
 </doc-codeblock></div>
-<p><em>(See the <a href="https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails">elasticsearch_rails extra</a>)</em></p>
+<p><em>(See all the <a href="https://ddnexus.github.io/pagy/categories/search/">Search Extras</a>)</em></p>
 </details>
 <details>
 <summary>Customization for client-side|JSON rendering...</summary>
@@ -473,7 +473,7 @@ pagy, records = pagy(Product.all)
 render json: { data: records,
                pagy: pagy_metadata(pagy) }</code></pre>
 </doc-codeblock></div>
-<p><em>(See the <a href="https://ddnexus.github.io/pagy/docs/extras/metadata">metadata extra</a>)</em></p>
+<p><em>(See all the <a href="https://ddnexus.github.io/pagy/categories/backend/">Backend Tools</a>)</em></p>
 </details>
 <details>
 <summary>Customization for headers pagination for APIs...</summary>
@@ -486,7 +486,7 @@ pagy, records = pagy(Product.all)
 pagy_headers_merge(pagy)
 render json: records</code></pre>
 </doc-codeblock></div>
-<p><em>(See the <a href="https://ddnexus.github.io/pagy/docs/extras/headers">headers extra</a>)</em></p>
+<p><em>(See all the <a href="https://ddnexus.github.io/pagy/categories/backend/">Backend Tools</a>)</em></p>
 </details>
 <details>
 <summary>More customization with extras...</summary><br>
