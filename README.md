@@ -111,7 +111,7 @@ include Pagy::Frontend
 <%== pagy_nav(@pagy) %>
 ```
 
-_(See [Quick Start](https://ddnexus.github.io/pagy/quick-start))_
+_(See the [Quick Start](https://ddnexus.github.io/pagy/quick-start))_
 
 </details>
 
@@ -129,7 +129,7 @@ require 'pagy/extras/bootstrap'
 <%== pagy_bootstrap_nav(@pagy) %>
 ```
 
-_(See the [bootstrap extra](https://ddnexus.github.io/pagy/docs/extras/bootstrap))_
+_(See all the [CSS Framework Extras](https://ddnexus.github.io/pagy/categories/frontend/))_
 
 </details>
 
@@ -149,7 +149,7 @@ response         = Article.pagy_search(params[:q])
 @pagy, @response = pagy_elasticsearch_rails(response)
 ```
 
-_(See the [elasticsearch_rails extra](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails))_
+_(See all the [Search Extras](https://ddnexus.github.io/pagy/categories/search/))_
 
 </details>
 
@@ -167,7 +167,7 @@ render json: { data: records,
                pagy: pagy_metadata(pagy) }
 ```
 
-_(See the [metadata extra](https://ddnexus.github.io/pagy/docs/extras/metadata))_
+_(See all the [Backend Tools](https://ddnexus.github.io/pagy/categories/backend/))_
 
 </details>
 
@@ -185,7 +185,7 @@ pagy_headers_merge(pagy)
 render json: records
 ```
 
-_(See the [headers extra](https://ddnexus.github.io/pagy/docs/extras/headers))_
+_(See all the [Backend Tools](https://ddnexus.github.io/pagy/categories/backend/))_
 
 </details>
 

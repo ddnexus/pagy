@@ -24,7 +24,7 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 
 +++ Style 1
 
-![Image of Style 1](../assets/images/tailwind-example-style-1.png "Image of Style 1")
+![Image of Style 1](../assets/images/tailwind-example-style-1.png)
 
 ||| SCSS rules
 ```scss
@@ -109,7 +109,7 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 
 +++ Style 2
 
-![Image of Style 2](../assets/images/tailwind-example-style-2.png "Image of Style 1")
+![Image of Style 2](../assets/images/tailwind-example-style-2.png)
 
 ||| CSS Rules
 ```scss
