@@ -51,6 +51,8 @@ You can customize them by overriding in your own view helper(s).
 
 ==- `pagy_bootstrap_nav(pagy, ...)`
 
+![pagy_bootstrap_nav](/docs/assets/images/bootstrap_nav.png)
+
 This method is the same as the `pagy_nav`, but customized for Bootstrap.
 
 See: [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy).
@@ -59,13 +61,13 @@ The `bootstrap_nav.*` templates produce the same output, and can be used as an e
 
 === `pagy_bootstrap_nav_js(pagy, ...)`
 
-![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_nav_js-g.png)
+![bootstrap_nav_js - Notice how it gets shorter, depending on width?](/docs/assets/images/bootstrap_nav_js-g.png)
 
 See: [Javascript Navs](/docs/api/javascript/navs.md).
 
 === `pagy_bootstrap_combo_nav_js(pagy, ...)`
 
-![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js-g.png)
+![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
 See: [Javascript Combo Navs](/docs/api/javascript/combo-navs.md).
 

@@ -19,7 +19,7 @@ They are the fastest and lightest `nav` on modern environments, recommended when
 
 Here is a screenshot (from the `bootstrap` extra):
 
-![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js-g.png)
+![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
 ## Synopsis
 

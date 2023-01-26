@@ -41,7 +41,7 @@ See [Pagy Navs](javascript/navs.md)
 
 +++ `pagy*_combo_nav_js`
 
-![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js-g.png)
+![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
 * Navigation and pagination info combined.
 
