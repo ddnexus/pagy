@@ -38,17 +38,21 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize 
 
 ==- `pagy_materialize_nav(pagy)`
 
+![materialize_nav](/docs/assets/images/materialize_nav.png)
+
 This method is the same as the `pagy_nav`, but customized for Materialize.
 
 See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy) documentation.
 
 ==- `pagy_materialize_nav_js(pagy, ...)`
 
+![materialize_nav_js](/docs/assets/images/materialize_nav_js.png)
+
 See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 === `pagy_materialize_combo_nav_js(pagy, ...)`
 
-![materialize_combo_nav_js](/docs/assets/images/materialize_combo_nav_js-g.png)
+![materialize_combo_nav_js](/docs/assets/images/materialize_combo_nav_js.png)
 
 See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.
 
