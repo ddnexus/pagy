@@ -507,7 +507,7 @@ These helpers take the Pagy object and return the HTML string with the paginatio
 |||
 
 !!!primary Extras Provide Added Functionality
-the [extras](/categories/extras) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
+the [extras](/categories/extra) add a few other helpers that you can use the same way, in order to get added features (e.g. bootstrap compatibility, responsiveness, compact layouts, etc.)
 !!!
 
 | Extra                                | Helpers                                                                            |

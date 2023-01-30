@@ -11,7 +11,7 @@ This module provides a few methods to deal with the navigation aspect of the pag
 
 You will usually include it in some helper module, making its methods available (and overridable) in your views. _([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/frontend.rb))_
 
-You can extend this module with a few more nav helpers _(see the [extras](/categories/extras) doc for more details)_
+You can extend this module with a few more nav helpers _(see the [extras](/categories/extra) doc for more details)_
 
 ## Synopsis
 
