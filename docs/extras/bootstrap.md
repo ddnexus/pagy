@@ -61,7 +61,7 @@ The `bootstrap_nav.*` templates produce the same output, and can be used as an e
 
 === `pagy_bootstrap_nav_js(pagy, ...)`
 
-![bootstrap_nav_js: It is responsive.](/docs/assets/images/bootstrap_nav_js.png)
+![bootstrap_nav_js: Responsive nav.](/docs/assets/images/bootstrap_nav_js.png)
 
 See: [Javascript Navs](/docs/api/javascript/navs.md).
 
