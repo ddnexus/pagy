@@ -77,7 +77,7 @@ Thank you for showing your support!
 
 Besides the classic pagination offered by the `pagy_nav` helpers, you can also use a couple of more performant alternatives:
 
-- [pagy_nav_js](https://ddnexus.github.io/pagy/docs/api/javascript): A faster and lighter classic looking UI, rendered on the client side with optional responsiveness:<br>![bootstrap_nav_js](docs/assets/images/bootstrap_nav_js-w.png)
+- [pagy_nav_js](https://ddnexus.github.io/pagy/docs/api/javascript): A faster and lighter classic looking UI, rendered on the client side with optional responsiveness:<br>![bootstrap_nav_js](docs/assets/images/bootstrap_nav_js.png)
 
 - [pagy_combo_nav_js](https://ddnexus.github.io/pagy/docs/api/javascript): The fastest and lightest alternative UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ that combines navigation and pagination info in a single compact element:<br>![bootstrap_combo_nav_js](docs/assets/images/bootstrap_combo_nav_js.png)
 
