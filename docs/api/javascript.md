@@ -19,7 +19,7 @@ A few helpers use Javascript and offer some extra feature and require some extra
 
 +++ `pagy*_nav_js`
 
-![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js-g.png)
+![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js.png)
 
 <details>
   <summary>
@@ -41,7 +41,7 @@ See [Pagy Navs](javascript/navs.md)
 
 +++ `pagy*_combo_nav_js`
 
-![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js-g.png)
+![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
 * Navigation and pagination info combined.
 

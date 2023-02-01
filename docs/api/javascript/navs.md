@@ -23,7 +23,7 @@ look like a normal `pagy*_nav` but have a few added features:
 
 Here is a screenshot (from the `bootstrap`extra) showing responsiveness at different widths:
 
-![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js-g.png)
+![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js.png)
 
 ## Synopsis
 
