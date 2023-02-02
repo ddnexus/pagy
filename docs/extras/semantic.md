@@ -43,7 +43,7 @@ See: [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy).
 
 ==- `pagy_semantic_nav_js(pagy, ...)`
 
-![semantic_nav_js](/docs/assets/images/semantic_nav.png)
+![semantic_nav_js - Responsive nav.](/docs/assets/images/semantic_nav.png)
 
 See: [Javascript Navs](/docs/api/javascript/navs.md).
 
