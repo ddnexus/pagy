@@ -46,7 +46,11 @@ See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy) documentation
 
 ==- `pagy_materialize_nav_js(pagy, ...)`
 
+<!---
+To do: Add a proper responsive image for semantic, as we have done for bootstrap.
+
 ![materialize_nav_js](/docs/assets/images/materialize_nav_js.png)
+-->
 
 See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
