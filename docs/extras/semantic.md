@@ -43,7 +43,11 @@ See: [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy).
 
 ==- `pagy_semantic_nav_js(pagy, ...)`
 
+<!---
+To do: Add a proper responsive image for semantic, as we have done for bootstrap.
+
 ![semantic_nav_js - Responsive nav.](/docs/assets/images/semantic_nav.png)
+-->
 
 See: [Javascript Navs](/docs/api/javascript/navs.md).
 
