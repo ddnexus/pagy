@@ -32,7 +32,7 @@
 
 
 # Extras
-# See https://ddnexus.github.io/pagy/docs/extras
+# See https://ddnexus.github.io/pagy/categories/extra
 
 
 # Backend Extras
@@ -197,7 +197,7 @@
 # Rails
 # Enable the .js file required by the helpers that use javascript
 # (pagy*_nav_js, pagy*_combo_nav_js, and pagy_items_selector_js)
-# See https://ddnexus.github.io/pagy/docs/extras#javascript
+# See https://ddnexus.github.io/pagy/docs/api/javascript
 
 # With the asset pipeline
 # Sprockets need to look into the pagy javascripts dir, so add it to the assets paths
@@ -206,7 +206,7 @@
 # I18n
 
 # Pagy internal I18n: ~18x faster using ~10x less memory than the i18n gem
-# See https://ddnexus.github.io/pagy/docs/api/frontend#i18n
+# See https://ddnexus.github.io/pagy/docs/api/i18n
 # Notice: No need to configure anything in this section if your app uses only "en"
 # or if you use the i18n extra below
 #
