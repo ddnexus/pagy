@@ -30,5 +30,5 @@ Feel free to ask for help in your Pull Request.
 
 ### Useful Links
 
-- [Pagy I18n Documentation](https://ddnexus.github.io/pagy/docs/api/frontend/#i18n)
+- [Pagy I18n Documentation](https://ddnexus.github.io/pagy/docs/api/i18n)
 - [I18n Extra](https://ddnexus.github.io/pagy/docs/extras/i18n/)

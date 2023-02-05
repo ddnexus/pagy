@@ -1,3 +1,4 @@
+# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/meilisearch
 # frozen_string_literal: true
 
 class Pagy # :nodoc:
