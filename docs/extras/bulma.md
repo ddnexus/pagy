@@ -51,6 +51,8 @@ You can customize them by overriding in your own view helper(s).
 
 ==- `pagy_bulma_nav(pagy)`
 
+![bulma_nav](/docs/assets/images/bulma_nav.png)
+
 This method is the same as the `pagy_nav`, but customized for Bulma.
 
 See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy) documentation.
@@ -63,7 +65,7 @@ See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
 === `pagy_bulma_combo_nav_js(pagy, ...)`
 
-![bulma_combo_nav_js](/docs/assets/images/bulma_combo_nav_js-g.png)
+![bulma_combo_nav_js](/docs/assets/images/bulma_combo_nav_js.png)
 
 See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.
 
