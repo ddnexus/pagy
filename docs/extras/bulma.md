@@ -51,7 +51,7 @@ You can customize them by overriding in your own view helper(s).
 
 ==- `pagy_bulma_nav(pagy)`
 
-![bulma_nav](/docs/assets/images/bulma_nav.png)
+![bulma_nav - Compact Mobile View](/docs/assets/images/bulma_nav_compact.png)
 
 This method is the same as the `pagy_nav`, but customized for Bulma.
 
