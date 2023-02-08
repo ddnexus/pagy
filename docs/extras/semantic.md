@@ -33,7 +33,7 @@ require 'pagy/extras/semantic'
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by direct overriding in your own view helper.
 
-==- `pagy_semantic_nav(pagy)`
+=== `pagy_semantic_nav(pagy)`
 
 ![semantic_nav](/docs/assets/images/semantic_nav.png)
 
@@ -51,7 +51,7 @@ To do: Add a proper responsive image for semantic, as we have done for bootstrap
 
 See: [Javascript Navs](/docs/api/javascript/navs.md).
 
-==- `pagy_semantic_combo_nav_js(pagy, ...)`
+=== `pagy_semantic_combo_nav_js(pagy, ...)`
 
 ![semantic_combo_nav_js](/docs/assets/images/semantic_combo_nav_js.png)
 
