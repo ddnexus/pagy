@@ -49,9 +49,9 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module.
 You can customize them by overriding in your own view helper(s).
 !!!
 
-==- `pagy_bulma_nav(pagy)`
+=== `pagy_bulma_nav(pagy)`
 
-![bulma_nav - Compact Mobile View](/docs/assets/images/bulma_nav_compact.png)
+![bulma_nav - medium view size](/docs/assets/images/bulma_nav_medium.png)
 
 This method is the same as the `pagy_nav`, but customized for Bulma.
 
