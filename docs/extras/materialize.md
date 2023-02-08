@@ -36,7 +36,7 @@ See [Javascript](/docs/api/javascript.md) if you use `pagy_materialize_nav_js` o
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by direct overriding in your own view helper.
 
-==- `pagy_materialize_nav(pagy)`
+=== `pagy_materialize_nav(pagy)`
 
 ![materialize_nav](/docs/assets/images/materialize_nav.png)
 
