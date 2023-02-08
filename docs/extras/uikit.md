@@ -45,7 +45,9 @@ require 'pagy/extras/uikit'
 
 This extra adds the above nav helpers to the `Pagy::Frontend` module. You can customize it by direct overriding in your own view helper.
 
-==- `pagy_uikit_nav(pagy)`
+=== `pagy_uikit_nav(pagy)`
+
+![uikit_nav](/docs/assets/images/uikit_nav.png)
 
 This method is the same as the `pagy_nav`, but customized for UIkit.
 
@@ -63,6 +65,6 @@ See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentatio
 
 Here is an example:
 
-![uikit_combo_nav_js](/docs/assets/images/uikit_combo_nav_js-g.png)
+![uikit_combo_nav_js](/docs/assets/images/uikit_combo_nav_js.png)
 
 ===
