@@ -26,6 +26,14 @@ You can also pass it as an instance variable to the `Pagy.new` method or to the 
 @pagy, @records = pagy(Product.some_scope, items: 30)
 ```
 
+!!! warning ActiveRecord `limit`
+The defined `:items` variable overrides any `limit` already set in ActiveRecord collections:
+
+```ruby
+@pagy, @products = pagy(Product.limit(5)) #=> limit(5) gets overridden
+```
+!!!
+
 See also a couple of extras that handle the `:items` in some special way:
 
 - [gearbox](extras/gearbox.md): Automatically change the number of items per page depending on the page number
