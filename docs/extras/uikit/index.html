@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.729216351207">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.729216394879">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.729216351207" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.729216394879" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.729216351207" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.729216394879" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.729216351207" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.729216351207" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.729216394879" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.729216394879" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -334,8 +334,13 @@
 </doc-anchor-target>
 <p>This extra adds the above nav helpers to the <code v-pre>Pagy::Frontend</code> module. You can customize it by direct overriding in your own view helper.</p>
 <doc-panels>
-   <doc-panel id="pagy-uikit-nav-pagy" collapsed>
+   <doc-panel id="pagy-uikit-nav-pagy">
        <template #title><code v-pre>pagy_uikit_nav(pagy)</code></template>
+<p><figure class="content-center">
+    <img src="../../assets/images/uikit_nav.png" alt="uikit_nav" />
+    <figcaption class="caption">uikit_nav</figcaption>
+</figure>
+</p>
 <p>This method is the same as the <code v-pre>pagy_nav</code>, but customized for UIkit.</p>
 <p>See the <a href="../../api/frontend/#pagy-nav-pagy">pagy_nav(pagy, ...)</a> documentation.</p>
 <p>The <code v-pre>uikit_nav.*</code> templates produce the same output, and can be used as an easier (but slower) starting point to override it. See <a href="../../how-to/#use-templates">How to use templates</a>.</p>
@@ -349,7 +354,7 @@
 <p>See the <a href="../../api/javascript/combo-navs/">Javascript Combo Navs</a> documentation.</p>
 <p>Here is an example:</p>
 <p><figure class="content-center">
-    <img src="../../assets/images/uikit_combo_nav_js-g.png" alt="uikit_combo_nav_js" />
+    <img src="../../assets/images/uikit_combo_nav_js.png" alt="uikit_combo_nav_js" />
     <figcaption class="caption">uikit_combo_nav_js</figcaption>
 </figure>
 </p>
