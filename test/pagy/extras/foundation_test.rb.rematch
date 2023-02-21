@@ -1,4 +1,77 @@
 ---
+"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0002_renders first page when used with Pagy::Countless": <nav
+  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJjdXJyZW50XCI+X19wYWd5X2xhYmVsX188L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cImVsbGlwc2lzIGdhcFwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0IGRpc2FibGVkXCI+TmV4dCZuYnNwOyZyc2FxdW87PC9saT48L3VsPiJ9LHsiMCI6WyIxIl19LG51bGxd"></nav>
+"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0002_renders first page when used with Pagy::Countless": <nav
+  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
+  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dCBkaXNhYmxlZFwiPk5leHQmbmJzcDsmcnNhcXVvOzwvbGk+PC91bD4ifSx7IjAiOlsiMSJdLCI2MDAiOlsiMSJdfSxudWxsXQ=="></nav>
+"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0001_renders first page": <nav
+  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJjdXJyZW50XCI+X19wYWd5X2xhYmVsX188L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cImVsbGlwc2lzIGdhcFwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WyIxIiwyLDMsNCw1LCJnYXAiLDUwXX0sbnVsbF0="></nav>
+"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0001_renders first page": <nav
+  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
+  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwibmV4dFwiPk5leHQmbmJzcDsmcnNhcXVvOzwvYT48L2xpPjwvdWw+In0seyIwIjpbIjEiLDIsMywiZ2FwIiw1MF0sIjYwMCI6WyIxIiwyLDMsNCwiZ2FwIiw1MF19LG51bGxd"></nav>
+"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0004_renders last page": <nav
+  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTQ5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHQgZGlzYWJsZWRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiw0Niw0Nyw0OCw0OSwiNTAiXX0sbnVsbF0="></nav>
+"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0004_renders last page": <nav
+  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
+  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTQ5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dCBkaXNhYmxlZFwiPk5leHQmbmJzcDsmcnNhcXVvOzwvbGk+PC91bD4ifSx7IjAiOlsxLCJnYXAiLDQ4LDQ5LCI1MCJdLCI2MDAiOlsxLCJnYXAiLDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></nav>
+"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0005_renders with :steps": <nav
+  class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjUwMCI6WzEsMiwiZ2FwIiwxNywxOCwxOSwiMjAiLDIxLDIyLDIzLCJnYXAiLDQ5LDUwXX0sbnVsbF0="></nav>
+"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0005_renders with :steps": <nav
+  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
+  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></nav>
+"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0003_renders intermediate page": <nav
+  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></nav>
+"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0003_renders intermediate page": <nav
+  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
+  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></nav>
+"[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0002_renders intermediate page": '<nav
+  class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
+  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
+  href="/foo?page=2"   rel="prev" style="margin-bottom: 0" aria-label="previous" class="prev
+  button primary">&lsaquo;&nbsp;Prev</a><label class="input-group-label">Page <input
+  class="input-group-field cell shrink" type="number" min="1" max="6" value="3" style="width:
+  2rem; padding: 0 0.3rem; margin: 0 0.3rem;"> of 6</label><a href="/foo?page=4"   rel="next"
+  style="margin-bottom: 0" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
+"[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0002_renders intermediate page": '<nav
+  id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
+  class="input-group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
+  href="/foo?page=2"  link-extra rel="prev" style="margin-bottom: 0" aria-label="previous"
+  class="prev button primary">&lsaquo;&nbsp;Prev</a><label class="input-group-label">Page
+  <input class="input-group-field cell shrink" type="number" min="1" max="6" value="3"
+  style="width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;"> of 6</label><a href="/foo?page=4"  link-extra
+  rel="next" style="margin-bottom: 0" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
+"[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0001_renders first page": '<nav
+  class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
+  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
+  style="margin-bottom: 0" class="prev button primary disabled" href="#">&lsaquo;&nbsp;Prev</a><label
+  class="input-group-label">Page <input class="input-group-field cell shrink" type="number"
+  min="1" max="6" value="1" style="width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;">
+  of 6</label><a href="/foo?page=2"   rel="next" style="margin-bottom: 0" aria-label="next"
+  class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
+"[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0001_renders first page": '<nav
+  id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
+  class="input-group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
+  style="margin-bottom: 0" class="prev button primary disabled" href="#">&lsaquo;&nbsp;Prev</a><label
+  class="input-group-label">Page <input class="input-group-field cell shrink" type="number"
+  min="1" max="6" value="1" style="width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;">
+  of 6</label><a href="/foo?page=2"  link-extra rel="next" style="margin-bottom: 0"
+  aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
+"[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0003_renders last page": '<nav
+  class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
+  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
+  href="/foo?page=5"   rel="prev" style="margin-bottom: 0" aria-label="previous" class="prev
+  button primary">&lsaquo;&nbsp;Prev</a><label class="input-group-label">Page <input
+  class="input-group-field cell shrink" type="number" min="1" max="6" value="6" style="width:
+  2rem; padding: 0 0.3rem; margin: 0 0.3rem;"> of 6</label><a style="margin-bottom:
+  0" class="next button primary disabled" href="#">Next&nbsp;&rsaquo;</a></div></nav>'
+"[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0003_renders last page": '<nav
+  id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
+  class="input-group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
+  href="/foo?page=5"  link-extra rel="prev" style="margin-bottom: 0" aria-label="previous"
+  class="prev button primary">&lsaquo;&nbsp;Prev</a><label class="input-group-label">Page
+  <input class="input-group-field cell shrink" type="number" min="1" max="6" value="6"
+  style="width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;"> of 6</label><a style="margin-bottom:
+  0" class="next button primary disabled" href="#">Next&nbsp;&rsaquo;</a></div></nav>'
 "[1] pagy/extras/foundation::#pagy_foundation_nav#test_0002_renders intermediate page": <nav
   class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination"><li class="prev"><a
   href="/foo?page=19"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li><a
@@ -21,20 +94,6 @@
   href="/foo?page=23"  link-extra >23</a></li><li><a href="/foo?page=24"  link-extra
   >24</a></li><li class="ellipsis gap" aria-hidden="true"></li><li><a href="/foo?page=50"  link-extra
   >50</a></li><li class="next"><a href="/foo?page=21"  link-extra rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_nav#test_0003_renders last page": <nav
-  class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination"><li class="prev"><a
-  href="/foo?page=49"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li><a
-  href="/foo?page=1"   >1</a></li><li class="ellipsis gap" aria-hidden="true"></li><li><a
-  href="/foo?page=46"   >46</a></li><li><a href="/foo?page=47"   >47</a></li><li><a
-  href="/foo?page=48"   >48</a></li><li><a href="/foo?page=49"   rel="prev" >49</a></li><li
-  class="current">50</li><li class="next disabled">Next&nbsp;&rsaquo;</li></ul></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav#test_0003_renders last page": <nav
-  id="test-nav-id" class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination"><li
-  class="prev"><a href="/foo?page=49"  link-extra rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li><a
-  href="/foo?page=1"  link-extra >1</a></li><li class="ellipsis gap" aria-hidden="true"></li><li><a
-  href="/foo?page=46"  link-extra >46</a></li><li><a href="/foo?page=47"  link-extra
-  >47</a></li><li><a href="/foo?page=48"  link-extra >48</a></li><li><a href="/foo?page=49"  link-extra
-  rel="prev" >49</a></li><li class="current">50</li><li class="next disabled">Next&nbsp;&rsaquo;</li></ul></nav>
 "[1] pagy/extras/foundation::#pagy_foundation_nav#test_0001_renders first page": <nav
   class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination"><li class="prev
   disabled">&lsaquo;&nbsp;Prev</li><li class="current">1</li><li><a href="/foo?page=2"   rel="next"
@@ -49,93 +108,17 @@
   >4</a></li><li><a href="/foo?page=5"  link-extra >5</a></li><li class="ellipsis
   gap" aria-hidden="true"></li><li><a href="/foo?page=50"  link-extra >50</a></li><li
   class="next"><a href="/foo?page=2"  link-extra rel="next" aria-label="next">Next&nbsp;&rsaquo;</a></li></ul></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0002_renders intermediate page": <nav
-  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0002_renders intermediate page": <nav
-  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0003_renders last page": <nav
-  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTQ5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHQgZGlzYWJsZWRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiw0Niw0Nyw0OCw0OSwiNTAiXX0sbnVsbF0="></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0003_renders last page": <nav
-  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTQ5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dCBkaXNhYmxlZFwiPk5leHQmbmJzcDsmcnNhcXVvOzwvbGk+PC91bD4ifSx7IjAiOlsxLCJnYXAiLDQ4LDQ5LCI1MCJdLCI2MDAiOlsxLCJnYXAiLDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0001_renders first page": <nav
-  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJjdXJyZW50XCI+X19wYWd5X2xhYmVsX188L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cImVsbGlwc2lzIGdhcFwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WyIxIiwyLDMsNCw1LCJnYXAiLDUwXX0sbnVsbF0="></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0001_renders first page": <nav
-  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwibmV4dFwiPk5leHQmbmJzcDsmcnNhcXVvOzwvYT48L2xpPjwvdWw+In0seyIwIjpbIjEiLDIsMywiZ2FwIiw1MF0sIjYwMCI6WyIxIiwyLDMsNCwiZ2FwIiw1MF19LG51bGxd"></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0004_renders with :steps": <nav
-  class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjUwMCI6WzEsMiwiZ2FwIiwxNywxOCwxOSwiMjAiLDIxLDIyLDIzLCJnYXAiLDQ5LDUwXX0sbnVsbF0="></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0004_renders with :steps": <nav
-  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0002_renders intermediate page": '<nav
-  class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
-  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
-  href="/foo?page=2"   rel="prev" style="margin-bottom: 0" aria-label="previous" class="prev
-  button primary">&lsaquo;&nbsp;Prev</a><span class="input-group-label"><label>Page
-  <input class="input-group-field cell shrink" type="number" min="1" max="6" value="3"
-  style="width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;"> of 6</label></span><a
-  href="/foo?page=4"   rel="next" style="margin-bottom: 0" aria-label="next" class="next
-  button primary">Next&nbsp;&rsaquo;</a></div></nav>'
-"[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0002_renders intermediate page": '<nav
-  id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
-  class="input-group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
-  href="/foo?page=2"  link-extra rel="prev" style="margin-bottom: 0" aria-label="previous"
-  class="prev button primary">&lsaquo;&nbsp;Prev</a><span class="input-group-label"><label>Page
-  <input class="input-group-field cell shrink" type="number" min="1" max="6" value="3"
-  style="width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;"> of 6</label></span><a
-  href="/foo?page=4"  link-extra rel="next" style="margin-bottom: 0" aria-label="next"
-  class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
-"[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0001_renders first page": '<nav
-  class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
-  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
-  style="margin-bottom: 0" class="prev button primary disabled" href="#">&lsaquo;&nbsp;Prev</a><span
-  class="input-group-label"><label>Page <input class="input-group-field cell shrink"
-  type="number" min="1" max="6" value="1" style="width: 2rem; padding: 0 0.3rem; margin:
-  0 0.3rem;"> of 6</label></span><a href="/foo?page=2"   rel="next" style="margin-bottom:
-  0" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
-"[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0001_renders first page": '<nav
-  id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
-  class="input-group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
-  style="margin-bottom: 0" class="prev button primary disabled" href="#">&lsaquo;&nbsp;Prev</a><span
-  class="input-group-label"><label>Page <input class="input-group-field cell shrink"
-  type="number" min="1" max="6" value="1" style="width: 2rem; padding: 0 0.3rem; margin:
-  0 0.3rem;"> of 6</label></span><a href="/foo?page=2"  link-extra rel="next" style="margin-bottom:
-  0" aria-label="next" class="next button primary">Next&nbsp;&rsaquo;</a></div></nav>'
-"[1] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0003_renders last page": '<nav
-  class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div class="input-group"
-  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
-  href="/foo?page=5"   rel="prev" style="margin-bottom: 0" aria-label="previous" class="prev
-  button primary">&lsaquo;&nbsp;Prev</a><span class="input-group-label"><label>Page
-  <input class="input-group-field cell shrink" type="number" min="1" max="6" value="6"
-  style="width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;"> of 6</label></span><a
-  style="margin-bottom: 0" class="next button primary disabled" href="#">Next&nbsp;&rsaquo;</a></div></nav>'
-"[2] pagy/extras/foundation::#pagy_foundation_combo_nav_js#test_0003_renders last page": '<nav
-  id="test-nav-id" class="pagy-foundation-combo-nav-js" aria-label="Pagination"><div
-  class="input-group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
-  href="/foo?page=5"  link-extra rel="prev" style="margin-bottom: 0" aria-label="previous"
-  class="prev button primary">&lsaquo;&nbsp;Prev</a><span class="input-group-label"><label>Page
-  <input class="input-group-field cell shrink" type="number" min="1" max="6" value="6"
-  style="width: 2rem; padding: 0 0.3rem; margin: 0 0.3rem;"> of 6</label></span><a
-  style="margin-bottom: 0" class="next button primary disabled" href="#">Next&nbsp;&rsaquo;</a></div></nav>'
-"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0005_renders with :steps": <nav
-  class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjUwMCI6WzEsMiwiZ2FwIiwxNywxOCwxOSwiMjAiLDIxLDIyLDIzLCJnYXAiLDQ5LDUwXX0sbnVsbF0="></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0005_renders with :steps": <nav
-  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0004_renders last page": <nav
-  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTQ5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHQgZGlzYWJsZWRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiw0Niw0Nyw0OCw0OSwiNTAiXX0sbnVsbF0="></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0004_renders last page": <nav
-  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTQ5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dCBkaXNhYmxlZFwiPk5leHQmbmJzcDsmcnNhcXVvOzwvbGk+PC91bD4ifSx7IjAiOlsxLCJnYXAiLDQ4LDQ5LCI1MCJdLCI2MDAiOlsxLCJnYXAiLDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0003_renders intermediate page": <nav
-  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cInByZXZpb3VzXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cImN1cnJlbnRcIj5fX3BhZ3lfbGFiZWxfXzwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZWxsaXBzaXMgZ2FwXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0003_renders intermediate page": <nav
-  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXZcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTE5XCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></nav>
-"[1] pagy/extras/foundation::#pagy_foundation_nav_js#test_0002_renders first page when used with Pagy::Countless": <nav
-  class="pagy-foundation-nav-js" aria-label="Pagination" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJjdXJyZW50XCI+X19wYWd5X2xhYmVsX188L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cImVsbGlwc2lzIGdhcFwiIGFyaWEtaGlkZGVuPVwidHJ1ZVwiPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0IGRpc2FibGVkXCI+TmV4dCZuYnNwOyZyc2FxdW87PC9saT48L3VsPiJ9LHsiMCI6WyIxIl19LG51bGxd"></nav>
-"[2] pagy/extras/foundation::#pagy_foundation_nav_js#test_0002_renders first page when used with Pagy::Countless": <nav
-  id="test-nav-id" class="pagy-rjs pagy-foundation-nav-js" aria-label="Pagination"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInByZXYgZGlzYWJsZWRcIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwiY3VycmVudFwiPl9fcGFneV9sYWJlbF9fPC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJlbGxpcHNpcyBnYXBcIiBhcmlhLWhpZGRlbj1cInRydWVcIj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwibmV4dCBkaXNhYmxlZFwiPk5leHQmbmJzcDsmcnNhcXVvOzwvbGk+PC91bD4ifSx7IjAiOlsiMSJdLCI2MDAiOlsiMSJdfSxudWxsXQ=="></nav>
+"[1] pagy/extras/foundation::#pagy_foundation_nav#test_0003_renders last page": <nav
+  class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination"><li class="prev"><a
+  href="/foo?page=49"   rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li><a
+  href="/foo?page=1"   >1</a></li><li class="ellipsis gap" aria-hidden="true"></li><li><a
+  href="/foo?page=46"   >46</a></li><li><a href="/foo?page=47"   >47</a></li><li><a
+  href="/foo?page=48"   >48</a></li><li><a href="/foo?page=49"   rel="prev" >49</a></li><li
+  class="current">50</li><li class="next disabled">Next&nbsp;&rsaquo;</li></ul></nav>
+"[2] pagy/extras/foundation::#pagy_foundation_nav#test_0003_renders last page": <nav
+  id="test-nav-id" class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination"><li
+  class="prev"><a href="/foo?page=49"  link-extra rel="prev" aria-label="previous">&lsaquo;&nbsp;Prev</a></li><li><a
+  href="/foo?page=1"  link-extra >1</a></li><li class="ellipsis gap" aria-hidden="true"></li><li><a
+  href="/foo?page=46"  link-extra >46</a></li><li><a href="/foo?page=47"  link-extra
+  >47</a></li><li><a href="/foo?page=48"  link-extra >48</a></li><li><a href="/foo?page=49"  link-extra
+  rel="prev" >49</a></li><li class="current">50</li><li class="next disabled">Next&nbsp;&rsaquo;</li></ul></nav>
