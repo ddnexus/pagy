@@ -59,7 +59,9 @@ class Pagy # :nodoc:
           else
             %(<a style="margin-bottom: 0" class="prev button primary disabled" href="#">#{pagy_t 'pagy.nav.prev'}</a>)
           end
-        }<span class="input-group-label">#{pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</span>#{
+        }#{
+          pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)
+          .sub!('<label>', '<label class="input-group-label">')}#{ # add the class to the official dictionary string
           if (p_next  = pagy.next)
             link.call p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0" aria-label="next" class="next button primary"'
           else
