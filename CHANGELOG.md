@@ -25,6 +25,10 @@ None
 
 <hr>
 
+## Version 6.0.2
+
+- Fix: foundation combo helper (#469)
+
 ## Version 6.0.1
 
 - Fix for pagy_bootstrap_combo_nav_js disabled input in certain bootstrap versions
