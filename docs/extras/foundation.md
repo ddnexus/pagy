@@ -42,7 +42,9 @@ See [Javascript](/docs/api/javascript.md) if you use `pagy_foundation_nav_js` or
 
 ## Methods
 
-==- `pagy_foundation_nav(pagy)`
+=== `pagy_foundation_nav(pagy)`
+
+![Foundation Nav](/docs/assets/images/foundation_nav.png)
 
 This method is the same as the `pagy_nav`, but customized for Foundation.
 
@@ -54,7 +56,9 @@ The `foundation_nav.*` templates produce the same output, and can be used as an 
 
 See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
 
-==- `pagy_foundation_combo_nav_js(pagy, ...)`
+=== `pagy_foundation_combo_nav_js(pagy, ...)`
+
+![Foundation Combo Nav JS](/docs/assets/images/foundation_combo_nav_js.png)
 
 See the [Javascript Combo Navs](/docs/api/javascript/combo-navs.md) documentation.
 
