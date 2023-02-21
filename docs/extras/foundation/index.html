@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.730336042242">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.730336393780">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -22,21 +22,23 @@
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/foundation/">
     <meta property="og:title" content="Foundation | Pagy">
     <meta property="og:description" content="Add nav helpers and templates for the Foundation pagination component.">
+    <meta property="og:image" content="https://ddnexus.github.io/pagy/docs/assets/images/foundation_nav.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/foundation/">
     <meta property="twitter:title" content="Foundation | Pagy">
     <meta property="twitter:description" content="Add nav helpers and templates for the Foundation pagination component.">
+    <meta property="twitter:image" content="https://ddnexus.github.io/pagy/docs/assets/images/foundation_nav.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.730336042242" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.730336393780" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.730336042242" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.730336393780" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.730336042242" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.730336042242" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.730336393780" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.730336393780" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -333,8 +335,13 @@
     </h2>
 </doc-anchor-target>
 <doc-panels>
-   <doc-panel id="pagy-foundation-nav-pagy" collapsed>
+   <doc-panel id="pagy-foundation-nav-pagy">
        <template #title><code v-pre>pagy_foundation_nav(pagy)</code></template>
+<p><figure class="content-center">
+    <img src="../../assets/images/foundation_nav.png" alt="Foundation Nav" />
+    <figcaption class="caption">Foundation Nav</figcaption>
+</figure>
+</p>
 <p>This method is the same as the <code v-pre>pagy_nav</code>, but customized for Foundation.</p>
 <p>See the <a href="../../api/frontend/#pagy-nav-pagy">pagy_nav(pagy, ...)</a> documentation.</p>
 <p>The <code v-pre>foundation_nav.*</code> templates produce the same output, and can be used as an easier (but slower) starting point to override it. See <a href="../../how-to/#use-templates">How to use templates</a>.</p>
@@ -343,8 +350,13 @@
        <template #title><code v-pre>pagy_foundation_nav_js(pagy, ...)</code></template>
 <p>See the <a href="../../api/javascript/navs/">Javascript Navs</a> documentation.</p>
    </doc-panel>
-   <doc-panel id="pagy-foundation-combo-nav-js-pagy" collapsed>
+   <doc-panel id="pagy-foundation-combo-nav-js-pagy">
        <template #title><code v-pre>pagy_foundation_combo_nav_js(pagy, ...)</code></template>
+<p><figure class="content-center">
+    <img src="../../assets/images/foundation_combo_nav_js.png" alt="Foundation Combo Nav JS" />
+    <figcaption class="caption">Foundation Combo Nav JS</figcaption>
+</figure>
+</p>
 <p>See the <a href="../../api/javascript/combo-navs/">Javascript Combo Navs</a> documentation.</p>
    </doc-panel>
 </doc-panels>
