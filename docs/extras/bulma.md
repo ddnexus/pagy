@@ -61,7 +61,7 @@ The `bulma_nav.*` templates produce the same output, and can be used as an easie
 
 ==- `pagy_bulma_nav_js(pagy, ...)`
 
-See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
+Looks exactly like `pagy_bulma_nav`, except it's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
 
 === `pagy_bulma_combo_nav_js(pagy, ...)`
 
