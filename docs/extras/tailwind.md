@@ -13,7 +13,7 @@ Tailwind allows to apply styles to any DOM element, so you don't actually need a
 
 ## Synopsis
 
-See the [navs](navs.md) extra if you use `pagy_nav_js` or `pagy_combo_nav_js`.
+See the [navs](navs.md) extra if you use `pagy_nav_js` (looks like pagy_nav, except it's rendered on the client, with optional responsiveness) or `pagy_combo_nav_js`. 
 
 Some sample styles you can copy / customize:
 

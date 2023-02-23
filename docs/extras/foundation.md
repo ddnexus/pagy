@@ -54,7 +54,7 @@ The `foundation_nav.*` templates produce the same output, and can be used as an 
 
 ==- `pagy_foundation_nav_js(pagy, ...)`
 
-See the [Javascript Navs](/docs/api/javascript/navs.md) documentation.
+Looks exactly like `pagy_foundation_nav`, except it's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
 
 === `pagy_foundation_combo_nav_js(pagy, ...)`
 
