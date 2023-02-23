@@ -59,7 +59,9 @@ See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy) documentation
 
 The `bulma_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](/docs/how-to.md#use-templates).
 
-==- `pagy_bulma_nav_js(pagy, ...)`
+=== `pagy_bulma_nav_js(pagy, ...)`
+
+![Shows sizing of a responsive pagy_\<framework-name\>_nav_js](/docs/assets/images/responsive_nav_js.png)
 
 Looks exactly like `pagy_bulma_nav`, except it's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
 
