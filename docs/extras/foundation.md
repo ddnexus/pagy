@@ -54,9 +54,9 @@ The `foundation_nav.*` templates produce the same output, and can be used as an 
 
 === `pagy_foundation_nav_js(pagy, ...)`
 
-![Shows sizing of a responsive pagy_\<framework-name\>_nav_js](/docs/assets/images/responsive_nav_js.png)
+![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_foundation_nav_js` looks like the `pagy_foundation_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
 
-Looks exactly like `pagy_foundation_nav`, except it's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
+It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
 
 === `pagy_foundation_combo_nav_js(pagy, ...)`
 
