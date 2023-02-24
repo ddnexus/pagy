@@ -52,9 +52,11 @@ See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy) documentation
 
 The `foundation_nav.*` templates produce the same output, and can be used as an easier (but slower) starting point to override it. See [How to use templates](/docs/how-to.md#use-templates).
 
-==- `pagy_foundation_nav_js(pagy, ...)`
+=== `pagy_foundation_nav_js(pagy, ...)`
 
-Looks exactly like `pagy_foundation_nav`, except it's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
+![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_foundation_nav_js` looks like the `pagy_foundation_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
+
+It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
 
 === `pagy_foundation_combo_nav_js(pagy, ...)`
 

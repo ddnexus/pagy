@@ -41,9 +41,11 @@ This method is the same as the `pagy_nav`, but customized for Semantic UI.
 
 See: [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy).
 
-==- `pagy_semantic_nav_js(pagy, ...)`
+=== `pagy_semantic_nav_js(pagy, ...)`
 
-Looks exactly like `pagy_semantic_nav`, except it's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
+![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_semantic_nav_js` looks like the `pagy_semantic_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
+
+It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
 
 === `pagy_semantic_combo_nav_js(pagy, ...)`
 
