@@ -345,7 +345,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 - The `master` branch is the latest rubygem-published release. It also contains docs and comment changes that don't affect the published code. It is never force-pushed.
 - The `dev` branch is the development branch with the new code that will be merged in the next release. It could be force-pushed.
-- Expect any other branch to be experimental, force-pushed, rebased and/or deleted even without merging.
+- Expect any other branch to be internal, experimental, force-pushed, rebased and/or deleted even without merging.
 
 </details>
 
