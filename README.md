@@ -107,9 +107,20 @@ include Pagy::Frontend
 ```
 
 ```erb
-<%# Render the navigation bar in your views %>
+<%# Render a view helper in your views %>
 <%== pagy_nav(@pagy) %>
 ```
+
+Or, choose from the following view helpers:
+
+| View Helper Name                  |  Preview (Bootstrap Style shown)                              |
+|---                                |---                                                           |
+| [`<%== pagy_nav(@pagy) %> `](/docs/api/frontend)  | ![`pagy_nav`](/docs/assets/images/bootstrap_nav.png)                                            |
+| [`<%== pagy_nav_js(@pagy) %>`](/pagy/docs/api/javascript/)   | ![`pagy_nav_js`](/docs/assets/images/bootstrap_nav_js.png)                                         |
+| [`<%== pagy_info(@pagy) %>`](/docs/api/frontend)     | ![`pagy_info`](/docs/assets/images/pagy_info.png)                                           |
+| [`<%== pagy_combo_nav_js(@pagy) %>`](/pagy/docs/api/javascript/) | ![`pagy_combo_nav_js`](/docs/assets/images/bootstrap_combo_nav_js.png)                                   |
+| [`<%== pagy_items_selector_js %>`](/pagy/docs/api/javascript/)    | ![`pagy_items_selector_js`](/docs/assets/images/items_selector_js.png)                                |
+
 
 _(See the [Quick Start](https://ddnexus.github.io/pagy/quick-start))_
 
