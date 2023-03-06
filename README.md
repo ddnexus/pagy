@@ -55,26 +55,6 @@ Thank you for showing your support!
 - **It supports all kinds of CSS Frameworks**<br>[bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation), [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize), [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic), [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit), [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind)
 - **It supports faster client-side rendering**<br>With classic or innovative UI components (see [Javascript Components](https://ddnexus.github.io/pagy/docs/api/javascript/)) or by serving [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata) to your favorite Javascript framework
 - **It has 100% of test coverage** for Ruby, HTML and Javascript E2E (see [Pagy Workflows CI](https://github.com/ddnexus/pagy/actions))
-- It gives you the following view helpers (with different CSS Framework flavors available):
-
-+++ `pagy_nav`
-![Shows a `pagy_nav` with bootstrap styling.](/docs/assets/images/bootstrap_nav.png)
-
-* Other styles available.
-* A [Javascript version](https://ddnexus.github.io/pagy/docs/api/javascript) of the above is also available.
-
-+++ `pagy_info`
-![`pagy_info` showingly only 1 item.](/docs/assets/images/pagy_info.png)
-
-+++ `pagy_combo_nav_js`
-
-![Shows a `pagy_combo_nav_js` with bootstrap styling.](/docs/assets/images/bootstrap_combo_nav_js.png)
-
-+++ `pagy_items_selector_js`
-
-![pagy_items_selector_js](/docs/assets/images/items_selector_js.png)
-Allow users to choose how many records per page.
-+++
 
 <details>
 
@@ -127,9 +107,20 @@ include Pagy::Frontend
 ```
 
 ```erb
-<%# Render the navigation bar in your views %>
+<%# Render a view helper in your views %>
 <%== pagy_nav(@pagy) %>
 ```
+
+Or, choose from the following view helpers:
+
+| View Helper Name                  |  Preview (Bootstrap Style shown)                              |
+|---                                |---                                                           |
+| [`<%== pagy_nav(@pagy) %> `](/docs/api/frontend)  | ![`pagy_nav`](/docs/assets/images/bootstrap_nav.png)                                            |
+| [`<%== pagy_nav_js(@pagy) %>`](/pagy/docs/api/javascript/)   | ![`pagy_nav_js`](/docs/assets/images/bootstrap_nav_js.png)                                         |
+| [`<%== pagy_info(@pagy) %>`](/docs/api/frontend)     | ![`pagy_info`](/docs/assets/images/pagy_info.png)                                           |
+| [`<%== pagy_combo_nav_js(@pagy) %>`](/pagy/docs/api/javascript/) | ![`pagy_combo_nav_js`](/docs/assets/images/bootstrap_combo_nav_js.png)                                   |
+| [`<%== pagy_items_selector_js %>`](/pagy/docs/api/javascript/)    | ![`pagy_items_selector_js`](/docs/assets/images/items_selector_js.png)                                |
+
 
 _(See the [Quick Start](https://ddnexus.github.io/pagy/quick-start))_
 
