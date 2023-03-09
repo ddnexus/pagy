@@ -10,7 +10,7 @@ Allows you to test Pagy in an [irb](https://github.com/ruby/irb) with an environ
 
 <details>
 
-Standard pagination requires controller, model, view and request to work. `Pagy::Console` stubs all of that for you, automatically. 
+Standard pagination requires a: controller, model, view and request object to work i.e. you need an environment. `Pagy::Console` gives you that environment. 
 
 </details>
 
@@ -51,10 +51,10 @@ pagy_metadata(pagy)
 
 Avoid using `rails console` with `Pagy::Console`.
 
-Use `irb` instead. However, if you need `rails console` please ensure temporarily  "unfreeze" the `Pagy::DEFAULT` hash, in your `pagy.rb` config file, otherwise you'll receive a "can't modify frozen Hash" exception:
+Use `irb` instead. However, if you need `rails console` please ensure you temporarily "unfreeze" the `Pagy::DEFAULT` hash, in your `pagy.rb` config file, otherwise you'll receive a "can't modify frozen Hash" exception:
 
 ```rb
-# Pagy::DEFAULT.freeze  ## temporarily comment out this line
+# Pagy::DEFAULT.freeze  ## temporarily comment out this line, don't forget to uncomment when finished!
 ```
 !!!
 
