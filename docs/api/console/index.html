@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.731623916179">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.731673755160">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Pagy::Console | Pagy</title>
     <meta name="title" content="Pagy::Console | Pagy">
-    <meta name="description" content="Use pagy in the irb/rails console even without any app nor configuration." />
+    <meta name="description" content="Allows you to test Pagy in an irb with an environment stubbed for you:" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/api/console/" />
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/api/console/">
     <meta property="og:title" content="Pagy::Console | Pagy">
-    <meta property="og:description" content="Use pagy in the irb/rails console even without any app nor configuration.">
+    <meta property="og:description" content="Allows you to test Pagy in an irb with an environment stubbed for you:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/api/console/">
     <meta property="twitter:title" content="Pagy::Console | Pagy">
-    <meta property="twitter:description" content="Use pagy in the irb/rails console even without any app nor configuration.">
+    <meta property="twitter:description" content="Allows you to test Pagy in an irb with an environment stubbed for you:">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=2.4.0.731623916179" rel="stylesheet" />
+    <link href="../../../resources/css/retype.css?v=2.4.0.731673755160" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.731623916179" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../../resources/js/config.js?v=2.4.0.731673755160" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.731623916179" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.731623916179" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../../resources/js/lunr.js?v=2.4.0.731673755160" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../../resources/js/prism.js?v=2.4.0.731673755160" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -273,9 +273,14 @@
     <div><a href="../../../categories/module/">Module</a></div>
 </div>
 
-<p>Use pagy in the irb/rails console even without any app nor configuration.</p>
-<p>Standard pagination requires controller, model, view and request to work, however you don&#x27;t have to satisfy all that requirements in order to get any helper working in the irb/rails console.</p>
-<p>You can try any pagy feature right away:</p>
+<p>Allows you to test Pagy in an <a href="https://github.com/ruby/irb">irb</a> with an environment stubbed for you:</p>
+<details>
+<p>Standard pagination requires a: controller, model, view and request object to work i.e. you need an environment. <code v-pre>Pagy::Console</code> gives you that environment.</p>
+</details>
+</br>
+<doc-tabs>
+<doc-tab id="irb">
+<template #title>irb</template>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">require 'pagy/console'
 include Pagy::Console
@@ -304,6 +309,33 @@ pagy_metadata(pagy)
    :size=&gt;[1, 4, 4, 1],
 ...</code></pre>
 </doc-codeblock></div>
+</doc-tab>
+<doc-tab id="rails-console">
+<template #title>rails console</template>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning</h5>
+<p>Avoid using <code v-pre>rails console</code> with <code v-pre>Pagy::Console</code>.</p>
+<p>Use <code v-pre>irb</code> instead. However, if you need <code v-pre>rails console</code> please ensure you temporarily &quot;unfreeze&quot; the <code v-pre>Pagy::DEFAULT</code> hash, in your <code v-pre>pagy.rb</code> config file, otherwise you&#x27;ll receive a &quot;can&#x27;t modify frozen Hash&quot; exception:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby"># Pagy::DEFAULT.freeze  ## temporarily comment out this line, don't forget to uncomment when finished!</code></pre>
+</doc-codeblock></div>
+        </div>
+    </div>
+</div>
+<p>Now, refer to the instructions in the <doc-anchor-trigger to="#irb">irb tab</doc-anchor-trigger>.</p>
+</doc-tab>
+</doc-tabs>
 <doc-anchor-target id="pagyconsole-module">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#pagyconsole-module">#</doc-anchor-trigger>
