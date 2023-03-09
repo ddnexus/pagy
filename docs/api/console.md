@@ -6,7 +6,7 @@ categories:
 
 # Pagy::Console
 
-Allows you to test Pagy in an irb with an environment stubbed for you:
+Allows you to test Pagy in an [irb](https://github.com/ruby/irb) with an environment stubbed for you:
 
 <details>
 
@@ -51,14 +51,14 @@ pagy_metadata(pagy)
 
 Avoid using `rails console` with `Pagy::Console`.
 
-Use `irb` instead. However, if you need `rails console` please ensure you do not freeze the `Pagy::DEFAULT` hash, in your `pagy.rb` config file, otherwise you'll receive a "can't modify frozen Hash" exception:
+Use `irb` instead. However, if you need `rails console` please ensure temporarily  "unfreeze" the `Pagy::DEFAULT` hash, in your `pagy.rb` config file, otherwise you'll receive a "can't modify frozen Hash" exception:
 
 ```rb
 # Pagy::DEFAULT.freeze  ## temporarily comment out this line
 ```
 !!!
 
-Now follow the instructions in the irb tab.
+Now, refer to the instructions in the [irb tab](#irb).
 
 +++
 
