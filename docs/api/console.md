@@ -6,12 +6,17 @@ categories:
 
 # Pagy::Console
 
-Use pagy in the irb/rails console even without any app nor configuration.
+Allows you to test Pagy in an irb with an environment stubbed for you:
 
-Standard pagination requires controller, model, view and request to work, however you don't have to satisfy all that requirements in order to get any helper working in the irb/rails console.
+<details>
 
-You can try any pagy feature right away:
+Standard pagination requires controller, model, view and request to work. `Pagy::Console` stubs all of that for you, automatically. 
 
+</details>
+
+</br>
+
++++ irb
 ```ruby
 require 'pagy/console'
 include Pagy::Console
@@ -40,6 +45,22 @@ pagy_metadata(pagy)
    :size=>[1, 4, 4, 1],
 ...
 ```
++++ rails console
+
+!!!warning Warning
+
+Avoid using `rails console` with `Pagy::Console`.
+
+Use `irb` instead. However, if you need `rails console` please ensure you do not freeze the `Pagy::DEFAULT` hash, in your `pagy.rb` config file, otherwise you'll receive a "can't modify frozen Hash" exception:
+
+```rb
+# Pagy::DEFAULT.freeze  ## temporarily comment out this line
+```
+!!!
+
+Now follow the instructions in the irb tab.
+
++++
 
 ## Pagy::Console module
 
