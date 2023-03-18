@@ -21,7 +21,7 @@ jobs:
 
       - name: Dotenv Action
         id: dotenv
-        uses: falti/dotenv-action@v1.0.2
+        uses: falti/dotenv-action@v1.0.4
         with:
           path: .github/.env
 
@@ -36,6 +36,6 @@ jobs:
           RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
 
       - name: Create the release tag
-        uses: rickstaa/action-create-tag@v1.5.4
+        uses: rickstaa/action-create-tag@v1.6.1
         with:
           tag: ${{ steps.dotenv.outputs.version }}
