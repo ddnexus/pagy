@@ -4,7 +4,16 @@
     "private": true,
     "devDependencies": {
         "parcel": "2.8.3",
-        "parcel-plugin-nuke-dist": "^1.0.1"
+        "parcel-plugin-nuke-dist": "^1.0.1",
+        "@types/node": "18.15.3",
+        "@typescript-eslint/eslint-plugin": "5.55.0",
+        "@typescript-eslint/parser": "5.55.0",
+        "eslint": "8.36.0",
+        "eslint-plugin-align-assignments": "^1.1.2",
+        "eslint-plugin-import": "2.27.5",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "6.1.1",
+        "typescript": "5.0.2"
     },
     "browserslist": [
         "defaults"

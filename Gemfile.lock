@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (7.0.4.2)
+    activesupport (7.0.4.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -10,11 +10,11 @@ GEM
     ast (2.4.2)
     backport (1.2.0)
     benchmark (0.2.1)
-    benchmark-ips (2.11.0)
+    benchmark-ips (2.12.0)
     builder (3.2.4)
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     diff-lcs (1.5.0)
     docile (1.4.0)
     e2mmap (0.1.0)
@@ -35,7 +35,7 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.10)
     memoist (0.16.2)
     memory_profiler (1.0.1)
-    minitest (5.17.0)
+    minitest (5.18.0)
     minitest-reporters (1.6.0)
       ansi
       builder
@@ -49,12 +49,12 @@ GEM
       racc (~> 1.4)
     oj (3.14.2)
     parallel (1.22.1)
-    parser (3.2.1.0)
+    parser (3.2.1.1)
       ast (~> 2.4.1)
-    puma (6.1.0)
+    puma (6.1.1)
       nio4r (~> 2.0)
     racc (1.6.2)
-    rack (2.2.6.2)
+    rack (2.2.6.4)
     rack-protection (3.0.5)
       rack
     rainbow (3.1.1)
@@ -71,19 +71,19 @@ GEM
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.5)
-    rubocop (1.45.1)
+    rubocop (1.48.1)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.2.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.24.1, < 2.0)
+      rubocop-ast (>= 1.26.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.26.0)
+    rubocop-ast (1.27.0)
       parser (>= 3.2.1.0)
-    rubocop-minitest (0.28.0)
+    rubocop-minitest (0.29.0)
       rubocop (>= 1.39, < 2.0)
     rubocop-packaging (0.5.2)
       rubocop (>= 1.33, < 2.0)
@@ -92,7 +92,7 @@ GEM
       rubocop-ast (>= 0.4.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    ruby-progressbar (1.11.0)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     simplecov (0.21.2)
       docile (~> 1.1)
@@ -165,4 +165,4 @@ DEPENDENCIES
   solargraph
 
 BUNDLED WITH
-   2.3.7
+   2.4.6
