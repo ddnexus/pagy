@@ -34,18 +34,19 @@ jobs:
     strategy:
       matrix:
         include:
-          - ruby-version: 2.7
+          - ruby-version: '3.0'
             env:
               BUNDLE_GEMFILE: .github/gemfiles/default
-          - ruby-version: '3.0'
+          - ruby-version: '3.1'
+            env:
+              BUNDLE_GEMFILE: .github/gemfiles/default
+#              RUBYOPT: '--disable-error_highlight'
+          - ruby-version: '3.2'
             env:
               BUNDLE_GEMFILE: .github/gemfiles/default
               CODECOV: true
               CHECK_MANIFEST: true
-          - ruby-version: '3.1'
-            env:
-              BUNDLE_GEMFILE: .github/gemfiles/default
-              RUBYOPT: '--disable-error_highlight'
+#              RUBYOPT: '--disable-error_highlight'
       fail-fast: false
     env: ${{ matrix.env }}
 
@@ -90,7 +91,7 @@ jobs:
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: '3.2'
           bundler-cache: true
 
       - name: Cache NPM and Cypress

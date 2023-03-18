@@ -13,7 +13,7 @@ gem 'rake-manifest'
 
 group :test do
   gem 'activesupport'
-  gem 'codecov', require: false
+  gem 'codecov', '>= 0.6', require: false    # for some reason only ruby 3.2 install v 0.2  if not explicitly declared
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'rematch'
