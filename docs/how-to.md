@@ -125,7 +125,7 @@ If you are ok with the default supported locale dictionaries just refer to [Pagy
 
 If you want to customize the translations or some specific output, you should edit the relevant entries in the pagy dictionary.
 
-If you explicitly use the [i18n extra](extras/i18n.md), override the pagy target entries in your own custom dictionary (refer to the I18n official documentation)
+If you explicitly use the [i18n extra](extras/i18n.md), override the pagy target entries in your own custom dictionary (refer to the I18n official documentation).
 
 If you don't use the above extra (faster default) you can copy and edit the dictionary files that your app uses and configure pagy to use them.
 
@@ -469,6 +469,12 @@ Pagy has a few of extras for gems returning search results:
 - [elasticsearch_rails](extras/elasticsearch_rails.md)
 - [searchkick](extras/searchkick.md)
 - [meilisearch](extras/meilisearch.md)
+
+## Paginate by id instead of offset
+
+With particular requirements/environment an id-based pagination might work better than a classical offset-based pagination,
+You can use an interesting approach proposed [here](https://github.com/ddnexus/pagy/discussions/435#discussioncomment-4577136).
+
 
 ## Paginate by date instead of a fixed number of items
 
