@@ -108,7 +108,12 @@ include Pagy::Frontend
 
 ```erb
 <%# Render a view helper in your views %>
-<%== pagy_nav(@pagy) %>
+
+<% if @pagy.pages > 1 %>
+    <%== pagy_nav(@pagy) %> 
+<% else %>
+    <%== pagy_info(@pagy) %> <%# Displaying 'x' Items %>
+<% end %>
 ```
 
 Or, choose from the following view helpers:
