@@ -245,6 +245,50 @@ end
 !!!
 +++
 
+
+### How to Paginate While Maintaining Independent Contexts
+
+If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) - if you're using Rails) when one way of maintaining independent contexts is as below:
+
+```html+erb
+  <-- movies#bad_movies -->
+  <%= turbo_frame_tag "bad_movies", src: bad_movies_path do %>    
+      <%= render "movies_table", locals: {movies: @movies}%>
+      <%== pagy_bootstrap_nav(@pagy) %>    
+  <% end %>
+
+  <-- movies#good_movies -->
+  <%= turbo_frame_tag "good_movies", src: good_movies_path  do %>    
+      <%= render "movies_table", locals: {movies: @movies}%>
+      <%== pagy_bootstrap_nav(@pagy) %>    
+  <% end %>   
+```
+
+```rb
+  # controller action 
+  def good    
+    @pagy, @movies = pagy(Movie.good, items: 5) 
+  end 
+
+  def bad    
+    @pagy, @movies = pagy(Movie.bad, items: 5)
+  end 
+```
+
+You may wish to scope your records using a search form (perhaps using [ransack](https://github.com/activerecord-hackery/ransack) etc.), to the same url, or a different url, or you may wish to use an entirely different model (actors, rather than movies): but the logic remains the same: wrap each independent context in a `turbo_frame_tag` and ensure each url returns a matching `turbo_frame_tag`.
+
+Or alternatively you may which to paginate [two different models in the same page](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy/):
+
+```rb
+def index # controller action
+  @pagy_stars, @stars = pagy(Star.all, page_param: :page_stars)
+  @pagy_nebulae, @nebulae = pagy(Nebula.all, page_param: :page_nebulae)
+end
+```
+
+Please note how a different `page_param` is specified for stars vs nebulae? This is critical if users cut and paste urls.
+
+
 ## Customize the params
 
 When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the variable `:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params.
@@ -782,3 +826,7 @@ end
 !!!warning Rescue from `Pagy::OverflowError` first
 All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with `rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it will never get rescued.
 !!!
+
+
+
+
