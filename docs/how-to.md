@@ -87,6 +87,87 @@ You don't need to explicitly pass the page number to the `pagy` method, because 
 
 That will explicitly set the `:page` variable, overriding the default behavior (which usually pulls the page number from the `params[:page]`).
 
+## Customize the dictionary
+
+Pagy composes its output strings using standard i18n dictionaries. That can be used to change the language and customize your specific app. 
+
+<details>
+
+<summary>Default en dictionary</summary>
+
+```yaml
+# English default 118n dictionary
+en:
+  pagy:
+
+    item_name:
+      one: "item"
+      other: "items"
+
+    nav:
+      prev: "&lsaquo;&nbsp;Prev"
+      next: "Next&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "No %{item_name} found"
+      single_page: "Displaying <b>%{count}</b> %{item_name}"
+      multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
+
+    combo_nav_js: "<label>Page %{page_input} of %{pages}</label>"
+
+    items_selector_js: "<label>Show %{items_input} %{item_name} per page</label>"
+``` 
+</details>
+<br>
+
+If you are ok with the default supported locale dictionaries just refer to [Pagy::I18n](api/i18n.md).
+
+If you want to customize the translations or some specific output, you should edit the relevant entries in the pagy dictionary.
+
+If you explicitly use the [i18n extra](extras/i18n.md), override the pagy target entries in your own custom dictionary (refer to the I18n official documentation)
+
+If you don't use the above extra (faster default) you can copy and edit the dictionary files that your app uses and configure pagy to use them.
+
+||| pagy.rb (initializer)
+```ruby
+# load the "en" and "de" locale defined in the custom files at :filepath:
+Pagy::I18n.load({ locale: 'de', filepath: 'path/to/my-custom-de.yml' }, 
+                { locale: 'en', filepath: 'path/to/my-custom-en.yml' })
+```
+|||
+
+
+### Example of custom dictionary
+
+You may want to customize the output of a few entries, leaving the other entries in place:
+
+||| path/to/my-custom-en.yml (dictionary)
+```yaml
+# English custom 118n dictionary
+en:
+  pagy:
+
+    item_name:
+      one: "item"
+      other: "items"
+
+    nav:
+      prev: "&lsaquo;"         # customized
+      next: "&rsaquo;"         # customized
+      gap: "&hellip;"
+
+    info:
+      no_items: "0 of 0"                            # customized
+      single_page: "%{count} of %{count}"           # customized
+      multiple_pages: "%{from}-%{to} of %{count}"   # customized
+
+    combo_nav_js: "<label>Page %{page_input} of %{pages}</label>"
+
+    items_selector_js: "<label>Show %{items_input} %{item_name} per page</label>"
+```
+|||
+
 ## Customize the page param
 
 Pagy uses the `:page_param` variable to determine the param it should get the page number from and create the URL for. Its default is set as `Pagy::DEFAULT[:page_param] = :page`, hence it will get the page number from the `params[:page]` and will create page URLs like `./?page=3` by default.
