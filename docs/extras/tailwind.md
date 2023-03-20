@@ -120,11 +120,11 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 */
 
 .pagy-nav.pagination {
-  @apply isolate inline-flex -space-x-px rounded-md shadow-sm
+  @apply isolate inline-flex -space-x-px rounded-md shadow-sm;
 }
 
 .page.next a {
-  @apply relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20
+  @apply relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20;
 }
 
 .page.prev a {
@@ -132,7 +132,7 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 }
 
 .page.next.disabled {
-  @apply relative inline-flex items-center rounded-r-md border border-gray-300 bg-slate-100 px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20
+  @apply relative inline-flex items-center rounded-r-md border border-gray-300 bg-slate-100 px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20;
 }
 
 .page.prev.disabled {
@@ -140,11 +140,11 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 }
 
 .page a, .page.gap {
-  @apply bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20
+  @apply bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20;
 }
 
 .page.active {
-  @apply z-10 border-indigo-500 bg-indigo-50 text-indigo-600 relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20
+  @apply z-10 border-indigo-500 bg-indigo-50 text-indigo-600 relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20;
 }
 ```
 |||
