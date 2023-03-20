@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732426270372">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732590753425">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.732426270372" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732590753425" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732426270372" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732590753425" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732426270372" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732426270372" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732590753425" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732590753425" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -371,6 +371,93 @@ pagy.series
     </div>
 </div>
 <p>That will explicitly set the <code v-pre>:page</code> variable, overriding the default behavior (which usually pulls the page number from the <code v-pre>params[:page]</code>).</p>
+<doc-anchor-target id="customize-the-dictionary">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#customize-the-dictionary">#</doc-anchor-trigger>
+        <span>Customize the dictionary</span>
+    </h2>
+</doc-anchor-target>
+<p>Pagy composes its output strings using standard i18n dictionaries. That can be used to change the language and customize your specific app.</p>
+<details>
+<summary>Default en dictionary</summary>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-yaml"><code v-pre class="language-yaml"># English default 118n dictionary
+en:
+  pagy:
+
+    item_name:
+      one: &quot;item&quot;
+      other: &quot;items&quot;
+
+    nav:
+      prev: &quot;&amp;lsaquo;&amp;nbsp;Prev&quot;
+      next: &quot;Next&amp;nbsp;&amp;rsaquo;&quot;
+      gap: &quot;&amp;hellip;&quot;
+
+    info:
+      no_items: &quot;No %{item_name} found&quot;
+      single_page: &quot;Displaying &lt;b&gt;%{count}&lt;/b&gt; %{item_name}&quot;
+      multiple_pages: &quot;Displaying %{item_name} &lt;b&gt;%{from}-%{to}&lt;/b&gt; of &lt;b&gt;%{count}&lt;/b&gt; in total&quot;
+
+    combo_nav_js: &quot;&lt;label&gt;Page %{page_input} of %{pages}&lt;/label&gt;&quot;
+
+    items_selector_js: &quot;&lt;label&gt;Show %{items_input} %{item_name} per page&lt;/label&gt;&quot;</code></pre>
+</doc-codeblock></div>
+</details>
+<br>
+<p>If you are ok with the default supported locale dictionaries just refer to <a href="../api/i18n/">Pagy::I18n</a>.</p>
+<p>If you want to customize the translations or some specific output, you should edit the relevant entries in the pagy dictionary.</p>
+<p>If you explicitly use the <a href="../extras/i18n/">i18n extra</a>, override the pagy target entries in your own custom dictionary (refer to the I18n official documentation)</p>
+<p>If you don&#x27;t use the above extra (faster default) you can copy and edit the dictionary files that your app uses and configure pagy to use them.</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>pagy.rb (initializer)</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby"># load the &quot;en&quot; and &quot;de&quot; locale defined in the custom files at :filepath:
+Pagy::I18n.load({ locale: 'de', filepath: 'path/to/my-custom-de.yml' }, 
+                { locale: 'en', filepath: 'path/to/my-custom-en.yml' })</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+<doc-anchor-target id="example-of-custom-dictionary">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#example-of-custom-dictionary">#</doc-anchor-trigger>
+        <span>Example of custom dictionary</span>
+    </h3>
+</doc-anchor-target>
+<p>You may want to customize the output of a few entries, leaving the other entries in place:</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>path/to/my-custom-en.yml (dictionary)</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-yaml"><code v-pre class="language-yaml"># English custom 118n dictionary
+en:
+  pagy:
+
+    item_name:
+      one: &quot;item&quot;
+      other: &quot;items&quot;
+
+    nav:
+      prev: &quot;&amp;lsaquo;&quot;         # customized
+      next: &quot;&amp;rsaquo;&quot;         # customized
+      gap: &quot;&amp;hellip;&quot;
+
+    info:
+      no_items: &quot;0 of 0&quot;                            # customized
+      single_page: &quot;%{count} of %{count}&quot;           # customized
+      multiple_pages: &quot;%{from}-%{to} of %{count}&quot;   # customized
+
+    combo_nav_js: &quot;&lt;label&gt;Page %{page_input} of %{pages}&lt;/label&gt;&quot;
+
+    items_selector_js: &quot;&lt;label&gt;Show %{items_input} %{item_name} per page&lt;/label&gt;&quot;</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
 <doc-anchor-target id="customize-the-page-param">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#customize-the-page-param">#</doc-anchor-trigger>
