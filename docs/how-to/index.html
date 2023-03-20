@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732590753425">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732592010061">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.732590753425" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732592010061" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732590753425" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732592010061" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732590753425" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732590753425" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732592010061" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732592010061" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -407,7 +407,7 @@ en:
 <br>
 <p>If you are ok with the default supported locale dictionaries just refer to <a href="../api/i18n/">Pagy::I18n</a>.</p>
 <p>If you want to customize the translations or some specific output, you should edit the relevant entries in the pagy dictionary.</p>
-<p>If you explicitly use the <a href="../extras/i18n/">i18n extra</a>, override the pagy target entries in your own custom dictionary (refer to the I18n official documentation)</p>
+<p>If you explicitly use the <a href="../extras/i18n/">i18n extra</a>, override the pagy target entries in your own custom dictionary (refer to the I18n official documentation).</p>
 <p>If you don&#x27;t use the above extra (faster default) you can copy and edit the dictionary files that your app uses and configure pagy to use them.</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
@@ -962,6 +962,14 @@ custom_count = ...
 <li><a href="../extras/searchkick/">searchkick</a></li>
 <li><a href="../extras/meilisearch/">meilisearch</a></li>
 </ul>
+<doc-anchor-target id="paginate-by-id-instead-of-offset">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-by-id-instead-of-offset">#</doc-anchor-trigger>
+        <span>Paginate by id instead of offset</span>
+    </h2>
+</doc-anchor-target>
+<p>With particular requirements/environment an id-based pagination might work better than a classical offset-based pagination,
+You can use an interesting approach proposed <a href="https://github.com/ddnexus/pagy/discussions/435#discussioncomment-4577136">here</a>.</p>
 <doc-anchor-target id="paginate-by-date-instead-of-a-fixed-number-of-items">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-by-date-instead-of-a-fixed-number-of-items">#</doc-anchor-trigger>
