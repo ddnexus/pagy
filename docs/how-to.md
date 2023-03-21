@@ -275,7 +275,7 @@ If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.c
   end 
 ```
 
-You may wish to scope your records using a search form (perhaps using [ransack](https://github.com/activerecord-hackery/ransack) etc.), to the same url, or a different url, or you may wish to use an entirely different model (actors, rather than movies): but the logic remains the same: wrap each independent context in a `turbo_frame_tag` and ensure each url returns a matching `turbo_frame_tag`.
+You may want to scope your records using a search form (perhaps using [ransack](https://github.com/activerecord-hackery/ransack) etc.), to the same (or different) url, or use an entirely different model (actors, rather than movies). However you do it, the logic remains the same: wrap each independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_tag` is returned.
 
 Or alternatively you may which to paginate [two different models in the same page](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy/):
 
