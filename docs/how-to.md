@@ -286,7 +286,7 @@ def index # controller action
 end
 ```
 
-Please note how a different `page_param` is specified for stars vs nebulae? This is critical if users cut and paste urls.
+Note how a different `:page_param` is specified for stars vs nebulae. This is critical if users cut and paste urls, and ensures the same pages are fetched.
 
 
 ## Customize the params
