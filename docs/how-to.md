@@ -288,7 +288,6 @@ end
 
 Note how a different `:page_param` is specified for stars vs nebulae. This is critical if users cut and paste urls, and ensures the same pages are fetched.
 
-
 ## Customize the params
 
 When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the variable `:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params.
