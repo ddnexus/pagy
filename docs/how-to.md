@@ -246,7 +246,7 @@ end
 +++
 
 
-### Paginate while maintaining independent contexts
+## Paginate while maintaining independent contexts
 
 If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails implementation), one way of maintaining independent contexts is:
 
