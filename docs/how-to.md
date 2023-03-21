@@ -248,7 +248,7 @@ end
 
 ### How to Paginate While Maintaining Independent Contexts
 
-If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) - if you're using Rails) when one way of maintaining independent contexts is as below:
+If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails implementation), one way of maintaining independent contexts is:
 
 ```html+erb
   <-- movies#bad_movies -->
