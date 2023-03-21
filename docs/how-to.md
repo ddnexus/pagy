@@ -572,7 +572,6 @@ count = collection.count
 ```
 |||
 
-
 ## Paginate collections with metadata
 
 When your collection is already paginated and contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:
@@ -825,7 +824,3 @@ end
 !!!warning Rescue from `Pagy::OverflowError` first
 All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with `rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it will never get rescued.
 !!!
-
-
-
-
