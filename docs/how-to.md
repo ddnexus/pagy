@@ -493,6 +493,8 @@ end
 If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_tag` is returned:
 
 ```html+erb
+  <-- movies/index.html.erb -->
+  
   <-- movies#bad_movies -->
   <%= turbo_frame_tag "bad_movies", src: bad_movies_path do %>    
       <%= render "movies_table", locals: {movies: @movies}%>
