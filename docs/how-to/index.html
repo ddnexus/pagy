@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732760348170">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732762295605">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.732760348170" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.732762295605" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732760348170" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732762295605" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732760348170" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732760348170" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732762295605" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732762295605" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -994,7 +994,9 @@ end</code></pre>
 </doc-anchor-target>
 <p>If you&#x27;re using <a href="https://hotwired.dev/">hotwire</a> (<a href="https://github.com/hotwired/turbo-rails">turbo-rails</a> being the Rails implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each independent context in a <code v-pre>turbo_frame_tag</code> and ensure a matching <code v-pre>turbo_frame_tag</code> is returned:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">  &lt;-- movies#bad_movies --&gt;
+<pre class="language-erb"><code v-pre class="language-erb">  &lt;-- movies/index.html.erb --&gt;
+  
+  &lt;-- movies#bad_movies --&gt;
   &lt;%= turbo_frame_tag &quot;bad_movies&quot;, src: bad_movies_path do %&gt;    
       &lt;%= render &quot;movies_table&quot;, locals: {movies: @movies}%&gt;
       &lt;%== pagy_bootstrap_nav(@pagy) %&gt;    
