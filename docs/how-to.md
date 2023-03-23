@@ -418,6 +418,8 @@ Ransack `result` returns an `ActiveRecord` collection, which can be paginated ou
 ```
 |||
 
+Review the following link if you wish to [turbo stream the response with a GET request](#paginating-while-using-turbo-streams).
+
 ## Paginate search framework results
 
 Pagy has a few of extras for gems returning search results:
@@ -518,6 +520,83 @@ If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.c
     @pagy, @movies = pagy(Movie.bad, items: 5)
   end 
 ```
+
+### Turbo Stream Search Requests
+
+When using Turbo with Rails, when submitting a form using a non-GET request (i.e. POST or PATCH), a [Turbo Stream response](https://github.com/hotwired/turbo/pull/52) is canonically invoked. It is possible to ["turbo-stream" a GET request](https://github.com/hotwired/turbo/pull/612) which might suit if you're using a gem like [Ransack](https://activerecord-hackery.github.io/ransack/). You can maintain multiple independent contexts as above, except the response would be streamed: 
+
+```erb
+  <%= form_with model: @q, url: search_bootstrap_movies_path,  data: {turbo_method: :get, turbo_stream: true, controller: "submit"} do |f| %>
+    <%= f.label :name_cont %>    
+    <%= f.search_field :name_cont, "data-action": "submit#submit" %>    
+    <%= f.submit "Submit", "data-submit-target": "submitButton" %>
+  <% end %>
+
+  <div id="stream-context"> <-- Note the ID here -->
+    <%= render "movies_table", locals: {movies: @movies}%>        
+      <% if @pagy.pages > 1 %>
+        <%== pagy_bootstrap_nav(@pagy, link_extra: 'data-turbo-stream="true"') %> <-- link_extra will stream the results when we click the link -->      
+      <% end %>
+    </div>  
+  </div>    
+```
+
+```rb
+  # bootstrap_movies#search 
+  def search
+    @q = Movie.ransack(params[:q])
+    @pagy, @movies = pagy(@q.result(distinct: true), items: 2)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream {render "search"} 
+    end
+  end
+```
+
+```erb
+<-- search.turbo_stream.erb -->
+<%= turbo_stream.update "stream-context" do %>
+    <%= render "movies_table", locals: {movies: @movies}%>
+    
+    <% if @pagy.pages > 1 %>
+      <%== pagy_bootstrap_nav(@pagy, link_extra: 'data-turbo-stream="true"') %>      
+    <% end %>
+    
+<% end  %>
+```
+
+You may wish to use a stimulus controller to submit the search form as you type:
+
+```js
+// submit_controller.js
+import { Controller } from "@hotwired/stimulus";
+
+import debounce from 'lodash.debounce'; // yarn add lodash.debounce
+import throttle from 'lodash.throttle'; // yarn add lodash.throttle
+
+// lodash and debounce help limit the rate 
+// at which requests hit your server.
+
+export default class extends Controller {
+  static targets = ["submitButton"]
+
+  connect(){        
+    this.submit = debounce(this.submit, 250).bind(this)
+    this.submit = throttle(this.submit, 250).bind(this)
+  }
+  
+  submit(event) {
+    this.element.requestSubmit();
+  };
+
+  reset(event){    
+    this.submitButtonTarget.disabled = false;
+  }
+}
+```
+
+Refer to the [pagy-rails demo rails app](https://github.com/benkoshy/pagy-rails) for further details.
 
 ### Using different page_param(s)
 
