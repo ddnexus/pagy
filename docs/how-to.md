@@ -81,7 +81,7 @@ You don't need to explicitly pass the page number to the `pagy` method, because 
 
 ||| controller
 ```ruby
-@pagy, @records = pagy(my_scope, page: 3) # forces page.
+@pagy, @records = pagy(my_scope, page: 3) # force page #3
 ```
 |||
 
@@ -403,7 +403,7 @@ In that case you don't need the `Pagy::Frontend` nor any frontend extra. You sho
 
 ## Paginate for Javascript Frameworks
 
-If your app uses ruby as pure backend and some javascript frameworks as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate the whole pagination UI directly in javascript (with your own code or using some available component).
+If your app uses ruby as pure backend and some javascript frameworks as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate the whole pagination UI directly in javascript (with your own code or using some available javascript module).
 
 In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require the [metadata extra](extras/metadata.md) and pass the pagination metadata in your JSON response.
 
@@ -570,18 +570,19 @@ Assuming the `:items` default of `20`, you will get the pages with the right rec
 
 ## Paginate non-ActiveRecord collections
 
-The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.) you may need to override it in your controller, usually by simply removing the `:all` argument passed to `count`:
+The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.) you may need to override it in your controller, usually by simply removing the `:all` argument passed to the `count` method:
 
-||| controller
+||| override
 ```ruby
-#count = collection.count(:all)
-count = collection.count
+def pagy_get_vars  # copy from lib/pagy/backend
+  # replace collection.count(:all) with collection.count 
+end
 ```
 |||
 
 ## Paginate collections with metadata
 
-When your collection is already paginated and contains counts and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:
+When your collection is already paginated and contains count and pagination metadata, you don't need any `pagy*` controller method. For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:
 
 ```rb
 #<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>
@@ -602,10 +603,10 @@ tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
 
 ## Paginate Any Collection
 
-Pagy doesn't need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an `offset` and a `limit`. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
+Pagy doesn't need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given a start/offset and a per-page/limit. It does not matter if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
 
 1. Create a Pagy object using the count of the collection to paginate
-2. Get the page of items from the collection using `pagy.offset` and `pagy.items`
+2. Get the page of items from the collection using the start/offset and the per-page/limit (`pagy.offset` and `pagy.items`)
 
 Here is an example with an array. (Please, notice that this is only a convenient example, but you should use the [array](extras/array.md) extra to paginate arrays).
 
