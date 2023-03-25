@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.732762295605">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.733036803459">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.732762295605" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.733036803459" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.732762295605" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.733036803459" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.732762295605" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.732762295605" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.733036803459" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../../resources/js/prism.js?v=2.4.0.733036803459" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -366,7 +366,7 @@ pagy.series
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(my_scope, page: 3) # forces page.</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(my_scope, page: 3) # force page #3</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -850,7 +850,7 @@ custom_count = ...
         <span>Paginate for Javascript Frameworks</span>
     </h2>
 </doc-anchor-target>
-<p>If your app uses ruby as pure backend and some javascript frameworks as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate the whole pagination UI directly in javascript (with your own code or using some available component).</p>
+<p>If your app uses ruby as pure backend and some javascript frameworks as the frontend (e.g. Vue.js, react.js, ...), then you may want to generate the whole pagination UI directly in javascript (with your own code or using some available javascript module).</p>
 <p>In that case you don&#x27;t need the <code v-pre>Pagy::Frontend</code> nor any frontend extra. You should only require the <a href="../extras/metadata/">metadata extra</a> and pass the pagination metadata in your JSON response.</p>
 <doc-anchor-target id="paginate-ransack-results">
     <h2>
@@ -1087,15 +1087,16 @@ end</code></pre>
         <span>Paginate non-ActiveRecord collections</span>
     </h2>
 </doc-anchor-target>
-<p>The <code v-pre>pagy_get_vars</code> method works out of the box with <code v-pre>ActiveRecord</code> collections; for other collections (e.g. <code v-pre>mongoid</code>, etc.) you may need to override it in your controller, usually by simply removing the <code v-pre>:all</code> argument passed to <code v-pre>count</code>:</p>
+<p>The <code v-pre>pagy_get_vars</code> method works out of the box with <code v-pre>ActiveRecord</code> collections; for other collections (e.g. <code v-pre>mongoid</code>, etc.) you may need to override it in your controller, usually by simply removing the <code v-pre>:all</code> argument passed to the <code v-pre>count</code> method:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>controller</span>
+        <span>override</span>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">#count = collection.count(:all)
-count = collection.count</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby">def pagy_get_vars  # copy from lib/pagy/backend
+  # replace collection.count(:all) with collection.count 
+end</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -1105,7 +1106,7 @@ count = collection.count</code></pre>
         <span>Paginate collections with metadata</span>
     </h2>
 </doc-anchor-target>
-<p>When your collection is already paginated and contains counts and pagination metadata, you don&#x27;t need any <code v-pre>pagy*</code> controller method. For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:</p>
+<p>When your collection is already paginated and contains count and pagination metadata, you don&#x27;t need any <code v-pre>pagy*</code> controller method. For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection metadata:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">#&lt;Tmdb::Result page=1, total_pages=23, total_results=446, results=[#&lt;Tmdb::Movie ..&gt;,#&lt;Tmdb::Movie...&gt;,...]...&gt;</code></pre>
 </doc-codeblock></div>
@@ -1131,10 +1132,10 @@ tobj = Tmdb::Search.movie(&quot;Harry Potter&quot;, page: params[:page])
         <span>Paginate Any Collection</span>
     </h2>
 </doc-anchor-target>
-<p>Pagy doesn&#x27;t need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given an <code v-pre>offset</code> and a <code v-pre>limit</code>. It does not matter if it is an <code v-pre>Array</code> or an <code v-pre>ActiveRecord</code> scope or something else: the simple mechanism is the same:</p>
+<p>Pagy doesn&#x27;t need to know anything about the kind of collection you paginate. It can paginate any collection, because every collection knows its count and has a way to extract a chunk of items given a start/offset and a per-page/limit. It does not matter if it is an <code v-pre>Array</code> or an <code v-pre>ActiveRecord</code> scope or something else: the simple mechanism is the same:</p>
 <ol>
 <li>Create a Pagy object using the count of the collection to paginate</li>
-<li>Get the page of items from the collection using <code v-pre>pagy.offset</code> and <code v-pre>pagy.items</code></li>
+<li>Get the page of items from the collection using the start/offset and the per-page/limit (<code v-pre>pagy.offset</code> and <code v-pre>pagy.items</code>)</li>
 </ol>
 <p>Here is an example with an array. (Please, notice that this is only a convenient example, but you should use the <a href="../extras/array/">array</a> extra to paginate arrays).</p>
 <div class="codeblock-wrapper"><doc-codeblock>
