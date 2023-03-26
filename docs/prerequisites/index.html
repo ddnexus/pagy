@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.733036803459">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.733111110570">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,11 +31,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=2.4.0.733036803459" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.733111110570" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.733036803459" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.733111110570" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.733036803459" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.733111110570" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -363,7 +363,7 @@
         </div>
     </div>
 </div>
-<p>Use pagy normally.</p>
+<p>Use pagy normally</p>
 </doc-tab>
 <doc-tab id="non-rack">
 <template #title>Non Rack</template>
@@ -383,7 +383,7 @@
         </div>
     </div>
 </div>
-<p>Require the <a href="../extras/standalone/">standalone extra</a>, and pass a <code v-pre>:url</code> variable.</p>
+<p>Use the <a href="../extras/standalone/">standalone extra</a></p>
 </doc-tab>
 <doc-tab id="irb">
 <template #title>Irb</template>
@@ -403,38 +403,17 @@
         </div>
     </div>
 </div>
-<p>Use the <a href="../api/console/">Pagy::Console</a>.</p>
+<p>Use the <a href="../api/console/">Pagy::Console</a></p>
 </doc-tab>
 </doc-tabs>
-<doc-anchor-target id="special-cases">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#special-cases">#</doc-anchor-trigger>
-        <span>Special cases</span>
-    </h3>
+<doc-anchor-target id="supported-collections">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#supported-collections">#</doc-anchor-trigger>
+        <span>Supported collections</span>
+    </h2>
 </doc-anchor-target>
-<ul>
-<li>If the collection to paginate is not a collection supported out of the box like ActiveRecord scope, <a href="../extras/array/">array</a>, <a href="../extras/elasticsearch_rails/">elasticsearch_rails</a>, <a href="../extras/searchkick/">searchkick</a>, <a href="../extras/meilisearch/">meilisearch</a>, ... you may need to override the <code v-pre>pagy_*get_vars</code> backend method.</li>
-<li>If the collection you are paginating doesn&#x27;t respond to <code v-pre>offset</code> and <code v-pre>limit</code> and is not yet supported by any extra, you may need to override the <code v-pre>pagy_get_items</code> method in your controller (to get the items out of your specific collection)</li>
-<li>If your framework doesn&#x27;t have a <code v-pre>params</code> method you can use the <a href="../extras/standalone/">standalone extra</a> or you may need to define the <code v-pre>params</code> method or override the <code v-pre>pagy_get_vars</code> (which uses the <code v-pre>params</code> method) in your controller</li>
-<li>If your framework doesn&#x27;t have a <code v-pre>request</code> method you can use the <a href="../extras/standalone/">standalone extra</a> or you may need to override the <code v-pre>pagy_url_for</code> (which uses <code v-pre>Rack</code> and <code v-pre>request</code>) in your view</li>
-</ul>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<p>The total overriding you may need is usually just a handful of lines at worse, and it doesn&#x27;t need monkey patching or writing any sub-class or module</p>
-        </div>
-    </div>
-</div>
+<p>Out of the box pagy supports <code v-pre>ActiveRecord::Relation</code>, <a href="../extras/array/">array</a>, <a href="../extras/elasticsearch_rails/">elasticsearch_rails</a>, <a href="../extras/searchkick/">searchkick</a> and <a href="../extras/meilisearch/">meilisearch</a> collections.</p>
+<p>In order to paginate other collections, search for &quot;paginate&quot; in the search field above.</p>
 
                                 
                                 <!-- Required only on API pages -->
