@@ -519,6 +519,8 @@ If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.c
   end 
 ```
 
+Consider [Benito Serna's implementation of turbo-frames (on Rails) using search forms with the Ransack gem](https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html) along with a corresponding [demo app](https://github.com/bhserna/dynamic_data_grid_hotwire_ransack) for a similar implementation of the above logic.
+
 ### Using different page_param(s)
 
 You can also paginate [multiple model in the same request](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy/) by simply using multiple `:page_param`:

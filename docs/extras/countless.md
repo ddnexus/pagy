@@ -38,7 +38,7 @@ Your app needs a full classic pagination UI
 ```
 |||
 
-This mode retrieves `items + 1`, and uses the number of retrieved items to calculate the variables. It then removes the extra item from the result.
+This mode retrieves `items + 1` and uses the number of retrieved items to calculate the variables. It then removes the eventual extra item from the result, so deducing whether there is a `next` page or not without the need of an extra query.
 
 !!! info
 - The `@records` collection is an eager-loaded `Array` of records.

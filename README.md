@@ -113,14 +113,14 @@ include Pagy::Frontend
 
 Or, choose from the following view helpers:
 
-| View Helper Name                  |  Preview (Bootstrap Style shown)                              |
-|---                                |---                                                           |
-| [`<%== pagy_nav(@pagy) %> `](/docs/api/frontend)  | ![`pagy_nav`](/docs/assets/images/bootstrap_nav.png)                                            |
-| [`<%== pagy_nav_js(@pagy) %>`](/pagy/docs/api/javascript/)   | ![`pagy_nav_js`](/docs/assets/images/bootstrap_nav_js.png)                                         |
-| [`<%== pagy_info(@pagy) %>`](/docs/api/frontend)     | ![`pagy_info`](/docs/assets/images/pagy_info.png)                                           |
-| [`<%== pagy_combo_nav_js(@pagy) %>`](/pagy/docs/api/javascript/) | ![`pagy_combo_nav_js`](/docs/assets/images/bootstrap_combo_nav_js.png)                                   |
-| [`<%== pagy_items_selector_js %>`](/pagy/docs/api/javascript/)    | ![`pagy_items_selector_js`](/docs/assets/images/items_selector_js.png)                                |
-
+| View Helper Name                                                                                                                                                                        | Preview (Bootstrap Style shown)                                        |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| [`pagy_nav(@pagy)`](/docs/api/frontend)                                                                                                                                                 | ![`pagy_nav`](/docs/assets/images/bootstrap_nav.png)                   |
+| [`pagy_nav_js(@pagy)`](/pagy/docs/api/javascript/)                                                                                                                                      | ![`pagy_nav_js`](/docs/assets/images/bootstrap_nav_js.png)             |
+| [`pagy_info(@pagy)`](/docs/api/frontend)                                                                                                                                                | ![`pagy_info`](/docs/assets/images/pagy_info.png)                      |
+| [`pagy_combo_nav_js(@pagy)`](/pagy/docs/api/javascript/)                                                                                                                                | ![`pagy_combo_nav_js`](/docs/assets/images/bootstrap_combo_nav_js.png) |
+| [`pagy_items_selector_js`](/pagy/docs/api/javascript/)                                                                                                                                  | ![`pagy_items_selector_js`](/docs/assets/images/items_selector_js.png) |
+| [`pagy_nav(@calendar[:year])`](/pagy/docs/extras/calendar/)<br/>[`pagy_nav(@calendar[:month])`](/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day` and custom) | ![calendar extra](/docs/assets/images/calendar-app.png)                |
 
 _(See the [Quick Start](https://ddnexus.github.io/pagy/quick-start))_
 
@@ -307,6 +307,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 - [Endless Scroll / Infinite Loading with Turbo Streams & Stimulus](https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/) by Stefan Wienert
 - [Pagination with Hotwire](https://www.beflagrant.com/blog/pagination-with-hotwire) by Jonathan Greenberg
 - [Pagination and infinite scrolling with Rails and the Hotwire stack](https://www.colby.so/posts/pagination-and-infinite-scrolling-with-hotwire) by David Colby
+- [Building a dynamic data grid with search and filters using rails, hotwire and ransack](https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html) by Benito Serna.
 - [Pagination for Beginners: What is it? Why bother?](https://benkoshy.github.io/2021/11/03/pagination-basics.html) by Ben Koshy.
 - [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html) by Ben Koshy.
 - [How to Override pagy methods only in specific circumstances](https://benkoshy.github.io/2020/02/01/overriding-pagy-methods.html) by Ben Koshy.
