@@ -25,6 +25,11 @@ None
 
 <hr>
 
+## Version 6.0.3
+
+- Updated Gemfile and npm modules
+- Improved Danish translation (#502)
+
 ## Version 6.0.2
 
 - Fix: foundation combo helper (#469)
