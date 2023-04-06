@@ -41,17 +41,13 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 
 <br>
 
+## 🤩 It Supports Various:
 
-Thank you for showing your support!
-
-## 🤩 It does it all. Better.
-
-- **It works in any environment**<br>With Rack frameworks like Rails, Sinatra, Padrino, ecc. or in pure ruby even without Rack
-- **It works with any collection**<br>With any ORM, any DB, any search gem, [elasticsearch_rails](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails), [meilisearch](https://ddnexus.github.io/pagy/docs/extras/meilisearch), [searchkick](https://ddnexus.github.io/pagy/docs/extras/searchkick), `ransack`, and just any list, even if you cannot count it
-- **It supports all kinds of pagination**<br>[calendar](https://ddnexus.github.io/pagy/docs/extras/calendar), [countless](https://ddnexus.github.io/pagy/docs/extras/countless), [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox), [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/support), [headers](https://ddnexus.github.io/pagy/docs/extras/headers), [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata), [cursor](https://github.com/Uysim/pagy-cursor)
-- **It supports all kinds of CSS Frameworks**<br>[bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation), [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize), [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic), [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit), [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind)
-- **It supports faster client-side rendering**<br>With classic or innovative UI components (see [Javascript Components](https://ddnexus.github.io/pagy/docs/api/javascript/)) or by serving [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata) to your favorite Javascript framework
-- **It has 100% of test coverage** for Ruby, HTML and Javascript E2E (see [Pagy Workflows CI](https://github.com/ddnexus/pagy/actions))
+- **Environments:**<br> Any Rack framework: e.g. Rails, Sinatra, Padrino, etc. or even pure ruby without Rack
+- **Strategies:**<br>[calendar](https://ddnexus.github.io/pagy/docs/extras/calendar "Allows you to paginate by month, or year etc."), [countless](https://ddnexus.github.io/pagy/docs/extras/countless "Ideal if you cannot count your collection"), [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox "e.g. vary the number of results returned: e.g. first page returns 5 results, the second page: 50 results etc."), [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/support), [headers](https://ddnexus.github.io/pagy/docs/extras/headers "If you're building an API and you don't want pagination params appearing in the URL"), [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata "If you're using a client side framework like React, or Vue etc."), [cursor](https://github.com/Uysim/pagy-cursor "If you have huge data sets where offset and limit are performance limitations")
+- **CSS Frameworks:**<br>[bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation), [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize), [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic), [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit), [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind)
+- **Faster client-side rendering**<br>With classic or innovative UI components (see [Javascript Components](https://ddnexus.github.io/pagy/docs/api/javascript/)) or by serving [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata) to your favorite Javascript framework
+- **100% test coverage:** for Ruby, HTML and Javascript E2E (see [Pagy Workflows CI](https://github.com/ddnexus/pagy/actions))
 
 <details>
 
