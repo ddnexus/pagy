@@ -1,4 +1,4 @@
-# Pagy
+# 🏆 Pagy: A Pagination Gem 🥇
 
 <span>[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)</span> <span>
 [![ruby](https://img.shields.io/badge/ruby-2.5+%20*-ruby.svg?colorA=99004d&colorB=cc0066)](https://ddnexus.github.io/pagy/docs/prerequisites/#ruby)</span> <span>
@@ -11,9 +11,7 @@
 ![Downloads](https://img.shields.io/gem/dt/pagy.svg?colorA=004d99&colorB=0073e6)</span> <span>
 [![Stars](https://shields.io/github/stars/ddnexus/pagy?style=social)](https://github.com/ddnexus/pagy/stargazers)</span>
 
-## 🏆 The Best Pagination Ruby Gem 🥇
-
-Pagy is focused on performance and flexibility.
+Pagy is focused on performance and flexibility:
 
 ### ~ 40x Faster!
 
