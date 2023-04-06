@@ -51,19 +51,19 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 
 <details>
 
-### Code Structure
+### Code Structure - Pagy has:
 
-- **Pagy has a very slim core code** very easy to understand and use.
-- **It has a quite fat set of optional extras** that you can explicitly require for very efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/categories/extra/))_
-- **It has no dependencies**: it produces its own HTML, URLs, i18n with its own specialized and fast code
-- **Its methods are accessible and overridable** right where you use them (no pesky monkey-patching needed)
+- **A slim core:** easy to understand / manipulate.
+- **Plenty of optional extras:** explicitly require for efficient and modular customization _(see [extras](https://ddnexus.github.io/pagy/categories/extra/))_
+- **no dependencies**: it produces its own HTML, URLs, i18n with its own specialized and fast code
+- **Its methods are accessible and overridable:** right where you use them (no monkey-patching needed)
 
-### Unlike the other gems
+### Unlike the other gems:
 
-- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
-- It doesn't impose limits on your code even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
+- Pagy is very modular and does not load any unnecessary code (see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
+- It doesn't impose limits even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/docs/how-to/#use-templates))_
-- It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions))_ or use the [overflow extra](https://ddnexus.github.io/pagy/docs/extras/overflow) for a few ready to use common behaviors
+- It raises `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions))_ or use the [overflow extra](https://ddnexus.github.io/pagy/docs/extras/overflow) for a few ready to use common behaviors
 - It does not impose any difficult-to-override logic or output
 
 ### Better Components
@@ -78,7 +78,7 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can also u
 
 <br>
 
-## 😎 It's easy to use and customize
+## 😎 Easy to use / customize:
 
 <details open>
 
@@ -244,7 +244,7 @@ Extras add special options and manage different components, behaviors, Frontend 
 
 See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
-## 🤓 It's very well documented and supported
+## 🤓 It's well documented and supported:
 
 <details open>
 
@@ -269,13 +269,13 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 <details>
 
-<summary>Watch some great screencast...</summary>
+<summary>Watch some screencasts...</summary>
 
 ### GoRails Screencast
 
 [![GoRails Screencast](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
 
-**Notice**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
+**Note**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
 
 ### Mike Rogers Screencast
 
@@ -321,7 +321,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 ## 📦 Repository Info
 
-<details open>
+<details>
 
 <summary><b>What's new in 6.0</b></summary>
 
@@ -381,4 +381,4 @@ Many thanks to:
 
 ## 📃 License
 
-This project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+[MIT](https://opensource.org/licenses/MIT)
