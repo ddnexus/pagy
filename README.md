@@ -41,7 +41,6 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 
 <br>
 
-### 👍 If you like Pagy, give it a star! ⭐
 
 Thank you for showing your support!
 
