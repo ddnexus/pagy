@@ -92,10 +92,6 @@ Besides the classic pagination offered by the `pagy_nav` helpers, you can also u
 <summary>Code for basic pagination...</summary>
 
 ```rb
-# Optionally override some pagy default with your own in the pagy initializer
-Pagy::DEFAULT[:items] = 10        # items per page
-Pagy::DEFAULT[:size]  = [1,4,4,1] # nav bar links
-
 # Include it in the controllers (e.g. application_controller.rb)
 include Pagy::Backend
 
@@ -106,9 +102,20 @@ include Pagy::Frontend
 @pagy, @records = pagy(Product.all)
 ```
 
+Optionally set your defaults in the pagy initializer:
+
+```rb
+# Optionally override some pagy default with your own in the pagy initializer
+Pagy::DEFAULT[:items] = 10        # items per page
+Pagy::DEFAULT[:size]  = [1,4,4,1] # nav bar links
+# Better user experience handled automatically
+require 'pagy/extras/overflow'
+Pagy::DEFAULT[:overflow] = :last_page
+```
+
 ```erb
-<%# Render a view helper in your views %>
-<%== pagy_nav(@pagy) %>
+<%# Render a view helper in your views (skipping nav links for empty pages) %>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 ```
 
 Or, choose from the following view helpers:
