@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734060185741">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734148040996">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -33,12 +33,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=2.4.0.734060185741" rel="stylesheet" />
+    <link href="resources/css/retype.css?v=2.4.0.734148040996" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.734060185741" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.734148040996" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.734060185741" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="resources/js/prism.js?v=2.4.0.734060185741" defer></script>
+    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.734148040996" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="resources/js/prism.js?v=2.4.0.734148040996" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -345,13 +345,6 @@
 <p>See the <a href="http://ddnexus.github.io/pagination-comparison/gems.html">Detailed Gems Comparison</a> for full details.</p>
 </details>
 <br>
-<doc-anchor-target id="if-you-like-pagy-give-it-a-star">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#if-you-like-pagy-give-it-a-star">#</doc-anchor-trigger>
-        <span><span class="docs-emoji">&#x1F44D;</span> If you like Pagy, give it a star! <span class="docs-emoji">&#x2B50;</span></span>
-    </h3>
-</doc-anchor-target>
-<p>Thank you for showing your support!</p>
 <doc-anchor-target id="it-does-it-all-better">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#it-does-it-all-better">#</doc-anchor-trigger>
@@ -359,7 +352,7 @@
     </h2>
 </doc-anchor-target>
 <ul>
-<li><strong>It works in any environment</strong><br>With Rack frameworks like Rails, Sinatra, Padrino, ecc. or in pure ruby even without Rack</li>
+<li><strong>It works in any environment</strong><br>With Rack frameworks (Rails, Sinatra, Padrino, ecc.) or in pure ruby without Rack</li>
 <li><strong>It works with any collection</strong><br>With any ORM, any DB, any search gem, <a href="https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails">elasticsearch_rails</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/meilisearch">meilisearch</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/searchkick">searchkick</a>, <code v-pre>ransack</code>, and just any list, even if you cannot count it</li>
 <li><strong>It supports all kinds of pagination</strong><br><a href="https://ddnexus.github.io/pagy/docs/extras/calendar">calendar</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/countless">countless</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/gearbox">geared</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/support">incremental, auto-incremental, infinite</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/headers">headers</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/metadata">JSON</a>, <a href="https://github.com/Uysim/pagy-cursor">cursor</a></li>
 <li><strong>It supports all kinds of CSS Frameworks</strong><br><a href="https://ddnexus.github.io/pagy/docs/extras/bootstrap">bootstrap</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/bulma">bulma</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/foundation">foundation</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/materialize">materialize</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/semantic">semantic</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/uikit">uikit</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/tailwind">tailwind</a></li>
@@ -386,10 +379,10 @@
     </h3>
 </doc-anchor-target>
 <ul>
-<li>Pagy is very modular and does not load any unnecessary code in your app <em>(see <a href="https://ddnexus.github.io/pagy/quick-start#configure">why...</a>)</em></li>
-<li>It doesn&#x27;t impose limits on your code even with collections|scopes that already used <code v-pre>limit</code> and <code v-pre>offset</code> <em>(see <a href="https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections">how...</a>)</em></li>
+<li>Pagy is very modular and does not load any unnecessary code (see <a href="https://ddnexus.github.io/pagy/quick-start#configure">why...</a>)_</li>
+<li>It doesn&#x27;t impose limits even with collections|scopes that already used <code v-pre>limit</code> and <code v-pre>offset</code> <em>(see <a href="https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections">how...</a>)</em></li>
 <li>It works with fast helpers OR easy to edit templates <em>(see <a href="https://ddnexus.github.io/pagy/docs/how-to/#use-templates">more...</a>)</em></li>
-<li>It raises real <code v-pre>Pagy::OverflowError</code> exceptions that you can rescue from <em>(see <a href="https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions">how...</a>)</em> or use the <a href="https://ddnexus.github.io/pagy/docs/extras/overflow">overflow extra</a> for a few ready to use common behaviors</li>
+<li>It raises <code v-pre>Pagy::OverflowError</code> exceptions that you can rescue from <em>(see <a href="https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions">how...</a>)</em> or use the <a href="https://ddnexus.github.io/pagy/docs/extras/overflow">overflow extra</a> for a few ready to use common behaviors</li>
 <li>It does not impose any difficult-to-override logic or output</li>
 </ul>
 <doc-anchor-target id="better-components">
@@ -584,10 +577,10 @@ render json: records</code></pre>
 </ul>
 </details>
 <p>See also the <a href="https://ddnexus.github.io/pagy/docs/how-to">How To Page</a></p>
-<doc-anchor-target id="it-s-very-well-documented-and-supported">
+<doc-anchor-target id="it-s-well-documented-and-supported">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#it-s-very-well-documented-and-supported">#</doc-anchor-trigger>
-        <span><span class="docs-emoji">&#x1F913;</span> It&#x27;s very well documented and supported</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#it-s-well-documented-and-supported">#</doc-anchor-trigger>
+        <span><span class="docs-emoji">&#x1F913;</span> It&#x27;s well documented and supported:</span>
     </h2>
 </doc-anchor-target>
 <details open>
@@ -608,7 +601,7 @@ render json: records</code></pre>
 </ul>
 </details>
 <details>
-<summary>Watch some great screencast...</summary>
+<summary>Watch some screencasts...</summary>
 <doc-anchor-target id="gorails-screencast">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#gorails-screencast">#</doc-anchor-trigger>
@@ -622,7 +615,7 @@ render json: records</code></pre>
     <figcaption class="caption">GoRails Screencast</figcaption>
 </figure>
 </p>
-<p><strong>Notice</strong>: the <code v-pre>pagy_nav_bootstrap</code> helper used in the screencast has been renamed as <code v-pre>pagy_bootstrap_nav</code> since version 2.0</p>
+<p><strong>Note</strong>: the <code v-pre>pagy_nav_bootstrap</code> helper used in the screencast has been renamed as <code v-pre>pagy_bootstrap_nav</code> since version 2.0</p>
 <doc-anchor-target id="mike-rogers-screencast">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#mike-rogers-screencast">#</doc-anchor-trigger>
@@ -694,7 +687,7 @@ render json: records</code></pre>
         <span><span class="docs-emoji">&#x1F4E6;</span> Repository Info</span>
     </h2>
 </doc-anchor-target>
-<details open>
+<details>
 <summary><b>What's new in 6.0</b></summary>
 <ul>
 <li>New improved <a href="https://ddnexus.github.io/pagy">documentation</a></li>
@@ -758,7 +751,7 @@ render json: records</code></pre>
         <span><span class="docs-emoji">&#x1F4C3;</span> License</span>
     </h2>
 </doc-anchor-target>
-<p>This project is available as open source under the terms of the <a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
+<p><a href="https://opensource.org/licenses/MIT">MIT</a></p>
 
                                 
                                 <!-- Required only on API pages -->
