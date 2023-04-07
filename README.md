@@ -43,13 +43,9 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 
 <br>
 
-### 👍 If you like Pagy, give it a star! ⭐
-
-Thank you for showing your support!
-
 ## 🤩 It does it all. Better.
 
-- **It works in any environment**<br>With Rack frameworks like Rails, Sinatra, Padrino, ecc. or in pure ruby even without Rack
+- **It works in any environment**<br>With Rack frameworks (Rails, Sinatra, Padrino, ecc.) or in pure ruby without Rack
 - **It works with any collection**<br>With any ORM, any DB, any search gem, [elasticsearch_rails](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails), [meilisearch](https://ddnexus.github.io/pagy/docs/extras/meilisearch), [searchkick](https://ddnexus.github.io/pagy/docs/extras/searchkick), `ransack`, and just any list, even if you cannot count it
 - **It supports all kinds of pagination**<br>[calendar](https://ddnexus.github.io/pagy/docs/extras/calendar), [countless](https://ddnexus.github.io/pagy/docs/extras/countless), [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox), [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/support), [headers](https://ddnexus.github.io/pagy/docs/extras/headers), [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata), [cursor](https://github.com/Uysim/pagy-cursor)
 - **It supports all kinds of CSS Frameworks**<br>[bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation), [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize), [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic), [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit), [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind)
@@ -67,10 +63,10 @@ Thank you for showing your support!
 
 ### Unlike the other gems
 
-- Pagy is very modular and does not load any unnecessary code in your app _(see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
-- It doesn't impose limits on your code even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
+- Pagy is very modular and does not load any unnecessary code (see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
+- It doesn't impose limits even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/docs/how-to/#use-templates))_
-- It raises real `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions))_ or use the [overflow extra](https://ddnexus.github.io/pagy/docs/extras/overflow) for a few ready to use common behaviors
+- It raises `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions))_ or use the [overflow extra](https://ddnexus.github.io/pagy/docs/extras/overflow) for a few ready to use common behaviors
 - It does not impose any difficult-to-override logic or output
 
 ### Better Components
@@ -251,7 +247,7 @@ Extras add special options and manage different components, behaviors, Frontend 
 
 See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
-## 🤓 It's very well documented and supported
+## 🤓 It's well documented and supported:
 
 <details open>
 
@@ -276,13 +272,13 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 <details>
 
-<summary>Watch some great screencast...</summary>
+<summary>Watch some screencasts...</summary>
 
 ### GoRails Screencast
 
 [![GoRails Screencast](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
 
-**Notice**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
+**Note**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
 
 ### Mike Rogers Screencast
 
@@ -328,7 +324,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 ## 📦 Repository Info
 
-<details open>
+<details>
 
 <summary><b>What's new in 6.0</b></summary>
 
@@ -388,4 +384,4 @@ Many thanks to:
 
 ## 📃 License
 
-This project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+[MIT](https://opensource.org/licenses/MIT)
