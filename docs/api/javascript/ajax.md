@@ -34,19 +34,10 @@ end
 
 ||| `pagy_remote_nav_js.js.erb`template - AJAX rendering:
 
-
-+++ JavaScript
 ```js
 document.getElementById('container').innerHTML = "<%= j(render 'nav_js')%>";
 Pagy.init(document.getElementById('container'));
 ````
-+++ JQuery
-```js
-$('#container').html("<%= j(render 'nav_js')%>");
-Pagy.init($('#container')[0]);
-```
-+++
-
 |||
 
 !!!primary Don't forget to re-initialize!
