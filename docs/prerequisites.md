@@ -7,8 +7,8 @@ icon: shield-check-24
 ## Ruby
 +++ Pagy 4.0+
 !!! success
-- Tested on ruby `3.0+`
 - Working on ruby `2.5+`
+- Tested on ruby `3.0+`
 !!!
 
 !!! info

@@ -45,7 +45,7 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 
 ## 🤩 It does it all. Better.
 
-- **It works in any environment**<br>With Rack frameworks (Rails, Sinatra, Padrino, ecc.) or in pure ruby without Rack
+- **It works in any environment**<br>With Rack frameworks (Rails, Sinatra, Padrino, etc.) or in pure ruby without Rack
 - **It works with any collection**<br>With any ORM, any DB, any search gem, [elasticsearch_rails](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails), [meilisearch](https://ddnexus.github.io/pagy/docs/extras/meilisearch), [searchkick](https://ddnexus.github.io/pagy/docs/extras/searchkick), `ransack`, and just any list, even if you cannot count it
 - **It supports all kinds of pagination**<br>[calendar](https://ddnexus.github.io/pagy/docs/extras/calendar), [countless](https://ddnexus.github.io/pagy/docs/extras/countless), [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox), [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/support), [headers](https://ddnexus.github.io/pagy/docs/extras/headers), [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata), [cursor](https://github.com/Uysim/pagy-cursor)
 - **It supports all kinds of CSS Frameworks**<br>[bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation), [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize), [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic), [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit), [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind)
@@ -247,15 +247,16 @@ Extras add special options and manage different components, behaviors, Frontend 
 
 See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
-## 🤓 It's well documented and supported:
+## 🤓 It's well documented and supported
 
 <details open>
 
-<summary>Read the documentation...</summary>
+<summary> Documentation</summary>
 
 - [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/docs/migration-guide) (practical guide)
 - [Quick Start](https://ddnexus.github.io/pagy/quick-start)
 - [Documentation](https://ddnexus.github.io/pagy)
+- [How To (quick recipes)](https://ddnexus.github.io/pagy/docs/how-to/)
 - [Changelog](https://ddnexus.github.io/pagy/changelog)
 - [Deprecations](https://ddnexus.github.io/pagy/changelog#deprecations)
 
@@ -263,40 +264,53 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 <details open>
 
-<summary>Ask for support...</summary>
+<summary> Support</summary>
 
-- [Pagy Support](https://github.com/ddnexus/pagy/discussions/categories/q-a)
-- [Pagy Issues](https://github.com/ddnexus/pagy/issues)
-
-</details>
-
-<details>
-
-<summary>Watch some screencasts...</summary>
-
-### GoRails Screencast
-
-[![GoRails Screencast](docs/assets/images/gorails-thumbnail-w360.png)](https://gorails.com/episodes/pagination-with-pagy-gem?autoplay=1)
-
-**Note**: the `pagy_nav_bootstrap` helper used in the screencast has been renamed as `pagy_bootstrap_nav` since version 2.0
-
-### Mike Rogers Screencast
-
-[![How To Paginate A Collection Using Pagy](docs/assets/images/mike-rogers-w360.jpg)](https://youtu.be/aILtxj_LVuA)
-
-### SupeRails Screencast
-
-[![Ruby on Rails #19 gem Pagy - Ultimate Guide](docs/assets/images/superails-w360.jpg)](https://youtu.be/1tsWL4EjhMo)
-
-### Raul Palacio Screencast (Spanish)
-
-[![Raul Palacio Screncast](docs/assets/images/raul-palacio-w360.jpg)](https://youtu.be/_j3gtKf5rRs)
+- [Discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a)
+- [Issues](https://github.com/ddnexus/pagy/issues)
 
 </details>
 
 <details>
 
-<summary> Posts and tutorials...</summary>
+<summary> Screencasts (10 entries)</summary>
+
+### GoRails
+
+[<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360">](https://www.youtube.com/watch?v=K4fob588tfM)
+[<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="360">](https://www.youtube.com/watch?v=1sNpvTMrxl4)
+
+### SupeRails
+
+[<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="360">](https://www.youtube.com/watch?v=1tsWL4EjhMo)
+[<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="360">](https://www.youtube.com/watch?v=ScxUqW29F7E)
+[<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" width="360">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
+
+### CJ Avilla
+
+[<img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="360">](https://www.youtube.com/watch?v=0RtYhDIKmBY)
+
+### Mike Rogers
+
+[<img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="360">](https://www.youtube.com/watch?v=aILtxj_LVuA)
+
+### Deanin
+
+[<img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="360">](https://www.youtube.com/watch?v=ArBUAxEA6vM)
+
+### Mix & Go
+
+[<img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="360">](https://www.youtube.com/watch?v=HURqvNJF4T0)
+
+### Raul Palacio (Spanish)
+
+[<img src="https://img.youtube.com/vi/_j3gtKf5rRs/0.jpg" width="360">](https://www.youtube.com/watch?v=_j3gtKf5rRs)
+
+</details>
+
+<details>
+
+<summary> Posts and tutorials (19 entries)</summary>
 
 - [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/docs/migration-guide) (practical guide)
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
