@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734263762842">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.734926295052">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -33,12 +33,12 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/pagy/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=2.4.0.734263762842" rel="stylesheet" />
+    <link href="resources/css/retype.css?v=2.4.0.734926295052" rel="stylesheet" />
 
-    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.734263762842" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="resources/js/config.js?v=2.4.0.734926295052" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.734263762842" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="resources/js/prism.js?v=2.4.0.734263762842" defer></script>
+    <script id="lunr-js" type="text/javascript" src="resources/js/lunr.js?v=2.4.0.734926295052" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="resources/js/prism.js?v=2.4.0.734926295052" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -354,7 +354,7 @@
 <ul>
 <li><strong>It works in any environment</strong><br>With Rack frameworks (Rails, Sinatra, Padrino, etc.) or in pure ruby without Rack</li>
 <li><strong>It works with any collection</strong><br>With any ORM, any DB, any search gem, <a href="https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails">elasticsearch_rails</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/meilisearch">meilisearch</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/searchkick">searchkick</a>, <code v-pre>ransack</code>, and just any list, even if you cannot count it</li>
-<li><strong>It supports all kinds of pagination</strong><br><a href="https://ddnexus.github.io/pagy/docs/extras/calendar">calendar</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/countless">countless</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/gearbox">geared</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/support">incremental, auto-incremental, infinite</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/headers">headers</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/metadata">JSON</a>, <a href="https://github.com/Uysim/pagy-cursor">cursor</a></li>
+<li><strong>It supports all kinds of pagination</strong><br><a href="https://ddnexus.github.io/pagy/docs/extras/calendar" title="paginates by dates, rather than numbers">calendar</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/countless" title="skips an extra 'count' query">countless</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/gearbox" title="varies the items fetched depending on the page number e.g. page 1: x items, but page 2: y items etc.">geared</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/support">incremental, auto-incremental, infinite</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/headers" title="useful for API pagination">headers</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/metadata" title="provides pagination metadata - especially useful with frameworks like Vue, React etc. and you want to render your own pagination links">JSON</a>, <a href="https://github.com/Uysim/pagy-cursor" title="Useful with large data sets, where performance becomes a concern (separate repository)">cursor</a></li>
 <li><strong>It supports all kinds of CSS Frameworks</strong><br><a href="https://ddnexus.github.io/pagy/docs/extras/bootstrap">bootstrap</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/bulma">bulma</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/foundation">foundation</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/materialize">materialize</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/semantic">semantic</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/uikit">uikit</a>, <a href="https://ddnexus.github.io/pagy/docs/extras/tailwind">tailwind</a></li>
 <li><strong>It supports faster client-side rendering</strong><br>With classic or innovative UI components (see <a href="https://ddnexus.github.io/pagy/docs/api/javascript/">Javascript Components</a>) or by serving <a href="https://ddnexus.github.io/pagy/docs/extras/metadata">JSON</a> to your favorite Javascript framework</li>
 <li><strong>It has 100% of test coverage</strong> for Ruby, HTML and Javascript E2E (see <a href="https://github.com/ddnexus/pagy/actions">Pagy Workflows CI</a>)</li>
