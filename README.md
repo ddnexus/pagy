@@ -275,16 +275,19 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 <summary> Screencasts (10 entries)</summary>
 
-### GoRails
-
-[<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360">](https://www.youtube.com/watch?v=K4fob588tfM)
-[<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="360">](https://www.youtube.com/watch?v=1sNpvTMrxl4)
-
 ### SupeRails
 
 [<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="360">](https://www.youtube.com/watch?v=1tsWL4EjhMo)
+
 [<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="360">](https://www.youtube.com/watch?v=ScxUqW29F7E)
+
 [<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" width="360">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
+
+### GoRails
+
+[<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360">](https://www.youtube.com/watch?v=K4fob588tfM)
+
+[<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="360">](https://www.youtube.com/watch?v=1sNpvTMrxl4)
 
 ### CJ Avilla
 
