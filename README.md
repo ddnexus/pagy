@@ -279,7 +279,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 [<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="360" title="15 min - Beginner friendly - Shows installation and use of some pagy extras">](https://www.youtube.com/watch?v=1tsWL4EjhMo)
 
-[<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="360">](https://www.youtube.com/watch?v=ScxUqW29F7E)
+[<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="360" title="18 min - Intermediate Skill Level - 'Load More' pagination using Turbo Streams">](https://www.youtube.com/watch?v=ScxUqW29F7E)
 
 [<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" width="360">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
 
