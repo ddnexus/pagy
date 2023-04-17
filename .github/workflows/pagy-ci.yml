@@ -67,7 +67,7 @@ jobs:
 
       - name: Run Codecov
         if: ${{ env.CODECOV == 'true' }}
-        uses: codecov/codecov-action@v3.1.1
+        uses: codecov/codecov-action@v3.1.2
         with:
           fail_ci_if_error: true
 
