@@ -277,7 +277,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 ### SupeRails
 
-[<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="360">](https://www.youtube.com/watch?v=1tsWL4EjhMo)
+[<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="360" title="15 min - Beginner friendly - Shows installation and use of some pagy extras">](https://www.youtube.com/watch?v=1tsWL4EjhMo)
 
 [<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="360">](https://www.youtube.com/watch?v=ScxUqW29F7E)
 
