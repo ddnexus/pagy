@@ -61,21 +61,14 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 - **It has no dependencies**: it produces its own HTML, URLs, i18n with its own specialized and fast code
 - **Its methods are accessible and overridable** right where you use them (no pesky monkey-patching needed)
 
-### Unlike the other gems
+### Unlike the other gems, Pagy:
 
-- Pagy is very modular and does not load any unnecessary code (see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
-- It doesn't impose limits even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
-- It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/docs/how-to/#use-templates))_
-- It raises `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions))_ or use the [overflow extra](https://ddnexus.github.io/pagy/docs/extras/overflow) for a few ready to use common behaviors
-- It does not impose any difficult-to-override logic or output
-
-### Better Components
-
-Besides the classic pagination offered by the `pagy_nav` helpers, you can also use a couple of more performant alternatives:
-
-- [pagy_nav_js](https://ddnexus.github.io/pagy/docs/api/javascript): A faster and lighter classic looking UI, rendered on the client side with optional responsiveness:<br>![bootstrap_nav_js](docs/assets/images/bootstrap_nav_js.png)
-
-- [pagy_combo_nav_js](https://ddnexus.github.io/pagy/docs/api/javascript): The fastest and lightest alternative UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ that combines navigation and pagination info in a single compact element:<br>![bootstrap_combo_nav_js](docs/assets/images/bootstrap_combo_nav_js.png)
+- is very modular and does not load any unnecessary code (see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
+- doesn't impose limits even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
+- works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/docs/how-to/#use-templates))_
+- raises `Pagy::OverflowError` exceptions that you can rescue from _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#handle-pagyoverflowerror-exceptions))_ or use the [overflow extra](https://ddnexus.github.io/pagy/docs/extras/overflow) for a few ready to use common behaviors
+- does not impose any difficult-to-override logic or output.
+- provides performant and responsive javascript view components: [pagy_nav_js](https://ddnexus.github.io/pagy/docs/api/javascript "A faster and lighter classic looking UI, rendered on the client side with optional responsiveness") or [pagy_combo_nav_js](https://ddnexus.github.io/pagy/docs/api/javascript "The fastest and lightest alternative UI (48x faster, 48x lighter and 2,270x more efficient than Kaminari) that combines navigation and pagination info in a single compact element").
 
 </details>
 
