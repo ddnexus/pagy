@@ -285,7 +285,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 ### GoRails
 
-[<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360">](https://www.youtube.com/watch?v=K4fob588tfM)
+[<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360" title="11 min - Beginner - How to Install + 'Hello world' example">](https://www.youtube.com/watch?v=K4fob588tfM)
 
 [<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="360">](https://www.youtube.com/watch?v=1sNpvTMrxl4)
 
