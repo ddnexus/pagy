@@ -14,7 +14,7 @@ class Pagy # :nodoc:
 
       lambda do |page, text = pagy.label_for(page), extra = ''|
         link = +link_proc.call(page, text, extra)
-        return link unless page == 1
+        return link unless [1, '1'].include?(page)
 
         pagy_trim(pagy, link)
       end

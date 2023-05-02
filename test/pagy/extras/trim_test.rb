@@ -10,6 +10,7 @@ describe 'pagy/extras/trim' do
     it 'returns trimmed or not trimmed links' do
       [ # first page
         [{ page: 1 },                    '?page=1',                      ''],                         # only param
+        [{ page: '1' },                  '?page=1',                      ''],                         # only param
         [{ page: 1, b: 2 },              '?page=1&amp;b=2',              '?b=2'],                     # first param
         [{ a: 1, page: 1, b: 2 },        '?a=1&amp;page=1&amp;b=2',      '?a=1&amp;b=2'],             # middle param
         [{ a: 1, page: 1 },              '?a=1&amp;page=1',              '?a=1'],                     # last param
