@@ -25,6 +25,12 @@ None
 
 <hr>
 
+## Version 6.0.4
+
+- Updated gems and npm modules
+- fix: Extras::Trim - fix trimming first page (#516)
+- Fix for new rubocop
+
 ## Version 6.0.3
 
 - Updated Gemfile and npm modules

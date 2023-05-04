@@ -92,7 +92,7 @@ const Pagy = (() => {
 
     // Public interface
     return {
-        version: "6.0.3",
+        version: "6.0.4",
 
         // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
         init(arg?:Element|never) {
