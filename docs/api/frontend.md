@@ -82,7 +82,7 @@ Notice the `:i18n_key` can be passed also to the constructor or be a less useful
 
 ||| View
 ```erb
-<%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count) %>
+<%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
 <%== pagy_info(@pagy, i18n_key: 'activerecord.model.product' %>
 ```
 |||

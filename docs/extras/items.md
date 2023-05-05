@@ -122,7 +122,7 @@ The `:i18n_key` can be passed also to the constructor or be a less useful global
 ||| some_view.html.erb
 
 ```erb
-<%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count) %>
+<%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
 <%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.model.product' %>
 ```
 |||
