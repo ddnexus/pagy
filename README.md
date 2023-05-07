@@ -281,7 +281,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 [<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="360" title="18 min - Intermediate Skill Level - 'Load More' pagination using Turbo Streams">](https://www.youtube.com/watch?v=ScxUqW29F7E)
 
-[<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" width="360">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
+[<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="17 min - Intermediate Skill Level - Pagination with Search (Ransack) and Hotwire + Infinite (Countless) Pagination" width="360">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
 
 ### GoRails
 
