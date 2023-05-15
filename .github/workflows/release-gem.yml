@@ -36,6 +36,6 @@ jobs:
           RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
 
       - name: Create the release tag
-        uses: rickstaa/action-create-tag@v1.6.1
+        uses: rickstaa/action-create-tag@v1.6.2
         with:
           tag: ${{ steps.dotenv.outputs.version }}
