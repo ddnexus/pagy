@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: retypeapp/action-build@v2
+      - uses: retypeapp/action-build@v3
 
       - uses: retypeapp/action-github-pages@v2
         with:
