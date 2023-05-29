@@ -1,4 +1,10 @@
-/*! For license information please see mermaid.esm.min.mjs.LICENSE.txt */
+/*!
+   * Wait for document loaded before starting the execution
+   */
+
+/*! @license DOMPurify 2.4.1 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.4.1/LICENSE */
+
+/*! Check if previously processed */
 
 /**
  * Mermaid is a Javascript based diagramming and charting tool that uses Markdown-inspired text definitions and a renderer to create and modify complex diagrams.
