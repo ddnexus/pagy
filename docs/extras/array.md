@@ -9,14 +9,23 @@ categories:
 
 Paginate arrays efficiently.
 
-!!! warning WARNING
-This warning may sound obvious, but I keep finding people improperly using this extra, so let me write it explicitly.
+!!!danger Bad!
+```rb
+def index 
+    @pagy, @comments = pagy_array(Comment.all.to_a) # your code is wasting memory!
+end
+```
+Do not use `pagy_array` with any persistent storage collection (database, elastic search, Meilisearch etc)!
+!!!
 
-The `array` extra is efficient if you really need to paginate an array, but if the data in the array comes from some DB or other persisted storage (i.e. not some in-memory storage), then you should definitely review your code!
 
-You should not pull the whole collection into an array (potentially wasting tons of memory), when you can pull just a single page of it by using the standard `@page, @records = pagy(your_scope)`.
-
-And if you think that it's the only way to do what you need, then... think again. 🧐
+!!!success Good
+```rb
+def index 
+    @pagy, @special_items = pagy_array(array_from_memory) 
+end
+```
+Use with collections that are already loaded in memory. (e.g. arrays of cached indices, keys of hashes, pointers, etc.).
 !!!
 
 ## Synopsis
