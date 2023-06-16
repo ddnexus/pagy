@@ -6,6 +6,6 @@
         "node": ">=16.15.0"
     },
     "devDependencies": {
-        "retypeapp-linux-x64": "2.4.0"
+        "retypeapp-linux-x64": "3.0.3"
     }
 }
