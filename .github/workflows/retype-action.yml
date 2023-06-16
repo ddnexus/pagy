@@ -16,7 +16,7 @@ jobs:
 
       - uses: retypeapp/action-build@v3
 
-      - uses: retypeapp/action-github-pages@v2
+      - uses: retypeapp/action-github-pages@v3
         with:
           branch: docs-site
           update-branch: true
