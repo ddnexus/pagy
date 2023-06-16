@@ -24,7 +24,7 @@ describe 'pagy/extras/i18n' do
       _(app.pagy_t('pagy.item_name', count: 10)).must_equal 'items'
     end
     it 'handles missing paths' do
-      _(app.pagy_t('pagy.nav.not_here')).must_equal 'translation missing: en.pagy.nav.not_here'
+      _(app.pagy_t('pagy.nav.not_here')).must_equal 'Translation missing: en.pagy.nav.not_here'
     end
   end
 
