@@ -9,20 +9,20 @@ categories:
 
 Paginate arrays efficiently.
 
-!!!danger Bad - do not do this:
+!!!danger Bad!
 ```rb
 def index 
-    @pagy, @comments = pagy_array(Comment.all.to_a) # no! wasting memory
+    @pagy, @comments = pagy_array(Comment.all.to_a) # your code is wasting memory!
 end
 ```
-Do not use `pagy_array` with any persistent storage collection (database, elastic search, Meilisearch etc) because it will not be performant.
+Do not use `pagy_array` with any persistent storage collection (database, elastic search, Meilisearch etc)!
 !!!
 
 
-!!!success Good:
+!!!success Good
 ```rb
 def index 
-    @pagy, @special_items = pagy_array(array_not_from_db) 
+    @pagy, @special_items = pagy_array(array_from_memory) 
 end
 ```
 Use with collections that are already loaded in memory. (e.g. arrays of cached indices, keys of hashes, pointers, etc.).
