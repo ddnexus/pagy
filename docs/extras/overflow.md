@@ -9,7 +9,7 @@ categories:
 
 Allow easy handling of overflowing pages (i.e. requested page > count).
 
-It internally rescues `Pagy::OverflowError` exceptions offering the following ready to use behaviors/modes: `:empty`, `:last_page`, and `:exception`.
+It internally rescues `Pagy::OverflowError` exceptions offering the following ready to use behaviors/modes: `:empty_page`, `:last_page`, and `:exception`.
 
 ## Synopsis
 
