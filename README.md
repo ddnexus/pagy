@@ -283,6 +283,8 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 [<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="17 min - Intermediate Skill Level - Pagination with Search (Ransack) and Hotwire + Infinite (Countless) Pagination" width="360">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
 
+[<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="12:52 min - Intermediate Skill Level - API based pagination + using pagy_metadata" width="360">](https://www.youtube.com/watch?v=Qoq6HZ8gdDE)
+
 ### GoRails
 
 [<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360" title="11 min - Beginner - How to Install + 'Hello world' example">](https://www.youtube.com/watch?v=K4fob588tfM)
