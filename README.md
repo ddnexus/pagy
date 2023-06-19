@@ -273,7 +273,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 <details>
 
-<summary> Screencasts (10 entries)</summary>
+<summary> Screencasts (12 entries)</summary>
 
 ### SupeRails
 
