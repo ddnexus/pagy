@@ -307,7 +307,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 ### Mix & Go
 
-[<img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="360">](https://www.youtube.com/watch?v=HURqvNJF4T0)
+[<img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="360" title="5:21 min - Intermediate - Using Pagy - with a strong focus on Hotwire and filtering search results">](https://www.youtube.com/watch?v=HURqvNJF4T0)
 
 ### Raul Palacio (Spanish)
 
