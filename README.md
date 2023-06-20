@@ -293,7 +293,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 ### CJ Avilla
 
-[<img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="360">](https://www.youtube.com/watch?v=0RtYhDIKmBY)
+[<img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="360" title="5:44 min - Beginner - How to Install Pagy + Using Tailwind CSS to create a page of 'listing'">](https://www.youtube.com/watch?v=0RtYhDIKmBY)
 
 ### Mike Rogers
 
