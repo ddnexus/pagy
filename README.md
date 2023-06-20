@@ -289,7 +289,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 [<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360" title="11 min - Beginner - How to Install + 'Hello world' example">](https://www.youtube.com/watch?v=K4fob588tfM)
 
-[<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="360">](https://www.youtube.com/watch?v=1sNpvTMrxl4)
+[<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="360" title="31 min - Beginner - Basic Pagy Use (Tailwind, Overflow, Common Use cases) + Deep dive into building a sample Blogging Application">](https://www.youtube.com/watch?v=1sNpvTMrxl4)
 
 ### CJ Avilla
 
