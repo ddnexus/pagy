@@ -297,7 +297,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 ### Mike Rogers
 
-[<img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="360">](https://www.youtube.com/watch?v=aILtxj_LVuA)
+[<img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="360" title="7:23 min - Beginner - Installing Pagy + Working through errors (step-by-step)">](https://www.youtube.com/watch?v=aILtxj_LVuA)
 
 ### Deanin
 
