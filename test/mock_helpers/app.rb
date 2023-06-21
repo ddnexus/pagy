@@ -22,6 +22,10 @@ class MockApp
     I18n.t('test')
   end
 
+  def set_pagy_locale(locale) # rubocop:disable Naming/AccessorMethodName
+    @pagy_locale = locale
+  end
+
   class Calendar < MockApp
     def pagy_calendar_period(collection)
       collection.minmax.map(&:in_time_zone)

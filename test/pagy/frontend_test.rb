@@ -93,13 +93,13 @@ describe 'pagy/frontend' do
     end
     it 'switches :locale according to @pagy_locale' do
       i18n_load({ locale: 'de' }, { locale: 'en' }, { locale: 'nl' })
-      app.instance_variable_set(:@pagy_locale, 'nl')
+      app.set_pagy_locale('nl')
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "stuk"
-      app.instance_variable_set(:@pagy_locale, 'en')
+      app.set_pagy_locale('en')
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "item"
-      app.instance_variable_set(:@pagy_locale, nil)
+      app.set_pagy_locale(nil)
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag"
-      app.instance_variable_set(:@pagy_locale, 'unknown')
+      app.set_pagy_locale('unknown')
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag" # silently serves the first loaded locale
       i18n_load(locale: 'en') # reset for other tests
       app.instance_variable_set(:@pagy_locale, nil) # reset for other tests
