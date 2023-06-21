@@ -2,14 +2,10 @@
 
 source 'https://rubygems.org'
 
-# we cannot use gemspec here because it would load pagy before simplecov so missing files from coverage
-# gemspec
+# we cannot use gemspec here because it would load pagy before simplecov
+# and miss files from coverage gemspec
 
 gem 'rake'
-
-group :development do
-  gem 'solargraph'               # run the Solargraph rebuild command in VSC
-end
 
 group :test do
   gem 'activesupport'
