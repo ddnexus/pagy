@@ -301,7 +301,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 ### Deanin
 
-[<img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="360">](https://www.youtube.com/watch?v=ArBUAxEA6vM)
+[<img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="360" title="30:00 min - Advanced - Using Pagy In the Context of a Chat Room (Infinite Scroll, Hotwire, Stimulus JS + Using Pagy APIs)">](https://www.youtube.com/watch?v=ArBUAxEA6vM)
 
 [<img src="https://img.youtube.com/vi/4nrmf5KfD8Y/0.jpg" width="360" title="14:28 min - Intermediate - Infinite Scrolling with Turbo Streams (Rails 7)">](https://www.youtube.com/watch?v=4nrmf5KfD8Y)
 
