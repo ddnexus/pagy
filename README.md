@@ -64,7 +64,6 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 ### Unlike the other gems
 
 - Pagy is very modular and does not load any unnecessary code (see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
-- is very modular and does not load any unnecessary code (see [why...](https://ddnexus.github.io/pagy/quick-start#configure))_
 - It doesn't impose limits even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
 - doesn't impose limits even with collections|scopes that already used `limit` and `offset` _(see [how...](https://ddnexus.github.io/pagy/docs/how-to/#paginate-pre-offset-and-pre-limited-collections))_
 - It works with fast helpers OR easy to edit templates _(see [more...](https://ddnexus.github.io/pagy/docs/how-to/#use-templates))_
