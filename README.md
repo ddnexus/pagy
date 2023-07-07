@@ -269,37 +269,41 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 <details>
 
-<summary> Screencasts (10 entries)</summary>
+<summary> Screencasts (12 entries)</summary>
 
 ### SupeRails
 
-[<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="360">](https://www.youtube.com/watch?v=1tsWL4EjhMo)
+[<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="360" title="15 min - Beginner friendly - Shows installation and use of some pagy extras">](https://www.youtube.com/watch?v=1tsWL4EjhMo)
 
-[<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="360">](https://www.youtube.com/watch?v=ScxUqW29F7E)
+[<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="360" title="18 min - Intermediate Skill Level - 'Load More' pagination using Turbo Streams">](https://www.youtube.com/watch?v=ScxUqW29F7E)
 
-[<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" width="360">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
+[<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="17 min - Intermediate Skill Level - Pagination with Search (Ransack) and Hotwire + Infinite (Countless) Pagination" width="360">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
+
+[<img src="https://img.youtube.com/vi/Qoq6HZ8gdDE/0.jpg" title="12:52 min - Intermediate Skill Level - API based pagination + using pagy_metadata" width="360">](https://www.youtube.com/watch?v=Qoq6HZ8gdDE)
 
 ### GoRails
 
-[<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360">](https://www.youtube.com/watch?v=K4fob588tfM)
+[<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="360" title="11 min - Beginner - How to Install + 'Hello world' example">](https://www.youtube.com/watch?v=K4fob588tfM)
 
-[<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="360">](https://www.youtube.com/watch?v=1sNpvTMrxl4)
+[<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="360" title="31 min - Beginner - Basic Pagy Use (Tailwind, Overflow, Common Use cases) + Deep dive into building a sample Blogging Application">](https://www.youtube.com/watch?v=1sNpvTMrxl4)
 
 ### CJ Avilla
 
-[<img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="360">](https://www.youtube.com/watch?v=0RtYhDIKmBY)
+[<img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="360" title="5:44 min - Beginner - How to Install Pagy + Using Tailwind CSS to create a page of 'listing'">](https://www.youtube.com/watch?v=0RtYhDIKmBY)
 
 ### Mike Rogers
 
-[<img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="360">](https://www.youtube.com/watch?v=aILtxj_LVuA)
+[<img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="360" title="7:23 min - Beginner - Installing Pagy + Working through errors (step-by-step)">](https://www.youtube.com/watch?v=aILtxj_LVuA)
 
 ### Deanin
 
-[<img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="360">](https://www.youtube.com/watch?v=ArBUAxEA6vM)
+[<img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="360" title="30:00 min - Advanced - Using Pagy In the Context of a Chat Room (Infinite Scroll, Hotwire, Stimulus JS + Using Pagy APIs)">](https://www.youtube.com/watch?v=ArBUAxEA6vM)
+
+[<img src="https://img.youtube.com/vi/4nrmf5KfD8Y/0.jpg" width="360" title="14:28 min - Intermediate - Infinite Scrolling with Turbo Streams (Rails 7)">](https://www.youtube.com/watch?v=4nrmf5KfD8Y)
 
 ### Mix & Go
 
-[<img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="360">](https://www.youtube.com/watch?v=HURqvNJF4T0)
+[<img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="360" title="5:21 min - Intermediate - Using Pagy - with a strong focus on Hotwire and filtering search results">](https://www.youtube.com/watch?v=HURqvNJF4T0)
 
 ### Raul Palacio (Spanish)
 
