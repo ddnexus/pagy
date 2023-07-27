@@ -113,14 +113,14 @@ Or, choose from the following view helpers:
 
 | View Helper Name                                                                                                                                                                        | Preview (Bootstrap Style shown)                                        |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| [`pagy_nav(@pagy)`](/docs/api/frontend)                                                                                                                                                 | ![`pagy_nav`](/docs/assets/images/bootstrap_nav.png)                   |
-| [`pagy_nav_js(@pagy)`](/pagy/docs/api/javascript/)                                                                                                                                      | ![`pagy_nav_js`](/docs/assets/images/bootstrap_nav_js.png)             |
-| [`pagy_info(@pagy)`](/docs/api/frontend)                                                                                                                                                | ![`pagy_info`](/docs/assets/images/pagy_info.png)                      |
-| [`pagy_combo_nav_js(@pagy)`](/pagy/docs/api/javascript/)                                                                                                                                | ![`pagy_combo_nav_js`](/docs/assets/images/bootstrap_combo_nav_js.png) |
-| [`pagy_items_selector_js`](/pagy/docs/api/javascript/)                                                                                                                                  | ![`pagy_items_selector_js`](/docs/assets/images/items_selector_js.png) |
-| [`pagy_nav(@calendar[:year])`](/pagy/docs/extras/calendar/)<br/>[`pagy_nav(@calendar[:month])`](/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day` and custom) | ![calendar extra](/docs/assets/images/calendar-app.png)                |
+| [`pagy_nav(@pagy)`](/docs/api/frontend.md)                                                                                                                                                 | ![`pagy_nav`](/docs/assets/images/bootstrap_nav.png)                   |
+| [`pagy_nav_js(@pagy)`](/docs/api/javascript.md)                                                                                                                                      | ![`pagy_nav_js`](/docs/assets/images/bootstrap_nav_js.png)             |
+| [`pagy_info(@pagy)`](/docs/api/frontend.md)                                                                                                                                                | ![`pagy_info`](/docs/assets/images/pagy_info.png)                      |
+| [`pagy_combo_nav_js(@pagy)`](/docs/api/javascript.md)                                                                                                                                | ![`pagy_combo_nav_js`](/docs/assets/images/bootstrap_combo_nav_js.png) |
+| [`pagy_items_selector_js`](/docs/api/javascript.md)                                                                                                                                  | ![`pagy_items_selector_js`](/docs/assets/images/items_selector_js.png) |
+| [`pagy_nav(@calendar[:year])`](/docs/extras/calendar.md)<br/>[`pagy_nav(@calendar[:month])`](/docs/extras/calendar.md)<br/> (other units: `:quarter`, `:week`, `:day` and custom) | ![calendar extra](/docs/assets/images/calendar-app.png)                |
 
-_(See the [Quick Start](https://ddnexus.github.io/pagy/quick-start))_
+_(See the [Quick Start](/quick-start.md))_
 
 </details>
 
