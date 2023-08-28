@@ -101,7 +101,7 @@ jobs:
       - name: Run Cypress Tests
         # You may pin to the exact commit or the version.
         # uses: cypress-io/github-action@c5724eda82337bcff977ce14509f47052c12e04c
-        uses: cypress-io/github-action@v5.8.4
+        uses: cypress-io/github-action@v6.1.0
         with:
           # Sends test results to Cypress Dashboard
           record: # optional
