@@ -12,7 +12,7 @@ jobs:
     env:
       BUNDLE_GEMFILE: .github/gemfiles/default
     steps:
-      - uses: actions/checkout@v3  # checks out default branch
+      - uses: actions/checkout@v4  # checks out default branch
 
       - uses: ruby/setup-ruby@v1
         with:
