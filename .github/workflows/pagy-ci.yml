@@ -51,7 +51,7 @@ jobs:
     env: ${{ matrix.env }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
@@ -86,7 +86,7 @@ jobs:
       BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/.github/gemfiles/default
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
