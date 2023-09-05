@@ -1,4 +1,4 @@
-# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
 
 ca:
   pagy:

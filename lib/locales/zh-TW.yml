@@ -1,4 +1,4 @@
-# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
 
 zh-TW:
   pagy:
