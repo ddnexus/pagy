@@ -112,6 +112,7 @@ class Pagy
                  hash['zh-CN'] = RULE[:other]
                  hash['zh-HK'] = RULE[:other]
                  hash['zh-TW'] = RULE[:other]
+                 hash['vi']    = RULE[:other]
                end.freeze
     end
 
