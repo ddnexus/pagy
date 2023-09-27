@@ -1,4 +1,4 @@
-# :polish pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+# :polish pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
 
 pl:
   pagy:
