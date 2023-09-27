@@ -25,6 +25,11 @@ None
 
 <hr>
 
+## Version 6.1.0
+
+- Add Vietnamese locale (#550)
+- Maintenance (docs, test, gems and node modules updates) fixes and improvements
+
 ## Version 6.0.4
 
 - Updated gems and npm modules
