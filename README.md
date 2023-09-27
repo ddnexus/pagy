@@ -309,7 +309,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 
 <details>
 
-<summary> Posts and tutorials (19 entries)</summary>
+<summary> Posts and tutorials (20 entries)</summary>
 
 - [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/docs/migration-guide) (practical guide)
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
@@ -320,7 +320,8 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 - [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417) by Victor Afanasev
 - [Integrating Pagy with Hanami](http://katafrakt.me/2018/06/01/integrating-pagy-with-hanami/) by Paweł Świątkowski
 - [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
-- [Endless Scroll / Infinite Loading with Turbo Streams & Stimulus](https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/) by Stefan Wienert
+- [Endless Scroll / Infinite Loading with Turbo Streams & Stimulus](https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/) by Stefan Wienert.
+- [Build Load More Pagination with Pagy and Rails Hotwire](https://dev.to/maful/build-load-more-pagination-with-pagy-and-rails-hotwire-2ndb) [by Maful](https://dev.to/maful). (This tutorial shows how you can turbo_stream with GET requests).
 - [Pagination with Hotwire](https://www.beflagrant.com/blog/pagination-with-hotwire) by Jonathan Greenberg
 - [Pagination and infinite scrolling with Rails and the Hotwire stack](https://www.colby.so/posts/pagination-and-infinite-scrolling-with-hotwire) by David Colby
 - [Building a dynamic data grid with search and filters using rails, hotwire and ransack](https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html) by Benito Serna.
