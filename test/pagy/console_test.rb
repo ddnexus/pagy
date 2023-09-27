@@ -15,8 +15,8 @@ describe 'pagy/console' do
       _(Pagy::DEFAULT[:url]).must_equal 'http://www.example.com/subdir'
     end
     it 'includes Pagy::Backend and Pagy::Frontend' do
-      assert PagyConsole <= Pagy::Backend
-      assert PagyConsole <= Pagy::Frontend
+      assert_operator(PagyConsole, :<, Pagy::Backend)
+      assert_operator(PagyConsole, :<, Pagy::Frontend)
     end
     it 'requires extras' do
       _ { PagyConsole.pagy_extras :array, :navs }.must_output "Required extras: :array, :navs\n"

@@ -1,0 +1,20 @@
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/locales/utils/p11n.rb)
+
+vi:
+  pagy:
+
+    item_name: "kết quả"
+
+    nav:
+      prev: "&lsaquo;&nbsp;Trang trước"
+      next: "Trang sau&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "Không tìm thấy %{item_name} nào"
+      single_page: "<b>%{count}</b> %{item_name}"
+      multiple_pages: "Đang hiển thị <b>%{from}-%{to}</b> trong tổng số <b>%{count} %{item_name}</b>"
+
+    combo_nav_js: "<label>Trang %{page_input} trên %{pages}</label>"
+
+    items_selector_js: "<label>Hiển thị %{items_input} %{item_name} mỗi trang</label>"
