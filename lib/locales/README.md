@@ -26,6 +26,17 @@ You can create a Pull Request for your language, and get all the help you need t
 
 - [ ] The other entries in the dictionary file don't need any plural variant in most languages since the pluralization of the `item_name` in the sentence is enough. However, in some language, a whole sentence might need to be written in different ways for different counts. In that case you should add the different plurals for the sentence and the `count` will trigger the one that applies.
 
+- [ ] Update the manifest file.
+
+```sh
+rake manifest:generate
+```
+
+and then confirm it with:
+
+```sh
+rake manifest:check
+```
 Feel free to ask for help in your Pull Request.
 
 ### Useful Links
