@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Pagy Calendar App" type="RackRunConfigurationType" factoryName="Rack">
+  <configuration default="false" name="Run Standalone App" type="RackRunConfigurationType" factoryName="Rack">
     <module name="pagy" />
     <RACK_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
     <RACK_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
@@ -26,7 +26,7 @@
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
     <RACK_CONFIG_SETTINGS_ID NAME="PORT" VALUE="8080" />
     <RACK_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
-    <RACK_CONFIG_SETTINGS_ID NAME="CONFIG_FILE" VALUE="$MODULE_DIR$/apps/pagy_calendar_app.ru" />
+    <RACK_CONFIG_SETTINGS_ID NAME="CONFIG_FILE" VALUE="$MODULE_DIR$/apps/pagy_standalone_app.ru" />
     <RACK_CONFIG_SETTINGS_ID NAME="RACK_SERVER_TYPE" VALUE="default" />
     <RACK_CONFIG_SETTINGS_ID NAME="BROWSER_URL" VALUE="http://0.0.0.0:8080" />
     <RACK_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />

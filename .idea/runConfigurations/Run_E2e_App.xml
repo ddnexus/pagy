@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Pagy App" type="RackRunConfigurationType" factoryName="Rack">
+  <configuration default="false" name="Run E2e App" type="RackRunConfigurationType" factoryName="Rack">
     <module name="pagy" />
     <RACK_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
     <RACK_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
