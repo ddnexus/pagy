@@ -834,3 +834,18 @@ end
 !!!warning Rescue from `Pagy::OverflowError` first
 All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with `rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it will never get rescued.
 !!!
+
+
+## Test with Pagy
+
+* Pagy has 100% test coverage.
+* You only need to test pagy if you have overridden methods, or if using your own templates. 
+
+If you need to test pagination, remember:
+
+- `Pagy::DEFAULT` should be set by your initializer and be frozen. You can test that your code cannot change it. 
+- You can override defaults - i.e. any pagy variable can be passed to a pagy constructor - e.g. 
+
+```rb
+@pagy, @books = pagy(Book.all, items: 10) # the items default has been overridden
+```
