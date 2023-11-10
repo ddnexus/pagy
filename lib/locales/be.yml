@@ -1,0 +1,24 @@
+# :east_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+
+be:
+  pagy:
+
+    item_name:
+      one: "запіс"
+      few: "запісы"
+      many: "запісаў"
+      other: "запісаў"
+
+    nav:
+      prev: "&lsaquo;&nbsp;Назад"
+      next: "Наперад&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "Пакуль %{item_name} няма"
+      single_page: "<b>%{count}</b> %{item_name}"
+      multiple_pages: "Усяго <b>%{count}</b> %{item_name}, паказаны з <b>%{from}</b> па <b>%{to}</b>"
+
+    combo_nav_js: "<label>Старонка %{page_input} з %{pages}</label>"
+
+    items_selector_js: "<label>Паказаць %{items_input} %{item_name} на старонцы</label>"
