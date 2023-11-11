@@ -25,6 +25,11 @@ None
 
 <hr>
 
+## Version 6.2.0
+
+- Add Belarusian locale (#567)
+- Reordered RubyMine tasks (fix #541)
+
 ## Version 6.1.0
 
 - Add Vietnamese locale (#550)
