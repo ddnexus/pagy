@@ -4,6 +4,7 @@ lib/javascripts/pagy-module.d.ts
 lib/javascripts/pagy-module.js
 lib/javascripts/pagy.js
 lib/locales/ar.yml
+lib/locales/be.yml
 lib/locales/bg.yml
 lib/locales/bs.yml
 lib/locales/ca.yml
