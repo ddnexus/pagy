@@ -94,6 +94,7 @@ class Pagy
       # the :one_other RULE is the default for locales missing from this list
       LOCALE = Hash.new(RULE[:one_other]).tap do |hash|
                  hash['ar']    = RULE[:arabic]
+                 hash['be']    = RULE[:east_slavic]
                  hash['bs']    = RULE[:east_slavic]
                  hash['cs']    = RULE[:west_slavic]
                  hash['id']    = RULE[:other]

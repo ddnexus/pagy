@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '6.1.0'
+  VERSION = '6.2.0'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
