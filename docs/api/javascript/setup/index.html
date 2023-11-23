@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.753275966160">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.754047366310">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../../resources/css/retype.css?v=3.5.0.753275966160" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.5.0.754047366310" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.753275966160" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.754047366310" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.753275966160" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.753275966160" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.754047366310" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.754047366310" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -306,7 +306,7 @@
     </h3>
 </doc-anchor-target>
 <p>All the <code v-pre>pagy*_js</code> helpers render their component on the client side. The helper methods render just a minimal HTML tag that contains a <code v-pre>data-pagy</code> attribute.</p>
-<p>Your app should serve a small javascript file that will take care of converting the data embedded in the <code v-pre>data-pagy</code> attribute and make it work in the browser.</p>
+<p>Your app should serve or bundle a small javascript file that will take care of converting the data embedded in the <code v-pre>data-pagy</code> attribute and make it work in the browser.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -350,7 +350,7 @@
     </div>
 </div>
 <ul>
-<li>ES6 module</li>
+<li>ES6 module to use with webpacker, esbuild, parcel, etc.</li>
 </ul>
 <p><em>ESM File: <a href="https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js">pagy-module.js</a>; Types: <a href="https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-moduled.ts">pagy-module.d.ts</a></em></p>
 </doc-tab>
@@ -373,8 +373,8 @@
     </div>
 </div>
 <ul>
-<li>It&#x27;s an <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">IIFE</a>;</li>
-<li>Minified (~2k).</li>
+<li>It&#x27;s an <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">IIFE</a> file meant to be loaded as is, directly in your production pages and without any further processing</li>
+<li>Minified (~2k) and polyfilled to work also with quite old browsers</li>
 </ul>
 <p><em>JS File: <a href="https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js">pagy.js</a></em></p>
 <details>
@@ -468,20 +468,20 @@
 <p><em>JS File: <a href="https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-dev.js">pagy-dev.js</a></em></p>
 </doc-tab>
 </doc-tabs>
-<doc-anchor-target id="2-load-the-file">
+<doc-anchor-target id="2-configure">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#2-load-the-file">#</doc-anchor-trigger>
-        <span>2. Load the file</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#2-configure">#</doc-anchor-trigger>
+        <span>2. Configure</span>
     </h3>
 </doc-anchor-target>
-<p>Depending on your environment you have a few ways of loading the required JS file:</p>
+<p>Depending on your environment you have a few ways of configuring your app:</p>
 <doc-anchor-target id="rails-with-assets-pipeline">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#rails-with-assets-pipeline">#</doc-anchor-trigger>
         <span>Rails with assets pipeline</span>
     </h4>
 </doc-anchor-target>
-<p>In older versions of Rails, you can configure the assets to look into the installed pagy gem files:</p>
+<p>In older versions of Rails, you can configure the app to look into the installed pagy gem javascript files:</p>
 <doc-tabs>
 <doc-tab v-cloak id="sprockets">
 <template #title>Sprockets</template>
@@ -563,6 +563,140 @@
 </div>
 </doc-tab>
 </doc-tabs>
+<doc-anchor-target id="builders">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#builders">#</doc-anchor-trigger>
+        <span>Builders</span>
+    </h4>
+</doc-anchor-target>
+<p>In order to bundle the <code v-pre>pagy-module.js</code> your builder has to look into the pagy javascript path:</p>
+<doc-tabs>
+<doc-tab v-cloak id="esbuild">
+<template #title>esbuild</template>
+<p>Prepend the <code v-pre>NODE_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>package.json</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;build&quot;: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your original command&gt;&quot;
+}</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+</doc-tab>
+<doc-tab v-cloak id="webpack">
+<template #title>Webpack</template>
+<p>Prepend the <code v-pre>NODE_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>package.json</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;build&quot;: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your original command&gt;&quot;
+}</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+        <span>webpack.confg.js</span>
+    </div>
+    <div class="px-5 py-3 docs-columns-content">
+<p>Add the <code v-pre>resolve.modules</code> array:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">module.exports = {
+  ...,                          // your original config
+  resolve: {                    // add resolve.modules
+    modules: [
+      &quot;node_modules&quot;,           // node_modules dir
+      process.env.PAGY_PATH     // pagy dir
+    ]
+  }
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="legacy-way">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#legacy-way">#</doc-anchor-trigger>
+        <span>Legacy way</span>
+    </h4>
+</doc-anchor-target>
+<p>If the method above doesn&#x27;t work, you can try this legacy way to generate a local pagy javascript file using <code v-pre>erb</code> with webpacker.</p>
+<p>Ensure that the <code v-pre>erb</code> loader is installed:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">bundle exec rails webpacker:install:erb</code></pre>
+</doc-codeblock></div>
+<p>Create <code v-pre>app/javascript/packs/pagy.js.erb</code> with the following content:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%= Pagy.root.join('javascripts', 'pagy.js').read %&gt;
+window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)</code></pre>
+</doc-codeblock></div>
+<p>where YOUR_EVENT_LISTENER is the load event that works with your app (e.g. <code v-pre>&quot;turbo:load&quot;</code>, <code v-pre>&quot;turbolinks:load&quot;</code>, <code v-pre>&quot;load&quot;</code>, ...).</p>
+<p>Import it in <code v-pre>app/javascript/application.js</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">import './pagy.js.erb'</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+</doc-tab>
+<doc-tab v-cloak id="rollup">
+<template #title>Rollup</template>
+<p>Prepend the <code v-pre>NODE_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>package.json</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-json"><code v-pre class="language-json">{
+  &quot;build&quot;: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your original command&gt;&quot;
+}</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+        <span>rollup.confg.js</span>
+    </div>
+    <div class="px-5 py-3 docs-columns-content">
+<p>Configure the <code v-pre>plugins[resolve]</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">export default {
+  ...,                                    // your original config
+  plugins: [
+    resolve({
+              moduleDirectories: [        // add moduleDirectories
+                &quot;node_modules&quot;,           // node_modules dir
+                process.env.PAGY_PATH     // pagy dir
+              ]
+            })
+  ]
+}</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+</doc-tab>
+<doc-tab v-cloak id="others">
+<template #title>Others</template>
+<p>On systems that support file linking, you can simply create a symlink of any pagy javascript file and use it as it was a local file in your own app, that will be picked up by any builder. For example:</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>config/initializers/pagy.rb</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby"># create/refresh the `app/javascript/pagy-module.js` symlink every time the app restarts:
+FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
+  unless Rails.env.production? </code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+</doc-tab>
+</doc-tabs>
 <doc-anchor-target id="non-rails-apps">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#non-rails-apps">#</doc-anchor-trigger>
@@ -578,7 +712,7 @@
         <span>3. Initialize Pagy</span>
     </h3>
 </doc-anchor-target>
-<p>After the file is loaded, you have to initialize <code v-pre>Pagy</code>:</p>
+<p>After the helper is loaded you have to initialize <code v-pre>Pagy</code> to make it work:</p>
 <doc-tabs>
 <doc-tab v-cloak id="stimulus-js">
 <template #title>Stimulus JS</template>
@@ -608,6 +742,21 @@ export default class extends Controller {
 <pre class="language-erb"><code v-pre class="language-erb">&lt;div data-controller=&quot;pagy-initializer&quot;&gt;
   &lt;%== pagy_nav_js(@pagy) %&gt;
 &lt;/div&gt;</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+</doc-tab>
+<doc-tab v-cloak id="jsbundling-rails">
+<template #title>jsbundling-rails</template>
+<p>Import and use the pagy module:</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>app/javascript/application.js</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">import Pagy from &quot;pagy-module&quot;;
+window.addEventListener(&quot;turbo:load&quot;, Pagy.init);</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
