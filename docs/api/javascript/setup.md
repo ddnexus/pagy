@@ -153,7 +153,7 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
 #### Builders
 
-In order to bundle the `pagy-module.js` your builder has to look into the pagy javascript path:
+In order to bundle the `pagy-module.js` your builder has to find it either with a link or local copy, or by looking into the pagy javascript path:
 
 +++ Generic
 You can create a symlink or a copy of the `pagy-module.js` file (available in the pagy gem) into an app compiled dir and use it as a regular app file. That way any builder will pick it up. For example:
