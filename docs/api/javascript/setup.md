@@ -34,7 +34,7 @@ Your app uses modern build tools
 
 * ES6 module to use with webpacker, esbuild, parcel, etc.
 
-_ESM File: [pagy-module.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js); Types: [pagy-module.d.ts](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-moduled.ts)_
+_ESM File: [pagy-module.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js); Types: [pagy-module.d.ts](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.d.ts)_
 
 +++ `pagy.js`
 !!! success
