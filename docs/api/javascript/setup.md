@@ -155,6 +155,19 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 
 In order to bundle the `pagy-module.js` your builder has to look into the pagy javascript path:
 
++++ Generic
+You can create a symlink or a copy of the `pagy-module.js` file (available in the pagy gem) into an app compiled dir and use it as a regular app file. That way any builder will pick it up. For example:
+
+||| config/initializers/pagy.rb
+```ruby
+# Create/refresh the `app/javascript/pagy-module.js` symlink/copy every time 
+# the app restarts (unless in production), ensuring syncing when pagy is updated.
+# Replace the FileUtils.ln_sf with FileUtils.cp if your OS doesn't support file linking. 
+FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
+  unless Rails.env.production?
+```
+|||
+
 +++ esbuild
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ||| package.json
@@ -176,7 +189,6 @@ Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 |||
 
 ||| webpack.confg.js
-Add the `resolve.modules` array:
 ```js
 module.exports = {
   ...,                          // your original config
@@ -188,10 +200,9 @@ module.exports = {
   }
 }
 ```
+|||
 
 #### Legacy way
-
-If the method above doesn't work, you can try this legacy way to generate a local pagy javascript file using `erb` with webpacker. 
 
 Ensure that the `erb` loader is installed:
 
@@ -199,17 +210,16 @@ Ensure that the `erb` loader is installed:
 bundle exec rails webpacker:install:erb
 ```
 
-Create `app/javascript/packs/pagy.js.erb` with the following content:
-
+Generate a local pagy javascript file using `erb` with webpacker:
+||| app/javascript/packs/pagy.js.erb
 ```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)
 ```
+|||
+_where `YOUR_EVENT_LISTENER` is the load event that works with your app (e.g. `"turbo:load"`, `"turbolinks:load"`, `"load"`, ...)._
 
-where YOUR_EVENT_LISTENER is the load event that works with your app (e.g. `"turbo:load"`, `"turbolinks:load"`, `"load"`, ...).
-
-Import it in `app/javascript/application.js`:
-
+||| app/javascript/application.js
 ```js
 import './pagy.js.erb'
 ```
@@ -239,17 +249,6 @@ export default {
             })
   ]
 }
-```
-|||
-
-+++ Others
-On systems that support file linking, you can simply create a symlink of any pagy javascript file and use it as it was a local file in your own app, that will be picked up by any builder. For example:
-
-||| config/initializers/pagy.rb
-```ruby
-# create/refresh the `app/javascript/pagy-module.js` symlink every time the app restarts:
-FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
-  unless Rails.env.production? 
 ```
 |||
 +++
