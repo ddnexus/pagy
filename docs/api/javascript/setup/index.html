@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.754047366310">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.754474006248">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../../resources/css/retype.css?v=3.5.0.754047366310" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.5.0.754474006248" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.754047366310" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.754474006248" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.754047366310" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.754047366310" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.754474006248" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.754474006248" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -571,6 +571,24 @@
 </doc-anchor-target>
 <p>In order to bundle the <code v-pre>pagy-module.js</code> your builder has to look into the pagy javascript path:</p>
 <doc-tabs>
+<doc-tab v-cloak id="generic">
+<template #title>Generic</template>
+<p>You can create a symlink or a copy of the <code v-pre>pagy-module.js</code> file (available in the pagy gem) into an app compiled dir and use it as a regular app file. That way any builder will pick it up. For example:</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>config/initializers/pagy.rb</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby"># Create/refresh the `app/javascript/pagy-module.js` symlink/copy every time 
+# the app restarts (unless in production), ensuring syncing when pagy is updated.
+# Replace the FileUtils.ln_sf with FileUtils.cp if your OS doesn't support file linking. 
+FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
+  unless Rails.env.production?</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+</doc-tab>
 <doc-tab v-cloak id="esbuild">
 <template #title>esbuild</template>
 <p>Prepend the <code v-pre>NODE_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
@@ -603,11 +621,10 @@
     </div>
 </div>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>webpack.confg.js</span>
     </div>
-    <div class="px-5 py-3 docs-columns-content">
-<p>Add the <code v-pre>resolve.modules</code> array:</p>
+    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">module.exports = {
   ...,                          // your original config
@@ -619,24 +636,36 @@
   }
 }</code></pre>
 </doc-codeblock></div>
+    </div>
+</div>
 <doc-anchor-target id="legacy-way">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#legacy-way">#</doc-anchor-trigger>
         <span>Legacy way</span>
     </h4>
 </doc-anchor-target>
-<p>If the method above doesn&#x27;t work, you can try this legacy way to generate a local pagy javascript file using <code v-pre>erb</code> with webpacker.</p>
 <p>Ensure that the <code v-pre>erb</code> loader is installed:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-bash"><code v-pre class="language-bash">bundle exec rails webpacker:install:erb</code></pre>
 </doc-codeblock></div>
-<p>Create <code v-pre>app/javascript/packs/pagy.js.erb</code> with the following content:</p>
+<p>Generate a local pagy javascript file using <code v-pre>erb</code> with webpacker:</p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>app/javascript/packs/pagy.js.erb</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%= Pagy.root.join('javascripts', 'pagy.js').read %&gt;
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)</code></pre>
 </doc-codeblock></div>
-<p>where YOUR_EVENT_LISTENER is the load event that works with your app (e.g. <code v-pre>&quot;turbo:load&quot;</code>, <code v-pre>&quot;turbolinks:load&quot;</code>, <code v-pre>&quot;load&quot;</code>, ...).</p>
-<p>Import it in <code v-pre>app/javascript/application.js</code>:</p>
+    </div>
+</div>
+<p><em>where <code v-pre>YOUR_EVENT_LISTENER</code> is the load event that works with your app (e.g. <code v-pre>&quot;turbo:load&quot;</code>, <code v-pre>&quot;turbolinks:load&quot;</code>, <code v-pre>&quot;load&quot;</code>, ...).</em></p>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>app/javascript/application.js</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">import './pagy.js.erb'</code></pre>
 </doc-codeblock></div>
@@ -676,22 +705,6 @@ window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)</code></pre>
             })
   ]
 }</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
-</doc-tab>
-<doc-tab v-cloak id="others">
-<template #title>Others</template>
-<p>On systems that support file linking, you can simply create a symlink of any pagy javascript file and use it as it was a local file in your own app, that will be picked up by any builder. For example:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>config/initializers/pagy.rb</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby"># create/refresh the `app/javascript/pagy-module.js` symlink every time the app restarts:
-FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
-  unless Rails.env.production? </code></pre>
 </doc-codeblock></div>
     </div>
 </div>
