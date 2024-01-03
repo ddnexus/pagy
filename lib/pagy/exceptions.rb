@@ -10,7 +10,7 @@ class Pagy
       @pagy     = pagy
       @variable = variable
       @value    = value
-      super "expected :#{@variable} #{description}; got #{@value.inspect}"
+      super("expected :#{@variable} #{description}; got #{@value.inspect}")
     end
   end
 

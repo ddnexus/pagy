@@ -14,7 +14,7 @@ require 'rake/testtask'
 
 names = []
 FileList.new.include('test/**/*_test.rb').each do |path|
-  name = "test_#{path[0..-9].split('/').last}".to_sym
+  name = "test_#{path[0..-9].split('/').last}"
   names << name
   Rake::TestTask.new(name) do |t|
     t.test_files  = [path]
