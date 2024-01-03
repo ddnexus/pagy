@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
         "strict": true,
-        "target": "esnext",
-        "module": "esnext",
+        "target": "ESNext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "lib": ["esnext", "dom", "dom.iterable"]
     }
 }

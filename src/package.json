@@ -3,17 +3,24 @@
     "description": "TypeScript source for pagy.js",
     "private": true,
     "devDependencies": {
-        "@types/node": "20.7.0",
-        "@typescript-eslint/eslint-plugin": "6.7.3",
-        "@typescript-eslint/parser": "6.7.3",
-        "eslint": "8.50.0",
+        "@types/node": "20.8.0",
+        "@typescript-eslint/eslint-plugin": "6.17.0",
+        "@typescript-eslint/parser": "6.17.0",
+        "eslint": "8.56.0",
         "eslint-plugin-align-assignments": "^1.1.2",
-        "eslint-plugin-import": "2.28.1",
+        "eslint-plugin-import": "2.29.1",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "6.1.1",
-        "parcel": "2.9.3",
+        "parcel": "2.10.3",
         "parcel-plugin-nuke-dist": "^1.0.1",
-        "typescript": "5.2.2"
+        "typescript": "5.3.3"
+    },
+    "pnpm": {
+        "peerDependencyRules": {
+            "allowedVersions": {
+                "svgo": "2.8.0"
+            }
+        }
     },
     "browserslist": [
         "defaults"
