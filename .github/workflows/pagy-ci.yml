@@ -44,6 +44,10 @@ jobs:
           - ruby-version: '3.2'
             env:
               BUNDLE_GEMFILE: .github/gemfiles/default
+#              RUBYOPT: '--disable-error_highlight'
+          - ruby-version: '3.3'
+            env:
+              BUNDLE_GEMFILE: .github/gemfiles/default
               CODECOV: true
               CHECK_MANIFEST: true
 #              RUBYOPT: '--disable-error_highlight'
