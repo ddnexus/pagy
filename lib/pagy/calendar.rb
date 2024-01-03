@@ -13,12 +13,12 @@ class Pagy # :nodoc:
   # Base class for time units subclasses (Year, Quarter, Month, Week, Day)
   class Calendar < Pagy
     # Specific out of range error
-    class OutOfRangeError < StandardError; end
+    class OutOfRangeError < VariableError; end
 
     # List of units in desc order of duration. It can be used for custom units.
     UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
 
-    attr_reader :order
+    attr_reader :order, :from, :to
 
     # Merge and validate the options, do some simple arithmetic and set a few instance variables
     def initialize(vars) # rubocop:disable Lint/MissingSuper
@@ -49,10 +49,24 @@ class Pagy # :nodoc:
     protected
 
     # The page that includes time
-    def page_at(time)
-      raise OutOfRangeError unless time.between?(@initial, @final)
+    # In case of out of range time, the :fit_time option avoids the outOfRangeError
+    # and returns the closest page to the passed time argument (first or last page)
+    def page_at(time, **opts)
+      fit_time  = time
+      fit_final = @final - 1
+      unless time.between?(@initial, fit_final)
+        raise OutOfRangeError.new(self, :time, "between #{@initial} and #{fit_final}", time) unless opts[:fit_time]
 
-      offset = page_offset_at(time)   # offset starts from 0
+        if time < @final
+          fit_time = @initial
+          ordinal  = 'first'
+        else
+          fit_time = fit_final
+          ordinal  = 'last'
+        end
+        Warning.warn "Pagy::Calendar#page_at: Rescued #{time} out of range by returning the #{ordinal} page."
+      end
+      offset = page_offset_at(fit_time)   # offset starts from 0
       @order == :asc ? offset + 1 : @pages - offset
     end
 
@@ -82,6 +96,16 @@ class Pagy # :nodoc:
     # Period of the active page (used internally for nested units)
     def active_period
       [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
+    end
+
+    # This method must be implemented by the unit subclass
+    def starting_time_for(*)
+      raise NoMethodError, 'the starting_time_for method must be implemented by the unit subclass'
+    end
+
+    # This method must be implemented by the unit subclass
+    def page_offset_at(*)
+      raise NoMethodError, 'the page_offset_at method must be implemented by the unit subclass'
     end
 
     class << self

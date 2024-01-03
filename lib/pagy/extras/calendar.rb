@@ -28,10 +28,6 @@ class Pagy # :nodoc:
         [calendar, pagy, results]
       end
 
-      def pagy_calendar_url_at(calendar, time)
-        pagy_url_for(calendar.send(:last_object_at, time), 1)
-      end
-
       # This method must be implemented by the application
       def pagy_calendar_period(*)
         raise NoMethodError, 'the pagy_calendar_period method must be implemented by the application ' \
@@ -44,6 +40,15 @@ class Pagy # :nodoc:
                              '(see https://ddnexus.github.io/pagy/docs/extras/calendar/#pagy-calendar-filter-collection-from-to)'
       end
     end
+
+    # Additions for the Frontend module
+    module UrlHelper
+      # Return the url for the calendar page at time
+      def pagy_calendar_url_at(calendar, time, **opts)
+        pagy_url_for(calendar.send(:calendar_at, time, **opts), 1, **opts)
+      end
+    end
   end
-  Backend.prepend CalendarExtra::Backend
+  Backend.prepend CalendarExtra::Backend, CalendarExtra::UrlHelper
+  Frontend.prepend CalendarExtra::UrlHelper
 end

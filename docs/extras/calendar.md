@@ -121,7 +121,19 @@ It returns an array with one more item than the usual two:
 ```
 |||
 
-The `@calendar` contains the hash of the generated `Pagy::Calendar::*` objects that can be used in the UI.
+The `@calendar` is the hash of the generated `Pagy::Calendar::*` objects that can be used in the UI. 
+
+It also provides the `showtime` helper method that returns the `DateTime` of the smallest time unit currently shown in your calendar. For example:
+
+```erb
+<!-- Link to go to a specific page in the calendar -->
+<a href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-03')) %>">Go to the 2022-03 Page</a>
+
+<!-- Showtime shows the `DateTime` beginning of the smallest time unit currently shown in the calendar -->
+<p>Showtime: <%= @calendar.showtime %></p>
+```
+
+See also the the single-file self-contained [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for an interactive demo.
 
 ### `collection` argument
 
@@ -270,13 +282,14 @@ You can use the calendar objects with any `pagy_*nav` and `pagy_*nav_js` helpers
 
 The `pagy_*combo_nav_js` keeps into account only page numbers and not labels, so it is not very useful (if at all) with `Pagy::Calendar::*` objects.
 
-==- `pagy_calendar_url_at(@calendar, time)`
+==- `pagy_calendar_url_at(@calendar, time, **opts)`
 
 This helper takes the `@calendar` and a `TimeWithZone` objects and returns the url complete with all the params for the pages in each bars that include the passed time.
 
 For example: `pagy_calendar_url_at(@calendar, Time.zone.now)` will select the the bars pointing to today. You can see a working example in the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) file.
 
-If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRangeError`.
+If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRangeError`, however you can pass the option `fit_time: true` to avoid the error and get the url to the page closest to the passed time argument (first or last page).
+
 ===
 
 ### Label format

@@ -228,11 +228,28 @@ describe 'pagy/extras/calendar' do
       _(app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2023, 11, 10)))
         .must_equal  "/foo?page=1&year_page=3&month_page=11"
 
-      _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2024, 1, 10)) }
-        .must_raise  Pagy::Calendar::OutOfRangeError
+      _(app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2100), fit_time: true))
+        .must_equal "/foo?page=1&year_page=3&month_page=11"
 
-      _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2021, 9, 10)) }
-        .must_raise  Pagy::Calendar::OutOfRangeError
+      _(app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2000), fit_time: true))
+        .must_equal "/foo?page=1&year_page=1&month_page=1"
+
+      _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2100)) }
+        .must_raise Pagy::Calendar::OutOfRangeError
+
+      _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2000)) }
+        .must_raise Pagy::Calendar::OutOfRangeError
+    end
+  end
+  describe "#showtime" do
+    it "returns the showtime" do
+      collection = MockCollection::Calendar.new(@collection)
+      calendar, _pagy, _entries = app(params: { year_page: 2, month_page: 7, page: 2 })
+                                  .send(:pagy_calendar, collection,
+                                        year: {},
+                                        month: {},
+                                        pagy: { items: 10 })
+      _(calendar.showtime).must_equal Time.zone.local(2022, 7, 1)
     end
   end
 end
