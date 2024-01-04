@@ -40,6 +40,7 @@ exclude:
   - e2e/README.md
   - test/README.md
   - lib/**/README.md
+  - docs/README.md
 
 edit:
   repo: "https://github.com/ddnexus/pagy"

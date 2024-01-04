@@ -251,6 +251,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 - [How To (quick recipes)](https://ddnexus.github.io/pagy/docs/how-to/)
 - [Changelog](https://ddnexus.github.io/pagy/changelog)
 - [Deprecations](https://ddnexus.github.io/pagy/changelog#deprecations)
+- [How Pagy's Docs work?](https://github.com/ddnexus/pagy/blob/master/docs/README.md)
 
 </details>
 
