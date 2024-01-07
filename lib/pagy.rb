@@ -13,16 +13,16 @@ class Pagy
   end
 
   # Default core vars: constant for easy access, but mutable for customizable defaults
-  DEFAULT = { page:       1, # rubocop:disable Style/MutableConstant
-              items:      20,
-              outset:     0,
-              size:       [1, 4, 4, 1],
-              page_param: :page,
-              params:     {},
-              fragment:   '',
-              link_extra: '',
-              i18n_key:   'pagy.item_name',
-              cycle:      false,
+  DEFAULT = { page:         1, # rubocop:disable Style/MutableConstant
+              items:        20,
+              outset:       0,
+              size:         [1, 4, 4, 1],
+              page_param:   :page,
+              params:       {},
+              fragment:     '',
+              link_extra:   '',
+              i18n_key:     'pagy.item_name',
+              cycle:        false,
               request_path: '' }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next, :params, :request_path
@@ -38,11 +38,11 @@ class Pagy
     setup_request_path_var
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
-    @from   = [@offset - @outset + 1, @count].min
-    @to     = [@offset - @outset + @items, @count].min
-    @in     = [@to - @from + 1, @count].min
-    @prev   = (@page - 1 unless @page == 1)
-    @next   = @page == @last ? (1 if @vars[:cycle]) : @page + 1
+    @from = [@offset - @outset + 1, @count].min
+    @to   = [@offset - @outset + @items, @count].min
+    @in   = [@to - @from + 1, @count].min
+    @prev = (@page - 1 unless @page == 1)
+    @next = @page == @last ? (1 if @vars[:cycle]) : @page + 1
   end
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]

@@ -13,7 +13,7 @@ If you AJAX-render any of the javascript helpers mentioned above, you should als
 ```ruby
 def pagy_remote_nav_js
   # notice the link_extra to enable Ajax
-  @pagy, @products = pagy(Product.all, link_extra: 'data-remote="true"')
+  @pagy, @products = pagy(collection, link_extra: 'data-remote="true"')
 end
 ```
 |||
@@ -40,7 +40,7 @@ Pagy.init(document.getElementById('container'));
 ````
 |||
 
-!!!primary Don't forget to re-initialize!
+!!!warning Don't forget to re-initialize!
 
 The `document.getElementById('container')` argument will re-init the pagy elements just AJAX-rendered in the container div. If you miss it, it will not work.
 !!!

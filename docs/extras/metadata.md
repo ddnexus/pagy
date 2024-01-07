@@ -23,7 +23,7 @@ require 'pagy/extras/metadata'
 ||| Controller (action)
 
 ```ruby
-pagy, records = pagy(Product.all)
+pagy, records = pagy(collection)
 render json: { data: records,
                pagy: pagy_metadata(pagy, ...) }
 ```

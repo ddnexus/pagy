@@ -13,33 +13,41 @@ It works also with the [countless](countless.md), [searchkick](searchkick.md), [
 
 ## Synopsis
 
+### Default usage
+
 ||| pagy.rb (initializer)
 ```ruby
 require 'pagy/extras/items' # works without further configuration
 ```
 |||
 
-
 ||| Controller
 ```ruby
+# enabled by default
+@pagy, @records = pagy(collection)
 # you can disable it explicitly for specific requests
-@pagy, @records = pagy(Product.all, items_extra: false)
-
-# or see below:
+@pagy, @records = pagy(collection, items_extra: false)
 ```
 |||
 
+### Custom usage
 
 ||| pagy.rb (initializer)
 ```ruby
-# disable it by default (opt-in)
-Pagy::DEFAULT[:items_extra] = false   # default true
-# in this case you have to enable it explicitly when you want it
-@pagy, @records = pagy(Product.all, items_extra: true)
-
+# optionally disable it by default
+Pagy::DEFAULT[:items_extra] = false               # default true
 # customize the defaults if you need to
 Pagy::DEFAULT[:items_param] = :custom_param       # default :items
 Pagy::DEFAULT[:max_items]   = 200                 # default 100
+```
+|||
+
+||| Controller
+```ruby
+# disabled by default by the above Pagy::DEFAULT[:items_extras] = false
+@pagy, @records = pagy(collection)
+# explicitly enable it for specific requests
+@pagy, @records = pagy(collection, items_extra: true)
 ```
 |||
 
@@ -52,10 +60,10 @@ See [Javascript](/docs/api/javascript.md) (only if you use the `pagy_items_selec
 ## Variables
 
 | Variable       | Description                                                          | Default  |
-| :------------- | :------------------------------------------------------------------- | :------- |
-| `:items_extra` | enable or disable the feature                                        | `true`   |
-| `:items_param` | the name of the items param used in the url.                         | `:items` |
-| `:max_items`   | the max items allowed to be requested. Set it to `nil` for no limit. | `100`    |
+| :------------- |:---------------------------------------------------------------------| :------- |
+| `:items_extra` | Enable or disable the feature                                        | `true`   |
+| `:items_param` | The name of the items param used in the url.                         | `:items` |
+| `:max_items`   | The max items allowed to be requested. Set it to `nil` for no limit. | `100`    |
 
 You can use the `:items_extra` variable to opt-out of the feature even when the extra is required.
 
@@ -80,7 +88,7 @@ For a single instance (overriding the global default):
 ||| Controller
 
 ```ruby
-pagy(scope, items_param: :custom_param, max_items: 50)
+pagy(collecton, items_param: :custom_param, max_items: 50)
 Pagy.new(count: 100, items_param: :custom_param, max_items: 50)
 ```
 |||

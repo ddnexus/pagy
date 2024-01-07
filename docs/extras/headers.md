@@ -28,7 +28,7 @@ require 'pagy/extras/headers'
 ||| Controller (action)
 ```ruby
 # paginate as usual with any pagy_* backend constructor
-pagy, records = pagy(Product.all)
+pagy, records = pagy(collection)
 # explicitly merge the headers to the response
 pagy_headers_merge(pagy)
 render json: records
@@ -44,7 +44,7 @@ Instead of explicitly merging the headers before each rendering, if you use rail
 after_action { pagy_headers_merge(@pagy) if @pagy }
 
 # and use it in any action (notice @pagy that enables the merging)
-@pagy, records = pagy(Product.all)
+@pagy, records = pagy(collection)
 render json: records
 ```
 |||
@@ -60,7 +60,7 @@ def pagy_render(collection, vars={})
 end
 
 # and use it in your standard actions:
-pagy_render(Product.all)
+pagy_render(collection)
 ```
 |||
 

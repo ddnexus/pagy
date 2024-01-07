@@ -42,7 +42,7 @@ require 'pagy/extras/countless'
 ||| incremental (controller action)
 ```ruby
 def incremental
-  @pagy, @records = pagy_countless(Product.all, link_extra: 'data-remote="true"')
+  @pagy, @records = pagy_countless(collection, link_extra: 'data-remote="true"')
 end
 ```
 |||
@@ -137,7 +137,7 @@ For example:
 
 ||| Controller (action)
 ```ruby
-@pagy, @suggestions = pagy_countless(Product.all, count: 25, items: 5, cycle: true)
+@pagy, @suggestions = pagy_countless(collection, count: 25, items: 5, cycle: true)
 ```
 |||
 

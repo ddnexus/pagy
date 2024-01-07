@@ -25,14 +25,14 @@ require 'pagy/extras/trim' # it will trim without any further configuration,
 ||| Controller (and initializer)
 ```ruby
 # you can disable it explicitly for specific requests
-@pagy, @records = pagy(Product.all, trim_extra: false)
+@pagy, @records = pagy(collection, trim_extra: false)
 
 # or...
 
 # disable it by default (opt-in) in pagy.rb initializer:
 Pagy::DEFAULT[:trim_extra] = false   # default true
 # in this case you have to enable it explicitly when you want the trimming
-@pagy, @records = pagy(Product.all, trim_extra: true)
+@pagy, @records = pagy(collection, trim_extra: true)
 ```
 |||
 

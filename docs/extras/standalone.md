@@ -33,7 +33,7 @@ Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'
 ||| Controller
 ```ruby
 # pass a :url variable to work in standalone mode (no need of any request object nor Rack env)
-@pagy, @products = pagy(Product.all, url: 'http://www.example.com/subdir', params: {...})
+@pagy, @products = pagy(collection, url: 'http://www.example.com/subdir', params: {...})
 ```
 |||
 
