@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757648487951">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757935336571">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.757648487951" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757935336571" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757648487951" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757935336571" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757648487951" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757648487951" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757935336571" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757935336571" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -279,6 +279,12 @@
         <span>Synopsis</span>
     </h2>
 </doc-anchor-target>
+<doc-anchor-target id="default-usage">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#default-usage">#</doc-anchor-trigger>
+        <span>Default usage</span>
+    </h3>
+</doc-anchor-target>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>pagy.rb (initializer)</span>
@@ -295,27 +301,43 @@
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby"># you can disable it explicitly for specific requests
-@pagy, @records = pagy(Product.all, items_extra: false)
-
-# or see below:</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby"># enabled by default
+@pagy, @records = pagy(collection)
+# you can disable it explicitly for specific requests
+@pagy, @records = pagy(collection, items_extra: false)</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
+<doc-anchor-target id="custom-usage">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#custom-usage">#</doc-anchor-trigger>
+        <span>Custom usage</span>
+    </h3>
+</doc-anchor-target>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>pagy.rb (initializer)</span>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby"># disable it by default (opt-in)
-Pagy::DEFAULT[:items_extra] = false   # default true
-# in this case you have to enable it explicitly when you want it
-@pagy, @records = pagy(Product.all, items_extra: true)
-
+<pre class="language-ruby"><code v-pre class="language-ruby"># optionally disable it by default
+Pagy::DEFAULT[:items_extra] = false               # default true
 # customize the defaults if you need to
 Pagy::DEFAULT[:items_param] = :custom_param       # default :items
 Pagy::DEFAULT[:max_items]   = 200                 # default 100</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>Controller</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby"># disabled by default by the above Pagy::DEFAULT[:items_extras] = false
+@pagy, @records = pagy(collection)
+# explicitly enable it for specific requests
+@pagy, @records = pagy(collection, items_extra: true)</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -347,17 +369,17 @@ Pagy::DEFAULT[:max_items]   = 200                 # default 100</code></pre>
 <tbody>
 <tr>
 <td style="text-align: left;"><code v-pre>:items_extra</code></td>
-<td style="text-align: left;">enable or disable the feature</td>
+<td style="text-align: left;">Enable or disable the feature</td>
 <td style="text-align: left;"><code v-pre>true</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>:items_param</code></td>
-<td style="text-align: left;">the name of the items param used in the url.</td>
+<td style="text-align: left;">The name of the items param used in the url.</td>
 <td style="text-align: left;"><code v-pre>:items</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>:max_items</code></td>
-<td style="text-align: left;">the max items allowed to be requested. Set it to <code v-pre>nil</code> for no limit.</td>
+<td style="text-align: left;">The max items allowed to be requested. Set it to <code v-pre>nil</code> for no limit.</td>
 <td style="text-align: left;"><code v-pre>100</code></td>
 </tr>
 </tbody>
@@ -386,7 +408,7 @@ Pagy::DEFAULT[:max_items]   = 50</code></pre>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">pagy(scope, items_param: :custom_param, max_items: 50)
+<pre class="language-ruby"><code v-pre class="language-ruby">pagy(collecton, items_param: :custom_param, max_items: 50)
 Pagy.new(count: 100, items_param: :custom_param, max_items: 50)</code></pre>
 </doc-codeblock></div>
     </div>

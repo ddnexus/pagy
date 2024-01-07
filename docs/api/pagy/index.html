@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757648487951">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757935336571">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.757648487951" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.757935336571" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757648487951" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757935336571" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757648487951" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757648487951" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757935336571" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757935336571" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -278,16 +278,16 @@
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">DEFAULT = { page:       1, # rubocop:disable Style/MutableConstant
-            items:      20,
-            outset:     0,
-            size:       [1, 4, 4, 1],
-            page_param: :page,
-            params:     {},
-            fragment:   '',
-            link_extra: '',
-            i18n_key:   'pagy.item_name',
-            cycle:      false,</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby">DEFAULT = { page:         1, # rubocop:disable Style/MutableConstant
+            items:        20,
+            outset:       0,
+            size:         [1, 4, 4, 1],
+            page_param:   :page,
+            params:       {},
+            fragment:     '',
+            link_extra:   '',
+            i18n_key:     'pagy.item_name',
+            cycle:        false,</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -528,6 +528,11 @@ They are all integers:</p>
 <td style="text-align: left;"><code v-pre>:request_path</code></td>
 <td style="text-align: left;">Allows overriding the request path for pagination links. If left blank, helpers will use <code v-pre>request.path</code>. NB: Do not pass in a full URL, but the path: For example, given <code v-pre>https://ddnexus.github.io/pagy/docs/api/pagy/</code> the path to be passed in is: <code v-pre>pagy/docs/api/pagy/</code>. (See: <a href="../../how-to/#customize-the-request-path">Customize the request path</a> )</td>
 <td style="text-align: left;"><code v-pre>request.path</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>jsonapi</code></td>
+<td style="text-align: left;">Enable <code v-pre>jsonapi</code> compliance of the pagy query params</td>
+<td style="text-align: left;"><code v-pre>false</code></td>
 </tr>
 </tbody>
 </table>
