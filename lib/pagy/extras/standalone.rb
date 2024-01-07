@@ -41,15 +41,12 @@ class Pagy # :nodoc:
     def pagy_url_for(pagy, page, absolute: false, html_escaped: false, **_)
       return super unless pagy.vars[:url]
 
-      vars                = pagy.vars
-      page_param          = vars[:page_param].to_s
-      items_param         = vars[:items_param].to_s
-      params              = pagy.params.is_a?(Hash) ? pagy.params.clone : {}  # safe when it gets reused
-      params[page_param]  = page
-      params[items_param] = vars[:items] if vars[:items_extra]
-      params              = pagy.params.call(params) if pagy.params.is_a?(Proc)
-      query_string        = "?#{QueryUtils.build_nested_query(params)}"
-      query_string        = query_string.gsub('&', '&amp;') if html_escaped  # the only unescaped entity
+      vars         = pagy.vars
+      params       = pagy.params.is_a?(Hash) ? pagy.params.clone : {}  # safe when it gets reused
+      pagy_set_query_params(page, vars, params)
+      params       = pagy.params.call(params) if pagy.params.is_a?(Proc)
+      query_string = "?#{QueryUtils.build_nested_query(params)}"
+      query_string = query_string.gsub('&', '&amp;') if html_escaped  # the only unescaped entity
       "#{vars[:url]}#{query_string}#{vars[:fragment]}"
     end
   end
