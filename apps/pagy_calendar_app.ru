@@ -117,10 +117,9 @@ __END__
     <% end %>
   </p>
 
-  <p>Showtime: <%= @calendar.showtime %></p>
-
   <!-- calendar filtering navs -->
   <% if @calendar %>
+    <p>Showtime: <%= @calendar.showtime %></p>
     <%= pagy_bootstrap_nav(@calendar[:year]) %>   <!-- year nav -->
     <%= pagy_bootstrap_nav(@calendar[:month]) %>  <!-- month nav -->
   <% end %>
