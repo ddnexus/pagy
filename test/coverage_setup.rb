@@ -12,6 +12,7 @@ elsif !ENV['CI']   # exclude in CI
     command_name "Task##{$PROCESS_ID}"
     merge_timeout 20
     enable_coverage :branch
+    add_filter "/test/"
     add_group 'Core', %w[ lib/pagy.rb
                           lib/pagy/backend.rb
                           lib/pagy/console.rb
@@ -21,7 +22,7 @@ elsif !ENV['CI']   # exclude in CI
                           lib/pagy/i18n.rb
                           lib/pagy/url_helpers.rb ]
     add_group 'Extras', 'lib/pagy/extras'
-    add_group 'Tests', 'test'
+    # add_group 'Tests', 'test'
   end
 
   SimpleCov.formatter = SimpleCov::Formatter::SimpleFormatter unless ENV.fetch('HTML_REPORTS', nil) == 'true'

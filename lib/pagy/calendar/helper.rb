@@ -3,8 +3,7 @@
 class Pagy # :nodoc:
   class Calendar # :nodoc:
     # Initializes the calendar objects, reducing complexity in the extra
-    # The returned calendar is a simple hash of units/objects with an added helper
-    # returning the last_object_at(time) used in the extra
+    # The returned calendar is a simple hash of units/objects
     class Helper < Hash
       class << self
         private
@@ -16,6 +15,7 @@ class Pagy # :nodoc:
 
       private
 
+      # Create the calendar
       def init(conf, period, params)
         @units = Calendar::UNITS & conf.keys # get the units in time length desc order
         raise ArgumentError, 'no calendar unit found in pagy_calendar @configuration' if @units.empty?
@@ -44,17 +44,25 @@ class Pagy # :nodoc:
         [replace(calendar), object.from, object.to]
       end
 
-      def last_object_at(time)
+      # Return the calendar object at time
+      def calendar_at(time, **opts)
         conf        = Marshal.load(Marshal.dump(@conf))
         page_params = {}
         @units.inject(nil) do |object, unit|
           conf[unit][:period] = object&.send(:active_period) || @period
           conf[unit][:page]   = page_params[:"#{unit}_#{@page_param}"] \
-                              = Calendar.send(:create, unit, conf[unit]).send(:page_at, time)
+                              = Calendar.send(:create, unit, conf[unit]).send(:page_at, time, **opts)
           conf[unit][:params] ||= {}
           conf[unit][:params].merge!(page_params)
           Calendar.send(:create, unit, conf[unit])
         end
+      end
+
+      public
+
+      # Return the current time of the smallest time unit shown
+      def showtime
+        self[@units.last].from
       end
     end
   end

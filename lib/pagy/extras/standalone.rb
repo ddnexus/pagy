@@ -38,7 +38,7 @@ class Pagy # :nodoc:
     # Return the URL for the page. If there is no pagy.vars[:url]
     # it works exactly as the regular #pagy_url_for, relying on the params method and Rack.
     # If there is a defined pagy.vars[:url] variable it does not need the params method nor Rack.
-    def pagy_url_for(pagy, page, absolute: false, html_escaped: false)
+    def pagy_url_for(pagy, page, absolute: false, html_escaped: false, **_)
       return super unless pagy.vars[:url]
 
       vars                = pagy.vars

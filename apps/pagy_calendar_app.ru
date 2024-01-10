@@ -112,9 +112,12 @@ __END__
   <% else %>
     <a href="?skip=true" >Hide Calendar</a>
     <br>
-    <a href="<%= pagy_calendar_url_at(@calendar, Time.zone.now) %>">Go to current Page</a>
+    <a href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-03')) %>">Go to the 2022-03 Page</a>
+    <!-- You can use Time.zone.now to find the current page if your time period include today -->
     <% end %>
   </p>
+
+  <p>Showtime: <%= @calendar.showtime %></p>
 
   <!-- calendar filtering navs -->
   <% if @calendar %>
