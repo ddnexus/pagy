@@ -1,4 +1,4 @@
-blank_issues_enabled: true # temporary change for ARIA milestone
+blank_issues_enabled: false
 contact_links:
   - name: How To
     url: https://ddnexus.github.io/pagy/docs/how-to/
