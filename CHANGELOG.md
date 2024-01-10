@@ -25,6 +25,16 @@ None
 
 <hr>
 
+## Version 6.3.0
+
+- Calendar improvements:
+  - Added the :fit_time option to page_at and pagy_calendar_url_at methods. It avoids the OutOfRangeError by returning the first or last page
+  - Added starting_time_for and page_offset_at feedback methods to the Calendar base class
+  - Prepended the pagy_calendar_url_at to the Frontend and Backend
+  - Added calendar showtime
+- Updated node modules (dev on node 20)
+- Updated Gemfile and fixed new rubocop complaints
+
 ## Version 6.2.0
 
 - Add Belarusian locale (#567)
