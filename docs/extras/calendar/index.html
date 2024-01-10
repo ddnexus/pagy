@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.757935336571">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.758164397995">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.757935336571" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.758164397995" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.757935336571" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.758164397995" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.757935336571" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.757935336571" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.758164397995" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.758164397995" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.2.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.3.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -433,7 +433,16 @@ rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar_app.ru</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
-<p>The <code v-pre>@calendar</code> contains the hash of the generated <code v-pre>Pagy::Calendar::*</code> objects that can be used in the UI.</p>
+<p>The <code v-pre>@calendar</code> is the hash of the generated <code v-pre>Pagy::Calendar::*</code> objects that can be used in the UI.</p>
+<p>It also provides the <code v-pre>showtime</code> helper method that returns the <code v-pre>DateTime</code> of the smallest time unit currently shown in your calendar. For example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;!-- Link to go to a specific page in the calendar --&gt;
+&lt;a href=&quot;&lt;%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-03')) %&gt;&quot;&gt;Go to the 2022-03 Page&lt;/a&gt;
+
+&lt;!-- Showtime shows the `DateTime` beginning of the smallest time unit currently shown in the calendar --&gt;
+&lt;p&gt;Showtime: &lt;%= @calendar.showtime %&gt;&lt;/p&gt;</code></pre>
+</doc-codeblock></div>
+<p>See also the the single-file self-contained <a href="https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru">pagy_calendar_app.ru</a> for an interactive demo.</p>
 <doc-anchor-target id="collection-argument">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#collection-argument">#</doc-anchor-trigger>
@@ -658,11 +667,11 @@ end</code></pre>
 </doc-anchor-target>
 <p>You can use the calendar objects with any <code v-pre>pagy_*nav</code> and <code v-pre>pagy_*nav_js</code> helpers or any templates in your views.</p>
 <p>The <code v-pre>pagy_*combo_nav_js</code> keeps into account only page numbers and not labels, so it is not very useful (if at all) with <code v-pre>Pagy::Calendar::*</code> objects.</p>
-<doc-panel id="pagy-calendar-url-at-calendar-time" collapsed>
-    <template #title><code v-pre>pagy_calendar_url_at(@calendar, time)</code></template>
+<doc-panel id="pagy-calendar-url-at-calendar-time-opts" collapsed>
+    <template #title><code v-pre>pagy_calendar_url_at(@calendar, time, **opts)</code></template>
 <p>This helper takes the <code v-pre>@calendar</code> and a <code v-pre>TimeWithZone</code> objects and returns the url complete with all the params for the pages in each bars that include the passed time.</p>
 <p>For example: <code v-pre>pagy_calendar_url_at(@calendar, Time.zone.now)</code> will select the the bars pointing to today. You can see a working example in the <a href="https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru">pagy_calendar_app.ru</a> file.</p>
-<p>If <code v-pre>time</code> is outside the pagination range it raises a <code v-pre>Pagy::Calendar::OutOfRangeError</code>.</p>
+<p>If <code v-pre>time</code> is outside the pagination range it raises a <code v-pre>Pagy::Calendar::OutOfRangeError</code>, however you can pass the option <code v-pre>fit_time: true</code> to avoid the error and get the url to the page closest to the passed time argument (first or last page).</p>
 </doc-panel>
 <doc-anchor-target id="label-format">
     <h3>
