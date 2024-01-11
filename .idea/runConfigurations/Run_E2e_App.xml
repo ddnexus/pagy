@@ -8,11 +8,7 @@
     <RACK_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
     <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-    <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" IGNORE_RCOVRT="true" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
-      <COVERAGE_PATTERN ENABLED="false">
-        <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-      </COVERAGE_PATTERN>
-    </EXTENSION>
+    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov" />
     <EXTENSION ID="net.ashald.envfile">
       <option name="IS_ENABLED" value="false" />
       <option name="IS_SUBST" value="false" />
