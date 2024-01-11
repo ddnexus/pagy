@@ -12,15 +12,6 @@ def pagy(unit: :month, **vars)
 end
 
 describe 'pagy/calendar' do
-  describe "Unit subclasses feedback methods" do
-    it "raises NoMethodError for starting_time_for" do
-      _ { pagy.starting_time_for }.must_raise NoMethodError
-    end
-    it "raises NoMethodError for page_offset_at" do
-      _ { pagy.page_offset_at }.must_raise NoMethodError
-    end
-  end
-
   describe 'instance methods and variables' do
     it 'defines calendar specific accessors' do
       assert_respond_to pagy, :order

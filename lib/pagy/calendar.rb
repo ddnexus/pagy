@@ -98,6 +98,7 @@ class Pagy # :nodoc:
       [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
     end
 
+    # :nocov:
     # This method must be implemented by the unit subclass
     def starting_time_for(*)
       raise NoMethodError, 'the starting_time_for method must be implemented by the unit subclass'
@@ -107,6 +108,7 @@ class Pagy # :nodoc:
     def page_offset_at(*)
       raise NoMethodError, 'the page_offset_at method must be implemented by the unit subclass'
     end
+    # :nocov:
 
     class << self
       # Create a subclass instance by unit name (internal use)

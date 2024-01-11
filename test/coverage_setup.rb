@@ -10,7 +10,7 @@ if ENV['CODECOV']
 elsif !ENV['CI']   # exclude in CI
   SimpleCov.configure do
     command_name "Task##{$PROCESS_ID}"
-    merge_timeout 20
+    merge_timeout 60
     enable_coverage :branch
     add_filter "/test/"
     add_group 'Core', %w[ lib/pagy.rb
@@ -26,6 +26,5 @@ elsif !ENV['CI']   # exclude in CI
   end
 
   SimpleCov.formatter = SimpleCov::Formatter::SimpleFormatter unless ENV.fetch('HTML_REPORTS', nil) == 'true'
+  SimpleCov.start
 end
-
-SimpleCov.start
