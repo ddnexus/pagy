@@ -74,8 +74,8 @@ class PagyCalendarApp < Sinatra::Base
     # object to paginate the unfiltered collection. (It's active by default even without a :skip param).
     # You way want to invert the logic (also in the view) with something like `active: params[:active]`,
     # which would be inactive by default and only active on demand.
-    @calendar, @pagy, @records = pagy_calendar(collection, year:   { size: [1, 1, 1, 1] },
-                                                           month:  { size: [0, 12, 12, 0], format: '%b' },
+    @calendar, @pagy, @records = pagy_calendar(collection, year:   { size: 4 },
+                                                           month:  { size: 12, format: '%b' },
                                                            pagy:   { items: 10 },
                                                            active: !params[:skip])
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo

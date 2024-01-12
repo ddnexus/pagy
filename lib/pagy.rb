@@ -47,28 +47,42 @@ class Pagy
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
   def series(size: @vars[:size], **_)
-    return [] if size.empty?
-    raise VariableError.new(self, :size, 'to contain 4 items >= 0', size) \
-          unless size.is_a?(Array) && size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
+    series = []
+    if size.is_a?(Array) && size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
+      # This algorithm is up to ~5x faster and ~2.3x lighter than the previous one (pagy < 4.3)
+      left_gap_start  =     1 + size[0]
+      left_gap_end    = @page - size[1] - 1
+      right_gap_start = @page + size[2] + 1
+      right_gap_end   = @last - size[3]
+      left_gap_end    = right_gap_end  if left_gap_end   > right_gap_end
+      right_gap_start = left_gap_start if left_gap_start > right_gap_start
+      start           = 1
+      if (left_gap_end - left_gap_start).positive?
+        series.push(*start...left_gap_start, :gap)
+        start = left_gap_end + 1
+      end
+      if (right_gap_end - right_gap_start).positive?
+        series.push(*start...right_gap_start, :gap)
+        start = right_gap_end + 1
+      end
+      series.push(*start..@last)
+    elsif size.is_a?(Integer) && size.positive?    # only central series
+      # The simplest and fastest algorithm
+      size  = @pages if size > @pages              # reduce the max size to @pages
+      left  = ((size - 1) / 2.0).floor             # left half might be 1 page shorter for even size
+      start = if @page <= left                     # beginning pages
+                1
+              elsif @page > @pages - (size - left) # end pages
+                @pages - size + 1
+              else                                 # intermediate pages
+                @page - left
+              end
+      series = (start..start + size - 1).to_a
+    else
+      return [] if size.empty?
 
-    # This algorithm is up to ~5x faster and ~2.3x lighter than the previous one (pagy < 4.3)
-    left_gap_start  =     1 + size[0]   # rubocop:disable Layout/ExtraSpacing, Layout/SpaceAroundOperators
-    left_gap_end    = @page - size[1] - 1
-    right_gap_start = @page + size[2] + 1
-    right_gap_end   = @last - size[3]
-    left_gap_end    = right_gap_end  if left_gap_end   > right_gap_end
-    right_gap_start = left_gap_start if left_gap_start > right_gap_start
-    series          = []
-    start           = 1
-    if (left_gap_end - left_gap_start).positive?
-      series.push(*start...left_gap_start, :gap)
-      start = left_gap_end + 1
+      raise VariableError.new(self, :size, 'to be a single positive Integer or an Array of 4', size)
     end
-    if (right_gap_end - right_gap_start).positive?
-      series.push(*start...right_gap_start, :gap)
-      start = right_gap_end + 1
-    end
-    series.push(*start..@last)
     series[series.index(@page)] = @page.to_s
     series
   end

@@ -323,7 +323,7 @@ describe 'pagy' do
     end
   end
 
-  describe '#series' do
+  describe '#series (size = Array)' do
     before do
       @vars0 = { count: 103,
                  items: 10,
@@ -429,6 +429,104 @@ describe 'pagy' do
     end
     it 'computes an empty series' do
       _(Pagy.new(@vars3.merge(count: 100, size: [])).series).must_equal []
+    end
+  end
+
+  describe '#series (size = Integer)' do
+    before do
+      @vars0 = { count: 103,
+                 items: 10,
+                 size:  3 }
+      @vars1 = { count: 103,
+                 items: 10,
+                 size: 6 }
+      @vars2 = { count: 103,
+                 items: 10,
+                 size: 20 }
+      # @vars3 = { count: 103,
+      #            items: 10,
+      #            size: 12}
+    end
+    it 'computes series for page 1' do
+      series_for 1,
+                 ["1", 2, 3],
+                 ["1", 2, 3, 4, 5, 6],
+                 ["1", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    end
+    it 'computes series for page 2' do
+      series_for 2,
+                 [1, "2", 3],
+                 [1, "2", 3, 4, 5, 6],
+                 [1, "2", 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    end
+    it 'computes series for page 3' do
+      series_for 3,
+                 [2, "3", 4],
+                 [1, 2, "3", 4, 5, 6],
+                 [1, 2, "3", 4, 5, 6, 7, 8, 9, 10, 11]
+    end
+    it 'computes series for page 4' do
+      series_for 4,
+                 [3, "4", 5],
+                 [2, 3, "4", 5, 6, 7],
+                 [1, 2, 3, "4", 5, 6, 7, 8, 9, 10, 11]
+    end
+    it 'computes series for page 5' do
+      series_for 5,
+                 [4, "5", 6],
+                 [3, 4, "5", 6, 7, 8],
+                 [1, 2, 3, 4, "5", 6, 7, 8, 9, 10, 11]
+    end
+    it 'computes series for page 6' do
+      series_for 6,
+                 [5, "6", 7],
+                 [4, 5, "6", 7, 8, 9],
+                 [1, 2, 3, 4, 5, "6", 7, 8, 9, 10, 11]
+    end
+    it 'computes series for page 7' do
+      series_for 7,
+                 [6, "7", 8],
+                 [5, 6, "7", 8, 9, 10],
+                 [1, 2, 3, 4, 5, 6, "7", 8, 9, 10, 11]
+    end
+    it 'computes series for page 8' do
+      series_for 8,
+                 [7, "8", 9],
+                 [6, 7, "8", 9, 10, 11],
+                 [1, 2, 3, 4, 5, 6, 7, "8", 9, 10, 11]
+    end
+    it 'computes series for page 9' do
+      series_for 9,
+                 [8, "9", 10],
+                 [6, 7, 8, "9", 10, 11],
+                 [1, 2, 3, 4, 5, 6, 7, 8, "9", 10, 11]
+    end
+    it 'computes series for page 10' do
+      series_for 10,
+                 [9, "10", 11],
+                 [6, 7, 8, 9, "10", 11],
+                 [1, 2, 3, 4, 5, 6, 7, 8, 9, "10", 11]
+    end
+    it 'computes series for page 11' do
+      series_for 11,
+                 [9, 10, "11"],
+                 [6, 7, 8, 9, 10, "11"],
+                 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "11"]
+    end
+    it 'computes series for count 0' do
+      _(Pagy.new(@vars2.merge(count: 0)).series).must_equal ["1"]
+    end
+    it 'computes series for single page' do
+      _(Pagy.new(@vars2.merge(count: 8)).series).must_equal ["1"]
+    end
+    it 'computes series for 1 of 2 pages' do
+      _(Pagy.new(@vars2.merge(count: 15)).series).must_equal ["1", 2]
+    end
+    it 'computes series for 2 of 2 pages' do
+      _(Pagy.new(@vars2.merge(count: 15, page: 2)).series).must_equal [1, "2"]
+    end
+    it 'computes an empty series' do
+      _(Pagy.new(@vars2.merge(count: 100, size: [])).series).must_equal []
     end
   end
 
