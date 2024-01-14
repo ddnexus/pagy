@@ -1,3 +1,4 @@
+// @ts-expect-error TS2835: Relative import paths ... cypress is fine with it
 import {snapId} from "../support/test-helper";
 
 describe("Test generic helpers", () => {

@@ -1,3 +1,4 @@
+// @ts-expect-error TS2835: Relative import paths ... cypress is fine with it
 import {snapId, goCheckNext, goCheckPrev, styles} from "../support/test-helper";
 
 describe("Test all comboNavs for all styles", () => {

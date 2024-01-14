@@ -1,3 +1,4 @@
+// @ts-expect-error TS2835: Relative import paths ... cypress is fine with it
 import {styles, stylesCal, navIds} from "../support/test-helper";
 
 describe("Test trim in all helpers and styles", () => {
