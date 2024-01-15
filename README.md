@@ -197,6 +197,25 @@ _(See all the [Backend Tools](https://ddnexus.github.io/pagy/categories/backend/
 
 <details>
 
+<summary>Customization for JSON:API pagination...</summary>
+
+```ruby
+# Require the jsonapi extra in the pagy initializer
+require 'pagy/extras/jsonapi'
+
+# Use it in your actions
+pagy, records = pagy(Product.all)
+render json: { data: records,
+               links: pagy_jsonapi_links(pagy) }
+# besides the query params will be nested. E.g.: ?page[number]=2&page[size]=100
+```
+
+_(See all the [Backend Tools](https://ddnexus.github.io/pagy/categories/backend/))_
+
+</details>
+
+<details>
+
 <summary>More customization with extras...</summary><br>
 
 Extras add special options and manage different components, behaviors, Frontend or Backend environments... usually by just requiring them (and optionally overriding some default).
@@ -209,6 +228,7 @@ Extras add special options and manage different components, behaviors, Frontend 
 - [countless](https://ddnexus.github.io/pagy/docs/extras/countless): Paginate without the need of any count, saving one query per rendering
 - [elasticsearch_rails](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails): Paginate `ElasticsearchRails` response objects
 - [headers](https://ddnexus.github.io/pagy/docs/extras/headers): Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination
+- [jsonapi](https://ddnexus.github.io/pagy/docs/extras/jsonapi): Implement the [JSON:API](https://jsonapi.org) specifications for pagination
 - [meilisearch](https://ddnexus.github.io/pagy/docs/extras/meilisearch): Paginate `Meilisearch` results
 - [metadata](https://ddnexus.github.io/pagy/docs/extras/metadata): Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
 - [searchkick](https://ddnexus.github.io/pagy/docs/extras/searchkick): Paginate `Searchkick::Results` objects

@@ -71,7 +71,7 @@ _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and 
 
 The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to create the object.
 
-==- `series(...)`
+==- `series(size: @vars[:size], _**)`
 
 This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` keyword argument (only useful for extras), defaulted on the `:size` variable.
 
@@ -88,7 +88,11 @@ The nav helpers and the templates basically loop through this array and render t
 That is self-contained, simple and efficient.
 
 !!!primary 
-This method returns an empty array if the passed `size` (i.e. the `:size` variable by default) is set to an empty array. Useful to totally skip the generation of page links in the frontend.
+This method returns an empty array if the passed `size` (i.e. the `:size` variable) is set to an empty `Array`. Useful to 
+totally skip the generation of page links in the frontend.
+
+It can also return an simpler array without gaps if the passed `:size` is a single positive `Integer`. It may be a faster and 
+cleaner solution very useful in certain contexts (see the [Simple Nav](../how-to.md#simple-nav))
 !!!
 
 ==- `label`
@@ -127,7 +131,7 @@ They are all integers:
 
 | Variable        | Description                                                                                                                                                                                                                                                                                                                                                   | Default            |
 |:----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
-| `:size`         | The size of the page links to show: array of initial pages, before current page, after current page, final pages. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_                                                                                                                                                        | `[1,4,4,1]`        |
+| `:size`         | The size of the page links to show: can be an array of initial pages, before current page, after current page, final pages or the total page size. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_                                                                                                                       | `[1,4,4,1]`        |
 | `:page_param`   | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                                                                                                                                                                          | `:page`            |
 | `:params`       | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                                                                                                           | `{}`               |
 | `:fragment`     | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                                                                                                                                              | `""`               |

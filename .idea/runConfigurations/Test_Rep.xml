@@ -16,9 +16,6 @@
       <COVERAGE_PATTERN ENABLED="false">
         <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
       </COVERAGE_PATTERN>
-      <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="$MODULE_DIR$/lib/" INCLUDED="true" />
-      </COVERAGE_PATTERN>
     </EXTENSION>
     <EXTENSION ID="net.ashald.envfile">
       <option name="IS_ENABLED" value="true" />

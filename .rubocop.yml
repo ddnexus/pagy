@@ -62,3 +62,18 @@ Style/StringLiterals:
   Enabled: true
   Exclude:
   - test/**/*
+
+Style/HashSyntax:
+  Enabled: true
+  Exclude:
+    - test/**/*
+
+Layout/SpaceAroundOperators:
+  Enabled: true
+  Exclude:
+    - test/**/*
+
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+  Exclude:
+    - test/**/*

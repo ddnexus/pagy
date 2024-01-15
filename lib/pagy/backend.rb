@@ -19,8 +19,14 @@ class Pagy
     def pagy_get_vars(collection, vars)
       pagy_set_items_from_params(vars) if defined?(ItemsExtra)
       vars[:count] ||= (count = collection.count(:all)).is_a?(Hash) ? count.size : count
-      vars[:page]  ||= params[vars[:page_param] || DEFAULT[:page_param]]
+      vars[:page]  ||= pagy_get_page(vars)
       vars
+    end
+
+    # Get the page integer from the params
+    # Overridable by the jsonapi extra
+    def pagy_get_page(vars)
+      (params[vars[:page_param] || DEFAULT[:page_param]] || 1).to_i
     end
 
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding

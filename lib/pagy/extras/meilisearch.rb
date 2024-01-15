@@ -54,7 +54,7 @@ class Pagy # :nodoc:
       def pagy_meilisearch_get_vars(_collection, vars)
         pagy_set_items_from_params(vars) if defined?(ItemsExtra)
         vars[:items] ||= DEFAULT[:items]
-        vars[:page]  ||= (params[vars[:page_param] || DEFAULT[:page_param]] || 1).to_i
+        vars[:page]  ||= pagy_get_page(vars)
         vars
       end
     end

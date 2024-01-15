@@ -25,6 +25,12 @@ None
 
 <hr>
 
+## Version 6.4.0
+
+- Implement JSON:API specifications
+- Added simpler nav generation, triggered by setting the size variable to a positive Integer
+- Fix for pagy_calendar_app.ru
+
 ## Version 6.3.0
 
 - Calendar improvements:
