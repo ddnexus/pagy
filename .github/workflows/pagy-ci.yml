@@ -74,6 +74,7 @@ jobs:
         uses: codecov/codecov-action@v3.1.4
         with:
           fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Check gem manifest
         if: ${{ env.CHECK_MANIFEST == 'true' }}
