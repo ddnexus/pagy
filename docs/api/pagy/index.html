@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.758625762486">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.758627108635">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.758625762486" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.758627108635" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.758625762486" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.758627108635" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.758625762486" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.758625762486" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.758627108635" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.758627108635" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.3.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -367,8 +367,8 @@ Pagy::DEFAULT.freeze</code></pre>
 <p><em>Notice</em>: If you use the <code v-pre>Pagy::Backend</code> its <code v-pre>pagy</code> method will instantiate and return the Pagy object for you.</p>
 <p>The <code v-pre>Pagy.new</code> method accepts a single hash of variables that will be merged with the <code v-pre>Pagy::DEFAULT</code> hash and will be used to create the object.</p>
    </doc-panel>
-   <doc-panel id="series" collapsed>
-       <template #title><code v-pre>series(...)</code></template>
+   <doc-panel id="series-size-vars-size" collapsed>
+       <template #title><code v-pre>series(size: @vars[:size], _**)</code></template>
 <p>This method is the core of the pagination. It returns an array containing the page numbers and the <code v-pre>:gap</code> items to be rendered with the navigation links (e.g. <code v-pre>[1, :gap, 7, 8, &quot;9&quot;, 10, 11, :gap, 36]</code>). It accepts an optional <code v-pre>size</code> keyword argument (only useful for extras), defaulted on the <code v-pre>:size</code> variable.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
@@ -408,7 +408,10 @@ Pagy::DEFAULT.freeze</code></pre>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>This method returns an empty array if the passed <code v-pre>size</code> (i.e. the <code v-pre>:size</code> variable by default) is set to an empty array. Useful to totally skip the generation of page links in the frontend.</p>
+<p>This method returns an empty array if the passed <code v-pre>size</code> (i.e. the <code v-pre>:size</code> variable) is set to an empty <code v-pre>Array</code>. Useful to
+totally skip the generation of page links in the frontend.</p>
+<p>It can also return an simpler array without gaps if the passed <code v-pre>:size</code> is a single positive <code v-pre>Integer</code>. It may be a faster and
+cleaner solution very useful in certain contexts (see the <a href="../../how-to/#simple-nav">Simple Nav</a>)</p>
         </div>
     </div>
 </div>
@@ -491,7 +494,7 @@ They are all integers:</p>
 <tbody>
 <tr>
 <td style="text-align: left;"><code v-pre>:size</code></td>
-<td style="text-align: left;">The size of the page links to show: array of initial pages, before current page, after current page, final pages. <em>(see also <a href="../../how-to/#control-the-page-links">How to control the page links</a>)</em></td>
+<td style="text-align: left;">The size of the page links to show: can be an array of initial pages, before current page, after current page, final pages or the total page size. <em>(see also <a href="../../how-to/#control-the-page-links">How to control the page links</a>)</em></td>
 <td style="text-align: left;"><code v-pre>[1,4,4,1]</code></td>
 </tr>
 <tr>

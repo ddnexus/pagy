@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.758625762486">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.758627108635">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -33,12 +33,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../../resources/css/retype.css?v=3.5.0.758625762486" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.5.0.758627108635" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.758625762486" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.758627108635" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.758625762486" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.758625762486" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.758627108635" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.758627108635" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -55,7 +55,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.3.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -354,9 +354,13 @@ require 'pagy/extras/uikit'</code></pre>
 </div>
 <doc-panel id="how-to-use-the-steps-variable">
     <template #title>How to use the :steps variable</template>
-<p>The <code v-pre>:steps</code> is an optional non-core variable used by the <code v-pre>pagy*_nav_js</code> navs. If it&#x27;s <code v-pre>false</code>, the <code v-pre>pagy*_nav_js</code> will behave exactly as a static <code v-pre>pagy*_nav</code> respecting the single <code v-pre>:size</code> variable, just faster and lighter. If it&#x27;s defined as a hash, it allows you to control multiple pagy <code v-pre>:size</code> at different widths.</p>
-<p>You can set the <code v-pre>:steps</code> as a hash where the keys are integers representing the widths in pixels and the values are the Pagy <code v-pre>:size</code> variables to be applied for that width.</p>
-<p>As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance, or even pass it to the <code v-pre>pagy*_nav_js</code> helper as an optional keyword argument.</p>
+<p>The <code v-pre>:steps</code> is an optional non-core variable used by the <code v-pre>pagy*_nav_js</code> navs. If it&#x27;s <code v-pre>false</code>, the <code v-pre>pagy*_nav_js</code> will behave
+exactly as a static <code v-pre>pagy*_nav</code> respecting the single <code v-pre>:size</code> variable, just faster and lighter. If it&#x27;s defined as a hash, it
+allows you to control multiple pagy <code v-pre>:size</code> at different widths.</p>
+<p>You can set the <code v-pre>:steps</code> as a hash where the keys are integers representing the widths in pixels and the values are the
+Pagy <code v-pre>:size</code> variables to be applied for that width.</p>
+<p>As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance, or even
+pass it to the <code v-pre>pagy*_nav_js</code> helper as an optional keyword argument.</p>
 <p>For example:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
@@ -365,7 +369,7 @@ require 'pagy/extras/uikit'</code></pre>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># globally
-Pagy::DEFAULT[:steps] = { 0 =&gt; [2,3,3,2], 540 =&gt; [3,5,5,3], 720 =&gt; [5,7,7,5] }</code></pre>
+Pagy::DEFAULT[:steps] = { 0 =&gt; 5, 540 =&gt; [3, 5, 5, 3], 720 =&gt; [5, 7, 7, 5] }</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -376,10 +380,10 @@ Pagy::DEFAULT[:steps] = { 0 =&gt; [2,3,3,2], 540 =&gt; [3,5,5,3], 720 =&gt; [5,7
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># or for a single instance
-pagy, records = pagy(collection, steps: { 0 =&gt; [2,3,3,2], 540 =&gt; [3,5,5,3], 720 =&gt; [5,7,7,5] } )
+pagy, records = pagy(collection, steps: { 0 =&gt; 5, 540 =&gt; [3, 5, 5, 3], 720 =&gt; [5, 7, 7, 5] })
 
 # or use the :size as any static pagy*_nav
-pagy, records = pagy(collection, steps: false )</code></pre>
+pagy, records = pagy(collection, steps: false)</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -387,7 +391,9 @@ pagy, records = pagy(collection, steps: false )</code></pre>
 <pre class="language-erb"><code v-pre class="language-erb">or pass it to the helper
 &lt;%== pagy_nav_js(@pagy, steps: {...}) %&gt;</code></pre>
 </doc-codeblock></div>
-<p>The above statement means that from <code v-pre>0</code> to <code v-pre>540</code> pixels width, Pagy will use the <code v-pre>[2,3,3,2]</code> size, from <code v-pre>540</code> to <code v-pre>720</code> it will use the <code v-pre>[3,5,5,3]</code> size and over <code v-pre>720</code> it will use the <code v-pre>[5,7,7,5]</code> size. (Read more about the <code v-pre>:size</code> variable in the <a href="../../../how-to/#control-the-page-links">How to control the page links</a> section).</p>
+<p>The above statement means that from <code v-pre>0</code> to <code v-pre>540</code> pixels width, Pagy will use the <code v-pre>5</code> size (orginating a simple nav without gaps),
+from <code v-pre>540</code> to <code v-pre>720</code> it will use the <code v-pre>[3,5,5,3]</code> size and over <code v-pre>720</code> it will use the <code v-pre>[5,7,7,5]</code> size. (Read more about the <code v-pre>:size</code>
+variable in the <a href="../../../how-to/#control-the-page-links">How to control the page links</a> section).</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -402,7 +408,8 @@ pagy, records = pagy(collection, steps: false )</code></pre>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>:steps must contain <code v-pre>0</code> width</h5>
-<p>You can set any number of steps with any arbitrary width/size. The only requirement is that the <code v-pre>:steps</code> hash must contain always the <code v-pre>0</code> width or a <code v-pre>Pagy::VariableError</code> exception will be raised.</p>
+<p>You can set any number of steps with any arbitrary width/size. The only requirement is that the <code v-pre>:steps</code> hash must contain always
+the <code v-pre>0</code> width or a <code v-pre>Pagy::VariableError</code> exception will be raised.</p>
         </div>
     </div>
 </div>
@@ -417,13 +424,16 @@ pagy, records = pagy(collection, steps: false )</code></pre>
 <ol>
 <li><p>The pagy size changes in discrete <code v-pre>:steps</code>, defined by the width/size pairs.</p>
 </li>
-<li><p>The automatic transition from one size to another depends on the width available to the pagy nav. That width is the <em>internal available width</em> of its container (excluding eventual horizontal padding).</p>
+<li><p>The automatic transition from one size to another depends on the width available to the pagy nav. That width is the <em>internal
+available width</em> of its container (excluding eventual horizontal padding).</p>
 </li>
 <li><p>You should ensure that - for each step - each pagy <code v-pre>:size</code> produces a nav that can be contained in its width.</p>
 </li>
-<li><p>You should ensure that the minimum internal width for the container div be equal (or a bit bigger) to the smaller positive width. (<code v-pre>540</code> pixels in our previous example).</p>
+<li><p>You should ensure that the minimum internal width for the container div be equal (or a bit bigger) to the smaller positive
+width. (<code v-pre>540</code> pixels in our previous example).</p>
 </li>
-<li><p>If the container width snaps to specific widths in discrete steps, you should sync the quantity and widths of the pagy <code v-pre>:steps</code> to the quantity and internal widths for each discrete step of the container.</p>
+<li><p>If the container width snaps to specific widths in discrete steps, you should sync the quantity and widths of the pagy <code v-pre>:steps</code>
+to the quantity and internal widths for each discrete step of the container.</p>
 </li>
 </ol>
 </doc-panel>
@@ -440,7 +450,8 @@ pagy, records = pagy(collection, steps: false )</code></pre>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Window Resizing</h5>
-<p>The <code v-pre>pagy_*nav_js</code> elements are automatically re-rendered on window resize. However, if the container width changes <em>without</em> being triggered by a window resize, you need to explicitly re-render:</p>
+<p>The <code v-pre>pagy_*nav_js</code> elements are automatically re-rendered on window resize. However, if the container width changes <em>without</em>
+being triggered by a window resize, you need to explicitly re-render:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">document.getElementById('my-pagy-nav-js').render();</code></pre>
 </doc-codeblock></div>
@@ -473,7 +484,8 @@ pagy, records = pagy(collection, steps: false )</code></pre>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>The <code v-pre>pagy_bootstrap_nav_js</code> and <code v-pre>pagy_semantic_nav_js</code> assign a class attribute to their links, so do not add another class attribute with the <code v-pre>:link_extra</code>. That would be illegal HTML and ignored by most browsers.</p>
+<p>The <code v-pre>pagy_bootstrap_nav_js</code> and <code v-pre>pagy_semantic_nav_js</code> assign a class attribute to their links, so do not add another class
+attribute with the <code v-pre>:link_extra</code>. That would be illegal HTML and ignored by most browsers.</p>
         </div>
     </div>
 </div>

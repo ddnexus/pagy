@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (6.3.0)
+# Pagy initializer file (6.4.0)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -20,15 +20,15 @@
 
 # Other Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#other-variables
-# Pagy::DEFAULT[:size]       = [1,4,4,1]                       # default
-# Pagy::DEFAULT[:page_param] = :page                           # default
+# Pagy::DEFAULT[:size]         = [1,4,4,1]                    # default
+# Pagy::DEFAULT[:page_param]   = :page                        # default
 # The :params can be also set as a lambda e.g ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
-# Pagy::DEFAULT[:params]     = {}                              # default
-# Pagy::DEFAULT[:fragment]   = '#fragment'                     # example
-# Pagy::DEFAULT[:link_extra] = 'data-remote="true"'            # example
-# Pagy::DEFAULT[:i18n_key]   = 'pagy.item_name'                # default
-# Pagy::DEFAULT[:cycle]      = true                            # example
-# Pagy::DEFAULT[:request_path] = "/foo"                        # example
+# Pagy::DEFAULT[:params]       = {}                           # default
+# Pagy::DEFAULT[:fragment]     = '#fragment'                  # example
+# Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'         # example
+# Pagy::DEFAULT[:i18n_key]     = 'pagy.item_name'             # default
+# Pagy::DEFAULT[:cycle]        = true                         # example
+# Pagy::DEFAULT[:request_path] = "/foo"                       # example
 
 
 # Extras
@@ -196,6 +196,12 @@
 # See https://ddnexus.github.io/pagy/docs/extras/standalone
 # require 'pagy/extras/standalone'
 # Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'  # optional default
+
+# Jsonapi extra: Implements JSON:API specifications
+# See https://ddnexus.github.io/pagy/docs/extras/jsonapi
+# require 'pagy/extras/jsonapi'   # must be required after the other extras
+# set to false only if you want to make :jsonapi an opt-in variable
+# Pagy::DEFAULT[:jsonapi] = false  # default true
 
 
 # Rails
