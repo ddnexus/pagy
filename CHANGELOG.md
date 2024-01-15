@@ -25,6 +25,11 @@ None
 
 <hr>
 
+## Version 6.4.1
+
+- Remove dependency on base64 (#618)Ruby 3.3 prints a warning if base64 is used without specifying it in the gemfile.
+Ruby 3.4 will error
+
 ## Version 6.4.0
 
 - Implement JSON:API specifications
