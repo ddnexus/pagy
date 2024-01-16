@@ -304,7 +304,7 @@ window.addEventListener(load, Pagy.init)
 window.addEventListener(turbo:load, Pagy.init)
 
 // Turbolinks
-window.addEventListener(turbolinks:load, Pagy.init)
+window.addEventListener("turbolinks:load", Pagy.init)
 
 // custom listener
 window.addEventListener(yourEventListener, Pagy.init) 
