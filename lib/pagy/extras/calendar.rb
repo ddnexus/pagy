@@ -15,11 +15,10 @@ class Pagy # :nodoc:
 
       # Take a collection and a conf Hash with keys in CONF_KEYS and return an array with 3 items: [calendar, pagy, results]
       def pagy_calendar(collection, conf)
-        unless conf.is_a?(Hash) && (conf.keys - CONF_KEYS).empty? && conf.all? { |k, v| v.is_a?(Hash) || k == :active }
-          raise ArgumentError, "keys must be in #{CONF_KEYS.inspect} and object values must be Hashes; got #{conf.inspect}"
-        end
+        raise ArgumentError, "keys must be in #{CONF_KEYS.inspect}" \
+              unless conf.is_a?(Hash) && (conf.keys - CONF_KEYS).empty?
 
-        conf[:pagy] = {} unless conf[:pagy]  # use default Pagy object when omitted
+        conf[:pagy] ||= {}
         unless conf.key?(:active) && !conf[:active]
           calendar, from, to = Calendar::Helper.send(:init, conf, pagy_calendar_period(collection), params)
           collection         = pagy_calendar_filter(collection, from, to)

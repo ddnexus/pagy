@@ -116,7 +116,7 @@ describe 'pagy/extras/overflow' do
       _(pagy.page).must_equal 100
     end
     it 'computes series for empty page for Pagy::Calendar' do
-      pagy = Pagy::Calendar::Day.new(calendar_vars.merge(overflow: :empty_page))
+      pagy = Pagy::Calendar::Day.new(calendar_vars.merge(size: [1, 4, 4, 1], overflow: :empty_page))
       series = pagy.series
       _(series).must_equal [1, :gap, 7, 8, 9, 10, 11]
       _(pagy.page).must_equal 100

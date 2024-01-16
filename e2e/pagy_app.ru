@@ -88,7 +88,9 @@ class PagyApp < Sinatra::Base
     %W[/#{name}-calendar /#{name}-calendar/:trim].each do |route|
       get(route) do
         collection = MockCollection::Calendar.new
-        @calendar, @pagy, @records = pagy_calendar(collection, month: { size: [1, 2, 2, 1], trim_extra: params['trim'] })
+        @calendar, @pagy, @records = pagy_calendar(collection, month: { size: [1, 2, 2, 1],
+                                                                        format: '%Y-%m',
+                                                                        trim_extra: params['trim'] })
         name_fragment = name == 'navs' ? '' : "#{name}_"
         erb :calendar_helpers, locals: { name:, name_fragment: }
       end

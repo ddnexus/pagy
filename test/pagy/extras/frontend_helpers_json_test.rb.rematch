@@ -19,24 +19,24 @@
   - 26
 "[2] pagy/extras/frontend_helpers_json::Calendar sequels and label_sequels#test_0001_generate the labels for the sequels":
   '0':
-  - 2021-10
-  - 2021-11
-  - 2021-12
-  - 2022-01
-  - 2022-02
+  - Oct
+  - Nov
+  - Dec
+  - Jan
+  - Feb
   - :gap
-  - 2023-11
+  - Nov
   '600':
-  - 2021-10
-  - 2021-11
-  - 2021-12
-  - 2022-01
-  - 2022-02
-  - 2022-03
+  - Oct
+  - Nov
+  - Dec
+  - Jan
+  - Feb
+  - Mar
   - :gap
-  - 2023-11
+  - Nov
+"[1] pagy/extras/frontend_helpers_json::#pagy_data#test_0001_uses json": data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="
 '[1] pagy/extras/frontend_helpers_json::#pagy_marked_link#test_0001_returns only the "standard" link': '<a
   href="/foo?page=__pagy_page__"   style="display: none;"></a>'
 '[2] pagy/extras/frontend_helpers_json::#pagy_marked_link#test_0001_returns only the "standard" link': '<a
   href="/foo?p=__pagy_page__"   style="display: none;"></a>'
-"[1] pagy/extras/frontend_helpers_json::#pagy_data#test_0001_uses json": data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="

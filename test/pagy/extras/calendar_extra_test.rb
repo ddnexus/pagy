@@ -48,7 +48,7 @@ describe 'pagy/extras/calendar' do
     it 'raises ArgumentError for wrong conf' do
       _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, []) }.must_raise ArgumentError
       _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, unknown: {}) }.must_raise ArgumentError
-      _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, year: []) }.must_raise ArgumentError
+      _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, year: []) }.must_raise TypeError
       _ { MockApp::Calendar.new.send(:pagy_calendar, @collection, {}) }.must_raise ArgumentError
     end
     it 'selects :year for the pages and check the total' do
@@ -123,7 +123,7 @@ describe 'pagy/extras/calendar' do
     end
     it 'selects :month for an intermediate page' do
       calendar, _pagy, entries = app(params: { month_page: 25 }).send(:pagy_calendar, @collection,
-                                                                      month: {},
+                                                                      month: { size: [1, 4, 4, 1] },
                                                                       pagy: { items: 600 })
       _(calendar[:month].series).must_equal [1, :gap, 21, 22, 23, 24, '25', 26]
       _(calendar[:month].prev).must_equal 24
@@ -132,7 +132,7 @@ describe 'pagy/extras/calendar' do
     end
     it 'selects :month for the last page' do
       calendar, _pagy, entries = app(params: { month_page: 26 }).send(:pagy_calendar, @collection,
-                                                                      month: { },
+                                                                      month: { size: [1, 4, 4, 1]},
                                                                       pagy: { items: 600 })
       _(calendar[:month].series).must_equal [1, :gap, 22, 23, 24, 25, '26']
       _(calendar[:month].prev).must_equal 25
@@ -173,7 +173,7 @@ describe 'pagy/extras/calendar' do
     it 'selects :day for the first page' do
       collection = MockCollection::Calendar.new(@collection[0, 40])
       calendar, _pagy, entries = app(params: { day_page: 1 }).send(:pagy_calendar, collection,
-                                                                   day: {},
+                                                                   day: { size: [1, 4, 4, 1] },
                                                                    pagy: { items: 600 })
 
       _(calendar[:day].series).must_equal ["1", 2, 3, 4, 5, :gap, 60]
@@ -185,7 +185,7 @@ describe 'pagy/extras/calendar' do
     it 'selects :day for an intermediate page' do
       collection = MockCollection::Calendar.new(@collection[0, 40])
       calendar, _pagy, entries = app(params: { day_page: 25 }).send(:pagy_calendar, collection,
-                                                                    day: {},
+                                                                    day: { size: [1, 4, 4, 1] },
                                                                     pagy: { items: 600 })
       _(calendar[:day].series).must_equal [1, :gap, 21, 22, 23, 24, "25", 26, 27, 28, 29, :gap, 60]
       _(calendar[:day].prev).must_equal 24
@@ -195,7 +195,7 @@ describe 'pagy/extras/calendar' do
     it 'selects :day for the last page' do
       collection = MockCollection::Calendar.new(@collection[0, 40])
       calendar, _pagy, entries = app(params: { day_page: 60 }).send(:pagy_calendar, collection,
-                                                                    day: {},
+                                                                    day: { size: [1, 4, 4, 1]},
                                                                     pagy: { items: 600 })
       _(calendar[:day].series).must_equal [1, :gap, 56, 57, 58, 59, "60"]
       _(calendar[:day].prev).must_equal 59
