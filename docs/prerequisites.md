@@ -5,24 +5,10 @@ icon: shield-check-24
 ---
 
 ## Ruby
-+++ Pagy 4.0+
++++ Pagy 7.0+
 !!! success
-- Working on ruby `2.5+`
-- Tested on ruby `3.0+`
+Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies.
 !!!
-
-!!! info
-For CI reasons, tests cover only the [ruby end-of-life](https://endoflife.date/ruby) supported rubies. However the current version still works with ruby 2.5+ (rubocop checked), but it will be phased out in v7 and will be kept in sync with the official [ruby end-of-life](https://endoflife.date/ruby).
-!!!
-
-+++ Old Pagy
-!!! info
-Older versions run on:
-
-* ruby `1.9+` or
-* `jruby 1.7+` till `ruby <2.5`
-!!!
-
 +++
 
 ## Working environments
