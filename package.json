@@ -7,5 +7,12 @@
     },
     "devDependencies": {
         "retypeapp-linux-x64": "3.5.0"
+    },
+    "pnpm": {
+        "peerDependencyRules": {
+            "allowedVersions": {
+                "svgo": "2.8.0"
+            }
+        }
     }
 }

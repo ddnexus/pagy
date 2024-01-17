@@ -4,8 +4,8 @@
     "private": true,
     "devDependencies": {
         "@types/node": "20.8.0",
-        "@typescript-eslint/eslint-plugin": "6.18.1",
-        "@typescript-eslint/parser": "6.18.1",
+        "@typescript-eslint/eslint-plugin": "6.19.0",
+        "@typescript-eslint/parser": "6.19.0",
         "eslint": "8.56.0",
         "eslint-plugin-align-assignments": "^1.1.2",
         "eslint-plugin-import": "2.29.1",
@@ -14,13 +14,6 @@
         "parcel": "2.11.0",
         "parcel-plugin-nuke-dist": "^1.0.1",
         "typescript": "5.3.3"
-    },
-    "pnpm": {
-        "peerDependencyRules": {
-            "allowedVersions": {
-                "svgo": "2.8.0"
-            }
-        }
     },
     "browserslist": [
         "defaults"
