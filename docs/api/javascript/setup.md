@@ -298,10 +298,10 @@ window.addEventListener("turbo:load", Pagy.init);
 import Pagy from "pagy-module"
 
 // plain javascript
-window.addEventListener(load, Pagy.init)
+window.addEventListener("load", Pagy.init)
 
 // Turbo
-window.addEventListener(turbo:load, Pagy.init)
+window.addEventListener("turbo:load", Pagy.init)
 
 // Turbolinks
 window.addEventListener("turbolinks:load", Pagy.init)
