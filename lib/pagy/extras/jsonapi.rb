@@ -31,22 +31,24 @@ class Pagy # :nodoc:
     # Should skip the jsonapi
     def pagy_skip_jsonapi?(vars)
       return true if vars[:jsonapi] == false || (vars[:jsonapi].nil? && DEFAULT[:jsonapi] == false)
-      # check the reserved :page param and raise PageParamError or return nil
-      raise ReservedParamError, params[:page] unless params[:page].is_a?(Hash) || params[:page].nil?
+      # check the reserved :page param
+      raise ReservedParamError, params[:page] unless params[:page].respond_to?(:fetch) || params[:page].nil?
     end
 
     # Override the Backend method
     def pagy_get_page(vars)
       return super if pagy_skip_jsonapi?(vars)
+      return 1 if params[:page].nil?
 
-      ((params[:page].is_a?(Hash) && params[:page][vars[:page_param] || DEFAULT[:page_param]]) || 1).to_i
+      params[:page][vars[:page_param] || DEFAULT[:page_param]].to_i
     end
 
     # Override the ItemsExtra::Backend method
     def pagy_get_items_size(vars)
       return super if pagy_skip_jsonapi?(vars)
+      return if params[:page].nil?
 
-      params[:page][vars[:items_param] || DEFAULT[:items_param]] if params[:page].is_a?(Hash)
+      params[:page][vars[:items_param] || DEFAULT[:items_param]]
     end
 
     # Override UrlHelper method
@@ -59,4 +61,5 @@ class Pagy # :nodoc:
     end
   end
   Backend.prepend JsonApiExtra
+  Frontend.prepend JsonApiExtra
 end
