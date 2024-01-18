@@ -68,6 +68,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rbzip2 (0.3.0)
+    readline-ext (0.2.0)
     regexp_parser (2.9.0)
     rematch (1.4.2)
     rerun (0.14.0)
@@ -137,6 +138,7 @@ DEPENDENCIES
   rack
   rake
   rake-manifest
+  readline-ext
   rematch
   rerun
   rubocop
