@@ -25,6 +25,10 @@ None
 
 <hr>
 
+## Version 6.4.3
+
+- Exclude coverage for prepend conditional, ruby < 3.0 syntax for prepend
+
 ## Version 6.4.2
 
 - Better module overrides in jsonapi
