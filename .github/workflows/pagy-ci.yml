@@ -34,9 +34,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - ruby-version: '3.0'
-            env:
-              BUNDLE_GEMFILE: .github/gemfiles/default
           - ruby-version: '3.1'
             env:
               BUNDLE_GEMFILE: .github/gemfiles/default

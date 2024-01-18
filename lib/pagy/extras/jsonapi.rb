@@ -61,7 +61,9 @@ class Pagy # :nodoc:
     end
     # Swap the next lines in ruby 3.0+ baseline
     # ItemsExtra::Backend.prepend ItemsExtraOverride if defined?(ItemsExtra::Backend)
+    # :nocov:
     Backend.prepend ItemsExtraOverride if defined?(ItemsExtra::Backend)
+    # :nocov:
 
     # Module overriding UrlHelper
     module UrlHelperOverride
@@ -75,8 +77,8 @@ class Pagy # :nodoc:
       end
     end
     # Swap the next lines in ruby 3.0+ baseline
-    UrlHelpers.prepend UrlHelperOverride
-    # Backend.prepend UrlHelperOverride
-    # Frontend.prepend UrlHelperOverride
+    # UrlHelpers.prepend UrlHelperOverride
+    Backend.prepend UrlHelperOverride
+    Frontend.prepend UrlHelperOverride
   end
 end
