@@ -16,7 +16,7 @@ class Pagy
   DEFAULT = { page:         1, # rubocop:disable Style/MutableConstant
               items:        20,
               outset:       0,
-              size:         [1, 4, 4, 1],
+              size:         7,
               page_param:   :page,
               params:       {},
               fragment:     '',

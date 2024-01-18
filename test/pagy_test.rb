@@ -317,7 +317,7 @@ describe 'pagy' do
       _(Pagy::DEFAULT[:page]).must_equal 1
       _(Pagy::DEFAULT[:items]).must_equal 20
       _(Pagy::DEFAULT[:outset]).must_equal 0
-      _(Pagy::DEFAULT[:size]).must_equal [1, 4, 4, 1]
+      _(Pagy::DEFAULT[:size]).must_equal 7
       _(Pagy::DEFAULT[:page_param]).must_equal :page
       _(Pagy::DEFAULT[:params]).must_equal({})
       _(Pagy::DEFAULT[:request_path]).must_equal('')

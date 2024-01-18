@@ -11,17 +11,17 @@ describe 'pagy/extras/semantic' do
 
   describe '#pagy_semantic_nav' do
     it 'renders first page' do
-      pagy = Pagy.new(count: 1000, page: 1)
+      pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: 1)
       _(app.pagy_semantic_nav(pagy)).must_rematch
       _(app.pagy_semantic_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
     it 'renders intermediate page' do
-      pagy = Pagy.new(count: 1000, page: 20)
+      pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: 20)
       _(app.pagy_semantic_nav(pagy)).must_rematch
       _(app.pagy_semantic_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
     it 'renders last page' do
-      pagy = Pagy.new(count: 1000, page: 50)
+      pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: 50)
       _(app.pagy_semantic_nav(pagy)).must_rematch
       _(app.pagy_semantic_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
@@ -32,7 +32,7 @@ describe 'pagy/extras/semantic' do
 
   describe '#pagy_semantic_nav_js' do
     it 'renders first page' do
-      pagy = Pagy.new(count: 1000, page: 1)
+      pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: 1)
       _(app.pagy_semantic_nav_js(pagy)).must_rematch
       _(app.pagy_semantic_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
                                         steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
@@ -46,13 +46,13 @@ describe 'pagy/extras/semantic' do
                                     steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
     end
     it 'renders intermediate page' do
-      pagy = Pagy.new(count: 1000, page: 20)
+      pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: 20)
       _(app.pagy_semantic_nav_js(pagy)).must_rematch
       _(app.pagy_semantic_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
                                         steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
     end
     it 'renders last page' do
-      pagy = Pagy.new(count: 1000, page: 50)
+      pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: 50)
       _(app.pagy_semantic_nav_js(pagy)).must_rematch
       _(app.pagy_semantic_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
                                         steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch

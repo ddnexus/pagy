@@ -24,7 +24,8 @@ STYLES = %w[bootstrap bulma foundation materialize navs semantic uikit].freeze
 STYLES.each { |name| require "pagy/extras/#{name}" }
 require 'pagy/extras/items'
 require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false  # opt-in trim
+Pagy::DEFAULT[:size]       = [1, 4, 4, 1]  # old size default
+Pagy::DEFAULT[:trim_extra] = false         # opt-in trim
 
 # simple array-based collection that acts as standard DB collection
 require_relative '../test/mock_helpers/collection'
