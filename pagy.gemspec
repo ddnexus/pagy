@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
                     'bug_tracker_uri'       => 'https://github.com/ddnexus/pagy/issues',
                     'changelog_uri'         => 'https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md',
                     'support'               => 'https://github.com/ddnexus/pagy/discussions/categories/q-a' }
-  s.required_ruby_version = '>= 2.5'
+  s.required_ruby_version = '>= 3.1'
 end

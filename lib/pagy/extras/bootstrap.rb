@@ -47,7 +47,7 @@ class Pagy # :nodoc:
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_bootstrap_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
-      link    = pagy_link_proc(pagy, link_extra: link_extra)
+      link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{

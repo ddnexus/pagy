@@ -32,7 +32,7 @@ class Pagy # :nodoc:
       rel                   = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
       rel['last']           = pagy.last unless countless
       url_str               = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: true)
-      link                  = rel.map do |r, num| # filter_map if ruby >=2.7
+      link                  = rel.filter_map do |r, num|
                                 next unless num # rubocop:disable Layout/EmptyLineAfterGuardClause
                                 [r, url_str.sub(PAGE_PLACEHOLDER, num.to_s)]
                               end.compact.to_h

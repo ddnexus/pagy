@@ -10,7 +10,7 @@ class Pagy # :nodoc:
     # Pagination for uikit: it returns the html with the series of links to the pages
     def pagy_uikit_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: link_extra)
+      link = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<ul#{p_id} class="pagy-uikit-nav uk-pagination uk-flex-center">#{pagy_uikit_prev_html pagy, link})
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -29,7 +29,7 @@ class Pagy # :nodoc:
     def pagy_uikit_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: link_extra)
+      link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => pagy_uikit_prev_html(pagy, link),
                'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
                'active' => %(<li class="uk-active"><span>#{LABEL_PLACEHOLDER}</span></li>),
@@ -43,7 +43,7 @@ class Pagy # :nodoc:
     # Javascript combo pagination for uikit: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_uikit_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
-      link    = pagy_link_proc(pagy, link_extra: link_extra)
+      link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{

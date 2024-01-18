@@ -33,11 +33,7 @@ class Pagy # :nodoc:
         object   = nil
         @units.each_with_index do |unit, index|
           params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_param] } + [@page_param]
-          conf[unit][:params] = lambda do |unit_params|  # delete page_param from the sub-units
-                                  # Hash#except missing from ruby 2.5 baseline
-                                  params_to_delete.each { |p| unit_params.delete(p.to_s) }
-                                  unit_params
-                                end
+          conf[unit][:params] = lambda { |up| up.except(*params_to_delete.map(&:to_s)) } # rubocop:disable Style/Lambda
           conf[unit][:period] = object&.send(:active_period) || @period
           calendar[unit]      = object = Calendar.send(:create, unit, conf[unit])
         end

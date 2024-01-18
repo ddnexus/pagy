@@ -34,7 +34,7 @@ require 'sinatra/base'
 
 # sinatra application
 class PagyApp < Sinatra::Base
-  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js"
+  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js".freeze
 
   configure do
     enable :inline_templates
@@ -80,7 +80,7 @@ class PagyApp < Sinatra::Base
         collection = MockCollection.new
         @pagy, @records = pagy(collection, trim_extra: params['trim'])
         name_fragment = name == 'navs' ? '' : "#{name}_"
-        erb :helpers, locals: { name: name, name_fragment: name_fragment }
+        erb :helpers, locals: { name:, name_fragment: }
       end
     end
 
@@ -89,7 +89,7 @@ class PagyApp < Sinatra::Base
         collection = MockCollection::Calendar.new
         @calendar, @pagy, @records = pagy_calendar(collection, month: { size: [1, 2, 2, 1], trim_extra: params['trim'] })
         name_fragment = name == 'navs' ? '' : "#{name}_"
-        erb :calendar_helpers, locals: { name: name, name_fragment: name_fragment }
+        erb :calendar_helpers, locals: { name:, name_fragment: }
       end
     end
   end

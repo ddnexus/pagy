@@ -10,7 +10,7 @@ class Pagy # :nodoc:
     # Pagination for Foundation: it returns the html with the series of links to the pages
     def pagy_foundation_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: link_extra)
+      link = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<nav#{p_id} class="pagy-foundation-nav" aria-label="Pagination"><ul class="pagination">)
       html << pagy_foundation_prev_html(pagy, link)
@@ -30,7 +30,7 @@ class Pagy # :nodoc:
     def pagy_foundation_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: link_extra)
+      link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => %(<ul class="pagination">#{pagy_foundation_prev_html pagy, link}),
                'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
                'active' => %(<li class="current">#{LABEL_PLACEHOLDER}</li>),
@@ -44,7 +44,7 @@ class Pagy # :nodoc:
     # Javascript combo pagination for Foundation: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_foundation_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
-      link    = pagy_link_proc(pagy, link_extra: link_extra)
+      link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input class="input-group-field cell shrink" type="number" min="1" max="#{

@@ -117,8 +117,8 @@ end # :nodoc:
   Author.create(name: i)
 end
 
-Author.all.each_with_index do |author, i|
-  Book.create(author: author, name: i)
+Author.all.each_with_index do |_author, _i|
+  Book.create(:author, :name)
 end
 
 ## Optional: Meilisearch example

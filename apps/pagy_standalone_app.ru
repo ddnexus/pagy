@@ -54,7 +54,7 @@ Pagy::DEFAULT.freeze
 require 'sinatra/base'
 # Sinatra application
 class PagyStandaloneApp < Sinatra::Base
-  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js"
+  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js".freeze
 
   configure do
     enable :inline_templates
@@ -87,7 +87,7 @@ class MockCollection < Array
   end
 
   def offset(value)
-    @collection = self[value..-1]
+    @collection = self[value..]
     self
   end
 

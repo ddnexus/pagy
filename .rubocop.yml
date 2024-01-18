@@ -6,7 +6,7 @@ require:
 
 # trying to be good  O:)
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
     # '___' prefixed dirs are excluded

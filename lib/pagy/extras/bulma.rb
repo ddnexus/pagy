@@ -10,7 +10,7 @@ class Pagy # :nodoc:
     # Pagination for bulma: it returns the html with the series of links to the pages
     def pagy_bulma_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: link_extra)
+      link = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<nav#{p_id} class="pagy-bulma-nav pagination is-centered" aria-label="pagination">)
       html << pagy_bulma_prev_next_html(pagy, link)
@@ -34,7 +34,7 @@ class Pagy # :nodoc:
     def pagy_bulma_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: link_extra)
+      link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => %(#{pagy_bulma_prev_next_html(pagy, link)}<ul class="pagination-list">),
                'link'   => %(<li>#{link.call PAGE_PLACEHOLDER, LABEL_PLACEHOLDER,
                                              %(class="pagination-link" aria-label="goto page #{PAGE_PLACEHOLDER}")}</li>),
@@ -51,7 +51,7 @@ class Pagy # :nodoc:
     # Javascript combo pagination for bulma: it returns a nav and a JSON tag used by the pagy.js file
     def pagy_bulma_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
       p_id    = %( id="#{pagy_id}") if pagy_id
-      link    = pagy_link_proc(pagy, link_extra: link_extra)
+      link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input class="input" type="number" min="1" max="#{p_pages}" value="#{

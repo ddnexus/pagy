@@ -17,7 +17,7 @@ class Pagy
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, pagy_id: nil, link_extra: '', **vars)
       p_id   = %( id="#{pagy_id}") if pagy_id
-      link   = pagy_link_proc(pagy, link_extra: link_extra)
+      link   = pagy_link_proc(pagy, link_extra:)
       p_prev = pagy.prev
       p_next = pagy.next
 

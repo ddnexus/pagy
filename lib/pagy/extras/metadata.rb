@@ -15,7 +15,7 @@ class Pagy # :nodoc:
 
     # Return the metadata hash
     def pagy_metadata(pagy, absolute: nil)
-      scaffold_url = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: absolute)
+      scaffold_url = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute:)
       {}.tap do |metadata|
         keys = defined?(Calendar) && pagy.is_a?(Calendar) ? pagy.vars[:metadata] - %i[count items] : pagy.vars[:metadata]
         keys.each do |key|

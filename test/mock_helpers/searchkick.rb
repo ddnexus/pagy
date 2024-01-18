@@ -29,8 +29,8 @@ module MockSearchkick
   end
 
   class Model
-    def self.search(*args, &block)
-      Results.new(*args, &block)
+    def self.search(...)
+      Results.new(...)
     end
 
     extend Pagy::Searchkick

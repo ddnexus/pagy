@@ -42,7 +42,7 @@ class Pagy # :nodoc:
         p_vars         = pagy.vars
         p_items        = p_vars[:items]
         p_vars[:items] = ITEMS_PLACEHOLDER
-        link           = pagy_marked_link(pagy_link_proc(pagy, link_extra: link_extra))
+        link           = pagy_marked_link(pagy_link_proc(pagy, link_extra:))
         p_vars[:items] = p_items # restore the items
 
         html  = +%(<span#{p_id} class="pagy-items-selector-js" #{pagy_data(pagy, :selector, pagy.from, link)}>)
