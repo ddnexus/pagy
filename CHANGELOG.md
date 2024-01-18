@@ -25,6 +25,12 @@ None
 
 <hr>
 
+## Version 6.4.2
+
+- Better module overrides in jsonapi
+- Replaced the is_a?(Hash) check for jsonapi reserved :page param with respond_to?(:Fetch) and prepended to the Frontend
+- Docs improvements and fixes
+
 ## Version 6.4.1
 
 - Remove dependency on base64 (#618)Ruby 3.3 prints a warning if base64 is used without specifying it in the gemfile.
