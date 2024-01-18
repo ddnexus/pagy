@@ -59,10 +59,8 @@ class Pagy # :nodoc:
         params[:page][vars[:items_param] || DEFAULT[:items_param]]
       end
     end
-    # Swap the next lines in ruby 3.0+ baseline
-    # ItemsExtra::Backend.prepend ItemsExtraOverride if defined?(ItemsExtra::Backend)
     # :nocov:
-    Backend.prepend ItemsExtraOverride if defined?(ItemsExtra::Backend)
+    ItemsExtra::Backend.prepend ItemsExtraOverride if defined?(ItemsExtra::Backend)
     # :nocov:
 
     # Module overriding UrlHelper
@@ -76,9 +74,6 @@ class Pagy # :nodoc:
         params['page'][vars[:items_param].to_s] = vars[:items] if vars[:items_extra]
       end
     end
-    # Swap the next lines in ruby 3.0+ baseline
-    # UrlHelpers.prepend UrlHelperOverride
-    Backend.prepend UrlHelperOverride
-    Frontend.prepend UrlHelperOverride
+    UrlHelpers.prepend UrlHelperOverride
   end
 end

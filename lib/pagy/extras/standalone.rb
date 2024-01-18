@@ -50,9 +50,7 @@ class Pagy # :nodoc:
       "#{vars[:url]}#{query_string}#{vars[:fragment]}"
     end
   end
-  # In ruby 3+ `UrlHelpers.prepend StandaloneExtra` would be enough instead of using the next 2 lines
-  Frontend.prepend StandaloneExtra
-  Backend.prepend StandaloneExtra
+  UrlHelpers.prepend StandaloneExtra
 
   # Define a dummy params method if it's not already defined in the including module
   module Backend
