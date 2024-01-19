@@ -3,6 +3,10 @@
 fr:
   pagy:
 
+    page_label:
+      one: "Page"
+      other: "Pages"
+
     item_name:
       one: "élément"
       other: "éléments"
