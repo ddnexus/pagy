@@ -3,6 +3,10 @@
 it:
   pagy:
 
+    page_label:
+      one: "Pagina"
+      other: "Pagine"
+
     item_name:
       one: "elemento"
       other: "elementi"
