@@ -28,4 +28,20 @@ None
 
 - Dropped old rubies support: Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now.
 
-[LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 
+### Default changes possibly breaking test/views
+
+- Changed `Pagy::DEFAULT[:size]` variable defaults from `[1, 4, 4, 1]` to `7`. You can explicitly set it in the initializer, 
+  if your app was relying on it.
+- Added sensible `:size` defaults in Calendar Unit subclasses.  You can explicitly set it in the initializer, if your app was 
+  relying on it.
+  - `Pagy::Calendar::Day::DEFAULT[:size]` `31`
+  - `Pagy::Calendar::Month::DEFAULT[:size]` `12`
+  - `Pagy::Calendar::Quarter::DEFAULT[:size]` `4`
+  - `Pagy::Calendar::Year::DEFAULT[:size]` `10`
+- Changed a few `format` defaults in Calendar Unit subclasses.  You can explicitly set it in the initializer, if your app was
+  relying on it.
+  - `Pagy::Calendar::Day::DEFAULT[:format]` from `'%Y-%m-%d'` to `'%d'`
+  - `Pagy::Calendar::Month::DEFAULT[:format]` from `'%Y-%m'` to `'%b'`
+  - `Pagy::Calendar::Quartr::DEFAULT[:format]` from `'%Y-Q%q'` to `'Q%q'`
+
+ [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 
