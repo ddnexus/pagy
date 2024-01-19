@@ -15,10 +15,18 @@ describe 'pagy/extras/navs' do
       _(app.pagy_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
                                steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
     end
-    it 'renders first page when used with Pagy::Countless' do
+    it 'renders single page when used with Pagy::Countless' do
       require 'pagy/extras/countless'
 
       pagy, = Pagy::Countless.new(page: 1).finalize(0)
+      _(app.pagy_nav_js(pagy)).must_rematch
+      _(app.pagy_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
+                                    steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch
+    end
+    it 'renders first page of multiple when used with Pagy::Countless' do
+      require 'pagy/extras/countless'
+
+      pagy, = Pagy::Countless.new(page: 1).finalize(23)
       _(app.pagy_nav_js(pagy)).must_rematch
       _(app.pagy_nav_js(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
                                     steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch

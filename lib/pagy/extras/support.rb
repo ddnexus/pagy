@@ -14,38 +14,24 @@ class Pagy # :nodoc:
       pagy_url_for(pagy, pagy.next) if pagy.next
     end
 
-    # Return the HTML string for the previous page link
-    def pagy_prev_link(pagy, text: pagy_t('pagy.nav.prev'), link_extra: '')
-      if pagy.prev
-        %(<span class="page prev"><a href="#{
-            pagy_url_for(pagy, pagy.prev, html_escaped: true)
-          }" rel="prev" aria-label="previous" #{
-            pagy.vars[:link_extra]
-          } #{link_extra}>#{text}</a></span>)
-      else
-        %(<span class="page prev disabled">#{text}</span>)
-      end
+    # Return the enabled/disabled HTML string for the previous page link
+    def pagy_prev_html(pagy, link_extra: '')
+      link = pagy_link_proc(pagy, link_extra:)
+      pagy_nav_prev_html(pagy, link)
     end
 
-    # Return the HTML string for the next page link
-    def pagy_next_link(pagy, text: pagy_t('pagy.nav.next'), link_extra: '')
-      if pagy.next
-        %(<span class="page next"><a href="#{
-            pagy_url_for(pagy, pagy.next, html_escaped: true)
-          }" rel="next" aria-label="next" #{
-            pagy.vars[:link_extra]
-          } #{link_extra}>#{text}</a></span>)
-      else
-        %(<span class="page next disabled">#{text}</span>)
-      end
+    # Return the enabled/disabled HTML string for the next page link
+    def pagy_next_html(pagy, link_extra: '')
+      link = pagy_link_proc(pagy, link_extra:)
+      pagy_nav_next_html(pagy, link)
     end
 
-    # Return the HTML link tag for the previous page or nil
+    # Conditionally return the HTML link tag string for the previous page
     def pagy_prev_link_tag(pagy)
       %(<link href="#{pagy_url_for(pagy, pagy.prev, html_escaped: true)}" rel="prev"/>) if pagy.prev
     end
 
-    # Return the HTML link tag for the next page or nil
+    # Conditionally return the HTML link tag string for the next page
     def pagy_next_link_tag(pagy)
       %(<link href="#{pagy_url_for(pagy, pagy.next, html_escaped: true)}" rel="next"/>) if pagy.next
     end

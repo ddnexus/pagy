@@ -28,6 +28,9 @@ None
 
 - Dropped old rubies support: Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now.
 - Renamed `:i18n_key` > `:item_i18n_key`
+- Refactored `support` extra
+  - Removed `pagy_prev_link`: use `pagy_prev_html` without the `:text` argument (can customize `pagy.nav.prev`)
+  - Removed `pagy_next_link`: use `pagy_next_html` without the `:text` argument (can customize `pagy.nav.next`)
 
 ### Default changes possibly breaking test/views
 

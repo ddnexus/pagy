@@ -25,7 +25,7 @@ require 'bundler/inline'
 # NOTICE: if you get any installation error with the following setup
 # temporarily remove the Gemfile and Gemfile.lock from the repo (they may interfere with the bundler/inline)
 
-gemfile true do
+gemfile false do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'rack'

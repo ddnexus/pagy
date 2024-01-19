@@ -41,6 +41,9 @@ Layout/EndAlignment:
 Layout/HashAlignment:
   Enabled: false
 
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
+
 # bad for performance
 Metrics:
   Enabled: false
@@ -55,6 +58,10 @@ Style/EmptyCaseCondition:
 Style/RedundantInitialize:
   Exclude:
     - test/mock_helpers/arel.rb
+
+# Please!
+Style/StringConcatenation:
+  Enabled: false
 
 # these cops are disabled only in the test files in order to
 # allow to copy and paste the failed output for test reconciliation

@@ -22,6 +22,7 @@ describe 'pagy/frontend' do
       _(app.pagy_nav(pagy)).must_rematch
       _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
     end
+
     it 'renders page 3' do
       pagy = Pagy.new count: 103, page: 3
       _(app.pagy_nav(pagy)).must_rematch
