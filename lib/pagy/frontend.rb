@@ -44,7 +44,7 @@ class Pagy
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, pagy_id: nil, item_name: nil, i18n_key: nil)
+    def pagy_info(pagy, pagy_id: nil, item_name: nil, item_i18n_key: nil)
       p_id    = %( id="#{pagy_id}") if pagy_id
       p_count = pagy.count
       key     = if    p_count.zero?   then 'pagy.info.no_items'
@@ -53,7 +53,7 @@ class Pagy
                 end
 
       %(<span#{p_id} class="pagy-info">#{
-          pagy_t key, item_name: item_name || pagy_t(i18n_key || pagy.vars[:i18n_key], count: p_count),
+          pagy_t key, item_name: item_name || pagy_t(item_i18n_key || pagy.vars[:item_i18n_key], count: p_count),
                       count: p_count, from: pagy.from, to: pagy.to
         }</span>)
     end

@@ -27,6 +27,7 @@ None
 ### Breaking changes
 
 - Dropped old rubies support: Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now.
+- Renamed `:i18n_key` > `:item_i18n_key`
 
 ### Default changes possibly breaking test/views
 

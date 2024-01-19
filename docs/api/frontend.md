@@ -60,7 +60,7 @@ The `nav.*` templates produce the same output, and can be used as an easier (but
 
 See also [Using templates](/docs/how-to.md#use-templates).
 
-==- `pagy_info(pagy, pagy_id: ..., item_name: ..., i18n_key: ...)`
+==- `pagy_info(pagy, pagy_id: ..., item_name: ..., item_i18n_key: ...)`
 
 This method provides the info about the content of the current pagination. For example:
 
@@ -76,14 +76,14 @@ The method accepts also a few optional keyword arguments:
 
 - `:pagy_id` which adds the `id` HTML attribute to the `span` tag wrapping the info
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
-- `:i18n_key` the key to lookup in a dictionary
+- `:item_i18n_key` the key to lookup in a dictionary
 
-Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `Pagy::DEFAULT[:i18n_key]`
+Notice the `:item_i18n_key` can be passed also to the constructor or be a global variable (i.e. `Pagy::DEFAULT[:item_i18n_key]`
 
 ||| View
 ```erb
 <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
-<%== pagy_info(@pagy, i18n_key: 'activerecord.model.product' %>
+<%== pagy_info(@pagy, item_i18n_key: 'activerecord.model.product' %>
 ```
 |||
 
@@ -203,4 +203,3 @@ Specifically do not add a `class` attribute that will end up in the `pagy_bootst
 This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](i18n.md) doc for details)_
 
 ===
-

@@ -37,7 +37,7 @@
     :params: {}
     :fragment: ''
     :link_extra: ''
-    :i18n_key: pagy.item_name
+    :item_i18n_key: pagy.item_name
     :cycle: false
     :request_path: ''
     :steps: false

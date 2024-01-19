@@ -26,7 +26,7 @@ describe 'pagy/extras/items_trim' do
     _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_rematch
     _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch
     Pagy::I18n::DATA['en'][0]['activerecord.models.product.other'] = 'products'
-    _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', i18n_key: 'activerecord.models.product')).must_rematch
+    _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_i18n_key: 'activerecord.models.product')).must_rematch
     pagy = Pagy.new count: 1000, page: 3, items_extra: false
     _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_equal ''
   end

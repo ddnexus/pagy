@@ -26,7 +26,7 @@
 # Pagy::DEFAULT[:params]       = {}                           # default
 # Pagy::DEFAULT[:fragment]     = '#fragment'                  # example
 # Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'         # example
-# Pagy::DEFAULT[:i18n_key]     = 'pagy.item_name'             # default
+# Pagy::DEFAULT[:item_i18n_key]     = 'pagy.item_name'             # default
 # Pagy::DEFAULT[:cycle]        = true                         # example
 # Pagy::DEFAULT[:request_path] = "/foo"                       # example
 
@@ -249,7 +249,7 @@
 # require 'pagy/extras/i18n'
 
 # Default i18n key
-# Pagy::DEFAULT[:i18n_key] = 'pagy.item_name'   # default
+# Pagy::DEFAULT[:item_i18n_key] = 'pagy.item_name'   # default
 
 
 # When you are done setting your own default freeze it, so it will not get changed accidentally

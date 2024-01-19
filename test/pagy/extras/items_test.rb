@@ -157,7 +157,7 @@ describe 'pagy/extras/items' do
       _(app.pagy_items_selector_js(pagy)).must_rematch
       _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch
       Pagy::I18n::DATA['en'][0]['elasticsearch.product.other'] = 'products'
-      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', i18n_key: 'elasticsearch.product')).must_rematch
+      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_i18n_key: 'elasticsearch.product')).must_rematch
       pagy = Pagy.new count: 1000, page: 3, items_extra: false
       _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_equal ''
     end

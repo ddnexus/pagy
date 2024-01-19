@@ -116,14 +116,14 @@ describe 'pagy/frontend' do
     it 'renders with existing i18n key' do
       Pagy::I18n::DATA['en'][0]['pagy.info.product.one']   = 'Product'
       Pagy::I18n::DATA['en'][0]['pagy.info.product.other'] = 'Products'
-      _(app.pagy_info(Pagy.new(count: 0, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">No Products found</span>'
-      _(app.pagy_info(Pagy.new(count: 1, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
-      _(app.pagy_info(Pagy.new(count: 13, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
-      _(app.pagy_info(Pagy.new(count: 100, i18n_key: 'pagy.info.product', page: 3))).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
-      _(app.pagy_info(Pagy.new(count: 0), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">No Products found</span>'
-      _(app.pagy_info(Pagy.new(count: 1), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
-      _(app.pagy_info(Pagy.new(count: 13), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
-      _(app.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
+      _(app.pagy_info(Pagy.new(count: 0, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">No Products found</span>'
+      _(app.pagy_info(Pagy.new(count: 1, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
+      _(app.pagy_info(Pagy.new(count: 13, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
+      _(app.pagy_info(Pagy.new(count: 100, item_i18n_key: 'pagy.info.product', page: 3))).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
+      _(app.pagy_info(Pagy.new(count: 0), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">No Products found</span>'
+      _(app.pagy_info(Pagy.new(count: 1), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
+      _(app.pagy_info(Pagy.new(count: 13), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
+      _(app.pagy_info(Pagy.new(count: 100, page: 3), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
       i18n_load(locale: 'en') # reset for other tests
     end
     it 'overrides the item_name and set pagy_id' do

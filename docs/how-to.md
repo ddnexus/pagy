@@ -356,12 +356,12 @@ The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" 
 by editing the values of the `"pagy.item_name"` i18n key in
 the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
 
-Besides you can also (dynamically) set the `:i18n_key` variable to let Pagy know where to lookup the item name in some dictionary
+Besides you can also (dynamically) set the `:item_i18n_key` variable to let Pagy know where to lookup the item name in some dictionary
 file (instead of looking it up in the default `"pagy.item_name"` key).
 
 You have a few ways to do that:
 
-1. you can override the `pagy_get_vars` method in your controller, adding the dynamically set `:i18n_key`. For example with
+1. you can override the `pagy_get_vars` method in your controller, adding the dynamically set `:item_i18n_key`. For example with
    ActiveRecord (mostly useful with the [i18n extra](extras/i18n.md) or if you copy over the AR keys into the pagy dictionary):
 
 ||| controller
@@ -371,23 +371,23 @@ You have a few ways to do that:
 def pagy_get_vars(collection, vars)
   { count:    ...,
     page:     ...,
-    i18n_key: "activerecord.models.#{collection.model_name.i18n_key}" }.merge!(vars)
+    item_i18n_key: "activerecord.models.#{collection.model_name.item_i18n_key}" }.merge!(vars)
 end
 ```
 
 |||
 
-2. you can set the `:i18n_key` variable, either globally using the `Pagy::DEFAULT` hash or per instance with the `Pagy.new` method
+2. you can set the `:item_i18n_key` variable, either globally using the `Pagy::DEFAULT` hash or per instance with the `Pagy.new` method
    or with the `pagy` controller method:
 
 ||| initializer (pagy.rb)
 
 ```ruby
 # all the Pagy instances will have the default
-Pagy::DEFAULT[:i18n_key] = 'activerecord.models.product'
+Pagy::DEFAULT[:item_i18n_key] = 'activerecord.models.product'
 
 # or single Pagy instance
-@pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product')
+@pagy, @record = pagy(my_scope, item_i18n_key: 'activerecord.models.product')
 ```
 
 |||
@@ -397,8 +397,8 @@ or passing it as an optional keyword argument to the helper:
 ||| View
 
 ```erb
-<%== pagy_info(@pagy, i18n_key: 'activerecord.models.product') %>
-<%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.models.product') %>
+<%== pagy_info(@pagy, item_i18n_key: 'activerecord.models.product') %>
+<%== pagy_items_selector_js(@pagy, item_i18n_key: 'activerecord.models.product') %>
 ```
 
 |||
@@ -416,7 +416,7 @@ or passing it as an optional keyword argument to the helper:
 
 !!!warning Parameters have precedence
 The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to
-set the `i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most
+set the `item_i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most
 flexible way is passing a pluralized string to the helper.
 !!!
 

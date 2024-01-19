@@ -120,18 +120,18 @@ The method accepts also a few optional keyword arguments:
 
 - `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
-- `:i18n_key` the key to lookup in a dictionary
+- `:item_i18n_key` the key to lookup in a dictionary
 - `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
 
 
 !!!info Info
-The `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `Pagy::DEFAULT[:i18n_key]`
+The `:item_i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `Pagy::DEFAULT[:item_i18n_key]`
 
 ||| some_view.html.erb
 
 ```erb
 <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
-<%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.model.product' %>
+<%== pagy_items_selector_js(@pagy, item_i18n_key: 'activerecord.model.product' %>
 ```
 |||
 !!!

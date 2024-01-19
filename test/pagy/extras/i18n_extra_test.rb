@@ -35,14 +35,14 @@ describe 'pagy/extras/i18n' do
       I18n.locale = 'en'
       custom_dictionary = Pagy.root.parent.join('test', 'files', 'i18n.yml')
       I18n.load_path += [custom_dictionary]
-      _(app.pagy_info(Pagy.new(count: 0, i18n_key: 'activerecord.models.product'))).must_rematch
-      _(app.pagy_info(Pagy.new(count: 1, i18n_key: 'activerecord.models.product'))).must_rematch
-      _(app.pagy_info(Pagy.new(count: 13, i18n_key: 'activerecord.models.product'))).must_rematch
-      _(app.pagy_info(Pagy.new(count: 100, i18n_key: 'activerecord.models.product', page: 3))).must_rematch
-      _(app.pagy_info(Pagy.new(count: 0), i18n_key: 'activerecord.models.product')).must_rematch
-      _(app.pagy_info(Pagy.new(count: 1), i18n_key: 'activerecord.models.product')).must_rematch
-      _(app.pagy_info(Pagy.new(count: 13), i18n_key: 'activerecord.models.product')).must_rematch
-      _(app.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'activerecord.models.product')).must_rematch
+      _(app.pagy_info(Pagy.new(count: 0, item_i18n_key: 'activerecord.models.product'))).must_rematch
+      _(app.pagy_info(Pagy.new(count: 1, item_i18n_key: 'activerecord.models.product'))).must_rematch
+      _(app.pagy_info(Pagy.new(count: 13, item_i18n_key: 'activerecord.models.product'))).must_rematch
+      _(app.pagy_info(Pagy.new(count: 100, item_i18n_key: 'activerecord.models.product', page: 3))).must_rematch
+      _(app.pagy_info(Pagy.new(count: 0), item_i18n_key: 'activerecord.models.product')).must_rematch
+      _(app.pagy_info(Pagy.new(count: 1), item_i18n_key: 'activerecord.models.product')).must_rematch
+      _(app.pagy_info(Pagy.new(count: 13), item_i18n_key: 'activerecord.models.product')).must_rematch
+      _(app.pagy_info(Pagy.new(count: 100, page: 3), item_i18n_key: 'activerecord.models.product')).must_rematch
     end
   end
 end
