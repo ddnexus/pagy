@@ -79,7 +79,7 @@ describe 'pagy/extras/headers' do
     it 'returns the full headers hash' do
       pagy, _records = app.send(:pagy, @collection)
       app.send(:pagy_headers_merge, pagy)
-      _(app.send(:response).headers.to_hash).must_rematch
+      _(app.send(:response).headers).must_rematch
     end
   end
   describe '#pagy_headers_merge with Calendar' do

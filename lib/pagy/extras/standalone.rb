@@ -25,11 +25,11 @@ class Pagy # :nodoc:
             build_nested_query(v, prefix ? "#{prefix}[#{escape(k)}]" : escape(k))
           end.delete_if(&:empty?).join('&')
         when nil
-          prefix
+          escape(prefix)
         else
           raise ArgumentError, 'value must be a Hash' if prefix.nil?
 
-          "#{prefix}=#{escape(value)}"
+          "#{escape(prefix)}=#{escape(value)}"
         end
       end
     end

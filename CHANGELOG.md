@@ -31,6 +31,8 @@ None
 - Refactored `support` extra
   - Removed `pagy_prev_link`: use `pagy_prev_html` without the `:text` argument (can customize `pagy.nav.prev`)
   - Removed `pagy_next_link`: use `pagy_next_html` without the `:text` argument (can customize `pagy.nav.next`)
+- Rack 3 breaking changes (https://github.com/rack/rack/issues/1592): headers are lowercase:
+  - The `headers` extra produces all lowercase headers, regardless how you set them
 
 ### Default changes possibly breaking test/views
 
