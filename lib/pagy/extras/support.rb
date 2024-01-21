@@ -28,12 +28,12 @@ class Pagy # :nodoc:
 
     # Conditionally return the HTML link tag string for the previous page
     def pagy_prev_link_tag(pagy)
-      %(<link href="#{pagy_url_for(pagy, pagy.prev, html_escaped: true)}" rel="prev"/>) if pagy.prev
+      %(<link href="#{pagy_url_for(pagy, pagy.prev)}" rel="prev"/>) if pagy.prev
     end
 
     # Conditionally return the HTML link tag string for the next page
     def pagy_next_link_tag(pagy)
-      %(<link href="#{pagy_url_for(pagy, pagy.next, html_escaped: true)}" rel="next"/>) if pagy.next
+      %(<link href="#{pagy_url_for(pagy, pagy.next)}" rel="next"/>) if pagy.next
     end
   end
   Frontend.prepend SupportExtra

@@ -129,27 +129,22 @@ describe 'pagy/extras/items' do
       it 'renders basic url' do
         pagy = Pagy.new count: 1000, page: 3
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&items=20'
-        _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal '/foo?page=5&amp;items=20'
       end
       it 'renders basic url and items var' do
         pagy = Pagy.new count: 1000, page: 3, items: 50
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&items=50'
-        _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal '/foo?page=5&amp;items=50'
       end
       it 'renders url with items_param' do
         pagy = Pagy.new count: 1000, page: 3, items_param: :custom
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&custom=20'
-        _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal '/foo?page=5&amp;custom=20'
       end
       it 'renders url with fragment' do
         pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment'
         _(app.pagy_url_for(pagy, 6)).must_equal '/foo?page=6&items=20#fragment'
-        _(app.pagy_url_for(pagy, 6, html_escaped: true)).must_equal '/foo?page=6&amp;items=20#fragment'
       end
       it 'renders url with params and fragment' do
         pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment', items: 40
         _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4&items=40#fragment"
-        _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?page=5&amp;a=3&amp;b=4&amp;items=40#fragment"
       end
     end
     it 'renders items selector' do

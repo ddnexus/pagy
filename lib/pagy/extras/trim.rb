@@ -22,7 +22,7 @@ class Pagy # :nodoc:
 
     # Remove the the :page_param param from the first page link
     def pagy_trim(pagy, link)
-      link.sub!(/(\?|&amp;)#{pagy.vars[:page_param]}=1\b(?!&amp;)|\b#{pagy.vars[:page_param]}=1&amp;/, '')
+      link.sub!(/[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/, '')
     end
   end
   Frontend.prepend TrimExtra

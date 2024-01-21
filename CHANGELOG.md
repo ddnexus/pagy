@@ -31,14 +31,16 @@ None
 - Refactored `support` extra
   - Removed `pagy_prev_link`: use `pagy_prev_html` without the `:text` argument (can customize `pagy.nav.prev`)
   - Removed `pagy_next_link`: use `pagy_next_html` without the `:text` argument (can customize `pagy.nav.next`)
-- Rack 3 breaking changes (https://github.com/rack/rack/issues/1592): headers are lowercase:
-  - The `headers` extra produces all lowercase headers, regardless how you set them
+- Rack 3 breaking changes:
+  - The `headers` extra produces all lowercase headers, regardless how you set them [see rack issue](https://github.
+    com/rack/rack/issues/1592)
+  - Removed `:escaped_html` option from `pagy_url_for` (only breaking if you override the method or use the option directly)
 
 ### Default changes possibly breaking test/views
 
 - Changed `Pagy::DEFAULT[:size]` variable defaults from `[1, 4, 4, 1]` to `7`. You can explicitly set it in the initializer, 
   if your app was relying on it.
-- Added sensible `:size` defaults in Calendar Unit subclasses.  You can explicitly set it in the initializer, if your app was 
+- Added sensible `:size` defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was 
   relying on it.
   - `Pagy::Calendar::Day::DEFAULT[:size]` `31`
   - `Pagy::Calendar::Month::DEFAULT[:size]` `12`

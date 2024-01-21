@@ -11,18 +11,18 @@ describe 'pagy/extras/trim' do
       [ # first page
         [{ page: 1 },                    '?page=1',                      ''],                         # only param
         [{ page: '1' },                  '?page=1',                      ''],                         # only param
-        [{ page: 1, b: 2 },              '?page=1&amp;b=2',              '?b=2'],                     # first param
-        [{ a: 1, page: 1, b: 2 },        '?a=1&amp;page=1&amp;b=2',      '?a=1&amp;b=2'],             # middle param
-        [{ a: 1, page: 1 },              '?a=1&amp;page=1',              '?a=1'],                     # last param
+        [{ page: 1, b: 2 },              '?page=1&b=2',              '?b=2'],                         # first param
+        [{ a: 1, page: 1, b: 2 },        '?a=1&page=1&b=2',      '?a=1&b=2'],                         # middle param
+        [{ a: 1, page: 1 },              '?a=1&page=1',              '?a=1'],                         # last param
         # first page with similar key (my_page)
-        [{ my_page: 1, page: 1 },       '?my_page=1&amp;page=1',         '?my_page=1'],               # similar first param
-        [{ a: 1, my_page: 1, page: 1 }, '?a=1&amp;my_page=1&amp;page=1', '?a=1&amp;my_page=1'],       # similar middle param
-        [{ a: 1, page: 1, my_page: 1 }, '?a=1&amp;page=1&amp;my_page=1', '?a=1&amp;my_page=1'],       # similar last param
+        [{ my_page: 1, page: 1 },       '?my_page=1&page=1',         '?my_page=1'],                   # similar first param
+        [{ a: 1, my_page: 1, page: 1 }, '?a=1&my_page=1&page=1', '?a=1&my_page=1'],                   # similar middle param
+        [{ a: 1, page: 1, my_page: 1 }, '?a=1&page=1&my_page=1', '?a=1&my_page=1'],                   # similar last param
         # no first page but similar value (11)
         [{ page: 11 },                  '?page=11',                      '?page=11'],                 # only param
-        [{ page: 11, b: 2 },            '?page=11&amp;b=2',              '?page=11&amp;b=2'],         # first param
-        [{ a: 1, page: 11, b: 2 },      '?a=1&amp;page=11&amp;b=2',      '?a=1&amp;page=11&amp;b=2'], # middle param
-        [{ a: 1, page: 11 },            '?a=1&amp;page=11',              '?a=1&amp;page=11']          # last param
+        [{ page: 11, b: 2 },            '?page=11&b=2',              '?page=11&b=2'],                 # first param
+        [{ a: 1, page: 11, b: 2 },      '?a=1&page=11&b=2',      '?a=1&page=11&b=2'],                 # middle param
+        [{ a: 1, page: 11 },            '?a=1&page=11',              '?a=1&page=11']                  # last param
       ].each do |args|
         params, not_trimmed, trimmed = args
         page = params[:page]

@@ -27,6 +27,8 @@ Layout/ExtraSpacing:
     Enabled: true
   AllowBeforeTrailingComments:
     Enabled: true
+  Exclude:
+    - test/**/*
 
 Layout/EmptyLines:
   Exclude:
@@ -47,6 +49,9 @@ Layout/ClosingParenthesisIndentation:
 # bad for performance
 Metrics:
   Enabled: false
+
+Naming/VariableNumber:
+  CheckSymbols: false
 
 # not cool
 Style/CommentedKeyword:

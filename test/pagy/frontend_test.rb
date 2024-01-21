@@ -154,9 +154,7 @@ describe 'pagy/frontend' do
     it 'renders url with params and fragment' do
       pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment'
       _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4#fragment"
-      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?page=5&amp;a=3&amp;b=4#fragment"
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal "http://example.com:3000/foo?page=5&amp;a=3&amp;b=4#fragment"
     end
     it 'renders url with overridden path' do
       pagy = Pagy.new count: 1000, page: 3, request_path: '/bar'
@@ -175,7 +173,6 @@ describe 'pagy/frontend' do
                                 params.merge('b' => 4, 'add_me' => 'add_me')
                               end)
       _(app.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
-      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?a=5&amp;page=5&amp;b=4&amp;add_me=add_me#fragment"
     end
   end
 end
