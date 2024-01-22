@@ -1,11 +1,15 @@
 ---
-"[1] pagy/extras/jsonapi::#pagy_jsonapi_links#test_0001_returns the ordered links":
-  :first: "/foo?page%5Bnumber%5D=1&page%5Bsize%5D=10"
-  :last: "/foo?page%5Bnumber%5D=100&page%5Bsize%5D=10"
-  :prev: "/foo?page%5Bnumber%5D=2&page%5Bsize%5D=10"
-  :next: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
-"[1] pagy/extras/jsonapi::JsonApi with custom named params#test_0002_sets custom named params": "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
-"[1] pagy/extras/jsonapi::JsonApi#test_0001_uses the :jsonapi with page:nil": "/foo?page%5Bpage%5D=1"
-"[2] pagy/extras/jsonapi::JsonApi#test_0001_uses the :jsonapi with page:nil": "/foo?page%5Bpage%5D=1&page%5Bitems%5D=20"
-"[1] pagy/extras/jsonapi::JsonApi#test_0002_uses the :jsonapi with page:3": "/foo?page%5Bpage%5D=2"
-"[2] pagy/extras/jsonapi::JsonApi#test_0002_uses the :jsonapi with page:3": "/foo?page%5Bpage%5D=2&page%5Bitems%5D=20"
+pagy/extras/jsonapi::JsonApi#test_0002_uses the :jsonapi with page:3:
+  :url_1: "/foo?page%5Bpage%5D=2"
+  :url_2: "/foo?page%5Bpage%5D=2&page%5Bitems%5D=20"
+pagy/extras/jsonapi::JsonApi#test_0001_uses the :jsonapi with page:nil:
+  :url_1: "/foo?page%5Bpage%5D=1"
+  :url_2: "/foo?page%5Bpage%5D=1&page%5Bitems%5D=20"
+pagy/extras/jsonapi::JsonApi with custom named params#test_0002_sets custom named params:
+  :url: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
+pagy/extras/jsonapi::#pagy_jsonapi_links#test_0001_returns the ordered links:
+  :result:
+    :first: "/foo?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+    :last: "/foo?page%5Bnumber%5D=100&page%5Bsize%5D=10"
+    :prev: "/foo?page%5Bnumber%5D=2&page%5Bsize%5D=10"
+    :next: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"

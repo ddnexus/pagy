@@ -51,7 +51,7 @@ GEM
     oj (3.16.3)
       bigdecimal (>= 3.0)
     parallel (1.24.0)
-    parser (3.3.0.4)
+    parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
     puma (6.4.2)
@@ -72,7 +72,7 @@ GEM
     rbzip2 (0.3.0)
     readline-ext (0.2.0)
     regexp_parser (2.9.0)
-    rematch (1.4.2)
+    rematch (2.0.0)
     rerun (0.14.0)
       listen (~> 3.0)
     rexml (3.2.6)

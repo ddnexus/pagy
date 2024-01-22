@@ -60,7 +60,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:year].pages).must_equal 3
       _(calendar[:year].prev).must_be_nil
       _(calendar[:year].next).must_equal 2
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
       total += entries.size
       calendar, _pagy, entries = app(params: { year_page: 2 }).send(:pagy_calendar, @collection,
                                                                     year: {},
@@ -69,7 +69,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:year].pages).must_equal 3
       _(calendar[:year].prev).must_equal 1
       _(calendar[:year].next).must_equal 3
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries_2
       total += entries.size
       calendar, _pagy, entries = app(params: { year_page: 3 }).send(:pagy_calendar, @collection,
                                                                     year: {},
@@ -77,7 +77,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:year].series).must_equal [1, 2, '3']
       _(calendar[:year].prev).must_equal 2
       _(calendar[:year].next).must_be_nil
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries_3
       total += entries.size
       _(total).must_equal @collection.size
     end
@@ -89,7 +89,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:quarter].pages).must_equal 9
       _(calendar[:quarter].prev).must_be_nil
       _(calendar[:quarter].next).must_equal 2
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :quarter for an intermediate page' do
       calendar, _pagy, entries = app(params: { quarter_page: 4 }).send(:pagy_calendar, @collection,
@@ -99,7 +99,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:quarter].pages).must_equal 9
       _(calendar[:quarter].prev).must_equal 3
       _(calendar[:quarter].next).must_equal 5
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :quarter for last page' do
       calendar, _pagy, entries = app(params: { quarter_page: 9 }).send(:pagy_calendar, @collection,
@@ -109,7 +109,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:quarter].pages).must_equal 9
       _(calendar[:quarter].prev).must_equal 8
       _(calendar[:quarter].next).must_be_nil
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :month for the first page' do
       calendar, _pagy, entries = app(params: { month_page: 1 }).send(:pagy_calendar, @collection,
@@ -119,7 +119,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:month].pages).must_equal 26
       _(calendar[:month].prev).must_be_nil
       _(calendar[:month].next).must_equal 2
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :month for an intermediate page' do
       calendar, _pagy, entries = app(params: { month_page: 25 }).send(:pagy_calendar, @collection,
@@ -128,7 +128,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:month].series).must_equal [1, :gap, 21, 22, 23, 24, '25', 26]
       _(calendar[:month].prev).must_equal 24
       _(calendar[:month].next).must_equal 26
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :month for the last page' do
       calendar, _pagy, entries = app(params: { month_page: 26 }).send(:pagy_calendar, @collection,
@@ -137,7 +137,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:month].series).must_equal [1, :gap, 22, 23, 24, 25, '26']
       _(calendar[:month].prev).must_equal 25
       _(calendar[:month].next).must_be_nil
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :week for the first page' do
       calendar, _pagy, entries = app(params: { week_page: 1 }).send(:pagy_calendar, @collection,
@@ -148,7 +148,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:week].pages).must_equal 109
       _(calendar[:week].prev).must_be_nil
       _(calendar[:week].next).must_equal 2
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :week for an intermediate page' do
       calendar, _pagy, entries = app(params: { week_page: 25 }).send(:pagy_calendar, @collection,
@@ -158,7 +158,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:week].series).must_equal [1, :gap, 21, 22, 23, 24, "25", 26, 27, 28, 29, :gap, 109]
       _(calendar[:week].prev).must_equal 24
       _(calendar[:week].next).must_equal 26
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :week for the last page' do
       calendar, _pagy, entries = app(params: { week_page: 109 }).send(:pagy_calendar, @collection,
@@ -168,7 +168,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:week].series).must_equal [1, :gap, 105, 106, 107, 108, "109"]
       _(calendar[:week].prev).must_equal 108
       _(calendar[:week].next).must_be_nil
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :day for the first page' do
       collection = MockCollection::Calendar.new(@collection[0, 40])
@@ -180,7 +180,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:day].pages).must_equal 60
       _(calendar[:day].prev).must_be_nil
       _(calendar[:day].next).must_equal 2
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :day for an intermediate page' do
       collection = MockCollection::Calendar.new(@collection[0, 40])
@@ -190,7 +190,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:day].series).must_equal [1, :gap, 21, 22, 23, 24, "25", 26, 27, 28, 29, :gap, 60]
       _(calendar[:day].prev).must_equal 24
       _(calendar[:day].next).must_equal 26
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
     it 'selects :day for the last page' do
       collection = MockCollection::Calendar.new(@collection[0, 40])
@@ -200,7 +200,7 @@ describe 'pagy/extras/calendar' do
       _(calendar[:day].series).must_equal [1, :gap, 56, 57, 58, 59, "60"]
       _(calendar[:day].prev).must_equal 59
       _(calendar[:day].next).must_be_nil
-      _(entries.to_a).must_rematch
+      _(entries.to_a).must_rematch :entries
     end
   end
   it 'runs multiple units' do
@@ -212,7 +212,7 @@ describe 'pagy/extras/calendar' do
     _(calendar[:year].series).must_equal [1, "2", 3]
     _(calendar[:month].series).must_equal [1, 2, 3, 4, 5, 6, "7", 8, 9, 10, 11, 12]
     _(pagy.series).must_equal [1, "2", 3]
-    _(entries.to_a).must_rematch
+    _(entries.to_a).must_rematch :entries
   end
 
   describe 'pagy_calendar_url_at' do

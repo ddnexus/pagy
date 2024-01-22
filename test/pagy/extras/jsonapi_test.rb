@@ -25,16 +25,16 @@ describe 'pagy/extras/jsonapi' do
     it 'uses the :jsonapi with page:nil' do
       app = MockApp.new(params: { page: nil })
       pagy, _records = app.send(:pagy, @collection, items_extra: false)
-      _(app.send(:pagy_url_for, pagy, 1)).must_rematch
+      _(app.send(:pagy_url_for, pagy, 1)).must_rematch :url_1
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_url_for, pagy, 1)).must_rematch
+      _(app.send(:pagy_url_for, pagy, 1)).must_rematch :url_2
     end
     it 'uses the :jsonapi with page:3' do
       app = MockApp.new(params: { page: { page: 3 } })
       pagy, _records = app.send(:pagy, @collection, items_extra: false)
-      _(app.send(:pagy_url_for, pagy, 2)).must_rematch
+      _(app.send(:pagy_url_for, pagy, 2)).must_rematch :url_1
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_url_for, pagy, 2)).must_rematch
+      _(app.send(:pagy_url_for, pagy, 2)).must_rematch :url_2
     end
   end
   describe "Skip JsonApi" do
@@ -67,7 +67,7 @@ describe 'pagy/extras/jsonapi' do
     it "sets custom named params" do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy, @collection, page_param: :number, items_param: :size)
-      _(app.send(:pagy_url_for, pagy, 4)).must_rematch
+      _(app.send(:pagy_url_for, pagy, 4)).must_rematch :url
     end
   end
   describe "#pagy_jsonapi_links" do
@@ -76,7 +76,7 @@ describe 'pagy/extras/jsonapi' do
       pagy, _records = app.send(:pagy, @collection, page_param: :number, items_param: :size)
       result = app.send(:pagy_jsonapi_links, pagy)
       _(result.keys).must_equal %i[first last prev next] # not sure it's a requirementS
-      _(result).must_rematch
+      _(result).must_rematch :result
     end
   end
 end

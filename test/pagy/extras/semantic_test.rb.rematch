@@ -1,137 +1,116 @@
 ---
-"[1] pagy/extras/semantic::#pagy_semantic_nav_js#test_0001_renders first page": <div
-  class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgIGNsYXNzPVwiaXRlbVwiICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj48aSBjbGFzcz1cInJpZ2h0IHNtYWxsIGNoZXZyb24gaWNvblwiPjwvaT48L2E+In0seyIwIjpbIjEiLDIsMyw0LDUsImdhcCIsNTBdfSxudWxsXQ=="></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav_js#test_0001_renders first page": <div
-  id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwibmV4dFwiPjxpIGNsYXNzPVwicmlnaHQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4ifSx7IjAiOlsiMSIsMiwzLCJnYXAiLDUwXSwiNjAwIjpbIjEiLDIsMyw0LCJnYXAiLDUwXX0sbnVsbF0="></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav_js#test_0004_renders with :steps": <div
-  class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yMVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjUwMCI6WzEsMiwiZ2FwIiwxNywxOCwxOSwiMjAiLDIxLDIyLDIzLCJnYXAiLDQ5LDUwXX0sbnVsbF0="></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav_js#test_0004_renders with :steps": <div
-  id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav_js#test_0002_renders intermediate page": <div
-  class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yMVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav_js#test_0002_renders intermediate page": <div
-  id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav_js#test_0003_renders last page": <div
-  class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cInJpZ2h0IHNtYWxsIGNoZXZyb24gaWNvblwiPjwvaT48L2Rpdj4ifSx7IjAiOlsxLCJnYXAiLDQ2LDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav_js#test_0003_renders last page": <div
-  id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiPjxpIGNsYXNzPVwicmlnaHQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiJ9LHsiMCI6WzEsImdhcCIsNDgsNDksIjUwIl0sIjYwMCI6WzEsImdhcCIsNDcsNDgsNDksIjUwIl19LG51bGxd"></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav#test_0001_renders first page": <div
-  class="pagy-semantic-nav ui pagination menu"><div class="item disabled"><i class="left
-  small chevron icon"></i></div><a class="item active">1</a><a href="/foo?page=2"  class="item"  rel="next"
-  >2</a><a href="/foo?page=3"  class="item"  >3</a><a href="/foo?page=4"  class="item"  >4</a><a
-  href="/foo?page=5"  class="item"  >5</a><div class="disabled item">&hellip;</div><a
-  href="/foo?page=50"  class="item"  >50</a><a href="/foo?page=2"  class="item"  rel="next"
-  aria-label="next"><i class="right small chevron icon"></i></a></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav#test_0001_renders first page": <div
-  id="test-nav-id" class="pagy-semantic-nav ui pagination menu"><div class="item disabled"><i
-  class="left small chevron icon"></i></div><a class="item active">1</a><a href="/foo?page=2"  class="item"
-  link-extra rel="next" >2</a><a href="/foo?page=3"  class="item" link-extra >3</a><a
-  href="/foo?page=4"  class="item" link-extra >4</a><a href="/foo?page=5"  class="item"
-  link-extra >5</a><div class="disabled item">&hellip;</div><a href="/foo?page=50"  class="item"
-  link-extra >50</a><a href="/foo?page=2"  class="item" link-extra rel="next" aria-label="next"><i
-  class="right small chevron icon"></i></a></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav#test_0003_renders last page": <div class="pagy-semantic-nav
-  ui pagination menu"><a href="/foo?page=49"  class="item"  rel="prev" aria-label="previous"><i
-  class="left small chevron icon"></i></a><a href="/foo?page=1"  class="item"  >1</a><div
-  class="disabled item">&hellip;</div><a href="/foo?page=46"  class="item"  >46</a><a
-  href="/foo?page=47"  class="item"  >47</a><a href="/foo?page=48"  class="item"  >48</a><a
-  href="/foo?page=49"  class="item"  rel="prev" >49</a><a class="item active">50</a><div
-  class="item disabled"><i class="right small chevron icon"></i></div></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav#test_0003_renders last page": <div id="test-nav-id"
-  class="pagy-semantic-nav ui pagination menu"><a href="/foo?page=49"  class="item"
-  link-extra rel="prev" aria-label="previous"><i class="left small chevron icon"></i></a><a
-  href="/foo?page=1"  class="item" link-extra >1</a><div class="disabled item">&hellip;</div><a
-  href="/foo?page=46"  class="item" link-extra >46</a><a href="/foo?page=47"  class="item"
-  link-extra >47</a><a href="/foo?page=48"  class="item" link-extra >48</a><a href="/foo?page=49"  class="item"
-  link-extra rel="prev" >49</a><a class="item active">50</a><div class="item disabled"><i
-  class="right small chevron icon"></i></div></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav#test_0002_renders intermediate page": <div
-  class="pagy-semantic-nav ui pagination menu"><a href="/foo?page=19"  class="item"  rel="prev"
-  aria-label="previous"><i class="left small chevron icon"></i></a><a href="/foo?page=1"  class="item"  >1</a><div
-  class="disabled item">&hellip;</div><a href="/foo?page=16"  class="item"  >16</a><a
-  href="/foo?page=17"  class="item"  >17</a><a href="/foo?page=18"  class="item"  >18</a><a
-  href="/foo?page=19"  class="item"  rel="prev" >19</a><a class="item active">20</a><a
-  href="/foo?page=21"  class="item"  rel="next" >21</a><a href="/foo?page=22"  class="item"  >22</a><a
-  href="/foo?page=23"  class="item"  >23</a><a href="/foo?page=24"  class="item"  >24</a><div
-  class="disabled item">&hellip;</div><a href="/foo?page=50"  class="item"  >50</a><a
-  href="/foo?page=21"  class="item"  rel="next" aria-label="next"><i class="right
-  small chevron icon"></i></a></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav#test_0002_renders intermediate page": <div
-  id="test-nav-id" class="pagy-semantic-nav ui pagination menu"><a href="/foo?page=19"  class="item"
-  link-extra rel="prev" aria-label="previous"><i class="left small chevron icon"></i></a><a
-  href="/foo?page=1"  class="item" link-extra >1</a><div class="disabled item">&hellip;</div><a
-  href="/foo?page=16"  class="item" link-extra >16</a><a href="/foo?page=17"  class="item"
-  link-extra >17</a><a href="/foo?page=18"  class="item" link-extra >18</a><a href="/foo?page=19"  class="item"
-  link-extra rel="prev" >19</a><a class="item active">20</a><a href="/foo?page=21"  class="item"
-  link-extra rel="next" >21</a><a href="/foo?page=22"  class="item" link-extra >22</a><a
-  href="/foo?page=23"  class="item" link-extra >23</a><a href="/foo?page=24"  class="item"
-  link-extra >24</a><div class="disabled item">&hellip;</div><a href="/foo?page=50"  class="item"
-  link-extra >50</a><a href="/foo?page=21"  class="item" link-extra rel="next" aria-label="next"><i
-  class="right small chevron icon"></i></a></div>
-"[1] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0001_renders first page": '<div
-  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><div
-  class="item disabled"><i class="left small chevron icon"></i></div><div class="pagy-combo-input
-  item"><label>Page <input type="number" min="1" max="6" value="1" style="padding:
-  0; text-align: center; width: 2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=2"  class="item"  rel="next"
-  aria-label="next"><i class="right small chevron icon"></i></a></div>'
-"[2] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0001_renders first page": '<div
-  id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><div
-  class="item disabled"><i class="left small chevron icon"></i></div><div class="pagy-combo-input
-  item"><label>Page <input type="number" min="1" max="6" value="1" style="padding:
-  0; text-align: center; width: 2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=2"  class="item"
-  link-extra rel="next" aria-label="next"><i class="right small chevron icon"></i></a></div>'
-"[1] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0002_renders intermediate page": '<div
-  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
-  href="/foo?page=2"  class="item"  rel="prev" aria-label="previous"><i class="left
-  small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page <input
-  type="number" min="1" max="6" value="3" style="padding: 0; text-align: center; width:
-  2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=4"  class="item"  rel="next"
-  aria-label="next"><i class="right small chevron icon"></i></a></div>'
-"[2] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0002_renders intermediate page": '<div
-  id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
-  href="/foo?page=2"  class="item" link-extra rel="prev" aria-label="previous"><i
-  class="left small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page
-  <input type="number" min="1" max="6" value="3" style="padding: 0; text-align: center;
-  width: 2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=4"  class="item"
-  link-extra rel="next" aria-label="next"><i class="right small chevron icon"></i></a></div>'
-"[1] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0003_renders last page": '<div
-  class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
-  href="/foo?page=5"  class="item"  rel="prev" aria-label="previous"><i class="left
-  small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page <input
-  type="number" min="1" max="6" value="6" style="padding: 0; text-align: center; width:
-  2rem; margin: 0 0.3rem"> of 6</label></div> <div class="item disabled"><i class="right
-  small chevron icon"></i></div></div>'
-"[2] pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0003_renders last page": '<div
-  id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-  data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
-  href="/foo?page=5"  class="item" link-extra rel="prev" aria-label="previous"><i
-  class="left small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page
-  <input type="number" min="1" max="6" value="6" style="padding: 0; text-align: center;
-  width: 2rem; margin: 0 0.3rem"> of 6</label></div> <div class="item disabled"><i
-  class="right small chevron icon"></i></div></div>'
-"[1] pagy/extras/semantic::#pagy_semantic_nav_js#test_0002_renders first page when used with Pagy::Countless": <div
-  class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cInJpZ2h0IHNtYWxsIGNoZXZyb24gaWNvblwiPjwvaT48L2Rpdj4ifSx7IjAiOlsiMSJdfSxudWxsXQ=="></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav_js#test_0002_renders first page when used with Pagy::Countless": <div
-  id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxkaXYgY2xhc3M9XCJpdGVtIGRpc2FibGVkXCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9kaXY+In0seyIwIjpbIjEiXSwiNjAwIjpbIjEiXX0sbnVsbF0="></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav_js#test_0003_renders intermediate page": <div
-  class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yMVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav_js#test_0003_renders intermediate page": <div
-  id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav_js#test_0005_renders with :steps": <div
-  class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yMVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjUwMCI6WzEsMiwiZ2FwIiwxNywxOCwxOSwiMjAiLDIxLDIyLDIzLCJnYXAiLDQ5LDUwXX0sbnVsbF0="></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav_js#test_0005_renders with :steps": <div
-  id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
-"[1] pagy/extras/semantic::#pagy_semantic_nav_js#test_0004_renders last page": <div
-  class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cInJpZ2h0IHNtYWxsIGNoZXZyb24gaWNvblwiPjwvaT48L2Rpdj4ifSx7IjAiOlsxLCJnYXAiLDQ2LDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></div>
-"[2] pagy/extras/semantic::#pagy_semantic_nav_js#test_0004_renders last page": <div
-  id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
-  data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiPjxpIGNsYXNzPVwicmlnaHQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiJ9LHsiMCI6WzEsImdhcCIsNDgsNDksIjUwIl0sIjYwMCI6WzEsImdhcCIsNDcsNDgsNDksIjUwIl19LG51bGxd"></div>
+pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0001_renders first page:
+  :plain: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
+    data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><div
+    class="item disabled"><i class="left small chevron icon"></i></div><div class="pagy-combo-input
+    item"><label>Page <input type="number" min="1" max="6" value="1" style="padding:
+    0; text-align: center; width: 2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=2"  class="item"  rel="next"
+    aria-label="next"><i class="right small chevron icon"></i></a></div>'
+  :extras: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
+    role="navigation" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><div
+    class="item disabled"><i class="left small chevron icon"></i></div><div class="pagy-combo-input
+    item"><label>Page <input type="number" min="1" max="6" value="1" style="padding:
+    0; text-align: center; width: 2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=2"  class="item"
+    link-extra rel="next" aria-label="next"><i class="right small chevron icon"></i></a></div>'
+pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0003_renders last page:
+  :plain: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
+    data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
+    href="/foo?page=5"  class="item"  rel="prev" aria-label="previous"><i class="left
+    small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page <input
+    type="number" min="1" max="6" value="6" style="padding: 0; text-align: center;
+    width: 2rem; margin: 0 0.3rem"> of 6</label></div> <div class="item disabled"><i
+    class="right small chevron icon"></i></div></div>'
+  :extras: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
+    role="navigation" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
+    href="/foo?page=5"  class="item" link-extra rel="prev" aria-label="previous"><i
+    class="left small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page
+    <input type="number" min="1" max="6" value="6" style="padding: 0; text-align:
+    center; width: 2rem; margin: 0 0.3rem"> of 6</label></div> <div class="item disabled"><i
+    class="right small chevron icon"></i></div></div>'
+pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0002_renders intermediate page:
+  :plain: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
+    data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
+    href="/foo?page=2"  class="item"  rel="prev" aria-label="previous"><i class="left
+    small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page <input
+    type="number" min="1" max="6" value="3" style="padding: 0; text-align: center;
+    width: 2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=4"  class="item"  rel="next"
+    aria-label="next"><i class="right small chevron icon"></i></a></div>'
+  :extras: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
+    role="navigation" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
+    href="/foo?page=2"  class="item" link-extra rel="prev" aria-label="previous"><i
+    class="left small chevron icon"></i></a><div class="pagy-combo-input item"><label>Page
+    <input type="number" min="1" max="6" value="3" style="padding: 0; text-align:
+    center; width: 2rem; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=4"  class="item"
+    link-extra rel="next" aria-label="next"><i class="right small chevron icon"></i></a></div>'
+pagy/extras/semantic::#pagy_semantic_nav#test_0001_renders first page:
+  :plain: <div class="pagy-semantic-nav ui pagination menu"><div class="item disabled"><i
+    class="left small chevron icon"></i></div><a class="item active">1</a><a href="/foo?page=2"  class="item"  rel="next"
+    >2</a><a href="/foo?page=3"  class="item"  >3</a><a href="/foo?page=4"  class="item"  >4</a><a
+    href="/foo?page=5"  class="item"  >5</a><div class="disabled item">&hellip;</div><a
+    href="/foo?page=50"  class="item"  >50</a><a href="/foo?page=2"  class="item"  rel="next"
+    aria-label="next"><i class="right small chevron icon"></i></a></div>
+  :extras: <div id="test-nav-id" class="pagy-semantic-nav ui pagination menu"><div
+    class="item disabled"><i class="left small chevron icon"></i></div><a class="item
+    active">1</a><a href="/foo?page=2"  class="item" link-extra rel="next" >2</a><a
+    href="/foo?page=3"  class="item" link-extra >3</a><a href="/foo?page=4"  class="item"
+    link-extra >4</a><a href="/foo?page=5"  class="item" link-extra >5</a><div class="disabled
+    item">&hellip;</div><a href="/foo?page=50"  class="item" link-extra >50</a><a
+    href="/foo?page=2"  class="item" link-extra rel="next" aria-label="next"><i class="right
+    small chevron icon"></i></a></div>
+pagy/extras/semantic::#pagy_semantic_nav#test_0003_renders last page:
+  :plain: <div class="pagy-semantic-nav ui pagination menu"><a href="/foo?page=49"  class="item"  rel="prev"
+    aria-label="previous"><i class="left small chevron icon"></i></a><a href="/foo?page=1"  class="item"  >1</a><div
+    class="disabled item">&hellip;</div><a href="/foo?page=46"  class="item"  >46</a><a
+    href="/foo?page=47"  class="item"  >47</a><a href="/foo?page=48"  class="item"  >48</a><a
+    href="/foo?page=49"  class="item"  rel="prev" >49</a><a class="item active">50</a><div
+    class="item disabled"><i class="right small chevron icon"></i></div></div>
+  :extras: <div id="test-nav-id" class="pagy-semantic-nav ui pagination menu"><a href="/foo?page=49"  class="item"
+    link-extra rel="prev" aria-label="previous"><i class="left small chevron icon"></i></a><a
+    href="/foo?page=1"  class="item" link-extra >1</a><div class="disabled item">&hellip;</div><a
+    href="/foo?page=46"  class="item" link-extra >46</a><a href="/foo?page=47"  class="item"
+    link-extra >47</a><a href="/foo?page=48"  class="item" link-extra >48</a><a href="/foo?page=49"  class="item"
+    link-extra rel="prev" >49</a><a class="item active">50</a><div class="item disabled"><i
+    class="right small chevron icon"></i></div></div>
+pagy/extras/semantic::#pagy_semantic_nav#test_0002_renders intermediate page:
+  :plain: <div class="pagy-semantic-nav ui pagination menu"><a href="/foo?page=19"  class="item"  rel="prev"
+    aria-label="previous"><i class="left small chevron icon"></i></a><a href="/foo?page=1"  class="item"  >1</a><div
+    class="disabled item">&hellip;</div><a href="/foo?page=16"  class="item"  >16</a><a
+    href="/foo?page=17"  class="item"  >17</a><a href="/foo?page=18"  class="item"  >18</a><a
+    href="/foo?page=19"  class="item"  rel="prev" >19</a><a class="item active">20</a><a
+    href="/foo?page=21"  class="item"  rel="next" >21</a><a href="/foo?page=22"  class="item"  >22</a><a
+    href="/foo?page=23"  class="item"  >23</a><a href="/foo?page=24"  class="item"  >24</a><div
+    class="disabled item">&hellip;</div><a href="/foo?page=50"  class="item"  >50</a><a
+    href="/foo?page=21"  class="item"  rel="next" aria-label="next"><i class="right
+    small chevron icon"></i></a></div>
+  :extras: <div id="test-nav-id" class="pagy-semantic-nav ui pagination menu"><a href="/foo?page=19"  class="item"
+    link-extra rel="prev" aria-label="previous"><i class="left small chevron icon"></i></a><a
+    href="/foo?page=1"  class="item" link-extra >1</a><div class="disabled item">&hellip;</div><a
+    href="/foo?page=16"  class="item" link-extra >16</a><a href="/foo?page=17"  class="item"
+    link-extra >17</a><a href="/foo?page=18"  class="item" link-extra >18</a><a href="/foo?page=19"  class="item"
+    link-extra rel="prev" >19</a><a class="item active">20</a><a href="/foo?page=21"  class="item"
+    link-extra rel="next" >21</a><a href="/foo?page=22"  class="item" link-extra >22</a><a
+    href="/foo?page=23"  class="item" link-extra >23</a><a href="/foo?page=24"  class="item"
+    link-extra >24</a><div class="disabled item">&hellip;</div><a href="/foo?page=50"  class="item"
+    link-extra >50</a><a href="/foo?page=21"  class="item" link-extra rel="next" aria-label="next"><i
+    class="right small chevron icon"></i></a></div>
+pagy/extras/semantic::#pagy_semantic_nav_js#test_0003_renders intermediate page:
+  :plain: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yMVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></div>
+  :extras: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
+    menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
+pagy/extras/semantic::#pagy_semantic_nav_js#test_0001_renders first page:
+  :plain: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgIGNsYXNzPVwiaXRlbVwiICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIm5leHRcIj48aSBjbGFzcz1cInJpZ2h0IHNtYWxsIGNoZXZyb24gaWNvblwiPjwvaT48L2E+In0seyIwIjpbIjEiLDIsMyw0LDUsImdhcCIsNTBdfSxudWxsXQ=="></div>
+  :extras: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
+    menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwibmV4dFwiPjxpIGNsYXNzPVwicmlnaHQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4ifSx7IjAiOlsiMSIsMiwzLCJnYXAiLDUwXSwiNjAwIjpbIjEiLDIsMyw0LCJnYXAiLDUwXX0sbnVsbF0="></div>
+pagy/extras/semantic::#pagy_semantic_nav_js#test_0005_renders with :steps:
+  :plain: <div class="pagy-rjs pagy-semantic-nav-js ui pagination menu" role="navigation"
+    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yMVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjUwMCI6WzEsMiwiZ2FwIiwxNywxOCwxOSwiMjAiLDIxLDIyLDIzLCJnYXAiLDQ5LDUwXX0sbnVsbF0="></div>
+  :extras: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
+    menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJuZXh0XCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></div>
+pagy/extras/semantic::#pagy_semantic_nav_js#test_0002_renders first page when used with Pagy::Countless:
+  :plain: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cInJpZ2h0IHNtYWxsIGNoZXZyb24gaWNvblwiPjwvaT48L2Rpdj4ifSx7IjAiOlsiMSJdfSxudWxsXQ=="></div>
+  :extras: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
+    menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxkaXYgY2xhc3M9XCJpdGVtIGRpc2FibGVkXCI+PGkgY2xhc3M9XCJyaWdodCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9kaXY+In0seyIwIjpbIjEiXSwiNjAwIjpbIjEiXX0sbnVsbF0="></div>
+pagy/extras/semantic::#pagy_semantic_nav_js#test_0004_renders last page:
+  :plain: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cIml0ZW1cIiAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJwcmV2aW91c1wiPjxpIGNsYXNzPVwibGVmdCBzbWFsbCBjaGV2cm9uIGljb25cIj48L2k+PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJpdGVtXCIgID5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIj48aSBjbGFzcz1cInJpZ2h0IHNtYWxsIGNoZXZyb24gaWNvblwiPjwvaT48L2Rpdj4ifSx7IjAiOlsxLCJnYXAiLDQ2LDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></div>
+  :extras: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
+    menu" role="navigation" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwicHJldmlvdXNcIj48aSBjbGFzcz1cImxlZnQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwiaXRlbVwiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiPjxpIGNsYXNzPVwicmlnaHQgc21hbGwgY2hldnJvbiBpY29uXCI+PC9pPjwvZGl2PiJ9LHsiMCI6WzEsImdhcCIsNDgsNDksIjUwIl0sIjYwMCI6WzEsImdhcCIsNDcsNDgsNDksIjUwIl19LG51bGxd"></div>

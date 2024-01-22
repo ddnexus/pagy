@@ -37,7 +37,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal app.params[:page]
         _(results.length).must_equal Pagy::DEFAULT[:items]
-        _(results.to_a).must_rematch
+        _(results.to_a).must_rematch :results
       end
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
@@ -48,7 +48,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy.page).must_equal 2
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(results.length).must_equal 10
-        _(results.to_a).must_rematch
+        _(results.to_a).must_rematch :results
       end
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
@@ -59,7 +59,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy.page).must_equal 100
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(results.length).must_equal 10
-        _(results.to_a).must_rematch
+        _(results.to_a).must_rematch :results
       end
     end
 

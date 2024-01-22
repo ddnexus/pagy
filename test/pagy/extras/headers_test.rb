@@ -16,27 +16,27 @@ describe 'pagy/extras/headers' do
     end
     it 'returns the full headers hash' do
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
       pagy, _records = app.send(:pagy, @collection, headers: { items: 'Per-Page', count: 'Total', pages: false })
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
       pagy, _records = app.send(:pagy, @collection, headers: { items: false, count: false })
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns the countless headers hash' do
       pagy, _records = app.send(:pagy_countless, @collection)
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'omit prev on first page' do
       pagy, _records = app.send(:pagy, @collection, page: 1)
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'omit next on last page' do
       pagy, _records = app.send(:pagy, @collection, page: 50)
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
   end
 
@@ -47,27 +47,27 @@ describe 'pagy/extras/headers' do
     end
     it 'returns the full headers hash' do
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
       pagy, _records = app.send(:pagy, @collection, headers: { items: 'Per-Page', count: 'Total', pages: false })
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
       pagy, _records = app.send(:pagy, @collection, headers: { items: false, count: false })
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns the countless headers hash' do
       pagy, _records = app.send(:pagy_countless, @collection)
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'omit prev on first page' do
       pagy, _records = app.send(:pagy, @collection, page: 1)
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'omit next on last page' do
       pagy, _records = app.send(:pagy, @collection, page: 26)
-      _(app.send(:pagy_headers, pagy)).must_rematch
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
   end
 
@@ -79,7 +79,7 @@ describe 'pagy/extras/headers' do
     it 'returns the full headers hash' do
       pagy, _records = app.send(:pagy, @collection)
       app.send(:pagy_headers_merge, pagy)
-      _(app.send(:response).headers).must_rematch
+      _(app.send(:response).headers).must_rematch :response
     end
   end
   describe '#pagy_headers_merge with Calendar' do
@@ -90,7 +90,7 @@ describe 'pagy/extras/headers' do
     it 'returns the full headers hash' do
       pagy, _records = app.send(:pagy, @collection)
       app.send(:pagy_headers_merge, pagy)
-      _(app.send(:response).headers.to_hash).must_rematch
+      _(app.send(:response).headers.to_hash).must_rematch :response
     end
   end
 end

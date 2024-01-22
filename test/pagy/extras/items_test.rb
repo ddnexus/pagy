@@ -149,10 +149,10 @@ describe 'pagy/extras/items' do
     end
     it 'renders items selector' do
       pagy = Pagy.new count: 1000, page: 3
-      _(app.pagy_items_selector_js(pagy)).must_rematch
-      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch
+      _(app.pagy_items_selector_js(pagy)).must_rematch :selector_1
+      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_name: 'products')).must_rematch :selector_2
       Pagy::I18n::DATA['en'][0]['elasticsearch.product.other'] = 'products'
-      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_i18n_key: 'elasticsearch.product')).must_rematch
+      _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id', item_i18n_key: 'elasticsearch.product')).must_rematch :selector_3
       pagy = Pagy.new count: 1000, page: 3, items_extra: false
       _(app.pagy_items_selector_js(pagy, pagy_id: 'test-id')).must_equal ''
     end

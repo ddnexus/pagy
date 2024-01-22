@@ -38,7 +38,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal app.params[:page]
         _(records.count).must_equal Pagy::DEFAULT[:items]
-        _(records).must_rematch
+        _(records).must_rematch :records
       end
       it 'paginates records with defaults' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
@@ -48,7 +48,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal app.params[:page]
         _(records.count).must_equal Pagy::DEFAULT[:items]
-        _(records).must_rematch
+        _(records).must_rematch :records
       end
       it 'paginates with vars' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
@@ -60,7 +60,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 2
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(records.count).must_equal 10
-        _(records).must_rematch
+        _(records).must_rematch :records
       end
       it 'paginates with overflow' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
@@ -72,7 +72,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 100
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(records.count).must_equal 10
-        _(records).must_rematch
+        _(records).must_rematch :records
       end
     end
 
@@ -88,7 +88,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal app.params[:page]
         _(records.count).must_equal Pagy::DEFAULT[:items]
-        _(records).must_rematch
+        _(records).must_rematch :records
       end
       it 'paginates records with defaults' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
@@ -98,7 +98,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal app.params[:page]
         _(records.count).must_equal Pagy::DEFAULT[:items]
-        _(records).must_rematch
+        _(records).must_rematch :records
       end
       it 'paginates with vars' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
@@ -110,7 +110,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 2
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(records.count).must_equal 10
-        _(records).must_rematch
+        _(records).must_rematch :records
       end
       it 'paginates with overflow' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
@@ -122,7 +122,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy.page).must_equal 100
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(records.count).must_equal 10
-        _(records).must_rematch
+        _(records).must_rematch :records
       end
     end
 

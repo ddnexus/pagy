@@ -67,35 +67,35 @@ describe 'pagy/extras/support' do
     it 'renders the prev link for page 1' do
       pagy = Pagy.new count: 1000, page: 1
       pagy_countless = Pagy::Countless.new(page: 1).finalize(21)
-      _(app.pagy_prev_html(pagy)).must_rematch
-      _(app.pagy_prev_html(pagy_countless)).must_rematch
-      _(app.pagy_prev_html(pagy, link_extra: 'link-extra')).must_rematch
-      _(app.pagy_prev_html(pagy_countless, link_extra: 'link-extra')).must_rematch
+      _(app.pagy_prev_html(pagy)).must_rematch :prev_1
+      _(app.pagy_prev_html(pagy_countless)).must_rematch :prev_2
+      _(app.pagy_prev_html(pagy, link_extra: 'link-extra')).must_rematch :prev_3
+      _(app.pagy_prev_html(pagy_countless, link_extra: 'link-extra')).must_rematch :prev_4
     end
 
     it 'renders the prev link for page 3' do
       pagy = Pagy.new count: 1000, page: 3
       pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
-      _(app.pagy_prev_html(pagy)).must_rematch
-      _(app.pagy_prev_html(pagy_countless)).must_rematch
-      _(app.pagy_prev_html(pagy, link_extra: 'link-extra')).must_rematch
-      _(app.pagy_prev_html(pagy_countless, link_extra: 'link-extra')).must_rematch
+      _(app.pagy_prev_html(pagy)).must_rematch :prev_1
+      _(app.pagy_prev_html(pagy_countless)).must_rematch :prev_2
+      _(app.pagy_prev_html(pagy, link_extra: 'link-extra')).must_rematch :prev_3
+      _(app.pagy_prev_html(pagy_countless, link_extra: 'link-extra')).must_rematch :prev_4
     end
     it 'renders the prev link for page 6' do
       pagy = Pagy.new count: 1000, page: 6
       pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
-      _(app.pagy_prev_html(pagy)).must_rematch
-      _(app.pagy_prev_html(pagy_countless)).must_rematch
-      _(app.pagy_prev_html(pagy, link_extra: 'link-extra')).must_rematch
-      _(app.pagy_prev_html(pagy_countless, link_extra: 'link-extra')).must_rematch
+      _(app.pagy_prev_html(pagy)).must_rematch :prev_1
+      _(app.pagy_prev_html(pagy_countless)).must_rematch :prev_2
+      _(app.pagy_prev_html(pagy, link_extra: 'link-extra')).must_rematch :prev_3
+      _(app.pagy_prev_html(pagy_countless, link_extra: 'link-extra')).must_rematch :prev_4
     end
     it 'renders the prev link for last page' do
       pagy = Pagy.new count: 1000, page: 50
       pagy_countless = Pagy::Countless.new(page: 50).finalize(20)
-      _(app.pagy_prev_html(pagy)).must_rematch
-      _(app.pagy_prev_html(pagy_countless)).must_rematch
-      _(app.pagy_prev_html(pagy, link_extra: 'link-extra')).must_rematch
-      _(app.pagy_prev_html(pagy_countless, link_extra: 'link-extra')).must_rematch
+      _(app.pagy_prev_html(pagy)).must_rematch :prev_1
+      _(app.pagy_prev_html(pagy_countless)).must_rematch :prev_2
+      _(app.pagy_prev_html(pagy, link_extra: 'link-extra')).must_rematch :prev_3
+      _(app.pagy_prev_html(pagy_countless, link_extra: 'link-extra')).must_rematch :prev_4
     end
   end
 
@@ -103,34 +103,34 @@ describe 'pagy/extras/support' do
     it 'renders the next link for page 1' do
       pagy = Pagy.new count: 1000, page: 1
       pagy_countless = Pagy::Countless.new(page: 1).finalize(21)
-      _(app.pagy_next_html(pagy)).must_rematch
-      _(app.pagy_next_html(pagy_countless)).must_rematch
-      _(app.pagy_next_html(pagy, link_extra: 'link-extra')).must_rematch
-      _(app.pagy_next_html(pagy_countless, link_extra: 'link-extra')).must_rematch
+      _(app.pagy_next_html(pagy)).must_rematch :next_1
+      _(app.pagy_next_html(pagy_countless)).must_rematch :next_2
+      _(app.pagy_next_html(pagy, link_extra: 'link-extra')).must_rematch :next_3
+      _(app.pagy_next_html(pagy_countless, link_extra: 'link-extra')).must_rematch :next_4
     end
     it 'renders the next link for page 3' do
       pagy = Pagy.new count: 1000, page: 3
       pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
-      _(app.pagy_next_html(pagy)).must_rematch
-      _(app.pagy_next_html(pagy_countless)).must_rematch
-      _(app.pagy_next_html(pagy, link_extra: 'link-extra')).must_rematch
-      _(app.pagy_next_html(pagy_countless, link_extra: 'link-extra')).must_rematch
+      _(app.pagy_next_html(pagy)).must_rematch :next_1
+      _(app.pagy_next_html(pagy_countless)).must_rematch :next_2
+      _(app.pagy_next_html(pagy, link_extra: 'link-extra')).must_rematch :next_3
+      _(app.pagy_next_html(pagy_countless, link_extra: 'link-extra')).must_rematch :next_4
     end
     it 'renders the next link for page 6' do
       pagy = Pagy.new count: 1000, page: 6
       pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
-      _(app.pagy_next_html(pagy)).must_rematch
-      _(app.pagy_next_html(pagy_countless)).must_rematch
-      _(app.pagy_next_html(pagy, link_extra: 'link-extra')).must_rematch
-      _(app.pagy_next_html(pagy_countless, link_extra: 'link-extra')).must_rematch
+      _(app.pagy_next_html(pagy)).must_rematch :next_1
+      _(app.pagy_next_html(pagy_countless)).must_rematch :next_2
+      _(app.pagy_next_html(pagy, link_extra: 'link-extra')).must_rematch :next_3
+      _(app.pagy_next_html(pagy_countless, link_extra: 'link-extra')).must_rematch :next_4
     end
     it 'renders the next link for last page' do
       pagy = Pagy.new count: 1000, page: 50
       pagy_countless = Pagy::Countless.new(page: 50).finalize(20)
-      _(app.pagy_next_html(pagy)).must_rematch
-      _(app.pagy_next_html(pagy_countless)).must_rematch
-      _(app.pagy_next_html(pagy, link_extra: 'link-extra')).must_rematch
-      _(app.pagy_next_html(pagy_countless, link_extra: 'link-extra')).must_rematch
+      _(app.pagy_next_html(pagy)).must_rematch :next_1
+      _(app.pagy_next_html(pagy_countless)).must_rematch :next_2
+      _(app.pagy_next_html(pagy, link_extra: 'link-extra')).must_rematch :next_3
+      _(app.pagy_next_html(pagy_countless, link_extra: 'link-extra')).must_rematch :next_4
     end
   end
 
@@ -144,20 +144,20 @@ describe 'pagy/extras/support' do
     it 'renders the prev link tag for page 3' do
       pagy = Pagy.new count: 1000, page: 3
       pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
-      _(app.pagy_prev_link_tag(pagy)).must_rematch
-      _(app.pagy_prev_link_tag(pagy_countless)).must_rematch
+      _(app.pagy_prev_link_tag(pagy)).must_rematch :link_1
+      _(app.pagy_prev_link_tag(pagy_countless)).must_rematch :link_2
     end
     it 'renders the prev link tag for page 6' do
       pagy = Pagy.new count: 1000, page: 6
       pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
-      _(app.pagy_prev_link_tag(pagy)).must_rematch
-      _(app.pagy_prev_link_tag(pagy_countless)).must_rematch
+      _(app.pagy_prev_link_tag(pagy)).must_rematch :prev_1
+      _(app.pagy_prev_link_tag(pagy_countless)).must_rematch :prev_2
     end
     it 'renders the prev link tag for last page' do
       pagy = Pagy.new count: 1000, page: 50
       pagy_countless = Pagy::Countless.new(page: 50).finalize(20)
-      _(app.pagy_prev_link_tag(pagy)).must_rematch
-      _(app.pagy_prev_link_tag(pagy_countless)).must_rematch
+      _(app.pagy_prev_link_tag(pagy)).must_rematch :prev_1
+      _(app.pagy_prev_link_tag(pagy_countless)).must_rematch :prev_2
     end
   end
 
@@ -165,20 +165,20 @@ describe 'pagy/extras/support' do
     it 'renders the next link tag for page 1' do
       pagy = Pagy.new count: 1000, page: 1
       pagy_countless = Pagy::Countless.new(page: 1).finalize(21)
-      _(app.pagy_next_link_tag(pagy)).must_rematch
-      _(app.pagy_next_link_tag(pagy_countless)).must_rematch
+      _(app.pagy_next_link_tag(pagy)).must_rematch :next_1
+      _(app.pagy_next_link_tag(pagy_countless)).must_rematch :next_2
     end
     it 'renders the next link tag for page 3' do
       pagy = Pagy.new count: 1000, page: 3
       pagy_countless = Pagy::Countless.new(page: 3).finalize(21)
-      _(app.pagy_next_link_tag(pagy)).must_rematch
-      _(app.pagy_next_link_tag(pagy_countless)).must_rematch
+      _(app.pagy_next_link_tag(pagy)).must_rematch :next_1
+      _(app.pagy_next_link_tag(pagy_countless)).must_rematch :next_2
     end
     it 'renders the next link tag for page 6' do
       pagy = Pagy.new count: 1000, page: 6
       pagy_countless = Pagy::Countless.new(page: 6).finalize(21)
-      _(app.pagy_next_link_tag(pagy)).must_rematch
-      _(app.pagy_next_link_tag(pagy_countless)).must_rematch
+      _(app.pagy_next_link_tag(pagy)).must_rematch :next_1
+      _(app.pagy_next_link_tag(pagy_countless)).must_rematch :next_2
     end
     it 'renders the next link tag for last page' do
       pagy = Pagy.new count: 1000, page: 50

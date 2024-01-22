@@ -261,8 +261,8 @@ describe 'pagy/calendar' do
     %i[year quarter month week day].each do |unit|
       it "labels the #{unit}" do
         p = pagy(unit: unit)
-        _(p.label_for(1)).must_rematch
-        _(p.label_for(2)).must_rematch
+        _(p.label_for(1)).must_rematch  :p1
+        _(p.label_for(2)).must_rematch  :p2
       end
     end
     it 'raises direct instantiation' do

@@ -1,11 +1,16 @@
 ---
-"[1] pagy/calendar::#label_for#test_0003_labels the month": Oct
-"[2] pagy/calendar::#label_for#test_0003_labels the month": Nov
-"[1] pagy/calendar::#label_for#test_0004_labels the week": 2021-41
-"[2] pagy/calendar::#label_for#test_0004_labels the week": 2021-42
-"[1] pagy/calendar::#label_for#test_0002_labels the quarter": Q4
-"[2] pagy/calendar::#label_for#test_0002_labels the quarter": Q1
-"[1] pagy/calendar::#label_for#test_0001_labels the year": '2021'
-"[2] pagy/calendar::#label_for#test_0001_labels the year": '2022'
-"[1] pagy/calendar::#label_for#test_0005_labels the day": '21'
-"[2] pagy/calendar::#label_for#test_0005_labels the day": '22'
+pagy/calendar::#label_for#test_0002_labels the quarter:
+  :p1: Q4
+  :p2: Q1
+pagy/calendar::#label_for#test_0001_labels the year:
+  :p1: '2021'
+  :p2: '2022'
+pagy/calendar::#label_for#test_0005_labels the day:
+  :p1: '21'
+  :p2: '22'
+pagy/calendar::#label_for#test_0004_labels the week:
+  :p1: 2021-41
+  :p2: 2021-42
+pagy/calendar::#label_for#test_0003_labels the month:
+  :p1: Oct
+  :p2: Nov

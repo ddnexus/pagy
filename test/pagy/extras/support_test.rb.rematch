@@ -1,89 +1,61 @@
 ---
-"[1] pagy/extras/support::#pagy_prev_html#test_0002_renders the prev link for page 3": '<span
-  class="page prev"><a href="/foo?page=2"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[2] pagy/extras/support::#pagy_prev_html#test_0002_renders the prev link for page 3": '<span
-  class="page prev"><a href="/foo?page=2"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[3] pagy/extras/support::#pagy_prev_html#test_0002_renders the prev link for page 3": '<span
-  class="page prev"><a href="/foo?page=2"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[4] pagy/extras/support::#pagy_prev_html#test_0002_renders the prev link for page 3": '<span
-  class="page prev"><a href="/foo?page=2"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[1] pagy/extras/support::#pagy_prev_html#test_0003_renders the prev link for page 6": '<span
-  class="page prev"><a href="/foo?page=5"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[2] pagy/extras/support::#pagy_prev_html#test_0003_renders the prev link for page 6": '<span
-  class="page prev"><a href="/foo?page=5"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[3] pagy/extras/support::#pagy_prev_html#test_0003_renders the prev link for page 6": '<span
-  class="page prev"><a href="/foo?page=5"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[4] pagy/extras/support::#pagy_prev_html#test_0003_renders the prev link for page 6": '<span
-  class="page prev"><a href="/foo?page=5"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[1] pagy/extras/support::#pagy_prev_html#test_0004_renders the prev link for last page": '<span
-  class="page prev"><a href="/foo?page=49"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[2] pagy/extras/support::#pagy_prev_html#test_0004_renders the prev link for last page": '<span
-  class="page prev"><a href="/foo?page=49"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[3] pagy/extras/support::#pagy_prev_html#test_0004_renders the prev link for last page": '<span
-  class="page prev"><a href="/foo?page=49"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[4] pagy/extras/support::#pagy_prev_html#test_0004_renders the prev link for last page": '<span
-  class="page prev"><a href="/foo?page=49"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
-"[1] pagy/extras/support::#pagy_prev_html#test_0001_renders the prev link for page 1": '<span
-  class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">&lsaquo;&nbsp;Prev</a></span> '
-"[2] pagy/extras/support::#pagy_prev_html#test_0001_renders the prev link for page 1": '<span
-  class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">&lsaquo;&nbsp;Prev</a></span> '
-"[3] pagy/extras/support::#pagy_prev_html#test_0001_renders the prev link for page 1": '<span
-  class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">&lsaquo;&nbsp;Prev</a></span> '
-"[4] pagy/extras/support::#pagy_prev_html#test_0001_renders the prev link for page 1": '<span
-  class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">&lsaquo;&nbsp;Prev</a></span> '
-"[1] pagy/extras/support::#pagy_prev_link_tag#test_0002_renders the prev link tag for page 3": <link
-  href="/foo?page=2" rel="prev"/>
-"[2] pagy/extras/support::#pagy_prev_link_tag#test_0002_renders the prev link tag for page 3": <link
-  href="/foo?page=2" rel="prev"/>
-"[1] pagy/extras/support::#pagy_prev_link_tag#test_0003_renders the prev link tag for page 6": <link
-  href="/foo?page=5" rel="prev"/>
-"[2] pagy/extras/support::#pagy_prev_link_tag#test_0003_renders the prev link tag for page 6": <link
-  href="/foo?page=5" rel="prev"/>
-"[1] pagy/extras/support::#pagy_prev_link_tag#test_0004_renders the prev link tag for last page": <link
-  href="/foo?page=49" rel="prev"/>
-"[2] pagy/extras/support::#pagy_prev_link_tag#test_0004_renders the prev link tag for last page": <link
-  href="/foo?page=49" rel="prev"/>
-"[1] pagy/extras/support::#pagy_next_link_tag#test_0002_renders the next link tag for page 3": <link
-  href="/foo?page=4" rel="next"/>
-"[2] pagy/extras/support::#pagy_next_link_tag#test_0002_renders the next link tag for page 3": <link
-  href="/foo?page=4" rel="next"/>
-"[1] pagy/extras/support::#pagy_next_link_tag#test_0003_renders the next link tag for page 6": <link
-  href="/foo?page=7" rel="next"/>
-"[2] pagy/extras/support::#pagy_next_link_tag#test_0003_renders the next link tag for page 6": <link
-  href="/foo?page=7" rel="next"/>
-"[1] pagy/extras/support::#pagy_next_link_tag#test_0001_renders the next link tag for page 1": <link
-  href="/foo?page=2" rel="next"/>
-"[2] pagy/extras/support::#pagy_next_link_tag#test_0001_renders the next link tag for page 1": <link
-  href="/foo?page=2" rel="next"/>
-"[1] pagy/extras/support::#pagy_next_link#test_0002_renders the next link for page 3": <span
-  class="page next"><a href="/foo?page=4"   rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[2] pagy/extras/support::#pagy_next_link#test_0002_renders the next link for page 3": <span
-  class="page next"><a href="/foo?page=4"   rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[3] pagy/extras/support::#pagy_next_link#test_0002_renders the next link for page 3": <span
-  class="page next"><a href="/foo?page=4"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[4] pagy/extras/support::#pagy_next_link#test_0002_renders the next link for page 3": <span
-  class="page next"><a href="/foo?page=4"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[1] pagy/extras/support::#pagy_next_link#test_0003_renders the next link for page 6": <span
-  class="page next"><a href="/foo?page=7"   rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[2] pagy/extras/support::#pagy_next_link#test_0003_renders the next link for page 6": <span
-  class="page next"><a href="/foo?page=7"   rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[3] pagy/extras/support::#pagy_next_link#test_0003_renders the next link for page 6": <span
-  class="page next"><a href="/foo?page=7"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[4] pagy/extras/support::#pagy_next_link#test_0003_renders the next link for page 6": <span
-  class="page next"><a href="/foo?page=7"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[1] pagy/extras/support::#pagy_next_link#test_0004_renders the next link for last page": <span
-  class="page next disabled"><a role="link" aria-disabled="true" rel="next">Next&nbsp;&rsaquo;</a></span>
-"[2] pagy/extras/support::#pagy_next_link#test_0004_renders the next link for last page": <span
-  class="page next disabled"><a role="link" aria-disabled="true" rel="next">Next&nbsp;&rsaquo;</a></span>
-"[3] pagy/extras/support::#pagy_next_link#test_0004_renders the next link for last page": <span
-  class="page next disabled"><a role="link" aria-disabled="true" rel="next">Next&nbsp;&rsaquo;</a></span>
-"[4] pagy/extras/support::#pagy_next_link#test_0004_renders the next link for last page": <span
-  class="page next disabled"><a role="link" aria-disabled="true" rel="next">Next&nbsp;&rsaquo;</a></span>
-"[1] pagy/extras/support::#pagy_next_link#test_0001_renders the next link for page 1": <span
-  class="page next"><a href="/foo?page=2"   rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[2] pagy/extras/support::#pagy_next_link#test_0001_renders the next link for page 1": <span
-  class="page next"><a href="/foo?page=2"   rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[3] pagy/extras/support::#pagy_next_link#test_0001_renders the next link for page 1": <span
-  class="page next"><a href="/foo?page=2"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
-"[4] pagy/extras/support::#pagy_next_link#test_0001_renders the next link for page 1": <span
-  class="page next"><a href="/foo?page=2"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
+pagy/extras/support::#pagy_next_link#test_0001_renders the next link for page 1:
+  :next_1: <span class="page next"><a href="/foo?page=2"   rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_2: <span class="page next"><a href="/foo?page=2"   rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_3: <span class="page next"><a href="/foo?page=2"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_4: <span class="page next"><a href="/foo?page=2"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
+pagy/extras/support::#pagy_next_link#test_0002_renders the next link for page 3:
+  :next_1: <span class="page next"><a href="/foo?page=4"   rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_2: <span class="page next"><a href="/foo?page=4"   rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_3: <span class="page next"><a href="/foo?page=4"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_4: <span class="page next"><a href="/foo?page=4"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
+pagy/extras/support::#pagy_next_link#test_0004_renders the next link for last page:
+  :next_1: <span class="page next disabled"><a role="link" aria-disabled="true" rel="next">Next&nbsp;&rsaquo;</a></span>
+  :next_2: <span class="page next disabled"><a role="link" aria-disabled="true" rel="next">Next&nbsp;&rsaquo;</a></span>
+  :next_3: <span class="page next disabled"><a role="link" aria-disabled="true" rel="next">Next&nbsp;&rsaquo;</a></span>
+  :next_4: <span class="page next disabled"><a role="link" aria-disabled="true" rel="next">Next&nbsp;&rsaquo;</a></span>
+pagy/extras/support::#pagy_next_link#test_0003_renders the next link for page 6:
+  :next_1: <span class="page next"><a href="/foo?page=7"   rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_2: <span class="page next"><a href="/foo?page=7"   rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_3: <span class="page next"><a href="/foo?page=7"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
+  :next_4: <span class="page next"><a href="/foo?page=7"  link-extra rel="next" >Next&nbsp;&rsaquo;</a></span>
+pagy/extras/support::#pagy_prev_link_tag#test_0002_renders the prev link tag for page 3:
+  :link_1: <link href="/foo?page=2" rel="prev"/>
+  :link_2: <link href="/foo?page=2" rel="prev"/>
+pagy/extras/support::#pagy_prev_link_tag#test_0004_renders the prev link tag for last page:
+  :prev_1: <link href="/foo?page=49" rel="prev"/>
+  :prev_2: <link href="/foo?page=49" rel="prev"/>
+pagy/extras/support::#pagy_prev_link_tag#test_0003_renders the prev link tag for page 6:
+  :prev_1: <link href="/foo?page=5" rel="prev"/>
+  :prev_2: <link href="/foo?page=5" rel="prev"/>
+pagy/extras/support::#pagy_next_link_tag#test_0001_renders the next link tag for page 1:
+  :next_1: <link href="/foo?page=2" rel="next"/>
+  :next_2: <link href="/foo?page=2" rel="next"/>
+pagy/extras/support::#pagy_next_link_tag#test_0002_renders the next link tag for page 3:
+  :next_1: <link href="/foo?page=4" rel="next"/>
+  :next_2: <link href="/foo?page=4" rel="next"/>
+pagy/extras/support::#pagy_next_link_tag#test_0003_renders the next link tag for page 6:
+  :next_1: <link href="/foo?page=7" rel="next"/>
+  :next_2: <link href="/foo?page=7" rel="next"/>
+pagy/extras/support::#pagy_prev_html#test_0001_renders the prev link for page 1:
+  :prev_1: '<span class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">&lsaquo;&nbsp;Prev</a></span> '
+  :prev_2: '<span class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">&lsaquo;&nbsp;Prev</a></span> '
+  :prev_3: '<span class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">&lsaquo;&nbsp;Prev</a></span> '
+  :prev_4: '<span class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">&lsaquo;&nbsp;Prev</a></span> '
+pagy/extras/support::#pagy_prev_html#test_0002_renders the prev link for page 3:
+  :prev_1: '<span class="page prev"><a href="/foo?page=2"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_2: '<span class="page prev"><a href="/foo?page=2"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_3: '<span class="page prev"><a href="/foo?page=2"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_4: '<span class="page prev"><a href="/foo?page=2"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+pagy/extras/support::#pagy_prev_html#test_0004_renders the prev link for last page:
+  :prev_1: '<span class="page prev"><a href="/foo?page=49"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_2: '<span class="page prev"><a href="/foo?page=49"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_3: '<span class="page prev"><a href="/foo?page=49"  link-extra rel="prev"
+    >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_4: '<span class="page prev"><a href="/foo?page=49"  link-extra rel="prev"
+    >&lsaquo;&nbsp;Prev</a></span> '
+pagy/extras/support::#pagy_prev_html#test_0003_renders the prev link for page 6:
+  :prev_1: '<span class="page prev"><a href="/foo?page=5"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_2: '<span class="page prev"><a href="/foo?page=5"   rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_3: '<span class="page prev"><a href="/foo?page=5"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
+  :prev_4: '<span class="page prev"><a href="/foo?page=5"  link-extra rel="prev" >&lsaquo;&nbsp;Prev</a></span> '
