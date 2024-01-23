@@ -1,8 +1,9 @@
 # :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
 
 bg:
-  pagy:    
-    page_label: "Pages"
+  pagy:
+
+    page_label:
       one: "Страница"
       other: "Страници"
 
