@@ -87,7 +87,7 @@ class Pagy
       if (p_prev = pagy.prev)
         %(<span class="page prev">#{link.call p_prev, pagy_t('pagy.nav.prev')}</span> )
       else
-        %(<span class="page prev disabled"><a role="link" aria-disabled="true" rel="prev">#{pagy_t 'pagy.nav.prev'}</a></span> )
+        %(<span class="page prev disabled"><a role="link" aria-disabled="true">#{pagy_t 'pagy.nav.prev'}</a></span> )
       end
     end
 
@@ -95,7 +95,7 @@ class Pagy
       if (p_next = pagy.next)
         %(<span class="page next">#{link.call p_next, pagy_t('pagy.nav.next')}</span>)
       else
-        %(<span class="page next disabled"><a role="link" aria-disabled="true" rel="next">#{pagy_t 'pagy.nav.next'}</a></span>)
+        %(<span class="page next disabled"><a role="link" aria-disabled="true">#{pagy_t 'pagy.nav.next'}</a></span>)
       end
     end
   end
