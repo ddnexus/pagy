@@ -51,7 +51,7 @@ describe 'pagy/frontend' do
   describe '#pagy_link_proc' do
     it 'renders with extras' do
       pagy = Pagy.new count: 103, page: 1
-      _(app.pagy_link_proc(pagy, link_extra: "X").call(1)).must_equal '<a href="/foo?page=1"  X >1</a>'
+      _(app.pagy_link_proc(pagy, link_extra: "X").call(3)).must_equal '<a href="/foo?page=3"  X >3</a>'
     end
   end
 

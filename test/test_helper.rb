@@ -16,13 +16,5 @@ $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 require 'pagy'
 require 'minitest/autorun'
 
-module PagyCalendarWarningFilter
-  def warn(message, category: nil, **kwargs)
-    if message.match?('Calendar#page_at')
-      # ignore
-    else
-      super
-    end
-  end
-end
-Warning.extend PagyCalendarWarningFilter
+require_relative 'helper/warning_filters'
+require_relative 'helper/nav_tests'

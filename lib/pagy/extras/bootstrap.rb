@@ -8,18 +8,20 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module BootstrapExtra
     # Pagination for bootstrap: it returns the html with the series of links to the pages
-    def pagy_bootstrap_nav(pagy, pagy_id: nil, link_extra: '', **vars)
+    def pagy_bootstrap_nav(pagy, pagy_id: nil, link_extra: '',
+                           page_label: nil, page_i18n_key: nil, **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
 
-      html = +%(<nav#{p_id} class="pagy-bootstrap-nav"><ul class="pagination">)
+      html = +%(<nav#{p_id} class="pagy-bootstrap-nav">) +
+              %(<ul class="pagination" #{pagy_aria_label(pagy, page_label, page_i18n_key)}>) # rubocop:disable Layout/MultilineOperationIndentation
       html << pagy_bootstrap_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
                   %(<li class="page-item">#{link.call item}</li>)
                 when String
-                  %(<li class="page-item active">#{link.call item}</li>)
+                  %(<li class="page-item active" aria-current="page">#{link.call item}</li>)
                 when :gap
                   %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.gap'}</a></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
@@ -30,22 +32,26 @@ class Pagy # :nodoc:
     end
 
     # Javascript pagination for bootstrap: it returns a nav and a JSON tag used by the pagy.js file
-    def pagy_bootstrap_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
+    def pagy_bootstrap_nav_js(pagy, pagy_id: nil, link_extra: '',
+                              page_label: nil, page_i18n_key: nil, **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
       tags = { 'before' => %(<ul class="pagination">#{pagy_bootstrap_prev_html pagy, link}),
-               'link'   => %(<li class="page-item">#{mark = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
-               'active' => %(<li class="page-item active">#{mark}</li>),
+               'link'   => %(<li class="page-item">#{html = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
+               'active' => %(<li class="page-item active">#{html}</li>),
                'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_bootstrap_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bootstrap-nav-js" #{
-        pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
+          pagy_aria_label(pagy, page_label, page_i18n_key)} #{
+          pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))
+        }></nav>)
     end
 
     # Javascript combo pagination for bootstrap: it returns a nav and a JSON tag used by the pagy.js file
-    def pagy_bootstrap_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
+    def pagy_bootstrap_combo_nav_js(pagy, pagy_id: nil, link_extra: '',
+                                    page_label: nil, page_i18n_key: nil)
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
@@ -54,7 +60,8 @@ class Pagy # :nodoc:
                     p_page}" style="padding: 0; border: none; text-align: center; width: #{
                     p_pages.to_s.length + 1}rem;">)
 
-      %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination"><div class="btn-group" role="group" #{
+      %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination" #{
+          pagy_aria_label(pagy, page_label, page_i18n_key)}><div class="btn-group" role="group" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           if (p_prev = pagy.prev)
             link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous" class="prev btn btn-primary"'
@@ -75,17 +82,21 @@ class Pagy # :nodoc:
 
     def pagy_bootstrap_prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</li>)
+        %(<li class="page-item prev">#{link.call p_prev, pagy_t('pagy.nav.prev')}</li>)
       else
-        %(<li class="page-item prev disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.prev'}</a></li>)
+        %(<li class="page-item prev disabled"><a href="#" class="page-link" aria-disabled="true">#{
+            pagy_t 'pagy.nav.prev'
+          }</a></li>)
       end
     end
 
     def pagy_bootstrap_next_html(pagy, link)
       if (p_next = pagy.next)
-        %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</li>)
+        %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.nav.next')}</li>)
       else
-        %(<li class="page-item next disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.next'}</a></li>)
+        %(<li class="page-item next disabled"><a href="#" class="page-link" aria-disabled="true">#{
+            pagy_t 'pagy.nav.next'
+          }</a></li>)
       end
     end
   end
