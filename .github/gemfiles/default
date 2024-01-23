@@ -8,6 +8,7 @@ source 'https://rubygems.org'
 gem 'i18n'
 gem 'oj', require: false     # false is for testing with or without it
 gem 'rack'
+gem 'rackup'
 gem 'rake'
 gem 'rake-manifest'
 
@@ -32,4 +33,3 @@ group :apps do
   # gem 'slim'
   # gem 'haml'
 end
-

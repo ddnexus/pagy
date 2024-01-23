@@ -17,6 +17,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
+  gem 'rackup'
   gem 'rake-manifest'
   gem 'rematch'
   gem 'rubocop'

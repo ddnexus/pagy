@@ -63,6 +63,9 @@ GEM
       rack (>= 3.0.0, < 4)
     rack-session (2.0.0)
       rack (>= 3.0.0)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
     rainbow (3.1.1)
     rake (13.1.0)
     rake-manifest (0.2.3)
@@ -123,6 +126,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    webrick (1.8.1)
 
 PLATFORMS
   x86_64-linux
@@ -139,6 +143,7 @@ DEPENDENCIES
   oj
   puma
   rack
+  rackup
   rake
   rake-manifest
   readline-ext
