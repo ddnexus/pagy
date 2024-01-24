@@ -13,17 +13,18 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
 
-      html = +%(<nav#{p_id} class="pagy-bootstrap-nav">) +
-              %(<ul class="pagination" #{pagy_aria_label(pagy, page_label, page_i18n_key)}>) # rubocop:disable Layout/MultilineOperationIndentation
+      html = +%(<nav#{p_id} class="pagy-bootstrap-nav" #{
+                  pagy_aria_label(pagy, page_label, page_i18n_key)}><ul class="pagination">)
       html << pagy_bootstrap_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
-                  %(<li class="page-item">#{link.call item}</li>)
+                  %(<li class="page-item">#{link.call(item)}</li>)
                 when String
-                  %(<li class="page-item active" aria-current="page">#{link.call item}</li>)
+                  %(<li class="page-item active">#{link.call(item)}</li>)
                 when :gap
-                  %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.gap'}</a></li>)
+                  %(<li class="page-item gap disabled"><a href="#" class="page-link" aria-disabled="true">#{
+                      pagy_t 'pagy.nav.gap'}</a></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
@@ -40,7 +41,8 @@ class Pagy # :nodoc:
       tags = { 'before' => %(<ul class="pagination">#{pagy_bootstrap_prev_html pagy, link}),
                'link'   => %(<li class="page-item">#{html = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
                'active' => %(<li class="page-item active">#{html}</li>),
-               'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link">#{pagy_t 'pagy.nav.gap'}</a></li>),
+               'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link" aria-disabled="true">#{
+                               pagy_t 'pagy.nav.gap'}</a></li>),
                'after'  => %(#{pagy_bootstrap_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bootstrap-nav-js" #{
@@ -64,16 +66,16 @@ class Pagy # :nodoc:
           pagy_aria_label(pagy, page_label, page_i18n_key)}><div class="btn-group" role="group" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           if (p_prev = pagy.prev)
-            link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous" class="prev btn btn-primary"'
+            link.call p_prev, pagy_t('pagy.nav.prev'), 'class="prev btn btn-primary"'
           else
-            %(<a class="prev btn btn-primary disabled" href="#">#{pagy_t('pagy.nav.prev')}</a>)
+            %(<a class="prev btn btn-primary disabled" href="#" aria-disabled="true">#{pagy_t('pagy.nav.prev')}</a>)
           end
         }<div class="pagy-combo-input btn btn-secondary" style="white-space: nowrap;">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</div>#{
           if (p_next  = pagy.next)
-            link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next" class="next btn btn-primary"'
+            link.call p_next, pagy_t('pagy.nav.next'), 'class="next btn btn-primary"'
           else
-            %(<a class="next btn btn-primary disabled" href="#">#{pagy_t 'pagy.nav.next'}</a>)
+            %(<a class="next btn btn-primary disabled" href="#" aria-disabled="true">#{pagy_t 'pagy.nav.next'}</a>)
           end
         }</div></nav>)
     end

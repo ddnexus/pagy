@@ -11,12 +11,10 @@ export default defineConfig(
             setupNodeEvents(on, config) {
                 htmlvalidate.install(on, {
                     rules: {
-                        // a few frameworks use ul or div for pagination, and aria-role="navigation" will trigger it
+                        // a few frameworks use improper elements to render various roles
                         "prefer-native-element": "off",
                         // not needed in test environment
                         "require-sri": "off",
-                        // the ARIA refactoring will fix that
-                        "unique-landmark": "off"
                     }
                 });
             },

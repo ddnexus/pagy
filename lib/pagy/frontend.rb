@@ -53,19 +53,20 @@ class Pagy
         }</span>)
     end
 
-    # Return a performance optimized proc to generate the HTML links
+    # Return a performance optimized lambda to generate the HTML links
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_link_proc(pagy, link_extra: '')
       p_prev      = pagy.prev
       p_next      = pagy.next
-      p_page      = pagy.page
+      p_page      = pagy.page.to_s
       left, right = %(<a href="#{pagy_url_for(pagy, PAGE_PLACEHOLDER)}" #{
                         pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
+      # lambda used by all the helpers
       lambda do |page, text = pagy.label_for(page), extra_attrs = ''|
         %(#{left}#{page}#{right}#{ case page
                                    when p_prev then ' rel="prev"'
                                    when p_next then ' rel="next"'
-                                   when p_page then ' aria-current="page"'
+                                   when p_page then ' aria-disabled="true" aria-current="page"'
                                    else             ''
                                    end } #{extra_attrs}>#{text}</a>)
       end

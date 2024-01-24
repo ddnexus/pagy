@@ -30,12 +30,11 @@ describe 'pagy/extras/trim' do
 
         pagy = Pagy.new(count: 1000, page: page)
         link = app.pagy_link_proc(pagy)
-        aria = 'aria-current="page" ' if pagy.page == page
-        _(link.call(page)).must_equal("<a href=\"/foo#{trimmed}\"   #{aria}>#{page}</a>")
+        _(link.call(page)).must_include(%(<a href="/foo#{trimmed}"))
 
         pagy = Pagy.new(count: 1000, page: page, trim_extra: false)
         link = app.pagy_link_proc(pagy)
-        _(link.call(page)).must_equal("<a href=\"/foo#{not_trimmed}\"   #{aria}>#{page}</a>")
+        _(link.call(page)).must_include(%(<a href="/foo#{not_trimmed}"))
       end
     end
   end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# :nocov:
 module WarningFilters
   module Calendar
     def warn(message, category: nil, **kwargs)
@@ -12,3 +13,4 @@ module WarningFilters
   end
 end
 Warning.extend WarningFilters::Calendar
+# :nocov

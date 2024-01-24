@@ -8,18 +8,24 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module SemanticExtra
     # Pagination for semantic: it returns the html with the series of links to the pages
-    def pagy_semantic_nav(pagy, pagy_id: nil, link_extra: '', **vars)
+    def pagy_semantic_nav(pagy, pagy_id: nil, link_extra: '',
+                          page_label: nil, page_i18n_key: nil, **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
+      link = pagy_link_proc(pagy, link_extra:)
 
-      html = +%(<div#{p_id} class="pagy-semantic-nav ui pagination menu">)
+      html = +%(<div#{p_id} role="navigation" class="pagy-semantic-nav ui pagination menu" #{
+                  pagy_aria_label(pagy, page_label, page_i18n_key)}>)
       html << pagy_semantic_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
-                when Integer then link.call item
-                when String  then %(<a class="item active">#{pagy.label_for(item)}</a>)
-                when :gap    then %(<div class="disabled item">#{pagy_t 'pagy.nav.gap'}</div>)
-                else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
+                when Integer
+                  link.call(item, pagy.label_for(item), %(class="item"))
+                when String
+                  link.call(item, pagy.label_for(item), %(class="item active"))
+                when :gap
+                  %(<div class="disabled item">#{pagy_t 'pagy.nav.gap'}</div>)
+                else
+                  raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
       html << pagy_semantic_next_html(pagy, link)
@@ -27,22 +33,25 @@ class Pagy # :nodoc:
     end
 
     # Javascript pagination for semantic: it returns a nav and a JSON tag used by the pagy.js file
-    def pagy_semantic_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
+    def pagy_semantic_nav_js(pagy, pagy_id: nil, link_extra: '',
+                             page_label: nil, page_i18n_key: nil, **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
+      link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => pagy_semantic_prev_html(pagy, link),
-               'link'   => link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER),
-               'active' => %(<a class="item active">#{LABEL_PLACEHOLDER}</a>),
+               'link'   => link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER, %(class="item")),
+               'active' => link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER, %(class="item active")),
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.nav.gap')}</div>),
                'after'  => pagy_semantic_next_html(pagy, link) }
 
       %(<div#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-semantic-nav-js ui pagination menu" role="navigation" #{
-        pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
+          pagy_aria_label(pagy, page_label, page_i18n_key)} #{
+          pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
     end
 
     # Combo pagination for semantic: it returns a nav and a JSON tag used by the pagy.js file
-    def pagy_semantic_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
+    def pagy_semantic_combo_nav_js(pagy, pagy_id: nil, link_extra: '',
+                                   page_label: nil, page_i18n_key: nil)
       p_id    = %( id="#{pagy_id}") if pagy_id
       link    = pagy_link_proc(pagy, link_extra: %(class="item" #{link_extra}))
       p_page  = pagy.page
@@ -51,6 +60,7 @@ class Pagy # :nodoc:
                     p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem; margin: 0 0.3rem">)
 
       %(<div#{p_id} class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" #{
+          pagy_aria_label(pagy, page_label, page_i18n_key)} #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           pagy_semantic_prev_html pagy, link
         }<div class="pagy-combo-input item">#{
@@ -64,17 +74,17 @@ class Pagy # :nodoc:
 
     def pagy_semantic_prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        link.call p_prev, '<i class="left small chevron icon"></i>', 'aria-label="previous"'
+        link.call(p_prev, pagy_t('pagy.nav.prev'), %(class="item"))
       else
-        +%(<div class="item disabled"><i class="left small chevron icon"></i></div>)
+        +%(<div class="item disabled" role="link" aria-label="disabled">#{pagy_t('pagy.nav.prev')}</div>)
       end
     end
 
     def pagy_semantic_next_html(pagy, link)
       if (p_next = pagy.next)
-        link.call p_next, '<i class="right small chevron icon"></i>', 'aria-label="next"'
+        link.call(p_next, pagy_t('pagy.nav.next'), %(class="item"))
       else
-        +%(<div class="item disabled"><i class="right small chevron icon"></i></div>)
+        +%(<div class="item disabled" role="link" aria-label="disabled">#{pagy_t('pagy.nav.next')}</div>)
       end
     end
   end

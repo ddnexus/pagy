@@ -16,37 +16,7 @@ end
 describe 'pagy/frontend' do
   let(:app) { MockApp.new }
 
-  describe '#pagy_nav' do
-    it 'renders page 1' do
-      pagy = Pagy.new count: 103, page: 1
-      _(app.pagy_nav(pagy)).must_rematch :plain
-      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch :extras
-    end
-
-    it 'renders page 3' do
-      pagy = Pagy.new count: 103, page: 3
-      _(app.pagy_nav(pagy)).must_rematch :plain
-      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch :extras
-    end
-    it 'renders page 6' do
-      pagy = Pagy.new count: 103, page: 6
-      _(app.pagy_nav(pagy)).must_rematch :plain
-      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch :exras
-    end
-    it 'renders page 10' do
-      pagy = Pagy.new size: [1, 4, 4, 1], count: 1000, page: 10
-      _(app.pagy_nav(pagy)).must_rematch :plain
-      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch :extras
-    end
-    it 'renders with link_extras' do
-      pagy = Pagy.new count: 103, page: 1, link_extra: "X"
-      _(app.pagy_nav(pagy)).must_include '?page=2" X  rel'
-      _(app.pagy_nav(pagy, link_extra: 'link-extra')).must_include '?page=2" X link-extra rel'
-    end
-    it 'should raise for wrong series' do
-      _ { app.pagy_nav(PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
-    end
-  end
+  # #pagy_nav helper tests in the test/extras/navs_test.rb
 
   describe '#pagy_link_proc' do
     it 'renders with extras' do
