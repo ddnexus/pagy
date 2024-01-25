@@ -2,14 +2,11 @@
 
 pl:
   pagy:
-
-    # please add a comment in the https://github.com/ddnexus/pagy/issues/596
-    # posting the translation of page_label with the plurals for this locale
-    page_label: "Pages"
-#      one: ""
-#      few: ""
-#      many: ""
-#      other: ""
+    page_label:
+      one: "Strona"
+      few: "Strony"
+      many: "Stron"
+      other: "Strony"
 
     item_name:
       one: "element"
