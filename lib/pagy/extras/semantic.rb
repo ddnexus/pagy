@@ -76,7 +76,7 @@ class Pagy # :nodoc:
       if (p_prev = pagy.prev)
         link.call(p_prev, pagy_t('pagy.nav.prev'), %(class="item"))
       else
-        +%(<div class="item disabled" role="link" aria-label="disabled">#{pagy_t('pagy.nav.prev')}</div>)
+        +%(<div class="item disabled" role="link" aria-disabled="true">#{pagy_t('pagy.nav.prev')}</div>)
       end
     end
 
@@ -84,7 +84,7 @@ class Pagy # :nodoc:
       if (p_next = pagy.next)
         link.call(p_next, pagy_t('pagy.nav.next'), %(class="item"))
       else
-        +%(<div class="item disabled" role="link" aria-label="disabled">#{pagy_t('pagy.nav.next')}</div>)
+        +%(<div class="item disabled" role="link" aria-disabled="true">#{pagy_t('pagy.nav.next')}</div>)
       end
     end
   end

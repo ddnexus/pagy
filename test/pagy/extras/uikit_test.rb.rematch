@@ -1,75 +1,18 @@
 ---
-pagy/extras/uikit::#pagy_combo_uikit_nav_js#test_0001_renders first, intermediate and last pages:
-  :plain_1: '<ul class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li
-    class="uk-disabled"><a href="#" aria-disabled="true"><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
-    <input type="number" min="1" max="6" value="1" style="text-align: center; width:
-    2rem;"> of 6</label></li><li><a href="/foo?page=2"   rel="next" ><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
-  :extras_1: '<ul id="test-nav-id" class="pagy-uikit-combo-nav-js uk-button-group
-    uk-pagination uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li
-    class="uk-disabled"><a href="#" aria-disabled="true"><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
-    <input type="number" min="1" max="6" value="1" style="text-align: center; width:
-    2rem;"> of 6</label></li><li><a href="/foo?page=2"  link-extra rel="next" ><span
-    uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
-  :plain_3: '<ul class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li><a
-    href="/foo?page=2"   rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
-    <input type="number" min="1" max="6" value="3" style="text-align: center; width:
-    2rem;"> of 6</label></li><li><a href="/foo?page=4"   rel="next" ><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
-  :extras_3: '<ul id="test-nav-id" class="pagy-uikit-combo-nav-js uk-button-group
-    uk-pagination uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li><a
-    href="/foo?page=2"  link-extra rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
-    <input type="number" min="1" max="6" value="3" style="text-align: center; width:
-    2rem;"> of 6</label></li><li><a href="/foo?page=4"  link-extra rel="next" ><span
-    uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
-  :plain_6: '<ul class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li><a
-    href="/foo?page=5"   rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
-    <input type="number" min="1" max="6" value="6" style="text-align: center; width:
-    2rem;"> of 6</label></li><li class="uk-disabled"><a href="#" aria-disabled="true"><span
-    uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
-  :extras_6: '<ul id="test-nav-id" class="pagy-uikit-combo-nav-js uk-button-group
-    uk-pagination uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li><a
-    href="/foo?page=5"  link-extra rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
-    <input type="number" min="1" max="6" value="6" style="text-align: center; width:
-    2rem;"> of 6</label></li><li class="uk-disabled"><a href="#" aria-disabled="true"><span
-    uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
-pagy/extras/uikit::#pagy_uikit_nav_js#test_0002_renders first, intermediate and last pages with required steps:
-  :plain_1: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
-    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInVrLWFjdGl2ZVwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwidHJ1ZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L3NwYW4+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiYWZ0ZXIiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgICByZWw9XCJuZXh0XCIgPjxzcGFuIHVrLXBhZ2luYXRpb24tbmV4dD5OZXh0Jm5ic3A7JnJzYXF1bzs8L3NwYW4+PC9hPjwvbGk+In0seyIwIjpbIjEiLDIsMyw0LDUsImdhcCIsNTBdfSxudWxsXQ=="></ul>
-  :extras_1: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
-    uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJ1ay1hY3RpdmVcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInRydWVcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9zcGFuPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3Bhbj4maGVsbGlwOzwvc3Bhbj48L2xpPiIsImFmdGVyIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1uZXh0Pk5leHQmbmJzcDsmcnNhcXVvOzwvc3Bhbj48L2E+PC9saT4ifSx7IjAiOlsiMSIsMiwzLCJnYXAiLDUwXSwiNjAwIjpbIjEiLDIsMyw0LCJnYXAiLDUwXX0sbnVsbF0="></ul>
-  :plain_20: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
-    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MTlcIiAgIHJlbD1cInByZXZcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInVrLWFjdGl2ZVwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwidHJ1ZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L3NwYW4+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiYWZ0ZXIiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT0yMVwiICAgcmVsPVwibmV4dFwiID48c3BhbiB1ay1wYWdpbmF0aW9uLW5leHQ+TmV4dCZuYnNwOyZyc2FxdW87PC9zcGFuPjwvYT48L2xpPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></ul>
-  :extras_20: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
-    uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MTlcIiAgbGluay1leHRyYSByZWw9XCJwcmV2XCIgPjxzcGFuIHVrLXBhZ2luYXRpb24tcHJldmlvdXM+JmxzYXF1bzsmbmJzcDtQcmV2PC9zcGFuPjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwidWstYWN0aXZlXCI+PHNwYW4gcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJ0cnVlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvc3Bhbj48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInVrLWRpc2FibGVkXCI+PHNwYW4+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCJhZnRlciI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiID48c3BhbiB1ay1wYWdpbmF0aW9uLW5leHQ+TmV4dCZuYnNwOyZyc2FxdW87PC9zcGFuPjwvYT48L2xpPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></ul>
-  :plain_50: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
-    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9NDlcIiAgIHJlbD1cInByZXZcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInVrLWFjdGl2ZVwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwidHJ1ZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L3NwYW4+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxhIGhyZWY9XCIjXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj48c3BhbiB1ay1wYWdpbmF0aW9uLW5leHQ+TmV4dCZuYnNwOyZyc2FxdW87PC9zcGFuPjwvYT48L2xpPiJ9LHsiMCI6WzEsImdhcCIsNDYsNDcsNDgsNDksIjUwIl19LG51bGxd"></ul>
-  :extras_50: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
-    uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9NDlcIiAgbGluay1leHRyYSByZWw9XCJwcmV2XCIgPjxzcGFuIHVrLXBhZ2luYXRpb24tcHJldmlvdXM+JmxzYXF1bzsmbmJzcDtQcmV2PC9zcGFuPjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwidWstYWN0aXZlXCI+PHNwYW4gcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJ0cnVlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvc3Bhbj48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInVrLWRpc2FibGVkXCI+PHNwYW4+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cInVrLWRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPjxzcGFuIHVrLXBhZ2luYXRpb24tbmV4dD5OZXh0Jm5ic3A7JnJzYXF1bzs8L3NwYW4+PC9hPjwvbGk+In0seyIwIjpbMSwiZ2FwIiw0OCw0OSwiNTAiXSwiNjAwIjpbMSwiZ2FwIiw0Nyw0OCw0OSwiNTAiXX0sbnVsbF0="></ul>
-pagy/extras/uikit::#pagy_uikit_nav_js#test_0001_renders single and multiple pages when used with Pagy::Countless:
-  :plain_1_0: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
-    aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInVrLWFjdGl2ZVwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwidHJ1ZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L3NwYW4+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxhIGhyZWY9XCIjXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj48c3BhbiB1ay1wYWdpbmF0aW9uLW5leHQ+TmV4dCZuYnNwOyZyc2FxdW87PC9zcGFuPjwvYT48L2xpPiJ9LHsiMCI6WyIxIl19LG51bGxd"></ul>
-  :extras_1_0: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
-    uk-flex-center" role="navigation" aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJ1ay1hY3RpdmVcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInRydWVcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9zcGFuPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3Bhbj4maGVsbGlwOzwvc3Bhbj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1uZXh0Pk5leHQmbmJzcDsmcnNhcXVvOzwvc3Bhbj48L2E+PC9saT4ifSx7IjAiOlsiMSJdLCI2MDAiOlsiMSJdfSxudWxsXQ=="></ul>
-  :plain_2_23: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
-    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MVwiICAgcmVsPVwicHJldlwiID48c3BhbiB1ay1wYWdpbmF0aW9uLXByZXZpb3VzPiZsc2FxdW87Jm5ic3A7UHJldjwvc3Bhbj48L2E+PC9saT4iLCJsaW5rIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwidWstYWN0aXZlXCI+PHNwYW4gcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJ0cnVlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvc3Bhbj48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInVrLWRpc2FibGVkXCI+PHNwYW4+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCJhZnRlciI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPTNcIiAgIHJlbD1cIm5leHRcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1uZXh0Pk5leHQmbmJzcDsmcnNhcXVvOzwvc3Bhbj48L2E+PC9saT4ifSx7IjAiOlsxLCIyIiwzXX0sbnVsbF0="></ul>
-  :extras_2_23: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
-    uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJ1ay1hY3RpdmVcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInRydWVcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9zcGFuPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3Bhbj4maGVsbGlwOzwvc3Bhbj48L2xpPiIsImFmdGVyIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiICBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1uZXh0Pk5leHQmbmJzcDsmcnNhcXVvOzwvc3Bhbj48L2E+PC9saT4ifSx7IjAiOlsxLCIyIiwzXSwiNjAwIjpbMSwiMiIsM119LG51bGxd"></ul>
 pagy/extras/uikit::#pagy_uikit_nav#test_0001_renders first, intermediate and last pages:
   :plain_1: <ul class="pagy-uikit-nav uk-pagination uk-flex-center" role="navigation"  aria-label="Pages"><li
-    class="uk-disabled"><a href="#" aria-disabled="true"><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li
+    class="uk-disabled"><span role="link" aria-disabled="true"><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li
     class="uk-active"><span role="link" aria-current="true" aria-disabled="true">1</span></li><li><a
     href="/foo?page=2"   rel="next" >2</a></li><li><a href="/foo?page=3"   >3</a></li><li><a
     href="/foo?page=4"   >4</a></li><li><a href="/foo?page=5"   >5</a></li><li class="uk-disabled"><span>&hellip;</span></li><li><a
     href="/foo?page=50"   >50</a></li><li><a href="/foo?page=2"   rel="next" ><span
     uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>
   :extras_1: <ul id="test-nav-id" class="pagy-uikit-nav uk-pagination uk-flex-center"
-    role="navigation"  aria-label="Pages"><li class="uk-disabled"><a href="#" aria-disabled="true"><span
-    uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li class="uk-active"><span
-    role="link" aria-current="true" aria-disabled="true">1</span></li><li><a href="/foo?page=2"  link-extra
-    rel="next" >2</a></li><li><a href="/foo?page=3"  link-extra >3</a></li><li><a
-    href="/foo?page=4"  link-extra >4</a></li><li><a href="/foo?page=5"  link-extra
+    role="navigation"  aria-label="Pages"><li class="uk-disabled"><span role="link"
+    aria-disabled="true"><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li
+    class="uk-active"><span role="link" aria-current="true" aria-disabled="true">1</span></li><li><a
+    href="/foo?page=2"  link-extra rel="next" >2</a></li><li><a href="/foo?page=3"  link-extra
+    >3</a></li><li><a href="/foo?page=4"  link-extra >4</a></li><li><a href="/foo?page=5"  link-extra
     >5</a></li><li class="uk-disabled"><span>&hellip;</span></li><li><a href="/foo?page=50"  link-extra
     >50</a></li><li><a href="/foo?page=2"  link-extra rel="next" ><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>
   :plain_20: <ul class="pagy-uikit-nav uk-pagination uk-flex-center" role="navigation"  aria-label="Pages"><li><a
@@ -99,7 +42,7 @@ pagy/extras/uikit::#pagy_uikit_nav#test_0001_renders first, intermediate and las
     href="/foo?page=46"   >46</a></li><li><a href="/foo?page=47"   >47</a></li><li><a
     href="/foo?page=48"   >48</a></li><li><a href="/foo?page=49"   rel="prev" >49</a></li><li
     class="uk-active"><span role="link" aria-current="true" aria-disabled="true">50</span></li><li
-    class="uk-disabled"><a href="#" aria-disabled="true"><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>
+    class="uk-disabled"><span role="link" aria-disabled="true"><span uk-pagination-next>Next&nbsp;&rsaquo;</span></span></li></ul>
   :extras_50: <ul id="test-nav-id" class="pagy-uikit-nav uk-pagination uk-flex-center"
     role="navigation"  aria-label="Pages"><li><a href="/foo?page=49"  link-extra rel="prev"
     ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><a href="/foo?page=1"  link-extra
@@ -107,4 +50,61 @@ pagy/extras/uikit::#pagy_uikit_nav#test_0001_renders first, intermediate and las
     >46</a></li><li><a href="/foo?page=47"  link-extra >47</a></li><li><a href="/foo?page=48"  link-extra
     >48</a></li><li><a href="/foo?page=49"  link-extra rel="prev" >49</a></li><li
     class="uk-active"><span role="link" aria-current="true" aria-disabled="true">50</span></li><li
-    class="uk-disabled"><a href="#" aria-disabled="true"><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>
+    class="uk-disabled"><span role="link" aria-disabled="true"><span uk-pagination-next>Next&nbsp;&rsaquo;</span></span></li></ul>
+pagy/extras/uikit::#pagy_combo_uikit_nav_js#test_0001_renders first, intermediate and last pages:
+  :plain_1: '<ul class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li
+    class="uk-disabled"><span role="link" aria-disabled="true"><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
+    <input type="number" min="1" max="6" value="1" style="text-align: center; width:
+    2rem;"> of 6</label></li><li><a href="/foo?page=2"   rel="next" ><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
+  :extras_1: '<ul id="test-nav-id" class="pagy-uikit-combo-nav-js uk-button-group
+    uk-pagination uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li
+    class="uk-disabled"><span role="link" aria-disabled="true"><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
+    <input type="number" min="1" max="6" value="1" style="text-align: center; width:
+    2rem;"> of 6</label></li><li><a href="/foo?page=2"  link-extra rel="next" ><span
+    uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
+  :plain_3: '<ul class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li><a
+    href="/foo?page=2"   rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
+    <input type="number" min="1" max="6" value="3" style="text-align: center; width:
+    2rem;"> of 6</label></li><li><a href="/foo?page=4"   rel="next" ><span uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
+  :extras_3: '<ul id="test-nav-id" class="pagy-uikit-combo-nav-js uk-button-group
+    uk-pagination uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li><a
+    href="/foo?page=2"  link-extra rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
+    <input type="number" min="1" max="6" value="3" style="text-align: center; width:
+    2rem;"> of 6</label></li><li><a href="/foo?page=4"  link-extra rel="next" ><span
+    uk-pagination-next>Next&nbsp;&rsaquo;</span></a></li></ul>'
+  :plain_6: '<ul class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><li><a
+    href="/foo?page=5"   rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
+    <input type="number" min="1" max="6" value="6" style="text-align: center; width:
+    2rem;"> of 6</label></li><li class="uk-disabled"><span role="link" aria-disabled="true"><span
+    uk-pagination-next>Next&nbsp;&rsaquo;</span></span></li></ul>'
+  :extras_6: '<ul id="test-nav-id" class="pagy-uikit-combo-nav-js uk-button-group
+    uk-pagination uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><li><a
+    href="/foo?page=5"  link-extra rel="prev" ><span uk-pagination-previous>&lsaquo;&nbsp;Prev</span></a></li><li><label>Page
+    <input type="number" min="1" max="6" value="6" style="text-align: center; width:
+    2rem;"> of 6</label></li><li class="uk-disabled"><span role="link" aria-disabled="true"><span
+    uk-pagination-next>Next&nbsp;&rsaquo;</span></span></li></ul>'
+pagy/extras/uikit::#pagy_uikit_nav_js#test_0002_renders first, intermediate and last pages with required steps:
+  :plain_1: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
+    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInVrLWFjdGl2ZVwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwidHJ1ZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L3NwYW4+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiYWZ0ZXIiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgICByZWw9XCJuZXh0XCIgPjxzcGFuIHVrLXBhZ2luYXRpb24tbmV4dD5OZXh0Jm5ic3A7JnJzYXF1bzs8L3NwYW4+PC9hPjwvbGk+In0seyIwIjpbIjEiLDIsMyw0LDUsImdhcCIsNTBdfSxudWxsXQ=="></ul>
+  :extras_1: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
+    uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJ1ay1hY3RpdmVcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInRydWVcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9zcGFuPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3Bhbj4maGVsbGlwOzwvc3Bhbj48L2xpPiIsImFmdGVyIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1uZXh0Pk5leHQmbmJzcDsmcnNhcXVvOzwvc3Bhbj48L2E+PC9saT4ifSx7IjAiOlsiMSIsMiwzLCJnYXAiLDUwXSwiNjAwIjpbIjEiLDIsMyw0LCJnYXAiLDUwXX0sbnVsbF0="></ul>
+  :plain_20: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
+    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MTlcIiAgIHJlbD1cInByZXZcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInVrLWFjdGl2ZVwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwidHJ1ZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L3NwYW4+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiYWZ0ZXIiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT0yMVwiICAgcmVsPVwibmV4dFwiID48c3BhbiB1ay1wYWdpbmF0aW9uLW5leHQ+TmV4dCZuYnNwOyZyc2FxdW87PC9zcGFuPjwvYT48L2xpPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></ul>
+  :extras_20: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
+    uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MTlcIiAgbGluay1leHRyYSByZWw9XCJwcmV2XCIgPjxzcGFuIHVrLXBhZ2luYXRpb24tcHJldmlvdXM+JmxzYXF1bzsmbmJzcDtQcmV2PC9zcGFuPjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwidWstYWN0aXZlXCI+PHNwYW4gcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJ0cnVlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvc3Bhbj48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInVrLWRpc2FibGVkXCI+PHNwYW4+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCJhZnRlciI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiID48c3BhbiB1ay1wYWdpbmF0aW9uLW5leHQ+TmV4dCZuYnNwOyZyc2FxdW87PC9zcGFuPjwvYT48L2xpPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></ul>
+  :plain_50: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
+    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9NDlcIiAgIHJlbD1cInByZXZcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInVrLWFjdGl2ZVwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwidHJ1ZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L3NwYW4+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj48c3BhbiB1ay1wYWdpbmF0aW9uLW5leHQ+TmV4dCZuYnNwOyZyc2FxdW87PC9zcGFuPjwvc3Bhbj48L2xpPiJ9LHsiMCI6WzEsImdhcCIsNDYsNDcsNDgsNDksIjUwIl19LG51bGxd"></ul>
+  :extras_50: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
+    uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9NDlcIiAgbGluay1leHRyYSByZWw9XCJwcmV2XCIgPjxzcGFuIHVrLXBhZ2luYXRpb24tcHJldmlvdXM+JmxzYXF1bzsmbmJzcDtQcmV2PC9zcGFuPjwvYT48L2xpPiIsImxpbmsiOiI8bGk+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwidWstYWN0aXZlXCI+PHNwYW4gcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJ0cnVlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvc3Bhbj48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInVrLWRpc2FibGVkXCI+PHNwYW4+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cInVrLWRpc2FibGVkXCI+PHNwYW4gcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPjxzcGFuIHVrLXBhZ2luYXRpb24tbmV4dD5OZXh0Jm5ic3A7JnJzYXF1bzs8L3NwYW4+PC9zcGFuPjwvbGk+In0seyIwIjpbMSwiZ2FwIiw0OCw0OSwiNTAiXSwiNjAwIjpbMSwiZ2FwIiw0Nyw0OCw0OSwiNTAiXX0sbnVsbF0="></ul>
+pagy/extras/uikit::#pagy_uikit_nav_js#test_0001_renders single and multiple pages when used with Pagy::Countless:
+  :plain_1_0: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
+    aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInVrLWFjdGl2ZVwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwidHJ1ZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L3NwYW4+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuPiZoZWxsaXA7PC9zcGFuPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJ1ay1kaXNhYmxlZFwiPjxzcGFuIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj48c3BhbiB1ay1wYWdpbmF0aW9uLW5leHQ+TmV4dCZuYnNwOyZyc2FxdW87PC9zcGFuPjwvc3Bhbj48L2xpPiJ9LHsiMCI6WyIxIl19LG51bGxd"></ul>
+  :extras_1_0: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
+    uk-flex-center" role="navigation" aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJ1ay1hY3RpdmVcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInRydWVcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9zcGFuPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3Bhbj4maGVsbGlwOzwvc3Bhbj48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+PHNwYW4gdWstcGFnaW5hdGlvbi1uZXh0Pk5leHQmbmJzcDsmcnNhcXVvOzwvc3Bhbj48L3NwYW4+PC9saT4ifSx7IjAiOlsiMSJdLCI2MDAiOlsiMSJdfSxudWxsXQ=="></ul>
+  :plain_2_23: <ul class="pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation"
+    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MVwiICAgcmVsPVwicHJldlwiID48c3BhbiB1ay1wYWdpbmF0aW9uLXByZXZpb3VzPiZsc2FxdW87Jm5ic3A7UHJldjwvc3Bhbj48L2E+PC9saT4iLCJsaW5rIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwidWstYWN0aXZlXCI+PHNwYW4gcm9sZT1cImxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJ0cnVlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvc3Bhbj48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInVrLWRpc2FibGVkXCI+PHNwYW4+JmhlbGxpcDs8L3NwYW4+PC9saT4iLCJhZnRlciI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPTNcIiAgIHJlbD1cIm5leHRcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1uZXh0Pk5leHQmbmJzcDsmcnNhcXVvOzwvc3Bhbj48L2E+PC9saT4ifSx7IjAiOlsxLCIyIiwzXX0sbnVsbF0="></ul>
+  :extras_2_23: <ul id="test-nav-id" class="pagy-rjs pagy-uikit-nav-js uk-pagination
+    uk-flex-center" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1wcmV2aW91cz4mbHNhcXVvOyZuYnNwO1ByZXY8L3NwYW4+PC9hPjwvbGk+IiwibGluayI6IjxsaT48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJ1ay1hY3RpdmVcIj48c3BhbiByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInRydWVcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9zcGFuPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwidWstZGlzYWJsZWRcIj48c3Bhbj4maGVsbGlwOzwvc3Bhbj48L2xpPiIsImFmdGVyIjoiPGxpPjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiICBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiA+PHNwYW4gdWstcGFnaW5hdGlvbi1uZXh0Pk5leHQmbmJzcDsmcnNhcXVvOzwvc3Bhbj48L2E+PC9saT4ifSx7IjAiOlsxLCIyIiwzXSwiNjAwIjpbMSwiMiIsM119LG51bGxd"></ul>

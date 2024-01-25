@@ -41,6 +41,10 @@ See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pag
 - [bulma_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.haml) (optional template)
 - [bulma_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.slim)  (optional template)
 
+| Variable             | Description                                                                   | Default        |
+|:---------------------|:------------------------------------------------------------------------------|:---------------|
+| `:bulma_nav_classes` | Edit the classes for the nav element. You can try "is-small", "is-round" etc. | `"is-centered"` |
+
 ## Methods
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. 

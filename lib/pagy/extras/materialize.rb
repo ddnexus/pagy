@@ -18,11 +18,11 @@ class Pagy # :nodoc:
       html << pagy_materialize_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
-                when Integer                                                # page link
+                when Integer
                   %(<li class="waves-effect">#{link.call(item)}</li>)
-                when String                                                 # active page
+                when String
                   %(<li class="active">#{link.call(item)}</li>)
-                when :gap                                                   # page gap
+                when :gap
                   %(<li class="gap disabled"><a href="#" aria-disabled="true">#{pagy_t 'pagy.nav.gap'}</a></li>)
                 else
                   raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"

@@ -4,6 +4,8 @@
 require 'pagy/extras/frontend_helpers'
 
 class Pagy # :nodoc:
+  DEFAULT[:bulma_nav_classes] = 'is-centered'
+
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module BulmaExtra
@@ -13,7 +15,7 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
 
-      html = +%(<nav#{p_id} class="pagy-bulma-nav pagination is-centered" #{
+      html = +%(<nav#{p_id} class="pagy-bulma-nav pagination #{DEFAULT[:bulma_nav_classes]}" #{
                   pagy_aria_label(pagy, page_label, page_i18n_key)}>)
       html << pagy_bulma_prev_next_html(pagy, link)
       html << %(<ul class="pagination-list">)
@@ -43,7 +45,7 @@ class Pagy # :nodoc:
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.nav.gap'}</span></li>),
                'after'  => '</ul>' }
 
-      %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bulma-nav-js pagination is-centered" #{
+      %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bulma-nav-js pagination #{DEFAULT[:bulma_nav_classes]}" #{
         pagy_aria_label(pagy, page_label, page_i18n_key)}#{
         pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
     end
@@ -58,7 +60,8 @@ class Pagy # :nodoc:
       input   = %(<input class="input" type="number" min="1" max="#{p_pages}" value="#{
                     p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem; margin:0 0.3rem;">)
 
-      html = %(<nav#{p_id} class="pagy-bulma-combo-nav-js" #{pagy_aria_label(pagy, page_label, page_i18n_key)}>)
+      html = %(<nav#{p_id} class="pagy-bulma-combo-nav-js #{DEFAULT[:bulma_nav_classes]}" #{
+                pagy_aria_label(pagy, page_label, page_i18n_key)}>)
       %(#{html}<div class="field is-grouped is-grouped-centered" role="group" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           if (p_prev  = pagy.prev)

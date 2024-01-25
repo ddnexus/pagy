@@ -13,16 +13,16 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
 
-      html = +%(<nav#{p_id} class="pagy-foundation-nav" aria-label="Pagination" #{
+      html = +%(<nav#{p_id} class="pagy-foundation-nav" #{
                  pagy_aria_label(pagy, page_label, page_i18n_key)}><ul class="pagination">)
       html << pagy_foundation_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
-                when Integer                         # page link
+                when Integer
                   %(<li>#{link.call item}</li>)
-                when String                          # active page
+                when String
                   %(<li class="current" role="link" aria-current="page" aria-disabled="true">#{pagy.label_for(item)}</li>)
-                when :gap                            # page gap
+                when :gap
                   %(<li class="ellipsis gap"></li>)
                 else
                   raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
@@ -74,7 +74,7 @@ class Pagy # :nodoc:
           pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)
           .sub!('<label>', '<label class="input-group-label">')}#{ # add the class to the official dictionary string
           if (p_next  = pagy.next)
-            link.call p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0" aria-label="next" class="next button primary"'
+            link.call p_next, pagy_t('pagy.nav.next'), 'style="margin-bottom: 0" class="next button primary"'
           else
             %(<a style="margin-bottom: 0" class="next button primary disabled" role="link" aria-disabled="true">#{
                 pagy_t 'pagy.nav.next'}</a>)

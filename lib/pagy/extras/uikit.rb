@@ -18,9 +18,9 @@ class Pagy # :nodoc:
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
-                  %(<li>#{link.call(item, pagy.label_for(item))}</li>)
+                  %(<li>#{link.call(item)}</li>)
                 when String
-                  %(<li class="uk-active"><span role="link" aria-current="true" aria-disabled="true">#{
+                  %(<li class="uk-active"><span role="link" aria-current="page" aria-disabled="true">#{
                       pagy.label_for(item)}</span></li>)
                 when :gap
                   %(<li class="uk-disabled"><span>#{pagy_t 'pagy.nav.gap'}</span></li>)
@@ -40,7 +40,7 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => pagy_uikit_prev_html(pagy, link),
                'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
-               'active' => %(<li class="uk-active"><span role="link" aria-current="true" aria-disabled="true">#{
+               'active' => %(<li class="uk-active"><span role="link" aria-current="page" aria-disabled="true">#{
                                LABEL_PLACEHOLDER}</span></li>),
                'gap'    => %(<li class="uk-disabled"><span>#{pagy_t 'pagy.nav.gap'}</span></li>),
                'after'  => pagy_uikit_next_html(pagy, link) }
@@ -79,7 +79,7 @@ class Pagy # :nodoc:
       if (p_prev = pagy.prev)
         %(<li>#{link.call(p_prev, previous_span)}</li>)
       else
-        %(<li class="uk-disabled"><a href="#" aria-disabled="true">#{previous_span}</a></li>)
+        %(<li class="uk-disabled"><span role="link" aria-disabled="true">#{previous_span}</a></li>)
       end
     end
 
@@ -88,7 +88,7 @@ class Pagy # :nodoc:
       if (p_next = pagy.next)
         %(<li>#{link.call(p_next, next_span)}</li>)
       else
-        %(<li class="uk-disabled"><a href="#" aria-disabled="true">#{next_span}</a></li>)
+        %(<li class="uk-disabled"><span role="link" aria-disabled="true">#{next_span}</span></li>)
       end
     end
   end
