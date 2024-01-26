@@ -12,8 +12,10 @@ bg:
       other: "резултати"
 
     nav:
-      prev: "&lsaquo;&nbsp;Предишна"
-      next: "Следваща&nbsp;&rsaquo;"
+      prev_label: "Предишна"
+      next_label: "Следваща"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

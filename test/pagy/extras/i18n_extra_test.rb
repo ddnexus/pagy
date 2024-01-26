@@ -14,7 +14,7 @@ describe 'pagy/extras/i18n' do
       app.test_i18n_call
     end
     it 'pluralizes' do
-      _(app.pagy_t('pagy.nav.prev')).must_equal "&lsaquo;&nbsp;Prev"
+      _(app.pagy_t('pagy.nav.prev_label')).must_equal "Prev"
       _(app.pagy_t('pagy.item_name', count: 0)).must_equal 'items'
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal  'item'
       _(app.pagy_t('pagy.item_name', count: 10)).must_equal 'items'

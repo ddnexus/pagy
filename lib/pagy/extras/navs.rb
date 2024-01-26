@@ -34,7 +34,7 @@ class Pagy # :nodoc:
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" ) +
-                %(style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
+                %(style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       %(<nav#{p_id} class="pagy-combo-nav-js pagination" #{
           pagy_aria_label(pagy, page_label, page_i18n_key)} #{

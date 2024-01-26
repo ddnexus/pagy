@@ -14,8 +14,10 @@ pt:
       other: "itens"
 
     nav:
-      prev: "&lsaquo;&nbsp;Anterior"
-      next: "Próximo&nbsp;&rsaquo;"
+      prev_label: "Anterior"
+      next_label: "Próximo"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

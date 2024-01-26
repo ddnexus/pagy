@@ -1,13 +1,19 @@
 custom:
   pagy:
 
+    page_label:
+      one: "Page"
+      other: "Pages"
+
     item_name:
       one: "item"
       other: "items"
 
     nav:
-      prev: "&lsaquo;&nbsp;Custom Prev"         # test
-      next: "Next&nbsp;&rsaquo;"
+      prev_label: "Custom Prev"         # test
+      next_label: "Next"
+      prev: "&lt;"         # test
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

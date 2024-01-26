@@ -57,7 +57,8 @@ class Pagy # :nodoc:
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{
-                    p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem; margin: 0 0.3rem">)
+                    p_page}" style="padding: 0; text-align: center; width: #{
+                    p_pages.to_s.length + 1}rem; margin: 0 0.3rem" aria-current="page">)
 
       %(<div#{p_id} class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" #{
           pagy_aria_label(pagy, page_label, page_i18n_key)} #{
@@ -74,17 +75,17 @@ class Pagy # :nodoc:
 
     def pagy_semantic_prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        link.call(p_prev, pagy_t('pagy.nav.prev'), %(class="item"))
+        link.call(p_prev, pagy_t('pagy.nav.prev'), %(#{pagy_prev_aria_label} class="item"))
       else
-        +%(<div class="item disabled" role="link" aria-disabled="true">#{pagy_t('pagy.nav.prev')}</div>)
+        +%(<div class="item disabled" role="link" aria-disabled="true" #{pagy_prev_aria_label}>#{pagy_t('pagy.nav.prev')}</div>)
       end
     end
 
     def pagy_semantic_next_html(pagy, link)
       if (p_next = pagy.next)
-        link.call(p_next, pagy_t('pagy.nav.next'), %(class="item"))
+        link.call(p_next, pagy_t('pagy.nav.next'), %(#{pagy_next_aria_label} class="item"))
       else
-        +%(<div class="item disabled" role="link" aria-disabled="true">#{pagy_t('pagy.nav.next')}</div>)
+        +%(<div class="item disabled" role="link" aria-disabled="true" #{pagy_next_aria_label}>#{pagy_t('pagy.nav.next')}</div>)
       end
     end
   end

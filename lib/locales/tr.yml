@@ -10,8 +10,10 @@ tr:
     item_name: "kayıt"
 
     nav:
-      prev: "&lsaquo;&nbsp;Önceki"
-      next: "Sonraki&nbsp;&rsaquo;"
+      prev_label: "Önceki"
+      next_label: "Sonraki"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

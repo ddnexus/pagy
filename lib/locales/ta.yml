@@ -14,8 +14,10 @@ ta:
       other: "பதிவுகள்"
 
     nav:
-      prev: "&lsaquo;&nbsp;முந்தையது"
-      next: "அடுத்தது&nbsp;&rsaquo;"
+      prev_label: "முந்தையது"
+      next_label: "அடுத்தது"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

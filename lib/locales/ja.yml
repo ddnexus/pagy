@@ -10,8 +10,10 @@ ja:
     item_name: "結果"
 
     nav:
-      prev: "&lsaquo;&nbsp;前へ"
-      next: "次へ&nbsp;&rsaquo;"
+      prev_label: "前へ"
+      next_label: "次へ"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

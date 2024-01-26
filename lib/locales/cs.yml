@@ -16,8 +16,10 @@ cs:
       other: "položky"
 
     nav:
-      prev: "&lsaquo;&nbsp;Předchozí"
-      next: "Další&nbsp;&rsaquo;"
+      prev_label: "Předchozí"
+      next_label: "Další"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

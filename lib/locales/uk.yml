@@ -18,8 +18,10 @@ uk:
       other: "записів"
 
     nav:
-      prev: "&lsaquo;&nbsp;Назад"
-      next: "Далі&nbsp;&rsaquo;"
+      prev_label: "Назад"
+      next_label: "Далі"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

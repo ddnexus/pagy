@@ -21,8 +21,10 @@ ar:
       other: "عناصر"
 
     nav:
-      prev: "&lsaquo;&nbsp;السابق"
-      next: "التالي&nbsp;&rsaquo;"
+      prev_label: "السابق"
+      next_label: "التالي"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

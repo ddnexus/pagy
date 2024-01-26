@@ -2,6 +2,7 @@
 
 bs:
   pagy:
+
     page_label:
       one: "Stranica"
       few: "Stranice"
@@ -15,8 +16,10 @@ bs:
       other: "stavki"
 
     nav:
-      prev: "&lsaquo;&nbsp;Prethodna"
-      next: "Sljedeća &nbsp;&rsaquo;"
+      prev_label: "Prethodna"
+      next_label: "Sljedeća "
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

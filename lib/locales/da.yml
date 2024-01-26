@@ -14,8 +14,10 @@ da:
       other: "resultater"
 
     nav:
-      prev: "&lsaquo;&nbsp;Forrige"
-      next: "Næste&nbsp;&rsaquo;"
+      prev_label: "Forrige"
+      next_label: "Næste"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

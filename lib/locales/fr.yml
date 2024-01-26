@@ -12,8 +12,10 @@ fr:
       other: "éléments"
 
     nav:
-      prev: "&lsaquo;&nbsp;Précédent"
-      next: "Suivant&nbsp;&rsaquo;"
+      prev_label: "Précédent"
+      next_label: "Suivant"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

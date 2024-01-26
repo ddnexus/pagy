@@ -12,8 +12,10 @@ nb:
       other: "resultater"
 
     nav:
-      prev: "&lsaquo;&nbsp;Forrige"
-      next: "Neste&nbsp;&rsaquo;"
+      prev_label: "Forrige"
+      next_label: "Neste"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

@@ -14,8 +14,10 @@ nl:
       other: "stuks"
 
     nav:
-      prev: "&lsaquo;&nbsp;Vorige"
-      next: "Volgende&nbsp;&rsaquo;"
+      prev_label: "Vorige"
+      next_label: "Volgende"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

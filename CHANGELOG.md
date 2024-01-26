@@ -32,11 +32,10 @@ None
   - Removed `pagy_prev_link`: use `pagy_prev_html` without the `:text` argument (can customize `pagy.nav.prev`)
   - Removed `pagy_next_link`: use `pagy_next_html` without the `:text` argument (can customize `pagy.nav.next`)
 - Rack 3 breaking changes:
-  - The `headers` extra produces all lowercase headers, regardless how you set them [see rack issue](https://github.
-    com/rack/rack/issues/1592)
+  - The `headers` extra produces all lowercase headers, regardless how you set them [see rack issue](https://github.com/rack/rack/issues/1592)
   - Removed `:escaped_html` option from `pagy_url_for` (only breaking if you override the method or use the option directly)
-
-### Default changes possibly breaking test/views
+  
+### Default changes (possibly breaking test/views)
 
 - Changed `Pagy::DEFAULT[:size]` variable defaults from `[1, 4, 4, 1]` to `7`. You can explicitly set it in the initializer, 
   if your app was relying on it.
@@ -52,4 +51,10 @@ None
   - `Pagy::Calendar::Month::DEFAULT[:format]` from `'%Y-%m'` to `'%b'`
   - `Pagy::Calendar::Quartr::DEFAULT[:format]` from `'%Y-Q%q'` to `'Q%q'`
 
+### Visual changes (possibly breaking test/views)
+ 
+- The ARIA label compliance required the refactoring of all the nav helper that might look slightly different now.
+- The text for `"Prev"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You can 
+  edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
+ 
  [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 

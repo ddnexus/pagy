@@ -10,8 +10,10 @@ id:
     item_name: "item"
 
     nav:
-      prev: "&lsaquo;&nbsp;Sebelumnya"
-      next: "Selanjutnya&nbsp;&rsaquo;"
+      prev_label: "Sebelumnya"
+      next_label: "Selanjutnya"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

@@ -13,4 +13,4 @@ module WarningFilters
   end
 end
 Warning.extend WarningFilters::Calendar
-# :nocov
+# :nocov:

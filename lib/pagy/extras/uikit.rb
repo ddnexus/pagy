@@ -58,7 +58,7 @@ class Pagy # :nodoc:
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{
-                    p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
+                    p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       %(<ul#{p_id} class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" role="navigation" #{
           pagy_aria_label(pagy, page_label, page_i18n_key)} #{
@@ -77,18 +77,18 @@ class Pagy # :nodoc:
     def pagy_uikit_prev_html(pagy, link)
       previous_span = %(<span uk-pagination-previous>#{pagy_t 'pagy.nav.prev'}</span>)
       if (p_prev = pagy.prev)
-        %(<li>#{link.call(p_prev, previous_span)}</li>)
+        %(<li>#{link.call(p_prev, previous_span, pagy_prev_aria_label)}</li>)
       else
-        %(<li class="uk-disabled"><span role="link" aria-disabled="true">#{previous_span}</a></li>)
+        %(<li class="uk-disabled"><span role="link" aria-disabled="true" #{pagy_prev_aria_label}>#{previous_span}</a></li>)
       end
     end
 
     def pagy_uikit_next_html(pagy, link)
       next_span = %(<span uk-pagination-next>#{pagy_t 'pagy.nav.next'}</span>)
       if (p_next = pagy.next)
-        %(<li>#{link.call(p_next, next_span)}</li>)
+        %(<li>#{link.call(p_next, next_span, pagy_next_aria_label)}</li>)
       else
-        %(<li class="uk-disabled"><span role="link" aria-disabled="true">#{next_span}</span></li>)
+        %(<li class="uk-disabled"><span role="link" aria-disabled="true" #{pagy_prev_aria_label}>#{next_span}</span></li>)
       end
     end
   end

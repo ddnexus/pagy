@@ -2,6 +2,7 @@
 
 be:
   pagy:
+
     page_label:
       one: "Старонка"
       few: "Старонкi"
@@ -15,8 +16,10 @@ be:
       other: "запісаў"
 
     nav:
-      prev: "&lsaquo;&nbsp;Назад"
-      next: "Наперад&nbsp;&rsaquo;"
+      prev_label: "Назад"
+      next_label: "Наперад"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

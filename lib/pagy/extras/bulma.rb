@@ -58,23 +58,26 @@ class Pagy # :nodoc:
       p_page  = pagy.page
       p_pages = pagy.pages
       input   = %(<input class="input" type="number" min="1" max="#{p_pages}" value="#{
-                    p_page}" style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem; margin:0 0.3rem;">)
+                    p_page}" style="padding: 0; text-align: center; width: #{
+                    p_pages.to_s.length + 1}rem; margin:0 0.3rem;" aria-current="page">)
 
       html = %(<nav#{p_id} class="pagy-bulma-combo-nav-js #{DEFAULT[:bulma_nav_classes]}" #{
                 pagy_aria_label(pagy, page_label, page_i18n_key)}>)
       %(#{html}<div class="field is-grouped is-grouped-centered" role="group" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           if (p_prev  = pagy.prev)
-            %(<p class="control">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'class="button"'}</p>)
+            %(<p class="control">#{link.call(p_prev, pagy_t('pagy.nav.prev'), %(class="button" #{pagy_prev_aria_label}))}</p>)
           else
-            %(<p class="control"><a class="button" disabled aria-disabled="true">#{pagy_t 'pagy.nav.prev'}</a></p>)
+            %(<p class="control"><a class="button" disabled aria-disabled="true" #{
+                pagy_prev_aria_label}>#{pagy_t 'pagy.nav.prev'}</a></p>)
           end
         }<div class="pagy-combo-input control level is-mobile">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</div>#{
           if (p_next  = pagy.next)
-            %(<p class="control">#{link.call p_next, pagy_t('pagy.nav.next'), 'class="button"'}</p>)
+            %(<p class="control">#{link.call(p_next, pagy_t('pagy.nav.next'), %(class="button" #{pagy_next_aria_label}))}</p>)
           else
-            %(<p class="control"><a class="button" disabled aria-disabled="true">#{pagy_t 'pagy.nav.next'}</a></p>)
+            %(<p class="control"><a class="button" disabled aria-disabled="true"#{
+                pagy_next_aria_label}>#{pagy_t 'pagy.nav.next'}</a></p>)
           end
         }</div></nav>)
     end
@@ -83,14 +86,16 @@ class Pagy # :nodoc:
 
     def pagy_bulma_prev_next_html(pagy, link)
       html = +if (p_prev = pagy.prev)
-                link.call p_prev, pagy_t('pagy.nav.prev'), 'class="pagination-previous"'
+                link.call(p_prev, pagy_t('pagy.nav.prev'), %(#{pagy_prev_aria_label} class="pagination-previous"))
               else
-                %(<a class="pagination-previous" disabled aria-disabled="true">#{pagy_t 'pagy.nav.prev'}</a>)
+                %(<a class="pagination-previous" disabled aria-disabled="true" #{
+                    pagy_prev_aria_label}>#{pagy_t 'pagy.nav.prev'}</a>)
               end
       html << if (p_next = pagy.next)
-                link.call p_next, pagy_t('pagy.nav.next'), 'class="pagination-next"'
+                link.call(p_next, pagy_t('pagy.nav.next'), %(#{pagy_next_aria_label} class="pagination-next"))
               else
-                %(<a class="pagination-next" disabled aria-disabled="true">#{pagy_t 'pagy.nav.next'}</a>)
+                %(<a class="pagination-next" disabled aria-disabled="true" #{
+                    pagy_next_aria_label}>#{pagy_t('pagy.nav.next')}</a>)
               end
     end
   end

@@ -12,8 +12,10 @@ en:
       other: "items"
 
     nav:
-      prev: "&lsaquo;&nbsp;Prev"
-      next: "Next&nbsp;&rsaquo;"
+      prev_label: "Prev"
+      next_label: "Next"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

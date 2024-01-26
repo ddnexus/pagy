@@ -18,8 +18,10 @@ sr:
       other: "ставки"
 
     nav:
-      prev: "&lsaquo;&nbsp;Претходна"
-      next: "Следећa &nbsp;&rsaquo;"
+      prev_label: "Претходна"
+      next_label: "Следећa "
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

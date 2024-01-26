@@ -2,6 +2,7 @@
 
 de:
   pagy:
+
     page_label:
       one: "Seite"
       other: "Seiten"
@@ -11,8 +12,10 @@ de:
       other: "Einträge"
 
     nav:
-      prev: "&lsaquo;&nbsp;Zurück"
-      next: "Weiter&nbsp;&rsaquo;"
+      prev_label: "Zurück"
+      next_label: "Weiter"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

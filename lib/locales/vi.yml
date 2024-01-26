@@ -10,8 +10,10 @@ vi:
     item_name: "kết quả"
 
     nav:
-      prev: "&lsaquo;&nbsp;Trang trước"
-      next: "Trang sau&nbsp;&rsaquo;"
+      prev_label: "Trang trước"
+      next_label: "Trang sau"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

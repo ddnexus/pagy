@@ -59,7 +59,7 @@ class Pagy # :nodoc:
       p_pages = pagy.pages
       style   = ' style="vertical-align: middle"'
       input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{
-                    p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
+                    p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       html = %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation" #{
                  pagy_aria_label(pagy, page_label, page_i18n_key)})
@@ -75,18 +75,20 @@ class Pagy # :nodoc:
     def pagy_materialize_prev_html(pagy, link, style = '')
       if (p_prev = pagy.prev)
         %(<li class="waves-effect prev"#{style}>#{
-            link.call(p_prev, '<i class="material-icons">chevron_left</i>')}</li>)
+            link.call(p_prev, '<i class="material-icons">chevron_left</i>', pagy_prev_aria_label)}</li>)
       else
-        %(<li class="prev disabled"#{style}><a href="#" aria-disabled="true"><i class="material-icons">chevron_left</i></a></li>)
+        %(<li class="prev disabled"#{style}><a href="#" aria-disabled="true" #{
+            pagy_prev_aria_label}><i class="material-icons">chevron_left</i></a></li>)
       end
     end
 
     def pagy_materialize_next_html(pagy, link, style = '')
       if (p_next = pagy.next)
         %(<li class="waves-effect next"#{style}>#{
-            link.call(p_next, '<i class="material-icons">chevron_right</i>')}</li>)
+            link.call(p_next, '<i class="material-icons">chevron_right</i>', pagy_next_aria_label)}</li>)
       else
-        %(<li class="next disabled"#{style}><a href="#" aria-disabled="true"><i class="material-icons">chevron_right</i></a></li>)
+        %(<li class="next disabled"#{style}><a href="#" aria-disabled="true" #{
+            pagy_next_aria_label}><i class="material-icons">chevron_right</i></a></li>)
       end
     end
   end

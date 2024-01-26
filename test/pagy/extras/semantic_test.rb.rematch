@@ -1,69 +1,34 @@
 ---
-pagy/extras/semantic::#pagy_combo_semantic_nav_js#test_0001_renders first, intermediate and last pages:
-  :plain_1: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><div
-    class="item disabled" role="link" aria-disabled="true">&lsaquo;&nbsp;Prev</div><div
-    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
-    value="1" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem">
-    of 6</label></div> <a href="/foo?page=2"  class="item"  rel="next" class="item">Next&nbsp;&rsaquo;</a></div>'
-  :extras_1: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><div
-    class="item disabled" role="link" aria-disabled="true">&lsaquo;&nbsp;Prev</div><div
-    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
-    value="1" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem">
-    of 6</label></div> <a href="/foo?page=2"  class="item" link-extra rel="next" class="item">Next&nbsp;&rsaquo;</a></div>'
-  :plain_3: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
-    href="/foo?page=2"  class="item"  rel="prev" class="item">&lsaquo;&nbsp;Prev</a><div
-    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
-    value="3" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem">
-    of 6</label></div> <a href="/foo?page=4"  class="item"  rel="next" class="item">Next&nbsp;&rsaquo;</a></div>'
-  :extras_3: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
-    href="/foo?page=2"  class="item" link-extra rel="prev" class="item">&lsaquo;&nbsp;Prev</a><div
-    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
-    value="3" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem">
-    of 6</label></div> <a href="/foo?page=4"  class="item" link-extra rel="next" class="item">Next&nbsp;&rsaquo;</a></div>'
-  :plain_6: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
-    href="/foo?page=5"  class="item"  rel="prev" class="item">&lsaquo;&nbsp;Prev</a><div
-    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
-    value="6" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem">
-    of 6</label></div> <div class="item disabled" role="link" aria-disabled="true">Next&nbsp;&rsaquo;</div></div>'
-  :extras_6: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
-    href="/foo?page=5"  class="item" link-extra rel="prev" class="item">&lsaquo;&nbsp;Prev</a><div
-    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
-    value="6" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem">
-    of 6</label></div> <div class="item disabled" role="link" aria-disabled="true">Next&nbsp;&rsaquo;</div></div>'
 pagy/extras/semantic::#pagy_semantic_nav#test_0001_renders first, intermediate and last pages:
   :plain_1: <div role="navigation" class="pagy-semantic-nav ui pagination menu" aria-label="Pages"><div
-    class="item disabled" role="link" aria-disabled="true">&lsaquo;&nbsp;Prev</div><a
+    class="item disabled" role="link" aria-disabled="true" aria-label="Prev">&lt;</div><a
     href="/foo?page=1"   aria-disabled="true" aria-current="page" class="item active">1</a><a
     href="/foo?page=2"   rel="next" class="item">2</a><a href="/foo?page=3"   class="item">3</a><a
     href="/foo?page=4"   class="item">4</a><a href="/foo?page=5"   class="item">5</a><div
     class="disabled item">&hellip;</div><a href="/foo?page=50"   class="item">50</a><a
-    href="/foo?page=2"   rel="next" class="item">Next&nbsp;&rsaquo;</a></div>
+    href="/foo?page=2"   rel="next" aria-label="Next" class="item">&gt;</a></div>
   :extras_1: <div id="test-nav-id" role="navigation" class="pagy-semantic-nav ui pagination
-    menu" aria-label="Pages"><div class="item disabled" role="link" aria-disabled="true">&lsaquo;&nbsp;Prev</div><a
-    href="/foo?page=1"  link-extra aria-disabled="true" aria-current="page" class="item
-    active">1</a><a href="/foo?page=2"  link-extra rel="next" class="item">2</a><a
-    href="/foo?page=3"  link-extra class="item">3</a><a href="/foo?page=4"  link-extra
-    class="item">4</a><a href="/foo?page=5"  link-extra class="item">5</a><div class="disabled
-    item">&hellip;</div><a href="/foo?page=50"  link-extra class="item">50</a><a href="/foo?page=2"  link-extra
-    rel="next" class="item">Next&nbsp;&rsaquo;</a></div>
+    menu" aria-label="Pages"><div class="item disabled" role="link" aria-disabled="true"
+    aria-label="Prev">&lt;</div><a href="/foo?page=1"  link-extra aria-disabled="true"
+    aria-current="page" class="item active">1</a><a href="/foo?page=2"  link-extra
+    rel="next" class="item">2</a><a href="/foo?page=3"  link-extra class="item">3</a><a
+    href="/foo?page=4"  link-extra class="item">4</a><a href="/foo?page=5"  link-extra
+    class="item">5</a><div class="disabled item">&hellip;</div><a href="/foo?page=50"  link-extra
+    class="item">50</a><a href="/foo?page=2"  link-extra rel="next" aria-label="Next"
+    class="item">&gt;</a></div>
   :plain_20: <div role="navigation" class="pagy-semantic-nav ui pagination menu" aria-label="Pages"><a
-    href="/foo?page=19"   rel="prev" class="item">&lsaquo;&nbsp;Prev</a><a href="/foo?page=1"   class="item">1</a><div
+    href="/foo?page=19"   rel="prev" aria-label="Prev" class="item">&lt;</a><a href="/foo?page=1"   class="item">1</a><div
     class="disabled item">&hellip;</div><a href="/foo?page=16"   class="item">16</a><a
     href="/foo?page=17"   class="item">17</a><a href="/foo?page=18"   class="item">18</a><a
     href="/foo?page=19"   rel="prev" class="item">19</a><a href="/foo?page=20"   aria-disabled="true"
     aria-current="page" class="item active">20</a><a href="/foo?page=21"   rel="next"
     class="item">21</a><a href="/foo?page=22"   class="item">22</a><a href="/foo?page=23"   class="item">23</a><a
     href="/foo?page=24"   class="item">24</a><div class="disabled item">&hellip;</div><a
-    href="/foo?page=50"   class="item">50</a><a href="/foo?page=21"   rel="next" class="item">Next&nbsp;&rsaquo;</a></div>
+    href="/foo?page=50"   class="item">50</a><a href="/foo?page=21"   rel="next" aria-label="Next"
+    class="item">&gt;</a></div>
   :extras_20: <div id="test-nav-id" role="navigation" class="pagy-semantic-nav ui
     pagination menu" aria-label="Pages"><a href="/foo?page=19"  link-extra rel="prev"
-    class="item">&lsaquo;&nbsp;Prev</a><a href="/foo?page=1"  link-extra class="item">1</a><div
+    aria-label="Prev" class="item">&lt;</a><a href="/foo?page=1"  link-extra class="item">1</a><div
     class="disabled item">&hellip;</div><a href="/foo?page=16"  link-extra class="item">16</a><a
     href="/foo?page=17"  link-extra class="item">17</a><a href="/foo?page=18"  link-extra
     class="item">18</a><a href="/foo?page=19"  link-extra rel="prev" class="item">19</a><a
@@ -72,41 +37,84 @@ pagy/extras/semantic::#pagy_semantic_nav#test_0001_renders first, intermediate a
     href="/foo?page=22"  link-extra class="item">22</a><a href="/foo?page=23"  link-extra
     class="item">23</a><a href="/foo?page=24"  link-extra class="item">24</a><div
     class="disabled item">&hellip;</div><a href="/foo?page=50"  link-extra class="item">50</a><a
-    href="/foo?page=21"  link-extra rel="next" class="item">Next&nbsp;&rsaquo;</a></div>
+    href="/foo?page=21"  link-extra rel="next" aria-label="Next" class="item">&gt;</a></div>
   :plain_50: <div role="navigation" class="pagy-semantic-nav ui pagination menu" aria-label="Pages"><a
-    href="/foo?page=49"   rel="prev" class="item">&lsaquo;&nbsp;Prev</a><a href="/foo?page=1"   class="item">1</a><div
+    href="/foo?page=49"   rel="prev" aria-label="Prev" class="item">&lt;</a><a href="/foo?page=1"   class="item">1</a><div
     class="disabled item">&hellip;</div><a href="/foo?page=46"   class="item">46</a><a
     href="/foo?page=47"   class="item">47</a><a href="/foo?page=48"   class="item">48</a><a
     href="/foo?page=49"   rel="prev" class="item">49</a><a href="/foo?page=50"   aria-disabled="true"
     aria-current="page" class="item active">50</a><div class="item disabled" role="link"
-    aria-disabled="true">Next&nbsp;&rsaquo;</div></div>
+    aria-disabled="true" aria-label="Next">&gt;</div></div>
   :extras_50: <div id="test-nav-id" role="navigation" class="pagy-semantic-nav ui
     pagination menu" aria-label="Pages"><a href="/foo?page=49"  link-extra rel="prev"
-    class="item">&lsaquo;&nbsp;Prev</a><a href="/foo?page=1"  link-extra class="item">1</a><div
+    aria-label="Prev" class="item">&lt;</a><a href="/foo?page=1"  link-extra class="item">1</a><div
     class="disabled item">&hellip;</div><a href="/foo?page=46"  link-extra class="item">46</a><a
     href="/foo?page=47"  link-extra class="item">47</a><a href="/foo?page=48"  link-extra
     class="item">48</a><a href="/foo?page=49"  link-extra rel="prev" class="item">49</a><a
     href="/foo?page=50"  link-extra aria-disabled="true" aria-current="page" class="item
-    active">50</a><div class="item disabled" role="link" aria-disabled="true">Next&nbsp;&rsaquo;</div></div>
-pagy/extras/semantic::#pagy_semantic_nav_js#test_0001_renders single and multiple pages when used with Pagy::Countless:
-  :plain_1_0: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation"
-    aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9kaXY+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgY2xhc3M9XCJpdGVtXCI+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+TmV4dCZuYnNwOyZyc2FxdW87PC9kaXY+In0seyIwIjpbIjEiXX0sbnVsbF0="></div>
-  :extras_1_0: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
-    menu" role="navigation" aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9kaXY+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2Rpdj4ifSx7IjAiOlsiMSJdLCI2MDAiOlsiMSJdfSxudWxsXQ=="></div>
-  :plain_2_23: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgICByZWw9XCJwcmV2XCIgY2xhc3M9XCJpdGVtXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiICAgcmVsPVwibmV4dFwiIGNsYXNzPVwiaXRlbVwiPk5leHQmbmJzcDsmcnNhcXVvOzwvYT4ifSx7IjAiOlsxLCIyIiwzXX0sbnVsbF0="></div>
-  :extras_2_23: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
-    menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGNsYXNzPVwiaXRlbVwiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgY2xhc3M9XCJpdGVtXCI+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiICBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBjbGFzcz1cIml0ZW1cIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2E+In0seyIwIjpbMSwiMiIsM10sIjYwMCI6WzEsIjIiLDNdfSxudWxsXQ=="></div>
+    active">50</a><div class="item disabled" role="link" aria-disabled="true" aria-label="Next">&gt;</div></div>
+pagy/extras/semantic::#pagy_combo_semantic_nav_js#test_0001_renders first, intermediate and last pages:
+  :plain_1: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
+    aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><div
+    class="item disabled" role="link" aria-disabled="true" aria-label="Prev">&lt;</div><div
+    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
+    value="1" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem"
+    aria-current="page"> of 6</label></div> <a href="/foo?page=2"  class="item"  rel="next"
+    aria-label="Next" class="item">&gt;</a></div>'
+  :extras_1: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><div
+    class="item disabled" role="link" aria-disabled="true" aria-label="Prev">&lt;</div><div
+    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
+    value="1" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem"
+    aria-current="page"> of 6</label></div> <a href="/foo?page=2"  class="item" link-extra
+    rel="next" aria-label="Next" class="item">&gt;</a></div>'
+  :plain_3: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
+    aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
+    href="/foo?page=2"  class="item"  rel="prev" aria-label="Prev" class="item">&lt;</a><div
+    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
+    value="3" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem"
+    aria-current="page"> of 6</label></div> <a href="/foo?page=4"  class="item"  rel="next"
+    aria-label="Next" class="item">&gt;</a></div>'
+  :extras_3: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
+    href="/foo?page=2"  class="item" link-extra rel="prev" aria-label="Prev" class="item">&lt;</a><div
+    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
+    value="3" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem"
+    aria-current="page"> of 6</label></div> <a href="/foo?page=4"  class="item" link-extra
+    rel="next" aria-label="Next" class="item">&gt;</a></div>'
+  :plain_6: '<div class="pagy-semantic-combo-nav-js ui compact menu" role="navigation"
+    aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
+    href="/foo?page=5"  class="item"  rel="prev" aria-label="Prev" class="item">&lt;</a><div
+    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
+    value="6" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem"
+    aria-current="page"> of 6</label></div> <div class="item disabled" role="link"
+    aria-disabled="true" aria-label="Next">&gt;</div></div>'
+  :extras_6: '<div id="test-nav-id" class="pagy-semantic-combo-nav-js ui compact menu"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cIml0ZW1cIiBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
+    href="/foo?page=5"  class="item" link-extra rel="prev" aria-label="Prev" class="item">&lt;</a><div
+    class="pagy-combo-input item"><label>Page <input type="number" min="1" max="6"
+    value="6" style="padding: 0; text-align: center; width: 2rem; margin: 0 0.3rem"
+    aria-current="page"> of 6</label></div> <div class="item disabled" role="link"
+    aria-disabled="true" aria-label="Next">&gt;</div></div>'
 pagy/extras/semantic::#pagy_semantic_nav_js#test_0002_renders first, intermediate and last pages with required steps:
   :plain_1: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9kaXY+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgY2xhc3M9XCJpdGVtXCI+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgICByZWw9XCJuZXh0XCIgY2xhc3M9XCJpdGVtXCI+TmV4dCZuYnNwOyZyc2FxdW87PC9hPiJ9LHsiMCI6WyIxIiwyLDMsNCw1LCJnYXAiLDUwXX0sbnVsbF0="></div>
+    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIlByZXZcIj4mbHQ7PC9kaXY+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgY2xhc3M9XCJpdGVtXCI+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIiBjbGFzcz1cIml0ZW1cIj4mZ3Q7PC9hPiJ9LHsiMCI6WyIxIiwyLDMsNCw1LCJnYXAiLDUwXX0sbnVsbF0="></div>
   :extras_1: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
-    menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmxzYXF1bzsmbmJzcDtQcmV2PC9kaXY+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTJcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgY2xhc3M9XCJpdGVtXCI+TmV4dCZuYnNwOyZyc2FxdW87PC9hPiJ9LHsiMCI6WyIxIiwyLDMsImdhcCIsNTBdLCI2MDAiOlsiMSIsMiwzLDQsImdhcCIsNTBdfSxudWxsXQ=="></div>
+    menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIlByZXZcIj4mbHQ7PC9kaXY+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTJcIiAgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIiBjbGFzcz1cIml0ZW1cIj4mZ3Q7PC9hPiJ9LHsiMCI6WyIxIiwyLDMsImdhcCIsNTBdLCI2MDAiOlsiMSIsMiwzLDQsImdhcCIsNTBdfSxudWxsXQ=="></div>
   :plain_20: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICAgcmVsPVwicHJldlwiIGNsYXNzPVwiaXRlbVwiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICBjbGFzcz1cIml0ZW1cIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgICByZWw9XCJuZXh0XCIgY2xhc3M9XCJpdGVtXCI+TmV4dCZuYnNwOyZyc2FxdW87PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></div>
+    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2XCIgY2xhc3M9XCJpdGVtXCI+Jmx0OzwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICBjbGFzcz1cIml0ZW1cIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIiBjbGFzcz1cIml0ZW1cIj4mZ3Q7PC9hPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></div>
   :extras_20: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
-    menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBjbGFzcz1cIml0ZW1cIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2E+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGNsYXNzPVwiaXRlbVwiPk5leHQmbmJzcDsmcnNhcXVvOzwvYT4ifSx7IjAiOlsxLCJnYXAiLDE4LDE5LCIyMCIsMjEsMjIsImdhcCIsNTBdLCI2MDAiOlsxLCJnYXAiLDE3LDE4LDE5LCIyMCIsMjEsMjIsMjMsImdhcCIsNTBdfSxudWxsXQ=="></div>
+    menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldlwiIGNsYXNzPVwiaXRlbVwiPiZsdDs8L2E+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGxpbmstZXh0cmEgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJOZXh0XCIgY2xhc3M9XCJpdGVtXCI+Jmd0OzwvYT4ifSx7IjAiOlsxLCJnYXAiLDE4LDE5LCIyMCIsMjEsMjIsImdhcCIsNTBdLCI2MDAiOlsxLCJnYXAiLDE3LDE4LDE5LCIyMCIsMjEsMjIsMjMsImdhcCIsNTBdfSxudWxsXQ=="></div>
   :plain_50: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICAgcmVsPVwicHJldlwiIGNsYXNzPVwiaXRlbVwiPiZsc2FxdW87Jm5ic3A7UHJldjwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICBjbGFzcz1cIml0ZW1cIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2Rpdj4ifSx7IjAiOlsxLCJnYXAiLDQ2LDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></div>
+    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICAgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2XCIgY2xhc3M9XCJpdGVtXCI+Jmx0OzwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICBjbGFzcz1cIml0ZW1cIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJhY3RpdmUiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2Rpdj4ifSx7IjAiOlsxLCJnYXAiLDQ2LDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></div>
   :extras_50: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
-    menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBjbGFzcz1cIml0ZW1cIj4mbHNhcXVvOyZuYnNwO1ByZXY8L2E+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5OZXh0Jm5ic3A7JnJzYXF1bzs8L2Rpdj4ifSx7IjAiOlsxLCJnYXAiLDQ4LDQ5LCI1MCJdLCI2MDAiOlsxLCJnYXAiLDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></div>
+    menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBsaW5rLWV4dHJhIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldlwiIGNsYXNzPVwiaXRlbVwiPiZsdDs8L2E+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2Rpdj4ifSx7IjAiOlsxLCJnYXAiLDQ4LDQ5LCI1MCJdLCI2MDAiOlsxLCJnYXAiLDQ3LDQ4LDQ5LCI1MCJdfSxudWxsXQ=="></div>
+pagy/extras/semantic::#pagy_semantic_nav_js#test_0001_renders single and multiple pages when used with Pagy::Countless:
+  :plain_1_0: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation"
+    aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIlByZXZcIj4mbHQ7PC9kaXY+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgY2xhc3M9XCJpdGVtXCI+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgICBjbGFzcz1cIml0ZW0gYWN0aXZlXCI+X19wYWd5X2xhYmVsX188L2E+IiwiZ2FwIjoiPGRpdiBjbGFzcz1cImRpc2FibGVkIGl0ZW1cIj4maGVsbGlwOzwvZGl2PiIsImFmdGVyIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9kaXY+In0seyIwIjpbIjEiXX0sbnVsbF0="></div>
+  :extras_1_0: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
+    menu" role="navigation" aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGRpdiBjbGFzcz1cIml0ZW0gZGlzYWJsZWRcIiByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIlByZXZcIj4mbHQ7PC9kaXY+IiwibGluayI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIGNsYXNzPVwiaXRlbSBhY3RpdmVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8ZGl2IGNsYXNzPVwiaXRlbSBkaXNhYmxlZFwiIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2Rpdj4ifSx7IjAiOlsiMSJdLCI2MDAiOlsiMSJdfSxudWxsXQ=="></div>
+  :plain_2_23: <div class="pagy-semantic-nav-js ui pagination menu" role="navigation"
+    aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZcIiBjbGFzcz1cIml0ZW1cIj4mbHQ7PC9hPiIsImxpbmsiOiI8YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImFjdGl2ZSI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiICAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJOZXh0XCIgY2xhc3M9XCJpdGVtXCI+Jmd0OzwvYT4ifSx7IjAiOlsxLCIyIiwzXX0sbnVsbF0="></div>
+  :extras_2_23: <div id="test-nav-id" class="pagy-rjs pagy-semantic-nav-js ui pagination
+    menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2XCIgY2xhc3M9XCJpdGVtXCI+Jmx0OzwvYT4iLCJsaW5rIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgY2xhc3M9XCJpdGVtXCI+X19wYWd5X2xhYmVsX188L2E+IiwiYWN0aXZlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGxpbmstZXh0cmEgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiICBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiIGNsYXNzPVwiaXRlbVwiPiZndDs8L2E+In0seyIwIjpbMSwiMiIsM10sIjYwMCI6WzEsIjIiLDNdfSxudWxsXQ=="></div>

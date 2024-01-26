@@ -16,8 +16,10 @@ sv-SE:
       other: "resultat"
 
     nav:
-      prev: "&lsaquo;&nbsp;Föregående"
-      next: "Nästa&nbsp;&rsaquo;"
+      prev_label: "Föregående"
+      next_label: "Nästa"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

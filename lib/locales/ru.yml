@@ -18,8 +18,10 @@ ru:
       other: "записей"
 
     nav:
-      prev: "&lsaquo;&nbsp;Назад"
-      next: "Вперёд&nbsp;&rsaquo;"
+      prev_label: "Назад"
+      next_label: "Вперёд"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

@@ -10,8 +10,10 @@ zh-HK:
     item_name: ""
 
     nav:
-      prev: "&lsaquo;&nbsp;上一頁"
-      next: "下一頁&nbsp;&rsaquo;"
+      prev_label: "上一頁"
+      next_label: "下一頁"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

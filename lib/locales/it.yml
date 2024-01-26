@@ -12,8 +12,10 @@ it:
       other: "elementi"
 
     nav:
-      prev: "&lsaquo;&nbsp;Precedente"
-      next: "Seguente&nbsp;&rsaquo;"
+      prev_label: "Precedente"
+      next_label: "Seguente"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

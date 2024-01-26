@@ -1,5 +1,5 @@
 export const navIds = ["#nav", "#nav-js"];
-const widths          = [500, 750, 1000];
+const widths = [500, 750, 1000];
 const specialStylesRe = /^\/(materialize|semantic)/;
 
 export const styles = [
@@ -56,13 +56,13 @@ function checkStyleId(style:string, id:string) {
 export function goCheckNext(style:string, id:string) {
     specialStylesRe.test(style)
     ? cy.get(`${id} a:last`).click()
-    : cy.get(id).contains("Next").click();
+    : cy.get(id).contains(">").click();
     snapId(id);
 }
 
 export function goCheckPrev(style:string, id:string) {
     specialStylesRe.test(style)
     ? cy.get(`${id} a:first`).click()
-    : cy.get(id).contains("Prev").click();
+    : cy.get(id).contains("<").click();
     snapId(id);
 }

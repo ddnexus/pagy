@@ -10,8 +10,10 @@ km:
     item_name: "ធាតុ"
 
     nav:
-      prev: "&lsaquo;&nbsp;មុន"
-      next: "បន្ទាប់&nbsp;&rsaquo;"
+      prev_label: "មុន"
+      next_label: "បន្ទាប់"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

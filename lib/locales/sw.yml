@@ -14,8 +14,10 @@ sw:
       other: "vifaa"
 
     nav:
-      prev: "&lsaquo;&nbsp;Awali"
-      next: "Ifuatayo&nbsp;&rsaquo;"
+      prev_label: "Awali"
+      next_label: "Ifuatayo"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

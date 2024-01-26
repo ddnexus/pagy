@@ -12,8 +12,10 @@ es:
       other: "ítems"
 
     nav:
-      prev: "&lsaquo;&nbsp;Anterior"
-      next: "Siguiente&nbsp;&rsaquo;"
+      prev_label: "Anterior"
+      next_label: "Siguiente"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:

@@ -14,8 +14,10 @@ ca:
       other: "elements"
 
     nav:
-      prev: "&lsaquo;&nbsp;Anterior"
-      next: "Següent&nbsp;&rsaquo;"
+      prev_label: "Anterior"
+      next_label: "Següent"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:
