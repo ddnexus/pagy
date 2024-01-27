@@ -26,12 +26,6 @@ require 'pagy/extras/navs'
 ```
 |||
 
-||| View (template)
-```erb
-<%== render partial: 'pagy/nav', locals: {pagy: @pagy} %>
-```
-|||
-
 See [Javascript](/docs/api/javascript.md).
 
 ## Files

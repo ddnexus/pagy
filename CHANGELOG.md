@@ -56,5 +56,9 @@ None
 - The ARIA label compliance required the refactoring of all the nav helper that might look slightly different now.
 - The text for `"Prev"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You can 
   edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
- 
- [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 
+
+### Changes
+
+- Removed the pagy templates: they were a burden for maintenance with very limited usage
+
+[LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 

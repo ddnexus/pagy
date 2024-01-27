@@ -133,7 +133,7 @@ Please take a look at the topics in the [how-to](how-to.md) documentation: that 
 
 ### CSS
 
-The css styling that you may have applied to the pagination elements may need some minor change. However if the app uses the pagination from bootstrap (or some other framework), the same CSSs should work seamlessly with the pagy nav helpers or with any of the bootstrap templates.
+The css styling that you may have applied to the pagination elements may need some minor change. However if the app uses the pagination from bootstrap (or some other framework), the same CSSs should work seamlessly with the pagy nav helpers.
 
 ### I18n
 

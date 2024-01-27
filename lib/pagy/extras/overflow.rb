@@ -73,6 +73,8 @@ class Pagy # :nodoc:
         end
       end
     end
+    # :nocov:
     ::Pagy::Countless.prepend CountlessOverride if defined?(Countless)
+    # :nocov:
   end
 end

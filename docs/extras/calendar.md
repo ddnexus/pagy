@@ -278,7 +278,7 @@ This extra handles the request params of its objects automatically, and you shou
 
 ## View
 
-You can use the calendar objects with any `pagy_*nav` and `pagy_*nav_js` helpers or any templates in your views.
+You can use the calendar objects with any `pagy_*nav` and `pagy_*nav_js` helpers in your views.
 
 The `pagy_*combo_nav_js` keeps into account only page numbers and not labels, so it is not very useful (if at all) with `Pagy::Calendar::*` objects.
 

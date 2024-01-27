@@ -63,7 +63,7 @@ Pagy::DEFAULT.freeze
 
 ==- `Pagy.root`
 
-This method returns the `pathname` of the `pagy/lib` root dir. It is useful to get the absolute path of template, locale and javascript files installed with the gem.
+This method returns the `pathname` of the `pagy/lib` root dir. It is useful to get the absolute path of locale and javascript files installed with the gem.
 
 ==- `Pagy.new(vars)`
 
@@ -79,7 +79,7 @@ This method is the core of the pagination. It returns an array containing the pa
 A `:gap` is added only where the series is missing at least two pages. When the series is missing only one page, the `:gap` is replaced with the page link of the actual missing page. That's because the page link uses the same space of the `...` gap but it is more useful.
 !!!
 
-The nav helpers and the templates basically loop through this array and render the correct item by simply checking its type:
+The nav helpers basically loop through this array and render the correct item by simply checking its type:
 
 - if the item is an `Integer` then it is a page link
 - if the item is a `String` then it is the current page
@@ -97,11 +97,11 @@ cleaner solution very useful in certain contexts (see the [Simple Nav](../how-to
 
 ==- `label`
 
-Experimental: Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances. It returns the current page label that will get displayed in the helpers/templates.
+Experimental: Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances. It returns the current page label that will get displayed in the helpers.
 
 ==- `label_for(page)`
 
-Experimental: Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances. It returns the page label that will get displayed in the helpers/templates.
+Experimental: Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances. It returns the page label that will get displayed in the helpers.
 
 ===
 

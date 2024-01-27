@@ -426,7 +426,7 @@ Pagy provides a few frontend extras
 for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [tailwind](https://tailwindcss.com)
 and [uikit](extras/uikit.md) that come with a decent styling provided by their framework.
 
-If you need to further customize the provided styles, you don't necessary need to override the helpers/templates. Here are a few
+If you need to further customize the provided styles, you don't necessary need to override the helpers. Here are a few
 alternatives:
 
 - define the CSS styles to apply to the pagy CSS classes
@@ -828,8 +828,7 @@ bootstrap compatibility, responsiveness, compact layouts, etc.)
 | [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_nav_js`, `pagy_semantic_combo_nav_js`          |
 | [uikit](extras/uikit.md)             | `pagy_uikit_nav`, `pagy_uikit_nav_js`, `pagy_uikit_combo_nav_js`                   |
 
-Helpers are the preferred choice (over templates) for their performance. If you need to override a `pagy_nav*` helper you can copy
-and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
+If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
 
 Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for
 complete control over your helpers.
@@ -848,53 +847,6 @@ For example:
 
 By default Pagy generates all the page links including the `page` param. If you want to remove the `page=1` param from the first
 page link, just require the [trim extra](extras/trim.md).
-
-## Use Templates
-
-The `pagy_nav*` helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier
-when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 30-70%
-slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose
-wisely.
-
-Pagy provides the replacement templates for the `pagy_nav`, `pagy_bootstrap_nav`, `pagy_bulma_nav`, `pagy_foundation_nav`, and
-the `pagy_uikit_nav` helpers (available with the relative extras) in 3 flavors: `erb`, `haml` and `slim`.
-
-They produce exactly the same output of the helpers, but since they are slower, using them wouldn't make any sense unless you need
-to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass
-the `:pagy` local set to the `@pagy` object. Here are the links to the sources to copy:
-
-- `pagy`
-  - [nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.erb)
-  - [nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.haml)
-  - [nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.slim)
-- `bootstrap`
-  - [bootstrap_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.erb)
-  - [bootstrap_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.haml)
-  - [bootstrap_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.slim)
-- `bulma`
-  - [bulma_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.erb)
-  - [bulma_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.haml)
-  - [bulma_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.slim)
-- `foundation`
-  - [foundation_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.erb)
-  - [foundation_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.haml)
-  - [foundation_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.slim)
-- `uikit`
-  - [uikit_nav.html.erb](https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.erb)
-  - [uikit_nav.html.haml](https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.haml)
-  - [uikit_nav.html.slim](https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.slim)
-
-If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:
-
-```erb
-<%== render file: Pagy.root.join('templates', 'nav.html.erb'), 
-            locals: {pagy: @pagy} %>
-
-<%== render file: Pagy.root.join('templates', 'bootstrap_nav.html.erb'), 
-            locals: {pagy: @pagy} %>
-```
-
-You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
 
 ## Deal with a slow collection COUNT(*)
 
@@ -1040,7 +992,7 @@ will never get rescued.
 ## Test with Pagy
 
 * Pagy has 100% test coverage.
-* You only need to test pagy if you have overridden methods, or if using your own templates.
+* You only need to test pagy if you have overridden methods.
 
 If you need to test pagination, remember:
 
