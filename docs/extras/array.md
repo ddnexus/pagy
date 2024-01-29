@@ -38,7 +38,7 @@ require 'pagy/extras/array'
 
 ||| Controller
 ```ruby
-@pagy, @items = pagy_array(an_array, ...)
+@pagy, @items = pagy_array(an_array, **vars)
 ```
 |||
 

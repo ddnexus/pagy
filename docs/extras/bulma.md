@@ -3,7 +3,7 @@ title: Bulma
 categories:
 - Frontend
 - Extra
-image: none
+image: null
 ---
 
 # Bulma Extra
@@ -20,9 +20,9 @@ require 'pagy/extras/bulma'
 
 ||| View (helpers)
 ```erb
-<%== pagy_bulma_nav(@pagy, ...) %>
-<%== pagy_bulma_nav_js(@pagy, ...) %>
-<%== pagy_bulma_combo_nav_js(@pagy, ...) %>
+<%== pagy_bulma_nav(@pagy, **vars) %>
+<%== pagy_bulma_nav_js(@pagy, **vars) %>
+<%== pagy_bulma_combo_nav_js(@pagy, **vars) %>
 ```
 |||
 
@@ -50,15 +50,15 @@ You can customize them by overriding in your own view helper(s).
 
 This method is the same as the `pagy_nav`, but customized for Bulma.
 
-See the [pagy_nav(pagy, ...)](/docs/api/frontend.md#pagy-nav-pagy) documentation.
+See the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars) documentation.
 
-=== `pagy_bulma_nav_js(pagy, ...)`
+=== `pagy_bulma_nav_js(pagy, **vars)`
 
 ![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_bulma_nav_js` looks like the `pagy_bulma_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
 
 It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
 
-=== `pagy_bulma_combo_nav_js(pagy, ...)`
+=== `pagy_bulma_combo_nav_js(pagy, **vars)`
 
 ![bulma_combo_nav_js](/docs/assets/images/bulma_combo_nav_js.png)
 

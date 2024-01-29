@@ -44,7 +44,7 @@ Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default
 ||| Controller (action)
 ```ruby
 # Optionally override the :gearbox_items variable to a constructor to have it only for that instance
-@pagy, @records = pagy(collection, gearbox_items: [30, 60, 100], ...)
+@pagy, @records = pagy(collection, gearbox_items: [30, 60, 100], **vars)
 
 # You can still use instances with fixed pagination even after requiring the extra
 # use the default Pagy::DEFAULT[:items]

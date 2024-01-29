@@ -146,13 +146,9 @@ document.getElementById('my-pagy-nav-js').render();
 
 ## Methods
 
-==- `pagy*_nav_js(pagy, ...)`
+==- `pagy*_nav_js(pagy, **vars)`
 
-The method accepts also a few optional keyword arguments:
-
-- `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
-- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
-- `:steps` variable
+The method accepts also the same optional keyword arguments variables of the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars) 
 
 !!!warning
 The `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add another class

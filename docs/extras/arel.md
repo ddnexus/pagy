@@ -26,7 +26,7 @@ require 'pagy/extras/arel'
 
 ||| Controller
 ```ruby
-@pagy, @items = pagy_arel(a_collection, ...)
+@pagy, @items = pagy_arel(a_collection, **vars)
 ```
 |||
 

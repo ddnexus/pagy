@@ -1,6 +1,6 @@
 ---
 title: Navs
-image: none
+image: null
 categories:
 - Frontend
 - Extra
@@ -21,8 +21,8 @@ require 'pagy/extras/navs'
 
 ||| View (helper)
 ```erb
-<%== pagy_nav_js(@pagy, ...) %>
-<%== pagy_combo_nav_js(@pagy, ...) %>
+<%== pagy_nav_js(@pagy, **vars) %>
+<%== pagy_combo_nav_js(@pagy, **vars) %>
 ```
 |||
 
@@ -34,11 +34,11 @@ See [Javascript](/docs/api/javascript.md).
 
 ## Methods
 
-==- `pagy_nav_js(pagy, ...)`
+==- `pagy_nav_js(pagy, **vars)`
 
 See [Javascript Navs](/docs/api/javascript/navs.md).
 
-==- `pagy_combo_nav_js(pagy, ...)`
+==- `pagy_combo_nav_js(pagy, **vars)`
 
 See [Javascript Combo Navs](/docs/api/javascript/combo-navs.md).
 

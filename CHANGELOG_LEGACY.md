@@ -748,7 +748,7 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 ### Changes
 
 - Passing positional arguments (besides `@pagy`) to all the helpers is deprecated and it will be supported only until pagy 5.0
-- All the helpers accept more optional keyword arguments, for example:
+- All the helpers accept more optional keyword arguments variables, for example:
   - `pagy*_nav(@pagy, pagy_id: 'my-id', link-extra: '...')`
   - `pagy*_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...', steps: {...})`
   - `pagy*_combo_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...')`

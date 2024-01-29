@@ -144,13 +144,19 @@ specific app.
 en:
   pagy:
 
+    page_label:
+      one: "Page"
+      other: "Pages"
+      
     item_name:
       one: "item"
       other: "items"
 
     nav:
-      prev: "&lsaquo;&nbsp;Prev"
-      next: "Next&nbsp;&rsaquo;"
+      prev_label: "Prev"
+      next_label: "Next"
+      prev: "&lt;"
+      next: "&gt;"
       gap: "&hellip;"
 
     info:
@@ -197,14 +203,21 @@ You may want to customize the output of a few entries, leaving the other entries
 en:
   pagy:
 
+    page_label:
+      one: "Page"
+      other: "Pages"
+
     item_name:
       one: "item"
       other: "items"
 
     nav:
-      prev: "&lsaquo;"         # customized
-      next: "&rsaquo;"         # customized
+      prev_label: "Prev"
+      next_label: "Next"
+      prev: "&lt;&nbsp;Prev"  # customized
+      next: "Next&nbsp;&gt;"  # customized
       gap: "&hellip;"
+
 
     info:
       no_items: "0 of 0"                            # customized
@@ -217,6 +230,16 @@ en:
 ```
 
 |||
+
+## Customize the ARIA labels 
+
+You can customize the `aria-label` attributes of all the pagy helpers by passing either the `:page_label` or the 
+`:page_i18n_key` (See [pagy_nav](api/frontend.md#pagy-nav-pagy-vars))
+
+You can also replace the `pagy.page_label` strings in the dictionary, as well as the `pagy.nav.prev_label` and the
+`pagy.nav.next_label`. 
+
+See more details in the [ARIA attributes Page](api/ARIA.md).
 
 ## Customize the page param
 

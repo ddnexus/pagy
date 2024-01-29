@@ -108,7 +108,7 @@ pagy(scope, items: 30)
 
 The `items` extra adds the `pagy_items_selector_js` helper to the `Pagy::Frontend` module.
 
-==- `pagy_items_selector_js(pagy, ...)`
+==- `pagy_items_selector_js(pagy, **vars)`
 
 This helper provides an items selector UI, which allows the user to select any arbitrary number of items per page (below the `:max_items` number) in a numeric input field. It looks like:
 
@@ -116,7 +116,7 @@ This helper provides an items selector UI, which allows the user to select any a
 
 It returns an empty string if the `:items_extra` is `false`.
 
-The method accepts also a few optional keyword arguments:
+The method accepts also a few optional keyword arguments variables:
 
 - `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`

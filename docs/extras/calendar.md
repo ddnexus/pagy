@@ -3,7 +3,7 @@ title: Calendar
 categories:
 - Backend
 - Extra
-image: none
+image: null
 ---
 
 # Calendar Extra

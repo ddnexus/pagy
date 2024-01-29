@@ -29,8 +29,8 @@ end
 ||| View
 
 ```erb
-<%== pagy_nav(@pagy, ...) %>
-<%== pagy_info(@pagy, ...) %>
+<%== pagy_nav(@pagy, **vars) %>
+<%== pagy_info(@pagy, **vars) %>
 ```
 |||
 
@@ -40,37 +40,41 @@ All the methods in this module are prefixed with the `"pagy_"` string in order t
 
 Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or tricky gimmickry.
 
-==- `pagy_nav(pagy, ...)`
+==- `pagy_nav(pagy, **vars)`
 
 This method takes the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
 ||| View
 ```erb
-<%== pagy_nav(@pagy, ...) %>
+<%== pagy_nav(@pagy, **vars) %>
 ```
 |||
 
-The method accepts also a few optional keyword arguments:
+The method accepts also a few optional keyword arguments variables:
 
-- `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
-- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
+- `:pagy_id`: the `id` HTML attribute to the `nav` tag (omitted by default)
+- `:link_extra`: the verbatim string added to the `a` tag (e.g. `'data-remote="true"'`) 
+- `:page_label`: an already pluralized string for the `aria-label` attribute of the `nav`, that will be used in place of the default `nav.page_label`
+- `:page_i18n_key`:  the i18n dictionary key to lookup the default `pagy.page_label` pluralized value (ignored if `page_label` is defined) 
 - `:size` which use the passed size Array instead of the `:size` variable of the instance
 
-==- `pagy_info(pagy, pagy_id: ..., item_name: ..., item_i18n_key: ...)`
+See also [ARIA Attributes](ARIA.md).
+
+==- `pagy_info(pagy, **vars)`
 
 This method provides the info about the content of the current pagination. For example:
 
 ```erb
-<%== pagy_info(@pagy, ...) %>
+<%== pagy_info(@pagy, **vars) %>
 ```
 
 Will produce something like:
 
 <span>Displaying items <b>476-500</b> of <b>1000</b> in total</span>
 
-The method accepts also a few optional keyword arguments:
+The method accepts also a few optional keyword arguments variables:
 
-- `:pagy_id` which adds the `id` HTML attribute to the `span` tag wrapping the info
+- `:pagy_id`: the `id` HTML attribute to the `span` tag wrapping the info
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
 - `:item_i18n_key` the key to lookup in a dictionary
 
