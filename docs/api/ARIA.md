@@ -17,12 +17,13 @@ The default string for the `aria-label` of the root element is "Page"/"Pages". I
 Since the `nav` or `role="navigation"` elements of a HTML document are considered `landmark  roles`, they should be uniquely aria-identified in the page. If you use more than one pagy helper in the same page, you should not rely on the default (that would otherwise generate a non-valid document), instead, you should pass either your own (possibly translated and pluralized) `aria-label` string or an i18n-key that locate the translated and pluralized string in your dictionary file. For example:
 
 ```erb
-<%# Explicitly set the page_label string %> 
-<%== pagy_nav(@pagy, page_label: 'Search result pages') %>
+<%# Explicitly set the nav_aria_label string %> 
+<%== pagy_nav(@pagy, nav_aria_label: 'Search result pages') %>
 
-<%# I18n key in a dictionary file (pluralized entry) %>
-<%== pagy_nav(@pagy, page_i18n_key: 'my.pagy_nav.aria_label') %>
+<%# Pass an i18n key in a dictionary file (pluralized entry) %>
+<%== pagy_nav(@pagy, nav_i18n_key: 'my.aria_label.nav') %>
 ```
+
 ## Links
 
 - Links to the previous and next pages are rendered as "&lt;" and "&gt;" and are aria-labelled as translated `"Prev"` and `"Next"`.

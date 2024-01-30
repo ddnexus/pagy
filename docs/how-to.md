@@ -143,29 +143,23 @@ specific app.
 # English default 118n dictionary
 en:
   pagy:
-
-    page_label:
-      one: "Page"
-      other: "Pages"
-      
+    aria_label:
+      nav:
+        one: "Page"
+        other: "Pages"
+      previous: "Previous"
+      next: "Next"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name:
       one: "item"
       other: "items"
-
-    nav:
-      prev_label: "Prev"
-      next_label: "Next"
-      prev: "&lt;"
-      next: "&gt;"
-      gap: "&hellip;"
-
     info:
       no_items: "No %{item_name} found"
       single_page: "Displaying <b>%{count}</b> %{item_name}"
       multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
-
     combo_nav_js: "<label>Page %{page_input} of %{pages}</label>"
-
     items_selector_js: "<label>Show %{items_input} %{item_name} per page</label>"
 ``` 
 
@@ -202,30 +196,23 @@ You may want to customize the output of a few entries, leaving the other entries
 # English custom 118n dictionary
 en:
   pagy:
-
-    page_label:
-      one: "Page"
-      other: "Pages"
-
+    aria_label:
+      nav:
+        one: "Page"
+        other: "Pages"
+      previous: "Previous"
+      next: "Next"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name:
       one: "item"
       other: "items"
-
-    nav:
-      prev_label: "Prev"
-      next_label: "Next"
-      prev: "&lt;&nbsp;Prev"  # customized
-      next: "Next&nbsp;&gt;"  # customized
-      gap: "&hellip;"
-
-
     info:
       no_items: "0 of 0"                            # customized
       single_page: "%{count} of %{count}"           # customized
       multiple_pages: "%{from}-%{to} of %{count}"   # customized
-
     combo_nav_js: "<label>Page %{page_input} of %{pages}</label>"
-
     items_selector_js: "<label>Show %{items_input} %{item_name} per page</label>"
 ```
 
@@ -233,11 +220,11 @@ en:
 
 ## Customize the ARIA labels 
 
-You can customize the `aria-label` attributes of all the pagy helpers by passing either the `:page_label` or the 
-`:page_i18n_key` (See [pagy_nav](api/frontend.md#pagy-nav-pagy-vars))
+You can customize the `aria-label` attributes of all the pagy helpers by passing either the `:nav_aria_label` string itself or 
+the `:nav_i18n_key` (See [pagy_nav](api/frontend.md#pagy-nav-pagy-vars))
 
-You can also replace the `pagy.page_label` strings in the dictionary, as well as the `pagy.nav.prev_label` and the
-`pagy.nav.next_label`. 
+You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the
+`pagy.aria_label.next`. 
 
 See more details in the [ARIA attributes Page](api/ARIA.md).
 

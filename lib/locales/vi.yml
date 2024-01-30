@@ -1,26 +1,19 @@
 # :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
-
 vi:
   pagy:
-
-    # please add a comment in the https://github.com/ddnexus/pagy/issues/607
-    # posting the translation of page_label with the plurals for this locale
-    page_label: "Pages"
-
+    aria_label:
+      # please add a comment in the https://github.com/ddnexus/pagy/issues/607
+      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+      nav: "Pages"
+      prev: "Trang trước"
+      next: "Trang sau"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name: "kết quả"
-
-    nav:
-      prev_label: "Trang trước"
-      next_label: "Trang sau"
-      prev: "&lt;"
-      next: "&gt;"
-      gap: "&hellip;"
-
     info:
       no_items: "Không tìm thấy %{item_name} nào"
       single_page: "<b>%{count}</b> %{item_name}"
       multiple_pages: "Đang hiển thị <b>%{from}-%{to}</b> trong tổng số <b>%{count} %{item_name}</b>"
-
     combo_nav_js: "<label>Trang %{page_input} trên %{pages}</label>"
-
     items_selector_js: "<label>Hiển thị %{items_input} %{item_name} mỗi trang</label>"

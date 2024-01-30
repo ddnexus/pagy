@@ -17,13 +17,13 @@ class Pagy # :nodoc:
     # Return the enabled/disabled HTML string for the previous page link
     def pagy_prev_html(pagy, link_extra: '')
       link = pagy_link_proc(pagy, link_extra:)
-      pagy_nav_prev_html(pagy, link)
+      prev_html(pagy, link)
     end
 
     # Return the enabled/disabled HTML string for the next page link
     def pagy_next_html(pagy, link_extra: '')
       link = pagy_link_proc(pagy, link_extra:)
-      pagy_nav_next_html(pagy, link)
+      next_html(pagy, link)
     end
 
     # Conditionally return the HTML link tag string for the previous page

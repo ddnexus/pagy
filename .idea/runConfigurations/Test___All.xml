@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Test+Sum" type="RakeRunConfigurationType" factoryName="Rake">
+  <configuration default="false" name="Test + All" type="RakeRunConfigurationType" factoryName="Rake">
     <module name="pagy" />
     <predefined_log_file enabled="true" id="RUBY_RAKE" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
@@ -9,18 +9,9 @@
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
     <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
+    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov">
       <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="tasks/" INCLUDED="false" />
-      </COVERAGE_PATTERN>
-      <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="Rakefile" INCLUDED="false" />
-      </COVERAGE_PATTERN>
-      <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="apps/" INCLUDED="false" />
-      </COVERAGE_PATTERN>
-      <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="config/" INCLUDED="false" />
+        <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
       </COVERAGE_PATTERN>
     </EXTENSION>
     <EXTENSION ID="net.ashald.envfile">
@@ -34,7 +25,7 @@
       </ENTRIES>
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-    <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="testsum" />
+    <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="default" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE=":test_unit " />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />

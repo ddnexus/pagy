@@ -1,30 +1,23 @@
 # :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
-
 ta:
   pagy:
-
-    # please add a comment in the https://github.com/ddnexus/pagy/issues/604
-    # posting the translation of page_label with the plurals for this locale
-    page_label: "Pages"
-#      one: ""
-#      other: ""
-
+    aria_label:
+      # please add a comment in the https://github.com/ddnexus/pagy/issues/604
+      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+      nav: "Pages"
+#        one: ""
+#        other: ""
+      prev: "முந்தையது"
+      next: "அடுத்தது"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name:
       one: "பதிவு"
       other: "பதிவுகள்"
-
-    nav:
-      prev_label: "முந்தையது"
-      next_label: "அடுத்தது"
-      prev: "&lt;"
-      next: "&gt;"
-      gap: "&hellip;"
-
     info:
       no_items: "%{item_name} கிடைக்கவில்லை"
       single_page: "<b>%{count}</b> %{item_name} காட்டப்படுகின்றது"
       multiple_pages: "மொத்தம் <b>%{count}</b> %{item_name}, காட்டப்படுபவை <b>%{from}-%{to}</b>"
-
     combo_nav_js: "<label>%{pages}-இல் %{page_input}-வது பக்கம்</label>"
-
     items_selector_js: "<label>ஒரு பக்கத்திற்கு %{items_input} %{item_name} காட்டு</label>"

@@ -16,12 +16,12 @@ class Pagy
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, pagy_id: nil, link_extra: '',
-                 page_label: nil, page_i18n_key: nil, **vars)
+                 nav_aria_label: nil, nav_i18n_key: nil, **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
 
-      html = +%(<nav#{p_id} class="pagy-nav pagination" #{pagy_aria_label(pagy, page_label, page_i18n_key)}>)
-      html << pagy_nav_prev_html(pagy, link)
+      html = +%(<nav#{p_id} class="pagy-nav pagination" #{nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}>)
+      html << prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
@@ -30,12 +30,12 @@ class Pagy
                   %(<span class="page active">) +
                   %(<a role="link" aria-disabled="true" aria-current="page">#{pagy.label_for(item)}</a></span> )
                 when :gap
-                  %(<span class="page gap">#{pagy_t('pagy.nav.gap')}</span> )
+                  %(<span class="page gap">#{pagy_t('pagy.gap')}</span> )
                 else
                   raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
-      html << %(#{pagy_nav_next_html(pagy, link)}</nav>)
+      html << %(#{next_html(pagy, link)}</nav>)
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
@@ -78,37 +78,36 @@ class Pagy
       Pagy::I18n.translate(@pagy_locale ||= nil, key, opts)
     end
 
-    # Return the translated aria label
-    def pagy_aria_label(pagy, page_label, page_i18n_key, count: pagy.pages)
-      page_label ||= pagy_t(page_i18n_key || pagy.vars[:page_i18n_key], count:)
-      %(aria-label="#{page_label}")
-    end
-
-    def pagy_prev_aria_label
-      %(aria-label="#{pagy_t('pagy.nav.prev_label')}")
-    end
-
-    def pagy_next_aria_label
-      %(aria-label="#{pagy_t('pagy.nav.next_label')}")
-    end
-
     private
 
-    def pagy_nav_prev_html(pagy, link)
+    def nav_aria_label(pagy, nav_aria_label, nav_i18n_key, count: pagy.pages)
+      nav_aria_label ||= pagy_t(nav_i18n_key || pagy.vars[:nav_i18n_key], count:)
+      %(aria-label="#{nav_aria_label}")
+    end
+
+    def prev_aria_label
+      %(aria-label="#{pagy_t('pagy.aria_label.prev')}")
+    end
+
+    def next_aria_label
+      %(aria-label="#{pagy_t('pagy.aria_label.next')}")
+    end
+
+    def prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        %(<span class="page prev">#{link.call(p_prev, pagy_t('pagy.nav.prev'), pagy_prev_aria_label)}</span> )
+        %(<span class="page prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label)}</span> )
       else
         %(<span class="page prev disabled"><a role="link" aria-disabled="true" #{
-             pagy_prev_aria_label}>#{pagy_t('pagy.nav.prev')}</a></span> )
+             prev_aria_label}>#{pagy_t('pagy.prev')}</a></span> )
       end
     end
 
-    def pagy_nav_next_html(pagy, link)
+    def next_html(pagy, link)
       if (p_next = pagy.next)
-        %(<span class="page next">#{link.call(p_next, pagy_t('pagy.nav.next'), pagy_next_aria_label)}</span>)
+        %(<span class="page next">#{link.call(p_next, pagy_t('pagy.next'), next_aria_label)}</span>)
       else
         %(<span class="page next disabled"><a role="link" aria-disabled="true" #{
-            pagy_next_aria_label}>#{pagy_t('pagy.nav.next')}</a></span>)
+            next_aria_label}>#{pagy_t('pagy.next')}</a></span>)
       end
     end
   end
