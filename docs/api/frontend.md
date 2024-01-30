@@ -54,8 +54,11 @@ The method accepts also a few optional keyword arguments variables:
 
 - `:pagy_id`: the `id` HTML attribute to the `nav` tag (omitted by default)
 - `:link_extra`: the verbatim string added to the `a` tag (e.g. `'data-remote="true"'`) 
-- `:page_label`: an already pluralized string for the `aria-label` attribute of the `nav`, that will be used in place of the default `nav.page_label`
-- `:page_i18n_key`:  the i18n dictionary key to lookup the default `pagy.page_label` pluralized value (ignored if `page_label` is defined) 
+- `:nav_aria_label`: an already pluralized string for the `aria-label` attribute of the `nav`, that will be used in place of 
+  the default `pagy.aria_label.nav`
+- `:nav_i18n_key`:  the i18n dictionary key to lookup the default `pagy.aria_label.nav` pluralized value (ignored if 
+  `nav_aria_label` is 
+  defined) 
 - `:size` which use the passed size Array instead of the `:size` variable of the instance
 
 See also [ARIA Attributes](ARIA.md).

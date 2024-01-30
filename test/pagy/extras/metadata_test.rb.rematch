@@ -52,7 +52,7 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
       :fragment: ''
       :link_extra: ''
       :item_i18n_key: pagy.item_name
-      :page_i18n_key: pagy.page_label
+      :nav_i18n_key: pagy.aria_label.nav
       :cycle: false
       :request_path: ''
       :steps: false

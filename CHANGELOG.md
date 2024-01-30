@@ -34,7 +34,14 @@ None
 - Rack 3 breaking changes:
   - The `headers` extra produces all lowercase headers, regardless how you set them [see rack issue](https://github.com/rack/rack/issues/1592)
   - Removed `:escaped_html` option from `pagy_url_for` (only breaking if you override the method or use the option directly)
-  
+- Dictionary structure changes: (affects only app with custom helper/templates/dictionary entries)
+  - The `nav` entry has been flattened: `pagy.nav.*` entries are now `pagy.*`:
+    - If you have custom helpers/templates: search the keys that contain `'.nav.'` and replace them with `'.'`
+    - If you have custom dictionary entries (overrides): remove the `'nav:'` line and unindent its block.
+  - A few labels used as `aria-label` have been added: you may want to add them to your custom helper/templates/dictionaries for ARIA compliance.
+    - `aria_label.nav` Pluralized entry: used as the `aria-label` for the `nav` element
+    - `aria_label.prev`, `aria_label.next` Single entry: used in the prev/next `a` link elements
+
 ### Default changes (possibly breaking test/views)
 
 - Changed `Pagy::DEFAULT[:size]` variable defaults from `[1, 4, 4, 1]` to `7`. You can explicitly set it in the initializer, 
@@ -54,11 +61,12 @@ None
 ### Visual changes (possibly breaking test/views)
  
 - The ARIA label compliance required the refactoring of all the nav helper that might look slightly different now.
-- The text for `"Prev"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You can 
+- The text for `"Previous"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You can 
   edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
 
 ### Changes
 
-- Removed the pagy templates: they were a burden for maintenance with very limited usage
+- Removed the pagy templates: they were a burden for maintenance with very limited usage.
+- Internal renaming of private frontend methods
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 

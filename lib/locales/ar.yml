@@ -1,17 +1,20 @@
 # :arabic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
-
 ar:
   pagy:
-
-    # please add a comment in the https://github.com/ddnexus/pagy/issues/577
-    # posting the translation of page_label with the plurals for this locale
-    page_label: "Pages"
-#      zero: ""
-#      two: ""
-#      few: ""
-#      many: ""
-#      other: ""
-
+    aria_Label:
+      # please add a comment in the https://github.com/ddnexus/pagy/issues/577
+      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+      nav: "Pages"
+#        zero: ""
+#        two: ""
+#        few: ""
+#        many: ""
+#        other: ""
+      prev: "السابق"
+      next: "التالي"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name:
       zero: "صفر"
       one: "عنصر"
@@ -19,19 +22,9 @@ ar:
       few: "قليل"
       many: "كثير"
       other: "عناصر"
-
-    nav:
-      prev_label: "السابق"
-      next_label: "التالي"
-      prev: "&lt;"
-      next: "&gt;"
-      gap: "&hellip;"
-
     info:
       no_items: "لا يوجد %{item_name}"
       single_page: "عرض <b>%{count}</b> %{item_name}"
       multiple_pages: "عرض %{item_name} <b>%{from}-%{to}</b> من اجمالي <b>%{count}</b>"
-
     combo_nav_js: "الصفحة %{page_input} من %{pages}"
-
     items_selector_js: "عرض %{items_input} %{item_name} لكل صفحة"

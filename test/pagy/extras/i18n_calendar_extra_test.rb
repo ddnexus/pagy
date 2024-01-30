@@ -18,13 +18,13 @@ describe 'pagy/extras/i18n' do
       app.test_i18n_call
     end
     it 'pluralizes' do
-      _(app.pagy_t('pagy.nav.prev_label')).must_equal "Prev"
+      _(app.pagy_t('pagy.aria_label.prev')).must_equal "Previous"
       _(app.pagy_t('pagy.item_name', count: 0)).must_equal 'items'
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal  'item'
       _(app.pagy_t('pagy.item_name', count: 10)).must_equal 'items'
     end
     it 'handles missing paths' do
-      _(app.pagy_t('pagy.nav.not_here')).must_equal 'Translation missing: en.pagy.nav.not_here'
+      _(app.pagy_t('pagy.not_here')).must_equal 'Translation missing: en.pagy.not_here'
     end
   end
 

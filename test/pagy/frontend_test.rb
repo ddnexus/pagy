@@ -27,7 +27,7 @@ describe 'pagy/frontend' do
 
   describe '#pagy_t' do
     it 'pluralizes' do
-      _(app.pagy_t('pagy.nav.prev_label')).must_equal "Prev"
+      _(app.pagy_t('pagy.aria_label.prev')).must_equal "Previous"
       _(app.pagy_t('pagy.item_name', count: 0)).must_equal "items"
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "item"
       _(app.pagy_t('pagy.item_name', count: 10)).must_equal "items"
@@ -42,8 +42,8 @@ describe 'pagy/frontend' do
     end
     # rubocop:enable Style/FormatStringToken
     it 'handles missing keys' do
-      _(app.pagy_t('pagy.nav.not_here')).must_equal '[translation missing: "pagy.nav.not_here"]'
-      _(app.pagy_t('pagy.nav.gap.not_here')).must_equal '[translation missing: "pagy.nav.gap.not_here"]'
+      _(app.pagy_t('pagy.not_here')).must_equal '[translation missing: "pagy.not_here"]'
+      _(app.pagy_t('pagy.gap.not_here')).must_equal '[translation missing: "pagy.gap.not_here"]'
     end
   end
 
@@ -54,7 +54,7 @@ describe 'pagy/frontend' do
       _(proc { i18n_load(locale: 'en', filepath: Pagy.root.join('locales', 'xx.yml')) }).must_raise Errno::ENOENT
       custom_dictionary = Pagy.root.parent.join('test', 'files', 'custom.yml')
       i18n_load(locale: 'custom', filepath: custom_dictionary)
-      _(Pagy::I18n.t('custom', 'pagy.nav.prev_label')).must_equal "Custom Prev"
+      _(Pagy::I18n.t('custom', 'pagy.aria_label.prev')).must_equal "Custom Previous"
       i18n_load(locale: 'en', pluralize: ->(_) { 'one' }) # returns always 'one' regardless the count
       _(Pagy::I18n.t(nil, 'pagy.item_name', count: 0)).must_equal "item"
       _(Pagy::I18n.t('en', 'pagy.item_name', count: 0)).must_equal "item"

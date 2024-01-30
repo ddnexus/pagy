@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Test All+Rep" type="RakeRunConfigurationType" factoryName="Rake">
+  <configuration default="false" name="Test + Rubocop + Cov" type="RakeRunConfigurationType" factoryName="Rake">
     <module name="pagy" />
     <predefined_log_file enabled="true" id="RUBY_RAKE" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />

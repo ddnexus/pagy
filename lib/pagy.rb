@@ -22,7 +22,7 @@ class Pagy
               fragment:      '',
               link_extra:    '',
               item_i18n_key: 'pagy.item_name',
-              page_i18n_key: 'pagy.page_label',
+              nav_i18n_key: 'pagy.aria_label.nav',
               cycle:         false,
               request_path:  '' }
 
