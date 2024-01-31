@@ -14,6 +14,7 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<ul#{p_id} class="pagy-uikit-nav uk-pagination uk-flex-center" role="navigation"  #{
+
       nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>#{uikit_prev_html(pagy, link)})
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
