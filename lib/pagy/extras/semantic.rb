@@ -14,7 +14,7 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<div#{p_id} role="navigation" class="pagy-semantic-nav ui pagination menu" #{
-                  nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}>)
+                  nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>)
       html << semantic_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -45,7 +45,7 @@ class Pagy # :nodoc:
                'after'  => semantic_next_html(pagy, link) }
 
       %(<div#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-semantic-nav-js ui pagination menu" role="navigation" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)} #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
     end
 
@@ -61,7 +61,7 @@ class Pagy # :nodoc:
                     p_pages.to_s.length + 1}rem; margin: 0 0.3rem" aria-current="page">)
 
       %(<div#{p_id} class="pagy-semantic-combo-nav-js ui compact menu" role="navigation" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)} #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           semantic_prev_html pagy, link
         }<div class="pagy-combo-input item">#{
@@ -75,19 +75,19 @@ class Pagy # :nodoc:
 
     def semantic_prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        link.call(p_prev, pagy_t('pagy.prev'), %(#{prev_aria_label} class="item"))
+        link.call(p_prev, pagy_t('pagy.prev'), %(#{prev_aria_label_attr} class="item"))
       else
         +%(<div class="item disabled" role="link" aria-disabled="true" #{
-             prev_aria_label}>#{pagy_t('pagy.prev')}</div>)
+             prev_aria_label_attr}>#{pagy_t('pagy.prev')}</div>)
       end
     end
 
     def semantic_next_html(pagy, link)
       if (p_next = pagy.next)
-        link.call(p_next, pagy_t('pagy.next'), %(#{next_aria_label} class="item"))
+        link.call(p_next, pagy_t('pagy.next'), %(#{next_aria_label_attr} class="item"))
       else
         +%(<div class="item disabled" role="link" aria-disabled="true" #{
-             next_aria_label}>#{pagy_t('pagy.next')}</div>)
+             next_aria_label_attr}>#{pagy_t('pagy.next')}</div>)
       end
     end
   end

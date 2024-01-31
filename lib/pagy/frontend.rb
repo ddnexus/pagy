@@ -20,7 +20,7 @@ class Pagy
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
 
-      html = +%(<nav#{p_id} class="pagy-nav pagination" #{nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}>)
+      html = +%(<nav#{p_id} class="pagy-nav pagination" #{nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>)
       html << prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -80,34 +80,34 @@ class Pagy
 
     private
 
-    def nav_aria_label(pagy, nav_aria_label, nav_i18n_key, count: pagy.pages)
+    def nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key, count: pagy.pages)
       nav_aria_label ||= pagy_t(nav_i18n_key || pagy.vars[:nav_i18n_key], count:)
       %(aria-label="#{nav_aria_label}")
     end
 
-    def prev_aria_label
+    def prev_aria_label_attr
       %(aria-label="#{pagy_t('pagy.aria_label.prev')}")
     end
 
-    def next_aria_label
+    def next_aria_label_attr
       %(aria-label="#{pagy_t('pagy.aria_label.next')}")
     end
 
     def prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        %(<span class="page prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label)}</span> )
+        %(<span class="page prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label_attr)}</span> )
       else
         %(<span class="page prev disabled"><a role="link" aria-disabled="true" #{
-             prev_aria_label}>#{pagy_t('pagy.prev')}</a></span> )
+             prev_aria_label_attr}>#{pagy_t('pagy.prev')}</a></span> )
       end
     end
 
     def next_html(pagy, link)
       if (p_next = pagy.next)
-        %(<span class="page next">#{link.call(p_next, pagy_t('pagy.next'), next_aria_label)}</span>)
+        %(<span class="page next">#{link.call(p_next, pagy_t('pagy.next'), next_aria_label_attr)}</span>)
       else
         %(<span class="page next disabled"><a role="link" aria-disabled="true" #{
-            next_aria_label}>#{pagy_t('pagy.next')}</a></span>)
+            next_aria_label_attr}>#{pagy_t('pagy.next')}</a></span>)
       end
     end
   end

@@ -14,7 +14,7 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<div#{p_id} class="pagy-materialize-nav pagination" role="navigation" #{
-                  nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}><ul class="pagination">)
+                  nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}><ul class="pagination">)
       html << materialize_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -46,7 +46,7 @@ class Pagy # :nodoc:
                'after'  => %(#{materialize_next_html pagy, link}</ul>) }
 
       %(<div#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-materialize-nav-js" role="navigation" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)} #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
     end
 
@@ -62,7 +62,7 @@ class Pagy # :nodoc:
                     p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       html = %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation" #{
-                 nav_aria_label(pagy, nav_aria_label, nav_i18n_key)})
+                 nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)})
       %(#{html} style="padding-right: 0" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           materialize_prev_html pagy, link, style}<li class="pagy-combo-input">#{
@@ -75,20 +75,20 @@ class Pagy # :nodoc:
     def materialize_prev_html(pagy, link, style = '')
       if (p_prev = pagy.prev)
         %(<li class="waves-effect prev"#{style}>#{
-            link.call(p_prev, '<i class="material-icons">chevron_left</i>', prev_aria_label)}</li>)
+            link.call(p_prev, '<i class="material-icons">chevron_left</i>', prev_aria_label_attr)}</li>)
       else
         %(<li class="prev disabled"#{style}><a href="#" aria-disabled="true" #{
-            prev_aria_label}><i class="material-icons">chevron_left</i></a></li>)
+            prev_aria_label_attr}><i class="material-icons">chevron_left</i></a></li>)
       end
     end
 
     def materialize_next_html(pagy, link, style = '')
       if (p_next = pagy.next)
         %(<li class="waves-effect next"#{style}>#{
-            link.call(p_next, '<i class="material-icons">chevron_right</i>', next_aria_label)}</li>)
+            link.call(p_next, '<i class="material-icons">chevron_right</i>', next_aria_label_attr)}</li>)
       else
         %(<li class="next disabled"#{style}><a href="#" aria-disabled="true" #{
-            next_aria_label}><i class="material-icons">chevron_right</i></a></li>)
+            next_aria_label_attr}><i class="material-icons">chevron_right</i></a></li>)
       end
     end
   end

@@ -14,7 +14,7 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
 
       html = +%(<nav#{p_id} class="pagy-bootstrap-nav" #{
-                  nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}><ul class="pagination">)
+                  nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}><ul class="pagination">)
       html << bootstrap_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -46,7 +46,7 @@ class Pagy # :nodoc:
                'after'  => %(#{bootstrap_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bootstrap-nav-js" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)} #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))
         }></nav>)
     end
@@ -63,21 +63,21 @@ class Pagy # :nodoc:
                     p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}><div class="btn-group" role="group" #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}><div class="btn-group" role="group" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           if (p_prev = pagy.prev)
-            link.call(p_prev, pagy_t('pagy.prev'), %(class="prev btn btn-primary" #{prev_aria_label}))
+            link.call(p_prev, pagy_t('pagy.prev'), %(class="prev btn btn-primary" #{prev_aria_label_attr}))
           else
             %(<a class="prev btn btn-primary disabled" href="#" aria-disabled="true" #{
-                prev_aria_label}>#{pagy_t('pagy.prev')}</a>)
+                prev_aria_label_attr}>#{pagy_t('pagy.prev')}</a>)
           end
         }<div class="pagy-combo-input btn btn-secondary" style="white-space: nowrap;">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</div>#{
           if (p_next = pagy.next)
-            link.call(p_next, pagy_t('pagy.next'), %(class="next btn btn-primary" #{next_aria_label}))
+            link.call(p_next, pagy_t('pagy.next'), %(class="next btn btn-primary" #{next_aria_label_attr}))
           else
             %(<a class="next btn btn-primary disabled" href="#" aria-disabled="true" #{
-                next_aria_label}>#{pagy_t 'pagy.next'}</a>)
+                next_aria_label_attr}>#{pagy_t 'pagy.next'}</a>)
           end
         }</div></nav>)
     end
@@ -86,19 +86,19 @@ class Pagy # :nodoc:
 
     def bootstrap_prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        %(<li class="page-item prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label)}</li>)
+        %(<li class="page-item prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label_attr)}</li>)
       else
         %(<li class="page-item prev disabled"><a href="#" class="page-link" aria-disabled="true" #{
-            prev_aria_label}>#{pagy_t('pagy.prev')}</a></li>)
+            prev_aria_label_attr}>#{pagy_t('pagy.prev')}</a></li>)
       end
     end
 
     def bootstrap_next_html(pagy, link)
       if (p_next = pagy.next)
-        %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.next'), next_aria_label}</li>)
+        %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.next'), next_aria_label_attr}</li>)
       else
         %(<li class="page-item next disabled"><a href="#" class="page-link" aria-disabled="true" #{
-            next_aria_label}>#{pagy_t('pagy.next')}</a></li>)
+            next_aria_label_attr}>#{pagy_t('pagy.next')}</a></li>)
       end
     end
   end

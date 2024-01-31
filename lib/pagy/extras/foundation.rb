@@ -14,7 +14,7 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<nav#{p_id} class="pagy-foundation-nav" #{
-                 nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}><ul class="pagination">)
+                 nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}><ul class="pagination">)
       html << foundation_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -45,7 +45,7 @@ class Pagy # :nodoc:
                'after'  => %(#{pagy_foundation_next_html pagy, link}</ul>) }
 
       %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-foundation-nav-js" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)} #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
     end
 
@@ -61,24 +61,24 @@ class Pagy # :nodoc:
                     p_pages.to_s.length + 1}rem; padding: 0 0.3rem; margin: 0 0.3rem;" aria-current="page">)
 
       %(<nav#{p_id} class="pagy-foundation-combo-nav-js" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}><div class="input-group" #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}><div class="input-group" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           if (p_prev = pagy.prev)
             link.call(p_prev, pagy_t('pagy.prev'),
-                      %(style="margin-bottom: 0" class="prev button primary" #{prev_aria_label}))
+                      %(style="margin-bottom: 0" class="prev button primary" #{prev_aria_label_attr}))
           else
             %(<a style="margin-bottom: 0" class="prev button primary disabled" role="link" aria-disabled="true" #{
-                prev_aria_label}>#{pagy_t('pagy.prev')}</a>)
+                prev_aria_label_attr}>#{pagy_t('pagy.prev')}</a>)
           end
         }#{
           pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)
           .sub!('<label>', '<label class="input-group-label">')}#{ # add the class to the official dictionary string
           if (p_next = pagy.next)
             link.call(p_next, pagy_t('pagy.next'),
-                      %(style="margin-bottom: 0" class="next button primary" #{next_aria_label}))
+                      %(style="margin-bottom: 0" class="next button primary" #{next_aria_label_attr}))
           else
             %(<a style="margin-bottom: 0" class="next button primary disabled" role="link" aria-disabled="true" #{
-                next_aria_label}>#{pagy_t 'pagy.next'}</a>)
+                next_aria_label_attr}>#{pagy_t 'pagy.next'}</a>)
           end
         }</div></nav>)
     end
@@ -87,17 +87,17 @@ class Pagy # :nodoc:
 
     def foundation_prev_html(pagy, link)
       if (p_prev = pagy.prev)
-        %(<li class="prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label)}</li>)
+        %(<li class="prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label_attr)}</li>)
       else
-        %(<li class="prev disabled" role="link" aria-disabled="true" #{prev_aria_label}>#{pagy_t('pagy.prev')}</li>)
+        %(<li class="prev disabled" role="link" aria-disabled="true" #{prev_aria_label_attr}>#{pagy_t('pagy.prev')}</li>)
       end
     end
 
     def pagy_foundation_next_html(pagy, link)
       if (p_next = pagy.next)
-        %(<li class="next">#{link.call(p_next, pagy_t('pagy.next'), next_aria_label)}</li>)
+        %(<li class="next">#{link.call(p_next, pagy_t('pagy.next'), next_aria_label_attr)}</li>)
       else
-        %(<li class="next disabled" role="link" aria-disabled="true" #{next_aria_label}>#{pagy_t('pagy.next')}</li>)
+        %(<li class="next disabled" role="link" aria-disabled="true" #{next_aria_label_attr}>#{pagy_t('pagy.next')}</li>)
       end
     end
   end

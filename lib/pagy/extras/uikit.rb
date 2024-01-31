@@ -14,7 +14,8 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
 
       html = +%(<ul#{p_id} class="pagy-uikit-nav uk-pagination uk-flex-center" role="navigation"  #{
-      nav_aria_label(pagy, nav_aria_label, nav_i18n_key)}>#{uikit_prev_html(pagy, link)})
+
+      nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>#{uikit_prev_html(pagy, link)})
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
@@ -46,7 +47,7 @@ class Pagy # :nodoc:
                'after'  => uikit_next_html(pagy, link) }
 
       %(<ul#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-uikit-nav-js uk-pagination uk-flex-center" role="navigation" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)} #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></ul>)
     end
 
@@ -61,7 +62,7 @@ class Pagy # :nodoc:
                     p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       %(<ul#{p_id} class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" role="navigation" #{
-          nav_aria_label(pagy, nav_aria_label, nav_i18n_key)} #{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :combo, pagy_marked_link(link))
         }>#{
           uikit_prev_html pagy, link
@@ -77,18 +78,18 @@ class Pagy # :nodoc:
     def uikit_prev_html(pagy, link)
       previous_span = %(<span uk-pagination-previous>#{pagy_t 'pagy.prev'}</span>)
       if (p_prev = pagy.prev)
-        %(<li>#{link.call(p_prev, previous_span, prev_aria_label)}</li>)
+        %(<li>#{link.call(p_prev, previous_span, prev_aria_label_attr)}</li>)
       else
-        %(<li class="uk-disabled"><span role="link" aria-disabled="true" #{prev_aria_label}>#{previous_span}</a></li>)
+        %(<li class="uk-disabled"><span role="link" aria-disabled="true" #{prev_aria_label_attr}>#{previous_span}</a></li>)
       end
     end
 
     def uikit_next_html(pagy, link)
       next_span = %(<span uk-pagination-next>#{pagy_t 'pagy.next'}</span>)
       if (p_next = pagy.next)
-        %(<li>#{link.call(p_next, next_span, next_aria_label)}</li>)
+        %(<li>#{link.call(p_next, next_span, next_aria_label_attr)}</li>)
       else
-        %(<li class="uk-disabled"><span role="link" aria-disabled="true" #{prev_aria_label}>#{next_span}</span></li>)
+        %(<li class="uk-disabled"><span role="link" aria-disabled="true" #{prev_aria_label_attr}>#{next_span}</span></li>)
       end
     end
   end
