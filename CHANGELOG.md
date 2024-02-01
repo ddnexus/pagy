@@ -29,18 +29,19 @@ None
 - Dropped old rubies support: Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now.
 - Renamed `:i18n_key` > `:item_i18n_key`
 - Refactored `support` extra
-  - Removed `pagy_prev_link`: use `pagy_prev_html` without the `:text` argument (can customize `pagy.nav.prev`)
-  - Removed `pagy_next_link`: use `pagy_next_html` without the `:text` argument (can customize `pagy.nav.next`)
+  - Removed `pagy_prev_link`: use `pagy_prev_html` without the `:text` argument (you can customize `pagy.prev`)
+  - Removed `pagy_next_link`: use `pagy_next_html` without the `:text` argument (you can customize `pagy.next`)
 - Rack 3 breaking changes:
   - The `headers` extra produces all lowercase headers, regardless how you set them [see rack issue](https://github.com/rack/rack/issues/1592)
   - Removed `:escaped_html` option from `pagy_url_for` (only breaking if you override the method or use the option directly)
 - Dictionary structure changes: (affects only app with custom helper/templates/dictionary entries)
   - The `nav` entry has been flattened: `pagy.nav.*` entries are now `pagy.*`:
     - If you have custom helpers/templates: search the keys that contain `'.nav.'` and replace them with `'.'`
-    - If you have custom dictionary entries (overrides): remove the `'nav:'` line and unindent its block.
-  - A few labels used as `aria-label` have been added: you may want to add them to your custom helper/templates/dictionaries for ARIA compliance.
-    - `aria_label.nav` Pluralized entry: used as the `aria-label` for the `nav` element
-    - `aria_label.prev`, `aria_label.next` Single entry: used in the prev/next `a` link elements
+    - If you have custom dictionary entries (overrides): remove the `'nav:'` line and unindent its block
+  - A few labels used as `aria-label` have been added: you may want to add/use them to your custom helper/templates/dictionaries 
+    for ARIA compliance.
+    - `pagy.aria_label.nav` Pluralized entry: used in the `nav` element
+    - `pagy.aria_label.prev`, `pagy.aria_label.next` Single entry: used in the prev/next `a` link elements
 
 ### Default changes (possibly breaking test/views)
 
@@ -63,6 +64,11 @@ None
 - The ARIA label compliance required the refactoring of all the nav helper that might look slightly different now.
 - The text for `"Previous"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You can 
   edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
+
+### Internal renaming of private methods (unlikely to break anything)
+
+You should not have used any of the private methods, but if you did so, you will get a `NoMethodError` 
+(undefined method...) very easy to fix by simply renaming, because there are no changes in the logic.
 
 ### Changes
 
