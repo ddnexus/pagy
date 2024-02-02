@@ -106,8 +106,6 @@ class Pagy
                  hash['pl']    = RULE[:polish]
                  hash['ru']    = RULE[:east_slavic]
                  hash['sr']    = RULE[:east_slavic]
-                 hash['sv']    = RULE[:one_two_other]
-                 hash['sv-SE'] = RULE[:one_two_other]
                  hash['tr']    = RULE[:other]
                  hash['uk']    = RULE[:east_slavic]
                  hash['vi']    = RULE[:other]
