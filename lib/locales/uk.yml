@@ -2,11 +2,11 @@
 uk:
   pagy:
     aria_label:
-      nav: "Сторінки"
-        one: "один"
-        few: "кілька"
-        many: "багато"
-        other: "інших"
+      nav:
+        one: "Сторінка"
+        few: "Сторінки"
+        many: "Сторінок"
+        other: "Сторінки"
       prev: "Назад"
       next: "Далі"
     prev: "&lt;"
