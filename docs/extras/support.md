@@ -29,7 +29,7 @@ You can totally avoid one query per render by using the [countless](countless.md
 
 If you don't need the navbar you can just set the `:size` variable to an empty value and the page links will be skipped from the rendering. That works with `Pagy` and `Pagy:Countless` instances. All the `*nav` helpers will render only the `prev` and `next` links/buttons, allowing for a manual incremental pagination.
 
-You can also use the [`pagy_prev_html`](https://github.com/ddnexus/pagy/blob/dca8669a10cb3be13e053fe435301c22cc64406f/lib/pagy/extras/navs.rb#L46) and [`pagy_next_html`](https://github.com/ddnexus/pagy/blob/dca8669a10cb3be13e053fe435301c22cc64406f/lib/pagy/extras/navs.rb#L54) helpers provided by the [navs extra](navs), mostly useful if you also use the `countless` extra.
+You can also use the `pagy_prev_html`, `pagy_next_html` mostly useful if you also use the `countless` extra.
 
 Here is a basic example that uses `pagy_countless` (saving one query per render): 
 
@@ -153,25 +153,26 @@ You may want to combine it with something like:
 
 ## Methods
 
-==- `pagy_prev_url(pagy)`
+==- `pagy_prev_url(pagy, absolute: false)`
 
-Returns the url for the previous page. Useful to build minimalistic UIs that don't use nav bar links (e.g. `countless` extra).
+Returns the url for the previous page or `nil` if there is no previous page. Useful to build minimalistic UIs that don't use nav 
+bar links (e.g. `countless` extra).
 
-==- `pagy_next_url(pagy)`
+==- `pagy_next_url(pagy, absolute: false)`
 
-Returns the url for the next page. Useful to build minimalistic UIs that don't use nav bar links (e.g. `countless` extra).
+Returns the url for the next page or `nil` if there is no next page. Useful to build minimalistic UIs that don't use nav bar 
+links (e.g. `countless` extra).
 
-==- `pagy_prev_html(pagy, link_extra: "")`
+==- `pagy_prev_html(pagy, text: pagy_t('pagy.prev'), link_extra: '')`
 
-Returns the enabled/disabled HTML string for the previous page link. It is the same prev link string which is 
-part of the 
-`pagy_nav` helper.
+Returns the HTML string for the enabled/disabled previous page link. It is the same prev link string which is 
+part of the `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
 
-==- `pagy_next_html(pagy, link_extra: "")`
+==- `pagy_next_html(pagy, text: pagy_t('pagy.next'), link_extra: '')`
 
-Returns the enabled/disabled HTML string for the next page link. It is the same next link string which is part of the
+Returns the HTML string for the enabled/disabled next page link. It is the same next link string which is part of the
 `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).

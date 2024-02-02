@@ -29,8 +29,8 @@ None
 - Dropped old rubies support: Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now.
 - Renamed `:i18n_key` > `:item_i18n_key`
 - Refactored `support` extra
-  - Removed `pagy_prev_link`: use `pagy_prev_html` without the `:text` argument (you can customize `pagy.prev`)
-  - Removed `pagy_next_link`: use `pagy_next_html` without the `:text` argument (you can customize `pagy.next`)
+  - Renamed `pagy_prev_link` to `pagy_prev_html` to avoid confusion with pagy_prev_link_tag
+  - Removed `pagy_next_link` to `pagy_next_html` to avoid confusion with pagy_next_link_tag
 - Rack 3 breaking changes:
   - The `headers` extra produces all lowercase headers, regardless how you set them [see rack issue](https://github.com/rack/rack/issues/1592)
   - Removed `:escaped_html` option from `pagy_url_for` (only breaking if you override the method or use the option directly)

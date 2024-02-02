@@ -93,21 +93,21 @@ class Pagy
       %(aria-label="#{pagy_t('pagy.aria_label.next')}")
     end
 
-    def prev_html(pagy, link)
+    def prev_html(pagy, link, text: pagy_t('pagy.prev'))
       if (p_prev = pagy.prev)
-        %(<span class="page prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label_attr)}</span> )
+        %(<span class="page prev">#{link.call(p_prev, text, prev_aria_label_attr)}</span> )
       else
         %(<span class="page prev disabled"><a role="link" aria-disabled="true" #{
-             prev_aria_label_attr}>#{pagy_t('pagy.prev')}</a></span> )
+             prev_aria_label_attr}>#{text}</a></span> )
       end
     end
 
-    def next_html(pagy, link)
+    def next_html(pagy, link, text: pagy_t('pagy.next'))
       if (p_next = pagy.next)
-        %(<span class="page next">#{link.call(p_next, pagy_t('pagy.next'), next_aria_label_attr)}</span>)
+        %(<span class="page next">#{link.call(p_next, text, next_aria_label_attr)}</span>)
       else
         %(<span class="page next disabled"><a role="link" aria-disabled="true" #{
-            next_aria_label_attr}>#{pagy_t('pagy.next')}</a></span>)
+            next_aria_label_attr}>#{text}</a></span>)
       end
     end
   end
