@@ -22,16 +22,16 @@ describe 'pagy/extras/support' do
   end
 
   describe '#pagy_prev_url' do
-    tests_for(:pagy_prev_url, [[3, 21], [6, 21], [50, 20]], absolute: true)
+    tests_for(:pagy_prev_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_next_url' do
-    tests_for(:pagy_next_url, [[1, 21], [3, 21], [6, 21]], absolute: true)
+    tests_for(:pagy_next_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_prev_link_tag' do
-    tests_for(:pagy_prev_link_tag, [[3, 21], [6, 21], [50, 20]], absolute: true)
+    tests_for(:pagy_prev_link_tag, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_next_link_tag' do
-    tests_for(:pagy_next_link_tag,  [[1, 21], [3, 21], [6, 21]], absolute: true)
+    tests_for(:pagy_next_link_tag,  [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_prev_html' do
     tests_for(:pagy_prev_html, [[1, 0], [3, 21], [6, 21], [50, 20]],

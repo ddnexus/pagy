@@ -33,8 +33,6 @@ group :apps do
   gem 'rerun'
   gem 'sinatra'
   gem 'sinatra-contrib'
-  # gem 'slim'
-  # gem 'haml'
 end
 
 group :performance do
