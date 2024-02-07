@@ -1,7 +1,7 @@
 ---
 title: Pagy::Console
-categories: 
-- Module
+categories:
+  - Module
 ---
 
 # Pagy::Console
@@ -10,13 +10,15 @@ Allows you to test Pagy in an [irb](https://github.com/ruby/irb) with an environ
 
 <details>
 
-Standard pagination requires a: controller, model, view and request object to work i.e. you need an environment. `Pagy::Console` gives you that environment. 
+Standard pagination requires a: controller, model, view and request object to work i.e. you need an environment. `Pagy::Console`
+gives you that environment.
 
 </details>
 
 </br>
 
 +++ irb
+
 ```ruby
 require 'pagy/console'
 include Pagy::Console
@@ -29,33 +31,36 @@ pagy_navs(pagy)
 
 pagy_metadata(pagy)
 =>
-{:scaffold_url=>"http://www.example.com/subdir?page=__pagy_page__",
- :first_url=>"http://www.example.com/subdir?page=1",
- :prev_url=>"http://www.example.com/subdir?page=2",
- :page_url=>"http://www.example.com/subdir?page=3",
- :next_url=>"http://www.example.com/subdir?page=4",
- :last_url=>"http://www.example.com/subdir?page=50",
- :count=>1000,
- :page=>3,
- :items=>20,
- :vars=>
-  {:page=>3,
-   :items=>20,
-   :outset=>0,
-   :size=>[1, 4, 4, 1],
-...
+{ :scaffold_url => "http://www.example.com/subdir?page=__pagy_page__",
+  :first_url    => "http://www.example.com/subdir?page=1",
+  :prev_url     => "http://www.example.com/subdir?page=2",
+  :page_url     => "http://www.example.com/subdir?page=3",
+  :next_url     => "http://www.example.com/subdir?page=4",
+  :last_url     => "http://www.example.com/subdir?page=50",
+  :count        => 1000,
+  :page         => 3,
+  :items        => 20,
+  :vars         =>
+  { :page   => 3,
+    :items  => 20,
+    :outset => 0,
+    :size   => [1, 4, 4, 1],
+    ...
 ```
+
 +++ rails console
 
 !!!warning Warning
 
 Avoid using `rails console` with `Pagy::Console`.
 
-Use `irb` instead. However, if you need `rails console` please ensure you temporarily "unfreeze" the `Pagy::DEFAULT` hash, in your `pagy.rb` config file, otherwise you'll receive a "can't modify frozen Hash" exception:
+Use `irb` instead. However, if you need `rails console` please ensure you temporarily "unfreeze" the `Pagy::DEFAULT` hash, in
+your `pagy.rb` config file, otherwise you'll receive a "can't modify frozen Hash" exception:
 
 ```rb
 # Pagy::DEFAULT.freeze  ## temporarily comment out this line, don't forget to uncomment when finished!
 ```
+
 !!!
 
 Now, refer to the instructions in the [irb tab](#irb).
@@ -64,7 +69,8 @@ Now, refer to the instructions in the [irb tab](#irb).
 
 ## Pagy::Console module
 
-The pagy console uses the [standalone extra](/docs/extras/standalone.md) and sets the `Pagy::DEFAULT[:url]` variable default to `"http://www.example.com/subdir"` in order to activate the standalone mode.
+The pagy console uses the [standalone extra](/docs/extras/standalone.md) and sets the `Pagy::DEFAULT[:url]` variable default
+to `"http://www.example.com/subdir"` in order to activate the standalone mode.
 
 Include the module in your console window in order to include also the `Pagy::Backend` and `Pagy::Frontend` modules.
 

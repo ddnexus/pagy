@@ -88,12 +88,12 @@ class Pagy
     series
   end
 
-  # Allow the customization of the output (overridden by the calendar extra)
+  # Label for any page. Allow the customization of the output (overridden by the calendar extra)
   def label_for(page)
     page.to_s
   end
 
-  # Allow the customization of the output (overridden by the calendar extra)
+  # Label for the current page. Allow the customization of the output (overridden by the calendar extra)
   def label
     @page.to_s
   end

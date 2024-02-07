@@ -13,17 +13,21 @@ Add nav helpers for the Bootstrap [pagination component](https://getbootstrap.co
 ## Synopsis
 
 ||| pagy.rb (initializer)
+
 ```ruby
 require 'pagy/extras/bootstrap'
 ```
+
 |||
 
 ||| View (helper)
+
 ```erb
 <%== pagy_bootstrap_nav(@pagy, **vars) %>
 <%== pagy_bootstrap_nav_js(@pagy, **vars) %>
 <%== pagy_bootstrap_combo_nav_js(@pagy, **vars) %>
 ```
+
 |||
 
 See: [Javascript](/docs/api/javascript.md) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
@@ -34,7 +38,7 @@ See: [Javascript](/docs/api/javascript.md) if you use `pagy_bootstrap_nav_js` or
 
 ## Methods
 
-This extra adds 3 nav helpers to the `Pagy::Frontend` module. 
+This extra adds 3 nav helpers to the `Pagy::Frontend` module.
 
 !!!info Overriding Helpers
 You can customize them by overriding in your own view helper(s).

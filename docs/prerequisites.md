@@ -5,6 +5,7 @@ icon: shield-check-24
 ---
 
 ## Ruby
+
 +++ Pagy 7.0+
 !!! success
 Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies.
@@ -40,6 +41,8 @@ Use the [Pagy::Console](api/console.md)
 
 ## Supported collections
 
-Out of the box pagy supports `ActiveRecord::Relation`, [array](extras/array.md), [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md) and [meilisearch](extras/meilisearch.md) collections.
+Out of the box pagy
+supports `ActiveRecord::Relation`, [array](extras/array.md), [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md)
+and [meilisearch](extras/meilisearch.md) collections.
 
 In order to paginate other collections, search for "paginate" in the search field above.

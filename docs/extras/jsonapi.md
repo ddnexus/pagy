@@ -10,30 +10,37 @@ categories:
 
 Implements the [JSON:API](https://jsonapi.org) specifications for pagination.
 
-When enabled, the query params used in the pagy URLs are nested under the `page` param, as specified by the [Query Parameter Family](https://jsonapi.org/format/#query-parameters-families) e.g. `https://example.com/products?page[number]=2&page[size]=30`. 
+When enabled, the query params used in the pagy URLs are nested under the `page` param, as specified by
+the [Query Parameter Family](https://jsonapi.org/format/#query-parameters-families)
+e.g. `https://example.com/products?page[number]=2&page[size]=30`.
 
 ## Synopsis
 
 ### Default usage
 
 ||| pagy.rb (initializer)
+
 ```ruby
 require 'pagy/extras/jsonapi' # works without further configuration
 ```
+
 |||
 
 ||| Controller
+
 ```ruby
 # enabled by default
 @pagy, @records = pagy(collection)
 # you can disable it explicitly for specific requests
 @pagy, @records = pagy(collection, jsonapi: false)
 ```
+
 |||
 
 ### Custom usage
 
 ||| pagy.rb (initializer)
+
 ```ruby
 # optionally require other jsonapi-useful extras
 require 'pagy/extras/items'
@@ -42,9 +49,11 @@ require 'pagy/extras/jsonapi'
 # optionally disable it by default (opt-in)
 Pagy::DEFAULT[:jsonapi] = false               # default true
 ```
+
 |||
 
 ||| Controller
+
 ```ruby
 # disabled by default by the above Pagy::DEFAULT[:jsonapi] = false
 @pagy, @records = pagy(collection)
@@ -62,6 +71,7 @@ links_hash = pagy_jsonapi_links(@pagy)
 #    prev: 'https://example.com/products?page[number]=31&page[size]=50&...',
 #    next: 'https://example.com/products?page[number]=33&page[size]=50&...'}
 ```
+
 |||
 
 ## Files
@@ -78,11 +88,14 @@ You can use the `:jsonapi` variable to opt-out of the feature even when the extr
 
 ## Interaction with other features/extras
 
-This extra just nests the `:page` and `:items` params under the JSON:API reserved `:page` param. You may want to customize the `:page_param` and the `:items` params as shown in the [Synopsis](#synopsis).
+This extra just nests the `:page` and `:items` params under the JSON:API reserved `:page` param. You may want to customize
+the `:page_param` and the `:items` params as shown in the [Synopsis](#synopsis).
 
- You may also want to use it with the [items extra](/docs/extras/items.md) in order to allow the client to request a specific number of items per page and capping it to a max number.
+You may also want to use it with the [items extra](/docs/extras/items.md) in order to allow the client to request a specific
+number of items per page and capping it to a max number.
 
-It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md) and [meilisearch](/docs/extras/meilisearch.md) extras.
+It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md)
+and [meilisearch](/docs/extras/meilisearch.md) extras.
 
 It does not make sense (and doesn't work) with the [Calendar](countless.md) extra.
 
@@ -92,4 +105,5 @@ The `jsonapi` extra adds the `pagy_jsonapi_links` helper to the `Pagy::Backend` 
 
 === `pagy_jsonapi_links(pagy, **opts)`
 
-This helper provides the JSON:API [links for pagination](https://jsonapi.org/format/#fetching-pagination) as a hash of `first`, `last`, `prev`, `next` paths. You can pass the option `asbsolute: true` to get an absolute URL instead.
+This helper provides the JSON:API [links for pagination](https://jsonapi.org/format/#fetching-pagination) as a hash
+of `first`, `last`, `prev`, `next` paths. You can pass the option `asbsolute: true` to get an absolute URL instead.

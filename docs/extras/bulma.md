@@ -13,17 +13,21 @@ Add nav helpers for the Bulma CSS [pagination component](https://bulma.io/docume
 ## Synopsis
 
 ||| pagy.rb (initializer)
+
 ```ruby
 require 'pagy/extras/bulma'
 ```
+
 |||
 
 ||| View (helpers)
+
 ```erb
 <%== pagy_bulma_nav(@pagy, **vars) %>
 <%== pagy_bulma_nav_js(@pagy, **vars) %>
 <%== pagy_bulma_combo_nav_js(@pagy, **vars) %>
 ```
+
 |||
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
@@ -32,13 +36,13 @@ See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pag
 
 - [bulma.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bulma.rb)
 
-| Variable             | Description                                                                   | Default        |
+| Variable | Description | Default |
 |:---------------------|:-------------------------------------------------------- ---------------------|:---------------|
 | `:bulma_nav_classes` | Edit the classes for the nav element. You can try "is-small", "is-round" etc. | `"is-centered"` |
 
 ## Methods
 
-This extra adds 3 nav helpers to the `Pagy::Frontend` module. 
+This extra adds 3 nav helpers to the `Pagy::Frontend` module.
 
 !!!info Overriding Helpers
 You can customize them by overriding in your own view helper(s).
@@ -56,7 +60,8 @@ See the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars) docum
 
 ![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_bulma_nav_js` looks like the `pagy_bulma_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
 
-It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
+It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation
+for more information.
 
 === `pagy_bulma_combo_nav_js(pagy, **vars)`
 

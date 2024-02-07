@@ -10,20 +10,23 @@ Add nav helpers for the UIkit [pagination component](https://getuikit.com/docs/p
 
 ## Synopsis
 
-
 ||| pagy.rb (initializer)
+
 ```ruby
 require 'pagy/extras/uikit'
 ```
+
 |||
 
 ||| View
+
 ```erb
 <-- Nav Helpers: -->
 <%== pagy_uikit_nav(@pagy, **vars) %>
 <%== pagy_uikit_nav_js(@pagy, **vars) %>
 <%== pagy_uikit_combo_nav_js(@pagy, **vars) %>
 ```
+
 |||
 
 ## Files
@@ -32,7 +35,8 @@ require 'pagy/extras/uikit'
 
 ## Methods
 
-This extra adds the above nav helpers to the `Pagy::Frontend` module. You can customize it by direct overriding in your own view helper.
+This extra adds the above nav helpers to the `Pagy::Frontend` module. You can customize it by direct overriding in your own view
+helper.
 
 === `pagy_uikit_nav(pagy)`
 
@@ -46,7 +50,8 @@ See the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars) docum
 
 ![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_uikit_nav_js` looks like the `pagy_uikit_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
 
-It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
+It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation
+for more information.
 
 === `pagy_uikit_combo_nav_js(pagy, **vars)`
 

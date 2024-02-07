@@ -1,21 +1,21 @@
 ---
 title: Pagy
-categories: 
-- Core
-- Class
+categories:
+  - Core
+  - Class
 ---
 
 # Pagy
 
-The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a few integers (such as the count of the collection, the page number, the items per page, ...), does some simple arithmetic and creates a very small object that allocates less than 3k of memory ([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb)).
-
-||| Integers of Pagy
-:::code source="../../lib/pagy.rb" range="16-25" :::
-|||
+The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a
+few integers (such as the count of the collection, the page number, the items per page, ...), does some simple arithmetic and
+creates a very small object that allocates less than 3k of
+memory ([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb)).
 
 ## Synopsis
 
 ||| pagy.rb (initializer)
+
 ```ruby
 # set global defaults and extra variables
 # they will get merged with every new Pagy instance
@@ -42,41 +42,53 @@ pagy.items
 pagy.series
 #=> [1, 2, "3", 4, 5, 6, 7, :gap, 40]
 ```
+
 |||
 
 ## Global Default
 
-The `Pagy::DEFAULT` is a globally available hash used to set defaults variables. It is a constant for easy access, but it is mutable to allow customizable defaults. You can override it in the `pagy.rb` initializer file in order to set your own application global defaults. After you are done, you should `freeze` it, so it will not changed accidentally. It gets merged with the variables passed with the `new` method every times a `Pagy` instance gets created.
+The `Pagy::DEFAULT` is a globally available hash used to set defaults variables. It is a constant for easy access, but it is
+mutable to allow customizable defaults. You can override it in the `pagy.rb` initializer file in order to set your own application
+global defaults. After you are done, you should `freeze` it, so it will not change accidentally. It gets merged with the
+variables passed with the `new` method every times a `Pagy` instance gets created.
 
 You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
 ||| pagy.rb (initializer)
+
 ```ruby
 Pagy::DEFAULT[:items]     = 25
 Pagy::DEFAULT[:my_option] = 'my option'
 ...
 Pagy::DEFAULT.freeze
 ```
+
 |||
 
 ## Methods
 
 ==- `Pagy.root`
 
-This method returns the `pathname` of the `pagy/lib` root dir. It is useful to get the absolute path of locale and javascript files installed with the gem.
+This method returns the `pathname` of the `pagy/lib` root dir. It is useful to get the absolute path of locale and javascript
+files installed with the gem.
 
 ==- `Pagy.new(vars)`
 
 _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and return the Pagy object for you.
 
-The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to create the object.
+The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to
+create the object.
 
 ==- `series(size: @vars[:size], _**)`
 
-This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` keyword argument (only useful for extras), defaulted on the `:size` variable.
+This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` items to be rendered
+with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` keyword argument (only
+useful for extras), defaulted on the `:size` variable.
 
 !!!primary Gap: added only when necessary
-A `:gap` is added only where the series is missing at least two pages. When the series is missing only one page, the `:gap` is replaced with the page link of the actual missing page. That's because the page link uses the same space of the `...` gap but it is more useful.
+A `:gap` is added only where the series is missing at least two pages. When the series is missing only one page, the `:gap` is
+replaced with the page link of the actual missing page. That's because the page link uses the same space of the `...` gap but it
+is more useful.
 !!!
 
 The nav helpers basically loop through this array and render the correct item by simply checking its type:
@@ -87,37 +99,46 @@ The nav helpers basically loop through this array and render the correct item by
 
 That is self-contained, simple and efficient.
 
-!!!primary 
-This method returns an empty array if the passed `size` (i.e. the `:size` variable) is set to an empty `Array`. Useful to 
+!!!primary
+This method returns an empty array if the passed `size` (i.e. the `:size` variable) is set to an empty `Array`. Useful to
 totally skip the generation of page links in the frontend.
 
-It can also return an simpler array without gaps if the passed `:size` is a single positive `Integer`. It may be a faster and 
+It can also return a simpler array without gaps if the passed `:size` is a single positive `Integer`. It may be a faster and
 cleaner solution very useful in certain contexts (see the [Simple Nav](../how-to.md#simple-nav))
 !!!
 
 ==- `label`
 
-Experimental: Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances. It returns the current page label that will get displayed in the helpers.
+Label for the current page. Its only function in the `Pagy` class is supporting the API of various frontend methods that require
+labelling for `Pagy::Calendar` instances. It returns the current page label that will get displayed in the helpers.
 
 ==- `label_for(page)`
 
-Experimental: Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling for `Pagy::Calendar` instances. It returns the page label that will get displayed in the helpers.
+Label for any page. Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling
+for `Pagy::Calendar` instances. It returns the page label that will get displayed in the helpers.
 
 ===
 
 ## Variables
 
-All the variables passed to the new method will be merged with the `Pagy::DEFAULT` hash and will be kept in the object, passed around with it and accessible through the `pagy.vars` hash.
+All the variables passed to the new method will be merged with the `Pagy::DEFAULT` hash and will be kept in the object, passed
+around with it and accessible through the `pagy.vars` hash.
 
-They can be set globally by using the `Pagy::DEFAULT` hash or passed to the `Pagy.new` method and are accessible through the `vars` reader.
+They can be set globally by using the `Pagy::DEFAULT` hash or passed to the `Pagy.new` method and are accessible through
+the `vars` reader.
 
-**Notice**: Pagy replaces the blank values of the passed variables with their default values coming from the `Pagy::DEFAULT` hash. It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
+**Notice**: Pagy replaces the blank values of the passed variables with their default values coming from the `Pagy::DEFAULT` hash.
+It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without problems. For
+example: `pagy(some_scope, items: params[:items])` will work without any additional cleanup.
 
 ### Instance Variables
 
-A few variables are particularly important for the calculation of the pagination, and therefore are validated and used to initialize a few instance variables.
+A few variables are particularly important for the calculation of the pagination, and therefore are validated and used to
+initialize a few instance variables.
 
-The only mandatory instance variable to be passed is the `:count` of the collection to paginate: all the other variables are optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page number 1.
+The only mandatory instance variable to be passed is the `:count` of the collection to paginate: all the other variables are
+optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page
+number 1.
 They are all integers:
 
 | Variable  | Description                                                                                    | Default |
@@ -129,44 +150,47 @@ They are all integers:
 
 ### Other Variables
 
-| Variable        | Description                                                                                                                                                                                                                                                                                                                                                   | Default            |
-|:----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------------------|
-| `:size`         | The size of the page links to show: can be an array of initial pages, before current page, after current page, final pages or the total page size. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_                                                                                                                       | `7`                |
-| `:page_param`   | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                                                                                                                                                                          | `:page`            |
-| `:params`       | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                                                                                                           | `{}`               |
-| `:fragment`     | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                                                                                                                                              | `""`               |
-| `:link_extra`   | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_                                                                                                                                                           | `""`               |
-| `:item_i18n_key`     | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs (see [How to customize the item name](/docs/how-to.md#customize-the-item-name))                                                                                                                                                                                         | `"pagy.item_name"` |
-| `:cycle`        | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                                                                                                                                                                                 | `false`            |
-| `:request_path` | Allows overriding the request path for pagination links. If left blank, helpers will use `request.path`. NB: Do not pass in a full URL, but the path: For example, given `https://ddnexus.github.io/pagy/docs/api/pagy/` the path to be passed in is: `pagy/docs/api/pagy/`. (See: [Customize the request path](/docs/how-to.md#customize-the-request-path) ) | `request.path`     |
-| `jsonapi`       | Enable `jsonapi` compliance of the pagy query params                                                                                                                                                                                                                                                                                                          | `false`            |
+| Variable         | Description                                                                                                                                                                                                                             | Default                 |
+|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------|
+| `:size`          | The size of the page links to show: can be an array of initial pages, before current page, after current page, final pages or the total page size. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_ | `7`                     |
+| `:page_param`    | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                                                    | `:page`                 |
+| `:params`        | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                     | `{}`                    |
+| `:fragment`      | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                        | `''`                    |
+| `:link_extra`    | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_                                     | `''`                    |
+| `:item_i18n_key` | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs (see [How to customize the item name](/docs/how-to.md#customize-the-item-name))                                                                   | `'pagy.item_name'`      |
+| `:nav_i18n_key`  | The i18n key to lookup the `aria-label` for the `pagy*_nav` helpers                                                                                                                                                                     | `'pagy.aria_label.nav'` |
+| `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                                                           | `false`                 |
+| `:request_path`  | Allows overriding the request path for pagination links. Pass the path only (not the absolute url). _(see [Customize the request path](/docs/how-to.md#customize-the-request-path))_                                                    | `request.path`          |
+| `jsonapi`        | Enable `jsonapi` compliance of the pagy query params                                                                                                                                                                                    | `false`                 |
 
 There is no specific validation for non-instance variables.
 
 ### Attribute Readers
 
-Pagy exposes all the instance variables needed for the pagination through a few attribute readers. They all return integers (or `nil`), except the `vars` hash:
+Pagy exposes all the instance variables needed for the pagination through a few attribute readers. They all return integers (
+or `nil`), except the `vars` hash:
 
-| Reader         | Description                                                                                                                                                                                                                                                                                                                                     |
-|:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `count`        | The collection `:count`                                                                                                                                                                                                                                                                                                                         |
-| `page`         | The current page number                                                                                                                                                                                                                                                                                                                         |
-| `items`        | The requested number of items for the page                                                                                                                                                                                                                                                                                                      |
-| `pages`        | The number of total pages in the collection (same as `last` but with cardinal meaning)                                                                                                                                                                                                                                                          |
-| `in`           | The number of the items in the page                                                                                                                                                                                                                                                                                                             |
-| `last`         | The number of the last page in the collection (same as `pages` but with ordinal meaning)                                                                                                                                                                                                                                                        |
-| `offset`       | The number of items skipped from the collection in order to get the start of the current page (`:outset` included)                                                                                                                                                                                                                              |
-| `from`         | The collection-position of the first item in the page (`:outset` excluded)                                                                                                                                                                                                                                                                      |
-| `to`           | The collection-position of the last item in the page (`:outset` excluded)                                                                                                                                                                                                                                                                       |
-| `prev`         | The previous page number or `nil` if there is no previous page                                                                                                                                                                                                                                                                                  |
-| `next`         | The next page number or `nil` if there is no next page                                                                                                                                                                                                                                                                                          |
-| `vars`         | The variables hash                                                                                                                                                                                                                                                                                                                              |
-| `params`       | The `:params` variable (`Hash` or `Proc`)                                                                                                                                                                                                                                                                                                       |
-| `request_path` | The request path used for pagination helpers.  If blank, helpers will use `request.path`                                                                                                                                                                                                                                                        |
+| Reader         | Description                                                                                                        |
+|:---------------|:-------------------------------------------------------------------------------------------------------------------|
+| `count`        | The collection `:count`                                                                                            |
+| `page`         | The current page number                                                                                            |
+| `items`        | The requested number of items for the page                                                                         |
+| `pages`        | The number of total pages in the collection (same as `last` but with cardinal meaning)                             |
+| `in`           | The number of the items in the page                                                                                |
+| `last`         | The number of the last page in the collection (same as `pages` but with ordinal meaning)                           |
+| `offset`       | The number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
+| `from`         | The collection-position of the first item in the page (`:outset` excluded)                                         |
+| `to`           | The collection-position of the last item in the page (`:outset` excluded)                                          |
+| `prev`         | The previous page number or `nil` if there is no previous page                                                     |
+| `next`         | The next page number or `nil` if there is no next page                                                             |
+| `vars`         | The variables hash                                                                                                 |
+| `params`       | The `:params` variable (`Hash` or `Proc`)                                                                          |
+| `request_path` | The request path used for pagination helpers.  If blank, helpers will use `request.path`                           |
 
 ### Lowest limit analysis
 
-The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has the following peculiar attributes:
+The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has
+the following peculiar attributes:
 
 | Attribute | Value   |
 |:----------|:--------|
@@ -185,7 +209,8 @@ Which means:
 
 - there is always a `page` #`1` in the pagination, even if it's empty
 - `pages` and `last` are always at least both `1`
-- the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string. With `size: []` the `series` method returns `[]`
+- the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string.
+  With `size: []` the `series` method returns `[]`
 - `in`, `from` and `to` of an empty page are all `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)
 
@@ -193,13 +218,14 @@ Which means:
 
 ==- `Pagy::VariableError`
 
-A subclass of `ArgumentError` that offers a few information for easy exception handling when some of the variable passed to the constructor is not valid.
+A subclass of `ArgumentError` that offers a few information for easy exception handling when some of the variable passed to the
+constructor is not valid.
 
 ```ruby
 rescue Pagy::VariableError => e
-  e.pagy     #=> the pagy object that raised the exception
-  e.variable #=> the offending variable symbol (e.g. :page)
-  e.value    #=> the value of the offending variable (e.g -3)
+e.pagy #=> the pagy object that raised the exception
+e.variable #=> the offending variable symbol (e.g. :page)
+e.value #=> the value of the offending variable (e.g -3)
 end
 ```
 
@@ -207,5 +233,9 @@ Mostly useful if you want to rescue from bad user input (e.g. illegal URL manipu
 
 ==- `Pagy::OverflowError`
 
-A subclass of `Pagy::VariableError`: it is raised when the `:page` variable exceeds the maximum possible value calculated for the `:count`, i.e. the `:page` variable is in the correct range, but it's not consistent with the current `:count`. That may happen when the `:count` has been reduced after a page link has been generated (e.g. some record has been just removed from the DB). See also the [overflow](/docs/extras/overflow.md) extra.
+A subclass of `Pagy::VariableError`: it is raised when the `:page` variable exceeds the maximum possible value calculated for
+the `:count`, i.e. the `:page` variable is in the correct range, but it's not consistent with the current `:count`. That may
+happen when the `:count` has been reduced after a page link has been generated (e.g. some record has been just removed from the
+DB). See also the [overflow](/docs/extras/overflow.md) extra.
+
 ===

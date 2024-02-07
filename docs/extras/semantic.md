@@ -3,6 +3,7 @@ title: Semantic
 categories:
 - Frontend
 - Extra
+image: null
 ---
 
 # Semantic UI Extra
@@ -12,17 +13,21 @@ Add javascript nav helpers for Semantic UI CSS [pagination component](https://se
 ## Synopsis
 
 ||| pagy.rb (initializer)
+
 ```ruby
 require 'pagy/extras/semantic'
 ```
+
 |||
 
 ||| View
+
 ```erb
 <%== pagy_semantic_nav(@pagy, **vars) %>
 <%== pagy_semantic_nav_js(@pagy, **vars) %>
 <%== pagy_semantic_combo_nav_js(@pagy, **vars) %>
 ```
+
 |||
 
 ## Files
@@ -45,7 +50,8 @@ See: [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars).
 
 ![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_semantic_nav_js` looks like the `pagy_semantic_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
 
-It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation for more information.
+It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation
+for more information.
 
 === `pagy_semantic_combo_nav_js(pagy, **vars)`
 

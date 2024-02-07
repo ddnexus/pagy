@@ -218,13 +218,13 @@ en:
 
 |||
 
-## Customize the ARIA labels 
+## Customize the ARIA labels
 
-You can customize the `aria-label` attributes of all the pagy helpers by passing either the `:nav_aria_label` string itself or 
+You can customize the `aria-label` attributes of all the pagy helpers by passing either the `:nav_aria_label` string itself or
 the `:nav_i18n_key` (See [pagy_nav](api/frontend.md#pagy-nav-pagy-vars))
 
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the
-`pagy.aria_label.next`. 
+`pagy.aria_label.next`.
 
 See more details in the [ARIA attributes Page](api/ARIA.md).
 
@@ -264,8 +264,8 @@ pagy = Pagy.new(count: 1000, link_extra: 'data-remote="true" class="my-class"')
 
 !!!primary `link_extra`: must be valid HTML
 For performance reasons, the `:link_extra` variable must be a string formatted as a valid HTML attribute/value pairs. That string
-will get inserted verbatim in the HTML of the link. _(see more advanced details in
-the [pagy_link_proc documentation](api/frontend.md#pagy-link-proc-pagy-link-extra))_
+will get inserted verbatim in the HTML of the link. _(see more advanced details in the
+[pagy_link_proc documentation](api/frontend.md#pagy-link-proc-pagy-link-extra))_
 !!!
 
 ## Customize the params
@@ -366,8 +366,8 @@ The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" 
 by editing the values of the `"pagy.item_name"` i18n key in
 the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
 
-Besides you can also (dynamically) set the `:item_i18n_key` variable to let Pagy know where to lookup the item name in some dictionary
-file (instead of looking it up in the default `"pagy.item_name"` key).
+Besides you can also (dynamically) set the `:item_i18n_key` variable to let Pagy know where to lookup the item name in some
+dictionary file (instead of looking it up in the default `"pagy.item_name"` key).
 
 You have a few ways to do that:
 
@@ -379,16 +379,16 @@ You have a few ways to do that:
 ```ruby
 
 def pagy_get_vars(collection, vars)
-  { count:    ...,
-    page:     ...,
+  { count:         ...,
+    page:          ...,
     item_i18n_key: "activerecord.models.#{collection.model_name.item_i18n_key}" }.merge!(vars)
 end
 ```
 
 |||
 
-2. you can set the `:item_i18n_key` variable, either globally using the `Pagy::DEFAULT` hash or per instance with the `Pagy.new` method
-   or with the `pagy` controller method:
+2. you can set the `:item_i18n_key` variable, either globally using the `Pagy::DEFAULT` hash or per instance with the `Pagy.new`
+   method or with the `pagy` controller method:
 
 ||| initializer (pagy.rb)
 
@@ -426,8 +426,8 @@ or passing it as an optional keyword argument to the helper:
 
 !!!warning Parameters have precedence
 The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to
-set the `item_i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the most
-flexible way is passing a pluralized string to the helper.
+set the `item_i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the
+most flexible way is passing a pluralized string to the helper.
 !!!
 
 ## Customize CSS styles
@@ -838,7 +838,8 @@ bootstrap compatibility, responsiveness, compact layouts, etc.)
 | [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_nav_js`, `pagy_semantic_combo_nav_js`          |
 | [uikit](extras/uikit.md)             | `pagy_uikit_nav`, `pagy_uikit_nav_js`, `pagy_uikit_combo_nav_js`                   |
 
-If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.
+If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple
+concatenation of strings with a very simple logic.
 
 Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for
 complete control over your helpers.
