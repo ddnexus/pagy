@@ -5,8 +5,8 @@ source 'https://rubygems.org'
 # we cannot use gemspec here because it would load pagy before simplecov
 # and miss files from coverage gemspec
 
+gem 'http'         # used by the scripts/contributor-list.rb
 gem 'rake'
-
 gem 'readline-ext' # temporary fix for RM 3.3.2 console with ruby >= 3.3.0
 
 group :test do
