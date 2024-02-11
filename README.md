@@ -3,7 +3,7 @@
 <span>[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=pagy&colorA=99004d&colorB=cc0066)](https://rubygems.org/gems/pagy)</span> <span>
 [![ruby](https://img.shields.io/badge/ruby-EOL-ruby.svg?colorA=99004d&colorB=cc0066)](https://endoflife.date/ruby)</span> <span>
 [![Build Status](https://img.shields.io/github/actions/workflow/status/ddnexus/pagy/pagy-ci.yml?branch=master)](https://github.com/ddnexus/pagy/actions/workflows/pagy-ci.yml?query=branch%3Amaster)</span> <span>
-[![codecov](https://codecov.io/gh/ddnexus/pagy/graph/badge.svg?token=S7wBqMwPlQ)](https://codecov.io/gh/ddnexus/pagy)</span> <span>
+![Coverage](https://img.shields.io/badge/coverage-100%25-coverage.svg?colorA=1f7a1f&colorB=2aa22a)</span> <span>
 ![Rubocop Status](https://img.shields.io/badge/rubocop-passing-rubocop.svg?colorA=1f7a1f&colorB=2aa22a)</span> <span>
 [![MIT license](https://img.shields.io/badge/license-MIT-mit.svg?colorA=1f7a1f&colorB=2aa22a)](http://opensource.org/licenses/MIT)</span> <span>
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/4329/badge)](https://bestpractices.coreinfrastructure.org/projects/4329)</span> <span>

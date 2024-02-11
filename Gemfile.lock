@@ -19,8 +19,6 @@ GEM
     benchmark-ips (2.13.0)
     bigdecimal (3.1.6)
     builder (3.2.4)
-    codecov (0.6.0)
-      simplecov (>= 0.15, < 0.22)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     docile (1.4.0)
@@ -128,6 +126,9 @@ GEM
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
+    simplecov-json (0.2.3)
+      json
+      simplecov
     simplecov_json_formatter (0.1.4)
     sinatra (4.0.0)
       mustermann (~> 3.0)
@@ -153,7 +154,6 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   benchmark-ips
-  codecov
   http
   i18n
   kalibera
@@ -175,6 +175,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rake
   simplecov
+  simplecov-json
   sinatra
   sinatra-contrib
 
