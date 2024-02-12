@@ -11,7 +11,7 @@ class Pagy # :nodoc:
   # Allow the client to request a custom number of items per page with an optional selector UI
   module ItemsExtra
     # Additions for the Backend module
-    module Backend
+    module BackendAddOn
       private
 
       # Set the items variable considering the params and other pagy variables
@@ -29,9 +29,10 @@ class Pagy # :nodoc:
         params[vars[:items_param] || DEFAULT[:items_param]]
       end
     end
+    Backend.prepend ItemsExtra::BackendAddOn
 
     # Additions for the Frontend module
-    module Frontend
+    module FrontendAddOn
       ITEMS_PLACEHOLDER = '__pagy_items__'
 
       # Return the items selector HTML. For example "Show [20] items per page"
@@ -55,7 +56,6 @@ class Pagy # :nodoc:
         html << %(</span>)
       end
     end
+    Frontend.prepend ItemsExtra::FrontendAddOn
   end
-  Backend.prepend ItemsExtra::Backend
-  Frontend.prepend ItemsExtra::Frontend
 end

@@ -60,7 +60,7 @@ class Pagy # :nodoc:
       end
     end
     # :nocov:
-    ItemsExtra::Backend.prepend ItemsExtraOverride if defined?(ItemsExtra::Backend)
+    ItemsExtra::BackendAddOn.prepend ItemsExtraOverride if defined?(ItemsExtra::BackendAddOn)
     # :nocov:
 
     # Module overriding UrlHelper

@@ -50,8 +50,8 @@ class Pagy # :nodoc:
         end
       end
     end
-    ::Pagy.prepend PagyOverride
-    ::Pagy::Calendar.prepend PagyOverride if defined?(Calendar)
+    Pagy.prepend PagyOverride
+    Pagy::Calendar.prepend PagyOverride if defined?(Calendar)
 
     # Support for Pagy::Countless class
     module CountlessOverride
@@ -74,7 +74,7 @@ class Pagy # :nodoc:
       end
     end
     # :nocov:
-    ::Pagy::Countless.prepend CountlessOverride if defined?(Countless)
+    Pagy::Countless.prepend CountlessOverride if defined?(Countless)
     # :nocov:
   end
 end

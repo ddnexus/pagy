@@ -8,7 +8,7 @@ class Pagy # :nodoc:
   # Add pagination filtering by calendar unit (:year, :quarter, :month, :week, :day) to the regular pagination
   module CalendarExtra
     # Additions for the Backend module
-    module Backend
+    module BackendAddOn
       CONF_KEYS = (Calendar::UNITS + %i[pagy active]).freeze
 
       private
@@ -41,13 +41,13 @@ class Pagy # :nodoc:
     end
 
     # Additions for the Frontend module
-    module UrlHelper
+    module UrlHelperAddOn
       # Return the url for the calendar page at time
       def pagy_calendar_url_at(calendar, time, **opts)
         pagy_url_for(calendar.send(:calendar_at, time, **opts), 1, **opts)
       end
     end
   end
-  Backend.prepend CalendarExtra::Backend, CalendarExtra::UrlHelper
-  Frontend.prepend CalendarExtra::UrlHelper
+  Backend.prepend CalendarExtra::BackendAddOn, CalendarExtra::UrlHelperAddOn
+  Frontend.prepend CalendarExtra::UrlHelperAddOn
 end

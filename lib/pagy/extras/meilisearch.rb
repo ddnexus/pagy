@@ -7,17 +7,18 @@ class Pagy # :nodoc:
 
   # Paginate Meilisearch results
   module MeilisearchExtra
-    module Meilisearch # :nodoc:
+    module ModelExtension # :nodoc:
       # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options
-      def pagy_meilisearch(term = nil, **vars)
-        [self, term, vars]
+      def pagy_meilisearch(query, params = {})
+        [self, query, params]
       end
       alias_method DEFAULT[:meilisearch_pagy_search], :pagy_meilisearch
     end
+    Pagy::Meilisearch = ModelExtension
 
-    # Additions for the Pagy class
-    module Pagy
+    # Extension for the Pagy class
+    module PagyExtension
       # Create a Pagy object from a Meilisearch results
       def new_from_meilisearch(results, vars = {})
         vars[:items] = results.raw_answer['hitsPerPage']
@@ -27,9 +28,10 @@ class Pagy # :nodoc:
         new(vars)
       end
     end
+    Pagy.extend PagyExtension
 
     # Add specialized backend methods to paginate Meilisearch results
-    module Backend
+    module BackendAddOn
       private
 
       # Return Pagy object and results
@@ -38,7 +40,7 @@ class Pagy # :nodoc:
         vars                    = pagy_meilisearch_get_vars(nil, vars)
         options[:hits_per_page] = vars[:items]
         options[:page]          = vars[:page]
-        results                 = model.send(:ms_search, term, **options)
+        results                 = model.send(:ms_search, term, options)
         vars[:count]            = results.raw_answer['totalHits']
 
         pagy                    = ::Pagy.new(vars)
@@ -58,8 +60,6 @@ class Pagy # :nodoc:
         vars
       end
     end
+    Backend.prepend BackendAddOn
   end
-  Meilisearch = MeilisearchExtra::Meilisearch
-  extend MeilisearchExtra::Pagy
-  Backend.prepend MeilisearchExtra::Backend
 end

@@ -6,7 +6,7 @@ class Pagy # :nodoc:
   # Private module documented in the main classes
   module FrontendHelpers
     # Additions for the Pagy class
-    module PagyOverride
+    module PagyAddOn
       # `Pagy` instance method used by the `pagy*_nav_js` helpers.
       # It returns the sequels of width/series generated from the :steps hash
       # Example:
@@ -27,7 +27,7 @@ class Pagy # :nodoc:
       # Support for the Calendar API
       def label_sequels(*); end
     end
-    Pagy.prepend PagyOverride
+    Pagy.prepend PagyAddOn
 
     # Additions for Calendar class
     module CalendarOverride
@@ -42,7 +42,7 @@ class Pagy # :nodoc:
     Calendar.prepend CalendarOverride if defined?(Calendar)
 
     # Additions for the Frontend
-    module FrontendOverride
+    module FrontendAddOn
       if defined?(Oj)
         # Return a data tag with the base64 encoded JSON-serialized args generated with the faster oj gem
         # Base64 encoded JSON is smaller than HTML escaped JSON
@@ -62,11 +62,11 @@ class Pagy # :nodoc:
         end
       end
 
-      # Return the marked link to used by pagy.js
+      # Return the marked link used by pagy.js
       def pagy_marked_link(link)
         link.call PAGE_PLACEHOLDER, '', 'style="display: none;"'
       end
     end
-    Frontend.prepend FrontendOverride
+    Frontend.prepend FrontendAddOn
   end
 end
