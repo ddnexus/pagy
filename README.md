@@ -15,13 +15,13 @@
 
 ---
 
-### What's new in 7.0
+### ✴ What's new in 7.0+ ✴
 
 - [JSON:API support](https://ddnexus.github.io/pagy/docs/extras/jsonapi/)
-- [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/)
-- Added a simpler and faster nav without gaps supporting single integer as the `:size`
-- Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now.
-- See the [Changelog](https://ddnexus.github.io/pagy/changelog)
+- [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/) and refactoring of dictionary fies
+- Added a simpler and faster nav without gaps (just pass an integer to the `:size`)
+- Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now (3.1+)
+- See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
 ---
 

@@ -74,7 +74,8 @@ You should not have used any of the private methods, but if you did so, you will
 ### Changes
 
 - [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/)
-- Removed the pagy templates: they were a burden for maintenance with very limited usage.
+- Removed the pagy templates: they were a burden for maintenance with very limited usage,
+  still [you can use them](http://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates)
 - Internal renaming of private frontend methods
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 

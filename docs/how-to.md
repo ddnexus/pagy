@@ -1013,3 +1013,23 @@ If you need to test pagination, remember:
 ```rb
 @pagy, @books = pagy(Book.all, items: 10) # the items default has been overridden
 ```
+
+## Using your pagination templates
+
+!!!warning Warning!
+The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n standards. Using your own templates is possible, but it's likely just reinventing a slower wheel.
+!!!
+
+If you really need to use your own templates, you absolutely can. Here is a static example that doesn't use any other 
+helper nor dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and 
+translation as you need:
+
+:::code source="assets/nav.html.erb" :::
+
+You can use it as usual: just remember to pass the `:pagy` local set to the `@pagy` object:
+
+```erb
+<%== render file: 'nav.html.erb', locals: {pagy: @pagy} %>
+```
+
+You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
