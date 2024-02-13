@@ -8,7 +8,7 @@
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
     <envs>
-      <env name="HTML_REPORTS" value="true" />
+      <env name="COVERAGE_REPORT" value="true" />
     </envs>
     <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />

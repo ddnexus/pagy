@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-SimpleCov.formatter = if ENV['HTML_REPORTS'] == 'true'
+SimpleCov.formatter = if ENV['COVERAGE_REPORT'] == 'true'
                         SimpleCov::Formatter::HTMLFormatter
                       else
                         SimpleCov::Formatter::SimpleFormatter
