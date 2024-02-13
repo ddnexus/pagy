@@ -104,7 +104,7 @@ This method returns an empty array if the passed `size` (i.e. the `:size` variab
 totally skip the generation of page links in the frontend.
 
 It can also return a simpler array without gaps if the passed `:size` is a single positive `Integer`. It may be a faster and
-cleaner solution very useful in certain contexts (see the [Simple Nav](../how-to.md#simple-nav))
+cleaner solution very useful in certain contexts (see the [Simple Nav](/docs/how-to.md#simple-nav))
 !!!
 
 ==- `label`

@@ -13,7 +13,7 @@ that you think should be added, fixed or explained better, please open an issue.
 
 You can control the items per page with the `items` variable. (Default `20`)
 
-You can set its default in the `pagy.rb` initializer (see [How to configure pagy](/quick-start.md#configure)). For example:
+You can set its default in the `pagy.rb` initializer (see [How to configure pagy](/quick-start#configure)). For example:
 
 ||| pagy.rb (initializer)
 
@@ -47,6 +47,30 @@ See also a couple of extras that handle the `:items` in some special way:
 
 You can control the number and position of the page links in the navigation through the `:size` variable.
 
+### Simple nav
+
+You can set the `:size` variable to a single positive Integer to represent the total number of page links rendered.
+The current page will be placed as centered as possible in the series.
+
+For example:
+
+```ruby
+pagy = Pagy.new(count: 1000, page: 10, size: 5)
+pagy.series
+#=> [8, 9, "10", 11, 12]
+pagy = Pagy.new(count: 1000, page: 2, size: 5)
+pagy.series
+#=> [1, "2", 3, 4, 5]
+pagy = Pagy.new(count: 1000, page: 99, size: 5)
+pagy.series
+#=> [96, 97, 98, "99", 100]
+```
+
+Setting the `:size` variable as a single integer has a few advantages over the classic way. It uses a simpler and faster
+algorithm, the series length is more constant, cleaner and less confusing to the user.
+On the other hand it does not allow the user to jump to the first or last page of a long series, which may or may not be a
+limitation. For example: with a navigation using `Pagy::Countless` or `Calendar` it is a clear advantage.
+
 ### Classic nav
 
 You can set the `:size` variable to an array of 4 integers in order to specify which and how many page links to show.
@@ -72,30 +96,6 @@ current page, the current `:page` (which is a string), 4 pages after the current
 
 You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to
 see what it contains when used in combination with different core variables.
-
-### Simple nav
-
-You can set the `:size` variable to a single positive Integer to represent the total number of page links rendered.
-The current page will be laced as centered as possible in the series.
-
-For example:
-
-```ruby
-pagy = Pagy.new(count: 1000, page: 10, size: 5)
-pagy.series
-#=> [8, 9, "10", 11, 12]
-pagy = Pagy.new(count: 1000, page: 2, size: 5)
-pagy.series
-#=> [1, "2", 3, 4, 5]
-pagy = Pagy.new(count: 1000, page: 99, size: 5)
-pagy.series
-#=> [96, 97, 98, "99", 100]
-```
-
-Setting the `:size` variable as a single integer has a few advantages over the classic way. It uses a simpler and faster
-algorithm, the series length is more constant, cleaner and less confusing to the user.
-On the other hand it does not allow the user to jump to the first or last page of a long series, which may or may not be a
-limitation. For example: with a navigation using `Pagy::Countless` or `Calendar` it is a clear advantage.
 
 ### Skip the page links
 
@@ -173,8 +173,8 @@ If you want to customize the translations or some specific output, you should ed
 If you explicitly use the [i18n extra](extras/i18n.md), override the pagy target entries in your own custom dictionary (refer to
 the I18n official documentation).
 
-If you don't use the above extra (faster default) you can copy and edit the dictionary files that your app uses and configure pagy
-to use them.
+If you don't use the above extra (and rely on the pagy faster code) you can copy and edit the dictionary files that your app
+uses and configure pagy to use them.
 
 ||| pagy.rb (initializer)
 
@@ -190,7 +190,8 @@ Pagy::I18n.load({ locale: 'de', filepath: 'path/to/my-custom-de.yml' },
 
 You may want to customize the output of a few entries, leaving the other entries in place:
 
-||| path/to/my-custom-en.yml (dictionary)
+<details>
+<summary>Custom en dictionary</summary>
 
 ```yaml
 # English custom 118n dictionary
@@ -216,7 +217,8 @@ en:
     items_selector_js: "<label>Show %{items_input} %{item_name} per page</label>"
 ```
 
-|||
+</details>
+<br>
 
 ## Customize the ARIA labels
 
@@ -306,7 +308,8 @@ When you need something more radical with the URL than just massaging the params
 your helper.
 
 !!!warning Override `pagy_trim` if using Trim Extra
-If you are also using the [trim extra](extras/trim.md) you should also override the [pagy_trim](extras/trim#pagy-trim-pagy-link)
+If you are also using the [trim extra](extras/trim.md) you should also override
+the [pagy_trim](extras/trim.md#pagy-trim-pagy-link)
 method or the `Pagy.trim` javascript function.
 !!!
 
@@ -322,7 +325,6 @@ like `your_route/23` instead of `your_route?page=23`):
 ```ruby
 
 def pagy_url_for(pagy, page, absolute: false)
-  # it was (page, pagy) in previous versions
   params = request.query_parameters.merge(pagy.vars[:page_param] => page, only_path: !absolute)
   url_for(params)
 end
@@ -345,7 +347,6 @@ your page links may need to use POST and not GET. In that case you can try this 
 ```ruby
 
 def pagy_url_for(_pagy, page, **_)
-  # it was (page, pagy) in previous versions
   page
 end
 ```
@@ -369,7 +370,8 @@ the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales) 
 Besides you can also (dynamically) set the `:item_i18n_key` variable to let Pagy know where to lookup the item name in some
 dictionary file (instead of looking it up in the default `"pagy.item_name"` key).
 
-You have a few ways to do that:
+<details>
+<summary>You have a few ways to do that:</summary>
 
 1. you can override the `pagy_get_vars` method in your controller, adding the dynamically set `:item_i18n_key`. For example with
    ActiveRecord (mostly useful with the [i18n extra](extras/i18n.md) or if you copy over the AR keys into the pagy dictionary):
@@ -430,6 +432,9 @@ set the `item_i18n_key` is passing a literal string to the `pagy` method, the mo
 most flexible way is passing a pluralized string to the helper.
 !!!
 
+</details>
+<br/>
+
 ## Customize CSS styles
 
 Pagy provides a few frontend extras
@@ -460,19 +465,19 @@ Also, consider that you can use `prepend` if you need to do it globally:
 
 module MyOverridingModule
   def pagy_any_method
-    ...
+    #...
     super
-    ...
+    #...
   end
 end
 Pagy::Backend.prepend MyOverridingModule
-# or
+# and/or
 Pagy::Frontend.prepend MyOverridingModule
 ```
 
 ## Paginate an Array
 
-Please, use the [array](extras/array.md) extra.
+See the [array](extras/array.md) extra.
 
 ## Paginate ActiveRecord collections
 
@@ -494,14 +499,12 @@ Do it in 2 steps: first get the page of records without decoration, and then app
 
 ### Custom count for custom scopes
 
-Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count. In that case you can
-get the right count with some custom statement, and pass it to `pagy`:
+Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count (not pagy fault, but a
+well known problem with AR). In that case you can get the right count with some custom statement, and pass it to `pagy`:
 
 ||| controller
 
 ```ruby
-custom_scope = ...
-custom_count = ...
 @pagy, @records = pagy(custom_scope, count: custom_count)
 ```
 
@@ -514,15 +517,19 @@ Pagy will efficiently skip its internal count query and will just use the passed
 ### Paginate a grouped collection
 
 For better performance of grouped ActiveRecord collection counts, you may want to take a look at
-the [arel extra](http://ddnexus.github.io/pagy/extras/arel).
+the [arel extra](extras/arel.md).
 
-## Paginate for API clients
+## Paginate for generic API clients
 
 When your app is a service that doesn't need to serve any UI, but provides an API to some sort of client, you can serve the
 pagination metadata as HTTP headers added to your response.
 
 In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require
 the [headers extra](extras/headers.md) and use its helpers to add the headers to your responses.
+
+## Paginate with JSON:API
+
+See the [jsonapi extra](extras/jsonapi.md).
 
 ## Paginate for Javascript Frameworks
 
@@ -539,8 +546,8 @@ Ransack `result` returns an `ActiveRecord` collection, which can be paginated ou
 ||| controller
 
 ```ruby
-@q             = Person.ransack(params[:q])
-@pagy, @people = pagy(@q.result)
+q              = Person.ransack(params[:q])
+@pagy, @people = pagy(q.result)
 ```
 
 |||
@@ -841,7 +848,7 @@ bootstrap compatibility, responsiveness, compact layouts, etc.)
 If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple
 concatenation of strings with a very simple logic.
 
-Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend.md) for
+Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend) for
 complete control over your helpers.
 
 ## Skip single page navs
@@ -1008,7 +1015,7 @@ will never get rescued.
 If you need to test pagination, remember:
 
 - `Pagy::DEFAULT` should be set by your initializer and be frozen. You can test that your code cannot change it.
-- You can override defaults - i.e. any pagy variable can be passed to a pagy constructor - e.g.
+- You can override defaults - i.e. any pagy variable can be passed to a pagy constructor. For example:
 
 ```rb
 @pagy, @books = pagy(Book.all, items: 10) # the items default has been overridden
@@ -1017,11 +1024,12 @@ If you need to test pagination, remember:
 ## Using your pagination templates
 
 !!!warning Warning!
-The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n standards. Using your own templates is possible, but it's likely just reinventing a slower wheel.
+The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n
+standards. Using your own templates is possible, but it's likely just reinventing a slower wheel.
 !!!
 
-If you really need to use your own templates, you absolutely can. Here is a static example that doesn't use any other 
-helper nor dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and 
+If you really need to use your own templates, you absolutely can. Here is a static example that doesn't use any other
+helper nor dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and
 translation as you need:
 
 :::code source="assets/nav.html.erb" :::

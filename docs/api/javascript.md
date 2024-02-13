@@ -70,6 +70,6 @@ See [Pagy Combo Navs](javascript/combo-navs.md)
 * Choose items numbers, per page.
 * This helper is only available in one style.
 
-See: [Items](../extras/items.md)
+See: [Items](/docs/extras/items.md)
 
 +++

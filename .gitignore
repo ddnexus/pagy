@@ -1,3 +1,7 @@
+# Exception to the gitignore rule:
+# /.idea/* should be ignored at the user level,
+# but that would remove the saved run configuration for the repoS
+# that are quite a few and very useful not only for the author
 /.idea/*
 !/.idea/runConfigurations
 /.bundle/

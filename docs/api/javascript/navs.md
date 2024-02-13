@@ -19,7 +19,7 @@ look like a normal `pagy*_nav` but have a few added features:
 
 1. Client-side rendering
 2. Optional responsiveness
-3. Better performance and resource usage (see [Maximizing Performance](/docs/how-to.md#maximize-performance))
+3. Better performance and resource usage (see [Maximizing Performance](/docs/how-to#maximize-performance))
 
 Here is a screenshot (from the `bootstrap`extra) showing responsiveness at different widths:
 
@@ -27,7 +27,7 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ## Synopsis
 
-See [Setup Javascript](setup.md).
+See [Setup Javascript](setup).
 
 ||| pagy.rb (initializer)
 
@@ -106,7 +106,7 @@ or pass it to the helper
 
 The above statement means that from `0` to `540` pixels width, Pagy will use the `5` size (orginating a simple nav without gaps),
 from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size`
-variable in the [How to control the page links](/docs/how-to.md#control-the-page-links) section).
+variable in the [How to control the page links](/docs/how-to#control-the-page-links) section).
 
 !!!primary :steps must contain `0` width
 You can set any number of steps with any arbitrary width/size. The only requirement is that the `:steps` hash must contain always
@@ -149,7 +149,7 @@ document.getElementById('my-pagy-nav-js').render();
 ==- `pagy*_nav_js(pagy, **vars)`
 
 The method accepts also the same optional keyword arguments variables of
-the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars)
+the [pagy_nav(pagy, **vars)](/docs/api/frontend#pagy-nav-pagy-vars)
 
 !!!warning
 The `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add another class

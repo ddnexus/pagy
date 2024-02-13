@@ -36,6 +36,7 @@ jobs:
         ruby-version: ['3.1', '3.2', '3.3']
       fail-fast: false
     env:
+      # Gemfile versions not locked, so tests may fail, forcing us to update the code
       BUNDLE_GEMFILE: .github/gemfiles/default
 
     steps:
@@ -50,7 +51,7 @@ jobs:
       - name: Check Tests
         run: bundle exec rake test
 
-      - name: Check Coverage
+      - name: Check Coverage  # fails unless 100%
         run: bundle exec rake check_coverage
 
       - name: Check Rubocop compliance

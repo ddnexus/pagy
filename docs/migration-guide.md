@@ -71,8 +71,8 @@ Pagy::DEFAULT[:size]  = [5, 4, 4, 5]
 
 |||
 
-Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(
-see [How to configure pagy](/quick-start.md#configure).
+Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see 
+[How to configure pagy](/quick-start.md#configure))_.
 
 #### Cleanup the Models
 

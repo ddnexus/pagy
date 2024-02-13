@@ -102,7 +102,7 @@ the default is `:monday` consistently with the ISO-8601 standard (and Rails).
 ## Files
 
 - [calendar.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar.rb)
-- [calendar units](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar)
+- [calendar units](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar/)
 
 ## Methods
 
