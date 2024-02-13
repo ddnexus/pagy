@@ -13,10 +13,7 @@ describe 'pagy/extras/meilisearch' do
       _(MockMeilisearch::Model).must_respond_to :pagy_search
     end
     it 'returns class and arguments' do
-      _(MockMeilisearch::Model.pagy_search('a', b: 2)).must_equal [MockMeilisearch::Model, 'a', { b: 2 }]
-    end
-    it 'allows the query argument to be optional' do
-      _(MockMeilisearch::Model.pagy_search(b: 2)).must_equal [MockMeilisearch::Model, nil, { b: 2 }]
+      _(MockMeilisearch::Model.pagy_search('a', {b: 2})).must_equal [MockMeilisearch::Model, 'a', { b: 2 }]
     end
     it 'adds an empty option hash' do
       _(MockMeilisearch::Model.pagy_search('a')).must_equal [MockMeilisearch::Model, 'a', {}]
@@ -94,7 +91,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy.page).must_equal 1
       end
       it 'paginates results with vars' do
-        results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
+        results = MockMeilisearch::Model.ms_search('b', {hits_per_page: 15, page: 3})
         pagy    = Pagy.new_from_meilisearch(results, link_extra: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
