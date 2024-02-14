@@ -12,8 +12,6 @@
     <option name="EXECUTE_IN_TERMINAL" value="true" />
     <option name="EXECUTE_SCRIPT_FILE" value="true" />
     <envs />
-    <method v="2">
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="update_top100" run_configuration_type="RubyRunConfigurationType" />
-    </method>
+    <method v="2" />
   </configuration>
 </component>
