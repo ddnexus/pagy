@@ -10,8 +10,8 @@ class Pagy # :nodoc:
     module Meilisearch # :nodoc:
       # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options
-      def pagy_meilisearch(term = nil, **vars)
-        [self, term, vars]
+      def pagy_meilisearch(query, params = {})
+        [self, query, params]
       end
       alias_method DEFAULT[:meilisearch_pagy_search], :pagy_meilisearch
     end
@@ -38,7 +38,7 @@ class Pagy # :nodoc:
         vars                    = pagy_meilisearch_get_vars(nil, vars)
         options[:hits_per_page] = vars[:items]
         options[:page]          = vars[:page]
-        results                 = model.send(:ms_search, term, **options)
+        results                 = model.send(:ms_search, term, options)
         vars[:count]            = results.raw_answer['totalHits']
 
         pagy                    = ::Pagy.new(vars)

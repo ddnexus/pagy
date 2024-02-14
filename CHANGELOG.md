@@ -25,6 +25,11 @@ None
 
 <hr>
 
+## Version 6.4.4
+
+- Adapt pagy-ci workflow to run on current gemfile (no-failure for new gems enabled in leading version)
+- Fix for wrong arguments types in meilisearch pagy_search extension
+
 ## Version 6.4.3
 
 - Exclude coverage for prepend conditional, ruby < 3.0 syntax for prepend
