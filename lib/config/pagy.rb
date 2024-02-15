@@ -10,25 +10,26 @@
 # All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 
-
 # Instance variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#instance-variables
-# Pagy::DEFAULT[:page]   = 1                                  # default
-# Pagy::DEFAULT[:items]  = 20                                 # default
-# Pagy::DEFAULT[:outset] = 0                                  # default
-
+# Pagy::DEFAULT[:page]   = 1                            # default
+# Pagy::DEFAULT[:items]  = 20                           # default
+# Pagy::DEFAULT[:outset] = 0                            # default
 
 # Other Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#other-variables
-# Pagy::DEFAULT[:size]         = [1,4,4,1]                    # default pagy < 7.0
-# Pagy::DEFAULT[:page_param]   = :page                        # default
-# The :params can be also set as a lambda e.g ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
-# Pagy::DEFAULT[:params]       = {}                           # default
-# Pagy::DEFAULT[:fragment]     = '#fragment'                  # example
-# Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'         # example
-# Pagy::DEFAULT[:item_i18n_key]     = 'pagy.item_name'             # default
-# Pagy::DEFAULT[:cycle]        = true                         # example
-# Pagy::DEFAULT[:request_path] = "/foo"                       # example
+# Pagy::DEFAULT[:size]         = [1,4,4,1]              # default in pagy < 7.0
+# Pagy::DEFAULT[:page_param]   = :page                  # default
+# Pagy::DEFAULT[:fragment]     = '#fragment'            # example
+# Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'   # example
+# Pagy::DEFAULT[:item_i18n_key = 'pagy.item_name'       # default
+# Pagy::DEFAULT[:nav_i18n_key] = 'pagy.aria_label.nav'  # default
+# Pagy::DEFAULT[:cycle]        = true                   # example
+# Pagy::DEFAULT[:request_path] = '/foo'                 # example
+# Pagy::DEFAULT[:count_args]   = []                     # example for non AR ORMs
+# Pagy::DEFAULT[:params]       = {}                     # default
+# NOTICE: The :params can be also set as a lambda e.g:
+# ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
 
 
 # Extras

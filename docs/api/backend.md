@@ -127,7 +127,7 @@ For example: here is a `pagy` method that doesn't call any sub-method, that may 
 ```ruby
 
 def pagy_custom(collection, vars = {})
-  pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+  pagy = Pagy.new(count: collection.count(*vars[:count_args]), page: params[:page], **vars)
   [pagy, collection.offset(pagy.offset).limit(pagy.items)]
 end
 ```

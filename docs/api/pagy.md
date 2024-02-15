@@ -162,6 +162,7 @@ They are all integers:
 | `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                                                           | `false`                 |
 | `:request_path`  | Allows overriding the request path for pagination links. Pass the path only (not the absolute url). _(see [Customize the request path](/docs/how-to.md#customize-the-request-path))_                                                    | `request.path`          |
 | `jsonapi`        | Enable `jsonapi` compliance of the pagy query params                                                                                                                                                                                    | `false`                 |
+| `count_args`     | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                                                                                      | [:all]                  |
 
 There is no specific validation for non-instance variables.
 

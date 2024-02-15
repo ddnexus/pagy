@@ -499,20 +499,20 @@ Do it in 2 steps: first get the page of records without decoration, and then app
 
 ### Custom count for custom scopes
 
-Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count (not pagy fault, but a
-well known problem with AR). In that case you can get the right count with some custom statement, and pass it to `pagy`:
+Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count. In that case you
+can get the right count in a couple of ways:
 
 ||| controller
 
 ```ruby
+# Passing the right arguments to the internal `collection.count(...)` (See the ActiveRecord documentation for details)
+@pagy, @records = pagy(custom_scope, count_args: [:join])
+
+# or directly pass the right count to pagy (that will directly use it skipping its own `collection.count(:all)`)
 @pagy, @records = pagy(custom_scope, count: custom_count)
 ```
 
 |||
-
-!!!primary Internal `count` skipped
-Pagy will efficiently skip its internal count query and will just use the passed `:count` variable
-!!!
 
 ### Paginate a grouped collection
 
@@ -730,19 +730,18 @@ from 301 to 315 for the last page.
 
 ## Paginate non-ActiveRecord collections
 
-The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.) you
-may need to override it in your controller, usually by simply removing the `:all` argument passed to the `count` method:
+The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.)
+you might want to change the `:count_args` default to suite your ORM count method:
 
-||| override
+||| pagy.rb (initializer)
 
 ```ruby
-
-def pagy_get_vars # copy from lib/pagy/backend
-  # replace collection.count(:all) with collection.count 
-end
+Pagy::DEFAULT[:count_args] = []
 ```
 
 |||
+
+or in extreme cases you may need to override it in your controller.
 
 ## Paginate collections with metadata
 

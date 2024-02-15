@@ -24,7 +24,8 @@ class Pagy
               item_i18n_key: 'pagy.item_name',
               nav_i18n_key: 'pagy.aria_label.nav',
               cycle:         false,
-              request_path:  '' }
+              request_path:  '',
+              count_args:    [:all] } # AR friendly
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next, :params, :request_path
 

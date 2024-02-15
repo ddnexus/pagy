@@ -73,6 +73,8 @@ You should not have used any of the private methods, but if you did so, you will
 
 ### Changes
 
+- Added `:count_args` variable passed to the `collection.count(...)` statement (avoids overriding of `pagy-gets-vars` and 
+  expands count capabilities)
 - [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/)
 - Removed the pagy templates: they were a burden for maintenance with very limited usage,
   still [you can use them](http://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates)

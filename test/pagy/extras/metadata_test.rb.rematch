@@ -55,8 +55,10 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
       :nav_i18n_key: pagy.aria_label.nav
       :cycle: false
       :request_path: ''
-      :steps: false
+      :count_args:
+      - :all
       :countless_minimal: false
+      :steps: false
       :metadata:
       - :scaffold_url
       - :first_url
