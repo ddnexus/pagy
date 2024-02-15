@@ -18,6 +18,7 @@ It adds a single method to the backend that you can serve as JSON to your favori
 ```ruby
 require 'pagy/extras/metadata'
 ```
+
 |||
 
 ||| Controller (action)
@@ -27,6 +28,7 @@ pagy, records = pagy(collection)
 render json: { data: records,
                pagy: pagy_metadata(pagy, ...) }
 ```
+
 |||
 
 ## Files
@@ -39,17 +41,23 @@ render json: { data: records,
 |:------------|:-----------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `:metadata` | Array of names used to control the returned metadata | `[ :scaffold_url, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :items, :vars, :pages, :last, :from, :to, :prev, :next, :series ]` |
 
-As usual, depending on the scope of the customization, you can set the `:metadata` variable globally or for a single pagy instance. 
+As usual, depending on the scope of the customization, you can set the `:metadata` variable globally or for a single pagy
+instance.
 
-IMPORTANT: Don't rely on the broad default! You should explicitly set the `:metadata` variable with only the keys that you will actually use in the frontend, for obvious performance reasons. Besides you can also add other pagy method names not included in the default. 
+IMPORTANT: Don't rely on the broad default! You should explicitly set the `:metadata` variable with only the keys that you will
+actually use in the frontend, for obvious performance reasons. Besides you can also add other pagy method names not included in
+the default.
 
 ### The `:scaffold_url` key
 
-This is a special url string that you can use as the scaffold to build real page urls in your frontend (instead of producing them on the backend).
+This is a special url string that you can use as the scaffold to build real page urls in your frontend (instead of producing them
+on the backend).
 
-It is a pagination url/path (complete with all the params) containing the `__pagy_page__` placeholder in place of the page number (e.g. `'/foo?page=__pagy_page__&bar=baz'`)
+It is a pagination url/path (complete with all the params) containing the `__pagy_page__` placeholder in place of the page
+number (e.g. `'/foo?page=__pagy_page__&bar=baz'`)
 
-You can generate all the actual links on the frontend by simply replacing the placeholder with the actual page number you want to link to.
+You can generate all the actual links on the frontend by simply replacing the placeholder with the actual page number you want to
+link to.
 
 In javascript you can do something like:
 
@@ -57,8 +65,8 @@ In javascript you can do something like:
 page_url = scaffold_url.replace(/__pagy_page__/, page_number)
 ```
 
-This is particularly useful when you want to build some dynamic pagination UI (e.g. similar to what the `pagy_*combo_js` generates), but right in your frontend app, saving backend resources with obvious performance benefits.
-
+This is particularly useful when you want to build some dynamic pagination UI (e.g. similar to what the `pagy_*combo_js`
+generates), but right in your frontend app, saving backend resources with obvious performance benefits.
 
 !!!info `scaffold_url` not necessary for simple cases
 For simple cases you might want to use the other few `:*_url` metadata directly, instead of using the `:scaffold_url`.
@@ -69,5 +77,6 @@ For simple cases you might want to use the other few `:*_url` metadata directly,
 This extra adds a single method to the `Pagy::Backend` (available in your controllers).
 
 ==- `pagy_metadata(pagy, absolute: nil)`
-This method returns a hash with the keys/values defined by the `:metadata` variable.  When true, the `absolute` boolean argument will cause all the `:*_url` metadata to be absolute instead of relative.
+This method returns a hash with the keys/values defined by the `:metadata` variable. When true, the `absolute` boolean argument
+will cause all the `:*_url` metadata to be absolute instead of relative.
 ===

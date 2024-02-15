@@ -8,12 +8,12 @@ source 'https://rubygems.org'
 gem 'i18n'
 gem 'oj', require: false     # false is for testing with or without it
 gem 'rack'
+gem 'rackup'
 gem 'rake'
 gem 'rake-manifest'
 
 group :test do
   gem 'activesupport'
-  gem 'codecov', '>= 0.6', require: false    # for some reason only ruby 3.2 install v 0.2  if not explicitly declared
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'rematch'
@@ -32,4 +32,3 @@ group :apps do
   # gem 'slim'
   # gem 'haml'
 end
-

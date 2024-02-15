@@ -13,7 +13,7 @@ describe 'pagy/extras/meilisearch' do
       _(MockMeilisearch::Model).must_respond_to :pagy_search
     end
     it 'returns class and arguments' do
-      _(MockMeilisearch::Model.pagy_search('a', {b: 2})).must_equal [MockMeilisearch::Model, 'a', { b: 2 }]
+      _(MockMeilisearch::Model.pagy_search('a', b: 2)).must_equal [MockMeilisearch::Model, 'a', { b: 2 }]
     end
     it 'adds an empty option hash' do
       _(MockMeilisearch::Model.pagy_search('a')).must_equal [MockMeilisearch::Model, 'a', {}]
@@ -34,7 +34,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal app.params[:page]
         _(results.length).must_equal Pagy::DEFAULT[:items]
-        _(results.to_a).must_rematch
+        _(results.to_a).must_rematch :results
       end
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
@@ -45,7 +45,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy.page).must_equal 2
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(results.length).must_equal 10
-        _(results.to_a).must_rematch
+        _(results.to_a).must_rematch :results
       end
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
@@ -56,7 +56,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy.page).must_equal 100
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(results.length).must_equal 10
-        _(results.to_a).must_rematch
+        _(results.to_a).must_rematch :results
       end
     end
 
@@ -91,7 +91,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy.page).must_equal 1
       end
       it 'paginates results with vars' do
-        results = MockMeilisearch::Model.ms_search('b', {hits_per_page: 15, page: 3})
+        results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
         pagy    = Pagy.new_from_meilisearch(results, link_extra: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000

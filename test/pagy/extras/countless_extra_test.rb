@@ -25,13 +25,13 @@ describe 'pagy/extras/countless' do
       _(pagy.next).must_equal 2
     end
     it 'shows start-pages, :gap, before-pages, current and next for intermediate page' do
-      pagy, = app.send(:pagy_countless, @collection, page: 25)
+      pagy, = app.send(:pagy_countless, @collection, size: [1, 4, 4, 1], page: 25)
       _(pagy.series).must_equal [1, :gap, 21, 22, 23, 24, '25', 26]
       _(pagy.prev).must_equal 24
       _(pagy.next).must_equal 26
     end
     it 'shows start-pages, :gap, before-pages, current and next for last page' do
-      pagy, = app.send(:pagy_countless, @collection, page: last_page)
+      pagy, = app.send(:pagy_countless, @collection, size: [1, 4, 4, 1], page: last_page)
       _(pagy.series).must_equal [1, :gap, 46, 47, 48, 49, '50']
       _(pagy.prev).must_equal 49
       _(pagy.next).must_be_nil

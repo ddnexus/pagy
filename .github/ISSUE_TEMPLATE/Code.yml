@@ -36,7 +36,8 @@ body:
         ...at least one of the following code supports reproducing the issue:
       options:
         - label: |
-            Simple step by step list that would work in IRB with the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console)
+            Simple step by step list that would work in IRB with the [Pagy::Console](https://ddnexus.github
+            .io/pagy/docs/api/console) without invoking any external code
         - label: |
             Plain ruby file that can run as `ruby my-problem.rb`
         - label: |

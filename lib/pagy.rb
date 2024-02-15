@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '6.4.4'
+  VERSION = '7.0.0'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
@@ -13,17 +13,19 @@ class Pagy
   end
 
   # Default core vars: constant for easy access, but mutable for customizable defaults
-  DEFAULT = { page:         1, # rubocop:disable Style/MutableConstant
-              items:        20,
-              outset:       0,
-              size:         [1, 4, 4, 1],
-              page_param:   :page,
-              params:       {},
-              fragment:     '',
-              link_extra:   '',
-              i18n_key:     'pagy.item_name',
-              cycle:        false,
-              request_path: '' }
+  DEFAULT = { page:          1, # rubocop:disable Style/MutableConstant
+              items:         20,
+              outset:        0,
+              size:          7,
+              page_param:    :page,
+              params:        {},
+              fragment:      '',
+              link_extra:    '',
+              item_i18n_key: 'pagy.item_name',
+              nav_i18n_key: 'pagy.aria_label.nav',
+              cycle:         false,
+              request_path:  '',
+              count_args:    [:all] } # AR friendly
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next, :params, :request_path
 
@@ -87,12 +89,12 @@ class Pagy
     series
   end
 
-  # Allow the customization of the output (overridden by the calendar extra)
+  # Label for any page. Allow the customization of the output (overridden by the calendar extra)
   def label_for(page)
     page.to_s
   end
 
-  # Allow the customization of the output (overridden by the calendar extra)
+  # Label for the current page. Allow the customization of the output (overridden by the calendar extra)
   def label
     @page.to_s
   end

@@ -8,75 +8,87 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module MaterializeExtra
     # Pagination for materialize: it returns the html with the series of links to the pages
-    def pagy_materialize_nav(pagy, pagy_id: nil, link_extra: '', **vars)
+    def pagy_materialize_nav(pagy, pagy_id: nil, link_extra: '',
+                             nav_aria_label: nil, nav_i18n_key: nil, **vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: link_extra)
+      link = pagy_link_proc(pagy, link_extra:)
 
-      html = +%(<div#{p_id} class="pagy-materialize-nav pagination" role="navigation"><ul class="pagination">)
-      html << pagy_materialize_prev_html(pagy, link)
+      html = +%(<div#{p_id} class="pagy-materialize-nav pagination" role="navigation" #{
+                  nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}><ul class="pagination">)
+      html << materialize_prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
-                when Integer then %(<li class="waves-effect">#{link.call item}</li>)                           # page link
-                when String  then %(<li class="active">#{link.call item}</li>)                                 # active page
-                when :gap    then %(<li class="gap disabled"><a href="#">#{pagy_t 'pagy.nav.gap'}</a></li>)    # page gap
-                else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
+                when Integer
+                  %(<li class="waves-effect">#{link.call(item)}</li>)
+                when String
+                  %(<li class="active">#{link.call(item)}</li>)
+                when :gap
+                  %(<li class="gap disabled"><a href="#" aria-disabled="true">#{pagy_t 'pagy.gap'}</a></li>)
+                else
+                  raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
-      html << pagy_materialize_next_html(pagy, link)
+      html << materialize_next_html(pagy, link)
       html << %(</ul></div>)
     end
 
     # Javascript pagination for materialize: it returns a nav and a JSON tag used by the pagy.js file
-    def pagy_materialize_nav_js(pagy, pagy_id: nil, link_extra: '', **vars)
+    def pagy_materialize_nav_js(pagy, pagy_id: nil, link_extra: '',
+                                nav_aria_label: nil, nav_i18n_key: nil, **vars)
       sequels = pagy.sequels(**vars)
       p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra: link_extra)
+      link = pagy_link_proc(pagy, link_extra:)
 
-      tags = { 'before' => %(<ul class="pagination">#{pagy_materialize_prev_html pagy, link}),
-               'link'   => %(<li class="waves-effect">#{mark = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
-               'active' => %(<li class="active">#{mark}</li>),
-               'gap'    => %(<li class="gap disabled"><a href="#">#{pagy_t 'pagy.nav.gap'}</a></li>),
-               'after'  => %(#{pagy_materialize_next_html pagy, link}</ul>) }
+      tags = { 'before' => %(<ul class="pagination">#{materialize_prev_html pagy, link}),
+               'link'   => %(<li class="waves-effect">#{html = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
+               'active' => %(<li class="active">#{html}</li>),
+               'gap'    => %(<li class="gap disabled"><a href="#" aria-disabled="true">#{pagy_t 'pagy.gap'}</a></li>),
+               'after'  => %(#{materialize_next_html pagy, link}</ul>) }
 
       %(<div#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-materialize-nav-js" role="navigation" #{
-        pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
+          pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></div>)
     end
 
     # Javascript combo pagination for materialize: it returns a nav and a JSON tag used by the pagy.js file
-    def pagy_materialize_combo_nav_js(pagy, pagy_id: nil, link_extra: '')
+    def pagy_materialize_combo_nav_js(pagy, pagy_id: nil, link_extra: '',
+                                      nav_aria_label: nil, nav_i18n_key: nil)
       p_id    = %( id="#{pagy_id}") if pagy_id
-      link    = pagy_link_proc(pagy, link_extra: link_extra)
+      link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
       p_pages = pagy.pages
       style   = ' style="vertical-align: middle"'
       input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{
-                    p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;">)
+                    p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
-      html = %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation")
+      html = %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation" #{
+                 nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)})
       %(#{html} style="padding-right: 0" #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
-          pagy_materialize_prev_html pagy, link, style}<li class="pagy-combo-input">#{
+          materialize_prev_html pagy, link, style}<li class="pagy-combo-input">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</li>#{
-          pagy_materialize_next_html pagy, link, style}</ul>)
+          materialize_next_html pagy, link, style}</ul>)
     end
 
     private
 
-    def pagy_materialize_prev_html(pagy, link, style = '')
+    def materialize_prev_html(pagy, link, style = '')
       if (p_prev = pagy.prev)
         %(<li class="waves-effect prev"#{style}>#{
-            link.call p_prev, '<i class="material-icons">chevron_left</i>', 'aria-label="previous"'}</li>)
+            link.call(p_prev, '<i class="material-icons">chevron_left</i>', prev_aria_label_attr)}</li>)
       else
-        %(<li class="prev disabled"#{style}><a href="#"><i class="material-icons">chevron_left</i></a></li>)
+        %(<li class="prev disabled"#{style}><a href="#" aria-disabled="true" #{
+            prev_aria_label_attr}><i class="material-icons">chevron_left</i></a></li>)
       end
     end
 
-    def pagy_materialize_next_html(pagy, link, style = '')
+    def materialize_next_html(pagy, link, style = '')
       if (p_next = pagy.next)
         %(<li class="waves-effect next"#{style}>#{
-            link.call p_next, '<i class="material-icons">chevron_right</i>', 'aria-label="next"'}</li>)
+            link.call(p_next, '<i class="material-icons">chevron_right</i>', next_aria_label_attr)}</li>)
       else
-        %(<li class="next disabled"#{style}><a href="#"><i class="material-icons">chevron_right</i></a></li>)
+        %(<li class="next disabled"#{style}><a href="#" aria-disabled="true" #{
+            next_aria_label_attr}><i class="material-icons">chevron_right</i></a></li>)
       end
     end
   end

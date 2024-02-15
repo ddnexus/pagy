@@ -1,24 +1,25 @@
 # :east_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
-
 uk:
   pagy:
-
+    aria_label:
+      nav:
+        one: "Сторінка"
+        few: "Сторінки"
+        many: "Сторінок"
+        other: "Сторінки"
+      prev: "Назад"
+      next: "Далі"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name:
       one: "запис"
       few: "записів"
       many: "записів"
       other: "записів"
-
-    nav:
-      prev: "&lsaquo;&nbsp;Назад"
-      next: "Далі&nbsp;&rsaquo;"
-      gap: "&hellip;"
-
     info:
       no_items: "Більше %{item_name} немає"
       single_page: "<b>%{count}</b> %{item_name}"
       multiple_pages: "Загалом <b>%{count}</b> %{item_name}, показані з <b>%{from}</b> по <b>%{to}</b>"
-
     combo_nav_js: "<label>Сторінка %{page_input} з %{pages}</label>"
-
     items_selector_js: "<label>Показати %{items_input} %{item_name} на сторінці</label>"

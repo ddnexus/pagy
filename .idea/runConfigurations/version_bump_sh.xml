@@ -2,7 +2,7 @@
   <configuration default="false" name="version-bump.sh" type="ShConfigurationType">
     <option name="SCRIPT_TEXT" value="" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/bump.sh" />
+    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/script/version-bump.sh" />
     <option name="SCRIPT_OPTIONS" value="" />
     <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
     <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />

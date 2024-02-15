@@ -16,11 +16,11 @@ describe 'pagy/extras/metadata' do
       @collection = MockCollection.new
     end
     it 'defines all metadata' do
-      _(Pagy::DEFAULT[:metadata]).must_rematch
+      _(Pagy::DEFAULT[:metadata]).must_rematch :metadata
     end
     it 'returns the full pagy metadata' do
-      pagy, _records = app.send(:pagy, @collection, metadata: (Pagy::DEFAULT[:metadata]) + [:sequels])
-      _(app.send(:pagy_metadata, pagy)).must_rematch
+      pagy, _records = app.send(:pagy, @collection, size: [1, 4, 4, 1], metadata: (Pagy::DEFAULT[:metadata]) + [:sequels])
+      _(app.send(:pagy_metadata, pagy)).must_rematch :metadata
     end
     it 'checks for unknown metadata' do
       pagy, _records = app.send(:pagy, @collection, metadata: %i[page unknown_key])
@@ -28,7 +28,7 @@ describe 'pagy/extras/metadata' do
     end
     it 'returns only specific metadata' do
       pagy, _records = app.send(:pagy, @collection, metadata: %i[scaffold_url page count prev next pages])
-      _(app.send(:pagy_metadata, pagy)).must_rematch
+      _(app.send(:pagy_metadata, pagy)).must_rematch :metadata
     end
   end
 
@@ -49,7 +49,7 @@ describe 'pagy/extras/metadata' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
                                   .send(:pagy_calendar, @collection,
                                         month: { metadata: %i[scaffold_url page from to prev next pages] })
-      _(calendar_app.send(:pagy_metadata, calendar[:month])).must_rematch
+      _(calendar_app.send(:pagy_metadata, calendar[:month])).must_rematch :metadata
     end
   end
 end

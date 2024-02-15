@@ -32,9 +32,7 @@ describe 'pagy/extras/standalone' do
     it 'renders basic url' do
       pagy = Pagy.new count: 1000, page: 3
       _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5'
-      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal '/foo?page=5'
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5'
-      _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal 'http://example.com:3000/foo?page=5'
       pagy = Pagy.new count: 1000, page: 3, url: 'http://www.pagy-standalone.com/subdir'
       _(app.pagy_url_for(pagy, 5)).must_equal 'http://www.pagy-standalone.com/subdir?page=5'
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal 'http://www.pagy-standalone.com/subdir?page=5'
@@ -70,8 +68,8 @@ describe 'pagy/extras/standalone' do
       _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&a=3&b=4#fragment'
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5&a=3&b=4#fragment'
       pagy = Pagy.new count: 1000, page: 3, params: { a: [1, 2, 3] }, fragment: '#fragment', url: 'http://www.pagy-standalone.com/subdir'
-      _(app.pagy_url_for(pagy, 5)).must_equal "http://www.pagy-standalone.com/subdir?a[]=1&a[]=2&a[]=3&page=5#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://www.pagy-standalone.com/subdir?a[]=1&a[]=2&a[]=3&page=5#fragment"
+      _(app.pagy_url_for(pagy, 5)).must_equal "http://www.pagy-standalone.com/subdir?a%5B%5D=1&a%5B%5D=2&a%5B%5D=3&page=5#fragment"
+      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://www.pagy-standalone.com/subdir?a%5B%5D=1&a%5B%5D=2&a%5B%5D=3&page=5#fragment"
       pagy = Pagy.new count: 1000, page: 3, params: { a: nil }, fragment: '#fragment', url: ''
       _(app.pagy_url_for(pagy, 5)).must_equal "?a&page=5#fragment"
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "?a&page=5#fragment"
@@ -79,27 +77,21 @@ describe 'pagy/extras/standalone' do
     it 'renders url with params lambda and fragment' do
       pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: 3, b: 4) }, fragment: '#fragment'
       _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&a=3&b=4#fragment'
-      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal '/foo?page=5&amp;a=3&amp;b=4#fragment'
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5&a=3&b=4#fragment'
-      _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal 'http://example.com:3000/foo?page=5&amp;a=3&amp;b=4#fragment'
       pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: [1, 2, 3]) }, fragment: '#fragment', url: 'http://www.pagy-standalone.com/subdir'
-      _(app.pagy_url_for(pagy, 5)).must_equal "http://www.pagy-standalone.com/subdir?page=5&a[]=1&a[]=2&a[]=3#fragment"
-      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "http://www.pagy-standalone.com/subdir?page=5&amp;a[]=1&amp;a[]=2&amp;a[]=3#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://www.pagy-standalone.com/subdir?page=5&a[]=1&a[]=2&a[]=3#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal "http://www.pagy-standalone.com/subdir?page=5&amp;a[]=1&amp;a[]=2&amp;a[]=3#fragment"
+      _(app.pagy_url_for(pagy, 5)).must_equal "http://www.pagy-standalone.com/subdir?page=5&a%5B%5D=1&a%5B%5D=2&a%5B%5D=3#fragment"
+      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://www.pagy-standalone.com/subdir?page=5&a%5B%5D=1&a%5B%5D=2&a%5B%5D=3#fragment"
       pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: nil) }, fragment: '#fragment', url: ''
       _(app.pagy_url_for(pagy, 5)).must_equal "?page=5&a#fragment"
-      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "?page=5&amp;a#fragment"
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "?page=5&a#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal "?page=5&amp;a#fragment"
     end
   end
 end
 
 describe 'pagy/extras/standalone/query_utils' do
   it 'handles nested hashes' do
-    _(Pagy::StandaloneExtra::QueryUtils.build_nested_query({ a: { b: 2 } })).must_equal "a[b]=2"
-    _(Pagy::StandaloneExtra::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a[b][c]=3"
+    _(Pagy::StandaloneExtra::QueryUtils.build_nested_query({ a: { b: 2 } })).must_equal "a%5Bb%5D=2" # "a[b]=2"
+    _(Pagy::StandaloneExtra::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
   end
   it 'raises for wrong params' do
     _ { Pagy::StandaloneExtra::QueryUtils.build_nested_query('just a string') }.must_raise ArgumentError

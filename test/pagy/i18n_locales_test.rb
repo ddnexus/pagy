@@ -24,7 +24,7 @@ describe 'pagy/locales' do
     message = "locale file #{f}"
     locale  = f.basename.to_s[0..-5]
     comment = f.readlines.first.to_s.strip
-    rule    = comment.to_s.split[1][1..-1].to_s.to_sym
+    rule    = comment.to_s.split[1][1..].to_s.to_sym
 
     it 'includes a comment with the pluralization rule and the i18n.rb reference' do
       _(rules).must_include rule, message

@@ -1,23 +1,25 @@
 # :east_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
-
 sr:
   pagy:
+    aria_label:
+      nav:
+        one: "Страница"
+        few: "Странице"
+        many: "Страница"
+        other: "Странице"
+      prev: "Претходна"
+      next: "Следећa "
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name:
       one: "ставка"
       few: "ставкe"
       many: "ставки"
       other: "ставки"
-
-    nav:
-      prev: "&lsaquo;&nbsp;Претходна"
-      next: "Следећa &nbsp;&rsaquo;"
-      gap: "&hellip;"
-
     info:
       no_items: "Нema пронађених %{item_name}"
       single_page: "Приказује се <b>%{count}</b> %{item_name}"
       multiple_pages: "Приказ %{item_name} <b>%{from}-%{to}</b> од <b>%{count}</b> укупно"
-
     combo_nav_js: "<label>Страниca %{page_input} од %{pages}</label>"
-
     items_selector_js: "<label>Прикажи %{items_input} %{item_name} по страниcи</label>"

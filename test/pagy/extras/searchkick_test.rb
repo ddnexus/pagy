@@ -51,7 +51,7 @@ describe 'pagy/extras/searchkick' do
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal app.params[:page]
         _(results.count).must_equal Pagy::DEFAULT[:items]
-        _(results).must_rematch
+        _(results).must_rematch :results
       end
       it 'paginates results with defaults' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a').results)
@@ -60,7 +60,7 @@ describe 'pagy/extras/searchkick' do
         _(pagy.items).must_equal Pagy::DEFAULT[:items]
         _(pagy.page).must_equal app.params[:page]
         _(results.count).must_equal Pagy::DEFAULT[:items]
-        _(results).must_rematch
+        _(results).must_rematch :results
       end
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
@@ -71,7 +71,7 @@ describe 'pagy/extras/searchkick' do
         _(pagy.page).must_equal 2
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(results.count).must_equal 10
-        _(results).must_rematch
+        _(results).must_rematch :results
       end
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
@@ -82,7 +82,7 @@ describe 'pagy/extras/searchkick' do
         _(pagy.page).must_equal 100
         _(pagy.vars[:link_extra]).must_equal 'X'
         _(results.count).must_equal 10
-        _(results).must_rematch
+        _(results).must_rematch :results
       end
     end
 

@@ -9,7 +9,8 @@ categories:
 
 Allow easy handling of overflowing pages (i.e. requested page > count).
 
-It internally rescues `Pagy::OverflowError` exceptions offering the following ready to use behaviors/modes: `:empty_page`, `:last_page`, and `:exception`.
+It internally rescues `Pagy::OverflowError` exceptions offering the following ready to use
+behaviors/modes: `:empty_page`, `:last_page`, and `:exception`.
 
 ## Synopsis
 
@@ -29,6 +30,7 @@ require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :exception
 
 ```
+
 |||
 
 ## Files
@@ -66,6 +68,7 @@ Useful for APIs, where clients expect an empty page, in order to stop requesting
 !!!
 
 ||| `Pagy` instance example:
+
 ```ruby
 # no exception passing an overflowing page
 pagy = Pagy.new(count: 100, page: 100)
@@ -82,6 +85,7 @@ pagy.from               #=> 0
 pagy.to                 #=> 0
 pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
 ```
+
 |||
 
 ||| `Pagy::Countless` instance example:
@@ -104,8 +108,8 @@ pagy.from               #=> 0
 pagy.to                 #=> 0
 pagy.series             #=>  [] (no pages)
 ```
-|||
 
+|||
 
 ||| `Pagy::Calendar::Month` instance example:
 
@@ -133,21 +137,23 @@ pagy = Pagy::Calendar::Month.new(order: :desc, period: [local_time, local_time +
 pagy.from               #=> 2021-10-01 00:00:00 -0900 (start time of initial unit)
 pagy.to                 #=> 2021-10-01 00:00:00 -0900 (same as from: if used it gets no records)
 ```
+
 |||
 
 +++ :last_page
 
 !!!success Serve the last_page
-Paginate exactly as if the last page has been requested. 
+Paginate exactly as if the last page has been requested.
 !!!
 
-!!!warning 
+!!!warning
 The `:last_page` mode is not available for `Pagy::Countless` instances because the last page is not known.
 !!!
 
 For example:
 
 ||| Controller
+
 ```ruby
 pagy = Pagy.new(count: 100, page: 100, overflow: :last_page)
 
@@ -156,6 +162,7 @@ pagy.vars[:page]        #=> 100 (requested page)
 pagy.page               #=> 5   (current/last page)
 pagy.last == pagy.page  #=> true
 ```
+
 |||
 
 +++ :exception
@@ -171,14 +178,16 @@ rescue Pagy::OverflowError => e
   ...
 end
 ```
-+++
 
++++
 
 ## Methods
 
 ==- `overflow?`
 
-Use this method in order to know if the requested page is overflowing. The original requested page is available as `pagy.vars[:page]` (useful when used with the `:last_page` mode, in case you want to give some feedback about the rescue to the user/client).
+Use this method in order to know if the requested page is overflowing. The original requested page is available
+as `pagy.vars[:page]` (useful when used with the `:last_page` mode, in case you want to give some feedback about the rescue to the
+user/client).
 
 ===
 

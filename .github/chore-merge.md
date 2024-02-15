@@ -1,5 +1,7 @@
 # Chore PR merge
 
+## Notes for collaborators
+
 Consider the following git graph:
 
 ```mermaid
@@ -35,5 +37,3 @@ The process:
 5. If rebased, check tests pass
 6. Squash and merge
 7. Repeat with the remaining chore PRs
-
-

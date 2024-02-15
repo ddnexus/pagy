@@ -7,7 +7,7 @@ class Pagy # :nodoc:
 
   # Paginate Searchkick::Results objects
   module SearchkickExtra
-    module Searchkick # :nodoc:
+    module ModelExtension # :nodoc:
       # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options.
       # It also pushes to the same array an optional method call.
@@ -18,9 +18,10 @@ class Pagy # :nodoc:
       end
       alias_method Pagy::DEFAULT[:searchkick_pagy_search], :pagy_searchkick
     end
+    Pagy::Searchkick = ModelExtension
 
     # Additions for the Pagy class
-    module Pagy
+    module PagyExtension
       # Create a Pagy object from a Searchkick::Results object
       def new_from_searchkick(results, vars = {})
         vars[:items] = results.options[:per_page]
@@ -29,9 +30,10 @@ class Pagy # :nodoc:
         new(vars)
       end
     end
+    Pagy.extend PagyExtension
 
     # Add specialized backend methods to paginate Searchkick::Results
-    module Backend
+    module BackendAddOn
       private
 
       # Return Pagy object and results
@@ -60,8 +62,6 @@ class Pagy # :nodoc:
         vars
       end
     end
+    Backend.prepend BackendAddOn
   end
-  Searchkick = SearchkickExtra::Searchkick
-  extend SearchkickExtra::Pagy
-  Backend.prepend SearchkickExtra::Backend
 end

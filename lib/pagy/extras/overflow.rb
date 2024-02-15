@@ -7,7 +7,7 @@ class Pagy # :nodoc:
   # Handles OverflowError exceptions for different classes with different options
   module OverflowExtra
     # Support for Pagy class
-    module Pagy
+    module PagyOverride
       # Is the requested page overflowing?
       def overflow?
         @overflow
@@ -50,9 +50,11 @@ class Pagy # :nodoc:
         end
       end
     end
+    Pagy.prepend PagyOverride
+    Pagy::Calendar.prepend PagyOverride if defined?(Calendar)
 
     # Support for Pagy::Countless class
-    module Countless
+    module CountlessOverride
       # Add rescue clause for different behaviors
       def finalize(items)
         @overflow = false
@@ -71,8 +73,8 @@ class Pagy # :nodoc:
         end
       end
     end
+    # :nocov:
+    Pagy::Countless.prepend CountlessOverride if defined?(Countless)
+    # :nocov:
   end
-  prepend OverflowExtra::Pagy
-  Calendar.prepend OverflowExtra::Pagy if defined?(Calendar)
-  Countless.prepend OverflowExtra::Countless if defined?(Countless)
 end

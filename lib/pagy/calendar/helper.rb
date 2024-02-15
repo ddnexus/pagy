@@ -17,13 +17,13 @@ class Pagy # :nodoc:
 
       # Create the calendar
       def init(conf, period, params)
-        @units = Calendar::UNITS & conf.keys # get the units in time length desc order
+        @conf  = Marshal.load(Marshal.dump(conf))  # store a copy
+        @units = Calendar::UNITS & @conf.keys # get the units in time length desc order
         raise ArgumentError, 'no calendar unit found in pagy_calendar @configuration' if @units.empty?
 
         @period     = period
         @params     = params
         @page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
-        @conf       = Marshal.load(Marshal.dump(conf))  # store a copy
         @units.each do |unit|  # set all the :page_param vars for later deletion
           unit_page_param         = :"#{unit}_#{@page_param}"
           conf[unit][:page_param] = unit_page_param
@@ -33,11 +33,7 @@ class Pagy # :nodoc:
         object   = nil
         @units.each_with_index do |unit, index|
           params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_param] } + [@page_param]
-          conf[unit][:params] = lambda do |unit_params|  # delete page_param from the sub-units
-                                  # Hash#except missing from ruby 2.5 baseline
-                                  params_to_delete.each { |p| unit_params.delete(p.to_s) }
-                                  unit_params
-                                end
+          conf[unit][:params] = lambda { |up| up.except(*params_to_delete.map(&:to_s)) } # rubocop:disable Style/Lambda
           conf[unit][:period] = object&.send(:active_period) || @period
           calendar[unit]      = object = Calendar.send(:create, unit, conf[unit])
         end

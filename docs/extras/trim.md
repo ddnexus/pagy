@@ -10,7 +10,8 @@ categories:
 Remove the `page=1` param from the link of the first page.
 
 !!!warning
-This extra is needed only for very specific scenarios, for example if you need to avoid frontend cache duplicates of the first page.
+This extra is needed only for very specific scenarios, for example if you need to avoid frontend cache duplicates of the first
+page.
 !!!
 
 ## Synopsis
@@ -20,9 +21,11 @@ This extra is needed only for very specific scenarios, for example if you need t
 ```ruby
 require 'pagy/extras/trim' # it will trim without any further configuration,
 ```
+
 |||
 
 ||| Controller (and initializer)
+
 ```ruby
 # you can disable it explicitly for specific requests
 @pagy, @records = pagy(collection, trim_extra: false)
@@ -34,6 +37,7 @@ Pagy::DEFAULT[:trim_extra] = false   # default true
 # in this case you have to enable it explicitly when you want the trimming
 @pagy, @records = pagy(collection, trim_extra: true)
 ```
+
 |||
 
 ## Files
@@ -43,12 +47,13 @@ Pagy::DEFAULT[:trim_extra] = false   # default true
 ## Variables
 
 | Variable      | Description                   | Default |
-| :------------ | :---------------------------- | :------ |
+|:--------------|:------------------------------|:--------|
 | `:trim_extra` | enable or disable the feature | `true`  |
 
 You can use the `:trim_extra` variable to opt-out of trimming even when the extra is required (trimming by default).
 
-You can set the `Pagy::DEFAULT[:trim_extra]` default to `false` if you want to explicitly pass the `trim_extra: true` variable in order to trim the page param.
+You can set the `Pagy::DEFAULT[:trim_extra]` default to `false` if you want to explicitly pass the `trim_extra: true` variable in
+order to trim the page param.
 
 ## Methods
 
@@ -60,7 +65,8 @@ This method overrides the `pagy_link_proc` using the `pagy_trim` to process the 
 
 ==- `pagy_trim(pagy, link)`
 
-Sub-method called only by the `pagy_link_proc` method, it removes the the `:page_param` param from the first page link (usually `page=1`).
+Sub-method called only by the `pagy_link_proc` method, it removes the the `:page_param` param from the first page link (
+usually `page=1`).
 
 Override this method if you are [customizing the urls](/docs/how-to.md#customize-the-url).
 

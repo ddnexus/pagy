@@ -5,7 +5,8 @@ class Pagy # :nodoc:
   class Calendar # :nodoc:
     # Calendar year subclass
     class Year < Calendar
-      DEFAULT = { order:  :asc,      # rubocop:disable Style/MutableConstant
+      DEFAULT = { size:   10,   # rubocop:disable Style/MutableConstant
+                  order:  :asc,
                   format: '%Y' }
 
       protected

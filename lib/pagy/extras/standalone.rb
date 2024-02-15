@@ -25,11 +25,11 @@ class Pagy # :nodoc:
             build_nested_query(v, prefix ? "#{prefix}[#{escape(k)}]" : escape(k))
           end.delete_if(&:empty?).join('&')
         when nil
-          prefix
+          escape(prefix)
         else
           raise ArgumentError, 'value must be a Hash' if prefix.nil?
 
-          "#{prefix}=#{escape(value)}"
+          "#{escape(prefix)}=#{escape(value)}"
         end
       end
     end
@@ -38,7 +38,7 @@ class Pagy # :nodoc:
     # Return the URL for the page. If there is no pagy.vars[:url]
     # it works exactly as the regular #pagy_url_for, relying on the params method and Rack.
     # If there is a defined pagy.vars[:url] variable it does not need the params method nor Rack.
-    def pagy_url_for(pagy, page, absolute: false, html_escaped: false, **_)
+    def pagy_url_for(pagy, page, absolute: false, **_)
       return super unless pagy.vars[:url]
 
       vars         = pagy.vars
@@ -46,13 +46,10 @@ class Pagy # :nodoc:
       pagy_set_query_params(page, vars, params)
       params       = pagy.params.call(params) if pagy.params.is_a?(Proc)
       query_string = "?#{QueryUtils.build_nested_query(params)}"
-      query_string = query_string.gsub('&', '&amp;') if html_escaped  # the only unescaped entity
       "#{vars[:url]}#{query_string}#{vars[:fragment]}"
     end
   end
-  # In ruby 3+ `UrlHelpers.prepend StandaloneExtra` would be enough instead of using the next 2 lines
-  Frontend.prepend StandaloneExtra
-  Backend.prepend StandaloneExtra
+  UrlHelpers.prepend StandaloneExtra
 
   # Define a dummy params method if it's not already defined in the including module
   module Backend

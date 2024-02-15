@@ -1,22 +1,25 @@
 # :west_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
-
 cs:
   pagy:
+    # please add a comment in the https://github.com/ddnexus/pagy/issues/582
+    # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+    aria_label:
+      nav: "Pages"
+#        one: ""
+#        few: ""
+#        other: ""
+      prev: "Předchozí"
+      next: "Další"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name:
       one: "položka"
       few: "položek"
       other: "položky"
-
-    nav:
-      prev: "&lsaquo;&nbsp;Předchozí"
-      next: "Další&nbsp;&rsaquo;"
-      gap: "&hellip;"
-
     info:
       no_items: "Nic nebylo nalezeno"
       single_page: "Zobrazeno <b>%{count}</b> %{item_name}"
       multiple_pages: "Zobrazeno %{item_name} <b>%{from}-%{to}</b> z <b>%{count}</b> celkem"
-
     combo_nav_js: "<label>Strana %{page_input} z %{pages}</label>"
-
     items_selector_js: "<label>Zobrazit %{items_input} %{item_name} na stránce</label>"

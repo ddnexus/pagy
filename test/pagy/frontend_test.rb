@@ -16,47 +16,18 @@ end
 describe 'pagy/frontend' do
   let(:app) { MockApp.new }
 
-  describe '#pagy_nav' do
-    it 'renders page 1' do
-      pagy = Pagy.new count: 103, page: 1
-      _(app.pagy_nav(pagy)).must_rematch
-      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
-    end
-    it 'renders page 3' do
-      pagy = Pagy.new count: 103, page: 3
-      _(app.pagy_nav(pagy)).must_rematch
-      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
-    end
-    it 'renders page 6' do
-      pagy = Pagy.new count: 103, page: 6
-      _(app.pagy_nav(pagy)).must_rematch
-      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
-    end
-    it 'renders page 10' do
-      pagy = Pagy.new count: 1000, page: 10
-      _(app.pagy_nav(pagy)).must_rematch
-      _(app.pagy_nav(pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch
-    end
-    it 'renders with link_extras' do
-      pagy = Pagy.new count: 103, page: 1, link_extra: "X"
-      _(app.pagy_nav(pagy)).must_include '?page=2" X  rel'
-      _(app.pagy_nav(pagy, link_extra: 'link-extra')).must_include '?page=2" X link-extra rel'
-    end
-    it 'should raise for wrong series' do
-      _ { app.pagy_nav(PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
-    end
-  end
+  # #pagy_nav helper tests in the test/extras/navs_test.rb
 
   describe '#pagy_link_proc' do
     it 'renders with extras' do
       pagy = Pagy.new count: 103, page: 1
-      _(app.pagy_link_proc(pagy, link_extra: "X").call(1)).must_equal '<a href="/foo?page=1"  X >1</a>'
+      _(app.pagy_link_proc(pagy, link_extra: "X").call(3)).must_equal '<a href="/foo?page=3"  X >3</a>'
     end
   end
 
   describe '#pagy_t' do
     it 'pluralizes' do
-      _(app.pagy_t('pagy.nav.prev')).must_equal "&lsaquo;&nbsp;Prev"
+      _(app.pagy_t('pagy.aria_label.prev')).must_equal "Previous"
       _(app.pagy_t('pagy.item_name', count: 0)).must_equal "items"
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "item"
       _(app.pagy_t('pagy.item_name', count: 10)).must_equal "items"
@@ -71,8 +42,8 @@ describe 'pagy/frontend' do
     end
     # rubocop:enable Style/FormatStringToken
     it 'handles missing keys' do
-      _(app.pagy_t('pagy.nav.not_here')).must_equal '[translation missing: "pagy.nav.not_here"]'
-      _(app.pagy_t('pagy.nav.gap.not_here')).must_equal '[translation missing: "pagy.nav.gap.not_here"]'
+      _(app.pagy_t('pagy.not_here')).must_equal '[translation missing: "pagy.not_here"]'
+      _(app.pagy_t('pagy.gap.not_here')).must_equal '[translation missing: "pagy.gap.not_here"]'
     end
   end
 
@@ -83,7 +54,7 @@ describe 'pagy/frontend' do
       _(proc { i18n_load(locale: 'en', filepath: Pagy.root.join('locales', 'xx.yml')) }).must_raise Errno::ENOENT
       custom_dictionary = Pagy.root.parent.join('test', 'files', 'custom.yml')
       i18n_load(locale: 'custom', filepath: custom_dictionary)
-      _(Pagy::I18n.t('custom', 'pagy.nav.prev')).must_equal "&lsaquo;&nbsp;Custom Prev"
+      _(Pagy::I18n.t('custom', 'pagy.aria_label.prev')).must_equal "Custom Previous"
       i18n_load(locale: 'en', pluralize: ->(_) { 'one' }) # returns always 'one' regardless the count
       _(Pagy::I18n.t(nil, 'pagy.item_name', count: 0)).must_equal "item"
       _(Pagy::I18n.t('en', 'pagy.item_name', count: 0)).must_equal "item"
@@ -116,14 +87,14 @@ describe 'pagy/frontend' do
     it 'renders with existing i18n key' do
       Pagy::I18n::DATA['en'][0]['pagy.info.product.one']   = 'Product'
       Pagy::I18n::DATA['en'][0]['pagy.info.product.other'] = 'Products'
-      _(app.pagy_info(Pagy.new(count: 0, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">No Products found</span>'
-      _(app.pagy_info(Pagy.new(count: 1, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
-      _(app.pagy_info(Pagy.new(count: 13, i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
-      _(app.pagy_info(Pagy.new(count: 100, i18n_key: 'pagy.info.product', page: 3))).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
-      _(app.pagy_info(Pagy.new(count: 0), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">No Products found</span>'
-      _(app.pagy_info(Pagy.new(count: 1), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
-      _(app.pagy_info(Pagy.new(count: 13), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
-      _(app.pagy_info(Pagy.new(count: 100, page: 3), i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
+      _(app.pagy_info(Pagy.new(count: 0, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">No Products found</span>'
+      _(app.pagy_info(Pagy.new(count: 1, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
+      _(app.pagy_info(Pagy.new(count: 13, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
+      _(app.pagy_info(Pagy.new(count: 100, item_i18n_key: 'pagy.info.product', page: 3))).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
+      _(app.pagy_info(Pagy.new(count: 0), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">No Products found</span>'
+      _(app.pagy_info(Pagy.new(count: 1), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
+      _(app.pagy_info(Pagy.new(count: 13), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
+      _(app.pagy_info(Pagy.new(count: 100, page: 3), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
       i18n_load(locale: 'en') # reset for other tests
     end
     it 'overrides the item_name and set pagy_id' do
@@ -153,9 +124,7 @@ describe 'pagy/frontend' do
     it 'renders url with params and fragment' do
       pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment'
       _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4#fragment"
-      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?page=5&amp;a=3&amp;b=4#fragment"
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true, html_escaped: true)).must_equal "http://example.com:3000/foo?page=5&amp;a=3&amp;b=4#fragment"
     end
     it 'renders url with overridden path' do
       pagy = Pagy.new count: 1000, page: 3, request_path: '/bar'
@@ -174,7 +143,6 @@ describe 'pagy/frontend' do
                                 params.merge('b' => 4, 'add_me' => 'add_me')
                               end)
       _(app.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
-      _(app.pagy_url_for(pagy, 5, html_escaped: true)).must_equal "/foo?a=5&amp;page=5&amp;b=4&amp;add_me=add_me#fragment"
     end
   end
 end

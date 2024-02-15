@@ -7,18 +7,21 @@ order: 4
 # Javascript Setup
 
 !!!info Notice
-A javascript setup is required only for the `pagy*_js` helpers. Just using `'data-remote="true"'` in any other helper works out of the box.
+A javascript setup is required only for the `pagy*_js` helpers. Just using `'data-remote="true"'` in any other helper works out of
+the box.
 !!!
 
-!!! success 
+!!! success
 Add the `oj` gem to your gemfile for faster performance.
 !!!
 
 ### How does it work?
 
-All the `pagy*_js` helpers render their component on the client side. The helper methods render just a minimal HTML tag that contains a `data-pagy` attribute.
+All the `pagy*_js` helpers render their component on the client side. The helper methods render just a minimal HTML tag that
+contains a `data-pagy` attribute.
 
-Your app should serve or bundle a small javascript file that will take care of converting the data embedded in the `data-pagy` attribute and make it work in the browser.
+Your app should serve or bundle a small javascript file that will take care of converting the data embedded in the `data-pagy`
+attribute and make it work in the browser.
 
 !!! info
 We don't publish a `npm` package, because it would not support automatic sync with the gem version.
@@ -34,14 +37,16 @@ Your app uses modern build tools
 
 * ES6 module to use with webpacker, esbuild, parcel, etc.
 
-_ESM File: [pagy-module.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js); Types: [pagy-module.d.ts](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.d.ts)_
+_ESM File: [pagy-module.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js);
+Types: [pagy-module.d.ts](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.d.ts)_
 
 +++ `pagy.js`
 !!! success
 Your app needs standard script or old browser compatibility
 !!!
 
-* It's an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file meant to be loaded as is, directly in your production pages and without any further processing
+* It's an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file meant to be loaded as is, directly in your
+  production pages and without any further processing
 * Minified (~2k) and polyfilled to work also with quite old browsers
 
 _JS File: [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js)_
@@ -77,7 +82,9 @@ _JS File: [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/
 - safari 15.5
 
 !!! info
-You can generate custom targeted `pagy.js` files for the browsers you want to support by changing the [browserslist](https://github.com/browserslist/browserslist) query in `src/package.json`, then compile it with `cd src && npm run build`.
+You can generate custom targeted `pagy.js` files for the browsers you want to support by changing
+the [browserslist](https://github.com/browserslist/browserslist) query in `src/package.json`, then compile it
+with `cd src && npm run build`.
 !!!
 
 </details>
@@ -89,10 +96,11 @@ You need to debug the javascript helpers
 !!!
 
 !!! warning Debug only!
+
 * Large size
 * It contains the source map to debug typescript
 * It works only on new browsers
-!!!
+  !!!
 
 _JS File: [pagy-dev.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-dev.js)_
 +++
@@ -107,88 +115,111 @@ In older versions of Rails, you can configure the app to look into the installed
 
 +++ Sprockets
 ||| pagy.rb (initializer)
+
 ```ruby
 Rails.application.config.assets.paths << Pagy.root.join('javascripts') # uncomment.
 ```
+
 |||
 
 ||| manifest.js (or `application.js` for old sprocket sprockets):
+
 ```js
 //= require pagy
 ```
+
 |||
 
 +++ Importmaps
 ||| pagy.rb (initializer)
+
 ```ruby
 Rails.application.config.assets.paths << Pagy.root.join('javascripts') #uncomment
 ```
+
 |||
 
 ||| app/assets/config/manifest.js
+
 ```js
 //= link pagy-module.js
 ```
+
 |||
 
 ||| config/importmap.rb
+
 ```ruby
 pin 'pagy-module'
 ```
+
 |||
 
 +++ Propshaft
 ||| pagy.rb (initializer)
+
 ```ruby
 Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 ```
+
 |||
 
 ||| application.html.erb
+
 ```erb
 <%= javascript_include_tag "pagy" %>
 ```
+
 |||
 +++
 
 #### Builders
 
-In order to bundle the `pagy-module.js` your builder has to find it either with a link or local copy, or by looking into the pagy javascript path:
+In order to bundle the `pagy-module.js` your builder has to find it either with a link or local copy, or by looking into the pagy
+javascript path:
 
 +++ Generic
-You can create a symlink or a copy of the `pagy-module.js` file (available in the pagy gem) into an app compiled dir and use it as a regular app file. That way any builder will pick it up. For example:
+You can create a symlink or a copy of the `pagy-module.js` file (available in the pagy gem) into an app compiled dir and use it as
+a regular app file. That way any builder will pick it up. For example:
 
 ||| config/initializers/pagy.rb
+
 ```ruby
 # Create/refresh the `app/javascript/pagy-module.js` symlink/copy every time 
 # the app restarts (unless in production), ensuring syncing when pagy is updated.
 # Replace the FileUtils.ln_sf with FileUtils.cp if your OS doesn't support file linking. 
 FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
-  unless Rails.env.production?
+unless Rails.env.production?
 ```
+
 |||
 
 +++ esbuild
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ||| package.json
+
 ```json
 {
-  "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
 }
 ```
+
 |||
 
 +++ Webpack
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ||| package.json
+
 ```json
 {
-  "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
 }
 ```
+
 |||
 
 ||| webpack.confg.js
+
 ```js
 module.exports = {
   ...,                          // your original config
@@ -200,6 +231,7 @@ module.exports = {
   }
 }
 ```
+
 |||
 
 #### Legacy way
@@ -212,31 +244,39 @@ bundle exec rails webpacker:install:erb
 
 Generate a local pagy javascript file using `erb` with webpacker:
 ||| app/javascript/packs/pagy.js.erb
+
 ```erb
 <%= Pagy.root.join('javascripts', 'pagy.js').read %>
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)
 ```
+
 |||
-_where `YOUR_EVENT_LISTENER` is the load event that works with your app (e.g. `"turbo:load"`, `"turbolinks:load"`, `"load"`, ...)._
+_where `YOUR_EVENT_LISTENER` is the load event that works with your app (
+e.g. `"turbo:load"`, `"turbolinks:load"`, `"load"`, ...)._
 
 ||| app/javascript/application.js
+
 ```js
 import './pagy.js.erb'
 ```
+
 |||
 
 +++ Rollup
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ||| package.json
+
 ```json
 {
-  "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
 }
 ```
+
 |||
 
 ||| rollup.confg.js
 Configure the `plugins[resolve]`:
+
 ```js
 export default {
   ...,                                    // your original config
@@ -250,6 +290,7 @@ export default {
   ]
 }
 ```
+
 |||
 +++
 
@@ -263,8 +304,9 @@ After the helper is loaded you have to initialize `Pagy` to make it work:
 
 +++ Stimulus JS
 ||| pagy_initializer_controller.js
+
 ```js
-import { Controller } from "@hotwired/stimulus"
+import {Controller} from "@hotwired/stimulus"
 import Pagy from "pagy-module"  // if using sprockets, you can remove above line, but make sure you have the appropriate directive if your manifest.js file.
 
 export default class extends Controller {
@@ -273,26 +315,33 @@ export default class extends Controller {
   }
 }
 ```
+
 |||
 
 ||| View
+
 ```erb
 <div data-controller="pagy-initializer">
   <%== pagy_nav_js(@pagy) %>
 </div>
 ```
+
 |||
 
 +++ jsbundling-rails
 Import and use the pagy module:
 ||| app/javascript/application.js
+
 ```js
 import Pagy from "pagy-module";
+
 window.addEventListener("turbo:load", Pagy.init);
 ```
+
 |||
 
 +++ Others
+
 ```js
 // if you choose pagy-module.js 
 import Pagy from "pagy-module"
@@ -309,6 +358,7 @@ window.addEventListener("turbolinks:load", Pagy.init)
 // custom listener
 window.addEventListener(yourEventListener, Pagy.init) 
 ```
+
 +++
 
 #### Caveats
@@ -320,8 +370,10 @@ If Javascript is disabled in the client browser, certain helpers will be useless
 ```erb
 <noscript><%== pagy_nav(@pagy) %></noscript>
 ```
+
 !!!
 
 !!!danger Overriding `*_js` helpers is not recommended
-The `pagy*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile and might break in a next release.
+The `pagy*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
+and might break in a next release.
 !!!

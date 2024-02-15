@@ -69,15 +69,17 @@ class PagyCalendarApp < Sinatra::Base
   get '/' do
     Time.zone  = 'EST'   # convert the UTC storage time to time with zone 'EST'
     collection = MockCollection::Calendar.new
+    # Default calendar
     # The conf Hash defines the pagy objects variables keyed by calendar unit and the final pagy standard object
     # The :skip is an optional and arbitrarily named param that skips the calendar pagination and uses only the pagy
     # object to paginate the unfiltered collection. (It's active by default even without a :skip param).
     # You way want to invert the logic (also in the view) with something like `active: params[:active]`,
     # which would be inactive by default and only active on demand.
-    @calendar, @pagy, @records = pagy_calendar(collection, year:   { size: 4 },
-                                                           month:  { size: 12, format: '%b' },
-                                                           pagy:   { items: 10 },
+    @calendar, @pagy, @records = pagy_calendar(collection, year:   {},
+                                                           month:  {},
+                                                           day:    {},
                                                            active: !params[:skip])
+    Time.now.to_s
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
@@ -112,7 +114,7 @@ __END__
   <% else %>
     <a href="?skip=true" >Hide Calendar</a>
     <br>
-    <a href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-03')) %>">Go to the 2022-03 Page</a>
+    <a href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
     <!-- You can use Time.zone.now to find the current page if your time period include today -->
     <% end %>
   </p>
@@ -122,11 +124,12 @@ __END__
     <p>Showtime: <%= @calendar.showtime %></p>
     <%= pagy_bootstrap_nav(@calendar[:year]) %>   <!-- year nav -->
     <%= pagy_bootstrap_nav(@calendar[:month]) %>  <!-- month nav -->
+    <%= pagy_bootstrap_nav(@calendar[:day]) %> <!-- day nav -->
   <% end %>
 
   <!-- page info extended for the calendar unit -->
   <div class="alert alert-primary" role="alert">
-    <%= pagy_info(@pagy) %><%= " for <b>#{@calendar[:month].label(format: '%B %Y')}</b>" if @calendar %>
+    <%= pagy_info(@pagy) %><%= " for <b>#{@calendar.showtime.strftime('%Y-%m-%d')}</b>" if @calendar %>
   </div>
 
   <!-- page records (time converted in your local time)-->

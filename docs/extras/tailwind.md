@@ -1,25 +1,31 @@
 ---
 title: Tailwind
 categories:
-- Frontend
-- Extra
+  - Frontend
+  - Extra
+image: null
 ---
 
 # Tailwind Extra Styles
 
 Ready to use style snippet for tailwind.
 
-Tailwind allows to apply styles to any DOM element, so you don't actually need a special extra to produce a different output. You can use the standard unstyled pagy helpers: i.e. the default `pagy_nav` and the `pagy_nav_js`and `pagy_nav_combo_js` provided by the [navs](navs.md) extra, and apply the styles to their classes.
+Tailwind allows to apply styles to any DOM element, so you don't actually need a special extra to produce a different output. You
+can use the standard unstyled pagy helpers: i.e. the default `pagy_nav` and the `pagy_nav_js`and `pagy_nav_combo_js` provided by
+the [navs](navs.md) extra, and apply the styles to their classes.
 
 ## Synopsis
 
-See the [navs](navs.md) extra if you use `pagy_nav_js` (it's rendered on the client, with optional responsiveness) or `pagy_combo_nav_js`:
+See the [navs](navs.md) extra if you use `pagy_nav_js` (it's rendered on the client, with optional responsiveness)
+or `pagy_combo_nav_js`:
 
 Some styles you can copy / customize:
 
 !!!warning Where to paste?
 
-With normal CSS files, you can easily "import" one stylesheet into another. If you want Tailwind to do the same, then you would need [to configure tailwind to do so](https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports) or you could simply paste the following into your `tailwind.css` file.
+With normal CSS files, you can easily "import" one stylesheet into another. If you want Tailwind to do the same, then you would
+need [to configure tailwind to do so](https://tailwindcss.com/docs/using-with-preprocessors#build-time-imports) or you could
+simply paste the following into your `tailwind.css` file.
 !!!
 
 +++ Style 1
@@ -27,6 +33,7 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
 ![Image of Style 1](../assets/images/tailwind-example-style-1.png)
 
 ||| SCSS rules
+
 ```scss
 @import "~tailwindcss/base";
 /* 
@@ -104,14 +111,15 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
   @apply text-gray-400 cursor-default;
 }
 ```
-|||
 
+|||
 
 +++ Style 2
 
 ![Image of Style 2](../assets/images/tailwind-example-style-2.png)
 
 ||| CSS Rules
+
 ```scss
 @import "~tailwindcss/base"; 
 /* 
@@ -147,6 +155,7 @@ With normal CSS files, you can easily "import" one stylesheet into another. If y
   @apply z-10 border-indigo-500 bg-indigo-50 text-indigo-600 relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20;
 }
 ```
+
 |||
 
 +++

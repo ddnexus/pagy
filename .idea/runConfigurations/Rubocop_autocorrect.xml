@@ -9,10 +9,14 @@
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
     <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov" />
+    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov">
+      <COVERAGE_PATTERN ENABLED="true">
+        <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+      </COVERAGE_PATTERN>
+    </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-    <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="rubocop:autocorrect" />
-    <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="" />
+    <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_NAME" VALUE="rubocop" />
+    <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ARGS" VALUE="-A" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_ATTACHED_TEST_FRAMEWORKS" VALUE="" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />

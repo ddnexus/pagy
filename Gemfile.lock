@@ -11,20 +11,33 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
     ansi (1.5.0)
     ast (2.4.2)
     base64 (0.2.0)
     benchmark-ips (2.13.0)
-    bigdecimal (3.1.5)
+    bigdecimal (3.1.6)
     builder (3.2.4)
-    codecov (0.6.0)
-      simplecov (>= 0.15, < 0.22)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     docile (1.4.0)
+    domain_name (0.6.20240107)
     drb (2.2.0)
       ruby2_keywords
     ffi (1.16.3)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
+    http (5.2.0)
+      addressable (~> 2.8)
+      base64 (~> 0.1)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.5.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     json (2.7.1)
@@ -35,9 +48,12 @@ GEM
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    llhttp-ffi (0.5.0)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     memoist (0.16.2)
     memory_profiler (1.0.1)
-    minitest (5.21.1)
+    minitest (5.22.2)
     minitest-reporters (1.6.1)
       ansi
       builder
@@ -51,16 +67,22 @@ GEM
     oj (3.16.3)
       bigdecimal (>= 3.0)
     parallel (1.24.0)
-    parser (3.3.0.4)
+    parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
+    public_suffix (5.0.4)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
-    rack (2.2.8)
-    rack-protection (3.2.0)
+    rack (3.0.9)
+    rack-protection (4.0.0)
       base64 (>= 0.1.0)
-      rack (~> 2.2, >= 2.2.4)
+      rack (>= 3.0.0, < 4)
+    rack-session (2.0.0)
+      rack (>= 3.0.0)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
     rainbow (3.1.1)
     rake (13.1.0)
     rake-manifest (0.2.3)
@@ -70,11 +92,11 @@ GEM
     rbzip2 (0.3.0)
     readline-ext (0.2.0)
     regexp_parser (2.9.0)
-    rematch (1.4.2)
+    rematch (2.1.0)
     rerun (0.14.0)
       listen (~> 3.0)
     rexml (3.2.6)
-    rubocop (1.60.0)
+    rubocop (1.60.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -87,7 +109,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
-    rubocop-minitest (0.34.4)
+    rubocop-minitest (0.34.5)
       rubocop (>= 1.39, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-packaging (0.5.2)
@@ -99,27 +121,29 @@ GEM
       rubocop (~> 1.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    simplecov (0.21.2)
+    simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    sinatra (3.2.0)
+    sinatra (4.0.0)
       mustermann (~> 3.0)
-      rack (~> 2.2, >= 2.2.4)
-      rack-protection (= 3.2.0)
+      rack (>= 3.0.0, < 4)
+      rack-protection (= 4.0.0)
+      rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sinatra-contrib (3.2.0)
+    sinatra-contrib (4.0.0)
       multi_json (>= 0.0.2)
       mustermann (~> 3.0)
-      rack-protection (= 3.2.0)
-      sinatra (= 3.2.0)
+      rack-protection (= 4.0.0)
+      sinatra (= 4.0.0)
       tilt (~> 2.0)
     tilt (2.3.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    webrick (1.8.1)
 
 PLATFORMS
   x86_64-linux
@@ -127,7 +151,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   benchmark-ips
-  codecov
+  http
   i18n
   kalibera
   memory_profiler
@@ -136,6 +160,7 @@ DEPENDENCIES
   oj
   puma
   rack
+  rackup
   rake
   rake-manifest
   readline-ext

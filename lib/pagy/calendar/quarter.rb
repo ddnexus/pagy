@@ -5,8 +5,9 @@ class Pagy # :nodoc:
   class Calendar # :nodoc:
     # Calendar quarter subclass
     class Quarter < Calendar
-      DEFAULT = { order:  :asc,      # rubocop:disable Style/MutableConstant
-                  format: '%Y-Q%q' } # '%q' token
+      DEFAULT = { size:   4,      # rubocop:disable Style/MutableConstant
+                  order:  :asc,
+                  format: 'Q%q' } # '%q' token
 
       # The label for any page, with the substitution of the '%q' token
       def label_for(page, opts = {})

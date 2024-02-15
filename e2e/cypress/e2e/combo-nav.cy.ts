@@ -2,7 +2,7 @@
 import {snapId, goCheckNext, goCheckPrev, styles} from "../support/test-helper";
 
 describe("Test all comboNavs for all styles", () => {
-    const id = "#combo-nav-js";
+    const id       = "#combo-nav-js";
     const id_input = `${id} input`;
 
     for (const style of styles) {

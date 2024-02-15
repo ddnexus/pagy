@@ -1,20 +1,19 @@
 # :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
-
 zh-CN:
   pagy:
-
+    aria_label:
+      # please add a comment in the https://github.com/ddnexus/pagy/issues/608
+      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+      nav: "Pages"
+      prev: "上一页"
+      next: "下一页"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
     item_name: ""
-
-    nav:
-      prev: "&lsaquo;&nbsp;上一页"
-      next: "下一页&nbsp;&rsaquo;"
-      gap: "&hellip;"
-
     info:
       no_items: "项目未找到"
       single_page: "显示<b>%{count}</b> 项%{item_name}"
       multiple_pages: "共 <b>%{count}</b> 项%{item_name}，显示 <b>%{from}-%{to}</b>"
-
     combo_nav_js: "<label>第 %{page_input} / %{pages} 页</label>"
-
     items_selector_js: "<label>每页显示 %{items_input} 条%</label>"

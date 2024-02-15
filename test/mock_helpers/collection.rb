@@ -15,7 +15,7 @@ class MockCollection < Array
   end
 
   def offset(value)
-    @collection = self[value..-1]
+    @collection = self[value..]
     self
   end
 
@@ -41,7 +41,7 @@ class MockCollection < Array
 
   class Grouped < MockCollection
     def count(*)
-      @collection.map { |value| [value, value + 1] }.to_h
+      @collection.to_h { |v| [v, v + 1] }
     end
 
     def unscope(*)
@@ -57,15 +57,14 @@ class MockCollection < Array
     YAML_FILE  = File.expand_path('../files/calendar_collection.yml', __dir__)
     # :nocov:
     COLLECTION = if Psych::VERSION > '3.3.0'
-                   YAML.safe_load(File.read(YAML_FILE),
-                                  permitted_classes: [ActiveSupport::TimeWithZone,
-                                                      ActiveSupport::TimeZone,
-                                                      Time],
+                   YAML.safe_load_file(YAML_FILE, permitted_classes: [ActiveSupport::TimeWithZone,
+                                                                      ActiveSupport::TimeZone,
+                                                                      Time],
                                   aliases: ["1"])
                  else
-                   YAML.safe_load(File.read(YAML_FILE), [ActiveSupport::TimeWithZone,
-                                                         ActiveSupport::TimeZone,
-                                                         Time], [], true)
+                   YAML.safe_load_file(YAML_FILE, [ActiveSupport::TimeWithZone,
+                                                   ActiveSupport::TimeZone,
+                                                   Time], [], true)
                  end
     # :nocov:
 

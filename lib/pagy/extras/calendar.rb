@@ -8,18 +8,17 @@ class Pagy # :nodoc:
   # Add pagination filtering by calendar unit (:year, :quarter, :month, :week, :day) to the regular pagination
   module CalendarExtra
     # Additions for the Backend module
-    module Backend
+    module BackendAddOn
       CONF_KEYS = (Calendar::UNITS + %i[pagy active]).freeze
 
       private
 
       # Take a collection and a conf Hash with keys in CONF_KEYS and return an array with 3 items: [calendar, pagy, results]
       def pagy_calendar(collection, conf)
-        unless conf.is_a?(Hash) && (conf.keys - CONF_KEYS).empty? && conf.all? { |k, v| v.is_a?(Hash) || k == :active }
-          raise ArgumentError, "keys must be in #{CONF_KEYS.inspect} and object values must be Hashes; got #{conf.inspect}"
-        end
+        raise ArgumentError, "keys must be in #{CONF_KEYS.inspect}" \
+              unless conf.is_a?(Hash) && (conf.keys - CONF_KEYS).empty?
 
-        conf[:pagy] = {} unless conf[:pagy]  # use default Pagy object when omitted
+        conf[:pagy] ||= {}
         unless conf.key?(:active) && !conf[:active]
           calendar, from, to = Calendar::Helper.send(:init, conf, pagy_calendar_period(collection), params)
           collection         = pagy_calendar_filter(collection, from, to)
@@ -42,13 +41,13 @@ class Pagy # :nodoc:
     end
 
     # Additions for the Frontend module
-    module UrlHelper
+    module UrlHelperAddOn
       # Return the url for the calendar page at time
       def pagy_calendar_url_at(calendar, time, **opts)
         pagy_url_for(calendar.send(:calendar_at, time, **opts), 1, **opts)
       end
     end
   end
-  Backend.prepend CalendarExtra::Backend, CalendarExtra::UrlHelper
-  Frontend.prepend CalendarExtra::UrlHelper
+  Backend.prepend CalendarExtra::BackendAddOn, CalendarExtra::UrlHelperAddOn
+  Frontend.prepend CalendarExtra::UrlHelperAddOn
 end

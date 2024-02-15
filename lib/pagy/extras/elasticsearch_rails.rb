@@ -19,7 +19,7 @@ class Pagy # :nodoc:
       total.is_a?(Hash) ? total['value'] : total
     end
 
-    module ElasticsearchRails # :nodoc:
+    module ModelExtension # :nodoc:
       # Return an array used to delay the call of #search
       # after the pagination variables are merged to the options.
       # It also pushes to the same array an optional method call.
@@ -30,9 +30,10 @@ class Pagy # :nodoc:
       end
       alias_method Pagy::DEFAULT[:elasticsearch_rails_pagy_search], :pagy_elasticsearch_rails
     end
+    Pagy::ElasticsearchRails = ModelExtension
 
     # Additions for the Pagy class
-    module Pagy
+    module PagyAddOn
       # Create a Pagy object from an Elasticsearch::Model::Response::Response object
       def new_from_elasticsearch_rails(response, vars = {})
         vars[:items] = response.search.options[:size] || 10
@@ -41,9 +42,10 @@ class Pagy # :nodoc:
         new(vars)
       end
     end
+    Pagy.extend PagyAddOn
 
     # Add specialized backend methods to paginate ElasticsearchRails searches
-    module Backend
+    module BackendAddOn
       private
 
       # Return Pagy object and items
@@ -73,8 +75,6 @@ class Pagy # :nodoc:
         vars
       end
     end
+    Backend.prepend BackendAddOn
   end
-  ElasticsearchRails = ElasticsearchRailsExtra::ElasticsearchRails
-  extend ElasticsearchRailsExtra::Pagy
-  Backend.prepend ElasticsearchRailsExtra::Backend
 end

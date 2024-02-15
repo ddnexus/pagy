@@ -252,7 +252,7 @@ describe 'pagy/calendar' do
   describe '#label' do
     it 'uses the default and custom format' do
       p = pagy(unit: :month, order: :desc, page: 2)
-      _(p.label).must_equal '2023-10'
+      _(p.label).must_equal 'Oct'
       _(p.label(format: '%B %Y')).must_equal 'October 2023'
     end
   end
@@ -261,8 +261,8 @@ describe 'pagy/calendar' do
     %i[year quarter month week day].each do |unit|
       it "labels the #{unit}" do
         p = pagy(unit: unit)
-        _(p.label_for(1)).must_rematch
-        _(p.label_for(2)).must_rematch
+        _(p.label_for(1)).must_rematch  :p1
+        _(p.label_for(2)).must_rematch  :p2
       end
     end
     it 'raises direct instantiation' do

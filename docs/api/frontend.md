@@ -29,8 +29,8 @@ end
 ||| View
 
 ```erb
-<%== pagy_nav(@pagy, ...) %>
-<%== pagy_info(@pagy, ...) %>
+<%== pagy_nav(@pagy, **vars) %>
+<%== pagy_info(@pagy, **vars) %>
 ```
 |||
 
@@ -40,50 +40,53 @@ All the methods in this module are prefixed with the `"pagy_"` string in order t
 
 Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or tricky gimmickry.
 
-==- `pagy_nav(pagy, ...)`
+==- `pagy_nav(pagy, **vars)`
 
 This method takes the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
 ||| View
 ```erb
-<%== pagy_nav(@pagy, ...) %>
+<%== pagy_nav(@pagy, **vars) %>
 ```
 |||
 
-The method accepts also a few optional keyword arguments:
+The method accepts also a few optional keyword arguments variables:
 
-- `:pagy_id` which adds the `id` HTML attribute to the `nav` tag
-- `:link_extra` which add a verbatim string to the `a` tag (e.g. `'data-remote="true"'`)
+- `:pagy_id`: the `id` HTML attribute to the `nav` tag (omitted by default)
+- `:link_extra`: the verbatim string added to the `a` tag (e.g. `'data-remote="true"'`) 
+- `:nav_aria_label`: an already pluralized string for the `aria-label` attribute of the `nav`, that will be used in place of 
+  the default `pagy.aria_label.nav`
+- `:nav_i18n_key`:  the i18n dictionary key to lookup the default `pagy.aria_label.nav` pluralized value (ignored if 
+  `nav_aria_label` is 
+  defined) 
 - `:size` which use the passed size Array instead of the `:size` variable of the instance
 
-The `nav.*` templates produce the same output, and can be used as an easier (but slower) way to customize it.
+See also [ARIA Attributes](ARIA.md).
 
-See also [Using templates](/docs/how-to.md#use-templates).
-
-==- `pagy_info(pagy, pagy_id: ..., item_name: ..., i18n_key: ...)`
+==- `pagy_info(pagy, **vars)`
 
 This method provides the info about the content of the current pagination. For example:
 
 ```erb
-<%== pagy_info(@pagy, ...) %>
+<%== pagy_info(@pagy, **vars) %>
 ```
 
 Will produce something like:
 
 <span>Displaying items <b>476-500</b> of <b>1000</b> in total</span>
 
-The method accepts also a few optional keyword arguments:
+The method accepts also a few optional keyword arguments variables:
 
-- `:pagy_id` which adds the `id` HTML attribute to the `span` tag wrapping the info
+- `:pagy_id`: the `id` HTML attribute to the `span` tag wrapping the info
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
-- `:i18n_key` the key to lookup in a dictionary
+- `:item_i18n_key` the key to lookup in a dictionary
 
-Notice the `:i18n_key` can be passed also to the constructor or be a less useful global variable (i.e. `Pagy::DEFAULT[:i18n_key]`
+Notice the `:item_i18n_key` can be passed also to the constructor or be a global variable (i.e. `Pagy::DEFAULT[:item_i18n_key]`
 
 ||| View
 ```erb
 <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
-<%== pagy_info(@pagy, i18n_key: 'activerecord.model.product' %>
+<%== pagy_info(@pagy, item_i18n_key: 'activerecord.model.product' %>
 ```
 |||
 
@@ -91,7 +94,7 @@ Displaying Products <b>476-500</b> of <b>1000</b> in total
 
 _(see [Customizing the item name](/docs/how-to.md#customize-the-item-name))_
 
-==- `pagy_url_for(pagy, page, absolute: false, html_escaped: false)`
+==- `pagy_url_for(pagy, page, absolute: false)`
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
 
@@ -107,15 +110,15 @@ For standard usage you may just need to read [How to customize the link attribut
 
 ## Advanced Usage
 
-You need this section only if you are going to override a `pagy_nav*` helper or a template AND you need to customize the HTML attributes of the link tags.
+You need this section only if you are going to override a `pagy_nav*` helper AND you need to customize the HTML attributes of the link tags.
 
 !!! primary
-This method is not intended to be overridden, however you could just replace it in your overridden `pagy_nav*` helpers or templates with some generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_link_proc` is a lot faster than the rails `link_to` (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).
+This method is not intended to be overridden, however you could just replace it in your overridden `pagy_nav*` helpers with some generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_link_proc` is a lot faster than the rails `link_to` (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).
 !!!
 
 This method returns a specialized proc that you call to produce the page links. The reason it is a two steps process instead of a single method call is performance. Indeed the method calls the potentially expensive `pagy_url_for` only once and generates the proc, then calling the proc will just interpolates the strings passed to it.
 
-Here is how you should use it: in your helper or template call the method to get the proc (just once):
+Here is how you should use it: in your helper call the method to get the proc (just once):
 
 ```ruby
 link = pagy_link_proc( pagy [, extra_attributes_string ] )
@@ -200,7 +203,7 @@ Specifically do not add a `class` attribute that will end up in the `pagy_bootst
 
 ==- `pagy_t(key, vars={})`
 
-This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally (from helpers and templates) in order to get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](i18n.md) doc for details)_
+This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally from the helpers in order to 
+get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](i18n.md) doc for details)_
 
 ===
-

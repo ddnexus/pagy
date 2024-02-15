@@ -5,18 +5,18 @@ source 'https://rubygems.org'
 # we cannot use gemspec here because it would load pagy before simplecov
 # and miss files from coverage gemspec
 
+gem 'http'         # used by the scripts/contributor-list.rb
 gem 'rake'
-
 gem 'readline-ext' # temporary fix for RM 3.3.2 console with ruby >= 3.3.0
 
 group :test do
   gem 'activesupport'
-  gem 'codecov', require: false
   gem 'i18n'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
+  gem 'rackup'
   gem 'rake-manifest'
   gem 'rematch'
   gem 'rubocop'
@@ -32,8 +32,6 @@ group :apps do
   gem 'rerun'
   gem 'sinatra'
   gem 'sinatra-contrib'
-  # gem 'slim'
-  # gem 'haml'
 end
 
 group :performance do

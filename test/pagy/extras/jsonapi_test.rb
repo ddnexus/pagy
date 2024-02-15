@@ -25,16 +25,16 @@ describe 'pagy/extras/jsonapi' do
     it 'uses the :jsonapi with page:nil' do
       app = MockApp.new(params: { page: nil })
       pagy, _records = app.send(:pagy, @collection, items_extra: false)
-      _(app.send(:pagy_url_for, pagy, 1)).must_equal "/foo?page[page]=1"
+      _(app.send(:pagy_url_for, pagy, 1)).must_rematch :url_1
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_url_for, pagy, 1)).must_equal "/foo?page[page]=1&page[items]=20"
+      _(app.send(:pagy_url_for, pagy, 1)).must_rematch :url_2
     end
     it 'uses the :jsonapi with page:3' do
       app = MockApp.new(params: { page: { page: 3 } })
       pagy, _records = app.send(:pagy, @collection, items_extra: false)
-      _(app.send(:pagy_url_for, pagy, 2)).must_equal "/foo?page[page]=2"
+      _(app.send(:pagy_url_for, pagy, 2)).must_rematch :url_1
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_url_for, pagy, 2)).must_equal "/foo?page[page]=2&page[items]=20"
+      _(app.send(:pagy_url_for, pagy, 2)).must_rematch :url_2
     end
   end
   describe "Skip JsonApi" do
@@ -67,7 +67,7 @@ describe 'pagy/extras/jsonapi' do
     it "sets custom named params" do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy, @collection, page_param: :number, items_param: :size)
-      _(app.send(:pagy_url_for, pagy, 4)).must_equal "/foo?page[number]=4&page[size]=10"
+      _(app.send(:pagy_url_for, pagy, 4)).must_rematch :url
     end
   end
   describe "#pagy_jsonapi_links" do
@@ -76,10 +76,7 @@ describe 'pagy/extras/jsonapi' do
       pagy, _records = app.send(:pagy, @collection, page_param: :number, items_param: :size)
       result = app.send(:pagy_jsonapi_links, pagy)
       _(result.keys).must_equal %i[first last prev next] # not sure it's a requirementS
-      _(result).must_equal({ :first=>"/foo?page[number]=1&page[size]=10",
-                             :last=>"/foo?page[number]=100&page[size]=10",
-                             :prev=>"/foo?page[number]=2&page[size]=10",
-                             :next=>"/foo?page[number]=4&page[size]=10" })
+      _(result).must_rematch :result
     end
   end
 end

@@ -6,7 +6,9 @@ set -e
 test -n "$(git status --porcelain)" && echo "Working tree dirty!" && exit 1
 
 # Set the root path
-ROOT="$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)")"
+dir="$(dirname -- "$0")"
+ROOT="$(cd -P -- "$(dirname -- "$dir")" && printf '%s\n' "$(pwd -P)")"
+cd $ROOT
 
 # Prompt for the new version
 old_vers=$(ruby -Ilib -rpagy -e 'puts Pagy::VERSION')
@@ -57,8 +59,17 @@ mv "$TMPFILE" "$CHANGELOG"
 # Run test to check the consistency across files
 bundle exec ruby -Itest test/pagy_test.rb --name  "/pagy::Version match(#|::)/"
 
-# Show diff
-git diff -U0 --word-diff=color
+# Optional update of top 100
+read -rp 'Do you want to update the "Top 100 contributors"? (y/n)> ' input
+if [[ $input = y ]] || [[ $input = Y ]]; then
+  bundle exec "$ROOT/script/update_top100.rb"
+fi
+
+# Optional show diff
+read -rp 'Do you want to see the diff? (y/n)> ' input
+if [[ $input = y ]] || [[ $input = Y ]]; then
+  git diff -U0 --word-diff=color
+fi
 
 # Optional commit
 read -rp 'Do you want to commit the changes? (y/n)> ' input

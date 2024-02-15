@@ -6,7 +6,7 @@ require:
 
 # trying to be good  O:)
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
     # '___' prefixed dirs are excluded
@@ -27,6 +27,8 @@ Layout/ExtraSpacing:
     Enabled: true
   AllowBeforeTrailingComments:
     Enabled: true
+  Exclude:
+    - test/**/*
 
 Layout/EmptyLines:
   Exclude:
@@ -41,9 +43,15 @@ Layout/EndAlignment:
 Layout/HashAlignment:
   Enabled: false
 
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
+
 # bad for performance
 Metrics:
   Enabled: false
+
+Naming/VariableNumber:
+  CheckSymbols: false
 
 # not cool
 Style/CommentedKeyword:
@@ -55,6 +63,10 @@ Style/EmptyCaseCondition:
 Style/RedundantInitialize:
   Exclude:
     - test/mock_helpers/arel.rb
+
+# Please!
+Style/StringConcatenation:
+  Enabled: false
 
 # these cops are disabled only in the test files in order to
 # allow to copy and paste the failed output for test reconciliation

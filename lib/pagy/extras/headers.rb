@@ -4,10 +4,10 @@
 require 'pagy/url_helpers'
 
 class Pagy # :nodoc:
-  DEFAULT[:headers] = { page:  'Current-Page',
-                        items: 'Page-Items',
-                        count: 'Total-Count',
-                        pages: 'Total-Pages' }
+  DEFAULT[:headers] = { page:  'current-page',
+                        items: 'page-items',
+                        count: 'total-count',
+                        pages: 'total-pages' }
   # Add specialized backend methods to add pagination response headers
   module HeadersExtra
     include UrlHelpers
@@ -22,7 +22,7 @@ class Pagy # :nodoc:
     # Generate a hash of RFC-8288 compliant http headers
     def pagy_headers(pagy)
       pagy_headers_hash(pagy).tap do |hash|
-        hash['Link'] = hash['Link'].map { |rel, link| %(<#{link}>; rel="#{rel}") }.join(', ')
+        hash['link'] = hash['link'].map { |rel, link| %(<#{link}>; rel="#{rel}") }.join(', ')
       end
     end
 
@@ -32,11 +32,11 @@ class Pagy # :nodoc:
       rel                   = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
       rel['last']           = pagy.last unless countless
       url_str               = pagy_url_for(pagy, PAGE_PLACEHOLDER, absolute: true)
-      link                  = rel.map do |r, num| # filter_map if ruby >=2.7
+      link                  = rel.filter_map do |r, num|
                                 next unless num # rubocop:disable Layout/EmptyLineAfterGuardClause
                                 [r, url_str.sub(PAGE_PLACEHOLDER, num.to_s)]
                               end.compact.to_h
-      hash                  = { 'Link' => link }
+      hash                  = { 'link' => link }
       headers               = pagy.vars[:headers]
       hash[headers[:page]]  = pagy.page.to_s if headers[:page]
       if headers[:items] && !(defined?(Calendar) && pagy.is_a?(Calendar))  # items is not for Calendar
