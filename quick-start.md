@@ -35,7 +35,7 @@ If you use Bundler, add the gem in the Gemfile, optionally avoiding the next maj
 
 ||| Gemfile
 ```ruby   
-gem 'pagy', '~> 6.4' # omit patch digit
+gem 'pagy', '~> 6.5' # omit patch digit
 ```
 |||
  
