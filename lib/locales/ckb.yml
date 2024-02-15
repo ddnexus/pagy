@@ -1,0 +1,20 @@
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+
+ckb:
+  pagy:
+
+    item_name: "بابەت"
+
+    nav:
+      prev: "&lsaquo;&nbsp;پاش"
+      next: "پێش&nbsp;&rsaquo;"
+      gap: "&hellip;"
+
+    info:
+      no_items: "هیچ %{item_name}ێک نەدۆزرایەوە"
+      single_page: "پیشاندانی <b>%{count}</b> %{item_name}"
+      multiple_pages: "پشاندانی %{item_name}ی <b>%{from}-%{to}</b> لە کۆی <b>%{count}</b> بە گشتی"
+
+    combo_nav_js: "<label>پەڕی %{page_input} لە %{pages}</label>"
+
+    items_selector_js: "<label>نیشاندانی %{items_input} %{item_name} لە هەر پەڕێک</label>"
