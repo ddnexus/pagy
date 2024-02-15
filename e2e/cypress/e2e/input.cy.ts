@@ -1,7 +1,7 @@
 describe("Test behavior of input based helpers", () => {
 
     const invalids = ["1000", "abcdef"];
-    const pages = ["1", "5"];
+    const pages    = ["1", "5"];
 
     for (const invalid of invalids) {
         it("Test input in #items-selector-js", () => {

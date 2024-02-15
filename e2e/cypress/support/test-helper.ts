@@ -1,5 +1,5 @@
 export const navIds = ["#nav", "#nav-js"];
-const widths = [500, 750, 1000];
+const widths          = [500, 750, 1000];
 const specialStylesRe = /^\/(materialize|semantic)/;
 
 export const styles = [

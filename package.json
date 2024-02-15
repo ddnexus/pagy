@@ -3,7 +3,7 @@
     "description": "Workspaces environment",
     "private": true,
     "engines": {
-        "node": ">=16.15.0"
+        "node": ">=20.9.0"
     },
     "devDependencies": {
         "retypeapp-linux-x64": "3.5.0"
