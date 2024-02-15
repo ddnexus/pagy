@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761186265018">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761186265018" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761186265018" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761186265018" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761186265018" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -284,13 +284,18 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>You can use pagy without any request object, nor Rack environment/gem, nor any defined <code v-pre>params</code> method, even in the irb/rails console without an app (see the <a href="../../api/console/">Pagy::Console</a> module).</p>
+<p>You can use pagy without any request object, nor Rack environment/gem, nor any defined <code v-pre>params</code> method, even in the irb/rails
+console without an app (see the <a href="../../api/console/">Pagy::Console</a> module).</p>
         </div>
     </div>
 </div>
-<p>You may need it in order to paginate a collection outside of a regular rack request or controller, like in an unconventional API module, or in the irb/rails console or for testing/playing with backend and frontend methods.</p>
-<p>You trigger the standalone mode by setting an <code v-pre>:url</code> variable, which will be used directly and verbatim, instead of extracting it from the <code v-pre>request</code> <code v-pre>Rack::Request</code> object. You can also pass other params by using the <code v-pre>:params</code> variable as usual. That will be used to produce the final URLs in the usual way.</p>
-<p>This extra will also create a dummy <code v-pre>params</code> method (if not already defined) in the module where you will include the <code v-pre>Pagy::Backend</code> (usually a controller).</p>
+<p>You may need it in order to paginate a collection outside of a regular rack request or controller, like in an unconventional API
+module, or in the irb/rails console or for testing/playing with backend and frontend methods.</p>
+<p>You trigger the standalone mode by setting an <code v-pre>:url</code> variable, which will be used directly and verbatim, instead of extracting it
+from the <code v-pre>request</code> <code v-pre>Rack::Request</code> object. You can also pass other params by using the <code v-pre>:params</code> variable as usual. That will be
+used to produce the final URLs in the usual way.</p>
+<p>This extra will also create a dummy <code v-pre>params</code> method (if not already defined) in the module where you will include
+the <code v-pre>Pagy::Backend</code> (usually a controller).</p>
 <doc-anchor-target id="synopsis">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#synopsis">#</doc-anchor-trigger>
@@ -364,7 +369,11 @@ Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'</code></pre>
 <doc-panels>
    <doc-panel id="overridden-pagy-url-for" collapsed>
        <template #title>Overridden <code v-pre>pagy_url_for</code></template>
-<p>The <code v-pre>standalone</code> extra overrides the <code v-pre>pagy_url_for</code> method used internally. If it finds a set <code v-pre>:url</code> variable it assumes there is no <code v-pre>request</code> object, so it uses the <code v-pre>:url</code> variable verbatim to produce the final URL, only adding the query string, composed by merging the <code v-pre>:page</code> param to the <code v-pre>:params</code> variable. If there is no <code v-pre>:url</code> variable set it works like usual, i.e. it uses the rake <code v-pre>request</code> object to extract the base_url, path from the request, merging the params returned from the <code v-pre>params</code> controller method, the <code v-pre>:params</code> variable and the <code v-pre>:page</code> param to it.</p>
+<p>The <code v-pre>standalone</code> extra overrides the <code v-pre>pagy_url_for</code> method used internally. If it finds a set <code v-pre>:url</code> variable it assumes there is
+no <code v-pre>request</code> object, so it uses the <code v-pre>:url</code> variable verbatim to produce the final URL, only adding the query string, composed by
+merging the <code v-pre>:page</code> param to the <code v-pre>:params</code> variable. If there is no <code v-pre>:url</code> variable set it works like usual, i.e. it uses the
+rake <code v-pre>request</code> object to extract the base_url, path from the request, merging the params returned from the <code v-pre>params</code> controller
+method, the <code v-pre>:params</code> variable and the <code v-pre>:page</code> param to it.</p>
    </doc-panel>
    <doc-panel id="dummy-params-method" collapsed>
        <template #title>Dummy <code v-pre>params</code> method</template>

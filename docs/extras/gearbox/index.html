@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761186265018">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761186265018" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761186265018" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761186265018" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761186265018" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -272,18 +272,27 @@
 </div>
 
 <p>Automatically change the number of items per page depending on the page number.</p>
-<p>Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in order to speed things up for wild-browsing and improving the user experience.</p>
-<p>You can set this up by simply setting the <code v-pre>:gearbox_items</code> variable to an array of integers. For example, you would set the  <code v-pre>gearbox_items</code> to <code v-pre>[10, 20, 40, 80]</code> to have page <code v-pre>1</code> with <code v-pre>10</code> items, page <code v-pre>2</code> with <code v-pre>20</code>, page <code v-pre>3</code> with <code v-pre>40</code> and all the other pages with <code v-pre>80</code> items.</p>
-<p>The content of the array is not restricted neither in length nor in direction: you can pass any arbitrary sequence of integer you like, although it makes more sense to have an increasing progression of items.</p>
+<p>Instead of generating all the pages with a fixed number of items, the app can serve pages with an increasing number of items in
+order to speed things up for wild-browsing and improving the user experience.</p>
+<p>You can set this up by simply setting the <code v-pre>:gearbox_items</code> variable to an array of integers. For example, you would set
+the  <code v-pre>gearbox_items</code> to <code v-pre>[10, 20, 40, 80]</code> to have page <code v-pre>1</code> with <code v-pre>10</code> items, page <code v-pre>2</code> with <code v-pre>20</code>, page <code v-pre>3</code> with <code v-pre>40</code> and all the
+other pages with <code v-pre>80</code> items.</p>
+<p>The content of the array is not restricted neither in length nor in direction: you can pass any arbitrary sequence of integer you
+like, although it makes more sense to have an increasing progression of items.</p>
 <doc-anchor-target id="interaction-with-other-extras">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#interaction-with-other-extras">#</doc-anchor-trigger>
         <span>Interaction with other extras</span>
     </h3>
 </doc-anchor-target>
-<p>Even after requiring this extra, the regular fixed pagination is still supported: you have just to temporarily disable <code v-pre>gearbox</code> with <code v-pre>gearbox_extra: false</code> in the instances that need the fixed pagination.</p>
-<p>You can also use it in presence of the <a href="../items/">items</a> extra if you follow a simple logic. The <code v-pre>gearbox</code> extra automatically handles the items per page, while the <code v-pre>items</code> extra allows the user to explicitly request a specific number of items. That&#x27;s why the <code v-pre>items</code>  extra takes priority over the <code v-pre>gearbox</code> extra if both are enabled.</p>
-<p>If you want to use the <code v-pre>gearbox</code> in some instances, you can temporarily set <code v-pre>items_extra: false</code> and the <code v-pre>gearbox</code>  will be used instead. That is a common scenario when you use the <code v-pre>items</code> extra in an API controller, while you want to use the <code v-pre>gearbox</code> in an infinite scroll pagination in another controller.</p>
+<p>Even after requiring this extra, the regular fixed pagination is still supported: you have just to temporarily disable <code v-pre>gearbox</code>
+with <code v-pre>gearbox_extra: false</code> in the instances that need the fixed pagination.</p>
+<p>You can also use it in presence of the <a href="../items/">items</a> extra if you follow a simple logic. The <code v-pre>gearbox</code> extra automatically
+handles the items per page, while the <code v-pre>items</code> extra allows the user to explicitly request a specific number of items. That&#x27;s why
+the <code v-pre>items</code>  extra takes priority over the <code v-pre>gearbox</code> extra if both are enabled.</p>
+<p>If you want to use the <code v-pre>gearbox</code> in some instances, you can temporarily set <code v-pre>items_extra: false</code> and the <code v-pre>gearbox</code>  will be used
+instead. That is a common scenario when you use the <code v-pre>items</code> extra in an API controller, while you want to use the <code v-pre>gearbox</code> in an
+infinite scroll pagination in another controller.</p>
 <doc-anchor-target id="caveats">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#caveats">#</doc-anchor-trigger>
@@ -292,7 +301,8 @@
 </doc-anchor-target>
 <ul>
 <li>This extra cannot be used with <code v-pre>Pagy::Calendar::*</code> objects, which are paginated by period.</li>
-<li>The search extras (<code v-pre>elasticserch_rails</code>, <code v-pre>meilisearch</code> and <code v-pre>searchkick</code>) are based on storages with built-in linear pagination, which is inconsistent with the <code v-pre>gearbox</code>.</li>
+<li>The search extras (<code v-pre>elasticserch_rails</code>, <code v-pre>meilisearch</code> and <code v-pre>searchkick</code>) are based on storages with built-in linear pagination,
+which is inconsistent with the <code v-pre>gearbox</code>.</li>
 </ul>
 <doc-anchor-target id="synopsis">
     <h2>
@@ -322,7 +332,7 @@ Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default</code></pre>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># Optionally override the :gearbox_items variable to a constructor to have it only for that instance
-@pagy, @records = pagy(collection, gearbox_items: [30, 60, 100], ...)
+@pagy, @records = pagy(collection, gearbox_items: [30, 60, 100], **vars)
 
 # You can still use instances with fixed pagination even after requiring the extra
 # use the default Pagy::DEFAULT[:items]
@@ -382,7 +392,8 @@ Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default</code></pre>
         <span>Methods</span>
     </h2>
 </doc-anchor-target>
-<p>The <code v-pre>gearbox</code> extra overrides the <code v-pre>setup_items_var</code> and the <code v-pre>setup_pages_vars</code> methods in the <code v-pre>Pagy</code> class. You don&#x27;t have to use them directly.</p>
+<p>The <code v-pre>gearbox</code> extra overrides the <code v-pre>setup_items_var</code> and the <code v-pre>setup_pages_vars</code> methods in the <code v-pre>Pagy</code> class. You don&#x27;t have to use
+them directly.</p>
 <doc-anchor-target id="credits">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#credits">#</doc-anchor-trigger>

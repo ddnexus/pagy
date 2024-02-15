@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761186265018">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -22,21 +22,23 @@
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/materialize/">
     <meta property="og:title" content="Materialize | Pagy">
     <meta property="og:description" content="Add nav helpers for the Materialize CSS pagination component.">
+    <meta property="og:image" content="https://ddnexus.github.io/pagy/docs/assets/images/materialize_nav.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/materialize/">
     <meta property="twitter:title" content="Materialize | Pagy">
     <meta property="twitter:description" content="Add nav helpers for the Materialize CSS pagination component.">
+    <meta property="twitter:image" content="https://ddnexus.github.io/pagy/docs/assets/images/materialize_nav.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761186265018" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761186265018" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761186265018" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761186265018" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +55,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -294,9 +296,9 @@
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_materialize_nav(@pagy, ...) %&gt;
-&lt;%== pagy_materialize_nav_js(@pagy, ...) %&gt;
-&lt;%== pagy_materialize_combo_nav_js(@pagy, ...) %&gt;</code></pre>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_materialize_nav(@pagy, **vars) %&gt;
+&lt;%== pagy_materialize_nav_js(@pagy, **vars) %&gt;
+&lt;%== pagy_materialize_combo_nav_js(@pagy, **vars) %&gt;</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -326,19 +328,20 @@
 </figure>
 </p>
 <p>This method is the same as the <code v-pre>pagy_nav</code>, but customized for Materialize.</p>
-<p>See the <a href="../../api/frontend/#pagy-nav-pagy">pagy_nav(pagy, ...)</a> documentation.</p>
+<p>See the <a href="../../api/frontend/#pagy-nav-pagy-vars">pagy_nav(pagy, **vars)</a> documentation.</p>
    </doc-panel>
-   <doc-panel id="pagy-materialize-nav-js-pagy">
-       <template #title><code v-pre>pagy_materialize_nav_js(pagy, ...)</code></template>
+   <doc-panel id="pagy-materialize-nav-js-pagy-vars">
+       <template #title><code v-pre>pagy_materialize_nav_js(pagy, **vars)</code></template>
 <p><figure class="content-center">
     <img src="../../assets/images/bootstrap_nav_js.png" alt="Warning: Bootstrap style shown above as a representative example - the responsive pagy_materialize_nav_js looks like the pagy_materialize_nav helper.">
     <figcaption class="caption">Warning: Bootstrap style shown above as a representative example - the responsive <code v-pre>pagy_materialize_nav_js</code> looks like the <code v-pre>pagy_materialize_nav</code> helper.</figcaption>
 </figure>
 </p>
-<p>It&#x27;s rendered on the client, with optional responsiveness. See the <a href="../../api/javascript/navs/">Javascript Navs</a> documentation for more information.</p>
+<p>It&#x27;s rendered on the client, with optional responsiveness. See the <a href="../../api/javascript/navs/">Javascript Navs</a> documentation
+for more information.</p>
    </doc-panel>
-   <doc-panel id="pagy-materialize-combo-nav-js-pagy">
-       <template #title><code v-pre>pagy_materialize_combo_nav_js(pagy, ...)</code></template>
+   <doc-panel id="pagy-materialize-combo-nav-js-pagy-vars">
+       <template #title><code v-pre>pagy_materialize_combo_nav_js(pagy, **vars)</code></template>
 <p><figure class="content-center">
     <img src="../../assets/images/materialize_combo_nav_js.png" alt="materialize_combo_nav_js">
     <figcaption class="caption">materialize_combo_nav_js</figcaption>

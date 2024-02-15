@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761186265018">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.761186265018" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.761186265018" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.761186265018" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.761186265018" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -321,6 +321,30 @@ that you think should be added, fixed or explained better, please open an issue.
     </h2>
 </doc-anchor-target>
 <p>You can control the number and position of the page links in the navigation through the <code v-pre>:size</code> variable.</p>
+<doc-anchor-target id="simple-nav">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#simple-nav">#</doc-anchor-trigger>
+        <span>Simple nav</span>
+    </h3>
+</doc-anchor-target>
+<p>You can set the <code v-pre>:size</code> variable to a single positive Integer to represent the total number of page links rendered.
+The current page will be placed as centered as possible in the series.</p>
+<p>For example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby">pagy = Pagy.new(count: 1000, page: 10, size: 5)
+pagy.series
+#=&gt; [8, 9, &quot;10&quot;, 11, 12]
+pagy = Pagy.new(count: 1000, page: 2, size: 5)
+pagy.series
+#=&gt; [1, &quot;2&quot;, 3, 4, 5]
+pagy = Pagy.new(count: 1000, page: 99, size: 5)
+pagy.series
+#=&gt; [96, 97, 98, &quot;99&quot;, 100]</code></pre>
+</doc-codeblock></div>
+<p>Setting the <code v-pre>:size</code> variable as a single integer has a few advantages over the classic way. It uses a simpler and faster
+algorithm, the series length is more constant, cleaner and less confusing to the user.
+On the other hand it does not allow the user to jump to the first or last page of a long series, which may or may not be a
+limitation. For example: with a navigation using <code v-pre>Pagy::Countless</code> or <code v-pre>Calendar</code> it is a clear advantage.</p>
 <doc-anchor-target id="classic-nav">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#classic-nav">#</doc-anchor-trigger>
@@ -343,30 +367,6 @@ pagy.series
 current page, the current <code v-pre>:page</code> (which is a string), 4 pages after the current page, another <code v-pre>:gap</code> and 3 final pages.</p>
 <p>You can easily try different options (also asymmetrical) in a console by changing the <code v-pre>:size</code>. Just check the <code v-pre>series</code> array to
 see what it contains when used in combination with different core variables.</p>
-<doc-anchor-target id="simple-nav">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#simple-nav">#</doc-anchor-trigger>
-        <span>Simple nav</span>
-    </h3>
-</doc-anchor-target>
-<p>You can set the <code v-pre>:size</code> variable to a single positive Integer to represent the total number of page links rendered.
-The current page will be laced as centered as possible in the series.</p>
-<p>For example:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">pagy = Pagy.new(count: 1000, page: 10, size: 5)
-pagy.series
-#=&gt; [8, 9, &quot;10&quot;, 11, 12]
-pagy = Pagy.new(count: 1000, page: 2, size: 5)
-pagy.series
-#=&gt; [1, &quot;2&quot;, 3, 4, 5]
-pagy = Pagy.new(count: 1000, page: 99, size: 5)
-pagy.series
-#=&gt; [96, 97, 98, &quot;99&quot;, 100]</code></pre>
-</doc-codeblock></div>
-<p>Setting the <code v-pre>:size</code> variable as a single integer has a few advantages over the classic way. It uses a simpler and faster
-algorithm, the series length is more constant, cleaner and less confusing to the user.
-On the other hand it does not allow the user to jump to the first or last page of a long series, which may or may not be a
-limitation. For example: with a navigation using <code v-pre>Pagy::Countless</code> or <code v-pre>Calendar</code> it is a clear advantage.</p>
 <doc-anchor-target id="skip-the-page-links">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#skip-the-page-links">#</doc-anchor-trigger>
@@ -423,23 +423,23 @@ specific app.</p>
 <pre class="language-yaml"><code v-pre class="language-yaml"># English default 118n dictionary
 en:
   pagy:
-
+    aria_label:
+      nav:
+        one: &quot;Page&quot;
+        other: &quot;Pages&quot;
+      previous: &quot;Previous&quot;
+      next: &quot;Next&quot;
+    prev: &quot;&amp;lt;&quot;
+    next: &quot;&amp;gt;&quot;
+    gap: &quot;&amp;hellip;&quot;
     item_name:
       one: &quot;item&quot;
       other: &quot;items&quot;
-
-    nav:
-      prev: &quot;&amp;lsaquo;&amp;nbsp;Prev&quot;
-      next: &quot;Next&amp;nbsp;&amp;rsaquo;&quot;
-      gap: &quot;&amp;hellip;&quot;
-
     info:
       no_items: &quot;No %{item_name} found&quot;
       single_page: &quot;Displaying &lt;b&gt;%{count}&lt;/b&gt; %{item_name}&quot;
       multiple_pages: &quot;Displaying %{item_name} &lt;b&gt;%{from}-%{to}&lt;/b&gt; of &lt;b&gt;%{count}&lt;/b&gt; in total&quot;
-
     combo_nav_js: &quot;&lt;label&gt;Page %{page_input} of %{pages}&lt;/label&gt;&quot;
-
     items_selector_js: &quot;&lt;label&gt;Show %{items_input} %{item_name} per page&lt;/label&gt;&quot;</code></pre>
 </doc-codeblock></div>
 </details>
@@ -448,8 +448,8 @@ en:
 <p>If you want to customize the translations or some specific output, you should edit the relevant entries in the pagy dictionary.</p>
 <p>If you explicitly use the <a href="../extras/i18n/">i18n extra</a>, override the pagy target entries in your own custom dictionary (refer to
 the I18n official documentation).</p>
-<p>If you don&#x27;t use the above extra (faster default) you can copy and edit the dictionary files that your app uses and configure pagy
-to use them.</p>
+<p>If you don&#x27;t use the above extra (and rely on the pagy faster code) you can copy and edit the dictionary files that your app
+uses and configure pagy to use them.</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>pagy.rb (initializer)</span>
@@ -469,36 +469,44 @@ Pagy::I18n.load({ locale: 'de', filepath: 'path/to/my-custom-de.yml' },
     </h3>
 </doc-anchor-target>
 <p>You may want to customize the output of a few entries, leaving the other entries in place:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>path/to/my-custom-en.yml (dictionary)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
+<details>
+<summary>Custom en dictionary</summary>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-yaml"><code v-pre class="language-yaml"># English custom 118n dictionary
 en:
   pagy:
-
+    aria_label:
+      nav:
+        one: &quot;Page&quot;
+        other: &quot;Pages&quot;
+      previous: &quot;Previous&quot;
+      next: &quot;Next&quot;
+    prev: &quot;&amp;lt;&quot;
+    next: &quot;&amp;gt;&quot;
+    gap: &quot;&amp;hellip;&quot;
     item_name:
       one: &quot;item&quot;
       other: &quot;items&quot;
-
-    nav:
-      prev: &quot;&amp;lsaquo;&quot;         # customized
-      next: &quot;&amp;rsaquo;&quot;         # customized
-      gap: &quot;&amp;hellip;&quot;
-
     info:
       no_items: &quot;0 of 0&quot;                            # customized
       single_page: &quot;%{count} of %{count}&quot;           # customized
       multiple_pages: &quot;%{from}-%{to} of %{count}&quot;   # customized
-
     combo_nav_js: &quot;&lt;label&gt;Page %{page_input} of %{pages}&lt;/label&gt;&quot;
-
     items_selector_js: &quot;&lt;label&gt;Show %{items_input} %{item_name} per page&lt;/label&gt;&quot;</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
+</details>
+<br>
+<doc-anchor-target id="customize-the-aria-labels">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#customize-the-aria-labels">#</doc-anchor-trigger>
+        <span>Customize the ARIA labels</span>
+    </h2>
+</doc-anchor-target>
+<p>You can customize the <code v-pre>aria-label</code> attributes of all the pagy helpers by passing either the <code v-pre>:nav_aria_label</code> string itself or
+the <code v-pre>:nav_i18n_key</code> (See <a href="../api/frontend/#pagy-nav-pagy-vars">pagy_nav</a>)</p>
+<p>You can also replace the <code v-pre>pagy.aria_label.nav</code> strings in the dictionary, as well as the <code v-pre>pagy.aria_label.previous</code> and the
+<code v-pre>pagy.aria_label.next</code>.</p>
+<p>See more details in the <a href="../api/aria/">ARIA attributes Page</a>.</p>
 <doc-anchor-target id="customize-the-page-param">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#customize-the-page-param">#</doc-anchor-trigger>
@@ -552,8 +560,8 @@ pagy = Pagy.new(count: 1000, link_extra: 'data-remote=&quot;true&quot; class=&qu
         <div class="pr-5 ml-3 w-full">
             <h5><code v-pre>link_extra</code>: must be valid HTML</h5>
 <p>For performance reasons, the <code v-pre>:link_extra</code> variable must be a string formatted as a valid HTML attribute/value pairs. That string
-will get inserted verbatim in the HTML of the link. <em>(see more advanced details in
-the <a href="../api/frontend/#pagy-link-proc-pagy-link-extra">pagy_link_proc documentation</a>)</em></p>
+will get inserted verbatim in the HTML of the link. <em>(see more advanced details in the
+<a href="../api/frontend/#pagy-link-proc-pagy-link-extra">pagy_link_proc documentation</a>)</em></p>
         </div>
     </div>
 </div>
@@ -627,7 +635,8 @@ your helper.</p>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Override <code v-pre>pagy_trim</code> if using Trim Extra</h5>
-<p>If you are also using the <a href="../extras/trim/">trim extra</a> you should also override the <a href="../extras/trim/#pagy-trim-pagy-link">pagy_trim</a>
+<p>If you are also using the <a href="../extras/trim/">trim extra</a> you should also override
+the <a href="../extras/trim/#pagy-trim-pagy-link">pagy_trim</a>
 method or the <code v-pre>Pagy.trim</code> javascript function.</p>
         </div>
     </div>
@@ -648,10 +657,9 @@ like <code v-pre>your_route/23</code> instead of <code v-pre>your_route?page=23<
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">
-def pagy_url_for(pagy, page, absolute: false, html_escaped: false)
-  # it was (page, pagy) in previous versions
+def pagy_url_for(pagy, page, absolute: false)
   params = request.query_parameters.merge(pagy.vars[:page_param] =&gt; page, only_path: !absolute)
-  html_escaped ? url_for(params).gsub('&amp;', '&amp;amp;') : url_for(params)
+  url_for(params)
 end</code></pre>
 </doc-codeblock></div>
     </div>
@@ -690,7 +698,6 @@ your page links may need to use POST and not GET. In that case you can try this 
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">
 def pagy_url_for(_pagy, page, **_)
-  # it was (page, pagy) in previous versions
   page
 end</code></pre>
 </doc-codeblock></div>
@@ -711,11 +718,12 @@ by Ben Koshy.</p>
 <p>The <code v-pre>pagy_info</code> and the <code v-pre>pagy_items_selector_js</code> helpers use the &quot;item&quot;/&quot;items&quot; generic name in their output. You can change that
 by editing the values of the <code v-pre>&quot;pagy.item_name&quot;</code> i18n key in
 the <a href="https://github.com/ddnexus/pagy/blob/master/lib/locales">dictionary files</a> that your app is using.</p>
-<p>Besides you can also (dynamically) set the <code v-pre>:i18n_key</code> variable to let Pagy know where to lookup the item name in some dictionary
-file (instead of looking it up in the default <code v-pre>&quot;pagy.item_name&quot;</code> key).</p>
-<p>You have a few ways to do that:</p>
+<p>Besides you can also (dynamically) set the <code v-pre>:item_i18n_key</code> variable to let Pagy know where to lookup the item name in some
+dictionary file (instead of looking it up in the default <code v-pre>&quot;pagy.item_name&quot;</code> key).</p>
+<details>
+<summary>You have a few ways to do that:</summary>
 <ol>
-<li>you can override the <code v-pre>pagy_get_vars</code> method in your controller, adding the dynamically set <code v-pre>:i18n_key</code>. For example with
+<li>you can override the <code v-pre>pagy_get_vars</code> method in your controller, adding the dynamically set <code v-pre>:item_i18n_key</code>. For example with
 ActiveRecord (mostly useful with the <a href="../extras/i18n/">i18n extra</a> or if you copy over the AR keys into the pagy dictionary):</li>
 </ol>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
@@ -726,16 +734,16 @@ ActiveRecord (mostly useful with the <a href="../extras/i18n/">i18n extra</a> or
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">
 def pagy_get_vars(collection, vars)
-  { count:    ...,
-    page:     ...,
-    i18n_key: &quot;activerecord.models.#{collection.model_name.i18n_key}&quot; }.merge!(vars)
+  { count:         ...,
+    page:          ...,
+    item_i18n_key: &quot;activerecord.models.#{collection.model_name.item_i18n_key}&quot; }.merge!(vars)
 end</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
 <ol start="2">
-<li>you can set the <code v-pre>:i18n_key</code> variable, either globally using the <code v-pre>Pagy::DEFAULT</code> hash or per instance with the <code v-pre>Pagy.new</code> method
-or with the <code v-pre>pagy</code> controller method:</li>
+<li>you can set the <code v-pre>:item_i18n_key</code> variable, either globally using the <code v-pre>Pagy::DEFAULT</code> hash or per instance with the <code v-pre>Pagy.new</code>
+method or with the <code v-pre>pagy</code> controller method:</li>
 </ol>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
@@ -744,10 +752,10 @@ or with the <code v-pre>pagy</code> controller method:</li>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># all the Pagy instances will have the default
-Pagy::DEFAULT[:i18n_key] = 'activerecord.models.product'
+Pagy::DEFAULT[:item_i18n_key] = 'activerecord.models.product'
 
 # or single Pagy instance
-@pagy, @record = pagy(my_scope, i18n_key: 'activerecord.models.product')</code></pre>
+@pagy, @record = pagy(my_scope, item_i18n_key: 'activerecord.models.product')</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -758,8 +766,8 @@ Pagy::DEFAULT[:i18n_key] = 'activerecord.models.product'
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_info(@pagy, i18n_key: 'activerecord.models.product') %&gt;
-&lt;%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.models.product') %&gt;</code></pre>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_info(@pagy, item_i18n_key: 'activerecord.models.product') %&gt;
+&lt;%== pagy_items_selector_js(@pagy, item_i18n_key: 'activerecord.models.product') %&gt;</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -791,11 +799,13 @@ Pagy::DEFAULT[:i18n_key] = 'activerecord.models.product'
         <div class="pr-5 ml-3 w-full">
             <h5>Parameters have precedence</h5>
 <p>The variables passed to a Pagy object have the precedence over the variables returned by the <code v-pre>pagy_get_vars</code>. The fastest way to
-set the <code v-pre>i18n_key</code> is passing a literal string to the <code v-pre>pagy</code> method, the most convenient way is using <code v-pre>pagy_get_vars</code>, the most
-flexible way is passing a pluralized string to the helper.</p>
+set the <code v-pre>item_i18n_key</code> is passing a literal string to the <code v-pre>pagy</code> method, the most convenient way is using <code v-pre>pagy_get_vars</code>, the
+most flexible way is passing a pluralized string to the helper.</p>
         </div>
     </div>
 </div>
+</details>
+<br/>
 <doc-anchor-target id="customize-css-styles">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#customize-css-styles">#</doc-anchor-trigger>
@@ -805,7 +815,7 @@ flexible way is passing a pluralized string to the helper.</p>
 <p>Pagy provides a few frontend extras
 for <a href="../extras/bootstrap/">bootstrap</a>, <a href="../extras/bulma/">bulma</a>, <a href="../extras/foundation/">foundation</a>, <a href="../extras/materialize/">materialize</a>, <a href="../extras/semantic/">semantic</a>, <a href="https://tailwindcss.com">tailwind</a>
 and <a href="../extras/uikit/">uikit</a> that come with a decent styling provided by their framework.</p>
-<p>If you need to further customize the provided styles, you don&#x27;t necessary need to override the helpers/templates. Here are a few
+<p>If you need to further customize the provided styles, you don&#x27;t necessary need to override the helpers. Here are a few
 alternatives:</p>
 <ul>
 <li>define the CSS styles to apply to the pagy CSS classes</li>
@@ -830,13 +840,13 @@ mini-post by Ben Koshy.</p>
 <pre class="language-ruby"><code v-pre class="language-ruby">
 module MyOverridingModule
   def pagy_any_method
-    ...
+    #...
     super
-    ...
+    #...
   end
 end
 Pagy::Backend.prepend MyOverridingModule
-# or
+# and/or
 Pagy::Frontend.prepend MyOverridingModule</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="paginate-an-array">
@@ -845,7 +855,7 @@ Pagy::Frontend.prepend MyOverridingModule</code></pre>
         <span>Paginate an Array</span>
     </h2>
 </doc-anchor-target>
-<p>Please, use the <a href="../extras/array/">array</a> extra.</p>
+<p>See the <a href="../extras/array/">array</a> extra.</p>
 <doc-anchor-target id="paginate-activerecord-collections">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-activerecord-collections">#</doc-anchor-trigger>
@@ -878,36 +888,20 @@ for better performance of grouped ActiveRecord collections.</p>
         <span>Custom count for custom scopes</span>
     </h3>
 </doc-anchor-target>
-<p>Your scope might become complex and the default pagy <code v-pre>collection.count(:all)</code> may not get the actual count. In that case you can
-get the right count with some custom statement, and pass it to <code v-pre>pagy</code>:</p>
+<p>Your scope might become complex and the default pagy <code v-pre>collection.count(:all)</code> may not get the actual count. In that case you
+can get the right count in a couple of ways:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>controller</span>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">custom_scope = ...
-custom_count = ...
+<pre class="language-ruby"><code v-pre class="language-ruby"># Passing the right arguments to the internal `collection.count(...)` (See the ActiveRecord documentation for details)
+@pagy, @records = pagy(custom_scope, count_args: [:join])
+
+# or directly pass the right count to pagy (that will directly use it skipping its own `collection.count(:all)`)
 @pagy, @records = pagy(custom_scope, count: custom_count)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Internal <code v-pre>count</code> skipped</h5>
-<p>Pagy will efficiently skip its internal count query and will just use the passed <code v-pre>:count</code> variable</p>
-        </div>
     </div>
 </div>
 <doc-anchor-target id="paginate-a-grouped-collection">
@@ -917,17 +911,24 @@ custom_count = ...
     </h3>
 </doc-anchor-target>
 <p>For better performance of grouped ActiveRecord collection counts, you may want to take a look at
-the <a href="http://ddnexus.github.io/pagy/extras/arel">arel extra</a>.</p>
-<doc-anchor-target id="paginate-for-api-clients">
+the <a href="../extras/arel/">arel extra</a>.</p>
+<doc-anchor-target id="paginate-for-generic-api-clients">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-for-api-clients">#</doc-anchor-trigger>
-        <span>Paginate for API clients</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-for-generic-api-clients">#</doc-anchor-trigger>
+        <span>Paginate for generic API clients</span>
     </h2>
 </doc-anchor-target>
 <p>When your app is a service that doesn&#x27;t need to serve any UI, but provides an API to some sort of client, you can serve the
 pagination metadata as HTTP headers added to your response.</p>
 <p>In that case you don&#x27;t need the <code v-pre>Pagy::Frontend</code> nor any frontend extra. You should only require
 the <a href="../extras/headers/">headers extra</a> and use its helpers to add the headers to your responses.</p>
+<doc-anchor-target id="paginate-with-jsonapi">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-with-jsonapi">#</doc-anchor-trigger>
+        <span>Paginate with JSON:API</span>
+    </h2>
+</doc-anchor-target>
+<p>See the <a href="../extras/jsonapi/">jsonapi extra</a>.</p>
 <doc-anchor-target id="paginate-for-javascript-frameworks">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-for-javascript-frameworks">#</doc-anchor-trigger>
@@ -951,8 +952,8 @@ the <a href="../extras/metadata/">metadata extra</a> and pass the pagination met
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">@q             = Person.ransack(params[:q])
-@pagy, @people = pagy(@q.result)</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby">q              = Person.ransack(params[:q])
+@pagy, @people = pagy(q.result)</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -1189,21 +1190,19 @@ from 301 to 315 for the last page.</p>
         <span>Paginate non-ActiveRecord collections</span>
     </h2>
 </doc-anchor-target>
-<p>The <code v-pre>pagy_get_vars</code> method works out of the box with <code v-pre>ActiveRecord</code> collections; for other collections (e.g. <code v-pre>mongoid</code>, etc.) you
-may need to override it in your controller, usually by simply removing the <code v-pre>:all</code> argument passed to the <code v-pre>count</code> method:</p>
+<p>The <code v-pre>pagy_get_vars</code> method works out of the box with <code v-pre>ActiveRecord</code> collections; for other collections (e.g. <code v-pre>mongoid</code>, etc.)
+you might want to change the <code v-pre>:count_args</code> default to suite your ORM count method:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>override</span>
+        <span>pagy.rb (initializer)</span>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">
-def pagy_get_vars # copy from lib/pagy/backend
-  # replace collection.count(:all) with collection.count 
-end</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby">Pagy::DEFAULT[:count_args] = []</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
+<p>or in extreme cases you may need to override it in your controller.</p>
 <doc-anchor-target id="paginate-collections-with-metadata">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-collections-with-metadata">#</doc-anchor-trigger>
@@ -1360,8 +1359,8 @@ bootstrap compatibility, responsiveness, compact layouts, etc.)</p>
 </tbody>
 </table>
 </div>
-<p>Helpers are the preferred choice (over templates) for their performance. If you need to override a <code v-pre>pagy_nav*</code> helper you can copy
-and paste it in your helper and edit it there. It is a simple concatenation of strings with a very simple logic.</p>
+<p>If you need to override a <code v-pre>pagy_nav*</code> helper you can copy and paste it in your helper and edit it there. It is a simple
+concatenation of strings with a very simple logic.</p>
 <p>Depending on the level of your overriding, you may want to read the <a href="../api/frontend/">Pagy::Frontend API documentation</a> for
 complete control over your helpers.</p>
 <doc-anchor-target id="skip-single-page-navs">
@@ -1384,67 +1383,6 @@ For example:</p>
 </doc-anchor-target>
 <p>By default Pagy generates all the page links including the <code v-pre>page</code> param. If you want to remove the <code v-pre>page=1</code> param from the first
 page link, just require the <a href="../extras/trim/">trim extra</a>.</p>
-<doc-anchor-target id="use-templates">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#use-templates">#</doc-anchor-trigger>
-        <span>Use Templates</span>
-    </h2>
-</doc-anchor-target>
-<p>The <code v-pre>pagy_nav*</code> helpers are optimized for speed, and they are really fast. On the other hand editing a template might be easier
-when you have to customize the rendering, however every template system adds some inevitable overhead and it will be about 30-70%
-slower than using the related helper. That will still be dozens of times faster than the other gems, but... you should choose
-wisely.</p>
-<p>Pagy provides the replacement templates for the <code v-pre>pagy_nav</code>, <code v-pre>pagy_bootstrap_nav</code>, <code v-pre>pagy_bulma_nav</code>, <code v-pre>pagy_foundation_nav</code>, and
-the <code v-pre>pagy_uikit_nav</code> helpers (available with the relative extras) in 3 flavors: <code v-pre>erb</code>, <code v-pre>haml</code> and <code v-pre>slim</code>.</p>
-<p>They produce exactly the same output of the helpers, but since they are slower, using them wouldn&#x27;t make any sense unless you need
-to change something. In that case customize a copy in your app, then use it as any other template: just remember to pass
-the <code v-pre>:pagy</code> local set to the <code v-pre>@pagy</code> object. Here are the links to the sources to copy:</p>
-<ul>
-<li><code v-pre>pagy</code>
-<ul>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.erb">nav.html.erb</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.haml">nav.html.haml</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/nav.html.slim">nav.html.slim</a></li>
-</ul>
-</li>
-<li><code v-pre>bootstrap</code>
-<ul>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.erb">bootstrap_nav.html.erb</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.haml">bootstrap_nav.html.haml</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/bootstrap_nav.html.slim">bootstrap_nav.html.slim</a></li>
-</ul>
-</li>
-<li><code v-pre>bulma</code>
-<ul>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.erb">bulma_nav.html.erb</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.haml">bulma_nav.html.haml</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/bulma_nav.html.slim">bulma_nav.html.slim</a></li>
-</ul>
-</li>
-<li><code v-pre>foundation</code>
-<ul>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.erb">foundation_nav.html.erb</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.haml">foundation_nav.html.haml</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/foundation_nav.html.slim">foundation_nav.html.slim</a></li>
-</ul>
-</li>
-<li><code v-pre>uikit</code>
-<ul>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.erb">uikit_nav.html.erb</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.haml">uikit_nav.html.haml</a></li>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.slim">uikit_nav.html.slim</a></li>
-</ul>
-</li>
-</ul>
-<p>If you need to try/compare an unmodified built-in template, you can render it right from the Pagy gem with:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%== render file: Pagy.root.join('templates', 'nav.html.erb'), 
-            locals: {pagy: @pagy} %&gt;
-
-&lt;%== render file: Pagy.root.join('templates', 'bootstrap_nav.html.erb'), 
-            locals: {pagy: @pagy} %&gt;</code></pre>
-</doc-codeblock></div>
-<p>You may want to read also the <a href="../api/frontend/">Pagy::Frontend API documentation</a> for complete control over your templates.</p>
 <doc-anchor-target id="deal-with-a-slow-collection-count">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#deal-with-a-slow-collection-count">#</doc-anchor-trigger>
@@ -1639,16 +1577,91 @@ will never get rescued.</p>
 </doc-anchor-target>
 <ul>
 <li>Pagy has 100% test coverage.</li>
-<li>You only need to test pagy if you have overridden methods, or if using your own templates.</li>
+<li>You only need to test pagy if you have overridden methods.</li>
 </ul>
 <p>If you need to test pagination, remember:</p>
 <ul>
 <li><code v-pre>Pagy::DEFAULT</code> should be set by your initializer and be frozen. You can test that your code cannot change it.</li>
-<li>You can override defaults - i.e. any pagy variable can be passed to a pagy constructor - e.g.</li>
+<li>You can override defaults - i.e. any pagy variable can be passed to a pagy constructor. For example:</li>
 </ul>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @books = pagy(Book.all, items: 10) # the items default has been overridden</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="using-your-pagination-templates">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#using-your-pagination-templates">#</doc-anchor-trigger>
+        <span>Using your pagination templates</span>
+    </h2>
+</doc-anchor-target>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Warning!</h5>
+<p>The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n
+standards. Using your own templates is possible, but it&#x27;s likely just reinventing a slower wheel.</p>
+        </div>
+    </div>
+</div>
+<p>If you really need to use your own templates, you absolutely can. Here is a static example that doesn&#x27;t use any other
+helper nor dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and
+translation as you need:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%#
+  The link variable is set to a proc that returns the link tag (complete with rel and aria-current)
+  Usage: link.call( page_number [, text [, extra_attributes_string ]])
+-%&gt;
+&lt;% link = pagy_link_proc(pagy) -%&gt;
+&lt;nav class=&quot;pagy_nav pagination&quot; aria-label=&quot;Pages&quot;&gt;
+  &lt;%# Previous page link %&gt;
+  &lt;% if pagy.prev -%&gt;
+    &lt;span class=&quot;page prev&quot;&gt;
+      &lt;%== link.call(pagy.prev, '&amp;lt;', 'aria-label=&quot;Previous&quot;') %&gt;
+    &lt;/span&gt;
+  &lt;% else -%&gt;
+    &lt;span class=&quot;page prev disabled&quot;&gt;
+      &lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-label=&quot;Previous&quot;&gt;&amp;lt;&lt;/a&gt;
+    &lt;/span&gt;
+  &lt;% end -%&gt;
+  &lt;%# Page links (series example: [1, :gap, 7, 8, &quot;9&quot;, 10, 11, :gap, 36]) %&gt;
+  &lt;% pagy.series.each do |item| -%&gt;
+    &lt;% if item.is_a?(Integer) -%&gt;
+      &lt;span class=&quot;page&quot;&gt;
+        &lt;%== link.call(item) %&gt;
+      &lt;/span&gt;
+    &lt;% elsif item.is_a?(String) -%&gt;
+      &lt;span class=&quot;page active&quot;&gt;
+        &lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-current=&quot;page&quot;&gt;&lt;%== item %&gt;&lt;/a&gt;
+      &lt;/span&gt;
+    &lt;% elsif item == :gap -%&gt;
+      &lt;span class=&quot;page gap&quot;&gt;&amp;hellip;&lt;/span&gt;
+    &lt;% end -%&gt;
+  &lt;% end -%&gt;
+  &lt;%# Next page link %&gt;
+  &lt;% if pagy.next -%&gt;
+    &lt;span class=&quot;page next&quot;&gt;
+      &lt;%== link.call(pagy.next, '&amp;gt;', 'aria-label=&quot;Next&quot;') %&gt;
+    &lt;/span&gt;
+  &lt;% else -%&gt;
+    &lt;span class=&quot;page next disabled&quot;&gt;
+      &lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-label=&quot;Next&quot;&gt;&amp;gt;&lt;/a&gt;
+    &lt;/span&gt;
+  &lt;% end -%&gt;
+&lt;/nav&gt;</code></pre>
+</doc-codeblock></div>
+<p>You can use it as usual: just remember to pass the <code v-pre>:pagy</code> local set to the <code v-pre>@pagy</code> object:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%== render file: 'nav.html.erb', locals: {pagy: @pagy} %&gt;</code></pre>
+</doc-codeblock></div>
+<p>You may want to read also the <a href="../api/frontend/">Pagy::Frontend API documentation</a> for complete control over your templates.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -1674,10 +1687,10 @@ will never get rescued.</p>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../docs/api/pagy/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../docs/api/aria/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Pagy</span>
+                                                <span class="block mt-1">ARIA Attributes</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>
