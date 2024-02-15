@@ -6,7 +6,7 @@ icon: versions-24
 
 ## Breaking Changes
 
-If you upgrade from version `< 6.0.0` see the following:
+If you upgrade from version `< 7.0.0` see the following:
 
 - [Breaking changes in version 7.0.0](#version-700)
 - [Breaking changes in version 6.0.0](CHANGELOG_LEGACY.md#version-600)
