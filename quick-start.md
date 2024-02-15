@@ -39,7 +39,7 @@ see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-versio
 ||| Gemfile
 
 ```ruby   
-gem 'pagy', '~> 6.4' # omit patch digit
+gem 'pagy', '~> 7.0' # omit patch digit
 ```
 
 |||

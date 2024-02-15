@@ -78,6 +78,9 @@ You should not have used any of the private methods, but if you did so, you will
 - [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/)
 - Removed the pagy templates: they were a burden for maintenance with very limited usage,
   still [you can use them](http://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates)
+- Added a simpler and faster nav without gaps (just pass an integer to the `:size`)
 - Internal renaming of private frontend methods
+- Updated code and tests for latest gem and npm module versions
+- Internal improvements of automation scripts
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 

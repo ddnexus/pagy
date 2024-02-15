@@ -32,8 +32,7 @@ describe 'pagy' do
       _(Pagy.root.join('javascripts', 'pagy-module.js').read).must_match "version: \"#{Pagy::VERSION}\","
     end
     it 'defines the same version in CHANGELOG.md' do
-      # temporarily disabled in pre versions
-      # _(Pagy.root.parent.join('CHANGELOG.md').read).must_match "## Version #{Pagy::VERSION}"
+      _(Pagy.root.parent.join('CHANGELOG.md').read).must_match "## Version #{Pagy::VERSION}"
     end
     it 'defines the same version in .github/.env' do
       _(File.read('.github/.env')).must_match "VERSION=#{Pagy::VERSION}"
