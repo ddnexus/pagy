@@ -22,6 +22,10 @@ None
 
 <hr>
 
+## Version 7.0.1
+
+- Updates ckb translations to be complaint with ARIA in v7.x.x (#643)
+
 ## Version 7.0.0
 
 ### Breaking changes
