@@ -6,6 +6,10 @@ visibility: hidden
 
 # LEGACY CHANGELOG 
 
+## Version 6.5.0
+
+- Add ckb: "pagination" entry (#641)
+
 ## Version 6.4.4
 
 - Adapt pagy-ci workflow to run on current gemfile (no-failure for new gems enabled in leading version)

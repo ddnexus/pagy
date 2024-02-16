@@ -96,6 +96,7 @@ class Pagy
                  hash['ar']    = RULE[:arabic]
                  hash['be']    = RULE[:east_slavic]
                  hash['bs']    = RULE[:east_slavic]
+                 hash['ckb']   = RULE[:other]
                  hash['cs']    = RULE[:west_slavic]
                  hash['id']    = RULE[:other]
                  hash['fr']    = RULE[:one_upto_two_other]

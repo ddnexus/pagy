@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Pagy::VERSION
   s.authors     = ['Domizio Demichelis']
   s.email       = ['dd.nexus@gmail.com']
-  s.summary     = 'The kick-ass pagination ruby gem'
+  s.summary     = 'The best pagination ruby gem'
   s.description = 'Agnostic pagination in plain ruby. It does it all. Better.'
   s.homepage    = 'https://github.com/ddnexus/pagy'
   s.license     = 'MIT'
