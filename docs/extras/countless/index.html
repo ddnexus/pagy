@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357009317">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357009317" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357009317" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -294,8 +294,7 @@
         <span>Modes</span>
     </h2>
 </doc-anchor-target>
-<p>This extra uses the <a href="../../api/countless/">Pagy::Countless subclass</a> internally. You can use it in two different modes by
-enabling the <code v-pre>:countless_minimal</code> variable (or not).</p>
+<p>This extra uses the <a href="../../api/countless/">Pagy::Countless subclass</a> internally. You can use it in two different modes by enabling the <code v-pre>:countless_minimal</code> variable (or not).</p>
 <doc-tabs>
 <doc-tab v-cloak id="default-mode">
 <template #title>Default mode</template>
@@ -332,8 +331,7 @@ enabling the <code v-pre>:countless_minimal</code> variable (or not).</p>
 </doc-codeblock></div>
     </div>
 </div>
-<p>This mode retrieves <code v-pre>items + 1</code> and uses the number of retrieved items to calculate the variables. It then removes the eventual
-extra item from the result, so deducing whether there is a <code v-pre>next</code> page or not without the need of an extra query.</p>
+<p>This mode retrieves <code v-pre>items + 1</code> and uses the number of retrieved items to calculate the variables. It then removes the eventual extra item from the result, so deducing whether there is a <code v-pre>next</code> page or not without the need of an extra query.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -475,18 +473,15 @@ extra item from the result, so deducing whether there is a <code v-pre>next</cod
 <doc-panels>
    <doc-panel id="pagy-countless-collection-vars-nil" collapsed>
        <template #title><code v-pre>pagy_countless(collection, vars=nil)</code></template>
-<p>This method is the same as the generic <code v-pre>pagy</code> method (see the <a href="../../api/backend/#pagy-collection-vars-nil">pagy doc</a>), however
-its returned objects will depend on the value of the <code v-pre>:countless_minimal</code> variable (see <doc-anchor-trigger to="#modes">Modes</doc-anchor-trigger>)</p>
+<p>This method is the same as the generic <code v-pre>pagy</code> method (see the <a href="../../api/backend/#pagy-collection-vars-nil">pagy doc</a>), however its returned objects will depend on the value of the <code v-pre>:countless_minimal</code> variable (see <doc-anchor-trigger to="#modes">Modes</doc-anchor-trigger>)</p>
    </doc-panel>
    <doc-panel id="pagy-countless-get-vars-collection-vars" collapsed>
        <template #title><code v-pre>pagy_countless_get_vars(_collection, vars)</code></template>
-<p>This sub-method is similar to the <code v-pre>pagy_get_vars</code> sub-method, but it is called only by the <code v-pre>pagy_countless</code> method. (see
-the <a href="../../api/backend/#pagy-get-vars-collection-vars">pagy_get_vars doc</a>).</p>
+<p>This sub-method is similar to the <code v-pre>pagy_get_vars</code> sub-method, but it is called only by the <code v-pre>pagy_countless</code> method. (see the <a href="../../api/backend/#pagy-get-vars-collection-vars">pagy_get_vars doc</a>).</p>
    </doc-panel>
    <doc-panel id="pagy-countless-get-items-collection-pagy" collapsed>
        <template #title><code v-pre>pagy_countless_get_items(collection, pagy)</code></template>
-<p>This sub-method is similar to the <code v-pre>pagy_get_items</code> sub-method, but it is called only by the <code v-pre>pagy_countless</code> method. (see
-the <a href="../../api/backend/#pagy-get-items-collection-pagy">pagy_get_items doc</a>).</p>
+<p>This sub-method is similar to the <code v-pre>pagy_get_items</code> sub-method, but it is called only by the <code v-pre>pagy_countless</code> method. (see the <a href="../../api/backend/#pagy-get-items-collection-pagy">pagy_get_items doc</a>).</p>
    </doc-panel>
 </doc-panels>
 

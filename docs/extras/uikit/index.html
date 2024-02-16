@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357009317">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>UIkit | Pagy</title>
     <meta name="title" content="UIkit | Pagy">
-    <meta name="description" content="Add nav helpers for the UIkit pagination component.">
+    <meta name="description" content="Add nav helpers and templates for the UIkit pagination component.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/extras/uikit/">
@@ -21,24 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/uikit/">
     <meta property="og:title" content="UIkit | Pagy">
-    <meta property="og:description" content="Add nav helpers for the UIkit pagination component.">
-    <meta property="og:image" content="https://ddnexus.github.io/pagy/docs/assets/images/uikit_nav.png">
+    <meta property="og:description" content="Add nav helpers and templates for the UIkit pagination component.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/uikit/">
     <meta property="twitter:title" content="UIkit | Pagy">
-    <meta property="twitter:description" content="Add nav helpers for the UIkit pagination component.">
-    <meta property="twitter:image" content="https://ddnexus.github.io/pagy/docs/assets/images/uikit_nav.png">
+    <meta property="twitter:description" content="Add nav helpers and templates for the UIkit pagination component.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357009317" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357009317" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -55,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -272,7 +270,7 @@
     <div><a href="../../../categories/frontend/">Frontend</a></div>
 </div>
 
-<p>Add nav helpers for the UIkit <a href="https://getuikit.com/docs/pagination">pagination component</a>.</p>
+<p>Add nav helpers and templates for the UIkit <a href="https://getuikit.com/docs/pagination">pagination component</a>.</p>
 <doc-anchor-target id="synopsis">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#synopsis">#</doc-anchor-trigger>
@@ -296,9 +294,20 @@
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;-- Nav Helpers: --&gt;
-&lt;%== pagy_uikit_nav(@pagy, **vars) %&gt;
-&lt;%== pagy_uikit_nav_js(@pagy, **vars) %&gt;
-&lt;%== pagy_uikit_combo_nav_js(@pagy, **vars) %&gt;</code></pre>
+&lt;%== pagy_uikit_nav(@pagy, ...) %&gt;
+&lt;%== pagy_uikit_nav_js(@pagy, ...) %&gt;
+&lt;%== pagy_uikit_combo_nav_js(@pagy, ...) %&gt;</code></pre>
+</doc-codeblock></div>
+    </div>
+</div>
+<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
+    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
+        <span>Template</span>
+    </div>
+    <div class="docs-columns-code docs-columns-content">
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby"># or you can render with a template
+&lt;%== render partial: 'pagy/uikit_nav', locals: {pagy: @pagy} %&gt;</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -310,6 +319,9 @@
 </doc-anchor-target>
 <ul>
 <li><a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/uikit.rb">uikit.rb</a></li>
+<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit.html.erb">uikit_nav.html.erb</a> (optional template)</li>
+<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.haml">uikit_nav.html.haml</a> (optional template)</li>
+<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/templates/uikit_nav.html.slim">uikit_nav.html.slim</a> (optional template)</li>
 </ul>
 <doc-anchor-target id="methods">
     <h2>
@@ -317,8 +329,7 @@
         <span>Methods</span>
     </h2>
 </doc-anchor-target>
-<p>This extra adds the above nav helpers to the <code v-pre>Pagy::Frontend</code> module. You can customize it by direct overriding in your own view
-helper.</p>
+<p>This extra adds the above nav helpers to the <code v-pre>Pagy::Frontend</code> module. You can customize it by direct overriding in your own view helper.</p>
 <doc-panels>
    <doc-panel id="pagy-uikit-nav-pagy">
        <template #title><code v-pre>pagy_uikit_nav(pagy)</code></template>
@@ -328,20 +339,20 @@ helper.</p>
 </figure>
 </p>
 <p>This method is the same as the <code v-pre>pagy_nav</code>, but customized for UIkit.</p>
-<p>See the <a href="../../api/frontend/#pagy-nav-pagy-vars">pagy_nav(pagy, **vars)</a> documentation.</p>
+<p>See the <a href="../../api/frontend/#pagy-nav-pagy">pagy_nav(pagy, ...)</a> documentation.</p>
+<p>The <code v-pre>uikit_nav.*</code> templates produce the same output, and can be used as an easier (but slower) starting point to override it. See <a href="../../how-to/#use-templates">How to use templates</a>.</p>
    </doc-panel>
-   <doc-panel id="pagy-uikit-nav-js-pagy-vars">
-       <template #title><code v-pre>pagy_uikit_nav_js(pagy, **vars)</code></template>
+   <doc-panel id="pagy-uikit-nav-js-pagy">
+       <template #title><code v-pre>pagy_uikit_nav_js(pagy, ...)</code></template>
 <p><figure class="content-center">
     <img src="../../assets/images/bootstrap_nav_js.png" alt="Warning: Bootstrap style shown above as a representative example - the responsive pagy_uikit_nav_js looks like the pagy_uikit_nav helper.">
     <figcaption class="caption">Warning: Bootstrap style shown above as a representative example - the responsive <code v-pre>pagy_uikit_nav_js</code> looks like the <code v-pre>pagy_uikit_nav</code> helper.</figcaption>
 </figure>
 </p>
-<p>It&#x27;s rendered on the client, with optional responsiveness. See the <a href="../../api/javascript/navs/">Javascript Navs</a> documentation
-for more information.</p>
+<p>It&#x27;s rendered on the client, with optional responsiveness. See the <a href="../../api/javascript/navs/">Javascript Navs</a> documentation for more information.</p>
    </doc-panel>
-   <doc-panel id="pagy-uikit-combo-nav-js-pagy-vars">
-       <template #title><code v-pre>pagy_uikit_combo_nav_js(pagy, **vars)</code></template>
+   <doc-panel id="pagy-uikit-combo-nav-js-pagy">
+       <template #title><code v-pre>pagy_uikit_combo_nav_js(pagy, ...)</code></template>
 <p>See the <a href="../../api/javascript/combo-navs/">Javascript Combo Navs</a> documentation.</p>
 <p>Here is an example:</p>
 <p><figure class="content-center">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357009317">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357009317" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357009317" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -272,8 +272,7 @@
 
 <p>Allows you to test Pagy in an <a href="https://github.com/ruby/irb">irb</a> with an environment stubbed for you:</p>
 <details>
-<p>Standard pagination requires a: controller, model, view and request object to work i.e. you need an environment. <code v-pre>Pagy::Console</code>
-gives you that environment.</p>
+<p>Standard pagination requires a: controller, model, view and request object to work i.e. you need an environment. <code v-pre>Pagy::Console</code> gives you that environment.</p>
 </details>
 </br>
 <doc-tabs>
@@ -291,21 +290,21 @@ pagy_navs(pagy)
 
 pagy_metadata(pagy)
 =&gt;
-{ :scaffold_url =&gt; &quot;http://www.example.com/subdir?page=__pagy_page__&quot;,
-  :first_url    =&gt; &quot;http://www.example.com/subdir?page=1&quot;,
-  :prev_url     =&gt; &quot;http://www.example.com/subdir?page=2&quot;,
-  :page_url     =&gt; &quot;http://www.example.com/subdir?page=3&quot;,
-  :next_url     =&gt; &quot;http://www.example.com/subdir?page=4&quot;,
-  :last_url     =&gt; &quot;http://www.example.com/subdir?page=50&quot;,
-  :count        =&gt; 1000,
-  :page         =&gt; 3,
-  :items        =&gt; 20,
-  :vars         =&gt;
-  { :page   =&gt; 3,
-    :items  =&gt; 20,
-    :outset =&gt; 0,
-    :size   =&gt; [1, 4, 4, 1],
-    ...</code></pre>
+{:scaffold_url=&gt;&quot;http://www.example.com/subdir?page=__pagy_page__&quot;,
+ :first_url=&gt;&quot;http://www.example.com/subdir?page=1&quot;,
+ :prev_url=&gt;&quot;http://www.example.com/subdir?page=2&quot;,
+ :page_url=&gt;&quot;http://www.example.com/subdir?page=3&quot;,
+ :next_url=&gt;&quot;http://www.example.com/subdir?page=4&quot;,
+ :last_url=&gt;&quot;http://www.example.com/subdir?page=50&quot;,
+ :count=&gt;1000,
+ :page=&gt;3,
+ :items=&gt;20,
+ :vars=&gt;
+  {:page=&gt;3,
+   :items=&gt;20,
+   :outset=&gt;0,
+   :size=&gt;[1, 4, 4, 1],
+...</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 <doc-tab v-cloak id="rails-console">
@@ -324,8 +323,7 @@ pagy_metadata(pagy)
         <div class="pr-5 ml-3 w-full">
             <h5>Warning</h5>
 <p>Avoid using <code v-pre>rails console</code> with <code v-pre>Pagy::Console</code>.</p>
-<p>Use <code v-pre>irb</code> instead. However, if you need <code v-pre>rails console</code> please ensure you temporarily &quot;unfreeze&quot; the <code v-pre>Pagy::DEFAULT</code> hash, in
-your <code v-pre>pagy.rb</code> config file, otherwise you&#x27;ll receive a &quot;can&#x27;t modify frozen Hash&quot; exception:</p>
+<p>Use <code v-pre>irb</code> instead. However, if you need <code v-pre>rails console</code> please ensure you temporarily &quot;unfreeze&quot; the <code v-pre>Pagy::DEFAULT</code> hash, in your <code v-pre>pagy.rb</code> config file, otherwise you&#x27;ll receive a &quot;can&#x27;t modify frozen Hash&quot; exception:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># Pagy::DEFAULT.freeze  ## temporarily comment out this line, don't forget to uncomment when finished!</code></pre>
 </doc-codeblock></div>
@@ -341,8 +339,7 @@ your <code v-pre>pagy.rb</code> config file, otherwise you&#x27;ll receive a &qu
         <span>Pagy::Console module</span>
     </h2>
 </doc-anchor-target>
-<p>The pagy console uses the <a href="../../extras/standalone/">standalone extra</a> and sets the <code v-pre>Pagy::DEFAULT[:url]</code> variable default
-to <code v-pre>&quot;http://www.example.com/subdir&quot;</code> in order to activate the standalone mode.</p>
+<p>The pagy console uses the <a href="../../extras/standalone/">standalone extra</a> and sets the <code v-pre>Pagy::DEFAULT[:url]</code> variable default to <code v-pre>&quot;http://www.example.com/subdir&quot;</code> in order to activate the standalone mode.</p>
 <p>Include the module in your console window in order to include also the <code v-pre>Pagy::Backend</code> and <code v-pre>Pagy::Frontend</code> modules.</p>
 <doc-panel id="pagy-extras-extras" collapsed>
     <template #title><code v-pre>pagy_extras(*extras)</code></template>

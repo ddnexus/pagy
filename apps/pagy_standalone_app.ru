@@ -25,7 +25,7 @@ require 'bundler/inline'
 # NOTICE: if you get any installation error with the following setup
 # temporarily remove the Gemfile and Gemfile.lock from the repo (they may interfere with the bundler/inline)
 
-gemfile false do
+gemfile true do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'rack'
@@ -54,7 +54,7 @@ Pagy::DEFAULT.freeze
 require 'sinatra/base'
 # Sinatra application
 class PagyStandaloneApp < Sinatra::Base
-  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js".freeze
+  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js"
 
   configure do
     enable :inline_templates
@@ -87,7 +87,7 @@ class MockCollection < Array
   end
 
   def offset(value)
-    @collection = self[value..]
+    @collection = self[value..-1]
     self
   end
 

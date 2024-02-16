@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357009317">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>CHANGELOG | Pagy</title>
     <meta name="title" content="CHANGELOG | Pagy">
-    <meta name="description" content="If you upgrade from version 7.0.0 see the following:">
+    <meta name="description" content="If you upgrade from version 6.0.0 see the following:">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/changelog/">
@@ -21,21 +21,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/changelog/">
     <meta property="og:title" content="CHANGELOG | Pagy">
-    <meta property="og:description" content="If you upgrade from version 7.0.0 see the following:">
+    <meta property="og:description" content="If you upgrade from version 6.0.0 see the following:">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/changelog/">
     <meta property="twitter:title" content="CHANGELOG | Pagy">
-    <meta property="twitter:description" content="If you upgrade from version 7.0.0 see the following:">
+    <meta property="twitter:description" content="If you upgrade from version 6.0.0 see the following:">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.761357009317" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -270,10 +270,9 @@
         <span>Breaking Changes</span>
     </h2>
 </doc-anchor-target>
-<p>If you upgrade from version <code v-pre>&lt; 7.0.0</code> see the following:</p>
+<p>If you upgrade from version <code v-pre>&lt; 6.0.0</code> see the following:</p>
 <ul>
-<li><doc-anchor-trigger to="#version-700">Breaking changes in version 7.0.0</doc-anchor-trigger></li>
-<li><a href="../changelog_legacy/#version-600">Breaking changes in version 6.0.0</a></li>
+<li><doc-anchor-trigger to="#version-600">Breaking changes in version 6.0.0</doc-anchor-trigger></li>
 <li><a href="../changelog_legacy/#version-500">Breaking changes in version 5.0.0</a></li>
 <li><a href="../changelog_legacy/#version-400">Breaking changes in version 4.0.0</a></li>
 <li><a href="../changelog_legacy/#version-300">Breaking changes in version 3.0.0</a></li>
@@ -287,11 +286,150 @@
     </h2>
 </doc-anchor-target>
 <p>None</p>
+<doc-anchor-target id="caveats">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#caveats">#</doc-anchor-trigger>
+        <span>Caveats</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>For CI reasons, tests cover only the <a href="https://endoflife.date/ruby">ruby end-of-life</a> supported rubies. However the current version still works with ruby 2.5+ (rubocop checked), but it will be phased out in v7 and will be kept in sync with the official <a href="https://endoflife.date/ruby">ruby end-of-life</a>.</li>
+</ul>
 <hr>
-<doc-anchor-target id="version-700">
+<doc-anchor-target id="version-644">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-700">#</doc-anchor-trigger>
-        <span>Version 7.0.0</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-644">#</doc-anchor-trigger>
+        <span>Version 6.4.4</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Adapt pagy-ci workflow to run on current gemfile (no-failure for new gems enabled in leading version)</li>
+<li>Fix for wrong arguments types in meilisearch pagy_search extension</li>
+</ul>
+<doc-anchor-target id="version-643">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-643">#</doc-anchor-trigger>
+        <span>Version 6.4.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Exclude coverage for prepend conditional, ruby &lt; 3.0 syntax for prepend</li>
+</ul>
+<doc-anchor-target id="version-642">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-642">#</doc-anchor-trigger>
+        <span>Version 6.4.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Better module overrides in jsonapi</li>
+<li>Replaced the is_a?(Hash) check for jsonapi reserved :page param with respond_to?(:Fetch) and prepended to the Frontend</li>
+<li>Docs improvements and fixes</li>
+</ul>
+<doc-anchor-target id="version-641">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-641">#</doc-anchor-trigger>
+        <span>Version 6.4.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Remove dependency on base64 (#618)Ruby 3.3 prints a warning if base64 is used without specifying it in the gemfile.
+Ruby 3.4 will error</li>
+</ul>
+<doc-anchor-target id="version-640">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-640">#</doc-anchor-trigger>
+        <span>Version 6.4.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Implement JSON:API specifications</li>
+<li>Added simpler nav generation, triggered by setting the size variable to a positive Integer</li>
+<li>Fix for pagy_calendar_app.ru</li>
+</ul>
+<doc-anchor-target id="version-630">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-630">#</doc-anchor-trigger>
+        <span>Version 6.3.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Calendar improvements:
+<ul>
+<li>Added the :fit_time option to page_at and pagy_calendar_url_at methods. It avoids the OutOfRangeError by returning the first or last page</li>
+<li>Added starting_time_for and page_offset_at feedback methods to the Calendar base class</li>
+<li>Prepended the pagy_calendar_url_at to the Frontend and Backend</li>
+<li>Added calendar showtime</li>
+</ul>
+</li>
+<li>Updated node modules (dev on node 20)</li>
+<li>Updated Gemfile and fixed new rubocop complaints</li>
+</ul>
+<doc-anchor-target id="version-620">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-620">#</doc-anchor-trigger>
+        <span>Version 6.2.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Add Belarusian locale (#567)</li>
+<li>Reordered RubyMine tasks (fix #541)</li>
+</ul>
+<doc-anchor-target id="version-610">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-610">#</doc-anchor-trigger>
+        <span>Version 6.1.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Add Vietnamese locale (#550)</li>
+<li>Maintenance (docs, test, gems and node modules updates) fixes and improvements</li>
+</ul>
+<doc-anchor-target id="version-604">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-604">#</doc-anchor-trigger>
+        <span>Version 6.0.4</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated gems and npm modules</li>
+<li>fix: Extras::Trim - fix trimming first page (#516)</li>
+<li>Fix for new rubocop</li>
+</ul>
+<doc-anchor-target id="version-603">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-603">#</doc-anchor-trigger>
+        <span>Version 6.0.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated Gemfile and npm modules</li>
+<li>Improved Danish translation (#502)</li>
+</ul>
+<doc-anchor-target id="version-602">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-602">#</doc-anchor-trigger>
+        <span>Version 6.0.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix: foundation combo helper (#469)</li>
+</ul>
+<doc-anchor-target id="version-601">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-601">#</doc-anchor-trigger>
+        <span>Version 6.0.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix for pagy_bootstrap_combo_nav_js disabled input in certain bootstrap versions</li>
+<li>Fix for wrong module in standalone extra</li>
+<li>Fix for broken links in code comments and docs</li>
+</ul>
+<doc-anchor-target id="version-600">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-600">#</doc-anchor-trigger>
+        <span>Version 6.0.0</span>
     </h2>
 </doc-anchor-target>
 <doc-anchor-target id="breaking-changes-1">
@@ -300,86 +438,31 @@
         <span>Breaking changes</span>
     </h3>
 </doc-anchor-target>
+<p>Removed support for the deprecation of <code v-pre>5.0</code>:</p>
 <ul>
-<li>Dropped old rubies support: Pagy follows the <a href="https://endoflife.date/ruby">ruby end-of-life</a> supported rubies now.</li>
-<li>Renamed <code v-pre>:i18n_key</code> &gt; <code v-pre>:item_i18n_key</code></li>
-<li>Refactored <code v-pre>support</code> extra
-<ul>
-<li>Renamed <code v-pre>pagy_prev_link</code> to <code v-pre>pagy_prev_html</code> to avoid confusion with pagy_prev_link_tag</li>
-<li>Removed <code v-pre>pagy_next_link</code> to <code v-pre>pagy_next_html</code> to avoid confusion with pagy_next_link_tag</li>
+<li>The <code v-pre>pagy_massage_params</code> method: use the <code v-pre>:params</code> variable set to a lambda <code v-pre>Proc</code> that does the same (but per instance). See <a href="https://ddnexus.github.io/pagy/docs/how-to#customize-the-params">How to customize the params</a>.</li>
+<li>The <code v-pre>activesupport</code> core dependency is now an optional requirement if you use the calendar: you must add <code v-pre>gem 'activesuport'</code> to your Gemfile if your app doesn&#x27;t use rails.</li>
+<li>The plain <code v-pre>Time</code> objects in the <code v-pre>:period</code> variable: use only <code v-pre>ActiveSupport::TimeWithZone</code> objects.</li>
+<li>The <code v-pre>:offset</code> variable used by the <code v-pre>Pagy::Calendar::Week</code>: set the <code v-pre>Date.beginning_of_week</code> variable to the symbol of the first day of the week (e.g. <code v-pre>Date.beginning_of_week = :sunday</code>). Notice the default is <code v-pre>:monday</code> consistently with the ISO-8601 standard (and Rails).</li>
+<li>The <code v-pre>Pagy::DEFAULT[:elasticsearch_rails_search_method]</code>: use <code v-pre>Pagy::DEFAULT[:elasticsearch_rails_pagy_search]</code> instead.</li>
+<li>The <code v-pre>Pagy::DEFAULT[:searchkick_search_method]</code>: use <code v-pre>Pagy::DEFAULT[:searchkick_pagy_search</code>] instead.</li>
+<li>The <code v-pre>Pagy::DEFAULT[:meilisearch_search_method]</code>: use <code v-pre>Pagy::DEFAULT[:meilisearch_pagy_search]</code> instead.</li>
 </ul>
-</li>
-<li>Rack 3 breaking changes:
-<ul>
-<li>The <code v-pre>headers</code> extra produces all lowercase headers, regardless how you set
-them <a href="https://github.com/rack/rack/issues/1592">see rack issue</a></li>
-<li>Removed <code v-pre>:escaped_html</code> option from <code v-pre>pagy_url_for</code> (only breaking if you override the method or use the option directly)</li>
-</ul>
-</li>
-<li>Dictionary structure changes: (affects only app with custom helper/templates/dictionary entries)
-<ul>
-<li>The <code v-pre>nav</code> entry has been flattened: <code v-pre>pagy.nav.*</code> entries are now <code v-pre>pagy.*</code>:
-<ul>
-<li>If you have custom helpers/templates: search the keys that contain <code v-pre>'.nav.'</code> and replace them with <code v-pre>'.'</code></li>
-<li>If you have custom dictionary entries (overrides): remove the <code v-pre>'nav:'</code> line and unindent its block</li>
-</ul>
-</li>
-<li>A few labels used as <code v-pre>aria-label</code> have been added: you may want to add/use them to your custom helper/templates/dictionaries
-for ARIA compliance.
-<ul>
-<li><code v-pre>pagy.aria_label.nav</code> Pluralized entry: used in the <code v-pre>nav</code> element</li>
-<li><code v-pre>pagy.aria_label.prev</code>, <code v-pre>pagy.aria_label.next</code> Single entry: used in the prev/next <code v-pre>a</code> link elements</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<doc-anchor-target id="default-changes-possibly-breaking-testviews">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#default-changes-possibly-breaking-testviews">#</doc-anchor-trigger>
-        <span>Default changes (possibly breaking test/views)</span>
-    </h3>
+<doc-anchor-target id="suggestions-for-a-smooth-removal-of-deprecations-from-pagy-5">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#suggestions-for-a-smooth-removal-of-deprecations-from-pagy-5">#</doc-anchor-trigger>
+        <span>Suggestions for a smooth removal of deprecations from pagy 5</span>
+    </h4>
 </doc-anchor-target>
 <ul>
-<li>Changed <code v-pre>Pagy::DEFAULT[:size]</code> variable defaults from <code v-pre>[1, 4, 4, 1]</code> to <code v-pre>7</code>. You can explicitly set/restore it in the
-initializer, if your app was relying on it.</li>
-<li>Added sensible <code v-pre>:size</code> defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
-relying on it.
-<ul>
-<li><code v-pre>Pagy::Calendar::Day::DEFAULT[:size]</code> <code v-pre>31</code></li>
-<li><code v-pre>Pagy::Calendar::Month::DEFAULT[:size]</code> <code v-pre>12</code></li>
-<li><code v-pre>Pagy::Calendar::Quarter::DEFAULT[:size]</code> <code v-pre>4</code></li>
-<li><code v-pre>Pagy::Calendar::Year::DEFAULT[:size]</code> <code v-pre>10</code></li>
+<li>Upgrade to the latest version of pagy 5 (5.10.1)</li>
+<li>Run your tests or app</li>
+<li>Check the log for any deprecations message starting with &#x27;[PAGY WARNING]&#x27;</li>
+<li>Update your code as indicated by the messages</li>
+<li>Ensure that the log is now free from warnings</li>
+<li>If you are overriding the <code v-pre>pagy_url_for</code> method ensure you <a href="https://github.com/ddnexus/pagy/discussions/424">add the extra parameters required.</a>.</li>
+<li>Upgrade to pagy 6</li>
 </ul>
-</li>
-<li>Changed a few <code v-pre>format</code> defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
-relying on it.
-<ul>
-<li><code v-pre>Pagy::Calendar::Day::DEFAULT[:format]</code> from <code v-pre>'%Y-%m-%d'</code> to <code v-pre>'%d'</code></li>
-<li><code v-pre>Pagy::Calendar::Month::DEFAULT[:format]</code> from <code v-pre>'%Y-%m'</code> to <code v-pre>'%b'</code></li>
-<li><code v-pre>Pagy::Calendar::Quartr::DEFAULT[:format]</code> from <code v-pre>'%Y-Q%q'</code> to <code v-pre>'Q%q'</code></li>
-</ul>
-</li>
-</ul>
-<doc-anchor-target id="visual-changes-possibly-breaking-testviews">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#visual-changes-possibly-breaking-testviews">#</doc-anchor-trigger>
-        <span>Visual changes (possibly breaking test/views)</span>
-    </h3>
-</doc-anchor-target>
-<ul>
-<li>The ARIA label compliance required the refactoring of all the nav helper that might look slightly different now.</li>
-<li>The text for <code v-pre>&quot;Previous&quot;</code> and <code v-pre>&quot;Next&quot;</code> is now used for the <code v-pre>aria-label</code> and has been replaced in the UI as <code v-pre>&lt;</code> and <code v-pre>&gt;</code>. You can
-edit the dictionary entries if you want to revert it to the previous default (<code v-pre>&lt; Prev</code> and <code v-pre>Next &gt;</code>)</li>
-</ul>
-<doc-anchor-target id="internal-renaming-of-private-methods-unlikely-to-break-anything">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#internal-renaming-of-private-methods-unlikely-to-break-anything">#</doc-anchor-trigger>
-        <span>Internal renaming of private methods (unlikely to break anything)</span>
-    </h3>
-</doc-anchor-target>
-<p>You should not have used any of the private methods, but if you did so, you will get a <code v-pre>NoMethodError</code>
-(undefined method...) very easy to fix by simply renaming, because there are no changes in the logic.</p>
 <doc-anchor-target id="changes">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#changes">#</doc-anchor-trigger>
@@ -387,15 +470,52 @@ edit the dictionary entries if you want to revert it to the previous default (<c
     </h3>
 </doc-anchor-target>
 <ul>
-<li>Added <code v-pre>:count_args</code> variable passed to the <code v-pre>collection.count(...)</code> statement (avoids overriding of <code v-pre>pagy-gets-vars</code> and
-expands count capabilities)</li>
-<li><a href="https://ddnexus.github.io/pagy/docs/api/aria/">ARIA compliance</a></li>
-<li>Removed the pagy templates: they were a burden for maintenance with very limited usage,
-still <a href="http://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">you can use them</a></li>
-<li>Added a simpler and faster nav without gaps (just pass an integer to the <code v-pre>:size</code>)</li>
-<li>Internal renaming of private frontend methods</li>
-<li>Updated code and tests for latest gem and npm module versions</li>
-<li>Internal improvements of automation scripts</li>
+<li>Added new doc changes</li>
+<li>Replaced the gitter support with the Q&amp;A discussion links</li>
+<li>reorganized cypress tests</li>
+<li>Updated run configurations</li>
+<li>Fix for bump.sh</li>
+<li>Add Meilisearch finite pagination by default in the meilisearch extra (#417)</li>
+<li>Allowing users to override the request path (#404)(squashed)</li>
+<li>Fix the args in the Pagy::Countless#series override (#411)(fixes #410)</li>
+<li>update: pagy_bare_rails script: for db testing (#379)</li>
+<li>Fix rubocop glitch</li>
+<li>added specific typescript installation to pagy-ci</li>
+<li>Chore: update github action versions to latest</li>
+<li>Reorganized pnpm setup and updated pagy.js to the new parcel default</li>
+<li>Reduced the error level for eslint rules</li>
+<li>Add Dependabot for GitHub Actions (#392)</li>
+<li>Fix NoMethodError when page param is hash (#390)</li>
+<li>Removed deprecated variables for the search extras</li>
+<li>Removed deprecated :offset variable for Calendar::Week</li>
+<li>Removed deprecated support for Time instances</li>
+<li>Removed activesupport hard dependency</li>
+<li>Removed support for deprecated pagy_massage_params</li>
+<li>fixup .gitignore</li>
+<li>Dropped docker env support</li>
+<li>Calendar code cleanup and normalization</li>
+<li>Implementation of calendar extra feature: pagy_calendar_url_at; refactoring and testing of the calendars files</li>
+<li>Pagy::Calendar::*: Simpler code and improved readability</li>
+<li>Added Pagy::Calendar#page_for(time) helper</li>
+<li>Fix for ignored pnpm files from other branch</li>
+<li>Updated cypress action</li>
+<li>Updated node modules and cypress 12</li>
+<li>Updated gems and rubocop config</li>
+<li>Remove aria-label=&quot;pager&quot; (#412)</li>
+<li>Update korean translation (#413)</li>
+<li>Fixed small typo in German (#409)</li>
+<li>fix: Added Norwegian Nynorsk translation (#408)* Added Norwegian Nynorsk translation</li>
+<li>Fix Pagy configuration and documentation for renamed &quot;pagy/extras/shared&quot; to &quot;pagy/extras/frontend_helpers&quot; (#399)</li>
+<li>update link: to referenced rails apps (#384)</li>
+<li>Added reference to avoid N+1 queries when using <code v-pre>includes</code> (closes #378)</li>
+<li>Fix for broken links in docs</li>
+<li>Added note about overriding the <code v-pre>pagy_headers</code> method in the <code v-pre>headers</code> extra</li>
+<li>Bundle and npm updates</li>
+<li>Add: documentation changes (#376)</li>
+<li>Added post link in README; fix for another example in how-to.md</li>
+<li>Fix for example in how-to.md (closes #373)</li>
+<li>Added missing info</li>
+<li>Fix: docs - typo, minimise ambiguity (#372)</li>
 </ul>
 <p><a href="../changelog_legacy/">LEGACY CHANGELOG &gt;&gt;&gt;</a></p>
 

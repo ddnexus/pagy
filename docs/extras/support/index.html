@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357009317">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357009317" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357009317" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -294,26 +294,22 @@
         <span>Support for alternative pagination types and features</span>
     </h2>
 </doc-anchor-target>
-<p>Besides the classic <code v-pre>pagy*_nav</code> pagination, the <code v-pre>pagy*_nav_js</code> and the <code v-pre>pagy*_combo_nav_js</code> UI components, Pagy offers a few
-helpers to support a few alternative types of pagination and related features.</p>
+<p>Besides the classic <code v-pre>pagy*_nav</code> pagination, the <code v-pre>pagy*_nav_js</code> and the <code v-pre>pagy*_combo_nav_js</code> UI components, Pagy offers a few helpers to support a few alternative types of pagination and related features.</p>
 <doc-anchor-target id="countless">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#countless">#</doc-anchor-trigger>
         <span>Countless</span>
     </h3>
 </doc-anchor-target>
-<p>You can totally avoid one query per render by using the <a href="../countless/">countless</a> extra. It has a few limitation, but still
-supports navbar links (see also <a href="../../api/countless/">Pagy::Countless</a> for more details).</p>
+<p>You can totally avoid one query per render by using the <a href="../countless/">countless</a> extra. It has a few limitation, but still supports navbar links (see also <a href="../../api/countless/">Pagy::Countless</a> for more details).</p>
 <doc-anchor-target id="navlessincremental">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#navlessincremental">#</doc-anchor-trigger>
         <span>Navless/incremental</span>
     </h3>
 </doc-anchor-target>
-<p>If you don&#x27;t need the navbar you can just set the <code v-pre>:size</code> variable to an empty value and the page links will be skipped from the
-rendering. That works with <code v-pre>Pagy</code> and <code v-pre>Pagy:Countless</code> instances. All the <code v-pre>*nav</code> helpers will render only the <code v-pre>prev</code> and <code v-pre>next</code>
-links/buttons, allowing for a manual incremental pagination.</p>
-<p>You can also use the <code v-pre>pagy_prev_html</code>, <code v-pre>pagy_next_html</code> mostly useful if you also use the <code v-pre>countless</code> extra.</p>
+<p>If you don&#x27;t need the navbar you can just set the <code v-pre>:size</code> variable to an empty value and the page links will be skipped from the rendering. That works with <code v-pre>Pagy</code> and <code v-pre>Pagy:Countless</code> instances. All the <code v-pre>*nav</code> helpers will render only the <code v-pre>prev</code> and <code v-pre>next</code> links/buttons, allowing for a manual incremental pagination.</p>
+<p>You can also use the <a href="https://github.com/ddnexus/pagy/blob/dca8669a10cb3be13e053fe435301c22cc64406f/lib/pagy/extras/navs.rb#L46"><code v-pre>pagy_prev_link</code></a> and <a href="https://github.com/ddnexus/pagy/blob/dca8669a10cb3be13e053fe435301c22cc64406f/lib/pagy/extras/navs.rb#L54"><code v-pre>pagy_next_link</code></a> helpers provided by the <a href="../navs/">navs extra</a>, mostly useful if you also use the <code v-pre>countless</code> extra.</p>
 <p>Here is a basic example that uses <code v-pre>pagy_countless</code> (saving one query per render):</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
@@ -379,7 +375,7 @@ end</code></pre>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_next_html(@pagy, text: 'More...', link_extra: 'id=&quot;next_link&quot;') %&gt;</code></pre>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_next_link(@pagy, text: 'More...', link_extra: 'id=&quot;next_link&quot;') %&gt;</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -400,17 +396,13 @@ $('#div_next_link').html(&quot;&lt;%= j(render 'next_link') %&gt;&quot;);</code>
         <span>Auto-incremental</span>
     </h3>
 </doc-anchor-target>
-<p>Automatic incremental pagination (sometimes improperly called &quot;infinite-scroll&quot; pagination) is a UI-less pagination that loads the
-next page at the end of the listing.</p>
-<p>Depending on your environment, there are a few ways to implement it. You can find a simple generic example below, or some more
-modern specific technique shown in the following posts:</p>
+<p>Automatic incremental pagination (sometimes improperly called &quot;infinite-scroll&quot; pagination) is a UI-less pagination that loads the next page at the end of the listing.</p>
+<p>Depending on your environment, there are a few ways to implement it. You can find a simple generic example below, or some more modern specific technique shown in the following posts:</p>
 <ul>
-<li><a href="https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/">Endless Scroll / Infinite Loading with Turbo Streams &amp; Stimulus</a>
-by Stefan Wienert</li>
+<li><a href="https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/">Endless Scroll / Infinite Loading with Turbo Streams &amp; Stimulus</a> by Stefan Wienert</li>
 <li><a href="https://www.beflagrant.com/blog/pagination-with-hotwire">Pagination with Hotwire</a> by Jonathan Greenberg</li>
 </ul>
-<p>For a plain old javascript example, we are going to use the same <doc-anchor-trigger to="#navlessincremental">Incremental</doc-anchor-trigger> code above with just a couple
-of changes:</p>
+<p>For a plain old javascript example, we are going to use the same <doc-anchor-trigger to="#navlessincremental">Incremental</doc-anchor-trigger> code above with just a couple of changes:</p>
 <p><strong>1</strong>. Hide the link in <code v-pre>_next_link.html.erb</code> by adding a style attribute:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
@@ -418,12 +410,11 @@ of changes:</p>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_next_html(@pagy, text: 'More...', link_extra: 'id=&quot;next_link&quot; style=&quot;display: none;&quot;') %&gt;</code></pre>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_next_link(@pagy, text: 'More...', link_extra: 'id=&quot;next_link&quot; style=&quot;display: none;&quot;') %&gt;</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
-<p><strong>2</strong>. Add a javascript that will click the link when the listing-bottom appears in the viewport on load/resize/scroll. It will
-keep the page filled with results, one page at a time:</p>
+<p><strong>2</strong>. Add a javascript that will click the link when the listing-bottom appears in the viewport on load/resize/scroll. It will keep the page filled with results, one page at a time:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>Javascript</span>
@@ -452,10 +443,8 @@ window.addEventListener('load',   loadNextPage);</code></pre>
         <span>Circular/Infinite</span>
     </h3>
 </doc-anchor-target>
-<p>This type of pagination sets the <code v-pre>next</code> page to <code v-pre>1</code> when the current page is the last page, allowing an infinite loop through the
-pages.</p>
-<p>For example, it is often used to show a few suggestions of &quot;similar products&quot; in a horizontal stripe of just a few pages of a few
-items each. Clicking on next will continue to loop through.</p>
+<p>This type of pagination sets the <code v-pre>next</code> page to <code v-pre>1</code> when the current page is the last page, allowing an infinite loop through the pages.</p>
+<p>For example, it is often used to show a few suggestions of &quot;similar products&quot; in a horizontal stripe of just a few pages of a few items each. Clicking on next will continue to loop through.</p>
 <p>For example:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
@@ -467,8 +456,7 @@ items each. Clicking on next will continue to loop through.</p>
 </doc-codeblock></div>
     </div>
 </div>
-<p>Passing a forced <code v-pre>:count</code> of 25 will generate 5 pages of 5 items each that will always have a next page. Regardless the actual
-collection count, you will show the first 25 items of the collection, looping in stripes of 5 items each.</p>
+<p>Passing a forced <code v-pre>:count</code> of 25 will generate 5 pages of 5 items each that will always have a next page. Regardless the actual collection count, you will show the first 25 items of the collection, looping in stripes of 5 items each.</p>
 <p>You may want to combine it with something like:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
@@ -476,7 +464,7 @@ collection count, you will show the first 25 items of the collection, looping in
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_next_html(@pagy, text: 'More...') %&gt;</code></pre>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_next_link(@pagy, text: 'More...') %&gt;</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -487,26 +475,22 @@ collection count, you will show the first 25 items of the collection, looping in
     </h2>
 </doc-anchor-target>
 <doc-panels>
-   <doc-panel id="pagy-prev-url-pagy-absolute-false" collapsed>
-       <template #title><code v-pre>pagy_prev_url(pagy, absolute: false)</code></template>
-<p>Returns the url for the previous page or <code v-pre>nil</code> if there is no previous page. Useful to build minimalistic UIs that don&#x27;t use nav
-bar links (e.g. <code v-pre>countless</code> extra).</p>
+   <doc-panel id="pagy-prev-url-pagy" collapsed>
+       <template #title><code v-pre>pagy_prev_url(pagy)</code></template>
+<p>Returns the url for the previous page. Useful to build minimalistic UIs that don&#x27;t use nav bar links (e.g. <code v-pre>countless</code> extra).</p>
    </doc-panel>
-   <doc-panel id="pagy-next-url-pagy-absolute-false" collapsed>
-       <template #title><code v-pre>pagy_next_url(pagy, absolute: false)</code></template>
-<p>Returns the url for the next page or <code v-pre>nil</code> if there is no next page. Useful to build minimalistic UIs that don&#x27;t use nav bar
-links (e.g. <code v-pre>countless</code> extra).</p>
+   <doc-panel id="pagy-next-url-pagy" collapsed>
+       <template #title><code v-pre>pagy_next_url(pagy)</code></template>
+<p>Returns the url for the next page. Useful to build minimalistic UIs that don&#x27;t use nav bar links (e.g. <code v-pre>countless</code> extra).</p>
    </doc-panel>
-   <doc-panel id="pagy-prev-html-pagy-text-pagy-t-pagy-prev-link-extra" collapsed>
-       <template #title><code v-pre>pagy_prev_html(pagy, text: pagy_t('pagy.prev'), link_extra: '')</code></template>
-<p>Returns the HTML string for the enabled/disabled previous page link. It is the same prev link string which is
-part of the <code v-pre>pagy_nav</code> helper.</p>
+   <doc-panel id="pagy-prev-link-pagy-text-pagy-t-pagy-nav-prev-link-extra" collapsed>
+       <template #title><code v-pre>pagy_prev_link(pagy, text: pagy_t('pagy.nav.prev'), link_extra: &quot;&quot;)</code></template>
+<p>Returns the <code v-pre>a</code> tag for the previous page. It is the same prev link string which is part of the <code v-pre>pagy_nav</code> helper.</p>
 <p>Useful to build minimalistic helpers UIs that don&#x27;t use nav bar links (e.g. <code v-pre>countless</code> extra).</p>
    </doc-panel>
-   <doc-panel id="pagy-next-html-pagy-text-pagy-t-pagy-next-link-extra" collapsed>
-       <template #title><code v-pre>pagy_next_html(pagy, text: pagy_t('pagy.next'), link_extra: '')</code></template>
-<p>Returns the HTML string for the enabled/disabled next page link. It is the same next link string which is part of the
-<code v-pre>pagy_nav</code> helper.</p>
+   <doc-panel id="pagy-next-link-pagy-text-pagy-t-pagy-nav-next-link-extra" collapsed>
+       <template #title><code v-pre>pagy_next_link(pagy, text: pagy_t('pagy.nav.next'), link_extra: &quot;&quot;)</code></template>
+<p>Returns the <code v-pre>a</code> tag for the next page. It is the same next link string which is part of the <code v-pre>pagy_nav</code> helper.</p>
 <p>Useful to build minimalistic helpers UIs that don&#x27;t use nav bar links (e.g. <code v-pre>countless</code> extra).</p>
    </doc-panel>
    <doc-panel id="pagy-prev-link-tag-pagy" collapsed>

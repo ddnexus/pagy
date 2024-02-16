@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357009317">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357009317" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -270,8 +270,7 @@
     <div><a href="../../../categories/class/">Class</a></div>
 </div>
 
-<p>This is a <code v-pre>Pagy</code> subclass (see <a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy/countless.rb">source</a>) that provides
-pagination without the need of any <code v-pre>:count</code>.</p>
+<p>This is a <code v-pre>Pagy</code> subclass (see <a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy/countless.rb">source</a>) that provides pagination without the need of any <code v-pre>:count</code>.</p>
 <p>That may be especially useful in the following scenarios:</p>
 <ul>
 <li>slow <code v-pre>COUNT(*)</code> query - result of large tables or poorly optimized DBs</li>
@@ -279,9 +278,7 @@ pagination without the need of any <code v-pre>:count</code>.</p>
 <li>minimalistic UI, infinite scrolling, APIs that don&#x27;t benefit from a nav-bar</li>
 <li>when the full nav-bar is not a requirement and/or performance is more desirable</li>
 </ul>
-<p>This class provides support for extras that don&#x27;t need the full set of pagination support or need to avoid the <code v-pre>:count</code> variable (
-e.g. the <a href="../../extras/countless/">countless</a> extra). The class API is documented here, however you should not need to use this
-class directly because it is required and used internally by the extra.</p>
+<p>This class provides support for extras that don&#x27;t need the full set of pagination support or need to avoid the <code v-pre>:count</code> variable (e.g. the <a href="../../extras/countless/">countless</a> extra). The class API is documented here, however you should not need to use this class directly because it is required and used internally by the extra.</p>
 <doc-anchor-target id="caveats">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#caveats">#</doc-anchor-trigger>
@@ -301,8 +298,7 @@ class directly because it is required and used internally by the extra.</p>
         <span>Nav bar</span>
     </h4>
 </doc-anchor-target>
-<p>The nav bar links after the current page cannot be fully displayed because a couple of items of the <code v-pre>:size</code> array depends on
-the <code v-pre>count</code>, so they have some limitations.</p>
+<p>The nav bar links after the current page cannot be fully displayed because a couple of items of the <code v-pre>:size</code> array depends on the <code v-pre>count</code>, so they have some limitations.</p>
 <p>Regardless the actual <code v-pre>:size</code> value:</p>
 <ul>
 <li><code v-pre>vars[:size][2]</code> is capped at 1 (we know only if the next page exists)</li>
@@ -321,8 +317,7 @@ the <code v-pre>count</code>, so they have some limitations.</p>
         <span>:overflow variable</span>
     </h4>
 </doc-anchor-target>
-<p>The available values for the <code v-pre>:overflow</code> variable are <code v-pre>:empty_page</code> and <code v-pre>:exception</code>, missing the <code v-pre>:last_page</code> (which is not known
-in case of an exception).</p>
+<p>The available values for the <code v-pre>:overflow</code> variable are <code v-pre>:empty_page</code> and <code v-pre>:exception</code>, missing the <code v-pre>:last_page</code> (which is not known in case of an exception).</p>
 <doc-anchor-target id="features-without-support">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#features-without-support">#</doc-anchor-trigger>
@@ -336,32 +331,24 @@ in case of an exception).</p>
         <span>How countless pagination works</span>
     </h2>
 </doc-anchor-target>
-<p>Instead of basing all the internal calculations on the <code v-pre>:count</code> variable (passed with the constructor), this class uses the number
-of actually retrieved items to deduce the pagination variables.</p>
-<p>The retrieved items number can be passed in a second step to the <code v-pre>finalize</code> method, which allows pagy to determine if there is
-a <code v-pre>next</code> page, or if the current page is the <code v-pre>last</code> page, or if the current request should raise a <code v-pre>Pagy::OverflowError</code>
-exception.</p>
-<p>Retrieving these variables may be useful to supply a UI as complete as possible, when used with classic helpers, and can be
-skipped when it&#x27;s not needed (like for navless pagination, infinite-scroll, etc.). See
-the <a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb">countless.rb extra</a> for more details.</p>
+<p>Instead of basing all the internal calculations on the <code v-pre>:count</code> variable (passed with the constructor), this class uses the number of actually retrieved items to deduce the pagination variables.</p>
+<p>The retrieved items number can be passed in a second step to the <code v-pre>finalize</code> method, which allows pagy to determine if there is a <code v-pre>next</code> page, or if the current page is the <code v-pre>last</code> page, or if the current request should raise a <code v-pre>Pagy::OverflowError</code> exception.</p>
+<p>Retrieving these variables may be useful to supply a UI as complete as possible, when used with classic helpers, and can be skipped when it&#x27;s not needed (like for navless pagination, infinite-scroll, etc.). See the <a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb">countless.rb extra</a> for more details.</p>
 <doc-anchor-target id="methods">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
         <span>Methods</span>
     </h2>
 </doc-anchor-target>
-<p>The construction of the final <code v-pre>Pagy::Countless</code> object is split into 2 steps: the regular <code v-pre>initialize</code> method and the <code v-pre>finalize</code>
-method, which will use the retrieved items number to calculate the rest of the pagination integers.</p>
+<p>The construction of the final <code v-pre>Pagy::Countless</code> object is split into 2 steps: the regular <code v-pre>initialize</code> method and the <code v-pre>finalize</code> method, which will use the retrieved items number to calculate the rest of the pagination integers.</p>
 <doc-panels>
    <doc-panel id="pagy-countless-new-vars" collapsed>
        <template #title><code v-pre>Pagy::Countless.new(vars)</code></template>
-<p>The initial constructor takes the usual hash of variables, calculating only the requested <code v-pre>items</code> and the <code v-pre>offset</code>, useful to
-query the page of items.</p>
+<p>The initial constructor takes the usual hash of variables, calculating only the requested <code v-pre>items</code> and the <code v-pre>offset</code>, useful to query the page of items.</p>
    </doc-panel>
    <doc-panel id="finalize-fetched-size" collapsed>
        <template #title><code v-pre>finalize(fetched_size)</code></template>
-<p>The actual calculation of all the internal variables for the pagination is calculated using the size of the fetched items. The
-method returns the finalized instance object.</p>
+<p>The actual calculation of all the internal variables for the pagination is calculated using the size of the fetched items. The method returns the finalized instance object.</p>
    </doc-panel>
 </doc-panels>
 

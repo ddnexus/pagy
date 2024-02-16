@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357009317">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357009317" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357009317" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -273,9 +273,7 @@
 </div>
 
 <p>Implements the <a href="https://jsonapi.org">JSON:API</a> specifications for pagination.</p>
-<p>When enabled, the query params used in the pagy URLs are nested under the <code v-pre>page</code> param, as specified by
-the <a href="https://jsonapi.org/format/#query-parameters-families">Query Parameter Family</a>
-e.g. <code v-pre>https://example.com/products?page[number]=2&amp;page[size]=30</code>.</p>
+<p>When enabled, the query params used in the pagy URLs are nested under the <code v-pre>page</code> param, as specified by the <a href="https://jsonapi.org/format/#query-parameters-families">Query Parameter Family</a> e.g. <code v-pre>https://example.com/products?page[number]=2&amp;page[size]=30</code>.</p>
 <doc-anchor-target id="synopsis">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#synopsis">#</doc-anchor-trigger>
@@ -396,12 +394,9 @@ links_hash = pagy_jsonapi_links(@pagy)
         <span>Interaction with other features/extras</span>
     </h2>
 </doc-anchor-target>
-<p>This extra just nests the <code v-pre>:page</code> and <code v-pre>:items</code> params under the JSON:API reserved <code v-pre>:page</code> param. You may want to customize
-the <code v-pre>:page_param</code> and the <code v-pre>:items</code> params as shown in the <doc-anchor-trigger to="#synopsis">Synopsis</doc-anchor-trigger>.</p>
-<p>You may also want to use it with the <a href="../items/">items extra</a> in order to allow the client to request a specific
-number of items per page and capping it to a max number.</p>
-<p>It works also with the <a href="../countless/">countless</a>, <a href="../searchkick/">searchkick</a>, <a href="../elasticsearch_rails/">elasticsearch_rails</a>
-and <a href="../meilisearch/">meilisearch</a> extras.</p>
+<p>This extra just nests the <code v-pre>:page</code> and <code v-pre>:items</code> params under the JSON:API reserved <code v-pre>:page</code> param. You may want to customize the <code v-pre>:page_param</code> and the <code v-pre>:items</code> params as shown in the <doc-anchor-trigger to="#synopsis">Synopsis</doc-anchor-trigger>.</p>
+<p>You may also want to use it with the <a href="../items/">items extra</a> in order to allow the client to request a specific number of items per page and capping it to a max number.</p>
+<p>It works also with the <a href="../countless/">countless</a>, <a href="../searchkick/">searchkick</a>, <a href="../elasticsearch_rails/">elasticsearch_rails</a> and <a href="../meilisearch/">meilisearch</a> extras.</p>
 <p>It does not make sense (and doesn&#x27;t work) with the <a href="../countless/">Calendar</a> extra.</p>
 <doc-anchor-target id="methods">
     <h2>
@@ -412,8 +407,7 @@ and <a href="../meilisearch/">meilisearch</a> extras.</p>
 <p>The <code v-pre>jsonapi</code> extra adds the <code v-pre>pagy_jsonapi_links</code> helper to the <code v-pre>Pagy::Backend</code> module.</p>
 <doc-panel id="pagy-jsonapi-links-pagy-opts">
     <template #title><code v-pre>pagy_jsonapi_links(pagy, **opts)</code></template>
-<p>This helper provides the JSON:API <a href="https://jsonapi.org/format/#fetching-pagination">links for pagination</a> as a hash
-of <code v-pre>first</code>, <code v-pre>last</code>, <code v-pre>prev</code>, <code v-pre>next</code> paths. You can pass the option <code v-pre>asbsolute: true</code> to get an absolute URL instead.</p>
+<p>This helper provides the JSON:API <a href="https://jsonapi.org/format/#fetching-pagination">links for pagination</a> as a hash of <code v-pre>first</code>, <code v-pre>last</code>, <code v-pre>prev</code>, <code v-pre>next</code> paths. You can pass the option <code v-pre>asbsolute: true</code> to get an absolute URL instead.</p>
 </doc-panel>
 
                                 

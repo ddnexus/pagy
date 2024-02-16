@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761302781453">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357009317">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Items | Pagy</title>
     <meta name="title" content="Items | Pagy">
-    <meta name="description" content="Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or">
+    <meta name="description" content="Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or user-customizable UIs.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/extras/items/">
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/items/">
     <meta property="og:title" content="Items | Pagy">
-    <meta property="og:description" content="Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or">
+    <meta property="og:description" content="Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or user-customizable UIs.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/items/">
     <meta property="twitter:title" content="Items | Pagy">
-    <meta property="twitter:description" content="Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or">
+    <meta property="twitter:description" content="Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or user-customizable UIs.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761302781453" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357009317" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761302781453" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761302781453" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357009317" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357009317" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.4.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -271,10 +271,8 @@
     <div><a href="../../../categories/extra/">Extra</a></div>
 </div>
 
-<p>Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or
-user-customizable UIs.</p>
-<p>It works also with the <a href="../countless/">countless</a>, <a href="../searchkick/">searchkick</a>, <a href="../elasticsearch_rails/">elasticsearch_rails</a>
-and <a href="../meilisearch/">meilisearch</a> extras.</p>
+<p>Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or user-customizable UIs.</p>
+<p>It works also with the <a href="../countless/">countless</a>, <a href="../searchkick/">searchkick</a>, <a href="../elasticsearch_rails/">elasticsearch_rails</a> and <a href="../meilisearch/">meilisearch</a> extras.</p>
 <doc-anchor-target id="synopsis">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#synopsis">#</doc-anchor-trigger>
@@ -323,10 +321,10 @@ and <a href="../meilisearch/">meilisearch</a> extras.</p>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># optionally disable it by default
-Pagy::DEFAULT[:items_extra] = false # default true
+Pagy::DEFAULT[:items_extra] = false               # default true
 # customize the defaults if you need to
-Pagy::DEFAULT[:items_param] = :custom_param # default :items
-Pagy::DEFAULT[:max_items]   = 200 # default 100</code></pre>
+Pagy::DEFAULT[:items_param] = :custom_param       # default :items
+Pagy::DEFAULT[:max_items]   = 200                 # default 100</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -389,8 +387,7 @@ Pagy::DEFAULT[:max_items]   = 200 # default 100</code></pre>
 </div>
 <p>You can use the <code v-pre>:items_extra</code> variable to opt-out of the feature even when the extra is required.</p>
 <p>This extra uses the <code v-pre>:items_param</code> variable to determine the param it should get the number of <code v-pre>:items</code> from.</p>
-<p>The <code v-pre>:max_items</code> is used to cap the number of items to that max. It is set to <code v-pre>100</code> by default. If you don&#x27;t want to limit the max
-requested number of items per page, you can set it to <code v-pre>nil</code>.</p>
+<p>The <code v-pre>:max_items</code> is used to cap the number of items to that max. It is set to <code v-pre>100</code> by default. If you don&#x27;t want to limit the max requested number of items per page, you can set it to <code v-pre>nil</code>.</p>
 <p>You may want to customize the variables. Depending on the scope of the customization, you have a couple of options:</p>
 <p>As a global default:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
@@ -446,18 +443,16 @@ pagy(scope, items: 30)</code></pre>
     </h2>
 </doc-anchor-target>
 <p>The <code v-pre>items</code> extra adds the <code v-pre>pagy_items_selector_js</code> helper to the <code v-pre>Pagy::Frontend</code> module.</p>
-<doc-panel id="pagy-items-selector-js-pagy-vars" collapsed>
-    <template #title><code v-pre>pagy_items_selector_js(pagy, **vars)</code></template>
-<p>This helper provides an items selector UI, which allows the user to select any arbitrary number of items per page (below
-the <code v-pre>:max_items</code> number) in a numeric input field. It looks like:</p>
-<p><span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per
-page</span></p>
+<doc-panel id="pagy-items-selector-js-pagy" collapsed>
+    <template #title><code v-pre>pagy_items_selector_js(pagy, ...)</code></template>
+<p>This helper provides an items selector UI, which allows the user to select any arbitrary number of items per page (below the <code v-pre>:max_items</code> number) in a numeric input field. It looks like:</p>
+<p><span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per page</span></p>
 <p>It returns an empty string if the <code v-pre>:items_extra</code> is <code v-pre>false</code>.</p>
-<p>The method accepts also a few optional keyword arguments variables:</p>
+<p>The method accepts also a few optional keyword arguments:</p>
 <ul>
 <li><code v-pre>:pagy_id</code> which adds the <code v-pre>id</code> HTML attribute to the <code v-pre>nav</code> tag</li>
 <li><code v-pre>:item_name</code> an already pluralized string that will be used in place of the default <code v-pre>item/items</code></li>
-<li><code v-pre>:item_i18n_key</code> the key to lookup in a dictionary</li>
+<li><code v-pre>:i18n_key</code> the key to lookup in a dictionary</li>
 <li><code v-pre>:link_extra</code> which add a verbatim string to the <code v-pre>a</code> tag (e.g. <code v-pre>'data-remote=&quot;true&quot;'</code>)</li>
 </ul>
 <div class="flex mb-6">
@@ -474,8 +469,7 @@ page</span></p>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Info</h5>
-<p>The <code v-pre>:item_i18n_key</code> can be passed also to the constructor or be a less useful global variable (
-i.e. <code v-pre>Pagy::DEFAULT[:item_i18n_key]</code></p>
+<p>The <code v-pre>:i18n_key</code> can be passed also to the constructor or be a less useful global variable (i.e. <code v-pre>Pagy::DEFAULT[:i18n_key]</code></p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>some_view.html.erb</span>
@@ -483,19 +477,16 @@ i.e. <code v-pre>Pagy::DEFAULT[:item_i18n_key]</code></p>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %&gt;
-&lt;%== pagy_items_selector_js(@pagy, item_i18n_key: 'activerecord.model.product' %&gt;</code></pre>
+&lt;%== pagy_items_selector_js(@pagy, i18n_key: 'activerecord.model.product' %&gt;</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
         </div>
     </div>
 </div>
-<p><span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per
-page</span></p>
+<p><span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per page</span></p>
 <p><em>(see <a href="../../how-to/#customize-the-item-name">How to customize the item name</a>)</em></p>
-<p>When the items number is changed with the selector, pagy will reload the pagination UI using the selected items per page. It will
-also request the <em>right</em> page number calculated in order to contain the first item of the previously displayed page. That way the
-new displayed page will roughly show the same items in the collection before the items change.</p>
+<p>When the items number is changed with the selector, pagy will reload the pagination UI using the selected items per page. It will also request the <em>right</em> page number calculated in order to contain the first item of the previously displayed page. That way the new displayed page will roughly show the same items in the collection before the items change.</p>
 <p>This method can take an extra <code v-pre>id</code> argument, which is used to build the <code v-pre>id</code> attribute of the <code v-pre>nav</code> tag.</p>
 </doc-panel>
 
