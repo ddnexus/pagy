@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357189795">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357413815">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Headers | Pagy</title>
     <meta name="title" content="Headers | Pagy">
-    <meta name="description" content="Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination.">
+    <meta name="description" content="Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination. It also follows the header casing introduced by ">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/extras/headers/">
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/headers/">
     <meta property="og:title" content="Headers | Pagy">
-    <meta property="og:description" content="Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination.">
+    <meta property="og:description" content="Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination. It also follows the header casing introduced by ">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/headers/">
     <meta property="twitter:title" content="Headers | Pagy">
-    <meta property="twitter:description" content="Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination.">
+    <meta property="twitter:description" content="Add RFC-8288 compliant http response headers (and other helpers) useful for API pagination. It also follows the header casing introduced by ">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761357189795" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357413815" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357189795" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357413815" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357189795" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357189795" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357413815" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357413815" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.5.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -271,20 +271,8 @@
     <div><a href="../../../categories/extra/">Extra</a></div>
 </div>
 
-<p>Add <a href="https://tools.ietf.org/html/rfc8288">RFC-8288</a> compliant http response headers (and other helpers) useful for API pagination.</p>
-<doc-anchor-target id="advantages">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#advantages">#</doc-anchor-trigger>
-        <span>Advantages</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>No need for an extra dependency</li>
-<li>No need to learn yet another interface</li>
-<li>It saves quite a lot of memory and CPU</li>
-<li>It works with any pagy object (including <code v-pre>Pagy::Countless</code>) regardless the type of collection</li>
-<li>It offers more explicit flexibility and simplicity</li>
-</ul>
+<p>Add <a href="https://tools.ietf.org/html/rfc8288">RFC-8288</a> compliant http response headers (and other helpers) useful for API
+pagination. It also follows the header casing introduced by <code v-pre>rack</code> version <code v-pre>3+</code> (see <a href="https://github.com/rack/rack/issues/1592">https://github.com/rack/rack/issues/1592</a>).</p>
 <doc-anchor-target id="synopsis">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#synopsis">#</doc-anchor-trigger>
@@ -321,7 +309,8 @@ render json: records</code></pre>
         <span>Suggestions</span>
     </h3>
 </doc-anchor-target>
-<p>Instead of explicitly merging the headers before each rendering, if you use rails you can get them automatically merged (application-wide and when <code v-pre>@pagy</code> is available), by adding an <code v-pre>after_action</code> in your application controller:</p>
+<p>Instead of explicitly merging the headers before each rendering, if you use rails you can get them automatically merged (
+application-wide and when <code v-pre>@pagy</code> is available), by adding an <code v-pre>after_action</code> in your application controller:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>Controller (after_action)</span>
@@ -336,7 +325,8 @@ render json: records</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
-<p>If your code in different actions is similar enough, you can encapsulate the statements in a custom <code v-pre>pagy_render</code> method in your application controller. For example:</p>
+<p>If your code in different actions is similar enough, you can encapsulate the statements in a custom <code v-pre>pagy_render</code> method in your
+application controller. For example:</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>Controller (pagy_render)</span>
@@ -369,19 +359,21 @@ pagy_render(collection)</code></pre>
         <span>Headers</span>
     </h2>
 </doc-anchor-target>
-<p>This extra generates the standard <code v-pre>Link</code> header defined in the
-<a href="https://tools.ietf.org/html/rfc8288">RFC-8288</a>, and adds 4 customizable headers useful for pagination: <code v-pre>Current-Page</code>, <code v-pre>Page-Items</code>, <code v-pre>Total-Pages</code> and <code v-pre>Total-Count</code> headers.</p>
+<p>This extra generates the standard <code v-pre>link</code> header defined in the
+<a href="https://tools.ietf.org/html/rfc8288">RFC-8288</a>, and adds 4 customizable headers useful for pagination: <code v-pre>current-page</code>,
+<code v-pre>page-items</code>, <code v-pre>total-pages</code> and <code v-pre>total-count</code> headers.</p>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>Example of the default HTTP headers</span>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">Link &lt;https://example.com:8080/foo?page=1&gt;; rel=&quot;first&quot;, &lt;https://example.com:8080/foo?page=2&gt;; rel=&quot;prev&quot;, &lt;https://example.com:8080/foo?page=4&gt;; rel=&quot;next&quot;, &lt;https://example.com:8080/foo?page=50&gt;; rel=&quot;last&quot;
-Current-Page 3
-Page-Items 20
-Total-Pages 50
-Total-Count 1000</code></pre>
+<pre class="language-none"><code v-pre class="language-none">link &lt;https://example.com:8080/foo?page=1&gt;; rel=&quot;first&quot;, &lt;https://example.com:8080/foo?page=2&gt;; rel=&quot;prev&quot;, &lt;https://example.
+com:8080/foo?page=4&gt;; rel=&quot;next&quot;, &lt;https://example.com:8080/foo?page=50&gt;; rel=&quot;last&quot;
+current-page 3
+page-items 20
+total-pages 50
+total-count 1000</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -391,19 +383,22 @@ Total-Count 1000</code></pre>
         <span>Customize the header names</span>
     </h3>
 </doc-anchor-target>
-<p>If you are replacing any of the existing API-pagination gems in some already working app, you may want to customize the header names so you will not have to change the client app that consumes them. You can do so by using the <code v-pre>:headers</code> variable <em>(see <doc-anchor-trigger to="#variables">variables</doc-anchor-trigger> below)</em></p>
+<p>If you are replacing any of the existing API-pagination gems in some already working app, you may want to customize the header
+names so you will not have to change the client app that consumes them. You can do so by using the <code v-pre>:headers</code> variable <em>(
+see <doc-anchor-trigger to="#variables">variables</doc-anchor-trigger> below)</em></p>
 <doc-anchor-target id="countless-pagination">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#countless-pagination">#</doc-anchor-trigger>
         <span>Countless Pagination</span>
     </h3>
 </doc-anchor-target>
-<p>If your requirements allow to save one count-query per rendering by using the <code v-pre>pagy_countless</code> constructor, the headers will not have the <code v-pre>rel=&quot;last&quot;</code> link, the <code v-pre>Total-Count</code> and the <code v-pre>Total-Pages</code> that are unknown with countless pagination.</p>
+<p>If your requirements allow to save one count-query per rendering by using the <code v-pre>pagy_countless</code> constructor, the headers will
+not have the <code v-pre>rel=&quot;last&quot;</code> link, the <code v-pre>total-count</code> and the <code v-pre>total-pages</code> that are unknown with countless pagination.</p>
 <p>Example of HTTP headers produced from a <code v-pre>Pagy::Countless</code> object:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">Link &lt;https://example.com:8080/foo?page=1&gt;; rel=&quot;first&quot;, &lt;https://example.com:8080/foo?page=2&gt;; rel=&quot;prev&quot;, &lt;https://example.com:8080/foo?page=4&gt;; rel=&quot;next&quot;
-Current-Page 3
-Page-Items 20</code></pre>
+current-page 3
+page-items 20</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="variables">
     <h2>
@@ -424,7 +419,7 @@ Page-Items 20</code></pre>
 <tr>
 <td style="text-align: left;"><code v-pre>:headers</code></td>
 <td style="text-align: left;">Hash variable to customize/suppress the optional headers</td>
-<td style="text-align: left;"><code v-pre>{ page: 'Current-Page', items: 'Page-Items', count: 'Total-Count', pages: 'Total-Pages' }</code></td>
+<td style="text-align: left;"><code v-pre>{ page: 'current-page', items: 'page-items', count: 'total-count', pages: 'total-pages' }</code></td>
 </tr>
 </tbody>
 </table>
@@ -438,10 +433,10 @@ Page-Items 20</code></pre>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># global
-Pagy::DEFAULT[:headers] = {page: 'Current-Page', 
-                           items: 'Per-Page', 
+Pagy::DEFAULT[:headers] = {page: 'current-page', 
+                           items: 'per-page', 
                            pages: false, 
-                           count: 'Total'}</code></pre>
+                           count: 'total'}</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -453,10 +448,10 @@ Pagy::DEFAULT[:headers] = {page: 'Current-Page',
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># or for single instance
 pagy, records = pagy(collection, 
-                     headers: {page: 'Current-Page', 
-                               items: 'Per-Page', 
+                     headers: {page: 'current-page', 
+                               items: 'per-page', 
                                pages: false, 
-                               count: 'Total'})</code></pre>
+                               count: 'total'})</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
@@ -471,15 +466,20 @@ pagy, records = pagy(collection,
        <template #title><code v-pre>pagy_headers_merge(pagy)</code></template>
 <p>This method relies on the <code v-pre>response</code> method in your controller returning a <code v-pre>Rack::Response</code> object.</p>
 <p>You should use it before rendering: it simply merges the <code v-pre>pagy_headers</code> to the <code v-pre>response.headers</code> internally.</p>
-<p>If your app doesn&#x27;t implement the <code v-pre>response</code> object that way, you should override the <code v-pre>pagy_headers_merge</code> method in your controller or use the <code v-pre>pagy_headers</code> method directly.</p>
+<p>If your app doesn&#x27;t implement the <code v-pre>response</code> object that way, you should override the <code v-pre>pagy_headers_merge</code> method in your
+controller or use the <code v-pre>pagy_headers</code> method directly.</p>
    </doc-panel>
    <doc-panel id="pagy-headers-pagy" collapsed>
        <template #title><code v-pre>pagy_headers(pagy)</code></template>
-<p>This method generates a hash of <a href="https://tools.ietf.org/html/rfc8288">RFC-8288</a> compliant http headers to send with the response. It is internally used by the <code v-pre>pagy_headers_merge</code> method, so you usually don&#x27;t need to use it directly. However, if you need to edit the headers that pagy generates (for example adding extra <code v-pre>Link</code> headers), you can override it in your own controller.</p>
+<p>This method generates a hash of <a href="https://tools.ietf.org/html/rfc8288">RFC-8288</a> compliant http headers to send with the
+response. It is internally used by the <code v-pre>pagy_headers_merge</code> method, so you usually don&#x27;t need to use it directly. However, if you
+need to edit the headers that pagy generates (for example adding extra <code v-pre>link</code> headers), you can override it in your own
+controller.</p>
    </doc-panel>
    <doc-panel id="pagy-headers-hash-pagy" collapsed>
        <template #title><code v-pre>pagy_headers_hash(pagy)</code></template>
-<p>This method generates a hash structure of the headers, useful only if you want to include the headers as metadata within your JSON. For example:</p>
+<p>This method generates a hash structure of the headers, useful only if you want to include the headers as metadata within your
+JSON. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})</code></pre>
 </doc-codeblock></div>

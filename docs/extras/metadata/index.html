@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357189795">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761357413815">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761357189795" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761357413815" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357189795" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761357413815" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357189795" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357189795" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761357413815" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761357413815" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">6.5.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -334,22 +334,29 @@ render json: { data: records,
 </tbody>
 </table>
 </div>
-<p>As usual, depending on the scope of the customization, you can set the <code v-pre>:metadata</code> variable globally or for a single pagy instance.</p>
-<p>IMPORTANT: Don&#x27;t rely on the broad default! You should explicitly set the <code v-pre>:metadata</code> variable with only the keys that you will actually use in the frontend, for obvious performance reasons. Besides you can also add other pagy method names not included in the default.</p>
+<p>As usual, depending on the scope of the customization, you can set the <code v-pre>:metadata</code> variable globally or for a single pagy
+instance.</p>
+<p>IMPORTANT: Don&#x27;t rely on the broad default! You should explicitly set the <code v-pre>:metadata</code> variable with only the keys that you will
+actually use in the frontend, for obvious performance reasons. Besides you can also add other pagy method names not included in
+the default.</p>
 <doc-anchor-target id="the-scaffold_url-key">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#the-scaffold_url-key">#</doc-anchor-trigger>
         <span>The <code v-pre>:scaffold_url</code> key</span>
     </h3>
 </doc-anchor-target>
-<p>This is a special url string that you can use as the scaffold to build real page urls in your frontend (instead of producing them on the backend).</p>
-<p>It is a pagination url/path (complete with all the params) containing the <code v-pre>__pagy_page__</code> placeholder in place of the page number (e.g. <code v-pre>'/foo?page=__pagy_page__&amp;bar=baz'</code>)</p>
-<p>You can generate all the actual links on the frontend by simply replacing the placeholder with the actual page number you want to link to.</p>
+<p>This is a special url string that you can use as the scaffold to build real page urls in your frontend (instead of producing them
+on the backend).</p>
+<p>It is a pagination url/path (complete with all the params) containing the <code v-pre>__pagy_page__</code> placeholder in place of the page
+number (e.g. <code v-pre>'/foo?page=__pagy_page__&amp;bar=baz'</code>)</p>
+<p>You can generate all the actual links on the frontend by simply replacing the placeholder with the actual page number you want to
+link to.</p>
 <p>In javascript you can do something like:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-javascript"><code v-pre class="language-javascript">page_url = scaffold_url.replace(/__pagy_page__/, page_number)</code></pre>
 </doc-codeblock></div>
-<p>This is particularly useful when you want to build some dynamic pagination UI (e.g. similar to what the <code v-pre>pagy_*combo_js</code> generates), but right in your frontend app, saving backend resources with obvious performance benefits.</p>
+<p>This is particularly useful when you want to build some dynamic pagination UI (e.g. similar to what the <code v-pre>pagy_*combo_js</code>
+generates), but right in your frontend app, saving backend resources with obvious performance benefits.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -377,7 +384,8 @@ render json: { data: records,
 <p>This extra adds a single method to the <code v-pre>Pagy::Backend</code> (available in your controllers).</p>
 <doc-panel id="pagy-metadata-pagy-absolute-nil" collapsed>
     <template #title><code v-pre>pagy_metadata(pagy, absolute: nil)</code></template>
-<p>This method returns a hash with the keys/values defined by the <code v-pre>:metadata</code> variable.  When true, the <code v-pre>absolute</code> boolean argument will cause all the <code v-pre>:*_url</code> metadata to be absolute instead of relative.</p>
+<p>This method returns a hash with the keys/values defined by the <code v-pre>:metadata</code> variable. When true, the <code v-pre>absolute</code> boolean argument
+will cause all the <code v-pre>:*_url</code> metadata to be absolute instead of relative.</p>
 </doc-panel>
 
                                 

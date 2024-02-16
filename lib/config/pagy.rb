@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (6.5.0)
+# Pagy initializer file (7.0.0)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -10,25 +10,26 @@
 # All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 
-
 # Instance variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#instance-variables
-# Pagy::DEFAULT[:page]   = 1                                  # default
-# Pagy::DEFAULT[:items]  = 20                                 # default
-# Pagy::DEFAULT[:outset] = 0                                  # default
-
+# Pagy::DEFAULT[:page]   = 1                            # default
+# Pagy::DEFAULT[:items]  = 20                           # default
+# Pagy::DEFAULT[:outset] = 0                            # default
 
 # Other Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#other-variables
-# Pagy::DEFAULT[:size]         = [1,4,4,1]                    # default
-# Pagy::DEFAULT[:page_param]   = :page                        # default
-# The :params can be also set as a lambda e.g ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
-# Pagy::DEFAULT[:params]       = {}                           # default
-# Pagy::DEFAULT[:fragment]     = '#fragment'                  # example
-# Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'         # example
-# Pagy::DEFAULT[:i18n_key]     = 'pagy.item_name'             # default
-# Pagy::DEFAULT[:cycle]        = true                         # example
-# Pagy::DEFAULT[:request_path] = "/foo"                       # example
+# Pagy::DEFAULT[:size]         = [1,4,4,1]              # default in pagy < 7.0
+# Pagy::DEFAULT[:page_param]   = :page                  # default
+# Pagy::DEFAULT[:fragment]     = '#fragment'            # example
+# Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'   # example
+# Pagy::DEFAULT[:item_i18n_key = 'pagy.item_name'       # default
+# Pagy::DEFAULT[:nav_i18n_key] = 'pagy.aria_label.nav'  # default
+# Pagy::DEFAULT[:cycle]        = true                   # example
+# Pagy::DEFAULT[:request_path] = '/foo'                 # example
+# Pagy::DEFAULT[:count_args]   = []                     # example for non AR ORMs
+# Pagy::DEFAULT[:params]       = {}                     # default
+# NOTICE: The :params can be also set as a lambda e.g:
+# ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
 
 
 # Extras
@@ -132,6 +133,7 @@
 # Bulma extra: Add nav, nav_js and combo_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/docs/extras/bulma
 # require 'pagy/extras/bulma'
+# DEFAULT[:bulma_nav_classes] = 'is-centered'   # default
 
 # Foundation extra: Add nav, nav_js and combo_nav_js helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/docs/extras/foundation
@@ -249,7 +251,7 @@
 # require 'pagy/extras/i18n'
 
 # Default i18n key
-# Pagy::DEFAULT[:i18n_key] = 'pagy.item_name'   # default
+# Pagy::DEFAULT[:item_i18n_key] = 'pagy.item_name'   # default
 
 
 # When you are done setting your own default freeze it, so it will not get changed accidentally
