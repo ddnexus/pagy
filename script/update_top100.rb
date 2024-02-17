@@ -4,26 +4,31 @@
 require 'http'
 require 'net/http'
 
-url_fmt     = 'https://api.github.com/repos/ddnexus/pagy/contributors?page=%s'
-width       = '64'
-page        = 1
-top100start = '<!-- top100 start -->'
-top100end   = '<!-- top100 end -->'
+URL_FMT   = 'https://api.github.com/repos/ddnexus/pagy/contributors?page=%s'
+WIDTH     = '60'
+MAX_COUNT = 100
+START_TAG = '<!-- top100 start -->'
+END_TAG   = '<!-- top100 end -->'
+count     = 0
+page      = 1
 
-top100 = "#{top100start}\n"
-until (contributors = JSON.parse(Net::HTTP.get(URI(format(url_fmt, page))))).empty?
+top100 = "#{START_TAG}\n"
+until count >= MAX_COUNT || (contributors = JSON.parse(Net::HTTP.get(URI(format(URL_FMT, page))))).empty?
   contributors.each do |c|
+    break if count >= MAX_COUNT
+
     commits = c['contributions'] == 1 ? 'commit' : 'commits'
-    top100 << %([<img src="#{c['avatar_url']}" width="#{width}" title="@#{
+    top100 << %([<img src="#{c['avatar_url']}" WIDTH="#{WIDTH}" title="@#{
     c['login']}: #{c['contributions']} #{commits}">](https://github.com/#{c['login']}))
+    count += 1
   end
   page += 1
 end
-top100 << "\n#{top100end}"
+top100 << "\n#{END_TAG}"
 
 readme_path = File.expand_path('../README.md', __dir__)
 content     = File.read(readme_path)
-content.sub!(/#{top100start}.*#{top100end}/m, top100)
+content.sub!(/#{START_TAG}.*#{END_TAG}/mo, top100)
 File.write(readme_path, content)
 
-puts 'Top 100 Contributors README section updated!'
+puts %("Top 100 Contributors" README section updated! (#{count}/#{MAX_COUNT}))

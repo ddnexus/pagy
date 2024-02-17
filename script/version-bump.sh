@@ -65,15 +65,15 @@ if [[ $input = y ]] || [[ $input = Y ]]; then
   bundle exec "$ROOT/script/update_top100.rb"
 fi
 
-# Optional show diff
-read -rp 'Do you want to see the diff? (y/n)> ' input
-if [[ $input = y ]] || [[ $input = Y ]]; then
-  git diff -U0 --word-diff=color
-fi
-
-# Optional commit
-read -rp 'Do you want to commit the changes? (y/n)> ' input
-if [[ $input = y ]] || [[ $input = Y ]]; then
-  git add -A
-  git commit -m "Version $new_vers"
-fi
+## Optional show diff
+#read -rp 'Do you want to see the diff? (y/n)> ' input
+#if [[ $input = y ]] || [[ $input = Y ]]; then
+#  git diff -U0 --word-diff=color
+#fi
+#
+## Optional commit
+#read -rp 'Do you want to commit the changes? (y/n)> ' input
+#if [[ $input = y ]] || [[ $input = Y ]]; then
+#  git add -A
+#  git commit -m "Version $new_vers"
+#fi
