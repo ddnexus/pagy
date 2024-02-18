@@ -8,11 +8,24 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
+
+        ### IMPORTANT
         
-        Code Issues are reserved for real, reproducible pagy bug. If you are not sure it's a bug, please ask in the 
-        [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a) discussion area. 
+        _Code Issues are reserved for real, reproducible pagy bugs. If you are not sure it's a bug, 
+        please ask for help in the 
+        [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a) discussion area._        
         
-        By following the steps below you will either solve your problem or ensure that it's a real reproducible bug to fix.
+        ### PREREQUISITE
+        
+        **We need a code support to reproduce the problem with a single click or command
+        in order to start to work on the solution immediately.** 
+        
+        Please, understand that we cannot write the code that fails for you.
+        No matter how well you can describe your code, not matter how many snippets 
+        you paste in the description, we need a self contained code that we can run with a single click or command 
+        or in very simple cases a copy and paste in vanilla IRB (no rails console).
+        
+        Please, choose the support that is most convenient for you below...
 
   - type: checkboxes
     id: prereq
@@ -36,8 +49,8 @@ body:
         ...at least one of the following code supports reproducing the issue:
       options:
         - label: |
-            Simple step by step list that would work in IRB with the [Pagy::Console](https://ddnexus.github
-            .io/pagy/docs/api/console) without invoking any external code
+            Simple snippet that would work **as-is in IRB without invoking any external code!** (You can use the 
+            [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console) for easy output)
         - label: |
             Plain ruby file that can run as `ruby my-problem.rb`
         - label: |
