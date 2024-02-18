@@ -75,6 +75,14 @@ None
 - The text for `"Previous"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You can
   edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
 
+### CSS changes
+
+- The HTML of the current page in `pagy_nav` and `pagy_nav_js` has been changed from simple text (e.g. `5`) to a
+  disabled link (e.g. `<a role="link" aria-disabled="true" aria-current="page">5</a>`). That affects your CSS rules and
+  the [Tailwind examples](https://ddnexus.github.io/pagy/docs/extras/tailwind/) targeting the page links, now overreaching the
+  current page. You should replace the `.pagy-nav .page a` and/or `.pagy-nav-js .page a` selectors with `.pagy-nav .page a[href]`
+  and `.pagy-nav-js .page a[href]`.
+
 ### Internal renaming of private methods (unlikely to break anything)
 
 You should not have used any of the private methods, but if you did so, you will get a `NoMethodError`
@@ -82,7 +90,7 @@ You should not have used any of the private methods, but if you did so, you will
 
 ### Changes
 
-- Added `:count_args` variable passed to the `collection.count(...)` statement (avoids overriding of `pagy-gets-vars` and 
+- Added `:count_args` variable passed to the `collection.count(...)` statement (avoids overriding of `pagy-gets-vars` and
   expands count capabilities)
 - [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/)
 - Removed the pagy templates: they were a burden for maintenance with very limited usage,
