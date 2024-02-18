@@ -5,7 +5,7 @@ require 'http'
 require 'net/http'
 
 URL_FMT   = 'https://api.github.com/repos/ddnexus/pagy/contributors?page=%s'
-WIDTH     = '60'
+IMG_WIDTH = '60'
 MAX_COUNT = 100
 START_TAG = '<!-- top100 start -->'
 END_TAG   = '<!-- top100 end -->'
@@ -17,9 +17,9 @@ until count >= MAX_COUNT || (contributors = JSON.parse(Net::HTTP.get(URI(format(
   contributors.each do |c|
     break if count >= MAX_COUNT
 
-    commits = c['contributions'] == 1 ? 'commit' : 'commits'
-    top100 << %([<img src="#{c['avatar_url']}" WIDTH="#{WIDTH}" title="@#{
-    c['login']}: #{c['contributions']} #{commits}">](https://github.com/#{c['login']}))
+    contribution = c['contributions'] == 1 ? 'contribution' : 'contributions'
+    top100 << %([<img src="#{c['avatar_url']}" width="#{IMG_WIDTH}" title="@#{
+    c['login']}: #{c['contributions']} #{contribution}">](https://github.com/#{c['login']}))
     count += 1
   end
   page += 1

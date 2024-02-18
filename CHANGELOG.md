@@ -22,6 +22,11 @@ None
 
 <hr>
 
+## Version 7.0.2
+
+- Fix for missing to fetch count_args default (close #645)
+- Non-code improvements
+
 ## Version 7.0.1
 
 - Updates ckb translations to be complaint with ARIA in v7.x.x (#643)
