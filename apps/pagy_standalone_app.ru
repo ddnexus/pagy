@@ -25,10 +25,11 @@ require 'bundler/inline'
 # NOTICE: if you get any installation error with the following setup
 # temporarily remove the Gemfile and Gemfile.lock from the repo (they may interfere with the bundler/inline)
 
-gemfile false do
+gemfile true do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'rack'
+  gem 'rackup'
   # gem 'pagy'            # <--install from rubygems
   gem 'pagy', path: '../' # <-- use the local repo
   gem 'puma'
@@ -112,6 +113,7 @@ __END__
     window.addEventListener("load", Pagy.init);
   </script>
 </head>
+
 <body>
   <%= yield %>
 </body>
