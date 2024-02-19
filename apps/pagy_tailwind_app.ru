@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Self-contained, standalone Sinatra app usable to play with pagy
+# Self-contained, standalone Sinatra app usable to play with pagy with tailwind
 # and/or easily reproduce any pagy issue.
 
 # Copy this file in your own machine and
@@ -108,10 +108,99 @@ __END__
 @@ layout
 <html>
 <head>
+  <meta charset="UTF-8">
   <script src="<%= %(/#{PAGY_JS}) %>"></script>
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {}
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    /*
+       Notice: this style contains all the rules for pagy-nav, pagy-nav-js and pagy-combo-nav-js
+       Copied from the first example in https://ddnexus.github.io/pagy/docs/extras/tailwind/
+       check also the other example provided in the same page
+    */
+
+    .pagy-nav,
+    .pagy-nav-js {
+      @apply flex space-x-2;
+    }
+
+    .pagy-nav .page a[href],
+    .pagy-nav .page.active,
+    .pagy-nav .page.prev.disabled,
+    .pagy-nav .page.next.disabled,
+    .pagy-nav-js .page a[href],
+    .pagy-nav-js .page.active,
+    .pagy-nav-js .page.prev.disabled,
+    .pagy-nav-js .page.next.disabled {
+      @apply block rounded-lg px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-200 shadow-md;
+      &:hover{
+        @apply bg-gray-300;
+      }
+      &:active{
+        @apply bg-gray-400 text-white;
+      }
+    }
+
+    .pagy-nav .page.prev.disabled,
+    .pagy-nav .page.next.disabled,
+    .pagy-nav-js .page.prev.disabled,
+    .pagy-nav-js .page.next.disabled {
+      @apply text-gray-400 cursor-default;
+      &:hover {
+        @apply text-gray-400 bg-gray-200;
+      }
+      &:active {
+        @apply text-gray-400 bg-gray-200;
+      }
+    }
+
+    .pagy-nav .page.active,
+    .pagy-nav-js .page.active {
+      @apply text-white cursor-default bg-gray-400;
+      &:hover {
+        @apply text-white bg-gray-400;
+      }
+      &:active {
+        @apply bg-gray-400 text-white;
+      }
+    }
+
+
+    .pagy-combo-nav-js {
+      @apply flex max-w-max rounded-full px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-200 shadow-md;
+    }
+
+    .pagy-combo-nav-js .pagy-combo-input {
+      @apply bg-white px-2 rounded-sm
+    }
+
+    .pagy-combo-nav-js .page.prev,
+    .pagy-combo-nav-js .page.next {
+      &:hover {
+        @apply text-gray-800;
+      }
+      &:active {
+        @apply text-gray-800;
+      }
+    }
+
+    .pagy-combo-nav-js .page.prev.disabled,
+    .pagy-combo-nav-js .page.next.disabled {
+      @apply text-gray-400 cursor-default;
+    }
+  </style>
 </head>
 
 <body>
