@@ -71,9 +71,9 @@ None
 
 ### Visual changes (possibly breaking test/views)
 
-- The ARIA label compliance required the refactoring of all the nav helper that might look slightly different now.
-- The text for `"Previous"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You can
-  edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
+- The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:
+  - The text for `"Previous"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You
+    can edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
 
 ### CSS changes (possibly looking different/broken)
 
@@ -83,6 +83,8 @@ None
   - You may fix eventual problems either by replacing the affected `a` rules with narrower `a[href]` selectors however if you use
     Tailwind we recommend to use the [improved tailwind style](https://ddnexus.github.io/pagy/docs/extras/tailwind/), that you can
     adapt in no time to anything you need.
+- The extra spaces added between pages of `pagy_nav` and `pagy_nav_js` have been removed
+- The `pagy-combo-nav-js .pagy-combo-input` internal element x-margins have been removed
 
 ### Internal renaming of private methods (unlikely to break anything)
 

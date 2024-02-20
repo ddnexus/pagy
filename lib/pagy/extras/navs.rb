@@ -14,10 +14,10 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => prev_html(pagy, link),
-               'link'   => %(<span class="page">#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</span> ),
+               'link'   => %(<span class="page">#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</span>),
                'active' => %(<span class="page active">) +
-                           %(<a role="link" aria-current="page" aria-disabled="true">#{LABEL_PLACEHOLDER}</a></span> ),
-               'gap'    => %(<span class="page gap">#{pagy_t 'pagy.gap'}</span> ),
+                           %(<a role="link" aria-current="page" aria-disabled="true">#{LABEL_PLACEHOLDER}</a></span>),
+               'gap'    => %(<span class="page gap">#{pagy_t 'pagy.gap'}</span>),
                'after'  => next_html(pagy, link) }
 
       %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-nav-js pagination" #{
@@ -40,7 +40,7 @@ class Pagy # :nodoc:
           nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           prev_html(pagy, link)
-      }<span class="pagy-combo-input" style="margin: 0 0.6rem;">#{
+      }<span class="pagy-combo-input">#{
           pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)
         }</span> #{
           next_html(pagy, link)
