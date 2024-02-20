@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761626998270">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761734442294">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.761626998270" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.761734442294" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761626998270" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761734442294" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761626998270" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761734442294" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.2</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.3</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -288,6 +288,18 @@
 </doc-anchor-target>
 <p>None</p>
 <hr>
+<doc-anchor-target id="version-703">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-703">#</doc-anchor-trigger>
+        <span>Version 7.0.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Remove extra space in pagy_nav, pagy_nav_js and .pagy-combo-input</li>
+<li>Refactor of tailwind styles and docs (closes #646)</li>
+<li>Add pagy_tailwind_app.ru (#646)</li>
+<li>Add missing CSS breaking change to the CHANGELOG (#646)</li>
+</ul>
 <doc-anchor-target id="version-702">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-702">#</doc-anchor-trigger>
@@ -387,22 +399,31 @@ relying on it.
     </h3>
 </doc-anchor-target>
 <ul>
-<li>The ARIA label compliance required the refactoring of all the nav helper that might look slightly different now.</li>
-<li>The text for <code v-pre>&quot;Previous&quot;</code> and <code v-pre>&quot;Next&quot;</code> is now used for the <code v-pre>aria-label</code> and has been replaced in the UI as <code v-pre>&lt;</code> and <code v-pre>&gt;</code>. You can
-edit the dictionary entries if you want to revert it to the previous default (<code v-pre>&lt; Prev</code> and <code v-pre>Next &gt;</code>)</li>
+<li>The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:
+<ul>
+<li>The text for <code v-pre>&quot;Previous&quot;</code> and <code v-pre>&quot;Next&quot;</code> is now used for the <code v-pre>aria-label</code> and has been replaced in the UI as <code v-pre>&lt;</code> and <code v-pre>&gt;</code>. You
+can edit the dictionary entries if you want to revert it to the previous default (<code v-pre>&lt; Prev</code> and <code v-pre>Next &gt;</code>)</li>
 </ul>
-<doc-anchor-target id="css-changes">
+</li>
+</ul>
+<doc-anchor-target id="css-changes-possibly-looking-differentbroken">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#css-changes">#</doc-anchor-trigger>
-        <span>CSS changes</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#css-changes-possibly-looking-differentbroken">#</doc-anchor-trigger>
+        <span>CSS changes (possibly looking different/broken)</span>
     </h3>
 </doc-anchor-target>
 <ul>
 <li>The HTML of the current page in <code v-pre>pagy_nav</code> and <code v-pre>pagy_nav_js</code> has been changed from simple text (e.g. <code v-pre>5</code>) to a
 disabled link (e.g. <code v-pre>&lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-current=&quot;page&quot;&gt;5&lt;/a&gt;</code>). That affects your CSS rules and
-the <a href="https://ddnexus.github.io/pagy/docs/extras/tailwind/">Tailwind examples</a> targeting the page links, now overreaching the
-current page. You should replace the <code v-pre>.pagy-nav .page a</code> and/or <code v-pre>.pagy-nav-js .page a</code> selectors with <code v-pre>.pagy-nav .page a[href]</code>
-and <code v-pre>.pagy-nav-js .page a[href]</code>.</li>
+the old tailwind examples targeting the page links, now overreaching the current page.
+<ul>
+<li>You may fix eventual problems either by replacing the affected <code v-pre>a</code> rules with narrower <code v-pre>a[href]</code> selectors however if you use
+Tailwind we recommend to use the <a href="https://ddnexus.github.io/pagy/docs/extras/tailwind/">improved tailwind style</a>, that you can
+adapt in no time to anything you need.</li>
+</ul>
+</li>
+<li>The extra spaces added between pages of <code v-pre>pagy_nav</code> and <code v-pre>pagy_nav_js</code> have been removed</li>
+<li>The <code v-pre>pagy-combo-nav-js .pagy-combo-input</code> internal element x-margins have been removed</li>
 </ul>
 <doc-anchor-target id="internal-renaming-of-private-methods-unlikely-to-break-anything">
     <h3>
