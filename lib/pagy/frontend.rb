@@ -25,12 +25,12 @@ class Pagy
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
-                  %(<span class="page">#{link.call(item)}</span> )
+                  %(<span class="page">#{link.call(item)}</span>)
                 when String
                   %(<span class="page active">) +
-                  %(<a role="link" aria-disabled="true" aria-current="page">#{pagy.label_for(item)}</a></span> )
+                  %(<a role="link" aria-disabled="true" aria-current="page">#{pagy.label_for(item)}</a></span>)
                 when :gap
-                  %(<span class="page gap">#{pagy_t('pagy.gap')}</span> )
+                  %(<span class="page gap">#{pagy_t('pagy.gap')}</span>)
                 else
                   raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
@@ -95,10 +95,10 @@ class Pagy
 
     def prev_html(pagy, link, text: pagy_t('pagy.prev'))
       if (p_prev = pagy.prev)
-        %(<span class="page prev">#{link.call(p_prev, text, prev_aria_label_attr)}</span> )
+        %(<span class="page prev">#{link.call(p_prev, text, prev_aria_label_attr)}</span>)
       else
         %(<span class="page prev disabled"><a role="link" aria-disabled="true" #{
-             prev_aria_label_attr}>#{text}</a></span> )
+             prev_aria_label_attr}>#{text}</a></span>)
       end
     end
 

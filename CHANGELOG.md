@@ -22,6 +22,13 @@ None
 
 <hr>
 
+## Version 7.0.3
+
+- Remove extra space in pagy_nav, pagy_nav_js and .pagy-combo-input
+- Refactor of tailwind styles and docs (closes #646)
+- Add pagy_tailwind_app.ru (#646)
+- Add missing CSS breaking change to the CHANGELOG (#646)
+
 ## Version 7.0.2
 
 - Fix for missing to fetch count_args default (close #645)
@@ -71,17 +78,20 @@ None
 
 ### Visual changes (possibly breaking test/views)
 
-- The ARIA label compliance required the refactoring of all the nav helper that might look slightly different now.
-- The text for `"Previous"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You can
-  edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
+- The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:
+  - The text for `"Previous"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You
+    can edit the dictionary entries if you want to revert it to the previous default (`< Prev` and `Next >`)
 
-### CSS changes
+### CSS changes (possibly looking different/broken)
 
 - The HTML of the current page in `pagy_nav` and `pagy_nav_js` has been changed from simple text (e.g. `5`) to a
   disabled link (e.g. `<a role="link" aria-disabled="true" aria-current="page">5</a>`). That affects your CSS rules and
-  the [Tailwind examples](https://ddnexus.github.io/pagy/docs/extras/tailwind/) targeting the page links, now overreaching the
-  current page. You should replace the `.pagy-nav .page a` and/or `.pagy-nav-js .page a` selectors with `.pagy-nav .page a[href]`
-  and `.pagy-nav-js .page a[href]`.
+  the old tailwind examples targeting the page links, now overreaching the current page.
+  - You may fix eventual problems either by replacing the affected `a` rules with narrower `a[href]` selectors however if you use
+    Tailwind we recommend to use the [improved tailwind style](https://ddnexus.github.io/pagy/docs/extras/tailwind/), that you can
+    adapt in no time to anything you need.
+- The extra spaces added between pages of `pagy_nav` and `pagy_nav_js` have been removed
+- The `pagy-combo-nav-js .pagy-combo-input` internal element x-margins have been removed
 
 ### Internal renaming of private methods (unlikely to break anything)
 

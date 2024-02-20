@@ -8,9 +8,9 @@
     },
     "devDependencies": {
         "@cypress/snapshot": "^2.1.7",
-        "@types/node": "20.11.17",
-        "@typescript-eslint/eslint-plugin": "7.0.1",
-        "@typescript-eslint/parser": "7.0.1",
+        "@types/node": "20.11.19",
+        "@typescript-eslint/eslint-plugin": "7.0.2",
+        "@typescript-eslint/parser": "7.0.2",
         "cypress": "13.6.4",
         "cypress-html-validate": "6.1.0",
         "eslint": "8.56.0",
