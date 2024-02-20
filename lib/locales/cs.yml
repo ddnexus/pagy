@@ -3,7 +3,7 @@ cs:
   pagy:
     aria_label:
       nav:
-       # skip the "few" variant as this word is used as a bare plural without the numeral
+       # use the "few" variant for all plurals as this word is used as a bare plural without the numeral
        one: "Stránka"
        other: "Stránky"
       prev: "Předchozí"
