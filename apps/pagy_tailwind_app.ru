@@ -8,11 +8,11 @@
 # or run it from the apps dir in the repo
 
 # USAGE:
-#    rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
+#    rackup -o 0.0.0.0 -p 8080 pagy_tailwind_app.ru
 
 # ADVANCED USAGE (with automatic app reload if you edit it):
 #    gem install rerun
-#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
+#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_tailwind_app.ru
 
 # Point your browser to http://0.0.0.0:8080
 
@@ -41,15 +41,10 @@ end
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
-# Pagy::DEFAULT[:items_extra]
-require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false # opt-in trim
-
+# Pagy::DEFAULT[:items_extra] = false # opt-in
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
-
-# require 'pagy/extras/gearbox'
-# Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
+Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
 Pagy::DEFAULT.freeze
 
 require 'sinatra/base'
@@ -71,9 +66,9 @@ class PagyStandaloneApp < Sinatra::Base
     send_file Pagy.root.join('javascripts', PAGY_JS)
   end
   # edit this action as needed
-  get '/:trim?' do
+  get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection, trim_extra: params['trim'])
+    @pagy, @records = pagy(collection)
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
@@ -118,88 +113,43 @@ __END__
   <script>
     tailwind.config = {
       theme: {
-        extend: {
-          colors: {}
-        }
       }
     }
   </script>
   <style type="text/tailwindcss">
-    /*
-       Notice: this style contains all the rules for pagy-nav, pagy-nav-js and pagy-combo-nav-js
-       Copied from the first example in https://ddnexus.github.io/pagy/docs/extras/tailwind/
-       check also the other example provided in the same page
-    */
+    /* Basic style in https://ddnexus.github.io/pagy/docs/extras/tailwind/ */
 
-    .pagy-nav,
-    .pagy-nav-js {
-      @apply flex space-x-2;
-    }
-
-    .pagy-nav .page a[href],
-    .pagy-nav .page.active,
-    .pagy-nav .page.prev.disabled,
-    .pagy-nav .page.next.disabled,
-    .pagy-nav-js .page a[href],
-    .pagy-nav-js .page.active,
-    .pagy-nav-js .page.prev.disabled,
-    .pagy-nav-js .page.next.disabled {
-      @apply block rounded-lg px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-200 shadow-md;
-      &:hover{
-        @apply bg-gray-300;
+    .pagination {
+      @apply flex space-x-1 font-semibold text-sm text-gray-500;
+      .page {
+        a {
+          @apply block rounded-lg px-3 py-1 bg-gray-200;
+          &:hover {
+            @apply bg-gray-300;
+          }
+        }
+        &.active a {
+          @apply text-white bg-gray-400 cursor-default;
+        }
+        &.disabled a {
+          @apply text-gray-300 bg-gray-100 cursor-default;
+        }
       }
-      &:active{
-        @apply bg-gray-400 text-white;
+      .pagy-combo-input {
+        @apply block bg-gray-200 rounded-lg px-3;
+        input {
+          @apply bg-gray-100 border-none rounded-md mt-0.5;
+        }
       }
     }
 
-    .pagy-nav .page.prev.disabled,
-    .pagy-nav .page.next.disabled,
-    .pagy-nav-js .page.prev.disabled,
-    .pagy-nav-js .page.next.disabled {
-      @apply text-gray-400 cursor-default;
-      &:hover {
-        @apply text-gray-400 bg-gray-200;
-      }
-      &:active {
-        @apply text-gray-400 bg-gray-200;
+    .pagy-items-selector-js {
+      @apply inline-block font-semibold text-sm text-gray-500 bg-gray-200 rounded-lg px-3;
+      input {
+        @apply bg-gray-100 border-none rounded-md my-0.5;
       }
     }
 
-    .pagy-nav .page.active,
-    .pagy-nav-js .page.active {
-      @apply text-white cursor-default bg-gray-400;
-      &:hover {
-        @apply text-white bg-gray-400;
-      }
-      &:active {
-        @apply bg-gray-400 text-white;
-      }
-    }
-
-
-    .pagy-combo-nav-js {
-      @apply flex max-w-max rounded-full px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-200 shadow-md;
-    }
-
-    .pagy-combo-nav-js .pagy-combo-input {
-      @apply bg-white px-2 rounded-sm
-    }
-
-    .pagy-combo-nav-js .page.prev,
-    .pagy-combo-nav-js .page.next {
-      &:hover {
-        @apply text-gray-800;
-      }
-      &:active {
-        @apply text-gray-800;
-      }
-    }
-
-    .pagy-combo-nav-js .page.prev.disabled,
-    .pagy-combo-nav-js .page.next.disabled {
-      @apply text-gray-400 cursor-default;
-    }
   </style>
 </head>
 
@@ -209,24 +159,40 @@ __END__
 </html>
 
 @@ pagy_demo
-<h3>Pagy Standalone Application</h3>
-<p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
-<p>Please, report the following versions in any new issue.</p>
-<h4>Versions</h4>
-<ul>
-  <li>Ruby: <%= RUBY_VERSION %></li>
-  <li>Rack: <%= Rack::RELEASE %></li>
-  <li>Sinatra: <%= Sinatra::VERSION %></li>
-  <li>Pagy: <%= Pagy::VERSION %></li>
-</ul>
-<hr>
-<h4>Pagy Helpers</h4>
-<p>@records: <%= @records.join(',') %></p>
-<br>
-<%= pagy_nav(@pagy) %>
-<br>
-<%= pagy_nav_js(@pagy) %>
-<br>
-<%= pagy_combo_nav_js(@pagy) %>
-<br>
-<%= pagy_items_selector_js(@pagy) %>
+<div class="container p-10 prose">
+  <h1>Pagy Tailwind Application</h1>
+  <p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
+  <p>Please, report the following versions in any new issue.</p>
+  <h4>Versions</h4>
+  <ul>
+    <li>Ruby: <%= RUBY_VERSION %></li>
+    <li>Rack: <%= Rack::RELEASE %></li>
+    <li>Sinatra: <%= Sinatra::VERSION %></li>
+    <li>Pagy: <%= Pagy::VERSION %></li>
+  </ul>
+
+  <h4>Collection</h4>
+  <p>@records: <%= @records.join(',') %></p>
+
+  <hr>
+
+  <h4>pagy_nav</h4>
+  <div class="not-prose">
+    <%= pagy_nav(@pagy) %>
+  </div>
+
+  <h4>pagy_nav_js</h4>
+  <div class="not-prose">
+    <%= pagy_nav_js(@pagy) %>
+  </div>
+
+  <h4>pagy_combo_nav_js</h4>
+  <div class="not-prose">
+    <%= pagy_combo_nav_js(@pagy) %>
+  </div>
+
+  <h4>pagy_items_selector_js</h4>
+  <div class="not-prose">
+    <%= pagy_items_selector_js(@pagy) %>
+  </div>
+</div>
