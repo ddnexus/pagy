@@ -4,10 +4,10 @@ cs:
     # please add a comment in the https://github.com/ddnexus/pagy/issues/582
     # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
     aria_label:
-      nav: "Pages"
-#        one: ""
-#        few: ""
-#        other: ""
+      nav:
+       # skip the "few" variant as this word is used as a bare plural without the numeral
+       one: "Stránka"
+       other: "Stránky"
       prev: "Předchozí"
       next: "Další"
     prev: "&lt;"
