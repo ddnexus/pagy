@@ -15,11 +15,11 @@ cs:
     gap: "&hellip;"
     item_name:
       one: "položka"
-      few: "položek"
-      other: "položky"
+      few: "položky"
+      other: "položek"
     info:
       no_items: "Nic nebylo nalezeno"
       single_page: "Zobrazeno <b>%{count}</b> %{item_name}"
-      multiple_pages: "Zobrazeno %{item_name} <b>%{from}-%{to}</b> z <b>%{count}</b> celkem"
+      multiple_pages: "Zobrazeny položky <b>%{from}-%{to}</b> z <b>%{count}</b> celkem"
     combo_nav_js: "<label>Strana %{page_input} z %{pages}</label>"
     items_selector_js: "<label>Zobrazit %{items_input} %{item_name} na stránce</label>"
