@@ -22,6 +22,13 @@ None
 
 <hr>
 
+## Version 7.0.3
+
+- Remove extra space in pagy_nav, pagy_nav_js and .pagy-combo-input
+- Refactor of tailwind styles and docs (closes #646)
+- Add pagy_tailwind_app.ru (#646)
+- Add missing CSS breaking change to the CHANGELOG (#646)
+
 ## Version 7.0.2
 
 - Fix for missing to fetch count_args default (close #645)
