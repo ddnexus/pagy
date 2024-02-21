@@ -26,12 +26,10 @@ Adapt the base style to anything you need by just editing the classes in the `@a
 You can quickly interact and customize it by running the [pagy_tailwind_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_tailwind_app.ru) single-file self-contaied app
 !!!
 
-+++ All navs
-
 ||| SCSS
 
 ```scss
-.pagination {
+.pagy {
   @apply flex space-x-1 font-semibold text-sm text-gray-500;
   .page {
     a {
@@ -46,30 +44,15 @@ You can quickly interact and customize it by running the [pagy_tailwind_app.ru](
     &.disabled a {
       @apply text-gray-300 bg-gray-100 cursor-default;
     }
+    &.gap { }  /* if you need to customize it */
   }
-  .pagy-combo-input {
-    @apply block bg-gray-200 rounded-lg px-3;
+  .pagy-combo-input, &.pagy-items-selector-js {
+    @apply inline-block bg-gray-200 rounded-lg px-3 py-0.5;
     input {
-      @apply bg-gray-100 border-none rounded-md mt-0.5;
+      @apply bg-gray-100 border-none rounded-md;
     }
   }
 }
 ```
 
 |||
-
-+++ Items Selector
-     
-||| SCSS
-
-```scss
-.pagy-items-selector-js {
-  @apply inline-block font-semibold text-sm text-gray-500 bg-gray-200 rounded-lg px-3;
-  input {
-    @apply bg-gray-100 border-none rounded-md my-0.5;
-  }
-}
-```
-
-|||
-+++

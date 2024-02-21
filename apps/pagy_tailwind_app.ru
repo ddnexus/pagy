@@ -119,7 +119,7 @@ __END__
   <style type="text/tailwindcss">
     /* Basic style in https://ddnexus.github.io/pagy/docs/extras/tailwind/ */
 
-    .pagination {
+    .pagy {
       @apply flex space-x-1 font-semibold text-sm text-gray-500;
       .page {
         a {
@@ -134,19 +134,13 @@ __END__
         &.disabled a {
           @apply text-gray-300 bg-gray-100 cursor-default;
         }
+        &.gap { }  /* if you need to customize it */
       }
-      .pagy-combo-input {
-        @apply block bg-gray-200 rounded-lg px-3;
+      .pagy-combo-input, &.pagy-items-selector-js {
+        @apply inline-block bg-gray-200 rounded-lg px-3 py-0.5;
         input {
-          @apply bg-gray-100 border-none rounded-md mt-0.5;
+          @apply bg-gray-100 border-none rounded-md;
         }
-      }
-    }
-
-    .pagy-items-selector-js {
-      @apply inline-block font-semibold text-sm text-gray-500 bg-gray-200 rounded-lg px-3;
-      input {
-        @apply bg-gray-100 border-none rounded-md my-0.5;
       }
     }
 
