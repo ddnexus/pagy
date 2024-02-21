@@ -23,6 +23,14 @@ If you upgrade from version `< 7.0.0` see the following:
 
 <hr>
 
+## Version 7.0.4
+
+- Tailwind styles integrated with the pagy-items-selector-js (#646)
+- Deprecated the "pagination" CSS class, use the "pagy" CSS class that has been added to all the interactive pagy helper outputs
+- Fix indentation of cs locale (#648); add "pagy.aria_label.nav.few" entry, duplicating the "other" pluralization
+- Update cs translations (#648)
+- Expand/Correct changes about `pagy.prev` and `pagy.next` (#649)
+
 ## Version 7.0.3
 
 - Remove extra space in `pagy_nav`, `pagy_nav_js` and `.pagy-combo-input`
