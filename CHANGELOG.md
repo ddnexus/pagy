@@ -18,15 +18,16 @@ If you upgrade from version `< 7.0.0` see the following:
 
 ## Deprecations
 
-None
+- The "pagination" CSS class for the `pagy_nav`, `pagy_nav_js` and `pagy_combo_nav_js` has been deprecated and will be removed in
+  version 8. Replace it with the new "pagy" CSS class added also to the `pagy-items-selector-js`.
 
 <hr>
 
 ## Version 7.0.3
 
-- Remove extra space in pagy_nav, pagy_nav_js and .pagy-combo-input
+- Remove extra space in `pagy_nav`, `pagy_nav_js` and `.pagy-combo-input`
 - Refactor of tailwind styles and docs (closes #646)
-- Add pagy_tailwind_app.ru (#646)
+- Add `pagy_tailwind_app.ru` (#646)
 - Add missing CSS breaking change to the CHANGELOG (#646)
 
 ## Version 7.0.2
@@ -79,8 +80,9 @@ None
 ### Visual changes (possibly breaking test/views)
 
 - The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:
-  - The text for `"Prev"` and `"Next"` is now used for the `aria-label` and has been replaced in the UI as `<` and `>`. You
-    can edit the dictionary entries `pagy.prev` and `pagy.next` if you want to revert it to the previous default (`&lsaquo;&nbsp;Prev` and `Next&nbsp;&rsaquo;`)
+- The text for `"Prev"` and `"Next"` is now used for the `aria-label` (actually as `"Previous"` and `"Next"`) and has been
+  replaced in the UI as `<` and `>`. You can edit the dictionary entries `pagy.prev` and `pagy.next` if you want to revert it to
+  the previous default (`&lsaquo;&nbsp;Prev` and `Next&nbsp;&rsaquo;`)
 
 ### CSS changes (possibly looking different/broken)
 

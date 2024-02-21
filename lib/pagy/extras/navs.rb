@@ -20,7 +20,7 @@ class Pagy # :nodoc:
                'gap'    => %(<span class="page gap">#{pagy_t 'pagy.gap'}</span>),
                'after'  => next_html(pagy, link) }
 
-      %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-nav-js pagination" #{
+      %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy pagy-nav-js pagination" #{
           nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))
         }></nav>)
@@ -36,7 +36,7 @@ class Pagy # :nodoc:
       input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" ) +
                 %(style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
-      %(<nav#{p_id} class="pagy-combo-nav-js pagination" #{
+      %(<nav#{p_id} class="pagy pagy-combo-nav-js pagination" #{
           nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
           pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
           prev_html(pagy, link)
