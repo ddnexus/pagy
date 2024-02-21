@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761734442294">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761820484147">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.761734442294" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.761820484147" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761734442294" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.761820484147" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761734442294" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.761820484147" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.3</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -286,8 +286,24 @@
         <span>Deprecations</span>
     </h2>
 </doc-anchor-target>
-<p>None</p>
+<ul>
+<li>The &quot;pagination&quot; CSS class for the <code v-pre>pagy_nav</code>, <code v-pre>pagy_nav_js</code> and <code v-pre>pagy_combo_nav_js</code> has been deprecated and will be removed in
+version 8. Replace it with the new &quot;pagy&quot; CSS class added also to the <code v-pre>pagy-items-selector-js</code>.</li>
+</ul>
 <hr>
+<doc-anchor-target id="version-704">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-704">#</doc-anchor-trigger>
+        <span>Version 7.0.4</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Tailwind styles integrated with the pagy-items-selector-js (#646)</li>
+<li>Deprecated the &quot;pagination&quot; CSS class, use the &quot;pagy&quot; CSS class that has been added to all the interactive pagy helper outputs</li>
+<li>Fix indentation of cs locale (#648); add &quot;pagy.aria_label.nav.few&quot; entry, duplicating the &quot;other&quot; pluralization</li>
+<li>Update cs translations (#648)</li>
+<li>Expand/Correct changes about <code v-pre>pagy.prev</code> and <code v-pre>pagy.next</code> (#649)</li>
+</ul>
 <doc-anchor-target id="version-703">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-703">#</doc-anchor-trigger>
@@ -295,9 +311,9 @@
     </h2>
 </doc-anchor-target>
 <ul>
-<li>Remove extra space in pagy_nav, pagy_nav_js and .pagy-combo-input</li>
+<li>Remove extra space in <code v-pre>pagy_nav</code>, <code v-pre>pagy_nav_js</code> and <code v-pre>.pagy-combo-input</code></li>
 <li>Refactor of tailwind styles and docs (closes #646)</li>
-<li>Add pagy_tailwind_app.ru (#646)</li>
+<li>Add <code v-pre>pagy_tailwind_app.ru</code> (#646)</li>
 <li>Add missing CSS breaking change to the CHANGELOG (#646)</li>
 </ul>
 <doc-anchor-target id="version-702">
@@ -399,12 +415,10 @@ relying on it.
     </h3>
 </doc-anchor-target>
 <ul>
-<li>The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:
-<ul>
-<li>The text for <code v-pre>&quot;Previous&quot;</code> and <code v-pre>&quot;Next&quot;</code> is now used for the <code v-pre>aria-label</code> and has been replaced in the UI as <code v-pre>&lt;</code> and <code v-pre>&gt;</code>. You
-can edit the dictionary entries if you want to revert it to the previous default (<code v-pre>&lt; Prev</code> and <code v-pre>Next &gt;</code>)</li>
-</ul>
-</li>
+<li>The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:</li>
+<li>The text for <code v-pre>&quot;Prev&quot;</code> and <code v-pre>&quot;Next&quot;</code> is now used for the <code v-pre>aria-label</code> (actually as <code v-pre>&quot;Previous&quot;</code> and <code v-pre>&quot;Next&quot;</code>) and has been
+replaced in the UI as <code v-pre>&lt;</code> and <code v-pre>&gt;</code>. You can edit the dictionary entries <code v-pre>pagy.prev</code> and <code v-pre>pagy.next</code> if you want to revert it to
+the previous default (<code v-pre>&amp;lsaquo;&amp;nbsp;Prev</code> and <code v-pre>Next&amp;nbsp;&amp;rsaquo;</code>)</li>
 </ul>
 <doc-anchor-target id="css-changes-possibly-looking-differentbroken">
     <h3>

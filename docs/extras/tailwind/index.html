@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761734442294">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761820484147">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761734442294" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761820484147" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761734442294" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761820484147" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761734442294" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761734442294" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761820484147" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761820484147" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.3</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.4</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -315,16 +315,13 @@ the <a href="../navs/">navs</a> extra and <code v-pre>@apply</code> the styles t
         </div>
     </div>
 </div>
-<doc-tabs>
-<doc-tab v-cloak id="all-navs">
-<template #title>All navs</template>
 <div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
     <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
         <span>SCSS</span>
     </div>
     <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-scss"><code v-pre class="language-scss">.pagination {
+<pre class="language-scss"><code v-pre class="language-scss">.pagy {
   @apply flex space-x-1 font-semibold text-sm text-gray-500;
   .page {
     a {
@@ -339,37 +336,18 @@ the <a href="../navs/">navs</a> extra and <code v-pre>@apply</code> the styles t
     &amp;.disabled a {
       @apply text-gray-300 bg-gray-100 cursor-default;
     }
+    &amp;.gap { }  /* if you need to customize it */
   }
-  .pagy-combo-input {
-    @apply block bg-gray-200 rounded-lg px-3;
+  .pagy-combo-input, &amp;.pagy-items-selector-js {
+    @apply inline-block bg-gray-200 rounded-lg px-3 py-0.5;
     input {
-      @apply bg-gray-100 border-none rounded-md mt-0.5;
+      @apply bg-gray-100 border-none rounded-md;
     }
   }
 }</code></pre>
 </doc-codeblock></div>
     </div>
 </div>
-</doc-tab>
-<doc-tab v-cloak id="items-selector">
-<template #title>Items Selector</template>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>SCSS</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-scss"><code v-pre class="language-scss">.pagy-items-selector-js {
-  @apply inline-block font-semibold text-sm text-gray-500 bg-gray-200 rounded-lg px-3;
-  input {
-    @apply bg-gray-100 border-none rounded-md my-0.5;
-  }
-}</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
-</doc-tab>
-</doc-tabs>
 
                                 
                                 <!-- Required only on API pages -->
