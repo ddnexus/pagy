@@ -384,6 +384,7 @@ Many thanks to:
 <summary>How to contribute</summary>
 
 - Pull Requests are welcome!
+- Please base your PR against the master branch.
 - For simple contribution you can quickly check your changes with
   the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/) or with the single
   file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru).
