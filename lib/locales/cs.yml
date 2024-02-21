@@ -3,9 +3,9 @@ cs:
   pagy:
     aria_label:
       nav:
-       # use the "few" variant for all plurals as this word is used as a bare plural without the numeral
-       one: "Stránka"
-       other: "Stránky"
+        one: "Stránka"
+        few: "Stránky"  # use the other variant as this word is used as a bare plural without the numeral
+        other: "Stránky"
       prev: "Předchozí"
       next: "Další"
     prev: "&lt;"
