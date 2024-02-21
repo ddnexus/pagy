@@ -20,7 +20,7 @@ class Pagy
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
 
-      html = +%(<nav#{p_id} class="pagy-nav pagination" #{nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>)
+      html = +%(<nav#{p_id} class="pagy pagy-nav pagination" #{nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>)
       html << prev_html(pagy, link)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
