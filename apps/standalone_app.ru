@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Self-contained, standalone Sinatra app usable to play with pagy with tailwind
+# Self-contained, standalone Sinatra app usable to play with pagy
 # and/or easily reproduce any pagy issue.
 
 # Copy this file in your own machine and
@@ -8,11 +8,11 @@
 # or run it from the apps dir in the repo
 
 # USAGE:
-#    rackup -o 0.0.0.0 -p 8080 pagy_tailwind_app.ru
+#    rackup -o 0.0.0.0 -p 8080 standalone_app.ru
 
 # ADVANCED USAGE (with automatic app reload if you edit it):
 #    gem install rerun
-#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_tailwind_app.ru
+#    rerun -- rackup -o 0.0.0.0 -p 8080 standalone_app.ru
 
 # Point your browser to http://0.0.0.0:8080
 
@@ -41,10 +41,15 @@ end
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
-# Pagy::DEFAULT[:items_extra] = false # opt-in
+# Pagy::DEFAULT[:items_extra]
+require 'pagy/extras/trim'
+Pagy::DEFAULT[:trim_extra] = false # opt-in trim
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
+
+# require 'pagy/extras/gearbox'
+# Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
 Pagy::DEFAULT.freeze
 
 require 'sinatra/base'
@@ -66,9 +71,9 @@ class PagyStandaloneApp < Sinatra::Base
     send_file Pagy.root.join('javascripts', PAGY_JS)
   end
   # edit this action as needed
-  get '/' do
+  get '/:trim?' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection)
+    @pagy, @records = pagy(collection, trim_extra: params['trim'])
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
@@ -103,47 +108,17 @@ __END__
 @@ layout
 <html>
 <head>
-  <meta charset="UTF-8">
   <script src="<%= %(/#{PAGY_JS}) %>"></script>
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-      }
+    <style type="text/css">
+    .content {
+      font-family: sans-serif;
     }
-  </script>
-  <style type="text/tailwindcss">
-    /* Basic style in https://ddnexus.github.io/pagy/docs/extras/tailwind/ */
-
-    .pagy {
-      @apply flex space-x-1 font-semibold text-sm text-gray-500;
-      .page {
-        a {
-          @apply block rounded-lg px-3 py-1 bg-gray-200;
-          &:hover {
-            @apply bg-gray-300;
-          }
-        }
-        &.active a {
-          @apply text-white bg-gray-400 cursor-default;
-        }
-        &.disabled a {
-          @apply text-gray-300 bg-gray-100 cursor-default;
-        }
-        &.gap { }  /* if you need to customize it */
-      }
-      .pagy-combo-input, &.pagy-items-selector-js {
-        @apply inline-block bg-gray-200 rounded-lg px-3 py-0.5;
-        input {
-          @apply bg-gray-100 border-none rounded-md;
-        }
-      }
-    }
-
+    /* If you want to customize the style,
+       please replace the line below with the actual file content */
+    <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
   </style>
 </head>
 
@@ -153,8 +128,8 @@ __END__
 </html>
 
 @@ pagy_demo
-<div class="container p-10 prose">
-  <h1>Pagy Tailwind Application</h1>
+<div class="content">
+  <h3>Pagy Standalone Application</h3>
   <p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
   <p>Please, report the following versions in any new issue.</p>
   <h4>Versions</h4>
@@ -171,22 +146,14 @@ __END__
   <hr>
 
   <h4>pagy_nav</h4>
-  <div class="not-prose">
-    <%= pagy_nav(@pagy) %>
-  </div>
+  <%= pagy_nav(@pagy) %>
 
   <h4>pagy_nav_js</h4>
-  <div class="not-prose">
-    <%= pagy_nav_js(@pagy) %>
-  </div>
+  <%= pagy_nav_js(@pagy) %>
 
   <h4>pagy_combo_nav_js</h4>
-  <div class="not-prose">
-    <%= pagy_combo_nav_js(@pagy) %>
-  </div>
+  <%= pagy_combo_nav_js(@pagy) %>
 
   <h4>pagy_items_selector_js</h4>
-  <div class="not-prose">
-    <%= pagy_items_selector_js(@pagy) %>
-  </div>
+  <%= pagy_items_selector_js(@pagy) %>
 </div>

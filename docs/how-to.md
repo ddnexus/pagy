@@ -437,18 +437,22 @@ most flexible way is passing a pluralized string to the helper.
 
 ## Customize CSS styles
 
-Pagy provides a few frontend extras
-for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md), [materialize](extras/materialize.md), [semantic](extras/semantic.md), [tailwind](https://tailwindcss.com)
-and [uikit](extras/uikit.md) that come with a decent styling provided by their framework.
+For all its own interactive helpers the pagy gem includes a few [stylesheets](api/stylesheets.md) that you can customize.
 
-If you need to further customize the provided styles, you don't necessary need to override the helpers. Here are a few
-alternatives:
+Besides that, pagy provides a few frontend extras
+for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md),
+[materialize](extras/materialize.md), [semantic](extras/semantic.md), [tailwind](api/stylesheets.md/#pagy-tailwind-scss)
+and [uikit](extras/uikit.md) that come with a decent styling provided by their respective framework.
 
-- define the CSS styles to apply to the pagy CSS classes
-- if sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss
+If you need to further customize the styles provided by the extras, in most you don't necessary need to override the helpers: here
+are a few alternatives:
+
+- Check wether the specific extra offers customization (e.g. [bulma](extras/bulma.md))
+- Define the CSS styles to apply to the pagy CSS classes
+- If sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss
   directive
-- use the jQuery `addClass` method
-- use a couple of lines of plain javascript
+- Use the jQuery `addClass` method
+- Use a couple of lines of plain javascript
 
 ## Override pagy methods
 

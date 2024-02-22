@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Self-contained, standalone Sinatra app usable to play with pagy
+# Self-contained, standalone Sinatra app usable to play with pagy with tailwind
 # and/or easily reproduce any pagy issue.
 
 # Copy this file in your own machine and
@@ -8,11 +8,11 @@
 # or run it from the apps dir in the repo
 
 # USAGE:
-#    rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
+#    rackup -o 0.0.0.0 -p 8080 tailwind_app.ru
 
 # ADVANCED USAGE (with automatic app reload if you edit it):
 #    gem install rerun
-#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
+#    rerun -- rackup -o 0.0.0.0 -p 8080 tailwind_app.ru
 
 # Point your browser to http://0.0.0.0:8080
 
@@ -41,22 +41,16 @@ end
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
-# Pagy::DEFAULT[:items_extra]
-require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false # opt-in trim
-
+# Pagy::DEFAULT[:items_extra] = false # opt-in
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
-
-# require 'pagy/extras/gearbox'
-# Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
+Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
 Pagy::DEFAULT.freeze
 
 require 'sinatra/base'
 # Sinatra application
 class PagyStandaloneApp < Sinatra::Base
   PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js".freeze
-
   configure do
     enable :inline_templates
   end
@@ -71,9 +65,9 @@ class PagyStandaloneApp < Sinatra::Base
     send_file Pagy.root.join('javascripts', PAGY_JS)
   end
   # edit this action as needed
-  get '/:trim?' do
+  get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection, trim_extra: params['trim'])
+    @pagy, @records = pagy(collection)
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
   end
 end
@@ -108,10 +102,18 @@ __END__
 @@ layout
 <html>
 <head>
+  <meta charset="UTF-8">
   <script src="<%= %(/#{PAGY_JS}) %>"></script>
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+  <style type="text/tailwindcss">
+    /* If you want to customize the style,
+       please replace the line below with the actual file content */
+    <%= Pagy.root.join('stylesheets', 'pagy.tailwind.scss').read %>
+  </style>
 </head>
 
 <body>
@@ -120,24 +122,40 @@ __END__
 </html>
 
 @@ pagy_demo
-<h3>Pagy Standalone Application</h3>
-<p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
-<p>Please, report the following versions in any new issue.</p>
-<h4>Versions</h4>
-<ul>
-  <li>Ruby: <%= RUBY_VERSION %></li>
-  <li>Rack: <%= Rack::RELEASE %></li>
-  <li>Sinatra: <%= Sinatra::VERSION %></li>
-  <li>Pagy: <%= Pagy::VERSION %></li>
-</ul>
-<hr>
-<h4>Pagy Helpers</h4>
-<p>@records: <%= @records.join(',') %></p>
-<br>
-<%= pagy_nav(@pagy) %>
-<br>
-<%= pagy_nav_js(@pagy) %>
-<br>
-<%= pagy_combo_nav_js(@pagy) %>
-<br>
-<%= pagy_items_selector_js(@pagy) %>
+<div class="container p-10 prose">
+  <h1>Pagy Tailwind Application</h1>
+  <p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
+  <p>Please, report the following versions in any new issue.</p>
+  <h4>Versions</h4>
+  <ul>
+    <li>Ruby: <%= RUBY_VERSION %></li>
+    <li>Rack: <%= Rack::RELEASE %></li>
+    <li>Sinatra: <%= Sinatra::VERSION %></li>
+    <li>Pagy: <%= Pagy::VERSION %></li>
+  </ul>
+
+  <h4>Collection</h4>
+  <p>@records: <%= @records.join(',') %></p>
+
+  <hr>
+
+  <h4>pagy_nav</h4>
+  <div class="not-prose">
+    <%= pagy_nav(@pagy) %>
+  </div>
+
+  <h4>pagy_nav_js</h4>
+  <div class="not-prose">
+    <%= pagy_nav_js(@pagy) %>
+  </div>
+
+  <h4>pagy_combo_nav_js</h4>
+  <div class="not-prose">
+    <%= pagy_combo_nav_js(@pagy) %>
+  </div>
+
+  <h4>pagy_items_selector_js</h4>
+  <div class="not-prose">
+    <%= pagy_items_selector_js(@pagy) %>
+  </div>
+</div>

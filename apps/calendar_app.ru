@@ -6,7 +6,7 @@
 #
 # git clone --depth 1 https://github.com/ddnexus/pagy
 # cd pagy
-# rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar_app.ru
+# rackup -o 0.0.0.0 -p 8080 apps/calendar_app.ru
 #
 # Point your browser to http://0.0.0.0:8080
 
