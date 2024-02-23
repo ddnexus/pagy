@@ -8,10 +8,10 @@
     },
     "devDependencies": {
         "@cypress/snapshot": "^2.1.7",
-        "@types/node": "20.11.19",
+        "@types/node": "20.11.20",
         "@typescript-eslint/eslint-plugin": "7.0.2",
         "@typescript-eslint/parser": "7.0.2",
-        "cypress": "13.6.4",
+        "cypress": "13.6.6",
         "cypress-html-validate": "6.1.0",
         "eslint": "8.56.0",
         "eslint-plugin-align-assignments": "^1.1.2",
@@ -19,7 +19,7 @@
         "eslint-plugin-import": "2.29.1",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "6.1.1",
-        "html-validate": "8.9.1",
+        "html-validate": "8.10.0",
         "start-server-and-test": "2.0.3",
         "typescript": "5.3.3"
     },

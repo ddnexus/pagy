@@ -18,8 +18,8 @@ importers:
         specifier: ^2.1.7
         version: 2.1.7
       '@types/node':
-        specifier: 20.11.19
-        version: 20.11.19
+        specifier: 20.11.20
+        version: 20.11.20
       '@typescript-eslint/eslint-plugin':
         specifier: 7.0.2
         version: 7.0.2(@typescript-eslint/parser@7.0.2)(eslint@8.56.0)(typescript@5.3.3)
@@ -27,11 +27,11 @@ importers:
         specifier: 7.0.2
         version: 7.0.2(eslint@8.56.0)(typescript@5.3.3)
       cypress:
-        specifier: 13.6.4
-        version: 13.6.4
+        specifier: 13.6.6
+        version: 13.6.6
       cypress-html-validate:
         specifier: 6.1.0
-        version: 6.1.0(cypress@13.6.4)(html-validate@8.9.1)
+        version: 6.1.0(cypress@13.6.6)(html-validate@8.10.0)
       eslint:
         specifier: 8.56.0
         version: 8.56.0
@@ -51,8 +51,8 @@ importers:
         specifier: 6.1.1
         version: 6.1.1(eslint@8.56.0)
       html-validate:
-        specifier: 8.9.1
-        version: 8.9.1
+        specifier: 8.10.0
+        version: 8.10.0
       start-server-and-test:
         specifier: 2.0.3
         version: 2.0.3
@@ -1397,8 +1397,8 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
-  /@types/node@20.11.19:
-    resolution: {integrity: sha512-7xMnVEcZFu0DikYjWOlRq7NTPETrm7teqUT2WkQjrTIkEgUyyGdWsj/Zg8bEJt5TNklzbPD1X3fqfsHw3SpapQ==}
+  /@types/node@20.11.20:
+    resolution: {integrity: sha512-7/rR21OS+fq8IyHTgtLkDK949uzsa6n8BkziAKtPVpugIkO6D+/ooXMvzXxDnZrmtXVfjb1bKQafYpb8s89LOg==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -1423,7 +1423,7 @@ packages:
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.11.19
+      '@types/node': 20.11.20
     dev: true
     optional: true
 
@@ -2112,19 +2112,19 @@ packages:
       css-tree: 1.1.3
     dev: true
 
-  /cypress-html-validate@6.1.0(cypress@13.6.4)(html-validate@8.9.1):
+  /cypress-html-validate@6.1.0(cypress@13.6.6)(html-validate@8.10.0):
     resolution: {integrity: sha512-IXVB1ZzdSHMzPM/QYZCXlG3yW2CdvSVY7bJtlijmk4kCRepfdHe0JLQ939h2Dj9ZsjyBockPQpun4omq1uRW6Q==}
     engines: {node: '>= 16'}
     peerDependencies:
       cypress: ^10 || ^11.0.1 || ^12 || ^13
       html-validate: ^5 || ^6 || ^7 || ^8
     dependencies:
-      cypress: 13.6.4
-      html-validate: 8.9.1
+      cypress: 13.6.6
+      html-validate: 8.10.0
     dev: true
 
-  /cypress@13.6.4:
-    resolution: {integrity: sha512-pYJjCfDYB+hoOoZuhysbbYhEmNW7DEDsqn+ToCLwuVowxUXppIWRr7qk4TVRIU471ksfzyZcH+mkoF0CQUKnpw==}
+  /cypress@13.6.6:
+    resolution: {integrity: sha512-S+2S9S94611hXimH9a3EAYt81QM913ZVA03pUmGDfLTFa5gyp85NJ8dJGSlEAEmyRsYkioS1TtnWtbv/Fzt11A==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
@@ -3158,8 +3158,8 @@ packages:
       function-bind: 1.1.2
     dev: true
 
-  /html-validate@8.9.1:
-    resolution: {integrity: sha512-2tWa2FtFALooZ5wMDbY+HS0BieoiRfS5IeiG2XeM6bb3Jx4dmN1HFPFt0v3j7r3SpNxEVKiXYLdkBZI3kkca/g==}
+  /html-validate@8.10.0:
+    resolution: {integrity: sha512-mgVA+N3pLSoGkTzfb/j+Tr6C28lC04g1KtzplbCWuzKCkS14H+HHrEev/ene29NpIsikx2J1SfJR8xdRz2qkJA==}
     engines: {node: '>= 16.14'}
     hasBin: true
     peerDependencies:
@@ -3183,7 +3183,7 @@ packages:
       ajv: 8.12.0
       deepmerge: 4.3.1
       glob: 10.2.7
-      ignore: 5.3.0
+      ignore: 5.3.1
       kleur: 4.1.5
       minimist: 1.2.8
       prompts: 2.4.2
@@ -3261,6 +3261,11 @@ packages:
 
   /ignore@5.3.0:
     resolution: {integrity: sha512-g7dmpshy+gD7mh88OC9NwSGTKoc3kyLAZQRU1mt53Aw/vnvfXnbC+F/7F7QoYVKbV+KNvJx8wArewKy1vXMtlg==}
+    engines: {node: '>= 4'}
+    dev: true
+
+  /ignore@5.3.1:
+    resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
     dev: true
 
