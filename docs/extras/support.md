@@ -92,7 +92,8 @@ end
 ||| _next_link.html.erb (partial)
 
 ```erb
-<%== pagy_next_html(@pagy, text: 'More...', link_extra: 'id="next_link"') %>
+<!-- Wrapped in a "pagy" class to apply the pagy CSS style -->
+<span class="pagy"><%== pagy_next_html(@pagy, text: 'More...', link_extra: 'id="next_link"') %><span>
 ```
 
 |||

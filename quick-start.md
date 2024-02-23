@@ -13,7 +13,7 @@ Ensure to have `rack` installed (or `gem install rack`)
 
 Download and run the following file
 
-[!file](apps/pagy_standalone_app.ru)
+[!file](apps/standalone_app.ru)
 
 +++ Pagy Console
 

@@ -1,0 +1,58 @@
+.pagy {
+  display: flex;
+}
+
+.pagy > :not([hidden]) ~ :not([hidden]) {
+  --space-reverse: 0;
+  margin-right: calc(0.25rem * var(--space-reverse));
+  margin-left: calc(0.25rem * calc(1 - var(--space-reverse)));
+}
+
+.pagy {
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: rgb(107 114 128);
+}
+
+.pagy .page.gap {
+  /* if you need to customize it */
+}
+
+.pagy .page a {
+  display: block;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  background-color: rgb(229 231 235);
+  padding: 0.25rem 0.75rem;
+}
+
+.pagy .page a:hover {
+  background-color: rgb(209 213 219);
+}
+
+.pagy .page.active a {
+  cursor: default;
+  background-color: rgb(156 163 175);
+  color: rgb(255 255 255)
+}
+
+.pagy .page.disabled a {
+  cursor: default;
+  background-color: rgb(243 244 246);
+  color: rgb(209 213 219)
+}
+
+.pagy .pagy-combo-input, .pagy.pagy-items-selector-js {
+  display: inline-block;
+  border-radius: 0.5rem;
+  background-color: rgb(229 231 235);
+  padding: 0.125rem 0.75rem;
+}
+
+.pagy .pagy-combo-input input, .pagy.pagy-items-selector-js input {
+  border-radius: 0.375rem;
+  border-style: none;
+  background-color: rgb(243 244 246);
+}
