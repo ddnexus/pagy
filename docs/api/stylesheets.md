@@ -46,7 +46,7 @@ stylesheet_path = Pagy.root.join('stylesheets', 'pagy.tailwind.scss')
 :::code source="/lib/stylesheets/pagy.tailwind.scss" :::
 
 !!!
-You can also quickly interact and customize it by running the single-file self-contaied app [!file](apps/tailwind_app.ru)
+You can also quickly interact and customize it by running the single-file self-contaied app [!file](../apps/tailwind_app.ru)
 !!!
 
 +++
