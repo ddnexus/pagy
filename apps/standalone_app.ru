@@ -8,11 +8,11 @@
 # or run it from the apps dir in the repo
 
 # USAGE:
-#    rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
+#    rackup -o 0.0.0.0 -p 8080 standalone_app.ru
 
 # ADVANCED USAGE (with automatic app reload if you edit it):
 #    gem install rerun
-#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone_app.ru
+#    rerun -- rackup -o 0.0.0.0 -p 8080 standalone_app.ru
 
 # Point your browser to http://0.0.0.0:8080
 
@@ -44,9 +44,9 @@ require 'pagy/extras/items'
 # Pagy::DEFAULT[:items_extra]
 require 'pagy/extras/trim'
 Pagy::DEFAULT[:trim_extra] = false # opt-in trim
-
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
+Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
 
 # require 'pagy/extras/gearbox'
 # Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
@@ -112,6 +112,14 @@ __END__
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>
+    <style type="text/css">
+    .content {
+      font-family: sans-serif;
+    }
+    /* If you want to customize the style,
+       please replace the line below with the actual file content */
+    <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
+  </style>
 </head>
 
 <body>
@@ -120,24 +128,32 @@ __END__
 </html>
 
 @@ pagy_demo
-<h3>Pagy Standalone Application</h3>
-<p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
-<p>Please, report the following versions in any new issue.</p>
-<h4>Versions</h4>
-<ul>
-  <li>Ruby: <%= RUBY_VERSION %></li>
-  <li>Rack: <%= Rack::RELEASE %></li>
-  <li>Sinatra: <%= Sinatra::VERSION %></li>
-  <li>Pagy: <%= Pagy::VERSION %></li>
-</ul>
-<hr>
-<h4>Pagy Helpers</h4>
-<p>@records: <%= @records.join(',') %></p>
-<br>
-<%= pagy_nav(@pagy) %>
-<br>
-<%= pagy_nav_js(@pagy) %>
-<br>
-<%= pagy_combo_nav_js(@pagy) %>
-<br>
-<%= pagy_items_selector_js(@pagy) %>
+<div class="content">
+  <h3>Pagy Standalone Application</h3>
+  <p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
+  <p>Please, report the following versions in any new issue.</p>
+  <h4>Versions</h4>
+  <ul>
+    <li>Ruby: <%= RUBY_VERSION %></li>
+    <li>Rack: <%= Rack::RELEASE %></li>
+    <li>Sinatra: <%= Sinatra::VERSION %></li>
+    <li>Pagy: <%= Pagy::VERSION %></li>
+  </ul>
+
+  <h4>Collection</h4>
+  <p>@records: <%= @records.join(',') %></p>
+
+  <hr>
+
+  <h4>pagy_nav</h4>
+  <%= pagy_nav(@pagy) %>
+
+  <h4>pagy_nav_js</h4>
+  <%= pagy_nav_js(@pagy) %>
+
+  <h4>pagy_combo_nav_js</h4>
+  <%= pagy_combo_nav_js(@pagy) %>
+
+  <h4>pagy_items_selector_js</h4>
+  <%= pagy_items_selector_js(@pagy) %>
+</div>

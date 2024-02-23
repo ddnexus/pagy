@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761887438114">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.761981932117">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Tailwind | Pagy</title>
     <meta name="title" content="Tailwind | Pagy">
-    <meta name="description" content="Tailwind allows to apply styles to any DOM element, so you don't actually need any special extra to produce a different output. You">
+    <meta name="description" content="Tailwind allows to apply styles to any DOM element, so you don't actually need any special extra to produce a different output.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/extras/tailwind/">
@@ -21,22 +21,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/extras/tailwind/">
     <meta property="og:title" content="Tailwind | Pagy">
-    <meta property="og:description" content="Tailwind allows to apply styles to any DOM element, so you don't actually need any special extra to produce a different output. You">
+    <meta property="og:description" content="Tailwind allows to apply styles to any DOM element, so you don't actually need any special extra to produce a different output.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/extras/tailwind/">
     <meta property="twitter:title" content="Tailwind | Pagy">
-    <meta property="twitter:description" content="Tailwind allows to apply styles to any DOM element, so you don't actually need any special extra to produce a different output. You">
+    <meta property="twitter:description" content="Tailwind allows to apply styles to any DOM element, so you don't actually need any special extra to produce a different output.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.761887438114" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.761981932117" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761887438114" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.761981932117" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761887438114" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.761887438114" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.761981932117" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.4</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.5</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -271,83 +270,8 @@
     <div><a href="../../../categories/extra/">Extra</a></div>
 </div>
 
-<img src="/pagy/docs/assets/images/tailwind.png" width="300" title="Tailwind Style">
-<p>Tailwind allows to apply styles to any DOM element, so you don&#x27;t actually need any special extra to produce a different output. You
-can use the standard unstyled pagy helpers: i.e. the default <code v-pre>pagy_nav</code> and the <code v-pre>pagy_nav_js</code>and <code v-pre>pagy_nav_combo_js</code> provided by
-the <a href="../navs/">navs</a> extra and <code v-pre>@apply</code> the styles to their classes.</p>
-<p>You may also want to use the <a href="../items/">items extra</a> to get the <code v-pre>pagy_items_selector_js</code> helper.</p>
-<doc-anchor-target id="base-style">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#base-style">#</doc-anchor-trigger>
-        <span>Base Style</span>
-    </h2>
-</doc-anchor-target>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
-                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<p>Adapt the base style to anything you need by just editing the classes in the <code v-pre>@apply</code> lines, usually leaving the rest untouched</p>
-        </div>
-    </div>
-</div>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-<p>You can quickly interact and customize it by running the <a href="https://github.com/ddnexus/pagy/blob/master/apps/pagy_tailwind_app.ru">pagy_tailwind_app.ru</a> single-file self-contaied app</p>
-        </div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>SCSS</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-scss"><code v-pre class="language-scss">.pagy {
-  @apply flex space-x-1 font-semibold text-sm text-gray-500;
-  .page {
-    a {
-      @apply block rounded-lg px-3 py-1 bg-gray-200;
-      &amp;:hover {
-        @apply bg-gray-300;
-      }
-    }
-    &amp;.active a {
-      @apply text-white bg-gray-400 cursor-default;
-    }
-    &amp;.disabled a {
-      @apply text-gray-300 bg-gray-100 cursor-default;
-    }
-    &amp;.gap { }  /* if you need to customize it */
-  }
-  .pagy-combo-input, &amp;.pagy-items-selector-js {
-    @apply inline-block bg-gray-200 rounded-lg px-3 py-0.5;
-    input {
-      @apply bg-gray-100 border-none rounded-md;
-    }
-  }
-}</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
+<p>Tailwind allows to apply styles to any DOM element, so you don&#x27;t actually need any special extra to produce a different output.
+You can use the standard pagy helpers and <code v-pre>@apply</code> the tailwind classes by just using the <a href="http://localhost:5000/pagy/docs/api/stylesheets/#pagy-tailwind-scss">pagy.tailwind.scss</a> stylesheet file.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -420,6 +344,6 @@ the <a href="../navs/">navs</a> extra and <code v-pre>@apply</code> the styles t
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Tailwind", level: 3, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Tailwind", level: 3, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
