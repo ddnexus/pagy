@@ -23,6 +23,14 @@ If you upgrade from version `< 7.0.0` see the following:
 
 <hr>
 
+## Version 7.0.5
+
+- Updated gems, npm modules, contributors
+- Added the pagy stylesheets to the gem, updated apps, docs and manifest
+- Added note for the metrics and compacted the chart section (closes #652)
+- Docs: fix formatting, grammar in README.md (#654)
+- Add note about PR base branches to readme (#653)
+
 ## Version 7.0.4
 
 - Tailwind styles integrated with the pagy-items-selector-js (#646)
