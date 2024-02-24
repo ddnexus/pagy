@@ -21,7 +21,8 @@ class Pagy # :nodoc:
                 when Integer
                   %(<li class="page-item">#{link.call(item)}</li>)
                 when String
-                  %(<li class="page-item active">#{link.call(item)}</li>)
+                  %(<li class="page-item active"><a class="page-link" href="#" aria-current="page">#{
+                      pagy.label_for(item)}</a></li>)
                 when :gap
                   %(<li class="page-item gap disabled"><a href="#" class="page-link" aria-disabled="true">#{
                       pagy_t 'pagy.gap'}</a></li>)
@@ -39,8 +40,9 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
       tags = { 'before' => %(<ul class="pagination">#{bootstrap_prev_html pagy, link}),
-               'link'   => %(<li class="page-item">#{html = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
-               'active' => %(<li class="page-item active">#{html}</li>),
+               'link'   => %(<li class="page-item">#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
+               'active' => %(<li class="page-item active"><a class="page-link" href="#" aria-current="page">#{
+                               LABEL_PLACEHOLDER}</a></li>),
                'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link" aria-disabled="true">#{
                                pagy_t 'pagy.gap'}</a></li>),
                'after'  => %(#{bootstrap_next_html pagy, link}</ul>) }
