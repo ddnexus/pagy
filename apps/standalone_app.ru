@@ -112,12 +112,12 @@ __END__
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>
-    <style type="text/css">
-    .content {
-      font-family: sans-serif;
-    }
-    /* If you want to customize the style,
-       please replace the line below with the actual file content */
+  <style type="text/css">
+    content {
+     font-family: sans-serif;
+   }
+   /* If you want to customize the style,
+      please replace the line below with the actual file content */
     <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
   </style>
 </head>
