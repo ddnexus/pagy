@@ -25,20 +25,20 @@ const Pagy = (() => {
     // Init the *_nav_js helpers
     const initNav = (el:NavElement, [tags, sequels, labelSequels, trimParam]:NavArgs) => {
         const container = el.parentElement ?? el;
-        const widths    = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
-        let lastWidth   = -1;
-        const fillIn    = (link:string, page:string, label:string):string =>
+        const widths = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
+        let lastWidth = -1;
+        const fillIn = (link:string, page:string, label:string):string =>
             link.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
         (el.pagyRender = function () {
             const width = widths.find(w => w < container.clientWidth) || 0;
             if (width === lastWidth) { return } // no change: abort
-            let html     = tags.before;
+            let html = tags.before;  // already trimmed in html
             const series = sequels[width.toString()];
             const labels = labelSequels?.[width.toString()] ?? series.map(l => l.toString());
             for (const i in series) {
-                const item  = series[i];
+                const item = series[i];
                 const label = labels[i];
-                if (typeof trimParam === "string" && item === 1) {
+                if (typeof trimParam === "string" && item == 1) {
                     html += trim(fillIn(tags.link, item.toString(), label), trimParam);
                 } else if (typeof item === "number") {
                     html += fillIn(tags.link, item.toString(), label);
@@ -71,9 +71,9 @@ const Pagy = (() => {
 
     // Init the input element
     const initInput = (el:Element, getVars:(v:string) => [string, string], trimParam?:string) => {
-        const input   = el.querySelector("input") as HTMLInputElement;
+        const input = el.querySelector("input") as HTMLInputElement;
         const initial = input.value;
-        const action  = function () {
+        const action = function () {
             if (input.value === initial) { return }  // not changed
             const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
             if (val < min || val > max) {  // reset invalid/out-of-range
@@ -97,15 +97,15 @@ const Pagy = (() => {
 
     // Public interface
     return {
-        version: "7.0.5",
+        version: "7.0.6",
 
         // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
         init(arg?:Element | never) {
-            const target   = arg instanceof Element ? arg : document;
+            const target = arg instanceof Element ? arg : document;
             const elements = target.querySelectorAll("[data-pagy]");
             for (const el of elements) {
                 try {
-                    const uint8array         = Uint8Array.from(atob(el.getAttribute("data-pagy") as string), c => c.charCodeAt(0));
+                    const uint8array = Uint8Array.from(atob(el.getAttribute("data-pagy") as string), c => c.charCodeAt(0));
                     const [keyword, ...args] = JSON.parse((new TextDecoder()).decode(uint8array)); // base64-utf8 -> JSON -> Array
                     if (keyword === "nav") {
                         initNav(el as NavElement, args as NavArgs);

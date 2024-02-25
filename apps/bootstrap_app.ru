@@ -8,11 +8,11 @@
 # or run it from the apps dir in the repo
 
 # USAGE:
-#    rackup -o 0.0.0.0 -p 8080 standalone_app.ru
+#    rackup -o 0.0.0.0 -p 8080 bootstrap_app.ru
 
 # ADVANCED USAGE (with automatic app reload if you edit it):
 #    gem install rerun
-#    rerun -- rackup -o 0.0.0.0 -p 8080 standalone_app.ru
+#    rerun -- rackup -o 0.0.0.0 -p 8080 bootstrap_app.ru
 
 # Point your browser to http://0.0.0.0:8080
 
@@ -39,7 +39,7 @@ end
 
 # Edit this section adding/removing the extras and Pagy::DEFAULT as needed
 # pagy initializer
-require 'pagy/extras/navs'
+require 'pagy/extras/bootstrap'
 require 'pagy/extras/items'
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
@@ -108,14 +108,8 @@ __END__
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>
-  <style type="text/css">
-    content {
-     font-family: sans-serif;
-   }
-   /* If you want to customize the style,
-      please replace the line below with the actual file content */
-    <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
-  </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
@@ -124,7 +118,7 @@ __END__
 </html>
 
 @@ pagy_demo
-<div class="content">
+<div class="container">
   <h3>Pagy Standalone Application</h3>
   <p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
   <p>Please, report the following versions in any new issue.</p>
@@ -141,14 +135,14 @@ __END__
 
   <hr>
 
-  <h4>pagy_nav</h4>
-  <%= pagy_nav(@pagy) %>
+  <h4>pagy_bootstrap_nav</h4>
+  <%= pagy_bootstrap_nav(@pagy) %>
 
-  <h4>pagy_nav_js</h4>
-  <%= pagy_nav_js(@pagy) %>
+  <h4>pagy_bootstrap_nav_js</h4>
+  <%= pagy_bootstrap_nav_js(@pagy) %>
 
-  <h4>pagy_combo_nav_js</h4>
-  <%= pagy_combo_nav_js(@pagy) %>
+  <h4>pagy_bootstrap_combo_nav_js</h4>
+  <%= pagy_bootstrap_combo_nav_js(@pagy) %>
 
   <h4>pagy_items_selector_js</h4>
   <%= pagy_items_selector_js(@pagy) %>

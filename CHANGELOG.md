@@ -23,6 +23,12 @@ If you upgrade from version `< 7.0.0` see the following:
 
 <hr>
 
+## Version 7.0.6
+
+- Internal renaming of frontend constants
+- Fix for disabled links and missing or extra ARIA attributes in frontend extras
+- Boostrap fix for current page link; pagy.js fix for trim of current page (closes #656)
+
 ## Version 7.0.5
 
 - Updated gems, npm modules, contributors

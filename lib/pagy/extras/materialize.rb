@@ -21,9 +21,9 @@ class Pagy # :nodoc:
                 when Integer
                   %(<li class="waves-effect">#{link.call(item)}</li>)
                 when String
-                  %(<li class="active">#{link.call(item)}</li>)
+                  %(<li class="active"><a role="link" aria-current="page" aria-disabled="true">#{pagy.label_for(item)}</a></li>)
                 when :gap
-                  %(<li class="gap disabled"><a href="#" aria-disabled="true">#{pagy_t 'pagy.gap'}</a></li>)
+                  %(<li class="gap disabled"><a role="link" aria-disabled="true">#{pagy_t 'pagy.gap'}</a></li>)
                 else
                   raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
@@ -40,9 +40,9 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
 
       tags = { 'before' => %(<ul class="pagination">#{materialize_prev_html pagy, link}),
-               'link'   => %(<li class="waves-effect">#{html = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
-               'active' => %(<li class="active">#{html}</li>),
-               'gap'    => %(<li class="gap disabled"><a href="#" aria-disabled="true">#{pagy_t 'pagy.gap'}</a></li>),
+               'link'   => %(<li class="waves-effect">#{link.call(PAGE_TOKEN, LABEL_TOKEN)}</li>),
+               'active' => %(<li class="active"><a role="link" aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></li>),
+               'gap'    => %(<li class="gap disabled"><a role="link" aria-disabled="true">#{pagy_t 'pagy.gap'}</a></li>),
                'after'  => %(#{materialize_next_html pagy, link}</ul>) }
 
       %(<div#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-materialize-nav-js" role="navigation" #{
@@ -77,7 +77,7 @@ class Pagy # :nodoc:
         %(<li class="waves-effect prev"#{style}>#{
             link.call(p_prev, '<i class="material-icons">chevron_left</i>', prev_aria_label_attr)}</li>)
       else
-        %(<li class="prev disabled"#{style}><a href="#" aria-disabled="true" #{
+        %(<li class="prev disabled"#{style}><a role="link" aria-disabled="true" #{
             prev_aria_label_attr}><i class="material-icons">chevron_left</i></a></li>)
       end
     end
@@ -87,7 +87,7 @@ class Pagy # :nodoc:
         %(<li class="waves-effect next"#{style}>#{
             link.call(p_next, '<i class="material-icons">chevron_right</i>', next_aria_label_attr)}</li>)
       else
-        %(<li class="next disabled"#{style}><a href="#" aria-disabled="true" #{
+        %(<li class="next disabled"#{style}><a role="link" aria-disabled="true" #{
             next_aria_label_attr}><i class="material-icons">chevron_right</i></a></li>)
       end
     end

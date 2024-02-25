@@ -1,0 +1,31 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Tailwind" type="RubyRunConfigurationType" factoryName="Ruby" folderName="apps">
+    <module name="pagy" />
+    <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
+    <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/apps" />
+    <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+    <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+    <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+    <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
+    <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov">
+      <COVERAGE_PATTERN ENABLED="true">
+        <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+      </COVERAGE_PATTERN>
+    </EXTENSION>
+    <EXTENSION ID="net.ashald.envfile">
+      <option name="IS_ENABLED" value="false" />
+      <option name="IS_SUBST" value="false" />
+      <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+      <option name="IS_IGNORE_MISSING_FILES" value="false" />
+      <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+      <ENTRIES>
+        <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+      </ENTRIES>
+    </EXTENSION>
+    <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="/usr/local/bundle/bin/rerun" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="-- rackup -o 0.0.0.0 -p 8080 tailwind_app.ru" />
+    <method v="2" />
+  </configuration>
+</component>

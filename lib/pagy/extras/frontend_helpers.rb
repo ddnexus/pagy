@@ -64,7 +64,7 @@ class Pagy # :nodoc:
 
       # Return the marked link used by pagy.js
       def pagy_marked_link(link)
-        link.call PAGE_PLACEHOLDER, '', 'style="display: none;"'
+        link.call PAGE_TOKEN, '', 'style="display: none;"'
       end
     end
     Frontend.prepend FrontendAddOn

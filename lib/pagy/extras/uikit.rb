@@ -40,9 +40,9 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => uikit_prev_html(pagy, link),
-               'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
+               'link'   => %(<li>#{link.call(PAGE_TOKEN, LABEL_TOKEN)}</li>),
                'active' => %(<li class="uk-active"><span role="link" aria-current="page" aria-disabled="true">#{
-                               LABEL_PLACEHOLDER}</span></li>),
+                               LABEL_TOKEN}</span></li>),
                'gap'    => %(<li class="uk-disabled"><span>#{pagy_t 'pagy.gap'}</span></li>),
                'after'  => uikit_next_html(pagy, link) }
 

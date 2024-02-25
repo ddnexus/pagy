@@ -14,9 +14,9 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => prev_html(pagy, link),
-               'link'   => %(<span class="page">#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</span>),
+               'link'   => %(<span class="page">#{link.call(PAGE_TOKEN, LABEL_TOKEN)}</span>),
                'active' => %(<span class="page active">) +
-                           %(<a role="link" aria-current="page" aria-disabled="true">#{LABEL_PLACEHOLDER}</a></span>),
+                           %(<a role="link" aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></span>),
                'gap'    => %(<span class="page gap">#{pagy_t 'pagy.gap'}</span>),
                'after'  => next_html(pagy, link) }
 

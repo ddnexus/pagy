@@ -21,9 +21,10 @@ class Pagy # :nodoc:
                 when Integer
                   %(<li class="page-item">#{link.call(item)}</li>)
                 when String
-                  %(<li class="page-item active">#{link.call(item)}</li>)
+                  %(<li class="page-item active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">#{
+                      pagy.label_for(item)}</a></li>)
                 when :gap
-                  %(<li class="page-item gap disabled"><a href="#" class="page-link" aria-disabled="true">#{
+                  %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
                       pagy_t 'pagy.gap'}</a></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
@@ -39,9 +40,10 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra: %(class="page-link" #{link_extra}))
       tags = { 'before' => %(<ul class="pagination">#{bootstrap_prev_html pagy, link}),
-               'link'   => %(<li class="page-item">#{html = link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
-               'active' => %(<li class="page-item active">#{html}</li>),
-               'gap'    => %(<li class="page-item gap disabled"><a href="#" class="page-link" aria-disabled="true">#{
+               'link'   => %(<li class="page-item">#{link.call(PAGE_TOKEN, LABEL_TOKEN)}</li>),
+               'active' => %(<li class="page-item active"><a role="link" class="page-link" ) +
+                           %(aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></li>),
+               'gap'    => %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
                                pagy_t 'pagy.gap'}</a></li>),
                'after'  => %(#{bootstrap_next_html pagy, link}</ul>) }
 
@@ -68,7 +70,7 @@ class Pagy # :nodoc:
           if (p_prev = pagy.prev)
             link.call(p_prev, pagy_t('pagy.prev'), %(class="prev btn btn-primary" #{prev_aria_label_attr}))
           else
-            %(<a class="prev btn btn-primary disabled" href="#" aria-disabled="true" #{
+            %(<a role="link" class="prev btn btn-primary disabled" aria-disabled="true" #{
                 prev_aria_label_attr}>#{pagy_t('pagy.prev')}</a>)
           end
         }<div class="pagy-combo-input btn btn-secondary" style="white-space: nowrap;">#{
@@ -76,7 +78,7 @@ class Pagy # :nodoc:
           if (p_next = pagy.next)
             link.call(p_next, pagy_t('pagy.next'), %(class="next btn btn-primary" #{next_aria_label_attr}))
           else
-            %(<a class="next btn btn-primary disabled" href="#" aria-disabled="true" #{
+            %(<a role="link" class="next btn btn-primary disabled" aria-disabled="true" #{
                 next_aria_label_attr}>#{pagy_t 'pagy.next'}</a>)
           end
         }</div></nav>)
@@ -88,7 +90,7 @@ class Pagy # :nodoc:
       if (p_prev = pagy.prev)
         %(<li class="page-item prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label_attr)}</li>)
       else
-        %(<li class="page-item prev disabled"><a href="#" class="page-link" aria-disabled="true" #{
+        %(<li class="page-item prev disabled"><a role="link"class="page-link" aria-disabled="true" #{
             prev_aria_label_attr}>#{pagy_t('pagy.prev')}</a></li>)
       end
     end
@@ -97,7 +99,7 @@ class Pagy # :nodoc:
       if (p_next = pagy.next)
         %(<li class="page-item next">#{link.call p_next, pagy_t('pagy.next'), next_aria_label_attr}</li>)
       else
-        %(<li class="page-item next disabled"><a href="#" class="page-link" aria-disabled="true" #{
+        %(<li class="page-item next disabled"><a role="link" class="page-link" aria-disabled="true" #{
             next_aria_label_attr}>#{pagy_t('pagy.next')}</a></li>)
       end
     end

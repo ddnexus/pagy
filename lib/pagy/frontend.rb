@@ -6,8 +6,8 @@ require 'pagy/i18n'
 
 class Pagy
   # Used for search and replace, hardcoded also in the pagy.js file
-  PAGE_PLACEHOLDER  = '__pagy_page__'
-  LABEL_PLACEHOLDER = '__pagy_label__'
+  PAGE_TOKEN  = '__pagy_page__'
+  LABEL_TOKEN = '__pagy_label__'
 
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
@@ -59,8 +59,8 @@ class Pagy
       p_prev      = pagy.prev
       p_next      = pagy.next
       p_page      = pagy.page.to_s
-      left, right = %(<a href="#{pagy_url_for(pagy, PAGE_PLACEHOLDER)}" #{
-                        pagy.vars[:link_extra]} #{link_extra}).split(PAGE_PLACEHOLDER, 2)
+      left, right = %(<a href="#{pagy_url_for(pagy, PAGE_TOKEN)}" #{
+                        pagy.vars[:link_extra]} #{link_extra}).split(PAGE_TOKEN, 2)
       # lambda used by all the helpers
       lambda do |page, text = pagy.label_for(page), extra_attrs = ''|
         %(#{left}#{page}#{right}#{ case page
