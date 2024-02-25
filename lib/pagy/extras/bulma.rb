@@ -24,7 +24,8 @@ class Pagy # :nodoc:
                 when Integer
                   %(<li>#{link.call(item, pagy.label_for(item), %(class="pagination-link"))}</li>)
                 when String
-                  %(<li>#{link.call(item, pagy.label_for(item), %(class="pagination-link is-current"))}</li>)
+                  %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
+                      pagy.label_for(item)}</a></li>)
                 when :gap
                   %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
@@ -41,7 +42,8 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => %(#{bulma_prev_next_html(pagy, link)}<ul class="pagination-list">),
                'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER, %(class="pagination-link"))}</li>),
-               'active' => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER, %(class="pagination-link is-current"))}</li>),
+               'active' => %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
+                               LABEL_PLACEHOLDER}</a></li>),
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>),
                'after'  => '</ul>' }
 
@@ -68,7 +70,7 @@ class Pagy # :nodoc:
           if (p_prev  = pagy.prev)
             %(<p class="control">#{link.call(p_prev, pagy_t('pagy.prev'), %(class="button" #{prev_aria_label_attr}))}</p>)
           else
-            %(<p class="control"><a class="button" disabled aria-disabled="true" #{
+            %(<p class="control"><a role="link" class="button" disabled aria-disabled="true" #{
                 prev_aria_label_attr}>#{pagy_t 'pagy.prev'}</a></p>)
           end
         }<div class="pagy-combo-input control level is-mobile">#{
@@ -76,7 +78,7 @@ class Pagy # :nodoc:
           if (p_next  = pagy.next)
             %(<p class="control">#{link.call(p_next, pagy_t('pagy.next'), %(class="button" #{next_aria_label_attr}))}</p>)
           else
-            %(<p class="control"><a class="button" disabled aria-disabled="true"#{
+            %(<p class="control"><a role="link" class="button" disabled aria-disabled="true"#{
                 next_aria_label_attr}>#{pagy_t 'pagy.next'}</a></p>)
           end
         }</div></nav>)
@@ -88,13 +90,13 @@ class Pagy # :nodoc:
       html = +if (p_prev = pagy.prev)
                 link.call(p_prev, pagy_t('pagy.prev'), %(#{prev_aria_label_attr} class="pagination-previous"))
               else
-                %(<a class="pagination-previous" disabled aria-disabled="true" #{
+                %(<a role="link" class="pagination-previous" disabled aria-disabled="true" #{
                     prev_aria_label_attr}>#{pagy_t 'pagy.prev'}</a>)
               end
       html << if (p_next = pagy.next)
                 link.call(p_next, pagy_t('pagy.next'), %(#{next_aria_label_attr} class="pagination-next"))
               else
-                %(<a class="pagination-next" disabled aria-disabled="true" #{
+                %(<a role="link" class="pagination-next" disabled aria-disabled="true" #{
                     next_aria_label_attr}>#{pagy_t('pagy.next')}</a>)
               end
     end

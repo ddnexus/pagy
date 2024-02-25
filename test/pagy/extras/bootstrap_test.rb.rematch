@@ -1,32 +1,93 @@
 ---
-pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0002_renders first, intermediate and last pages with required steps:
-  :plain_1: <nav class="pagy-bootstrap-nav-js" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIGNsYXNzPVwicGFnZS1saW5rXCIgaHJlZj1cIiNcIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIG5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTJcIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiAgcmVsPVwibmV4dFwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT48L2xpPjwvdWw+In0seyIwIjpbIjEiLDIsMyw0LDUsImdhcCIsNTBdfSxudWxsXQ=="></nav>
-  :extras_1: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Pages"
-    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBhY3RpdmVcIj48YSBjbGFzcz1cInBhZ2UtbGlua1wiIGhyZWY9XCIjXCI+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gZ2FwIGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBuZXh0XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0yXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsiMSIsMiwzLCJnYXAiLDUwXSwiNjAwIjpbIjEiLDIsMyw0LCJnYXAiLDUwXX0sbnVsbF0="></nav>
-  :plain_20: <nav class="pagy-bootstrap-nav-js" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cInBhZ2UtbGlua1wiICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIGNsYXNzPVwicGFnZS1saW5rXCIgaHJlZj1cIiNcIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIG5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></nav>
-  :extras_20: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Pages"
-    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cInBhZ2UtbGlua1wiIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+PC9saT4iLCJsaW5rIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gYWN0aXZlXCI+PGEgY2xhc3M9XCJwYWdlLWxpbmtcIiBocmVmPVwiI1wiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGdhcCBkaXNhYmxlZFwiPjxhIGhyZWY9XCIjXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></nav>
-  :plain_50: <nav class="pagy-bootstrap-nav-js" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cInBhZ2UtbGlua1wiICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIGNsYXNzPVwicGFnZS1saW5rXCIgaHJlZj1cIiNcIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIG5leHQgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsNDYsNDcsNDgsNDksIjUwIl19LG51bGxd"></nav>
-  :extras_50: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Pages"
-    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cInBhZ2UtbGlua1wiIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+PC9saT4iLCJsaW5rIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gYWN0aXZlXCI+PGEgY2xhc3M9XCJwYWdlLWxpbmtcIiBocmVmPVwiI1wiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGdhcCBkaXNhYmxlZFwiPjxhIGhyZWY9XCIjXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dCBkaXNhYmxlZFwiPjxhIGhyZWY9XCIjXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT48L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiw0OCw0OSwiNTAiXSwiNjAwIjpbMSwiZ2FwIiw0Nyw0OCw0OSwiNTAiXX0sbnVsbF0="></nav>
-pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0001_renders single and multiple pages when used with Pagy::Countless:
-  :plain_1_0: <nav class="pagy-bootstrap-nav-js" aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIGNsYXNzPVwicGFnZS1saW5rXCIgaHJlZj1cIiNcIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIG5leHQgZGlzYWJsZWRcIj48YSBocmVmPVwiI1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WyIxIl19LG51bGxd"></nav>
-  :extras_1_0: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Page"
-    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBhY3RpdmVcIj48YSBjbGFzcz1cInBhZ2UtbGlua1wiIGhyZWY9XCIjXCI+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gZ2FwIGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBuZXh0IGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsiMSJdLCI2MDAiOlsiMSJdfSxudWxsXQ=="></nav>
-  :plain_2_23: <nav class="pagy-bootstrap-nav-js" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cInBhZ2UtbGlua1wiICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gYWN0aXZlXCI+PGEgY2xhc3M9XCJwYWdlLWxpbmtcIiBocmVmPVwiI1wiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGdhcCBkaXNhYmxlZFwiPjxhIGhyZWY9XCIjXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiICBjbGFzcz1cInBhZ2UtbGlua1wiICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsxLCIyIiwzXX0sbnVsbF0="></nav>
-  :extras_2_23: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Pages"
-    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBhY3RpdmVcIj48YSBjbGFzcz1cInBhZ2UtbGlua1wiIGhyZWY9XCIjXCI+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gZ2FwIGRpc2FibGVkXCI+PGEgaHJlZj1cIiNcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBuZXh0XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0zXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsxLCIyIiwzXSwiNjAwIjpbMSwiMiIsM119LG51bGxd"></nav>
+pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0001_renders first, intermediate and last pages:
+  :plain_1: <nav class="pagy-bootstrap-nav" aria-label="Pages"><ul class="pagination"><li
+    class="page-item prev disabled"><a role="link"class="page-link" aria-disabled="true"
+    aria-label="Previous">&lt;</a></li><li class="page-item active"><a role="link"
+    class="page-link" aria-current="page" aria-disabled="true">1</a></li><li class="page-item"><a
+    href="/foo?page=2"  class="page-link"  rel="next" >2</a></li><li class="page-item"><a
+    href="/foo?page=3"  class="page-link"  >3</a></li><li class="page-item"><a href="/foo?page=4"  class="page-link"  >4</a></li><li
+    class="page-item"><a href="/foo?page=5"  class="page-link"  >5</a></li><li class="page-item
+    gap disabled"><a role="link" class="page-link" aria-disabled="true">&hellip;</a></li><li
+    class="page-item"><a href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item
+    next"><a href="/foo?page=2"  class="page-link"  rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+  :extras_1: <nav id="test-nav-id" class="pagy-bootstrap-nav" aria-label="Pages"><ul
+    class="pagination"><li class="page-item prev disabled"><a role="link"class="page-link"
+    aria-disabled="true" aria-label="Previous">&lt;</a></li><li class="page-item active"><a
+    role="link" class="page-link" aria-current="page" aria-disabled="true">1</a></li><li
+    class="page-item"><a href="/foo?page=2"  class="page-link" link-extra rel="next"
+    >2</a></li><li class="page-item"><a href="/foo?page=3"  class="page-link" link-extra
+    >3</a></li><li class="page-item"><a href="/foo?page=4"  class="page-link" link-extra
+    >4</a></li><li class="page-item"><a href="/foo?page=5"  class="page-link" link-extra
+    >5</a></li><li class="page-item gap disabled"><a role="link" class="page-link"
+    aria-disabled="true">&hellip;</a></li><li class="page-item"><a href="/foo?page=50"  class="page-link"
+    link-extra >50</a></li><li class="page-item next"><a href="/foo?page=2"  class="page-link"
+    link-extra rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+  :plain_20: <nav class="pagy-bootstrap-nav" aria-label="Pages"><ul class="pagination"><li
+    class="page-item prev"><a href="/foo?page=19"  class="page-link"  rel="prev" aria-label="Previous">&lt;</a></li><li
+    class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li class="page-item
+    gap disabled"><a role="link" class="page-link" aria-disabled="true">&hellip;</a></li><li
+    class="page-item"><a href="/foo?page=16"  class="page-link"  >16</a></li><li class="page-item"><a
+    href="/foo?page=17"  class="page-link"  >17</a></li><li class="page-item"><a href="/foo?page=18"  class="page-link"  >18</a></li><li
+    class="page-item"><a href="/foo?page=19"  class="page-link"  rel="prev" >19</a></li><li
+    class="page-item active"><a role="link" class="page-link" aria-current="page"
+    aria-disabled="true">20</a></li><li class="page-item"><a href="/foo?page=21"  class="page-link"  rel="next"
+    >21</a></li><li class="page-item"><a href="/foo?page=22"  class="page-link"  >22</a></li><li
+    class="page-item"><a href="/foo?page=23"  class="page-link"  >23</a></li><li class="page-item"><a
+    href="/foo?page=24"  class="page-link"  >24</a></li><li class="page-item gap disabled"><a
+    role="link" class="page-link" aria-disabled="true">&hellip;</a></li><li class="page-item"><a
+    href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item next"><a
+    href="/foo?page=21"  class="page-link"  rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+  :extras_20: <nav id="test-nav-id" class="pagy-bootstrap-nav" aria-label="Pages"><ul
+    class="pagination"><li class="page-item prev"><a href="/foo?page=19"  class="page-link"
+    link-extra rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    href="/foo?page=1"  class="page-link" link-extra >1</a></li><li class="page-item
+    gap disabled"><a role="link" class="page-link" aria-disabled="true">&hellip;</a></li><li
+    class="page-item"><a href="/foo?page=16"  class="page-link" link-extra >16</a></li><li
+    class="page-item"><a href="/foo?page=17"  class="page-link" link-extra >17</a></li><li
+    class="page-item"><a href="/foo?page=18"  class="page-link" link-extra >18</a></li><li
+    class="page-item"><a href="/foo?page=19"  class="page-link" link-extra rel="prev"
+    >19</a></li><li class="page-item active"><a role="link" class="page-link" aria-current="page"
+    aria-disabled="true">20</a></li><li class="page-item"><a href="/foo?page=21"  class="page-link"
+    link-extra rel="next" >21</a></li><li class="page-item"><a href="/foo?page=22"  class="page-link"
+    link-extra >22</a></li><li class="page-item"><a href="/foo?page=23"  class="page-link"
+    link-extra >23</a></li><li class="page-item"><a href="/foo?page=24"  class="page-link"
+    link-extra >24</a></li><li class="page-item gap disabled"><a role="link" class="page-link"
+    aria-disabled="true">&hellip;</a></li><li class="page-item"><a href="/foo?page=50"  class="page-link"
+    link-extra >50</a></li><li class="page-item next"><a href="/foo?page=21"  class="page-link"
+    link-extra rel="next" aria-label="Next">&gt;</a></li></ul></nav>
+  :plain_50: <nav class="pagy-bootstrap-nav" aria-label="Pages"><ul class="pagination"><li
+    class="page-item prev"><a href="/foo?page=49"  class="page-link"  rel="prev" aria-label="Previous">&lt;</a></li><li
+    class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li class="page-item
+    gap disabled"><a role="link" class="page-link" aria-disabled="true">&hellip;</a></li><li
+    class="page-item"><a href="/foo?page=46"  class="page-link"  >46</a></li><li class="page-item"><a
+    href="/foo?page=47"  class="page-link"  >47</a></li><li class="page-item"><a href="/foo?page=48"  class="page-link"  >48</a></li><li
+    class="page-item"><a href="/foo?page=49"  class="page-link"  rel="prev" >49</a></li><li
+    class="page-item active"><a role="link" class="page-link" aria-current="page"
+    aria-disabled="true">50</a></li><li class="page-item next disabled"><a role="link"
+    class="page-link" aria-disabled="true" aria-label="Next">&gt;</a></li></ul></nav>
+  :extras_50: <nav id="test-nav-id" class="pagy-bootstrap-nav" aria-label="Pages"><ul
+    class="pagination"><li class="page-item prev"><a href="/foo?page=49"  class="page-link"
+    link-extra rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
+    href="/foo?page=1"  class="page-link" link-extra >1</a></li><li class="page-item
+    gap disabled"><a role="link" class="page-link" aria-disabled="true">&hellip;</a></li><li
+    class="page-item"><a href="/foo?page=46"  class="page-link" link-extra >46</a></li><li
+    class="page-item"><a href="/foo?page=47"  class="page-link" link-extra >47</a></li><li
+    class="page-item"><a href="/foo?page=48"  class="page-link" link-extra >48</a></li><li
+    class="page-item"><a href="/foo?page=49"  class="page-link" link-extra rel="prev"
+    >49</a></li><li class="page-item active"><a role="link" class="page-link" aria-current="page"
+    aria-disabled="true">50</a></li><li class="page-item next disabled"><a role="link"
+    class="page-link" aria-disabled="true" aria-label="Next">&gt;</a></li></ul></nav>
 pagy/extras/bootstrap::#pagy_combo_bootstrap_nav_js#test_0001_renders first, intermediate and last pages:
   :plain_1: '<nav class="pagy-bootstrap-combo-nav-js pagination" aria-label="Pages"><div
     class="btn-group" role="group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><a
-    class="prev btn btn-primary disabled" href="#" aria-disabled="true" aria-label="Previous">&lt;</a><div
+    role="link" class="prev btn btn-primary disabled" aria-disabled="true" aria-label="Previous">&lt;</a><div
     class="pagy-combo-input btn btn-secondary" style="white-space: nowrap;"><label>Page
     <input type="number" min="1" max="6" value="1" style="padding: 0; border: none;
     text-align: center; width: 2rem;" aria-current="page"> of 6</label></div><a href="/foo?page=2"   rel="next"
     class="next btn btn-primary" aria-label="Next">&gt;</a></div></nav>'
   :extras_1: '<nav id="test-nav-id" class="pagy-bootstrap-combo-nav-js pagination"
     aria-label="Pages"><div class="btn-group" role="group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
-    class="prev btn btn-primary disabled" href="#" aria-disabled="true" aria-label="Previous">&lt;</a><div
+    role="link" class="prev btn btn-primary disabled" aria-disabled="true" aria-label="Previous">&lt;</a><div
     class="pagy-combo-input btn btn-secondary" style="white-space: nowrap;"><label>Page
     <input type="number" min="1" max="6" value="1" style="padding: 0; border: none;
     text-align: center; width: 2rem;" aria-current="page"> of 6</label></div><a href="/foo?page=2"  link-extra
@@ -50,87 +111,29 @@ pagy/extras/bootstrap::#pagy_combo_bootstrap_nav_js#test_0001_renders first, int
     href="/foo?page=5"   rel="prev" class="prev btn btn-primary" aria-label="Previous">&lt;</a><div
     class="pagy-combo-input btn btn-secondary" style="white-space: nowrap;"><label>Page
     <input type="number" min="1" max="6" value="6" style="padding: 0; border: none;
-    text-align: center; width: 2rem;" aria-current="page"> of 6</label></div><a class="next
-    btn btn-primary disabled" href="#" aria-disabled="true" aria-label="Next">&gt;</a></div></nav>'
+    text-align: center; width: 2rem;" aria-current="page"> of 6</label></div><a role="link"
+    class="next btn btn-primary disabled" aria-disabled="true" aria-label="Next">&gt;</a></div></nav>'
   :extras_6: '<nav id="test-nav-id" class="pagy-bootstrap-combo-nav-js pagination"
     aria-label="Pages"><div class="btn-group" role="group" data-pagy="WyJjb21ibyIsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBsaW5rLWV4dHJhIHN0eWxlPVwiZGlzcGxheTogbm9uZTtcIj48L2E+Il0="><a
     href="/foo?page=5"  link-extra rel="prev" class="prev btn btn-primary" aria-label="Previous">&lt;</a><div
     class="pagy-combo-input btn btn-secondary" style="white-space: nowrap;"><label>Page
     <input type="number" min="1" max="6" value="6" style="padding: 0; border: none;
-    text-align: center; width: 2rem;" aria-current="page"> of 6</label></div><a class="next
-    btn btn-primary disabled" href="#" aria-disabled="true" aria-label="Next">&gt;</a></div></nav>'
-pagy/extras/bootstrap::#pagy_bootstrap_nav#test_0001_renders first, intermediate and last pages:
-  :plain_1: <nav class="pagy-bootstrap-nav" aria-label="Pages"><ul class="pagination"><li
-    class="page-item prev disabled"><a href="#" class="page-link" aria-disabled="true"
-    aria-label="Previous">&lt;</a></li><li class="page-item active"><a class="page-link"
-    href="#">1</a></li><li class="page-item"><a href="/foo?page=2"  class="page-link"  rel="next"
-    >2</a></li><li class="page-item"><a href="/foo?page=3"  class="page-link"  >3</a></li><li
-    class="page-item"><a href="/foo?page=4"  class="page-link"  >4</a></li><li class="page-item"><a
-    href="/foo?page=5"  class="page-link"  >5</a></li><li class="page-item gap disabled"><a
-    href="#" class="page-link" aria-disabled="true">&hellip;</a></li><li class="page-item"><a
-    href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item next"><a
-    href="/foo?page=2"  class="page-link"  rel="next" aria-label="Next">&gt;</a></li></ul></nav>
-  :extras_1: <nav id="test-nav-id" class="pagy-bootstrap-nav" aria-label="Pages"><ul
-    class="pagination"><li class="page-item prev disabled"><a href="#" class="page-link"
-    aria-disabled="true" aria-label="Previous">&lt;</a></li><li class="page-item active"><a
-    class="page-link" href="#">1</a></li><li class="page-item"><a href="/foo?page=2"  class="page-link"
-    link-extra rel="next" >2</a></li><li class="page-item"><a href="/foo?page=3"  class="page-link"
-    link-extra >3</a></li><li class="page-item"><a href="/foo?page=4"  class="page-link"
-    link-extra >4</a></li><li class="page-item"><a href="/foo?page=5"  class="page-link"
-    link-extra >5</a></li><li class="page-item gap disabled"><a href="#" class="page-link"
-    aria-disabled="true">&hellip;</a></li><li class="page-item"><a href="/foo?page=50"  class="page-link"
-    link-extra >50</a></li><li class="page-item next"><a href="/foo?page=2"  class="page-link"
-    link-extra rel="next" aria-label="Next">&gt;</a></li></ul></nav>
-  :plain_20: <nav class="pagy-bootstrap-nav" aria-label="Pages"><ul class="pagination"><li
-    class="page-item prev"><a href="/foo?page=19"  class="page-link"  rel="prev" aria-label="Previous">&lt;</a></li><li
-    class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li class="page-item
-    gap disabled"><a href="#" class="page-link" aria-disabled="true">&hellip;</a></li><li
-    class="page-item"><a href="/foo?page=16"  class="page-link"  >16</a></li><li class="page-item"><a
-    href="/foo?page=17"  class="page-link"  >17</a></li><li class="page-item"><a href="/foo?page=18"  class="page-link"  >18</a></li><li
-    class="page-item"><a href="/foo?page=19"  class="page-link"  rel="prev" >19</a></li><li
-    class="page-item active"><a class="page-link" href="#">20</a></li><li class="page-item"><a
-    href="/foo?page=21"  class="page-link"  rel="next" >21</a></li><li class="page-item"><a
-    href="/foo?page=22"  class="page-link"  >22</a></li><li class="page-item"><a href="/foo?page=23"  class="page-link"  >23</a></li><li
-    class="page-item"><a href="/foo?page=24"  class="page-link"  >24</a></li><li class="page-item
-    gap disabled"><a href="#" class="page-link" aria-disabled="true">&hellip;</a></li><li
-    class="page-item"><a href="/foo?page=50"  class="page-link"  >50</a></li><li class="page-item
-    next"><a href="/foo?page=21"  class="page-link"  rel="next" aria-label="Next">&gt;</a></li></ul></nav>
-  :extras_20: <nav id="test-nav-id" class="pagy-bootstrap-nav" aria-label="Pages"><ul
-    class="pagination"><li class="page-item prev"><a href="/foo?page=19"  class="page-link"
-    link-extra rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
-    href="/foo?page=1"  class="page-link" link-extra >1</a></li><li class="page-item
-    gap disabled"><a href="#" class="page-link" aria-disabled="true">&hellip;</a></li><li
-    class="page-item"><a href="/foo?page=16"  class="page-link" link-extra >16</a></li><li
-    class="page-item"><a href="/foo?page=17"  class="page-link" link-extra >17</a></li><li
-    class="page-item"><a href="/foo?page=18"  class="page-link" link-extra >18</a></li><li
-    class="page-item"><a href="/foo?page=19"  class="page-link" link-extra rel="prev"
-    >19</a></li><li class="page-item active"><a class="page-link" href="#">20</a></li><li
-    class="page-item"><a href="/foo?page=21"  class="page-link" link-extra rel="next"
-    >21</a></li><li class="page-item"><a href="/foo?page=22"  class="page-link" link-extra
-    >22</a></li><li class="page-item"><a href="/foo?page=23"  class="page-link" link-extra
-    >23</a></li><li class="page-item"><a href="/foo?page=24"  class="page-link" link-extra
-    >24</a></li><li class="page-item gap disabled"><a href="#" class="page-link" aria-disabled="true">&hellip;</a></li><li
-    class="page-item"><a href="/foo?page=50"  class="page-link" link-extra >50</a></li><li
-    class="page-item next"><a href="/foo?page=21"  class="page-link" link-extra rel="next"
-    aria-label="Next">&gt;</a></li></ul></nav>
-  :plain_50: <nav class="pagy-bootstrap-nav" aria-label="Pages"><ul class="pagination"><li
-    class="page-item prev"><a href="/foo?page=49"  class="page-link"  rel="prev" aria-label="Previous">&lt;</a></li><li
-    class="page-item"><a href="/foo?page=1"  class="page-link"  >1</a></li><li class="page-item
-    gap disabled"><a href="#" class="page-link" aria-disabled="true">&hellip;</a></li><li
-    class="page-item"><a href="/foo?page=46"  class="page-link"  >46</a></li><li class="page-item"><a
-    href="/foo?page=47"  class="page-link"  >47</a></li><li class="page-item"><a href="/foo?page=48"  class="page-link"  >48</a></li><li
-    class="page-item"><a href="/foo?page=49"  class="page-link"  rel="prev" >49</a></li><li
-    class="page-item active"><a class="page-link" href="#">50</a></li><li class="page-item
-    next disabled"><a href="#" class="page-link" aria-disabled="true" aria-label="Next">&gt;</a></li></ul></nav>
-  :extras_50: <nav id="test-nav-id" class="pagy-bootstrap-nav" aria-label="Pages"><ul
-    class="pagination"><li class="page-item prev"><a href="/foo?page=49"  class="page-link"
-    link-extra rel="prev" aria-label="Previous">&lt;</a></li><li class="page-item"><a
-    href="/foo?page=1"  class="page-link" link-extra >1</a></li><li class="page-item
-    gap disabled"><a href="#" class="page-link" aria-disabled="true">&hellip;</a></li><li
-    class="page-item"><a href="/foo?page=46"  class="page-link" link-extra >46</a></li><li
-    class="page-item"><a href="/foo?page=47"  class="page-link" link-extra >47</a></li><li
-    class="page-item"><a href="/foo?page=48"  class="page-link" link-extra >48</a></li><li
-    class="page-item"><a href="/foo?page=49"  class="page-link" link-extra rel="prev"
-    >49</a></li><li class="page-item active"><a class="page-link" href="#">50</a></li><li
-    class="page-item next disabled"><a href="#" class="page-link" aria-disabled="true"
-    aria-label="Next">&gt;</a></li></ul></nav>
+    text-align: center; width: 2rem;" aria-current="page"> of 6</label></div><a role="link"
+    class="next btn btn-primary disabled" aria-disabled="true" aria-label="Next">&gt;</a></div></nav>'
+pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0002_renders first, intermediate and last pages with required steps:
+  :plain_1: <nav class="pagy-bootstrap-nav-js" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgcm9sZT1cImxpbmtcImNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cInBhZ2UtbGlua1wiICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gYWN0aXZlXCI+PGEgcm9sZT1cImxpbmtcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGdhcCBkaXNhYmxlZFwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MlwiICBjbGFzcz1cInBhZ2UtbGlua1wiICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsiMSIsMiwzLDQsNSwiZ2FwIiw1MF19LG51bGxd"></nav>
+  :extras_1: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Pages"
+    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgcm9sZT1cImxpbmtcImNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cInBhZ2UtbGlua1wiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSByb2xlPVwibGlua1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIG5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTJcIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WyIxIiwyLDMsImdhcCIsNTBdLCI2MDAiOlsiMSIsMiwzLDQsImdhcCIsNTBdfSxudWxsXQ=="></nav>
+  :plain_20: <nav class="pagy-bootstrap-nav-js" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cInBhZ2UtbGlua1wiICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSByb2xlPVwibGlua1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIG5leHRcIj48YSBocmVmPVwiL2Zvbz9wYWdlPTIxXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTYsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywyNCwiZ2FwIiw1MF19LG51bGxd"></nav>
+  :extras_20: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Pages"
+    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xOVwiICBjbGFzcz1cInBhZ2UtbGlua1wiIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+PC9saT4iLCJsaW5rIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gYWN0aXZlXCI+PGEgcm9sZT1cImxpbmtcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGdhcCBkaXNhYmxlZFwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9MjFcIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhIHJlbD1cIm5leHRcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsMTgsMTksIjIwIiwyMSwyMiwiZ2FwIiw1MF0sIjYwMCI6WzEsImdhcCIsMTcsMTgsMTksIjIwIiwyMSwyMiwyMywiZ2FwIiw1MF19LG51bGxd"></nav>
+  :plain_50: <nav class="pagy-bootstrap-nav-js" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cInBhZ2UtbGlua1wiICByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiAgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSByb2xlPVwibGlua1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIG5leHQgZGlzYWJsZWRcIj48YSByb2xlPVwibGlua1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsNDYsNDcsNDgsNDksIjUwIl19LG51bGxd"></nav>
+  :extras_50: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Pages"
+    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiICBjbGFzcz1cInBhZ2UtbGlua1wiIGxpbmstZXh0cmEgcmVsPVwicHJldlwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPiZsdDs8L2E+PC9saT4iLCJsaW5rIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtXCI+PGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gYWN0aXZlXCI+PGEgcm9sZT1cImxpbmtcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGdhcCBkaXNhYmxlZFwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dCBkaXNhYmxlZFwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT48L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiw0OCw0OSwiNTAiXSwiNjAwIjpbMSwiZ2FwIiw0Nyw0OCw0OSwiNTAiXX0sbnVsbF0="></nav>
+pagy/extras/bootstrap::#pagy_bootstrap_nav_js#test_0001_renders single and multiple pages when used with Pagy::Countless:
+  :plain_1_0: <nav class="pagy-bootstrap-nav-js" aria-label="Page" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgcm9sZT1cImxpbmtcImNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cInBhZ2UtbGlua1wiICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gYWN0aXZlXCI+PGEgcm9sZT1cImxpbmtcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGdhcCBkaXNhYmxlZFwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dCBkaXNhYmxlZFwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT48L2xpPjwvdWw+In0seyIwIjpbIjEiXX0sbnVsbF0="></nav>
+  :extras_1_0: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Page"
+    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2IGRpc2FibGVkXCI+PGEgcm9sZT1cImxpbmtcImNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cInBhZ2UtbGlua1wiIGxpbmstZXh0cmEgPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiYWN0aXZlIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGFjdGl2ZVwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImdhcCI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBnYXAgZGlzYWJsZWRcIj48YSByb2xlPVwibGlua1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj4maGVsbGlwOzwvYT48L2xpPiIsImFmdGVyIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIG5leHQgZGlzYWJsZWRcIj48YSByb2xlPVwibGlua1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiTmV4dFwiPiZndDs8L2E+PC9saT48L3VsPiJ9LHsiMCI6WyIxIl0sIjYwMCI6WyIxIl19LG51bGxd"></nav>
+  :plain_2_23: <nav class="pagy-bootstrap-nav-js" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgIHJlbD1cInByZXZcIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPjwvbGk+IiwibGluayI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbVwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiICBjbGFzcz1cInBhZ2UtbGlua1wiICA+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJhY3RpdmUiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gYWN0aXZlXCI+PGEgcm9sZT1cImxpbmtcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwicGFnZS1pdGVtIGdhcCBkaXNhYmxlZFwiPjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJwYWdlLWxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gbmV4dFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiICBjbGFzcz1cInBhZ2UtbGlua1wiICByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsxLCIyIiwzXX0sbnVsbF0="></nav>
+  :extras_2_23: <nav id="test-nav-id" class="pagy-rjs pagy-bootstrap-nav-js" aria-label="Pages"
+    data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSByZWw9XCJwcmV2XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT48L2xpPiIsImxpbmsiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW1cIj48YSBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIiAgY2xhc3M9XCJwYWdlLWxpbmtcIiBsaW5rLWV4dHJhID5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImFjdGl2ZSI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBhY3RpdmVcIj48YSByb2xlPVwibGlua1wiIGNsYXNzPVwicGFnZS1saW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJwYWdlLWl0ZW0gZ2FwIGRpc2FibGVkXCI+PGEgcm9sZT1cImxpbmtcIiBjbGFzcz1cInBhZ2UtbGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cInBhZ2UtaXRlbSBuZXh0XCI+PGEgaHJlZj1cIi9mb28/cGFnZT0zXCIgIGNsYXNzPVwicGFnZS1saW5rXCIgbGluay1leHRyYSByZWw9XCJuZXh0XCIgYXJpYS1sYWJlbD1cIk5leHRcIj4mZ3Q7PC9hPjwvbGk+PC91bD4ifSx7IjAiOlsxLCIyIiwzXSwiNjAwIjpbMSwiMiIsM119LG51bGxd"></nav>

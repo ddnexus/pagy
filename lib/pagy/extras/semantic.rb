@@ -21,7 +21,7 @@ class Pagy # :nodoc:
                 when Integer
                   link.call(item, pagy.label_for(item), %(class="item"))
                 when String
-                  link.call(item, pagy.label_for(item), %(class="item active"))
+                  %(<a role="link" class="item active" aria-current="page" aria-disabled="true">#{pagy.label_for(item)}</a>)
                 when :gap
                   %(<div class="disabled item">#{pagy_t 'pagy.gap'}</div>)
                 else
@@ -40,7 +40,8 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => semantic_prev_html(pagy, link),
                'link'   => link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER, %(class="item")),
-               'active' => link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER, %(class="item active")),
+               'active' => %(<a role="link" class="item active" aria-current="page" aria-disabled="true">#{
+                               LABEL_PLACEHOLDER}</a>),
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.gap')}</div>),
                'after'  => semantic_next_html(pagy, link) }
 
