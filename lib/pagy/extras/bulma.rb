@@ -41,9 +41,9 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => %(#{bulma_prev_next_html(pagy, link)}<ul class="pagination-list">),
-               'link'   => %(<li>#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER, %(class="pagination-link"))}</li>),
+               'link'   => %(<li>#{link.call(PAGE_TOKEN, LABEL_TOKEN, %(class="pagination-link"))}</li>),
                'active' => %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
-                               LABEL_PLACEHOLDER}</a></li>),
+                               LABEL_TOKEN}</a></li>),
                'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>),
                'after'  => '</ul>' }
 

@@ -39,9 +39,8 @@ class Pagy # :nodoc:
       p_id = %( id="#{pagy_id}") if pagy_id
       link = pagy_link_proc(pagy, link_extra:)
       tags = { 'before' => semantic_prev_html(pagy, link),
-               'link'   => link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER, %(class="item")),
-               'active' => %(<a role="link" class="item active" aria-current="page" aria-disabled="true">#{
-                               LABEL_PLACEHOLDER}</a>),
+               'link'   => link.call(PAGE_TOKEN, LABEL_TOKEN, %(class="item")),
+               'active' => %(<a role="link" class="item active" aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a>),
                'gap'    => %(<div class="disabled item">#{pagy_t('pagy.gap')}</div>),
                'after'  => semantic_next_html(pagy, link) }
 

@@ -40,9 +40,8 @@ class Pagy # :nodoc:
       link = pagy_link_proc(pagy, link_extra:)
 
       tags = { 'before' => %(<ul class="pagination">#{materialize_prev_html pagy, link}),
-               'link'   => %(<li class="waves-effect">#{link.call(PAGE_PLACEHOLDER, LABEL_PLACEHOLDER)}</li>),
-               'active' => %(<li class="active"><a role="link" aria-current="page" aria-disabled="true">#{
-LABEL_PLACEHOLDER}</a></li>),
+               'link'   => %(<li class="waves-effect">#{link.call(PAGE_TOKEN, LABEL_TOKEN)}</li>),
+               'active' => %(<li class="active"><a role="link" aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></li>),
                'gap'    => %(<li class="gap disabled"><a role="link" aria-disabled="true">#{pagy_t 'pagy.gap'}</a></li>),
                'after'  => %(#{materialize_next_html pagy, link}</ul>) }
 
