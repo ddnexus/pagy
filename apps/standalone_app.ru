@@ -41,15 +41,11 @@ end
 # pagy initializer
 require 'pagy/extras/navs'
 require 'pagy/extras/items'
-# Pagy::DEFAULT[:items_extra]
-require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false # opt-in trim
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
-
-# require 'pagy/extras/gearbox'
-# Pagy::DEFAULT[:gearbox_items] = [10, 20, 40, 80]
+require 'pagy/extras/trim'
+Pagy::DEFAULT[:trim_extra] = false # opt-in trim (pass a trim param)
 Pagy::DEFAULT.freeze
 
 require 'sinatra/base'
@@ -112,12 +108,12 @@ __END__
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>
-    <style type="text/css">
-    .content {
-      font-family: sans-serif;
-    }
-    /* If you want to customize the style,
-       please replace the line below with the actual file content */
+  <style type="text/css">
+    content {
+     font-family: sans-serif;
+   }
+   /* If you want to customize the style,
+      please replace the line below with the actual file content */
     <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
   </style>
 </head>
