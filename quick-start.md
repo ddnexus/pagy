@@ -7,13 +7,13 @@ icon: rocket-24
 
 === If you want to just try Pagy before using it in your own app, you have a couple of alternatives...
 
-+++ Standalone Application
++++ Pagy Application
 
 Ensure to have `rack` installed (or `gem install rack`)
 
-Download and run the following file
+Download and run the following self contained file
 
-[!file](apps/standalone_app.ru)
+[!file](apps/pagy_standalone.ru)
 
 +++ Pagy Console
 

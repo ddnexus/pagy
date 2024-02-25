@@ -386,7 +386,7 @@ Many thanks to:
 - Please base your PR against the master branch.
 - For simple contribution you can quickly check your changes with
   the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/) or with the single
-  file [pagy_standalone_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone_app.ru).
+  file [pagy_standalone.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone.ru).
 - If you Create A Pull Request, please ensure that the "All checks have passed" indicator gets green light on the Pull Request
   page (if it's not enabled, a maintainer will enable it for you).
 

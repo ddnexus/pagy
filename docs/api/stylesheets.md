@@ -11,9 +11,8 @@ For all its own interactive helpers the pagy gem includes a few stylesheets file
 
 !!!success
 You can adapt the stylesheets to anything you need by just editing content inside the curly brackets, usually leaving the rest
-untouched
+untouched.
 !!!
-
 
 +++ pagy.scss
 
@@ -45,8 +44,9 @@ stylesheet_path = Pagy.root.join('stylesheets', 'pagy.tailwind.scss')
 
 :::code source="/lib/stylesheets/pagy.tailwind.scss" :::
 
-!!!
-You can also quickly interact and customize it by running the single-file self-contaied app [!file](../apps/tailwind_app.ru)
-!!!
-
 +++
+
+!!!
+You can also quickly interact with all the pagy styles (including `pagy` and `tailwind`) by running the single-file self-contaied
+app [!file](/apps/pagy_styles.ru)
+!!!

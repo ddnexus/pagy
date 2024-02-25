@@ -106,7 +106,7 @@ You can play with a quick demo app, working without any additional configuration
 ```shell
 git clone --depth 1 https://github.com/ddnexus/pagy
 cd pagy
-rackup -o 0.0.0.0 -p 8080 apps/calendar_app.ru
+rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar.ru
 ```
 
 |||

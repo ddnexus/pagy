@@ -25,7 +25,7 @@
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
     <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="/usr/local/bundle/bin/rerun" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="-- rackup -o 0.0.0.0 -p 8080 standalone_app.ru" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="-- rackup -o 0.0.0.0 -p 8080 pagy_standalone.ru" />
     <method v="2" />
   </configuration>
 </component>
