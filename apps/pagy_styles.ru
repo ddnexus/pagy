@@ -78,13 +78,11 @@ class PagyStyles < Sinatra::Base
   STYLES.each_key do |style|
     prefix = STYLES[style][:prefix] || "#{style}_"
 
-    %W[/#{style} /#{style}/:trim].each do |route|
-      get(route) do
-        collection = MockCollection.new
-        @pagy, @records = pagy(collection, trim_extra: params['trim'])
+    get("/#{style}/?:trim?") do
+      collection = MockCollection.new
+      @pagy, @records = pagy(collection, trim_extra: params['trim'])
 
-        erb :helpers, locals: { style:, prefix: }
-      end
+      erb :helpers, locals: { style:, prefix: }
     end
   end
 

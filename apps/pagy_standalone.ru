@@ -65,7 +65,7 @@ class PagyStandalone < Sinatra::Base
     send_file Pagy.root.join('javascripts', PAGY_JS)
   end
   # Edit this action as needed
-  get '/:trim?' do
+  get '/?:trim?' do
     collection = MockCollection.new
     @pagy, @records = pagy(collection, trim_extra: params['trim'])
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
