@@ -11,9 +11,9 @@ icon: rocket-24
 
 Ensure to have `rack` installed (or `gem install rack`)
 
-Download and run the following self contained file
+Download and run any of the following self contained file:
 
-[!file](apps/pagy_standalone.ru)
+[!file](/apps/pagy_styles.ru)
 
 +++ Pagy Console
 
@@ -26,6 +26,7 @@ gem install pagy
 |||
 
 [Use it fully without any app](docs/api/console.md)
+
 +++
 ===
 
