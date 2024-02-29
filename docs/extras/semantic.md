@@ -3,7 +3,7 @@ title: Semantic
 categories:
 - Frontend
 - Extra
-image: null
+image: none
 ---
 
 # Semantic UI Extra

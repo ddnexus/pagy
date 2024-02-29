@@ -1,6 +1,6 @@
 ---
 title: Combo Navs
-image: null
+image: none
 order: 2
 ---
 

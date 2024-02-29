@@ -1,6 +1,6 @@
 ---
 title: AJAX
-image: null
+image: none
 order: 1
 ---
 

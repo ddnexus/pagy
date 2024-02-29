@@ -2,31 +2,38 @@
 
 # Sinatra app usable to play with the pagy calendar extra (https://ddnexus.github.io/pagy/docs/extras/calendar)
 
+# IMPORTANT #
 # This app uses mock collections from the repo, so you should run it from the cloned repo dir:
-#
+
+# INSTALL
 # git clone --depth 1 https://github.com/ddnexus/pagy
-# cd pagy
-# rackup -o 0.0.0.0 -p 8080 apps/calendar_app.ru
-#
+
+# USAGE
+# rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar.ru
+
+# DEV USAGE (with automatic app reload if you edit it)
+#    gem install rerun
+#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone.ru
+
 # Point your browser to http://0.0.0.0:8080
 
 # Read the comments below to edit this app
 
 require 'bundler/inline'
 
-# Edit this gemfile declaration as you need and ensure to use gems updated to the latest versions
-# NOTICE: if you get any installation error with the following setup
-# temporarily remove the Gemfile and Gemfile.lock from the repo (they may interfere with the bundler/inline)
-
+# Edit this gemfile declaration as you need
+# and ensure to use gems updated to the latest versions
 gemfile true do
   source 'https://rubygems.org'
-  gem 'rack'
-  # gem 'pagy'            # <--install from rubygems
+  gem 'activesupport'
+  gem 'oj'
+  # gem 'pagy'            # <-- install from rubygems
   gem 'pagy', path: '../' # <-- use the local repo
   gem 'puma'
+  gem 'rack'
+  gem 'rackup'
   gem 'sinatra'
   gem 'sinatra-contrib'
-  gem 'activesupport'
 end
 
 # Edit this section adding/removing the extras and DEFAULT as needed
@@ -41,7 +48,7 @@ require_relative '../test/mock_helpers/collection'
 
 require 'sinatra/base'
 # Sinatra application
-class PagyCalendarApp < Sinatra::Base
+class PagyCalendar < Sinatra::Base
   configure do
     enable :inline_templates
   end
@@ -84,7 +91,7 @@ class PagyCalendarApp < Sinatra::Base
   end
 end
 
-run PagyCalendarApp
+run PagyCalendar
 
 __END__
 

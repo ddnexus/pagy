@@ -1,6 +1,6 @@
 ---
 title: Setup
-image: null
+image: none
 order: 4
 ---
 

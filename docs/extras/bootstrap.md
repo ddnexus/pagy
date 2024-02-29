@@ -3,7 +3,7 @@ title: Bootstrap
 categories:
 - Frontend
 - Extra
-image: null
+image: none
 ---
 
 # Bootstrap Extra

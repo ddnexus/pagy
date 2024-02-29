@@ -3,7 +3,7 @@ title: Materialize
 categories:
 - Frontend
 - Extra
-image: null
+image: none
 ---
 
 # Materialize Extra

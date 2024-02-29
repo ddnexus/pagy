@@ -3,7 +3,7 @@ title: Bulma
 categories:
 - Frontend
 - Extra
-image: null
+image: none
 ---
 
 # Bulma Extra

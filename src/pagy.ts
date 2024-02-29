@@ -38,15 +38,15 @@ const Pagy = (() => {
             for (const i in series) {
                 const item = series[i];
                 const label = labels[i];
-                if (typeof trimParam === "string" && item == 1) {
-                    html += trim(fillIn(tags.link, item.toString(), label), trimParam);
-                } else if (typeof item === "number") {
-                    html += fillIn(tags.link, item.toString(), label);
+                let filled;
+                if (typeof item === "number") {
+                    filled = fillIn(tags.link, item.toString(), label);
                 } else if (item === "gap") {
-                    html += tags.gap;
+                    filled = tags.gap;
                 } else { // active page
-                    html += fillIn(tags.active, item, label);
+                    filled = fillIn(tags.active, item, label);
                 }
+                html += (typeof trimParam === "string" && item == 1) ? trim(filled, trimParam) : filled;
             }
             html += tags.after;   // eslint-disable-line align-assignments/align-assignments
             el.innerHTML = "";
@@ -97,7 +97,7 @@ const Pagy = (() => {
 
     // Public interface
     return {
-        version: "7.0.6",
+        version: "7.0.7",
 
         // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
         init(arg?:Element | never) {

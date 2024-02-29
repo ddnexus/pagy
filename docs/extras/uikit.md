@@ -1,6 +1,6 @@
 ---
 title: UIkit
-image: null
+image: none
 category: Frontend
 ---
 
