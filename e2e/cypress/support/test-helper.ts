@@ -1,6 +1,6 @@
 export const navIds = ["#nav", "#nav-js"];
-const widths          = [500, 750, 1000];
-const specialStylesRe = /^\/(materialize|semantic)/;
+const widths = [500, 750, 1000];
+const specialStylesRe = /^\/(bulma)/;
 
 export const styles = [
     "/bootstrap",
@@ -55,14 +55,14 @@ function checkStyleId(style:string, id:string) {
 
 export function goCheckNext(style:string, id:string) {
     specialStylesRe.test(style)
-    ? cy.get(`${id} a:last`).click()
-    : cy.get(id).contains(">").click();
+    ? cy.get(id).contains(">").click()
+    : cy.get(`${id} a:last`).click();
     snapId(id);
 }
 
 export function goCheckPrev(style:string, id:string) {
     specialStylesRe.test(style)
-    ? cy.get(`${id} a:first`).click()
-    : cy.get(id).contains("<").click();
+    ? cy.get(id).contains("<").click()
+    : cy.get(`${id} a:first`).click();
     snapId(id);
 }
