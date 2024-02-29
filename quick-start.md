@@ -149,9 +149,7 @@ Use a fast helper
 |||
 
 !!! CSS Frameworks/Styles Available
-The pagy helpers are available for different frameworks and different styles (static, responsive, compact, etc.) [bootstrap]
-(
-docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md), [foundation](docs/extras/foundation.md), [materialize](docs/extras/materialize.md), [semantic](docs/extras/semantic.md), [uikit](docs/extras/uikit.md)
+The pagy helpers are available for different frameworks and different styles (static, responsive, compact, etc.) [bootstrap](docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md), [foundation](docs/extras/foundation.md), [materialize](docs/extras/materialize.md), [semantic](docs/extras/semantic.md), [uikit](docs/extras/uikit.md)
 !!!
 
 +++ Javascript Framework
