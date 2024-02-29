@@ -23,6 +23,12 @@ If you upgrade from version `< 7.0.0` see the following:
 
 <hr>
 
+## Version 7.0.7
+
+- Fix for retype exluding linked files and showing category images
+- Fix for first *nav_js page not active with trim (introduced with the #656 fix 7e2f118)
+- Normalize pagy apps; implement pagy_styles.ru
+
 ## Version 7.0.6
 
 - Internal renaming of frontend constants
