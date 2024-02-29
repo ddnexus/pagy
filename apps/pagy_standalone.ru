@@ -3,16 +3,21 @@
 # Self-contained, standalone Sinatra app usable to play with pagy
 # and/or easily reproduce any pagy issue.
 
-# Copy this file in your own machine and
-# ensure rack is installed (or `gem install rack`)
-# or run it from the apps dir in the repo
+# INSTALL
+# Option a)
+# Download, edit the gemfile block and run this file from your local copy
+# Ensure rack is installed (or `gem install rack`)
 
-# USAGE:
-#    rackup -o 0.0.0.0 -p 8080 standalone_app.ru
+# Option b)
+# Clone pagy and run this file from the apps dir in the repo
+# git clone --depth 1 https://github.com/ddnexus/pagy
 
-# ADVANCED USAGE (with automatic app reload if you edit it):
-#    gem install rerun
-#    rerun -- rackup -o 0.0.0.0 -p 8080 standalone_app.ru
+# USAGE
+#    rackup -o 0.0.0.0 -p 8080 pagy_standalone.ru
+
+# DEV USAGE (with automatic app reload if you edit it)
+# Ensure rerun is installed (or `gem install rerun`)
+#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone.ru
 
 # Point your browser to http://0.0.0.0:8080
 
@@ -22,17 +27,14 @@ require 'bundler/inline'
 
 # Edit this gemfile declaration as you need
 # and ensure to use gems updated to the latest versions
-# NOTICE: if you get any installation error with the following setup
-# temporarily remove the Gemfile and Gemfile.lock from the repo (they may interfere with the bundler/inline)
-
 gemfile true do
   source 'https://rubygems.org'
   gem 'oj'
+  # gem 'pagy'            # <-- install from rubygems if you copied and run it in your local
+  gem 'pagy', path: '../' # <-- use the local repo if you cloned it and run it from the repo
+  gem 'puma'
   gem 'rack'
   gem 'rackup'
-  # gem 'pagy'            # <--install from rubygems
-  gem 'pagy', path: '../' # <-- use the local repo
-  gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
 end
@@ -45,32 +47,32 @@ require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
 require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false # opt-in trim (pass a trim param)
+Pagy::DEFAULT[:trim_extra] = false # opt-in trim (pass a trim=enabled query param)
 Pagy::DEFAULT.freeze
 
 require 'sinatra/base'
 # Sinatra application
-class PagyStandaloneApp < Sinatra::Base
+class PagyStandalone < Sinatra::Base
   PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js".freeze
 
   configure do
     enable :inline_templates
   end
   include Pagy::Backend
-  # Edit this section adding your own helpers as needed
-  helpers do
-    include Pagy::Frontend
-  end
   # Serve pagy.js or pagy-dev.js
   get("/#{PAGY_JS}") do
     content_type 'application/javascript'
     send_file Pagy.root.join('javascripts', PAGY_JS)
   end
-  # edit this action as needed
-  get '/:trim?' do
+  # Edit this action as needed
+  get '/?:trim?' do
     collection = MockCollection.new
     @pagy, @records = pagy(collection, trim_extra: params['trim'])
     erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
+  end
+  # Edit this section adding your own helpers as needed
+  helpers do
+    include Pagy::Frontend
   end
 end
 
@@ -97,7 +99,7 @@ class MockCollection < Array
   end
 end
 
-run PagyStandaloneApp
+run PagyStandalone
 
 __END__
 
@@ -125,7 +127,7 @@ __END__
 
 @@ pagy_demo
 <div class="content">
-  <h3>Pagy Standalone Application</h3>
+  <h3>Pagy App</h3>
   <p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
   <p>Please, report the following versions in any new issue.</p>
   <h4>Versions</h4>
