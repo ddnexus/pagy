@@ -1,6 +1,6 @@
 ---
 title: Navs
-image: null
+image: none
 categories:
 - Frontend
 - Extra

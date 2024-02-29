@@ -1,3 +1,7 @@
+serve:
+  watch:
+    mode: disk  # no more surprises with retype not copying download link files!
+
 input: .
 output: .retype
 url: https://ddnexus.github.io/pagy
@@ -36,14 +40,18 @@ links:
     target: blank
 
 exclude:
-  - apps/README.md
-  - e2e/README.md
-  - test/README.md
-  - lib/**/README.md
-  - docs/README.md
+  - README.md
+  - /coverage/**
+  - /e2e/**
+
+include:
+  - /apps/**/*.ru
+  - /apps/**/*.rb
+  - /lib/stylesheets/**
+  - /README.md
 
 edit:
-  repo: "https://github.com/ddnexus/pagy"
+  repo: https://github.com/ddnexus/pagy
   branch: master
 
 search:

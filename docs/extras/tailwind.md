@@ -3,7 +3,7 @@ title: Tailwind
 categories:
   - Frontend
   - Extra
-image: null
+image: none
 ---
 
 # Tailwind Style

@@ -1,6 +1,6 @@
 ---
 title: Javascript
-image: null
+image: none
 ---
 
 # Javascript

@@ -3,7 +3,7 @@ title: Foundation
 categories:
 - Frontend
 - Extra
-image: null
+image: none
 ---
 
 # Foundation Extra

@@ -1,6 +1,6 @@
 ---
 title: Stylesheets
-image: null
+image: none
 ---
 
 # Stylesheets
