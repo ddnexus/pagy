@@ -108,6 +108,31 @@ include Pagy::Backend
 ```
 
 |||
+
+!!! Warning
+
+Inconsistent PostgreSQL results may occur if you don't `order`:
+
+```rb
+@pagy, @records = pagy(Product.some_scope)  # no ordering occurs
+
+# Pagy translates the above into the following: 
+Product.some_scope.offset(_).limit(_) # 'limit' is called
+```
+
+When PosgtreSQL uses `limit` without an `ORDER BY` clause - [the results may not be ordered in the same way](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY) each time a query is run. If this is a [critical issue](https://github.com/ddnexus/pagy/issues/306) for your app, ensure you order your scope by a particular column.
+!!!
+
+
+!!! success
+For consistent results when using PostgreSQL, use `order`.
+
+```rb
+@pagy, @records = pagy(Product.some_scope.order(:id)) # results will be predictable.
+```
+!!!
+
+
 ===
 
 +++ Search
