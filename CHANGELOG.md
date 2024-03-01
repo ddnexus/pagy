@@ -23,6 +23,14 @@ If you upgrade from version `< 7.0.0` see the following:
 
 <hr>
 
+## Version 7.0.8
+
+- Update gems and fix a rubocop bug
+- Add all styles to pagy_styles.ru
+- Better pagy stylesheets
+- Fix for uikit extra prev and next link duplicating chevrons
+- Change aria_Label to aria_label for Arabic locale (#657)
+
 ## Version 7.0.7
 
 - Fix for retype exluding linked files and showing category images
