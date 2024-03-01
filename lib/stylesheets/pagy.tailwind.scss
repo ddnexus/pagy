@@ -16,7 +16,7 @@
     &.gap { }  /* if you need to customize it */
   }
   .pagy-combo-input, &.pagy-items-selector-js {
-    @apply inline-block bg-gray-200 rounded-lg px-3 py-0.5;
+    @apply inline-block whitespace-nowrap bg-gray-200 rounded-lg px-3 py-0.5;
     input {
       @apply bg-gray-100 border-none rounded-md;
     }

@@ -89,3 +89,7 @@ Layout/SpaceInsideHashLiteralBraces:
   Enabled: true
   Exclude:
     - test/**/*
+
+# rubocop bug already fixed in https://github.com/rubocop/rubocop/pull/11754 but not yet in the gem
+Style/RedundantLineContinuation:
+  Enabled: false

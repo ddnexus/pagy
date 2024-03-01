@@ -43,20 +43,24 @@ ul li,
   margin-right: .3em;
 }
 
-/* normalize missing chevron icons (materialize and semantic) */
+/* normalize missing chevron icons (materialize, semantic, uikit) */
 li i.material-icons,
 .item i.chevron {
   font-size: 0;
 }
 li:first-child i.material-icons:after,
-.item:first-child i.chevron:after {
-  content: "‹ Prev";
+.item:first-child i.chevron:after,
+.uk-pagination li:first-child a span:after,
+.uk-pagination li:first-child span span:after {
+  content: "<";
   font-size: initial;
 }
 
 li:last-child i.material-icons:after,
-.item:last-child i.chevron:after {
-  content: "Next ›";
+.item:last-child i.chevron:after,
+.uk-pagination li:last-child a span:after,
+.uk-pagination li:last-child span span:after {
+  content: ">";
   font-size: initial;
 }
 
@@ -85,5 +89,3 @@ li.disabled a {
   text-decoration: none !important;
   color: inherit !important;
 }
-
-

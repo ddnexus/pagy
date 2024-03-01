@@ -17,6 +17,7 @@
       border-radius: 0.5rem;
       background-color: rgb(229 231 235);
       padding: 0.25rem 0.75rem;
+      color: inherit;
       &:hover {
         background-color: rgb(209 213 219);
       }
@@ -34,11 +35,13 @@
     &.gap { }  /* if you need to customize it */
   }
   .pagy-combo-input, &.pagy-items-selector-js {
+    white-space: nowrap;
     display: inline-block;
     border-radius: 0.5rem;
     background-color: rgb(229 231 235);
     padding: 0.125rem 0.75rem;
     input {
+      line-height: 1.5rem;
       border-radius: 0.375rem;
       border-style: none;
       background-color: rgb(243 244 246);

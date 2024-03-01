@@ -76,7 +76,7 @@ class Pagy # :nodoc:
     private
 
     def uikit_prev_html(pagy, link)
-      previous_span = %(<span uk-pagination-previous>#{pagy_t 'pagy.prev'}</span>)
+      previous_span = %(<span uk-pagination-previous></span>)
       if (p_prev = pagy.prev)
         %(<li>#{link.call(p_prev, previous_span, prev_aria_label_attr)}</li>)
       else
@@ -85,7 +85,7 @@ class Pagy # :nodoc:
     end
 
     def uikit_next_html(pagy, link)
-      next_span = %(<span uk-pagination-next>#{pagy_t 'pagy.next'}</span>)
+      next_span = %(<span uk-pagination-next></span>)
       if (p_next = pagy.next)
         %(<li>#{link.call(p_next, next_span, next_aria_label_attr)}</li>)
       else

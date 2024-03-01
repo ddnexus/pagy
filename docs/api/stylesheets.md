@@ -54,6 +54,6 @@ stylesheet_path = Pagy.root.join('stylesheets', 'pagy.tailwind.scss')
 +++
 
 !!!
-You can also quickly check and interact with all the pagy and (a few) extra styles (including `pagy` and `tailwind`) by running the single-file self-contaied
-app [!file](/apps/pagy_styles.ru)
+You can also quickly check and interact with all the pagy and extra styles (including the `pagy` and `tailwind` stylesheets above)
+by running the single-file self-contaied app [!file](/apps/pagy_styles.ru)
 !!!
