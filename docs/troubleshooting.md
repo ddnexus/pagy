@@ -5,7 +5,7 @@ icon: alert-24
 ---
 
 
-### Inconsistent Results with PostgreSQL
+### Non-idempotent Results with PostgreSQL
 
 !!! Warning Without `order`
 
