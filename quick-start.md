@@ -106,8 +106,8 @@ include Pagy::Backend
 ```ruby
 @pagy, @records = pagy(Product.some_scope)
 ```
-
 |||
+
 
 ===
 
