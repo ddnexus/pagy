@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762575409214">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.762605614066">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.762575409214" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.762605614066" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.762575409214" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.762605614066" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.762575409214" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.762575409214" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.762605614066" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.762605614066" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.7</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.8</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -316,7 +316,7 @@ untouched.</p>
     </div>
     <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
         <span>pagy.scss</span>
-        <span class="inline-block ml-2">1.14KB</span>
+        <span class="inline-block ml-2">1.21KB</span>
     </div>
     <a href="../../../lib/stylesheets/pagy.scss" class="absolute block inset-0" target="_blank" download="pagy.scss"></a>
 </div>
@@ -344,6 +344,7 @@ untouched.</p>
       border-radius: 0.5rem;
       background-color: rgb(229 231 235);
       padding: 0.25rem 0.75rem;
+      color: inherit;
       &amp;:hover {
         background-color: rgb(209 213 219);
       }
@@ -361,11 +362,13 @@ untouched.</p>
     &amp;.gap { }  /* if you need to customize it */
   }
   .pagy-combo-input, &amp;.pagy-items-selector-js {
+    white-space: nowrap;
     display: inline-block;
     border-radius: 0.5rem;
     background-color: rgb(229 231 235);
     padding: 0.125rem 0.75rem;
     input {
+      line-height: 1.5rem;
       border-radius: 0.375rem;
       border-style: none;
       background-color: rgb(243 244 246);
@@ -386,7 +389,7 @@ untouched.</p>
     </div>
     <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
         <span>pagy.css</span>
-        <span class="inline-block ml-2">1.14KB</span>
+        <span class="inline-block ml-2">1.21KB</span>
     </div>
     <a href="../../../lib/stylesheets/pagy.css" class="absolute block inset-0" target="_blank" download="pagy.css"></a>
 </div>
@@ -423,6 +426,7 @@ untouched.</p>
   border-radius: 0.5rem;
   background-color: rgb(229 231 235);
   padding: 0.25rem 0.75rem;
+  color: inherit;
 }
 
 .pagy .page a:hover {
@@ -432,16 +436,17 @@ untouched.</p>
 .pagy .page.active a {
   cursor: default;
   background-color: rgb(156 163 175);
-  color: rgb(255 255 255)
+  color: rgb(255 255 255);
 }
 
 .pagy .page.disabled a {
   cursor: default;
   background-color: rgb(243 244 246);
-  color: rgb(209 213 219)
+  color: rgb(209 213 219);
 }
 
 .pagy .pagy-combo-input, .pagy.pagy-items-selector-js {
+  white-space: nowrap;
   display: inline-block;
   border-radius: 0.5rem;
   background-color: rgb(229 231 235);
@@ -449,6 +454,7 @@ untouched.</p>
 }
 
 .pagy .pagy-combo-input input, .pagy.pagy-items-selector-js input {
+  line-height: 1.5rem;
   border-radius: 0.375rem;
   border-style: none;
   background-color: rgb(243 244 246);
@@ -467,7 +473,7 @@ untouched.</p>
     </div>
     <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
         <span>pagy.tailwind.scss</span>
-        <span class="inline-block ml-2">587B</span>
+        <span class="inline-block ml-2">605B</span>
     </div>
     <a href="../../../lib/stylesheets/pagy.tailwind.scss" class="absolute block inset-0" target="_blank" download="pagy.tailwind.scss"></a>
 </div>
@@ -494,7 +500,7 @@ untouched.</p>
     &amp;.gap { }  /* if you need to customize it */
   }
   .pagy-combo-input, &amp;.pagy-items-selector-js {
-    @apply inline-block bg-gray-200 rounded-lg px-3 py-0.5;
+    @apply inline-block whitespace-nowrap bg-gray-200 rounded-lg px-3 py-0.5;
     input {
       @apply bg-gray-100 border-none rounded-md;
     }
@@ -516,8 +522,8 @@ untouched.</p>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>You can also quickly check and interact with all the pagy and (a few) extra styles (including <code v-pre>pagy</code> and <code v-pre>tailwind</code>) by running the single-file self-contaied
-app 
+<p>You can also quickly check and interact with all the pagy and extra styles (including the <code v-pre>pagy</code> and <code v-pre>tailwind</code> stylesheets above)
+by running the single-file self-contaied app 
 <div class="mb-6 px-5 py-4 flex justify-between relative border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded transition-colors duration-150">
     <div class="flex items-center text-blue-500 dark:text-blue-400">
         <span class="inline-block mb-px">
@@ -527,7 +533,7 @@ app
     </div>
     <div class="flex items-center text-xs text-gray-400 dark:text-dark-400">
         <span>pagy_styles.ru</span>
-        <span class="inline-block ml-2">5.56KB</span>
+        <span class="inline-block ml-2">7.15KB</span>
     </div>
     <a href="../../../apps/pagy_styles.ru" class="absolute block inset-0" target="_blank" download="pagy_styles.ru"></a>
 </div>
