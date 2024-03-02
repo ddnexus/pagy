@@ -5,7 +5,7 @@
 
 # INSTALL
 # Option a)
-# Download, edit the gemfile block and run this file from your local copy
+# Download and run this file from your local copy
 # Ensure rack is installed (or `gem install rack`)
 
 # Option b)
@@ -23,20 +23,31 @@
 
 # Read the comments below to edit this app
 
-require 'bundler/inline'
+# Return false if you want to force the bundler-inline
+def run_from_repo?
+  File.readlines('../pagy.manifest') { |line| File.exist?("../#{line}") }
+rescue StandardError
+  false
+end
 
-# Edit this gemfile declaration as you need
-# and ensure to use gems updated to the latest versions
-gemfile true do
-  source 'https://rubygems.org'
-  gem 'oj'
-  # gem 'pagy'            # <-- install from rubygems if you copied and run it in your local
-  gem 'pagy', path: '../' # <-- use the local repo if you cloned it and run it from the repo
-  gem 'puma'
-  gem 'rack'
-  gem 'rackup'
-  gem 'sinatra'
-  gem 'sinatra-contrib'
+if run_from_repo?
+  require 'bundler'
+  Bundler.require(:default, :apps)
+  require 'oj' # require false in Gemfile
+  $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+  require 'pagy'
+else
+  require 'bundler/inline'
+  gemfile true do
+    source 'https://rubygems.org'
+    gem 'oj'
+    gem 'pagy'
+    gem 'puma'
+    gem 'rack'
+    gem 'rackup'
+    gem 'sinatra'
+    gem 'sinatra-contrib'
+  end
 end
 
 # Edit this section adding/removing the extras and Pagy::DEFAULT as needed

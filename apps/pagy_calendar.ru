@@ -13,28 +13,17 @@
 
 # DEV USAGE (with automatic app reload if you edit it)
 #    gem install rerun
-#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone.ru
+#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_calendar.ru
 
 # Point your browser to http://0.0.0.0:8080
 
 # Read the comments below to edit this app
 
-require 'bundler/inline'
-
-# Edit this gemfile declaration as you need
-# and ensure to use gems updated to the latest versions
-gemfile true do
-  source 'https://rubygems.org'
-  gem 'activesupport'
-  gem 'oj'
-  # gem 'pagy'            # <-- install from rubygems
-  gem 'pagy', path: '../' # <-- use the local repo
-  gem 'puma'
-  gem 'rack'
-  gem 'rackup'
-  gem 'sinatra'
-  gem 'sinatra-contrib'
-end
+require 'bundler'
+Bundler.require(:default, :apps)
+require 'oj' # require false in Gemfile
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+require 'pagy'
 
 # Edit this section adding/removing the extras and DEFAULT as needed
 # pagy initializer
