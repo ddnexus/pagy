@@ -14,17 +14,17 @@ body:
 
 
         _Code Issues are reserved for real, reproducible pagy bugs.
-        If you are not sure that your problem is a bug, please ask for help in the
-        [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a) support area._        
+        If you are not sure that your problem is a bug, please ask for solutions in the
+        [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a) support area._
 
 
         ### PREREQUISITE
 
 
-        **We need running code to reproduce the problem with a single click or command!** 
+        **We need running code to reproduce the problem with a single click or command!**
 
 
-        Please, understand that we cannot write the code that fails for you, 
+        Please, understand that we cannot write the code that fails for you,
         so ONLY pick and provide your preferred support from the list below...
 
   - type: checkboxes
