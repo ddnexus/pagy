@@ -28,8 +28,10 @@ group :test do
 end
 
 group :apps do
+  gem 'nokogiri'
   gem 'puma'
   gem 'rerun'
+  gem 'rouge'
   gem 'sinatra'
   gem 'sinatra-contrib'
 end

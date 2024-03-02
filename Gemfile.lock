@@ -63,6 +63,8 @@ GEM
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
     nio4r (2.7.0)
+    nokogiri (1.16.2-x86_64-linux)
+      racc (~> 1.4)
     oj (3.16.3)
       bigdecimal (>= 3.0)
     parallel (1.24.0)
@@ -96,6 +98,7 @@ GEM
     rerun (0.14.0)
       listen (~> 3.0)
     rexml (3.2.6)
+    rouge (4.2.0)
     rubocop (1.61.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -158,6 +161,7 @@ DEPENDENCIES
   memory_profiler
   minitest
   minitest-reporters
+  nokogiri
   oj
   puma
   rack
@@ -167,6 +171,7 @@ DEPENDENCIES
   readline-ext
   rematch
   rerun
+  rouge
   rubocop
   rubocop-minitest
   rubocop-packaging

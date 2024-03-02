@@ -4,7 +4,7 @@
 
 # INSTALL
 # Option a)
-# Download, edit the gemfile block and run this file from your local copy
+# Download and run this file from your local copy
 # Ensure rack is installed (or `gem install rack`)
 
 # Option b)
@@ -20,20 +20,32 @@
 
 # Available at http://0.0.0.0:8080
 
-require 'bundler/inline'
+def run_from_repo?
+  File.readlines('../pagy.manifest') { |line| File.exist?("../#{line}") }
+rescue StandardError
+  false
+end
 
-# Edit this gemfile declaration as you need
-# and ensure to use gems updated to the latest versions
-gemfile true do
-  source 'https://rubygems.org'
-  gem 'oj'
-  # gem 'pagy'            # <-- install from rubygems if you copied and run it in your local
-  gem 'pagy', path: '../' # <-- use the local repo if you cloned it and run it from the repo
-  gem 'puma'
-  gem 'rack'
-  gem 'rackup'
-  gem 'sinatra'
-  gem 'sinatra-contrib'
+if run_from_repo?
+  require 'bundler'
+  Bundler.require(:default, :apps)
+  require 'oj' # require false in Gemfile
+  $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+  require 'pagy'
+else
+  require 'bundler/inline'
+  gemfile true do
+    source 'https://rubygems.org'
+    gem 'nokogiri'
+    gem 'oj'
+    gem 'pagy'
+    gem 'puma'
+    gem 'rack'
+    gem 'rackup'
+    gem 'rouge'
+    gem 'sinatra'
+    gem 'sinatra-contrib'
+  end
 end
 
 # pagy initializer
@@ -99,6 +111,14 @@ class PagyStyles < Sinatra::Base
       STYLES.each_key { |style| html << %(<a href="/#{style}">#{style}</a>) }
       html << %(</div>)
     end
+
+    def highlight(html)
+      # Crappy nokogiri cannot configure NOENT option to avoid expanding & in &amp;!!!
+      indented  = Nokogiri::HTML5.fragment(html).to_xhtml.gsub('&amp;', '&')
+      lexer     = Rouge::Lexers::HTML.new
+      formatter = Rouge::Formatters::HTMLInline.new('monokai')
+      %(<details><summary>HTML</summary><pre>#{formatter.format(lexer.lex(indented))}</pre></details>)
+    end
   end
 end
 
@@ -160,6 +180,23 @@ __END__
         font-size: 1em !important;
         margin-top: 1.5em !important;
       }
+      summary {
+        font-size: .8em;
+        color: gray;
+        margin-top: .5rem;
+        font-style: italic;
+        cursor: pointer;
+      }
+      pre {
+        display: block;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-size: 1em;
+        color: white;
+        background-color: rgb(30 30 30);
+        padding: 1rem;
+        overflow: auto;
+      }
       .content {
         padding: 0 1rem !important;
       }
@@ -196,6 +233,7 @@ __END__
 
 
 @@ pagy_head
+<!-- copy and paste the pagy style in order to edit it -->
 <link rel="stylesheet" href="/stylesheets/pagy.css">
 
 @@ bootstrap_head
@@ -220,6 +258,7 @@ __END__
 
 @@ tailwind_head
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+<!-- copy and paste the pagy.tailwind style in order to edit it -->
 <style type="text/tailwindcss">
   <%= Pagy.root.join('stylesheets', 'pagy.tailwind.scss').read %>
 </style>
@@ -237,22 +276,28 @@ __END__
 
 <div class="helpers-container">
   <h4>pagy_<%= prefix %>nav</h4>
-  <%= send(:"pagy_#{prefix}nav", @pagy, pagy_id: 'nav', nav_aria_label: 'Pages nav') %>
+  <%= html = send(:"pagy_#{prefix}nav", @pagy, pagy_id: 'nav', nav_aria_label: 'Pages nav') %>
+  <%= highlight(html) %>
 
   <h4>pagy_<%= prefix %>nav_js</h4>
-  <%= send(:"pagy_#{prefix}nav_js", @pagy, pagy_id: 'nav-js', nav_aria_label: 'Pages nav_js') %>
+  <%= html = send(:"pagy_#{prefix}nav_js", @pagy, pagy_id: 'nav-js', nav_aria_label: 'Pages nav_js') %>
+  <%= highlight(html) %>
 
   <h4>pagy_<%= prefix %>nav_js (responsive)</h4>
-  <%= send(:"pagy_#{prefix}nav_js", @pagy, pagy_id: 'nav-js-responsive',
+  <%= html = send(:"pagy_#{prefix}nav_js", @pagy, pagy_id: 'nav-js-responsive',
        nav_aria_label: 'Pages nav_js_responsive',
        steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
+  <%= highlight(html) %>
 
   <h4>pagy_<%= prefix %>combo_nav_js</h4>
-  <%= send(:"pagy_#{prefix}combo_nav_js", @pagy, pagy_id: 'combo-nav-js', nav_aria_label: 'Pages combo_nav_js') %>
+  <%= html = send(:"pagy_#{prefix}combo_nav_js", @pagy, pagy_id: 'combo-nav-js', nav_aria_label: 'Pages combo_nav_js') %>
+  <%= highlight(html) %>
 
   <h4>pagy_items_selector_js</h4>
-  <%= pagy_items_selector_js(@pagy, pagy_id: 'items-selector-js') %>
+  <%= html = pagy_items_selector_js(@pagy, pagy_id: 'items-selector-js') %>
+  <%= highlight(html) %>
 
   <h4>pagy_info</h4>
-  <%= pagy_info(@pagy, pagy_id: 'pagy-info') %>
+  <%= html = pagy_info(@pagy, pagy_id: 'pagy-info') %>
+  <%= highlight(html) %>
 </div>
