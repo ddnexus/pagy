@@ -1,8 +1,8 @@
 ---
 title: Bulma
 categories:
-- Frontend
-- Extra
+  - Frontend
+  - Extra
 image: none
 ---
 
@@ -36,8 +36,8 @@ See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pag
 
 - [bulma.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bulma.rb)
 
-| Variable | Description | Default |
-|:---------------------|:-------------------------------------------------------- ---------------------|:---------------|
+| Variable             | Description                                                                   | Default         |
+|:---------------------|:------------------------------------------------------------------------------|:----------------|
 | `:bulma_nav_classes` | Edit the classes for the nav element. You can try "is-small", "is-round" etc. | `"is-centered"` |
 
 ## Methods
