@@ -42,7 +42,7 @@ class Pagy # :nodoc:
           prev_html(pagy, link)
       }<span class="pagy-combo-input">#{
           pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)
-        }</span> #{
+        }</span>#{
           next_html(pagy, link)
         }</nav>)
     end
