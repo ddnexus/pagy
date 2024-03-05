@@ -58,12 +58,12 @@ class Pagy # :nodoc:
       link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{
+      input   = %(<input name="page" type="number" min="1" max="#{p_pages}" value="#{
                     p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       %(<ul#{p_id} class="pagy-uikit-combo-nav-js uk-button-group uk-pagination uk-flex-center" role="navigation" #{
           nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
-          pagy_data(pagy, :combo, pagy_marked_link(link))
+          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN))
         }>#{
           uikit_prev_html pagy, link
         }<li>#{

@@ -57,15 +57,15 @@ const Pagy = (() => {
     };
 
     // Init the *_combo_nav_js helpers
-    const initCombo = (el:Element, [link, trimParam]:ComboArgs) =>
-        initInput(el, inputValue => [inputValue, link.replace(/__pagy_page__/, inputValue)], trimParam);
+    const initCombo = (el:Element, [url_token, trimParam]:ComboArgs) =>
+        initInput(el, inputValue => [inputValue, url_token.replace(/__pagy_page__/, inputValue)], trimParam);
 
     // Init the items_selector_js helper
-    const initSelector = (el:Element, [from, link, trimParam]:SelectorArgs) => {
+    const initSelector = (el:Element, [from, url_token, trimParam]:SelectorArgs) => {
         initInput(el, inputValue => {
             const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
-            const html = link.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
-            return [page, html];
+            const url = url_token.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
+            return [page, url];
         }, trimParam);
     };
 
@@ -81,10 +81,9 @@ const Pagy = (() => {
                 input.select();
                 return;
             }
-            let [page, html] = getVars(input.value);   // eslint-disable-line prefer-const
-            if (typeof trimParam === "string" && page === "1") { html = trim(html, trimParam) }
-            el.insertAdjacentHTML("afterbegin", html);
-            (el.querySelector("a") as HTMLAnchorElement).click();
+            let [page, url] = getVars(input.value);   // eslint-disable-line prefer-const
+            if (typeof trimParam === "string" && page === "1") { url = trim(url, trimParam) }
+            window.location.href = url;
         };
         ["change", "focus"].forEach(e => input.addEventListener(e, input.select));        // auto-select
         input.addEventListener("focusout", action);                                       // trigger action

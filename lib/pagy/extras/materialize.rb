@@ -58,13 +58,13 @@ class Pagy # :nodoc:
       p_page  = pagy.page
       p_pages = pagy.pages
       style   = ' style="vertical-align: middle"'
-      input   = %(<input type="number" class="browser-default" min="1" max="#{p_pages}" value="#{
+      input   = %(<input  name="page" type="number" class="browser-default" min="1" max="#{p_pages}" value="#{
                     p_page}" style="text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       html = %(<ul#{p_id} class="pagy-materialize-combo-nav-js pagination chip" role="navigation" #{
                  nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)})
       %(#{html} style="padding-right: 0" #{
-          pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
+          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN))}>#{
           materialize_prev_html pagy, link, style}<li class="pagy-combo-input">#{
           pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</li>#{
           materialize_next_html pagy, link, style}</ul>)

@@ -1,10 +1,4 @@
 ---
-pagy/extras/frontend_helpers_oj::#pagy_data#test_0001_uses oj:
-  :data_1: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="
-  :data_2: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlLCJwYWdlIl0="
-pagy/extras/frontend_helpers_oj::#pagy_marked_link#test_0001_returns only the "standard" link:
-  :page_link: '<a href="/foo?page=__pagy_page__"   style="display: none;"></a>'
-  :p_link: '<a href="/foo?p=__pagy_page__"   style="display: none;"></a>'
 pagy/extras/frontend_helpers_oj::Calendar sequels and label_sequels#test_0001_generate the labels for the sequels:
   :sequels:
     '0':
@@ -42,3 +36,6 @@ pagy/extras/frontend_helpers_oj::Calendar sequels and label_sequels#test_0001_ge
     - Mar
     - :gap
     - Nov
+pagy/extras/frontend_helpers_oj::#pagy_data#test_0001_uses oj:
+  :data_1: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="
+  :data_2: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlLCJwYWdlIl0="

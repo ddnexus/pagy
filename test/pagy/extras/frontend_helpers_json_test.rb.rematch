@@ -1,9 +1,6 @@
 ---
 pagy/extras/frontend_helpers_json::#pagy_data#test_0001_uses json:
   :data: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="
-pagy/extras/frontend_helpers_json::#pagy_marked_link#test_0001_returns only the "standard" link:
-  :page_link: '<a href="/foo?page=__pagy_page__"   style="display: none;"></a>'
-  :p_link: '<a href="/foo?p=__pagy_page__"   style="display: none;"></a>'
 pagy/extras/frontend_helpers_json::Calendar sequels and label_sequels#test_0001_generate the labels for the sequels:
   :sequels:
     '0':
