@@ -65,8 +65,8 @@ class Pagy # :nodoc:
                     p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       %(<nav#{p_id} class="pagy-bootstrap-combo-nav-js pagination" #{
-          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}><div class="btn-group" role="group" #{
-          pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
+          pagy_data(pagy, :combo, pagy_marked_link(link)) }><div class="btn-group" role="group">#{
           if (p_prev = pagy.prev)
             link.call(p_prev, pagy_t('pagy.prev'), %(class="prev btn btn-primary" #{prev_aria_label_attr}))
           else
@@ -90,7 +90,7 @@ class Pagy # :nodoc:
       if (p_prev = pagy.prev)
         %(<li class="page-item prev">#{link.call(p_prev, pagy_t('pagy.prev'), prev_aria_label_attr)}</li>)
       else
-        %(<li class="page-item prev disabled"><a role="link"class="page-link" aria-disabled="true" #{
+        %(<li class="page-item prev disabled"><a role="link" class="page-link" aria-disabled="true" #{
             prev_aria_label_attr}>#{pagy_t('pagy.prev')}</a></li>)
       end
     end

@@ -58,6 +58,8 @@ Style/CommentedKeyword:
   Enabled: false
 Style/EmptyCaseCondition:
   Enabled: false
+Style/LambdaCall:
+  Enabled: false
 
 # cannot inline the disabling in the file because rubocop complains anyway
 Style/RedundantInitialize:

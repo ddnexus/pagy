@@ -61,8 +61,8 @@ class Pagy # :nodoc:
                     p_pages.to_s.length + 1}rem; padding: 0 0.3rem; margin: 0 0.3rem;" aria-current="page">)
 
       %(<nav#{p_id} class="pagy-foundation-combo-nav-js" #{
-          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}><div class="input-group" #{
-          pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
+          nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
+          pagy_data(pagy, :combo, pagy_marked_link(link))}><div class="input-group">#{
           if (p_prev = pagy.prev)
             link.call(p_prev, pagy_t('pagy.prev'),
                       %(style="margin-bottom: 0" class="prev button primary" #{prev_aria_label_attr}))

@@ -36,7 +36,6 @@ else
   require 'bundler/inline'
   gemfile true do
     source 'https://rubygems.org'
-    gem 'nokogiri'
     gem 'oj'
     gem 'pagy'
     gem 'puma'
@@ -113,12 +112,67 @@ class PagyStyles < Sinatra::Base
     end
 
     def highlight(html)
-      # Crappy nokogiri cannot configure NOENT option to avoid expanding & in &amp;!!!
-      indented  = Nokogiri::HTML5.fragment(html).to_xhtml.gsub('&amp;', '&')
+      formatted = Formatter.new.format(html)
       lexer     = Rouge::Lexers::HTML.new
       formatter = Rouge::Formatters::HTMLInline.new('monokai')
-      %(<details><summary>HTML</summary><pre>#{formatter.format(lexer.lex(indented))}</pre></details>)
+      %(<details><summary>Served HTML (pretty formatted)</summary><pre>\n#{
+         formatter.format(lexer.lex(formatted))
+      }</pre></details>)
     end
+  end
+end
+
+# Cheap pagy formatter for helpers output
+class Formatter
+  INDENT     = '  '
+  TEXT_SPACE = "\u00B7"
+  TEXT       = /^([^<>]+)(.*)/
+  UNPAIRED   = /^(<(input).*?>)(.*)/
+  PAIRED     = %r{^(<(nav|div|span|p|a|b|label|ul|li).*?>)(.*?)(</\2>)(.*)}
+  WRAPPER    = /<.*?>/
+  DATA_PAGY  = /(data-pagy="([^"]+)")/
+
+  def initialize
+    @formatted = +''
+  end
+
+  def format(input, level = 0)
+    process(input, level)
+    @formatted
+  end
+
+  private
+
+  def process(input, level)
+    push = ->(content) { @formatted << ((INDENT * level) + content + "\n") }
+    rest = nil
+    if (match = input.match(TEXT))
+      text, rest = match.captures
+      push.(text.gsub(' ', TEXT_SPACE))
+    elsif (match = input.match(UNPAIRED))
+      tag, _name, rest = match.captures
+      push.(tag)
+    elsif (match = input.match(PAIRED))
+      tag_start, name, block, tag_end, rest = match.captures
+      if name.eql?('a')
+        tag_start.gsub!(/[\s]+/, ' ')
+        tag_start.gsub!(/[\s]>/, '>')
+      end
+      if (match = tag_start.match(DATA_PAGY))
+        search, data = match.captures
+        formatted = data.scan(/.{1,76}/).join("\n")
+        replace = %(\n#{INDENT * (level + 1)}data-pagy="#{formatted}")
+        tag_start.sub!(search, replace)
+      end
+      if block.match(WRAPPER)
+        push.(tag_start)
+        process(block, level + 1)
+        push.(tag_end)
+      else
+        push.(tag_start + block + tag_end)
+      end
+    end
+    process(rest, level) if rest
   end
 end
 
@@ -159,7 +213,7 @@ __END__
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= erb :"#{style}_head" if defined?(style) %>
     <style type="text/css">
-      @media only screen { html {
+      @media screen { html {
         font-size: 1em !important;
       } }
       body {
@@ -198,7 +252,8 @@ __END__
         overflow: auto;
       }
       .content {
-        padding: 0 1rem !important;
+        padding: 0 1rem 2rem !important;
+          font-size: 1em !important;
       }
 
       #style-menu {

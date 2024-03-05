@@ -64,9 +64,9 @@ class Pagy # :nodoc:
                     p_pages.to_s.length + 1}rem; margin:0 0.3rem;" aria-current="page">)
 
       html = %(<nav#{p_id} class="pagy-bulma-combo-nav-js #{DEFAULT[:bulma_nav_classes]}" #{
-                nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>)
-      %(#{html}<div class="field is-grouped is-grouped-centered" role="group" #{
-          pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
+                 nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
+                 pagy_data(pagy, :combo, pagy_marked_link(link))}>)
+      %(#{html}<div class="field is-grouped is-grouped-centered" role="group">#{
           if (p_prev  = pagy.prev)
             %(<p class="control">#{link.call(p_prev, pagy_t('pagy.prev'), %(class="button" #{prev_aria_label_attr}))}</p>)
           else
