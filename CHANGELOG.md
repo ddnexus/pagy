@@ -23,6 +23,11 @@ If you upgrade from version `< 7.0.0` see the following:
 
 <hr>
 
+## Version 7.0.9
+
+- Improve all pagy apps
+- Normalized bootstrap, bulma, foundation, navs extra
+
 ## Version 7.0.8
 
 - Update gems and fix a rubocop bug
