@@ -23,6 +23,10 @@ If you upgrade from version `< 7.0.0` see the following:
 
 <hr>
 
+## Version 7.0.10
+
+- Added name attribute to combo and items input tags; removed pagy_marked_link and refactored js input action
+
 ## Version 7.0.9
 
 - Improve all pagy apps
