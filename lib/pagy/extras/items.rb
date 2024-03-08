@@ -36,18 +36,18 @@ class Pagy # :nodoc:
       ITEMS_PLACEHOLDER = '__pagy_items__'
 
       # Return the items selector HTML. For example "Show [20] items per page"
-      def pagy_items_selector_js(pagy, pagy_id: nil, item_name: nil, item_i18n_key: nil, link_extra: '')
+      def pagy_items_selector_js(pagy, pagy_id: nil, item_name: nil, item_i18n_key: nil)
         return '' unless pagy.vars[:items_extra]
 
         p_id           = %( id="#{pagy_id}") if pagy_id
         p_vars         = pagy.vars
         p_items        = p_vars[:items]
         p_vars[:items] = ITEMS_PLACEHOLDER
-        link           = pagy_marked_link(pagy_link_proc(pagy, link_extra:))
+        url_token      = pagy_url_for(pagy, PAGE_TOKEN)
         p_vars[:items] = p_items # restore the items
 
-        html  = +%(<span#{p_id} class="pagy pagy-items-selector-js" #{pagy_data(pagy, :selector, pagy.from, link)}>)
-        input = %(<input type="number" min="1" max="#{p_vars[:max_items]}" value="#{
+        html  = +%(<span#{p_id} class="pagy pagy-items-selector-js" #{pagy_data(pagy, :selector, pagy.from, url_token)}>)
+        input = %(<input name="items" type="number" min="1" max="#{p_vars[:max_items]}" value="#{
                     p_items}" style="padding: 0; text-align: center; width: #{p_items.to_s.length + 1}rem;">)
         html << pagy_t('pagy.items_selector_js',
                        item_name: item_name || pagy_t(item_i18n_key || p_vars[:item_i18n_key], count: p_items),

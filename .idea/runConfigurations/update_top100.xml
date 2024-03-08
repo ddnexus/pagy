@@ -13,7 +13,7 @@
       </COVERAGE_PATTERN>
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/script/update_top100.rb" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/scripts/update_top100.rb" />
     <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
     <method v="2" />
   </configuration>

@@ -33,12 +33,12 @@ class Pagy # :nodoc:
       link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input type="number" min="1" max="#{p_pages}" value="#{p_page}" ) +
+      input   = %(<input name="page" type="number" min="1" max="#{p_pages}" value="#{p_page}" ) +
                 %(style="padding: 0; text-align: center; width: #{p_pages.to_s.length + 1}rem;" aria-current="page">)
 
       %(<nav#{p_id} class="pagy pagy-combo-nav-js pagination" #{
           nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
-          pagy_data(pagy, :combo, pagy_marked_link(link))}>#{
+          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN))}>#{
           prev_html(pagy, link)
       }<span class="pagy-combo-input">#{
           pagy_t('pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages)

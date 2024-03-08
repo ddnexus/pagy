@@ -18,15 +18,6 @@ describe 'pagy/extras/frontend_helpers_json' do
     end
   end
 
-  describe '#pagy_marked_link' do
-    it 'returns only the "standard" link' do
-      pagy = Pagy.new(count: 100, page: 4)
-      _(app.pagy_marked_link(app.pagy_link_proc(pagy))).must_rematch :page_link
-      pagy = Pagy.new(count: 100, page: 4, page_param: :p)
-      _(app.pagy_marked_link(app.pagy_link_proc(pagy))).must_rematch :p_link
-    end
-  end
-
   describe 'Calendar sequels and label_sequels' do
     it 'generate the labels for the sequels' do
       steps = { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] }

@@ -61,11 +61,6 @@ class Pagy # :nodoc:
           %(data-pagy="#{strict_base64_encoded}")
         end
       end
-
-      # Return the marked link used by pagy.js
-      def pagy_marked_link(link)
-        link.call PAGE_TOKEN, '', 'style="display: none;"'
-      end
     end
     Frontend.prepend FrontendAddOn
   end

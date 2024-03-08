@@ -1,11 +1,11 @@
 ---
 pagy/extras/items::view_methods#test_0001_renders items selector:
-  :selector_1: '<span class="pagy pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><label>Show
-    <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
-    center; width: 3rem;"> items per page</label></span>'
-  :selector_2: '<span id="test-id" class="pagy pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><label>Show
-    <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
-    center; width: 3rem;"> products per page</label></span>'
-  :selector_3: '<span id="test-id" class="pagy pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfXyZpdGVtcz1fX3BhZ3lfaXRlbXNfX1wiICAgc3R5bGU9XCJkaXNwbGF5OiBub25lO1wiPjwvYT4iXQ=="><label>Show
-    <input type="number" min="1" max="100" value="20" style="padding: 0; text-align:
-    center; width: 3rem;"> products per page</label></span>'
+  :selector_1: '<span class="pagy pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fJml0ZW1zPV9fcGFneV9pdGVtc19fIl0="><label>Show
+    <input name="items" type="number" min="1" max="100" value="20" style="padding:
+    0; text-align: center; width: 3rem;"> items per page</label></span>'
+  :selector_2: '<span id="test-id" class="pagy pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fJml0ZW1zPV9fcGFneV9pdGVtc19fIl0="><label>Show
+    <input name="items" type="number" min="1" max="100" value="20" style="padding:
+    0; text-align: center; width: 3rem;"> products per page</label></span>'
+  :selector_3: '<span id="test-id" class="pagy pagy-items-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fJml0ZW1zPV9fcGFneV9pdGVtc19fIl0="><label>Show
+    <input name="items" type="number" min="1" max="100" value="20" style="padding:
+    0; text-align: center; width: 3rem;"> products per page</label></span>'

@@ -59,13 +59,13 @@ class Pagy # :nodoc:
       link    = pagy_link_proc(pagy, link_extra:)
       p_page  = pagy.page
       p_pages = pagy.pages
-      input   = %(<input class="input" type="number" min="1" max="#{p_pages}" value="#{
+      input   = %(<input name="page" class="input" type="number" min="1" max="#{p_pages}" value="#{
                     p_page}" style="padding: 0; text-align: center; width: #{
                     p_pages.to_s.length + 1}rem; margin:0 0.3rem;" aria-current="page">)
 
       html = %(<nav#{p_id} class="pagy-bulma-combo-nav-js #{DEFAULT[:bulma_nav_classes]}" #{
                  nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
-                 pagy_data(pagy, :combo, pagy_marked_link(link))}>)
+                 pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN))}>)
       %(#{html}<div class="field is-grouped is-grouped-centered" role="group">#{
           if (p_prev  = pagy.prev)
             %(<p class="control">#{link.call(p_prev, pagy_t('pagy.prev'), %(class="button" #{prev_aria_label_attr}))}</p>)
