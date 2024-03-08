@@ -154,6 +154,11 @@ class Formatter
       push.(tag)
     elsif (match = input.match(PAIRED))
       tag_start, name, block, tag_end, rest = match.captures
+      ## Handle incomplete same-tag nesting
+      while block.scan(/<#{name}.*?>/).size > block.scan(tag_end).size
+        more, rest = rest.split(tag_end, 2)
+        block << tag_end << more
+      end
       if name.eql?('a')
         tag_start.gsub!(/[\s]+/, ' ')
         tag_start.gsub!(/[\s]>/, '>')
@@ -213,58 +218,60 @@ __END__
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= erb :"#{style}_head" if defined?(style) %>
     <style type="text/css">
-      @media screen { html {
-        font-size: 1em !important;
+      @media screen { html, body {
+        font-size: 1rem;
+        line-height: 1.2s;
+        padding: 0;
+        margin: 0;
       } }
       body {
         background: white !important;
         margin: 0 !important;
         font-family: sans-serif !important;
-        font-size: 1em;
       }
       h1, h4 {
-        font-size: 1.8em !important;
+        font-size: 1.8rem !important;
         font-weight: 600 !important;
-        margin-top: 1em !important;
-        margin-bottom: 0.5em !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
         line-height: 1.5 !important;
         color: rgb(90 90 90)  !important;
       }
       h4 {
-        font-size: 1em !important;
-        margin-top: 1.5em !important;
+        font-size: 1.05rem !important;
+        margin-top: 1.5rem !important;
       }
       summary {
-        font-size: .8em;
+        font-size: .8rem;
         color: gray;
         margin-top: .5rem;
         font-style: italic;
         cursor: pointer;
       }
-      pre {
+      pre, pre code {
         display: block;
-        margin-top: 0;
+        margin-top: .3rem;
         margin-bottom: 1rem;
-        font-size: 1em;
+        font-size: .8rem !important;
+        line-heigth: 1rem !important;
         color: white;
         background-color: rgb(30 30 30);
         padding: 1rem;
         overflow: auto;
       }
-      .content {
-        padding: 0 1rem 2rem !important;
-          font-size: 1em !important;
+     .content {
+        padding: 0 1.5rem 2rem !important;
       }
 
       #style-menu {
         flex;
         font-family: sans-serif;
-        font-size: 1.1em;
-        line-height: 1.5em;
+        font-size: 1.1rem;
+        line-height: 1.5rem;
         white-space: nowrap;
         color: white;
         background-color: gray;
-        padding: .2em 1em;
+        padding: .2rem 1.5rem;
       }
       #style-menu > :not([hidden]) ~ :not([hidden]) {
         --space-reverse: 0;
