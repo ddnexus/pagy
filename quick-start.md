@@ -71,12 +71,12 @@ require 'pagy'
 +++ With Rails
 Download the configuration file linked below and save it into the `config/initializers` dir
 
-[!file](lib/config/pagy.rb)
+[!file](../lib/config/pagy.rb)
 
 +++ Without Rails
 Download the configuration file linked below and require it when your app starts
 
-[!file](lib/config/pagy.rb)
+[!file](../lib/config/pagy.rb)
 +++
 
 !!! Pagy doesn't load unnecessary code in your app!
