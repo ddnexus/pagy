@@ -49,8 +49,8 @@ You can control the number and position of the page links in the navigation thro
 
 ### Simple nav
 
-You can set the `:size` variable to a single positive Integer to represent the total number of page links rendered.
-The current page will be placed as centered as possible in the series.
+You can set the `:size` variable to a single positive Integer to represent the total number of page links rendered. The current
+page will be placed as centered as possible in the series.
 
 For example:
 
@@ -67,9 +67,9 @@ pagy.series
 ```
 
 Setting the `:size` variable as a single integer has a few advantages over the classic way. It uses a simpler and faster
-algorithm, the series length is more constant, cleaner and less confusing to the user.
-On the other hand it does not allow the user to jump to the first or last page of a long series, which may or may not be a
-limitation. For example: with a navigation using `Pagy::Countless` or `Calendar` it is a clear advantage.
+algorithm, the series length is more constant, cleaner and less confusing to the user. On the other hand it does not allow the
+user to jump to the first or last page of a long series, which may or may not be a limitation. For example: with a navigation
+using `Pagy::Countless` or `Calendar` it is a clear advantage.
 
 ### Classic nav
 
@@ -159,8 +159,8 @@ en:
       no_items: "No %{item_name} found"
       single_page: "Displaying <b>%{count}</b> %{item_name}"
       multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
-    combo_nav_js: "<label>Page %{page_input} of %{pages}</label>"
-    items_selector_js: "<label>Show %{items_input} %{item_name} per page</label>"
+    combo_nav_js: "Page %{page_input} of %{pages}"
+    items_selector_js: "Show %{items_input} %{item_name} per page"
 ``` 
 
 </details>
@@ -173,8 +173,8 @@ If you want to customize the translations or some specific output, you should ed
 If you explicitly use the [i18n extra](extras/i18n.md), override the pagy target entries in your own custom dictionary (refer to
 the I18n official documentation).
 
-If you don't use the above extra (and rely on the pagy faster code) you can copy and edit the dictionary files that your app
-uses and configure pagy to use them.
+If you don't use the above extra (and rely on the pagy faster code) you can copy and edit the dictionary files that your app uses
+and configure pagy to use them.
 
 ||| pagy.rb (initializer)
 
@@ -213,8 +213,8 @@ en:
       no_items: "0 of 0"                            # customized
       single_page: "%{count} of %{count}"           # customized
       multiple_pages: "%{from}-%{to} of %{count}"   # customized
-    combo_nav_js: "<label>Page %{page_input} of %{pages}</label>"
-    items_selector_js: "<label>Show %{items_input} %{item_name} per page</label>"
+    combo_nav_js: "Page %{page_input} of %{pages}"
+    items_selector_js: "Show %{items_input} %{item_name} per page"
 ```
 
 </details>
@@ -222,10 +222,10 @@ en:
 
 ## Customize the ARIA labels
 
-You can customize the `aria-label` attributes of all the pagy helpers by passing either the `:nav_aria_label` string itself or
-the `:nav_i18n_key` (See [pagy_nav](api/frontend.md#pagy-nav-pagy-vars))
+You can customize the `aria-label` attributes of all the pagy helpers by passing the `:aria_label` string (
+See [pagy_nav](api/frontend.md#pagy-nav-pagy-vars))
 
-You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the
+You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.prev` and the
 `pagy.aria_label.next`.
 
 See more details in the [ARIA attributes Page](api/ARIA.md).
@@ -248,27 +248,24 @@ You can also override the `pagy_get_vars` if you need some special way to get th
 ## Customize the link attributes
 
 If you need to customize some HTML attribute of the page links, you may not need to override the `pagy_nav*` helper. It might be
-enough to pass some extra attribute string with the `:link_extra` variable. For example:
+enough to pass some extra attribute string with the `:anchor_string` variable. For example:
 
 ```ruby
 # for all the Pagy instances
-Pagy::DEFAULT[:link_extra] = 'data-remote="true" class="my-class"'
+Pagy::DEFAULT[:anchor_string] = 'data-remote="true"'
 
 # for a single Pagy instance (if you use the Pagy::Backend#pagy method)
-@pagy, @records = pagy(my_scope, link_extra: 'data-remote="true" class="my-class"')
+@pagy, @records = pagy(my_scope, anchor_string: 'data-remote="true"')
 
 # or directly to the constructor
-pagy = Pagy.new(count: 1000, link_extra: 'data-remote="true" class="my-class"')
+pagy = Pagy.new(count: 1000, anchor_string: 'data-remote="true"')
 
 # or from a view: e.g.:
-< %== pagy_bootstrap_nav(@pagy, link_extra: 'data-action="hello#world"') % > 
+<%== pagy_bootstrap_nav(@pagy, anchor_string: 'data-action="hello#world"') %> 
 ```
 
-!!!primary `link_extra`: must be valid HTML
-For performance reasons, the `:link_extra` variable must be a string formatted as a valid HTML attribute/value pairs. That string
-will get inserted verbatim in the HTML of the link. _(see more advanced details in the
-[pagy_link_proc documentation](api/frontend.md#pagy-link-proc-pagy-link-extra))_
-!!!
+See more advanced details about [The anchor_string variable](api/frontend.md#the-anchor_string-variable))_
+
 
 ## Customize the params
 
@@ -298,8 +295,8 @@ You can also use the `:fragment` variable to add a fragment the URLs of the page
 
 |||
 
-!!!primary
-For performance reasons the `:fragment` string must include the `"#"`.
+!!!warning 
+For performance reasons the `:fragment` string must include the `"#"`!
 !!!
 
 ## Customize the URL
@@ -334,7 +331,7 @@ end
 
 !!!warning Performance affected!
 The above overridden method is quite slower than the original because it passes through the rails helpers. However that gets
-mitigated by the internal usage of `pagy_link_proc` which calls the method only once even in the presence of many pages.
+mitigated by the internal usage of `pagy_anchor` which calls the method only once even in the presence of many pages.
 !!!
 
 #### POST with page links
@@ -367,73 +364,12 @@ The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" 
 by editing the values of the `"pagy.item_name"` i18n key in
 the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
 
-Besides you can also (dynamically) set the `:item_i18n_key` variable to let Pagy know where to lookup the item name in some
-dictionary file (instead of looking it up in the default `"pagy.item_name"` key).
-
-<details>
-<summary>You have a few ways to do that:</summary>
-
-1. you can override the `pagy_get_vars` method in your controller, adding the dynamically set `:item_i18n_key`. For example with
-   ActiveRecord (mostly useful with the [i18n extra](extras/i18n.md) or if you copy over the AR keys into the pagy dictionary):
-
-||| controller
-
-```ruby
-
-def pagy_get_vars(collection, vars)
-  { count:         ...,
-    page:          ...,
-    item_i18n_key: "activerecord.models.#{collection.model_name.item_i18n_key}" }.merge!(vars)
-end
-```
-
-|||
-
-2. you can set the `:item_i18n_key` variable, either globally using the `Pagy::DEFAULT` hash or per instance with the `Pagy.new`
-   method or with the `pagy` controller method:
-
-||| initializer (pagy.rb)
-
-```ruby
-# all the Pagy instances will have the default
-Pagy::DEFAULT[:item_i18n_key] = 'activerecord.models.product'
-
-# or single Pagy instance
-@pagy, @record = pagy(my_scope, item_i18n_key: 'activerecord.models.product')
-```
-
-|||
-
-or passing it as an optional keyword argument to the helper:
-
-||| View
-
-```erb
-<%== pagy_info(@pagy, item_i18n_key: 'activerecord.models.product') %>
-<%== pagy_items_selector_js(@pagy, item_i18n_key: 'activerecord.models.product') %>
-```
-
-|||
-
-3. you can override entirely the `:item_name` by passing an already pluralized string directly to the helper call:
-
-||| View
+Besides you can also pass the `:item_name` by passing an already pluralized string directly to the helper call:
 
 ```erb
 <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
 <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
 ```
-
-|||
-
-!!!warning Parameters have precedence
-The variables passed to a Pagy object have the precedence over the variables returned by the `pagy_get_vars`. The fastest way to
-set the `item_i18n_key` is passing a literal string to the `pagy` method, the most convenient way is using `pagy_get_vars`, the
-most flexible way is passing a pluralized string to the helper.
-!!!
-
-</details>
-<br/>
 
 ## Customize CSS styles
 
@@ -444,8 +380,8 @@ for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](ext
 [materialize](extras/materialize.md), [semantic](extras/semantic.md), [tailwind](api/stylesheets.md/#pagy-tailwind-scss)
 and [uikit](extras/uikit.md) that come with a decent styling provided by their respective framework.
 
-If you need to further customize the styles provided by the extras, in most you don't necessary need to override the helpers: here
-are a few alternatives:
+If you need to further customize the styles provided by the extras, you don't necessary need to override the helpers in most of
+them: here are a few alternatives:
 
 - Check wether the specific extra offers customization (e.g. [bulma](extras/bulma.md))
 - Define the CSS styles to apply to the pagy CSS classes
@@ -453,6 +389,20 @@ are a few alternatives:
   directive
 - Use the jQuery `addClass` method
 - Use a couple of lines of plain javascript
+
+## Override CSS rules in element "style" attribute
+
+In order to get a decent default look, a couple of helpers (i.e. `pagy*_combo_nav_js`, `pagy*_items_selector_js`) assign element
+style attributes to one or more tags. You can override their rules in your own stylesheets by using the attribute `[style]`
+selector and `!important`. Here is an example for overriding the `width` of the `input` element:
+
+```css
+.pagy input[style] {
+  /* This is just for the sake of demo: indeed the width is already calculated and assigned dynamically 
+     considering the total number of digits that may appear in the input, so you should not need to override it */
+  width: 5rem !important;
+}
+```
 
 ## Override pagy methods
 
@@ -503,8 +453,8 @@ Do it in 2 steps: first get the page of records without decoration, and then app
 
 ### Custom count for custom scopes
 
-Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count. In that case you
-can get the right count in a couple of ways:
+Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count. In that case you can
+get the right count in a couple of ways:
 
 ||| controller
 
@@ -520,8 +470,7 @@ can get the right count in a couple of ways:
 
 ### Paginate a grouped collection
 
-For better performance of grouped ActiveRecord collection counts, you may want to take a look at
-the [arel extra](extras/arel.md).
+For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel extra](extras/arel.md).
 
 ## Paginate for generic API clients
 
@@ -566,8 +515,8 @@ Pagy has a few of extras for gems returning search results:
 
 ## Paginate by id instead of offset
 
-With particular requirements/environment an id-based pagination might work better than a classical offset-based pagination,
-You can use an interesting approach proposed [here](https://github.com/ddnexus/pagy/discussions/435#discussioncomment-4577136).
+With particular requirements/environment an id-based pagination might work better than a classical offset-based pagination, You
+can use an interesting approach proposed [here](https://github.com/ddnexus/pagy/discussions/435#discussioncomment-4577136).
 
 ## Paginate by date instead of a fixed number of items
 
@@ -834,25 +783,8 @@ ready to use in your view. For example:
 |||
 
 !!!primary Extras Provide Added Functionality
-the [extras](/categories/extra) add a few other helpers that you can use the same way, in order to get added features (e.g.
-bootstrap compatibility, responsiveness, compact layouts, etc.)
+The [frontend extras](/categories/frontend) add a few other helpers that you can use the same way, in order to get added features 
 !!!
-
-| Extra                                | Helpers                                                                            |
-|:-------------------------------------|:-----------------------------------------------------------------------------------|
-| [bootstrap](extras/bootstrap.md)     | `pagy_bootstrap_nav`, `pagy_bootstrap_nav_js`, `pagy_bootstrap_combo_nav_js`       |
-| [bulma](extras/bulma.md)             | `pagy_bulma_nav`, `pagy_bulma_nav_js`, `pagy_bulma_combo_nav_js`                   |
-| [foundation](extras/foundation.md)   | `pagy_foundation_nav`, `pagy_foundation_nav_js`, `pagy_foundation_combo_nav_js`    |
-| [materialize](extras/materialize.md) | `pagy_materialize_nav`, `pagy_materialize_nav_js`, `pagy_materialize_combo_nav_js` |
-| [navs](extras/navs.md)               | `pagy_nav_js`, `pagy_combo_nav_js`                                                 |
-| [semantic](extras/semantic.md)       | `pagy_semantic_nav`, `pagy_semantic_nav_js`, `pagy_semantic_combo_nav_js`          |
-| [uikit](extras/uikit.md)             | `pagy_uikit_nav`, `pagy_uikit_nav_js`, `pagy_uikit_combo_nav_js`                   |
-
-If you need to override a `pagy_nav*` helper you can copy and paste it in your helper and edit it there. It is a simple
-concatenation of strings with a very simple logic.
-
-Depending on the level of your overriding, you may want to read the [Pagy::Frontend API documentation](api/frontend) for
-complete control over your helpers.
 
 ## Skip single page navs
 
@@ -1031,9 +963,9 @@ The pagy nav helpers are not only a lot faster than templates, but accept dynami
 standards. Using your own templates is possible, but it's likely just reinventing a slower wheel.
 !!!
 
-If you really need to use your own templates, you absolutely can. Here is a static example that doesn't use any other
-helper nor dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and
-translation as you need:
+If you really need to use your own templates, you absolutely can. Here is a static example that doesn't use any other helper nor
+dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and dictionary 
+entries as you need:
 
 :::code source="assets/nav.html.erb" :::
 
@@ -1043,4 +975,16 @@ You can use it as usual: just remember to pass the `:pagy` local set to the `@pa
 <%== render file: 'nav.html.erb', locals: {pagy: @pagy} %>
 ```
 
+And here an example of the output:
+
+:::code source="assets/nav.html" :::
+
 You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
+        
+!!!
+You may want to look at the actual output interactively by running:
+```sh
+pagy run demo
+# ...and point your browser at http://0.0.0.0:8000
+```
+!!!

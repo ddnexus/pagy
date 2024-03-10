@@ -7,7 +7,7 @@ order: 4
 # Javascript Setup
 
 !!!info Notice
-A javascript setup is required only for the `pagy*_js` helpers. Just using `'data-remote="true"'` in any other helper works out of
+A javascript setup is required only for the `pagy*_js` helpers. Just using something like `anchor_string: 'data-remote="true"'` in any other helper works out of
 the box.
 !!!
 

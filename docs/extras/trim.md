@@ -57,15 +57,15 @@ order to trim the page param.
 
 ## Methods
 
-The `trim` extra overrides the `pagy_link_proc` method in the `Pagy::Frontend` module.
+The `trim` extra overrides the `pagy_anchor` method in the `Pagy::Frontend` module.
 
-==- `pagy_link_proc(pagy, link_extra='')`
+==- `pagy_anchor(pagy)`
 
-This method overrides the `pagy_link_proc` using the `pagy_trim` to process the link to the first page.
+This method overrides the `pagy_anchor` using the `pagy_trim` to process the link to the first page.
 
-==- `pagy_trim(pagy, link)`
+==- `pagy_trim(pagy, a)`
 
-Sub-method called only by the `pagy_link_proc` method, it removes the the `:page_param` param from the first page link (
+Sub-method called only by the `pagy_anchor` method, it removes the the `:page_param` param from the first page link (
 usually `page=1`).
 
 Override this method if you are [customizing the urls](/docs/how-to.md#customize-the-url).

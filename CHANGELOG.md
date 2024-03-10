@@ -6,9 +6,10 @@ icon: versions-24
 
 ## Breaking Changes
 
-If you upgrade from version `< 7.0.0` see the following:
+If you upgrade from version `< 8.0.0` see the following:
 
-- [Breaking changes in version 7.0.0](#version-700)
+- [Breaking changes in version 7.0.0](#version-800)
+- [Breaking changes in version 7.0.0](CHANGELOG_LEGACY.md#version-700)
 - [Breaking changes in version 6.0.0](CHANGELOG_LEGACY.md#version-600)
 - [Breaking changes in version 5.0.0](CHANGELOG_LEGACY.md#version-500)
 - [Breaking changes in version 4.0.0](CHANGELOG_LEGACY.md#version-400)
@@ -18,148 +19,57 @@ If you upgrade from version `< 7.0.0` see the following:
 
 ## Deprecations
 
-- The "pagination" CSS class for the `pagy_nav`, `pagy_nav_js` and `pagy_combo_nav_js` has been deprecated and will be removed in
-  version 8. Replace it with the new "pagy" CSS class added also to the `pagy-items-selector-js`.
-
+None
 <hr>
 
+## Breaking changes
+
+- Renamed/removed the following arguments for all the helpers:
+  - Search `pagy_id:`, replace with `id:`
+  - Search `nav_aria_label:`, replace with`aria_label:`
+  - The `nav_i18n_key` has been removed: pass the interpolated/pluraized value as the `aria_label:` argument
+  - The `item_i18n_key` has been removed: pass the interpolated/pluralied value as the `item_name:` argument
+  - The `link_extra:` has been removed: its cumulative mechanism was confusing and error prone. The `:anchor_string` pagy
+    variable substitutes it, however it's not an helper argument anymore, so you can assign it as the `DEFAULT[:anchor_string]`
+    and/or passing it as any other pagy variable at object construction . (see ...)
+- HTML structure, classes and internal methods have been changed: they may break your views if you used custom stylesheets, 
+  templates or helper overrides. See the complete changes below if you notice any cosmetic changes or get some exception.
+
+## Changes
+
+- Streamlined HTML and CSS helper structure. You may want to look at the actual output by running the single-file self-contained 
+  app [!file](/lib/apps/demo.ru)
+  - The `pagy_nav` and `pagy_nav_js` are a series of `a` tags inside a wrapper `nav` tag (nothing else there)
+  - The disabled links are so because they are missing the `href` attributes
+  - The `pagy`, `pagy-nav` and `pagy-nav-js` classes are assigned to the `nav` tag
+  - The `current`, `gap` classes are assigned to the specific `a` tags
+  - HTML changes
+    - All the pagy helper root classes have been changed according to the following rule. For example:
+      - `"pagy-nav"` > `"pagy nav"`
+      - `"pagy-bootstrap-nav-js"` > `"pagy-bootstrap nav-js"`
+      - and so on for all the helpers
+    - The `active` class of the `*nav`/`*nav_js` links is now `current`
+    - The `disabled`, `prev` and `next` link classes have been removed
+    - The `pagy-combo-input` class has been removed
+    - The `rel="prev"` and  `rel="next"` attributes have been dropped (they don't do anything anymore)
+    - The `\<label>`/`\</label>` and `\<b>`/`\</b>` wrappers the dictionary files have been removed
+- The `pagy_link_proc` method (only used internally or in your custom overriding) has been renamed to `pagy_anchor`and it works
+  slighty differently:
+  - The `link_extra:` key argument has been removed
+    - The `extra` positional argument of the returned lambda has been removed
+    - The `classes:` and `aria_label:` keyword arguments have been added to the returned lambda
+- The `nav_aria_label_attr` method has been renamed as `nav_aria_label`
+- The internal `prev_aria_label_attr` and `next_aria_label_attr` methods have been removed
+- 
+- The `gap` in the nav bars is a disabled anchor element (`a` tag without a `href` attribute`)
+- The `*combo_nav_js` and `pagy_items_selector_js` helpers use a more efficient mechanism
+- The `src/pagy.ts` and relative built javascript files have been adapted to the above changes
+- The stylesheets are a lot simpler as a consequence of the changes above
+- All the `*combo-nav_js` in the framework extras use simpler structure and improve the look and feel consistently with their
+  respective frameworks
+- All the frontend extra have been normalized and are totally consistent with each other
+- Created `demo.ru` and `repro.ru` out of heavy refactored standalone styles, with `pagy` bin utility launcher 
+
 ## Version 7.0.11
-
-- Fix jsonapi prev and next keys for unavailable links (#665)
-- Docs fixes
-
-## Version 7.0.10
-
-- Added name attribute to combo and items input tags; removed pagy_marked_link and refactored js input action
-
-## Version 7.0.9
-
-- Improve all pagy apps
-- Normalized bootstrap, bulma, foundation, navs extra
-
-## Version 7.0.8
-
-- Update gems and fix a rubocop bug
-- Add all styles to pagy_styles.ru
-- Better pagy stylesheets
-- Fix for uikit extra prev and next link duplicating chevrons
-- Change aria_Label to aria_label for Arabic locale (#657)
-
-## Version 7.0.7
-
-- Fix for retype exluding linked files and showing category images
-- Fix for first *nav_js page not active with trim (introduced with the #656 fix 7e2f118)
-- Normalize pagy apps; implement pagy_styles.ru
-
-## Version 7.0.6
-
-- Internal renaming of frontend constants
-- Fix for disabled links and missing or extra ARIA attributes in frontend extras
-- Boostrap fix for current page link; pagy.js fix for trim of current page (closes #656)
-
-## Version 7.0.5
-
-- Updated gems, npm modules, contributors
-- Added the pagy stylesheets to the gem, updated apps, docs and manifest
-- Added note for the metrics and compacted the chart section (closes #652)
-- Docs: fix formatting, grammar in README.md (#654)
-- Add note about PR base branches to readme (#653)
-
-## Version 7.0.4
-
-- Tailwind styles integrated with the pagy-items-selector-js (#646)
-- Deprecated the "pagination" CSS class, use the "pagy" CSS class that has been added to all the interactive pagy helper outputs
-- Fix indentation of cs locale (#648); add "pagy.aria_label.nav.few" entry, duplicating the "other" pluralization
-- Update cs translations (#648)
-- Expand/Correct changes about `pagy.prev` and `pagy.next` (#649)
-
-## Version 7.0.3
-
-- Remove extra space in `pagy_nav`, `pagy_nav_js` and `.pagy-combo-input`
-- Refactor of tailwind styles and docs (closes #646)
-- Add `pagy_tailwind_app.ru` (#646)
-- Add missing CSS breaking change to the CHANGELOG (#646)
-
-## Version 7.0.2
-
-- Fix for missing to fetch count_args default (close #645)
-- Non-code improvements
-
-## Version 7.0.1
-
-- Updates ckb translations to be complaint with ARIA in v7.x.x (#643)
-
-## Version 7.0.0
-
-### Breaking changes
-
-- Dropped old rubies support: Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now.
-- Renamed `:i18n_key` > `:item_i18n_key`
-- Refactored `support` extra
-  - Renamed `pagy_prev_link` to `pagy_prev_html` to avoid confusion with pagy_prev_link_tag
-  - Removed `pagy_next_link` to `pagy_next_html` to avoid confusion with pagy_next_link_tag
-- Rack 3 breaking changes:
-  - The `headers` extra produces all lowercase headers, regardless how you set
-    them [see rack issue](https://github.com/rack/rack/issues/1592)
-  - Removed `:escaped_html` option from `pagy_url_for` (only breaking if you override the method or use the option directly)
-- Dictionary structure changes: (affects only app with custom helper/templates/dictionary entries)
-  - The `nav` entry has been flattened: `pagy.nav.*` entries are now `pagy.*`:
-    - If you have custom helpers/templates: search the keys that contain `'.nav.'` and replace them with `'.'`
-    - If you have custom dictionary entries (overrides): remove the `'nav:'` line and unindent its block
-  - A few labels used as `aria-label` have been added: you may want to add/use them to your custom helper/templates/dictionaries
-    for ARIA compliance.
-    - `pagy.aria_label.nav` Pluralized entry: used in the `nav` element
-    - `pagy.aria_label.prev`, `pagy.aria_label.next` Single entry: used in the prev/next `a` link elements
-
-### Default changes (possibly breaking test/views)
-
-- Changed `Pagy::DEFAULT[:size]` variable defaults from `[1, 4, 4, 1]` to `7`. You can explicitly set/restore it in the
-  initializer, if your app was relying on it.
-- Added sensible `:size` defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
-  relying on it.
-  - `Pagy::Calendar::Day::DEFAULT[:size]` `31`
-  - `Pagy::Calendar::Month::DEFAULT[:size]` `12`
-  - `Pagy::Calendar::Quarter::DEFAULT[:size]` `4`
-  - `Pagy::Calendar::Year::DEFAULT[:size]` `10`
-- Changed a few `format` defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
-  relying on it.
-  - `Pagy::Calendar::Day::DEFAULT[:format]` from `'%Y-%m-%d'` to `'%d'`
-  - `Pagy::Calendar::Month::DEFAULT[:format]` from `'%Y-%m'` to `'%b'`
-  - `Pagy::Calendar::Quartr::DEFAULT[:format]` from `'%Y-Q%q'` to `'Q%q'`
-
-### Visual changes (possibly breaking test/views)
-
-- The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:
-- The text for `"Prev"` and `"Next"` is now used for the `aria-label` (actually as `"Previous"` and `"Next"`) and has been
-  replaced in the UI as `<` and `>`. You can edit the dictionary entries `pagy.prev` and `pagy.next` if you want to revert it to
-  the previous default (`&lsaquo;&nbsp;Prev` and `Next&nbsp;&rsaquo;`)
-
-### CSS changes (possibly looking different/broken)
-
-- The HTML of the current page in `pagy_nav` and `pagy_nav_js` has been changed from simple text (e.g. `5`) to a
-  disabled link (e.g. `<a role="link" aria-disabled="true" aria-current="page">5</a>`). That affects your CSS rules and
-  the old tailwind examples targeting the page links, now overreaching the current page.
-  - You may fix eventual problems either by replacing the affected `a` rules with narrower `a[href]` selectors however if you use
-    Tailwind we recommend to use the [improved tailwind style](https://ddnexus.github.io/pagy/docs/extras/tailwind/), that you can
-    adapt in no time to anything you need.
-- The extra spaces added between pages of `pagy_nav` and `pagy_nav_js` have been removed
-- The `pagy-combo-nav-js .pagy-combo-input` internal element x-margins have been removed
-
-### Internal renaming of private methods (unlikely to break anything)
-
-You should not have used any of the private methods, but if you did so, you will get a `NoMethodError`
-(undefined method...) very easy to fix by simply renaming, because there are no changes in the logic.
-
-### Changes
-
-- Added `:count_args` variable passed to the `collection.count(...)` statement (avoids overriding of `pagy-gets-vars` and
-  expands count capabilities)
-- [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/)
-- Removed the pagy templates: they were a burden for maintenance with very limited usage,
-  still [you can use them](http://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates)
-- Added a simpler and faster nav without gaps (just pass an integer to the `:size`)
-- Internal renaming of private frontend methods
-- Updated code and tests for latest gem and npm module versions
-- Internal improvements of automation scripts
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 

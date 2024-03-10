@@ -23,6 +23,14 @@ Here is a screenshot (from the `bootstrap` extra):
 
 ![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
+!!! Interactive Demo Available!
+
+```sh
+pagy run demo
+```
+...and point your browser at http://0.0.0.0:8000
+!!!
+
 ## Synopsis
 
 See [Setup Javascript](setup.md).
@@ -63,8 +71,4 @@ require 'pagy/extras/uikit'
 The method accepts also the same optional keyword arguments variables of
 the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars)
 
-!!!warning
-The `pagy_semantic_combo_nav_js` assigns a class attribute to its links, so do not add another class attribute with
-the `:link_extra`. That would be illegal HTML and ignored by most browsers.
-!!!
 ===

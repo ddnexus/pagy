@@ -25,6 +25,14 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js.png)
 
+!!! Interactive Demo Available!
+
+```sh
+pagy run demo
+```
+...and point your browser at http://0.0.0.0:8000
+!!!
+
 ## Synopsis
 
 See [Setup Javascript](setup).
@@ -150,10 +158,5 @@ document.getElementById('my-pagy-nav-js').render();
 
 The method accepts also the same optional keyword arguments variables of
 the [pagy_nav(pagy, **vars)](/docs/api/frontend#pagy-nav-pagy-vars)
-
-!!!warning
-The `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add another class
-attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.
-!!!
 
 ===

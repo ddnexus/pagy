@@ -139,29 +139,29 @@ __END__
 <hr>
 
 <p>pagy_info</p>
-<%= pagy_info(@pagy, pagy_id: 'pagy-info') %>
+<%= pagy_info(@pagy, id: 'pagy-info') %>
 <hr>
 
 <p>pagy_items_selector_js</p>
-<%= pagy_items_selector_js(@pagy, pagy_id: 'items-selector-js') %>
+<%= pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav" %></p>
-<%= send(:"pagy_#{name_fragment}nav", @pagy, pagy_id: 'nav', nav_aria_label: 'Pages nav') %>
+<%= send(:"pagy_#{name_fragment}nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav_js" %></p>
-<%= send(:"pagy_#{name_fragment}nav_js", @pagy, pagy_id: 'nav-js', nav_aria_label: 'Pages nav_js') %>
+<%= send(:"pagy_#{name_fragment}nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav_js" %> (responsive)</p>
-<%= send(:"pagy_#{name_fragment}nav_js", @pagy, pagy_id: 'nav-js-responsive',
-         nav_aria_label: 'Pages nav_js_responsive',
+<%= send(:"pagy_#{name_fragment}nav_js", @pagy, id: 'nav-js-responsive',
+         aria_label: 'Pages nav_js_responsive',
          steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}combo_nav_js" %></p>
-<%= send(:"pagy_#{name_fragment}combo_nav_js", @pagy, pagy_id: 'combo-nav-js', nav_aria_label: 'Pages combo_nav_js') %>
+<%= send(:"pagy_#{name_fragment}combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 <hr>
 
 
@@ -175,17 +175,17 @@ __END__
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav" %></p>
-<%= send(:"pagy_#{name_fragment}nav", @calendar[:month], pagy_id: 'nav',
-         nav_aria_label: 'Pages nav') %>
+<%= send(:"pagy_#{name_fragment}nav", @calendar[:month], id: 'nav',
+         aria_label: 'Pages nav') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav_js" %></p>
-<%= send(:"pagy_#{name_fragment}nav_js", @calendar[:month], pagy_id: 'nav-js',
-         nav_aria_label: 'Pages nav_js') %>
+<%= send(:"pagy_#{name_fragment}nav_js", @calendar[:month], id: 'nav-js',
+         aria_label: 'Pages nav_js') %>
 <hr>
 
 <p><%= "pagy_#{name_fragment}nav_js" %> (responsive)</p>
-<%= send(:"pagy_#{name_fragment}nav_js", @calendar[:month], pagy_id: 'nav-js-responsive',
-         nav_aria_label: 'Pages combo_nav_js',
+<%= send(:"pagy_#{name_fragment}nav_js", @calendar[:month], id: 'nav-js-responsive',
+         aria_label: 'Pages combo_nav_js',
          steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
 <hr>

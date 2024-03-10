@@ -6,7 +6,7 @@ require 'pagy/extras/trim'
 require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/trim' do
-  describe '#pagy_link_proc' do
+  describe '#pagy_a_proc' do
     it 'returns trimmed or not trimmed links' do
       [ # first page
         [{ page: 1 },                    '?page=1',                      ''],                         # only param
@@ -29,12 +29,12 @@ describe 'pagy/extras/trim' do
         app  = MockApp.new(params: params)
 
         pagy = Pagy.new(count: 1000, page: page)
-        link = app.pagy_link_proc(pagy)
-        _(link.call(page)).must_include(%(<a href="/foo#{trimmed}"))
+        a    = app.pagy_anchor(pagy)
+        _(a.(page)).must_include(%(<a href="/foo#{trimmed}"))
 
         pagy = Pagy.new(count: 1000, page: page, trim_extra: false)
-        link = app.pagy_link_proc(pagy)
-        _(link.call(page)).must_include(%(<a href="/foo#{not_trimmed}"))
+        a    = app.pagy_anchor(pagy)
+        _(a.(page)).must_include(%(<a href="/foo#{not_trimmed}"))
       end
     end
   end

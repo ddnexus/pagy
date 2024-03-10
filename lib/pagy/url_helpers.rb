@@ -8,13 +8,12 @@ class Pagy
     # For non-rack environments you can use the standalone extra
     def pagy_url_for(pagy, page, absolute: false, **_)
       vars         = pagy.vars
-      request_path = vars[:request_path].to_s.empty? ? request.path : vars[:request_path]
       pagy_params  = pagy.params.is_a?(Hash) ? pagy.params.transform_keys(&:to_s) : {}
       params       = request.GET.merge(pagy_params)
       pagy_set_query_params(page, vars, params)
       params       = pagy.params.call(params) if pagy.params.is_a?(Proc)
       query_string = "?#{Rack::Utils.build_nested_query(params)}"
-      "#{request.base_url if absolute}#{request_path}#{query_string}#{vars[:fragment]}"
+      "#{request.base_url if absolute}#{vars[:request_path] || request.path}#{query_string}#{vars[:fragment]}"
     end
 
     # Add the page and items params

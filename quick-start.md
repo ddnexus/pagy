@@ -5,32 +5,34 @@ icon: rocket-24
 
 # Quick Start
 
-=== If you want to just try Pagy before using it in your own app, you have a couple of alternatives...
+If you want to just try Pagy before using it in your own app, you have a couple of alternatives...
 
-+++ Pagy Application
++++ Browser
 
-Ensure to have `rack` installed (or `gem install rack`)
+See and interact with all its different helpers and styles:
+     
+!!! Interactive Demo Available!
 
-Download and run any of the following self contained file:
+```sh
+gem install pagy
+pagy run demo
+```
+...and point your browser to http://0.0.0.0:8080
+!!!
 
-[!file](/apps/pagy_styles.ru)
++++ Console
 
-+++ Pagy Console
-
-||| Install the gem
+Interact with every method, helper and extra in a IRB console without any setup:
 
 ```sh
 gem install pagy
 ```
 
-|||
-
-[Use it fully without any app](docs/api/console.md)
+...and [use it without any app](docs/api/console.md)
 
 +++
-===
 
-### Install
+### 1. Install
 
 +++ With Bundler
 
@@ -66,7 +68,7 @@ require 'pagy'
 |||
 +++
 
-### Configure
+### 2. Configure
 
 +++ With Rails
 Download the configuration file linked below and save it into the `config/initializers` dir
@@ -87,10 +89,11 @@ You can further customize the variables per instance, by explicitly passing any 
 any `pagy*` backend/controller method.
 !!!
 
-### Backend Setup
+### 3. Backend Setup
 
 +++ Standard
-=== Include the backend
+
+#### Include the backend
 
 ||| ApplicationController/AnyController
 
@@ -100,16 +103,15 @@ include Pagy::Backend
 
 |||
 
-=== Use the `pagy` method
+#### Use the `pagy` method
+
 ||| Controller action
 
 ```ruby
 @pagy, @records = pagy(Product.some_scope)
 ```
+
 |||
-
-
-===
 
 +++ Search
 For search backends
@@ -122,14 +124,14 @@ pagination
 
 +++
 
-### Render the pagination
+### 4. Render the pagination
 
 +++ Server Side
 !!! success
 Your pagination is rendered on the server
 !!!
 
-Include the frontend
+#### Include the frontend
 
 ||| ApplicationHelper/AnyHelper
 
@@ -139,8 +141,9 @@ include Pagy::Frontend
 
 |||
 
-Use a fast helper
-||| Helper
+#### Use a fast helper
+
+||| View
 
 ```erb
 <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
@@ -149,9 +152,10 @@ Use a fast helper
 
 |||
 
-!!! CSS Frameworks/Styles Available
-The pagy helpers are available for different frameworks and different styles (static, responsive, compact, etc.) [bootstrap](docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md), [foundation](docs/extras/foundation.md), [materialize](docs/extras/materialize.md), [semantic](docs/extras/semantic.md), [uikit](docs/extras/uikit.md)
-!!!
+#### Pick a stylesheet or a CSS framework
+
+- For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](/docs/api/stylesheets.md)
+- For different CSS frameworks and different helpers (static, responsive, compact, etc.), you can look at the [bootstrap](docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md), [foundation](docs/extras/foundation.md), [materialize](docs/extras/materialize.md), [semantic](docs/extras/semantic.md), [uikit](docs/extras/uikit.md) extras
 
 +++ Javascript Framework
 
@@ -159,7 +163,7 @@ The pagy helpers are available for different frameworks and different styles (st
 Your pagination is rendered by Vue.js, react.js, ...
 !!!
 
-Require the [metadata extra](docs/extras/metadata.md)
+#### Require the [metadata extra](docs/extras/metadata.md)
 
 ||| pagy.rb (initializer)
 
@@ -169,7 +173,8 @@ require 'pagy/extras/metadata'
 
 |||
 
-Add the metadata to your JSON response
+#### Add the metadata to your JSON response
+
 ||| Controller action
 
 ```ruby
@@ -184,7 +189,7 @@ render json: { data: @records, pagy: pagy_metadata(@pagy, ...) }
 Your API is consumed by some client
 !!!
 
-Require the [headers extra](docs/extras/headers.md)
+#### Require the [headers extra](docs/extras/headers.md)
 
 ||| pagy.rb (initializer)
 
@@ -194,7 +199,8 @@ require 'pagy/extras/headers'
 
 |||
 
-Add the pagination headers to your responses
+#### Add the pagination headers to your responses
+
 ||| Controller
 
  ```ruby
@@ -203,7 +209,8 @@ Add the pagination headers to your responses
 
 |||
 
-Render your JSON response as usual
+#### Render your JSON response as usual
+
 ||| Controller action
 
  ```ruby

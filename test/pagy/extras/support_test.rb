@@ -35,10 +35,10 @@ describe 'pagy/extras/support' do
   end
   describe '#pagy_prev_html' do
     tests_for(:pagy_prev_html, [[1, 0], [3, 21], [6, 21], [50, 20]],
-              text: 'PREV', link_extra: 'link-extra')
+              text: 'PREV', aria_label: 'My prev page')
   end
   describe '#pagy_next_html' do
     tests_for(:pagy_next_html, [[1, 0], [3, 21], [6, 21], [50, 20]],
-              text: 'PREV', link_extra: 'link-extra')
+              text: 'NEXT', aria_label: 'My next page')
   end
 end

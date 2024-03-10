@@ -15,8 +15,10 @@ This extra adds single or multiple chained calendar navs that act as calendar fi
 record in its time unit.
 
 ![calendar_app](/docs/assets/images/calendar-app.png)
-_Screenshot from the single-file
-self-contained [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) demo_
+
+!!!
+Try the single-file self-contained [pagy_calendar.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar.ru) app
+!!!
 
 ## Use cases
 
@@ -82,11 +84,6 @@ end
 See also a few examples
 about [How to wrap existing pagination with pagy_calendar](/docs/how-to.md#wrap-existing-pagination-with-pagy_calendar).
 
-!!!primary Demo App
-For a complete and detailed example, see
-the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru).
-!!!
-
 ## Usage
 
 Since the time can be stored or calculated in many different ways in different collections, this extra requires you to implement a
@@ -99,19 +96,17 @@ The whole usage boils down to these steps:
 3. Define the [pagy_calendar_filter](#pagy-calendar-filter-collection-from-to) method in your controller
 4. Use it in your UI
 
+!!! Interactive Demo App Available!
+
 You can play with a quick demo app, working without any additional configuration with:
 
-||| shell
-
-```shell
+```sh
 git clone --depth 1 https://github.com/ddnexus/pagy
 cd pagy
 rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar.ru
 ```
-
-|||
-
-Then point your browser to http://0.0.0.0:8080.
+...and point your browser to http://0.0.0.0:8080
+!!!
 
 ## Variables and Accessors
 
@@ -158,7 +153,7 @@ calendar. For example:
 ```
 
 See also the the single-file
-self-contained [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for an interactive
+self-contained [pagy_calendar.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar.ru) for an interactive
 demo.
 
 ### `collection` argument
@@ -213,7 +208,7 @@ If the `:pagy` key/value is omitted, a default `Pagy` instance will be created b
 The calendar is active by default, however you can add an optional `:active` boolean flag to the `configuration` hash in order to
 switch it ON or OFF, depending on its usefulness in different conditions (see the [Use cases](#use-cases)).
 
-Take a look at the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a simple
+Take a look at the [pagy_calendar.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar.ru) for a simple
 example of a manual toggle in the UI.
 
 ==- `pagy_calendar_period(collection)`
@@ -348,7 +343,7 @@ This helper takes the `@calendar` and a `TimeWithZone` objects and returns the u
 each bars that include the passed time.
 
 For example: `pagy_calendar_url_at(@calendar, Time.zone.now)` will select the the bars pointing to today. You can see a working
-example in the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) file.
+example in the [pagy_calendar.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar.ru) file.
 
 If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRangeError`, however you can pass the
 option `fit_time: true` to avoid the error and get the url to the page closest to the passed time argument (first or last page).

@@ -22,8 +22,6 @@
 # Pagy::DEFAULT[:page_param]   = :page                  # default
 # Pagy::DEFAULT[:fragment]     = '#fragment'            # example
 # Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'   # example
-# Pagy::DEFAULT[:item_i18n_key = 'pagy.item_name'       # default
-# Pagy::DEFAULT[:nav_i18n_key] = 'pagy.aria_label.nav'  # default
 # Pagy::DEFAULT[:cycle]        = true                   # example
 # Pagy::DEFAULT[:request_path] = '/foo'                 # example
 # Pagy::DEFAULT[:count_args]   = []                     # example for non AR ORMs
@@ -249,9 +247,6 @@
 # than the default pagy internal i18n (see above)
 # See https://ddnexus.github.io/pagy/docs/extras/i18n
 # require 'pagy/extras/i18n'
-
-# Default i18n key
-# Pagy::DEFAULT[:item_i18n_key] = 'pagy.item_name'   # default
 
 
 # When you are done setting your own default freeze it, so it will not get changed accidentally

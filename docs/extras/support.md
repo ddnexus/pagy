@@ -51,7 +51,7 @@ require 'pagy/extras/countless'
 
 ```ruby
 def incremental
-  @pagy, @records = pagy_countless(collection, link_extra: 'data-remote="true"')
+  @pagy, @records = pagy_countless(collection, anchor_string: 'data-remote="true"')
 end
 ```
 
@@ -93,7 +93,7 @@ end
 
 ```erb
 <!-- Wrapped in a "pagy" class to apply the pagy CSS style -->
-<span class="pagy"><%== pagy_next_html(@pagy, text: 'More...', link_extra: 'id="next_link"') %><span>
+<span id: 'next_link' class="pagy"><%== pagy_next_html(@pagy, text: 'More...') %><span>
 ```
 
 |||
@@ -127,7 +127,7 @@ of changes:
 ||| _next_link.html.erb (partial)
 
 ```erb
-<%== pagy_next_html(@pagy, text: 'More...', link_extra: 'id="next_link" style="display: none;"') %>
+<span style="display: none;"><%== pagy_next_html(@pagy, text: 'More...') %></span>
 ```
 
 |||
@@ -139,12 +139,12 @@ keep the page filled with results, one page at a time:
 
 ```js
 var loadNextPage = function(){
-  if ($('#next_link').data("loading")){ return }  // prevent multiple loading
+  if ($('#next_link a').data("loading")){ return }  // prevent multiple loading
   var wBottom  = $(window).scrollTop() + $(window).height();
   var elBottom = $('#records_table').offset().top + $('#records_table').height();
   if (wBottom > elBottom){
-    $('#next_link')[0].click();
-    $('#next_link').data("loading", true);
+    $('#next_link a')[0].click();
+    $('#next_link a').data("loading", true);
   }
 };
 
@@ -198,14 +198,14 @@ bar links (e.g. `countless` extra).
 Returns the url for the next page or `nil` if there is no next page. Useful to build minimalistic UIs that don't use nav bar
 links (e.g. `countless` extra).
 
-==- `pagy_prev_html(pagy, text: pagy_t('pagy.prev'), link_extra: '')`
+==- `pagy_prev_html(pagy, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev))`
 
 Returns the HTML string for the enabled/disabled previous page link. It is the same prev link string which is
 part of the `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
 
-==- `pagy_next_html(pagy, text: pagy_t('pagy.next'), link_extra: '')`
+==- `pagy_next_html(pagy, text: pagy_t('pagy.next'), , aria_label: pagy_t('pagy.aria_label.prev))`
 
 Returns the HTML string for the enabled/disabled next page link. It is the same next link string which is part of the
 `pagy_nav` helper.

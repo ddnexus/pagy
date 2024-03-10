@@ -1,11 +1,11 @@
-type NavArgs = readonly [Tags, Sequels, null | LabelSequels, string?]
+type NavArgs = readonly [Tokens, Sequels, null | LabelSequels, string?]
 type ComboArgs = readonly [string, string?]
 type SelectorArgs = readonly [number, string, string?]
 
-interface Tags {
+interface Tokens {
     readonly before:string
-    readonly link:string
-    readonly active:string
+    readonly a:string
+    readonly current:string
     readonly gap:string
     readonly after:string
 }
@@ -23,16 +23,16 @@ const Pagy = (() => {
                                                    el => el.pagyRender())));
 
     // Init the *_nav_js helpers
-    const initNav = (el:NavElement, [tags, sequels, labelSequels, trimParam]:NavArgs) => {
+    const initNav = (el:NavElement, [tokens, sequels, labelSequels, trimParam]:NavArgs) => {
         const container = el.parentElement ?? el;
         const widths = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
         let lastWidth = -1;
-        const fillIn = (link:string, page:string, label:string):string =>
-            link.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
+        const fillIn = (a:string, page:string, label:string):string =>
+            a.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
         (el.pagyRender = function () {
             const width = widths.find(w => w < container.clientWidth) || 0;
             if (width === lastWidth) { return } // no change: abort
-            let html = tags.before;  // already trimmed in html
+            let html = tokens.before;  // already trimmed in html
             const series = sequels[width.toString()];
             const labels = labelSequels?.[width.toString()] ?? series.map(l => l.toString());
             for (const i in series) {
@@ -40,15 +40,15 @@ const Pagy = (() => {
                 const label = labels[i];
                 let filled;
                 if (typeof item === "number") {
-                    filled = fillIn(tags.link, item.toString(), label);
+                    filled = fillIn(tokens.a, item.toString(), label);
                 } else if (item === "gap") {
-                    filled = tags.gap;
+                    filled = tokens.gap;
                 } else { // active page
-                    filled = fillIn(tags.active, item, label);
+                    filled = fillIn(tokens.current, item, label);
                 }
                 html += (typeof trimParam === "string" && item == 1) ? trim(filled, trimParam) : filled;
             }
-            html += tags.after;   // eslint-disable-line align-assignments/align-assignments
+            html += tokens.after;   // eslint-disable-line align-assignments/align-assignments
             el.innerHTML = "";
             el.insertAdjacentHTML("afterbegin", html);
             lastWidth = width;
@@ -91,8 +91,8 @@ const Pagy = (() => {
     };
 
     // Trim the ${page-param}=1 params in links
-    const trim = (link:string, param:string) =>
-        link.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "");
+    const trim = (a:string, param:string) =>
+        a.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "");
 
     // Public interface
     return {

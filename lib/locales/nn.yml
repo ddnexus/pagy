@@ -15,7 +15,7 @@ nn:
       other: "resultat"
     info:
       no_items: "Ingen %{item_name} funne"
-      single_page: "Viser <b>%{count}</b> %{item_name}"
-      multiple_pages: "Viser %{item_name} <b>%{from}-%{to}</b> av totalt <b>%{count}</b>"
-    combo_nav_js: "<label>Side %{page_input} av %{pages}</label>"
-    items_selector_js: "<label>Vis %{items_input} %{item_name} per side</label>"
+      single_page: "Viser %{count} %{item_name}"
+      multiple_pages: "Viser %{item_name} %{from}-%{to} av totalt %{count}"
+    combo_nav_js: "Side %{page_input} av %{pages}"
+    items_selector_js: "Vis %{items_input} %{item_name} per side"
