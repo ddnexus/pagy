@@ -21,7 +21,7 @@ ru:
       other: "записей"
     info:
       no_items: "Пока %{item_name} нет"
-      single_page: "<b>%{count}</b> %{item_name}"
-      multiple_pages: "Всего <b>%{count}</b> %{item_name}, показаны с <b>%{from}</b> по <b>%{to}</b>"
-    combo_nav_js: "<label>Страница %{page_input} из %{pages}</label>"
-    items_selector_js: "<label>Показать %{items_input} %{item_name} на странице</label>"
+      single_page: "%{count} %{item_name}"
+      multiple_pages: "Всего %{count} %{item_name}, показаны с %{from} по %{to}"
+    combo_nav_js: "Страница %{page_input} из %{pages}"
+    items_selector_js: "Показать %{items_input} %{item_name} на странице"

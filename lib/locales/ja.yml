@@ -13,7 +13,7 @@ ja:
     item_name: "結果"
     info:
       no_items: "見つかりませんでした"
-      single_page: "<b>%{count}</b> 件の%{item_name}"
-      multiple_pages: "<b>%{count}</b> 件中 <b>%{from}-%{to}</b> 件目の%{item_name}を表示中"
-    combo_nav_js: "<label>%{page_input} / %{pages} ページ</label>"
-    items_selector_js: "<label>%{items_input} 件ずつ表示</label>"
+      single_page: "%{count} 件の%{item_name}"
+      multiple_pages: "%{count} 件中 %{from}-%{to} 件目の%{item_name}を表示中"
+    combo_nav_js: "%{page_input} / %{pages} ページ"
+    items_selector_js: "%{items_input} 件ずつ表示"

@@ -11,7 +11,7 @@ vi:
     item_name: "kết quả"
     info:
       no_items: "Không tìm thấy %{item_name} nào"
-      single_page: "<b>%{count}</b> %{item_name}"
-      multiple_pages: "Đang hiển thị <b>%{from}-%{to}</b> trong tổng số <b>%{count} %{item_name}</b>"
-    combo_nav_js: "<label>Trang %{page_input} trên %{pages}</label>"
-    items_selector_js: "<label>Hiển thị %{items_input} %{item_name} mỗi trang</label>"
+      single_page: "%{count} %{item_name}"
+      multiple_pages: "Đang hiển thị %{from}-%{to} trong tổng số %{count} %{item_name}"
+    combo_nav_js: "Trang %{page_input} trên %{pages}"
+    items_selector_js: "Hiển thị %{items_input} %{item_name} mỗi trang"

@@ -6,6 +6,140 @@ visibility: hidden
 
 # LEGACY CHANGELOG 
 
+## Version 7.0.10
+
+- Added name attribute to combo and items input tags; removed pagy_marked_link and refactored js input action
+
+## Version 7.0.9
+
+- Improve all pagy apps
+- Normalized bootstrap, bulma, foundation, navs extra
+
+## Version 7.0.8
+
+- Update gems and fix a rubocop bug
+- Add all styles to pagy_styles.ru
+- Better pagy stylesheets
+- Fix for uikit extra prev and next link duplicating chevrons
+- Change aria_Label to aria_label for Arabic locale (#657)
+
+## Version 7.0.7
+
+- Fix for retype exluding linked files and showing category images
+- Fix for first *nav_js page not active with trim (introduced with the #656 fix 7e2f118)
+- Normalize pagy apps; implement pagy_styles.ru
+
+## Version 7.0.6
+
+- Internal renaming of frontend constants
+- Fix for disabled links and missing or extra ARIA attributes in frontend extras
+- Boostrap fix for current page link; pagy.js fix for trim of current page (closes #656)
+
+## Version 7.0.5
+
+- Updated gems, npm modules, contributors
+- Added the pagy stylesheets to the gem, updated apps, docs and manifest
+- Added note for the metrics and compacted the chart section (closes #652)
+- Docs: fix formatting, grammar in README.md (#654)
+- Add note about PR base branches to readme (#653)
+
+## Version 7.0.4
+
+- Tailwind styles integrated with the pagy-items-selector-js (#646)
+- Deprecated the "pagination" CSS class, use the "pagy" CSS class that has been added to all the interactive pagy helper outputs
+- Fix indentation of cs locale (#648); add "pagy.aria_label.nav.few" entry, duplicating the "other" pluralization
+- Update cs translations (#648)
+- Expand/Correct changes about `pagy.prev` and `pagy.next` (#649)
+
+## Version 7.0.3
+
+- Remove extra space in `pagy_nav`, `pagy_nav_js` and `.pagy-combo-input`
+- Refactor of tailwind styles and docs (closes #646)
+- Add `pagy_tailwind_app.ru` (#646)
+- Add missing CSS breaking change to the CHANGELOG (#646)
+
+## Version 7.0.2
+
+- Fix for missing to fetch count_args default (close #645)
+- Non-code improvements
+
+## Version 7.0.1
+
+- Updates ckb translations to be complaint with ARIA in v7.x.x (#643)
+
+## Version 7.0.0
+
+### Breaking changes
+
+- Dropped old rubies support: Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now.
+- Renamed `:i18n_key` > `:item_i18n_key`
+- Refactored `support` extra
+  - Renamed `pagy_prev_link` to `pagy_prev_html` to avoid confusion with pagy_prev_link_tag
+  - Removed `pagy_next_link` to `pagy_next_html` to avoid confusion with pagy_next_link_tag
+- Rack 3 breaking changes:
+  - The `headers` extra produces all lowercase headers, regardless how you set
+    them [see rack issue](https://github.com/rack/rack/issues/1592)
+  - Removed `:escaped_html` option from `pagy_url_for` (only breaking if you override the method or use the option directly)
+- Dictionary structure changes: (affects only app with custom helper/templates/dictionary entries)
+  - The `nav` entry has been flattened: `pagy.nav.*` entries are now `pagy.*`:
+    - If you have custom helpers/templates: search the keys that contain `'.nav.'` and replace them with `'.'`
+    - If you have custom dictionary entries (overrides): remove the `'nav:'` line and unindent its block
+  - A few labels used as `aria-label` have been added: you may want to add/use them to your custom helper/templates/dictionaries
+    for ARIA compliance.
+    - `pagy.aria_label.nav` Pluralized entry: used in the `nav` element
+    - `pagy.aria_label.prev`, `pagy.aria_label.next` Single entry: used in the prev/next `a` link elements
+
+### Default changes (possibly breaking test/views)
+
+- Changed `Pagy::DEFAULT[:size]` variable defaults from `[1, 4, 4, 1]` to `7`. You can explicitly set/restore it in the
+  initializer, if your app was relying on it.
+- Added sensible `:size` defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
+  relying on it.
+  - `Pagy::Calendar::Day::DEFAULT[:size]` `31`
+  - `Pagy::Calendar::Month::DEFAULT[:size]` `12`
+  - `Pagy::Calendar::Quarter::DEFAULT[:size]` `4`
+  - `Pagy::Calendar::Year::DEFAULT[:size]` `10`
+- Changed a few `format` defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
+  relying on it.
+  - `Pagy::Calendar::Day::DEFAULT[:format]` from `'%Y-%m-%d'` to `'%d'`
+  - `Pagy::Calendar::Month::DEFAULT[:format]` from `'%Y-%m'` to `'%b'`
+  - `Pagy::Calendar::Quartr::DEFAULT[:format]` from `'%Y-Q%q'` to `'Q%q'`
+
+### Visual changes (possibly breaking test/views)
+
+- The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:
+- The text for `"Prev"` and `"Next"` is now used for the `aria-label` (actually as `"Previous"` and `"Next"`) and has been
+  replaced in the UI as `<` and `>`. You can edit the dictionary entries `pagy.prev` and `pagy.next` if you want to revert it to
+  the previous default (`&lsaquo;&nbsp;Prev` and `Next&nbsp;&rsaquo;`)
+
+### CSS changes (possibly looking different/broken)
+
+- The HTML of the current page in `pagy_nav` and `pagy_nav_js` has been changed from simple text (e.g. `5`) to a
+  disabled link (e.g. `<a role="link" aria-disabled="true" aria-current="page">5</a>`). That affects your CSS rules and
+  the old tailwind examples targeting the page links, now overreaching the current page.
+  - You may fix eventual problems either by replacing the affected `a` rules with narrower `a[href]` selectors however if you use
+    Tailwind we recommend to use the [improved tailwind style](https://ddnexus.github.io/pagy/docs/extras/tailwind/), that you can
+    adapt in no time to anything you need.
+- The extra spaces added between pages of `pagy_nav` and `pagy_nav_js` have been removed
+- The `pagy-combo-nav-js .pagy-combo-input` internal element x-margins have been removed
+
+### Internal renaming of private methods (unlikely to break anything)
+
+You should not have used any of the private methods, but if you did so, you will get a `NoMethodError`
+(undefined method...) very easy to fix by simply renaming, because there are no changes in the logic.
+
+### Changes
+
+- Added `:count_args` variable passed to the `collection.count(...)` statement (avoids overriding of `pagy-gets-vars` and
+  expands count capabilities)
+- [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/)
+- Removed the pagy templates: they were a burden for maintenance with very limited usage,
+  still [you can use them](http://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates)
+- Added a simpler and faster nav without gaps (just pass an integer to the `:size`)
+- Internal renaming of private frontend methods
+- Updated code and tests for latest gem and npm module versions
+- Internal improvements of automation scripts
+
 ## Version 6.5.0
 
 - Add ckb: "pagination" entry (#641)
@@ -512,7 +646,7 @@ FYI: Here is the list of the deprecations that are not supported anymore:
 
 The following optional positional arguments are passed with keywords arguments in all the pagy helpers:
 
-- The `id` html attribute string with the `pagy_id` keyword
+- The `id` html attribute string with the `id` keyword
 - The `url|absolute` flag with the `absolute` keyword
 - The `item_name` string with the `item_name` keyword
 - The `extra|link_extra` string with the `link_extra` keyword
@@ -758,11 +892,11 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 
 - Passing positional arguments (besides `@pagy`) to all the helpers is deprecated and it will be supported only until pagy 5.0
 - All the helpers accept more optional keyword arguments variables, for example:
-  - `pagy*_nav(@pagy, pagy_id: 'my-id', link-extra: '...')`
-  - `pagy*_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...', steps: {...})`
-  - `pagy*_combo_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...')`
-  - `pagy_items_selector_js(pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...', link_extra: '...')`
-  - `pagy_info(@pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...')`
+  - `pagy*_nav(@pagy, id: 'my-id', link-extra: '...')`
+  - `pagy*_nav_js(@pagy, id: 'my-id', link-extra: '...', steps: {...})`
+  - `pagy*_combo_nav_js(@pagy, id: 'my-id', link-extra: '...')`
+  - `pagy_items_selector_js(pagy, id: 'my-id', item_name: '...', i18n_key: '...', link_extra: '...')`
+  - `pagy_info(@pagy, id: 'my-id', item_name: '...', i18n_key: '...')`
   - `pagy_prev_link(@pagy, text: '...', link_extra: '...')`
   - `pagy_next_link(@pagy, text: '...', link_extra: '...')`
   - `pagy_link_proc(@pagy, link_extra: '...')`
@@ -789,7 +923,7 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 - [627a0dc](http://github.com/ddnexus/pagy/commit/627a0dc): also pagy_link_proc uses keyword arguments
 - [8ff2665](http://github.com/ddnexus/pagy/commit/8ff2665): completed args conversion also for pagy_url_for and pagy_metadata
 - [6a8fbb4](http://github.com/ddnexus/pagy/commit/6a8fbb4): added "pagy-info" and "pagy-items-selector-js" classes to helpers output
-- [ad350e1](http://github.com/ddnexus/pagy/commit/ad350e1): pagy_info wrapped into span tag, and added pagy_id keyword arg
+- [ad350e1](http://github.com/ddnexus/pagy/commit/ad350e1): pagy_info wrapped into span tag, and added id keyword arg
 - [2faca63](http://github.com/ddnexus/pagy/commit/2faca63): small improvement to pagy_url_for
 - [2acbac6](http://github.com/ddnexus/pagy/commit/2acbac6): added "pagy-njs" class to all pagy*_nav_js helpers
 - [670f5a5](http://github.com/ddnexus/pagy/commit/670f5a5): updated documentation
@@ -798,7 +932,7 @@ FYI: The `@pagy.items` is now always equal to `@pagy.vars[:items]` (i.e. the req
 - [d2891fb](http://github.com/ddnexus/pagy/commit/d2891fb): refactoring and additions of tests
 - [1538f24](http://github.com/ddnexus/pagy/commit/1538f24): updated tests with keyword arguments
 - [6ce0c1d](http://github.com/ddnexus/pagy/commit/6ce0c1d): helpers: deprecated positional id argument and added keyword arguments
-- [9fd7930](http://github.com/ddnexus/pagy/commit/9fd7930): removed pagy_id method and added id arg to the pagy*_nav helpers
+- [9fd7930](http://github.com/ddnexus/pagy/commit/9fd7930): removed id method and added id arg to the pagy*_nav helpers
 - [ec74e4f](http://github.com/ddnexus/pagy/commit/ec74e4f): removed the mandatory id arg passed to pagy_json_tag; updated tests; simplified pagy.js using previousSibling
 - [3f13014](http://github.com/ddnexus/pagy/commit/3f13014): added resource post and relative link [skip ci]
 - [7927f37](http://github.com/ddnexus/pagy/commit/7927f37): added manifest:check to CI for master and dev and to the default rake task

@@ -1,0 +1,81 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+command = ARGV.shift || 'help'
+app     = ARGV.shift || 'demo'
+port    = ARGV.shift || 8000
+install = command&.match(/run|develop/) || false
+
+require 'bundler/inline'
+gemfile install do
+  source 'https://rubygems.org'
+  gem 'rackup'
+  gem 'rerun'
+end
+
+path   = if app.eql?('demo') || app.eql?('repro')
+           known = true
+           File.expand_path("../apps/#{app}.ru", __dir__)
+         else
+           app
+         end
+name   = File.basename(path)
+rackup = "rackup -I #{File.expand_path('..', __dir__)} -r pagy -o 0.0.0.0 -p #{port}"
+
+case command
+when 'run'
+  exec "#{rackup} #{path} -E show -q"
+
+when 'create'
+  unless known
+    warn "Unknown app '#{app}'"
+    exit 2
+  end
+  if File.exist?(name)
+    print "Do you want to overwrite the '#{name}' file? (y/n)> "
+    answer = gets.chomp
+    exit unless answer.start_with?(/y/i)
+  end
+
+  FileUtils.cp(path, '.', verbose: true)
+
+when 'develop'
+  exec "rerun -d #{File.dirname(path)} -p #{name} -- #{rackup} #{path}"
+
+when 'help'
+  puts <<~HELP
+
+    Pagy utility to run, create, develop pagy apps
+
+    USAGE
+      pagy [command [app [port]]]
+      pagy [run|create|develop|help] [demo|repro|**/*.ru] [8000|\\d+]
+
+      command:
+          run       Run the app at http://0.0.0.0:8000
+          create    Create a new app (repro|demo)
+          develop   Run, log and auto-restart the app at http://0.0.0.0:8000
+          help      Print this message
+      app:
+          repro     Pagy app to reproduce issues
+          demo      Pagy app to showcase all helpers and styles (default)
+          **/*.ru   Path to your created/renamed/edited *.ru app file
+      port:
+          8000      Server port (default)
+
+    EXAMPLES
+      pagy          Print the help message
+      pagy help     Print the help message
+      pagy run      Run the demo app on port 8000
+      pagy run demo
+                    Run the demo app on port 8000
+      pagy create repro
+                    Create a new repro app at ./repro.ru
+      pagy develop ~/issues/my-repro.ru 8001
+                    Develop your app at http://0.0.0.0:8001
+  HELP
+
+else
+  warn "Unknown command: #{command}"
+  exit 3
+end

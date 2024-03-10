@@ -19,7 +19,7 @@ be:
       other: "запісаў"
     info:
       no_items: "Пакуль %{item_name} няма"
-      single_page: "<b>%{count}</b> %{item_name}"
-      multiple_pages: "Усяго <b>%{count}</b> %{item_name}, паказаны з <b>%{from}</b> па <b>%{to}</b>"
-    combo_nav_js: "<label>Старонка %{page_input} з %{pages}</label>"
-    items_selector_js: "<label>Паказаць %{items_input} %{item_name} на старонцы</label>"
+      single_page: "%{count} %{item_name}"
+      multiple_pages: "Усяго %{count} %{item_name}, паказаны з %{from} па %{to}"
+    combo_nav_js: "Старонка %{page_input} з %{pages}"
+    items_selector_js: "Паказаць %{items_input} %{item_name} на старонцы"

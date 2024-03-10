@@ -12,7 +12,7 @@ task :check_coverage do
   message << ">>> Missing #{(100.0 - branch).round(2)}% of branch coverage!\n" if branch < 100
   if line < 100 || branch < 100
     message << ">>> Run the task again with COVERAGE_REPORT=true for a line-by-line HTML report @ coverage/index.html\n" \
-    unless ENV['COVERAGE_REPORT']
+      unless ENV['COVERAGE_REPORT']
     warn message
     exit 1
   else

@@ -1,0 +1,25 @@
+---
+pagy/frontend::#pagy_info#test_0001_renders without i18n key:
+  ? :key: :info_0
+  : <span class="pagy info">No items found</span>
+  ? :key: :info_1
+  : <span class="pagy info">Displaying 1 item</span>
+  ? :key: :info_13
+  : <span class="pagy info">Displaying 13 items</span>
+  ? :key: :info_100
+  : <span class="pagy info">Displaying items 41-60 of 100 in total</span>
+pagy/frontend::#pagy_info#test_0002_overrides the item_name and set id:
+  ? :key: :info_0
+  : <span id="pagy-info" class="pagy info">No Widgets found</span>
+  ? :key: :info_1
+  : <span id="pagy-info" class="pagy info">Displaying 1 Widget</span>
+  ? :key: :info_13
+  : <span id="pagy-info" class="pagy info">Displaying 13 Widgets</span>
+  ? :key: :info_100
+  : <span id="pagy-info" class="pagy info">Displaying Widgets 41-60 of 100 in total</span>
+pagy/frontend::#pagy_t#test_0002_interpolates:
+  :info_0: No %{item_name} found
+  :info_1: Displaying 1 %{item_name}
+  :info_10: Displaying 10 %{item_name}
+  :info_multi_10: Displaying %{item_name} %{from}-%{to} of 10 in total
+  :info_multi_item_name: Displaying Products 101-125 of 300 in total

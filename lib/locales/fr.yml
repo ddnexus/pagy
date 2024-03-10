@@ -15,7 +15,7 @@ fr:
       other: "éléments"
     info:
       no_items: "Aucun %{item_name} trouvé"
-      single_page: "Affichage de <b>%{count}</b> %{item_name}"
-      multiple_pages: "Affichage des %{item_name} <b>%{from} à %{to}</b> sur <b>%{count}</b> au total"
-    combo_nav_js: "<label>Page %{page_input} sur %{pages}</label>"
-    items_selector_js: "<label>Afficher %{items_input} %{item_name} par page</label>"
+      single_page: "Affichage de %{count} %{item_name}"
+      multiple_pages: "Affichage des %{item_name} %{from} à %{to} sur %{count} au total"
+    combo_nav_js: "Page %{page_input} sur %{pages}"
+    items_selector_js: "Afficher %{items_input} %{item_name} par page"

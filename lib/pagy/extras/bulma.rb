@@ -4,25 +4,21 @@
 require 'pagy/extras/frontend_helpers'
 
 class Pagy # :nodoc:
-  DEFAULT[:bulma_nav_classes] = 'is-centered'
-
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module BulmaExtra
     # Pagination for bulma: it returns the html with the series of links to the pages
-    def pagy_bulma_nav(pagy, pagy_id: nil, link_extra: '',
-                       nav_aria_label: nil, nav_i18n_key: nil, **vars)
-      p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra:)
+    def pagy_bulma_nav(pagy, id: nil, classes: 'pagy-bulma nav pagination is-centered', aria_label: nil, **vars)
+      id = %( id="#{id}") if id
+      a  = pagy_anchor(pagy)
 
-      html = +%(<nav#{p_id} class="pagy-bulma-nav pagination #{DEFAULT[:bulma_nav_classes]}" #{
-                  nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>)
-      html << bulma_prev_next_html(pagy, link)
+      html = %(<nav#{id} class="#{classes}" #{nav_aria_label(pagy, aria_label:)}>)
+      html << bulma_prev_next_html(pagy, a)
       html << %(<ul class="pagination-list">)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
-                  %(<li>#{link.call(item, pagy.label_for(item), %(class="pagination-link"))}</li>)
+                  %(<li>#{a.(item, pagy.label_for(item), classes: 'pagination-link')}</li>)
                 when String
                   %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
                       pagy.label_for(item)}</a></li>)
@@ -34,70 +30,58 @@ class Pagy # :nodoc:
       html << %(</ul></nav>)
     end
 
-    # Javascript pagination for bulma: it returns a nav and a JSON tag used by the Pagy.nav javascript
-    def pagy_bulma_nav_js(pagy, pagy_id: nil, link_extra: '',
-                          nav_aria_label: nil, nav_i18n_key: nil, **vars)
+    # Javascript pagination for bulma: it returns a nav with a data-pagy attribute used by the Pagy.nav javascript
+    def pagy_bulma_nav_js(pagy, id: nil, classes: 'pagy-bulma nav-js pagination is-centered', aria_label: nil, **vars)
       sequels = pagy.sequels(**vars)
-      p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra:)
-      tags = { 'before' => %(#{bulma_prev_next_html(pagy, link)}<ul class="pagination-list">),
-               'link'   => %(<li>#{link.call(PAGE_TOKEN, LABEL_TOKEN, %(class="pagination-link"))}</li>),
-               'active' => %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
-                               LABEL_TOKEN}</a></li>),
-               'gap'    => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>),
-               'after'  => '</ul>' }
+      id      = %( id="#{id}") if id
+      a       = pagy_anchor(pagy)
+      tokens = { 'before'  => %(#{bulma_prev_next_html(pagy, a)}<ul class="pagination-list">),
+                 'a'       => %(<li>#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'pagination-link')}</li>),
+                 'current' => %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
+                                  LABEL_TOKEN}</a></li>),
+                 'gap'     => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>),
+                 'after'   => '</ul>' }
 
-      %(<nav#{p_id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bulma-nav-js pagination #{DEFAULT[:bulma_nav_classes]}" #{
-        nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}#{
-        pagy_data(pagy, :nav, tags, sequels, pagy.label_sequels(sequels))}></nav>)
+      %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}#{classes}" #{
+          nav_aria_label(pagy, aria_label:)} #{
+          pagy_data(pagy, :nav, tokens, sequels, pagy.label_sequels(sequels))
+        }></nav>)
     end
 
-    # Javascript combo pagination for bulma: it returns a nav and a JSON tag used by the pagy.js file
-    def pagy_bulma_combo_nav_js(pagy, pagy_id: nil, link_extra: '',
-                                nav_aria_label: nil, nav_i18n_key: nil)
-      p_id    = %( id="#{pagy_id}") if pagy_id
-      link    = pagy_link_proc(pagy, link_extra:)
-      p_page  = pagy.page
-      p_pages = pagy.pages
-      input   = %(<input name="page" class="input" type="number" min="1" max="#{p_pages}" value="#{
-                    p_page}" style="padding: 0; text-align: center; width: #{
-                    p_pages.to_s.length + 1}rem; margin:0 0.3rem;" aria-current="page">)
+    # Javascript combo pagination for bulma: it returns a nav with a data-pagy attribute used by the pagy.js file
+    def pagy_bulma_combo_nav_js(pagy, id: nil, classes: 'pagy-bulma combo-nav-js pagination is-centered', aria_label: nil)
+      id    = %( id="#{id}") if id
+      a     = pagy_anchor(pagy)
+      pages = pagy.pages
 
-      html = %(<nav#{p_id} class="pagy-bulma-combo-nav-js #{DEFAULT[:bulma_nav_classes]}" #{
-                 nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)} #{
-                 pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN))}>)
-      %(#{html}<div class="field is-grouped is-grouped-centered" role="group">#{
-          if (p_prev  = pagy.prev)
-            %(<p class="control">#{link.call(p_prev, pagy_t('pagy.prev'), %(class="button" #{prev_aria_label_attr}))}</p>)
-          else
-            %(<p class="control"><a role="link" class="button" disabled aria-disabled="true" #{
-                prev_aria_label_attr}>#{pagy_t 'pagy.prev'}</a></p>)
-          end
-        }<div class="pagy-combo-input control level is-mobile">#{
-          pagy_t 'pagy.combo_nav_js', page_input: input, count: p_page, pages: p_pages}</div>#{
-          if (p_next  = pagy.next)
-            %(<p class="control">#{link.call(p_next, pagy_t('pagy.next'), %(class="button" #{next_aria_label_attr}))}</p>)
-          else
-            %(<p class="control"><a role="link" class="button" disabled aria-disabled="true"#{
-                next_aria_label_attr}>#{pagy_t 'pagy.next'}</a></p>)
-          end
-        }</div></nav>)
+      page_input = %(<input name="page" type="number" min="1" max="#{pages}" value="#{pagy.page}" aria-current="page") <<
+                   %(style="text-align: center; width: #{pages.to_s.length + 1}rem; height: 1.7rem; margin:0 0.3rem; ) <<
+                   %(border: none; border-radius: 4px; padding: 0; font-size: 1.1rem; color: white; background-color: #485fc7;">)
+
+      %(<nav#{id} class="#{classes}" #{
+          nav_aria_label(pagy, aria_label:)} #{
+          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN))
+        }>#{
+          bulma_prev_next_html(pagy, a)
+        }<ul class="pagination-list"><li class="pagination-link"><label>#{
+           pagy_t('pagy.combo_nav_js', page_input:, pages:)
+        }</label></li></ul></nav>)
     end
 
     private
 
-    def bulma_prev_next_html(pagy, link)
-      html = +if (p_prev = pagy.prev)
-                link.call(p_prev, pagy_t('pagy.prev'), %(#{prev_aria_label_attr} class="pagination-previous"))
-              else
-                %(<a role="link" class="pagination-previous" disabled aria-disabled="true" #{
-                    prev_aria_label_attr}>#{pagy_t 'pagy.prev'}</a>)
-              end
+    def bulma_prev_next_html(pagy, a)
+      html = if (p_prev = pagy.prev)
+               a.(p_prev, pagy_t('pagy.prev'), classes: 'pagination-previous', aria_label: pagy_t('pagy.aria_label.prev'))
+             else
+               %(<a role="link" class="pagination-previous" disabled aria-disabled="true" aria-label="#{
+                   pagy_t('pagy.aria_label.prev')}">#{pagy_t 'pagy.prev'}</a>)
+             end
       html << if (p_next = pagy.next)
-                link.call(p_next, pagy_t('pagy.next'), %(#{next_aria_label_attr} class="pagination-next"))
+                a.(p_next, pagy_t('pagy.next'), classes: 'pagination-next', aria_label: pagy_t('pagy.aria_label.next'))
               else
-                %(<a role="link" class="pagination-next" disabled aria-disabled="true" #{
-                    next_aria_label_attr}>#{pagy_t('pagy.next')}</a>)
+                %(<a role="link" class="pagination-next" disabled aria-disabled="true" aria-label="#{
+                    pagy_t('pagy.aria_label.next')}">#{pagy_t('pagy.next')}</a>)
               end
     end
   end

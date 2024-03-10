@@ -17,7 +17,7 @@ da:
       other: "resultater"
     info:
       no_items: "Ingen %{item_name} fundet"
-      single_page: "Viser <b>%{count}</b> %{item_name}"
-      multiple_pages: "Viser %{item_name} <b>%{from}-%{to}</b> af <b>%{count}</b> totalt"
-    combo_nav_js: "<label>Side %{page_input} af %{pages}</label>"
-    items_selector_js: "<label>Antal %{items_input} %{item_name} per side</label>"
+      single_page: "Viser %{count} %{item_name}"
+      multiple_pages: "Viser %{item_name} %{from}-%{to} af %{count} totalt"
+    combo_nav_js: "Side %{page_input} af %{pages}"
+    items_selector_js: "Antal %{items_input} %{item_name} per side"

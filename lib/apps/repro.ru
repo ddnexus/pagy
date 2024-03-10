@@ -3,51 +3,25 @@
 # Self-contained, standalone Sinatra app usable to play with pagy
 # and/or easily reproduce any pagy issue.
 
-# INSTALL
-# Option a)
-# Download and run this file from your local copy
-# Ensure rack is installed (or `gem install rack`)
-
-# Option b)
-# Clone pagy and run this file from the apps dir in the repo
-# git clone --depth 1 https://github.com/ddnexus/pagy
-
 # USAGE
-#    rackup -o 0.0.0.0 -p 8080 pagy_standalone.ru
+# To reproduce some issue:
+#    pagy create repro
+#    pagy develop ./repro.ru
+# ...point your browser to http://0.0.0.0:8000
+# Edit something in the "repro.ru" just created in your current dir and it will
+# be automatically restarted, so you can reload your browser page and see the effect
 
-# DEV USAGE (with automatic app reload if you edit it)
-# Ensure rerun is installed (or `gem install rerun`)
-#    rerun -- rackup -o 0.0.0.0 -p 8080 pagy_standalone.ru
+# HELP:
+#    pagy help
 
-# Point your browser to http://0.0.0.0:8080
-
-# Read the comments below to edit this app
-
-# Return false if you want to force the bundler-inline
-def run_from_repo?
-  File.readlines('../pagy.manifest') { |line| File.exist?("../#{line}") }
-rescue StandardError
-  false
-end
-
-if run_from_repo?
-  require 'bundler'
-  Bundler.require(:default, :apps)
-  require 'oj' # require false in Gemfile
-  $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
-  require 'pagy'
-else
-  require 'bundler/inline'
-  gemfile true do
-    source 'https://rubygems.org'
-    gem 'oj'
-    gem 'pagy'
-    gem 'puma'
-    gem 'rack'
-    gem 'rackup'
-    gem 'sinatra'
-    gem 'sinatra-contrib'
-  end
+require 'bundler/inline'
+gemfile true do
+  source 'https://rubygems.org'
+  gem 'oj'
+  gem 'puma'
+  gem 'rouge'
+  gem 'sinatra'
+  gem 'sinatra-contrib'
 end
 
 # Edit this section adding/removing the extras and Pagy::DEFAULT as needed
@@ -57,13 +31,11 @@ require 'pagy/extras/items'
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
-require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false # opt-in trim (pass a trim=enabled query param)
 Pagy::DEFAULT.freeze
 
 require 'sinatra/base'
 # Sinatra application
-class PagyStandalone < Sinatra::Base
+class PagyRepro < Sinatra::Base
   PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js".freeze
 
   configure do
@@ -76,10 +48,10 @@ class PagyStandalone < Sinatra::Base
     send_file Pagy.root.join('javascripts', PAGY_JS)
   end
   # Edit this action as needed
-  get '/?:trim?' do
+  get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection, trim_extra: params['trim'])
-    erb :pagy_demo # template available in the __END__ section as @@ pagy_demo
+    @pagy, @records = pagy(collection)
+    erb :main # template available in the __END__ section as @@ main
   end
   # Edit this section adding your own helpers as needed
   helpers do
@@ -110,23 +82,46 @@ class MockCollection < Array
   end
 end
 
-run PagyStandalone
+run PagyRepro
 
 __END__
 
 @@ layout
+<!DOCTYPE html>
+<html lang="en">
 <html>
 <head>
   <script src="<%= %(/#{PAGY_JS}) %>"></script>
   <script type="application/javascript">
     window.addEventListener("load", Pagy.init);
   </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style type="text/css">
-    content {
-     font-family: sans-serif;
-   }
-   /* If you want to customize the style,
-      please replace the line below with the actual file content */
+    @media screen { html, body {
+      font-size: 1rem;
+      line-heigth: 1.2s;
+      padding: 0;
+      margin: 0;
+    } }
+    body {
+      background: white !important;
+      margin: 0 !important;
+      font-family: sans-serif !important;
+    }
+    .content {
+      padding: 1rem 1.5rem 2rem !important;
+    }
+
+    /* Quick demo for overriding the element style attribute of certain pagy helpers
+    .pagy input[style] {
+      width: 5rem !important;
+    }
+    */
+
+    /*
+      If you want to customize the style,
+      please replace the line below with the actual file content
+    */
     <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
   </style>
 </head>
@@ -136,10 +131,10 @@ __END__
 </body>
 </html>
 
-@@ pagy_demo
+@@ main
 <div class="content">
-  <h3>Pagy App</h3>
-  <p> Self-contained, standalone Sinatra app usable to play with pagy and/or easily reproduce any pagy issue.</p>
+  <h3>Pagy Repro App</h3>
+  <p> Self-contained, standalone Sinatra app usable toss easily reproduce any pagy issue.</p>
   <p>Please, report the following versions in any new issue.</p>
   <h4>Versions</h4>
   <ul>
@@ -165,4 +160,7 @@ __END__
 
   <h4>pagy_items_selector_js</h4>
   <%= pagy_items_selector_js(@pagy) %>
+
+  <h4>pagy_info</h4>
+  <%= pagy_info(@pagy) %>
 </div>

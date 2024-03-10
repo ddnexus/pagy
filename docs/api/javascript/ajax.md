@@ -14,8 +14,8 @@ javascript template. Here is an example for an AJAX-rendered `pagy_bootstrap_nav
 ```ruby
 
 def pagy_remote_nav_js
-  # notice the link_extra to enable Ajax
-  @pagy, @products = pagy(collection, link_extra: 'data-remote="true"')
+  # notice the anchor_string to enable Ajax
+  @pagy, @products = pagy(collection, anchor_string: 'data-remote="true"')
 end
 ```
 

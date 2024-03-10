@@ -19,7 +19,7 @@ uk:
       other: "записів"
     info:
       no_items: "Більше %{item_name} немає"
-      single_page: "<b>%{count}</b> %{item_name}"
-      multiple_pages: "Загалом <b>%{count}</b> %{item_name}, показані з <b>%{from}</b> по <b>%{to}</b>"
-    combo_nav_js: "<label>Сторінка %{page_input} з %{pages}</label>"
-    items_selector_js: "<label>Показати %{items_input} %{item_name} на сторінці</label>"
+      single_page: "%{count} %{item_name}"
+      multiple_pages: "Загалом %{count} %{item_name}, показані з %{from} по %{to}"
+    combo_nav_js: "Сторінка %{page_input} з %{pages}"
+    items_selector_js: "Показати %{items_input} %{item_name} на сторінці"

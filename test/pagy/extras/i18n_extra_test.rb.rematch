@@ -1,18 +1,6 @@
 ---
 pagy/extras/i18n::#pagy_info with I18n#test_0001_renders info:
-  :info_0: <span class="pagy-info">No items found</span>
-  :info_1: <span class="pagy-info">Displaying <b>1</b> item</span>
-  :info_13: <span class="pagy-info">Displaying <b>13</b> items</span>
-  :info_100: <span class="pagy-info">Displaying items <b>41-60</b> of <b>100</b> in
-    total</span>
-pagy/extras/i18n::#pagy_info with I18n#test_0002_renders with existing i18n key:
-  :info_1: <span class="pagy-info">No Products found</span>
-  :info_2: <span class="pagy-info">Displaying <b>1</b> Product</span>
-  :info_3: <span class="pagy-info">Displaying <b>13</b> Products</span>
-  :info_4: <span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b>
-    in total</span>
-  :info_5: <span class="pagy-info">No Products found</span>
-  :info_6: <span class="pagy-info">Displaying <b>1</b> Product</span>
-  :info_7: <span class="pagy-info">Displaying <b>13</b> Products</span>
-  :info_8: <span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b>
-    in total</span>
+  :info_0: <span class="pagy info">No items found</span>
+  :info_1: <span class="pagy info">Displaying 1 item</span>
+  :info_13: <span class="pagy info">Displaying 13 items</span>
+  :info_100: <span class="pagy info">Displaying items 41-60 of 100 in total</span>

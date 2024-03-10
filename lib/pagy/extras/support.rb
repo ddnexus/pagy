@@ -15,25 +15,25 @@ class Pagy # :nodoc:
     end
 
     # Return the HTML string for the enabled/disabled previous page link
-    def pagy_prev_html(pagy, text: pagy_t('pagy.prev'), link_extra: '')
-      link = pagy_link_proc(pagy, link_extra:)
-      prev_html(pagy, link, text:)
+    def pagy_prev_html(pagy, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev'))
+      a = pagy_anchor(pagy)
+      prev_html(pagy, a, text:, aria_label:)
     end
 
     # Return the HTML string for the enabled/disabled next page link
-    def pagy_next_html(pagy, text: pagy_t('pagy.next'), link_extra: '')
-      link = pagy_link_proc(pagy, link_extra:)
-      next_html(pagy, link, text:)
+    def pagy_next_html(pagy, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.prev'))
+      a = pagy_anchor(pagy)
+      next_html(pagy, a, text:, aria_label:)
     end
 
     # Conditionally return the HTML link tag string for the previous page
     def pagy_prev_link_tag(pagy, absolute: false)
-      %(<link href="#{pagy_url_for(pagy, pagy.prev, absolute:)}" rel="prev"/>) if pagy.prev
+      %(<link href="#{pagy_url_for(pagy, pagy.prev, absolute:)}"/>) if pagy.prev
     end
 
     # Conditionally return the HTML link tag string for the next page
     def pagy_next_link_tag(pagy, absolute: false)
-      %(<link href="#{pagy_url_for(pagy, pagy.next, absolute:)}" rel="next"/>) if pagy.next
+      %(<link href="#{pagy_url_for(pagy, pagy.next, absolute:)}"/>) if pagy.next
     end
   end
   Frontend.prepend SupportExtra

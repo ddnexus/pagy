@@ -13,8 +13,9 @@ module NavTests
     method = :"pagy_#{style + '_' unless style == 'navs'}nav"
     [1, 20, 50].each do |page|
       pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: page)
+      pagyx = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: page, anchor_string: 'anchor_string')
       _(app.send(method, pagy)).must_rematch :"plain_#{page}"
-      _(app.send(method, pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch :"extras_#{page}"
+      _(app.send(method, pagyx, id: 'test-nav-id')).must_rematch :"extras_#{page}"
     end
     _ { app.send(method, PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
   end
@@ -23,8 +24,9 @@ module NavTests
     method = :"pagy_#{style + '_' unless style == 'navs'}nav_js"
     [1, 20, 50].each do |page|
       pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: page)
+      pagyx = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: page, anchor_string: 'anchor_string')
       _(app.send(method, pagy)).must_rematch :"plain_#{page}"
-      _(app.send(method, pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
+      _(app.send(method, pagyx, id: 'test-nav-id',
                         steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch :"extras_#{page}"
     end
     # raise Pagy::VariableError for missing 0 step
@@ -36,8 +38,9 @@ module NavTests
     method = :"pagy_#{style + '_' unless style == 'navs'}nav_js"
     [[1, 0], [2, 23]].each do |page, rest|
       pagy = Pagy::Countless.new(page: page).finalize(rest)
+      pagyx = Pagy::Countless.new(page: page, anchor_string: 'anchor_string').finalize(rest)
       _(app.send(method, pagy)).must_rematch :"plain_#{page}_#{rest}"
-      _(app.send(method, pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra',
+      _(app.send(method, pagyx, id: 'test-nav-id',
                  steps: { 0 => [1, 2, 2, 1], 600 => [1, 3, 3, 1] })).must_rematch :"extras_#{page}_#{rest}"
     end
   end
@@ -46,8 +49,9 @@ module NavTests
     method = :"pagy_#{style + '_' unless style == 'navs'}combo_nav_js"
     [1, 3, 6].each do |page|
       pagy = Pagy.new(count: 103, page: page)
+      pagyx = Pagy.new(count: 103, page: page, anchor_string: 'anchor_string')
       _(app.send(method, pagy)).must_rematch :"plain_#{page}"
-      _(app.send(method, pagy, pagy_id: 'test-nav-id', link_extra: 'link-extra')).must_rematch :"extras_#{page}"
+      _(app.send(method, pagyx, id: 'test-nav-id')).must_rematch :"extras_#{page}"
     end
   end
 end

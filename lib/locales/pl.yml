@@ -19,7 +19,7 @@ pl:
       other: "elementów"
     info:
       no_items: "Nie znaleziono %{item_name}"
-      single_page: "Wyświetlono <b>%{count}</b> %{item_name}"
-      multiple_pages: "Wyświetlono %{item_name} <b>%{from}-%{to}</b> z wszystkich <b>%{count}</b>"
-    combo_nav_js: "<label>Strona %{page_input} z %{pages}</label>"
-    items_selector_js: "<label>Pokaż %{items_input} %{item_name} na stronie</label>"
+      single_page: "Wyświetlono %{count} %{item_name}"
+      multiple_pages: "Wyświetlono %{item_name} %{from}-%{to} z wszystkich %{count}"
+    combo_nav_js: "Strona %{page_input} z %{pages}"
+    items_selector_js: "Pokaż %{items_input} %{item_name} na stronie"

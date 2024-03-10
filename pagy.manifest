@@ -1,3 +1,6 @@
+lib/apps/demo.ru
+lib/apps/repro.ru
+lib/bin/pagy
 lib/config/pagy.rb
 lib/javascripts/pagy-dev.js
 lib/javascripts/pagy-module.d.ts

@@ -15,7 +15,7 @@ nl:
       other: "stuks"
     info:
       no_items: "Geen %{item_name} gevonden"
-      single_page: "Toont <b>%{count}</b> %{item_name}"
-      multiple_pages: "Toont <b>%{from}-%{to}</b> %{item_name} van <b>%{count}</b> in totaal"
-    combo_nav_js: "<label>Pagina %{page_input} van %{pages}</label>"
-    items_selector_js: "<label>Toont %{items_input} %{item_name} per pagina</label>"
+      single_page: "Toont %{count} %{item_name}"
+      multiple_pages: "Toont %{from}-%{to} %{item_name} van %{count} in totaal"
+    combo_nav_js: "Pagina %{page_input} van %{pages}"
+    items_selector_js: "Toont %{items_input} %{item_name} per pagina"
