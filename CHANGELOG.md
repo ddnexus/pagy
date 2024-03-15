@@ -60,8 +60,9 @@ None
     - The `classes:` and `aria_label:` keyword arguments have been added to the returned lambda
 - The `nav_aria_label_attr` method has been renamed as `nav_aria_label`
 - The internal `prev_aria_label_attr` and `next_aria_label_attr` methods have been removed
-- 
 - The `gap` in the nav bars is a disabled anchor element (`a` tag without a `href` attribute`)
+- The `pagy_prev_html` and `pagy_next_html` have been renamed as `pagy_prev_a` and `pagy_next_a`
+- The `pagy_prev_link_tag` and `pagy_next_link_tag` have been renamed as `pagy_prev_link` and `pagy_next_link`
 - The `*combo_nav_js` and `pagy_items_selector_js` helpers use a more efficient mechanism
 - The `src/pagy.ts` and relative built javascript files have been adapted to the above changes
 - The stylesheets are a lot simpler as a consequence of the changes above
