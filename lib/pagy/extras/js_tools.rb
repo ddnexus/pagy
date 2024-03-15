@@ -4,7 +4,7 @@ class Pagy # :nodoc:
   DEFAULT[:steps] = false # default false will use {0 => @vars[:size]}
 
   # Private module documented in the main classes
-  module FrontendHelpers
+  module JSTools
     # Additions for the Pagy class
     module PagyAddOn
       # `Pagy` instance method used by the `pagy*_nav_js` helpers.
