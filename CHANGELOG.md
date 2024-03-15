@@ -68,7 +68,8 @@ None
 - All the `*combo-nav_js` in the framework extras use simpler structure and improve the look and feel consistently with their
   respective frameworks
 - All the frontend extra have been normalized and are totally consistent with each other
-- Created `demo.ru` and `repro.ru` out of heavy refactored standalone styles, with `pagy` bin utility launcher 
+- Created `demo.ru` and `repro.ru` out of heavy refactored standalone styles, with `pagy` bin utility launcher
+- Internal renaming `FrontendHelpers` > `JSTools`
 
 ## Version 7.0.11
 

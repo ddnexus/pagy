@@ -3,7 +3,7 @@
 require 'oj'
 require_relative '../../test_helper'
 require 'pagy/extras/calendar'
-require 'pagy/extras/frontend_helpers'
+require 'pagy/extras/js_tools'
 
 require_relative '../../mock_helpers/app'
 

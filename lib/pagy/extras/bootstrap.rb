@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/bootstrap
 # frozen_string_literal: true
 
-require 'pagy/extras/frontend_helpers'
+require 'pagy/extras/js_tools'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
