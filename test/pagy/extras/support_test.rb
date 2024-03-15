@@ -27,18 +27,18 @@ describe 'pagy/extras/support' do
   describe '#pagy_next_url' do
     tests_for(:pagy_next_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
-  describe '#pagy_prev_link_tag' do
-    tests_for(:pagy_prev_link_tag, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+  describe '#pagy_prev_link' do
+    tests_for(:pagy_prev_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
-  describe '#pagy_next_link_tag' do
-    tests_for(:pagy_next_link_tag,  [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+  describe '#pagy_next_link' do
+    tests_for(:pagy_next_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
-  describe '#pagy_prev_html' do
-    tests_for(:pagy_prev_html, [[1, 0], [3, 21], [6, 21], [50, 20]],
+  describe '#pagy_prev_a' do
+    tests_for(:pagy_prev_a, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'PREV', aria_label: 'My prev page')
   end
   describe '#pagy_next_html' do
-    tests_for(:pagy_next_html, [[1, 0], [3, 21], [6, 21], [50, 20]],
+    tests_for(:pagy_next_a, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'NEXT', aria_label: 'My next page')
   end
 end
