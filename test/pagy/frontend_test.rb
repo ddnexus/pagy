@@ -16,7 +16,7 @@ end
 describe 'pagy/frontend' do
   let(:app) { MockApp.new }
 
-  # #pagy_nav helper tests in the test/extras/navs_test.rb
+  # #pagy_nav helper tests in the test/extras/pagy_test.rb
 
   describe '#pagy_a_proc' do
     it 'renders with extras' do

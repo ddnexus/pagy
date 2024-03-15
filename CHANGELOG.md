@@ -34,6 +34,8 @@ None
     and/or passing it as any other pagy variable at object construction . (see ...)
 - HTML structure, classes and internal methods have been changed: they may break your views if you used custom stylesheets, 
   templates or helper overrides. See the complete changes below if you notice any cosmetic changes or get some exception.
+- The `navs` and `support` extras has been merged into the new `compoenents` extra. Search for `"extra/navs"` and 
+  `"extras/support"` and replace with `"extras/pagy"` (removing duplicates if you used both) 
 
 ## Changes
 
@@ -68,7 +70,7 @@ None
 - The stylesheets are a lot simpler as a consequence of the changes above
 - All the `*combo-nav_js` in the framework extras use simpler structure and improve the look and feel consistently with their
   respective frameworks
-- All the frontend extra have been normalized and are totally consistent with each other
+- All the frontend extra have been normalized and are totally consistent with each other, a few may add the `classes:` argument to a few components, when the framework allows it.
 - Created `demo.ru` and `repro.ru` out of heavy refactored standalone styles, with `pagy` bin utility launcher
 - Internal renaming `FrontendHelpers` > `JSTools`
 

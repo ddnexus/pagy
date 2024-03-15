@@ -1,4 +1,59 @@
 ---
+pagy/extras/materialize::#pagy_materialize_combo_nav_js#test_0001_renders first, intermediate and last pages:
+  :plain_1: '<ul class="pagy-materialize combo-nav-js pagination" role="navigation"
+    style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
+    class="prev disabled"><a role="link" aria-disabled="true" aria-label="Previous"><i
+    class="material-icons">chevron_left</i></a></li><li style="vertical-align: -webkit-baseline-middle;"><label
+    style="font-size: 1.2rem;">Page <input name="page" type="number" min="1" max="6"
+    value="1" aria-current="page" style="text-align: center; width: 2rem; height:
+    1.5rem; font-size: 1.2rem; border: none; border-radius: 2px; color: white; background-color:
+    #ee6e73;" class="browser-default"> of 6</label></li><li class="waves-effect next"><a
+    href="/foo?page=2" aria-label="Next"><i class="material-icons">chevron_right</i></a></li></ul>'
+  :extras_1: '<ul id="test-nav-id" class="pagy-materialize combo-nav-js pagination"
+    role="navigation" style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
+    class="prev disabled"><a role="link" aria-disabled="true" aria-label="Previous"><i
+    class="material-icons">chevron_left</i></a></li><li style="vertical-align: -webkit-baseline-middle;"><label
+    style="font-size: 1.2rem;">Page <input name="page" type="number" min="1" max="6"
+    value="1" aria-current="page" style="text-align: center; width: 2rem; height:
+    1.5rem; font-size: 1.2rem; border: none; border-radius: 2px; color: white; background-color:
+    #ee6e73;" class="browser-default"> of 6</label></li><li class="waves-effect next"><a
+    anchor_string href="/foo?page=2" aria-label="Next"><i class="material-icons">chevron_right</i></a></li></ul>'
+  :plain_3: '<ul class="pagy-materialize combo-nav-js pagination" role="navigation"
+    style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
+    class="waves-effect prev"><a href="/foo?page=2" aria-label="Previous"><i class="material-icons">chevron_left</i></a></li><li
+    style="vertical-align: -webkit-baseline-middle;"><label style="font-size: 1.2rem;">Page
+    <input name="page" type="number" min="1" max="6" value="3" aria-current="page"
+    style="text-align: center; width: 2rem; height: 1.5rem; font-size: 1.2rem; border:
+    none; border-radius: 2px; color: white; background-color: #ee6e73;" class="browser-default">
+    of 6</label></li><li class="waves-effect next"><a href="/foo?page=4" aria-label="Next"><i
+    class="material-icons">chevron_right</i></a></li></ul>'
+  :extras_3: '<ul id="test-nav-id" class="pagy-materialize combo-nav-js pagination"
+    role="navigation" style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
+    class="waves-effect prev"><a anchor_string href="/foo?page=2" aria-label="Previous"><i
+    class="material-icons">chevron_left</i></a></li><li style="vertical-align: -webkit-baseline-middle;"><label
+    style="font-size: 1.2rem;">Page <input name="page" type="number" min="1" max="6"
+    value="3" aria-current="page" style="text-align: center; width: 2rem; height:
+    1.5rem; font-size: 1.2rem; border: none; border-radius: 2px; color: white; background-color:
+    #ee6e73;" class="browser-default"> of 6</label></li><li class="waves-effect next"><a
+    anchor_string href="/foo?page=4" aria-label="Next"><i class="material-icons">chevron_right</i></a></li></ul>'
+  :plain_6: '<ul class="pagy-materialize combo-nav-js pagination" role="navigation"
+    style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
+    class="waves-effect prev"><a href="/foo?page=5" aria-label="Previous"><i class="material-icons">chevron_left</i></a></li><li
+    style="vertical-align: -webkit-baseline-middle;"><label style="font-size: 1.2rem;">Page
+    <input name="page" type="number" min="1" max="6" value="6" aria-current="page"
+    style="text-align: center; width: 2rem; height: 1.5rem; font-size: 1.2rem; border:
+    none; border-radius: 2px; color: white; background-color: #ee6e73;" class="browser-default">
+    of 6</label></li><li class="next disabled"#><a role="link" aria-disabled="true"
+    aria-label="Next><i class="material-icons">chevron_right</i></a></li></ul>'
+  :extras_6: '<ul id="test-nav-id" class="pagy-materialize combo-nav-js pagination"
+    role="navigation" style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
+    class="waves-effect prev"><a anchor_string href="/foo?page=5" aria-label="Previous"><i
+    class="material-icons">chevron_left</i></a></li><li style="vertical-align: -webkit-baseline-middle;"><label
+    style="font-size: 1.2rem;">Page <input name="page" type="number" min="1" max="6"
+    value="6" aria-current="page" style="text-align: center; width: 2rem; height:
+    1.5rem; font-size: 1.2rem; border: none; border-radius: 2px; color: white; background-color:
+    #ee6e73;" class="browser-default"> of 6</label></li><li class="next disabled"#><a
+    role="link" aria-disabled="true" aria-label="Next><i class="material-icons">chevron_right</i></a></li></ul>'
 pagy/extras/materialize::#pagy_materialize_nav#test_0001_renders first, intermediate and last pages:
   :plain_1: <div class="pagy-materialize nav pagination" role="navigation" aria-label="Pages"><ul
     class="pagination"><li class="prev disabled"><a role="link" aria-disabled="true"
@@ -88,58 +143,3 @@ pagy/extras/materialize::#pagy_materialize_nav_js#test_0002_renders first, inter
     data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgaHJlZj1cIi9mb28/cGFnZT00OVwiIGFyaWEtbGFiZWw9XCJQcmV2aW91c1wiPjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX2xlZnQ8L2k+PC9hPjwvbGk+IiwiYSI6IjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdFwiPjxhIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiY3VycmVudCI6IjxsaSBjbGFzcz1cImFjdGl2ZVwiPjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1jdXJyZW50PVwicGFnZVwiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+X19wYWd5X2xhYmVsX188L2E+PC9saT4iLCJnYXAiOiI8bGkgY2xhc3M9XCJnYXAgZGlzYWJsZWRcIj48YSByb2xlPVwibGlua1wiIGFyaWEtZGlzYWJsZWQ9XCJ0cnVlXCI+JmhlbGxpcDs8L2E+PC9saT4iLCJhZnRlciI6IjxsaSBjbGFzcz1cIm5leHQgZGlzYWJsZWRcIiM+PGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiIGFyaWEtbGFiZWw9XCJOZXh0PjxpIGNsYXNzPVwibWF0ZXJpYWwtaWNvbnNcIj5jaGV2cm9uX3JpZ2h0PC9pPjwvYT48L2xpPjwvdWw+In0seyIwIjpbMSwiZ2FwIiw0Niw0Nyw0OCw0OSwiNTAiXX0sbnVsbF0="></div>
   :extras_50: <div id="test-nav-id" class="pagy-rjs pagy-materialize nav-js" role="navigation"
     aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPHVsIGNsYXNzPVwicGFnaW5hdGlvblwiPjxsaSBjbGFzcz1cIndhdmVzLWVmZmVjdCBwcmV2XCI+PGEgYW5jaG9yX3N0cmluZyBocmVmPVwiL2Zvbz9wYWdlPTQ5XCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+PGkgY2xhc3M9XCJtYXRlcmlhbC1pY29uc1wiPmNoZXZyb25fbGVmdDwvaT48L2E+PC9saT4iLCJhIjoiPGxpIGNsYXNzPVwid2F2ZXMtZWZmZWN0XCI+PGEgYW5jaG9yX3N0cmluZyBocmVmPVwiL2Zvbz9wYWdlPV9fcGFneV9wYWdlX19cIj5fX3BhZ3lfbGFiZWxfXzwvYT48L2xpPiIsImN1cnJlbnQiOiI8bGkgY2xhc3M9XCJhY3RpdmVcIj48YSByb2xlPVwibGlua1wiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9hPjwvbGk+IiwiZ2FwIjoiPGxpIGNsYXNzPVwiZ2FwIGRpc2FibGVkXCI+PGEgcm9sZT1cImxpbmtcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPiZoZWxsaXA7PC9hPjwvbGk+IiwiYWZ0ZXIiOiI8bGkgY2xhc3M9XCJuZXh0IGRpc2FibGVkXCIjPjxhIHJvbGU9XCJsaW5rXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIiBhcmlhLWxhYmVsPVwiTmV4dD48aSBjbGFzcz1cIm1hdGVyaWFsLWljb25zXCI+Y2hldnJvbl9yaWdodDwvaT48L2E+PC9saT48L3VsPiJ9LHsiMCI6WzEsImdhcCIsNDgsNDksIjUwIl0sIjYwMCI6WzEsImdhcCIsNDcsNDgsNDksIjUwIl19LG51bGxd"></div>
-pagy/extras/materialize::#pagy_combo_materialize_nav_js#test_0001_renders first, intermediate and last pages:
-  :plain_1: '<ul class="pagy-materialize combo-nav-js pagination" role="navigation"
-    style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
-    class="prev disabled"><a role="link" aria-disabled="true" aria-label="Previous"><i
-    class="material-icons">chevron_left</i></a></li><li style="vertical-align: -webkit-baseline-middle;"><label
-    style="font-size: 1.2rem;">Page <input name="page" type="number" min="1" max="6"
-    value="1" aria-current="page" style="text-align: center; width: 2rem; height:
-    1.5rem; font-size: 1.2rem; border: none; border-radius: 2px; color: white; background-color:
-    #ee6e73;" class="browser-default"> of 6</label></li><li class="waves-effect next"><a
-    href="/foo?page=2" aria-label="Next"><i class="material-icons">chevron_right</i></a></li></ul>'
-  :extras_1: '<ul id="test-nav-id" class="pagy-materialize combo-nav-js pagination"
-    role="navigation" style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
-    class="prev disabled"><a role="link" aria-disabled="true" aria-label="Previous"><i
-    class="material-icons">chevron_left</i></a></li><li style="vertical-align: -webkit-baseline-middle;"><label
-    style="font-size: 1.2rem;">Page <input name="page" type="number" min="1" max="6"
-    value="1" aria-current="page" style="text-align: center; width: 2rem; height:
-    1.5rem; font-size: 1.2rem; border: none; border-radius: 2px; color: white; background-color:
-    #ee6e73;" class="browser-default"> of 6</label></li><li class="waves-effect next"><a
-    anchor_string href="/foo?page=2" aria-label="Next"><i class="material-icons">chevron_right</i></a></li></ul>'
-  :plain_3: '<ul class="pagy-materialize combo-nav-js pagination" role="navigation"
-    style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
-    class="waves-effect prev"><a href="/foo?page=2" aria-label="Previous"><i class="material-icons">chevron_left</i></a></li><li
-    style="vertical-align: -webkit-baseline-middle;"><label style="font-size: 1.2rem;">Page
-    <input name="page" type="number" min="1" max="6" value="3" aria-current="page"
-    style="text-align: center; width: 2rem; height: 1.5rem; font-size: 1.2rem; border:
-    none; border-radius: 2px; color: white; background-color: #ee6e73;" class="browser-default">
-    of 6</label></li><li class="waves-effect next"><a href="/foo?page=4" aria-label="Next"><i
-    class="material-icons">chevron_right</i></a></li></ul>'
-  :extras_3: '<ul id="test-nav-id" class="pagy-materialize combo-nav-js pagination"
-    role="navigation" style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
-    class="waves-effect prev"><a anchor_string href="/foo?page=2" aria-label="Previous"><i
-    class="material-icons">chevron_left</i></a></li><li style="vertical-align: -webkit-baseline-middle;"><label
-    style="font-size: 1.2rem;">Page <input name="page" type="number" min="1" max="6"
-    value="3" aria-current="page" style="text-align: center; width: 2rem; height:
-    1.5rem; font-size: 1.2rem; border: none; border-radius: 2px; color: white; background-color:
-    #ee6e73;" class="browser-default"> of 6</label></li><li class="waves-effect next"><a
-    anchor_string href="/foo?page=4" aria-label="Next"><i class="material-icons">chevron_right</i></a></li></ul>'
-  :plain_6: '<ul class="pagy-materialize combo-nav-js pagination" role="navigation"
-    style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
-    class="waves-effect prev"><a href="/foo?page=5" aria-label="Previous"><i class="material-icons">chevron_left</i></a></li><li
-    style="vertical-align: -webkit-baseline-middle;"><label style="font-size: 1.2rem;">Page
-    <input name="page" type="number" min="1" max="6" value="6" aria-current="page"
-    style="text-align: center; width: 2rem; height: 1.5rem; font-size: 1.2rem; border:
-    none; border-radius: 2px; color: white; background-color: #ee6e73;" class="browser-default">
-    of 6</label></li><li class="next disabled"#><a role="link" aria-disabled="true"
-    aria-label="Next><i class="material-icons">chevron_right</i></a></li></ul>'
-  :extras_6: '<ul id="test-nav-id" class="pagy-materialize combo-nav-js pagination"
-    role="navigation" style="padding-right: 0;" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><li
-    class="waves-effect prev"><a anchor_string href="/foo?page=5" aria-label="Previous"><i
-    class="material-icons">chevron_left</i></a></li><li style="vertical-align: -webkit-baseline-middle;"><label
-    style="font-size: 1.2rem;">Page <input name="page" type="number" min="1" max="6"
-    value="6" aria-current="page" style="text-align: center; width: 2rem; height:
-    1.5rem; font-size: 1.2rem; border: none; border-radius: 2px; color: white; background-color:
-    #ee6e73;" class="browser-default"> of 6</label></li><li class="next disabled"#><a
-    role="link" aria-disabled="true" aria-label="Next><i class="material-icons">chevron_right</i></a></li></ul>'
