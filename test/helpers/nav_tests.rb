@@ -9,8 +9,8 @@ module NavTests
     MockApp.new
   end
 
-  def nav_tests(style)
-    method = :"pagy_#{style + '_' unless style == 'navs'}nav"
+  def nav_tests(prefix)
+    method = :"pagy#{prefix}_nav"
     [1, 20, 50].each do |page|
       pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: page)
       pagyx = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: page, anchor_string: 'anchor_string')
@@ -20,8 +20,8 @@ module NavTests
     _ { app.send(method, PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
   end
 
-  def nav_js_tests(style)  # e.g. pagy_bootstrap_nav_js
-    method = :"pagy_#{style + '_' unless style == 'navs'}nav_js"
+  def nav_js_tests(prefix)  # e.g. pagy_bootstrap_nav_js
+    method = :"pagy#{prefix}_nav_js"
     [1, 20, 50].each do |page|
       pagy = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: page)
       pagyx = Pagy.new(size: [1, 4, 4, 1], count: 1000, page: page, anchor_string: 'anchor_string')
@@ -34,8 +34,8 @@ module NavTests
     _ { app.send(method, pagy, steps: { 600 => [1, 3, 3, 1] }) }.must_raise Pagy::VariableError
   end
 
-  def nav_js_countless_tests(style)  # e.g. pagy_bootstrap_nav_js
-    method = :"pagy_#{style + '_' unless style == 'navs'}nav_js"
+  def nav_js_countless_tests(prefix)  # e.g. pagy_bootstrap_nav_js
+    method = :"pagy#{prefix}_nav_js"
     [[1, 0], [2, 23]].each do |page, rest|
       pagy = Pagy::Countless.new(page: page).finalize(rest)
       pagyx = Pagy::Countless.new(page: page, anchor_string: 'anchor_string').finalize(rest)
@@ -45,8 +45,8 @@ module NavTests
     end
   end
 
-  def combo_nav_js_tests(style)
-    method = :"pagy_#{style + '_' unless style == 'navs'}combo_nav_js"
+  def combo_nav_js_tests(prefix)
+    method = :"pagy#{prefix}_combo_nav_js"
     [1, 3, 6].each do |page|
       pagy = Pagy.new(count: 103, page: page)
       pagyx = Pagy.new(count: 103, page: page, anchor_string: 'anchor_string')

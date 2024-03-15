@@ -60,7 +60,7 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
   gem, [elasticsearch_rails](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails), [meilisearch](https://ddnexus.github.io/pagy/docs/extras/meilisearch), [searchkick](https://ddnexus.github.io/pagy/docs/extras/searchkick), `ransack`,
   and just about any list, even if you cannot count it
 - **It supports all kinds of pagination**  
-  [calendar](https://ddnexus.github.io/pagy/docs/extras/calendar "paginates by dates, rather than numbers"), [countless](https://ddnexus.github.io/pagy/docs/extras/countless "skips an extra 'count' query"), [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox "varies the items fetched depending on the page number e.g. page 1: x items, but page 2: y items etc."), [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/support), [headers](https://ddnexus.github.io/pagy/docs/extras/headers "useful for API pagination"), [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata "provides pagination metadata - especially useful with frameworks like Vue, React etc. and you want to render your own pagination links"), [cursor](https://github.com/Uysim/pagy-cursor "Useful with large data sets, where performance becomes a concern (separate repository)")
+  [calendar](https://ddnexus.github.io/pagy/docs/extras/calendar "paginates by dates, rather than numbers"), [countless](https://ddnexus.github.io/pagy/docs/extras/countless "skips an extra 'count' query"), [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox "varies the items fetched depending on the page number e.g. page 1: x items, but page 2: y items etc."), [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/pagy), [headers](https://ddnexus.github.io/pagy/docs/extras/headers "useful for API pagination"), [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata "provides pagination metadata - especially useful with frameworks like Vue, React etc. and you want to render your own pagination links"), [cursor](https://github.com/Uysim/pagy-cursor "Useful with large data sets, where performance becomes a concern (separate repository)")
 - **It supports all kinds of CSS Frameworks**  
   [bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation), [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize), [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic), [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit), [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind)
 - **It supports faster client-side rendering**  
@@ -272,7 +272,8 @@ requiring them (and optionally overriding some default).
   Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
 - [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize): Add nav helpers for the Materialize
   CSS [pagination component](https://materializecss.com/pagination.html)
-- [navs](https://ddnexus.github.io/pagy/docs/extras/navs): Adds the unstyled versions of the javascript-powered nav helpers.
+- [pagy](https://ddnexus.github.io/pagy/docs/extras/pagy): Adds the pagy styled versions of the javascript-powered nav helpers and other components to support countless or navless pagination (incremental,
+  auto-incremental, infinite pagination).
 - [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic): Add nav helpers for the Semantic UI
   CSS [pagination component](https://semantic-ui.com/collections/menu.html)
 - [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind): Ready to use style snippet
@@ -292,8 +293,6 @@ requiring them (and optionally overriding some default).
 - [overflow](https://ddnexus.github.io/pagy/docs/extras/overflow): Allow easy handling of overflowing pages
 - [standalone](https://ddnexus.github.io/pagy/docs/extras/standalone): Use pagy without any request object, nor Rack
   environment/gem, nor any defined `params` method
-- [support](https://ddnexus.github.io/pagy/docs/extras/support): Add support for countless or navless pagination (incremental,
-  auto-incremental, infinite pagination).
 - [trim](https://ddnexus.github.io/pagy/docs/extras/trim): Remove the `page=1` param from the first page link
 
 </details>
@@ -418,9 +417,7 @@ Many thanks to:
 
 ## 💞 Related Projects
 
-- [pagy-cursor](https://github.com/Uysim/pagy-cursor) An early stage project that implements cursor pagination for AR
-- [grape-pagy](https://github.com/bsm/grape-pagy) Pagy pagination for the [grape](https://github.com/ruby-grape/grape) API
-  framework
+Search [rubygems.org - pagy](https://rubygems.org/search?query=pagy)
 
 ## 📃 License
 

@@ -99,9 +99,8 @@ This method is called internally to get a very specialized and fast proc that pr
 
 For standard usage you may just need to read [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes), for advanced usage see below.
 
-===
 
-## Advanced Usage
+### Advanced Usage
 
 You need this section only if you are going to override a `pagy_nav*` helper AND you need to customize the HTML attributes of the
 link tags.
@@ -125,10 +124,10 @@ a = pagy_anchor(pagy)
 Then call the `a` proc to get the links (multiple times):
 
 ```ruby
-my_link = a.(page_number, text, classes;, aria_label:)
+my_link = a.(page_number, text, classes:, aria_label:)
 ```
 
-### The anchor_string variable
+#### The anchor_string variable
 
 If you need to add some HTML attribute to ALL the page links, you can set the `:anchor_string` variable.
 

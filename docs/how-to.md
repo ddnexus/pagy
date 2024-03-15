@@ -889,7 +889,7 @@ estate.
 
 If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically
 boost the efficiency eliminating the nav info and almost all the UI. Take a look at the examples in
-the [support extra](extras/support.md).
+the [pagy extra](extras/pagy.md).
 
 ### Consider the Arel extra and/or the fast_page gem
 

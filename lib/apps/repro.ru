@@ -26,7 +26,7 @@ end
 
 # Edit this section adding/removing the extras and Pagy::DEFAULT as needed
 # pagy initializer
-require 'pagy/extras/navs'
+require 'pagy/extras/pagy'
 require 'pagy/extras/items'
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page

@@ -119,7 +119,7 @@ see: [elasticsearch_rails](/docs/extras/elasticsearch_rails), [meilisearch](/doc
 
 +++ Special
 You may also use
-the [calendar](/docs/extras/calendar), [countless](/docs/extras/countless), [geared](/docs/extras/gearbox), [incremental, auto-incremental, infinite](/docs/extras/support)
+the [calendar](/docs/extras/calendar), [countless](/docs/extras/countless), [geared](/docs/extras/gearbox), [incremental, auto-incremental, infinite](/docs/extras/pagy)
 pagination
 
 +++

@@ -20,7 +20,7 @@ class Pagy
       a  = pagy_anchor(pagy)
 
       html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}>#{
-                prev_html(pagy, a)})
+                prev_a(pagy, a)})
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
@@ -33,7 +33,7 @@ class Pagy
                   raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
-      html << %(#{next_html(pagy, a)}</nav>)
+      html << %(#{next_a(pagy, a)}</nav>)
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
@@ -78,7 +78,7 @@ class Pagy
       %(aria-label="#{aria_label}")
     end
 
-    def prev_html(pagy, a, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev'))
+    def prev_a(pagy, a, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev'))
       if (p_prev = pagy.prev)
         a.(p_prev, text, aria_label:)
       else
@@ -86,7 +86,7 @@ class Pagy
       end
     end
 
-    def next_html(pagy, a, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.next'))
+    def next_a(pagy, a, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.next'))
       if (p_next = pagy.next)
         a.(p_next, text, aria_label:)
       else

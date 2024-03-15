@@ -20,13 +20,13 @@ gemfile true do
 end
 
 # pagy initializer
-STYLES = { pagy:        { extra: 'navs', prefix: '' },
+STYLES = { pagy:        { extra: 'pagy', prefix: '' },
            bootstrap:   {},
            bulma:       {},
            foundation:  {},
            materialize: {},
            semantic:    {},
-           tailwind:    { extra: 'navs', prefix: '' },
+           tailwind:    { extra: 'pagy', prefix: '' },
            uikit:       {} }.freeze
 
 STYLES.each_key do |style|
@@ -71,7 +71,7 @@ class PagyDemo < Sinatra::Base
 
   # one route/action per style
   STYLES.each_key do |style|
-    prefix = STYLES[style][:prefix] || "#{style}_"
+    prefix = STYLES[style][:prefix] || "_#{style}"
 
     get("/#{style}/?:trim?") do
       collection = MockCollection.new
@@ -144,8 +144,8 @@ class Formatter
   INDENT     = '  '
   TEXT_SPACE = "\u00B7"
   TEXT       = /^([^<>]+)(.*)/
-  UNPAIRED   = /^(<(input).*?>)(.*)/
-  PAIRED     = %r{^(<(nav|div|span|p|a|b|label|ul|li).*?>)(.*?)(</\2>)(.*)}
+  UNPAIRED   = /^(<(input|link).*?>)(.*)/
+  PAIRED     = %r{^(<(head|nav|div|span|p|a|b|label|ul|li).*?>)(.*?)(</\2>)(.*)}
   WRAPPER    = /<.*?>/
   DATA_PAGY  = /(data-pagy="([^"]+)")/
 
@@ -356,36 +356,42 @@ __END__
 
 @@ helpers
 <h1><%= style %></h1>
-
-<% unless style.eql?(:pagy) %>
-<p>See the <a href="http://ddnexus.github.io/pagy/docs/extras/<%= style %>"><%= style %> extra</a>
+<% extra = STYLES[style][:extra] || "#{style}" %>
+<p>See the <a href="http://ddnexus.github.io/pagy/docs/extras/<%= extra %>"><%= extra %> extra</a>
 documentation for details</p>
-<% end %>
 
 <h3>Collection</h3>
 <p>@records: <%= @records.join(',') %></p>
 
-<h4>pagy_<%= prefix %>nav</h4>
-<%= html = send(:"pagy_#{prefix}nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
+<h4>pagy<%= prefix %>_nav</h4>
+<%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
 <%= highlight(html) %>
 
-<h4>pagy_<%= prefix %>nav_js</h4>
-<%= html = send(:"pagy_#{prefix}nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+<h4>pagy<%= prefix %>_nav_js</h4>
+<%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
 <%= highlight(html) %>
 
-<h4>pagy_<%= prefix %>nav_js <span class="notes">(responsive on window resize)</span></h4>
-<%= html = send(:"pagy_#{prefix}nav_js", @pagy, id: 'nav-js-responsive',
+<h4>pagy<%= prefix %>_nav_js <span class="notes">(responsive on window resize)</span></h4>
+<%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
      aria_label: 'Pages nav_js_responsive',
      steps: { 0 => 5, 500 => [1,3,3,1], 700 => [1,4,4,1], 900 => [2,4,4,2] }) %>
 <%= highlight(html) %>
 
-<h4>pagy_<%= prefix %>combo_nav_js</h4>
-<%= html = send(:"pagy_#{prefix}combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+<h4>pagy<%= prefix %>_combo_nav_js</h4>
+<%= html = send(:"pagy#{prefix}_combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 <%= highlight(html) %>
 
 <% if style.match(/pagy|tailwind/) %>
 <h4>pagy_items_selector_js</h4>
 <%= html = pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
+<%= highlight(html) %>
+
+<h4>pagy_prev_a / pagy_next_a</h4>
+<%= html = '<nav class="pagy">' << pagy_prev_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
+<%= highlight(html) %>
+
+<h4>pagy_prev_link / pagy_next_link <span class="notes">(link obviously not rendered)<span></h4>
+<% html = '<head>' << (pagy_prev_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
 <%= highlight(html) %>
 <% end %>
 

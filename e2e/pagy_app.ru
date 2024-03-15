@@ -20,8 +20,8 @@ require 'pagy'
 # pagy initializer
 require 'pagy/extras/calendar'  # must be loaded before the frontend extras
 
-STYLES = %w[bootstrap bulma foundation materialize navs semantic uikit].freeze
-STYLES.each { |name| require "pagy/extras/#{name}" }
+STYLES = %w[bootstrap bulma foundation materialize pagy semantic uikit].freeze
+STYLES.each { |style| require "pagy/extras/#{style}" }
 require 'pagy/extras/items'
 require 'pagy/extras/trim'
 Pagy::DEFAULT[:size]       = [1, 4, 4, 1]  # old size default
@@ -48,9 +48,9 @@ class PagyApp < Sinatra::Base
 
     def site_map
       html = +%(<div id="site-map">| )
-      [:home, *STYLES].each do |name|
-        html << %(<a href="/#{name}">#{name}</a>)
-        html << %(-<a href="/#{name}-calendar">cal</a>) unless name == :home
+      [:home, *STYLES].each do |style|
+        html << %(<a href="/#{style}">#{style}</a>)
+        html << %(-<a href="/#{style}-calendar">cal</a>) unless style == :home
         html << %( | )
       end
       html << %(</div>)
@@ -75,21 +75,21 @@ class PagyApp < Sinatra::Base
   end
 
   # one route/action per style
-  STYLES.each do |name|
-    get("/#{name}-calendar/?:trim?") do
+  STYLES.each do |style|
+    prefix = style == 'pagy' ? '' : "_#{style}"
+
+    get("/#{style}-calendar/?:trim?") do
       collection = MockCollection::Calendar.new
       @calendar, @pagy, @records = pagy_calendar(collection, month: { size: [1, 2, 2, 1],
                                                                       format: '%Y-%m',
                                                                       trim_extra: params['trim'] })
-      name_fragment = name == 'navs' ? '' : "#{name}_"
-      erb :calendar_helpers, locals: { name:, name_fragment: }
+      erb :calendar_helpers, locals: { style:, prefix: }
     end
 
-    get("/#{name}/?:trim?") do
+    get("/#{style}/?:trim?") do
       collection = MockCollection.new
       @pagy, @records = pagy(collection, trim_extra: params['trim'])
-      name_fragment = name == 'navs' ? '' : "#{name}_"
-      erb :helpers, locals: { name:, name_fragment: }
+      erb :helpers, locals: { style:, prefix: }
     end
   end
 end
@@ -131,7 +131,7 @@ __END__
 
 
 @@ helpers
-<h1 id="style"><%= name %></h1>
+<h1 id="style"><%= style %></h1>
 <hr>
 
 <p>@records</p>
@@ -146,46 +146,46 @@ __END__
 <%= pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
 <hr>
 
-<p><%= "pagy_#{name_fragment}nav" %></p>
-<%= send(:"pagy_#{name_fragment}nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
+<p><%= "pagy#{prefix}_nav" %></p>
+<%= send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
 <hr>
 
-<p><%= "pagy_#{name_fragment}nav_js" %></p>
-<%= send(:"pagy_#{name_fragment}nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+<p><%= "pagy#{prefix}_nav_js" %></p>
+<%= send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
 <hr>
 
-<p><%= "pagy_#{name_fragment}nav_js" %> (responsive)</p>
-<%= send(:"pagy_#{name_fragment}nav_js", @pagy, id: 'nav-js-responsive',
+<p><%= "pagy#{prefix}_nav_js" %> (responsive)</p>
+<%= send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
          aria_label: 'Pages nav_js_responsive',
          steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
 <hr>
 
-<p><%= "pagy_#{name_fragment}combo_nav_js" %></p>
-<%= send(:"pagy_#{name_fragment}combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+<p><%= "pagy#{prefix}_combo_nav_js" %></p>
+<%= send(:"pagy#{prefix}_combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 <hr>
 
 
 
 @@ calendar_helpers
-<h1 id="style"><%= name %> (calendar)</h1>
+<h1 id="style"><%= style %> (calendar)</h1>
 <hr>
 
 <p>@records</p>
 <div id="records"><%= @records.join(' | ') %></div>
 <hr>
 
-<p><%= "pagy_#{name_fragment}nav" %></p>
-<%= send(:"pagy_#{name_fragment}nav", @calendar[:month], id: 'nav',
+<p><%= "pagy#{prefix}_nav" %></p>
+<%= send(:"pagy#{prefix}_nav", @calendar[:month], id: 'nav',
          aria_label: 'Pages nav') %>
 <hr>
 
-<p><%= "pagy_#{name_fragment}nav_js" %></p>
-<%= send(:"pagy_#{name_fragment}nav_js", @calendar[:month], id: 'nav-js',
+<p><%= "pagy#{prefix}_nav_js" %></p>
+<%= send(:"pagy#{prefix}_nav_js", @calendar[:month], id: 'nav-js',
          aria_label: 'Pages nav_js') %>
 <hr>
 
-<p><%= "pagy_#{name_fragment}nav_js" %> (responsive)</p>
-<%= send(:"pagy_#{name_fragment}nav_js", @calendar[:month], id: 'nav-js-responsive',
+<p><%= "pagy#{prefix}_nav_js" %> (responsive)</p>
+<%= send(:"pagy#{prefix}_nav_js", @calendar[:month], id: 'nav-js-responsive',
          aria_label: 'Pages combo_nav_js',
          steps: { 0 => [1,3,3,1], 600 => [2,4,4,2], 900 => [3,4,4,3] }) %>
 <hr>

@@ -7,7 +7,7 @@ export const styles = [
     "/bulma",
     "/foundation",
     "/materialize",
-    "/navs",
+    "/pagy",
     "/semantic",
     "/uikit"
 ];
