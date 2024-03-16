@@ -28,9 +28,7 @@ and [meilisearch](/docs/extras/meilisearch.md) extras for specific backend custo
 
 ## Synopsis
 
-||| Controller
-
-```ruby
+```ruby Controller
 include Pagy::Backend
 
 # optional overriding of some sub-method
@@ -43,8 +41,6 @@ def index
   @pagy, @records = pagy(Product.some_scope, some_option: 'some option for this instance')
 end
 ```
-
-|||
 
 ## Methods
 
@@ -122,17 +118,13 @@ In that case you can define a number of `pagy_*` custom methods specific for eac
 
 For example: here is a `pagy` method that doesn't call any sub-method, that may be enough for your needs:
 
-||| Controller
-
-```ruby
+```ruby Controller
 
 def pagy_custom(collection, vars = {})
   pagy = Pagy.new(count: collection.count(*vars[:count_args]), page: params[:page], **vars)
   [pagy, collection.offset(pagy.offset).limit(pagy.items)]
 end
 ```
-
-|||
 
 You can easily write a `pagy` method for _any possible_ environment: please read how
 to [Paginate Any Collection](/docs/how-to.md#paginate-any-collection) for details.

@@ -20,21 +20,13 @@ clause is applied.
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/arel'
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 @pagy, @items = pagy_arel(a_collection, **vars)
 ```
-
-|||
 
 ## Files
 

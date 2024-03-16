@@ -10,25 +10,28 @@ image: none
 
 Add nav helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
 
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
+
+```sh
+pagy run demo
+# or: bundle exec pagy run demo
+```
+...and point your browser at http://0.0.0.0:8000
+!!!
+
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/foundation'
 ```
 
-|||
-
-||| View (helper)
-
-```erb
+```erb View (helper)
 <%== pagy_foundation_nav(@pagy, **vars) %>
 <%== pagy_foundation_nav_js(@pagy, **vars) %>
 <%== pagy_foundation_combo_nav_js(@pagy, **vars) %>
 ```
-
-|||
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_foundation_nav_js` or `pagy_foundation_combo_nav_js`.
 

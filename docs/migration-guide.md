@@ -50,9 +50,7 @@ the code relative to global gem configuration, or monkey patching.
 
 For example, the following configuration are equivalent:
 
-||| initializers
-
-```ruby
+```ruby initializers
 WillPaginate.per_page                                       = 10
 WillPaginate::ViewHelpers.pagination_options[:inner_window] = 4
 WillPaginate::ViewHelpers.pagination_options[:outer_window] = 5
@@ -68,8 +66,6 @@ end
 Pagy::DEFAULT[:items] = 10
 Pagy::DEFAULT[:size]  = [5, 4, 4, 5]
 ```
-
-|||
 
 Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see 
 [How to configure pagy](/quick-start.md#configure))_.
@@ -90,14 +86,10 @@ If the app uses the `page` scope in some of its methods or scopes in some model,
 argument used to pass the page number to the method/scope), leaving the rest of the scope in place. Search where the app uses the
 already paginated scope in the controllers, and use the scope in a regular `pagy` statement. For example:
 
-||| Controller
-
-```ruby
+```ruby Controller
 #@records = Product.paginated_scope(params[:page])
 @pagy, @records = pagy(Product.non_paginated_scope)
 ```
-
-|||
 
 #### Search and replace in the Controllers
 
@@ -106,9 +98,7 @@ pagination, so you should be able to go through each of them and convert them qu
 
 Search for keywords like `page` and `paginate` statements and use the `pagy` method instead. For example:
 
-||| Controller
-
-```ruby
+```ruby Controller
 #@records = Product.some_scope.page(params[:page])
 #@records = Product.paginate(:page => params[:page])
 
@@ -121,8 +111,6 @@ Search for keywords like `page` and `paginate` statements and use the `pagy` met
 @pagy, @records = pagy(Product.some_scope, items: 15)
 ```
 
-|||
-
 #### Search and replace in the Views
 
 Also in the views, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy
@@ -130,16 +118,12 @@ pagination, so you should be able to go through each of them and convert them qu
 
 Search for keywords like `will_paginate` and `paginate` statement and use one of the `pagy_nav` methods. For example:
 
-||| View
-
-```erb
+```erb View
 <%= will_paginate @records %>
 <%= paginate @records %>
 
 <%== pagy_nav @pagy %>
 ```
-
-|||
 
 ## Find the remaining code
 

@@ -4,6 +4,8 @@
 
 For easily reproduce issues, please use the `pagy` command (available after the installation of the pagy gem).
 
+Notice: Depending on your environment you may need to run it with `bundle exec`.
+
 Here are the simple steps:
 
 ### 1. Create a new `repro.ru` app

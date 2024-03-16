@@ -14,9 +14,7 @@ memory ([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb)).
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # set global defaults and extra variables
 # they will get merged with every new Pagy instance
 Pagy::DEFAULT[:items]    = 25
@@ -43,8 +41,6 @@ pagy.series
 #=> [1, 2, "3", 4, 5, 6, 7, :gap, 40]
 ```
 
-|||
-
 ## Global Default
 
 The `Pagy::DEFAULT` is a globally available hash used to set defaults variables. It is a constant for easy access, but it is
@@ -54,16 +50,12 @@ variables passed with the `new` method every times a `Pagy` instance gets create
 
 You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 Pagy::DEFAULT[:items]     = 25
 Pagy::DEFAULT[:my_option] = 'my option'
 ...
 Pagy::DEFAULT.freeze
 ```
-
-|||
 
 ## Methods
 

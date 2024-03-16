@@ -23,10 +23,13 @@ Here is a screenshot (from the `bootstrap` extra):
 
 ![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
-!!! Interactive Demo Available!
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
 
 ```sh
 pagy run demo
+# or: bundle exec pagy run demo
 ```
 ...and point your browser at http://0.0.0.0:8000
 !!!
@@ -35,9 +38,7 @@ pagy run demo
 
 See [Setup Javascript](setup.md).
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # you only need one of the following extras
 require 'pagy/extras/bootstrap'
 require 'pagy/extras/bulma'
@@ -48,11 +49,7 @@ require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
 
-|||
-
-||| Any View
-
-```erb
+```erb Any View
 <!-- Use just one: -->
 <%== pagy_combo_nav_js(@pagy, **vars) %>
 <%== pagy_bootstrap_combo_nav_js(@pagy, **vars) %>
@@ -61,8 +58,6 @@ require 'pagy/extras/uikit'
 <%== pagy_materialize_combo_nav_js(@pagy, **vars) %>
 <%== pagy_semantic_combo_nav_js(@pagy, **vars) %>
 ```
-
-|||
 
 ## Methods
 

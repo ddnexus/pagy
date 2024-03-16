@@ -14,9 +14,7 @@ behaviors/modes: `:empty_page`, `:last_page`, and `:exception`.
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/overflow'
 
 # default :empty_page (other options :last_page and :exception )
@@ -30,8 +28,6 @@ require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :exception
 
 ```
-
-|||
 
 ## Files
 
@@ -67,9 +63,7 @@ The modes accepted by the `:overflow` variable:
 Useful for APIs, where clients expect an empty page, in order to stop requesting more pages. This is the default mode.
 !!!
 
-||| `Pagy` instance example:
-
-```ruby
+```ruby Pagy instance example
 # no exception passing an overflowing page
 pagy = Pagy.new(count: 100, page: 100)
 
@@ -86,11 +80,7 @@ pagy.to                 #=> 0
 pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
 ```
 
-|||
-
-||| `Pagy::Countless` instance example:
-
-```ruby
+```ruby Pagy::Countless instance example
 require 'pagy/countless'
 require 'pagy/extras/overflow'
 
@@ -109,11 +99,7 @@ pagy.to                 #=> 0
 pagy.series             #=>  [] (no pages)
 ```
 
-|||
-
-||| `Pagy::Calendar::Month` instance example:
-
-```ruby
+```ruby Pagy::Calendar::Month instance example
 require 'pagy/calendar'
 require 'pagy/extras/overflow'
 
@@ -138,8 +124,6 @@ pagy.from               #=> 2021-10-01 00:00:00 -0900 (start time of initial uni
 pagy.to                 #=> 2021-10-01 00:00:00 -0900 (same as from: if used it gets no records)
 ```
 
-|||
-
 +++ :last_page
 
 !!!success Serve the last_page
@@ -152,9 +136,7 @@ The `:last_page` mode is not available for `Pagy::Countless` instances because t
 
 For example:
 
-||| Controller
-
-```ruby
+```ruby Controller
 pagy = Pagy.new(count: 100, page: 100, overflow: :last_page)
 
 pagy.overflow?          #=> true
@@ -162,8 +144,6 @@ pagy.vars[:page]        #=> 100 (requested page)
 pagy.page               #=> 5   (current/last page)
 pagy.last == pagy.page  #=> true
 ```
-
-|||
 
 +++ :exception
 

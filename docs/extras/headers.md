@@ -12,17 +12,11 @@ pagination. It also follows the header casing introduced by `rack` version `3+` 
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/headers'
 ```
 
-|||
-
-||| Controller (action)
-
-```ruby
+```ruby Controller (action)
 # paginate as usual with any pagy_* backend constructor
 pagy, records = pagy(collection)
 # explicitly merge the headers to the response
@@ -30,16 +24,12 @@ pagy_headers_merge(pagy)
 render json: records
 ```
 
-|||
-
 ### Suggestions
 
 Instead of explicitly merging the headers before each rendering, if you use rails you can get them automatically merged (
 application-wide and when `@pagy` is available), by adding an `after_action` in your application controller:
 
-||| Controller (after_action)
-
-```ruby
+```ruby Controller (after_action)
 after_action { pagy_headers_merge(@pagy) if @pagy }
 
 # and use it in any action (notice @pagy that enables the merging)
@@ -47,14 +37,10 @@ after_action { pagy_headers_merge(@pagy) if @pagy }
 render json: records
 ```
 
-|||
-
 If your code in different actions is similar enough, you can encapsulate the statements in a custom `pagy_render` method in your
 application controller. For example:
 
-||| Controller (pagy_render)
-
-```ruby
+```ruby Controller (pagy_render)
 def pagy_render(collection, vars={})
   pagy, records = pagy(collection, vars) # any pagy_* backend constructor works
   pagy_headers_merge(pagy)
@@ -64,8 +50,6 @@ end
 # and use it in your standard actions:
 pagy_render(collection)
 ```
-
-|||
 
 ## Files
 
@@ -77,9 +61,7 @@ This extra generates the standard `link` header defined in the
 [RFC-8288](https://tools.ietf.org/html/rfc8288), and adds 4 customizable headers useful for pagination: `current-page`,
 `page-items`, `total-pages` and `total-count` headers.
 
-||| Example of the default HTTP headers
-
-```text
+```text Example of the default HTTP headers
 link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.
 com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
 current-page 3
@@ -87,8 +69,6 @@ page-items 20
 total-pages 50
 total-count 1000
 ```
-
-|||
 
 ### Customize the header names
 
@@ -119,9 +99,7 @@ As usual, depending on the scope of the customization, you can set the variables
 
 For example, the following will change the header names and will suppress the `:pages` ('Total-Pages') header:
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # global
 Pagy::DEFAULT[:headers] = {page: 'current-page', 
                            items: 'per-page', 
@@ -129,11 +107,7 @@ Pagy::DEFAULT[:headers] = {page: 'current-page',
                            count: 'total'}
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 # or for single instance
 pagy, records = pagy(collection, 
                      headers: {page: 'current-page', 
@@ -141,8 +115,6 @@ pagy, records = pagy(collection,
                                pages: false, 
                                count: 'total'})
 ```
-
-|||
 
 ## Methods
 

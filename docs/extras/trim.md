@@ -16,17 +16,11 @@ page.
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/trim' # it will trim without any further configuration,
 ```
 
-|||
-
-||| Controller (and initializer)
-
-```ruby
+```ruby Controller (and initializer)
 # you can disable it explicitly for specific requests
 @pagy, @records = pagy(collection, trim_extra: false)
 
@@ -37,8 +31,6 @@ Pagy::DEFAULT[:trim_extra] = false   # default true
 # in this case you have to enable it explicitly when you want the trimming
 @pagy, @records = pagy(collection, trim_extra: true)
 ```
-
-|||
 
 ## Files
 

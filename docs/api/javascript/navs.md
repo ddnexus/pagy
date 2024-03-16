@@ -25,10 +25,13 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js.png)
 
-!!! Interactive Demo Available!
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
 
 ```sh
 pagy run demo
+# or: bundle exec pagy run demo
 ```
 ...and point your browser at http://0.0.0.0:8000
 !!!
@@ -37,9 +40,7 @@ pagy run demo
 
 See [Setup Javascript](setup).
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # Use just one:
 require 'pagy/extras/bootstrap'
 require 'pagy/extras/bulma'
@@ -50,11 +51,7 @@ require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
 
-|||
-
-||| Any View
-
-```erb
+```erb Any View
 <!-- Use just one: -->
 <%== pagy_nav_js(@pagy) %>
 <%== pagy_bootstrap_nav_js(@pagy) %>
@@ -63,8 +60,6 @@ require 'pagy/extras/uikit'
 <%== pagy_materialize_nav_js(@pagy) %>
 <%== pagy_semantic_nav_js(@pagy) %>
 ```
-
-|||
 
 ## Variables
 
@@ -86,26 +81,18 @@ pass it to the `pagy*_nav_js` helper as an optional keyword argument.
 
 For example:
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # globally
 Pagy::DEFAULT[:steps] = { 0 => 5, 540 => [3, 5, 5, 3], 720 => [5, 7, 7, 5] }
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 # or for a single instance
 pagy, records = pagy(collection, steps: { 0 => 5, 540 => [3, 5, 5, 3], 720 => [5, 7, 7, 5] })
 
 # or use the :size as any static pagy*_nav
 pagy, records = pagy(collection, steps: false)
 ```
-
-|||
 
 ```erb
 or pass it to the helper

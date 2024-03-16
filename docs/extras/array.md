@@ -35,21 +35,13 @@ Use with collections that are already loaded in memory. (e.g. arrays of cached i
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/array'
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 @pagy, @items = pagy_array(an_array, **vars)
 ```
-
-|||
 
 ## Files
 

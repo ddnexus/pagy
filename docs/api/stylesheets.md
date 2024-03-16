@@ -75,10 +75,13 @@ stylesheet_path = Pagy.root.join('stylesheets', 'pagy.tailwind.scss')
 
 +++
 
-!!! Interactive Demo Available!
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
 
 ```sh
 pagy run demo
+# or: bundle exec pagy run demo
 ```
 ...and point your browser at http://0.0.0.0:8000
 !!!
