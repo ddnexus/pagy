@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.763912683269">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.763945721309">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.763912683269" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.763945721309" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.763912683269" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.763945721309" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.763912683269" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.763912683269" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.763945721309" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.763945721309" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -283,12 +283,12 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Unordered PostgreSQL Collections!</h5>
+            <h5>Don&#x27;t Paginate Unordered PostgreSQL Collections!</h5>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(collection)
+<pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(unordered)
 
-# behind the scene, pagy selects the page of records by doing: 
-collection.offset(_).limit(_)</code></pre>
+# behind the scenes, pagy selects the page of records with: 
+unordered.offset(pagy.offset).limit(pagy.limit)</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
@@ -302,7 +302,7 @@ collection.offset(_).limit(_)</code></pre>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>From <a href="https://www.postgresql.org/docs/16/queries-limit.html#:%7E:text=When%20using%20LIMIT,ORDER%20BY">PostgreSQL Documentation</a></h5>
+            <h5>From the <a href="https://www.postgresql.org/docs/16/queries-limit.html#:%7E:text=When%20using%20LIMIT,ORDER%20BY">PostgreSQL Documentation</a></h5>
 <p>When using LIMIT, it is important to use an ORDER BY clause that constrains the result rows into a unique order. Otherwise you
 will get an unpredictable subset of the query&#x27;s rows.</p>
         </div>
@@ -323,10 +323,11 @@ will get an unpredictable subset of the query&#x27;s rows.</p>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Use <code v-pre>order</code> with PostgreSQL collections!</h5>
+            <h5>Ensure the PostgreSQL collection is ordered!</h5>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby"># results will be predictable (order by id)
-@pagy, @records = pagy(collection.order(:id))</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby"># results will be predictable with #order
+ordered = unordered.order(:id)
+@pagy, @records = pagy(ordered)</code></pre>
 </doc-codeblock></div>
         </div>
     </div>
