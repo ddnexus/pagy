@@ -10,16 +10,7 @@ image: none
 
 Add nav helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
 
-!!!success Try it now!
-
-Run the interactive demo from your terminal:
-
-```sh
-pagy run demo
-# or: bundle exec pagy run demo
-```
-...and point your browser at http://0.0.0.0:8000
-!!!
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
 
 ## Synopsis
 

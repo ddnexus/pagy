@@ -55,8 +55,8 @@ body:
         - label: Plain ruby file that can run as `ruby my-problem.rb`
         - label: >
             Edited copy of the single file repro.ru (or demo.ru). Please follow the
-            [simple steps](https://github.com/ddnexus/pagy/blob/master/lib/apps/README.md) to get it
-        - label: >
+            [simple steps](https://ddnexus.github.io/pagy/try-it/#2-reproru) about how to do it
+        - label: >               
             Edited copy of the single file
             [pagy_bare_rails.rb](https://github.com/ddnexus/pagy/blob/master/apps/pagy_bare_rails.rb)
         - label: Link of my own branch forked from pagy, which contains an added test file

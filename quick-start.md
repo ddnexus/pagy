@@ -17,7 +17,7 @@ Run the interactive demo from your terminal:
 gem install pagy
 pagy run demo
 ```
-...and point your browser to http://0.0.0.0:8080
+...and point your browser to http://0.0.0.0:8000
 !!!
 
 +++ Console

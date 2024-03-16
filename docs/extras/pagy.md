@@ -11,16 +11,7 @@ categories:
 Adds the pagy styled versions of the javascript-powered navs and a few other components to support countless or navless
 pagination (incremental, auto-incremental, infinite pagination).
 
-!!!success Try it now!
-
-Run the interactive demo from your terminal:
-
-```sh
-pagy run demo
-# or: bundle exec pagy run demo
-```
-...and point your browser at http://0.0.0.0:8000
-!!!
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
 
 ## Synopsis
 

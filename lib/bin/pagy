@@ -45,7 +45,7 @@ when 'develop'
 when 'help'
   puts <<~HELP
 
-    Pagy utility to run, create, develop pagy apps
+    Pagy utility to run, create, develop pagy demo apps
 
     USAGE
       pagy [command [app [port]]]
