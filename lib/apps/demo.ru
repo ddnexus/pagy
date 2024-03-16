@@ -266,6 +266,13 @@ __END__
       font-family: sans-serif;
       font-weight: normal;
     }
+    .description {
+       margin: 1rem 0;
+    }
+    .description a {
+      color: blue;
+      text-decoration: underline;
+    }
     pre, pre code {
       display: block;
       margin-top: .3rem;
@@ -357,7 +364,7 @@ __END__
 @@ helpers
 <h1><%= style %></h1>
 <% extra = STYLES[style][:extra] || "#{style}" %>
-<p>See the <a href="http://ddnexus.github.io/pagy/docs/extras/<%= extra %>"><%= extra %> extra</a>
+<p class="description">See the <a href="http://ddnexus.github.io/pagy/docs/extras/<%= extra %>"><%= extra %> extra</a>
 documentation for details</p>
 
 <h3>Collection</h3>
@@ -381,6 +388,10 @@ documentation for details</p>
 <%= html = send(:"pagy#{prefix}_combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 <%= highlight(html) %>
 
+<h4>pagy_info</h4>
+<%= html = pagy_info(@pagy, id: 'pagy-info') %>
+<%= highlight(html) %>
+
 <% if style.match(/pagy|tailwind/) %>
 <h4>pagy_items_selector_js</h4>
 <%= html = pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
@@ -395,14 +406,14 @@ documentation for details</p>
 <%= highlight(html) %>
 <% end %>
 
-<h4>pagy_info</h4>
-<%= html = pagy_info(@pagy, id: 'pagy-info') %>
-<%= highlight(html) %>
-
 
 @@ template
 <h1>Pagy Template Demo</h1>
 
+<p class="description">
+See the <a href="https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">
+Custom Templates</a> documentation.
+</p>
 <h4>Collection</h4>
 <p>@records: <%= @records.join(',') %></p>
 
