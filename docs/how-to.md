@@ -1,6 +1,6 @@
 ---
 title: How To
-order: 1
+order: 8
 icon: tools-24
 ---
 

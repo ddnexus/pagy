@@ -1,5 +1,5 @@
 ---
-order: 3
+order: 10
 title: Prerequisites
 icon: shield-check-24
 ---
