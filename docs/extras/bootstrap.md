@@ -10,25 +10,28 @@ image: none
 
 Add nav helpers for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination).
 
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
+
+```sh
+pagy run demo
+# or: bundle exec pagy run demo
+```
+...and point your browser at http://0.0.0.0:8000
+!!!
+
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/bootstrap'
 ```
 
-|||
-
-||| View (helper)
-
-```erb
+```erb View (helper)
 <%== pagy_bootstrap_nav(@pagy, **vars) %>
 <%== pagy_bootstrap_nav_js(@pagy, **vars) %>
 <%== pagy_bootstrap_combo_nav_js(@pagy, **vars) %>
 ```
-
-|||
 
 See: [Javascript](/docs/api/javascript.md) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
 

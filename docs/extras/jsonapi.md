@@ -18,30 +18,20 @@ e.g. `https://example.com/products?page[number]=2&page[size]=30`.
 
 ### Default usage
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/jsonapi' # works without further configuration
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 # enabled by default
 @pagy, @records = pagy(collection)
 # you can disable it explicitly for specific requests
 @pagy, @records = pagy(collection, jsonapi: false)
 ```
 
-|||
-
 ### Custom usage
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # optionally require other jsonapi-useful extras
 require 'pagy/extras/items'
 # jsonapi must be required AFTER other extras
@@ -50,11 +40,7 @@ require 'pagy/extras/jsonapi'
 Pagy::DEFAULT[:jsonapi] = false               # default true
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 # disabled by default by the above Pagy::DEFAULT[:jsonapi] = false
 @pagy, @records = pagy(collection)
 # explicitly enable it for specific requests
@@ -71,8 +57,6 @@ links_hash = pagy_jsonapi_links(@pagy)
 #    prev: 'https://example.com/products?page[number]=31&page[size]=50&...',
 #    next: 'https://example.com/products?page[number]=33&page[size]=50&...'}
 ```
-
-|||
 
 ## Files
 

@@ -10,37 +10,39 @@ categories:
 Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or
 user-customizable UIs.
 
-It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md)
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
+
+```sh
+pagy run demo
+# or: bundle exec pagy run demo
+```
+...and point your browser at http://0.0.0.0:8000
+
+!!!
+
+It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md) 
 and [meilisearch](/docs/extras/meilisearch.md) extras.
 
 ## Synopsis
 
 ### Default usage
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/items' # works without further configuration
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 # enabled by default
 @pagy, @records = pagy(collection)
 # you can disable it explicitly for specific requests
 @pagy, @records = pagy(collection, items_extra: false)
 ```
 
-|||
-
 ### Custom usage
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # optionally disable it by default
 Pagy::DEFAULT[:items_extra] = false # default true
 # customize the defaults if you need to
@@ -48,18 +50,12 @@ Pagy::DEFAULT[:items_param] = :custom_param # default :items
 Pagy::DEFAULT[:max_items]   = 200 # default 100
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 # disabled by default by the above Pagy::DEFAULT[:items_extras] = false
 @pagy, @records = pagy(collection)
 # explicitly enable it for specific requests
 @pagy, @records = pagy(collection, items_extra: true)
 ```
-
-|||
 
 See [Javascript](/docs/api/javascript.md) (only if you use the `pagy_items_selector_js` UI)
 
@@ -86,25 +82,17 @@ You may want to customize the variables. Depending on the scope of the customiza
 
 As a global default:
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 Pagy::DEFAULT[:items_param] = :custom_param
 Pagy::DEFAULT[:max_items]   = 50
 ```
 
-|||
-
 For a single instance (overriding the global default):
 
-||| Controller
-
-```ruby
+```ruby Controller
 pagy(collecton, items_param: :custom_param, max_items: 50)
 Pagy.new(count: 100, items_param: :custom_param, max_items: 50)
 ```
-
-|||
 
 !!!info Override 'items' in Params
 You can override the items that the client sends with the params by passing the `:items` explicitly. For example:
@@ -136,13 +124,9 @@ The method accepts also a few optional keyword arguments variables:
 - `:id` which adds the `id` HTML attribute to the `nav` tag
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
 
-||| some_view.html.erb
-
-```erb
+```erb some_view.html.erb
 <%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
 ```
-
-|||
 !!!
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per

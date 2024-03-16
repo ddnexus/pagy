@@ -32,17 +32,11 @@ and fallback to the regular pagination. No need to maintain different UIs for wi
 
 ## Synopsis
 
-||| initializer (pagy.rb)
-
-```ruby
+```ruby initializer (pagy.rb)
 require 'pagy/extras/calendar'
 ```
 
-|||
-
-||| controller
-
-```ruby
+```ruby controller
 # e.g. application_controller.rb
 def pagy_calendar_period(collection)
   return_period_array_using(collection)
@@ -61,11 +55,7 @@ def index
 end
 ```
 
-|||
-
-||| view (template)
-
-```erb
+```erb view (template)
 <!-- calendar filtering -->
 <%== pagy_nav(@calendar[:year]) %>
 <%== pagy_nav(@calendar[:month]) %>
@@ -78,8 +68,6 @@ end
 <!-- standard pagination of the selected month -->
 <%== pagy_nav(@pagy) %>
 ```
-
-|||
 
 See also a few examples
 about [How to wrap existing pagination with pagy_calendar](/docs/how-to.md#wrap-existing-pagination-with-pagy_calendar).
@@ -131,13 +119,9 @@ to the wrapped method.
 
 It returns an array with one more item than the usual two:
 
-||| controller
-
-```ruby
+```ruby controller
 @calendar, @pagy, @results = pagy_calendar(...)
 ```
-
-|||
 
 The `@calendar` is the hash of the generated `Pagy::Calendar::*` objects that can be used in the UI.
 
@@ -229,9 +213,7 @@ If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Rela
 starting and ending local `TimeWithZone` objects array. Here are a few examples with the `created_at` field (but you can pull the
 time from anywhere):
 
-||| controller
-
-```ruby
+```ruby  Controller
 # Simpler version (2 queries)
 def pagy_calendar_period(collection)
   starting = collection.minimum('created_at')
@@ -253,8 +235,6 @@ def pagy_calendar_period(collection)
   params.fetch_values(:starting, :ending).map { |time| Time.parse(time).in_time_zone }
 end
 ```
-
-|||
 
 See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 
@@ -285,15 +265,11 @@ Depending on the type of storage, the `collection` argument can contain a differ
 If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object that you can easily filter. Here is
 an example with the `created_at` field again (but you can use anything, of course):
 
-||| controller
-
-```ruby
+```ruby controller
 def pagy_calendar_filter(collection, from, to)
   collection.where(created_at: from...to)  # 3-dots range excluding the end value
 end
 ```
-
-|||
 
 See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 

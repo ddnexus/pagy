@@ -11,13 +11,9 @@ Paginate without the need of any count, saving one query per rendering.
 
 ## Setup
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/countless'
 ```
-
-|||
 
 ## Modes
 
@@ -34,13 +30,9 @@ Your app needs a full classic pagination UI
 
 <br>
 
-||| Controller (eager loading)
-
-```ruby
+```ruby Controller (eager loading)
 @pagy, @records = pagy_countless(some_scope, ...)
 ```
-
-|||
 
 This mode retrieves `items + 1` and uses the number of retrieved items to calculate the variables. It then removes the eventual
 extra item from the result, so deducing whether there is a `next` page or not without the need of an extra query.
@@ -60,27 +52,19 @@ Your app uses no or limited pagination UI
 
 <br>
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/countless'
 # optionally enable the minimal mode by default
 # Pagy::DEFAULT[:countless_minimal] = true
 ```
 
-|||
-
 ### Usage
 
 <br>
 
-||| Controller (lazy loading)
-
-```ruby
+```ruby Controller (lazy loading)
 @pagy, @records = pagy_countless(some_scope, countless_minimal: true, ...)
 ```
-
-|||
 
 This mode is enabled by the `:countless_minimal` variable.
 

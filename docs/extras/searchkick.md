@@ -14,14 +14,10 @@ Paginate `Searchkick::Results` objects.
 
 ## Setup
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/searchkick'
 Searchkick.extend Pagy::Searchkick
 ```
-
-|||
 
 ## Modes
 
@@ -35,17 +31,11 @@ You use the `pagy_search` method in place of the `search` method.
 
 ### Usage
 
-||| Model
-
-```ruby
+```ruby Model
 extend Pagy::Searchkick
 ```
 
-|||
-
-||| Controller (pagy_search)
-
-```ruby
+```ruby Controller (pagy_search)
 # single model
 collection = Article.pagy_search(params[:q])
 # multi models
@@ -53,8 +43,6 @@ collection = Searchkick.pagy_search(params[:q], models: [Article, Categories])
 # paginate it
 @pagy, @response = pagy_searchkick(collection, items: 10)
 ```
-
-|||
 
 +++ Passive mode
 
@@ -64,16 +52,12 @@ Pagy creates its object out of your result.
 
 ### Usage
 
-||| Controller (search)
-
-```ruby
+```ruby Controller (search)
 # standard response (already paginated)
 @results = Article.search('*', page: 1, per_page: 10, ...)
 # get the pagy object out of it
 @pagy = Pagy.new_from_searchkick(@results, ...)
 ```
-
-|||
 
 +++
 

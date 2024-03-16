@@ -11,19 +11,24 @@ categories:
 Adds the pagy styled versions of the javascript-powered navs and a few other components to support countless or navless
 pagination (incremental, auto-incremental, infinite pagination).
 
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
+
+```sh
+pagy run demo
+# or: bundle exec pagy run demo
+```
+...and point your browser at http://0.0.0.0:8000
+!!!
+
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/pagy'
 ```
 
-|||
-
-||| View (helper)
-
-```erb
+```erb View (helper)
 <%== pagy_nav_js(@pagy, **vars) %>
 <%== pagy_combo_nav_js(@pagy, **vars) %>
 <%== pagy_prev_a(@pagy, **vars) %>
@@ -32,16 +37,10 @@ require 'pagy/extras/pagy'
 <%== pagy_next_link(@pagy, **vars) %>
 ```
 
-|||
-
-||| URL helpers
-
-```ruby
+```ruby URL helpers
 pagy_prev_url(@pagy, absolute: bool)
 pagy_next_url(@pagy, absolute: bool)
 ```
-
-|||
 
 See [Javascript](/docs/api/javascript.md).
 
@@ -131,28 +130,18 @@ You can also use the `pagy_prev_html`, `pagy_next_html` mostly useful if you als
 
 Here is a basic example that uses `pagy_countless` (saving one query per render):
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/countless'
 ```
 
-|||
-
-||| incremental (controller action)
-
-```ruby
+```ruby incremental (controller action)
 
 def incremental
   @pagy, @records = pagy_countless(collection, anchor_string: 'data-remote="true"')
 end
 ```
 
-|||
-
-||| incremental.html.erb (template)
-
-```erb
+```erb incremental.html.erb (template)
 <div id="content">
   <table id="records_table">
     <tr>
@@ -167,11 +156,7 @@ end
 </div>
 ```
 
-|||
-
-||| _page_items.html.erb (partial)
-
-```erb
+```erb _page_items.html.erb (partial)
 <% @records.each do |record| %>
   <tr>
     <td><%= record.name %></td>
@@ -180,25 +165,15 @@ end
 <% end %>
 ```
 
-|||
-
-||| _next_link.html.erb (partial)
-
-```erb
+```erb _next_link.html.erb (partial)
 <!-- Wrapped in a "pagy" class to apply the pagy CSS style -->
 <span id: 'next_link' class="pagy"><%== pagy_next_a(@pagy, text: 'More...') %><span>
 ```
 
-|||
-
-||| incremental.js.erb (javascript template)
-
-```erb
+```erb incremental.js.erb (javascript template)
 $('#records_table').append("<%= j(render 'page_items')%>");
 $('#div_next_link').html("<%= j(render 'next_link') %>");
 ```
-
-|||
 
 ### Auto-incremental
 
@@ -217,20 +192,14 @@ of changes:
 
 **1**. Hide the link in `_next_link.html.erb` by adding a style attribute:
 
-||| _next_link.html.erb (partial)
-
-```erb
+```erb _next_link.html.erb (partial)
 <span style="display: none;"><%== pagy_next_a(@pagy, text: 'More...') %></span>
 ```
-
-|||
 
 **2**. Add a javascript that will click the link when the listing-bottom appears in the viewport on load/resize/scroll. It will
 keep the page filled with results, one page at a time:
 
-||| Javascript
-
-```js
+```js Javascript
 var loadNextPage = function() {
   if ($('#next_link a').data("loading")) { return }  // prevent multiple loading
   var wBottom  = $(window).scrollTop() + $(window).height();
@@ -246,8 +215,6 @@ window.addEventListener('scroll', loadNextPage);
 window.addEventListener('load', loadNextPage);
 ```
 
-|||
-
 ### Circular/Infinite
 
 This type of pagination sets the `next` page to `1` when the current page is the last page, allowing an infinite loop through the
@@ -258,23 +225,15 @@ items each. Clicking on next will continue to loop through.
 
 For example:
 
-||| Controller (action)
-
-```ruby
+```ruby Controller (action)
 @pagy, @suggestions = pagy_countless(collection, count: 25, items: 5, cycle: true)
 ```
-
-|||
 
 Passing a forced `:count` of 25 will generate 5 pages of 5 items each that will always have a next page. Regardless the actual
 collection count, you will show the first 25 items of the collection, looping in stripes of 5 items each.
 
 You may want to combine it with something like:
 
-||| View
-
-```erb
+```erb View
 <%== pagy_next_html(@pagy, text: 'More...') %>
 ```
-
-|||

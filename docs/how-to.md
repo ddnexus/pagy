@@ -15,13 +15,9 @@ You can control the items per page with the `items` variable. (Default `20`)
 
 You can set its default in the `pagy.rb` initializer (see [How to configure pagy](/quick-start#configure)). For example:
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 Pagy::DEFAULT[:items] = 25
 ```
-
-|||
 
 You can also pass it as an instance variable to the `Pagy.new` method or to the `pagy` controller method:
 
@@ -119,13 +115,9 @@ You don't need to explicitly pass the page number to the `pagy` method, because 
 called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For
 example:
 
-||| controller
-
-```ruby
+```ruby controller
 @pagy, @records = pagy(my_scope, page: 3) # force page #3
 ```
-
-|||
 
 That will explicitly set the `:page` variable, overriding the default behavior (which usually pulls the page number from
 the `params[:page]`).
@@ -176,15 +168,11 @@ the I18n official documentation).
 If you don't use the above extra (and rely on the pagy faster code) you can copy and edit the dictionary files that your app uses
 and configure pagy to use them.
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # load the "en" and "de" locale defined in the custom files at :filepath:
 Pagy::I18n.load({ locale: 'de', filepath: 'path/to/my-custom-de.yml' },
                 { locale: 'en', filepath: 'path/to/my-custom-en.yml' })
 ```
-
-|||
 
 ### Example of custom dictionary
 
@@ -277,23 +265,15 @@ possibly modified version of it.
 
 An example using `except` and `merge!`:
 
-||| controller
-
-```ruby
+```ruby controller
 @pagy, @records = pagy(collection, params: ->(params) { params.except('not_useful').merge!('custom' => 'useful') })
 ```
 
-|||
-
 You can also use the `:fragment` variable to add a fragment the URLs of the pages:
 
-||| controller
-
-```ruby
+```ruby controller
 @pagy, @records = pagy(collection, fragment: '#your-fragment')
 ```
-
-|||
 
 !!!warning 
 For performance reasons the `:fragment` string must include the `"#"`!
@@ -317,17 +297,13 @@ The following are a couple of examples.
 The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths
 like `your_route/23` instead of `your_route?page=23`):
 
-||| controller
-
-```ruby
+```ruby controller
 
 def pagy_url_for(pagy, page, absolute: false)
   params = request.query_parameters.merge(pagy.vars[:page_param] => page, only_path: !absolute)
   url_for(params)
 end
 ```
-
-|||
 
 !!!warning Performance affected!
 The above overridden method is quite slower than the original because it passes through the rails helpers. However that gets
@@ -339,16 +315,12 @@ mitigated by the internal usage of `pagy_anchor` which calls the method only onc
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and
 your page links may need to use POST and not GET. In that case you can try this simple solution:
 
-||| controller
-
-```ruby
+```ruby controller
 
 def pagy_url_for(_pagy, page, **_)
   page
 end
 ```
-
-|||
 
 That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page
 links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should
@@ -442,31 +414,23 @@ for better performance of grouped ActiveRecord collections.
 
 Do it in 2 steps: first get the page of records without decoration, and then apply the decoration to it. For example:
 
-||| controller
-
-```ruby
+```ruby controller
 @pagy, records     = pagy(Post.all)
 @decorated_records = records.decorate # or YourDecorator.method(records) whatever works
 ```
-
-|||
 
 ### Custom count for custom scopes
 
 Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count. In that case you can
 get the right count in a couple of ways:
 
-||| controller
-
-```ruby
+```ruby controller
 # Passing the right arguments to the internal `collection.count(...)` (See the ActiveRecord documentation for details)
 @pagy, @records = pagy(custom_scope, count_args: [:join])
 
 # or directly pass the right count to pagy (that will directly use it skipping its own `collection.count(:all)`)
 @pagy, @records = pagy(custom_scope, count: custom_count)
 ```
-
-|||
 
 ### Paginate a grouped collection
 
@@ -496,14 +460,10 @@ the [metadata extra](extras/metadata.md) and pass the pagination metadata in you
 
 Ransack `result` returns an `ActiveRecord` collection, which can be paginated out of the box. For example:
 
-||| controller
-
-```ruby
+```ruby controller
 q              = Person.ransack(params[:q])
 @pagy, @people = pagy(q.result)
 ```
-
-|||
 
 ## Paginate search framework results
 
@@ -639,9 +599,7 @@ end
 You can easily wrap your existing pagination with the `pagy_calendar` method. Here are a few examples adding `:year` and `:month`
 to different existing statements.
 
-||| controller
-
-```ruby
+```ruby controller
 # pagy without calendar
 @pagy, @record = pagy(collection, any_vars: value, ...)
 # wrapped with pagy_calendar
@@ -658,8 +616,6 @@ to different existing statements.
                                                                      any_vars: value, ... })
 ```
 
-|||
-
 Then follow the [calendar extra documentation](extras/calendar.md) for more details.
 
 ## Paginate pre-offset and pre-limited collections
@@ -667,14 +623,10 @@ Then follow the [calendar extra documentation](extras/calendar.md) for more deta
 With the other pagination gems you cannot paginate a subset of a collection that you got using `offset` and `limit`. With Pagy it
 is as simple as just adding the `:outset` variable, set to the initial offset. For example:
 
-||| controller
-
-```ruby
+```ruby controller
 subset                   = Product.offset(100).limit(315)
 @pagy, @paginated_subset = pagy(subset, outset: 100)
 ```
-
-|||
 
 Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record
 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute
@@ -686,13 +638,9 @@ from 301 to 315 for the last page.
 The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.)
 you might want to change the `:count_args` default to suite your ORM count method:
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 Pagy::DEFAULT[:count_args] = []
 ```
-
-|||
 
 or in extreme cases you may need to override it in your controller.
 
@@ -708,9 +656,7 @@ metadata:
 
 As you can see it contains the pagination metadata that you can use to setup the pagination with pagy:
 
-||| controller
-
-```ruby
+```ruby controller
 # get the paginated collection
 tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
 # use its count and page to initialize the @pagy object
@@ -718,8 +664,6 @@ tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
 # set the paginated collection records
 @movies = tobj.results
 ```
-
-|||
 
 ## Paginate Any Collection
 
@@ -748,23 +692,15 @@ paginated = arr[pagy.offset, pagy.items]
 
 This is basically what the `pagy` method included in your controller does for you in one go:
 
-||| controller
-
-```ruby
+```ruby controller
 @pagy, @products = pagy(Product.some_scope)
 ```
 
-|||
-
 Then of course, regardless the kind of collection, you can render the navigation links in your view:
 
-||| view
-
-```erb
+```erb view
 <%== pagy_nav(@pagy) %>
 ```
-
-|||
 
 See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb) and
 the [Pagy::Backend API documentation](api/backend.md) for more details.
@@ -774,13 +710,9 @@ the [Pagy::Backend API documentation](api/backend.md) for more details.
 These helpers take the Pagy object and return the HTML string with the pagination links, which are wrapped in a `nav` tag and are
 ready to use in your view. For example:
 
-||| view
-
-```erb
+```erb view
 <%== pagy_nav(@pagy) %>
 ```
-
-|||
 
 !!!primary Extras Provide Added Functionality
 The [frontend extras](/categories/frontend) add a few other helpers that you can use the same way, in order to get added features 
@@ -821,9 +753,7 @@ really simple.
 Pagy gets the collection count through its `pagy_get_vars` method, so you can override it in your controller. Here is an example
 using the rails cache:
 
-||| controller
-
-```ruby
+```ruby controller
 # override the pagy_get_vars method so it will call your cache_count method
 def pagy_get_vars(collection, vars)
   vars[:count] ||= cache_count(collection)
@@ -840,17 +770,11 @@ def cache_count(collection)
 end
 ```
 
-|||
-
-||| model
-
-```ruby
+```ruby model
 # reset the cache when the model changes (you may omit the callbacks if your DB is static)
 after_create { Rails.cache.delete_matched /^pagy-#{self.class.name}:/ }
 after_destroy { Rails.cache.delete_matched /^pagy-#{self.class.name}:/ }
 ```
-
-|||
 
 That may work very well with static (or almost static) DBs, where there is not much writing and mostly reading. Less so with more
 DB writing, and probably not particularly useful with a DB in constant change.
@@ -922,9 +846,7 @@ Here are a few options for manually handling the error in apps:
 - Rescue and redirect to the last known page (Notice: the [overflow extra](extras/overflow.md) provides the same behavior without
   redirecting)
 
-||| controller
-
-```ruby
+```ruby controller
 rescue_from Pagy::OverflowError, with: :redirect_to_last_page
 
 private
@@ -933,8 +855,6 @@ def redirect_to_last_page(exception)
   redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
 end
 ```
-
-|||
 
 !!!warning Rescue from `Pagy::OverflowError` first
 All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along
@@ -985,6 +905,7 @@ You may want to read also the [Pagy::Frontend API documentation](api/frontend.md
 You may want to look at the actual output interactively by running:
 ```sh
 pagy run demo
+# or: bundle exec pagy run demo
 # ...and point your browser at http://0.0.0.0:8000
 ```
 !!!

@@ -12,23 +12,15 @@ Add nav helpers for the Bulma CSS [pagination component](https://bulma.io/docume
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/bulma'
 ```
 
-|||
-
-||| View (helpers)
-
-```erb
+```erb View (helpers)
 <%== pagy_bulma_nav(@pagy, **vars) %>
 <%== pagy_bulma_nav_js(@pagy, **vars) %>
 <%== pagy_bulma_combo_nav_js(@pagy, **vars) %>
 ```
-
-|||
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
 

@@ -9,9 +9,9 @@ If you want to just try Pagy before using it in your own app, you have a couple 
 
 +++ Browser
 
-See and interact with all its different helpers and styles:
-     
-!!! Interactive Demo Available!
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
 
 ```sh
 gem install pagy
@@ -24,7 +24,7 @@ pagy run demo
 
 Interact with every method, helper and extra in a IRB console without any setup:
 
-```sh
+```sh Terminal
 gem install pagy
 ```
 
@@ -39,33 +39,21 @@ gem install pagy
 If you use Bundler, add the gem in the Gemfile, optionally avoiding the next major version with breaking changes (
 see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
-||| Gemfile
-
-```ruby   
+```ruby Gemfile
 gem 'pagy', '~> 7.0' # omit patch digit
 ```
-
-|||
 
 +++ Without Bundler
 
 If you don't use Bundler, install and require the Pagy gem:
 
-||| Terminal
-
-```bash
+```shell Terminal
 gem install pagy
 ```
 
-|||
-
-||| Ruby file
-
-```ruby
+```ruby Ruby file
 require 'pagy'
 ```
-
-|||
 +++
 
 ### 2. Configure
@@ -95,23 +83,15 @@ any `pagy*` backend/controller method.
 
 #### Include the backend
 
-||| ApplicationController/AnyController
-
-```ruby
+```ruby ApplicationController/AnyController
 include Pagy::Backend
 ```
 
-|||
-
 #### Use the `pagy` method
 
-||| Controller action
-
-```ruby
+```ruby Controller action
 @pagy, @records = pagy(Product.some_scope)
 ```
-
-|||
 
 +++ Search
 For search backends
@@ -133,24 +113,16 @@ Your pagination is rendered on the server
 
 #### Include the frontend
 
-||| ApplicationHelper/AnyHelper
-
-```ruby
+```ruby ApplicationHelper/AnyHelper
 include Pagy::Frontend
 ```
 
-|||
-
 #### Use a fast helper
 
-||| View
-
-```erb
+```erb View
 <%# Note the double equals sign "==" which marks the output as trusted and html safe: %>
 <%== pagy_nav(@pagy) %>
 ```
-
-|||
 
 #### Pick a stylesheet or a CSS framework
 
@@ -165,23 +137,15 @@ Your pagination is rendered by Vue.js, react.js, ...
 
 #### Require the [metadata extra](docs/extras/metadata.md)
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/metadata'
 ```
 
-|||
-
 #### Add the metadata to your JSON response
 
-||| Controller action
-
-```ruby
+```ruby Controller action
 render json: { data: @records, pagy: pagy_metadata(@pagy, ...) }
 ```
-
-|||
 
 +++ API Service
 
@@ -191,31 +155,19 @@ Your API is consumed by some client
 
 #### Require the [headers extra](docs/extras/headers.md)
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/headers'
 ```
 
-|||
-
 #### Add the pagination headers to your responses
 
-||| Controller
-
- ```ruby
+ ```ruby Controller
  after_action { pagy_headers_merge(@pagy) if @pagy }
  ```
 
-|||
-
 #### Render your JSON response as usual
 
-||| Controller action
-
- ```ruby
+ ```ruby Controller action
  render json: { data: @records }
  ```
-
-|||
 +++

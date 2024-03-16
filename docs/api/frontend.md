@@ -15,8 +15,7 @@ You can extend this module with a few more nav helpers _(see the [extras](/categ
 
 ## Synopsis
 
-||| View Helper
-```ruby
+```ruby View Helper
 include Pagy::Frontend
 
 # optional overriding of some sub-method
@@ -24,15 +23,11 @@ def pagy_nav(...)
    ...
 end
 ```
-|||
 
-||| View
-
-```erb
+```erb View
 <%== pagy_nav(@pagy, **vars) %>
 <%== pagy_info(@pagy, **vars) %>
 ```
-|||
 
 ## Methods
 
@@ -44,11 +39,9 @@ Please, keep in mind that overriding any method is very easy with Pagy. Indeed y
 
 This method takes the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
-||| View
-```erb
+```erb View
 <%== pagy_nav(@pagy, **vars) %>
 ```
-|||
 
 The method accepts also a few optional keyword arguments variables:
 
@@ -77,11 +70,9 @@ The method accepts also a few optional keyword arguments variables:
 - `:id`: the `id` HTML attribute to the `span` tag wrapping the info
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
 
-||| View
-```erb
+```erb View
 <%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
 ```
-|||
 
 Displaying Products <b>476-500</b> of <b>1000</b> in total
 
@@ -143,6 +134,7 @@ is illegal html (although handled by all mayor browsers by ignoring all the dupl
 Easily check the native attributes produced by the helpers:
 ```sh
 pagy run demo
+# or: bundle exec pagy run demo
 # ...and point your browser at http://0.0.0.0:8000
 ```
 !!!

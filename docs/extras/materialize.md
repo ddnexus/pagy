@@ -10,25 +10,28 @@ image: none
 
 Add nav helpers for the Materialize CSS [pagination component](https://materializecss.com/pagination.html).
 
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
+
+```sh
+pagy run demo
+# or: bundle exec pagy run demo
+```
+...and point your browser at http://0.0.0.0:8000
+!!!
+
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/materialize'
 ```
 
-|||
-
-||| View (helper)
-
-```erb
+```erb View (helper)
 <%== pagy_materialize_nav(@pagy, **vars) %>
 <%== pagy_materialize_nav_js(@pagy, **vars) %>
 <%== pagy_materialize_combo_nav_js(@pagy, **vars) %>
 ```
-
-|||
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
 

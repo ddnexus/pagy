@@ -26,25 +26,17 @@ the `Pagy::Backend` (usually a controller).
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/standalone'
 
 # optional: set a default url
 Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 # pass a :url variable to work in standalone mode (no need of any request object nor Rack env)
 @pagy, @products = pagy(collection, url: 'http://www.example.com/subdir', params: {...})
 ```
-
-|||
 
 ## Files
 
