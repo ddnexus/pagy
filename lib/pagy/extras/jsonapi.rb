@@ -26,8 +26,8 @@ class Pagy # :nodoc:
       def pagy_jsonapi_links(pagy, **opts)
         { first: pagy_url_for(pagy, 1,         **opts),
           last:  pagy_url_for(pagy, pagy.last, **opts),
-          prev:  pagy_url_for(pagy, pagy.prev, **opts),
-          next:  pagy_url_for(pagy, pagy.next, **opts) }
+          prev:  pagy.prev ? pagy_url_for(pagy, pagy.prev, **opts) : nil,
+          next:  pagy.next ? pagy_url_for(pagy, pagy.next, **opts) : nil }
       end
 
       # Should skip the jsonapi
