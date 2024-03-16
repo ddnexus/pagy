@@ -4,28 +4,27 @@ title: Troubleshooting
 icon: alert-24
 ---
 
+### Records may randomly repeat in different pages (or be missing)
 
-### Non-idempotent Results with PostgreSQL
-
-!!! Warning Without `order`
-
-...pagination results may vary (i.e page `x` may show different records every time).
+!!!danger Unordered PostgreSQL Collections!
 
 ```rb
-@pagy, @records = pagy(Product.some_scope)
+@pagy, @records = pagy(collection)
 
-# the "pagy" method translates the above into the following: 
-Product.some_scope.offset(_).limit(_) # 'limit' is called
+# behind the scene, pagy selects the page of records by doing: 
+collection.offset(_).limit(_)
 ```
+!!!warning From [PostgreSQL Documentation](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY)
 
-Why? When PosgtreSQL uses `limit` without an `ORDER BY` clause - [the results may not be ordered in the same way](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY) each time a query is run. If this is a [critical issue](https://github.com/ddnexus/pagy/issues/306) for your app, ensure you order your scope by a particular column.
+When using LIMIT, it is important to use an ORDER BY clause that constrains the result rows into a unique order. Otherwise you
+will get an unpredictable subset of the query's rows.
 !!!
 
-
-!!! success
-For consistent results (with PostgreSQL) use `order`.
+!!! success Use `order` with PostgreSQL collections!
 
 ```rb
-@pagy, @records = pagy(Product.some_scope.order(:id)) # results will be predictable (order by id)
+# results will be predictable (order by id)
+@pagy, @records = pagy(collection.order(:id))
 ```
+
 !!!
