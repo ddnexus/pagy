@@ -48,7 +48,7 @@ You should find the `./repro.ru` new app file in the current dir. Feel free to r
 |||
 ||| Develop it
 
-This command runs a puma server that logs and auto-restart your app when it changes:
+This command runs your `rackup` app with a `puma` server, with `rerun` that auto-restart it when it changes:
 
 ```sh
 pagy path/to/your/renamed-repro.ru
@@ -63,29 +63,56 @@ Edit it at will.
 ### Pagy help
 
 ```txt
-$ pagy
+$ pagy -h
 
 Pagy utility to run, create and develop pagy demo apps
 
-USAGE  
-  pagy [demo|repro|**/*.ru] [\d+|8000] 
-                Run an app on port (default 8000)
-  pagy new [demo|repro] 
-                Create a demo or repro app   
+USAGE
+  pagy new [demo|repro]
+  pagy [demo|repro|**/*.ru] [options]
+
+Rackup options
+  -o, --host      Custom host (default: 0.0.0.0)
+  -p, --port      Custom port (default: 8000)
+
+Rerun options
+  -c, --clear     Clear screen before each rerun
+      --no-rerun  Disable rerun
+
+Other options
+  -q, --quiet     Quiet mode
+  -h, --help      Print this message and exit
 
 EXAMPLES
-  pagy          Print this message
-  pagy demo     Run the demo app on port 8000
-  pagy repro    Run the repro app on port 8000
-  pagy new repro 
-                Create a new repro app at ./repro.ru 
-  pagy ~/my-repro.ru 8001
-                Run your app at http://0.0.0.0:8001
+  pagy demo       Run the demo app on port 8000
+  pagy repro      Run the repro app on port 8000
+  pagy new repro  Create a new repro app at ./repro.ru
+  pagy ~/my-repro.ru -o 127.0.0.1 -p 8001
+                  Run your app at http://127.0.0.1:8001
 ```
+
+### Rerun
+
+[Rerun](https://github.com/alexch/rerun) is used for restarting your app during development.
+
+That's very convenient, but it may have still some rough edges:
 
 !!!warning ** ERROR: directory is already being watched! **
 
 Your app is in a dir with looping simlinks, and the `listen` gem cannot handle it.
 
 !!!success Move your app in a different dir
+!!!
+
+!!!warning On certain filesystems...
+
+It might not work properly or it may require additional dependencies.
+
+!!!success 
+Pass the `--no-rerun` option to work with rackup only.
+
+```sh
+pagy ./my-repro.ru --no-rerun
+```
+
 !!!
