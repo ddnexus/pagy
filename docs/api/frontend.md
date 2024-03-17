@@ -129,9 +129,9 @@ inserted *verbatim* in the HTML of the `a` tag.
 
 !!! warning Do Not Pass Attributes Already Present
 Be careful not to pass some attribute that is already added by the helper. That would generate a duplicate HTML attribute which 
-is illegal html (although handled by all mayor browsers by ignoring all the duplicates but the first).
+is invalid html (although handled by all mayor browsers by ignoring all the duplicates but the first).
 
-Easily check the native attributes produced by the helpers:
+!!!success Easily check the native component attributes:
 ```sh
 pagy run demo
 # or: bundle exec pagy run demo
