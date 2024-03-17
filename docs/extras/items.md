@@ -15,8 +15,8 @@ user-customizable UIs.
 Run the interactive demo from your terminal:
 
 ```sh
-pagy run demo
-# or: bundle exec pagy run demo
+pagy demo
+# or: bundle exec pagy demo
 ```
 ...and point your browser at http://0.0.0.0:8000
 
