@@ -64,8 +64,8 @@ attribute which is invalid html.
 !!!success Easily check the native component attributes!
 
 ```sh
-pagy run demo
-# or: bundle exec pagy run demo
+pagy demo
+# or: bundle exec pagy demo
 # ...and point your browser at http://0.0.0.0:8000
 ```
 

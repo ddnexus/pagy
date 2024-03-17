@@ -904,8 +904,8 @@ You may want to read also the [Pagy::Frontend API documentation](api/frontend.md
 !!!
 You may want to look at the actual output interactively by running:
 ```sh
-pagy run demo
-# or: bundle exec pagy run demo
-# ...and point your browser at http://0.0.0.0:8000
+pagy demo
+# or: bundle exec pagy demo
 ```
+...and point your browser at http://0.0.0.0:8000/template
 !!!

@@ -15,7 +15,7 @@ Run the interactive demo from your terminal:
 
 ```sh
 gem install pagy
-pagy run demo
+pagy demo
 ```
 ...and point your browser to http://0.0.0.0:8000
 !!!
