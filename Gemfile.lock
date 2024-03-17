@@ -139,6 +139,7 @@ GEM
       rack-protection (= 4.0.0)
       sinatra (= 4.0.0)
       tilt (~> 2.0)
+    slop (4.10.1)
     tilt (2.3.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -175,6 +176,7 @@ DEPENDENCIES
   simplecov
   sinatra
   sinatra-contrib
+  slop
 
 BUNDLED WITH
    2.5.3
