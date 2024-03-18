@@ -23,6 +23,11 @@ If you upgrade from version `< 7.0.0` see the following:
 
 <hr>
 
+## Version 7.0.11
+
+- Fix jsonapi prev and next keys for unavailable links (#665)
+- Docs fixes
+
 ## Version 7.0.10
 
 - Added name attribute to combo and items input tags; removed pagy_marked_link and refactored js input action
