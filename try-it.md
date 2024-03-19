@@ -29,13 +29,13 @@ At the moment we have a couple of single-file sinatra apps ready to run in your 
 
 An interactive showcase of all the helpers and styles.
 
-Available with `pagy demo` (or `bundle exec pagy demo`). You can use it to check the look and the functionalities of 
-all the components of the different styles.
+Available with `pagy demo` (or `bundle exec pagy demo`). You can use it to check the look and the functionalities of all the
+components of the different styles.
 
 #### 2. Repro.ru
 
-A minimalistic app that you can use as a starting point for prototyping or reproducing issues, in order
-to get support or file bugs reports.
+A pagy-ready, no-setup, single-file, minimalistic app that you can use as a starting point for prototyping or reproducing issues,
+in order to get support or file bugs reports.
 
 ||| Create a new `repro.ru` app
 
@@ -108,7 +108,7 @@ Your app is in a dir with looping simlinks, and the `listen` gem cannot handle i
 
 It might not work properly or it may require additional dependencies.
 
-!!!success 
+!!!success
 Pass the `--no-rerun` option to work with rackup only.
 
 ```sh

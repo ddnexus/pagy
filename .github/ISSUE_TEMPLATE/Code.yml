@@ -7,32 +7,18 @@ body:
   - type: markdown
     attributes:
       value: >
-        Thanks for taking the time to fill out this bug report!
-
-
-        ### IMPORTANT
-
-
-        _Code Issues are reserved for real, reproducible pagy bugs.
-        If you are not sure that your problem is a bug, please ask for solutions in the
-        [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a) support area._
-
-
-        ### PREREQUISITE
-
-
-        **We need running code to reproduce the problem with a single click or command!**
-
-
-        Please, understand that we cannot write the code that fails for you,
-        so ONLY pick and provide your preferred support from the list below...
+        ### Thank you for your bug report!
+        
+        Please, understand that code issues are reserved for real, reproducible pagy bugs.
+        
+        _If you are not sure that your problem is actually a bug, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a) instead._
 
   - type: checkboxes
     id: prereq
     attributes:
       label: Before submitting...
       options:
-        - label: I upgraded to the latest version of pagy
+        - label: I upgraded to the last pagy version
           required: true
         - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/)
           required: true
@@ -41,31 +27,47 @@ body:
         - label: I searched through the [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
           required: true
 
+  - type: markdown
+    attributes:
+      value: >
+        ### IMPORTANT!
+        
+        **The issue MUST provide a code file confirming the bug AND complying with the list below
+        OR it will be automatically closed!**
+        
+        
+        #### Valid code files 
+        
+        
+        - Edited copy of the single file [repro.ru](https://ddnexus.github.io/pagy/try-it/#2-reproru) <<< **RECOMMENDED!** 
+        
+        - Edited copy of the single file [pagy_bare_rails.rb](https://github.com/ddnexus/pagy/blob/master/apps/pagy_bare_rails.rb)
+        
+        - Link to a pagy fork containing an added test file
+
+        - A plain ruby file that can run as a single command `ruby my-problem.rb` 
+        _(without any other setup step, installation or guessing, and with no or minimal interaction required)_
+        
+        
+        If anything is unclear to you, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a). We will be happy to help.
+
   - type: checkboxes
     id: support
     attributes:
-      label: I am providing...
-      description: |
-        ...at least one of the following code supports reproducing the issue:
+      label: REQUIREMENTS
       options:
-        - label: >
-            Simple snippet that would work **"as-is" in vanilla IRB (no rails console) without invoking
-            any external/non-pagy code or gem!** (You may find the
-            [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console) helpful)
-        - label: Plain ruby file that can run as `ruby my-problem.rb`
-        - label: >
-            Edited copy of the single file repro.ru (or demo.ru). Please follow the
-            [simple steps](https://ddnexus.github.io/pagy/try-it/#2-reproru) about how to do it
-        - label: >               
-            Edited copy of the single file
-            [pagy_bare_rails.rb](https://github.com/ddnexus/pagy/blob/master/apps/pagy_bare_rails.rb)
-        - label: Link of my own branch forked from pagy, which contains an added test file
-        - label: A `docker-compose` file that uses only docker images and no local context and runs with `docker-compose up`
+        - label: I am providing a code file that confirms the bug
+          required: true
+        - label: I am aware that this issue will be automatically closed if the code file is missing or invalid
+          required: true
 
   - type: textarea
     id: description
     attributes:
       label: Description
-      placeholder: Please, describe the issue...
+      placeholder: >
+        1. Describe what actually happens
+        
+        2. Describe what should happen instead
     validations:
       required: true
