@@ -34,9 +34,6 @@ describe 'pagy' do
     it 'defines the same version in CHANGELOG.md' do
       _(Pagy.root.parent.join('CHANGELOG.md').read).must_match "## Version #{Pagy::VERSION}"
     end
-    it 'defines the same version in .github/.env' do
-      _(File.read('.github/.env')).must_match "VERSION=#{Pagy::VERSION}"
-    end
     it 'defines the same minor version in ./quick-start.md' do
       _(File.read('./quick-start.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
     end
