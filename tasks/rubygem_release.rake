@@ -19,7 +19,7 @@ module Bundler # :nodoc: all
 end
 
 desc 'Checks-build-release-tag-cleanup cycle'
-task :safe_release do
+task :rubygem_release do
   output = `git status --porcelain`
   abort 'Working tree dirty!' unless output.empty?
 
