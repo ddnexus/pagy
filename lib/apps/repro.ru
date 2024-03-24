@@ -5,14 +5,16 @@
 
 # USAGE
 # To reproduce some issue:
-#    pagy create repro
-#    pagy develop ./repro.ru
+#    pagy new repro
+#    pagy ./repro.ru
 # ...point your browser to http://0.0.0.0:8000
 # Edit something in the "repro.ru" just created in your current dir and it will
 # be automatically restarted, so you can reload your browser page and see the effect
 
 # HELP:
-#    pagy help
+#    pagy -h
+
+VERSION = '7.0.11'
 
 require 'bundler/inline'
 gemfile true do

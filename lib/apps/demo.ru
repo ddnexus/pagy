@@ -3,11 +3,13 @@
 # Self-contained sinatra app to play with the pagy styles in the browser
 
 # USAGE
-#    pagy start demo
+#    pagy demo
 # ...point your browser to http://0.0.0.0:8000
 
 # Help:
-#    pagy help
+#    pagy -h
+
+VERSION = '7.0.11'
 
 require 'bundler/inline'
 gemfile true do
