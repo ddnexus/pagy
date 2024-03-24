@@ -29,6 +29,7 @@ Layout/ExtraSpacing:
     Enabled: true
   Exclude:
     - test/**/*
+    - lib/bin/pagy
 
 Layout/EmptyLines:
   Exclude:

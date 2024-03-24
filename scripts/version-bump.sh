@@ -28,7 +28,11 @@ function bump(){
 }
 
 bump "$ROOT/retype.yml"
+bunp "$ROOT/.github/ISSUE_TEMPLATE/Code.yml"
 bump "$ROOT/lib/pagy.rb"
+bump "$ROOT/lib/apps/demo.ru"
+bump "$ROOT/lib/apps/repro.ru"
+bump "$ROOT/lib/bin/pagy"
 bump "$ROOT/lib/config/pagy.rb"
 bump "$ROOT/src/pagy.ts"
 

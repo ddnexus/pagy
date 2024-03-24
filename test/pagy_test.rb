@@ -19,8 +19,18 @@ describe 'pagy' do
     it 'defines the same version in retype.yml' do
       _(File.read('./retype.yml')).must_match "label: #{Pagy::VERSION}"
     end
+    it 'defines the same version in .github/ISSUE_TEMPLATE/Code.yml' do
+      _(File.read('./.github/ISSUE_TEMPLATE/Code.yml')).must_match "I upgraded to pagy version #{Pagy::VERSION}"
+    end
     it 'defines the same version in config/pagy.rb' do
       _(Pagy.root.join('config', 'pagy.rb').read).must_match "# Pagy initializer file (#{Pagy::VERSION})"
+    end
+    it 'defines the same version in bin/pagy' do
+      _(Pagy.root.join('bin', 'pagy').read).must_match "VERSION = '#{Pagy::VERSION}'"
+    end
+    it 'defines the same version in apps/*.ru' do
+      _(Pagy.root.join('apps', 'demo.ru').read).must_match "VERSION = '#{Pagy::VERSION}'"
+      _(Pagy.root.join('apps', 'repro.ru').read).must_match "VERSION = '#{Pagy::VERSION}'"
     end
     it 'defines the same version in javascripts/pagy.js' do
       _(Pagy.root.join('javascripts', 'pagy.js').read).must_match "version:\"#{Pagy::VERSION}\","

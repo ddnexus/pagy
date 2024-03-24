@@ -65,37 +65,38 @@ Edit it at will.
 ```txt
 $ pagy -h
 
-Pagy utility to run, create and develop pagy demo apps
+  Pagy utility to run, create and develop pagy demo apps
 
-USAGE
-  pagy new [demo|repro]
-  pagy [demo|repro|**/*.ru] [options]
+  USAGE
+    pagy new [demo|repro]
+    pagy [demo|repro|**/*.ru] [options]
 
-Rackup options
-  -o, --host      Custom host (default: 0.0.0.0)
-  -p, --port      Custom port (default: 8000)
+  Rackup options
+    -o, --host      Custom host (default: 0.0.0.0)
+    -p, --port      Custom port (default: 8000)
 
-Rerun options
-  -c, --clear     Clear screen before each rerun
-      --no-rerun  Disable rerun
+  Rerun options
+    -c, --clear     Clear screen before each rerun
+        --no-rerun  Disable rerun
 
-Other options
-  -q, --quiet     Quiet mode
-  -h, --help      Print this message and exit
+  Other options
+    -q, --quiet     Quiet mode
+    -h, --help      Print this message and exit
+    -v, --version   Print the version and exit
 
-EXAMPLES
-  pagy demo       Run the demo app on port 8000
-  pagy repro      Run the repro app on port 8000
-  pagy new repro  Create a new repro app at ./repro.ru
-  pagy ~/my-repro.ru -o 127.0.0.1 -p 8001
-                  Run your app at http://127.0.0.1:8001
+  EXAMPLES
+    pagy demo       Run the demo app at http://0.0.0.0:8000
+    pagy repro      Run the repro app at http://0.0.0.0:8000
+    pagy new repro  Create a new repro app at ./repro.ru
+    pagy ~/my-repro.ru -o 127.0.0.1 -p 8001
+                    Run your app at http://127.0.0.1:8001
 ```
 
 ### Rerun
 
 [Rerun](https://github.com/alexch/rerun) is used for restarting your app during development.
 
-That's very convenient, but it may have still some rough edges:
+That's very convenient, but it may still have some rough edges:
 
 !!!warning ** ERROR: directory is already being watched! **
 

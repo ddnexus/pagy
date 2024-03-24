@@ -11,14 +11,15 @@ body:
         
         Please, understand that code issues are reserved for real, reproducible pagy bugs.
         
-        _If you are not sure that your problem is actually a bug, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a) instead._
+        _If you are not sure that your problem is actually a bug,
+        please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a) instead._
 
   - type: checkboxes
     id: prereq
     attributes:
       label: Before submitting...
       options:
-        - label: I upgraded to the last pagy version
+        - label: I upgraded to pagy version 7.0.11
           required: true
         - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/)
           required: true
@@ -49,7 +50,8 @@ body:
         _(without any other setup step, installation or guessing, and with no or minimal interaction required)_
         
         
-        If anything is unclear to you, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a). We will be happy to help.
+        _If anything is unclear to you, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a).
+        We will be happy to help._
 
   - type: checkboxes
     id: support
