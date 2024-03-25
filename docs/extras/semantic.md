@@ -10,7 +10,7 @@ image: none
 
 Add javascript nav helpers for Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html#pagination).
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
 
 ## Synopsis
 

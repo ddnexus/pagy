@@ -1,18 +1,27 @@
 # frozen_string_literal: true
 
-# Self-contained sinatra app to play with the pagy styles in the browser
+# Interactive showcase for all the pagy helpers and CSS styles
 
-# USAGE
+# DEMO USAGE
 #    pagy demo
-# ...point your browser to http://0.0.0.0:8000
 
-# Help:
+# DEV USAGE
+#    pagy clone demo
+#    pagy ./demo.ru
+
+# URL
+#    http://0.0.0.0:8000
+
+# HELP
 #    pagy -h
+
+# DOC
+#    https://ddnexus.github.io/pagy/playground/#3-demo-app
 
 VERSION = '7.0.11'
 
 require 'bundler/inline'
-gemfile true do
+gemfile(true) do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
@@ -268,6 +277,12 @@ __END__
       font-family: sans-serif;
       font-weight: normal;
     }
+    .notes code{
+      background-color: #E8E8E8;
+      padding: 0 0.3rem;
+      font-style: normal;
+      border-radius: 3px;
+    }
     .description {
        margin: 1rem 0;
     }
@@ -372,15 +387,19 @@ documentation for details</p>
 <h3>Collection</h3>
 <p>@records: <%= @records.join(',') %></p>
 
-<h4>pagy<%= prefix %>_nav</h4>
+<h4>pagy<%= prefix %>_nav <span class="notes">Simple nav <code>size: 5</code></span></h4>
+<%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav', size: 5) %>
+<%= highlight(html) %>
+
+<h4>pagy<%= prefix %>_nav <span class="notes">Classic nav <code>size: [1,4,4,1]</code></span></h4>
 <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
 <%= highlight(html) %>
 
-<h4>pagy<%= prefix %>_nav_js</h4>
+<h4>pagy<%= prefix %>_nav_js <span class="notes">Classic nav <code>size: [1,4,4,1]</code></span></h4>
 <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
 <%= highlight(html) %>
 
-<h4>pagy<%= prefix %>_nav_js <span class="notes">(responsive on window resize)</span></h4>
+<h4>pagy<%= prefix %>_nav_js <span class="notes">Responsive <code>steps: {...}</code> on window resize</span></h4>
 <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
      aria_label: 'Pages nav_js_responsive',
      steps: { 0 => 5, 500 => [1,3,3,1], 700 => [1,4,4,1], 900 => [2,4,4,2] }) %>
@@ -403,7 +422,7 @@ documentation for details</p>
 <%= html = '<nav class="pagy">' << pagy_prev_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
 <%= highlight(html) %>
 
-<h4>pagy_prev_link / pagy_next_link <span class="notes">(link obviously not rendered)<span></h4>
+<h4>pagy_prev_link / pagy_next_link <span class="notes">Link obviously not rendered<span></h4>
 <% html = '<head>' << (pagy_prev_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
 <%= highlight(html) %>
 <% end %>

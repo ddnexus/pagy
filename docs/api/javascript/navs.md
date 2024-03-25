@@ -25,7 +25,7 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js.png)
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
 
 ## Synopsis
 

@@ -8,7 +8,7 @@ category: Frontend
 
 Add nav helpers for the UIkit [pagination component](https://getuikit.com/docs/pagination).
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
 
 ## Synopsis
 

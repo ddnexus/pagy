@@ -272,7 +272,8 @@ requiring them (and optionally overriding some default).
   Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
 - [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize): Add nav helpers for the Materialize
   CSS [pagination component](https://materializecss.com/pagination.html)
-- [pagy](https://ddnexus.github.io/pagy/docs/extras/pagy): Adds the pagy styled versions of the javascript-powered nav helpers and other components to support countless or navless pagination (incremental,
+- [pagy](https://ddnexus.github.io/pagy/docs/extras/pagy): Adds the pagy styled versions of the javascript-powered nav helpers and
+  other components to support countless or navless pagination (incremental,
   auto-incremental, infinite pagination).
 - [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic): Add nav helpers for the Semantic UI
   CSS [pagination component](https://semantic-ui.com/collections/menu.html)
@@ -383,9 +384,9 @@ Many thanks to:
 
 - Pull Requests are welcome!
 - Please base your PR against the master branch.
-- For simple contribution you can quickly check your changes with
-  the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/) or with the single
-  file [pagy_standalone.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_standalone.ru).
+- For simple contribution you can quickly check your changes with one of the apps in
+  the [Pagy Playground](https://ddnexus.github.io/pagy/playground) and/or
+  the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/).
 - If you Create A Pull Request, please ensure that the "All checks have passed" indicator gets green light on the Pull Request
   page (if it's not enabled, a maintainer will enable it for you).
 

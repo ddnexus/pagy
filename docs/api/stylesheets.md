@@ -75,4 +75,4 @@ stylesheet_path = Pagy.root.join('stylesheets', 'pagy.tailwind.scss')
 
 +++
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)

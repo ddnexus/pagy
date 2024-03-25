@@ -40,13 +40,11 @@ body:
         #### Valid code files 
         
         
-        - Edited copy of the single file [repro.ru](https://ddnexus.github.io/pagy/try-it/#2-reproru) <<< **RECOMMENDED!** 
-        
-        - Edited copy of the single file [pagy_bare_rails.rb](https://github.com/ddnexus/pagy/blob/master/apps/pagy_bare_rails.rb)
+        - Edited copy of a single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/playground) 
         
         - Link to a pagy fork containing an added test file
 
-        - A plain ruby file that can run as a single command `ruby my-problem.rb` 
+        - A plain ruby file that can run as a single command `ruby issue_123.rb`
         _(without any other setup step, installation or guessing, and with no or minimal interaction required)_
         
         

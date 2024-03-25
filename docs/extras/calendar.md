@@ -16,9 +16,7 @@ record in its time unit.
 
 ![calendar_app](/docs/assets/images/calendar-app.png)
 
-!!!
-Try the single-file self-contained [pagy_calendar.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar.ru) app
-!!!
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#4-calendar-app)
 
 ## Use cases
 
@@ -84,17 +82,7 @@ The whole usage boils down to these steps:
 3. Define the [pagy_calendar_filter](#pagy-calendar-filter-collection-from-to) method in your controller
 4. Use it in your UI
 
-!!! Interactive Demo App Available!
-
-You can play with a quick demo app, working without any additional configuration with:
-
-```sh
-git clone --depth 1 https://github.com/ddnexus/pagy
-cd pagy
-rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar.ru
-```
-...and point your browser to http://0.0.0.0:8080
-!!!
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#4-calendar-app)
 
 ## Variables and Accessors
 
@@ -135,10 +123,6 @@ calendar. For example:
 <!-- Showtime shows the `DateTime` beginning of the smallest time unit currently shown in the calendar -->
 <p>Showtime: <%= @calendar.showtime %></p>
 ```
-
-See also the the single-file
-self-contained [pagy_calendar.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar.ru) for an interactive
-demo.
 
 ### `collection` argument
 
@@ -192,8 +176,6 @@ If the `:pagy` key/value is omitted, a default `Pagy` instance will be created b
 The calendar is active by default, however you can add an optional `:active` boolean flag to the `configuration` hash in order to
 switch it ON or OFF, depending on its usefulness in different conditions (see the [Use cases](#use-cases)).
 
-Take a look at the [pagy_calendar.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar.ru) for a simple
-example of a manual toggle in the UI.
 
 ==- `pagy_calendar_period(collection)`
 
@@ -318,8 +300,7 @@ with `Pagy::Calendar::*` objects.
 This helper takes the `@calendar` and a `TimeWithZone` objects and returns the url complete with all the params for the pages in
 each bars that include the passed time.
 
-For example: `pagy_calendar_url_at(@calendar, Time.zone.now)` will select the the bars pointing to today. You can see a working
-example in the [pagy_calendar.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar.ru) file.
+For example: `pagy_calendar_url_at(@calendar, Time.zone.now)` will select the the bars pointing to today.
 
 If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRangeError`, however you can pass the
 option `fit_time: true` to avoid the error and get the url to the page closest to the passed time argument (first or last page).

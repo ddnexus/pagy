@@ -10,7 +10,7 @@ image: none
 
 Add nav helpers for the Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination).
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
 ## Synopsis
 
 ```ruby pagy.rb (initializer)
