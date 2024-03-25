@@ -23,7 +23,8 @@ Here is a screenshot (from the `bootstrap` extra):
 
 ![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
+
 ## Synopsis
 
 See [Setup Javascript](setup.md).

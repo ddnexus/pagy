@@ -1,4 +1,6 @@
+lib/apps/calendar.ru
 lib/apps/demo.ru
+lib/apps/rails.ru
 lib/apps/repro.ru
 lib/bin/pagy
 lib/config/pagy.rb

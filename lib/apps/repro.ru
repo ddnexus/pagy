@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
-# Self-contained, standalone Sinatra app usable to play with pagy
-# and/or easily reproduce any pagy issue.
+# Starting point app to try pagy or reproduce issues
 
-# USAGE
-# To reproduce some issue:
-#    pagy new repro
+# DEV USAGE
+#    pagy clone repro
 #    pagy ./repro.ru
-# ...point your browser to http://0.0.0.0:8000
-# Edit something in the "repro.ru" just created in your current dir and it will
-# be automatically restarted, so you can reload your browser page and see the effect
 
-# HELP:
+# URL
+#    http://0.0.0.0:8000
+
+# HELP
 #    pagy -h
+
+# DOC
+#    https://ddnexus.github.io/pagy/playground/#1-repro-app
 
 VERSION = '7.0.11'
 
 require 'bundler/inline'
-gemfile true do
+gemfile(true) do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
-  gem 'rouge'
   gem 'sinatra'
   gem 'sinatra-contrib'
 end
@@ -136,7 +136,7 @@ __END__
 @@ main
 <div class="content">
   <h3>Pagy Repro App</h3>
-  <p> Self-contained, standalone Sinatra app usable toss easily reproduce any pagy issue.</p>
+  <p> Self-contained, standalone Sinatra app usable to easily reproduce any pagy issue.</p>
   <p>Please, report the following versions in any new issue.</p>
   <h4>Versions</h4>
   <ul>

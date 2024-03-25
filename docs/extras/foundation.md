@@ -10,7 +10,7 @@ image: none
 
 Add nav helpers for the Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html).
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
 
 ## Synopsis
 

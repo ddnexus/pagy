@@ -39,8 +39,7 @@ None
 
 ## Changes
 
-- Streamlined HTML and CSS helper structure. You may want to look at the actual output by running the single-file self-contained 
-  app [!file](/lib/apps/demo.ru)
+- Streamlined HTML and CSS helper structure. You may want to look at the actual output by running the [pagy demo](/playground.md#3-demo-app)
   - The `pagy_nav` and `pagy_nav_js` are a series of `a` tags inside a wrapper `nav` tag (nothing else there)
   - The disabled links are so because they are missing the `href` attributes
   - The `pagy`, `pagy-nav` and `pagy-nav-js` classes are assigned to the `nav` tag

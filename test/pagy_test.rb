@@ -29,8 +29,9 @@ describe 'pagy' do
       _(Pagy.root.join('bin', 'pagy').read).must_match "VERSION = '#{Pagy::VERSION}'"
     end
     it 'defines the same version in apps/*.ru' do
-      _(Pagy.root.join('apps', 'demo.ru').read).must_match "VERSION = '#{Pagy::VERSION}'"
-      _(Pagy.root.join('apps', 'repro.ru').read).must_match "VERSION = '#{Pagy::VERSION}'"
+      %w[calendar demo rails repro].each do |app|
+        _(Pagy.root.join('apps', "#{app}.ru").read).must_match "VERSION = '#{Pagy::VERSION}'"
+      end
     end
     it 'defines the same version in javascripts/pagy.js' do
       _(Pagy.root.join('javascripts', 'pagy.js').read).must_match "version:\"#{Pagy::VERSION}\","

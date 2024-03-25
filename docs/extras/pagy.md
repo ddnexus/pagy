@@ -11,7 +11,7 @@ categories:
 Adds the pagy styled versions of the javascript-powered navs and a few other components to support countless or navless
 pagination (incremental, auto-incremental, infinite pagination).
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/try-it.md)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
 
 ## Synopsis
 

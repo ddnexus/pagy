@@ -11,47 +11,69 @@ gemfile true do
   gem 'slop'
 end
 
-help = <<~HELP
+# See https://github.com/leejarvis/slop/issues/282
+module SlopFix
+  def value
+    @value.nil? ? default_value : @value
+  end
+end
+Slop::Option.prepend SlopFix
 
-  Pagy utility to run, create and develop pagy demo apps
+APPS = %w[repro rails demo calendar].freeze
+HELP = <<~HELP
+
+  Playground to showcase, clone and develop pagy APPs
+  https://ddnexus.github.io/pagy/playground
+
+  APPs
+    repro          Starting point app to reproduce issues or try pagy
+    rails          Starting point app to reproduce rails related issues
+    demo           Interactive showcase for all the helpers and styles
+    calendar       Interactive showcase/repro for the pagy calendar extra
 
   USAGE
-    pagy new [demo|repro]
-    pagy [demo|repro|**/*.ru] [options]
+    pagy APP [options]
+                   Showcase APP from the pagy installation directory
+    pagy clone APP
+                   Clone APP to the current dir
+    pagy APPFILE [options]
+                   Develop **/*.ru APPFILE
 
   Rackup options
-    -o, --host      Custom host (default: 0.0.0.0)
-    -p, --port      Custom port (default: 8000)
+    -e  --env       Environment (default: development) [fixed for showcase]
+    -o, --host      Host (default: 0.0.0.0)
+    -p, --port      Port (default: 8000)
 
   Rerun options
     -c, --clear     Clear screen before each rerun
-        --no-rerun  Disable rerun
+        --no-rerun  Disable rerun [disabled for showcase]
 
   Other options
-    -q, --quiet     Quiet mode
-    -h, --help      Print this message and exit
-    -v, --version   Print the version and exit
+    -q, --quiet     Quiet mode [set for showcase]
+    -h, --help      Print this message
+    -v, --version   Print the version
 
   EXAMPLES
-    pagy demo       Run the demo app at http://0.0.0.0:8000
-    pagy repro      Run the repro app at http://0.0.0.0:8000
-    pagy new repro  Create a new repro app at ./repro.ru
+    pagy demo       Showcase the demo app at http://0.0.0.0:8000
+    pagy clone repro
+                    Clone the repro app to ./repro.ru
     pagy ~/my-repro.ru -o 127.0.0.1 -p 8001
-                    Run your app at http://127.0.0.1:8001
+                    Develop ~/my-repro.ru at http://127.0.0.1:8001
 HELP
 
 opts = Slop.parse(validate_types: true) do |o|
-  o.string  '-o', '--host',    'Custom host', default: '0.0.0.0'
-  o.integer '-p', '--port',    'Custom port', default: 8000
+  o.string  '-o', '--host',    'Host', default: '0.0.0.0'
+  o.integer '-p', '--port',    'Port', default: 8000
+  o.string  '-e', '--env',     'Environment', default: 'development'
   o.bool    '-c', '--clear',   'Clear screen before each rerun', default: false
   o.bool    '-r', '--rerun',   'Enable rerun for **/*.ru', default: true
   o.bool    '-q', '--quiet',   'Quiet mode'
-  o.on      '-h', '--help',    'Print this message and exit' do
-    puts help
+  o.on      '-h', '--help',    'Print this message' do
+    puts HELP
     exit
   end
-  o.on      '-v', '--version', 'Print the version and exit' do  # rubocop:disable Layout/SpaceBeforeFirstArg
-    puts "Pagy #{VERSION}"
+  o.on      '-v', '--version', 'Print the version' do  # rubocop:disable Layout/SpaceBeforeFirstArg
+    puts VERSION
     exit
   end
 end
@@ -65,20 +87,15 @@ arg  = args.shift
 case arg
 
 when nil
-  puts help
+  puts HELP
 
-when 'new'
+when 'clone'
   app = args.shift
-  case app
-  when nil
-    warn "\nERROR: Missing argument: demo|repro!\nHelp: pagy -h"
-    exit 1
-
-  when 'demo', 'repro'
+  if APPS.include?(app)
     path = path(app)
     name = File.basename(path)
     if File.exist?(name)
-      print "Do you want to overwrite the '#{name}' file? (y/n)> "
+      print "Do you want to overwrite the #{name.inspect} file? (y/n)> "
       answer = gets.chomp
       exit unless answer.start_with?(/y/i)
     end
@@ -86,23 +103,28 @@ when 'new'
     require 'fileutils'
     FileUtils.cp(path, '.', verbose: true)
   else
-    warn "\nERROR: Unknown app: '#{app}'!\nHelp: pagy -h"
-    exit 2
+    warn "\nERROR: Expected APP to be in [#{APPS.join(', ')}]; got #{app.inspect}!\nHelp: pagy -h"
+    exit 1
   end
 
 else
-  if arg.eql?('demo') || arg.eql?('repro')
+  if APPS.include?(arg)  # showcase env
     opts[:rerun] = false
     opts[:quiet] = true
+    opts[:env]   = 'showcase'
+    if arg.eql?('rails')
+      # avoid the creation of './tmp/local_secret.txt' for showcase env
+      ENV['SECRET_KEY_BASE'] = 'absolute secret!'
+    end
     path = path(arg)
-  else
+  else                   # development env
     path = arg
   end
   unless File.exist?(path)
-    warn "\nERROR: App '#{path}' not found!\nHelp: pagy -h"
-    exit 3
+    warn "\nERROR: #{path.inspect} app not found!\nHelp: pagy -h"
+    exit 2
   end
-  rackup = "rackup -I #{File.expand_path('..', __dir__)} -r pagy -o #{opts[:host]} -p #{opts[:port]} #{path}"
+  rackup = "rackup -I #{File.expand_path('..', __dir__)} -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{path}"
   rackup << ' -q' if opts[:quiet]
   if opts[:rerun]
     name = File.basename(path)
@@ -110,6 +132,8 @@ else
     rerun << ' -q' if opts[:quiet]
     rerun << ' -c' if opts[:clear]
     rerun << " -- #{rackup}"
+    exec(rerun)
+  else
+    exec(rackup)
   end
-  exec(rerun || rackup)
 end
