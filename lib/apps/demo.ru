@@ -31,13 +31,13 @@ gemfile(true) do
 end
 
 # pagy initializer
-STYLES = { pagy:        { extra: 'pagy', prefix: '' },
+STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
            bootstrap:   {},
            bulma:       {},
            foundation:  {},
            materialize: {},
            semantic:    {},
-           tailwind:    { extra: 'pagy', prefix: '' },
+           tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css'  },
            uikit:       {} }.freeze
 
 STYLES.each_key do |style|
@@ -369,7 +369,7 @@ __END__
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
 <!-- copy and paste the pagy.tailwind style in order to edit it -->
 <style type="text/tailwindcss">
-  <%= Pagy.root.join('stylesheets', 'pagy.tailwind.scss').read %>
+  <%= Pagy.root.join('stylesheets', 'pagy.tailwind.css').read %>
 </style>
 
 @@ uikit_head
@@ -381,10 +381,16 @@ __END__
 @@ helpers
 <h1><%= style %></h1>
 <% extra = STYLES[style][:extra] || "#{style}" %>
-<p class="description">See the <a href="http://ddnexus.github.io/pagy/docs/extras/<%= extra %>"><%= extra %> extra</a>
-documentation for details</p>
+<% css_anchor = STYLES[style][:css_anchor] %>
 
-<h3>Collection</h3>
+<p class="description">See the <a href="http://ddnexus.github.io/pagy/docs/extras/<%= extra %>" target="blank"><%= extra %> extra</a>
+documentation
+<% if css_anchor %>
+  and the <a href="http://ddnexus.github.io/pagy/docs/api/stylesheets/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
+<% end %>
+for details</p>
+
+<h4>Collection</h4>
 <p>@records: <%= @records.join(',') %></p>
 
 <h4>pagy<%= prefix %>_nav <span class="notes">Simple nav <code>size: 5</code></span></h4>
@@ -399,7 +405,7 @@ documentation for details</p>
 <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
 <%= highlight(html) %>
 
-<h4>pagy<%= prefix %>_nav_js <span class="notes">Responsive <code>steps: {...}</code> on window resize</span></h4>
+<h4>pagy<%= prefix %>_nav_js <span class="notes">Responsive <code>steps: {...}</code> (Resize the window to see)</span></h4>
 <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
      aria_label: 'Pages nav_js_responsive',
      steps: { 0 => 5, 500 => [1,3,3,1], 700 => [1,4,4,1], 900 => [2,4,4,2] }) %>

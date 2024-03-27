@@ -85,5 +85,5 @@ lib/pagy/i18n.rb
 lib/pagy/url_helpers.rb
 lib/stylesheets/pagy.css
 lib/stylesheets/pagy.scss
-lib/stylesheets/pagy.tailwind.scss
+lib/stylesheets/pagy.tailwind.css
 LICENSE.txt
