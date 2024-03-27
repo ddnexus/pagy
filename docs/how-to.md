@@ -41,9 +41,10 @@ See also a couple of extras that handle the `:items` in some special way:
 
 ## Control the page links
 
-You can control the number and position of the page links in the navigation through the `:size` variable.
+You can control the number and position of the page links in the navigation through the `:size` variable or override the 
+`series` method.
 
-### Simple nav
+==- Simple nav
 
 You can set the `:size` variable to a single positive Integer to represent the total number of page links rendered. The current
 page will be placed as centered as possible in the series.
@@ -67,7 +68,7 @@ algorithm, the series length is more constant, cleaner and less confusing to the
 user to jump to the first or last page of a long series, which may or may not be a limitation. For example: with a navigation
 using `Pagy::Countless` or `Calendar` it is a clear advantage.
 
-### Classic nav
+==- Classic nav
 
 You can set the `:size` variable to an array of 4 integers in order to specify which and how many page links to show.
 
@@ -93,7 +94,7 @@ current page, the current `:page` (which is a string), 4 pages after the current
 You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to
 see what it contains when used in combination with different core variables.
 
-### Skip the page links
+==- Skip the page links
 
 If you want to skip the generation of the page links, just set the `:size` variable to an empty array:
 
@@ -103,11 +104,13 @@ pagy.series
 #=> []
 ```
 
-### Customize the series
+==- Customize the series
 
 If changing the `:size` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place
 of gaps) you should override the `series` method. See more details and
 examples [here](https://github.com/ddnexus/pagy/issues/245).
+
+===
 
 ## Pass the page number
 
@@ -131,29 +134,7 @@ specific app.
 
 <summary>Default en dictionary</summary>
 
-```yaml
-# English default 118n dictionary
-en:
-  pagy:
-    aria_label:
-      nav:
-        one: "Page"
-        other: "Pages"
-      previous: "Previous"
-      next: "Next"
-    prev: "&lt;"
-    next: "&gt;"
-    gap: "&hellip;"
-    item_name:
-      one: "item"
-      other: "items"
-    info:
-      no_items: "No %{item_name} found"
-      single_page: "Displaying <b>%{count}</b> %{item_name}"
-      multiple_pages: "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>%{count}</b> in total"
-    combo_nav_js: "Page %{page_input} of %{pages}"
-    items_selector_js: "Show %{items_input} %{item_name} per page"
-``` 
+:::code source="/lib/locales/en.yml" :::
 
 </details>
 <br>
@@ -173,40 +154,6 @@ and configure pagy to use them.
 Pagy::I18n.load({ locale: 'de', filepath: 'path/to/my-custom-de.yml' },
                 { locale: 'en', filepath: 'path/to/my-custom-en.yml' })
 ```
-
-### Example of custom dictionary
-
-You may want to customize the output of a few entries, leaving the other entries in place:
-
-<details>
-<summary>Custom en dictionary</summary>
-
-```yaml
-# English custom 118n dictionary
-en:
-  pagy:
-    aria_label:
-      nav:
-        one: "Page"
-        other: "Pages"
-      previous: "Previous"
-      next: "Next"
-    prev: "&lt;"
-    next: "&gt;"
-    gap: "&hellip;"
-    item_name:
-      one: "item"
-      other: "items"
-    info:
-      no_items: "0 of 0"                            # customized
-      single_page: "%{count} of %{count}"           # customized
-      multiple_pages: "%{from}-%{to} of %{count}"   # customized
-    combo_nav_js: "Page %{page_input} of %{pages}"
-    items_selector_js: "Show %{items_input} %{item_name} per page"
-```
-
-</details>
-<br>
 
 ## Customize the ARIA labels
 
@@ -252,8 +199,7 @@ pagy = Pagy.new(count: 1000, anchor_string: 'data-remote="true"')
 <%== pagy_bootstrap_nav(@pagy, anchor_string: 'data-action="hello#world"') %> 
 ```
 
-See more advanced details about [The anchor_string variable](api/frontend.md#the-anchor_string-variable))_
-
+_See more advanced details about [The anchor_string variable](api/frontend.md#the-anchor_string-variable)_
 
 ## Customize the params
 
@@ -292,7 +238,7 @@ method or the `Pagy.trim` javascript function.
 
 The following are a couple of examples.
 
-### Enable fancy-routes
+==- Enable fancy-routes
 
 The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths
 like `your_route/23` instead of `your_route?page=23`):
@@ -310,7 +256,7 @@ The above overridden method is quite slower than the original because it passes 
 mitigated by the internal usage of `pagy_anchor` which calls the method only once even in the presence of many pages.
 !!!
 
-#### POST with page links
+==- POST with page links
 
 You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and
 your page links may need to use POST and not GET. In that case you can try this simple solution:
@@ -329,7 +275,7 @@ be posted.
 For a broader tutorial about this topic
 see [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html)
 by Ben Koshy.
-
+===
 ## Customize the item name
 
 The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that
@@ -407,10 +353,14 @@ See the [array](extras/array.md) extra.
 
 ## Paginate ActiveRecord collections
 
-Pagy works out of the box with `ActiveRecord` collections. See also the [arel extra](http://ddnexus.github.io/pagy/extras/arel)
-for better performance of grouped ActiveRecord collections.
+Pagy works out of the box with `ActiveRecord` collections, however here are a few specific cases that might be treated 
+differently:
 
-### Paginate a decorated collection
+==- Grouped collection
+
+For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel extra](extras/arel.md).
+
+==- Decorated collection
 
 Do it in 2 steps: first get the page of records without decoration, and then apply the decoration to it. For example:
 
@@ -419,7 +369,7 @@ Do it in 2 steps: first get the page of records without decoration, and then app
 @decorated_records = records.decorate # or YourDecorator.method(records) whatever works
 ```
 
-### Custom count for custom scopes
+==- Custom scope/count
 
 Your scope might become complex and the default pagy `collection.count(:all)` may not get the actual count. In that case you can
 get the right count in a couple of ways:
@@ -432,9 +382,20 @@ get the right count in a couple of ways:
 @pagy, @records = pagy(custom_scope, count: custom_count)
 ```
 
-### Paginate a grouped collection
+==- Ransack results
 
-For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel extra](extras/arel.md).
+Ransack `result` returns an `ActiveRecord` collection, which can be paginated out of the box. For example:
+
+```ruby controller
+q              = Person.ransack(params[:q])
+@pagy, @people = pagy(q.result)
+```
+    
+==- PostgreSQL Collections
+
+[Always order your colections!](troubleshooting.md#records-may-randomly-repeat-in-different-pages-or-be-missing)
+
+===
 
 ## Paginate for generic API clients
 
@@ -455,15 +416,6 @@ want to generate the whole pagination UI directly in javascript (with your own c
 
 In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require
 the [metadata extra](extras/metadata.md) and pass the pagination metadata in your JSON response.
-
-## Paginate Ransack results
-
-Ransack `result` returns an `ActiveRecord` collection, which can be paginated out of the box. For example:
-
-```ruby controller
-q              = Person.ransack(params[:q])
-@pagy, @people = pagy(q.result)
-```
 
 ## Paginate search framework results
 
@@ -488,9 +440,10 @@ day).
 By default pagy tries to derive parameters and variables from the request and the collection, so you don't have to explicitly pass
 it to the `pagy*` method. That is very handy, but assumes you are paginating a single collection per request.
 
-When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
+When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination 
+objects. You have the following commong ways to do so:
 
-### Pass the request path
+==- Pass the request path
 
 By default pagy generates its links reusing the same `request_path` of the request, however if you want to generate links pointing
 to a different controller/path, you should explicitly pass the targeted `:request_path`. For example:
@@ -543,7 +496,7 @@ end
 !!!
 +++
 
-### Separate turbo frames actions
+==- Use separate turbo frames actions
 
 If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails
 implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each
@@ -580,7 +533,7 @@ Consider [Benito Serna's implementation of turbo-frames (on Rails) using search 
 along with a corresponding [demo app](https://github.com/bhserna/dynamic_data_grid_hotwire_ransack) for a similar implementation
 of the above logic.
 
-### Using different page_param(s)
+==- Use different page_param(s)
 
 You can also
 paginate [multiple model in the same request](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy/)
@@ -617,6 +570,8 @@ to different existing statements.
 ```
 
 Then follow the [calendar extra documentation](extras/calendar.md) for more details.
+    
+===
 
 ## Paginate pre-offset and pre-limited collections
 
@@ -745,7 +700,7 @@ extra count query may affect the performance of the app quite badly.
 
 You have 2 possible solutions in order to improve the performance.
 
-### Cache the count
+==- Cache the count
 
 Depending on the nature of the app, a possible cheap solution would be caching the count of the collection, and Pagy makes that
 really simple.
@@ -779,10 +734,12 @@ after_destroy { Rails.cache.delete_matched /^pagy-#{self.class.name}:/ }
 That may work very well with static (or almost static) DBs, where there is not much writing and mostly reading. Less so with more
 DB writing, and probably not particularly useful with a DB in constant change.
 
-### Avoid the count
+==- Avoid the count
 
 When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoid the
 need for a count query, still providing an acceptable subset of the full pagination features.
+
+===
 
 ## Use AJAX
 
@@ -794,7 +751,7 @@ See also [Using AJAX](api/javascript/ajax.md#using-ajax).
 
 Here are some tips that will help choosing the best way to use Pagy, depending on your requirements and environment.
 
-### Consider the nav_js
+==- Consider the nav_js
 
 If you need the classic pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
@@ -802,24 +759,26 @@ If you need the classic pagination bar with links and info, then you have a coup
   side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more
   efficient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
 
-### Consider the combo navs
+==- Consider the combo_nav_js
 
 If you don't have strict requirements but still need to give the user total feedback and control on the page to display, then
 consider the `pagy*_combo_nav_js` helpers. They are faster and lighter, and even more when the `oj` gem is available. That gives
 you the best performance with nav info and UI _(48x faster, 48x lighter and 2,270x more efficient than Kaminari)_ also saving real
 estate.
 
-### Consider the countless extra
+==- Consider the countless extra
 
 If your requirements allow to use the `countless` extra (minimal or automatic UI) you can save one query per page, and drastically
 boost the efficiency eliminating the nav info and almost all the UI. Take a look at the examples in
 the [pagy extra](extras/pagy.md).
 
-### Consider the Arel extra and/or the fast_page gem
+==- Consider the Arel extra and/or the fast_page gem
 
 You can improve the performance for [grouped collections](#paginate-a-grouped-collection) with
 the [arel extra](http://ddnexus.github.io/pagy/extras/arel), and queries on big data
 with [fast_page](https://github.com/planetscale/fast_page#pagy).
+
+===
 
 ## Ignore Brakeman UnescapedOutputs false positives warnings
 

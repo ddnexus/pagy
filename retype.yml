@@ -48,6 +48,7 @@ include:
   - /apps/**/*.ru
   - /apps/**/*.rb
   - /lib/stylesheets/**
+  - /lib/locales/en.yml
   - /README.md
 
 edit:

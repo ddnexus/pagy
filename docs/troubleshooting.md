@@ -4,7 +4,7 @@ title: Troubleshooting
 icon: alert-24
 ---
 
-### Records may randomly repeat in different pages (or be missing)
+==- Records may randomly repeat in different pages (or be missing)
 
 !!!danger Don't Paginate Unordered PostgreSQL Collections!
 
@@ -31,7 +31,7 @@ ordered         = unordered.order(:id)
 
 !!!
 
-### Invalid HTML
+==- Invalid HTML
 
 !!!danger Don't rely on ARIA default with multiple nav elements!
 Pagy sets the `aria-label` attribute of its `nav` elements with the translated and pluralized `pagy.aria_label.nav` that finds in
@@ -77,3 +77,5 @@ In the specific `bootstrap` example you could add the class with:
 ```
 
 !!!
+
+===
