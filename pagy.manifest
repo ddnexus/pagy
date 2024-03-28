@@ -44,6 +44,7 @@ lib/locales/vi.yml
 lib/locales/zh-CN.yml
 lib/locales/zh-HK.yml
 lib/locales/zh-TW.yml
+lib/optimist.rb
 lib/pagy.rb
 lib/pagy/backend.rb
 lib/pagy/calendar.rb

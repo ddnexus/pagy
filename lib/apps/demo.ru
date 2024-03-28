@@ -37,7 +37,7 @@ STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
            foundation:  {},
            materialize: {},
            semantic:    {},
-           tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css'  },
+           tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css' },
            uikit:       {} }.freeze
 
 STYLES.each_key do |style|

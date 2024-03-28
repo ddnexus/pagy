@@ -2,138 +2,82 @@
 # frozen_string_literal: true
 
 VERSION = '7.0.11'
+APPS    = %w[repro rails demo calendar].freeze
+
+require_relative '../optimist'
+opts = Optimist.options do
+  text <<~HEAD
+    Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)
+    Playground to showcase, clone and develop pagy APPs
+    APPs
+      repro                      Reproduce generic/simple issues
+      rails                      Reproduce rails related issues
+      demo                       Showcase all the helpers and styles
+      calendar                   Showcase the calendar; reproduce related issues
+    USAGE
+      pagy APP [options]         Showcase APP from the installed gem
+      pagy clone APP             Clone APP to the current dir
+      pagy APPFILE [options]     Develop APPFILE from local path
+    EXAMPLES
+      pagy demo                  Showcase demo at http://0.0.0.0:8000
+      pagy clone repro           Clone repro to ./repro.ru
+      pagy ~/my-repro.ru         Develop ~/my-repro.ru at http://0.0.0.0:8000
+  HEAD
+  text 'Rackup options'
+  opt :env,   'Environment',  default: 'development'
+  opt :host,  'Host', default: '0.0.0.0', short: :o
+  opt :port,  'Port', default: 8000
+  text 'Rerun options'
+  opt :rerun, 'Enable rerun for development', default: true
+  opt :clear, 'Clear screen before each rerun'
+  text 'Other options'
+  opt :quiet, 'Quiet mode for development'
+  version VERSION
+end
+Optimist.educate if ARGV.empty?
 
 require 'bundler/inline'
 gemfile true do
   source 'https://rubygems.org'
   gem 'rackup'
   gem 'rerun'
-  gem 'slop'
 end
 
-# See https://github.com/leejarvis/slop/issues/282
-module SlopFix
-  def value
-    @value.nil? ? default_value : @value
+path = ->(app) { File.expand_path("../apps/#{app}.ru", __dir__) }
+arg  = ARGV.shift
+if arg.eql?('clone')
+  arg = ARGV.shift
+  Optimist.die("Expected APP to be in [#{APPS.join(', ')}]; got #{arg.inspect}") unless APPS.include?(arg)
+  file = path.(arg)
+  name = File.basename(file)
+  if File.exist?(name)
+    print "Do you want to overwrite the #{name.inspect} file? (y/n)> "
+    answer = gets.chomp
+    Optimist.die("#{name.inspect} file already present") unless answer.start_with?(/y/i)
   end
-end
-Slop::Option.prepend SlopFix
-
-APPS = %w[repro rails demo calendar].freeze
-HELP = <<~HELP
-
-  Playground to showcase, clone and develop pagy APPs
-  https://ddnexus.github.io/pagy/playground
-
-  APPs
-    repro          Starting point app to reproduce issues or try pagy
-    rails          Starting point app to reproduce rails related issues
-    demo           Interactive showcase for all the helpers and styles
-    calendar       Interactive showcase/repro for the pagy calendar extra
-
-  USAGE
-    pagy APP [options]
-                   Showcase APP from the pagy installation directory
-    pagy clone APP
-                   Clone APP to the current dir
-    pagy APPFILE [options]
-                   Develop **/*.ru APPFILE
-
-  Rackup options
-    -e  --env       Environment (default: development) [fixed for showcase]
-    -o, --host      Host (default: 0.0.0.0)
-    -p, --port      Port (default: 8000)
-
-  Rerun options
-    -c, --clear     Clear screen before each rerun
-        --no-rerun  Disable rerun [disabled for showcase]
-
-  Other options
-    -q, --quiet     Quiet mode [set for showcase]
-    -h, --help      Print this message
-    -v, --version   Print the version
-
-  EXAMPLES
-    pagy demo       Showcase the demo app at http://0.0.0.0:8000
-    pagy clone repro
-                    Clone the repro app to ./repro.ru
-    pagy ~/my-repro.ru -o 127.0.0.1 -p 8001
-                    Develop ~/my-repro.ru at http://127.0.0.1:8001
-HELP
-
-opts = Slop.parse(validate_types: true) do |o|
-  o.string  '-o', '--host',    'Host', default: '0.0.0.0'
-  o.integer '-p', '--port',    'Port', default: 8000
-  o.string  '-e', '--env',     'Environment', default: 'development'
-  o.bool    '-c', '--clear',   'Clear screen before each rerun', default: false
-  o.bool    '-r', '--rerun',   'Enable rerun for **/*.ru', default: true
-  o.bool    '-q', '--quiet',   'Quiet mode'
-  o.on      '-h', '--help',    'Print this message' do
-    puts HELP
-    exit
-  end
-  o.on      '-v', '--version', 'Print the version' do  # rubocop:disable Layout/SpaceBeforeFirstArg
-    puts VERSION
-    exit
-  end
-end
-
-def path(app)
-  File.expand_path("../apps/#{app}.ru", __dir__)
-end
-
-args = opts.arguments
-arg  = args.shift
-case arg
-
-when nil
-  puts HELP
-
-when 'clone'
-  app = args.shift
-  if APPS.include?(app)
-    path = path(app)
-    name = File.basename(path)
-    if File.exist?(name)
-      print "Do you want to overwrite the #{name.inspect} file? (y/n)> "
-      answer = gets.chomp
-      exit unless answer.start_with?(/y/i)
-    end
-
-    require 'fileutils'
-    FileUtils.cp(path, '.', verbose: true)
-  else
-    warn "\nERROR: Expected APP to be in [#{APPS.join(', ')}]; got #{app.inspect}!\nHelp: pagy -h"
-    exit 1
-  end
-
+  require 'fileutils'
+  FileUtils.cp(file, '.', verbose: true)
 else
   if APPS.include?(arg)  # showcase env
+    opts[:env]   = 'showcase'
     opts[:rerun] = false
     opts[:quiet] = true
-    opts[:env]   = 'showcase'
-    if arg.eql?('rails')
-      # avoid the creation of './tmp/local_secret.txt' for showcase env
-      ENV['SECRET_KEY_BASE'] = 'absolute secret!'
-    end
-    path = path(arg)
+    # Avoid the creation of './tmp/local_secret.txt' for showcase env
+    ENV['SECRET_KEY_BASE'] = 'absolute secret!' if arg.eql?('rails')
+    file = path.(arg)
   else                   # development env
-    path = arg
+    file = arg
   end
-  unless File.exist?(path)
-    warn "\nERROR: #{path.inspect} app not found!\nHelp: pagy -h"
-    exit 2
-  end
-  rackup = "rackup -I #{File.expand_path('..', __dir__)} -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{path}"
+  Optimist.die("#{file.inspect} app not found") unless File.exist?(file)
+  # Run command
+  rackup = "rackup -I #{File.expand_path('..', __dir__)} -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{file}"
   rackup << ' -q' if opts[:quiet]
   if opts[:rerun]
-    name = File.basename(path)
-    rerun = "rerun --name #{name} -d #{File.dirname(path)} -p #{name}"
+    name  = File.basename(file)
+    rerun = "rerun --name #{name} -d #{File.dirname(file)} -p #{name}"
     rerun << ' -q' if opts[:quiet]
     rerun << ' -c' if opts[:clear]
     rerun << " -- #{rackup}"
-    exec(rerun)
-  else
-    exec(rackup)
   end
+  exec(rerun || rackup)
 end
