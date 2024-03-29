@@ -47,7 +47,7 @@ exclude:
 include:
   - /apps/**/*.ru
   - /apps/**/*.rb
-  - /lib/stylesheets/**
+  - /lib/**/*
   - /README.md
 
 edit:
