@@ -1,0 +1,21 @@
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+nl:
+  pagy:
+    aria_label:
+      nav:
+        one: "Pagina"
+        other: "Pagina's"
+      prev: "Vorige"
+      next: "Volgende"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "stuk"
+      other: "stuks"
+    info:
+      no_items: "Geen %{item_name} gevonden"
+      single_page: "Toont <b>%{count}</b> %{item_name}"
+      multiple_pages: "Toont <b>%{from}-%{to}</b> %{item_name} van <b>%{count}</b> in totaal"
+    combo_nav_js: "<label>Pagina %{page_input} van %{pages}</label>"
+    items_selector_js: "<label>Toont %{items_input} %{item_name} per pagina</label>"

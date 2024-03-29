@@ -1,0 +1,27 @@
+# :east_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+ru:
+  pagy:
+    aria_label:
+      # please add a comment in the https://github.com/ddnexus/pagy/issues/599
+      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+      nav: "Pages"
+#        one: ""
+#        few: ""
+#        many: ""
+#        other: ""
+      prev: "Назад"
+      next: "Вперёд"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "запись"
+      few: "записи"
+      many: "записей"
+      other: "записей"
+    info:
+      no_items: "Пока %{item_name} нет"
+      single_page: "<b>%{count}</b> %{item_name}"
+      multiple_pages: "Всего <b>%{count}</b> %{item_name}, показаны с <b>%{from}</b> по <b>%{to}</b>"
+    combo_nav_js: "<label>Страница %{page_input} из %{pages}</label>"
+    items_selector_js: "<label>Показать %{items_input} %{item_name} на странице</label>"

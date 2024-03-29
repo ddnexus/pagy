@@ -1,0 +1,23 @@
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+sw:
+  pagy:
+    # please add a comment in the https://github.com/ddnexus/pagy/issues/603
+    # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+    aria_label:
+      nav: "Pages"
+#        one: ""
+#        other: ""
+      prev: "Awali"
+      next: "Ifuatayo"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "kifaa"
+      other: "vifaa"
+    info:
+      no_items: "Hamna %{item_name} vilivyopatikana"
+      single_page: "Inaonyesha %{item_name} <b>%{count}</b>"
+      multiple_pages: "Inaonyesha %{item_name} <b>%{from}-%{to}</b> ya <b>%{count}</b> kwa jumla"
+    combo_nav_js: "<label>Kurasa %{page_input} ya %{pages}</label>"
+    items_selector_js: "<label>Onyesha %{items_input} %{item_name} kwa kila ukurasa</label>"

@@ -1,0 +1,23 @@
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+ca:
+  pagy:
+    aria_label:
+      # please add a comment in the https://github.com/ddnexus/pagy/issues/581
+      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
+      nav: "Pages"
+#      one: ""
+#      other: ""
+      prev: "Anterior"
+      next: "Següent"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name:
+      one: "element"
+      other: "elements"
+    info:
+      no_items: "No s'ha trobat cap resultat"
+      single_page: "Mostrant <b>%{count}</b> %{item_name}"
+      multiple_pages: "Mostrant %{item_name} <b>%{from}-%{to}</b> de <b>%{count}</b> en total"
+    combo_nav_js: "<label>Pàgina %{page_input} de %{pages}</label>"
+    items_selector_js: "<label>Mostra %{items_input} %{item_name} per pàgina</label>"
