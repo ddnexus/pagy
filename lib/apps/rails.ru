@@ -17,23 +17,6 @@
 
 VERSION = '7.0.11'
 
-# pagy-rails app setup for dev-friendly interaction
-database = lambda do |dir|
-             unless File.writable?(dir)
-               warn "ERROR: directory #{dir.inspect} is not writable (the pagy-rails-app needs to create DB files)"
-               exit 1
-             end
-             "#{dir}/tmp/pagy-rails.sqlite3"
-           end
-
-if Rails.env.showcase?
-  OUTPUT   = IO::NULL             # suppress log
-  DATABASE = database.(Dir.pwd)   # tmp dir in current dir
-else
-  OUTPUT   = $stdout
-  DATABASE = database.('.')       # tmp dir in app dir
-end
-
 # Gemfile
 require 'bundler/inline'
 gemfile(true) do
@@ -57,6 +40,8 @@ Pagy::DEFAULT.freeze
 require 'action_controller/railtie'
 require 'active_record'
 
+OUTPUT = Rails.env.showcase? ? IO::NULL : $stdout
+
 # Rails config
 class PagyRails < Rails::Application # :nodoc:
   config.root = __dir__
@@ -73,7 +58,13 @@ class PagyRails < Rails::Application # :nodoc:
 end
 
 # AR config
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: DATABASE)
+dir = Rails.env.development? ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
+unless File.writable?(dir)
+  warn "ERROR: directory #{dir.inspect} is not writable (the pagy-rails-app needs to create DB files)"
+  exit 1
+end
+
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-rails.sqlite3")
 ActiveRecord::Schema.define do
   create_table :posts, force: true do |t|
     t.string :title
@@ -131,12 +122,12 @@ end
 
 run PagyRails
 
-TEMPLATE = <<~TEMPLATE
+TEMPLATE = <<~ERB
   <!DOCTYPE html>
   <html lang="en">
     <html>
     <head>
-      <script src="<%== %(/javascript) %>"></script>
+      <script src="/javascript"></script>
       <script type="application/javascript">
         window.addEventListener("load", Pagy.init);
       </script>
@@ -179,10 +170,10 @@ TEMPLATE = <<~TEMPLATE
         <p>Please, report the following versions in any new issue.</p>
         <h4>Versions</h4>
         <ul>
-          <li>Ruby: <%== RUBY_VERSION %></li>
-          <li>Rack: <%== Rack::RELEASE %></li>
+          <li>Ruby:  <%== RUBY_VERSION %></li>
+          <li>Rack:  <%== Rack::RELEASE %></li>
           <li>Rails: <%== Rails.version %></li>
-          <li>Pagy: <%== Pagy::VERSION %></li>
+          <li>Pagy:  <%== Pagy::VERSION %></li>
         </ul>
 
         <h4>Collection</h4>
@@ -211,4 +202,4 @@ TEMPLATE = <<~TEMPLATE
 
     </body>
   </html>
-TEMPLATE
+ERB

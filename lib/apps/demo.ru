@@ -92,39 +92,6 @@ class PagyDemo < Sinatra::Base
     end
   end
 
-  # We store the template in a constant instead of writing it inline, so we can highlight it more easily
-  TEMPLATE = <<~ERB
-    <%# IMPORTANT: use '<%== ... ' instead of '<%= ... ' if you run this in rails %>
-
-    <%# The a variable below is set to a lambda that generates the a tag %>
-    <%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>
-    <% a = pagy_anchor(pagy) %>
-    <nav class="pagy nav" aria-label="Pages">
-      <%# Previous page link %>
-      <% if pagy.prev %>
-          <%= a.(pagy.prev, '&lt;', aria_label: 'Previous') %>
-      <% else %>
-        <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
-      <% end %>
-      <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
-      <% pagy.series.each do |item| %>
-        <% if item.is_a?(Integer) %>
-            <%= a.(item) %>
-        <% elsif item.is_a?(String) %>
-          <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
-        <% elsif item == :gap %>
-          <a role="link" aria-disabled="true" class="gap">&hellip;</a>
-        <% end %>
-      <% end %>
-      <%# Next page link %>
-      <% if pagy.next %>
-        <%= a.(pagy.next, '&gt;', aria_label: 'Next') %>
-      <% else %>
-        <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
-    <% end %>
-    </nav>
-  ERB
-
   helpers do
     include Pagy::Frontend
 
@@ -227,6 +194,39 @@ class MockCollection < Array
 end
 
 run PagyDemo
+
+# We store the template in a constant instead of writing it inline, so we can highlight it more easily
+TEMPLATE = <<~ERB
+  <%# IMPORTANT: use '<%== ... ' instead of '<%= ... ' if you run this in rails %>
+
+  <%# The a variable below is set to a lambda that generates the a tag %>
+  <%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>
+  <% a = pagy_anchor(pagy) %>
+  <nav class="pagy nav" aria-label="Pages">
+    <%# Previous page link %>
+    <% if pagy.prev %>
+      <%= a.(pagy.prev, '&lt;', aria_label: 'Previous') %>
+    <% else %>
+      <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
+    <% end %>
+    <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
+    <% pagy.series.each do |item| %>
+      <% if item.is_a?(Integer) %>
+        <%= a.(item) %>
+      <% elsif item.is_a?(String) %>
+        <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
+      <% elsif item == :gap %>
+        <a role="link" aria-disabled="true" class="gap">&hellip;</a>
+      <% end %>
+    <% end %>
+    <%# Next page link %>
+    <% if pagy.next %>
+      <%= a.(pagy.next, '&gt;', aria_label: 'Next') %>
+    <% else %>
+      <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
+    <% end %>
+  </nav>
+ERB
 
 __END__
 
@@ -428,7 +428,7 @@ for details</p>
 <%= html = '<nav class="pagy">' << pagy_prev_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
 <%= highlight(html) %>
 
-<h4>pagy_prev_link / pagy_next_link <span class="notes">Link obviously not rendered<span></h4>
+<h4>pagy_prev_link / pagy_next_link <span class="notes">Link not rendered<span></h4>
 <% html = '<head>' << (pagy_prev_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
 <%= highlight(html) %>
 <% end %>

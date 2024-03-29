@@ -15,12 +15,12 @@
 
 ---
 
-### ✴ What's new in 7.0+ ✴
+### ✴ What's new in 8.0+ ✴
 
-- [JSON:API support](https://ddnexus.github.io/pagy/docs/extras/jsonapi/)
-- [ARIA compliance](https://ddnexus.github.io/pagy/docs/api/aria/) and refactoring of dictionary files
-- Added a simpler and faster nav without gaps (just pass an integer to the `:size`)
-- Pagy follows the [ruby end-of-life](https://endoflife.date/ruby) supported rubies now (3.1+)
+- **WARNING**: We may drop pagy's less used CSS extras. If you wish to keep them alive, please, [vote here](https://github.com/ddnexus/pagy/discussions/categories/survey)
+- Better frontend helpers
+- New [Pagy Playground](https://ddnexus.github.io/pagy/playground/) to showcase, clone and develop pagy APPs without any setup on 
+  your side (try the [pagy demo](https://ddnexus.github.io/pagy/playground.md#3-demo-app))
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
 ---
@@ -43,7 +43,7 @@ and `kaminari v1.1.1`.
 While it's not up-to-date, you can expect roughly similar results with the latest versions, maybe a bit less dramatic in
 performance due to the multiple features added to pagy since v3 (e.g. customizable and translated aria-labels). However, consider
 that the difference become A LOT bigger in favor of pagy if you use `*nav_js` helpers, `Pagy::Countless` or JSON and client side
-pagination that the other gems don't offer and are not part of the comparison.
+pagination that are not part of the comparison because missing in the other gems.
 
 See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html) for full details.
 
@@ -60,9 +60,23 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
   gem, [elasticsearch_rails](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails), [meilisearch](https://ddnexus.github.io/pagy/docs/extras/meilisearch), [searchkick](https://ddnexus.github.io/pagy/docs/extras/searchkick), `ransack`,
   and just about any list, even if you cannot count it
 - **It supports all kinds of pagination**  
-  [calendar](https://ddnexus.github.io/pagy/docs/extras/calendar "paginates by dates, rather than numbers"), [countless](https://ddnexus.github.io/pagy/docs/extras/countless "skips an extra 'count' query"), [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox "varies the items fetched depending on the page number e.g. page 1: x items, but page 2: y items etc."), [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/pagy), [headers](https://ddnexus.github.io/pagy/docs/extras/headers "useful for API pagination"), [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata "provides pagination metadata - especially useful with frameworks like Vue, React etc. and you want to render your own pagination links"), [cursor](https://github.com/Uysim/pagy-cursor "Useful with large data sets, where performance becomes a concern (separate repository)")
-- **It supports all kinds of CSS Frameworks**  
-  [bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation), [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize), [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic), [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit), [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind)
+  [calendar](https://ddnexus.github.io/pagy/docs/extras/calendar "paginates by dates, rather than numbers"),
+  [countless](https://ddnexus.github.io/pagy/docs/extras/countless "skips an extra 'count' query"),
+  [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox "varies the items fetched depending on the page number e.g. page 1: x items, but page 2: y items etc."),
+  [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/pagy), 
+  [headers](https://ddnexus.github.io/pagy/docs/extras/headers "useful for API pagination"),
+  [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata "provides pagination metadata - especially useful with frameworks like Vue, React etc. and you want to render your own pagination links"),
+  [cursor](https://github.com/Uysim/pagy-cursor "Useful with large data sets, where performance becomes a concern (separate 
+  repository)")
+- **It supports all kinds of CSS Frameworks and APIs**  
+  [bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), 
+  [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), 
+  [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation),
+  [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize),
+  [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic),
+  [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit),
+  [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind),
+  [JSON:API](https://ddnexus.github.io/pagy/docs/extras/jsonapi/)
 - **It supports faster client-side rendering**  
   With classic or innovative UI components (see [Javascript Components](https://ddnexus.github.io/pagy/docs/api/javascript/)) or
   by
@@ -418,7 +432,7 @@ Many thanks to:
 
 ## 💞 Related Projects
 
-Search [rubygems.org - pagy](https://rubygems.org/search?query=pagy)
+[Search rubygems.org](https://rubygems.org/search?query=pagy)
 
 ## 📃 License
 

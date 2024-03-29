@@ -4,6 +4,13 @@ icon: versions-24
 
 # CHANGELOG
 
+## ⚠ WARNING
+
+We may drop pagy's less used CSS extras. 
+
+If you wish to keep them alive, please, [vote here](https://github.
+com/ddnexus/pagy/discussions/categories/survey).
+
 ## Breaking Changes
 
 If you upgrade from version `< 8.0.0` see the following:
@@ -27,33 +34,32 @@ None
 - Renamed/removed the following arguments for all the helpers:
   - Search `pagy_id:`, replace with `id:`
   - Search `nav_aria_label:`, replace with`aria_label:`
-  - The `nav_i18n_key` has been removed: pass the interpolated/pluraized value as the `aria_label:` argument
-  - The `item_i18n_key` has been removed: pass the interpolated/pluralied value as the `item_name:` argument
+  - The `nav_i18n_key` has been removed: pass the interpolated/pluralized value as the `aria_label:` argument
+  - The `item_i18n_key` has been removed: pass the interpolated/pluralized value as the `item_name:` argument
   - The `link_extra:` has been removed: its cumulative mechanism was confusing and error prone. The `:anchor_string` pagy
     variable substitutes it, however it's not an helper argument anymore, so you can assign it as the `DEFAULT[:anchor_string]`
-    and/or passing it as any other pagy variable at object construction . (see ...)
+    and/or pass it as any other pagy variable at object construction. (See [customize the link attributes](https://ddnexus.github.io/pagy/docs/how-to/#customize-the-link-attributes))
 - HTML structure, classes and internal methods have been changed: they may break your views if you used custom stylesheets, 
   templates or helper overrides. See the complete changes below if you notice any cosmetic changes or get some exception.
-- The `navs` and `support` extras has been merged into the new `compoenents` extra. Search for `"extra/navs"` and 
-  `"extras/support"` and replace with `"extras/pagy"` (removing duplicates if you used both) 
+- The `navs` and `support` extras has been merged into the new [pagy extra](https://ddnexus.github.io/pagy/docs/extras/pagy). 
+  Search for `"extra/navs"` and 
+  `"extras/support"` and replace with `"extras/pagy"` (remove the duplicate if you used both) 
 
 ## Changes
 
-- Streamlined HTML and CSS helper structure. You may want to look at the actual output by running the [pagy demo](/playground.md#3-demo-app)
-  - The `pagy_nav` and `pagy_nav_js` are a series of `a` tags inside a wrapper `nav` tag (nothing else there)
-  - The disabled links are so because they are missing the `href` attributes
-  - The `pagy`, `pagy-nav` and `pagy-nav-js` classes are assigned to the `nav` tag
-  - The `current`, `gap` classes are assigned to the specific `a` tags
+- Streamlined HTML and CSS helper structure. You may want to look at the actual output by running the [pagy demo](https://ddnexus.github.io/pagy/playground.md#3-demo-app)
+  - The `pagy_nav` and `pagy_nav_js` helpers output a series of `a` tags inside a wrapper `nav` tag (nothing else)
+  - The disabled links are so because they are missing the `href` attributes. (They also have the `role="link"` and `aria-disabled="true"` attributes)
+  - The `current` and `gap` classes are assigned to the specific `a` tags
   - HTML changes
     - All the pagy helper root classes have been changed according to the following rule. For example:
       - `"pagy-nav"` > `"pagy nav"`
       - `"pagy-bootstrap-nav-js"` > `"pagy-bootstrap nav-js"`
       - and so on for all the helpers
-    - The `active` class of the `*nav`/`*nav_js` links is now `current`
-    - The `disabled`, `prev` and `next` link classes have been removed
-    - The `pagy-combo-input` class has been removed
-    - The `rel="prev"` and  `rel="next"` attributes have been dropped (they don't do anything anymore)
-    - The `\<label>`/`\</label>` and `\<b>`/`\</b>` wrappers the dictionary files have been removed
+    - The `active` class of the `*nav`/`*nav_js` links as been renamed as `current`
+    - The `disabled`, `prev`, `next` and `pagy-combo-input` link classes have been removed (see the [stylesheets](https://ddnexus.github.io/pagy/docs/api/stylesheets/#pagy-scss) for details)
+    - The `rel="prev"` and  `rel="next"` attributes have been dropped (they are obsolete)
+    - The `<label>`/`</label>` and `<b>`/`</b>` wrappers in the dictionary files have been removed
 - The `pagy_link_proc` method (only used internally or in your custom overriding) has been renamed to `pagy_anchor`and it works
   slighty differently:
   - The `link_extra:` key argument has been removed
@@ -64,13 +70,14 @@ None
 - The `gap` in the nav bars is a disabled anchor element (`a` tag without a `href` attribute`)
 - The `pagy_prev_html` and `pagy_next_html` have been renamed as `pagy_prev_a` and `pagy_next_a`
 - The `pagy_prev_link_tag` and `pagy_next_link_tag` have been renamed as `pagy_prev_link` and `pagy_next_link`
-- The `*combo_nav_js` and `pagy_items_selector_js` helpers use a more efficient mechanism
+- The `*combo_nav_js` and `pagy_items_selector_js` helpers use a more efficient code
 - The `src/pagy.ts` and relative built javascript files have been adapted to the above changes
-- The stylesheets are a lot simpler as a consequence of the changes above
-- All the `*combo-nav_js` in the framework extras use simpler structure and improve the look and feel consistently with their
+- The [stylesheets](https://ddnexus.github.io/pagy/docs/api/stylesheets/) are a lot simpler as a consequence of the changes above
+- All the `*combo-nav_js` of the framework extras use simpler structure and improve the look and feel consistently with their
   respective frameworks
-- All the frontend extra have been normalized and are totally consistent with each other, a few may add the `classes:` argument to a few components, when the framework allows it.
-- Created `demo.ru` and `repro.ru` out of heavy refactored standalone styles, with `pagy` bin utility launcher
+- All the frontend extra have been normalized and are totally consistent with each other; a few may add the `classes:` 
+  argument to a few components, when the framework allows it.
+- Created the [pagy playground](https://ddnexus.github.io/pagy/playground) system of apps working with the `pagy` executable.
 - Internal renaming `FrontendHelpers` > `JSTools`
 
 ## Version 7.0.11
