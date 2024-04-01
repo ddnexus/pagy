@@ -18,7 +18,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#3-demo-app
 
-VERSION = '7.0.11'
+VERSION = '8.0.0'
 
 require 'bundler/inline'
 gemfile(true) do

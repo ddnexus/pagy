@@ -15,7 +15,7 @@ com/ddnexus/pagy/discussions/categories/survey).
 
 If you upgrade from version `< 8.0.0` see the following:
 
-- [Breaking changes in version 7.0.0](#version-800)
+- [Breaking changes in version 8.0.0](#version-800)
 - [Breaking changes in version 7.0.0](CHANGELOG_LEGACY.md#version-700)
 - [Breaking changes in version 6.0.0](CHANGELOG_LEGACY.md#version-600)
 - [Breaking changes in version 5.0.0](CHANGELOG_LEGACY.md#version-500)
@@ -29,7 +29,9 @@ If you upgrade from version `< 8.0.0` see the following:
 None
 <hr>
 
-## Breaking changes
+## Version 8.0.0
+
+### Breaking changes
 
 - Renamed/removed the following arguments for all the helpers:
   - Search `pagy_id:`, replace with `id:`
@@ -45,7 +47,7 @@ None
   Search for `"extra/navs"` and 
   `"extras/support"` and replace with `"extras/pagy"` (remove the duplicate if you used both) 
 
-## Changes
+### Changes
 
 - Streamlined HTML and CSS helper structure. You may want to look at the actual output by running the [pagy demo](https://ddnexus.github.io/pagy/playground.md#3-demo-app)
   - The `pagy_nav` and `pagy_nav_js` helpers output a series of `a` tags inside a wrapper `nav` tag (nothing else)
@@ -79,7 +81,8 @@ None
   argument to a few components, when the framework allows it.
 - Created the [pagy playground](https://ddnexus.github.io/pagy/playground) system of apps working with the `pagy` executable.
 - Internal renaming `FrontendHelpers` > `JSTools`
-
-## Version 7.0.11
+- Fix broken link of pagy.rb in docs (closes #668, #669)
+- Docs Improvements
+- Better code issue template
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 

@@ -40,7 +40,7 @@ If you use Bundler, add the gem in the Gemfile, optionally avoiding the next maj
 see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
 ```ruby Gemfile
-gem 'pagy', '~> 7.0' # omit patch digit
+gem 'pagy', '~> 8.0' # omit patch digit
 ```
 
 +++ Without Bundler
