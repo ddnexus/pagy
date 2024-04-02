@@ -8,8 +8,7 @@ icon: versions-24
 
 We may drop pagy's less used CSS extras. 
 
-If you wish to keep them alive, please, [vote here](https://github.
-com/ddnexus/pagy/discussions/categories/survey).
+If you wish to keep them alive, please, [vote here](https://github.com/ddnexus/pagy/discussions/categories/survey).
 
 ## Breaking Changes
 
