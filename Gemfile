@@ -33,6 +33,7 @@ group :apps do
   gem 'rouge'
   gem 'sinatra'
   gem 'sinatra-contrib'
+  gem 'slop'
 end
 
 group :performance do

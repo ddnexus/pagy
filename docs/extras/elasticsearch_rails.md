@@ -12,13 +12,9 @@ Paginate `ElasticsearchRails` response objects.
 
 ## Setup
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/elasticsearch_rails'
 ```
-
-|||
 
 ## Modes
 
@@ -32,17 +28,11 @@ You use the `pagy_search` method in place of the `search` method.
 
 ### Usage
 
-||| Model
-
-```ruby
+```ruby Model
 extend Pagy::ElasticsearchRails
 ```
 
-|||
-
-||| Controller (pagy_search)
-
-```ruby
+```ruby Controller (pagy_search)
 # get the collection in one of the following ways
 collection = Article.pagy_search(params[:q])
 collection = Article.pagy_search(params[:q]).records
@@ -50,8 +40,6 @@ collection = Article.pagy_search(params[:q]).results
 # paginate it
 @pagy, @response = pagy_elasticsearch_rails(collection, items: 10)
 ```
-
-|||
 
 +++ Passive mode
 
@@ -61,16 +49,12 @@ Pagy creates its object out of your result.
 
 ### Usage
 
-||| Controller (search)
-
-```ruby
+```ruby Controller (search)
 # standard response (already paginated)
 @response = Article.search('*', from: 0, size: 10, ...)
 # get the pagy object out of it
 @pagy = Pagy.new_from_elasticsearch_rails(@response, ...)
 ```
-
-|||
 
 +++
 

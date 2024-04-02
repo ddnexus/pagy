@@ -23,28 +23,24 @@ Here is a screenshot (from the `bootstrap` extra):
 
 ![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
+
 ## Synopsis
 
 See [Setup Javascript](setup.md).
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # you only need one of the following extras
 require 'pagy/extras/bootstrap'
 require 'pagy/extras/bulma'
 require 'pagy/extras/foundation'
 require 'pagy/extras/materialize'
-require 'pagy/extras/navs'
+require 'pagy/extras/pagy'
 require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
 
-|||
-
-||| Any View
-
-```erb
+```erb Any View
 <!-- Use just one: -->
 <%== pagy_combo_nav_js(@pagy, **vars) %>
 <%== pagy_bootstrap_combo_nav_js(@pagy, **vars) %>
@@ -54,8 +50,6 @@ require 'pagy/extras/uikit'
 <%== pagy_semantic_combo_nav_js(@pagy, **vars) %>
 ```
 
-|||
-
 ## Methods
 
 ==- `pagy*_combo_nav_js(pagy, **vars)`
@@ -63,8 +57,4 @@ require 'pagy/extras/uikit'
 The method accepts also the same optional keyword arguments variables of
 the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars)
 
-!!!warning
-The `pagy_semantic_combo_nav_js` assigns a class attribute to its links, so do not add another class attribute with
-the `:link_extra`. That would be illegal HTML and ignored by most browsers.
-!!!
 ===

@@ -15,8 +15,8 @@ This extra adds single or multiple chained calendar navs that act as calendar fi
 record in its time unit.
 
 ![calendar_app](/docs/assets/images/calendar-app.png)
-_Screenshot from the single-file
-self-contained [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) demo_
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#4-calendar-app)
 
 ## Use cases
 
@@ -30,17 +30,11 @@ and fallback to the regular pagination. No need to maintain different UIs for wi
 
 ## Synopsis
 
-||| initializer (pagy.rb)
-
-```ruby
+```ruby initializer (pagy.rb)
 require 'pagy/extras/calendar'
 ```
 
-|||
-
-||| controller
-
-```ruby
+```ruby controller
 # e.g. application_controller.rb
 def pagy_calendar_period(collection)
   return_period_array_using(collection)
@@ -59,11 +53,7 @@ def index
 end
 ```
 
-|||
-
-||| view (template)
-
-```erb
+```erb view (template)
 <!-- calendar filtering -->
 <%== pagy_nav(@calendar[:year]) %>
 <%== pagy_nav(@calendar[:month]) %>
@@ -77,15 +67,8 @@ end
 <%== pagy_nav(@pagy) %>
 ```
 
-|||
-
 See also a few examples
 about [How to wrap existing pagination with pagy_calendar](/docs/how-to.md#wrap-existing-pagination-with-pagy_calendar).
-
-!!!primary Demo App
-For a complete and detailed example, see
-the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru).
-!!!
 
 ## Usage
 
@@ -99,19 +82,7 @@ The whole usage boils down to these steps:
 3. Define the [pagy_calendar_filter](#pagy-calendar-filter-collection-from-to) method in your controller
 4. Use it in your UI
 
-You can play with a quick demo app, working without any additional configuration with:
-
-||| shell
-
-```shell
-git clone --depth 1 https://github.com/ddnexus/pagy
-cd pagy
-rackup -o 0.0.0.0 -p 8080 apps/pagy_calendar.ru
-```
-
-|||
-
-Then point your browser to http://0.0.0.0:8080.
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#4-calendar-app)
 
 ## Variables and Accessors
 
@@ -136,13 +107,9 @@ to the wrapped method.
 
 It returns an array with one more item than the usual two:
 
-||| controller
-
-```ruby
+```ruby controller
 @calendar, @pagy, @results = pagy_calendar(...)
 ```
-
-|||
 
 The `@calendar` is the hash of the generated `Pagy::Calendar::*` objects that can be used in the UI.
 
@@ -156,10 +123,6 @@ calendar. For example:
 <!-- Showtime shows the `DateTime` beginning of the smallest time unit currently shown in the calendar -->
 <p>Showtime: <%= @calendar.showtime %></p>
 ```
-
-See also the the single-file
-self-contained [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for an interactive
-demo.
 
 ### `collection` argument
 
@@ -213,8 +176,6 @@ If the `:pagy` key/value is omitted, a default `Pagy` instance will be created b
 The calendar is active by default, however you can add an optional `:active` boolean flag to the `configuration` hash in order to
 switch it ON or OFF, depending on its usefulness in different conditions (see the [Use cases](#use-cases)).
 
-Take a look at the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) for a simple
-example of a manual toggle in the UI.
 
 ==- `pagy_calendar_period(collection)`
 
@@ -234,9 +195,7 @@ If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Rela
 starting and ending local `TimeWithZone` objects array. Here are a few examples with the `created_at` field (but you can pull the
 time from anywhere):
 
-||| controller
-
-```ruby
+```ruby  Controller
 # Simpler version (2 queries)
 def pagy_calendar_period(collection)
   starting = collection.minimum('created_at')
@@ -258,8 +217,6 @@ def pagy_calendar_period(collection)
   params.fetch_values(:starting, :ending).map { |time| Time.parse(time).in_time_zone }
 end
 ```
-
-|||
 
 See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 
@@ -290,15 +247,11 @@ Depending on the type of storage, the `collection` argument can contain a differ
 If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object that you can easily filter. Here is
 an example with the `created_at` field again (but you can use anything, of course):
 
-||| controller
-
-```ruby
+```ruby controller
 def pagy_calendar_filter(collection, from, to)
   collection.where(created_at: from...to)  # 3-dots range excluding the end value
 end
 ```
-
-|||
 
 See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 
@@ -347,8 +300,7 @@ with `Pagy::Calendar::*` objects.
 This helper takes the `@calendar` and a `TimeWithZone` objects and returns the url complete with all the params for the pages in
 each bars that include the passed time.
 
-For example: `pagy_calendar_url_at(@calendar, Time.zone.now)` will select the the bars pointing to today. You can see a working
-example in the [pagy_calendar_app.ru](https://github.com/ddnexus/pagy/blob/master/apps/pagy_calendar_app.ru) file.
+For example: `pagy_calendar_url_at(@calendar, Time.zone.now)` will select the the bars pointing to today.
 
 If `time` is outside the pagination range it raises a `Pagy::Calendar::OutOfRangeError`, however you can pass the
 option `fit_time: true` to avoid the error and get the url to the page closest to the passed time argument (first or last page).

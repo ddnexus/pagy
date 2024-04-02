@@ -25,28 +25,24 @@ Here is a screenshot (from the `bootstrap`extra) showing responsiveness at diffe
 
 ![bootstrap_nav_js](/docs/assets/images/bootstrap_nav_js.png)
 
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
+
 ## Synopsis
 
 See [Setup Javascript](setup).
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # Use just one:
 require 'pagy/extras/bootstrap'
 require 'pagy/extras/bulma'
 require 'pagy/extras/foundation'
 require 'pagy/extras/materialize'
-require 'pagy/extras/navs'
+require 'pagy/extras/pagy'
 require 'pagy/extras/semantic'
 require 'pagy/extras/uikit'
 ```
 
-|||
-
-||| Any View
-
-```erb
+```erb Any View
 <!-- Use just one: -->
 <%== pagy_nav_js(@pagy) %>
 <%== pagy_bootstrap_nav_js(@pagy) %>
@@ -55,8 +51,6 @@ require 'pagy/extras/uikit'
 <%== pagy_materialize_nav_js(@pagy) %>
 <%== pagy_semantic_nav_js(@pagy) %>
 ```
-
-|||
 
 ## Variables
 
@@ -78,26 +72,18 @@ pass it to the `pagy*_nav_js` helper as an optional keyword argument.
 
 For example:
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # globally
 Pagy::DEFAULT[:steps] = { 0 => 5, 540 => [3, 5, 5, 3], 720 => [5, 7, 7, 5] }
 ```
 
-|||
-
-||| Controller
-
-```ruby
+```ruby Controller
 # or for a single instance
 pagy, records = pagy(collection, steps: { 0 => 5, 540 => [3, 5, 5, 3], 720 => [5, 7, 7, 5] })
 
 # or use the :size as any static pagy*_nav
 pagy, records = pagy(collection, steps: false)
 ```
-
-|||
 
 ```erb
 or pass it to the helper
@@ -150,10 +136,5 @@ document.getElementById('my-pagy-nav-js').render();
 
 The method accepts also the same optional keyword arguments variables of
 the [pagy_nav(pagy, **vars)](/docs/api/frontend#pagy-nav-pagy-vars)
-
-!!!warning
-The `pagy_bootstrap_nav_js` and `pagy_semantic_nav_js` assign a class attribute to their links, so do not add another class
-attribute with the `:link_extra`. That would be illegal HTML and ignored by most browsers.
-!!!
 
 ===

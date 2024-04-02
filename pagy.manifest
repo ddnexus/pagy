@@ -1,3 +1,8 @@
+lib/apps/calendar.ru
+lib/apps/demo.ru
+lib/apps/rails.ru
+lib/apps/repro.ru
+lib/bin/pagy
 lib/config/pagy.rb
 lib/javascripts/pagy-dev.js
 lib/javascripts/pagy-module.d.ts
@@ -39,6 +44,7 @@ lib/locales/vi.yml
 lib/locales/zh-CN.yml
 lib/locales/zh-HK.yml
 lib/locales/zh-TW.yml
+lib/optimist.rb
 lib/pagy.rb
 lib/pagy/backend.rb
 lib/pagy/calendar.rb
@@ -59,21 +65,20 @@ lib/pagy/extras/calendar.rb
 lib/pagy/extras/countless.rb
 lib/pagy/extras/elasticsearch_rails.rb
 lib/pagy/extras/foundation.rb
-lib/pagy/extras/frontend_helpers.rb
 lib/pagy/extras/gearbox.rb
 lib/pagy/extras/headers.rb
 lib/pagy/extras/i18n.rb
 lib/pagy/extras/items.rb
+lib/pagy/extras/js_tools.rb
 lib/pagy/extras/jsonapi.rb
 lib/pagy/extras/materialize.rb
 lib/pagy/extras/meilisearch.rb
 lib/pagy/extras/metadata.rb
-lib/pagy/extras/navs.rb
 lib/pagy/extras/overflow.rb
+lib/pagy/extras/pagy.rb
 lib/pagy/extras/searchkick.rb
 lib/pagy/extras/semantic.rb
 lib/pagy/extras/standalone.rb
-lib/pagy/extras/support.rb
 lib/pagy/extras/trim.rb
 lib/pagy/extras/uikit.rb
 lib/pagy/frontend.rb
@@ -81,5 +86,5 @@ lib/pagy/i18n.rb
 lib/pagy/url_helpers.rb
 lib/stylesheets/pagy.css
 lib/stylesheets/pagy.scss
-lib/stylesheets/pagy.tailwind.scss
+lib/stylesheets/pagy.tailwind.css
 LICENSE.txt

@@ -15,7 +15,7 @@ bg:
       other: "резултати"
     info:
       no_items: "Няма намерени %{item_name}"
-      single_page: "Показани са <b>%{count}</b> %{item_name}"
-      multiple_pages: "Показани са %{item_name} <b>%{from}-%{to}</b> от <b>%{count}</b> общо"
-    combo_nav_js: "<label>Страница %{page_input} от %{pages}</label>"
-    items_selector_js: "<label>Покажи %{items_input} %{item_name} на страница</label>"
+      single_page: "Показани са %{count} %{item_name}"
+      multiple_pages: "Показани са %{item_name} %{from}-%{to} от %{count} общо"
+    combo_nav_js: "Страница %{page_input} от %{pages}"
+    items_selector_js: "Покажи %{items_input} %{item_name} на страница"

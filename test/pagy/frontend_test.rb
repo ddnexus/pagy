@@ -16,12 +16,12 @@ end
 describe 'pagy/frontend' do
   let(:app) { MockApp.new }
 
-  # #pagy_nav helper tests in the test/extras/navs_test.rb
+  # #pagy_nav helper tests in the test/extras/pagy_test.rb
 
-  describe '#pagy_link_proc' do
+  describe '#pagy_a_proc' do
     it 'renders with extras' do
-      pagy = Pagy.new count: 103, page: 1
-      _(app.pagy_link_proc(pagy, link_extra: "X").call(3)).must_equal '<a href="/foo?page=3"  X >3</a>'
+      pagy = Pagy.new(count: 103, page: 1, anchor_string: 'X')
+      _(app.pagy_anchor(pagy).call(3)).must_equal '<a X href="/foo?page=3">3</a>'
     end
   end
 
@@ -32,15 +32,13 @@ describe 'pagy/frontend' do
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "item"
       _(app.pagy_t('pagy.item_name', count: 10)).must_equal "items"
     end
-    # rubocop:disable Style/FormatStringToken
     it 'interpolates' do
-      _(app.pagy_t('pagy.info.no_items', count: 0)).must_equal "No %{item_name} found"
-      _(app.pagy_t('pagy.info.single_page', count: 1)).must_equal "Displaying <b>1</b> %{item_name}"
-      _(app.pagy_t('pagy.info.single_page', count: 10)).must_equal "Displaying <b>10</b> %{item_name}"
-      _(app.pagy_t('pagy.info.multiple_pages', count: 10)).must_equal "Displaying %{item_name} <b>%{from}-%{to}</b> of <b>10</b> in total"
-      _(app.pagy_t('pagy.info.multiple_pages', item_name: 'Products', count: 300, from: 101, to: 125)).must_equal "Displaying Products <b>101-125</b> of <b>300</b> in total"
+      _(app.pagy_t('pagy.info.no_items', count: 0)).must_rematch :info_0
+      _(app.pagy_t('pagy.info.single_page', count: 1)).must_rematch :info_1
+      _(app.pagy_t('pagy.info.single_page', count: 10)).must_rematch :info_10
+      _(app.pagy_t('pagy.info.multiple_pages', count: 10)).must_rematch :info_multi_10
+      _(app.pagy_t('pagy.info.multiple_pages', item_name: 'Products', count: 300, from: 101, to: 125)).must_rematch :info_multi_item_name
     end
-    # rubocop:enable Style/FormatStringToken
     it 'handles missing keys' do
       _(app.pagy_t('pagy.not_here')).must_equal '[translation missing: "pagy.not_here"]'
       _(app.pagy_t('pagy.gap.not_here')).must_equal '[translation missing: "pagy.gap.not_here"]'
@@ -79,29 +77,16 @@ describe 'pagy/frontend' do
 
   describe '#pagy_info' do
     it 'renders without i18n key' do
-      _(app.pagy_info(Pagy.new(count: 0))).must_equal '<span class="pagy-info">No items found</span>'
-      _(app.pagy_info(Pagy.new(count: 1))).must_equal '<span class="pagy-info">Displaying <b>1</b> item</span>'
-      _(app.pagy_info(Pagy.new(count: 13))).must_equal '<span class="pagy-info">Displaying <b>13</b> items</span>'
-      _(app.pagy_info(Pagy.new(count: 100, page: 3))).must_equal '<span class="pagy-info">Displaying items <b>41-60</b> of <b>100</b> in total</span>'
+      _(app.pagy_info(Pagy.new(count: 0))).must_rematch key: :info_0
+      _(app.pagy_info(Pagy.new(count: 1))).must_rematch key: :info_1
+      _(app.pagy_info(Pagy.new(count: 13))).must_rematch key: :info_13
+      _(app.pagy_info(Pagy.new(count: 100, page: 3))).must_rematch key: :info_100
     end
-    it 'renders with existing i18n key' do
-      Pagy::I18n::DATA['en'][0]['pagy.info.product.one']   = 'Product'
-      Pagy::I18n::DATA['en'][0]['pagy.info.product.other'] = 'Products'
-      _(app.pagy_info(Pagy.new(count: 0, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">No Products found</span>'
-      _(app.pagy_info(Pagy.new(count: 1, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
-      _(app.pagy_info(Pagy.new(count: 13, item_i18n_key: 'pagy.info.product'))).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
-      _(app.pagy_info(Pagy.new(count: 100, item_i18n_key: 'pagy.info.product', page: 3))).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
-      _(app.pagy_info(Pagy.new(count: 0), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">No Products found</span>'
-      _(app.pagy_info(Pagy.new(count: 1), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>1</b> Product</span>'
-      _(app.pagy_info(Pagy.new(count: 13), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying <b>13</b> Products</span>'
-      _(app.pagy_info(Pagy.new(count: 100, page: 3), item_i18n_key: 'pagy.info.product')).must_equal '<span class="pagy-info">Displaying Products <b>41-60</b> of <b>100</b> in total</span>'
-      i18n_load(locale: 'en') # reset for other tests
-    end
-    it 'overrides the item_name and set pagy_id' do
-      _(app.pagy_info(Pagy.new(count: 0), pagy_id: 'pagy-info', item_name: 'Widgets')).must_equal '<span id="pagy-info" class="pagy-info">No Widgets found</span>'
-      _(app.pagy_info(Pagy.new(count: 1), pagy_id: 'pagy-info', item_name: 'Widget')).must_equal '<span id="pagy-info" class="pagy-info">Displaying <b>1</b> Widget</span>'
-      _(app.pagy_info(Pagy.new(count: 13), pagy_id: 'pagy-info', item_name: 'Widgets')).must_equal '<span id="pagy-info" class="pagy-info">Displaying <b>13</b> Widgets</span>'
-      _(app.pagy_info(Pagy.new(count: 100, page: 3), pagy_id: 'pagy-info', item_name: 'Widgets')).must_equal '<span id="pagy-info" class="pagy-info">Displaying Widgets <b>41-60</b> of <b>100</b> in total</span>'
+    it 'overrides the item_name and set id' do
+      _(app.pagy_info(Pagy.new(count: 0), id: 'pagy-info', item_name: 'Widgets')).must_rematch key: :info_0
+      _(app.pagy_info(Pagy.new(count: 1), id: 'pagy-info', item_name: 'Widget')).must_rematch key: :info_1
+      _(app.pagy_info(Pagy.new(count: 13), id: 'pagy-info', item_name: 'Widgets')).must_rematch key: :info_13
+      _(app.pagy_info(Pagy.new(count: 100, page: 3), id: 'pagy-info', item_name: 'Widgets')).must_rematch key: :info_100
     end
   end
 

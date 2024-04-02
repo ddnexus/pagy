@@ -12,13 +12,9 @@ Paginate `Meilisearch` results.
 
 ## Setup
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/meilisearch'
 ```
-
-|||
 
 ## Modes
 
@@ -34,26 +30,18 @@ You use the `pagy_search` method in place of the `ms_search` method.
 
 <br>
 
-||| Model
-
-```ruby
+```ruby Model
 extend Pagy::Meilisearch
 ActiveRecord_Relation.include Pagy::Meilisearch  
 ```
 
-|||
-
-||| Controller (pagy_search)
-
-```ruby
+```ruby Controller (pagy_search)
 # get the collection in one of the following ways
 collection = Article.pagy_search(params[:q])
 collection = Article.pagy_search(params[:q]).results
 # paginate it
 @pagy, @response = pagy_meilisearch(collection, items: 10)
 ```
-
-|||
 
 +++ Passive Mode
 
@@ -65,14 +53,10 @@ Pagy creates its object out of your result.
 
 <br>
 
-||| Controller (Search)
-
-```ruby
+```ruby Controller (Search)
 @results = Model.ms_search(nil, hits_per_page: 10, page: 10, ...)
 @pagy    = Pagy.new_from_meilisearch(@results, ...)
 ```
-
-|||
 
 +++
 

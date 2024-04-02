@@ -13,7 +13,7 @@ zh-HK:
     item_name: ""
     info:
       no_items: "記錄未搵到"
-      single_page: "顯示 <b>%{count}</b> %{item_name}"
-      multiple_pages: "共 <b>%{count}</b>  %{item_name}，顯示 <b>%{from}-%{to}</b>"
-    combo_nav_js: "<label>第 %{page_input} / %{pages} 頁</label>"
-    items_selector_js: "<label>每頁顯示 %{items_input} 記錄</label>"
+      single_page: "顯示 %{count} %{item_name}"
+      multiple_pages: "共 %{count}  %{item_name}，顯示 %{from}-%{to}"
+    combo_nav_js: "第 %{page_input} / %{pages} 頁"
+    items_selector_js: "每頁顯示 %{items_input} 記錄"

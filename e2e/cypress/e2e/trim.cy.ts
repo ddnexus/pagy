@@ -17,7 +17,7 @@ describe("Test trim in all helpers and styles", () => {
     testLoop(stylesCal, navIds, "month_page");
 
     it("Test the trimmed location.href after using the items_selector", () => {
-        cy.visit("/navs?trim=true&page=1&items=20");
+        cy.visit("/pagy?trim=true&page=1&items=20");
         cy.location().should(loc => expect(loc.href).to.match(/page=1/));
         cy.get("#items-selector-js input").type("19{enter}");
         cy.location().should(loc => expect(loc.href).to.not.match(/page=1/));

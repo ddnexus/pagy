@@ -7,7 +7,7 @@ describe("Test generic helpers", () => {
     it("Test pagy_info", () => {
         const id = "#pagy-info";
         for (const page of pages) {
-            cy.visit(`/navs?page=${page}`);
+            cy.visit(`/pagy?page=${page}`);
             snapId(id);
         }
     });
@@ -16,7 +16,7 @@ describe("Test generic helpers", () => {
         const id_input = `${id} input`;
 
         for (const page of pages) {
-            cy.visit(`/navs?page=${page}`);
+            cy.visit(`/pagy?page=${page}`);
             snapId(id);
             cy.get(id_input).type("10{enter}");
             snapId(id);

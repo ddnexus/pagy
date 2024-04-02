@@ -1,23 +1,105 @@
 ---
-title: Support
+title: Pagy
+image: none
 categories:
-- Feature
-- Extra
+  - Frontend
+  - Extra
 ---
 
-# Support Extra
+# Pagy Extra
 
-Add support for countless or navless pagination (incremental, auto-incremental, infinite pagination).
+Adds the pagy styled versions of the javascript-powered navs and a few other components to support countless or navless
+pagination (incremental, auto-incremental, infinite pagination).
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
-require 'pagy/extras/support'
+```ruby pagy.rb (initializer)
+require 'pagy/extras/pagy'
 ```
 
-|||
+```erb View (helper)
+<%== pagy_nav_js(@pagy, **vars) %>
+<%== pagy_combo_nav_js(@pagy, **vars) %>
+<%== pagy_prev_a(@pagy, **vars) %>
+<%== pagy_next_a(@pagy, **vars) %>
+<%== pagy_prev_link(@pagy, **vars) %>
+<%== pagy_next_link(@pagy, **vars) %>
+```
+
+```ruby URL helpers
+pagy_prev_url(@pagy, absolute: bool)
+pagy_next_url(@pagy, absolute: bool)
+```
+
+See [Javascript](/docs/api/javascript.md).
+
+## Files
+
+- [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/pagy.rb)
+
+## Methods
+
+==- `pagy_nav(pagy, **vars)`
+
+!!!
+This method is defined in the `Pagy::Frontend` module for efficiency, but referred here for consistency with the other frontend
+extras and the same type of components here.
+!!!
+
+See [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars).
+
+==- `pagy_nav_js(pagy, **vars)`
+
+See [Javascript Navs](/docs/api/javascript/navs.md).
+
+==- `pagy_combo_nav_js(pagy, **vars)`
+
+See [Javascript Combo Navs](/docs/api/javascript/combo-navs.md).
+
+==- `pagy_info(pagy, **vars)`
+
+!!!
+This method is defined in the `Pagy::Frontend` module for efficiency, but referred here for consistency with the same type of
+components here.
+!!!
+
+See [pagy_info(pagy, **vars)](/docs/api/frontend.md#pagy-info-pagy-vars).
+
+==- `pagy_prev_url(pagy, absolute: false)`
+
+Return the previous page URL string or nil. Useful to build minimalistic UIs that don't use nav
+bar links (e.g. `countless` extra).
+
+==- `pagy_next_url(pagy, absolute: false)`
+
+Return the previous page URL string or nil. Useful to build minimalistic UIs that don't use nav bar
+links (e.g. `countless` extra).
+
+==- `pagy_prev_a(pagy, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev))`
+
+Return the enabled/disabled previous page anchor tag. It is the same prev link string which is
+part of the `pagy_nav` helper.
+
+Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
+
+==- `pagy_next_a(pagy, text: pagy_t('pagy.next'), , aria_label: pagy_t('pagy.aria_label.prev))`
+
+Return the enabled/disabled next page anchor tag. It is the same next link string which is part of the
+`pagy_nav` helper.
+
+Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
+
+==- `pagy_prev_link(pagy)`
+
+Conditionally return the previous page `link` tag. Useful to add the link tag to the HTML `head`.
+
+==- `pagy_next_link(pagy)`
+
+Conditionally return the next page `link` tag. Useful to add the link tag to the HTML `head`.
+
+===
 
 ## Support for alternative pagination types and features
 
@@ -39,27 +121,18 @@ You can also use the `pagy_prev_html`, `pagy_next_html` mostly useful if you als
 
 Here is a basic example that uses `pagy_countless` (saving one query per render):
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/countless'
 ```
 
-|||
+```ruby incremental (controller action)
 
-||| incremental (controller action)
-
-```ruby
 def incremental
-  @pagy, @records = pagy_countless(collection, link_extra: 'data-remote="true"')
+  @pagy, @records = pagy_countless(collection, anchor_string: 'data-remote="true"')
 end
 ```
 
-|||
-
-||| incremental.html.erb (template)
-
-```erb
+```erb incremental.html.erb (template)
 <div id="content">
   <table id="records_table">
     <tr>
@@ -74,11 +147,7 @@ end
 </div>
 ```
 
-|||
-
-||| _page_items.html.erb (partial)
-
-```erb
+```erb _page_items.html.erb (partial)
 <% @records.each do |record| %>
   <tr>
     <td><%= record.name %></td>
@@ -87,25 +156,15 @@ end
 <% end %>
 ```
 
-|||
-
-||| _next_link.html.erb (partial)
-
-```erb
+```erb _next_link.html.erb (partial)
 <!-- Wrapped in a "pagy" class to apply the pagy CSS style -->
-<span class="pagy"><%== pagy_next_html(@pagy, text: 'More...', link_extra: 'id="next_link"') %><span>
+<span id: 'next_link' class="pagy"><%== pagy_next_a(@pagy, text: 'More...') %><span>
 ```
 
-|||
-
-||| incremental.js.erb (javascript template)
-
-```erb
+```erb incremental.js.erb (javascript template)
 $('#records_table').append("<%= j(render 'page_items')%>");
 $('#div_next_link').html("<%= j(render 'next_link') %>");
 ```
-
-|||
 
 ### Auto-incremental
 
@@ -124,36 +183,28 @@ of changes:
 
 **1**. Hide the link in `_next_link.html.erb` by adding a style attribute:
 
-||| _next_link.html.erb (partial)
-
-```erb
-<%== pagy_next_html(@pagy, text: 'More...', link_extra: 'id="next_link" style="display: none;"') %>
+```erb _next_link.html.erb (partial)
+<span style="display: none;"><%== pagy_next_a(@pagy, text: 'More...') %></span>
 ```
-
-|||
 
 **2**. Add a javascript that will click the link when the listing-bottom appears in the viewport on load/resize/scroll. It will
 keep the page filled with results, one page at a time:
 
-||| Javascript
-
-```js
-var loadNextPage = function(){
-  if ($('#next_link').data("loading")){ return }  // prevent multiple loading
+```js Javascript
+var loadNextPage = function() {
+  if ($('#next_link a').data("loading")) { return }  // prevent multiple loading
   var wBottom  = $(window).scrollTop() + $(window).height();
   var elBottom = $('#records_table').offset().top + $('#records_table').height();
-  if (wBottom > elBottom){
-    $('#next_link')[0].click();
-    $('#next_link').data("loading", true);
+  if (wBottom > elBottom) {
+    $('#next_link a')[0].click();
+    $('#next_link a').data("loading", true);
   }
 };
 
 window.addEventListener('resize', loadNextPage);
 window.addEventListener('scroll', loadNextPage);
-window.addEventListener('load',   loadNextPage);
+window.addEventListener('load', loadNextPage);
 ```
-
-|||
 
 ### Circular/Infinite
 
@@ -165,59 +216,15 @@ items each. Clicking on next will continue to loop through.
 
 For example:
 
-||| Controller (action)
-
-```ruby
+```ruby Controller (action)
 @pagy, @suggestions = pagy_countless(collection, count: 25, items: 5, cycle: true)
 ```
-
-|||
 
 Passing a forced `:count` of 25 will generate 5 pages of 5 items each that will always have a next page. Regardless the actual
 collection count, you will show the first 25 items of the collection, looping in stripes of 5 items each.
 
 You may want to combine it with something like:
 
-||| View
-
-```erb
+```erb View
 <%== pagy_next_html(@pagy, text: 'More...') %>
 ```
-
-|||
-
-## Methods
-
-==- `pagy_prev_url(pagy, absolute: false)`
-
-Returns the url for the previous page or `nil` if there is no previous page. Useful to build minimalistic UIs that don't use nav
-bar links (e.g. `countless` extra).
-
-==- `pagy_next_url(pagy, absolute: false)`
-
-Returns the url for the next page or `nil` if there is no next page. Useful to build minimalistic UIs that don't use nav bar
-links (e.g. `countless` extra).
-
-==- `pagy_prev_html(pagy, text: pagy_t('pagy.prev'), link_extra: '')`
-
-Returns the HTML string for the enabled/disabled previous page link. It is the same prev link string which is
-part of the `pagy_nav` helper.
-
-Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
-
-==- `pagy_next_html(pagy, text: pagy_t('pagy.next'), link_extra: '')`
-
-Returns the HTML string for the enabled/disabled next page link. It is the same next link string which is part of the
-`pagy_nav` helper.
-
-Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
-
-==- `pagy_prev_link_tag(pagy)`
-
-Returns the `link` tag for the previous page. Useful to add the link tag to the HTML `head`.
-
-==- `pagy_next_link_tag(pagy)`
-
-Returns the `link` tag for the next page. Useful to add the link tag to the HTML `head`.
-
-===

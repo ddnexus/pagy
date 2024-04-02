@@ -13,23 +13,15 @@ It adds a single method to the backend that you can serve as JSON to your favori
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/metadata'
 ```
 
-|||
-
-||| Controller (action)
-
-```ruby
+```ruby Controller (action)
 pagy, records = pagy(collection)
 render json: { data: records,
                pagy: pagy_metadata(pagy, ...) }
 ```
-
-|||
 
 ## Files
 

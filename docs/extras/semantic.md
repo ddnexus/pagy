@@ -10,25 +10,19 @@ image: none
 
 Add javascript nav helpers for Semantic UI CSS [pagination component](https://semantic-ui.com/collections/menu.html#pagination).
 
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
+
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/semantic'
 ```
 
-|||
-
-||| View
-
-```erb
+```erb View
 <%== pagy_semantic_nav(@pagy, **vars) %>
 <%== pagy_semantic_nav_js(@pagy, **vars) %>
 <%== pagy_semantic_combo_nav_js(@pagy, **vars) %>
 ```
-
-|||
 
 ## Files
 

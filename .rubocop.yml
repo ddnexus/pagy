@@ -16,6 +16,7 @@ AllCops:
     # "Unable to find gem panolint; is the gem installed? Gem::MissingSpecError" in all ruby versions
     - vendor/bundle/**/*
     - pnpm/**/*
+    - lib/optimist.rb
 
 Layout/LineLength:
   Max: 130
@@ -29,6 +30,7 @@ Layout/ExtraSpacing:
     Enabled: true
   Exclude:
     - test/**/*
+    - lib/bin/pagy
 
 Layout/EmptyLines:
   Exclude:
@@ -53,6 +55,9 @@ Metrics:
 Naming/VariableNumber:
   CheckSymbols: false
 
+Naming/MethodParameterName:
+  Enabled: false
+
 # not cool
 Style/CommentedKeyword:
   Enabled: false
@@ -60,6 +65,7 @@ Style/EmptyCaseCondition:
   Enabled: false
 Style/LambdaCall:
   Enabled: false
+
 
 # cannot inline the disabling in the file because rubocop complains anyway
 Style/RedundantInitialize:

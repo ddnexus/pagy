@@ -14,9 +14,7 @@ memory ([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb)).
 
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 # set global defaults and extra variables
 # they will get merged with every new Pagy instance
 Pagy::DEFAULT[:items]    = 25
@@ -43,8 +41,6 @@ pagy.series
 #=> [1, 2, "3", 4, 5, 6, 7, :gap, 40]
 ```
 
-|||
-
 ## Global Default
 
 The `Pagy::DEFAULT` is a globally available hash used to set defaults variables. It is a constant for easy access, but it is
@@ -54,16 +50,12 @@ variables passed with the `new` method every times a `Pagy` instance gets create
 
 You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 Pagy::DEFAULT[:items]     = 25
 Pagy::DEFAULT[:my_option] = 'my option'
 ...
 Pagy::DEFAULT.freeze
 ```
-
-|||
 
 ## Methods
 
@@ -150,19 +142,17 @@ They are all integers:
 
 ### Other Variables
 
-| Variable         | Description                                                                                                                                                                                                                             | Default                 |
-|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------|
-| `:size`          | The size of the page links to show: can be an array of initial pages, before current page, after current page, final pages or the total page size. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_ | `7`                     |
-| `:page_param`    | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                                                    | `:page`                 |
-| `:params`        | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                     | `{}`                    |
-| `:fragment`      | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                        | `''`                    |
-| `:link_extra`    | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_                                     | `''`                    |
-| `:item_i18n_key` | The i18n key to lookup the `item_name` that gets interpolated in a few helper outputs (see [How to customize the item name](/docs/how-to.md#customize-the-item-name))                                                                   | `'pagy.item_name'`      |
-| `:nav_i18n_key`  | The i18n key to lookup the `aria-label` for the `pagy*_nav` helpers                                                                                                                                                                     | `'pagy.aria_label.nav'` |
-| `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                                                           | `false`                 |
-| `:request_path`  | Allows overriding the request path for pagination links. Pass the path only (not the absolute url). _(see [Customize the request path](/docs/how-to.md#customize-the-request-path))_                                                    | `request.path`          |
-| `jsonapi`        | Enable `jsonapi` compliance of the pagy query params                                                                                                                                                                                    | `false`                 |
-| `count_args`     | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                                                                                      | [:all]                  |
+| Variable         | Description                                                                                                                                                                                                                             | Default |
+|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
+| `:size`          | The size of the page links to show: can be an array of initial pages, before current page, after current page, final pages or the total page size. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_ | `7`     |
+| `:page_param`    | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                                                    | `:page` |
+| `:params`        | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                     | `{}`    |
+| `:fragment`      | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                        | `''`    |
+| `:anchor_string` | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_                                     | `nil`   |
+| `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                                                           | `false` |
+| `:request_path`  | Allows overriding the request path for pagination links. Pass the path only (not the absolute url). _(see [Customize the request path](/docs/how-to.md#customize-the-request-path))_                                                    | `nil`   |
+| `jsonapi`        | Enable `jsonapi` compliance of the pagy query params                                                                                                                                                                                    | `false` |
+| `count_args`     | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                                                                                      | [:all]  |
 
 There is no specific validation for non-instance variables.
 
@@ -186,7 +176,7 @@ or `nil`), except the `vars` hash:
 | `next`         | The next page number or `nil` if there is no next page                                                             |
 | `vars`         | The variables hash                                                                                                 |
 | `params`       | The `:params` variable (`Hash` or `Proc`)                                                                          |
-| `request_path` | The request path used for pagination helpers.  If blank, helpers will use `request.path`                           |
+| `request_path` | The request path used for pagination helpers. If nil, helpers will use `request.path`                              |
 
 ### Lowest limit analysis
 
@@ -214,6 +204,8 @@ Which means:
   With `size: []` the `series` method returns `[]`
 - `in`, `from` and `to` of an empty page are all `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)
+  
+===
 
 ## Exceptions
 

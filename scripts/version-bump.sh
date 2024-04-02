@@ -28,8 +28,13 @@ function bump(){
 }
 
 bump "$ROOT/retype.yml"
-bump "$ROOT/.github/.env"
+bump "$ROOT/.github/ISSUE_TEMPLATE/Code.yml"
 bump "$ROOT/lib/pagy.rb"
+bump "$ROOT/lib/apps/calendar.ru"
+bump "$ROOT/lib/apps/demo.ru"
+bump "$ROOT/lib/apps/rails.ru"
+bump "$ROOT/lib/apps/repro.ru"
+bump "$ROOT/lib/bin/pagy"
 bump "$ROOT/lib/config/pagy.rb"
 bump "$ROOT/src/pagy.ts"
 
@@ -42,19 +47,21 @@ cd "$ROOT/src"
 pnpm run build
 cd "$ROOT"
 
+# Set TMPLOG to the changelog content
+TMPLOG=$(mktemp)
+echo "$(git log --format="- %s%b" "$old_vers"..HEAD)" > "$TMPLOG"
+# Edit it
+read -p 'Edit and save the changelog content (enter)> '
+nano "$TMPLOG"
+# Set the release body file used by .github/workflows/create_release.yml
+# which is triggered by the :rubygem_release task (push tag)
+cp -fv "$TMPLOG" "$ROOT/.github/latest_release_body.md"
+
 # Update CHANGELOG
-changelog=$(cat <<-LOG
-	<hr>
-
-	## Version $new_vers
-
-	$(git log --format="- %s%b" "$old_vers"..HEAD)
-LOG
-)
+changelog=$(cat <(echo -e "<hr>\n\n## Version $new_vers\n") "$TMPLOG")
 CHANGELOG="$ROOT/CHANGELOG.md"
-TMPFILE=$(mktemp)
-awk -v l="$changelog" '{sub(/<hr>/, l); print}' "$CHANGELOG" > "$TMPFILE"
-mv "$TMPFILE" "$CHANGELOG"
+awk -v l="$changelog" '{sub(/<hr>/, l); print}' "$CHANGELOG" > "$TMPLOG"
+mv "$TMPLOG" "$CHANGELOG"
 
 # Run test to check the consistency across files
 bundle exec ruby -Itest test/pagy_test.rb --name  "/pagy::Version match(#|::)/"
@@ -65,15 +72,9 @@ if [[ $input = y ]] || [[ $input = Y ]]; then
   bundle exec "$ROOT/scripts/update_top100.rb"
 fi
 
-## Optional show diff
-#read -rp 'Do you want to see the diff? (y/n)> ' input
-#if [[ $input = y ]] || [[ $input = Y ]]; then
-#  git diff -U0 --word-diff=color
-#fi
-#
-## Optional commit
-#read -rp 'Do you want to commit the changes? (y/n)> ' input
-#if [[ $input = y ]] || [[ $input = Y ]]; then
-#  git add -A
-#  git commit -m "Version $new_vers"
-#fi
+# Optional commit
+read -rp 'Do you want to commit the changes? (y/n)> ' input
+if [[ $input = y ]] || [[ $input = Y ]]; then
+  git add -A
+  git commit -m "Version $new_vers"
+fi

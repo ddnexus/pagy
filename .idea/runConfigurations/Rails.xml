@@ -1,11 +1,14 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Standalone" type="RubyRunConfigurationType" factoryName="Ruby" folderName="apps">
+  <configuration default="false" name="Rails" type="RubyRunConfigurationType" factoryName="Ruby" folderName="apps">
     <module name="pagy" />
     <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
-    <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/apps" />
+    <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$" />
     <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
     <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
     <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+    <envs>
+      <env name="SECRET_KEY_BASE" value="absolute secret!" />
+    </envs>
     <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
     <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov">
@@ -24,8 +27,8 @@
       </ENTRIES>
     </EXTENSION>
     <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="/usr/local/bundle/bin/rerun" />
-    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="-- rackup -o 0.0.0.0 -p 8080 pagy_standalone.ru" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/lib/bin/pagy" />
+    <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="$MODULE_DIR$/lib/apps/rails.ru -e pagy_dev" />
     <method v="2" />
   </configuration>
 </component>

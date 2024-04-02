@@ -1,0 +1,83 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+VERSION = '8.0.0'
+APPS    = %w[repro rails demo calendar].freeze
+
+require_relative '../optimist'
+opts = Optimist.options do
+  text <<~HEAD
+    Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)
+    Playground to showcase, clone and develop pagy APPs
+    APPs
+      repro                      Reproduce generic/simple issues
+      rails                      Reproduce rails related issues
+      demo                       Showcase all the helpers and styles
+      calendar                   Showcase the calendar; reproduce related issues
+    USAGE
+      pagy APP [options]         Showcase APP from the installed gem
+      pagy clone APP             Clone APP to the current dir
+      pagy APPFILE [options]     Develop APPFILE from local path
+    EXAMPLES
+      pagy demo                  Showcase demo at http://0.0.0.0:8000
+      pagy clone repro           Clone repro to ./repro.ru
+      pagy ~/my-repro.ru         Develop ~/my-repro.ru at http://0.0.0.0:8000
+  HEAD
+  text 'Rackup options'
+  opt :env,   'Environment',  default: 'development'
+  opt :host,  'Host', default: '0.0.0.0', short: :o
+  opt :port,  'Port', default: 8000
+  text 'Rerun options'
+  opt :rerun, 'Enable rerun for development', default: true
+  opt :clear, 'Clear screen before each rerun'
+  text 'Other options'
+  opt :quiet, 'Quiet mode for development'
+  version VERSION
+end
+Optimist.educate if ARGV.empty?
+
+require 'bundler/inline'
+gemfile true do
+  source 'https://rubygems.org'
+  gem 'rackup'
+  gem 'rerun'
+end
+
+path = ->(app) { File.expand_path("../apps/#{app}.ru", __dir__) }
+arg  = ARGV.shift
+if arg.eql?('clone')
+  arg = ARGV.shift
+  Optimist.die("Expected APP to be in [#{APPS.join(', ')}]; got #{arg.inspect}") unless APPS.include?(arg)
+  file = path.(arg)
+  name = File.basename(file)
+  if File.exist?(name)
+    print "Do you want to overwrite the #{name.inspect} file? (y/n)> "
+    answer = gets.chomp
+    Optimist.die("#{name.inspect} file already present") unless answer.start_with?(/y/i)
+  end
+  require 'fileutils'
+  FileUtils.cp(file, '.', verbose: true)
+else
+  if APPS.include?(arg)  # showcase env
+    opts[:env]   = 'showcase'
+    opts[:rerun] = false
+    opts[:quiet] = true
+    # Avoid the creation of './tmp/local_secret.txt' for showcase env
+    ENV['SECRET_KEY_BASE'] = 'absolute secret!' if arg.eql?('rails')
+    file = path.(arg)
+  else                   # development env
+    file = arg
+  end
+  Optimist.die("#{file.inspect} app not found") unless File.exist?(file)
+  # Run command
+  rackup = "rackup -I #{File.expand_path('..', __dir__)} -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{file}"
+  rackup << ' -q' if opts[:quiet]
+  if opts[:rerun]
+    name  = File.basename(file)
+    rerun = "rerun --name #{name} -d #{File.dirname(file)} -p #{name}"
+    rerun << ' -q' if opts[:quiet]
+    rerun << ' -c' if opts[:clear]
+    rerun << " -- #{rackup}"
+  end
+  exec(rerun || rackup)
+end

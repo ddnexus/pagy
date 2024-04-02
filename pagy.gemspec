@@ -20,5 +20,20 @@ Gem::Specification.new do |s|
                     'bug_tracker_uri'       => 'https://github.com/ddnexus/pagy/issues',
                     'changelog_uri'         => 'https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md',
                     'support'               => 'https://github.com/ddnexus/pagy/discussions/categories/q-a' }
+  # The pagy repo contains a lot of dir and files, so we conveniently use the 'lib' dir
+  # as the root container for whatever will get published in rubygems, including executables
+  s.bindir = 'lib/bin'
+  s.executables << 'pagy'
+  s.post_install_message = <<~PIM
+
+    *********************** PAGY WARNING! ***********************
+               We may drop pagy's less used CSS extras.
+
+          If you wish to keep them alive, please, vote here:
+
+    https://github.com/ddnexus/pagy/discussions/categories/survey
+    *************************************************************
+
+  PIM
   s.required_ruby_version = '>= 3.1'
 end

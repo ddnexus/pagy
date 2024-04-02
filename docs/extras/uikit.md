@@ -8,26 +8,20 @@ category: Frontend
 
 Add nav helpers for the UIkit [pagination component](https://getuikit.com/docs/pagination).
 
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
+
 ## Synopsis
 
-||| pagy.rb (initializer)
-
-```ruby
+```ruby pagy.rb (initializer)
 require 'pagy/extras/uikit'
 ```
 
-|||
-
-||| View
-
-```erb
+```erb View
 <-- Nav Helpers: -->
 <%== pagy_uikit_nav(@pagy, **vars) %>
 <%== pagy_uikit_nav_js(@pagy, **vars) %>
 <%== pagy_uikit_combo_nav_js(@pagy, **vars) %>
 ```
-
-|||
 
 ## Files
 
