@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765361178852">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765370760011">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.765361178852" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765370760011" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765361178852" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765370760011" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765361178852" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765361178852" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765370760011" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765370760011" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.1</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -319,9 +319,9 @@ end
 
 # some action:
 def index
-  @calendar, @pagy, @records = pagy_calendar(collection, year:  { size:  [1, 1, 1, 1], ... },
-                                                       month: { size:  [0, 12, 12, 0], ... },
-                                                       pagy:  { items: 10, ...})
+  @calendar, @pagy, @records = pagy_calendar(collection, year: { size: [1, 1, 1, 1], ... },
+                                             month:            { size: [0, 12, 12, 0], ... },
+                                             pagy:             { items: 10, ... })
 end</code></pre>
 </doc-codeblock></div>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -365,15 +365,6 @@ couple of simple methods in your app and configure the objects that it creates a
     </h2>
 </doc-anchor-target>
 <p>See <a href="../../api/calendar/#variables">Pagy::Calendar</a></p>
-<doc-anchor-target id="files">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#files">#</doc-anchor-trigger>
-        <span>Files</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li><a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/calendar.rb">calendar.rb</a></li>
-</ul>
 <doc-anchor-target id="methods">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
@@ -516,7 +507,7 @@ time from anywhere):</p>
 <pre class="language-ruby"><code v-pre class="language-ruby"># Simpler version (2 queries)
 def pagy_calendar_period(collection)
   starting = collection.minimum('created_at')
-  ending   = collection.maximum('created_at') 
+  ending   = collection.maximum('created_at')
   [starting.in_time_zone, ending.in_time_zone]
 end
 
@@ -581,8 +572,9 @@ and syntax of your storage.</p>
 an example with the <code v-pre>created_at</code> field again (but you can use anything, of course):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">controller</div>
-<pre class="language-ruby"><code v-pre class="language-ruby">def pagy_calendar_filter(collection, from, to)
-  collection.where(created_at: from...to)  # 3-dots range excluding the end value
+<pre class="language-ruby"><code v-pre class="language-ruby">
+def pagy_calendar_filter(collection, from, to)
+  collection.where(created_at: from...to) # 3-dots range excluding the end value
 end</code></pre>
 </doc-codeblock></div>
 <p>See also <a href="../../api/calendar/#time-conversions">Time conversion</a> for details.</p>
@@ -676,9 +668,8 @@ it to the <code v-pre>I18n</code> gem, so that a change in the global <code v-pr
 <ul>
 <li>Use the <a href="../i18n/">i18n extra</a>, which delegates the translation and localization to the <code v-pre>I18n</code> gem. Notice however that you would
 lose the performance gain offered by the built-in <code v-pre>pagy_t</code> translation.</li>
-<li>Uncomment the block in the calendar section in the <a href="https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb">pagy.rb</a>
-initializer, which will add the localization from the <code v-pre>I18n</code> gem without using the <a href="../i18n/">i18n extra</a>, so
-preserving the builtin <code v-pre>pagy_t</code> translation.</li>
+<li>Uncomment the block in the calendar section in the pagy initializer, which will add the localization from the <code v-pre>I18n</code> gem without
+using the <a href="../i18n/">i18n extra</a>, so preserving the builtin <code v-pre>pagy_t</code> translation.</li>
 </ul>
 <doc-anchor-target id="caveats">
     <h2>

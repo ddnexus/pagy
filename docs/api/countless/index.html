@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765361178852">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765370760011">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Pagy::Countless | Pagy</title>
     <meta name="title" content="Pagy::Countless | Pagy">
-    <meta name="description" content="This is a Pagy subclass (see source) that provides pagination without the need of any :count.">
+    <meta name="description" content="This is a Pagy subclass that provides pagination without the need of any :count.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/api/countless/">
@@ -21,21 +21,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/api/countless/">
     <meta property="og:title" content="Pagy::Countless | Pagy">
-    <meta property="og:description" content="This is a Pagy subclass (see source) that provides pagination without the need of any :count.">
+    <meta property="og:description" content="This is a Pagy subclass that provides pagination without the need of any :count.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/api/countless/">
     <meta property="twitter:title" content="Pagy::Countless | Pagy">
-    <meta property="twitter:description" content="This is a Pagy subclass (see source) that provides pagination without the need of any :count.">
+    <meta property="twitter:description" content="This is a Pagy subclass that provides pagination without the need of any :count.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.765361178852" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765370760011" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765361178852" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765370760011" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765361178852" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765370760011" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.1</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -270,8 +270,7 @@
     <div><a href="../../../categories/class/">Class</a></div>
 </div>
 
-<p>This is a <code v-pre>Pagy</code> subclass (see <a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy/countless.rb">source</a>) that provides
-pagination without the need of any <code v-pre>:count</code>.</p>
+<p>This is a <code v-pre>Pagy</code> subclass that provides pagination without the need of any <code v-pre>:count</code>.</p>
 <p>That may be especially useful in the following scenarios:</p>
 <ul>
 <li>slow <code v-pre>COUNT(*)</code> query - result of large tables or poorly optimized DBs</li>
@@ -280,7 +279,7 @@ pagination without the need of any <code v-pre>:count</code>.</p>
 <li>when the full nav-bar is not a requirement and/or performance is more desirable</li>
 </ul>
 <p>This class provides support for extras that don&#x27;t need the full set of pagination support or need to avoid the <code v-pre>:count</code> variable (
-e.g. the <a href="../../extras/countless/">countless</a> extra). The class API is documented here, however you should not need to use this
+e.g. the <a href="../../extras/countless/">countless extra</a>). The class API is documented here, however you should not need to use this
 class directly because it is required and used internally by the extra.</p>
 <doc-anchor-target id="caveats">
     <h2>
@@ -343,7 +342,7 @@ a <code v-pre>next</code> page, or if the current page is the <code v-pre>last</
 exception.</p>
 <p>Retrieving these variables may be useful to supply a UI as complete as possible, when used with classic helpers, and can be
 skipped when it&#x27;s not needed (like for navless pagination, infinite-scroll, etc.). See
-the <a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb">countless.rb extra</a> for more details.</p>
+the <a href="../../extras/countless/">countless extra</a> for more details.</p>
 <doc-anchor-target id="methods">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
