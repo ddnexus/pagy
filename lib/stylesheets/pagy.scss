@@ -10,31 +10,29 @@
     margin-right: calc(0.25rem * var(--space-reverse));
     margin-left: calc(0.25rem * calc(1 - var(--space-reverse)));
   }
-  .page {
-    a {
-      display: block;
-      text-decoration: none;
-      border-radius: 0.5rem;
-      background-color: rgb(229 231 235);
-      padding: 0.25rem 0.75rem;
-      color: inherit;
-      &:hover {
-        background-color: rgb(209 213 219);
-      }
+
+  a:not(.gap) {
+    display: block;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    background-color: rgb(229 231 235);
+    padding: 0.25rem 0.75rem;
+    color: inherit;
+    &:hover {
+      background-color: rgb(209 213 219);
     }
-    &.active a {
-      cursor: default;
-      background-color: rgb(156 163 175);
-      color: rgb(255 255 255);
-    }
-    &.disabled a {
+    &:not([href]) { /* disabled links */
       cursor: default;
       background-color: rgb(243 244 246);
       color: rgb(209 213 219);
     }
-    &.gap { }  /* if you need to customize it */
+    &.current {
+      background-color: rgb(156 163 175);
+      color: rgb(255 255 255);
+    }
   }
-  .pagy-combo-input, &.pagy-items-selector-js {
+
+  label {
     white-space: nowrap;
     display: inline-block;
     border-radius: 0.5rem;

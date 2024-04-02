@@ -1,41 +1,29 @@
-<%#
-  The link variable is set to a proc that returns the link tag (complete with rel and aria-current)
-  Usage: link.call( page_number [, text [, extra_attributes_string ]])
--%>
-<% link = pagy_link_proc(pagy) -%>
-<nav class="pagy_nav pagination" aria-label="Pages">
+<%# IMPORTANT: use '<%== ... ' instead of '<%= ... ' if you run this in rails %>
+
+<%# The a variable below is set to a lambda that generates the a tag %>
+<%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>
+<% a = pagy_anchor(pagy) %>
+<nav class="pagy nav" aria-label="Pages">
   <%# Previous page link %>
-  <% if pagy.prev -%>
-    <span class="page prev">
-      <%== link.call(pagy.prev, '&lt;', 'aria-label="Previous"') %>
-    </span>
-  <% else -%>
-    <span class="page prev disabled">
-      <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
-    </span>
-  <% end -%>
+  <% if pagy.prev %>
+    <%= a.(pagy.prev, '&lt;', aria_label: 'Previous') %>
+  <% else %>
+    <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
+  <% end %>
   <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
-  <% pagy.series.each do |item| -%>
-    <% if item.is_a?(Integer) -%>
-      <span class="page">
-        <%== link.call(item) %>
-      </span>
-    <% elsif item.is_a?(String) -%>
-      <span class="page active">
-        <a role="link" aria-disabled="true" aria-current="page"><%== item %></a>
-      </span>
-    <% elsif item == :gap -%>
-      <span class="page gap">&hellip;</span>
-    <% end -%>
-  <% end -%>
+  <% pagy.series.each do |item| %>
+    <% if item.is_a?(Integer) %>
+      <%= a.(item) %>
+    <% elsif item.is_a?(String) %>
+      <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
+    <% elsif item == :gap %>
+      <a role="link" aria-disabled="true" class="gap">&hellip;</a>
+    <% end %>
+  <% end %>
   <%# Next page link %>
-  <% if pagy.next -%>
-    <span class="page next">
-      <%== link.call(pagy.next, '&gt;', 'aria-label="Next"') %>
-    </span>
-  <% else -%>
-    <span class="page next disabled">
-      <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
-    </span>
-  <% end -%>
+  <% if pagy.next %>
+    <%= a.(pagy.next, '&gt;', aria_label: 'Next') %>
+  <% else %>
+    <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
+  <% end %>
 </nav>

@@ -5,27 +5,28 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '7.0.11'
+  VERSION = '8.0.0'
 
   # Root pathname to get the path of Pagy files like templates or dictionaries
   def self.root
     @root ||= Pathname.new(__dir__).freeze
   end
 
-  # Default core vars: constant for easy access, but mutable for customizable defaults
+  # Core defult: constant for easy access, but mutable for customizable defaults
   DEFAULT = { page:          1, # rubocop:disable Style/MutableConstant
               items:         20,
               outset:        0,
               size:          7,
-              page_param:    :page,
-              params:        {},
-              fragment:      '',
-              link_extra:    '',
-              item_i18n_key: 'pagy.item_name',
-              nav_i18n_key: 'pagy.aria_label.nav',
               cycle:         false,
-              request_path:  '',
-              count_args:    [:all] } # AR friendly
+              # backend/collection
+              count_args:    [:all],  # AR friendly
+              # backend/url
+              params:        {},
+              page_param:    :page,
+              fragment:      '',
+              request_path:  nil,
+              # frontend/helpers
+              anchor_string: nil }
 
   attr_reader :count, :page, :items, :vars, :pages, :last, :offset, :in, :from, :to, :prev, :next, :params, :request_path
 

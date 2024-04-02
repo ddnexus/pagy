@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765066039809" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765360562834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -310,12 +310,8 @@ which is inconsistent with the <code v-pre>gearbox</code>.</li>
         <span>Synopsis</span>
     </h2>
 </doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">require 'pagy/extras/gearbox'
 
 # optional: set a different default in the pagy.rb initializer
@@ -323,14 +319,8 @@ which is inconsistent with the <code v-pre>gearbox</code>.</li>
 # Pagy::DEFAULT[:gearbox_items] = [15, 30, 60, 100]   # default
 Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller (action)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller (action)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby"># Optionally override the :gearbox_items variable to a constructor to have it only for that instance
 @pagy, @records = pagy(collection, gearbox_items: [30, 60, 100], **vars)
 
@@ -346,8 +336,6 @@ Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default</code></pre>
 # use the passed gearbox_items: [30, 60, 100]
 @pagy, @records = pagy(collection, items_extra: false, gearbox_items: [30, 60, 100])</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="files">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#files">#</doc-anchor-trigger>

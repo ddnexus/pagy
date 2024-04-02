@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765066039809" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765360562834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -306,12 +306,8 @@ and <a href="../../extras/meilisearch/">meilisearch</a> extras for specific back
         <span>Synopsis</span>
     </h2>
 </doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">include Pagy::Backend
 
 # optional overriding of some sub-method
@@ -324,8 +320,6 @@ def index
   @pagy, @records = pagy(Product.some_scope, some_option: 'some option for this instance')
 end</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="methods">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
@@ -354,7 +348,7 @@ self contained custom <code v-pre>pagy</code> method. (see <doc-anchor-trigger t
    <doc-panel id="pagy-get-vars-collection-vars" collapsed>
        <template #title><code v-pre>pagy_get_vars(collection, vars)</code></template>
 <p>Sub-method called only by the <code v-pre>pagy</code> method, it returns the hash of variables used to initialize the Pagy object.</p>
-<p>Override it if you need to add or change some variable. For example you may want to add the <code v-pre>:item_i18n_key</code> in order to customize
+<p>Override it if you need to add or change some variable. For example you may want to add the <code v-pre>:item_name</code> in order to customize
 the output <em>(see <a href="../../how-to/#customize-the-item-name">How to customize the item name</a>)</em>, or even cache the <code v-pre>count</code>.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
@@ -423,20 +417,14 @@ end</code></pre>
 using one single <code v-pre>pagy</code> method would not be an option.</p>
 <p>In that case you can define a number of <code v-pre>pagy_*</code> custom methods specific for each collection.</p>
 <p>For example: here is a <code v-pre>pagy</code> method that doesn&#x27;t call any sub-method, that may be enough for your needs:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">
 def pagy_custom(collection, vars = {})
   pagy = Pagy.new(count: collection.count(*vars[:count_args]), page: params[:page], **vars)
   [pagy, collection.offset(pagy.offset).limit(pagy.items)]
 end</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p>You can easily write a <code v-pre>pagy</code> method for <em>any possible</em> environment: please read how
 to <a href="../../how-to/#paginate-any-collection">Paginate Any Collection</a> for details.</p>
 <div class="flex mb-6">

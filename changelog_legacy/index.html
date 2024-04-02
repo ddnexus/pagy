@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>LEGACY CHANGELOG | Pagy</title>
     <meta name="title" content="LEGACY CHANGELOG | Pagy">
-    <meta name="description" content="Add ckb: \"pagination\" entry (#641)">
+    <meta name="description" content="Fix jsonapi prev and next keys for unavailable links (#665)">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/changelog_legacy/">
@@ -21,21 +21,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/changelog_legacy/">
     <meta property="og:title" content="LEGACY CHANGELOG | Pagy">
-    <meta property="og:description" content="Add ckb: \"pagination\" entry (#641)">
+    <meta property="og:description" content="Fix jsonapi prev and next keys for unavailable links (#665)">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/changelog_legacy/">
     <meta property="twitter:title" content="LEGACY CHANGELOG | Pagy">
-    <meta property="twitter:description" content="Add ckb: \"pagination\" entry (#641)">
+    <meta property="twitter:description" content="Fix jsonapi prev and next keys for unavailable links (#665)">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -264,6 +264,256 @@
         <span>LEGACY CHANGELOG</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="version-7011">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-7011">#</doc-anchor-trigger>
+        <span>Version 7.0.11</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix jsonapi prev and next keys for unavailable links (#665)</li>
+<li>Docs fixes</li>
+</ul>
+<doc-anchor-target id="version-7010">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-7010">#</doc-anchor-trigger>
+        <span>Version 7.0.10</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Added name attribute to combo and items input tags; removed pagy_marked_link and refactored js input action</li>
+</ul>
+<doc-anchor-target id="version-709">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-709">#</doc-anchor-trigger>
+        <span>Version 7.0.9</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Improve all pagy apps</li>
+<li>Normalized bootstrap, bulma, foundation, navs extra</li>
+</ul>
+<doc-anchor-target id="version-708">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-708">#</doc-anchor-trigger>
+        <span>Version 7.0.8</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Update gems and fix a rubocop bug</li>
+<li>Add all styles to pagy_styles.ru</li>
+<li>Better pagy stylesheets</li>
+<li>Fix for uikit extra prev and next link duplicating chevrons</li>
+<li>Change aria_Label to aria_label for Arabic locale (#657)</li>
+</ul>
+<doc-anchor-target id="version-707">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-707">#</doc-anchor-trigger>
+        <span>Version 7.0.7</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix for retype exluding linked files and showing category images</li>
+<li>Fix for first *nav_js page not active with trim (introduced with the #656 fix 7e2f118)</li>
+<li>Normalize pagy apps; implement pagy_styles.ru</li>
+</ul>
+<doc-anchor-target id="version-706">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-706">#</doc-anchor-trigger>
+        <span>Version 7.0.6</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Internal renaming of frontend constants</li>
+<li>Fix for disabled links and missing or extra ARIA attributes in frontend extras</li>
+<li>Boostrap fix for current page link; pagy.js fix for trim of current page (closes #656)</li>
+</ul>
+<doc-anchor-target id="version-705">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-705">#</doc-anchor-trigger>
+        <span>Version 7.0.5</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updated gems, npm modules, contributors</li>
+<li>Added the pagy stylesheets to the gem, updated apps, docs and manifest</li>
+<li>Added note for the metrics and compacted the chart section (closes #652)</li>
+<li>Docs: fix formatting, grammar in README.md (#654)</li>
+<li>Add note about PR base branches to readme (#653)</li>
+</ul>
+<doc-anchor-target id="version-704">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-704">#</doc-anchor-trigger>
+        <span>Version 7.0.4</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Tailwind styles integrated with the pagy-items-selector-js (#646)</li>
+<li>Deprecated the &quot;pagination&quot; CSS class, use the &quot;pagy&quot; CSS class that has been added to all the interactive pagy helper outputs</li>
+<li>Fix indentation of cs locale (#648); add &quot;pagy.aria_label.nav.few&quot; entry, duplicating the &quot;other&quot; pluralization</li>
+<li>Update cs translations (#648)</li>
+<li>Expand/Correct changes about <code v-pre>pagy.prev</code> and <code v-pre>pagy.next</code> (#649)</li>
+</ul>
+<doc-anchor-target id="version-703">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-703">#</doc-anchor-trigger>
+        <span>Version 7.0.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Remove extra space in <code v-pre>pagy_nav</code>, <code v-pre>pagy_nav_js</code> and <code v-pre>.pagy-combo-input</code></li>
+<li>Refactor of tailwind styles and docs (closes #646)</li>
+<li>Add <code v-pre>pagy_tailwind_app.ru</code> (#646)</li>
+<li>Add missing CSS breaking change to the CHANGELOG (#646)</li>
+</ul>
+<doc-anchor-target id="version-702">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-702">#</doc-anchor-trigger>
+        <span>Version 7.0.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Fix for missing to fetch count_args default (close #645)</li>
+<li>Non-code improvements</li>
+</ul>
+<doc-anchor-target id="version-701">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-701">#</doc-anchor-trigger>
+        <span>Version 7.0.1</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Updates ckb translations to be complaint with ARIA in v7.x.x (#643)</li>
+</ul>
+<doc-anchor-target id="version-700">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-700">#</doc-anchor-trigger>
+        <span>Version 7.0.0</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="breaking-changes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes">#</doc-anchor-trigger>
+        <span>Breaking changes</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Dropped old rubies support: Pagy follows the <a href="https://endoflife.date/ruby">ruby end-of-life</a> supported rubies now.</li>
+<li>Renamed <code v-pre>:i18n_key</code> &gt; <code v-pre>:item_i18n_key</code></li>
+<li>Refactored <code v-pre>support</code> extra
+<ul>
+<li>Renamed <code v-pre>pagy_prev_link</code> to <code v-pre>pagy_prev_html</code> to avoid confusion with pagy_prev_link_tag</li>
+<li>Removed <code v-pre>pagy_next_link</code> to <code v-pre>pagy_next_html</code> to avoid confusion with pagy_next_link_tag</li>
+</ul>
+</li>
+<li>Rack 3 breaking changes:
+<ul>
+<li>The <code v-pre>headers</code> extra produces all lowercase headers, regardless how you set
+them <a href="https://github.com/rack/rack/issues/1592">see rack issue</a></li>
+<li>Removed <code v-pre>:escaped_html</code> option from <code v-pre>pagy_url_for</code> (only breaking if you override the method or use the option directly)</li>
+</ul>
+</li>
+<li>Dictionary structure changes: (affects only app with custom helper/templates/dictionary entries)
+<ul>
+<li>The <code v-pre>nav</code> entry has been flattened: <code v-pre>pagy.nav.*</code> entries are now <code v-pre>pagy.*</code>:
+<ul>
+<li>If you have custom helpers/templates: search the keys that contain <code v-pre>'.nav.'</code> and replace them with <code v-pre>'.'</code></li>
+<li>If you have custom dictionary entries (overrides): remove the <code v-pre>'nav:'</code> line and unindent its block</li>
+</ul>
+</li>
+<li>A few labels used as <code v-pre>aria-label</code> have been added: you may want to add/use them to your custom helper/templates/dictionaries
+for ARIA compliance.
+<ul>
+<li><code v-pre>pagy.aria_label.nav</code> Pluralized entry: used in the <code v-pre>nav</code> element</li>
+<li><code v-pre>pagy.aria_label.prev</code>, <code v-pre>pagy.aria_label.next</code> Single entry: used in the prev/next <code v-pre>a</code> link elements</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="default-changes-possibly-breaking-testviews">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#default-changes-possibly-breaking-testviews">#</doc-anchor-trigger>
+        <span>Default changes (possibly breaking test/views)</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Changed <code v-pre>Pagy::DEFAULT[:size]</code> variable defaults from <code v-pre>[1, 4, 4, 1]</code> to <code v-pre>7</code>. You can explicitly set/restore it in the
+initializer, if your app was relying on it.</li>
+<li>Added sensible <code v-pre>:size</code> defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
+relying on it.
+<ul>
+<li><code v-pre>Pagy::Calendar::Day::DEFAULT[:size]</code> <code v-pre>31</code></li>
+<li><code v-pre>Pagy::Calendar::Month::DEFAULT[:size]</code> <code v-pre>12</code></li>
+<li><code v-pre>Pagy::Calendar::Quarter::DEFAULT[:size]</code> <code v-pre>4</code></li>
+<li><code v-pre>Pagy::Calendar::Year::DEFAULT[:size]</code> <code v-pre>10</code></li>
+</ul>
+</li>
+<li>Changed a few <code v-pre>format</code> defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
+relying on it.
+<ul>
+<li><code v-pre>Pagy::Calendar::Day::DEFAULT[:format]</code> from <code v-pre>'%Y-%m-%d'</code> to <code v-pre>'%d'</code></li>
+<li><code v-pre>Pagy::Calendar::Month::DEFAULT[:format]</code> from <code v-pre>'%Y-%m'</code> to <code v-pre>'%b'</code></li>
+<li><code v-pre>Pagy::Calendar::Quartr::DEFAULT[:format]</code> from <code v-pre>'%Y-Q%q'</code> to <code v-pre>'Q%q'</code></li>
+</ul>
+</li>
+</ul>
+<doc-anchor-target id="visual-changes-possibly-breaking-testviews">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#visual-changes-possibly-breaking-testviews">#</doc-anchor-trigger>
+        <span>Visual changes (possibly breaking test/views)</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:</li>
+<li>The text for <code v-pre>&quot;Prev&quot;</code> and <code v-pre>&quot;Next&quot;</code> is now used for the <code v-pre>aria-label</code> (actually as <code v-pre>&quot;Previous&quot;</code> and <code v-pre>&quot;Next&quot;</code>) and has been
+replaced in the UI as <code v-pre>&lt;</code> and <code v-pre>&gt;</code>. You can edit the dictionary entries <code v-pre>pagy.prev</code> and <code v-pre>pagy.next</code> if you want to revert it to
+the previous default (<code v-pre>&amp;lsaquo;&amp;nbsp;Prev</code> and <code v-pre>Next&amp;nbsp;&amp;rsaquo;</code>)</li>
+</ul>
+<doc-anchor-target id="css-changes-possibly-looking-differentbroken">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#css-changes-possibly-looking-differentbroken">#</doc-anchor-trigger>
+        <span>CSS changes (possibly looking different/broken)</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>The HTML of the current page in <code v-pre>pagy_nav</code> and <code v-pre>pagy_nav_js</code> has been changed from simple text (e.g. <code v-pre>5</code>) to a
+disabled link (e.g. <code v-pre>&lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-current=&quot;page&quot;&gt;5&lt;/a&gt;</code>). That affects your CSS rules and
+the old tailwind examples targeting the page links, now overreaching the current page.
+<ul>
+<li>You may fix eventual problems either by replacing the affected <code v-pre>a</code> rules with narrower <code v-pre>a[href]</code> selectors however if you use
+Tailwind we recommend to use the <a href="https://ddnexus.github.io/pagy/docs/extras/tailwind/">improved tailwind style</a>, that you can
+adapt in no time to anything you need.</li>
+</ul>
+</li>
+<li>The extra spaces added between pages of <code v-pre>pagy_nav</code> and <code v-pre>pagy_nav_js</code> have been removed</li>
+<li>The <code v-pre>pagy-combo-nav-js .pagy-combo-input</code> internal element x-margins have been removed</li>
+</ul>
+<doc-anchor-target id="internal-renaming-of-private-methods-unlikely-to-break-anything">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#internal-renaming-of-private-methods-unlikely-to-break-anything">#</doc-anchor-trigger>
+        <span>Internal renaming of private methods (unlikely to break anything)</span>
+    </h3>
+</doc-anchor-target>
+<p>You should not have used any of the private methods, but if you did so, you will get a <code v-pre>NoMethodError</code>
+(undefined method...) very easy to fix by simply renaming, because there are no changes in the logic.</p>
+<doc-anchor-target id="changes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes">#</doc-anchor-trigger>
+        <span>Changes</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Added <code v-pre>:count_args</code> variable passed to the <code v-pre>collection.count(...)</code> statement (avoids overriding of <code v-pre>pagy-gets-vars</code> and
+expands count capabilities)</li>
+<li><a href="https://ddnexus.github.io/pagy/docs/api/aria/">ARIA compliance</a></li>
+<li>Removed the pagy templates: they were a burden for maintenance with very limited usage,
+still <a href="http://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">you can use them</a></li>
+<li>Added a simpler and faster nav without gaps (just pass an integer to the <code v-pre>:size</code>)</li>
+<li>Internal renaming of private frontend methods</li>
+<li>Updated code and tests for latest gem and npm module versions</li>
+<li>Internal improvements of automation scripts</li>
+</ul>
 <doc-anchor-target id="version-650">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-650">#</doc-anchor-trigger>
@@ -409,9 +659,9 @@ Ruby 3.4 will error</li>
         <span>Version 6.0.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes">
+<doc-anchor-target id="breaking-changes-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-1">#</doc-anchor-trigger>
         <span>Breaking changes</span>
     </h3>
 </doc-anchor-target>
@@ -440,9 +690,9 @@ Ruby 3.4 will error</li>
 <li>If you are overriding the <code v-pre>pagy_url_for</code> method ensure you <a href="https://github.com/ddnexus/pagy/discussions/424">add the extra parameters required.</a>.</li>
 <li>Upgrade to pagy 6</li>
 </ul>
-<doc-anchor-target id="changes">
+<doc-anchor-target id="changes-1">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-1">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1118,7 +1368,7 @@ Generating the URL by using the application params method breakes rails apps bec
 </doc-anchor-target>
 <p>The following optional positional arguments are passed with keywords arguments in all the pagy helpers:</p>
 <ul>
-<li>The <code v-pre>id</code> html attribute string with the <code v-pre>pagy_id</code> keyword</li>
+<li>The <code v-pre>id</code> html attribute string with the <code v-pre>id</code> keyword</li>
 <li>The <code v-pre>url|absolute</code> flag with the <code v-pre>absolute</code> keyword</li>
 <li>The <code v-pre>item_name</code> string with the <code v-pre>item_name</code> keyword</li>
 <li>The <code v-pre>extra|link_extra</code> string with the <code v-pre>link_extra</code> keyword</li>
@@ -1154,9 +1404,9 @@ Generating the URL by using the application params method breakes rails apps bec
 <p>The items accessor does not adjust for the actual items in the last page anymore. This should not affect normal usage, so you can ignore this change unless you build something on that assumption.</p>
 <p>If your code is relying on the actual number of items <strong>in</strong> the page, then just replace <code v-pre>@pagy.items</code> with <code v-pre>@pagy.in</code> wherever you meant that.</p>
 <p>FYI: The <code v-pre>@pagy.items</code> is now always equal to <code v-pre>@pagy.vars[:items]</code> (i.e. the requested items), while the <code v-pre>@pagy.in</code> returns the actual items in the page (which could be less than the <code v-pre>items</code> when the page is the last page)</p>
-<doc-anchor-target id="changes-1">
+<doc-anchor-target id="changes-2">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-1">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-2">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1178,9 +1428,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.11.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-2">
+<doc-anchor-target id="changes-3">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-2">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-3">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1208,9 +1458,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.10.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-3">
+<doc-anchor-target id="changes-4">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-3">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-4">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1242,9 +1492,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.10.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-4">
+<doc-anchor-target id="changes-5">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-4">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-5">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1266,9 +1516,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.10.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-5">
+<doc-anchor-target id="changes-6">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-5">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-6">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1291,9 +1541,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.9.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-6">
+<doc-anchor-target id="changes-7">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-6">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-7">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1320,9 +1570,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.8.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-7">
+<doc-anchor-target id="changes-8">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-7">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-8">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1345,9 +1595,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.8.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-8">
+<doc-anchor-target id="changes-9">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-8">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-9">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1388,9 +1638,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.7.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-9">
+<doc-anchor-target id="changes-10">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-9">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-10">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1420,9 +1670,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.7.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-10">
+<doc-anchor-target id="changes-11">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-10">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-11">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1453,9 +1703,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.6.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-11">
+<doc-anchor-target id="changes-12">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-11">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-12">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1495,9 +1745,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.5.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-12">
+<doc-anchor-target id="changes-13">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-12">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-13">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1519,9 +1769,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.5.0</span>
     </h3>
 </doc-anchor-target>
-<doc-anchor-target id="changes-13">
+<doc-anchor-target id="changes-14">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-13">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-14">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1545,9 +1795,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.4.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-14">
+<doc-anchor-target id="changes-15">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-14">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-15">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1555,11 +1805,11 @@ Generating the URL by using the application params method breakes rails apps bec
 <li>Passing positional arguments (besides <code v-pre>@pagy</code>) to all the helpers is deprecated and it will be supported only until pagy 5.0</li>
 <li>All the helpers accept more optional keyword arguments variables, for example:
 <ul>
-<li><code v-pre>pagy*_nav(@pagy, pagy_id: 'my-id', link-extra: '...')</code></li>
-<li><code v-pre>pagy*_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...', steps: {...})</code></li>
-<li><code v-pre>pagy*_combo_nav_js(@pagy, pagy_id: 'my-id', link-extra: '...')</code></li>
-<li><code v-pre>pagy_items_selector_js(pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...', link_extra: '...')</code></li>
-<li><code v-pre>pagy_info(@pagy, pagy_id: 'my-id', item_name: '...', i18n_key: '...')</code></li>
+<li><code v-pre>pagy*_nav(@pagy, id: 'my-id', link-extra: '...')</code></li>
+<li><code v-pre>pagy*_nav_js(@pagy, id: 'my-id', link-extra: '...', steps: {...})</code></li>
+<li><code v-pre>pagy*_combo_nav_js(@pagy, id: 'my-id', link-extra: '...')</code></li>
+<li><code v-pre>pagy_items_selector_js(pagy, id: 'my-id', item_name: '...', i18n_key: '...', link_extra: '...')</code></li>
+<li><code v-pre>pagy_info(@pagy, id: 'my-id', item_name: '...', i18n_key: '...')</code></li>
 <li><code v-pre>pagy_prev_link(@pagy, text: '...', link_extra: '...')</code></li>
 <li><code v-pre>pagy_next_link(@pagy, text: '...', link_extra: '...')</code></li>
 <li><code v-pre>pagy_link_proc(@pagy, link_extra: '...')</code></li>
@@ -1593,7 +1843,7 @@ Generating the URL by using the application params method breakes rails apps bec
 <li><a href="http://github.com/ddnexus/pagy/commit/627a0dc">627a0dc</a>: also pagy_link_proc uses keyword arguments</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/8ff2665">8ff2665</a>: completed args conversion also for pagy_url_for and pagy_metadata</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/6a8fbb4">6a8fbb4</a>: added &quot;pagy-info&quot; and &quot;pagy-items-selector-js&quot; classes to helpers output</li>
-<li><a href="http://github.com/ddnexus/pagy/commit/ad350e1">ad350e1</a>: pagy_info wrapped into span tag, and added pagy_id keyword arg</li>
+<li><a href="http://github.com/ddnexus/pagy/commit/ad350e1">ad350e1</a>: pagy_info wrapped into span tag, and added id keyword arg</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/2faca63">2faca63</a>: small improvement to pagy_url_for</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/2acbac6">2acbac6</a>: added &quot;pagy-njs&quot; class to all pagy*_nav_js helpers</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/670f5a5">670f5a5</a>: updated documentation</li>
@@ -1602,7 +1852,7 @@ Generating the URL by using the application params method breakes rails apps bec
 <li><a href="http://github.com/ddnexus/pagy/commit/d2891fb">d2891fb</a>: refactoring and additions of tests</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/1538f24">1538f24</a>: updated tests with keyword arguments</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/6ce0c1d">6ce0c1d</a>: helpers: deprecated positional id argument and added keyword arguments</li>
-<li><a href="http://github.com/ddnexus/pagy/commit/9fd7930">9fd7930</a>: removed pagy_id method and added id arg to the pagy*_nav helpers</li>
+<li><a href="http://github.com/ddnexus/pagy/commit/9fd7930">9fd7930</a>: removed id method and added id arg to the pagy*_nav helpers</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/ec74e4f">ec74e4f</a>: removed the mandatory id arg passed to pagy_json_tag; updated tests; simplified pagy.js using previousSibling</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/3f13014">3f13014</a>: added resource post and relative link [skip ci]</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/7927f37">7927f37</a>: added manifest:check to CI for master and dev and to the default rake task</li>
@@ -1614,9 +1864,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.3.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-15">
+<doc-anchor-target id="changes-16">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-15">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-16">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1658,9 +1908,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.2.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-16">
+<doc-anchor-target id="changes-17">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-16">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-17">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1710,9 +1960,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.1.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-17">
+<doc-anchor-target id="changes-18">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-17">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-18">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1735,18 +1985,18 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 4.0.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes-1">
+<doc-anchor-target id="breaking-changes-2">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-1">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-2">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
 <ul>
 <li>renamed <code v-pre>Pagy::Search</code> as <code v-pre>Pagy::Searchkick</code> or <code v-pre>Pagy::ElasticsearchRails</code></li>
 </ul>
-<doc-anchor-target id="changes-18">
+<doc-anchor-target id="changes-19">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-18">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-19">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1800,9 +2050,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.11.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-19">
+<doc-anchor-target id="changes-20">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-19">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-20">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1826,9 +2076,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.10.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-20">
+<doc-anchor-target id="changes-21">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-20">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-21">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1852,9 +2102,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.9.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-21">
+<doc-anchor-target id="changes-22">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-21">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-22">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1887,9 +2137,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.8.3</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-22">
+<doc-anchor-target id="changes-23">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-22">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-23">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1920,9 +2170,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.8.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-23">
+<doc-anchor-target id="changes-24">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-23">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-24">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1946,9 +2196,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.8.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-24">
+<doc-anchor-target id="changes-25">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-24">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-25">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -1975,9 +2225,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.8.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-25">
+<doc-anchor-target id="changes-26">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-25">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-26">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2005,9 +2255,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.7.5</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-26">
+<doc-anchor-target id="changes-27">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-26">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-27">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2034,9 +2284,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.7.4</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-27">
+<doc-anchor-target id="changes-28">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-27">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-28">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2082,9 +2332,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.7.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-28">
+<doc-anchor-target id="changes-29">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-28">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-29">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2106,9 +2356,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.7.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-29">
+<doc-anchor-target id="changes-30">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-29">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-30">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2131,9 +2381,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.7.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-30">
+<doc-anchor-target id="changes-31">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-30">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-31">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2167,9 +2417,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.6.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-31">
+<doc-anchor-target id="changes-32">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-31">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-32">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2204,9 +2454,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.5.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-32">
+<doc-anchor-target id="changes-33">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-32">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-33">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2232,9 +2482,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.5.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-33">
+<doc-anchor-target id="changes-34">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-33">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-34">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2270,9 +2520,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.4.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-34">
+<doc-anchor-target id="changes-35">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-34">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-35">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2296,9 +2546,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.4.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-35">
+<doc-anchor-target id="changes-36">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-35">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-36">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2320,9 +2570,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.3.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-36">
+<doc-anchor-target id="changes-37">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-36">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-37">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2346,9 +2596,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.3.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-37">
+<doc-anchor-target id="changes-38">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-37">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-38">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2368,9 +2618,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.3.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-38">
+<doc-anchor-target id="changes-39">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-38">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-39">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2465,9 +2715,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 3.0.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes-2">
+<doc-anchor-target id="breaking-changes-3">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-2">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-3">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2855,9 +3105,9 @@ Generating the URL by using the application params method breakes rails apps bec
         <span>Version 2.1.5</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-39">
+<doc-anchor-target id="changes-40">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-39">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-40">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2893,9 +3143,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.4</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-40">
+<doc-anchor-target id="changes-41">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-40">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-41">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2928,9 +3178,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.3</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-41">
+<doc-anchor-target id="changes-42">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-41">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-42">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2961,9 +3211,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-42">
+<doc-anchor-target id="changes-43">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-42">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-43">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -2987,9 +3237,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-43">
+<doc-anchor-target id="changes-44">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-43">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-44">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3013,9 +3263,9 @@ base_url instead of request.url</li>
         <span>Version 2.1.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-44">
+<doc-anchor-target id="changes-45">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-44">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-45">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3046,9 +3296,9 @@ base_url instead of request.url</li>
         <span>Version 2.0.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-45">
+<doc-anchor-target id="changes-46">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-45">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-46">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3081,9 +3331,9 @@ base_url instead of request.url</li>
         <span>Version 2.0.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes-3">
+<doc-anchor-target id="breaking-changes-4">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-3">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-4">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3404,9 +3654,9 @@ base_url instead of request.url</li>
         <span>Version 1.3.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-46">
+<doc-anchor-target id="changes-47">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-46">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-47">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3428,9 +3678,9 @@ base_url instead of request.url</li>
         <span>Version 1.3.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-47">
+<doc-anchor-target id="changes-48">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-47">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-48">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3452,9 +3702,9 @@ base_url instead of request.url</li>
         <span>Version 1.3.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-48">
+<doc-anchor-target id="changes-49">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-48">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-49">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3502,9 +3752,9 @@ base_url instead of request.url</li>
         <span>Version 1.2.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-49">
+<doc-anchor-target id="changes-50">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-49">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-50">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3521,9 +3771,9 @@ base_url instead of request.url</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/01178cb">01178cb</a>: replaced enumerable #count for #size (suggested in #112)</li>
 <li><a href="http://github.com/ddnexus/pagy/commit/0723228">0723228</a>: count (and page) in *get_variables methods are set only when nil (alternative implementation of #112)</li>
 </ul>
-<doc-anchor-target id="changes-50">
+<doc-anchor-target id="changes-51">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-50">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-51">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3570,9 +3820,9 @@ base_url instead of request.url</li>
         <span>Version 1.1.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-51">
+<doc-anchor-target id="changes-52">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-51">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-52">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3605,9 +3855,9 @@ base_url instead of request.url</li>
         <span>Version 1.0.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes-4">
+<doc-anchor-target id="breaking-changes-5">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-4">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-5">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3662,9 +3912,9 @@ base_url instead of request.url</li>
         <span>Version 0.23.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-52">
+<doc-anchor-target id="changes-53">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-52">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-53">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3688,9 +3938,9 @@ base_url instead of request.url</li>
         <span>Version 0.22.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-53">
+<doc-anchor-target id="changes-54">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-53">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-54">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3712,9 +3962,9 @@ base_url instead of request.url</li>
         <span>Version 0.21.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-54">
+<doc-anchor-target id="changes-55">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-54">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-55">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3741,9 +3991,9 @@ base_url instead of request.url</li>
         <span>Version 0.20.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes-5">
+<doc-anchor-target id="breaking-changes-6">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-5">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-6">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3777,9 +4027,9 @@ base_url instead of request.url</li>
         <span>Version 0.19.4</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-55">
+<doc-anchor-target id="changes-56">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-55">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-56">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3807,9 +4057,9 @@ base_url instead of request.url</li>
         <span>Version 0.19.3</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-56">
+<doc-anchor-target id="changes-57">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-56">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-57">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3833,9 +4083,9 @@ base_url instead of request.url</li>
         <span>Version 0.19.2</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-57">
+<doc-anchor-target id="changes-58">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-57">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-58">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3862,9 +4112,9 @@ base_url instead of request.url</li>
         <span>Version 0.19.1</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="changes-58">
+<doc-anchor-target id="changes-59">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-58">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#changes-59">#</doc-anchor-trigger>
         <span>Changes</span>
     </h3>
 </doc-anchor-target>
@@ -3917,9 +4167,9 @@ base_url instead of request.url</li>
         <span>Version 0.18.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes-6">
+<doc-anchor-target id="breaking-changes-7">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-6">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-7">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
@@ -4217,9 +4467,9 @@ base_url instead of request.url</li>
         <span>Version 0.11.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes-7">
+<doc-anchor-target id="breaking-changes-8">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-7">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-8">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
@@ -4264,9 +4514,9 @@ base_url instead of request.url</li>
         <span>Version 0.10.0</span>
     </h2>
 </doc-anchor-target>
-<doc-anchor-target id="breaking-changes-8">
+<doc-anchor-target id="breaking-changes-9">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-8">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-9">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
@@ -4478,9 +4728,9 @@ base_url instead of request.url</li>
 <ul>
 <li>Refactoring of <code v-pre>I18N</code> to fix #39</li>
 </ul>
-<doc-anchor-target id="breaking-changes-9">
+<doc-anchor-target id="breaking-changes-10">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-9">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-10">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>
@@ -4584,9 +4834,9 @@ base_url instead of request.url</li>
 <li>Reorganized documentation and added a few more how-to topics</li>
 <li>Added the <code v-pre>:page_param</code> variable used to get the page number from and create the URL for the page links</li>
 </ul>
-<doc-anchor-target id="breaking-changes-10">
+<doc-anchor-target id="breaking-changes-11">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-10">#</doc-anchor-trigger>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes-11">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h3>
 </doc-anchor-target>

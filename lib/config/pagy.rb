@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (7.0.11)
+# Pagy initializer file (8.0.0)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -22,8 +22,6 @@
 # Pagy::DEFAULT[:page_param]   = :page                  # default
 # Pagy::DEFAULT[:fragment]     = '#fragment'            # example
 # Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'   # example
-# Pagy::DEFAULT[:item_i18n_key = 'pagy.item_name'       # default
-# Pagy::DEFAULT[:nav_i18n_key] = 'pagy.aria_label.nav'  # default
 # Pagy::DEFAULT[:cycle]        = true                   # example
 # Pagy::DEFAULT[:request_path] = '/foo'                 # example
 # Pagy::DEFAULT[:count_args]   = []                     # example for non AR ORMs
@@ -133,7 +131,6 @@
 # Bulma extra: Add nav, nav_js and combo_nav_js helpers and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/docs/extras/bulma
 # require 'pagy/extras/bulma'
-# DEFAULT[:bulma_nav_classes] = 'is-centered'   # default
 
 # Foundation extra: Add nav, nav_js and combo_nav_js helpers and templates for Foundation pagination
 # See https://ddnexus.github.io/pagy/docs/extras/foundation
@@ -143,11 +140,10 @@
 # See https://ddnexus.github.io/pagy/docs/extras/materialize
 # require 'pagy/extras/materialize'
 
-# Navs extra: Add nav_js and combo_nav_js javascript helpers
-# Notice: the other frontend extras add their own framework-styled versions,
-# so require this extra only if you need the unstyled version
-# See https://ddnexus.github.io/pagy/docs/extras/navs
-# require 'pagy/extras/navs'
+# Pagy extra: Add the pagy styled versions of the javascript-powered navs
+# and a few other components to the Pagy::Frontend module.
+# See https://ddnexus.github.io/pagy/docs/extras/pagy
+# require 'pagy/extras/pagy'
 
 # Semantic extra: Add nav, nav_js and combo_nav_js helpers for Semantic UI pagination
 # See https://ddnexus.github.io/pagy/docs/extras/semantic
@@ -158,7 +154,7 @@
 # require 'pagy/extras/uikit'
 
 # Multi size var used by the *_nav_js helpers
-# See https://ddnexus.github.io/pagy/docs/extras/navs#steps
+# See https://ddnexus.github.io/pagy/docs/extras/pagy#steps
 # Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
 
 
@@ -183,10 +179,6 @@
 # See https://ddnexus.github.io/pagy/docs/extras/overflow
 # require 'pagy/extras/overflow'
 # Pagy::DEFAULT[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
-
-# Support extra: Extra support for features like: incremental, infinite, auto-scroll pagination
-# See https://ddnexus.github.io/pagy/docs/extras/support
-# require 'pagy/extras/support'
 
 # Trim extra: Remove the page=1 param from links
 # See https://ddnexus.github.io/pagy/docs/extras/trim
@@ -249,9 +241,6 @@
 # than the default pagy internal i18n (see above)
 # See https://ddnexus.github.io/pagy/docs/extras/i18n
 # require 'pagy/extras/i18n'
-
-# Default i18n key
-# Pagy::DEFAULT[:item_i18n_key] = 'pagy.item_name'   # default
 
 
 # When you are done setting your own default freeze it, so it will not get changed accidentally

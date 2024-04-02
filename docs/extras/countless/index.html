@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765066039809" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765360562834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -278,16 +278,10 @@
         <span>Setup</span>
     </h2>
 </doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">require 'pagy/extras/countless'</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="modes">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#modes">#</doc-anchor-trigger>
@@ -322,16 +316,10 @@ enabling the <code v-pre>:countless_minimal</code> variable (or not).</p>
     </h3>
 </doc-anchor-target>
 <br>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller (eager loading)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller (eager loading)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy_countless(some_scope, ...)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p>This mode retrieves <code v-pre>items + 1</code> and uses the number of retrieved items to calculate the variables. It then removes the eventual
 extra item from the result, so deducing whether there is a <code v-pre>next</code> page or not without the need of an extra query.</p>
 <div class="flex mb-6">
@@ -380,18 +368,12 @@ extra item from the result, so deducing whether there is a <code v-pre>next</cod
     </h3>
 </doc-anchor-target>
 <br>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">require 'pagy/extras/countless'
 # optionally enable the minimal mode by default
 # Pagy::DEFAULT[:countless_minimal] = true</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="usage-1">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#usage-1">#</doc-anchor-trigger>
@@ -399,16 +381,10 @@ extra item from the result, so deducing whether there is a <code v-pre>next</cod
     </h3>
 </doc-anchor-target>
 <br>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller (lazy loading)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller (lazy loading)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy_countless(some_scope, countless_minimal: true, ...)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p>This mode is enabled by the <code v-pre>:countless_minimal</code> variable.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>

@@ -15,60 +15,53 @@ class Pagy
     include UrlHelpers
 
     # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, pagy_id: nil, link_extra: '',
-                 nav_aria_label: nil, nav_i18n_key: nil, **vars)
-      p_id = %( id="#{pagy_id}") if pagy_id
-      link = pagy_link_proc(pagy, link_extra:)
+    def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
+      id = %( id="#{id}") if id
+      a  = pagy_anchor(pagy)
 
-      html = +%(<nav#{p_id} class="pagy pagy-nav pagination" #{nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key)}>)
-      html << prev_html(pagy, link)
+      html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}>#{
+                prev_a(pagy, a)})
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
-                  %(<span class="page">#{link.call(item)}</span>)
+                  a.(item)
                 when String
-                  %(<span class="page active">) +
-                  %(<a role="link" aria-disabled="true" aria-current="page">#{pagy.label_for(item)}</a></span>)
+                  %(<a role="link" aria-disabled="true" aria-current="page" class="current">#{pagy.label_for(item)}</a>)
                 when :gap
-                  %(<span class="page gap">#{pagy_t('pagy.gap')}</span>)
+                  %(<a role="link" aria-disabled="true" class="gap">#{pagy_t('pagy.gap')}</a>)
                 else
                   raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
-      html << %(#{next_html(pagy, link)}</nav>)
+      html << %(#{next_a(pagy, a)}</nav>)
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, pagy_id: nil, item_name: nil, item_i18n_key: nil)
-      p_id    = %( id="#{pagy_id}") if pagy_id
+    def pagy_info(pagy, id: nil, item_name: nil)
+      id      = %( id="#{id}") if id
       p_count = pagy.count
       key     = if    p_count.zero?   then 'pagy.info.no_items'
                 elsif pagy.pages == 1 then 'pagy.info.single_page'
                 else                       'pagy.info.multiple_pages' # rubocop:disable Lint/ElseLayout
                 end
 
-      %(<span#{p_id} class="pagy-info">#{
-          pagy_t key, item_name: item_name || pagy_t(item_i18n_key || pagy.vars[:item_i18n_key], count: p_count),
+      %(<span#{id} class="pagy info">#{
+          pagy_t key, item_name: item_name || pagy_t('pagy.item_name', count: p_count),
                       count: p_count, from: pagy.from, to: pagy.to
         }</span>)
     end
 
-    # Return a performance optimized lambda to generate the HTML links
+    # Return a performance optimized lambda to generate the HtML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_link_proc(pagy, link_extra: '')
-      p_prev      = pagy.prev
-      p_next      = pagy.next
-      p_page      = pagy.page.to_s
-      left, right = %(<a href="#{pagy_url_for(pagy, PAGE_TOKEN)}" #{
-                        pagy.vars[:link_extra]} #{link_extra}).split(PAGE_TOKEN, 2)
+    def pagy_anchor(pagy)
+      a_string    = pagy.vars[:anchor_string]
+      a_string    = %( #{a_string}) if a_string
+      left, right = %(<a#{a_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
       # lambda used by all the helpers
-      lambda do |page, text = pagy.label_for(page), extra_attrs = ''|
-        %(#{left}#{page}#{right}#{ case page
-                                   when p_prev then ' rel="prev"'
-                                   when p_next then ' rel="next"'
-                                   when p_page then ' aria-disabled="true" aria-current="page"'
-                                   else             ''
-                                   end } #{extra_attrs}>#{text}</a>)
+      lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
+        classes    = %( class="#{classes}") if classes
+        aria_label = %( aria-label="#{aria_label}") if aria_label
+        %(#{left}#{page}#{right}#{classes}#{aria_label}>#{text}</a>)
       end
     end
 
@@ -80,34 +73,24 @@ class Pagy
 
     private
 
-    def nav_aria_label_attr(pagy, nav_aria_label, nav_i18n_key, count: pagy.pages)
-      nav_aria_label ||= pagy_t(nav_i18n_key || pagy.vars[:nav_i18n_key], count:)
-      %(aria-label="#{nav_aria_label}")
+    def nav_aria_label(pagy, aria_label: nil)
+      aria_label ||= pagy_t('pagy.aria_label.nav', count: pagy.pages)
+      %(aria-label="#{aria_label}")
     end
 
-    def prev_aria_label_attr
-      %(aria-label="#{pagy_t('pagy.aria_label.prev')}")
-    end
-
-    def next_aria_label_attr
-      %(aria-label="#{pagy_t('pagy.aria_label.next')}")
-    end
-
-    def prev_html(pagy, link, text: pagy_t('pagy.prev'))
+    def prev_a(pagy, a, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev'))
       if (p_prev = pagy.prev)
-        %(<span class="page prev">#{link.call(p_prev, text, prev_aria_label_attr)}</span>)
+        a.(p_prev, text, aria_label:)
       else
-        %(<span class="page prev disabled"><a role="link" aria-disabled="true" #{
-             prev_aria_label_attr}>#{text}</a></span>)
+        %(<a role="link" aria-disabled="true" aria-label="#{aria_label}">#{text}</a>)
       end
     end
 
-    def next_html(pagy, link, text: pagy_t('pagy.next'))
+    def next_a(pagy, a, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.next'))
       if (p_next = pagy.next)
-        %(<span class="page next">#{link.call(p_next, text, next_aria_label_attr)}</span>)
+        a.(p_next, text, aria_label:)
       else
-        %(<span class="page next disabled"><a role="link" aria-disabled="true" #{
-            next_aria_label_attr}>#{text}</a></span>)
+        %(<a role="link" aria-disabled="true" aria-label=#{aria_label}>#{text}</a>)
       end
     end
   end

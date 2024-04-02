@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.765066039809" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.765360562834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -336,12 +336,8 @@ process.</li>
 <p>Search for the class name of the pagination gem to migrate from, for example <code v-pre>WillPaginate</code> or <code v-pre>Kaminari</code>. You should find most of
 the code relative to global gem configuration, or monkey patching.</p>
 <p>For example, the following configuration are equivalent:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>initializers</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">initializers</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">WillPaginate.per_page                                       = 10
 WillPaginate::ViewHelpers.pagination_options[:inner_window] = 4
 WillPaginate::ViewHelpers.pagination_options[:outer_window] = 5
@@ -357,8 +353,6 @@ end
 Pagy::DEFAULT[:items] = 10
 Pagy::DEFAULT[:size]  = [5, 4, 4, 5]</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p>Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the <code v-pre>pagy.rb</code> initializer <em>(see
 <a href="../../quick-start/#configure">How to configure pagy</a>)</em>.</p>
 <doc-anchor-target id="cleanup-the-models">
@@ -377,17 +371,11 @@ if they are specific to an action.</p>
 <p>If the app uses the <code v-pre>page</code> scope in some of its methods or scopes in some model, that should be removed (including removing the
 argument used to pass the page number to the method/scope), leaving the rest of the scope in place. Search where the app uses the
 already paginated scope in the controllers, and use the scope in a regular <code v-pre>pagy</code> statement. For example:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">#@records = Product.paginated_scope(params[:page])
 @pagy, @records = pagy(Product.non_paginated_scope)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="search-and-replace-in-the-controllers">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#search-and-replace-in-the-controllers">#</doc-anchor-trigger>
@@ -397,12 +385,8 @@ already paginated scope in the controllers, and use the scope in a regular <code
 <p>In the controllers, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy
 pagination, so you should be able to go through each of them and convert them quite easily.</p>
 <p>Search for keywords like <code v-pre>page</code> and <code v-pre>paginate</code> statements and use the <code v-pre>pagy</code> method instead. For example:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">#@records = Product.some_scope.page(params[:page])
 #@records = Product.paginate(:page =&gt; params[:page])
 
@@ -414,8 +398,6 @@ pagination, so you should be able to go through each of them and convert them qu
 
 @pagy, @records = pagy(Product.some_scope, items: 15)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="search-and-replace-in-the-views">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#search-and-replace-in-the-views">#</doc-anchor-trigger>
@@ -425,19 +407,13 @@ pagination, so you should be able to go through each of them and convert them qu
 <p>Also in the views, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy
 pagination, so you should be able to go through each of them and convert them quite easily.</p>
 <p>Search for keywords like <code v-pre>will_paginate</code> and <code v-pre>paginate</code> statement and use one of the <code v-pre>pagy_nav</code> methods. For example:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">View</div>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%= will_paginate @records %&gt;
 &lt;%= paginate @records %&gt;
 
 &lt;%== pagy_nav @pagy %&gt;</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="find-the-remaining-code">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#find-the-remaining-code">#</doc-anchor-trigger>

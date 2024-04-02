@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765066039809" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765360562834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -281,12 +281,8 @@ memory (<a href="https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb">source
         <span>Synopsis</span>
     </h2>
 </doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby"># set global defaults and extra variables
 # they will get merged with every new Pagy instance
 Pagy::DEFAULT[:items]    = 25
@@ -312,8 +308,6 @@ pagy.items
 pagy.series
 #=&gt; [1, 2, &quot;3&quot;, 4, 5, 6, 7, :gap, 40]</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="global-default">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#global-default">#</doc-anchor-trigger>
@@ -325,19 +319,13 @@ mutable to allow customizable defaults. You can override it in the <code v-pre>p
 global defaults. After you are done, you should <code v-pre>freeze</code> it, so it will not change accidentally. It gets merged with the
 variables passed with the <code v-pre>new</code> method every times a <code v-pre>Pagy</code> instance gets created.</p>
 <p>You will typically use it in a <code v-pre>pagy.rb</code> initializer file to pass defaults values. For example:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">Pagy::DEFAULT[:items]     = 25
 Pagy::DEFAULT[:my_option] = 'my option'
 ...
 Pagy::DEFAULT.freeze</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="methods">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
@@ -515,19 +503,9 @@ They are all integers:</p>
 <td style="text-align: left;"><code v-pre>''</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>:link_extra</code></td>
+<td style="text-align: left;"><code v-pre>:anchor_string</code></td>
 <td style="text-align: left;">The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links <em>(see <a href="../../how-to/#customize-the-link-attributes">How to customize the link attributes</a>)</em></td>
-<td style="text-align: left;"><code v-pre>''</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>:item_i18n_key</code></td>
-<td style="text-align: left;">The i18n key to lookup the <code v-pre>item_name</code> that gets interpolated in a few helper outputs (see <a href="../../how-to/#customize-the-item-name">How to customize the item name</a>)</td>
-<td style="text-align: left;"><code v-pre>'pagy.item_name'</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>:nav_i18n_key</code></td>
-<td style="text-align: left;">The i18n key to lookup the <code v-pre>aria-label</code> for the <code v-pre>pagy*_nav</code> helpers</td>
-<td style="text-align: left;"><code v-pre>'pagy.aria_label.nav'</code></td>
+<td style="text-align: left;"><code v-pre>nil</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>:cycle</code></td>
@@ -537,7 +515,7 @@ They are all integers:</p>
 <tr>
 <td style="text-align: left;"><code v-pre>:request_path</code></td>
 <td style="text-align: left;">Allows overriding the request path for pagination links. Pass the path only (not the absolute url). <em>(see <a href="../../how-to/#customize-the-request-path">Customize the request path</a>)</em></td>
-<td style="text-align: left;"><code v-pre>request.path</code></td>
+<td style="text-align: left;"><code v-pre>nil</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>jsonapi</code></td>
@@ -624,7 +602,7 @@ or <code v-pre>nil</code>), except the <code v-pre>vars</code> hash:</p>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>request_path</code></td>
-<td style="text-align: left;">The request path used for pagination helpers.  If blank, helpers will use <code v-pre>request.path</code></td>
+<td style="text-align: left;">The request path used for pagination helpers. If nil, helpers will use <code v-pre>request.path</code></td>
 </tr>
 </tbody>
 </table>
@@ -698,6 +676,7 @@ With <code v-pre>size: []</code> the <code v-pre>series</code> method returns <c
 <li><code v-pre>in</code>, <code v-pre>from</code> and <code v-pre>to</code> of an empty page are all <code v-pre>0</code></li>
 <li><code v-pre>prev</code> and <code v-pre>next</code> of a single page (not necessary an empty one) are both <code v-pre>nil</code> (i.e. there is no other page)</li>
 </ul>
+<p>===</p>
 <doc-anchor-target id="exceptions">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#exceptions">#</doc-anchor-trigger>

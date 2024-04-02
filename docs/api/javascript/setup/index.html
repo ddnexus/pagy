@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>Setup | Pagy</title>
     <meta name="title" content="Setup | Pagy">
-    <meta name="description" content="A javascript setup is required only for the pagy*_js helpers. Just using 'data-remote=true' in any other helper works out of">
+    <meta name="description" content="A javascript setup is required only for the pagy*_js helpers. Just using something like anchor_string: 'data-remote=true'">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/docs/api/javascript/setup/">
@@ -21,22 +21,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/docs/api/javascript/setup/">
     <meta property="og:title" content="Setup | Pagy">
-    <meta property="og:description" content="A javascript setup is required only for the pagy*_js helpers. Just using 'data-remote=true' in any other helper works out of">
+    <meta property="og:description" content="A javascript setup is required only for the pagy*_js helpers. Just using something like anchor_string: 'data-remote=true'">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/docs/api/javascript/setup/">
     <meta property="twitter:title" content="Setup | Pagy">
-    <meta property="twitter:description" content="A javascript setup is required only for the pagy*_js helpers. Just using 'data-remote=true' in any other helper works out of">
+    <meta property="twitter:description" content="A javascript setup is required only for the pagy*_js helpers. Just using something like anchor_string: 'data-remote=true'">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../../../../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.765066039809" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../../resources/js/prism.js?v=3.5.0.765360562834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -279,7 +279,7 @@
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Notice</h5>
-<p>A javascript setup is required only for the <code v-pre>pagy*_js</code> helpers. Just using <code v-pre>'data-remote=&quot;true&quot;'</code> in any other helper works out of
+<p>A javascript setup is required only for the <code v-pre>pagy*_js</code> helpers. Just using something like <code v-pre>anchor_string: 'data-remote=&quot;true&quot;'</code> in any other helper works out of
 the box.</p>
         </div>
     </div>
@@ -492,82 +492,40 @@ with <code v-pre>cd src &amp;&amp; npm run build</code>.</p>
 <doc-tabs>
 <doc-tab v-cloak id="sprockets">
 <template #title>Sprockets</template>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy.root.join('javascripts') # uncomment.</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>manifest.js (or <code v-pre>application.js</code> for old sprocket sprockets):</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">manifest.js (or &quot;application.js&quot; for old sprocket sprockets):</div>
 <pre class="language-javascript"><code v-pre class="language-javascript">//= require pagy</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 <doc-tab v-cloak id="importmaps">
 <template #title>Importmaps</template>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy.root.join('javascripts') #uncomment</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>app/assets/config/manifest.js</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">app/assets/config/manifest.js</div>
 <pre class="language-javascript"><code v-pre class="language-javascript">//= link pagy-module.js</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>config/importmap.rb</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">config/importmap.rb</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">pin 'pagy-module'</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 <doc-tab v-cloak id="propshaft">
 <template #title>Propshaft</template>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">Rails.application.config.assets.paths &lt;&lt; Pagy.root.join('javascripts')</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>application.html.erb</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">application.html.erb</div>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%= javascript_include_tag &quot;pagy&quot; %&gt;</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 </doc-tabs>
 <doc-anchor-target id="builders">
@@ -583,58 +541,36 @@ javascript path:</p>
 <template #title>Generic</template>
 <p>You can create a symlink or a copy of the <code v-pre>pagy-module.js</code> file (available in the pagy gem) into an app compiled dir and use it as
 a regular app file. That way any builder will pick it up. For example:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>config/initializers/pagy.rb</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">config/initializers/pagy.rb</div>
 <pre class="language-ruby"><code v-pre class="language-ruby"># Create/refresh the `app/javascript/pagy-module.js` symlink/copy every time 
 # the app restarts (unless in production), ensuring syncing when pagy is updated.
 # Replace the FileUtils.ln_sf with FileUtils.cp if your OS doesn't support file linking. 
 FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy-module.js'), Rails.root.join('app', 'javascript')) \
 unless Rails.env.production?</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 <doc-tab v-cloak id="esbuild">
 <template #title>esbuild</template>
 <p>Prepend the <code v-pre>NODE_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>package.json</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">package.json</div>
 <pre class="language-json"><code v-pre class="language-json">{
     &quot;build&quot;: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your original command&gt;&quot;
 }</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 <doc-tab v-cloak id="webpack">
 <template #title>Webpack</template>
 <p>Prepend the <code v-pre>NODE_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>package.json</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">package.json</div>
 <pre class="language-json"><code v-pre class="language-json">{
     &quot;build&quot;: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your original command&gt;&quot;
 }</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>webpack.confg.js</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">webpack.confg.js</div>
 <pre class="language-javascript"><code v-pre class="language-javascript">module.exports = {
   ...,                          // your original config
   resolve: {                    // add resolve.modules
@@ -645,8 +581,6 @@ unless Rails.env.production?</code></pre>
   }
 }</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="legacy-way">
     <h4>
         <doc-anchor-trigger class="header-anchor-trigger" to="#legacy-way">#</doc-anchor-trigger>
@@ -658,52 +592,30 @@ unless Rails.env.production?</code></pre>
 <pre class="language-bash"><code v-pre class="language-bash">bundle exec rails webpacker:install:erb</code></pre>
 </doc-codeblock></div>
 <p>Generate a local pagy javascript file using <code v-pre>erb</code> with webpacker:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>app/javascript/packs/pagy.js.erb</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">app/javascript/packs/pagy.js.erb</div>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%= Pagy.root.join('javascripts', 'pagy.js').read %&gt;
 window.addEventListener(YOUR_EVENT_LISTENER, Pagy.init)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p><em>where <code v-pre>YOUR_EVENT_LISTENER</code> is the load event that works with your app (
 e.g. <code v-pre>&quot;turbo:load&quot;</code>, <code v-pre>&quot;turbolinks:load&quot;</code>, <code v-pre>&quot;load&quot;</code>, ...).</em></p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>app/javascript/application.js</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">app/javascript/application.js</div>
 <pre class="language-javascript"><code v-pre class="language-javascript">import './pagy.js.erb'</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 <doc-tab v-cloak id="rollup">
 <template #title>Rollup</template>
 <p>Prepend the <code v-pre>NODE_PATH</code> environment variable to the <code v-pre>scripts.build</code> command:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>package.json</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">package.json</div>
 <pre class="language-json"><code v-pre class="language-json">{
     &quot;build&quot;: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/lib/javascripts\&quot; &lt;your original command&gt;&quot;
 }</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-medium leading-snug text-gray-900 border-b border-gray-200 dark:border-dark-650 dark:text-white">
-        <span>rollup.confg.js</span>
-    </div>
-    <div class="px-5 py-3 docs-columns-content">
 <p>Configure the <code v-pre>plugins[resolve]</code>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">rollup.confg.js</div>
 <pre class="language-javascript"><code v-pre class="language-javascript">export default {
   ...,                                    // your original config
   plugins: [
@@ -716,8 +628,6 @@ e.g. <code v-pre>&quot;turbo:load&quot;</code>, <code v-pre>&quot;turbolinks:loa
   ]
 }</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 </doc-tabs>
 <doc-anchor-target id="non-rails-apps">
@@ -739,12 +649,8 @@ e.g. <code v-pre>&quot;turbo:load&quot;</code>, <code v-pre>&quot;turbolinks:loa
 <doc-tabs>
 <doc-tab v-cloak id="stimulus-js">
 <template #title>Stimulus JS</template>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy_initializer_controller.js</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy_initializer_controller.js</div>
 <pre class="language-javascript"><code v-pre class="language-javascript">import {Controller} from &quot;@hotwired/stimulus&quot;
 import Pagy from &quot;pagy-module&quot;  // if using sprockets, you can remove above line, but make sure you have the appropriate directive if your manifest.js file.
 
@@ -754,36 +660,22 @@ export default class extends Controller {
   }
 }</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">View</div>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;div data-controller=&quot;pagy-initializer&quot;&gt;
   &lt;%== pagy_nav_js(@pagy) %&gt;
 &lt;/div&gt;</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 <doc-tab v-cloak id="jsbundling-rails">
 <template #title>jsbundling-rails</template>
 <p>Import and use the pagy module:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>app/javascript/application.js</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">app/javascript/application.js</div>
 <pre class="language-javascript"><code v-pre class="language-javascript">import Pagy from &quot;pagy-module&quot;;
 
 window.addEventListener(&quot;turbo:load&quot;, Pagy.init);</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 </doc-tab>
 <doc-tab v-cloak id="others">
 <template #title>Others</template>

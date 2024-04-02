@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765066039809" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765360562834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -273,6 +273,28 @@
 
 <p>Allow the client to request a custom number of items per page with an optional selector UI. It is useful with APIs or
 user-customizable UIs.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Try it now!</h5>
+<p>Run the interactive demo from your terminal:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">pagy demo
+# or: bundle exec pagy demo</code></pre>
+</doc-codeblock></div>
+<p>...and point your browser at <a href="http://0.0.0.0:8000">http://0.0.0.0:8000</a></p>
+        </div>
+    </div>
+</div>
 <p>It works also with the <a href="../countless/">countless</a>, <a href="../searchkick/">searchkick</a>, <a href="../elasticsearch_rails/">elasticsearch_rails</a>
 and <a href="../meilisearch/">meilisearch</a> extras.</p>
 <doc-anchor-target id="synopsis">
@@ -287,62 +309,38 @@ and <a href="../meilisearch/">meilisearch</a> extras.</p>
         <span>Default usage</span>
     </h3>
 </doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">require 'pagy/extras/items' # works without further configuration</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller</div>
 <pre class="language-ruby"><code v-pre class="language-ruby"># enabled by default
 @pagy, @records = pagy(collection)
 # you can disable it explicitly for specific requests
 @pagy, @records = pagy(collection, items_extra: false)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="custom-usage">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#custom-usage">#</doc-anchor-trigger>
         <span>Custom usage</span>
     </h3>
 </doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby"># optionally disable it by default
 Pagy::DEFAULT[:items_extra] = false # default true
 # customize the defaults if you need to
 Pagy::DEFAULT[:items_param] = :custom_param # default :items
 Pagy::DEFAULT[:max_items]   = 200 # default 100</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller</div>
 <pre class="language-ruby"><code v-pre class="language-ruby"># disabled by default by the above Pagy::DEFAULT[:items_extras] = false
 @pagy, @records = pagy(collection)
 # explicitly enable it for specific requests
 @pagy, @records = pagy(collection, items_extra: true)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p>See <a href="../../api/javascript/">Javascript</a> (only if you use the <code v-pre>pagy_items_selector_js</code> UI)</p>
 <doc-anchor-target id="files">
     <h2>
@@ -393,29 +391,17 @@ Pagy::DEFAULT[:max_items]   = 200 # default 100</code></pre>
 requested number of items per page, you can set it to <code v-pre>nil</code>.</p>
 <p>You may want to customize the variables. Depending on the scope of the customization, you have a couple of options:</p>
 <p>As a global default:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">Pagy::DEFAULT[:items_param] = :custom_param
 Pagy::DEFAULT[:max_items]   = 50</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p>For a single instance (overriding the global default):</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">Controller</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">pagy(collecton, items_param: :custom_param, max_items: 50)
 Pagy.new(count: 100, items_param: :custom_param, max_items: 50)</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -455,16 +441,18 @@ page</span></p>
 <p>It returns an empty string if the <code v-pre>:items_extra</code> is <code v-pre>false</code>.</p>
 <p>The method accepts also a few optional keyword arguments variables:</p>
 <ul>
-<li><code v-pre>:pagy_id</code> which adds the <code v-pre>id</code> HTML attribute to the <code v-pre>nav</code> tag</li>
+<li><code v-pre>:id</code> which adds the <code v-pre>id</code> HTML attribute to the <code v-pre>nav</code> tag</li>
 <li><code v-pre>:item_name</code> an already pluralized string that will be used in place of the default <code v-pre>item/items</code></li>
-<li><code v-pre>:item_i18n_key</code> the key to lookup in a dictionary</li>
-<li><code v-pre>:link_extra</code> which add a verbatim string to the <code v-pre>a</code> tag (e.g. <code v-pre>'data-remote=&quot;true&quot;'</code>)</li>
 </ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">some_view.html.erb</div>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %&gt;</code></pre>
+</doc-codeblock></div>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-300"></div>
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-300" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
                     <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
                     <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
@@ -473,23 +461,6 @@ page</span></p>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Info</h5>
-<p>The <code v-pre>:item_i18n_key</code> can be passed also to the constructor or be a less useful global variable (
-i.e. <code v-pre>Pagy::DEFAULT[:item_i18n_key]</code></p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>some_view.html.erb</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %&gt;
-&lt;%== pagy_items_selector_js(@pagy, item_i18n_key: 'activerecord.model.product' %&gt;</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
-        </div>
-    </div>
-</div>
 <p><span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per
 page</span></p>
 <p><em>(see <a href="../../how-to/#customize-the-item-name">How to customize the item name</a>)</em></p>
@@ -497,6 +468,9 @@ page</span></p>
 also request the <em>right</em> page number calculated in order to contain the first item of the previously displayed page. That way the
 new displayed page will roughly show the same items in the collection before the items change.</p>
 <p>This method can take an extra <code v-pre>id</code> argument, which is used to build the <code v-pre>id</code> attribute of the <code v-pre>nav</code> tag.</p>
+        </div>
+    </div>
+</div>
 </doc-panel>
 
                                 

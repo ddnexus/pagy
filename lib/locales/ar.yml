@@ -24,7 +24,7 @@ ar:
       other: "عناصر"
     info:
       no_items: "لا يوجد %{item_name}"
-      single_page: "عرض <b>%{count}</b> %{item_name}"
-      multiple_pages: "عرض %{item_name} <b>%{from}-%{to}</b> من اجمالي <b>%{count}</b>"
+      single_page: "عرض %{count} %{item_name}"
+      multiple_pages: "عرض %{item_name} %{from}-%{to} من اجمالي %{count}"
     combo_nav_js: "الصفحة %{page_input} من %{pages}"
     items_selector_js: "عرض %{items_input} %{item_name} لكل صفحة"

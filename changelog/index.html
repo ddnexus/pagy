@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -12,7 +12,7 @@
     <!-- Primary Meta Tags -->
     <title>CHANGELOG | Pagy</title>
     <meta name="title" content="CHANGELOG | Pagy">
-    <meta name="description" content="If you upgrade from version 7.0.0 see the following:">
+    <meta name="description" content="We may drop pagy's less used CSS extras.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://ddnexus.github.io/pagy/changelog/">
@@ -21,21 +21,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ddnexus.github.io/pagy/changelog/">
     <meta property="og:title" content="CHANGELOG | Pagy">
-    <meta property="og:description" content="If you upgrade from version 7.0.0 see the following:">
+    <meta property="og:description" content="We may drop pagy's less used CSS extras.">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ddnexus.github.io/pagy/changelog/">
     <meta property="twitter:title" content="CHANGELOG | Pagy">
-    <meta property="twitter:description" content="If you upgrade from version 7.0.0 see the following:">
+    <meta property="twitter:description" content="We may drop pagy's less used CSS extras.">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -264,15 +264,25 @@
         <span>CHANGELOG</span>
     </h1>
 </doc-anchor-target>
+<doc-anchor-target id="-warning">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#-warning">#</doc-anchor-trigger>
+        <span>⚠ WARNING</span>
+    </h2>
+</doc-anchor-target>
+<p>We may drop pagy&#x27;s less used CSS extras.</p>
+<p>If you wish to keep them alive, please, [vote here](https://github.
+com/ddnexus/pagy/discussions/categories/survey).</p>
 <doc-anchor-target id="breaking-changes">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#breaking-changes">#</doc-anchor-trigger>
         <span>Breaking Changes</span>
     </h2>
 </doc-anchor-target>
-<p>If you upgrade from version <code v-pre>&lt; 7.0.0</code> see the following:</p>
+<p>If you upgrade from version <code v-pre>&lt; 8.0.0</code> see the following:</p>
 <ul>
-<li><doc-anchor-trigger to="#version-700">Breaking changes in version 7.0.0</doc-anchor-trigger></li>
+<li><doc-anchor-trigger to="#version-800">Breaking changes in version 8.0.0</doc-anchor-trigger></li>
+<li><a href="../changelog_legacy/#version-700">Breaking changes in version 7.0.0</a></li>
 <li><a href="../changelog_legacy/#version-600">Breaking changes in version 6.0.0</a></li>
 <li><a href="../changelog_legacy/#version-500">Breaking changes in version 5.0.0</a></li>
 <li><a href="../changelog_legacy/#version-400">Breaking changes in version 4.0.0</a></li>
@@ -286,136 +296,12 @@
         <span>Deprecations</span>
     </h2>
 </doc-anchor-target>
-<ul>
-<li>The &quot;pagination&quot; CSS class for the <code v-pre>pagy_nav</code>, <code v-pre>pagy_nav_js</code> and <code v-pre>pagy_combo_nav_js</code> has been deprecated and will be removed in
-version 8. Replace it with the new &quot;pagy&quot; CSS class added also to the <code v-pre>pagy-items-selector-js</code>.</li>
-</ul>
+<p>None</p>
 <hr>
-<doc-anchor-target id="version-7011">
+<doc-anchor-target id="version-800">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-7011">#</doc-anchor-trigger>
-        <span>Version 7.0.11</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Fix jsonapi prev and next keys for unavailable links (#665)</li>
-<li>Docs fixes</li>
-</ul>
-<doc-anchor-target id="version-7010">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-7010">#</doc-anchor-trigger>
-        <span>Version 7.0.10</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Added name attribute to combo and items input tags; removed pagy_marked_link and refactored js input action</li>
-</ul>
-<doc-anchor-target id="version-709">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-709">#</doc-anchor-trigger>
-        <span>Version 7.0.9</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Improve all pagy apps</li>
-<li>Normalized bootstrap, bulma, foundation, navs extra</li>
-</ul>
-<doc-anchor-target id="version-708">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-708">#</doc-anchor-trigger>
-        <span>Version 7.0.8</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Update gems and fix a rubocop bug</li>
-<li>Add all styles to pagy_styles.ru</li>
-<li>Better pagy stylesheets</li>
-<li>Fix for uikit extra prev and next link duplicating chevrons</li>
-<li>Change aria_Label to aria_label for Arabic locale (#657)</li>
-</ul>
-<doc-anchor-target id="version-707">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-707">#</doc-anchor-trigger>
-        <span>Version 7.0.7</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Fix for retype exluding linked files and showing category images</li>
-<li>Fix for first *nav_js page not active with trim (introduced with the #656 fix 7e2f118)</li>
-<li>Normalize pagy apps; implement pagy_styles.ru</li>
-</ul>
-<doc-anchor-target id="version-706">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-706">#</doc-anchor-trigger>
-        <span>Version 7.0.6</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Internal renaming of frontend constants</li>
-<li>Fix for disabled links and missing or extra ARIA attributes in frontend extras</li>
-<li>Boostrap fix for current page link; pagy.js fix for trim of current page (closes #656)</li>
-</ul>
-<doc-anchor-target id="version-705">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-705">#</doc-anchor-trigger>
-        <span>Version 7.0.5</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Updated gems, npm modules, contributors</li>
-<li>Added the pagy stylesheets to the gem, updated apps, docs and manifest</li>
-<li>Added note for the metrics and compacted the chart section (closes #652)</li>
-<li>Docs: fix formatting, grammar in README.md (#654)</li>
-<li>Add note about PR base branches to readme (#653)</li>
-</ul>
-<doc-anchor-target id="version-704">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-704">#</doc-anchor-trigger>
-        <span>Version 7.0.4</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Tailwind styles integrated with the pagy-items-selector-js (#646)</li>
-<li>Deprecated the &quot;pagination&quot; CSS class, use the &quot;pagy&quot; CSS class that has been added to all the interactive pagy helper outputs</li>
-<li>Fix indentation of cs locale (#648); add &quot;pagy.aria_label.nav.few&quot; entry, duplicating the &quot;other&quot; pluralization</li>
-<li>Update cs translations (#648)</li>
-<li>Expand/Correct changes about <code v-pre>pagy.prev</code> and <code v-pre>pagy.next</code> (#649)</li>
-</ul>
-<doc-anchor-target id="version-703">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-703">#</doc-anchor-trigger>
-        <span>Version 7.0.3</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Remove extra space in <code v-pre>pagy_nav</code>, <code v-pre>pagy_nav_js</code> and <code v-pre>.pagy-combo-input</code></li>
-<li>Refactor of tailwind styles and docs (closes #646)</li>
-<li>Add <code v-pre>pagy_tailwind_app.ru</code> (#646)</li>
-<li>Add missing CSS breaking change to the CHANGELOG (#646)</li>
-</ul>
-<doc-anchor-target id="version-702">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-702">#</doc-anchor-trigger>
-        <span>Version 7.0.2</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Fix for missing to fetch count_args default (close #645)</li>
-<li>Non-code improvements</li>
-</ul>
-<doc-anchor-target id="version-701">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-701">#</doc-anchor-trigger>
-        <span>Version 7.0.1</span>
-    </h2>
-</doc-anchor-target>
-<ul>
-<li>Updates ckb translations to be complaint with ARIA in v7.x.x (#643)</li>
-</ul>
-<doc-anchor-target id="version-700">
-    <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#version-700">#</doc-anchor-trigger>
-        <span>Version 7.0.0</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-800">#</doc-anchor-trigger>
+        <span>Version 8.0.0</span>
     </h2>
 </doc-anchor-target>
 <doc-anchor-target id="breaking-changes-1">
@@ -425,105 +311,23 @@ version 8. Replace it with the new &quot;pagy&quot; CSS class added also to the 
     </h3>
 </doc-anchor-target>
 <ul>
-<li>Dropped old rubies support: Pagy follows the <a href="https://endoflife.date/ruby">ruby end-of-life</a> supported rubies now.</li>
-<li>Renamed <code v-pre>:i18n_key</code> &gt; <code v-pre>:item_i18n_key</code></li>
-<li>Refactored <code v-pre>support</code> extra
+<li>Renamed/removed the following arguments for all the helpers:
 <ul>
-<li>Renamed <code v-pre>pagy_prev_link</code> to <code v-pre>pagy_prev_html</code> to avoid confusion with pagy_prev_link_tag</li>
-<li>Removed <code v-pre>pagy_next_link</code> to <code v-pre>pagy_next_html</code> to avoid confusion with pagy_next_link_tag</li>
+<li>Search <code v-pre>pagy_id:</code>, replace with <code v-pre>id:</code></li>
+<li>Search <code v-pre>nav_aria_label:</code>, replace with<code v-pre>aria_label:</code></li>
+<li>The <code v-pre>nav_i18n_key</code> has been removed: pass the interpolated/pluralized value as the <code v-pre>aria_label:</code> argument</li>
+<li>The <code v-pre>item_i18n_key</code> has been removed: pass the interpolated/pluralized value as the <code v-pre>item_name:</code> argument</li>
+<li>The <code v-pre>link_extra:</code> has been removed: its cumulative mechanism was confusing and error prone. The <code v-pre>:anchor_string</code> pagy
+variable substitutes it, however it&#x27;s not an helper argument anymore, so you can assign it as the <code v-pre>DEFAULT[:anchor_string]</code>
+and/or pass it as any other pagy variable at object construction. (See <a href="https://ddnexus.github.io/pagy/docs/how-to/#customize-the-link-attributes">customize the link attributes</a>)</li>
 </ul>
 </li>
-<li>Rack 3 breaking changes:
-<ul>
-<li>The <code v-pre>headers</code> extra produces all lowercase headers, regardless how you set
-them <a href="https://github.com/rack/rack/issues/1592">see rack issue</a></li>
-<li>Removed <code v-pre>:escaped_html</code> option from <code v-pre>pagy_url_for</code> (only breaking if you override the method or use the option directly)</li>
+<li>HTML structure, classes and internal methods have been changed: they may break your views if you used custom stylesheets,
+templates or helper overrides. See the complete changes below if you notice any cosmetic changes or get some exception.</li>
+<li>The <code v-pre>navs</code> and <code v-pre>support</code> extras has been merged into the new <a href="https://ddnexus.github.io/pagy/docs/extras/pagy">pagy extra</a>.
+Search for <code v-pre>&quot;extra/navs&quot;</code> and
+<code v-pre>&quot;extras/support&quot;</code> and replace with <code v-pre>&quot;extras/pagy&quot;</code> (remove the duplicate if you used both)</li>
 </ul>
-</li>
-<li>Dictionary structure changes: (affects only app with custom helper/templates/dictionary entries)
-<ul>
-<li>The <code v-pre>nav</code> entry has been flattened: <code v-pre>pagy.nav.*</code> entries are now <code v-pre>pagy.*</code>:
-<ul>
-<li>If you have custom helpers/templates: search the keys that contain <code v-pre>'.nav.'</code> and replace them with <code v-pre>'.'</code></li>
-<li>If you have custom dictionary entries (overrides): remove the <code v-pre>'nav:'</code> line and unindent its block</li>
-</ul>
-</li>
-<li>A few labels used as <code v-pre>aria-label</code> have been added: you may want to add/use them to your custom helper/templates/dictionaries
-for ARIA compliance.
-<ul>
-<li><code v-pre>pagy.aria_label.nav</code> Pluralized entry: used in the <code v-pre>nav</code> element</li>
-<li><code v-pre>pagy.aria_label.prev</code>, <code v-pre>pagy.aria_label.next</code> Single entry: used in the prev/next <code v-pre>a</code> link elements</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<doc-anchor-target id="default-changes-possibly-breaking-testviews">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#default-changes-possibly-breaking-testviews">#</doc-anchor-trigger>
-        <span>Default changes (possibly breaking test/views)</span>
-    </h3>
-</doc-anchor-target>
-<ul>
-<li>Changed <code v-pre>Pagy::DEFAULT[:size]</code> variable defaults from <code v-pre>[1, 4, 4, 1]</code> to <code v-pre>7</code>. You can explicitly set/restore it in the
-initializer, if your app was relying on it.</li>
-<li>Added sensible <code v-pre>:size</code> defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
-relying on it.
-<ul>
-<li><code v-pre>Pagy::Calendar::Day::DEFAULT[:size]</code> <code v-pre>31</code></li>
-<li><code v-pre>Pagy::Calendar::Month::DEFAULT[:size]</code> <code v-pre>12</code></li>
-<li><code v-pre>Pagy::Calendar::Quarter::DEFAULT[:size]</code> <code v-pre>4</code></li>
-<li><code v-pre>Pagy::Calendar::Year::DEFAULT[:size]</code> <code v-pre>10</code></li>
-</ul>
-</li>
-<li>Changed a few <code v-pre>format</code> defaults in Calendar Unit subclasses. You can explicitly set it in the initializer, if your app was
-relying on it.
-<ul>
-<li><code v-pre>Pagy::Calendar::Day::DEFAULT[:format]</code> from <code v-pre>'%Y-%m-%d'</code> to <code v-pre>'%d'</code></li>
-<li><code v-pre>Pagy::Calendar::Month::DEFAULT[:format]</code> from <code v-pre>'%Y-%m'</code> to <code v-pre>'%b'</code></li>
-<li><code v-pre>Pagy::Calendar::Quartr::DEFAULT[:format]</code> from <code v-pre>'%Y-Q%q'</code> to <code v-pre>'Q%q'</code></li>
-</ul>
-</li>
-</ul>
-<doc-anchor-target id="visual-changes-possibly-breaking-testviews">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#visual-changes-possibly-breaking-testviews">#</doc-anchor-trigger>
-        <span>Visual changes (possibly breaking test/views)</span>
-    </h3>
-</doc-anchor-target>
-<ul>
-<li>The ARIA label compliance required the refactoring of all the nav helpers that might look slightly different now:</li>
-<li>The text for <code v-pre>&quot;Prev&quot;</code> and <code v-pre>&quot;Next&quot;</code> is now used for the <code v-pre>aria-label</code> (actually as <code v-pre>&quot;Previous&quot;</code> and <code v-pre>&quot;Next&quot;</code>) and has been
-replaced in the UI as <code v-pre>&lt;</code> and <code v-pre>&gt;</code>. You can edit the dictionary entries <code v-pre>pagy.prev</code> and <code v-pre>pagy.next</code> if you want to revert it to
-the previous default (<code v-pre>&amp;lsaquo;&amp;nbsp;Prev</code> and <code v-pre>Next&amp;nbsp;&amp;rsaquo;</code>)</li>
-</ul>
-<doc-anchor-target id="css-changes-possibly-looking-differentbroken">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#css-changes-possibly-looking-differentbroken">#</doc-anchor-trigger>
-        <span>CSS changes (possibly looking different/broken)</span>
-    </h3>
-</doc-anchor-target>
-<ul>
-<li>The HTML of the current page in <code v-pre>pagy_nav</code> and <code v-pre>pagy_nav_js</code> has been changed from simple text (e.g. <code v-pre>5</code>) to a
-disabled link (e.g. <code v-pre>&lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-current=&quot;page&quot;&gt;5&lt;/a&gt;</code>). That affects your CSS rules and
-the old tailwind examples targeting the page links, now overreaching the current page.
-<ul>
-<li>You may fix eventual problems either by replacing the affected <code v-pre>a</code> rules with narrower <code v-pre>a[href]</code> selectors however if you use
-Tailwind we recommend to use the <a href="https://ddnexus.github.io/pagy/docs/extras/tailwind/">improved tailwind style</a>, that you can
-adapt in no time to anything you need.</li>
-</ul>
-</li>
-<li>The extra spaces added between pages of <code v-pre>pagy_nav</code> and <code v-pre>pagy_nav_js</code> have been removed</li>
-<li>The <code v-pre>pagy-combo-nav-js .pagy-combo-input</code> internal element x-margins have been removed</li>
-</ul>
-<doc-anchor-target id="internal-renaming-of-private-methods-unlikely-to-break-anything">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#internal-renaming-of-private-methods-unlikely-to-break-anything">#</doc-anchor-trigger>
-        <span>Internal renaming of private methods (unlikely to break anything)</span>
-    </h3>
-</doc-anchor-target>
-<p>You should not have used any of the private methods, but if you did so, you will get a <code v-pre>NoMethodError</code>
-(undefined method...) very easy to fix by simply renaming, because there are no changes in the logic.</p>
 <doc-anchor-target id="changes">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#changes">#</doc-anchor-trigger>
@@ -531,15 +335,56 @@ adapt in no time to anything you need.</li>
     </h3>
 </doc-anchor-target>
 <ul>
-<li>Added <code v-pre>:count_args</code> variable passed to the <code v-pre>collection.count(...)</code> statement (avoids overriding of <code v-pre>pagy-gets-vars</code> and
-expands count capabilities)</li>
-<li><a href="https://ddnexus.github.io/pagy/docs/api/aria/">ARIA compliance</a></li>
-<li>Removed the pagy templates: they were a burden for maintenance with very limited usage,
-still <a href="http://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">you can use them</a></li>
-<li>Added a simpler and faster nav without gaps (just pass an integer to the <code v-pre>:size</code>)</li>
-<li>Internal renaming of private frontend methods</li>
-<li>Updated code and tests for latest gem and npm module versions</li>
-<li>Internal improvements of automation scripts</li>
+<li>Streamlined HTML and CSS helper structure. You may want to look at the actual output by running the <a href="https://ddnexus.github.io/pagy/playground.md#3-demo-app">pagy demo</a>
+<ul>
+<li>The <code v-pre>pagy_nav</code> and <code v-pre>pagy_nav_js</code> helpers output a series of <code v-pre>a</code> tags inside a wrapper <code v-pre>nav</code> tag (nothing else)</li>
+<li>The disabled links are so because they are missing the <code v-pre>href</code> attributes. (They also have the <code v-pre>role=&quot;link&quot;</code> and <code v-pre>aria-disabled=&quot;true&quot;</code> attributes)</li>
+<li>The <code v-pre>current</code> and <code v-pre>gap</code> classes are assigned to the specific <code v-pre>a</code> tags</li>
+<li>HTML changes
+<ul>
+<li>All the pagy helper root classes have been changed according to the following rule. For example:
+<ul>
+<li><code v-pre>&quot;pagy-nav&quot;</code> &gt; <code v-pre>&quot;pagy nav&quot;</code></li>
+<li><code v-pre>&quot;pagy-bootstrap-nav-js&quot;</code> &gt; <code v-pre>&quot;pagy-bootstrap nav-js&quot;</code></li>
+<li>and so on for all the helpers</li>
+</ul>
+</li>
+<li>The <code v-pre>active</code> class of the <code v-pre>*nav</code>/<code v-pre>*nav_js</code> links as been renamed as <code v-pre>current</code></li>
+<li>The <code v-pre>disabled</code>, <code v-pre>prev</code>, <code v-pre>next</code> and <code v-pre>pagy-combo-input</code> link classes have been removed (see the <a href="https://ddnexus.github.io/pagy/docs/api/stylesheets/#pagy-scss">stylesheets</a> for details)</li>
+<li>The <code v-pre>rel=&quot;prev&quot;</code> and  <code v-pre>rel=&quot;next&quot;</code> attributes have been dropped (they are obsolete)</li>
+<li>The <code v-pre>&lt;label&gt;</code>/<code v-pre>&lt;/label&gt;</code> and <code v-pre>&lt;b&gt;</code>/<code v-pre>&lt;/b&gt;</code> wrappers in the dictionary files have been removed</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The <code v-pre>pagy_link_proc</code> method (only used internally or in your custom overriding) has been renamed to <code v-pre>pagy_anchor</code>and it works
+slighty differently:
+<ul>
+<li>The <code v-pre>link_extra:</code> key argument has been removed
+<ul>
+<li>The <code v-pre>extra</code> positional argument of the returned lambda has been removed</li>
+<li>The <code v-pre>classes:</code> and <code v-pre>aria_label:</code> keyword arguments have been added to the returned lambda</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The <code v-pre>nav_aria_label_attr</code> method has been renamed as <code v-pre>nav_aria_label</code></li>
+<li>The internal <code v-pre>prev_aria_label_attr</code> and <code v-pre>next_aria_label_attr</code> methods have been removed</li>
+<li>The <code v-pre>gap</code> in the nav bars is a disabled anchor element (<code v-pre>a</code> tag without a <code v-pre>href</code> attribute&#x60;)</li>
+<li>The <code v-pre>pagy_prev_html</code> and <code v-pre>pagy_next_html</code> have been renamed as <code v-pre>pagy_prev_a</code> and <code v-pre>pagy_next_a</code></li>
+<li>The <code v-pre>pagy_prev_link_tag</code> and <code v-pre>pagy_next_link_tag</code> have been renamed as <code v-pre>pagy_prev_link</code> and <code v-pre>pagy_next_link</code></li>
+<li>The <code v-pre>*combo_nav_js</code> and <code v-pre>pagy_items_selector_js</code> helpers use a more efficient code</li>
+<li>The <code v-pre>src/pagy.ts</code> and relative built javascript files have been adapted to the above changes</li>
+<li>The <a href="https://ddnexus.github.io/pagy/docs/api/stylesheets/">stylesheets</a> are a lot simpler as a consequence of the changes above</li>
+<li>All the <code v-pre>*combo-nav_js</code> of the framework extras use simpler structure and improve the look and feel consistently with their
+respective frameworks</li>
+<li>All the frontend extra have been normalized and are totally consistent with each other; a few may add the <code v-pre>classes:</code>
+argument to a few components, when the framework allows it.</li>
+<li>Created the <a href="https://ddnexus.github.io/pagy/playground">pagy playground</a> system of apps working with the <code v-pre>pagy</code> executable.</li>
+<li>Internal renaming <code v-pre>FrontendHelpers</code> &gt; <code v-pre>JSTools</code></li>
+<li>Fix broken link of pagy.rb in docs (closes #668, #669)</li>
+<li>Docs Improvements</li>
+<li>Better code issue template</li>
 </ul>
 <p><a href="../changelog_legacy/">LEGACY CHANGELOG &gt;&gt;&gt;</a></p>
 

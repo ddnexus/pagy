@@ -6,23 +6,23 @@ class Pagy # :nodoc:
 
   # Remove the page=1 param from the first page link
   module TrimExtra
-    # Override the original pagy_link_proc.
-    # Call the pagy_trim method if the trim_extra is enabled.
-    def pagy_link_proc(pagy, link_extra: '')
-      link_proc = super(pagy, link_extra:)
-      return link_proc unless pagy.vars[:trim_extra]
+    # Override the original pagy_a_proc.
+    # Call the pagy_trim method for page 1 if the trim_extra is enabled
+    def pagy_anchor(pagy)
+      a_proc = super(pagy)
+      return a_proc unless pagy.vars[:trim_extra]
 
-      lambda do |page, text = pagy.label_for(page), extra = ''|
-        link = +link_proc.call(page, text, extra)
-        return link unless page.to_s == '1'
+      lambda do |page, text = pagy.label_for(page), **opts|
+        a = +a_proc.(page, text, **opts)
+        return a unless page.to_s == '1'
 
-        pagy_trim(pagy, link)
+        pagy_trim(pagy, a) # in method for isolated testing
       end
     end
 
-    # Remove the the :page_param param from the first page link
-    def pagy_trim(pagy, link)
-      link.sub!(/[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/, '')
+    # Remove the the :page_param param from the first page anchor
+    def pagy_trim(pagy, a)
+      a.sub!(/[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/, '')
     end
   end
   Frontend.prepend TrimExtra

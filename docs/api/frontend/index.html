@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765066039809">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765360562834">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.765066039809" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.765360562834" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765066039809" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765066039809" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.765360562834" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.765360562834" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">7.0.11</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -280,12 +280,8 @@
         <span>Synopsis</span>
     </h2>
 </doc-anchor-target>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View Helper</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">View Helper</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">include Pagy::Frontend
 
 # optional overriding of some sub-method
@@ -293,19 +289,11 @@ def pagy_nav(...)
    ...
 end</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">View</div>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_nav(@pagy, **vars) %&gt;
 &lt;%== pagy_info(@pagy, **vars) %&gt;</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <doc-anchor-target id="methods">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
@@ -318,26 +306,17 @@ end</code></pre>
    <doc-panel id="pagy-nav-pagy-vars" collapsed>
        <template #title><code v-pre>pagy_nav(pagy, **vars)</code></template>
 <p>This method takes the Pagy object and returns the HTML string with the pagination links, which are wrapped in a <code v-pre>nav</code> tag and are ready to use in your view. For example:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">View</div>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_nav(@pagy, **vars) %&gt;</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p>The method accepts also a few optional keyword arguments variables:</p>
 <ul>
-<li><code v-pre>:pagy_id</code>: the <code v-pre>id</code> HTML attribute to the <code v-pre>nav</code> tag (omitted by default)</li>
-<li><code v-pre>:link_extra</code>: the verbatim string added to the <code v-pre>a</code> tag (e.g. <code v-pre>'data-remote=&quot;true&quot;'</code>)</li>
-<li><code v-pre>:nav_aria_label</code>: an already pluralized string for the <code v-pre>aria-label</code> attribute of the <code v-pre>nav</code>, that will be used in place of
-the default <code v-pre>pagy.aria_label.nav</code></li>
-<li><code v-pre>:nav_i18n_key</code>:  the i18n dictionary key to lookup the default <code v-pre>pagy.aria_label.nav</code> pluralized value (ignored if
-<code v-pre>nav_aria_label</code> is
+<li><code v-pre>:id</code>: the <code v-pre>id</code> HTML attribute to the <code v-pre>nav</code> tag (omitted by default)</li>
+<li><code v-pre>:aria_label</code>: an already pluralized string for the <code v-pre>aria-label</code> attribute of the <code v-pre>nav</code>, that will be used in place of
+the default <code v-pre>pagy.aria_label.nav</code>
 defined)</li>
-<li><code v-pre>:size</code> which use the passed size Array instead of the <code v-pre>:size</code> variable of the instance</li>
+<li><code v-pre>:size</code> which use the passed value instead of the <code v-pre>:size</code> variable of the instance</li>
 </ul>
 <p>See also <a href="../aria/">ARIA Attributes</a>.</p>
    </doc-panel>
@@ -351,22 +330,13 @@ defined)</li>
 <p><span>Displaying items <b>476-500</b> of <b>1000</b> in total</span></p>
 <p>The method accepts also a few optional keyword arguments variables:</p>
 <ul>
-<li><code v-pre>:pagy_id</code>: the <code v-pre>id</code> HTML attribute to the <code v-pre>span</code> tag wrapping the info</li>
+<li><code v-pre>:id</code>: the <code v-pre>id</code> HTML attribute to the <code v-pre>span</code> tag wrapping the info</li>
 <li><code v-pre>:item_name</code> an already pluralized string that will be used in place of the default <code v-pre>item/items</code></li>
-<li><code v-pre>:item_i18n_key</code> the key to lookup in a dictionary</li>
 </ul>
-<p>Notice the <code v-pre>:item_i18n_key</code> can be passed also to the constructor or be a global variable (i.e. <code v-pre>Pagy::DEFAULT[:item_i18n_key]</code></p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %&gt;
-&lt;%== pagy_info(@pagy, item_i18n_key: 'activerecord.model.product' %&gt;</code></pre>
+<div class="codeblock-title">View</div>
+<pre class="language-erb"><code v-pre class="language-erb">&lt;%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %&gt;</code></pre>
 </doc-codeblock></div>
-    </div>
-</div>
 <p>Displaying Products <b>476-500</b> of <b>1000</b> in total</p>
 <p><em>(see <a href="../../how-to/#customize-the-item-name">Customizing the item name</a>)</em></p>
    </doc-panel>
@@ -375,19 +345,18 @@ defined)</li>
 <p>This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.</p>
 <p>See also <a href="../../how-to/#customize-the-url">How to customize the URL</a> and <a href="../../how-to/#customize-the-params">How to customize the params</a>.</p>
    </doc-panel>
-   <doc-panel id="pagy-link-proc-pagy-link-extra" collapsed>
-       <template #title><code v-pre>pagy_link_proc(pagy, link_extra='')</code></template>
-<p>This method is called internally to get a very specialized and fast proc that produce the HTML links for the pages.</p>
+   <doc-panel id="pagy-anchor-pagy" collapsed>
+       <template #title><code v-pre>pagy_anchor(pagy)</code></template>
+<p>This method is called internally to get a very specialized and fast proc that produce the HTML anchor elements (i.e. <code v-pre>a</code> tags) for the pages.</p>
 <p>For standard usage you may just need to read <a href="../../how-to/#customize-the-link-attributes">How to customize the link attributes</a>, for advanced usage see below.</p>
-   </doc-panel>
-</doc-panels>
 <doc-anchor-target id="advanced-usage">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#advanced-usage">#</doc-anchor-trigger>
         <span>Advanced Usage</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
-<p>You need this section only if you are going to override a <code v-pre>pagy_nav*</code> helper AND you need to customize the HTML attributes of the link tags.</p>
+<p>You need this section only if you are going to override a <code v-pre>pagy_nav*</code> helper AND you need to customize the HTML attributes of the
+link tags.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -401,132 +370,45 @@ defined)</li>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>This method is not intended to be overridden, however you could just replace it in your overridden <code v-pre>pagy_nav*</code> helpers with some generic helper like the rails <code v-pre>link_to</code>. If you intend to do so, be sure to have a very good reason, since using <code v-pre>pagy_link_proc</code> is a lot faster than the rails <code v-pre>link_to</code> (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).</p>
+<p>This method is not intended to be overridden, however you could just replace it in your overridden <code v-pre>pagy_nav*</code> helpers with some
+generic helper like the rails <code v-pre>link_to</code>. If you intend to do so, be sure to have a very good reason, since using <code v-pre>pagy_anchor</code> is
+a lot faster than the rails <code v-pre>link_to</code> (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).</p>
         </div>
     </div>
 </div>
-<p>This method returns a specialized proc that you call to produce the page links. The reason it is a two steps process instead of a single method call is performance. Indeed the method calls the potentially expensive <code v-pre>pagy_url_for</code> only once and generates the proc, then calling the proc will just interpolates the strings passed to it.</p>
+<p>This method returns a specialized proc that you call to produce the page <code v-pre>a</code> tags. The reason it is a two steps process instead of
+a single method call is performance. Indeed the method calls the potentially expensive <code v-pre>pagy_url_for</code> only once and generates the
+proc, then calling the proc will just interpolates the strings passed to it.</p>
 <p>Here is how you should use it: in your helper call the method to get the proc (just once):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">link = pagy_link_proc( pagy [, extra_attributes_string ] )</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby">a = pagy_anchor(pagy)</code></pre>
 </doc-codeblock></div>
-<p>Then call the <code v-pre>&quot;link&quot;</code> proc to get the links (multiple times):</p>
+<p>Then call the <code v-pre>a</code> proc to get the links (multiple times):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">link.call( page_number [, text [, extra_attributes_string ] ] )</code></pre>
+<pre class="language-ruby"><code v-pre class="language-ruby">my_link = a.(page_number, text, classes:, aria_label:)</code></pre>
 </doc-codeblock></div>
-<doc-anchor-target id="extra-attribute-strings">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#extra-attribute-strings">#</doc-anchor-trigger>
-        <span>Extra attribute strings</span>
-    </h3>
+<doc-anchor-target id="the-anchor_string-variable">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#the-anchor_string-variable">#</doc-anchor-trigger>
+        <span>The anchor_string variable</span>
+    </h4>
 </doc-anchor-target>
-<p>If you need to add some HTML attribute to the page links, you can pass some extra attribute string at many levels, depending on the scope you want your attributes to be added.</p>
+<p>If you need to add some HTML attribute to ALL the page links, you can set the <code v-pre>:anchor_string</code> variable.</p>
 <div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
         <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
                 <g fill="currentColor"><g>
-                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
-                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
+                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
                 </g></g>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Attributes Must be Valid HTML</h5>
-<p>For performance reasons, the extra attributes strings must be formatted as valid HTML attribute/value pairs. <em>All</em> the strings passed at any level will get inserted <em>verbatim</em> in the HTML of the link.</p>
-        </div>
-    </div>
-</div>
-<ol>
-<li><p>For all pagy objects: set the global variable <code v-pre>:link_extra</code>:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>pagy.rb (initializer)</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">Pagy::DEFAULT[:link_extra] = 'data-remote=&quot;true&quot;'</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">link = pagy_link_proc(pagy)
-link.call(2)
-#=&gt; &lt;a href=&quot;...?page=2&quot; data-remote=&quot;true&quot;&gt;2&lt;/a&gt;</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
-</li>
-<li><p>For one Pagy object: pass the <code v-pre>:link_extra</code> variable to a Pagy constructor (<code v-pre>Pagy.new</code> or <code v-pre>pagy</code> controller method):</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>Controller</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(my_scope, link_extra: 'data-remote=&quot;true&quot;')</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
-</li>
-<li><p>For all the <code v-pre>link.call</code>: pass an extra attributes string to the <code v-pre>pagy_link_proc</code>:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">link = pagy_link_proc(pagy, 'class=&quot;page-link&quot;')
-link.call(2)
-#=&gt; &lt;a href=&quot;...?page=2&quot; data-remote=&quot;true&quot; class=&quot;page-link&quot;&gt;2&lt;/a&gt;
-link.call(3)
-#=&gt; &lt;a href=&quot;...?page=3&quot; data-remote=&quot;true&quot; class=&quot;page-link&quot;&gt;3&lt;/a&gt;</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
-</li>
-<li><p>For a single <code v-pre>link.call</code>: pass an extra attributes string when you call the proc:</p>
-<div class="mb-6 overflow-hidden border rounded-md docs-columns dark:border-dark-650" style="grid-template-columns: repeat(1, minmax(0, 1fr));">
-    <div class="flex items-center px-5 py-3 font-mono leading-snug text-white docs-columns-code-title">
-        <span>View</span>
-    </div>
-    <div class="docs-columns-code docs-columns-content">
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">link.call(page_number, 'aria-label=&quot;my-label&quot;')
-#=&gt; &lt;a href=&quot;...?page=2&quot; data-remote=&quot;true&quot; class=&quot;page-link&quot; aria-label=&quot;my-label&quot;&gt;2&lt;/a&gt;</code></pre>
-</doc-codeblock></div>
-    </div>
-</div>
-</li>
-</ol>
-<doc-anchor-target id="caveats">
-    <h4>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#caveats">#</doc-anchor-trigger>
-        <span>CAVEATS</span>
-    </h4>
-</doc-anchor-target>
-<p>We use only strings for performance, so the attribute strings get concatenated level after level, but not merged!</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-yellow-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M22.48 15.59L14.01 1.45A2.968 2.968 0 0012.16.09c-.78-.19-1.58-.07-2.27.35-.41.25-.76.6-1.01 1.01v.01L.4 15.6c-.83 1.43-.33 3.27 1.1 4.1.45.26.95.4 1.48.4h16.95c.8-.01 1.55-.33 2.11-.9.56-.57.87-1.33.86-2.13a3.04 3.04 0 00-.42-1.48zm-1.87 2.21c-.19.19-.44.3-.69.3H2.99c-.17 0-.34-.05-.49-.13a.992.992 0 01-.37-1.35L10.6 2.48c.08-.14.2-.25.34-.33a.992.992 0 011.37.33l8.46 14.13c.09.15.13.32.13.49 0 .26-.1.51-.29.7z"></path>
-                    <path d="M11.45 12.1c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1s-1 .45-1 1v4c0 .56.45 1 1 1zM11.46 14.1c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Do Not Pass Atributes Multiple Times</h5>
-<p>Be careful not to pass the same attribute at different levels multiple times. That would generate a duplicated HTML attribute which is illegal html (although handled by all mayor browsers by ignoring all the duplicates but the first).</p>
+<p>For performance reasons, the <code v-pre>:anchor_string</code> string must be formatted as valid HTML attribute/value pairs because it will get
+inserted <em>verbatim</em> in the HTML of the <code v-pre>a</code> tag.</p>
         </div>
     </div>
 </div>
@@ -542,16 +424,40 @@ link.call(3)
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Do not add <code v-pre>class</code> attribute for <code v-pre>*js</code> helpers</h5>
-<p>Specifically do not add a <code v-pre>class</code> attribute that will end up in the <code v-pre>pagy_bootstrap_nav_js</code>, <code v-pre>pagy_semantic_nav_js</code> and <code v-pre>pagy_semantic_combo_nav_js</code>, which define already their own.</p>
+            <h5>Do Not Pass Attributes Already Present</h5>
+<p>Be careful not to pass some attribute that is already added by the helper. That would generate a duplicate HTML attribute which
+is invalid html (although handled by all mayor browsers by ignoring all the duplicates but the first).</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Easily check the native component attributes:</h5>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">pagy demo
+# or: bundle exec pagy demo
+# ...and point your browser at http://0.0.0.0:8000</code></pre>
+</doc-codeblock></div>
         </div>
     </div>
 </div>
-<doc-panel id="pagy-t-key-vars" collapsed>
-    <template #title><code v-pre>pagy_t(key, vars={})</code></template>
+        </div>
+    </div>
+</div>
+   </doc-panel>
+   <doc-panel id="pagy-t-key-vars" collapsed>
+       <template #title><code v-pre>pagy_t(key, vars={})</code></template>
 <p>This method is similar to the <code v-pre>I18n.t</code> and its equivalent rails <code v-pre>t</code> helper. It is called internally from the helpers in order to
 get the interpolated strings out of a YAML dictionary file. <em>(see the <a href="../i18n/">Pagy::I18n</a> doc for details)</em></p>
-</doc-panel>
+   </doc-panel>
+</doc-panels>
 
                                 
                                 <!-- Required only on API pages -->
