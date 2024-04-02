@@ -29,6 +29,11 @@ If you upgrade from version `< 8.0.0` see the following:
 None
 <hr>
 
+## Version 8.0.1
+
+- Reorganize the gem root dir: it was the lib dir (containing everything), now is the gem dir (containing lib and everything else).
+- Fix broken link in README
+
 ## Version 8.0.0
 
 ### Breaking changes
