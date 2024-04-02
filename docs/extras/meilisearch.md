@@ -60,10 +60,6 @@ Pagy creates its object out of your result.
 
 +++
 
-## Files
-
-- [meilisearch.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/meilisearch.rb)
-
 ## Variables
 
 | Variable                   | Description                                     | Default        |

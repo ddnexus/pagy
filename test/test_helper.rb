@@ -8,7 +8,7 @@ unless ENV['RM_INFO']   # RubyMine safe
 end
 
 # We cannot use gemspec in the gemfile which would load pagy before simplecov so missing the coverage
-$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+$LOAD_PATH.unshift File.expand_path('../gem/lib', __dir__)
 require 'pagy'
 require 'minitest/autorun'
 

@@ -24,10 +24,6 @@ require 'pagy/extras/semantic'
 <%== pagy_semantic_combo_nav_js(@pagy, **vars) %>
 ```
 
-## Files
-
-- [semantic.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/semantic.rb)
-
 ## Methods
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by direct overriding in your own view helper.

@@ -10,7 +10,7 @@ categories:
 The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a
 few integers (such as the count of the collection, the page number, the items per page, ...), does some simple arithmetic and
 creates a very small object that allocates less than 3k of
-memory ([source](https://github.com/ddnexus/pagy/blob/master/lib/pagy.rb)).
+memory.
 
 ## Synopsis
 
@@ -61,7 +61,7 @@ Pagy::DEFAULT.freeze
 
 ==- `Pagy.root`
 
-This method returns the `pathname` of the `pagy/lib` root dir. It is useful to get the absolute path of locale and javascript
+This method returns the `pathname` of the `pagy/gem` root dir. It is useful to get the absolute path of locale and javascript
 files installed with the gem.
 
 ==- `Pagy.new(vars)`

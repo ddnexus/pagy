@@ -6,7 +6,7 @@ require 'bundler/gem_tasks'
 require 'rake/manifest'
 
 Rake::Manifest::Task.new do |t|
-  t.patterns      = FileList.new.include('lib/**/*', 'LICENSE.txt').exclude('**/*.md')
+  t.patterns      = FileList.new.include('gem/**/*', 'LICENSE.txt').exclude('**/*.md')
   t.manifest_file = 'pagy.manifest'
 end
 

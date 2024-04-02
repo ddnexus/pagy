@@ -29,6 +29,11 @@ If you upgrade from version `< 8.0.0` see the following:
 None
 <hr>
 
+## Version 8.0.1
+
+- Reorganize the gem root dir: it was the lib dir (containing everything), now is the gem dir (containing lib and everything else).
+- Fix broken link in README
+
 ## Version 8.0.0
 
 ### Breaking changes
@@ -45,7 +50,9 @@ None
   templates or helper overrides. See the complete changes below if you notice any cosmetic changes or get some exception.
 - The `navs` and `support` extras has been merged into the new [pagy extra](https://ddnexus.github.io/pagy/docs/extras/pagy). 
   Search for `"extra/navs"` and 
-  `"extras/support"` and replace with `"extras/pagy"` (remove the duplicate if you used both) 
+  `"extras/support"` and replace with `"extras/pagy"` (remove the duplicate if you used both)
+- The build path for javascript builders has moved from the `lib` to the `gem` dir so the correct setup in `package.json` is:
+  `build: "NODE_PATH=\"$(bundle show 'pagy')/gem/javascripts\" <your original command>"`
 
 ### Changes
 

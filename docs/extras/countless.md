@@ -83,10 +83,6 @@ This mode is enabled by the `:countless_minimal` variable.
 |:---------------------|:----------------------------------|:--------|
 | `:countless_minimal` | enable the countless minimal mode | `false` |
 
-## Files
-
-- [countless.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb)
-
 ## Methods
 
 ==- `pagy_countless(collection, vars=nil)`

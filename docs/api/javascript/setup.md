@@ -37,8 +37,9 @@ Your app uses modern build tools
 
 * ES6 module to use with webpacker, esbuild, parcel, etc.
 
-_ESM File: [pagy-module.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.js);
-Types: [pagy-module.d.ts](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-module.d.ts)_
+[!file](/gem/javascripts/pagy-module.js)
+
+[!file](/gem/javascripts/pagy-module.d.ts)
 
 +++ `pagy.js`
 !!! success
@@ -49,7 +50,7 @@ Your app needs standard script or old browser compatibility
   production pages and without any further processing
 * Minified (~2k) and polyfilled to work also with quite old browsers
 
-_JS File: [pagy.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy.js)_
+[!file](/gem/javascripts/pagy.js)
 
 <details>
 <summary> Browser compatibility list: </summary>
@@ -102,7 +103,7 @@ You need to debug the javascript helpers
 * It works only on new browsers
   !!!
 
-_JS File: [pagy-dev.js](https://github.com/ddnexus/pagy/blob/master/lib/javascripts/pagy-dev.js)_
+[!file](/gem/javascripts/pagy-dev.js)
 +++
 
 ### 2. Configure
@@ -166,7 +167,7 @@ unless Rails.env.production?
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ```json package.json
 {
-    "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/gem/javascripts\" <your original command>"
 }
 ```
 
@@ -174,7 +175,7 @@ Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ```json package.json
 {
-    "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/gem/javascripts\" <your original command>"
 }
 ```
 
@@ -214,7 +215,7 @@ import './pagy.js.erb'
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ```json package.json
 {
-    "build": "NODE_PATH=\"$(bundle show 'pagy')/lib/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/gem/javascripts\" <your original command>"
 }
 ```
 

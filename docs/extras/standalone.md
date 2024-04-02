@@ -38,10 +38,6 @@ Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'
 @pagy, @products = pagy(collection, url: 'http://www.example.com/subdir', params: {...})
 ```
 
-## Files
-
-- [standalone.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/standalone.rb)
-
 ## Variables
 
 | Variable | Description                              | Default |

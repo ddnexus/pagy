@@ -43,10 +43,6 @@ require 'pagy/extras/array'
 @pagy, @items = pagy_array(an_array, **vars)
 ```
 
-## Files
-
-- [array.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/array.rb)
-
 ## Methods
 
 ==- `pagy_array(array, vars=nil)`

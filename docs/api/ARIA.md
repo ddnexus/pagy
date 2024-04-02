@@ -18,7 +18,7 @@ page number). It's arguably a better description of the nav content than just "P
 languages).
 
 !!!success Help us with your languages!
-Please, check the `pagy.aria_label.nav` in the [locale files](https://github.com/ddnexus/pagy/tree/master/lib/locales)
+Please, check the `pagy.aria_label.nav` in the [locale files](https://github.com/ddnexus/pagy/tree/master/gem/locales)
 used by your app to be already correctly translated and pluralized. If it's not, please, post your translation in the issue linked
 in the file itself. Thank you!
 !!!

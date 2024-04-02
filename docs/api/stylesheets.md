@@ -45,33 +45,33 @@ the rest untouched.
 
 +++ pagy.scss
 
-[!file](/lib/stylesheets/pagy.scss)
+[!file](/gem/stylesheets/pagy.scss)
 
 ```ruby 
 stylesheet_path = Pagy.root.join('stylesheets', 'pagy.scss')
 ```
 
-:::code source="/lib/stylesheets/pagy.scss" :::
+:::code source="/gem/stylesheets/pagy.scss" :::
 
 +++ pagy.css
 
-[!file](/lib/stylesheets/pagy.css)
+[!file](/gem/stylesheets/pagy.css)
 
 ```ruby 
 stylesheet_path = Pagy.root.join('stylesheets', 'pagy.css')
 ```
 
-:::code source="/lib/stylesheets/pagy.css" :::
+:::code source="/gem/stylesheets/pagy.css" :::
 
 +++ pagy.tailwind.css
 
-[!file](/lib/stylesheets/pagy.tailwind.css)
+[!file](/gem/stylesheets/pagy.tailwind.css)
 
 ```ruby 
 stylesheet_path = Pagy.root.join('stylesheets', 'pagy.tailwind.css')
 ```
 
-:::code source="/lib/stylesheets/pagy.tailwind.css" :::
+:::code source="/gem/stylesheets/pagy.tailwind.css" :::
 
 +++
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('lib', __dir__)
+lib = File.expand_path('gem/lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'pagy'
 
@@ -20,12 +20,10 @@ Gem::Specification.new do |s|
                     'bug_tracker_uri'       => 'https://github.com/ddnexus/pagy/issues',
                     'changelog_uri'         => 'https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md',
                     'support'               => 'https://github.com/ddnexus/pagy/discussions/categories/q-a' }
-  # The pagy repo contains a lot of dir and files, so we conveniently use the 'lib' dir
-  # as the root container for whatever will get published in rubygems, including executables
-  s.bindir = 'lib/bin'
+  s.require_paths = ['gem/lib']
+  s.bindir = 'gem/bin'
   s.executables << 'pagy'
   s.post_install_message = <<~PIM
-
     *********************** PAGY WARNING! ***********************
                We may drop pagy's less used CSS extras.
 
@@ -33,7 +31,6 @@ Gem::Specification.new do |s|
 
     https://github.com/ddnexus/pagy/discussions/categories/survey
     *************************************************************
-
   PIM
   s.required_ruby_version = '>= 3.1'
 end

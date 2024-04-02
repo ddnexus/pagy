@@ -16,7 +16,7 @@ AllCops:
     # "Unable to find gem panolint; is the gem installed? Gem::MissingSpecError" in all ruby versions
     - vendor/bundle/**/*
     - pnpm/**/*
-    - lib/optimist.rb
+    - gem/lib/optimist.rb
 
 Layout/LineLength:
   Max: 130
@@ -30,11 +30,11 @@ Layout/ExtraSpacing:
     Enabled: true
   Exclude:
     - test/**/*
-    - lib/bin/pagy
+    - gem/bin/pagy
 
 Layout/EmptyLines:
   Exclude:
-    - lib/config/pagy.rb
+    - gem/config/pagy.rb
 
 Layout/BlockAlignment:
   Enabled: false

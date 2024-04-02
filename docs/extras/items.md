@@ -59,10 +59,6 @@ Pagy::DEFAULT[:max_items]   = 200 # default 100
 
 See [Javascript](/docs/api/javascript.md) (only if you use the `pagy_items_selector_js` UI)
 
-## Files
-
-- [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/items.rb)
-
 ## Variables
 
 | Variable       | Description                                                          | Default  |

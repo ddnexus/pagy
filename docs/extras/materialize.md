@@ -26,10 +26,6 @@ require 'pagy/extras/materialize'
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_materialize_nav_js` or `pagy_materialize_combo_nav_js`.
 
-## Files
-
-- [materialize.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/materialize.rb)
-
 ## Methods
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module. You can customize them by direct overriding in your own view helper.

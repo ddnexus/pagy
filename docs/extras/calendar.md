@@ -1,8 +1,8 @@
 ---
 title: Calendar
 categories:
-- Backend
-- Extra
+  - Backend
+  - Extra
 image: none
 ---
 
@@ -47,9 +47,9 @@ end
 
 # some action:
 def index
-  @calendar, @pagy, @records = pagy_calendar(collection, year:  { size:  [1, 1, 1, 1], ... },
-                                                       month: { size:  [0, 12, 12, 0], ... },
-                                                       pagy:  { items: 10, ...})
+  @calendar, @pagy, @records = pagy_calendar(collection, year: { size: [1, 1, 1, 1], ... },
+                                             month:            { size: [0, 12, 12, 0], ... },
+                                             pagy:             { items: 10, ... })
 end
 ```
 
@@ -87,10 +87,6 @@ The whole usage boils down to these steps:
 ## Variables and Accessors
 
 See [Pagy::Calendar](/docs/api/calendar.md#variables)
-
-## Files
-
-- [calendar.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/calendar.rb)
 
 ## Methods
 
@@ -176,7 +172,6 @@ If the `:pagy` key/value is omitted, a default `Pagy` instance will be created b
 The calendar is active by default, however you can add an optional `:active` boolean flag to the `configuration` hash in order to
 switch it ON or OFF, depending on its usefulness in different conditions (see the [Use cases](#use-cases)).
 
-
 ==- `pagy_calendar_period(collection)`
 
 !!!primary Must implement
@@ -199,7 +194,7 @@ time from anywhere):
 # Simpler version (2 queries)
 def pagy_calendar_period(collection)
   starting = collection.minimum('created_at')
-  ending   = collection.maximum('created_at') 
+  ending   = collection.maximum('created_at')
   [starting.in_time_zone, ending.in_time_zone]
 end
 
@@ -248,8 +243,9 @@ If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Rela
 an example with the `created_at` field again (but you can use anything, of course):
 
 ```ruby controller
+
 def pagy_calendar_filter(collection, from, to)
-  collection.where(created_at: from...to)  # 3-dots range excluding the end value
+  collection.where(created_at: from...to) # 3-dots range excluding the end value
 end
 ```
 
@@ -326,9 +322,8 @@ You have a couple of options:
 
 - Use the [i18n extra](i18n.md), which delegates the translation and localization to the `I18n` gem. Notice however that you would
   lose the performance gain offered by the built-in `pagy_t` translation.
-- Uncomment the block in the calendar section in the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb)
-  initializer, which will add the localization from the `I18n` gem without using the [i18n extra](/docs/extras/i18n.md), so
-  preserving the builtin `pagy_t` translation.
+- Uncomment the block in the calendar section in the pagy initializer, which will add the localization from the `I18n` gem without
+  using the [i18n extra](/docs/extras/i18n.md), so preserving the builtin `pagy_t` translation.
 
 ## Caveats
 

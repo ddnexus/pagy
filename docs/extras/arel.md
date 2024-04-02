@@ -28,10 +28,6 @@ require 'pagy/extras/arel'
 @pagy, @items = pagy_arel(a_collection, **vars)
 ```
 
-## Files
-
-- [arel.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/arel.rb)
-
 ## Methods
 
 ==- `pagy_arel(collection, vars=nil)`

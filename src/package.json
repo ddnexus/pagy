@@ -21,7 +21,7 @@
     "pagy": "pagy.js",
     "targets": {
         "pagy": {
-            "distDir": "../lib/javascripts",
+            "distDir": "../gem/javascripts",
             "source": "main.js",
             "outputFormat": "global",
             "sourceMap": false

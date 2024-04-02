@@ -35,10 +35,6 @@ pagy_next_url(@pagy, absolute: bool)
 
 See [Javascript](/docs/api/javascript.md).
 
-## Files
-
-- [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/pagy.rb)
-
 ## Methods
 
 ==- `pagy_nav(pagy, **vars)`

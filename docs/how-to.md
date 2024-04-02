@@ -134,7 +134,7 @@ specific app.
 
 <summary>Default en dictionary</summary>
 
-:::code source="/lib/locales/en.yml" :::
+:::code source="/gem/locales/en.yml" :::
 
 </details>
 <br>
@@ -280,7 +280,7 @@ by Ben Koshy.
 
 The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that
 by editing the values of the `"pagy.item_name"` i18n key in
-the [dictionary files](https://github.com/ddnexus/pagy/blob/master/lib/locales) that your app is using.
+the [dictionary files](https://github.com/ddnexus/pagy/blob/master/gem/locales) that your app is using.
 
 Besides you can also pass the `:item_name` by passing an already pluralized string directly to the helper call:
 
@@ -657,8 +657,7 @@ Then of course, regardless the kind of collection, you can render the navigation
 <%== pagy_nav(@pagy) %>
 ```
 
-See the [Pagy::Backend source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/backend.rb) and
-the [Pagy::Backend API documentation](api/backend.md) for more details.
+See the [Pagy::Backend API documentation](api/backend.md) for more details.
 
 ## Use the pagy_nav* helpers
 

@@ -57,8 +57,7 @@ with the quarter (1-4).
 ## DEFAULT variables
 
 The calendar defaults are not part of the `Pagy::DEFAULT` variables. Each subclass has its own `Pagy::Calendar::*::DEFAULT`
-variable hash that you can set independently. See the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb)
-configuration file for details.
+variable hash that you can set independently. See the pagy initializer file for details.
 
 ## Attribute Readers
 
@@ -98,11 +97,6 @@ scope, `ActiveRecord` converts it for you.
 
 Set the `Date.beginning_of_week` toto the symbol of the first day of the week (e.g. `Date.beginning_of_week = :sunday`). Notice
 the default is `:monday` consistently with the ISO-8601 standard (and Rails).
-
-## Files
-
-- [calendar.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar.rb)
-- [calendar units](https://github.com/ddnexus/pagy/blob/master/lib/pagy/calendar/)
 
 ## Methods
 

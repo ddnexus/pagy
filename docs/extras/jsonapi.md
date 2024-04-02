@@ -58,10 +58,6 @@ links_hash = pagy_jsonapi_links(@pagy)
 #    next: 'https://example.com/products?page[number]=33&page[size]=50&...'}
 ```
 
-## Files
-
-- [items.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/jsonapi.rb)
-
 ## Variables
 
 | Variable   | Description                   | Default |
