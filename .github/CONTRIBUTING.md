@@ -7,6 +7,6 @@ Before spending time creating a (potentially complex) Pull Request, you can [Con
 If you Create A Pull Request, please ensure that the "All checks have passed" indicator gets green light on the Pull Request page (if it's not enabled, a maintainer will enable it for you).
 
 For adding translations of locale dictionary files please follow
-the [locales  readme instructions here.](https://github.com/ddnexus/pagy/blob/master/lib/locales/README.md).
+the [locales  readme instructions here.](https://github.com/ddnexus/pagy/blob/master/gem/locales/README.md).
 
 Thank you!

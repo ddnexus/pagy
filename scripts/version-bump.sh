@@ -11,7 +11,7 @@ ROOT="$(cd -P -- "$(dirname -- "$dir")" && printf '%s\n' "$(pwd -P)")"
 cd $ROOT
 
 # Prompt for the new version
-old_vers=$(ruby -Ilib -rpagy -e 'puts Pagy::VERSION')
+old_vers=$(ruby -Igem/lib -rpagy -e 'puts Pagy::VERSION')
 echo     "Current Pagy::VERSION: $old_vers"
 read -rp 'Enter the new version> ' new_vers
 
@@ -29,13 +29,13 @@ function bump(){
 
 bump "$ROOT/retype.yml"
 bump "$ROOT/.github/ISSUE_TEMPLATE/Code.yml"
-bump "$ROOT/lib/pagy.rb"
-bump "$ROOT/lib/apps/calendar.ru"
-bump "$ROOT/lib/apps/demo.ru"
-bump "$ROOT/lib/apps/rails.ru"
-bump "$ROOT/lib/apps/repro.ru"
-bump "$ROOT/lib/bin/pagy"
-bump "$ROOT/lib/config/pagy.rb"
+bump "$ROOT/gem/apps/calendar.ru"
+bump "$ROOT/gem/apps/demo.ru"
+bump "$ROOT/gem/apps/rails.ru"
+bump "$ROOT/gem/apps/repro.ru"
+bump "$ROOT/gem/bin/pagy"
+bump "$ROOT/gem/config/pagy.rb"
+bump "$ROOT/gem/lib/pagy.rb"
 bump "$ROOT/src/pagy.ts"
 
 # Bumps docs example

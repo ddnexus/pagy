@@ -45,9 +45,7 @@ exclude:
   - /e2e/**
 
 include:
-  - /apps/**/*.ru
-  - /apps/**/*.rb
-  - /lib/**/*
+  - /gem/**/*
   - /README.md
 
 edit:

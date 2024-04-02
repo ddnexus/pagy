@@ -26,10 +26,6 @@ require 'pagy/extras/foundation'
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_foundation_nav_js` or `pagy_foundation_combo_nav_js`.
 
-## Files
-
-- [foundation.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/foundation.rb)
-
 ## Methods
 
 === `pagy_foundation_nav(pagy)`

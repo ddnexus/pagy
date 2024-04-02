@@ -66,10 +66,6 @@ Pagy::DEFAULT[:gearbox_items] = [10, 20, 50]   # your own default
 @pagy, @records = pagy(collection, items_extra: false, gearbox_items: [30, 60, 100])
 ```
 
-## Files
-
-- [gearbox.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/gearbox.rb)
-
 ## Variables
 
 | Variable         | Description                   | Default             |

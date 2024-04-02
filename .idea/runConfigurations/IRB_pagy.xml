@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="IRB pagy" type="IrbRunConfigurationType" factoryName="IRB console" singleton="false">
     <module name="pagy" />
-    <IRB_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-I lib -r pagy" />
+    <IRB_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-I gem/lib -r pagy" />
     <IRB_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$" />
     <IRB_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
     <IRB_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />

@@ -35,8 +35,8 @@ Don't worry about missing something in this step: if anything won't work as befo
 
 #### Preparation
 
-- Copy the [pagy.rb](https://github.com/ddnexus/pagy/blob/master/lib/config/pagy.rb) initializer: you will edit it during the
-  process.
+- Download the pagy initializer: you will edit it during the process.
+  [!file](/gem/config/pagy.rb)
 - Replace the legacy gem with `gem "pagy"` in the `Gemfile` and `bundle`, or install and require the gem if you don't use bundler.
 - Ensure that the legacy gem will not get loaded anymore (or it could mask some old statement still in place and not converted)
 - Add the `include Pagy::Backend` statement to the application controller.

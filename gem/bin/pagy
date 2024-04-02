@@ -4,7 +4,7 @@
 VERSION = '8.0.0'
 APPS    = %w[repro rails demo calendar].freeze
 
-require_relative '../optimist'
+require_relative '../lib/optimist'
 opts = Optimist.options do
   text <<~HEAD
     Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)
@@ -24,7 +24,7 @@ opts = Optimist.options do
       pagy ~/my-repro.ru         Develop ~/my-repro.ru at http://0.0.0.0:8000
   HEAD
   text 'Rackup options'
-  opt :env,   'Environment',  default: 'development'
+  opt :env,   'Environment', default: 'development'
   opt :host,  'Host', default: '0.0.0.0', short: :o
   opt :port,  'Port', default: 8000
   text 'Rerun options'
@@ -70,7 +70,7 @@ else
   end
   Optimist.die("#{file.inspect} app not found") unless File.exist?(file)
   # Run command
-  rackup = "rackup -I #{File.expand_path('..', __dir__)} -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{file}"
+  rackup = "rackup -I #{File.expand_path('../lib', __dir__)} -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{file}"
   rackup << ' -q' if opts[:quiet]
   if opts[:rerun]
     name  = File.basename(file)

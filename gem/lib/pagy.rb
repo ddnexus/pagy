@@ -7,9 +7,9 @@ require 'pathname'
 class Pagy
   VERSION = '8.0.0'
 
-  # Root pathname to get the path of Pagy files like templates or dictionaries
+  # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
   def self.root
-    @root ||= Pathname.new(__dir__).freeze
+    @root ||= Pathname.new(__dir__).parent.freeze
   end
 
   # Core defult: constant for easy access, but mutable for customizable defaults

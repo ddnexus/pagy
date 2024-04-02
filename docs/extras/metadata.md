@@ -23,10 +23,6 @@ render json: { data: records,
                pagy: pagy_metadata(pagy, ...) }
 ```
 
-## Files
-
-- [metadata.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/metadata.rb)
-
 ## Variables
 
 | Variable    | Description                                          | Default                                                                                                                                                     |

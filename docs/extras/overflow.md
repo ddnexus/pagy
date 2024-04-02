@@ -29,10 +29,6 @@ Pagy::DEFAULT[:overflow] = :exception
 
 ```
 
-## Files
-
-- [overflow.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/overflow.rb)
-
 ## Variables
 
 | Variable    | Description                                                                         | Default       |

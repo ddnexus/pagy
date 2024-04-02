@@ -23,10 +23,6 @@ require 'pagy/extras/uikit'
 <%== pagy_uikit_combo_nav_js(@pagy, **vars) %>
 ```
 
-## Files
-
-- [uikit.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/uikit.rb)
-
 ## Methods
 
 This extra adds the above nav helpers to the `Pagy::Frontend` module. You can customize it by direct overriding in your own view

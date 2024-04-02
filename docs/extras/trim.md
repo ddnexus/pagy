@@ -32,10 +32,6 @@ Pagy::DEFAULT[:trim_extra] = false   # default true
 @pagy, @records = pagy(collection, trim_extra: true)
 ```
 
-## Files
-
-- [trim.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/trim.rb)
-
 ## Variables
 
 | Variable      | Description                   | Default |

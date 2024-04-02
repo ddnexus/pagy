@@ -25,10 +25,6 @@ require 'pagy/extras/bootstrap'
 
 See: [Javascript](/docs/api/javascript.md) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
 
-## Files
-
-- [bootstrap.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/bootstrap.rb)
-
 ## Methods
 
 This extra adds 3 nav helpers to the `Pagy::Frontend` module.

@@ -7,8 +7,7 @@ category:
 
 # Pagy::Countless
 
-This is a `Pagy` subclass (see [source](https://github.com/ddnexus/pagy/blob/master/lib/pagy/countless.rb)) that provides
-pagination without the need of any `:count`.
+This is a `Pagy` subclass that provides pagination without the need of any `:count`.
 
 That may be especially useful in the following scenarios:
 
@@ -18,7 +17,7 @@ That may be especially useful in the following scenarios:
 - when the full nav-bar is not a requirement and/or performance is more desirable
 
 This class provides support for extras that don't need the full set of pagination support or need to avoid the `:count` variable (
-e.g. the [countless](/docs/extras/countless.md) extra). The class API is documented here, however you should not need to use this
+e.g. the [countless extra](/docs/extras/countless.md)). The class API is documented here, however you should not need to use this
 class directly because it is required and used internally by the extra.
 
 ## Caveats
@@ -65,7 +64,7 @@ exception.
 
 Retrieving these variables may be useful to supply a UI as complete as possible, when used with classic helpers, and can be
 skipped when it's not needed (like for navless pagination, infinite-scroll, etc.). See
-the [countless.rb extra](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/countless.rb) for more details.
+the [countless extra](/docs/extras/countless.md) for more details.
 
 ## Methods
 

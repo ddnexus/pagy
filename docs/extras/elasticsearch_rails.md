@@ -58,10 +58,6 @@ Pagy creates its object out of your result.
 
 +++
 
-## Files
-
-- [elasticsearch_rails.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/elasticsearch_rails.rb)
-
 ## Variables
 
 | Variable                           | Description                                     | Default      |

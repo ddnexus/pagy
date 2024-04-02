@@ -61,10 +61,6 @@ Pagy creates its object out of your result.
 
 +++
 
-## Files
-
-- [searchkick.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/searchkick.rb)
-
 ## Variables
 
 | Variable                  | Description                                     | Default        |

@@ -51,10 +51,6 @@ end
 pagy_render(collection)
 ```
 
-## Files
-
-- [headers.rb](https://github.com/ddnexus/pagy/blob/master/lib/pagy/extras/headers.rb)
-
 ## Headers
 
 This extra generates the standard `link` header defined in the

@@ -14,7 +14,7 @@ require 'bundler'
 Bundler.require(:default, :apps)
 require 'oj' # require false in Gemfile
 
-$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+$LOAD_PATH.unshift File.expand_path('../gem/lib', __dir__)
 require 'pagy'
 
 # pagy initializer
