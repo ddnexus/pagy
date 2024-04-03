@@ -41,7 +41,7 @@ This command runs your `rackup` app with a `puma` server, with `rerun` that auto
 pagy path/to/your-repro.ru
 ```
 
-Point a browser to `http://0.0.0.0:8000`
+Point a browser to http://0.0.0.0:8000
 
 Edit it at will.
 

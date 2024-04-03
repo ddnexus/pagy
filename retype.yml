@@ -46,6 +46,7 @@ exclude:
 
 include:
   - /gem/**/*
+  - "!/gem/**/README.md"
   - /README.md
 
 edit:

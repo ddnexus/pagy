@@ -1,5 +1,5 @@
 ---
-order: 7
+order: 1
 title: Troubleshooting
 icon: alert-24
 ---
