@@ -69,6 +69,9 @@ pagy demo
 
 _Run `pagy clone demo` to inspect the app file_
 
+If you want to see how your CSSs changes look, you can follow the same usage as the [Repro App](#1-repro-app) to iterate through
+changes.
+
 #### 4. Calendar App
 
 Interactive showcase/repro for the calendar extra:
@@ -101,13 +104,14 @@ You have already activated GEMNAME v1, but your Gemfile requires GEMNAME v2.
 Prepending `bundle exec` to your command may solve this.
 ```
 
-If `bundle exec` doesn't solve it, then try `gem cleanup`. 
+If `bundle exec` doesn't solve it, then try `gem cleanup`.
 
 If after that you get into another error:
 
 ```txt
 ... `find_spec_for_exe': can't find gem GEMNAME (>= 0.x) with executable EXEC (Gem::GemNotFoundException)
 ```
+
 then `gem pristine GEMNAME` should solve the problem.
 
 ==- Rerun
