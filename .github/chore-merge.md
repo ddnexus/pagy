@@ -9,21 +9,20 @@ gitGraph
     branch master
     checkout master
     commit
-
     commit
     branch chore-1
     checkout chore-1
-    commit id: "1"
+    commit id: "oldest"
     checkout master
     commit
     commit
     branch chore-2
     checkout chore-2
-    commit id: "chore-2"
+    commit id: "newest"
     checkout master
     commit
-    cherry-pick id: "1"
-    cherry-pick id: "chore-2"
+    cherry-pick id: "oldest"
+    cherry-pick id: "newest"
 ```
 
 (The graph above uses "cherry-pick" labels, but you can rebase if you want to.)
