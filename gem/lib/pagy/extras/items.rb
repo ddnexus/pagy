@@ -47,7 +47,7 @@ class Pagy # :nodoc:
         vars[:items] = items # restore the items
 
         items_input = %(<input name="items" type="number" min="1" max="#{vars[:max_items]}" value="#{
-                         items}" style="padding: 0; text-align: center; width: #{items.to_s.length + 1}rem;">)
+                          items}" style="padding: 0; text-align: center; width: #{items.to_s.length + 1}rem;">#{JSTools::A_TAG})
 
         %(<span#{id} class="pagy items-selector-js" #{
             pagy_data(pagy, :selector, pagy.from, url_token)

@@ -53,7 +53,8 @@ class Pagy # :nodoc:
       pages = pagy.pages
 
       page_input = %(<input name="page" type="number" min="1" max="#{pages}" value="#{pagy.page}" aria-current="page") <<
-                   %(style="text-align: center; width: #{pages.to_s.length + 1}rem; padding: 0; margin: 0 0.3rem">)
+                   %(style="text-align: center; width: #{pages.to_s.length + 1}rem; padding: 0; margin: 0 0.3rem">) <<
+                   JSTools::A_TAG
 
       %(<div#{id} class="pagy-semantic combo-nav-js ui compact menu" role="navigation" #{
           nav_aria_label(pagy, aria_label:)} #{

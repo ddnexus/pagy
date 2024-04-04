@@ -56,7 +56,7 @@ class Pagy # :nodoc:
       pages = pagy.pages
 
       page_input = %(<input name="page" type="number" min="1" max="#{pages}" value="#{pagy.page}" aria-current="page" ) <<
-                   %(style="text-align: center; width: #{pages.to_s.length + 1}rem;">)
+                   %(style="text-align: center; width: #{pages.to_s.length + 1}rem;">#{JSTools::A_TAG})
 
       %(<ul#{id} class="pagy-uikit combo-nav-js uk-button-group uk-pagination uk-flex-center" role="navigation" #{
           nav_aria_label(pagy, aria_label:)} #{

@@ -52,6 +52,7 @@ const Pagy = (() => {
     // Init the input element
     const initInput = (el, getVars, trimParam) => {
         const input = el.querySelector("input");
+        const link = el.querySelector("a");
         const initial = input.value;
         const action = function () {
             if (input.value === initial) {
@@ -67,7 +68,8 @@ const Pagy = (() => {
             if (typeof trimParam === "string" && page === "1") {
                 url = trim(url, trimParam);
             }
-            window.location.href = url;
+            link.href = url;
+            link.click();
         };
         ["change", "focus"].forEach(e => input.addEventListener(e, input.select)); // auto-select
         input.addEventListener("focusout", action); // trigger action
