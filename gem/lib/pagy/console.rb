@@ -1,8 +1,8 @@
 # See Pagy::Console API documentation: https://ddnexus.github.io/pagy/docs/api/console
 # frozen_string_literal: true
 
-require 'pagy'  # so you can require just the extra in the console
-require 'pagy/extras/standalone'
+require_relative '../pagy'  # so you can require just the extra in the console
+require_relative 'extras/standalone'
 
 class Pagy
   # Provide a ready to use pagy environment when included in irb/rails console

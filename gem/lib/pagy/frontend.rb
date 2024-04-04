@@ -1,8 +1,8 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/docs/api/frontend
 # frozen_string_literal: true
 
-require 'pagy/url_helpers'
-require 'pagy/i18n'
+require_relative 'url_helpers'
+require_relative 'i18n'
 
 class Pagy
   # Used for search and replace, hardcoded also in the pagy.js file

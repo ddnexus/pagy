@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/metadata
 # frozen_string_literal: true
 
-require 'pagy/url_helpers'
+require_relative '../url_helpers'
 
 class Pagy # :nodoc:
   DEFAULT[:metadata] = %i[ scaffold_url first_url prev_url page_url next_url last_url

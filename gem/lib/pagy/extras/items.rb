@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/items
 # frozen_string_literal: true
 
-require 'pagy/extras/js_tools'
+require_relative 'js_tools'
 
 class Pagy # :nodoc:
   DEFAULT[:items_param] = :items

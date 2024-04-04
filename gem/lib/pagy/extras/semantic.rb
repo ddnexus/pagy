@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/semantic
 # frozen_string_literal: true
 
-require 'pagy/extras/js_tools'
+require_relative 'js_tools'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.

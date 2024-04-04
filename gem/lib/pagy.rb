@@ -147,6 +147,6 @@ class Pagy
   end
 end
 
-require 'pagy/backend'
-require 'pagy/frontend'
-require 'pagy/exceptions'
+require_relative 'pagy/backend'
+require_relative 'pagy/frontend'
+require_relative 'pagy/exceptions'

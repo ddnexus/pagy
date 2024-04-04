@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/countless
 # frozen_string_literal: true
 
-require 'pagy/countless'
+require_relative '../countless'
 
 class Pagy # :nodoc:
   DEFAULT[:countless_minimal] = false
