@@ -68,14 +68,14 @@ None
     - The `disabled`, `prev`, `next` and `pagy-combo-input` link classes have been removed (see the [stylesheets](https://ddnexus.github.io/pagy/docs/api/stylesheets/#pagy-scss) for details)
     - The `rel="prev"` and  `rel="next"` attributes have been dropped (they are obsolete)
     - The `<label>`/`</label>` and `<b>`/`</b>` wrappers in the dictionary files have been removed
-- The `pagy_link_proc` method (only used internally or in your custom overriding) has been renamed to `pagy_anchor`and it works
+- The `pagy_link_proc` method (only used internally or in your custom overriding) has been renamed to `pagy_anchor` and it works
   slighty differently:
   - The `link_extra:` key argument has been removed
     - The `extra` positional argument of the returned lambda has been removed
     - The `classes:` and `aria_label:` keyword arguments have been added to the returned lambda
 - The `nav_aria_label_attr` method has been renamed as `nav_aria_label`
 - The internal `prev_aria_label_attr` and `next_aria_label_attr` methods have been removed
-- The `gap` in the nav bars is a disabled anchor element (`a` tag without a `href` attribute`)
+- The `gap` in the nav bars is a disabled anchor element (`a` tag without a `href` attribute)
 - The `pagy_prev_html` and `pagy_next_html` have been renamed as `pagy_prev_a` and `pagy_next_a`
 - The `pagy_prev_link_tag` and `pagy_next_link_tag` have been renamed as `pagy_prev_link` and `pagy_next_link`
 - The `*combo_nav_js` and `pagy_items_selector_js` helpers use a more efficient code
