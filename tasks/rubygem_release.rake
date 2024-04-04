@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
 # Gem release cycle
-
-require 'bundler/gem_tasks'
-require 'rake/manifest'
-
-Rake::Manifest::Task.new do |t|
-  t.patterns      = FileList.new.include('gem/**/*', 'LICENSE.txt').exclude('**/*.md')
-  t.manifest_file = 'pagy.manifest'
-end
+require 'bundler/gem_helper'
+Bundler::GemHelper.install_tasks(dir: 'gem', name: 'pagy')
 
 module Bundler # :nodoc: all
   class GemHelper
@@ -26,8 +20,10 @@ task :rubygem_release do
   branch = `git rev-parse --abbrev-ref HEAD`
   abort 'Wrong branch to release!' unless /^master/.match?(branch)
 
-  Rake::Task['manifest:check'].invoke
+  FileUtils.cp('LICENSE.txt', 'gem/LICENSE.txt')
   Rake::Task['build'].invoke
+  FileUtils.rm_f('gem/LICENSE.txt')
+
   Rake::Task['release'].invoke
-  FileUtils.rm_rf('pkg', secure: true)
+  FileUtils.rm_rf('gem/pkg', secure: true)
 end

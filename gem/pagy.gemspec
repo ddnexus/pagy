@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('gem/lib', __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'pagy'
+require_relative 'lib/pagy'
 
 Gem::Specification.new do |s|
   s.name        = 'pagy'
@@ -13,15 +11,15 @@ Gem::Specification.new do |s|
   s.description = 'Agnostic pagination in plain ruby. It does it all. Better.'
   s.homepage    = 'https://github.com/ddnexus/pagy'
   s.license     = 'MIT'
-  s.files       = File.read('pagy.manifest').split
+  s.files       = Dir.glob('**/*')
+                     .reject { |f| f.end_with?('.md', '.gemspec') }
+                     .select { |f| File.file?(f) } + ['LICENSE.txt'] # LICENSE.txt is copied and deleted around build
   s.metadata    = { 'rubygems_mfa_required' => 'true',
                     'homepage_uri'          => 'https://github.com/ddnexus/pagy',
                     'documentation_uri'     => 'https://ddnexus.github.io/pagy',
                     'bug_tracker_uri'       => 'https://github.com/ddnexus/pagy/issues',
                     'changelog_uri'         => 'https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md',
                     'support'               => 'https://github.com/ddnexus/pagy/discussions/categories/q-a' }
-  s.require_paths = ['gem/lib']
-  s.bindir = 'gem/bin'
   s.executables << 'pagy'
   s.post_install_message = <<~PIM
     *********************** PAGY WARNING! ***********************

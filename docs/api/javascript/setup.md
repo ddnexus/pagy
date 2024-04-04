@@ -167,7 +167,7 @@ unless Rails.env.production?
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ```json package.json
 {
-    "build": "NODE_PATH=\"$(bundle show 'pagy')/gem/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/javascripts\" <your original command>"
 }
 ```
 
@@ -175,7 +175,7 @@ Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ```json package.json
 {
-    "build": "NODE_PATH=\"$(bundle show 'pagy')/gem/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/javascripts\" <your original command>"
 }
 ```
 
@@ -215,7 +215,7 @@ import './pagy.js.erb'
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ```json package.json
 {
-    "build": "NODE_PATH=\"$(bundle show 'pagy')/gem/javascripts\" <your original command>"
+    "build": "NODE_PATH=\"$(bundle show 'pagy')/javascripts\" <your original command>"
 }
 ```
 
