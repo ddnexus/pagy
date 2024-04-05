@@ -27,15 +27,6 @@ gemfile(true) do
   gem 'sqlite3'
 end
 
-# Pagy initializer
-require 'pagy/extras/pagy'
-require 'pagy/extras/items'
-require 'pagy/extras/overflow'
-Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
-Pagy::DEFAULT[:items]    = 10
-Pagy::DEFAULT[:overflow] = :empty_page
-Pagy::DEFAULT.freeze
-
 # require 'rails/all'     # too much stuff
 require 'action_controller/railtie'
 require 'active_record'
@@ -63,6 +54,15 @@ unless File.writable?(dir)
   warn "ERROR: directory #{dir.inspect} is not writable (the pagy-rails-app needs to create DB files)"
   exit 1
 end
+
+# Pagy initializer
+require 'pagy/extras/pagy'
+require 'pagy/extras/items'
+require 'pagy/extras/overflow'
+Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
+Pagy::DEFAULT[:items]    = 10
+Pagy::DEFAULT[:overflow] = :empty_page
+Pagy::DEFAULT.freeze
 
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-rails.sqlite3")
 ActiveRecord::Schema.define do
