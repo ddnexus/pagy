@@ -14,6 +14,14 @@ If you wish to keep your favorites alive, please, [vote here](https://github.com
 ### Changes
 
 <!-- changes start -->
+- Minor change in rails app and RM run config
+- Fix canonical gem root:
+  - Correct script.build: "NODE_PATH=\"$(bundle show 'pagy')/javascripts\"
+  - Move pagy.gemspec inside the gem root dir
+- Fix for Turbo not intercepting changes in window.location
+- Use require_relative for gem/lib files
+- Complete translation of aria.nav for "ru" locale (close #599)
+- Docs improvement and fixes
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

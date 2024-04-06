@@ -28,6 +28,17 @@ If you upgrade from version `< 8.0.0` see the following:
 None
 <hr>
 
+## Version 8.0.2
+
+- Minor change in rails app and RM run config
+- Fix canonical gem root:
+  - Correct script.build: "NODE_PATH="$(bundle show 'pagy')/javascripts"
+  - Move pagy.gemspec inside the gem root dir
+- Fix for Turbo not intercepting changes in window.location
+- Use require_relative for gem/lib files
+- Complete translation of aria.nav for "ru" locale (close #599)
+- Docs improvement and fixes
+
 ## Version 8.0.1
 
 - Reorganize the gem root dir: it was the lib dir (containing everything), now is the gem dir (containing lib and everything
