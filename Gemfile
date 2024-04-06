@@ -34,8 +34,8 @@ group :apps do
   gem 'sinatra-contrib'
 end
 
-group :performance do
-  gem 'benchmark-ips'
-  gem 'kalibera'
-  gem 'memory_profiler'
-end
+# group :performance do
+#   gem 'benchmark-ips'
+#   gem 'kalibera'
+#   gem 'memory_profiler'
+# end
