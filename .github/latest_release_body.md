@@ -9,4 +9,11 @@ If you wish to keep your favorites alive, please, [vote here](https://github.com
 - Better frontend helpers
 - New [Pagy Playground](https://ddnexus.github.io/pagy/playground/) to showcase, clone and develop pagy APPs without any setup on
   your side (try the [pagy demo](https://ddnexus.github.io/pagy/playground.md#3-demo-app))
-- See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
+- See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
+
+### Changes
+
+<!-- changes start -->
+<!-- changes end -->
+
+[CHANGELOG](https://ddnexus.github.io/pagy/changelog)
