@@ -64,23 +64,23 @@ describe 'pagy/extras/searchkick' do
       end
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
-                                 page: 2, items: 10, link_extra: 'X')
+                                 page: 2, items: 10, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10
         _(pagy.page).must_equal 2
-        _(pagy.vars[:link_extra]).must_equal 'X'
+        _(pagy.vars[:anchor_string]).must_equal 'X'
         _(results.count).must_equal 10
         _(results).must_rematch :results
       end
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
-                                 page: 200, items: 10, link_extra: 'X', overflow: :last_page)
+                                 page: 200, items: 10, anchor_string: 'X', overflow: :last_page)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 10
         _(pagy.page).must_equal 100
-        _(pagy.vars[:link_extra]).must_equal 'X'
+        _(pagy.vars[:anchor_string]).must_equal 'X'
         _(results.count).must_equal 10
         _(results).must_rematch :results
       end
@@ -96,14 +96,14 @@ describe 'pagy/extras/searchkick' do
         _(merged[:items]).must_equal 20
       end
       it 'gets vars' do
-        vars   = { page: 2, items: 10, link_extra: 'X' }
+        vars   = { page: 2, items: 10, anchor_string: 'X' }
         merged = app.send :pagy_searchkick_get_vars, nil, vars
         _(merged.keys).must_include :page
         _(merged.keys).must_include :items
-        _(merged.keys).must_include :link_extra
+        _(merged.keys).must_include :anchor_string
         _(merged[:page]).must_equal 2
         _(merged[:items]).must_equal 10
-        _(merged[:link_extra]).must_equal 'X'
+        _(merged[:anchor_string]).must_equal 'X'
       end
     end
 
@@ -118,12 +118,12 @@ describe 'pagy/extras/searchkick' do
       end
       it 'paginates results with vars' do
         results = MockSearchkick::Model.search('b', page: 2, per_page: 15)
-        pagy    = Pagy.new_from_searchkick(results, link_extra: 'X')
+        pagy    = Pagy.new_from_searchkick(results, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.items).must_equal 15
         _(pagy.page).must_equal 2
-        _(pagy.vars[:link_extra]).must_equal 'X'
+        _(pagy.vars[:anchor_string]).must_equal 'X'
       end
     end
   end

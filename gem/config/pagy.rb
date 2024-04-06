@@ -18,14 +18,14 @@
 
 # Other Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#other-variables
-# Pagy::DEFAULT[:size]         = [1,4,4,1]              # default in pagy < 7.0
-# Pagy::DEFAULT[:page_param]   = :page                  # default
-# Pagy::DEFAULT[:fragment]     = '#fragment'            # example
-# Pagy::DEFAULT[:link_extra]   = 'data-remote="true"'   # example
-# Pagy::DEFAULT[:cycle]        = true                   # example
-# Pagy::DEFAULT[:request_path] = '/foo'                 # example
-# Pagy::DEFAULT[:count_args]   = []                     # example for non AR ORMs
-# Pagy::DEFAULT[:params]       = {}                     # default
+# Pagy::DEFAULT[:size]          = [1,4,4,1]             # default in pagy < 7.0
+# Pagy::DEFAULT[:page_param]    = :page                 # default
+# Pagy::DEFAULT[:fragment]      = '#fragment'           # example
+# Pagy::DEFAULT[:anchor_string] = 'data-remote="true"'  # example
+# Pagy::DEFAULT[:cycle]         = true                  # example
+# Pagy::DEFAULT[:request_path]  = '/foo'                # example
+# Pagy::DEFAULT[:count_args]    = []                    # example for non AR ORMs
+# Pagy::DEFAULT[:params]        = {}                    # default
 # NOTICE: The :params can be also set as a lambda e.g:
 # ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
 
