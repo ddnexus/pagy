@@ -67,7 +67,7 @@ class Pagy # :nodoc:
         Warning.warn "Pagy::Calendar#page_at: Rescued #{time} out of range by returning the #{ordinal} page."
       end
       offset = page_offset_at(fit_time)   # offset starts from 0
-      @order == :asc ? offset + 1 : @pages - offset
+      @order == :asc ? offset + 1 : @last - offset
     end
 
     # Base class method for the setup of the unit variables (subclasses must implement it and call super)
@@ -90,7 +90,7 @@ class Pagy # :nodoc:
     # Number of time units to offset from the @initial time, in order to get the ordered starting time for the page.
     # Used in starting_time_for(page) where page starts from 1 (e.g. page to starting_time means subtracting 1)
     def time_offset_for(page)
-      @order == :asc ? page - 1 : @pages - page
+      @order == :asc ? page - 1 : @last - page
     end
 
     # Period of the active page (used internally for nested units)

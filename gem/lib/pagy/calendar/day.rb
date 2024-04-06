@@ -16,7 +16,7 @@ class Pagy # :nodoc:
         super
         @initial = @starting.beginning_of_day
         @final   = @ending.tomorrow.beginning_of_day
-        @pages   = @last = page_offset(@initial, @final)
+        @last    = page_offset(@initial, @final)
         @from    = starting_time_for(@page)
         @to      = @from.tomorrow
       end

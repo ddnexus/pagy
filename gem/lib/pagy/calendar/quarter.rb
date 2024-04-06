@@ -23,7 +23,7 @@ class Pagy # :nodoc:
         super
         @initial = @starting.beginning_of_quarter
         @final   = @ending.next_quarter.beginning_of_quarter
-        @pages   = @last = (months_in(@final) - months_in(@initial)) / 3
+        @last    = (months_in(@final) - months_in(@initial)) / 3
         @from    = starting_time_for(@page)
         @to      = @from.next_quarter
       end

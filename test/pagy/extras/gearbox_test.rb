@@ -51,7 +51,7 @@ describe 'pagy/extras/gearbox' do
     end
   end
 
-  describe '#setup_pages_var' do
+  describe '#setup_last_var' do
     it 'can skip gearbox for pages' do
       _(Pagy.new(count: 90, page: 1, items_extra: true).pages).must_equal 5
       _(Pagy.new(count: 103, page: 1, gearbox_extra: false).pages).must_equal 6

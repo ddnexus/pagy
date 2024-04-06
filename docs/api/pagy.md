@@ -166,9 +166,9 @@ or `nil`), except the `vars` hash:
 | `count`        | The collection `:count`                                                                                            |
 | `page`         | The current page number                                                                                            |
 | `items`        | The requested number of items for the page                                                                         |
-| `pages`        | The number of total pages in the collection (same as `last` but with cardinal meaning)                             |
 | `in`           | The number of the items in the page                                                                                |
-| `last`         | The number of the last page in the collection (same as `pages` but with ordinal meaning)                           |
+| `last`         | The number of the last page in the collection (ordinal meaning)                           |
+| `pages`        | Alias for `last` (cardinal meaning)                                                                           |
 | `offset`       | The number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
 | `from`         | The collection-position of the first item in the page (`:outset` excluded)                                         |
 | `to`           | The collection-position of the last item in the page (`:outset` excluded)                                          |
@@ -187,7 +187,6 @@ the following peculiar attributes:
 |:----------|:--------|
 | `count`   | `0`     |
 | `page`    | `1`     |
-| `pages`   | `1`     |
 | `last`    | `1`     |
 | `in`      | `0`     |
 | `from`    | `0`     |
@@ -199,7 +198,7 @@ the following peculiar attributes:
 Which means:
 
 - there is always a `page` #`1` in the pagination, even if it's empty
-- `pages` and `last` are always at least both `1`
+- `last` is always at least `1`
 - the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string.
   With `size: []` the `series` method returns `[]`
 - `in`, `from` and `to` of an empty page are all `0`

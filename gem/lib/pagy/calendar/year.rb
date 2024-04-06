@@ -16,7 +16,7 @@ class Pagy # :nodoc:
         super
         @initial = @starting.beginning_of_year
         @final   = @ending.next_year.beginning_of_year
-        @pages   = @last = @final.year - @initial.year
+        @last    = @final.year - @initial.year
         @from    = starting_time_for(@page)
         @to      = @from.next_year
       end

@@ -25,7 +25,8 @@ If you upgrade from version `< 8.0.0` see the following:
 
 ## Deprecations
 
-None
+- Protected method `Pagy#setup_pages_var`. Use `Pagy#setup_last_var` instead
+
 <hr>
 
 ## Version 8.0.2
