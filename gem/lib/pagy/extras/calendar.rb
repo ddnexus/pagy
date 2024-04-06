@@ -1,8 +1,8 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/calendar
 # frozen_string_literal: true
 
-require 'pagy/calendar'
-require 'pagy/calendar/helper'
+require_relative '../calendar'
+require_relative '../calendar/helper'
 
 class Pagy # :nodoc:
   # Add pagination filtering by calendar unit (:year, :quarter, :month, :week, :day) to the regular pagination

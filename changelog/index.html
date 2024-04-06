@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765548707361">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765710392049">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.765548707361" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.765710392049" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.765548707361" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.765710392049" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.765548707361" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.765710392049" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.1</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.2</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -297,6 +297,25 @@
 </doc-anchor-target>
 <p>None</p>
 <hr>
+<doc-anchor-target id="version-802">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-802">#</doc-anchor-trigger>
+        <span>Version 8.0.2</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Minor change in rails app and RM run config</li>
+<li>Fix canonical gem root:
+<ul>
+<li>Correct script.build: &quot;NODE_PATH=&quot;$(bundle show &#x27;pagy&#x27;)/javascripts&quot;</li>
+<li>Move pagy.gemspec inside the gem root dir</li>
+</ul>
+</li>
+<li>Fix for Turbo not intercepting changes in window.location</li>
+<li>Use require_relative for gem/lib files</li>
+<li>Complete translation of aria.nav for &quot;ru&quot; locale (close #599)</li>
+<li>Docs improvement and fixes</li>
+</ul>
 <doc-anchor-target id="version-801">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-801">#</doc-anchor-trigger>
@@ -304,7 +323,8 @@
     </h2>
 </doc-anchor-target>
 <ul>
-<li>Reorganize the gem root dir: it was the lib dir (containing everything), now is the gem dir (containing lib and everything else).</li>
+<li>Reorganize the gem root dir: it was the lib dir (containing everything), now is the gem dir (containing lib and everything
+else).</li>
 <li>Fix broken link in README</li>
 </ul>
 <doc-anchor-target id="version-800">
@@ -328,7 +348,8 @@
 <li>The <code v-pre>item_i18n_key</code> has been removed: pass the interpolated/pluralized value as the <code v-pre>item_name:</code> argument</li>
 <li>The <code v-pre>link_extra:</code> has been removed: its cumulative mechanism was confusing and error prone. The <code v-pre>:anchor_string</code> pagy
 variable substitutes it, however it&#x27;s not an helper argument anymore, so you can assign it as the <code v-pre>DEFAULT[:anchor_string]</code>
-and/or pass it as any other pagy variable at object construction. (See <a href="https://ddnexus.github.io/pagy/docs/how-to/#customize-the-link-attributes">customize the link attributes</a>)</li>
+and/or pass it as any other pagy variable at object construction. (
+See <a href="https://ddnexus.github.io/pagy/docs/how-to/#customize-the-link-attributes">customize the link attributes</a>)</li>
 </ul>
 </li>
 <li>HTML structure, classes and internal methods have been changed: they may break your views if you used custom stylesheets,
@@ -336,8 +357,14 @@ templates or helper overrides. See the complete changes below if you notice any 
 <li>The <code v-pre>navs</code> and <code v-pre>support</code> extras has been merged into the new <a href="https://ddnexus.github.io/pagy/docs/extras/pagy">pagy extra</a>.
 Search for <code v-pre>&quot;extra/navs&quot;</code> and
 <code v-pre>&quot;extras/support&quot;</code> and replace with <code v-pre>&quot;extras/pagy&quot;</code> (remove the duplicate if you used both)</li>
-<li>The build path for javascript builders has moved from the <code v-pre>lib</code> to the <code v-pre>gem</code> dir so the correct setup in <code v-pre>package.json</code> is:
-<code v-pre>build: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/gem/javascripts\&quot; &lt;your original command&gt;&quot;</code></li>
+<li>The build path for javascript builders has been updated to the canonical paths for gems, and has moved from the <code v-pre>lib</code> to
+the gem root. Notice that the correct setup in <code v-pre>package json</code> was still wrongly wrapped in the <code v-pre>gem</code> dir for 8.0.0-8.0.1, and it
+has finally been fixed in 8.0.2 (sorry for that):
+<ul>
+<li>8.0.0-8.0.1 only: <code v-pre>build: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/gem/javascripts\&quot; &lt;your original command&gt;&quot;</code></li>
+<li>8.0.2+: <code v-pre>build: &quot;NODE_PATH=\&quot;$(bundle show 'pagy')/javascripts\&quot; &lt;your original command&gt;&quot;</code></li>
+</ul>
+</li>
 </ul>
 <doc-anchor-target id="changes">
     <h3>
@@ -346,10 +373,12 @@ Search for <code v-pre>&quot;extra/navs&quot;</code> and
     </h3>
 </doc-anchor-target>
 <ul>
-<li>Streamlined HTML and CSS helper structure. You may want to look at the actual output by running the <a href="https://ddnexus.github.io/pagy/playground.md#3-demo-app">pagy demo</a>
+<li>Streamlined HTML and CSS helper structure. You may want to look at the actual output by running
+the <a href="https://ddnexus.github.io/pagy/playground.md#3-demo-app">pagy demo</a>
 <ul>
 <li>The <code v-pre>pagy_nav</code> and <code v-pre>pagy_nav_js</code> helpers output a series of <code v-pre>a</code> tags inside a wrapper <code v-pre>nav</code> tag (nothing else)</li>
-<li>The disabled links are so because they are missing the <code v-pre>href</code> attributes. (They also have the <code v-pre>role=&quot;link&quot;</code> and <code v-pre>aria-disabled=&quot;true&quot;</code> attributes)</li>
+<li>The disabled links are so because they are missing the <code v-pre>href</code> attributes. (They also have the <code v-pre>role=&quot;link&quot;</code>
+and <code v-pre>aria-disabled=&quot;true&quot;</code> attributes)</li>
 <li>The <code v-pre>current</code> and <code v-pre>gap</code> classes are assigned to the specific <code v-pre>a</code> tags</li>
 <li>HTML changes
 <ul>
@@ -361,7 +390,8 @@ Search for <code v-pre>&quot;extra/navs&quot;</code> and
 </ul>
 </li>
 <li>The <code v-pre>active</code> class of the <code v-pre>*nav</code>/<code v-pre>*nav_js</code> links as been renamed as <code v-pre>current</code></li>
-<li>The <code v-pre>disabled</code>, <code v-pre>prev</code>, <code v-pre>next</code> and <code v-pre>pagy-combo-input</code> link classes have been removed (see the <a href="https://ddnexus.github.io/pagy/docs/api/stylesheets/#pagy-scss">stylesheets</a> for details)</li>
+<li>The <code v-pre>disabled</code>, <code v-pre>prev</code>, <code v-pre>next</code> and <code v-pre>pagy-combo-input</code> link classes have been removed (see
+the <a href="https://ddnexus.github.io/pagy/docs/api/stylesheets/#pagy-scss">stylesheets</a> for details)</li>
 <li>The <code v-pre>rel=&quot;prev&quot;</code> and  <code v-pre>rel=&quot;next&quot;</code> attributes have been dropped (they are obsolete)</li>
 <li>The <code v-pre>&lt;label&gt;</code>/<code v-pre>&lt;/label&gt;</code> and <code v-pre>&lt;b&gt;</code>/<code v-pre>&lt;/b&gt;</code> wrappers in the dictionary files have been removed</li>
 </ul>

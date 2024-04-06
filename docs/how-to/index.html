@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765548707361">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765710392049">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.765548707361" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.765710392049" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.765548707361" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.765710392049" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.765548707361" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.765548707361" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.765710392049" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.765710392049" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.1</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.2</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -1325,21 +1325,6 @@ entries as you need:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-erb"><code v-pre class="language-erb">&lt;%== render file: 'nav.html.erb', locals: {pagy: @pagy} %&gt;</code></pre>
 </doc-codeblock></div>
-<p>And here an example of the output:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-markup"><code v-pre class="language-markup">&lt;nav id=&quot;nav&quot; class=&quot;pagy nav&quot; aria-label=&quot;Pages nav&quot;&gt;
-  &lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-label=&quot;Previous&quot;&gt;&amp;lt;&lt;/a&gt;
-  &lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; aria-current=&quot;page&quot; class=&quot;current&quot;&gt;1&lt;/a&gt;
-  &lt;a href=&quot;/pagy?page=2&quot;&gt;2&lt;/a&gt;
-  &lt;a href=&quot;/pagy?page=3&quot;&gt;3&lt;/a&gt;
-  &lt;a href=&quot;/pagy?page=4&quot;&gt;4&lt;/a&gt;
-  &lt;a href=&quot;/pagy?page=5&quot;&gt;5&lt;/a&gt;
-  &lt;a role=&quot;link&quot; aria-disabled=&quot;true&quot; class=&quot;gap&quot;&gt;&amp;hellip;&lt;/a&gt;
-  &lt;a href=&quot;/pagy?page=50&quot;&gt;50&lt;/a&gt;
-  &lt;a href=&quot;/pagy?page=2&quot; aria-label=&quot;Next&quot;&gt;&amp;gt;&lt;/a&gt;
-&lt;/nav&gt;</code></pre>
-</doc-codeblock></div>
-<p>You may want to read also the <a href="../api/frontend/">Pagy::Frontend API documentation</a> for complete control over your templates.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -1362,6 +1347,7 @@ entries as you need:</p>
         </div>
     </div>
 </div>
+<p>You may want to read also the <a href="../api/frontend/">Pagy::Frontend API documentation</a> for complete control over your templates.</p>
 
                                 
                                 <!-- Required only on API pages -->
