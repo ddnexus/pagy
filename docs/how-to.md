@@ -853,12 +853,6 @@ You can use it as usual: just remember to pass the `:pagy` local set to the `@pa
 <%== render file: 'nav.html.erb', locals: {pagy: @pagy} %>
 ```
 
-And here an example of the output:
-
-:::code source="assets/nav.html" :::
-
-You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
-        
 !!!
 You may want to look at the actual output interactively by running:
 ```sh
@@ -867,3 +861,5 @@ pagy demo
 ```
 ...and point your browser at http://0.0.0.0:8000/template
 !!!
+
+You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.

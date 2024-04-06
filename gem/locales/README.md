@@ -37,18 +37,6 @@ You can create a Pull Request for your language, and get all the help you need t
   for `one`, `few`, `many` and `other`, if it uses `:one_other`, you should provide `one` and `other` plurals. If it uses `:other`
   you should only provide a single value. Look into other dictionary files to get some example. Ask if in doubt.
 
-- [ ] Update the manifest file.
-
-```sh
-rake manifest:generate
-```
-
-and then confirm it with:
-
-```sh
-rake manifest:check
-```
-
 Feel free to ask for help in your Pull Request.
 
 ### Useful Links

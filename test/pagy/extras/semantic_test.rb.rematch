@@ -21,6 +21,48 @@ pagy/extras/semantic::#pagy_semantic_nav_js#test_0001_renders single and multipl
     aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgaHJlZj1cIi9mb28/cGFnZT0xXCIgY2xhc3M9XCJpdGVtXCIgYXJpYS1sYWJlbD1cIlByZXZpb3VzXCI+Jmx0OzwvYT4iLCJhIjoiPGEgaHJlZj1cIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fXCIgY2xhc3M9XCJpdGVtXCI+X19wYWd5X2xhYmVsX188L2E+IiwiY3VycmVudCI6IjxhIHJvbGU9XCJsaW5rXCIgY2xhc3M9XCJpdGVtIGFjdGl2ZVwiIGFyaWEtY3VycmVudD1cInBhZ2VcIiBhcmlhLWRpc2FibGVkPVwidHJ1ZVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImdhcCI6IjxkaXYgY2xhc3M9XCJkaXNhYmxlZCBpdGVtXCI+JmhlbGxpcDs8L2Rpdj4iLCJhZnRlciI6IjxhIGhyZWY9XCIvZm9vP3BhZ2U9M1wiIGNsYXNzPVwiaXRlbVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4ifSx7IjAiOlsxLCIyIiwzXX0sbnVsbF0="></div>
   :extras_2_23: <div id="test-nav-id" class="pagy-rjs pagy-semantic nav-js ui pagination
     menu" role="navigation" aria-label="Pages" data-pagy="WyJuYXYiLHsiYmVmb3JlIjoiPGEgYW5jaG9yX3N0cmluZyBocmVmPVwiL2Zvbz9wYWdlPTFcIiBjbGFzcz1cIml0ZW1cIiBhcmlhLWxhYmVsPVwiUHJldmlvdXNcIj4mbHQ7PC9hPiIsImEiOiI8YSBhbmNob3Jfc3RyaW5nIGhyZWY9XCIvZm9vP3BhZ2U9X19wYWd5X3BhZ2VfX1wiIGNsYXNzPVwiaXRlbVwiPl9fcGFneV9sYWJlbF9fPC9hPiIsImN1cnJlbnQiOiI8YSByb2xlPVwibGlua1wiIGNsYXNzPVwiaXRlbSBhY3RpdmVcIiBhcmlhLWN1cnJlbnQ9XCJwYWdlXCIgYXJpYS1kaXNhYmxlZD1cInRydWVcIj5fX3BhZ3lfbGFiZWxfXzwvYT4iLCJnYXAiOiI8ZGl2IGNsYXNzPVwiZGlzYWJsZWQgaXRlbVwiPiZoZWxsaXA7PC9kaXY+IiwiYWZ0ZXIiOiI8YSBhbmNob3Jfc3RyaW5nIGhyZWY9XCIvZm9vP3BhZ2U9M1wiIGNsYXNzPVwiaXRlbVwiIGFyaWEtbGFiZWw9XCJOZXh0XCI+Jmd0OzwvYT4ifSx7IjAiOlsxLCIyIiwzXSwiNjAwIjpbMSwiMiIsM119LG51bGxd"></div>
+pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0001_renders first, intermediate and last pages:
+  :plain_1: '<div class="pagy-semantic combo-nav-js ui compact menu" role="navigation"
+    aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><div
+    class="item disabled" role="a" aria-disabled="true" aria-label="Previous">&lt;</div><div
+    class="item"><label>Page <input name="page" type="number" min="1" max="6" value="1"
+    aria-current="page"style="text-align: center; width: 2rem; padding: 0; margin:
+    0 0.3rem"><a href="#" style="display: none;">#</a> of 6</label></div> <a href="/foo?page=2"
+    class="item" aria-label="Next">&gt;</a></div>'
+  :extras_1: '<div id="test-nav-id" class="pagy-semantic combo-nav-js ui compact menu"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><div
+    class="item disabled" role="a" aria-disabled="true" aria-label="Previous">&lt;</div><div
+    class="item"><label>Page <input name="page" type="number" min="1" max="6" value="1"
+    aria-current="page"style="text-align: center; width: 2rem; padding: 0; margin:
+    0 0.3rem"><a href="#" style="display: none;">#</a> of 6</label></div> <a anchor_string
+    href="/foo?page=2" class="item" aria-label="Next">&gt;</a></div>'
+  :plain_3: '<div class="pagy-semantic combo-nav-js ui compact menu" role="navigation"
+    aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><a
+    href="/foo?page=2" class="item" aria-label="Previous">&lt;</a><div class="item"><label>Page
+    <input name="page" type="number" min="1" max="6" value="3" aria-current="page"style="text-align:
+    center; width: 2rem; padding: 0; margin: 0 0.3rem"><a href="#" style="display:
+    none;">#</a> of 6</label></div> <a href="/foo?page=4" class="item" aria-label="Next">&gt;</a></div>'
+  :extras_3: '<div id="test-nav-id" class="pagy-semantic combo-nav-js ui compact menu"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><a
+    anchor_string href="/foo?page=2" class="item" aria-label="Previous">&lt;</a><div
+    class="item"><label>Page <input name="page" type="number" min="1" max="6" value="3"
+    aria-current="page"style="text-align: center; width: 2rem; padding: 0; margin:
+    0 0.3rem"><a href="#" style="display: none;">#</a> of 6</label></div> <a anchor_string
+    href="/foo?page=4" class="item" aria-label="Next">&gt;</a></div>'
+  :plain_6: '<div class="pagy-semantic combo-nav-js ui compact menu" role="navigation"
+    aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><a
+    href="/foo?page=5" class="item" aria-label="Previous">&lt;</a><div class="item"><label>Page
+    <input name="page" type="number" min="1" max="6" value="6" aria-current="page"style="text-align:
+    center; width: 2rem; padding: 0; margin: 0 0.3rem"><a href="#" style="display:
+    none;">#</a> of 6</label></div> <div class="item disabled" role="link" aria-disabled="true"
+    aria=label="Previous">&gt;</div></div>'
+  :extras_6: '<div id="test-nav-id" class="pagy-semantic combo-nav-js ui compact menu"
+    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><a
+    anchor_string href="/foo?page=5" class="item" aria-label="Previous">&lt;</a><div
+    class="item"><label>Page <input name="page" type="number" min="1" max="6" value="6"
+    aria-current="page"style="text-align: center; width: 2rem; padding: 0; margin:
+    0 0.3rem"><a href="#" style="display: none;">#</a> of 6</label></div> <div class="item
+    disabled" role="link" aria-disabled="true" aria=label="Previous">&gt;</div></div>'
 pagy/extras/semantic::#pagy_semantic_nav#test_0001_renders first, intermediate and last pages:
   :plain_1: <div role="navigation" class="pagy-semantic nav ui pagination menu" aria-label="Pages"><div
     class="item disabled" role="a" aria-disabled="true" aria-label="Previous">&lt;</div><a
@@ -74,43 +116,3 @@ pagy/extras/semantic::#pagy_semantic_nav#test_0001_renders first, intermediate a
     class="item">48</a><a anchor_string href="/foo?page=49" class="item">49</a><a
     role="link" class="item active" aria-current="page" aria-disabled="true">50</a><div
     class="item disabled" role="link" aria-disabled="true" aria=label="Previous">&gt;</div></div>
-pagy/extras/semantic::#pagy_semantic_combo_nav_js#test_0001_renders first, intermediate and last pages:
-  :plain_1: '<div class="pagy-semantic combo-nav-js ui compact menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><div
-    class="item disabled" role="a" aria-disabled="true" aria-label="Previous">&lt;</div><div
-    class="item"><label>Page <input name="page" type="number" min="1" max="6" value="1"
-    aria-current="page"style="text-align: center; width: 2rem; padding: 0; margin:
-    0 0.3rem"> of 6</label></div> <a href="/foo?page=2" class="item" aria-label="Next">&gt;</a></div>'
-  :extras_1: '<div id="test-nav-id" class="pagy-semantic combo-nav-js ui compact menu"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><div
-    class="item disabled" role="a" aria-disabled="true" aria-label="Previous">&lt;</div><div
-    class="item"><label>Page <input name="page" type="number" min="1" max="6" value="1"
-    aria-current="page"style="text-align: center; width: 2rem; padding: 0; margin:
-    0 0.3rem"> of 6</label></div> <a anchor_string href="/foo?page=2" class="item"
-    aria-label="Next">&gt;</a></div>'
-  :plain_3: '<div class="pagy-semantic combo-nav-js ui compact menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><a
-    href="/foo?page=2" class="item" aria-label="Previous">&lt;</a><div class="item"><label>Page
-    <input name="page" type="number" min="1" max="6" value="3" aria-current="page"style="text-align:
-    center; width: 2rem; padding: 0; margin: 0 0.3rem"> of 6</label></div> <a href="/foo?page=4"
-    class="item" aria-label="Next">&gt;</a></div>'
-  :extras_3: '<div id="test-nav-id" class="pagy-semantic combo-nav-js ui compact menu"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><a
-    anchor_string href="/foo?page=2" class="item" aria-label="Previous">&lt;</a><div
-    class="item"><label>Page <input name="page" type="number" min="1" max="6" value="3"
-    aria-current="page"style="text-align: center; width: 2rem; padding: 0; margin:
-    0 0.3rem"> of 6</label></div> <a anchor_string href="/foo?page=4" class="item"
-    aria-label="Next">&gt;</a></div>'
-  :plain_6: '<div class="pagy-semantic combo-nav-js ui compact menu" role="navigation"
-    aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><a
-    href="/foo?page=5" class="item" aria-label="Previous">&lt;</a><div class="item"><label>Page
-    <input name="page" type="number" min="1" max="6" value="6" aria-current="page"style="text-align:
-    center; width: 2rem; padding: 0; margin: 0 0.3rem"> of 6</label></div> <div class="item
-    disabled" role="link" aria-disabled="true" aria=label="Previous">&gt;</div></div>'
-  :extras_6: '<div id="test-nav-id" class="pagy-semantic combo-nav-js ui compact menu"
-    role="navigation" aria-label="Pages" data-pagy="WyJjb21ibyIsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fIl0="><a
-    anchor_string href="/foo?page=5" class="item" aria-label="Previous">&lt;</a><div
-    class="item"><label>Page <input name="page" type="number" min="1" max="6" value="6"
-    aria-current="page"style="text-align: center; width: 2rem; padding: 0; margin:
-    0 0.3rem"> of 6</label></div> <div class="item disabled" role="link" aria-disabled="true"
-    aria=label="Previous">&gt;</div></div>'

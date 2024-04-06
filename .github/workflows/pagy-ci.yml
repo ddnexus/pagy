@@ -1,34 +1,33 @@
 name: Pagy CI
 
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - '**'
+    branches: ['**']
   pull_request:
     branches: ['**']
 
 jobs:
 
-  should_run:
-    name: Run or skip?
+  ruby_check:
+    name: Ruby Check
     continue-on-error: true
     runs-on: ubuntu-latest
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
       - id: skip_check
-        uses: fkirc/skip-duplicate-actions@master
+        uses: fkirc/skip-duplicate-actions@v5.3.1
         with:
-          # All of these options are optional, so you can remove them if you are happy with the defaults
           concurrent_skipping: 'never'
           skip_after_successful_duplicate: 'true'
-          paths_ignore: '["**/*.md", "**/docs/**", "lib/config/pagy.rb", "LICENSE.txt"]'
+          paths: '["gem/lib/**", "gem/locales/en.yml", ".simplecov", ".rubocop", "Rakefile", "test/**", "tasks/**"]'
+          paths_ignore: '["**/*.md"]'
           do_not_skip: '["workflow_dispatch", "schedule"]'
 
-
   ruby_test:
-    needs: should_run
-    if: ${{ needs.should_run.outputs.should_skip != 'true' }}
+    needs: ruby_check
+    if: ${{ needs.ruby_check.outputs.should_skip != 'true' }}
     name: Ruby ${{ matrix.ruby-version }} Test
     runs-on: ubuntu-latest
     strategy:
@@ -48,22 +47,35 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
+      - name: Check Rubocop compliance
+        run: bundle exec rubocop --format github
+
       - name: Check Tests
         run: bundle exec rake test
 
       - name: Check Coverage  # fails unless 100%
         run: bundle exec rake check_coverage
 
-      - name: Check Rubocop compliance
-        run: bundle exec rubocop --format github
 
-      - name: Check gem manifest
-        run: bundle exec rake manifest:check
-
+  e2e_check:
+    name: E2E Check
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5.3.1
+        with:
+          concurrent_skipping: 'never'
+          skip_after_successful_duplicate: 'true'
+          paths: '["gem/lib/**", "gem/locales/en.yml", "gem/javascripts/**", "e2e/**"]'
+          paths_ignore: '["**/*.md"]'
+          do_not_skip: '["workflow_dispatch", "schedule"]'
 
   e2e_test:
-    needs: should_run
-    if: ${{ needs.should_run.outputs.should_skip != 'true' }}
+    needs: e2e_check
+    if: ${{ needs.e2e_check.outputs.should_skip != 'true' }}
     name: E2E Test
     runs-on: ubuntu-latest
     env:

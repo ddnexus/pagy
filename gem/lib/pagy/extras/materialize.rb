@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/materialize
 # frozen_string_literal: true
 
-require 'pagy/extras/js_tools'
+require_relative 'js_tools'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
@@ -57,7 +57,8 @@ class Pagy # :nodoc:
 
       page_input = %(<input name="page" type="number" min="1" max="#{pages}" value="#{pagy.page}" aria-current="page" ) <<
                    %(style="text-align: center; width: #{pages.to_s.length + 1}rem; height: 1.5rem; font-size: 1.2rem; ) <<
-                   %(border: none; border-radius: 2px; color: white; background-color: #ee6e73;" class="browser-default">)
+                   %(border: none; border-radius: 2px; color: white; background-color: #ee6e73;" class="browser-default"> ) <<
+                   JSTools::A_TAG
 
       %(<ul#{id} class="pagy-materialize combo-nav-js pagination" role="navigation" style="padding-right: 0;" #{
           nav_aria_label(pagy, aria_label:)} #{

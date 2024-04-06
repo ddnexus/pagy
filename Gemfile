@@ -17,7 +17,6 @@ group :test do
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
   gem 'rackup'
-  gem 'rake-manifest'
   gem 'rematch'
   gem 'rubocop'
   gem 'rubocop-minitest'
@@ -33,7 +32,6 @@ group :apps do
   gem 'rouge'
   gem 'sinatra'
   gem 'sinatra-contrib'
-  gem 'slop'
 end
 
 group :performance do

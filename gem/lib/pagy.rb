@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '8.0.1'
+  VERSION = '8.0.2'
 
   # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
   def self.root
@@ -147,6 +147,6 @@ class Pagy
   end
 end
 
-require 'pagy/backend'
-require 'pagy/frontend'
-require 'pagy/exceptions'
+require_relative 'pagy/backend'
+require_relative 'pagy/frontend'
+require_relative 'pagy/exceptions'

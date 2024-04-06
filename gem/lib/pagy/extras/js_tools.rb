@@ -5,6 +5,9 @@ class Pagy # :nodoc:
 
   # Private module documented in the main classes
   module JSTools
+    # Dummy tag for input helpers: needed because Turbo does not intercept window.location changes
+    A_TAG = '<a href="#" style="display: none;">#</a>'
+
     # Additions for the Pagy class
     module PagyAddOn
       # `Pagy` instance method used by the `pagy*_nav_js` helpers.

@@ -10,7 +10,6 @@ gem 'oj', require: false     # false is for testing with or without it
 gem 'rack'
 gem 'rackup'
 gem 'rake'
-gem 'rake-manifest'
 
 group :test do
   gem 'activesupport'
@@ -29,6 +28,4 @@ group :apps do
   gem 'puma'
   gem 'sinatra'
   gem 'sinatra-contrib'
-  # gem 'slim'
-  # gem 'haml'
 end

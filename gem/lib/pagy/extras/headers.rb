@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/headers
 # frozen_string_literal: true
 
-require 'pagy/url_helpers'
+require_relative '../url_helpers'
 
 class Pagy # :nodoc:
   DEFAULT[:headers] = { page:  'current-page',

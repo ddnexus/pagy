@@ -1,7 +1,7 @@
 # See Pagy::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/countless
 # frozen_string_literal: true
 
-require 'pagy'
+require_relative '../pagy'
 
 class Pagy
   # No need to know the count to paginate

@@ -53,9 +53,13 @@ echo "$(git log --format="- %s%b" "$old_vers"..HEAD)" > "$TMPLOG"
 # Edit it
 read -p 'Edit and save the changelog content (enter)> '
 nano "$TMPLOG"
-# Set the release body file used by .github/workflows/create_release.yml
+
+# Insert the changes in the the release body file used by .github/workflows/create_release.yml
 # which is triggered by the :rubygem_release task (push tag)
-cp -fv "$TMPLOG" "$ROOT/.github/latest_release_body.md"
+lead='^<!-- changes start -->$'
+tail='^<!-- changes end -->$'
+sed -i "/$lead/,/$tail/{ /$lead/{p; r $TMPLOG
+        }; /$tail/p; d }" "$ROOT/.github/latest_release_body.md"
 
 # Update CHANGELOG
 changelog=$(cat <(echo -e "<hr>\n\n## Version $new_vers\n") "$TMPLOG")

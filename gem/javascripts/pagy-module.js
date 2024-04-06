@@ -52,6 +52,7 @@ const Pagy = (() => {
     // Init the input element
     const initInput = (el, getVars, trimParam) => {
         const input = el.querySelector("input");
+        const link = el.querySelector("a");
         const initial = input.value;
         const action = function () {
             if (input.value === initial) {
@@ -67,7 +68,8 @@ const Pagy = (() => {
             if (typeof trimParam === "string" && page === "1") {
                 url = trim(url, trimParam);
             }
-            window.location.href = url;
+            link.href = url;
+            link.click();
         };
         ["change", "focus"].forEach(e => input.addEventListener(e, input.select)); // auto-select
         input.addEventListener("focusout", action); // trigger action
@@ -79,7 +81,7 @@ const Pagy = (() => {
     const trim = (a, param) => a.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "");
     // Public interface
     return {
-        version: "8.0.1",
+        version: "8.0.2",
         // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
         init(arg) {
             const target = arg instanceof Element ? arg : document;

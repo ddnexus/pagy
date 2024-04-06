@@ -7,7 +7,7 @@ require 'active_support/core_ext/date_and_time/calculations'
 require 'active_support/core_ext/numeric/time'
 require 'active_support/core_ext/integer/time'
 
-require 'pagy'
+require_relative '../pagy'
 
 class Pagy # :nodoc:
   # Base class for time units subclasses (Year, Quarter, Month, Week, Day)

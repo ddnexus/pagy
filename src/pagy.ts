@@ -72,6 +72,7 @@ const Pagy = (() => {
     // Init the input element
     const initInput = (el:Element, getVars:(v:string) => [string, string], trimParam?:string) => {
         const input = el.querySelector("input") as HTMLInputElement;
+        const link = el.querySelector("a") as HTMLAnchorElement;
         const initial = input.value;
         const action = function () {
             if (input.value === initial) { return }  // not changed
@@ -83,7 +84,8 @@ const Pagy = (() => {
             }
             let [page, url] = getVars(input.value);   // eslint-disable-line prefer-const
             if (typeof trimParam === "string" && page === "1") { url = trim(url, trimParam) }
-            window.location.href = url;
+            link.href = url;
+            link.click();
         };
         ["change", "focus"].forEach(e => input.addEventListener(e, input.select));        // auto-select
         input.addEventListener("focusout", action);                                       // trigger action
@@ -96,7 +98,7 @@ const Pagy = (() => {
 
     // Public interface
     return {
-        version: "8.0.1",
+        version: "8.0.2",
 
         // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
         init(arg?:Element | never) {

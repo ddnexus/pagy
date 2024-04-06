@@ -9,7 +9,7 @@
 /.bundle/
 /coverage/
 node_modules/
-/pkg/
+/gem/pkg/
 /tmp/
 pnpm
 .pnpm-debug.log

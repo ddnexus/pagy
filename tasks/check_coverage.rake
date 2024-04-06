@@ -4,7 +4,7 @@ require 'json'
 
 desc 'Display coverage summary. Fail if not 100%'
 task :check_coverage do
-  last_run = JSON.parse(File.read(File.expand_path('../coverage/.last_run.json', __dir__)))
+  last_run = JSON.parse(File.read('coverage/.last_run.json'))
   line     = last_run['result']['line']
   branch   = last_run['result']['branch']
   message  = "\n>>> Coverage -> line: #{line}% -> branch: #{branch}%\n"
