@@ -11,7 +11,7 @@ If you wish to keep your favorites alive, please, [vote here](https://github.com
   your side (try the [pagy demo](https://ddnexus.github.io/pagy/playground.md#3-demo-app))
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes
+### Changes in 8.0.2
 
 <!-- changes start -->
 - Minor change in rails app and RM run config
