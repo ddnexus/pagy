@@ -13,20 +13,14 @@ class Pagy
   end
 
   # Core defult: constant for easy access, but mutable for customizable defaults
-  DEFAULT = { page:          1, # rubocop:disable Style/MutableConstant
-              items:         20,
-              outset:        0,
-              size:          7,
-              cycle:         false,
-              # backend/collection
-              count_args:    [:all],  # AR friendly
-              # backend/url
-              params:        {},
-              page_param:    :page,
-              fragment:      '',
-              request_path:  nil,
-              # frontend/helpers
-              anchor_string: nil }
+  DEFAULT = { page:       1, # rubocop:disable Style/MutableConstant
+              items:      20,
+              outset:     0,
+              size:       7,
+              cycle:      false,
+              count_args: [:all],  # AR friendly
+              params:     {},
+              page_param: :page }
 
   attr_reader :count, :page, :items, :vars, :last, :offset, :in, :from, :to, :prev, :next, :params, :request_path
   alias pages last

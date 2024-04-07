@@ -15,6 +15,26 @@ pagy/extras/metadata::#pagy_metadata for Pagy::Calendar#test_0002_returns only s
     :prev: 2
     :next: 4
     :pages: 26
+pagy/extras/metadata::#pagy_metadata for Pagy#test_0001_defines all metadata:
+  :metadata:
+  - :scaffold_url
+  - :first_url
+  - :prev_url
+  - :page_url
+  - :next_url
+  - :last_url
+  - :count
+  - :page
+  - :items
+  - :vars
+  - :pages
+  - :last
+  - :in
+  - :from
+  - :to
+  - :prev
+  - :next
+  - :series
 pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy metadata:
   :metadata:
     :scaffold_url: "/foo?page=__pagy_page__"
@@ -40,9 +60,6 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
       - :all
       :params: {}
       :page_param: :page
-      :fragment: ''
-      :request_path:
-      :anchor_string:
       :countless_minimal: false
       :steps: false
       :metadata:
@@ -102,23 +119,3 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0004_returns only specific me
     :prev: 2
     :next: 4
     :pages: 50
-pagy/extras/metadata::#pagy_metadata for Pagy#test_0001_defines all metadata:
-  :metadata:
-  - :scaffold_url
-  - :first_url
-  - :prev_url
-  - :page_url
-  - :next_url
-  - :last_url
-  - :count
-  - :page
-  - :items
-  - :vars
-  - :pages
-  - :last
-  - :in
-  - :from
-  - :to
-  - :prev
-  - :next
-  - :series

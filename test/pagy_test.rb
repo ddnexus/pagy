@@ -304,7 +304,7 @@ describe 'pagy' do
     end
     it 'initializes the request_path' do
       pagy = Pagy.new(count: 100, request_path: '/foo')
-      _(pagy.request_path).must_equal('/foo')
+      _(pagy.vars[:request_path]).must_equal('/foo')
     end
   end
 
@@ -327,9 +327,6 @@ describe 'pagy' do
       _(Pagy::DEFAULT[:size]).must_equal 7
       _(Pagy::DEFAULT[:page_param]).must_equal :page
       _(Pagy::DEFAULT[:params]).must_equal({})
-      _(Pagy::DEFAULT[:fragment]).must_equal('')
-      _(Pagy::DEFAULT[:request_path]).must_be_nil
-      _(Pagy::DEFAULT[:anchor_string]).must_be_nil
     end
   end
 

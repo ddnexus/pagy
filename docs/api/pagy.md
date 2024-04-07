@@ -147,7 +147,7 @@ They are all integers:
 | `:size`          | The size of the page links to show: can be an array of initial pages, before current page, after current page, final pages or the total page size. _(see also [How to control the page links](/docs/how-to.md#control-the-page-links))_ | `7`     |
 | `:page_param`    | The name of the page param name used in the url. _(see [How to customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                                                    | `:page` |
 | `:params`        | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                     | `{}`    |
-| `:fragment`      | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                        | `''`    |
+| `:fragment`      | The arbitrary fragment string (including the "#") to add to the url. _(see [How to customize the params](/docs/how-to.md#customize-the-params))_                                                                                        | `nil`   |
 | `:anchor_string` | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_                                     | `nil`   |
 | `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                                                           | `false` |
 | `:request_path`  | Allows overriding the request path for pagination links. Pass the path only (not the absolute url). _(see [Customize the request path](/docs/how-to.md#customize-the-request-path))_                                                    | `nil`   |
@@ -167,8 +167,8 @@ or `nil`), except the `vars` hash:
 | `page`         | The current page number                                                                                            |
 | `items`        | The requested number of items for the page                                                                         |
 | `in`           | The number of the items in the page                                                                                |
-| `last`         | The number of the last page in the collection (ordinal meaning)                           |
-| `pages`        | Alias for `last` (cardinal meaning)                                                                           |
+| `last`         | The number of the last page in the collection (ordinal meaning)                                                    |
+| `pages`        | Alias for `last` (cardinal meaning)                                                                                |
 | `offset`       | The number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
 | `from`         | The collection-position of the first item in the page (`:outset` excluded)                                         |
 | `to`           | The collection-position of the last item in the page (`:outset` excluded)                                          |
