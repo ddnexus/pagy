@@ -19,10 +19,9 @@ class Pagy
               size:       7,
               cycle:      false,
               count_args: [:all],  # AR friendly
-              params:     {},
               page_param: :page }
 
-  attr_reader :count, :page, :items, :vars, :last, :offset, :in, :from, :to, :prev, :next, :params, :request_path
+  attr_reader :count, :page, :items, :vars, :last, :offset, :in, :from, :to, :prev, :next
   alias pages last
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
@@ -34,9 +33,6 @@ class Pagy
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
     setup_offset_var
-    setup_params_var
-    setup_request_path_var
-
     @from = [@offset - @outset + 1, @count].min
     @to   = [@offset - @outset + @items, @count].min
     @in   = [@to - @from + 1, @count].min
@@ -116,7 +112,7 @@ class Pagy
     setup_vars(items: 1)
   end
 
-  # Setup @last and @last (overridden by the gearbox extra)
+  # Setup @last (overridden by the gearbox extra)
   def setup_last_var
     @last = [(@count.to_f / @items).ceil, 1].max
     @last = vars[:max_pages] if vars[:max_pages] && @last > vars[:max_pages]
@@ -126,22 +122,6 @@ class Pagy
   # Setup @offset based on the :gearbox_items variable
   def setup_offset_var
     @offset = (@items * (@page - 1)) + @outset  # may be already set from gear_box
-  end
-
-  # Setup and validate @params
-  def setup_params_var
-    raise VariableError.new(self, :params, 'must be a Hash or a Proc', @params) \
-          unless (@params = @vars[:params]).is_a?(Hash) || @params.is_a?(Proc)
-  end
-
-  def setup_request_path_var
-    request_path = @vars[:request_path]
-    return if request_path.to_s.empty?
-
-    raise VariableError.new(self, :request_path, 'must be a bare path like "/foo"', request_path) \
-          if !request_path.start_with?('/') || request_path.include?('?')
-
-    @request_path = request_path
   end
 end
 

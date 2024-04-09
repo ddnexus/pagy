@@ -70,10 +70,6 @@ describe 'pagy' do
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
       _ { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
-      _ { Pagy.new(count: 100, params: 12) }.must_raise Pagy::VariableError
-      _ { Pagy.new(count: 100, request_path: "http://example.com/foo") }.must_raise Pagy::VariableError
-      _ { Pagy.new(count: 100, request_path: "/foo?bar=1") }.must_raise Pagy::VariableError
-      _ { Pagy.new(count: 100, request_path: "foo") }.must_raise Pagy::VariableError
       begin
         Pagy.new(count: 100, page: 12)
       rescue Pagy::OverflowError => e
@@ -317,7 +313,7 @@ describe 'pagy' do
   describe 'accessors' do
     it 'has accessors' do
       [
-        :count, :page, :items, :vars, :request_path, # input
+        :count, :page, :items, :vars, # input
         :offset, :pages, :last, :from, :to, :in, :prev, :next, :series # output
       ].each do |meth|
         _(pagy).must_respond_to meth
@@ -332,7 +328,6 @@ describe 'pagy' do
       _(Pagy::DEFAULT[:outset]).must_equal 0
       _(Pagy::DEFAULT[:size]).must_equal 7
       _(Pagy::DEFAULT[:page_param]).must_equal :page
-      _(Pagy::DEFAULT[:params]).must_equal({})
     end
   end
 

@@ -9,8 +9,7 @@ categories:
 
 The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a
 few integers (such as the count of the collection, the page number, the items per page, ...), does some simple arithmetic and
-creates a very small object that allocates less than 3k of
-memory.
+creates a very small object that allocates less than 3k of memory.
 
 ## Synopsis
 
@@ -128,24 +127,24 @@ For example: `pagy(some_scope, items: params[:items])` will work without any add
 
 The only mandatory instance variable to be passed is the `:count` of the collection to paginate: all the other variables are
 optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page
-number 1.
+number `1`. For performance reasons, only the instance variables get validated.
 
-| Variable         | Description                                                                                                                                                                                  | Default |
-|:-----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
-| `:anchor_string` | The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links _(see [Customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_ | `nil`   |
-| `:count`         | The total count of the collection to paginate (mandatory argument)                                                                                                                           | `nil`   |
-| `:count_args`    | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                                           | [:all]  |
-| `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                                | `false` |
-| `:fragment`      | The arbitrary fragment string (including the "#") to add to the url. _(see [Customize the params](/docs/how-to.md#customize-the-params))_                                                    | `nil`   |
-| `:items`         | The requested number of items for the page                                                                                                                                                   | `20`    |
-| `:jsonapi`       | Enable `jsonapi` compliance of the pagy query params                                                                                                                                         | `false` |
-| `:max_pages`     | Paginate only `:max_pages`. _(see also [Paginate only max_pages](/docs/how-to.md#paginate-only-max_pages-regardless-the-count))_                                                             | `nil`   |
-| `:outset`        | The initial offset of the collection to paginate: pass it only if the collection had an offset                                                                                               | `0`     |
-| `:page`          | The requested page number: extracted from the `request.params`, or forced by passeing a variable                                                                                             | `1`     |
-| `:page_param`    | The name of the page param name used in the url. _(see [Customize the page param](/docs/how-to.md#customize-the-page-param))_                                                                | `:page` |
-| `:params`        | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customize the params](/docs/how-to.md#customize-the-params))_                 | `{}`    |
-| `:request_path`  | Allows overriding the request path for pagination links. Pass the path only (not the absolute url). _(see [Customize the request path](/docs/how-to.md#customize-the-request-path))_         | `nil`   |
-| `:size`          | The size of the page links to show: can be an array of 4 items or the integer of the total page size. _(see also [Control the page links](/docs/how-to.md#control-the-page-links))_          | `7`     |
+| Variable         | Description                                                                                                                                                                           | Default |
+|:-----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
+| `:anchor_string` | The extra attributes string (formatted as a valid HTML `attr="value"`) added to the page links _(see [Customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_ | `nil`   |
+| `:count`         | The total count of the collection to paginate (mandatory argument)                                                                                                                    | `nil`   |
+| `:count_args`    | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                                    | [:all]  |
+| `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                         | `false` |
+| `:fragment`      | The arbitrary fragment string (including the "#") to add to the url. _(see [Customize the params](/docs/how-to.md#customize-the-params))_                                             | `nil`   |
+| `:items`         | The requested number of items for the page                                                                                                                                            | `20`    |
+| `:jsonapi`       | Enable `jsonapi` compliance of the pagy query params                                                                                                                                  | `false` |
+| `:max_pages`     | Paginate only `:max_pages`. _(see [Paginate only max_pages](/docs/how-to.md#paginate-only-max_pages-regardless-the-count))_                                                           | `nil`   |
+| `:outset`        | The initial offset of the collection to paginate: pass it only if the collection had an offset                                                                                        | `0`     |
+| `:page`          | The requested page number: extracted from the `request.params`, or forced by passeing a variable                                                                                      | `1`     |
+| `:page_param`    | The name of the page param name used in the url. _(see [Customize the page param](/docs/how-to.md#customize-the-page-param))_                                                         | `:page` |
+| `:params`        | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customize the params](/docs/how-to.md#customize-the-params))_          | `nil`   |
+| `:request_path`  | Allows overriding the `request.path` for pagination links. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/how-to.md#pass-the-request-path))_          | `nil`   |
+| `:size`          | The size of the page links to show: can be an array of 4 items or the integer of the total page size. _(see also [Control the page links](/docs/how-to.md#control-the-page-links))_   | `7`     |
 
 !!!
 Extras may add and document their own variables
@@ -153,25 +152,23 @@ Extras may add and document their own variables
 
 ### Attribute Readers
 
-Pagy exposes all the instance variables needed for the pagination through a few attribute readers. They all return integers (
-or `nil`), except the `vars` hash:
+Pagy exposes all its internal instance variables through a few readers. They all return integers (or `nil`), except the
+`vars` hash (which contains all the input variables):
 
-| Reader         | Description                                                                                                        |
-|:---------------|:-------------------------------------------------------------------------------------------------------------------|
-| `count`        | The collection `:count`                                                                                            |
-| `from`         | The collection-position of the first item in the page (`:outset` excluded)                                         |
-| `in`           | The number of the items in the page                                                                                |
-| `items`        | The requested number of items for the page                                                                         |
-| `last`         | The number of the last page in the collection (ordinal meaning)                                                    |
-| `next`         | The next page number or `nil` if there is no next page                                                             |
-| `offset`       | The number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
-| `page`         | The current page number                                                                                            |
-| `pages`        | Alias for `last` (cardinal meaning)                                                                                |
-| `params`       | The `:params` variable (`Hash` or `Proc`)                                                                          |
-| `prev`         | The previous page number or `nil` if there is no previous page                                                     |
-| `request_path` | The request path used for pagination helpers. If nil, helpers will use `request.path`                              |
-| `to`           | The collection-position of the last item in the page (`:outset` excluded)                                          |
-| `vars`         | The variables hash                                                                                                 |
+| Reader   | Description                                                                                                        |
+|:---------|:-------------------------------------------------------------------------------------------------------------------|
+| `count`  | The collection `:count`                                                                                            |
+| `from`   | The collection-position of the first item in the page (`:outset` excluded)                                         |
+| `in`     | The number of the items in the page                                                                                |
+| `items`  | The requested number of items for the page                                                                         |
+| `last`   | The number of the last page in the collection (ordinal meaning)                                                    |
+| `next`   | The next page number or `nil` if there is no next page                                                             |
+| `offset` | The number of items skipped from the collection in order to get the start of the current page (`:outset` included) |
+| `page`   | The current page number                                                                                            |
+| `pages`  | Alias for `last` (cardinal meaning)                                                                                |
+| `prev`   | The previous page number or `nil` if there is no previous page                                                     |
+| `to`     | The collection-position of the last item in the page (`:outset` excluded)                                          |
+| `vars`   | The variables hash                                                                                                 |
 
 ### Lowest limit analysis
 
