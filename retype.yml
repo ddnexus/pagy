@@ -8,7 +8,7 @@ url: https://ddnexus.github.io/pagy
 
 branding:
   title: Pagy
-  label: 8.0.2
+  label: 8.1.0
   colors:
     label:
       text: "#FFFFFF"

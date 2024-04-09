@@ -29,6 +29,13 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.1.0
+
+- Implement max_pages to limit the pagination regardless the actual count
+- Improve efficiency of params in pagy_url_for
+- Remove nil variables from DEFAULT
+- Removed redundant @pages, aliased with @last
+
 ## Version 8.0.2
 
 - Minor change in rails app and RM run config

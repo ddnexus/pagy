@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#1-repro-app
 
-VERSION = '8.0.2'
+VERSION = '8.1.0'
 
 require 'bundler/inline'
 gemfile(true) do
