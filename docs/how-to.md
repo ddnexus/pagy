@@ -594,7 +594,7 @@ If the `@pagy.count` in the example is `10_000`, the pages served without `:max_
 `:max_pages: 50` pagy would serve only the first `50` pages of your collection.
 
 That works at the `Pagy`/`Pagy::Countless` level, so it works with any combination of collection/extra, including `items`, 
-`gearbox` and search extras.
+`gearbox` and search extras, however it makes no sense in `Pagy::Calendar` unit objects (which ignore it). 
 
 !!! Notice
 The `items` and `gearbox` extras serve a variabe number of items per page. If your goal is limiting the pagination to a max number of records (instead of pages), you have to keep into account how you configure the `items` range.

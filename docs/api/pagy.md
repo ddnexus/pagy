@@ -97,7 +97,6 @@ totally skip the generation of page links in the frontend.
 
 It can also return a simpler array without gaps if the passed `:size` is a single positive `Integer`. It may be a faster and
 cleaner solution very useful in certain contexts (see the [Simple Nav](/docs/how-to.md#simple-nav))
-!!!
 
 ==- `label`
 

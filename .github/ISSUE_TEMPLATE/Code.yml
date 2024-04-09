@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: >
-        ### Thank you for your bug report!
+        ### 🙏 Thank you for your bug report!
         
         Please, understand that code issues are reserved for real, reproducible pagy bugs.
         
@@ -17,7 +17,7 @@ body:
   - type: checkboxes
     id: prereq
     attributes:
-      label: Before submitting...
+      label: 👀 Before submitting...
       options:
         - label: I upgraded to pagy version 8.1.0
           required: true
@@ -31,42 +31,35 @@ body:
   - type: markdown
     attributes:
       value: >
-        ### IMPORTANT!
+        ### ⚡ IMPORTANT!
         
         **The issue MUST provide a VALID code file confirming the bug AND complying with the list below
         OR it will be automatically closed!**
         
+        #### 👍 VALID code files 
         
-        #### VALID code files 
+          - Edited copy of a single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/playground) 
+          - Link to a pagy fork containing an added test file
+          - A plain ruby file that can run as a single command like `ruby my_issue.rb`
+          _(without any other setup step, installation or guessing, and with no or minimal interaction required)_
         
+        #### 🚫 INVALID "code" 
         
-        - Edited copy of a single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/playground) 
-        
-        - Link to a pagy fork containing an added test file
-        
-        - A plain ruby file that can run as a single command like `ruby my_issue.rb`
-        _(without any other setup step, installation or guessing, and with no or minimal interaction required)_
-        
-        
-        #### INVALID "code" 
+        **Please, understand that we won't guess your issue out of some snippet or description, 
+        and we won't install/setup/debug your partial or complete application.**
         
         
-        - Useless things like (but not limited to):
+        Avoid posting useless things like:
+        
           - Code snippets / Log transcripts
           - Descriptions of errors / behaviors / expectations
-          - Rationalizations about WHY and WHAT you THINK it's a bug
+          - Rationalizations about WHY you THINK your problem is a pagy bug 
           - Multiple files / Setup instructions / Your partial or complete applications
-          - EVERYTHING other than the VALID code files we accept
+          - and EVERYTHING other than the VALID code files listed above
         
-        
-        Please, understand that we won't guess your environment/usage/configuration/conflicts out of some snippet
-        or description, nor clone/install/setup/debug your parial or complete application.
-        
-        
-        Please, start from a [pagy APP](https://ddnexus.github.io/pagy/playground/#pagy-apps)
-        and add just the minimum that makes it fail. It's a very simple process and, most of the times,
-        it will make your issue just "disappear". ;)
-        
+        Instead, start from a [pagy APP](https://ddnexus.github.io/pagy/playground/#pagy-apps),
+        add the smallest amount of code that exposes the bug and post it.
+        It's a very quick and simple process and, most of the times, it will make your issue just "disappear". ;)
         
         _If anything is unclear to you, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a).
         We will be happy to help._
@@ -74,7 +67,7 @@ body:
   - type: checkboxes
     id: support
     attributes:
-      label: REQUIREMENTS
+      label: 🧐 REQUIREMENTS
       options:
         - label: I am providing a VALID code file that confirms the bug
           required: true

@@ -104,7 +104,7 @@ You have already activated GEMNAME v1, but your Gemfile requires GEMNAME v2.
 Prepending `bundle exec` to your command may solve this.
 ```
 
-If `bundle exec` doesn't solve it, then try `gem cleanup`.
+If `bundle exec` doesn't solve it, then try `bundle update` and `gem cleanup`.
 
 If after that you get into another error:
 

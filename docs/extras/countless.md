@@ -41,8 +41,9 @@ extra item from the result, so deducing whether there is a `next` page or not wi
 
 - The `@records` collection is an eager-loaded `Array` of records.
 - The `@pagy` object can be used with any supported helper.
-  !!!
-  +++ Minimal mode
+
+!!!
++++ Minimal mode
 
 !!! success
 Your app uses no or limited pagination UI
@@ -72,8 +73,9 @@ This mode is enabled by the `:countless_minimal` variable.
 
 - The `@records` collection is a regular scope.
 - The `@pagy` object cannot be used with any helpers.
-- The collection is over when `@records.size < @pagy.vars[:items]`.
-  !!!
+- The collection is over when `@records.size < @pagy.vars[:items]`
+
+!!!
 
 +++
 

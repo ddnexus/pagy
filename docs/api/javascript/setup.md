@@ -101,7 +101,8 @@ You need to debug the javascript helpers
 * Large size
 * It contains the source map to debug typescript
 * It works only on new browsers
-  !!!
+
+!!!
 
 [!file](/gem/javascripts/pagy-dev.js)
 +++
