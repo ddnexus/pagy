@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765710392049">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.765941755561">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.765710392049" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.765941755561" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.765710392049" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.765941755561" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.765710392049" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.765710392049" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.765941755561" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.765941755561" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.0.2</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.1.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -482,7 +482,7 @@ Pagy::DEFAULT[:anchor_string] = 'data-remote=&quot;true&quot;'
 pagy = Pagy.new(count: 1000, anchor_string: 'data-remote=&quot;true&quot;')
 
 # or from a view: e.g.:
-&lt;%== pagy_bootstrap_nav(@pagy, anchor_string: 'data-action=&quot;hello#world&quot;') %&gt; </code></pre>
+&lt; %== pagy_bootstrap_nav(@pagy, anchor_string: 'data-action=&quot;hello#world&quot;') % &gt; </code></pre>
 </doc-codeblock></div>
 <p><em>See more advanced details about <a href="../api/frontend/#the-anchor_string-variable">The anchor_string variable</a></em></p>
 <doc-anchor-target id="customize-the-params">
@@ -951,6 +951,45 @@ to different existing statements.</p>
 <p>Then follow the <a href="../extras/calendar/">calendar extra documentation</a> for more details.</p>
    </doc-panel>
 </doc-panels>
+<doc-anchor-target id="paginate-only-max_pages-regardless-the-count">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-only-max_pages-regardless-the-count">#</doc-anchor-trigger>
+        <span>Paginate only max_pages, regardless the count</span>
+    </h2>
+</doc-anchor-target>
+<p>In order to limit the pagination to a maximum number of pages, you can pass the <code v-pre>:max_pages</code> variable.</p>
+<p>For example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(scope, max_pages: 50, items: 20)
+@records.size #=&gt; 20   
+@pagy.count   #=&gt; 10_000
+@pagy.last    #=&gt; 50
+
+@pagy, @records = pagy(scope, max_pages: 50, items: 20, page: 51)
+#=&gt; Pagy::OverflowError: expected :page in 1..50; got 51</code></pre>
+</doc-codeblock></div>
+<p>If the <code v-pre>@pagy.count</code> in the example is <code v-pre>10_000</code>, the pages served without <code v-pre>:max_pages</code> would be <code v-pre>500</code>, but with
+<code v-pre>:max_pages: 50</code> pagy would serve only the first <code v-pre>50</code> pages of your collection.</p>
+<p>That works at the <code v-pre>Pagy</code>/<code v-pre>Pagy::Countless</code> level, so it works with any combination of collection/extra, including <code v-pre>items</code>,
+<code v-pre>gearbox</code> and search extras.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Notice</h5>
+<p>The <code v-pre>items</code> and <code v-pre>gearbox</code> extras serve a variabe number of items per page. If your goal is limiting the pagination to a max number of records (instead of pages), you have to keep into account how you configure the <code v-pre>items</code> range.</p>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="paginate-pre-offset-and-pre-limited-collections">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#paginate-pre-offset-and-pre-limited-collections">#</doc-anchor-trigger>

@@ -15,7 +15,7 @@ class Pagy # :nodoc:
         super
         @initial = @starting.beginning_of_week
         @final   = @ending.next_week.beginning_of_week
-        @pages   = @last = page_offset(@initial, @final)
+        @last    = page_offset(@initial, @final)
         @from    = starting_time_for(@page)
         @to      = @from.next_week
       end

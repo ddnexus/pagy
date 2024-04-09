@@ -42,9 +42,9 @@ class Pagy # :nodoc:
       return super unless pagy.vars[:url]
 
       vars         = pagy.vars
-      params       = pagy.params.is_a?(Hash) ? pagy.params.clone : {}  # safe when it gets reused
+      params       = vars[:params].is_a?(Hash) ? vars[:params].clone : {}  # safe when it gets reused
       pagy_set_query_params(page, vars, params)
-      params       = pagy.params.call(params) if pagy.params.is_a?(Proc)
+      params       = vars[:params].(params) if vars[:params].is_a?(Proc)
       query_string = "?#{QueryUtils.build_nested_query(params)}"
       "#{vars[:url]}#{query_string}#{vars[:fragment]}"
     end
