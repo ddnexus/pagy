@@ -24,9 +24,7 @@ Gem::Specification.new do |s|
   s.post_install_message = <<~PIM
     *********************** PAGY WARNING! ***********************
                We may drop pagy's less used CSS extras.
-
           If you wish to keep them alive, please, vote here:
-
     https://github.com/ddnexus/pagy/discussions/categories/survey
     *************************************************************
   PIM

@@ -17,10 +17,14 @@
 
 ### ✴ What's new in 8.0+ ✴
 
-- **WARNING**: We may drop pagy's less used CSS extras. If you wish to keep them alive, please, [vote here](https://github.com/ddnexus/pagy/discussions/categories/survey)
-- Better frontend helpers
+- **WARNING**: We may drop pagy's less used CSS extras.<br/>
+  If you wish to keep them alive, please, [vote here](https://github.com/ddnexus/pagy/discussions/categories/survey)
+
+
 - New [Pagy Playground](https://ddnexus.github.io/pagy/playground/) to showcase, clone and develop pagy APPs without any setup on 
   your side (try the [pagy demo](https://ddnexus.github.io/pagy/playground/#3-demo-app))
+- New `:max_pages` variable to limit the pagination regardless the actual count
+- Better frontend helpers
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
 ---
