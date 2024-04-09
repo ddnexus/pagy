@@ -16,7 +16,6 @@ GEM
     ansi (1.5.0)
     ast (2.4.2)
     base64 (0.2.0)
-    benchmark-ips (2.13.0)
     bigdecimal (3.1.7)
     builder (3.2.4)
     concurrent-ruby (1.2.3)
@@ -40,9 +39,6 @@ GEM
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     json (2.7.2)
-    kalibera (0.1.2)
-      memoist (~> 0.16)
-      rbzip2 (~> 0.3)
     language_server-protocol (3.17.0.3)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -50,8 +46,6 @@ GEM
     llhttp-ffi (0.5.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
-    memoist (0.16.2)
-    memory_profiler (1.0.1)
     minitest (5.22.3)
     minitest-reporters (1.6.1)
       ansi
@@ -87,7 +81,6 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    rbzip2 (0.3.0)
     readline-ext (0.2.0)
     regexp_parser (2.9.0)
     rematch (2.1.0)
@@ -95,7 +88,7 @@ GEM
       listen (~> 3.0)
     rexml (3.2.6)
     rouge (4.2.1)
-    rubocop (1.62.1)
+    rubocop (1.63.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -149,11 +142,8 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  benchmark-ips
   http
   i18n
-  kalibera
-  memory_profiler
   minitest
   minitest-reporters
   oj

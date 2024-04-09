@@ -29,6 +29,7 @@ function bump(){
 
 bump "$ROOT/retype.yml"
 bump "$ROOT/.github/ISSUE_TEMPLATE/Code.yml"
+bump "$ROOT/.github/latest_release_body.md"
 bump "$ROOT/gem/apps/calendar.ru"
 bump "$ROOT/gem/apps/demo.ru"
 bump "$ROOT/gem/apps/rails.ru"

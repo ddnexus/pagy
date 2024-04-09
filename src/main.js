@@ -1,3 +1,3 @@
 import Pagy from "./pagy-module";
-// Toplevel var (needed for generating the production file)
+// Toplevel var (needed to generate the production file)
 window.Pagy = Pagy;

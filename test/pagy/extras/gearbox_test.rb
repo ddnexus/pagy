@@ -51,19 +51,31 @@ describe 'pagy/extras/gearbox' do
     end
   end
 
-  describe '#setup_pages_var' do
-    it 'can skip gearbox for pages' do
-      _(Pagy.new(count: 90, page: 1, items_extra: true).pages).must_equal 5
-      _(Pagy.new(count: 103, page: 1, gearbox_extra: false).pages).must_equal 6
+  describe '#setup_last_var' do
+    it 'can skip gearbox for last' do
+      _(Pagy.new(count: 90, page: 1, items_extra: true).last).must_equal 5
+      _(Pagy.new(count: 103, page: 1, gearbox_extra: false).last).must_equal 6
     end
-    it 'sets the pages' do
-      _(Pagy.new(count: 0,   page: 1,  gearbox_items: [3, 10]).pages).must_equal 1
-      _(Pagy.new(count: 3,   page: 1,  gearbox_items: [3, 10]).pages).must_equal 1
-      _(Pagy.new(count: 13,  page: 2,  gearbox_items: [3, 10]).pages).must_equal 2
-      _(Pagy.new(count: 103, page: 1,  gearbox_items: [3, 10]).pages).must_equal 11
-      _(Pagy.new(count: 103, page: 2,  gearbox_items: [3, 10]).pages).must_equal 11
-      _(Pagy.new(count: 103, page: 3,  gearbox_items: [3, 10]).pages).must_equal 11
-      _(Pagy.new(count: 103, page: 11, gearbox_items: [3, 10]).pages).must_equal 11
+    it 'sets the last' do
+      _(Pagy.new(count: 0,   page: 1,  gearbox_items: [3, 10]).last).must_equal 1
+      _(Pagy.new(count: 3,   page: 1,  gearbox_items: [3, 10]).last).must_equal 1
+      _(Pagy.new(count: 13,  page: 2,  gearbox_items: [3, 10]).last).must_equal 2
+      _(Pagy.new(count: 103, page: 1,  gearbox_items: [3, 10]).last).must_equal 11
+      _(Pagy.new(count: 103, page: 2,  gearbox_items: [3, 10]).last).must_equal 11
+      _(Pagy.new(count: 103, page: 3,  gearbox_items: [3, 10]).last).must_equal 11
+      _(Pagy.new(count: 103, page: 11, gearbox_items: [3, 10]).last).must_equal 11
+      # max_pages
+      _(Pagy.new(count: 24, page: 2, gearbox_items: [3, 10], max_pages: 2).last).must_equal 2
+      _ { Pagy.new(count: 24, page: 3, gearbox_items: [3, 10], max_pages: 2) }.must_raise Pagy::OverflowError
+    end
+    it "checks the last in Pagy::Countless" do
+      _(Pagy::Countless.new(page: 1, gearbox_items: [3, 10]).finalize(2).last).must_equal 1
+      _(Pagy::Countless.new(page: 1, gearbox_items: [3, 10]).finalize(4).last).must_equal 2
+      _(Pagy::Countless.new(page: 3, gearbox_items: [3, 10]).finalize(7).last).must_equal 3
+      _(Pagy::Countless.new(page: 3, gearbox_items: [3, 10]).finalize(11).last).must_equal 4
+      # max_pages
+      _(Pagy::Countless.new(page: 2, gearbox_items: [3, 10], max_pages: 2).finalize(11).last).must_equal 2
+      _ { Pagy::Countless.new(page: 3, gearbox_items: [3, 10], max_pages: 2).finalize(11) }.must_raise Pagy::OverflowError
     end
   end
 

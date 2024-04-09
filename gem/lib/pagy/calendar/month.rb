@@ -16,7 +16,7 @@ class Pagy # :nodoc:
         super
         @initial = @starting.beginning_of_month
         @final   = @ending.next_month.beginning_of_month
-        @pages   = @last = (months_in(@final) - months_in(@initial))
+        @last    = (months_in(@final) - months_in(@initial))
         @from    = starting_time_for(@page)
         @to      = @from.next_month
       end
