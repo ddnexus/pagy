@@ -67,7 +67,6 @@ describe 'pagy/extras/gearbox' do
       # max_pages
       _(Pagy.new(count: 24, page: 2, gearbox_items: [3, 10], max_pages: 2).last).must_equal 2
       _ { Pagy.new(count: 24, page: 3, gearbox_items: [3, 10], max_pages: 2) }.must_raise Pagy::OverflowError
-
     end
     it "checks the last in Pagy::Countless" do
       _(Pagy::Countless.new(page: 1, gearbox_items: [3, 10]).finalize(2).last).must_equal 1

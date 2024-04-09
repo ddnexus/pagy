@@ -74,7 +74,7 @@ class Pagy # :nodoc:
     def setup_unit_vars
       raise VariableError.new(self, :format, 'to be a strftime format', @vars[:format]) unless @vars[:format].is_a?(String)
       raise VariableError.new(self, :order, 'to be in [:asc, :desc]', @order) \
-            unless %i[asc desc].include?(@order = @vars[:order])
+            unless %i[asc desc].include?((@order = @vars[:order]))
 
       @starting, @ending = @vars[:period]
       raise VariableError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @vars[:period]) \
