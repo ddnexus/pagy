@@ -19,7 +19,10 @@ class Pagy
     def finalize(fetched_size)
       raise OverflowError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
 
-      @last = (fetched_size > @items ? @page + 1 : @page)
+      @last = fetched_size > @items ? @page + 1 : @page
+      @last = vars[:max_pages] if vars[:max_pages] && @last > vars[:max_pages]
+      raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
+
       @in   = [fetched_size, @items].min
       @from = @in.zero? ? 0 : @offset - @outset + 1
       @to   = @offset - @outset + @in

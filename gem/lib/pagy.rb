@@ -31,10 +31,11 @@ class Pagy
     setup_vars(count: 0, page: 1, outset: 0)
     setup_items_var
     setup_last_var
+    raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
+
     setup_offset_var
     setup_params_var
     setup_request_path_var
-    raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
     @from = [@offset - @outset + 1, @count].min
     @to   = [@offset - @outset + @items, @count].min
@@ -118,6 +119,7 @@ class Pagy
   # Setup @last and @last (overridden by the gearbox extra)
   def setup_last_var
     @last = [(@count.to_f / @items).ceil, 1].max
+    @last = vars[:max_pages] if vars[:max_pages] && @last > vars[:max_pages]
   end
   alias setup_pages_var setup_last_var
 

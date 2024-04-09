@@ -41,7 +41,7 @@ See also a couple of extras that handle the `:items` in some special way:
 
 ## Control the page links
 
-You can control the number and position of the page links in the navigation through the `:size` variable or override the 
+You can control the number and position of the page links in the navigation through the `:size` variable or override the
 `series` method.
 
 ==- Simple nav
@@ -196,7 +196,7 @@ Pagy::DEFAULT[:anchor_string] = 'data-remote="true"'
 pagy = Pagy.new(count: 1000, anchor_string: 'data-remote="true"')
 
 # or from a view: e.g.:
-<%== pagy_bootstrap_nav(@pagy, anchor_string: 'data-action="hello#world"') %> 
+< %== pagy_bootstrap_nav(@pagy, anchor_string: 'data-action="hello#world"') % > 
 ```
 
 _See more advanced details about [The anchor_string variable](api/frontend.md#the-anchor_string-variable)_
@@ -221,7 +221,7 @@ You can also use the `:fragment` variable to add a fragment the URLs of the page
 @pagy, @records = pagy(collection, fragment: '#your-fragment')
 ```
 
-!!!warning 
+!!!warning
 For performance reasons the `:fragment` string must include the `"#"`!
 !!!
 
@@ -276,6 +276,7 @@ For a broader tutorial about this topic
 see [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html)
 by Ben Koshy.
 ===
+
 ## Customize the item name
 
 The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that
@@ -353,7 +354,7 @@ See the [array](extras/array.md) extra.
 
 ## Paginate ActiveRecord collections
 
-Pagy works out of the box with `ActiveRecord` collections, however here are a few specific cases that might be treated 
+Pagy works out of the box with `ActiveRecord` collections, however here are a few specific cases that might be treated
 differently:
 
 ==- Grouped collection
@@ -390,7 +391,7 @@ Ransack `result` returns an `ActiveRecord` collection, which can be paginated ou
 q              = Person.ransack(params[:q])
 @pagy, @people = pagy(q.result)
 ```
-    
+
 ==- PostgreSQL Collections
 
 [Always order your colections!](troubleshooting.md#records-may-randomly-repeat-in-different-pages-or-be-missing)
@@ -440,7 +441,7 @@ day).
 By default pagy tries to derive parameters and variables from the request and the collection, so you don't have to explicitly pass
 it to the `pagy*` method. That is very handy, but assumes you are paginating a single collection per request.
 
-When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination 
+When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination
 objects. You have the following commong ways to do so:
 
 ==- Pass the request path
@@ -570,8 +571,34 @@ to different existing statements.
 ```
 
 Then follow the [calendar extra documentation](extras/calendar.md) for more details.
-    
+
 ===
+
+## Paginate only max_pages, regardless the count
+
+In order to limit the pagination to a maximum number of pages, you can pass the `:max_pages` variable.
+
+For example:
+
+```ruby
+@pagy, @records = pagy(scope, max_pages: 50, items: 20)
+@records.size #=> 20   
+@pagy.count   #=> 10_000
+@pagy.last    #=> 50
+
+@pagy, @records = pagy(scope, max_pages: 50, items: 20, page: 51)
+#=> Pagy::OverflowError: expected :page in 1..50; got 51
+```
+
+If the `@pagy.count` in the example is `10_000`, the pages served without `:max_pages` would be `500`, but with
+`:max_pages: 50` pagy would serve only the first `50` pages of your collection.
+
+That works at the `Pagy`/`Pagy::Countless` level, so it works with any combination of collection/extra, including `items`, 
+`gearbox` and search extras.
+
+!!! Notice
+The `items` and `gearbox` extras serve a variabe number of items per page. If your goal is limiting the pagination to a max number of records (instead of pages), you have to keep into account how you configure the `items` range.
+!!! 
 
 ## Paginate pre-offset and pre-limited collections
 
@@ -669,7 +696,7 @@ ready to use in your view. For example:
 ```
 
 !!!primary Extras Provide Added Functionality
-The [frontend extras](/categories/frontend) add a few other helpers that you can use the same way, in order to get added features 
+The [frontend extras](/categories/frontend) add a few other helpers that you can use the same way, in order to get added features
 !!!
 
 ## Skip single page navs
@@ -842,7 +869,7 @@ standards. Using your own templates is possible, but it's likely just reinventin
 !!!
 
 If you really need to use your own templates, you absolutely can. Here is a static example that doesn't use any other helper nor
-dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and dictionary 
+dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and dictionary
 entries as you need:
 
 :::code source="assets/nav.html.erb" :::
@@ -855,10 +882,12 @@ You can use it as usual: just remember to pass the `:pagy` local set to the `@pa
 
 !!!
 You may want to look at the actual output interactively by running:
+
 ```sh
 pagy demo
 # or: bundle exec pagy demo
 ```
+
 ...and point your browser at http://0.0.0.0:8000/template
 !!!
 

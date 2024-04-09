@@ -299,8 +299,14 @@ describe 'pagy' do
     end
     it 'handles the :cycle variable' do
       pagy = Pagy.new(count: 100, page: 10, items: 10, cycle: true)
-      _(pagy.prev).must_equal(9)
+      _(pagy.prev).must_equal 9
       _(pagy.next).must_equal 1
+    end
+    it 'handles the :ma_pages variable' do
+      pagy = Pagy.new(count: 100, page: 3, items: 10, max_pages: 8)
+      _(pagy.count).must_equal 100
+      _(pagy.last).must_equal 8
+      _ { Pagy.new(count: 100, page: 9, items: 10, max_pages: 8) }.must_raise Pagy::OverflowError
     end
     it 'initializes the request_path' do
       pagy = Pagy.new(count: 100, request_path: '/foo')
