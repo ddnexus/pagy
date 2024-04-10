@@ -49,7 +49,12 @@ Edit it at will.
 
 #### 2. Rails App
 
-Starting point app to reproduce **rails related** pagy issues. Same usage as the [Repro App](#1-repro-app).
+For **rails related** pagy issues. Usage: same as the [Repro App](#1-repro-app). i.e.:
+
+```sh
+pagy clone rails
+pagy ./rails.ru # or pagy path/to/your-rails.ru
+```
 
 #### 3. Demo App
 
