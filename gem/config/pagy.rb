@@ -1,33 +1,19 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (8.1.0)
+# Pagy initializer file (8.1.1)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
 
-# Pagy DEFAULT Variables
+# Pagy Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#variables
-# All the Pagy::DEFAULT are set for all the Pagy instances but can be overridden per instance by just passing them to
+# You can set any pagy variable as a Pagy::DEFAULT. They can also be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
-
-# Instance variables
-# See https://ddnexus.github.io/pagy/docs/api/pagy#instance-variables
-# Pagy::DEFAULT[:page]   = 1                            # default
-# Pagy::DEFAULT[:items]  = 20                           # default
-# Pagy::DEFAULT[:outset] = 0                            # default
-
-# Other Variables
-# See https://ddnexus.github.io/pagy/docs/api/pagy#other-variables
-# Pagy::DEFAULT[:size]          = [1,4,4,1]             # default in pagy < 7.0
-# Pagy::DEFAULT[:page_param]    = :page                 # default
-# Pagy::DEFAULT[:fragment]      = '#fragment'           # example
-# Pagy::DEFAULT[:anchor_string] = 'data-remote="true"'  # example
-# Pagy::DEFAULT[:cycle]         = true                  # example
-# Pagy::DEFAULT[:request_path]  = '/foo'                # example
-# Pagy::DEFAULT[:count_args]    = []                    # example for non AR ORMs
-# Pagy::DEFAULT[:params]        = {}                    # default
-# NOTICE: The :params can be also set as a lambda e.g:
-# ->(params){ params.exclude('useless').merge!('custom' => 'useful') }
+# Here are the few that make more sense as DEFAULTs:
+# Pagy::DEFAULT[:items]       = 20                    # default
+# Pagy::DEFAULT[:size]        = [1,4,4,1]             # default in pagy < 7.0
+# Pagy::DEFAULT[:page_param]  = :page                 # default
+# Pagy::DEFAULT[:count_args]  = []                    # example for non AR ORMs
 
 
 # Extras

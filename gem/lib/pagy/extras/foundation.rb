@@ -75,8 +75,8 @@ class Pagy # :nodoc:
       if (p_prev = pagy.prev)
         %(<li class="prev">#{a.(p_prev, pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev'))}</li>)
       else
-        %(<li class="prev disabled" role="link" aria-disabled="true" #{
-            pagy_t('pagy.aria_label.prev')}>#{pagy_t('pagy.prev')}</li>)
+        %(<li class="prev disabled" role="link" aria-disabled="true" aria-label="#{
+            pagy_t('pagy.aria_label.prev')}">#{pagy_t('pagy.prev')}</li>)
       end
     end
 
@@ -84,8 +84,8 @@ class Pagy # :nodoc:
       if (p_next = pagy.next)
         %(<li class="next">#{a.(p_next, pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.next'))}</li>)
       else
-        %(<li class="next disabled" role="link" aria-disabled="true" #{
-             pagy_t('pagy.aria_label.next')}>#{pagy_t('pagy.next')}</li>)
+        %(<li class="next disabled" role="link" aria-disabled="true" aria-label="#{
+             pagy_t('pagy.aria_label.next')}">#{pagy_t('pagy.next')}</li>)
       end
     end
   end

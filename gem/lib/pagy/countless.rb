@@ -12,7 +12,6 @@ class Pagy
       setup_vars(page: 1, outset: 0)
       setup_items_var
       setup_offset_var
-      setup_params_var
     end
 
     # Finalize the instance variables based on the fetched size

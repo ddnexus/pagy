@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.766038035863">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.766113582938">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.766038035863" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.766113582938" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.766038035863" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.766113582938" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.766038035863" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.766038035863" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.766113582938" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.766113582938" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.1.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.1.1</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -273,8 +273,7 @@
 
 <p>The scope of the <code v-pre>Pagy</code> class is keeping track of the all integers and variables involved in the pagination. It basically takes a
 few integers (such as the count of the collection, the page number, the items per page, ...), does some simple arithmetic and
-creates a very small object that allocates less than 3k of
-memory.</p>
+creates a very small object that allocates less than 3k of memory.</p>
 <doc-anchor-target id="synopsis">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#synopsis">#</doc-anchor-trigger>
@@ -445,7 +444,7 @@ For example: <code v-pre>pagy(some_scope, items: params[:items])</code> will wor
 </doc-anchor-target>
 <p>The only mandatory instance variable to be passed is the <code v-pre>:count</code> of the collection to paginate: all the other variables are
 optional and have sensible defaults. Of course you will also have to pass the <code v-pre>page</code> or you will always get the default page
-number 1.</p>
+number <code v-pre>1</code>. For performance reasons, only the instance variables get validated.</p>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -458,7 +457,7 @@ number 1.</p>
 <tbody>
 <tr>
 <td style="text-align: left;"><code v-pre>:anchor_string</code></td>
-<td style="text-align: left;">The extra attributes string (formatted as a valid HTML attribute/value pairs) added to the page links <em>(see <a href="../../how-to/#customize-the-link-attributes">Customize the link attributes</a>)</em></td>
+<td style="text-align: left;">The extra attributes string (formatted as a valid HTML <code v-pre>attr=&quot;value&quot;</code>) added to the page links <em>(see <a href="../../how-to/#customize-the-link-attributes">Customize the link attributes</a>)</em></td>
 <td style="text-align: left;"><code v-pre>nil</code></td>
 </tr>
 <tr>
@@ -493,7 +492,7 @@ number 1.</p>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>:max_pages</code></td>
-<td style="text-align: left;">Paginate only <code v-pre>:max_pages</code>. <em>(see also <a href="../../how-to/#paginate-only-max_pages-regardless-the-count">Paginate only max_pages</a>)</em></td>
+<td style="text-align: left;">Paginate only <code v-pre>:max_pages</code>. <em>(see <a href="../../how-to/#paginate-only-max_pages-regardless-the-count">Paginate only max_pages</a>)</em></td>
 <td style="text-align: left;"><code v-pre>nil</code></td>
 </tr>
 <tr>
@@ -514,11 +513,11 @@ number 1.</p>
 <tr>
 <td style="text-align: left;"><code v-pre>:params</code></td>
 <td style="text-align: left;">It can be a <code v-pre>Hash</code> of params to add to the URL, or a <code v-pre>Proc</code> that can edit/add/delete the request params <em>(see <a href="../../how-to/#customize-the-params">Customize the params</a>)</em></td>
-<td style="text-align: left;"><code v-pre>{}</code></td>
+<td style="text-align: left;"><code v-pre>nil</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>:request_path</code></td>
-<td style="text-align: left;">Allows overriding the request path for pagination links. Pass the path only (not the absolute url). <em>(see <a href="../../how-to/#customize-the-request-path">Customize the request path</a>)</em></td>
+<td style="text-align: left;">Allows overriding the <code v-pre>request.path</code> for pagination links. Pass the path only (not the absolute url). <em>(see <a href="../../how-to/#pass-the-request-path">Pass the request path</a>)</em></td>
 <td style="text-align: left;"><code v-pre>nil</code></td>
 </tr>
 <tr>
@@ -552,8 +551,8 @@ number 1.</p>
         <span>Attribute Readers</span>
     </h3>
 </doc-anchor-target>
-<p>Pagy exposes all the instance variables needed for the pagination through a few attribute readers. They all return integers (
-or <code v-pre>nil</code>), except the <code v-pre>vars</code> hash:</p>
+<p>Pagy exposes all its internal instance variables through a few readers. They all return integers (or <code v-pre>nil</code>), except the
+<code v-pre>vars</code> hash (which contains all the input variables):</p>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
@@ -600,16 +599,8 @@ or <code v-pre>nil</code>), except the <code v-pre>vars</code> hash:</p>
 <td style="text-align: left;">Alias for <code v-pre>last</code> (cardinal meaning)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>params</code></td>
-<td style="text-align: left;">The <code v-pre>:params</code> variable (<code v-pre>Hash</code> or <code v-pre>Proc</code>)</td>
-</tr>
-<tr>
 <td style="text-align: left;"><code v-pre>prev</code></td>
 <td style="text-align: left;">The previous page number or <code v-pre>nil</code> if there is no previous page</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>request_path</code></td>
-<td style="text-align: left;">The request path used for pagination helpers. If nil, helpers will use <code v-pre>request.path</code></td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>to</code></td>
