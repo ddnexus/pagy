@@ -29,6 +29,11 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.1.1
+
+- Fixed broken aria-label for disabled links in Foundation (#685)
+- Simplification of input variables and defaults: params and request_path are not instance variables
+
 ## Version 8.1.0
 
 - Implement max_pages to limit the pagination regardless the actual count

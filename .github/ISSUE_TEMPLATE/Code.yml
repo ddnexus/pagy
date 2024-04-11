@@ -19,7 +19,7 @@ body:
     attributes:
       label: 👀 Before submitting...
       options:
-        - label: I upgraded to pagy version 8.1.0
+        - label: I upgraded to pagy version 8.1.1
           required: true
         - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/)
           required: true
@@ -49,7 +49,7 @@ body:
         and we won't install/setup/debug your partial or complete application.**
         
         
-        Avoid posting useless things like:
+        🚩 Avoid posting USELESS THINGS like:
         
           - Code snippets / Log transcripts
           - Descriptions of errors / behaviors / expectations
@@ -71,16 +71,20 @@ body:
       options:
         - label: I am providing a VALID code file that confirms the bug
           required: true
+        - label: I am NOT posting any of the USELESS THINGS listed above
+          required: true
         - label: I am aware that this issue will be automatically closed if the code file is missing or INVALID
           required: true
 
   - type: textarea
     id: description
     attributes:
-      label: Description
+      label: 💬 Description
       placeholder: >
-        1. Describe what actually happens WITH THE CODE FILE you provided
+        1. DO NOT POST any of the useless things listed above
         
-        2. Describe what should happen instead
+        2. Describe what actually happens WITH THE CODE FILE you provided
+        
+        3. Describe what should happen instead
     validations:
       required: true

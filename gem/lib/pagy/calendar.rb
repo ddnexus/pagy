@@ -28,7 +28,6 @@ class Pagy # :nodoc:
       normalize_vars(vars)                    # general default
       setup_vars(page: 1)
       setup_unit_vars
-      setup_params_var
       raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
       @prev = (@page - 1 unless @page == 1)

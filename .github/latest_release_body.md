@@ -11,13 +11,11 @@ If you wish to keep your favorites alive, please, [vote here](https://github.com
 - Better frontend helpers
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.1.0
+### Changes in 8.1.1
 
 <!-- changes start -->
-- Implement max_pages to limit the pagination regardless the actual count
-- Improve efficiency of params in pagy_url_for
-- Remove nil variables from DEFAULT
-- Removed redundant @pages, aliased with @last
+- Fixed broken aria-label for disabled links in Foundation (#685)
+- Simplification of input variables and defaults: params and request_path are not instance variables
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
