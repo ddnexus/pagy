@@ -1,6 +1,6 @@
 ## ⚠ WARNING
 
-We may drop pagy's less used CSS extras.<br>
+We may drop pagy's less used CSS extras.  
 If you wish to keep your favorites alive, please, [vote here](https://github.com/ddnexus/pagy/discussions/categories/survey)
 
 ### ✴ What's new in 8.+ ✴

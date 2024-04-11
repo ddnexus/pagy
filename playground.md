@@ -8,13 +8,13 @@ icon: play-24
 
 You can showcase, clone and develop a few pagy APPs without the need to setup anything on your side!
 
-!!!warning `bundle exec pagy`
-Depending on your environment you may need to prepend `bundle exec` in all the examples shown.
-!!!
-
 ```sh
 $ pagy --help
 ```
+
+!!!warning `bundle exec pagy`
+Depending on your environment you may need to prepend `bundle exec` in all the examples shown.
+!!!
 
 ### Pagy Apps
 
