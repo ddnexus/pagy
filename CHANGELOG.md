@@ -29,6 +29,10 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.1.2
+
+- Added "da" locale for aria_label.nav (closes #583)
+
 ## Version 8.1.1
 
 - Fixed broken aria-label for disabled links in Foundation (#685)

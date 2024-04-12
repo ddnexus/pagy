@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '8.1.1'
+VERSION = '8.1.2'
 APPS    = %w[repro rails demo calendar].freeze
 
 require_relative '../lib/optimist'

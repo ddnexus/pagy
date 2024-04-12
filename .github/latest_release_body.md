@@ -1,6 +1,6 @@
 ## ⚠ WARNING
 
-We may drop pagy's less used CSS extras.<br>
+We may drop pagy's less used CSS extras.  
 If you wish to keep your favorites alive, please, [vote here](https://github.com/ddnexus/pagy/discussions/categories/survey)
 
 ### ✴ What's new in 8.+ ✴
@@ -11,11 +11,10 @@ If you wish to keep your favorites alive, please, [vote here](https://github.com
 - Better frontend helpers
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.1.1
+### Changes in 8.1.2
 
 <!-- changes start -->
-- Fixed broken aria-label for disabled links in Foundation (#685)
-- Simplification of input variables and defaults: params and request_path are not instance variables
+- Added "da" locale for aria_label.nav (closes #583)
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

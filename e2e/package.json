@@ -8,9 +8,9 @@
     },
     "devDependencies": {
         "@cypress/snapshot": "^2.1.7",
-        "@types/node": "20.12.4",
-        "@typescript-eslint/eslint-plugin": "7.5.0",
-        "@typescript-eslint/parser": "7.5.0",
+        "@types/node": "20.12.7",
+        "@typescript-eslint/eslint-plugin": "7.6.0",
+        "@typescript-eslint/parser": "7.6.0",
         "cypress": "13.7.2",
         "cypress-html-validate": "6.1.0",
         "eslint": "8.57.0",
@@ -21,7 +21,7 @@
         "eslint-plugin-promise": "6.1.1",
         "html-validate": "8.18.1",
         "start-server-and-test": "2.0.3",
-        "typescript": "5.4.4"
+        "typescript": "5.4.5"
     },
     "scripts": {
         "lint-fix": "eslint --fix cypress --ext .ts",

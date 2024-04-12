@@ -13,7 +13,7 @@ $ pagy --help
 ```
 
 !!!warning `bundle exec pagy`
-Depending on your environment you may need to prepend `bundle exec` in all the examples shown in this page
+Depending on your environment you may need to prepend `bundle exec` in all the examples shown.
 !!!
 
 ### Pagy Apps
@@ -49,7 +49,12 @@ Edit it at will.
 
 #### 2. Rails App
 
-Starting point app to reproduce **rails related** pagy issues. Same usage as the [Repro App](#1-repro-app).
+Starting point app to reproduce **rails related** pagy issues. It has the same usage as the [Repro App](#1-repro-app). i.e.:
+
+```sh
+pagy clone rails
+pagy ./rails.ru
+```
 
 #### 3. Demo App
 
