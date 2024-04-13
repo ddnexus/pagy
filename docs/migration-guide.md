@@ -30,7 +30,7 @@ if that makes sense for Pagy:
 - If it doesn't make sense, then just remove the legacy statement.
 
 !!!primary Don't stress if you miss
-Don't worry about missing something in this step: if anything won't work as before you can fix it later in the process.
+Don't worry about missing something in this step: if anything won't work as before the next steps will fix it.
 !!!
 
 #### Preparation
