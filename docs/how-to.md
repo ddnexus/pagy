@@ -178,7 +178,7 @@ collections in the same action. Depending on the scope of the customization, you
 2. `pagy(scope, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single
    instance (overriding the global default)
 
-You can also override the `pagy_get_vars` if you need some special way to get the page number.
+You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-vars) if you need some special way to get the page number.
 
 ## Customize the link attributes
 
@@ -731,19 +731,13 @@ You have 2 possible solutions in order to improve the performance.
 Depending on the nature of the app, a possible cheap solution would be caching the count of the collection, and Pagy makes that
 really simple.
 
-Pagy gets the collection count through its `pagy_get_vars` method, so you can override it in your controller. Here is an example
+Pagy gets the collection count through its `pagy_get_count` method, so you can override it in your controller. Here is an example
 using the rails cache:
 
 ```ruby controller
-# override the pagy_get_vars method so it will call your cache_count method
-def pagy_get_vars(collection, vars)
-  vars[:count] ||= cache_count(collection)
-  vars[:page]  ||= params[vars[:page_param] || Pagy::DEFAULT[:page_param]]
-  vars
-end
-
-# add Rails.cache wrapper around the count call
-def cache_count(collection)
+# override the pagy_get_count method adding
+# the Rails.cache wrapper around the count call
+def pagy_get_count(collection, _vars)
   cache_key = "pagy-#{collection.model.name}:#{collection.to_sql}"
   Rails.cache.fetch(cache_key, expires_in: 20 * 60) do
     collection.count(:all)

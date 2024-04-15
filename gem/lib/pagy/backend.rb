@@ -18,10 +18,15 @@ class Pagy
     # You may need to override the count call for non AR collections
     def pagy_get_vars(collection, vars)
       pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-      count_args = vars[:count_args] || DEFAULT[:count_args]
-      vars[:count] ||= (count = collection.count(*count_args)).is_a?(Hash) ? count.size : count
+      vars[:count] ||= pagy_get_count(collection, vars)
       vars[:page]  ||= pagy_get_page(vars)
       vars
+    end
+
+    # Get the count from the collection
+    def pagy_get_count(collection, vars)
+      count_args = vars[:count_args] || DEFAULT[:count_args]
+      (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
     end
 
     # Get the page integer from the params
