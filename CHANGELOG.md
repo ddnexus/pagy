@@ -29,6 +29,12 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.2.0
+
+- Fix the '#pagy_url_for' method for calendar pagination (#688)
+- Extend the use of pagy_get_page to the arel, array and countless extras
+- Add the pagy_get_count method to the backend
+
 ## Version 8.1.2
 
 - Added "da" locale for aria_label.nav (closes #583)
