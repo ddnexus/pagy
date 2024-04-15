@@ -8,7 +8,7 @@ class Pagy
     # For non-rack environments you can use the standalone extra
     def pagy_url_for(pagy, page, absolute: false, **_)
       vars         = pagy.vars
-      query_params = request.GET
+      query_params = request.GET.clone
       query_params.merge!(vars[:params].transform_keys(&:to_s)) if vars[:params].is_a?(Hash)
       pagy_set_query_params(page, vars, query_params)
       query_params = vars[:params].(query_params) if vars[:params].is_a?(Proc)
