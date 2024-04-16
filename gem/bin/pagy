@@ -24,20 +24,27 @@ opts = Optimist.options do
       pagy ~/my-repro.ru         Develop ~/my-repro.ru at http://0.0.0.0:8000
   HEAD
   text 'Rackup options'
-  opt :env,   'Environment', default: 'development'
-  opt :host,  'Host', default: '0.0.0.0', short: :o
-  opt :port,  'Port', default: 8000
+  opt :env,     'Environment', default: 'development'
+  opt :host,    'Host', default: '0.0.0.0', short: :o
+  opt :port,    'Port', default: 8000
+  opt :install, 'Install bundle for users', default: true
   text 'Rerun options'
-  opt :rerun, 'Enable rerun for development', default: true
-  opt :clear, 'Clear screen before each rerun'
+  opt :rerun,   'Enable rerun for development', default: true
+  opt :clear,   'Clear screen before each rerun'
   text 'Other options'
-  opt :quiet, 'Quiet mode for development'
+  opt :quiet,   'Quiet mode for development'
   version VERSION
 end
 Optimist.educate if ARGV.empty?
 
+# Never install if run from pagy repo (pagy devs)
+opts[:install] = false if File.exist?(File.expand_path('../pagy.gemspec', __dir__))
+
+# Handles gems
 require 'bundler/inline'
-gemfile true do
+require 'bundler'
+Bundler.configure
+gemfile(opts[:install]) do
   source 'https://rubygems.org'
   gem 'rackup'
   gem 'rerun'
@@ -79,5 +86,5 @@ else
     rerun << ' -c' if opts[:clear]
     rerun << " -- #{rackup}"
   end
-  exec(rerun || rackup)
+  exec("PAGY_INSTALL_BUNDLE='#{opts[:install]}' #{rerun || rackup}")
 end

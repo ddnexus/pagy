@@ -21,7 +21,9 @@
 VERSION = '8.2.2'
 
 require 'bundler/inline'
-gemfile(true) do
+require 'bundler'
+Bundler.configure
+gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'activesupport'
   gem 'oj'
@@ -116,8 +118,10 @@ end
 __END__
 
 @@ layout
-<html style="font-size: 0.7rem">
+<!DOCTYPE html>
+<html lang="en" style="font-size: 0.8rem">
 <head>
+  <title>Pagy Calendar App</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -129,19 +133,19 @@ __END__
 @@ pagy_demo
 <div class="container">
 
-  <h3>Pagy Calendar Application</h3>
-  <p>Self-contained, standalone Sinatra app implementing nested calendar pagination for year and month units.</p>
+  <h1>Pagy Calendar App</h1>
+  <p>Self-contained, standalone Sinatra app implementing nested calendar pagination for year, month, day units.</p>
   <p>See the <a href="https://ddnexus.github.io/pagy/docs/extras/calendar">Pagy Calendar Extra</a> for details.</p>
   <hr>
 
   <!-- calendar UI manual toggle -->
   <p>
   <% if params[:skip] %>
-    <a href="/" >Show Calendar</a>
+    <a id="toggle" href="/" >Show Calendar</a>
   <% else %>
-    <a href="?skip=true" >Hide Calendar</a>
+    <a id="toggle" href="?skip=true" >Hide Calendar</a>
     <br>
-    <a href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
+    <a id="go-to-day" href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
     <!-- You can use Time.zone.now to find the current page if your time period include today -->
     <% end %>
   </p>
@@ -149,25 +153,25 @@ __END__
   <!-- calendar filtering navs -->
   <% if @calendar %>
     <p>Showtime: <%= @calendar.showtime %></p>
-    <%= pagy_bootstrap_nav(@calendar[:year]) %>   <!-- year nav -->
-    <%= pagy_bootstrap_nav(@calendar[:month]) %>  <!-- month nav -->
-    <%= pagy_bootstrap_nav(@calendar[:day]) %> <!-- day nav -->
+    <%= pagy_bootstrap_nav(@calendar[:year], id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
+    <%= pagy_bootstrap_nav(@calendar[:month], id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
+    <%= pagy_bootstrap_nav(@calendar[:day], id: "day-nav", aria_label: "Days") %> <!-- day nav -->
   <% end %>
 
   <!-- page info extended for the calendar unit -->
   <div class="alert alert-primary" role="alert">
-    <%= pagy_info(@pagy) %><%= " for <b>#{@calendar.showtime.strftime('%Y-%m-%d')}</b>" if @calendar %>
+    <%= pagy_info(@pagy, id: 'pagy-info') %><%= " for <b>#{@calendar.showtime.strftime('%Y-%m-%d')}</b>" if @calendar %>
   </div>
 
   <!-- page records (time converted in your local time)-->
-  <div class="list-group">
+  <div id="records" class="list-group">
     <% @records.each do |record| %>
     <p class="list-group-item"><%= record.in_time_zone.to_s %></p>
     <% end %>
   </div>
 
   <!-- standard pagination of the selected month -->
-  <p><%= pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %><p/>
+  <p><%= pagy_bootstrap_nav(@pagy, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
 
 </div>
 

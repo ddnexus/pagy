@@ -21,7 +21,9 @@
 VERSION = '8.2.2'
 
 require 'bundler/inline'
-gemfile(true) do
+require 'bundler'
+Bundler.configure
+gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
@@ -34,11 +36,7 @@ end
 STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
            bootstrap:   {},
            bulma:       {},
-           foundation:  {},
-           materialize: {},
-           semantic:    {},
-           tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css' },
-           uikit:       {} }.freeze
+           tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css' } }.freeze
 
 STYLES.each_key do |style|
   require "pagy/extras/#{STYLES[style][:extra] || style}"
@@ -253,7 +251,7 @@ __END__
       margin: 0 !important;
       font-family: sans-serif !important;
     }
-    h1, h4 {
+    h1, h2 {
       font-size: 1.8rem !important;
       font-weight: 600 !important;
       margin-top: 1rem !important;
@@ -261,7 +259,7 @@ __END__
       line-height: 1.5 !important;
       color: rgb(90 90 90)  !important;
     }
-    h4 {
+    h2 {
       font-family: monospace;
       font-size: .9rem !important;
       margin-top: 1.6rem !important;
@@ -351,31 +349,12 @@ __END__
 @@ bulma_head
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-@@ foundation_head
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css" crossorigin="anonymous">
-
-@@ materialize_head
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-@@ semantic_head
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"><script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
-
 @@ tailwind_head
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
 <!-- copy and paste the pagy.tailwind style in order to edit it -->
 <style type="text/tailwindcss">
   <%= Pagy.root.join('stylesheets', 'pagy.tailwind.css').read %>
 </style>
-
-@@ uikit_head
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/css/uikit.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/js/uikit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.18.3/dist/js/uikit-icons.min.js"></script>
 
 
 @@ helpers
@@ -390,45 +369,45 @@ documentation
 <% end %>
 for details</p>
 
-<h4>Collection</h4>
-<p>@records: <%= @records.join(',') %></p>
+<h2>Collection</h2>
+<p id="records">@records: <%= @records.join(',') %></p>
 
-<h4>pagy<%= prefix %>_nav <span class="notes">Simple nav <code>size: 5</code></span></h4>
-<%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav', size: 5) %>
+<h2>pagy<%= prefix %>_nav <span class="notes">Simple nav <code>size: 5</code></span></h2>
+<%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
 <%= highlight(html) %>
 
-<h4>pagy<%= prefix %>_nav <span class="notes">Classic nav <code>size: [1,4,4,1]</code></span></h4>
+<h2>pagy<%= prefix %>_nav <span class="notes">Classic nav <code>size: [1,4,4,1]</code></span></h2>
 <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
 <%= highlight(html) %>
 
-<h4>pagy<%= prefix %>_nav_js <span class="notes">Classic nav <code>size: [1,4,4,1]</code></span></h4>
+<h2>pagy<%= prefix %>_nav_js <span class="notes">Classic nav <code>size: [1,4,4,1]</code></span></h2>
 <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
 <%= highlight(html) %>
 
-<h4>pagy<%= prefix %>_nav_js <span class="notes">Responsive <code>steps: {...}</code> (Resize the window to see)</span></h4>
+<h2>pagy<%= prefix %>_nav_js <span class="notes">Responsive <code>steps: {...}</code> (Resize the window to see)</span></h2>
 <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
      aria_label: 'Pages nav_js_responsive',
-     steps: { 0 => 5, 500 => [1,3,3,1], 700 => [1,4,4,1], 900 => [2,4,4,2] }) %>
+     steps: { 0 => [1,1,1,1], 500 => [1,3,3,1], 750 => [1,5,5,1], 1000 => [2,6,6,2] }) %>
 <%= highlight(html) %>
 
-<h4>pagy<%= prefix %>_combo_nav_js</h4>
+<h2>pagy<%= prefix %>_combo_nav_js</h2>
 <%= html = send(:"pagy#{prefix}_combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 <%= highlight(html) %>
 
-<h4>pagy_info</h4>
+<h2>pagy_info</h2>
 <%= html = pagy_info(@pagy, id: 'pagy-info') %>
 <%= highlight(html) %>
 
 <% if style.match(/pagy|tailwind/) %>
-<h4>pagy_items_selector_js</h4>
+<h2>pagy_items_selector_js</h2>
 <%= html = pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
 <%= highlight(html) %>
 
-<h4>pagy_prev_a / pagy_next_a</h4>
-<%= html = '<nav class="pagy">' << pagy_prev_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
+<h2>pagy_prev_a / pagy_next_a</h2>
+<%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << pagy_prev_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
 <%= highlight(html) %>
 
-<h4>pagy_prev_link / pagy_next_link <span class="notes">Link not rendered<span></h4>
+<h2>pagy_prev_link / pagy_next_link <span class="notes">Link not rendered<span></h2>
 <% html = '<head>' << (pagy_prev_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
 <%= highlight(html) %>
 <% end %>
@@ -441,10 +420,10 @@ for details</p>
 See the <a href="https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">
 Custom Templates</a> documentation.
 </p>
-<h4>Collection</h4>
-<p>@records: <%= @records.join(',') %></p>
+<h2>Collection</h2>
+<p id="records">@records: <%= @records.join(',') %></p>
 
-<h4>Rendered ERB template</h4>
+<h2>Rendered ERB template</h2>
 
 <%# We don't inline the template here, so we can highlight it more easily %>
 <%= html = ERB.new(TEMPLATE).result(binding) %>

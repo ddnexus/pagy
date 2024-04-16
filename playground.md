@@ -45,6 +45,13 @@ Point a browser to http://0.0.0.0:8000
 
 Edit it at will.
 
+!!! Tip
+
+Bundler install the required gems during the first run. After that you can skip the rubygem 
+checks by passing the `--no-istall` flag
+
+!!!
+
 |||
 
 #### 2. Rails App

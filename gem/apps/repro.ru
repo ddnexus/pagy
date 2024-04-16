@@ -18,7 +18,9 @@
 VERSION = '8.2.2'
 
 require 'bundler/inline'
-gemfile(true) do
+require 'bundler'
+Bundler.configure
+gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
@@ -93,8 +95,9 @@ __END__
 <html lang="en">
 <html>
 <head>
+   <title>Pagy Repro App</title>
   <script src="<%= %(/#{PAGY_JS}) %>"></script>
-  <script type="application/javascript">
+  <script>
     window.addEventListener("load", Pagy.init);
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -127,7 +130,6 @@ __END__
     <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
   </style>
 </head>
-
 <body>
   <%= yield %>
 </body>
@@ -135,10 +137,10 @@ __END__
 
 @@ main
 <div class="content">
-  <h3>Pagy Repro App</h3>
+  <h1>Pagy Repro App</h1>
   <p> Self-contained, standalone Sinatra app usable to easily reproduce any pagy issue.</p>
   <p>Please, report the following versions in any new issue.</p>
-  <h4>Versions</h4>
+  <h2>Versions</h4>
   <ul>
     <li>Ruby: <%= RUBY_VERSION %></li>
     <li>Rack: <%= Rack::RELEASE %></li>
@@ -146,23 +148,27 @@ __END__
     <li>Pagy: <%= Pagy::VERSION %></li>
   </ul>
 
-  <h4>Collection</h4>
-  <p>@records: <%= @records.join(',') %></p>
+  <h3>Collection</h3>
+  <p id="records">@records: <%= @records.join(',') %></p>
 
   <hr>
 
   <h4>pagy_nav</h4>
-  <%= pagy_nav(@pagy) %>
+  <%= pagy_nav(@pagy, id: 'nav', aria_label: 'Pages nav') %>
 
   <h4>pagy_nav_js</h4>
-  <%= pagy_nav_js(@pagy) %>
+  <%= pagy_nav_js(@pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+
+  <h4>pagy_nav_js</h4>
+  <%= pagy_nav_js(@pagy, id: 'nav-js-responsive', aria_label: 'Pages nav_js_responsove',
+     steps: { 0 => [1,1,1,1], 500 => [1,3,3,1], 750 => [1,5,5,1], 1000 => [2,6,6,2] }) %>
 
   <h4>pagy_combo_nav_js</h4>
-  <%= pagy_combo_nav_js(@pagy) %>
+  <%= pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 
   <h4>pagy_items_selector_js</h4>
-  <%= pagy_items_selector_js(@pagy) %>
+  <%= pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
 
   <h4>pagy_info</h4>
-  <%= pagy_info(@pagy) %>
+  <%= pagy_info(@pagy, id: 'pagy-info') %>
 </div>

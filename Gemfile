@@ -26,10 +26,12 @@ end
 group :playground do
   gem 'puma'
   gem 'rackup'
+  gem 'rails'
   gem 'rerun'
   gem 'rouge'
   gem 'sinatra'
   gem 'sinatra-contrib'
+  gem 'sqlite3', '~> 1.4.0' # actierecord/sqlite3_adapter.rb constraint !!!
 end
 
 # group :performance do
