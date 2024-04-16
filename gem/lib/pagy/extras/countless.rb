@@ -19,7 +19,7 @@ class Pagy # :nodoc:
     # Sub-method called only by #pagy_countless: here for easy customization of variables by overriding
     def pagy_countless_get_vars(_collection, vars)
       pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-      vars[:page] ||= params[vars[:page_param] || DEFAULT[:page_param]]
+      vars[:page] ||= pagy_get_page(vars)
       vars
     end
 
