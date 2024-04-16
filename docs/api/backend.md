@@ -72,13 +72,21 @@ self contained custom `pagy` method. (see [Writing your own Pagy methods](#writi
 Sub-method called only by the `pagy` method, it returns the hash of variables used to initialize the Pagy object.
 
 Override it if you need to add or change some variable. For example you may want to add the `:item_name` in order to customize
-the output _(see [How to customize the item name](/docs/how-to.md#customize-the-item-name))_, or even cache the `count`.
+the output _(see [How to customize the item name](/docs/how-to.md#customize-the-item-name))_.
 
 !!!warning Don't remove `:count` and `:page`
-`:count` and `:page` are the only 2 required Pagy core variables, so be careful not to remove them from the returned hash.
+If you override it, remember that `:count` and `:page` are the only 2 required Pagy core variables, so be careful not to remove them from the returned hash.
 !!!
 
 See also the [How To](/docs/how-to.md) page for some usage examples.
+
+==- `pagy_get_count(collection, vars)`
+
+Get the count from the collection, considering also the `:count_args` variable. Override it if you need to calculate the count in some specil way, or cache it.
+
+==- `pagy_get_page(vars)`
+
+Get the `page` from the param ,looking at the `:page_param` variable. See also [Customize the page_param](/docs/how-to.md#customize-the-page-param).
 
 ==- `pagy_get_items(collection, pagy)`
 

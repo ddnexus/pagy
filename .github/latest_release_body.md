@@ -11,10 +11,12 @@ If you wish to keep your favorites alive, please, [vote here](https://github.com
 - Better frontend helpers
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.1.2
+### Changes in 8.2.0
 
 <!-- changes start -->
-- Added "da" locale for aria_label.nav (closes #583)
+- Fix the '#pagy_url_for' method for calendar pagination (#688)
+- Extend the use of pagy_get_page to the arel, array and countless extras
+- Add the pagy_get_count method to the backend
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

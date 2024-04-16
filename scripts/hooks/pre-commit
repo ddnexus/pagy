@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Ensure no gem changes are committed directly to master
+# Used to ensure proper testing and the gem code in master consistent with the last release
+
+set -e
+
+# Redirect output to stderr
+exec 1>&2
+
+gem_changes=$(git diff --cached --name-status --relative=gem)
+if [[ -n "$gem_changes" ]]
+then
+	branch=$(git rev-parse --abbrev-ref HEAD)
+	if [[ $branch == master* ]]
+	then
+		cat <<-EOF
+			Error: The following changes in the "gem" root path
+			should not be committed directly to the "$branch" branch,
+			but to a dev branch which will be tested and merged
+			into the "$branch" branch only on release:
+
+			$gem_changes
+		EOF
+		exit 1
+	fi
+fi

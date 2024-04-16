@@ -12,7 +12,7 @@ cd $ROOT
 
 # Prompt for the new version
 old_vers=$(ruby -Igem/lib -rpagy -e 'puts Pagy::VERSION')
-echo     "Current Pagy::VERSION: $old_vers"
+echo "Current Pagy::VERSION: $old_vers"
 read -rp 'Enter the new version> ' new_vers
 
 # Check the new version
@@ -48,19 +48,26 @@ cd "$ROOT/src"
 pnpm run build
 cd "$ROOT"
 
-# Set TMPLOG to the changelog content
+# Set TMPLOG to the commit messages marked as [GEM] (changes in the "gem" root path)
 TMPLOG=$(mktemp)
-echo "$(git log --format="- %s%b" "$old_vers"..HEAD)" > "$TMPLOG"
-# Edit it
-read -p 'Edit and save the changelog content (enter)> '
-nano "$TMPLOG"
+# Iterate through the new commits
+for commit in $(git rev-list "$old_vers"..HEAD)
+do
+	msg=$(git show --no-patch --format="%s%n%b" $commit)
+	if [[ $msg == \[GEM\]\ * ]]  # if gem changes
+	then
+		sed 's/^/\ \ /; s/^\ \ \[GEM\]/-/' <<<"$msg" >> "$TMPLOG" # append to the temp file
+	fi
+done
+
+[[ -s "$TMPLOG" ]] || read -p 'The CHANGELOG is empty! (enter)> '
 
 # Insert the changes in the the release body file used by .github/workflows/create_release.yml
 # which is triggered by the :rubygem_release task (push tag)
 lead='^<!-- changes start -->$'
 tail='^<!-- changes end -->$'
 sed -i "/$lead/,/$tail/{ /$lead/{p; r $TMPLOG
-        }; /$tail/p; d }" "$ROOT/.github/latest_release_body.md"
+		}; /$tail/p; d }" "$ROOT/.github/latest_release_body.md"
 
 # Update CHANGELOG
 changelog=$(cat <(echo -e "<hr>\n\n## Version $new_vers\n") "$TMPLOG")
@@ -74,12 +81,12 @@ bundle exec ruby -Itest test/pagy_test.rb --name  "/pagy::Version match(#|::)/"
 # Optional update of top 100
 read -rp 'Do you want to update the "Top 100 contributors"? (y/n)> ' input
 if [[ $input = y ]] || [[ $input = Y ]]; then
-  bundle exec "$ROOT/scripts/update_top100.rb"
+	bundle exec "$ROOT/scripts/update_top100.rb"
 fi
 
 # Optional commit
 read -rp 'Do you want to commit the changes? (y/n)> ' input
 if [[ $input = y ]] || [[ $input = Y ]]; then
-  git add -A
-  git commit -m "Version $new_vers"
+	git add -A
+	git commit -m "Version $new_vers"
 fi
