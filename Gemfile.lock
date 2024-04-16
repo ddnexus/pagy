@@ -1,3 +1,8 @@
+PATH
+  remote: gem
+  specs:
+    pagy (8.2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -146,6 +151,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   oj
+  pagy!
   puma
   rack
   rackup

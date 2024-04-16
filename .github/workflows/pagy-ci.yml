@@ -34,9 +34,6 @@ jobs:
       matrix:
         ruby-version: ['3.1', '3.2', '3.3']
       fail-fast: false
-    env:
-      # Gemfile versions not locked, so tests may fail, forcing us to update the code
-      BUNDLE_GEMFILE: .github/gemfiles/default
 
     steps:
       - uses: actions/checkout@v4
@@ -78,9 +75,6 @@ jobs:
     if: ${{ needs.e2e_check.outputs.should_skip != 'true' }}
     name: E2E Test
     runs-on: ubuntu-latest
-    env:
-      # absolute path required to run sinatra for cypress in e2e working dir
-      BUNDLE_GEMFILE: /home/runner/work/pagy/pagy/.github/gemfiles/default
 
     steps:
       - uses: actions/checkout@v4
@@ -102,4 +96,4 @@ jobs:
           start: bundle exec rackup -D -o 0.0.0.0 -p 4567 pagy_app.ru
           install: false
           wait-on: http://0.0.0.0:4567
-          working-directory: e2e
+          project: ./e2e
