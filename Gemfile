@@ -7,7 +7,6 @@ source 'https://rubygems.org'
 
 gem 'http'         # used by the scripts/contributor-list.rb
 gem 'rake'
-gem 'readline-ext' # temporary fix for RM 3.3.2 console with ruby >= 3.3.0
 
 group :test do
   gem 'activesupport'

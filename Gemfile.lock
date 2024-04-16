@@ -1,3 +1,8 @@
+PATH
+  remote: gem
+  specs:
+    pagy (8.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -81,7 +86,6 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    readline-ext (0.2.0)
     regexp_parser (2.9.0)
     rematch (2.1.0)
     rerun (0.14.0)
@@ -147,11 +151,11 @@ DEPENDENCIES
   minitest
   minitest-reporters
   oj
+  pagy!
   puma
   rack
   rackup
   rake
-  readline-ext
   rematch
   rerun
   rouge
