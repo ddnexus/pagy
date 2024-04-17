@@ -12,7 +12,7 @@ gem_changes=$(git diff --cached --name-status --relative=gem)
 if [[ -n "$gem_changes" ]]
 then
 	branch=$(git rev-parse --abbrev-ref HEAD)
-	if [[ $branch == master* ]]
+	if [[ "$branch" == master* ]]
 	then
 		cat <<-EOF
 			Error: The following changes in the "gem" root path
