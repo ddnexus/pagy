@@ -32,7 +32,7 @@ class Pagy
     # Get the page integer from the params
     # Overridable by the jsonapi extra
     def pagy_get_page(vars)
-      (params[vars[:page_param] || DEFAULT[:page_param]] || 1).to_i
+      [params[vars[:page_param] || DEFAULT[:page_param]].to_i, 1].max
     end
 
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding

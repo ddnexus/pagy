@@ -11,12 +11,10 @@ If you wish to keep your favorites alive, please, [vote here](https://github.com
 - Better frontend helpers
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.2.0
+### Changes in 8.2.1
 
 <!-- changes start -->
-- Fix the '#pagy_url_for' method for calendar pagination (#688)
-- Extend the use of pagy_get_page to the arel, array and countless extras
-- Add the pagy_get_count method to the backend
+- Fix empty page param raising error (closes #689)
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
