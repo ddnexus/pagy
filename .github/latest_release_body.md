@@ -11,10 +11,10 @@ If you wish to keep your favorites alive, please, [vote here](https://github.com
 - Better frontend helpers
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.2.1
+### Changes in 8.2.2
 
 <!-- changes start -->
-- Fix empty page param raising error (closes #689)
+- Add nav translation for ko (closes #592) (#690)
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
