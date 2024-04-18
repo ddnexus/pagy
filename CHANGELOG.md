@@ -29,6 +29,10 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.2.2
+
+- Add nav translation for ko (closes #592) (#690)
+
 ## Version 8.2.1
 
 - Fix empty page param raising error (closes #689)

@@ -27,11 +27,11 @@ importers:
         specifier: 7.7.0
         version: 7.7.0(eslint@8.57.0)(typescript@5.4.5)
       cypress:
-        specifier: 13.7.3
-        version: 13.7.3
+        specifier: 13.8.0
+        version: 13.8.0
       cypress-html-validate:
         specifier: 6.1.0
-        version: 6.1.0(cypress@13.7.3)(html-validate@8.18.1)
+        version: 6.1.0(cypress@13.8.0)(html-validate@8.18.1)
       eslint:
         specifier: 8.57.0
         version: 8.57.0
@@ -2194,19 +2194,19 @@ packages:
       css-tree: 1.1.3
     dev: true
 
-  /cypress-html-validate@6.1.0(cypress@13.7.3)(html-validate@8.18.1):
+  /cypress-html-validate@6.1.0(cypress@13.8.0)(html-validate@8.18.1):
     resolution: {integrity: sha512-IXVB1ZzdSHMzPM/QYZCXlG3yW2CdvSVY7bJtlijmk4kCRepfdHe0JLQ939h2Dj9ZsjyBockPQpun4omq1uRW6Q==}
     engines: {node: '>= 16'}
     peerDependencies:
       cypress: ^10 || ^11.0.1 || ^12 || ^13
       html-validate: ^5 || ^6 || ^7 || ^8
     dependencies:
-      cypress: 13.7.3
+      cypress: 13.8.0
       html-validate: 8.18.1
     dev: true
 
-  /cypress@13.7.3:
-    resolution: {integrity: sha512-uoecY6FTCAuIEqLUYkTrxamDBjMHTYak/1O7jtgwboHiTnS1NaMOoR08KcTrbRZFCBvYOiS4tEkQRmsV+xcrag==}
+  /cypress@13.8.0:
+    resolution: {integrity: sha512-Qau//mtrwEGOU9cn2YjavECKyDUwBh8J2tit+y9s1wsv6C3BX+rlv6I9afmQnL8PmEEzJ6be7nppMHacFzZkTw==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
