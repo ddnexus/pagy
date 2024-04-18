@@ -57,7 +57,7 @@ TMPLOG=$(mktemp)
 # Iterate through the new commits
 for commit in $(git rev-list "$old_vers"..HEAD)
 do
-	if [[ -n $(git show --pretty="format:" --name-only --relative=gem) ]]
+	if [[ -n $(git show --pretty="format:" --name-only --relative=gem $commit) ]]
 	then
 		git show --no-patch --format="- %s" $commit >> "$TMPLOG"
 		body=$(git show --no-patch --format="%b" $commit)
