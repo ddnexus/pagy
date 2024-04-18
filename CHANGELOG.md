@@ -29,6 +29,10 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.2.1
+
+- Fix empty page param raising error (closes #689)
+
 ## Version 8.2.0
 
 - Fix the '#pagy_url_for' method for calendar pagination (#688)
