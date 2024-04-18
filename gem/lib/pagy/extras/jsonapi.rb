@@ -42,7 +42,7 @@ class Pagy # :nodoc:
         return super if pagy_skip_jsonapi?(vars)
         return 1 if params[:page].nil?
 
-        params[:page][vars[:page_param] || DEFAULT[:page_param]].to_i
+        [params[:page][vars[:page_param] || DEFAULT[:page_param]].to_i, 1].max
       end
     end
     Backend.prepend BackendOverride
