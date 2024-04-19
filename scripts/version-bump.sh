@@ -41,6 +41,7 @@ bump "$ROOT/gem/apps/repro.ru"
 bump "$ROOT/gem/bin/pagy"
 bump "$ROOT/gem/config/pagy.rb"
 bump "$ROOT/gem/lib/pagy.rb"
+bump "$ROOT/gem/pagy.gemspec"
 bump "$ROOT/src/pagy.ts"
 
 # Bumps docs example
