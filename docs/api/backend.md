@@ -82,7 +82,7 @@ See also the [How To](/docs/how-to.md) page for some usage examples.
 
 ==- `pagy_get_count(collection, vars)`
 
-Get the count from the collection, considering also the `:count_args` variable. Override it if you need to calculate the count in some specil way, or cache it.
+Get the count from the collection, considering also the `:count_args` variable. Override it if you need to calculate the count in some special way, or cache it.
 
 ==- `pagy_get_page(vars)`
 
