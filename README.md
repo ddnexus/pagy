@@ -386,13 +386,7 @@ Many thanks to:
 
 <summary>How to contribute</summary>
 
-- Pull Requests are welcome!
-- Please base your PR against the master branch.
-- For simple contribution you can quickly check your changes with one of the apps in
-  the [Pagy Playground](https://ddnexus.github.io/pagy/playground) and/or
-  the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/).
-- If you Create A Pull Request, please ensure that the "All checks have passed" indicator gets green light on the Pull Request
-  page (if it's not enabled, a maintainer will enable it for you).
+See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUTING.md)
 
 </details>
 
