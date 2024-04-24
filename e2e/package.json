@@ -18,9 +18,8 @@
     },
     "scripts": {
         "lint-fix": "eslint --fix cypress --ext .ts",
-        "pagy-app": "bundle exec rackup -q -p 4566 pagy_app.ru",
-        "test-app": "bundle exec rackup -q -p 4567 pagy_app.ru",
-        "test": "start-test test-app 4567 'cypress run'",
-        "test-open": "start-test test-app 4567 'cypress open'",
+        "test": "start-test \"bundle exec pagy $APP -p $PORT\" http://0.0.0.0:$PORT \"cypress run --config baseUrl=http://0.0.0.0:$PORT --spec cypress/e2e/$APP.cy.ts\"",
+        "test-all": "for app in repro rails calendar demo; do APP=$app PORT=8080 npm run test; done",
+        "test-open": "start-test \"bundle exec pagy $APP -p $PORT\" http://0.0.0.0:$PORT \"cypress open\""
     }
 }

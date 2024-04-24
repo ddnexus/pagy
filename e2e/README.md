@@ -1,7 +1,7 @@
 
 # E2E Test Environment
 
-Pagy provides quite a few helpers that render the pagination elements for different js-frameworks on the client side. They are tested with a sinatra/rackup/puma ruby app and [Cypress](https://www.cypress.io).
+Pagy provides quite a few helpers that render the pagination elements for different js-frameworks on the client side. They are tested with the [Pagy Playground](https://ddnexus.github.io/pagy/playground/) apps and [Cypress](https://www.cypress.io).
 
 If you you need to run the E2E tests, here are two different ways to run them.
 
@@ -16,7 +16,9 @@ Just create a PR and all the ruby and e2e tests will run on GitHub. Usually this
 [Install Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress) and then:
 
 ```shell
-<local-pagy-dir>/e2e $ npm run test
+<local-pagy-dir>/e2e $ APP=demo npm run test
 # or run the test interactively
-<local-pagy-dir>/e2e $ npm run test-open
+<local-pagy-dir>/e2e $ APP=demo npm run test-open
 ```
+
+Notice: you can test also other `APP` from the playground.
