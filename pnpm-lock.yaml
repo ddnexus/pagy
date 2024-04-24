@@ -45,20 +45,20 @@ importers:
         specifier: 20.12.7
         version: 20.12.7
       cypress:
-        specifier: 13.8.0
-        version: 13.8.0
+        specifier: 13.8.1
+        version: 13.8.1
       cypress-html-validate:
         specifier: 6.1.0
-        version: 6.1.0(cypress@13.8.0)(html-validate@8.18.1)
+        version: 6.1.0(cypress@13.8.1)(html-validate@8.18.2)
       eslint-plugin-cypress:
-        specifier: 2.15.2
-        version: 2.15.2(eslint@8.57.0)
+        specifier: 3.0.0
+        version: 3.0.0(eslint@8.57.0)
       eslint-plugin-promise:
         specifier: 6.1.1
         version: 6.1.1(eslint@8.57.0)
       html-validate:
-        specifier: 8.18.1
-        version: 8.18.1
+        specifier: 8.18.2
+        version: 8.18.2
       start-server-and-test:
         specifier: 2.0.3
         version: 2.0.3
@@ -1044,8 +1044,8 @@ packages:
       cypress: ^10 || ^11.0.1 || ^12 || ^13
       html-validate: ^5 || ^6 || ^7 || ^8
 
-  cypress@13.8.0:
-    resolution: {integrity: sha512-Qau//mtrwEGOU9cn2YjavECKyDUwBh8J2tit+y9s1wsv6C3BX+rlv6I9afmQnL8PmEEzJ6be7nppMHacFzZkTw==}
+  cypress@13.8.1:
+    resolution: {integrity: sha512-Uk6ovhRbTg6FmXjeZW/TkbRM07KPtvM5gah1BIMp4Y2s+i/NMxgaLw0+PbYTOdw1+egE0FP3mWRiGcRkjjmhzA==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -1277,10 +1277,10 @@ packages:
     peerDependencies:
       eslint: '>=0.8.0'
 
-  eslint-plugin-cypress@2.15.2:
-    resolution: {integrity: sha512-CtcFEQTDKyftpI22FVGpx8bkpKyYXBlNge6zSo0pl5/qJvBAnzaD76Vu2AsP16d6mTj478Ldn2mhgrWV+Xr0vQ==}
+  eslint-plugin-cypress@3.0.0:
+    resolution: {integrity: sha512-ZQ0l8+fcWDYptaxLkmk2l77TAfmJqNM2SSbC6t9+P/GeMLOu2zq2jtJKsHh+qxZEzkm/5IfFgbwAU3P5AZf7+w==}
     peerDependencies:
-      eslint: '>= 3.2.1'
+      eslint: '>=7 <9'
 
   eslint-plugin-es@3.0.1:
     resolution: {integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==}
@@ -1590,8 +1590,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  html-validate@8.18.1:
-    resolution: {integrity: sha512-6NYRciFBQhVZH29fwDQxofPil0qm7MMSEDzDpZWu2U23Fnmv1WTuompP7fbzHYj6+CIJ4T/Q4hyWRCe0CCrsMg==}
+  html-validate@8.18.2:
+    resolution: {integrity: sha512-X/ahjDnTZe1VjoPz+w7zGe5I5/os8PLQ+c5C9ak6etV0nNK9gPbwbGaP9BQoSQuQx0mszw5khDjP1ffnXx+1OA==}
     engines: {node: '>= 16.14'}
     hasBin: true
     peerDependencies:
@@ -4000,12 +4000,12 @@ snapshots:
     dependencies:
       css-tree: 1.1.3
 
-  cypress-html-validate@6.1.0(cypress@13.8.0)(html-validate@8.18.1):
+  cypress-html-validate@6.1.0(cypress@13.8.1)(html-validate@8.18.2):
     dependencies:
-      cypress: 13.8.0
-      html-validate: 8.18.1
+      cypress: 13.8.1
+      html-validate: 8.18.2
 
-  cypress@13.8.0:
+  cypress@13.8.1:
     dependencies:
       '@cypress/request': 3.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -4299,7 +4299,7 @@ snapshots:
     dependencies:
       eslint: 8.57.0
 
-  eslint-plugin-cypress@2.15.2(eslint@8.57.0):
+  eslint-plugin-cypress@3.0.0(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
       globals: 13.24.0
@@ -4702,7 +4702,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  html-validate@8.18.1:
+  html-validate@8.18.2:
     dependencies:
       '@babel/code-frame': 7.24.2
       '@html-validate/stylish': 4.2.0

@@ -9,11 +9,11 @@
     "devDependencies": {
         "@cypress/snapshot": "^2.1.7",
         "@types/node": "20.12.7",
-        "cypress": "13.8.0",
+        "cypress": "13.8.1",
         "cypress-html-validate": "6.1.0",
-        "eslint-plugin-cypress": "2.15.2",
+        "eslint-plugin-cypress": "3.0.0",
         "eslint-plugin-promise": "6.1.1",
-        "html-validate": "8.18.1",
+        "html-validate": "8.18.2",
         "start-server-and-test": "2.0.3"
     },
     "scripts": {
