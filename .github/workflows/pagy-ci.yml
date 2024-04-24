@@ -8,7 +8,7 @@ on:
     branches: ['**']
 
 jobs:
-
+  ######################### Ruby #########################
   ruby_check:
     name: Ruby Check
     continue-on-error: true
@@ -21,9 +21,9 @@ jobs:
         with:
           concurrent_skipping: 'never'
           skip_after_successful_duplicate: 'true'
-          paths: '["gem/lib/**", "gem/locales/en.yml", ".simplecov", ".rubocop", "Rakefile", "test/**", "tasks/**"]'
+          paths: '[".github/workflows/pagy-ci.yml", "gem/lib/**", "gem/locales/en.yml", "Gemfile.lock", ".simplecov", ".rubocop", "Rakefile", "test/**", "tasks/**"]'
           paths_ignore: '["**/*.md"]'
-          do_not_skip: '["workflow_dispatch", "schedule"]'
+          do_not_skip: '["workflow_dispatch"]'
 
   ruby_test:
     needs: ruby_check
@@ -34,26 +34,22 @@ jobs:
       matrix:
         ruby-version: ['3.1', '3.2', '3.3']
       fail-fast: false
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-
       - name: Check Rubocop compliance
         run: bundle exec rubocop --format github
-
       - name: Check Tests
         run: bundle exec rake test
-
       - name: Check Coverage  # fails unless 100%
         run: bundle exec rake check_coverage
 
 
+  ######################### E2E #########################
   e2e_check:
     name: E2E Check
     continue-on-error: true
@@ -66,34 +62,49 @@ jobs:
         with:
           concurrent_skipping: 'never'
           skip_after_successful_duplicate: 'true'
-          paths: '["gem/lib/**", "gem/locales/en.yml", "gem/javascripts/**", "e2e/**"]'
-          paths_ignore: '["**/*.md"]'
-          do_not_skip: '["workflow_dispatch", "schedule"]'
+          paths: '[".github/workflows/pagy-ci.yml", "gem/**", "e2e/**", "pnpm.lock.yaml"]'
+          paths_ignore: '["gem/config/**", "gem/locales/**", "!gem/locales/en.yml", "**/*.md"]'
+          do_not_skip: '["workflow_dispatch"]'
 
   e2e_test:
     needs: e2e_check
     if: ${{ needs.e2e_check.outputs.should_skip != 'true' }}
-    name: E2E Test
+    name: E2E [${{ matrix.app }}] Test
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        app: ['demo', 'repro', 'rails', 'calendar']
+      fail-fast: false
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
           bundler-cache: true
-
-      - name: Install Cypress and Test Dependencies
-        working-directory: ./e2e
-        run: npm i
-
-      - name: Run Cypress Tests
-        uses: cypress-io/github-action@v6.6.0
+      - name: Install Pnpm
+        uses: pnpm/action-setup@v3
         with:
-          config: baseUrl=http://0.0.0.0:4567,video=false
-          start: bundle exec rackup -D -o 0.0.0.0 -p 4567 pagy_app.ru
+          version: 9  # optional because "packageManager" entry is set in package.json
+      - name: Install Node / Setup Pnpm Cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Setup Cypress Cache
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-cypress-cache-${{ hashFiles('pnpm-lock.yaml') }}
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Cypress [${{ matrix.app }}] Test
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: e2e
           install: false
-          wait-on: http://0.0.0.0:4567
-          project: ./e2e
+          config: baseUrl=http://0.0.0.0:8080,video=false
+          start: ${{ github.workspace }}/gem/bin/pagy ${{ matrix.app }} -p 8080
+          wait-on: http://0.0.0.0:8080
+          wait-on-timeout: 120
+          spec: cypress/e2e/${{ matrix.app }}.cy.ts
