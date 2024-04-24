@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="test" type="js.build_tools.npm" folderName="e2e">
+  <configuration default="false" name="rails" type="js.build_tools.npm" folderName="e2e test">
     <package-json value="$PROJECT_DIR$/e2e/package.json" />
     <command value="run" />
     <scripts>
@@ -7,7 +7,10 @@
     </scripts>
     <node-interpreter value="project" />
     <package-manager value="pnpm" />
-    <envs />
+    <envs>
+      <env name="APP" value="rails" />
+      <env name="PORT" value="8083" />
+    </envs>
     <method v="2" />
   </configuration>
 </component>
