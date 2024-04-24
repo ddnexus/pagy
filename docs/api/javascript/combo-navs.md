@@ -12,9 +12,6 @@ compact element:
 - `pagy_combo_nav_js`
 - `pagy_bootstrap_combo_nav_js`
 - `pagy_bulma_combo_nav_js`
-- `pagy_foundation_combo_nav_js`
-- `pagy_materialize_combo_nav_js`
-- `pagy_semantic_combo_nav_js`
 
 They are the fastest and lightest `nav` on modern environments, recommended when you care about efficiency and server load (
 see [Maximizing Performance](/docs/how-to.md#maximize-performance)).
@@ -33,11 +30,7 @@ See [Setup Javascript](setup.md).
 # you only need one of the following extras
 require 'pagy/extras/bootstrap'
 require 'pagy/extras/bulma'
-require 'pagy/extras/foundation'
-require 'pagy/extras/materialize'
 require 'pagy/extras/pagy'
-require 'pagy/extras/semantic'
-require 'pagy/extras/uikit'
 ```
 
 ```erb Any View
@@ -45,9 +38,6 @@ require 'pagy/extras/uikit'
 <%== pagy_combo_nav_js(@pagy, **vars) %>
 <%== pagy_bootstrap_combo_nav_js(@pagy, **vars) %>
 <%== pagy_bulma_combo_nav_js(@pagy, **vars) %>
-<%== pagy_foundation_combo_nav_js(@pagy, **vars) %>
-<%== pagy_materialize_combo_nav_js(@pagy, **vars) %>
-<%== pagy_semantic_combo_nav_js(@pagy, **vars) %>
 ```
 
 ## Methods

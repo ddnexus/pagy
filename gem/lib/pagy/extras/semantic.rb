@@ -1,5 +1,7 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/semantic
 # frozen_string_literal: true
+
+warn '[PAGY WARNING] The semantic extra has been discontinued and it will be removed in v9 ' \
+     '(https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328)'
 
 require_relative 'js_tools'
 

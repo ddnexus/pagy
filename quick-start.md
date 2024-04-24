@@ -127,7 +127,7 @@ include Pagy::Frontend
 #### Pick a stylesheet or a CSS framework
 
 - For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](/docs/api/stylesheets.md)
-- For different CSS frameworks and different helpers (static, responsive, compact, etc.), you can look at the [bootstrap](docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md), [foundation](docs/extras/foundation.md), [materialize](docs/extras/materialize.md), [semantic](docs/extras/semantic.md), [uikit](docs/extras/uikit.md) extras
+- For different CSS frameworks and different helpers (static, responsive, compact, etc.), you can look at the [bootstrap](docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md) extras
 
 +++ Javascript Framework
 

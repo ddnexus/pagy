@@ -70,13 +70,9 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
   [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata "provides pagination metadata - especially useful with frameworks like Vue, React etc. and you want to render your own pagination links"),
   [cursor](https://github.com/Uysim/pagy-cursor "Useful with large data sets, where performance becomes a concern (separate 
   repository)")
-- **It supports all kinds of CSS Frameworks and APIs**  
+- **It supports the most popular CSS Frameworks and APIs**  
   [bootstrap](https://ddnexus.github.io/pagy/docs/extras/bootstrap), 
-  [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma), 
-  [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation),
-  [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize),
-  [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic),
-  [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit),
+  [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma),
   [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind),
   [JSON:API](https://ddnexus.github.io/pagy/docs/extras/jsonapi/)
 - **It supports faster client-side rendering**  
@@ -284,19 +280,11 @@ requiring them (and optionally overriding some default).
   Bootstrap [pagination component](https://getbootstrap.com/docs/4.1/components/pagination)
 - [bulma](https://ddnexus.github.io/pagy/docs/extras/bulma): Add nav helpers for the Bulma
   CSS [pagination component](https://bulma.io/documentation/components/pagination)
-- [foundation](https://ddnexus.github.io/pagy/docs/extras/foundation): Add nav helpers for the
-  Foundation [pagination component](https://foundation.zurb.com/sites/docs/pagination.html)
-- [materialize](https://ddnexus.github.io/pagy/docs/extras/materialize): Add nav helpers for the Materialize
-  CSS [pagination component](https://materializecss.com/pagination.html)
 - [pagy](https://ddnexus.github.io/pagy/docs/extras/pagy): Adds the pagy styled versions of the javascript-powered nav helpers and
   other components to support countless or navless pagination (incremental,
   auto-incremental, infinite pagination).
-- [semantic](https://ddnexus.github.io/pagy/docs/extras/semantic): Add nav helpers for the Semantic UI
-  CSS [pagination component](https://semantic-ui.com/collections/menu.html)
 - [tailwind](https://ddnexus.github.io/pagy/docs/extras/tailwind): Ready to use style snippet
   for [Tailwind CSS](https://tailwindcss.com)
-- [uikit](https://ddnexus.github.io/pagy/docs/extras/uikit): Add nav helpers for the
-  UIkit [pagination component](https://getuikit.com/docs/pagination)
 
 ### Extra Features and Tools
 

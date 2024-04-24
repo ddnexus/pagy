@@ -24,6 +24,9 @@ SimpleCov.start do
                              gem/lib/pagy/extras/countless.rb]
   add_group 'Calendar',   %w[gem/lib/pagy/extras/calendar.rb
                              gem/lib/pagy/calendar]
-  # add_filter "/test/"
   add_group 'Tests',      %w[test]
+  add_filter              %w[gem/lib/pagy/extras/foundation.rb
+                             gem/lib/pagy/extras/materialize.rb
+                             gem/lib/pagy/extras/semantic.rb
+                             gem/lib/pagy/extras/uikit.rb]
 end
