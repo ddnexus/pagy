@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.767331835803">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.767331944741">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.767331835803" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.767331944741" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.767331835803" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.767331944741" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.767331835803" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.767331835803" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.767331944741" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.767331944741" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -674,6 +674,18 @@ end
 Pagy::Backend.prepend MyOverridingModule
 # and/or
 Pagy::Frontend.prepend MyOverridingModule</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="override-pagy_get_count-use-count_documents-with-mongoid">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#override-pagy_get_count-use-count_documents-with-mongoid">#</doc-anchor-trigger>
+        <span>Override <code v-pre>pagy_get_count</code>: use <code v-pre>count_documents</code> with Mongoid</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby"># e.g. applicaton_controller.rb
+def pagy_get_count(collection, vars)
+  collection.respond_to?(:count_documents) ? collection.count_documents : super
+end</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="paginate-an-array">
     <h2>
