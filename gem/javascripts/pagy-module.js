@@ -81,7 +81,7 @@ const Pagy = (() => {
     const trim = (a, param) => a.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "");
     // Public interface
     return {
-        version: "8.2.2",
+        version: "8.3.0",
         // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
         init(arg) {
             const target = arg instanceof Element ? arg : document;

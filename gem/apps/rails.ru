@@ -15,16 +15,18 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#2-rails-app
 
-VERSION = '8.2.2'
+VERSION = '8.3.0'
 
 # Gemfile
 require 'bundler/inline'
-gemfile(true) do
+require 'bundler'
+Bundler.configure
+gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
-  gem 'rails', '~> 7.1'
-  gem 'sqlite3'
+  gem 'rails'
+  gem 'sqlite3', '~> 1.4.0'
 end
 
 # require 'rails/all'     # too much stuff
@@ -127,8 +129,9 @@ TEMPLATE = <<~ERB
   <html lang="en">
     <html>
     <head>
+    <title>Pagy Rails App</title>
       <script src="/javascript"></script>
-      <script type="application/javascript">
+      <script>
         window.addEventListener("load", Pagy.init);
       </script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -165,10 +168,10 @@ TEMPLATE = <<~ERB
     <body>
 
       <div class="content">
-        <h3>Pagy Rails App</h3>
+        <h1>Pagy Rails App</h1>
         <p> Self-contained, standalone Rails app usable to easily reproduce any rails related pagy issue.</p>
         <p>Please, report the following versions in any new issue.</p>
-        <h4>Versions</h4>
+        <h2>Versions</h2>
         <ul>
           <li>Ruby:  <%== RUBY_VERSION %></li>
           <li>Rack:  <%== Rack::RELEASE %></li>
@@ -176,8 +179,8 @@ TEMPLATE = <<~ERB
           <li>Pagy:  <%== Pagy::VERSION %></li>
         </ul>
 
-        <h4>Collection</h4>
-        <div class="collection">
+        <h3>Collection</h3>
+        <div id="records" class="collection">
         <% @comments.each do |comment| %>
           <p style="margin: 0;"><%= comment.body %></p>
         <% end %>
@@ -185,19 +188,19 @@ TEMPLATE = <<~ERB
         <hr>
 
         <h4>pagy_nav</h4>
-        <%== pagy_nav(@pagy) %>
+        <%== pagy_nav(@pagy, id: 'nav', aria_label: 'Pages nav') %>
 
         <h4>pagy_nav_js</h4>
-        <%== pagy_nav_js(@pagy) %>
+        <%== pagy_nav_js(@pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
 
         <h4>pagy_combo_nav_js</h4>
-        <%== pagy_combo_nav_js(@pagy) %>
+        <%== pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 
         <h4>pagy_items_selector_js</h4>
-        <%== pagy_items_selector_js(@pagy) %>
+        <%== pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
 
         <h4>pagy_info</h4>
-        <%== pagy_info(@pagy) %>
+        <%== pagy_info(@pagy, id: 'pagy-info') %>
       </div>
 
     </body>
