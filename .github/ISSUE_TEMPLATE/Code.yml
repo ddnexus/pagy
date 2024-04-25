@@ -19,7 +19,7 @@ body:
     attributes:
       label: 👀 Before submitting...
       options:
-        - label: I upgraded to pagy version 8.2.2
+        - label: I upgraded to pagy version 8.3.0
           required: true
         - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/)
           required: true

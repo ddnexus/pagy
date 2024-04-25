@@ -29,6 +29,15 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.3.0
+
+- Discontinue foundation materialize, semantic and uikit CSS extras
+- Improve playground:
+  - Add install option (automated in pagy development)
+  - Fix HTML validation for all apps
+  - Remove unused styles from the demo app
+- Hardcode version in pagy.gemspec
+
 ## Version 8.2.2
 
 - Add nav translation for ko (closes #592) (#690)
