@@ -1,7 +1,7 @@
 ## ⚠ WARNING
 
-We may drop pagy's less used CSS extras.  
-If you wish to keep your favorites alive, please, [vote here](https://github.com/ddnexus/pagy/discussions/categories/survey)
+The `foundation`, `materialize`, `semantic` and `uikit` CSS extras
+have been discontinued and will be removed in v9 (See the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 
 ### ✴ What's new in 8.+ ✴
 
