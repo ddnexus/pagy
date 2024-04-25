@@ -347,6 +347,15 @@ Pagy::Backend.prepend MyOverridingModule
 Pagy::Frontend.prepend MyOverridingModule
 ```
 
+### Override `pagy_get_count`: use `count_documents` with Mongoid
+
+```rb
+# e.g. applicaton_controller.rb
+def pagy_get_count(collection, vars)
+  collection.respond_to?(:count_documents) ? collection.count_documents : super
+end
+```
+
 ## Paginate an Array
 
 See the [array](extras/array.md) extra.
