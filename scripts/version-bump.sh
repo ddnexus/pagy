@@ -7,8 +7,8 @@ set -e
 
 # Set the root path
 dir="$(dirname -- "$0")"
-ROOT="$(cd -P -- "$(dirname -- "$dir")" && printf '%s\n' "$(pwd -P)")"
-cd $ROOT
+root="$(cd -P -- "$(dirname -- "$dir")" && printf '%s\n' "$(pwd -P)")"
+cd $root
 
 # Prompt for the new version
 old_vers=$(ruby -Igem/lib -rpagy -e 'puts Pagy::VERSION')
@@ -31,39 +31,40 @@ function bump(){
 	sed -i "0,/$esc_old_vers/{s/$esc_old_vers/$esc_new_vers/}" "$1"
 }
 
-bump "$ROOT/retype.yml"
-bump "$ROOT/.github/ISSUE_TEMPLATE/Code.yml"
-bump "$ROOT/.github/latest_release_body.md"
-bump "$ROOT/gem/apps/calendar.ru"
-bump "$ROOT/gem/apps/demo.ru"
-bump "$ROOT/gem/apps/rails.ru"
-bump "$ROOT/gem/apps/repro.ru"
-bump "$ROOT/gem/bin/pagy"
-bump "$ROOT/gem/config/pagy.rb"
-bump "$ROOT/gem/lib/pagy.rb"
-bump "$ROOT/src/pagy.ts"
+bump "$root/retype.yml"
+bump "$root/.github/ISSUE_TEMPLATE/Code.yml"
+bump "$root/.github/latest_release_body.md"
+bump "$root/gem/apps/calendar.ru"
+bump "$root/gem/apps/demo.ru"
+bump "$root/gem/apps/rails.ru"
+bump "$root/gem/apps/repro.ru"
+bump "$root/gem/bin/pagy"
+bump "$root/gem/config/pagy.rb"
+bump "$root/gem/lib/pagy.rb"
+bump "$root/gem/pagy.gemspec"
+bump "$root/src/pagy.ts"
 
 # Bumps docs example
 esc_old_minor_vers=${esc_old_vers%\\*}
 esc_new_minor_vers=${esc_new_vers%\\*}
-sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$ROOT/quick-start.md"
+sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$root/quick-start.md"
 
-cd "$ROOT/src"
+cd "$root/src"
 pnpm run build
-cd "$ROOT"
+cd "$root"
 
-# Set TMPLOG to the commit messages that have changes in the "gem" root path
-TMPLOG=$(mktemp)
+# Set tmplog to the commit messages that have changes in the "gem" root path
+tmplog=$(mktemp)
 # Iterate through the new commits
 for commit in $(git rev-list "$old_vers"..HEAD)
 do
 	if [[ -n $(git show --pretty="format:" --name-only --relative=gem $commit) ]]
 	then
-		git show --no-patch --format="- %s" $commit >> "$TMPLOG"
+		git show --no-patch --format="- %s" $commit >> "$tmplog"
 		body=$(git show --no-patch --format="%b" $commit)
 		if [[ -n "$body" ]]
 		then
-			sed 's/^/\ \ /' <<<"$body" >> "$TMPLOG"
+			sed 's/^/\ \ /' <<<"$body" >> "$tmplog"
 		fi
 	fi
 done
@@ -72,14 +73,14 @@ done
 # which is triggered by the :rubygem_release task (push tag)
 lead='^<!-- changes start -->$'
 tail='^<!-- changes end -->$'
-sed -i "/$lead/,/$tail/{ /$lead/{p; r $TMPLOG
-		}; /$tail/p; d }" "$ROOT/.github/latest_release_body.md"
+sed -i "/$lead/,/$tail/{ /$lead/{p; r $tmplog
+		}; /$tail/p; d }" "$root/.github/latest_release_body.md"
 
 # Update CHANGELOG
-changelog=$(cat <(echo -e "<hr>\n\n## Version $new_vers\n") "$TMPLOG")
-CHANGELOG="$ROOT/CHANGELOG.md"
-awk -v l="$changelog" '{sub(/<hr>/, l); print}' "$CHANGELOG" > "$TMPLOG"
-mv "$TMPLOG" "$CHANGELOG"
+changelog=$(cat <(echo -e "<hr>\n\n## Version $new_vers\n") "$tmplog")
+changelog_path="$root/CHANGELOG.md"
+awk -v l="$changelog" '{sub(/<hr>/, l); print}' "$changelog_path" > "$tmplog"
+mv "$tmplog" "$changelog_path"
 
 # Run test to check the consistency across files
 bundle exec ruby -Itest test/pagy_test.rb --name  "/pagy::Version match(#|::)/"
@@ -87,7 +88,7 @@ bundle exec ruby -Itest test/pagy_test.rb --name  "/pagy::Version match(#|::)/"
 # Optional update of top 100
 read -rp 'Do you want to update the "Top 100 contributors"? (y/n)> ' input
 if [[ $input = y ]] || [[ $input = Y ]]; then
-	bundle exec "$ROOT/scripts/update_top100.rb"
+	bundle exec "$root/scripts/update_top100.rb"
 fi
 
 # Optional commit

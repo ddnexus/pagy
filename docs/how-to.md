@@ -295,9 +295,8 @@ Besides you can also pass the `:item_name` by passing an already pluralized stri
 For all its own interactive helpers the pagy gem includes a few [stylesheets](api/stylesheets.md) that you can customize.
 
 Besides that, pagy provides a few frontend extras
-for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md), [foundation](extras/foundation.md),
-[materialize](extras/materialize.md), [semantic](extras/semantic.md), [tailwind](api/stylesheets.md/#pagy-tailwind-scss)
-and [uikit](extras/uikit.md) that come with a decent styling provided by their respective framework.
+for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md) and [tailwind](api/stylesheets.md/#pagy-tailwind-scss)
+ that come with a decent styling provided by their respective framework.
 
 If you need to further customize the styles provided by the extras, you don't necessary need to override the helpers in most of
 them: here are a few alternatives:

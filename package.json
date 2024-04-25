@@ -6,6 +6,14 @@
         "node": ">=20.9.0"
     },
     "devDependencies": {
+        "typescript": "5.4.5",
+        "@typescript-eslint/eslint-plugin": "7.7.0",
+        "@typescript-eslint/parser": "7.7.0",
+        "eslint": "8.57.0",
+        "eslint-plugin-align-assignments": "^1.1.2",
+        "eslint-plugin-import": "2.29.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "6.1.1",
         "retypeapp-linux-x64": "3.5.0"
     },
     "pnpm": {
@@ -14,5 +22,6 @@
                 "svgo": "2.8.0"
             }
         }
-    }
+    },
+    "packageManager": "pnpm@9.0.5+sha256.61bd66913b52012107ec25a6ee4d6a161021ab99e04f6acee3aa50d0e34b4af9"
 }

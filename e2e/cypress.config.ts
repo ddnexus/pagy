@@ -7,7 +7,7 @@ export default defineConfig(
         fixturesFolder: false,
         e2e: {
             // supportFolder: "support",
-            baseUrl: "http://0.0.0.0:4567",
+            baseUrl: "http://0.0.0.0:8080",
             setupNodeEvents(on, config) {
                 htmlvalidate.install(on, {
                     rules: {

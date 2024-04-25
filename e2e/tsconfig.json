@@ -2,7 +2,7 @@
     "include": ["./cypress/**/*.ts"],
     "compilerOptions": {
         "strict": true,
-        "target": "es2016",
+        "target": "ESNext",
         "module": "NodeNext",
         "lib": ["esnext", "dom", "dom.iterable"],
         "types": ["cypress", "node"],
@@ -12,7 +12,8 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "NodeNext",
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "allowImportingTsExtensions": true
     },
     "ts-node": {
         // Tell ts-node CLI to install the --loader automatically

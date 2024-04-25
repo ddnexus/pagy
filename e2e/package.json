@@ -9,25 +9,17 @@
     "devDependencies": {
         "@cypress/snapshot": "^2.1.7",
         "@types/node": "20.12.7",
-        "@typescript-eslint/eslint-plugin": "7.7.0",
-        "@typescript-eslint/parser": "7.7.0",
-        "cypress": "13.8.0",
+        "cypress": "13.8.1",
         "cypress-html-validate": "6.1.0",
-        "eslint": "8.57.0",
-        "eslint-plugin-align-assignments": "^1.1.2",
-        "eslint-plugin-cypress": "2.15.2",
-        "eslint-plugin-import": "2.29.1",
-        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-cypress": "3.0.0",
         "eslint-plugin-promise": "6.1.1",
-        "html-validate": "8.18.1",
-        "start-server-and-test": "2.0.3",
-        "typescript": "5.4.5"
+        "html-validate": "8.18.2",
+        "start-server-and-test": "2.0.3"
     },
     "scripts": {
         "lint-fix": "eslint --fix cypress --ext .ts",
-        "pagy-app": "bundle exec rackup -q -p 4566 pagy_app.ru",
-        "test-app": "bundle exec rackup -q -p 4567 pagy_app.ru",
-        "test": "start-test test-app 4567 'cypress run'",
-        "test-open": "start-test test-app 4567 'cypress open'"
+        "test": "start-test \"bundle exec pagy $APP -p $PORT\" http://0.0.0.0:$PORT \"cypress run --config baseUrl=http://0.0.0.0:$PORT --spec cypress/e2e/$APP.cy.ts\"",
+        "test-all": "for app in repro rails calendar demo; do APP=$app PORT=8080 npm run test; done",
+        "test-open": "start-test \"bundle exec pagy $APP -p $PORT\" http://0.0.0.0:$PORT \"cypress open\""
     }
 }

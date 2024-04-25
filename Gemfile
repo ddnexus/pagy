@@ -2,8 +2,7 @@
 
 source 'https://rubygems.org'
 
-# we cannot use gemspec here because it would load pagy before simplecov
-# and miss files from coverage gemspec
+gemspec path: './gem'
 
 gem 'http'         # used by the scripts/contributor-list.rb
 gem 'rake'
@@ -15,7 +14,6 @@ group :test do
   gem 'minitest-reporters'
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
-  gem 'rackup'
   gem 'rematch'
   gem 'rubocop'
   gem 'rubocop-minitest'
@@ -25,12 +23,15 @@ group :test do
   gem 'simplecov', require: false
 end
 
-group :apps do
+group :playground do
   gem 'puma'
+  gem 'rackup'
+  gem 'rails'
   gem 'rerun'
   gem 'rouge'
   gem 'sinatra'
   gem 'sinatra-contrib'
+  gem 'sqlite3', '~> 1.4.0' # actierecord/sqlite3_adapter.rb constraint !!!
 end
 
 # group :performance do

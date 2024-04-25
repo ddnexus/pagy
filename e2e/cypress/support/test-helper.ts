@@ -1,68 +1,127 @@
-export const navIds = ["#nav", "#nav-js"];
-const widths = [500, 750, 1000];
-const specialStylesRe = /^\/(bulma)/;
-
-export const styles = [
-    "/bootstrap",
-    "/bulma",
-    "/foundation",
-    "/materialize",
-    "/pagy",
-    "/semantic",
-    "/uikit"
-];
-
-export const stylesCal = styles.map(s => `${s}-calendar`);
-
-export function snapId(id:string) {
+export function snapIds(ids:string[]) {
     cy.get("#records").snapshot();
-    cy.get(id).snapshot();
-}
-
-export function navsLoop(styles:string[]) {
-    const resp_id = "#nav-js-responsive";
-    for (const style of styles) {
-        // nav and nav-js
-        for (const id of navIds) {
-            it(`Test ${style} ${id}`, () => {
-                checkStyleId(style, id);
-            });
-        }
-        // nav-js-responsive at different widths
-        for (const width of widths) {
-            it(`Test ${style} ${resp_id} (${width} width)`, () => {
-                cy.viewport(width, 1000);
-                checkStyleId(style, resp_id);
-            });
-        }
+    for (const id of ids) {
+        cy.get(id).snapshot();
     }
 }
 
-function checkStyleId(style:string, id:string) {
-    const pages = /-calendar$/.test(style)
-                  ? ["2022-01", "2023-11"]
-                  : ["3", "50"];
-    cy.visit(style);
-    snapId(id);
+interface TestNavOpts {
+    path?:string
+    pages?:string[]
+    rjs?:boolean
+}
 
-    goCheckNext(style, id);
+export function testNav(id:string, {path = "/", pages = ["3", "50"], rjs = false}:TestNavOpts) {
+    it(`Test ${id}`, () => {
+        if (rjs) {
+            const widths = [450, 700, 950, 1050];
+            for (const width of widths) {
+                cy.viewport(width, 1000);
+                cy.visit(path);
+                checkNav(id, pages);
+            }
+        } else {
+            checkNav(id, pages);
+        }
+    });
+}
+
+function checkNav(id:string, pages:string[]) {
+    snapIds([id]);
+    goCheckNext(id);
     for (const page of pages) {
         cy.get(id).contains(page).click();
-        snapId(id);
+        snapIds([id]);
     }
-    goCheckPrev(style, id);
+    goCheckPrev(id);
 }
 
-export function goCheckNext(style:string, id:string) {
-    specialStylesRe.test(style)
-    ? cy.get(id).contains(">").click()
-    : cy.get(`${id} a:last`).click();
-    snapId(id);
+export function testComboNav(id:string) {
+    const id_input = `${id} input`;
+    it(`Test ${id}`, () => {
+        snapIds([id]);
+        goCheckNext(id);
+        const page = "3";
+        cy.get(id_input).type(`${page}{enter}`);
+        snapIds([id]);
+        for (const invalid of ["abcd", 1000]) {
+            cy.get(id_input).type(`${invalid}{enter}`);
+            cy.get(id_input).should(($input) => {
+                expect($input.val()).not.to.eq(invalid);
+                expect($input.val()).to.eq(page);
+            }).location().should(loc => expect(loc.href).to.match(new RegExp(`page=${page}`)));
+        }
+        cy.get(id_input).type("50");
+        cy.get(id_input).blur();
+        snapIds([id]);
+        cy.get(id_input).focus();
+        cy.get(id_input).type("{downarrow}{enter}");
+        snapIds([id]);
+        goCheckPrev(id);
+    });
 }
 
-export function goCheckPrev(style:string, id:string) {
-    specialStylesRe.test(style)
-    ? cy.get(id).contains("<").click()
-    : cy.get(`${id} a:first`).click();
-    snapId(id);
+export function testItemsSelector(id:string, path = "/", trim = false) {
+    it(`Test ${id}`, () => {
+        const pages    = [1, 36, 50];
+        const id_input = `${id} input`;
+        for (const page of pages) {
+            cy.visit(`${path}?page=${page}`);
+            snapIds([id]);
+            if (page === 36) {
+                for (const invalid of ["abcd", 1000]) {
+                    cy.get(id_input).type(`${invalid}{enter}`);
+                    cy.get(id_input).should(($input) => {
+                        expect($input.val()).not.to.eq(invalid);
+                    }).location().should(loc => expect(loc.href).to.match(new RegExp(`page=${page}`)));
+                }
+            }
+            cy.get(id_input).type("10{enter}");
+            snapIds([id]);
+            cy.get(id_input).type("17");
+            cy.get(id_input).blur();
+            snapIds([id]);
+            cy.get(id_input).focus();
+            cy.get(id_input).type("{uparrow}{enter}");
+            snapIds([id]);
+            // test page after changing items
+            cy.visit(`${path}?page=2&items=10`);
+            cy.location().should(loc => expect(loc.href).to.match(/page=2/));
+            cy.get("#items-selector-js input").type("5{enter}");
+            cy.location().should(loc => expect(loc.href).to.match(/page=3/));
+            if (trim) {  // (only demo app)
+                // test page 1 after changing items
+                cy.visit(`${path}?trim=true&page=1&items=20`);
+                cy.location().should(loc => expect(loc.href).to.match(/page=1/));
+                cy.get("#items-selector-js input").type("10{enter}");
+                cy.location().should(loc => expect(loc.href).to.not.match(/page=1/));
+                // test page 1 (no page param) and page 3
+                for (const page of [1, 3]) {
+                    const url = `${path}?trim=true&page=${page}`;
+                    cy.visit(url);
+                    ["#nav", "#nav-js", "#combo-nav-js"].forEach(id => cy.get(id).snapshot());
+                }
+            }
+        }
+    });
+}
+
+export function testInfo(id:string, path = "/") {
+    it(`Test ${id}`, () => {
+        const pages = [1, 36, 50];
+        for (const page of pages) {
+            cy.visit(`${path}?page=${page}`);
+            snapIds([id]);
+        }
+    });
+}
+
+export function goCheckNext(id:string) {
+    cy.get(id).contains(">").click();
+    snapIds([id]);
+}
+
+export function goCheckPrev(id:string) {
+    cy.get(id).contains("<").click();
+    snapIds([id]);
 }

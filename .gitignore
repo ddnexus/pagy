@@ -4,12 +4,12 @@
 # that are quite a few and very useful not only for the author
 /.idea/*
 !/.idea/runConfigurations
-/.retype/
-/retype.manifest
 /.bundle/
+/.retype/
 /coverage/
-node_modules/
 /gem/pkg/
-/tmp/
-pnpm
+node_modules/
+pnpm/
+tmp/
+/retype.manifest
 .pnpm-debug.log

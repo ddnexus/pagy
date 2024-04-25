@@ -29,9 +29,6 @@ A few helpers use Javascript and offer some extra feature and require some extra
 - `pagy_nav_js`
 - `pagy_bootstrap_nav_js`
 - `pagy_bulma_nav_js`
-- `pagy_foundation_nav_js`
-- `pagy_materialize_nav_js`
-- `pagy_semantic_nav_js`
 
 </details>
 
@@ -53,9 +50,6 @@ See [Pagy Navs](javascript/navs.md)
 - `pagy_combo_nav_js`
 - `pagy_bootstrap_combo_nav_js`
 - `pagy_bulma_combo_nav_js`
-- `pagy_foundation_combo_nav_js`
-- `pagy_materialize_combo_nav_js`
-- `pagy_semantic_combo_nav_js`
 
 </details>
 

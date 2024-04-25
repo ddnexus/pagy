@@ -11,9 +11,6 @@ The following `pagy*_nav_js` helpers:
 - `pagy_nav_js`
 - `pagy_bootstrap_nav_js`
 - `pagy_bulma_nav_js`
-- `pagy_foundation_nav_js`
-- `pagy_materialize_nav_js`
-- `pagy_semantic_nav_js`
 
 look like a normal `pagy*_nav` but have a few added features:
 
@@ -35,11 +32,7 @@ See [Setup Javascript](setup).
 # Use just one:
 require 'pagy/extras/bootstrap'
 require 'pagy/extras/bulma'
-require 'pagy/extras/foundation'
-require 'pagy/extras/materialize'
 require 'pagy/extras/pagy'
-require 'pagy/extras/semantic'
-require 'pagy/extras/uikit'
 ```
 
 ```erb Any View
@@ -47,9 +40,6 @@ require 'pagy/extras/uikit'
 <%== pagy_nav_js(@pagy) %>
 <%== pagy_bootstrap_nav_js(@pagy) %>
 <%== pagy_bulma_nav_js(@pagy) %>
-<%== pagy_foundation_nav_js(@pagy) %>
-<%== pagy_materialize_nav_js(@pagy) %>
-<%== pagy_semantic_nav_js(@pagy) %>
 ```
 
 ## Variables

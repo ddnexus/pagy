@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'lib/pagy'
-
 Gem::Specification.new do |s|
   s.name        = 'pagy'
-  s.version     = Pagy::VERSION
+  s.version     = '8.3.0'
   s.authors     = ['Domizio Demichelis']
   s.email       = ['dd.nexus@gmail.com']
   s.summary     = 'The best pagination ruby gem'
@@ -23,9 +21,9 @@ Gem::Specification.new do |s|
   s.executables << 'pagy'
   s.post_install_message = <<~PIM
     *********************** PAGY WARNING! ***********************
-               We may drop pagy's less used CSS extras.
-          If you wish to keep them alive, please, vote here:
-    https://github.com/ddnexus/pagy/discussions/categories/survey
+     The foundation, materialize, semantic and uikit CSS extras
+          have been discontinued and will be removed in v9
+           https://github.com/ddnexus/pagy/discussions/672
     *************************************************************
   PIM
   s.required_ruby_version = '>= 3.1'

@@ -14,8 +14,7 @@ copy.
 
 !!!warning
 You don't need any stylesheet if you use a frontend extra like: 
-[bootstrap](/docs/extras/bootstrap), [bulma](/docs/extras/bulma), [foundation](/docs/extras/foundation), 
-[materialize](/docs/extras/materialize), [semantic](/docs/extras/semantic), [uikit](/docs/extras/uikit)
+[bootstrap](/docs/extras/bootstrap), [bulma](/docs/extras/bulma)
 !!!
 
 ### HTML Structure
