@@ -5,7 +5,7 @@ require 'http'
 require 'net/http'
 
 URL_FMT   = 'https://api.github.com/repos/ddnexus/pagy/contributors?page=%s'
-IMG_WIDTH = '60'
+IMG_WIDTH = '40'
 MAX_COUNT = 100
 START_TAG = '<!-- top100 start -->'
 END_TAG   = '<!-- top100 end -->'
