@@ -4,12 +4,6 @@ icon: versions-24
 
 # CHANGELOG
 
-## ⚠ WARNING
-
-We may drop pagy's less used CSS extras.
-
-If you wish to keep them alive, please, [vote here](https://github.com/ddnexus/pagy/discussions/categories/survey).
-
 ## Breaking Changes
 
 If you upgrade from version `< 8.0.0` see the following:
@@ -25,6 +19,8 @@ If you upgrade from version `< 8.0.0` see the following:
 
 ## Deprecations
 
+- The `foundation`, `materialize`, `semantic` and `uikit` CSS extras have been discontinued and will be removed in v9
+  (See the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 - Protected method `Pagy#setup_pages_var`. Use `Pagy#setup_last_var` instead
 
 <hr>
