@@ -1,4 +1,4 @@
-name: Pagy CI
+name: E2E Test
 
 on:
   workflow_dispatch:
@@ -8,9 +8,8 @@ on:
     branches: ['**']
 
 jobs:
-  ######################### Ruby #########################
-  ruby_check:
-    name: Ruby Check
+  skip_check:
+    name: Skip Check
     continue-on-error: true
     runs-on: ubuntu-latest
     outputs:
@@ -21,54 +20,23 @@ jobs:
         with:
           concurrent_skipping: 'never'
           skip_after_successful_duplicate: 'true'
-          paths: '[".github/workflows/pagy-ci.yml", "gem/lib/**", "gem/locales/en.yml", "Gemfile.lock", ".simplecov", ".rubocop", "Rakefile", "test/**", "tasks/**"]'
-          paths_ignore: '["**/*.md"]'
-          do_not_skip: '["workflow_dispatch"]'
-
-  ruby_test:
-    needs: ruby_check
-    if: ${{ needs.ruby_check.outputs.should_skip != 'true' }}
-    name: Ruby ${{ matrix.ruby-version }} Test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ruby-version: ['3.1', '3.2', '3.3']
-      fail-fast: false
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby-version }}
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: Check Rubocop compliance
-        run: bundle exec rubocop --format github
-      - name: Check Tests
-        run: bundle exec rake test
-      - name: Check Coverage  # fails unless 100%
-        run: bundle exec rake check_coverage
-
-
-  ######################### E2E #########################
-  e2e_check:
-    name: E2E Check
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
-    steps:
-      - id: skip_check
-        uses: fkirc/skip-duplicate-actions@v5.3.1
-        with:
-          concurrent_skipping: 'never'
-          skip_after_successful_duplicate: 'true'
-          paths: '[".github/workflows/pagy-ci.yml", "gem/**", "e2e/**", "pnpm.lock.yaml"]'
-          paths_ignore: '["gem/config/**", "gem/locales/**", "!gem/locales/en.yml", "**/*.md"]'
+          paths: '[
+            ".github/workflows/e2e-test.yml",
+            "gem/**",
+            "e2e/**",
+            "pnpm.lock.yaml"
+            ]'
+          paths_ignore: '[
+            "gem/config/**",
+            "gem/locales/**",
+            "!gem/locales/en.yml",
+            "**/*.md"
+            ]'
           do_not_skip: '["workflow_dispatch"]'
 
   e2e_test:
-    needs: e2e_check
-    if: ${{ needs.e2e_check.outputs.should_skip != 'true' }}
+    needs: skip_check
+    if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
     name: E2E [${{ matrix.app }}] Test
     runs-on: ubuntu-latest
     strategy:

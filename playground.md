@@ -18,11 +18,12 @@ Depending on your environment you may need to prepend `bundle exec` in all the e
 
 ### Pagy Apps
 
-We have a few single-file apps ready to run in your browser for various purposes...
+We have a few single-file apps ready to run in your browser for various purposes: they are all tested and used to run 
+the [E2e Test](https://github.com/ddnexus/pagy/blob/master/.github/workflows/e2e-test.yml) workflow.
 
 #### 1. Repro App
 
-Starting point app to try pagy or reproduce issues, in order to get support or file bugs reports.
+ou can use this app as a starting point to try pagy or reproduce issues, in order to get support or file bugs reports.
 
 ||| Clone the `repro` app
 
@@ -56,7 +57,7 @@ checks by passing the `--no-istall` flag
 
 #### 2. Rails App
 
-Starting point app to reproduce **rails related** pagy issues. It has the same usage as the [Repro App](#1-repro-app). i.e.:
+You can use this app as a starting point to reproduce **rails related** pagy issues. It has the same usage as the [Repro App](#1-repro-app). i.e.:
 
 ```sh
 pagy clone rails
@@ -86,7 +87,7 @@ changes.
 
 #### 4. Calendar App
 
-Interactive showcase/repro for the calendar extra:
+This is an interactive showcase/repro for the calendar extra:
 
 !!!success Try it now!
 
@@ -101,7 +102,7 @@ pagy calendar
 
 _Run `pagy clone calendar` to inspect the app file._
 
-If you need to reproduce calendar related issues, you can follow the same usage as the [Repro App](#1-repro-app).
+If you need to reproduce any calendar related issue, you can follow the same usage as the [Repro App](#1-repro-app).
 
 ### Troubleshooting
 
