@@ -32,7 +32,7 @@ require 'pagy/extras/jsonapi' # works without further configuration
 ### Custom usage
 
 ```ruby pagy.rb (initializer)
-# optionally require other jsonapi-useful extras
+# optionally require other extras useful with jsonapi
 require 'pagy/extras/items'
 # jsonapi must be required AFTER other extras
 require 'pagy/extras/jsonapi'

@@ -23,7 +23,7 @@ the [E2e Test](https://github.com/ddnexus/pagy/blob/master/.github/workflows/e2e
 
 #### 1. Repro App
 
-ou can use this app as a starting point to try pagy or reproduce issues, in order to get support or file bugs reports.
+You can use this app as a starting point to try pagy or reproduce issues, in order to get support or file bugs reports.
 
 ||| Clone the `repro` app
 
@@ -48,7 +48,7 @@ Edit it at will.
 
 !!! Tip
 
-Bundler install the required gems during the first run. After that you can skip the rubygem 
+Bundler installs the required gems during the first run. After that you can skip the rubygem 
 checks by passing the `--no-istall` flag
 
 !!!
@@ -66,7 +66,7 @@ pagy ./rails.ru
 
 #### 3. Demo App
 
-Interactive showcase for all the pagy helpers and CSS styles.
+This is the interactive showcase for all the pagy helpers and CSS styles.
 
 !!!success Try it now!
 
@@ -87,7 +87,7 @@ changes.
 
 #### 4. Calendar App
 
-This is an interactive showcase/repro for the calendar extra:
+This is the interactive showcase/repro for the calendar extra:
 
 !!!success Try it now!
 
