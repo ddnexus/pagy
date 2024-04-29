@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.767666573479">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.767674440946">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.767666573479" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.767674440946" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.767666573479" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.767674440946" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.767666573479" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.767666573479" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.767674440946" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.767674440946" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -286,10 +286,11 @@ pagy_extras :array, :metadata, ...
 
 ### then you can use it like inside an app
 pagy, items = pagy_array((1..1000).to_a, page: 3)
-pagy_navs(pagy)
-=&gt; &quot;&lt;nav class=\&quot;pagy-nav pagination\&quot; role=\&quot;navigation\&quot; aria-label=\&quot;pager\&quot;&gt;&lt;span class=\&quot;page prev\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2&amp;items=20\&quot;   rel=\&quot;prev\&quot; aria-label=\&quot;previous\&quot;&gt;&amp;lsaquo;&amp;nbsp;Prev&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=1&amp;items=20\&quot;   &gt;1&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2&amp;items=20\&quot;   rel=\&quot;prev\&quot; &gt;2&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page active\&quot;&gt;3&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4&amp;items=20\&quot;   rel=\&quot;next\&quot; &gt;4&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=5&amp;items=20\&quot;   &gt;5&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=6&amp;items=20\&quot;   &gt;6&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=7&amp;items=20\&quot;   &gt;7&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page gap\&quot;&gt;&amp;hellip;&lt;/span&gt; &lt;span class=\&quot;page\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=50&amp;items=20\&quot;   &gt;50&lt;/a&gt;&lt;/span&gt; &lt;span class=\&quot;page next\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4&amp;items=20\&quot;   rel=\&quot;next\&quot; aria-label=\&quot;next\&quot;&gt;Next&amp;nbsp;&amp;rsaquo;&lt;/a&gt;&lt;/span&gt;&lt;/nav&gt;&quot;
+pagy_nav(pagy)
+=&gt; [#&lt;Pagy:0x00007fdff0234880 @count=1000, @from=41, @in=20, @items=20, @last=50, @next=4, @offset=40, @outset=0, @page=3, @prev=2, @to=60, @vars={:page=&gt;3, :items=&gt;20, :outset=&gt;0, :size=&gt;7, :cycle=&gt;false, :count_args=&gt;[:all], :page_param=&gt;:page, :url=&gt;&quot;http://www.example.com/subdir&quot;, :count=&gt;1000}&gt;, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+=&gt; &quot;&lt;nav class=\&quot;pagy nav\&quot; aria-label=\&quot;Pages\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2\&quot; aria-label=\&quot;Previous\&quot;&gt;&amp;lt;&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=1\&quot;&gt;1&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2\&quot;&gt;2&lt;/a&gt;&lt;a role=\&quot;link\&quot; aria-disabled=\&quot;true\&quot; aria-current=\&quot;page\&quot; class=\&quot;current\&quot;&gt;3&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4\&quot;&gt;4&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=5\&quot;&gt;5&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=6\&quot;&gt;6&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=7\&quot;&gt;7&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4\&quot; aria-label=\&quot;Next\&quot;&gt;&amp;gt;&lt;/a&gt;&lt;/nav&gt;&quot;
 
-pagy_metadata(pagy)
+pagy_metadata(pagy)pagy_metadata(pagy)
 =&gt;
 { :scaffold_url =&gt; &quot;http://www.example.com/subdir?page=__pagy_page__&quot;,
   :first_url    =&gt; &quot;http://www.example.com/subdir?page=1&quot;,
@@ -300,12 +301,41 @@ pagy_metadata(pagy)
   :count        =&gt; 1000,
   :page         =&gt; 3,
   :items        =&gt; 20,
-  :vars         =&gt;
-  { :page   =&gt; 3,
-    :items  =&gt; 20,
-    :outset =&gt; 0,
-    :size   =&gt; [1, 4, 4, 1],
-    ...</code></pre>
+  :vars         =&gt; { :page       =&gt; 3,
+                     :items      =&gt; 20,
+                     :outset     =&gt; 0,
+                     :size       =&gt; 7,
+                     :cycle      =&gt; false,
+                     :count_args =&gt; [:all],
+                     :page_param =&gt; :page,
+                     :url        =&gt; &quot;http://www.example.com/subdir&quot;,
+                     :metadata   =&gt; [:scaffold_url,
+                                     :first_url,
+                                     :prev_url,
+                                     :page_url,
+                                     :next_url,
+                                     :last_url,
+                                     :count,
+                                     :page,
+                                     :items,
+                                     :vars,
+                                     :pages,
+                                     :last,
+                                     :in,
+                                     :from,
+                                     :to,
+                                     :prev,
+                                     :next,
+                                     :series],
+                     :count      =&gt; 1000 },
+  :pages        =&gt; 50,
+  :last         =&gt; 50,
+  :in           =&gt; 20,
+  :from         =&gt; 41,
+  :to           =&gt; 60,
+  :prev         =&gt; 2,
+  :next         =&gt; 4,
+  :series       =&gt; [1, 2, &quot;3&quot;, 4, 5, 6, 7] }</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 <doc-tab v-cloak id="rails-console">
