@@ -14,7 +14,7 @@ copy.
 
 !!!warning
 You don't need any stylesheet if you use a frontend extra like: 
-[bootstrap](/docs/extras/bootstrap), [bulma](/docs/extras/bulma)
+[bootstrap](/docs/extras/bootstrap) and [bulma](/docs/extras/bulma)
 !!!
 
 ### HTML Structure
@@ -25,7 +25,7 @@ number of tags and class attributes that can identify all the parts of the nav b
 - The output of `pagy_nav` and `pagy_nav_js` are a series of `a` tags inside a wrapper `nav` tag
 - The disabled links are so because they are missing the `href` attributes
 - The `pagy nav` and `pagy nav-js` classes are assigned to the `nav` tag
-- The `current`, `gap` classes are assigned to the specific `a` tags
+- The `current` and `gap` classes are assigned to the specific `a` tags
 
 !!! Notice
 

@@ -26,10 +26,11 @@ pagy_extras :array, :metadata, ...
 
 ### then you can use it like inside an app
 pagy, items = pagy_array((1..1000).to_a, page: 3)
-pagy_navs(pagy)
-=> "<nav class=\"pagy-nav pagination\" role=\"navigation\" aria-label=\"pager\"><span class=\"page prev\"><a href=\"http://www.example.com/subdir?page=2&items=20\"   rel=\"prev\" aria-label=\"previous\">&lsaquo;&nbsp;Prev</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=1&items=20\"   >1</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=2&items=20\"   rel=\"prev\" >2</a></span> <span class=\"page active\">3</span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=4&items=20\"   rel=\"next\" >4</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=5&items=20\"   >5</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=6&items=20\"   >6</a></span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=7&items=20\"   >7</a></span> <span class=\"page gap\">&hellip;</span> <span class=\"page\"><a href=\"http://www.example.com/subdir?page=50&items=20\"   >50</a></span> <span class=\"page next\"><a href=\"http://www.example.com/subdir?page=4&items=20\"   rel=\"next\" aria-label=\"next\">Next&nbsp;&rsaquo;</a></span></nav>"
+pagy_nav(pagy)
+=> [#<Pagy:0x00007fdff0234880 @count=1000, @from=41, @in=20, @items=20, @last=50, @next=4, @offset=40, @outset=0, @page=3, @prev=2, @to=60, @vars={:page=>3, :items=>20, :outset=>0, :size=>7, :cycle=>false, :count_args=>[:all], :page_param=>:page, :url=>"http://www.example.com/subdir", :count=>1000}>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+=> "<nav class=\"pagy nav\" aria-label=\"Pages\"><a href=\"http://www.example.com/subdir?page=2\" aria-label=\"Previous\">&lt;</a><a href=\"http://www.example.com/subdir?page=1\">1</a><a href=\"http://www.example.com/subdir?page=2\">2</a><a role=\"link\" aria-disabled=\"true\" aria-current=\"page\" class=\"current\">3</a><a href=\"http://www.example.com/subdir?page=4\">4</a><a href=\"http://www.example.com/subdir?page=5\">5</a><a href=\"http://www.example.com/subdir?page=6\">6</a><a href=\"http://www.example.com/subdir?page=7\">7</a><a href=\"http://www.example.com/subdir?page=4\" aria-label=\"Next\">&gt;</a></nav>"
 
-pagy_metadata(pagy)
+pagy_metadata(pagy)pagy_metadata(pagy)
 =>
 { :scaffold_url => "http://www.example.com/subdir?page=__pagy_page__",
   :first_url    => "http://www.example.com/subdir?page=1",
@@ -40,12 +41,41 @@ pagy_metadata(pagy)
   :count        => 1000,
   :page         => 3,
   :items        => 20,
-  :vars         =>
-  { :page   => 3,
-    :items  => 20,
-    :outset => 0,
-    :size   => [1, 4, 4, 1],
-    ...
+  :vars         => { :page       => 3,
+                     :items      => 20,
+                     :outset     => 0,
+                     :size       => 7,
+                     :cycle      => false,
+                     :count_args => [:all],
+                     :page_param => :page,
+                     :url        => "http://www.example.com/subdir",
+                     :metadata   => [:scaffold_url,
+                                     :first_url,
+                                     :prev_url,
+                                     :page_url,
+                                     :next_url,
+                                     :last_url,
+                                     :count,
+                                     :page,
+                                     :items,
+                                     :vars,
+                                     :pages,
+                                     :last,
+                                     :in,
+                                     :from,
+                                     :to,
+                                     :prev,
+                                     :next,
+                                     :series],
+                     :count      => 1000 },
+  :pages        => 50,
+  :last         => 50,
+  :in           => 20,
+  :from         => 41,
+  :to           => 60,
+  :prev         => 2,
+  :next         => 4,
+  :series       => [1, 2, "3", 4, 5, 6, 7] }
 ```
 
 +++ rails console

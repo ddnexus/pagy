@@ -134,6 +134,6 @@ When the items number is changed with the selector, pagy will reload the paginat
 also request the _right_ page number calculated in order to contain the first item of the previously displayed page. That way the
 new displayed page will roughly show the same items in the collection before the items change.
 
-This method can take an extra `id` argument, which is used to build the `id` attribute of the `nav` tag.
+This method can take an extra `id` argument, which is used as the `id` attribute of the wrapper `span` tag.
 
 ===
