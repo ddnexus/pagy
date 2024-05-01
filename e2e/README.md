@@ -19,10 +19,10 @@ Run `npm -i` or (`pnpm -i` if `pnpm` is installed).
 
 ### Run the test for all the apps
 
-You can run all the e2e tests in parallel with:
+You can run all the cypress tests in parallel with:
 
 ```shell
-<local-pagy-dir>/e2e $ ./test-e2e
+<local-pagy-dir>/e2e $ ./cy-test
 ```
 
 Notice: 
@@ -32,18 +32,18 @@ Notice:
 
 ### Run the test for a single app
 
-You can limit the e2e test to a specific APP:
+You can limit the cypress test to a specific APP:
 
 ```shell
-<local-pagy-dir>/e2e $ ./test-e2e repro
+<local-pagy-dir>/e2e $ ./cy-test repro
 ```
 
 ### Run the test interactively
 
-You can also run the e2e test interactively (only one APP/file at the time) opening cypress UI:
+You can also run the cypress test interactively (only one APP/file at the time) opening cypress UI:
 
 ```shell
-<local-pagy-dir>/e2e $ ./open-e2e demo
+<local-pagy-dir>/e2e $ ./cy-open demo
 ```
 
 Notice: You can only run the spec file for the app that is running (e.g. `demo.cy.ts` in the example above) 

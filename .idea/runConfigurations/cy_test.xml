@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="test-e2e" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="./test-e2e" />
+  <configuration default="false" name="cy-test" type="ShConfigurationType">
+    <option name="SCRIPT_TEXT" value="./cy-test" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
