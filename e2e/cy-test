@@ -22,8 +22,9 @@ then
 	done
 	for p in $(jobs -p)
 	do
-		wait "$p" || { echo ">>> Test job $p failed! (check above for failures)" >&2; exit 1; }
+		wait "$p" || { echo ">>> Test job $p failed! <<<" >&2; fail=1; }
 	done
+	[[ -z $fail ]] || exit 1
 else
 	test
 fi

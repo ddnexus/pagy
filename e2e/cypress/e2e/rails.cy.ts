@@ -2,7 +2,7 @@ import {testNav, testComboNav, testInfo, testItemsSelector} from "../support/tes
 
 const app = "rails";
 
-describe(`[rails] Test helpers`, () => {
+describe(`[${app}] Test helpers`, () => {
     beforeEach(() => {
         cy.visit("/");
     });
