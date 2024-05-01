@@ -1,14 +1,15 @@
 import {testNav, testComboNav, testInfo, testItemsSelector} from "../support/test-helper.ts";
 
+const app = "rails";
 
-describe(`Test helpers [rails]`, () => {
+describe(`[rails] Test helpers`, () => {
     beforeEach(() => {
         cy.visit("/");
     });
 
-    testNav("#nav", {pages: ["3"]});
-    testNav("#nav-js", {pages: ["3"]});
-    testComboNav("#combo-nav-js");
-    testItemsSelector("#items-selector-js");  // no style, no trim
-    testInfo("#pagy-info");
+    testNav(app, "#nav", {pages: ["3"]});
+    testNav(app, "#nav-js", {pages: ["3"]});
+    testComboNav(app, "#combo-nav-js");
+    testItemsSelector(app, "#items-selector-js");  // no style, no trim
+    testInfo(app, "#pagy-info");
 });

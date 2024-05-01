@@ -76,3 +76,4 @@ jobs:
           wait-on: http://0.0.0.0:8080
           wait-on-timeout: 120
           spec: cypress/e2e/${{ matrix.app }}.cy.ts
+          quiet: true

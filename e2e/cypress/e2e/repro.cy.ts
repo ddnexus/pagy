@@ -1,15 +1,15 @@
 import {testNav, testComboNav, testInfo, testItemsSelector} from "../support/test-helper.ts";
 
-
-describe(`Test helpers [repro]`, () => {
+const app = "repro";
+describe(`[${app}] Test helpers`, () => {
     beforeEach(() => {
         cy.visit("/");
     });
 
-    testNav("#nav", {});
-    testNav("#nav-js", {});
-    testNav("#nav-js-responsive", {rjs: true});
-    testComboNav("#combo-nav-js");
-    testInfo("#pagy-info");
-    testItemsSelector("#items-selector-js");  // no style, no trim
+    testNav(app, "#nav", {});
+    testNav(app, "#nav-js", {});
+    testNav(app, "#nav-js-responsive", {rjs: true});
+    testComboNav(app, "#combo-nav-js");
+    testInfo(app, "#pagy-info");
+    testItemsSelector(app, "#items-selector-js");  // no style, no trim
 });

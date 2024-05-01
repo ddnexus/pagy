@@ -1,14 +1,14 @@
 import {snapIds} from "../support/test-helper.ts";
 
-
+const app = "calendar";
 const calIds = ["#year-nav", "#month-nav", "#day-nav", "#pagy-info"];
 
-describe(`Test helpers [calendar]`, () => {
+describe(`[${app}] Test helpers`, () => {
     beforeEach(() => {
         cy.visit("/");
     });
 
-    it("Test #toggle", () => {
+    it(`[${app}] Test #toggle`, () => {
         snapIds(calIds);
         cy.get("#toggle").click();
         snapIds(["#pages-nav"]);
@@ -16,12 +16,12 @@ describe(`Test helpers [calendar]`, () => {
         snapIds(calIds);
     });
 
-    it("Test #go-to-day", () => {
+    it(`[${app}] Test #go-to-day`, () => {
         cy.get("#go-to-day").click();
         snapIds(calIds);
     });
 
-    it("Test calendar navs", () => {
+    it(`[${app}] Test calendar navs`, () => {
         cy.get("#year-nav").contains("2022").click();
         snapIds(calIds);
         cy.get("#month-nav").contains("Apr").click();

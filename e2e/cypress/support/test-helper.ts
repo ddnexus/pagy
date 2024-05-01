@@ -11,8 +11,8 @@ interface TestNavOpts {
     rjs?:boolean
 }
 
-export function testNav(id:string, {path = "/", pages = ["3", "50"], rjs = false}:TestNavOpts) {
-    it(`Test ${id}`, () => {
+export function testNav(app:string, id:string, {path = "/", pages = ["3", "50"], rjs = false}:TestNavOpts) {
+    it(`[${app}] Test ${id}`, () => {
         if (rjs) {
             const widths = [450, 700, 950, 1050];
             for (const width of widths) {
@@ -36,9 +36,9 @@ function checkNav(id:string, pages:string[]) {
     goCheckPrev(id);
 }
 
-export function testComboNav(id:string) {
+export function testComboNav(app:string, id:string) {
     const id_input = `${id} input`;
-    it(`Test ${id}`, () => {
+    it(`[${app}] Test ${id}`, () => {
         snapIds([id]);
         goCheckNext(id);
         const page = "3";
@@ -61,9 +61,9 @@ export function testComboNav(id:string) {
     });
 }
 
-export function testItemsSelector(id:string, path = "/", trim = false) {
-    it(`Test ${id}`, () => {
-        const pages    = [1, 36, 50];
+export function testItemsSelector(app:string, id:string, path = "/", trim = false) {
+    it(`[${app}] Test ${id}`, () => {
+        const pages = [1, 36, 50];
         const id_input = `${id} input`;
         for (const page of pages) {
             cy.visit(`${path}?page=${page}`);
@@ -106,8 +106,8 @@ export function testItemsSelector(id:string, path = "/", trim = false) {
     });
 }
 
-export function testInfo(id:string, path = "/") {
-    it(`Test ${id}`, () => {
+export function testInfo(app:string, id:string, path = "/") {
+    it(`[${app}] Test ${id}`, () => {
         const pages = [1, 36, 50];
         for (const page of pages) {
             cy.visit(`${path}?page=${page}`);
