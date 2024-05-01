@@ -555,6 +555,7 @@ def index # controller action
   @pagy_nebulae, @nebulae = pagy(Nebula.all, page_param: :page_nebulae)
 end
 ```
+===
 
 ## Wrap existing pagination with pagy_calendar
 
@@ -579,8 +580,6 @@ to different existing statements.
 ```
 
 Then follow the [calendar extra documentation](extras/calendar.md) for more details.
-
-===
 
 ## Paginate only max_pages, regardless the count
 
