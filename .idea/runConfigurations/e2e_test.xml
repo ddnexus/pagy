@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="e2e test" type="CompoundRunConfigurationType">
-    <toRun name="calendar" type="js.build_tools.npm" />
-    <toRun name="demo" type="js.build_tools.npm" />
-    <toRun name="rails" type="js.build_tools.npm" />
-    <toRun name="repro" type="js.build_tools.npm" />
-    <method v="2" />
-  </configuration>
-</component>

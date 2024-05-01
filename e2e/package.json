@@ -17,9 +17,6 @@
         "start-server-and-test": "2.0.3"
     },
     "scripts": {
-        "lint-fix": "eslint --fix cypress --ext .ts",
-        "test": "start-test \"bundle exec pagy $APP -p $PORT\" http://0.0.0.0:$PORT \"cypress run --config baseUrl=http://0.0.0.0:$PORT --spec cypress/e2e/$APP.cy.ts\"",
-        "test-all": "for app in repro rails calendar demo; do APP=$app PORT=8080 npm run test; done",
-        "test-open": "start-test \"bundle exec pagy $APP -p $PORT\" http://0.0.0.0:$PORT \"cypress open\""
+        "lint-fix": "eslint --fix cypress --ext .ts"
     }
 }

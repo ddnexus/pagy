@@ -17,22 +17,24 @@ enabled ASAP.
 
 Run `npm -i` or (`pnpm -i` if `pnpm` is installed).
 
-You can sequentially run all the e2e tests with:
+You can run all the e2e tests in parallel with:
 
 ```shell
-<local-pagy-dir>/e2e $ npm run test-all
+<local-pagy-dir>/e2e $ ./test-e2e
 ```
 
-or limit the e2e test to a specific APP:
+Notice the exit status and the last message in order to check if and which test failed, and search the details in the output.
+
+You can limit the e2e test to a specific APP:
 
 ```shell
-<local-pagy-dir>/e2e $ APP=demo PORT=8080 npm run test
+<local-pagy-dir>/e2e $ ./test-e2e repro
 ```
 
 You can also run the e2e test interactively (on one APP/file at the time):
 
 ```shell
-<local-pagy-dir>/e2e $ APP=demo PORT=8080 npm run test-open
+<local-pagy-dir>/e2e $ ./test-e2e-open demo
 ```
 ---
 

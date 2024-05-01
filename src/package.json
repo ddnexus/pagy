@@ -20,7 +20,6 @@
         }
     },
     "scripts": {
-        "build": "./build.sh",
         "lint-fix": "eslint . --fix --ext .ts"
     }
 }

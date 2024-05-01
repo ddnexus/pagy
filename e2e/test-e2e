@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+app=$1
+port=${2:-8080}
+
+cd -- "$(dirname "$0")"
+
+test () {
+  start-test "bundle exec pagy $app -p $port -q" http://0.0.0.0:$port "cypress run --quiet --config baseUrl=http://0.0.0.0:$port --spec cypress/e2e/$app.cy.ts"
+}
+
+if [[ -z $app ]]
+then
+	for app in demo repro rails calendar
+	do
+	    port=$[port+1]
+		test &
+	done
+	for p in $(jobs -p)
+	do
+		wait "$p" || { echo ">>> Test job $p failed! (check above for failures)" >&2; exit 1; }
+	done
+else
+	test
+fi
