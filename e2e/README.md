@@ -31,10 +31,10 @@ You can limit the e2e test to a specific APP:
 <local-pagy-dir>/e2e $ ./test-e2e repro
 ```
 
-You can also run the e2e test interactively (on one APP/file at the time):
+You can also run the e2e test interactively (on one APP/file at the time) opening cypress UI:
 
 ```shell
-<local-pagy-dir>/e2e $ ./test-e2e-open demo
+<local-pagy-dir>/e2e $ ./open-e2e demo
 ```
 ---
 
