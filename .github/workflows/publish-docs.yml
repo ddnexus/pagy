@@ -1,0 +1,46 @@
+name: Publish Docs
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master' # run only for master
+
+jobs:
+  skip_check:
+    name: Skip Check
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5.3.1
+        with:
+          concurrent_skipping: 'never'
+          skip_after_successful_duplicate: 'true'
+          paths: '[
+            ".github/workflows/publish-docs.yml",
+            "docs/**",
+            "gem/**",
+            "CHANGELOG.md",
+            "CHANGELOG_LEGACY.md",
+            "playground.md",
+            "quick-start.md",
+            "README.md",
+            "README.yml",
+            "retype.yml"
+            ]'
+          do_not_skip: '["workflow_dispatch"]'
+
+  publish:
+    needs: skip_check
+    if: ${{ needs.skip_check.outputs.should_skip != 'true' }}
+    name: Publish to docs-site branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: retypeapp/action-build@v3
+      - uses: retypeapp/action-github-pages@v3
+        with:
+          branch: docs-site
+          update-branch: true
