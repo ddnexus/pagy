@@ -30,6 +30,9 @@ jobs:
             "README.yml",
             "retype.yml"
             ]'
+          paths_ignore: '[
+            "docs/README.md"
+            ]'
           do_not_skip: '["workflow_dispatch"]'
 
   publish:
