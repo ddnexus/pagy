@@ -196,7 +196,6 @@ Which means:
 - `in`, `from` and `to` of an empty page are all `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)
 
-===
 
 ## Exceptions
 
