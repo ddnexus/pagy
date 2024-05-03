@@ -38,7 +38,7 @@ class Pagy
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding
     # You may need to override this method for collections without offset|limit
     def pagy_get_items(collection, pagy)
-      collection.offset(pagy.offset).limit(pagy.items)
+      collection.offset(pagy.offset).limit(pagy.page == pagy.last ? pagy.in : pagy.items)
     end
   end
 end
