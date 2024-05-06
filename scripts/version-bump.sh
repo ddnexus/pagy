@@ -50,7 +50,7 @@ esc_new_minor_vers=${esc_new_vers%\\*}
 sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$root/quick-start.md"
 
 cd "$root/src"
-pnpm run build
+./build.sh
 cd "$root"
 
 # Set tmplog to the commit messages that have changes in the "gem" root path
