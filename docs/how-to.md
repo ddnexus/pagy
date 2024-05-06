@@ -768,12 +768,6 @@ need for a count query, still providing an acceptable subset of the full paginat
 
 ===
 
-## Use AJAX
-
-You can trigger ajax render in rails by [customizing the link attributes](#customize-the-link-attributes).
-
-See also [Using AJAX](api/javascript/ajax.md#using-ajax).
-
 ## Maximize Performance
 
 Here are some tips that will help choosing the best way to use Pagy, depending on your requirements and environment.
