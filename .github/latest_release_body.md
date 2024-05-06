@@ -8,15 +8,13 @@
   the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.3.0
+### Changes in 8.4.0
 
 <!-- changes start -->
-- Discontinue foundation materialize, semantic and uikit CSS extras
-- Improve playground:
-  - Add install option (automated in pagy development)
-  - Fix HTML validation for all apps
-  - Remove unused styles from the demo app
-- Hardcode version in pagy.gemspec
+- Retrieve only @in items:
+  - improve the performance of the last page in
+  particular storage conditions (see #696)
+- Improve pagy launcher for pagy devs
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
