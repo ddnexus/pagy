@@ -25,6 +25,13 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.4.0
+
+- Retrieve only @in items:
+  - improve the performance of the last page in
+  particular storage conditions (see #696)
+- Improve pagy launcher for pagy devs
+
 ## Version 8.3.0
 
 - Discontinue foundation materialize, semantic and uikit CSS extras

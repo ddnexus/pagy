@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '8.3.0'
+VERSION = '8.4.0'
 APPS    = %w[repro rails demo calendar].freeze
 
 require_relative '../lib/optimist'
@@ -37,8 +37,9 @@ opts = Optimist.options do
 end
 Optimist.educate if ARGV.empty?
 
-# Never install if run from pagy repo (pagy devs)
-opts[:install] = false if File.exist?(File.expand_path('../pagy.gemspec', __dir__))
+run_from_repo = File.exist?(File.expand_path('../pagy.gemspec', __dir__))
+# Never install if run from pagy repo (for pagy devs)
+opts[:install] = false if run_from_repo
 
 # Handles gems
 require 'bundler/inline'
@@ -77,11 +78,17 @@ else
   end
   Optimist.die("#{file.inspect} app not found") unless File.exist?(file)
   # Run command
-  rackup = "rackup -I #{File.expand_path('../lib', __dir__)} -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{file}"
+  gem_dir = File.expand_path('..', __dir__)
+  rackup  = "rackup -I #{gem_dir}/lib -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{file}"
   rackup << ' -q' if opts[:quiet]
   if opts[:rerun]
     name  = File.basename(file)
-    rerun = "rerun --name #{name} -d #{File.dirname(file)} -p #{name}"
+    dir   = File.dirname(file)
+    rerun = if run_from_repo   # rerun app also when gem dir files change (for pagy devs)
+              "rerun --name #{name} -d #{dir},#{gem_dir} -p **/*.{rb,js,css,scss,ru,yml}"
+            else
+              "rerun --name #{name} -d #{dir} -p #{name}" # rerun only when app.ru changes
+            end
     rerun << ' -q' if opts[:quiet]
     rerun << ' -c' if opts[:clear]
     rerun << " -- #{rackup}"
