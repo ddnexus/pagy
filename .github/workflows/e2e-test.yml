@@ -51,7 +51,7 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
       - name: Install Pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 9  # optional because "packageManager" entry is set in package.json
       - name: Install Node / Setup Pnpm Cache
