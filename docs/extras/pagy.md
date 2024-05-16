@@ -80,7 +80,7 @@ part of the `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
 
-==- `pagy_next_a(pagy, text: pagy_t('pagy.next'), , aria_label: pagy_t('pagy.aria_label.prev))`
+==- `pagy_next_a(pagy, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.prev))`
 
 Return the enabled/disabled next page anchor tag. It is the same next link string which is part of the
 `pagy_nav` helper.
