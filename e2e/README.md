@@ -15,7 +15,7 @@ enabled ASAP.
 
 ## 2. Run E2E Tests On Your System
 
-Run `npm -i` or (`pnpm -i` if `pnpm` is installed).
+Run `npm install` or (`pnpm install` if `pnpm` is installed).
 
 ### Run the test for all the apps
 
@@ -25,7 +25,7 @@ You can run all the cypress tests in parallel with:
 <local-pagy-dir>/e2e $ ./cy-test
 ```
 
-Notice: 
+Notice:
 
 - The output of the parallel processes get mixed in the same log stream, however the test summaries are prefixed with the app name.
 - The script will return a non-zero status if any of the test fail, and will print a brief feedback.
@@ -46,7 +46,7 @@ You can also run the cypress test interactively (only one APP/file at the time) 
 <local-pagy-dir>/e2e $ ./cy-open demo
 ```
 
-Notice: You can only run the spec file for the app that is running (e.g. `demo.cy.ts` in the example above) 
+Notice: You can only run the spec file for the app that is running (e.g. `demo.cy.ts` in the example above)
 
 ---
 
