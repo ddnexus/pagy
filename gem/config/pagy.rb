@@ -90,8 +90,8 @@
 
 # Metadata extra: Provides the pagination metadata to Javascript frameworks like Vue.js, react.js, etc.
 # See https://ddnexus.github.io/pagy/docs/extras/metadata
-# you must require the frontend helpers internal extra (BEFORE the metadata extra) ONLY if you need also the :sequels
-# require 'pagy/extras/frontend_helpers'
+# you must require the JS Tools internal extra (BEFORE the metadata extra) ONLY if you need also the :sequels
+# require 'pagy/extras/js_tools'
 # require 'pagy/extras/metadata'
 # For performance reasons, you should explicitly set ONLY the metadata you use in the frontend
 # Pagy::DEFAULT[:metadata] = %i[scaffold_url page prev next last]   # example

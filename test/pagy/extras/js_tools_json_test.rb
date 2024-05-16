@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'oj'
 require_relative '../../test_helper'
 require 'pagy/extras/calendar'
 require 'pagy/extras/js_tools'
@@ -10,13 +9,12 @@ require_relative '../../mock_helpers/app'
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
 
-describe 'pagy/extras/frontend_helpers_oj' do
+describe 'pagy/extras/js_tools_json' do
   let(:app) { MockApp.new(params: {}) }
 
   describe '#pagy_data' do
-    it 'uses oj' do
-      _(app.pagy_data(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data_1
-      _(app.pagy_data(Pagy.new(count: 10, trim_extra: true), :test_function, 'some-string', 123, true)).must_rematch :data_2
+    it 'uses json' do
+      _(app.pagy_data(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data
     end
   end
 
