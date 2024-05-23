@@ -27,7 +27,7 @@ class Pagy # :nodoc:
           initialize vars.merge!(page: @last)          # re-run with the last page
           @vars[:page] = requested_page                # restore the requested page
         when :empty_page
-          @offset = @items = @in = @from = @to = 0     # vars relative to the actual page
+          @offset = @items = @from = @to = 0           # vars relative to the actual page
           if defined?(Calendar) && is_a?(Calendar)     # only for Calendar instances
             edge = @order == :asc ? @final : @initial  # get the edge of the overflow side (neat, but any time would do)
             @from = @to = edge                         # set both to the edge utc time (a >=&&< query will get no records)
