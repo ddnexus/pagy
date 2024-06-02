@@ -17,7 +17,7 @@ read -rp 'Enter the new version> ' new_vers
 
 # Abort if the version is invalid
 [[ -n $new_vers ]] || ( >&2 echo 'Missing new version!' && exit 1)
-num=$(echo "$new_vers" | grep -o '\.' | wc -l)
+num=$(echo "$new_vers" | grep -o '\.' | wc -l | xargs)
 [[ $num == 2 ]] || (>&2 echo 'Incomplete semantic version!' && exit 1)
 
 # Abort if there is no gem change

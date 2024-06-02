@@ -25,6 +25,12 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.4.1
+
+- Fix pagy.in in pagy_get_items method  introduced in 8.4.0 (see #696) (closes #704) (closes #708) (#707)
+- Fix renamed Frontend Helpers to JS Tools and typo `next_a` "aria-label" (#700)
+- Fix rubocop
+
 ## Version 8.4.0
 
 - Retrieve only @in items:
@@ -106,6 +112,7 @@ If you upgrade from version `< 8.0.0` see the following:
 - The `navs` and `support` extras has been merged into the new [pagy extra](https://ddnexus.github.io/pagy/docs/extras/pagy).
   Search for `"extras/navs"` and
   `"extras/support"` and replace with `"extras/pagy"` (remove the duplicate if you used both)
+- The `"extras/frontend_helpers"` has been renamed to `"extras/js_tools"`
 - The build path for javascript builders has been updated to the canonical paths for gems, and has moved from the `lib` to
   the gem root. Notice that the correct setup in `package json` was still wrongly wrapped in the `gem` dir for 8.0.0-8.0.1, and it
   has finally been fixed in 8.0.2 (sorry for that):

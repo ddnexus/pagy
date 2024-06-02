@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="npm-check" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="cd $PROJECT_DIR$/src &amp;&amp; npm-check -u &amp;&amp; cd $PROJECT_DIR$/e2e &amp;&amp; npm-check -u" />
+    <option name="SCRIPT_TEXT" value="cd $PROJECT_DIR$/src &amp;&amp; pnpm npm-check -u &amp;&amp; cd $PROJECT_DIR$/e2e &amp;&amp; pnpm npm-check -u" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />

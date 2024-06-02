@@ -9,7 +9,7 @@ class Pagy # :nodoc:
     # Override the original pagy_a_proc.
     # Call the pagy_trim method for page 1 if the trim_extra is enabled
     def pagy_anchor(pagy)
-      a_proc = super(pagy)
+      a_proc = super
       return a_proc unless pagy.vars[:trim_extra]
 
       lambda do |page, text = pagy.label_for(page), **opts|

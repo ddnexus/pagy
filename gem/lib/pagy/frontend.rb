@@ -90,7 +90,7 @@ class Pagy
       if (p_next = pagy.next)
         a.(p_next, text, aria_label:)
       else
-        %(<a role="link" aria-disabled="true" aria-label=#{aria_label}>#{text}</a>)
+        %(<a role="link" aria-disabled="true" aria-label="#{aria_label}">#{text}</a>)
       end
     end
   end

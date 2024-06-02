@@ -8,13 +8,12 @@
   the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.4.0
+### Changes in 8.4.1
 
 <!-- changes start -->
-- Retrieve only @in items:
-  - improve the performance of the last page in
-  particular storage conditions (see #696)
-- Improve pagy launcher for pagy devs
+- Fix pagy.in in pagy_get_items method  introduced in 8.4.0 (see #696) (closes #704) (closes #708) (#707)
+- Fix renamed Frontend Helpers to JS Tools and typo `next_a` "aria-label" (#700)
+- Fix rubocop
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

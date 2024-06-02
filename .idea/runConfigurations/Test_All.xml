@@ -9,20 +9,7 @@
     <RAKE_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
     <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
     <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
-      <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="tasks/" INCLUDED="false" />
-      </COVERAGE_PATTERN>
-      <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="Rakefile" INCLUDED="false" />
-      </COVERAGE_PATTERN>
-      <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="apps/" INCLUDED="false" />
-      </COVERAGE_PATTERN>
-      <COVERAGE_PATTERN ENABLED="true">
-        <PATTERN REGEXPS="config/" INCLUDED="false" />
-      </COVERAGE_PATTERN>
-    </EXTENSION>
+    <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov" />
     <EXTENSION ID="net.ashald.envfile">
       <option name="IS_ENABLED" value="true" />
       <option name="IS_SUBST" value="false" />

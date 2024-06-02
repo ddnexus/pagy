@@ -9,8 +9,8 @@ cd -- "$(dirname "$0")"
 
 test () {
 	NODE_NO_WARNINGS=1 \
-	start-test "bundle exec pagy $app -p $port -q > /dev/null" http://0.0.0.0:$port \
-	"cypress run --quiet --config baseUrl=http://0.0.0.0:$port --spec cypress/e2e/$app.cy.ts"
+	pnpm exec start-test "bundle exec pagy $app -p $port -q > /dev/null" http://0.0.0.0:$port \
+	"pnpm exec cypress run --quiet --config baseUrl=http://0.0.0.0:$port --spec cypress/e2e/$app.cy.ts"
 }
 
 if [[ -z $app ]]

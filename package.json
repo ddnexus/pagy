@@ -6,7 +6,6 @@
         "node": ">=20.9.0"
     },
     "devDependencies": {
-        "typescript": "5.4.5",
         "@typescript-eslint/eslint-plugin": "7.7.0",
         "@typescript-eslint/parser": "7.7.0",
         "eslint": "8.57.0",
@@ -14,7 +13,8 @@
         "eslint-plugin-import": "2.29.1",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-promise": "6.1.1",
-        "retypeapp-linux-x64": "3.5.0"
+        "retypeapp-linux-x64": "3.5.0",
+        "typescript": "5.4.5"
     },
     "pnpm": {
         "peerDependencyRules": {
@@ -23,5 +23,5 @@
             }
         }
     },
-    "packageManager": "pnpm@9.0.5+sha256.61bd66913b52012107ec25a6ee4d6a161021ab99e04f6acee3aa50d0e34b4af9"
+    "packageManager": "pnpm@9.1.4+sha512.9df9cf27c91715646c7d675d1c9c8e41f6fce88246f1318c1aa6a1ed1aeb3c4f032fcdf4ba63cc69c4fe6d634279176b5358727d8f2cc1e65b65f43ce2f8bfb0"
 }

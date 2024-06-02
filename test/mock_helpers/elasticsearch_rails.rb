@@ -43,7 +43,7 @@ module MockElasticsearchRails
 
   class ResponseES7 < Response
     def initialize(query, options = {})
-      super(query, options)
+      super
       @raw_response = { 'hits' => { 'hits' => @search.results, 'total' => { 'value' => RESULTS[query].size } } }
     end
   end
