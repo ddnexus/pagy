@@ -81,29 +81,16 @@ In the specific `bootstrap` example you could override the default bootstrap `"p
 
 ==- Slow Last Page
 
-There has been a report of a slow last page that has not been reproduced ([#696](https://github.com/ddnexus/pagy/pull/696)). 
-
-If you experience this rare case, try the following:
-
-
-```rb
-## override pagy_get_items
- 	def pagy_get_items(collection, pagy)      
-      collection.offset(pagy.offset).limit(pagy.in)
-    end
-```
-
-!!!warning Will not work with MS SQL Server
-
-If you are using MS SQL Server and there is a possibility of having a collection with zero items, then the above [will throw an exception](https://github.com/ddnexus/pagy/issues/704). 
-
-In those cases, consider the following:
+There has been a single report of a slow last page using very big DB tables. It's a pure DB problem and it's not caused by 
+pagy or by any other ruby code ([#696](https://github.com/ddnexus/pagy/pull/696), 
+[#704](https://github.com/ddnexus/pagy/pull/704)), but a simple pagy override may avoid it:
 
 ```rb
 ## override pagy_get_items
- 	def pagy_get_items(collection, pagy)      
- 		collection.offset(pagy.offset).limit(pagy.in > 0 ? pagy.in :  pagy.items )
- 	end
+def pagy_get_items(collection, pagy)
+  limit = pagy.last == pagy.page ? pagy.in : pagy.items
+  collection.offset(pagy.offset).limit(limit)
+end
 ```
 !!!
 ===
