@@ -25,18 +25,18 @@ const Pagy = (() => {
     // Init the *_nav_js helpers
     const initNav = (el:NavElement, [tokens, sequels, labelSequels, trimParam]:NavArgs) => {
         const container = el.parentElement ?? el;
-        const widths = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
-        let lastWidth = -1;
-        const fillIn = (a:string, page:string, label:string):string =>
+        const widths    = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
+        let lastWidth   = -1;
+        const fillIn    = (a:string, page:string, label:string):string =>
             a.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
         (el.pagyRender = function () {
             const width = widths.find(w => w < container.clientWidth) || 0;
             if (width === lastWidth) { return } // no change: abort
-            let html = tokens.before;  // already trimmed in html
+            let html     = tokens.before;  // already trimmed in html
             const series = sequels[width.toString()];
             const labels = labelSequels?.[width.toString()] ?? series.map(l => l.toString());
             for (const i in series) {
-                const item = series[i];
+                const item  = series[i];
                 const label = labels[i];
                 let filled;
                 if (typeof item === "number") {
@@ -64,17 +64,17 @@ const Pagy = (() => {
     const initSelector = (el:Element, [from, url_token, trimParam]:SelectorArgs) => {
         initInput(el, inputValue => {
             const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
-            const url = url_token.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
+            const url  = url_token.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
             return [page, url];
         }, trimParam);
     };
 
     // Init the input element
     const initInput = (el:Element, getVars:(v:string) => [string, string], trimParam?:string) => {
-        const input = el.querySelector("input") as HTMLInputElement;
-        const link = el.querySelector("a") as HTMLAnchorElement;
+        const input   = el.querySelector("input") as HTMLInputElement;
+        const link    = el.querySelector("a") as HTMLAnchorElement;
         const initial = input.value;
-        const action = function () {
+        const action  = function () {
             if (input.value === initial) { return }  // not changed
             const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
             if (val < min || val > max) {  // reset invalid/out-of-range
@@ -102,11 +102,11 @@ const Pagy = (() => {
 
         // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
         init(arg?:Element | never) {
-            const target = arg instanceof Element ? arg : document;
+            const target   = arg instanceof Element ? arg : document;
             const elements = target.querySelectorAll("[data-pagy]");
             for (const el of elements) {
                 try {
-                    const uint8array = Uint8Array.from(atob(el.getAttribute("data-pagy") as string), c => c.charCodeAt(0));
+                    const uint8array         = Uint8Array.from(atob(el.getAttribute("data-pagy") as string), c => c.charCodeAt(0));
                     const [keyword, ...args] = JSON.parse((new TextDecoder()).decode(uint8array)); // base64-utf8 -> JSON -> Array
                     if (keyword === "nav") {
                         initNav(el as NavElement, args as NavArgs);
