@@ -20,6 +20,6 @@ tsc --alwaysStrict --target esnext --declaration pagy-module.ts
 
 echo 'generating pagy.js from main.js'
 #parcel build --cache-dir .parcel-cache
-parcel build --no-cache --cache-dir .parcel-cache # avoid test version error when the file did not change
+pnpm exec parcel build --no-cache --cache-dir .parcel-cache # avoid test version error when the file did not change
 
 mv -vt ../gem/javascripts pagy-module.d.ts pagy-module.js pagy-dev.js

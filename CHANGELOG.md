@@ -25,6 +25,12 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.4.1
+
+- Fix pagy.in in pagy_get_items method  introduced in 8.4.0 (see #696) (closes #704) (closes #708) (#707)
+- Fix renamed Frontend Helpers to JS Tools and typo `next_a` "aria-label" (#700)
+- Fix rubocop
+
 ## Version 8.4.0
 
 - Retrieve only @in items:
