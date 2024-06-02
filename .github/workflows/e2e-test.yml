@@ -24,6 +24,7 @@ jobs:
             ".github/workflows/e2e-test.yml",
             "gem/**",
             "e2e/**",
+            "Gemfile.lock",
             "pnpm.lock.yaml"
             ]'
           paths_ignore: '[
@@ -51,9 +52,7 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
       - name: Install Pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9  # optional because "packageManager" entry is set in package.json
+        uses: pnpm/action-setup@v4
       - name: Install Node / Setup Pnpm Cache
         uses: actions/setup-node@v4
         with:
