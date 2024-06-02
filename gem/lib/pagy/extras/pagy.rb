@@ -63,7 +63,7 @@ class Pagy # :nodoc:
     end
 
     # Return the enabled/disabled next page anchor tag
-    def pagy_next_a(pagy, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.prev'))
+    def pagy_next_a(pagy, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.next'))
       a = pagy_anchor(pagy)
       next_a(pagy, a, text:, aria_label:)
     end

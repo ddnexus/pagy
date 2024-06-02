@@ -18,7 +18,7 @@ Here are a few useul information for you:
       with the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/) directly from the repo
     - **Docs**
       - `cd` in the pagy root directory
-      - Run `npm -i` or (`pnpm -i` if pnpm is installed). 
+      - Run `npm install` or (`pnpm install` if pnpm is installed).
       - Run `retype start`
       - Point your browser at `http://localhost:5000/pagy` for real-time feedback
 5. **Testing**
