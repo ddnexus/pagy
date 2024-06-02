@@ -18,7 +18,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#4-calendar-app
 
-VERSION = '8.4.0'
+VERSION = '8.4.1'
 
 require 'bundler/inline'
 require 'bundler'
