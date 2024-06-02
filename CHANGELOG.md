@@ -104,7 +104,7 @@ If you upgrade from version `< 8.0.0` see the following:
 - HTML structure, classes and internal methods have been changed: they may break your views if you used custom stylesheets,
   templates or helper overrides. See the complete changes below if you notice any cosmetic changes or get some exception.
 - The `navs` and `support` extras has been merged into the new [pagy extra](https://ddnexus.github.io/pagy/docs/extras/pagy).
-  Search for `"extra/navs"` and
+  Search for `"extras/navs"` and
   `"extras/support"` and replace with `"extras/pagy"` (remove the duplicate if you used both)
 - The build path for javascript builders has been updated to the canonical paths for gems, and has moved from the `lib` to
   the gem root. Notice that the correct setup in `package json` was still wrongly wrapped in the `gem` dir for 8.0.0-8.0.1, and it
@@ -153,4 +153,4 @@ If you upgrade from version `< 8.0.0` see the following:
 - Docs Improvements
 - Better code issue template
 
-[LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md) 
+[LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)
