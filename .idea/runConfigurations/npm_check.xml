@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="npm-check" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="cd $PROJECT_DIR$/src &amp;&amp; pnpm npm-check -u &amp;&amp; cd $PROJECT_DIR$/e2e &amp;&amp; pnpm npm-check -u" />
+    <option name="SCRIPT_TEXT" value="cd $PROJECT_DIR$/src &amp;&amp; npm-check -u &amp;&amp; cd $PROJECT_DIR$/e2e &amp;&amp; npm-check -u" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
@@ -11,7 +11,9 @@
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="EXECUTE_IN_TERMINAL" value="true" />
     <option name="EXECUTE_SCRIPT_FILE" value="false" />
-    <envs />
+    <envs>
+      <env name="NPM_CHECK_INSTALLER" value="bun" />
+    </envs>
     <method v="2" />
   </configuration>
 </component>

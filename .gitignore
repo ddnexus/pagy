@@ -9,7 +9,5 @@
 /coverage/
 /gem/pkg/
 node_modules/
-pnpm/
 tmp/
 /retype.manifest
-.pnpm-debug.log

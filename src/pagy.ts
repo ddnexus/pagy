@@ -122,3 +122,5 @@ const Pagy = (() => {
         }
     };
 })();
+
+export default Pagy;

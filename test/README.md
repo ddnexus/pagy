@@ -1,6 +1,10 @@
 # Ruby Test Environment
 
-Ruby is tested with `minitest` through `rake` tasks.
+Ruby is tested with [`minitest`](https://github.com/minitest/minitest) through `rake` tasks. It also uses [`rematch`](https://github.com/ddnexus/rematch) as a snapshot system.
+
+## Prerequisite
+
+- Install the gems: `bundle install`
 
 ## Run the Ruby tests
 

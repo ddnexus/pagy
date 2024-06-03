@@ -2,24 +2,15 @@
 
 set -e
 
-cleanup() {
-    echo "cleaning up artifacts..."
-    rm -f pagy-module.d.ts pagy-module.ts pagy-module.js pagy-dev.js pagy.js
-}
-trap cleanup EXIT
+js_path=../gem/javascripts
 
-echo 'generating pagy-dev.js...'
-tsc --alwaysStrict --target esnext --inlineSources --inlineSourceMap pagy.ts
-mv -v pagy.js pagy-dev.js
-sed -i "0,/const Pagy =/{s/const Pagy =/window.Pagy =/}" pagy-dev.js
+echo 'Generating pagy-module.js...'
+bun build ./pagy.ts --target=node --no-bundle --outfile=$js_path/pagy-module.js
 
-echo 'generating pagy-module.d.ts and pagy-module.js...'
-cp -v pagy.ts pagy-module.ts
-echo 'export default Pagy;' >> pagy-module.ts
-tsc --alwaysStrict --target esnext --declaration pagy-module.ts
+echo 'Generating pagy-dev.js. from dev.js..'
+bun build ./main.js --target=browser --sourcemap=inline --outfile=$js_path/pagy-dev.js
+sed -i "1,/var /{s/var /window./}" $js_path/pagy-dev.js
 
-echo 'generating pagy.js from main.js'
-#parcel build --cache-dir .parcel-cache
-pnpm exec parcel build --no-cache --cache-dir .parcel-cache # avoid test version error when the file did not change
-
-mv -vt ../gem/javascripts pagy-module.d.ts pagy-module.js pagy-dev.js
+echo 'Generating pagy.js from min.js'
+bun build ./main.js --target=browser --minify --outfile=$js_path/pagy.js
+sed -i "0,/var ./{s/var ./window.Pagy/}" $js_path/pagy.js
