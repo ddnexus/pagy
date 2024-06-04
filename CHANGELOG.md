@@ -25,6 +25,11 @@ If you upgrade from version `< 8.0.0` see the following:
 
 <hr>
 
+## Version 8.4.2
+
+- Limit the playground --rerun option to linux platforms
+- Simplify and improve the js environment by using bun
+
 ## Version 8.4.1
 
 - Fix pagy.in in pagy_get_items method  introduced in 8.4.0 (see #696) (closes #704) (closes #708) (#707)

@@ -8,12 +8,11 @@
   the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.4.1
+### Changes in 8.4.2
 
 <!-- changes start -->
-- Fix pagy.in in pagy_get_items method  introduced in 8.4.0 (see #696) (closes #704) (closes #708) (#707)
-- Fix renamed Frontend Helpers to JS Tools and typo `next_a` "aria-label" (#700)
-- Fix rubocop
+- Limit the playground --rerun option to linux platforms
+- Simplify and improve the js environment by using bun
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
