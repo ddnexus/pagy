@@ -8,7 +8,7 @@ See also the brief description inside the hook file.
 
 ### Symlink
 
-Symlink the hook into the `.git/hooks` dir:
+If your system support symlinks: symlink the hook into the `.git/hooks` dir:
 
 ```shell
 # from the repo root

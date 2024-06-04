@@ -11,6 +11,7 @@ Here are a few useful information for contributors:
    the [locales  readme instructions here](https://github.com/ddnexus/pagy/blob/master/gem/locales/README.md).
 3. **Pagy repo setup**
     - Clone pagy: `git clone https://github.com/ddnexus/pagy && cd pagy`
+    - [Configure the git-hooks](https://github.com/ddnexus/pagy/tree/master/scripts/hooks)
 4. **Development**
     - Please create your own branch out of `master` and use it for you development and PR
     - Ensure you are basing your PR on the `master` branch and keep rebasing it on `master` when it changes
