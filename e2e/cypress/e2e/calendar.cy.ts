@@ -1,6 +1,6 @@
 import {snapIds} from "../support/test-helper.ts";
 
-const app = "calendar";
+const app    = "calendar";
 const calIds = ["#year-nav", "#month-nav", "#day-nav", "#pagy-info"];
 
 describe(`[${app}] Test helpers`, () => {

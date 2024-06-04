@@ -1,1 +1,0 @@
-import Pagy from "./pagy";

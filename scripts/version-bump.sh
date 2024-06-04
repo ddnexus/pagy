@@ -44,14 +44,15 @@ bump "$root/gem/lib/pagy.rb"
 bump "$root/gem/pagy.gemspec"
 bump "$root/src/pagy.ts"
 
+# Build javascript files
+cd "$root/src"
+./build.sh
+cd "$root"
+
 # Bumps docs example
 esc_old_minor_vers=${esc_old_vers%\\*}
 esc_new_minor_vers=${esc_new_vers%\\*}
 sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$root/quick-start.md"
-
-cd "$root/src"
-./build.sh
-cd "$root"
 
 # Set tmplog to the commit messages that have changes in the "gem" root path
 tmplog=$(mktemp)

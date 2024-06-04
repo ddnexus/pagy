@@ -1,6 +1,6 @@
 import {testNav, testComboNav, testInfo, testItemsSelector} from "../support/test-helper.ts";
 
-const app = "demo";
+const app   = "demo";
 const paths = [
     "/pagy",
     "/bootstrap",

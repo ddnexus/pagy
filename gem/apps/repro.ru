@@ -40,17 +40,21 @@ Pagy::DEFAULT.freeze
 require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
-  PAGY_JS = "pagy#{'-dev' if ENV['DEBUG']}.js".freeze
-
   configure do
     enable :inline_templates
   end
   include Pagy::Backend
-  # Serve pagy.js or pagy-dev.js
-  get("/#{PAGY_JS}") do
-    content_type 'application/javascript'
-    send_file Pagy.root.join('javascripts', PAGY_JS)
+
+  get('/javascripts/:file') do
+    format = params[:file].split('.').last
+    if format == 'js'
+      content_type 'application/javascript'
+    elsif format == 'map'
+      content_type 'application/json'
+    end
+    send_file Pagy.root.join('javascripts', params[:file])
   end
+
   # Edit this action as needed
   get '/' do
     collection = MockCollection.new
@@ -96,7 +100,7 @@ __END__
 <html>
 <head>
    <title>Pagy Repro App</title>
-  <script src="<%= %(/#{PAGY_JS}) %>"></script>
+  <script src="javascripts/pagy.min.js"></script>
   <script>
     window.addEventListener("load", Pagy.init);
   </script>
@@ -104,7 +108,7 @@ __END__
   <style type="text/css">
     @media screen { html, body {
       font-size: 1rem;
-      line-heigth: 1.2s;
+      line-height: 1.2s;
       padding: 0;
       margin: 0;
     } }
