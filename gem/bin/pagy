@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '8.4.1'
+VERSION = '8.4.2'
 APPS    = %w[repro rails demo calendar].freeze
+LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
 
 require_relative '../lib/optimist'
 opts = Optimist.options do
@@ -28,9 +29,11 @@ opts = Optimist.options do
   opt :host,    'Host', default: '0.0.0.0', short: :o
   opt :port,    'Port', default: 8000
   opt :install, 'Install bundle for users', default: true
-  text 'Rerun options'
-  opt :rerun,   'Enable rerun for development', default: true
-  opt :clear,   'Clear screen before each rerun'
+  if LINUX
+    text 'Rerun options'
+    opt :rerun,   'Enable rerun for development', default: true
+    opt :clear,   'Clear screen before each rerun'
+  end
   text 'Other options'
   opt :quiet,   'Quiet mode for development'
   version VERSION
@@ -48,7 +51,7 @@ Bundler.configure
 gemfile(opts[:install]) do
   source 'https://rubygems.org'
   gem 'rackup'
-  gem 'rerun'
+  gem 'rerun' if LINUX
 end
 
 path = ->(app) { File.expand_path("../apps/#{app}.ru", __dir__) }
