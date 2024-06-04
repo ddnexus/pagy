@@ -36,7 +36,8 @@ You should find the `./repro.ru` cloned app file in the current dir. Feel free t
 |||
 ||| Develop it
 
-This command runs your `rackup` app with a `puma` server, with `rerun` that auto-restart it when it changes:
+This command runs your `rackup` app with a `puma` server. It also uses `rerun` to auto-restart it when it changes (only on 
+linux platforms):
 
 ```sh
 pagy path/to/your-repro.ru
@@ -129,27 +130,16 @@ then `gem pristine GEMNAME` should solve the problem.
 
 ==- Rerun
 
-[Rerun](https://github.com/alexch/rerun) is used for restarting your app automatically during development.
+[Rerun](https://github.com/alexch/rerun) is used for restarting your app automatically during development (only on linux 
+platforms).
 
 That's very convenient, but it may still have some rough edges:
 
 !!!warning ** ERROR: directory is already being watched! **
 
-Your app is in a dir with looping simlinks, and the `listen` gem cannot handle it.
+Your app is in a dir with looping symlinks, and the `listen` gem cannot handle it.
 
 !!!success Move your app in a different dir
 !!!
 
-!!!warning On certain filesystems...
-
-It might not work properly or it may require additional dependencies.
-
-!!!success
-Pass the `--no-rerun` option to work with rackup only.
-
-```sh
-pagy ./my-repro.ru --no-rerun
-```
-
-!!!
 ===

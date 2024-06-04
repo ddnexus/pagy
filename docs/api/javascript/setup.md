@@ -65,44 +65,6 @@ Your app needs standard script or old browser compatibility
 script_path = Pagy.root.join('javascripts', 'pagy.js')
 ```
 
-<details>
-<summary> Browser compatibility list: </summary>
-
-- and_chr 103
-- and_ff 101
-- and_qq 10.4
-- and_uc 12.12
-- android 103
-- chrome 103
-- chrome 102
-- chrome 101
-- edge 103
-- edge 102
-- firefox 102
-- firefox 101
-- firefox 91
-- ios_saf 15.5
-- ios_saf 15.4
-- ios_saf 15.2-15.3
-- ios_saf 14.5-14.8
-- ios_saf 14.0-14.4
-- ios_saf 12.2-12.5
-- kaios 2.5
-- op_mini all
-- op_mob 64
-- opera 87
-- opera 86
-- opera 85
-- safari 15.5
-
-!!! info
-You can generate custom targeted `pagy.js` files for the browsers you want to support by changing
-the [browserslist](https://github.com/browserslist/browserslist) query in `src/package.json`, then compile it
-with `cd src && npm run build`.
-!!!
-
-</details>
-
 +++ `pagy-dev.js`
 
 !!! success

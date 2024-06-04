@@ -98,7 +98,7 @@ const Pagy = (() => {
 
     // Public interface
     return {
-        version: "8.4.1",
+        version: "8.4.2",
 
         // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
         init(arg?:Element | never) {
@@ -122,3 +122,5 @@ const Pagy = (() => {
         }
     };
 })();
+
+export default Pagy;

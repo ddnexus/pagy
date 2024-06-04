@@ -15,7 +15,10 @@ enabled ASAP.
 
 ## 2. Run E2E Tests On Your System
 
-Run `npm install` or (`pnpm install` if `pnpm` is installed).
+The test environment uses [bun](https://bun.sh) ([cypress still needs node ATM](https://github.com/cypress-io/cypress/issues/28962) )
+- Install [bun](https://bun.sh/docs/installation)
+- Optional for updating: install `npm-check`: `bun install -g npm-check`.
+- Install modules: `bun install`
 
 ### Run the test for all the apps
 

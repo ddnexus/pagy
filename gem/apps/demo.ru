@@ -18,7 +18,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#3-demo-app
 
-VERSION = '8.4.1'
+VERSION = '8.4.2'
 
 require 'bundler/inline'
 require 'bundler'
