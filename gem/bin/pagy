@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '8.4.2'
+VERSION = '8.4.3'
 APPS    = %w[repro rails demo calendar].freeze
 LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
 

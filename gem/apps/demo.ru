@@ -18,7 +18,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#3-demo-app
 
-VERSION = '8.4.2'
+VERSION = '8.4.3'
 
 require 'bundler/inline'
 require 'bundler'
@@ -69,7 +69,12 @@ class PagyDemo < Sinatra::Base
   end
 
   get('/javascripts/:file') do
-    content_type 'application/javascript'
+    format = params[:file].split('.').last
+    if format == 'js'
+      content_type 'application/javascript'
+    elsif format == 'map'
+      content_type 'application/json'
+    end
     send_file Pagy.root.join('javascripts', params[:file])
   end
 
@@ -233,7 +238,7 @@ __END__
 <html lang="en">
 <head>
   <title>Pagy Demo App</title>
-  <script src="<%= %(/javascripts/#{"pagy#{'-dev' if ENV['DEBUG']}.js"}) %>"></script>
+  <script src="/javascripts/pagy.min.js"></script>
   <script>
     window.addEventListener("load", Pagy.init);
   </script>
@@ -242,7 +247,7 @@ __END__
   <style type="text/css">
     @media screen { html, body {
       font-size: 1rem;
-      line-heigth: 1.2s;
+      line-height: 1.2s;
       padding: 0;
       margin: 0;
     } }
@@ -293,7 +298,7 @@ __END__
       margin-top: .3rem;
       margin-bottom: 1rem;
       font-size: .8rem !important;
-      line-heigth: 1rem !important;
+      line-height: 1rem !important;
       color: white;
       background-color: rgb(30 30 30);
       padding: 1rem;
