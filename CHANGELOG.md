@@ -29,6 +29,10 @@ If you upgrade from version `< 8.0.0` see the following:
   - `pagy-module.d.ts`: use `pagy.d.ts`
 <hr>
 
+## Version 8.4.3
+
+- Deprecate/rename javascript files keeping copies of old files to avoid production breaking changes; updates playground apps
+
 ## Version 8.4.2
 
 - Limit the playground --rerun option to linux platforms

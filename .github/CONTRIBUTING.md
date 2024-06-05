@@ -20,6 +20,7 @@ Here are a few useful information for contributors:
       the [Pagy Playground](https://ddnexus.github.io/pagy/playground) and/or
       with the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/) directly from the repo
     - **Docs**
+      - The docs run on retype, and the repo is configured for its linux package. You may want to install the [platform specific npm package](https://retype.com/guides/getting-started/#platform-specific) in order to use it
       - `cd` in the pagy root directory
       - Install [bun](https://bun.sh/docs/installation)
       - Run `bun install`
