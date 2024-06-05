@@ -1,17 +1,19 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="src-build.sh" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="" />
+  <configuration default="false" name="Update modules" type="ShConfigurationType">
+    <option name="SCRIPT_TEXT" value="cd $PROJECT_DIR$/src &amp;&amp; npm-check -u &amp;&amp; cd $PROJECT_DIR$/e2e &amp;&amp; npm-check -u" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-    <option name="SCRIPT_PATH" value="$PROJECT_DIR$/src/build.sh" />
+    <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
     <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+    <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
     <option name="INTERPRETER_PATH" value="/bin/bash" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="EXECUTE_IN_TERMINAL" value="true" />
-    <option name="EXECUTE_SCRIPT_FILE" value="true" />
-    <envs />
+    <option name="EXECUTE_SCRIPT_FILE" value="false" />
+    <envs>
+      <env name="NPM_CHECK_INSTALLER" value="bun" />
+    </envs>
     <method v="2" />
   </configuration>
 </component>

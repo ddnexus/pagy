@@ -33,14 +33,14 @@ describe 'pagy' do
         _(Pagy.root.join('apps', "#{app}.ru").read).must_match "VERSION = '#{Pagy::VERSION}'"
       end
     end
-    it 'defines the same version in javascripts/pagy.js' do
-      _(Pagy.root.join('javascripts', 'pagy.js').read).must_match "version:\"#{Pagy::VERSION}\","
+    it 'defines the same version in javascripts/pagy.min.js' do
+      _(Pagy.root.join('javascripts', 'pagy.min.js').read).must_match "version:\"#{Pagy::VERSION}\","
     end
-    it 'defines the same version in src/pagy-dev.js' do
-      _(Pagy.root.join('javascripts', 'pagy-dev.js').read).must_match "version: \"#{Pagy::VERSION}\","
+    it 'defines the same version in src/pagy.min.js.map' do
+      _(Pagy.root.join('javascripts', 'pagy.min.js.map').read).must_match "version: \\\"#{Pagy::VERSION}\\\","
     end
-    it 'defines the same version in src/pagy-module.js' do
-      _(Pagy.root.join('javascripts', 'pagy-module.js').read).must_match "version: \"#{Pagy::VERSION}\","
+    it 'defines the same version in src/pagy.mjs' do
+      _(Pagy.root.join('javascripts', 'pagy.mjs').read).must_match "version: \"#{Pagy::VERSION}\","
     end
     it 'defines the same version in CHANGELOG.md' do
       _(Pagy.root.parent.join('CHANGELOG.md').read).must_match "## Version #{Pagy::VERSION}"

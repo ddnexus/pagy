@@ -63,7 +63,7 @@ export function testComboNav(app:string, id:string) {
 
 export function testItemsSelector(app:string, id:string, path = "/", trim = false) {
     it(`[${app}] Test ${id}`, () => {
-        const pages = [1, 36, 50];
+        const pages    = [1, 36, 50];
         const id_input = `${id} input`;
         for (const page of pages) {
             cy.visit(`${path}?page=${page}`);

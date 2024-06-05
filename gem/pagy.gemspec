@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'pagy'
-  s.version     = '8.4.2'
+  s.version     = '8.4.3'
   s.authors     = ['Domizio Demichelis']
   s.email       = ['dd.nexus@gmail.com']
   s.summary     = 'The best pagination ruby gem'
@@ -24,6 +24,8 @@ Gem::Specification.new do |s|
      The foundation, materialize, semantic and uikit CSS extras
           have been discontinued and will be removed in v9
            https://github.com/ddnexus/pagy/discussions/672
+          The javascript files have been deprecated/renamed
+        https://ddnexus.github.io/pagy/changelog/#deprecations
     *************************************************************
   PIM
   s.required_ruby_version = '>= 3.1'

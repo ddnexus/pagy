@@ -22,8 +22,16 @@ If you upgrade from version `< 8.0.0` see the following:
 - The `foundation`, `materialize`, `semantic` and `uikit` CSS extras have been discontinued and will be removed in v9
   (See the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 - Protected method `Pagy#setup_pages_var`. Use `Pagy#setup_last_var` instead
-
+- **Javascript files renamed**
+  - `pagy.js`: use `pagy.min.js`
+  - `pagy-module.js`: use `pagy.mjs`
+  - `pagy-dev.js`: use the `pagy.min.js`with the `pagy.min.js.map`
+  - `pagy-module.d.ts`: use `pagy.d.ts`
 <hr>
+
+## Version 8.4.3
+
+- Deprecate/rename javascript files keeping copies of old files to avoid production breaking changes; updates playground apps
 
 ## Version 8.4.2
 

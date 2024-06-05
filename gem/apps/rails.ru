@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#2-rails-app
 
-VERSION = '8.4.2'
+VERSION = '8.4.3'
 
 # Gemfile
 require 'bundler/inline'
@@ -46,7 +46,7 @@ class PagyRails < Rails::Application # :nodoc:
 
   routes.draw do
     root to: 'comments#index'
-    get '/javascript' => 'pagy#javascript'
+    get '/javascripts/:file', to: 'pagy#javascripts', file: /.*/
   end
 end
 
@@ -116,9 +116,13 @@ end
 
 # You don't need this in real rails apps (see https://ddnexus.github.io/pagy/docs/api/javascript/setup/#2-configure)
 class PagyController < ActionController::Base
-  def javascript
-    file = "pagy#{'-dev' if ENV['DEBUG']}.js"
-    render js: Pagy.root.join('javascripts', file).read
+  def javascripts
+    format = params[:file].split('.').last
+    if format == 'js'
+      render js: Pagy.root.join('javascripts', params[:file]).read
+    elsif format == 'map'
+      render json: Pagy.root.join('javascripts', params[:file]).read
+    end
   end
 end
 
@@ -130,7 +134,7 @@ TEMPLATE = <<~ERB
     <html>
     <head>
     <title>Pagy Rails App</title>
-      <script src="/javascript"></script>
+      <script src="/javascripts/pagy.min.js"></script>
       <script>
         window.addEventListener("load", Pagy.init);
       </script>
@@ -138,7 +142,7 @@ TEMPLATE = <<~ERB
       <style type="text/css">
         @media screen { html, body {
           font-size: 1rem;
-          line-heigth: 1.2s;
+          line-height: 1.2s;
           padding: 0;
           margin: 0;
         } }
