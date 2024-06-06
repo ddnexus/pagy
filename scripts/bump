@@ -2,13 +2,10 @@
 
 set -e
 
+root="$(git rev-parse --show-toplevel)"
+
 # Abort if the working tree is dirty
 [[ -z "$(git status --porcelain)" ]] || (>&2 echo "Working tree dirty!" && exit 1)
-
-# Set the root path
-dir="$(dirname -- "$0")"
-root="$(cd -P -- "$(dirname -- "$dir")" && printf '%s\n' "$(pwd -P)")"
-cd $root
 
 # Prompt for the new version
 old_vers=$(ruby -Igem/lib -rpagy -e 'puts Pagy::VERSION')
@@ -46,7 +43,7 @@ bump "$root/src/pagy.ts"
 
 # Build javascript files
 cd "$root/src"
-./build.sh
+./build
 cd "$root"
 
 # Bumps docs example

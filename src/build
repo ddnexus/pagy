@@ -2,17 +2,20 @@
 
 set -e
 
-js_path=../gem/javascripts
+root="$(git rev-parse --show-toplevel)"
+. "$root/scripts/cd-and-back.sh"
+
+jdir="$root/gem/javascripts"
 
 echo 'Generating javascript files'
-bun build ./pagy.ts --target=node --no-bundle --outfile=$js_path/pagy.mjs
+bun build ./pagy.ts --target=node --no-bundle --outfile=$jdir/pagy.mjs
 
-bun build ./pagy.min.js --target=browser --minify --sourcemap=external --outdir=$js_path
-sed -i "0,/var ./{s/var ./window.Pagy/}" $js_path/pagy.min.js
+bun build ./pagy.min.js --target=browser --minify --sourcemap=external --outdir=$jdir
+sed -i "0,/var ./{s/var ./window.Pagy/}" $jdir/pagy.min.js
 # fix the bun issue https://github.com/oven-sh/bun/issues/3325
-echo "//# sourceMappingURL=pagy.min.js.map" >> $js_path/pagy.min.js
+echo "//# sourceMappingURL=pagy.min.js.map" >> $jdir/pagy.min.js
 
 # Copy the deprecated files that can break a production app
-cd $js_path
+cd $jdir
 cp pagy.min.js pagy.js
 cp pagy.mjs pagy-module.js
