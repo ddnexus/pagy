@@ -16,7 +16,7 @@
 import "cypress-html-validate/dist/commands";
 import * as cypressSnapshots from "@cypress/snapshot";
 // @ts-expect-error: register does not exist
-cypressSnapshots.register();
+cypressSnapshots.register(); // eslint-disable-line  @typescript-eslint/no-unsafe-call
 afterEach(() => cy.htmlvalidate());
 // Silence issue https://github.com/quasarframework/quasar/issues/2233#issuecomment-1006506083
 // Cypress issue (open) https://github.com/cypress-io/cypress/issues/20341

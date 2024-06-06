@@ -1,9 +1,11 @@
 {
-    "include": ["./cypress/**/*.ts"],
+    "include": ["cypress/**/*.ts", "./cypress.config.ts"],
     "compilerOptions": {
+        "baseUrl": "./",
         "strict": true,
         "target": "ESNext",
         "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "lib": ["esnext", "dom", "dom.iterable"],
         "types": ["cypress", "node"],
         "noEmit": true,
@@ -11,7 +13,6 @@
         "checkJs": false,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "moduleResolution": "NodeNext",
         "resolveJsonModule": true,
         "allowImportingTsExtensions": true
     },
