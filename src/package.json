@@ -2,6 +2,7 @@
   "name": "src",
   "description": "TypeScript source for pagy.js",
   "private": true,
+  "type": "module",
   "scripts": {
     "lint-fix": "eslint . --fix --ext .ts"
   }

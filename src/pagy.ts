@@ -1,6 +1,7 @@
-type NavArgs = readonly [Tokens, Sequels, null | LabelSequels, string?]
-type ComboArgs = readonly [string, string?]
+type NavArgs      = readonly [Tokens, Sequels, null | LabelSequels, string?]
+type ComboArgs    = readonly [string, string?]
 type SelectorArgs = readonly [number, string, string?]
+type JsonArgs     = ['nav', NavArgs] | ['combo', ComboArgs] | ['selector', SelectorArgs]
 
 interface Tokens {
   readonly before:string
@@ -9,11 +10,8 @@ interface Tokens {
   readonly gap:string
   readonly after:string
 }
-
 interface Sequels {readonly [width:string]:(string | number)[]}
-
 interface LabelSequels {readonly [width:string]:string[]}
-
 interface NavElement extends Element {pagyRender():void}
 
 const Pagy = (() => {
@@ -34,8 +32,7 @@ const Pagy = (() => {
       let html     = tokens.before;  // already trimmed in html
       const series = sequels[width.toString()];
       const labels = labelSequels?.[width.toString()] ?? series.map(l => l.toString());
-      for (const i in series) {
-        const item  = series[i];
+      series.forEach((item, i) => {
         const label = labels[i];
         let filled;
         if (typeof item === "number") {
@@ -46,8 +43,8 @@ const Pagy = (() => {
           filled = fillIn(tokens.current, item, label);
         }
         html += (typeof trimParam === "string" && item == 1) ? trim(filled, trimParam) : filled;
-      }
-      html += tokens.after;   // eslint-disable-line align-assignments/align-assignments
+      });
+      html        += tokens.after;
       el.innerHTML = "";
       el.insertAdjacentHTML("afterbegin", html);
       lastWidth = width;
@@ -86,9 +83,9 @@ const Pagy = (() => {
       link.href = url;
       link.click();
     };
-    ["change", "focus"].forEach(e => input.addEventListener(e, input.select));        // auto-select
-    input.addEventListener("focusout", action);                                       // trigger action
-    input.addEventListener("keypress", e => { if (e.key === "Enter") { action() } }); // trigger action
+    ["change", "focus"].forEach(e => input.addEventListener(e, () => input.select()));  // auto-select
+    input.addEventListener("focusout", action);                                         // trigger action
+    input.addEventListener("keypress", e => { if (e.key === "Enter") { action() } });   // trigger action
   };
 
   // Trim the ${page-param}=1 params in links
@@ -100,19 +97,19 @@ const Pagy = (() => {
     version: "8.4.3",
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
-    init(arg?:Element | never) {
+    init(arg?:Element) {
       const target   = arg instanceof Element ? arg : document;
       const elements = target.querySelectorAll("[data-pagy]");
       for (const el of elements) {
         try {
           const uint8array         = Uint8Array.from(atob(el.getAttribute("data-pagy") as string), c => c.charCodeAt(0));
-          const [keyword, ...args] = JSON.parse((new TextDecoder()).decode(uint8array)); // base64-utf8 -> JSON -> Array
+          const [keyword, ...args] = JSON.parse((new TextDecoder()).decode(uint8array)) as JsonArgs; // base64-utf8 -> JSON -> Array
           if (keyword === "nav") {
-            initNav(el as NavElement, args as NavArgs);
+            initNav(el as NavElement, args as unknown as NavArgs);
           } else if (keyword === "combo") {
-            initCombo(el, args as ComboArgs);
+            initCombo(el, args as unknown as ComboArgs);
           } else if (keyword === "selector") {
-            initSelector(el, args as SelectorArgs);
+            initSelector(el, args as unknown as SelectorArgs);
           } else {
             console.warn("Skipped Pagy.init() for: %o\nUnknown keyword '%s'", el, keyword);
           }

@@ -5,13 +5,13 @@
   "type": "module",
   "devDependencies": {
     "@cypress/snapshot": "^2.1.7",
-    "@types/node": "20.14.0",
-    "cypress": "13.10.0",
+    "@types/node": "20.14.2",
+    "cypress": "13.11.0",
     "cypress-html-validate": "6.1.0",
     "eslint-plugin-cypress": "3.3.0",
     "eslint-plugin-promise": "6.2.0",
     "html-validate": "8.20.0",
-    "start-server-and-test": "2.0.3"
+    "start-server-and-test": "2.0.4"
   },
   "scripts": {
     "lint-fix": "eslint --fix cypress --ext .ts"

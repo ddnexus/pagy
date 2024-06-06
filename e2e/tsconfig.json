@@ -1,5 +1,5 @@
 {
-    "include": ["./cypress/**/*.ts"],
+    "include": ["cypress/**/*.ts", "cypress.config.ts"],
     "compilerOptions": {
         "strict": true,
         "target": "ESNext",

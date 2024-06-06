@@ -8,7 +8,7 @@ export default defineConfig(
         e2e: {
             // supportFolder: "support",
             baseUrl: "http://0.0.0.0:8080",
-            setupNodeEvents(on, config) {
+            setupNodeEvents(on) {
                 htmlvalidate.install(on, {
                     rules: {
                         // a few frameworks use improper elements to render various roles
