@@ -8,10 +8,10 @@
   the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.4.3
+### Changes in 8.4.4
 
 <!-- changes start -->
-- Deprecate/rename javascript files keeping copies of old files to avoid production breaking changes; updates playground apps
+- Update eslint: new configuration, stricter rules and javascript code
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

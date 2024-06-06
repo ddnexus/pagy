@@ -29,6 +29,10 @@ If you upgrade from version `< 8.0.0` see the following:
   - `pagy-module.d.ts`: use `pagy.d.ts`
 <hr>
 
+## Version 8.4.4
+
+- Update eslint: new configuration, stricter rules and javascript code
+
 ## Version 8.4.3
 
 - Deprecate/rename javascript files keeping copies of old files to avoid production breaking changes; updates playground apps
