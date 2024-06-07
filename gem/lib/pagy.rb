@@ -12,7 +12,7 @@ class Pagy
     @root ||= Pathname.new(__dir__).parent.freeze
   end
 
-  # Core defult: constant for easy access, but mutable for customizable defaults
+  # Core default: constant for easy access, but mutable for customizable defaults
   DEFAULT = { page:       1, # rubocop:disable Style/MutableConstant
               items:      20,
               outset:     0,
