@@ -30,7 +30,7 @@ visibility: hidden
 
 ## Version 7.0.7
 
-- Fix for retype exluding linked files and showing category images
+- Fix for retype excluding linked files and showing category images
 - Fix for first *nav_js page not active with trim (introduced with the #656 fix 7e2f118)
 - Normalize pagy apps; implement pagy_styles.ru
 
@@ -38,7 +38,7 @@ visibility: hidden
 
 - Internal renaming of frontend constants
 - Fix for disabled links and missing or extra ARIA attributes in frontend extras
-- Boostrap fix for current page link; pagy.js fix for trim of current page (closes #656)
+- Bootstrap fix for current page link; pagy.js fix for trim of current page (closes #656)
 
 ## Version 7.0.5
 
@@ -430,7 +430,7 @@ Removed support for the deprecation of `5.0`:
 
 - Reorganized TypeScript/JavaScript with npm workspaces and better script naming
 - Fix typo in gemspec
-- Better typescript configuration with source maps and declrations
+- Better typescript configuration with source maps and declarations
 
 ## Version 5.6.7
 
@@ -602,7 +602,7 @@ Removed support for the deprecation of `5.0`:
 ## Version 5.1.1
 
 - This reverts commit 1d77e672d5b7813108b40c13ca93fdec045f4c03.
-  Generating the URL by using the application params method breakes rails apps because it requires manual changes in the apps.
+  Generating the URL by using the application params method breaks rails apps because it requires manual changes in the apps.
 
 ## Version 5.1.0
 
@@ -1605,7 +1605,7 @@ Dropped `pagy_serialized`, `pagy_apply_init_tag` and `PagyInit` javascript names
 - [6fa1d03](http://github.com/ddnexus/pagy/commit/6fa1d03): comments and docs updates
 - [9f057e6](http://github.com/ddnexus/pagy/commit/9f057e6): small improvement for the headers extra doc
 - [2c53e76](http://github.com/ddnexus/pagy/commit/2c53e76): a few docs changes for the migration guide
-- [2a90e6a](http://github.com/ddnexus/pagy/commit/2a90e6a): stop following the GitFlow conventions (extra comlexity for no advantage for this project; too many merge commits; history difficult to follow)
+- [2a90e6a](http://github.com/ddnexus/pagy/commit/2a90e6a): stop following the GitFlow conventions (extra complexity for no advantage for this project; too many merge commits; history difficult to follow)
 - [198883c](http://github.com/ddnexus/pagy/commit/198883c): Fix legacy changelog url (#144)
 
 
@@ -1679,7 +1679,7 @@ Dropped `pagy_serialized`, `pagy_apply_init_tag` and `PagyInit` javascript names
 
 #### Renamed methods and files (already deprecated)
 
-The following methods have been renamed. You only need to search and replace, because the funtionality has not been changed.
+The following methods have been renamed. You only need to search and replace, because the functionality has not been changed.
 
 #### Bootstrap Extra
 
@@ -1848,7 +1848,7 @@ The pagy initializer has changed: please replace/update it: [pagy.rb](https://gi
 - [6cf86af](http://github.com/ddnexus/pagy/commit/6cf86af): added docs notes
 - [b05db4e](http://github.com/ddnexus/pagy/commit/b05db4e): added optional target element to Pagy.init for AJAX support
 - [e35a9ae](http://github.com/ddnexus/pagy/commit/e35a9ae): refactoring of default element ids for helpers and deprecation:
-  - default ids are now constant also in different processes and compliant also with oder HTML versions
+  - default ids are now constant also in different processes and compliant also with older HTML versions
   - simpler deprecation code
 - [cef823c](http://github.com/ddnexus/pagy/commit/cef823c): pagy.js responsive refactoring (#115):
   - moved handling of window event listeners into the responsive function
@@ -2109,7 +2109,7 @@ The pagy initializer has changed: please replace/update it: [pagy.rb](https://gi
 ### Commits
 
 - [6143f5f](https://github.com/ddnexus/pagy/commit/6143f5f): docs fixes
-- [5227bd1](https://github.com/ddnexus/pagy/commit/5227bd1): added searchkick references in docs, README and inititalizer example (#75)
+- [5227bd1](https://github.com/ddnexus/pagy/commit/5227bd1): added searchkick references in docs, README and initializer example (#75)
 - [b9acf0c](https://github.com/ddnexus/pagy/commit/b9acf0c): Searchkick extra (#75)
 
 ## Version 0.15.1

@@ -80,7 +80,7 @@ or pass it to the helper
 <%== pagy_nav_js(@pagy, steps: {...}) %>
 ```
 
-The above statement means that from `0` to `540` pixels width, Pagy will use the `5` size (orginating a simple nav without gaps),
+The above statement means that from `0` to `540` pixels width, Pagy will use the `5` size (originating a simple nav without gaps),
 from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size`
 variable in the [How to control the page links](/docs/how-to#control-the-page-links) section).
 

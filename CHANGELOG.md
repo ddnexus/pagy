@@ -155,7 +155,7 @@ If you upgrade from version `< 8.0.0` see the following:
     - The `rel="prev"` and  `rel="next"` attributes have been dropped (they are obsolete)
     - The `<label>`/`</label>` and `<b>`/`</b>` wrappers in the dictionary files have been removed
 - The `pagy_link_proc` method (only used internally or in your custom overriding) has been renamed to `pagy_anchor` and it works
-  slighty differently:
+  slightly differently:
   - The `link_extra:` key argument has been removed
     - The `extra` positional argument of the returned lambda has been removed
     - The `classes:` and `aria_label:` keyword arguments have been added to the returned lambda

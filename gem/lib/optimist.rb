@@ -137,7 +137,7 @@ module Optimist
     ## There's one ambiguous case to be aware of: when +:multi+: is true and a
     ## +:default+ is set to an array (of something), it's ambiguous whether this
     ## is a multi-value argument as well as a multi-occurrence argument.
-    ## In thise case, Optimist assumes that it's not a multi-value argument.
+    ## In this case, Optimist assumes that it's not a multi-value argument.
     ## If you want a multi-value, multi-occurrence argument with a default
     ## value, you must specify +:type+ as well.
 
