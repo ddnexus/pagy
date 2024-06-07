@@ -86,7 +86,7 @@ Pagy::DEFAULT[:max_items]   = 50
 For a single instance (overriding the global default):
 
 ```ruby Controller
-pagy(collecton, items_param: :custom_param, max_items: 50)
+pagy(collection, items_param: :custom_param, max_items: 50)
 Pagy.new(count: 100, items_param: :custom_param, max_items: 50)
 ```
 

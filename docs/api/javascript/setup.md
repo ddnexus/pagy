@@ -158,7 +158,7 @@ Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 }
 ```
 
-```js webpack.confg.js
+```js webpack.config.js
 module.exports = {
   ...,                          // your original config
   resolve: {                    // add resolve.modules

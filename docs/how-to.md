@@ -301,7 +301,7 @@ for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md) and [tailwind](ap
 If you need to further customize the styles provided by the extras, you don't necessary need to override the helpers in most of
 them: here are a few alternatives:
 
-- Check wether the specific extra offers customization (e.g. [bulma](extras/bulma.md))
+- Check whether the specific extra offers customization (e.g. [bulma](extras/bulma.md))
 - Define the CSS styles to apply to the pagy CSS classes
 - If sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss
   directive
@@ -402,7 +402,7 @@ q              = Person.ransack(params[:q])
 
 ==- PostgreSQL Collections
 
-[Always order your colections!](troubleshooting.md#records-may-randomly-repeat-in-different-pages-or-be-missing)
+[Always order your collections!](troubleshooting.md#records-may-randomly-repeat-in-different-pages-or-be-missing)
 
 ===
 
@@ -604,7 +604,7 @@ That works at the `Pagy`/`Pagy::Countless` level, so it works with any combinati
 `gearbox` and search extras, however it makes no sense in `Pagy::Calendar` unit objects (which ignore it). 
 
 !!! Notice
-The `items` and `gearbox` extras serve a variabe number of items per page. If your goal is limiting the pagination to a max number of records (instead of pages), you have to keep into account how you configure the `items` range.
+The `items` and `gearbox` extras serve a variable number of items per page. If your goal is limiting the pagination to a max number of records (instead of pages), you have to keep into account how you configure the `items` range.
 !!! 
 
 ## Paginate pre-offset and pre-limited collections

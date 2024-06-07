@@ -1,4 +1,4 @@
-### How documenation works
+### How documentation works
 
 The docs are written in [markdown format](https://en.wikipedia.org/wiki/Markdown) and [retype](https://retype.com/) converts it
 into styled HTML.
