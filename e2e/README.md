@@ -21,8 +21,10 @@ enabled ASAP.
 
 The test environment uses [bun](https://bun.sh) ([but cypress still needs node ATM](https://github.com/cypress-io/cypress/issues/28962) )
 - Install [bun](https://bun.sh/docs/installation)
-- Optional for updating package: install `npm-check`: `bun install -g npm-check`
 - Install modules: `bun install`
+- Optional for updating packages: 
+  - Install: `npm-check`: `bun install -g npm-check`
+  - Interactive usage: `npm-check -u`
 
 #### Run the test for all the apps
 
