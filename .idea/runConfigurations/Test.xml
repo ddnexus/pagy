@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Cypress Open" type="ShConfigurationType" editBeforeRun="true">
-    <option name="SCRIPT_TEXT" value="e2e/cy-open demo" />
+  <configuration default="false" name="Test" type="ShConfigurationType" folderName="Cypress">
+    <option name="SCRIPT_TEXT" value="e2e/cy/test" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />

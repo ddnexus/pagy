@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+root="$(git rev-parse --show-toplevel)"
+. "$root/scripts/cd-and-back.sh"
+
+echo "Reconciling the test snapshots..."
+echo > snapshots.js
+./cy-test

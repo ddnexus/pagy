@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Cyress Test" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="e2e/cy-test" />
+  <configuration default="false" name="Reconcile" type="ShConfigurationType" folderName="Cypress">
+    <option name="SCRIPT_TEXT" value="e2e/cy/reconcile" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />

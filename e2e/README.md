@@ -31,7 +31,7 @@ The test environment uses [bun](https://bun.sh) ([but cypress still needs node A
 You can run all the cypress tests in parallel with:
 
 ```shell
-<local-pagy-dir>/e2e $ ./cy-test
+./e2e/cy/test
 ```
 
 Notice:
@@ -44,7 +44,7 @@ Notice:
 You can limit the cypress test to a specific APP:
 
 ```shell
-<local-pagy-dir>/e2e $ ./cy-test repro
+./e2e/cy/test repro
 ```
 
 #### Run the test interactively
@@ -52,11 +52,19 @@ You can limit the cypress test to a specific APP:
 You can also run the cypress test interactively (only one APP/file at the time) opening cypress UI:
 
 ```shell
-<local-pagy-dir>/e2e $ ./cy-open demo
+./e2e/cy/open demo
 ```
 
 Notice: You can only run the spec file for the app that is running (e.g. `demo.cy.ts` in the example above)
+ 
+## Reconciling test snapshots
 
+The pagy e2e testing is mostly based on snapshots, so if you changed the pagy output you may need just to reconcile it with the 
+snapshot values by running this command (that runs the tests and stores their new value):
+
+```shell
+ ./e2e/cy/reconcile
+```
 ---
 
 See also [Ruby Test Environment](https://github.com/ddnexus/pagy/tree/master/test)

@@ -6,6 +6,6 @@ app=$1
 port=${2:-8080}
 
 root="$(git rev-parse --show-toplevel)"
-. "$root/scripts/root-pwd.sh"
+. "$root/scripts/cd-and-back.sh"
 
 start-test "bundle exec pagy $app -p $port" http://0.0.0.0:$port "cypress open"
