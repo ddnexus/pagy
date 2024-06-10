@@ -52,10 +52,13 @@ should be uniquely aria-identified in the page.
 !!!
 <hr>
 
-!!!danger Don't duplicate attributes with `anchor_string`!
+!!!danger Don't duplicate attributes with the `:anchor_string`!
 
 ```ruby
-@pagy, @records = pagy_bootstrap_nav(collection, anchor_string: 'class="my-class"')
+@pagy, @records = pagy(collection, anchor_string: 'class="my-class"')
+```
+```erb
+<%== pagy_bootstrap_nav(@pagy, **vars) %>
 ```
 
 The `class` attribute with a value of `"pagination"` is already added by the `pagy_bootstrap_nav` so it's a duplicate HTML

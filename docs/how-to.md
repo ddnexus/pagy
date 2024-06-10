@@ -190,13 +190,10 @@ enough to pass some extra attribute string with the `:anchor_string` variable. F
 Pagy::DEFAULT[:anchor_string] = 'data-remote="true"'
 
 # for a single Pagy instance (if you use the Pagy::Backend#pagy method)
-@pagy, @records = pagy(my_scope, anchor_string: 'data-remote="true"')
+@pagy, @records = pagy(collection, anchor_string: 'data-remote="true"')
 
 # or directly to the constructor
 pagy = Pagy.new(count: 1000, anchor_string: 'data-remote="true"')
-
-# or from a view: e.g.:
-< %== pagy_bootstrap_nav(@pagy, anchor_string: 'data-action="hello#world"') % > 
 ```
 
 _See more advanced details about [The anchor_string variable](api/frontend.md#the-anchor_string-variable)_
