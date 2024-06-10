@@ -16,10 +16,11 @@ top100 = "#{START_TAG}\n"
 until count >= MAX_COUNT || (contributors = JSON.parse(Net::HTTP.get(URI(format(URL_FMT, page))))).empty?
   contributors.each do |c|
     break if count >= MAX_COUNT
+    next if c['login'] == 'dependabot[bot]'
 
     contribution = c['contributions'] == 1 ? 'contribution' : 'contributions'
     top100 << %([<img src="#{c['avatar_url']}" width="#{IMG_WIDTH}" title="@#{
-    c['login']}: #{c['contributions']} #{contribution}">](https://github.com/#{c['login']}))
+    c['login']}: #{c['contributions']} #{contribution}">](https://github.com/ddnexus/pagy/commits?author=#{c['login']}))
     count += 1
   end
   page += 1
