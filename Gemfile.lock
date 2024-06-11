@@ -171,7 +171,7 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)
-    rack (3.0.11)
+    rack (3.1.0)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0, < 4)
@@ -224,7 +224,7 @@ GEM
     rematch (2.1.0)
     rerun (0.14.0)
       listen (~> 3.0)
-    rexml (3.2.9)
+    rexml (3.3.0)
       strscan
     rouge (4.2.1)
     rubocop (1.64.1)
