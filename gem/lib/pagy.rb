@@ -17,7 +17,6 @@ class Pagy
               items:      20,
               outset:     0,
               size:       7,
-              cycle:      false,
               count_args: [:all],  # AR friendly
               page_param: :page }
 
