@@ -4,6 +4,7 @@ set -e
 
 root="$(git rev-parse --show-toplevel)"
 . "$root/scripts/cd-and-back.sh"
+cd "$root/e2e"
 
 echo "Reconciling the test snapshots..."
 echo > snapshots.js

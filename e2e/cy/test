@@ -7,6 +7,7 @@ port=${2:-8080}
 
 root="$(git rev-parse --show-toplevel)"
 . "$root/scripts/cd-and-back.sh"
+cd "$root/e2e"
 
 test () {
 	NODE_NO_WARNINGS=1 \
