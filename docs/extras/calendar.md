@@ -268,6 +268,12 @@ If you set `:order` to `:desc`, you will get the page units in descendent order 
 in mind that you still have to desc-order the records in the collection since pagy has no control over that (indeed it's your own
 collection scope).
 
+```ruby controller
+@calendar, @pagy, @records = pagy_calendar(collection.desc_scope,
+                                           year: {order: :desc},
+                                           month: {order: :desc})
+```
+
 ### Beginning of week
 
 If you use the `:week` time unit, consider that the first day of the week could be different for different locales.
