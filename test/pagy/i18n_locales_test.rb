@@ -28,7 +28,7 @@ describe 'pagy/locales' do
 
     it 'includes a comment with the pluralization rule and the i18n.rb reference' do
       _(rules).must_include rule, message
-      _(comment).must_match 'https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb', message
+      _(comment).must_match 'https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb', message
     end
     it 'defines and matches the locale pluralization rule' do
       _(Pagy::I18n::P11n::LOCALE[locale]).must_equal Pagy::I18n::P11n::RULE[rule], message
