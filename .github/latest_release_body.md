@@ -8,10 +8,15 @@
   the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.4.4
+### Changes in 8.4.5
 
 <!-- changes start -->
-- Update eslint: new configuration, stricter rules and javascript code
+- Fix pluralization rule link on locale files (#716)
+- Install gems in pagy CI
+- Indentation changes
+- Remove :cycle false default
+- Fill aria_label.nav ca pluralized entry (#715) (Fixes #581)
+- Fix typos (#710)
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
