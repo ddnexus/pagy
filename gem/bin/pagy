@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '8.4.4'
+VERSION = '8.4.5'
 APPS    = %w[repro rails demo calendar].freeze
 LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
+DIR     = __dir__ || ''
 
 require_relative '../lib/optimist'
 opts = Optimist.options do
@@ -40,9 +41,9 @@ opts = Optimist.options do
 end
 Optimist.educate if ARGV.empty?
 
-run_from_repo = File.exist?(File.expand_path('../pagy.gemspec', __dir__))
+run_from_repo = File.exist?(File.expand_path('../pagy.gemspec', DIR))
 # Never install if run from pagy repo (for pagy devs)
-opts[:install] = false if run_from_repo
+opts[:install] = false if run_from_repo && !ENV['CI']
 
 # Handles gems
 require 'bundler/inline'
@@ -54,7 +55,7 @@ gemfile(opts[:install]) do
   gem 'rerun' if LINUX
 end
 
-path = ->(app) { File.expand_path("../apps/#{app}.ru", __dir__) }
+path = ->(app) { File.expand_path("../apps/#{app}.ru", DIR) }
 arg  = ARGV.shift
 if arg.eql?('clone')
   arg = ARGV.shift
@@ -81,7 +82,7 @@ else
   end
   Optimist.die("#{file.inspect} app not found") unless File.exist?(file)
   # Run command
-  gem_dir = File.expand_path('..', __dir__)
+  gem_dir = File.expand_path('..', DIR)
   rackup  = "rackup -I #{gem_dir}/lib -r pagy -o #{opts[:host]} -p #{opts[:port]} -E #{opts[:env]} #{file}"
   rackup << ' -q' if opts[:quiet]
   if opts[:rerun]

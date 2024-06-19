@@ -40,9 +40,12 @@ class Pagy
     def pagy_info(pagy, id: nil, item_name: nil)
       id      = %( id="#{id}") if id
       p_count = pagy.count
-      key     = if    p_count.zero?   then 'pagy.info.no_items'
-                elsif pagy.pages == 1 then 'pagy.info.single_page'
-                else                       'pagy.info.multiple_pages' # rubocop:disable Lint/ElseLayout
+      key     = if p_count.zero?
+                  'pagy.info.no_items'
+                elsif pagy.pages == 1
+                  'pagy.info.single_page'
+                else
+                  'pagy.info.multiple_pages'
                 end
 
       %(<span#{id} class="pagy info">#{
@@ -51,7 +54,7 @@ class Pagy
         }</span>)
     end
 
-    # Return a performance optimized lambda to generate the HtML anchor element (a tag)
+    # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_anchor(pagy)
       a_string    = pagy.vars[:anchor_string]
