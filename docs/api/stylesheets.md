@@ -72,6 +72,10 @@ stylesheet_path = Pagy.root.join('stylesheets', 'pagy.tailwind.css')
 
 :::code source="/gem/stylesheets/pagy.tailwind.css" :::
 
+!!!warning
+Sometimes there might be differences in how the styles are processed by tailwind in different versions/frameworks, and a slightly different approach might be required to achieve the desired result. (See [#714](https://github.com/ddnexus/pagy/discussions/714) for more details)
+!!!
+
 +++
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
