@@ -24,6 +24,7 @@ group :test do
 end
 
 group :playground do
+  gem 'groupdate'
   gem 'puma'
   gem 'rackup'
   gem 'rails'

@@ -102,6 +102,8 @@ GEM
       rake
     globalid (1.2.1)
       activesupport (>= 6.1)
+    groupdate (6.4.0)
+      activesupport (>= 6.1)
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
@@ -291,6 +293,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  groupdate
   http
   i18n
   minitest
