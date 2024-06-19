@@ -15,8 +15,7 @@ icon: alert-24
 unordered.offset(pagy.offset).limit(pagy.limit)
 ```
 
-!!!warning From
-the [PostgreSQL Documentation](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY)
+!!!warning From the [PostgreSQL Documentation](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY)
 
 When using LIMIT, it is important to use an ORDER BY clause that constrains the result rows into a unique order. Otherwise you
 will get an unpredictable subset of the query's rows.
