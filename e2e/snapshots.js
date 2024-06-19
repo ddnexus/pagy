@@ -313,5 +313,5 @@ module.exports = {
       "6": "<span id=\"pagy-info\"\n  class=\"pagy info\">Displaying items 981-1000 of 1000 in total</span>"
     }
   },
-  "__version": "13.11.0"
+  "__version": "13.12.0"
 }

@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '8.4.4'
+  VERSION = '8.4.5'
 
   # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
   def self.root
@@ -17,7 +17,6 @@ class Pagy
               items:      20,
               outset:     0,
               size:       7,
-              cycle:      false,
               count_args: [:all],  # AR friendly
               page_param: :page }
 
