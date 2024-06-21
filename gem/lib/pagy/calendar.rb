@@ -63,7 +63,7 @@ class Pagy # :nodoc:
           fit_time = fit_final
           ordinal  = 'last'
         end
-        Warning.warn "Pagy::Calendar#page_at: Rescued #{time} out of range by returning the #{ordinal} page."
+        warn "Pagy::Calendar#page_at: Rescued #{time} out of range by returning the #{ordinal} page."
       end
       offset = page_offset_at(fit_time)   # offset starts from 0
       @order == :asc ? offset + 1 : @last - offset
