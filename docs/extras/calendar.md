@@ -35,21 +35,29 @@ require 'pagy/extras/calendar'
 ```
 
 ```ruby controller
-# e.g. application_controller.rb
+# REQUIRED: return the start and end limits of the collection as a 2 items array
 def pagy_calendar_period(collection)
-  return_period_array_using(collection)
+  starting = collection.minimum(:created_at)
+  ending   = collection.maximum(:created_at)
+  [starting.in_time_zone, ending.in_time_zone]
 end
 
-# e.g. application_controller.rb
+# REQUIRED: return the collection filtered by a time period
 def pagy_calendar_filter(collection, from, to)
-  return_filtered_collection_using(collection, from, to)
+  collection.where(created_at: from...to)
 end
 
-# some action:
+# OPTIONAL: return the array counts per time
+def pagy_calendar_counts(collection, unit, from, to)
+  collection.group_by_period(unit, :created_at, range: from...to).count.values
+end
+
+# Example of usage
 def index
-  @calendar, @pagy, @records = pagy_calendar(collection, year: { size: [1, 1, 1, 1], ... },
-                                             month:            { size: [0, 12, 12, 0], ... },
-                                             pagy:             { items: 10, ... })
+  @calendar, @pagy, @records = pagy_calendar(collection, 
+                                             year:  {},
+                                             month: {},
+                                             pagy:  {})
 end
 ```
 
@@ -77,10 +85,11 @@ couple of simple methods in your app and configure the objects that it creates a
 
 The whole usage boils down to these steps:
 
-1. Configure the [pagy_calendar](#pagy-calendar-collection-configuration) method in your action
+1. Configure the [pagy_calendar](#pagy-calendar-collection-configuration) in your action
 2. Define the [pagy_calendar_period](#pagy-calendar-period-collection) method in your controller
 3. Define the [pagy_calendar_filter](#pagy-calendar-filter-collection-from-to) method in your controller
-4. Use it in your UI
+4. Optionally define the [pagy_calendar_counts](#pagy-calendar-counts-collection-unit-from-to) in your controller
+5. Use it in your UI
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#4-calendar-app)
 
@@ -242,8 +251,7 @@ Depending on the type of storage, the `collection` argument can contain a differ
 If you use `ActiveRecord` the `collection` is going to be an `ActiveRecord::Relation` object that you can easily filter. Here is
 an example with the `created_at` field again (but you can use anything, of course):
 
-```ruby controller
-
+```ruby Controller
 def pagy_calendar_filter(collection, from, to)
   collection.where(created_at: from...to) # 3-dots range excluding the end value
 end
@@ -258,6 +266,41 @@ arguments that you passed to the `Model.pagy_search` method. That array is what 
 passing it to the standard `Model.search` method to do the actual search._
 
 So in order to filter the actual search with the `from` and `to` local `TimeWithZone` objects, you should simply return the same array with the filtering added to its relevant item. Pagy will use it to do the actual (filtered) search.
+
+==- `pagy_calendar_counts(collection, unit, from, to)`
+
+!!!primary Optional implementation
+This method can be implemented by the application in order to add some UI feedback to the pagy nav links
+!!!
+
+If this method is defined, pagy will run it for each used calendar unit and will add an extra `empty-page` 
+CSS class to the links to empty pages (that can be targeted to give a visual UI feedback). Pagy will also add a `title` 
+attribute to display a tooltip info for each page link.
+
+The method receives the main `collection` the `unit` symbol, and must return the array of the counts grouped by unit using the 
+`from` and `to` **local Time** objects.
+
+If your collection is an `ActiveRecord::Relation` object you won't have to do much: just add the
+[groupdate gem](https://github.com/ankane/groupdate) to your bundle and use the following one liner (just change the 
+`:created_at` to the time field you need):
+ 
+```ruby
+def pagy_calendar_counts(collection, unit, from, to)
+  collection.group_by_period(unit, :created_at, range: from...to).count.values
+end
+```
+
+For other types of collection you should override the method.
+
+!!!warning Extra queries required
+
+The extra feedback triggered by this method executes one extra count query per unit, (e.g. with a year + month calendar 
+there are 2 extra queries). That is usually OK for most environments, but it might be slow on others, so check 
+it on your actual DB to evaluate the performance.
+
+If you want to use it dynamically, you can skip the extra query and the relative feedback by returning `nil` when you need it.
+!!!
+
 ===
 
 ## Customization

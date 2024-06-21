@@ -21,7 +21,14 @@ class Pagy # :nodoc:
         conf[:pagy] ||= {}
         unless conf.key?(:active) && !conf[:active]
           calendar, from, to = Calendar::Helper.send(:init, conf, pagy_calendar_period(collection), params)
-          collection         = pagy_calendar_filter(collection, from, to)
+          if respond_to?(:pagy_calendar_counts)
+            calendar.each_key do |unit|
+              next unless Calendar::UNITS.include?(unit)
+
+              calendar[unit].vars[:counts] = pagy_calendar_counts(collection, unit, *calendar[unit].vars[:period])
+            end
+          end
+          collection = pagy_calendar_filter(collection, from, to)
         end
         pagy, results = send(conf[:pagy][:backend] || :pagy, collection, conf[:pagy])  # use backend: :pagy when omitted
         [calendar, pagy, results]
@@ -40,6 +47,32 @@ class Pagy # :nodoc:
       end
     end
 
+    # Override the pagy_anchor
+    module FrontendOverride
+      # Consider the vars[:count]
+      def pagy_anchor(pagy)
+        return super unless (counts = pagy.vars[:counts])
+
+        a_string    = pagy.vars[:anchor_string]
+        a_string    = %( #{a_string}) if a_string
+        left, right = %(<a#{a_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
+        # lambda used by all the helpers
+        lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
+          count     = counts[page - 1]
+          item_name = pagy_t('pagy.item_name', count:)
+          if count.zero?
+            classes = "#{classes && (classes + ' ')}empty-page"
+            title   = %( title="#{pagy_t('pagy.info.no_items', item_name:, count:)}")
+          else
+            title   = %( title="#{pagy_t('pagy.info.single_page', item_name:, count:)}")
+          end
+          classes    = %( class="#{classes}") if classes
+          aria_label = %( aria-label="#{aria_label}") if aria_label
+          %(#{left}#{page}#{right}#{title}#{classes}#{aria_label}>#{text}</a>)
+        end
+      end
+    end
+
     # Additions for the Frontend module
     module UrlHelperAddOn
       # Return the url for the calendar page at time
@@ -49,5 +82,5 @@ class Pagy # :nodoc:
     end
   end
   Backend.prepend CalendarExtra::BackendAddOn, CalendarExtra::UrlHelperAddOn
-  Frontend.prepend CalendarExtra::UrlHelperAddOn
+  Frontend.prepend CalendarExtra::UrlHelperAddOn, CalendarExtra::FrontendOverride
 end
