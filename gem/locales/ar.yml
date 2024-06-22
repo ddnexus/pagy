@@ -1,4 +1,4 @@
-# :arabic pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+# :arabic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 ar:
   pagy:
     aria_label:

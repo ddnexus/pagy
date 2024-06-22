@@ -1,12 +1,10 @@
-# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 ca:
   pagy:
     aria_label:
-      # please add a comment in the https://github.com/ddnexus/pagy/issues/581
-      # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
-      nav: "Pages"
-#      one: ""
-#      other: ""
+      nav:
+        one: "Pàgina"
+        other: "Pàgines"
       prev: "Anterior"
       next: "Següent"
     prev: "&lt;"

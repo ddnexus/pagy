@@ -283,8 +283,8 @@ the [dictionary files](https://github.com/ddnexus/pagy/blob/master/gem/locales) 
 Besides you can also pass the `:item_name` by passing an already pluralized string directly to the helper call:
 
 ```erb
-<%== pagy_info(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
-<%== pagy_items_selector_js(@pagy, item_name: 'Product'.pluralize(@pagy.count)) %>
+<%== pagy_info(@pagy, item_name: t(`activerecord.model.product`, count: @pagy.count) %>
+<%== pagy_items_selector_js(@pagy, item_name: t('activerecord.model.product', count: @pagy.vars[:items]) %>
 ```
 
 ## Customize CSS styles

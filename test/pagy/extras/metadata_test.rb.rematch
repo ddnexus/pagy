@@ -55,7 +55,6 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
       - 4
       - 4
       - 1
-      :cycle: false
       :count_args:
       - :all
       :page_param: :page

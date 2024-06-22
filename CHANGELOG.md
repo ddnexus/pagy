@@ -29,6 +29,15 @@ If you upgrade from version `< 8.0.0` see the following:
   - `pagy-module.d.ts`: use `pagy.d.ts`
 <hr>
 
+## Version 8.4.5
+
+- Fix pluralization rule link on locale files (#716)
+- Install gems in pagy CI
+- Indentation changes
+- Remove :cycle false default
+- Fill aria_label.nav ca pluralized entry (#715) (Fixes #581)
+- Fix typos (#710)
+
 ## Version 8.4.4
 
 - Update eslint: new configuration, stricter rules and javascript code

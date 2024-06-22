@@ -1,4 +1,4 @@
-# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/lib/pagy/i18n.rb)
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 km:
   pagy:
     aria_label:
