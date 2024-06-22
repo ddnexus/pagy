@@ -151,7 +151,6 @@ describe 'pagy/extras/items' do
       pagy = Pagy.new count: 1000, page: 3
       _(app.pagy_items_selector_js(pagy)).must_rematch :selector_1
       _(app.pagy_items_selector_js(pagy, id: 'test-id', item_name: 'products')).must_rematch :selector_2
-      Pagy::I18n::DATA['en'][0]['elasticsearch.product.other'] = 'products'
       pagy = Pagy.new count: 1000, page: 3, items_extra: false
       _(app.pagy_items_selector_js(pagy, id: 'test-id')).must_equal ''
     end

@@ -52,32 +52,4 @@ class MockCollection < Array
       [:other_table_id]
     end
   end
-
-  class Calendar < MockCollection
-    YAML_FILE  = File.expand_path('../files/calendar_collection.yml', __dir__)
-    # :nocov:
-    COLLECTION = if Psych::VERSION > '3.3.0'
-                   YAML.safe_load_file(YAML_FILE, permitted_classes: [ActiveSupport::TimeWithZone,
-                                                                      ActiveSupport::TimeZone,
-                                                                      Time],
-                                  aliases: ["1"])
-                 else
-                   YAML.safe_load_file(YAML_FILE, [ActiveSupport::TimeWithZone,
-                                                   ActiveSupport::TimeZone,
-                                                   Time], [], true)
-                 end
-    # :nocov:
-
-    def initialize(arr = COLLECTION)
-      super
-    end
-
-    # Select days from the beginning of start_day to the end of end_day
-    # Accepts strings or DateTime args
-    def select_page_of_records(start_date, end_date)
-      paged = select { |date| date >= start_date && date < end_date }
-      # mock AR scope, returning the same type of object
-      self.class.new(paged)
-    end
-  end
 end

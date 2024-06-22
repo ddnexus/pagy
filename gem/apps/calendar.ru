@@ -728,9 +728,8 @@ TIMES = <<~TIMES
 TIMES
 
 # DB seed
-count = 0
-TIMES.each_line(chomp: true) do |time|
-  Event.create(title: "Event ##{count += 1}", time:)
+TIMES.each_line(chomp: true).with_index do |time, i|
+  Event.create(title: "Event ##{i + 1}", time:)
 end
 
 # Down here to avoid logging the DB seed above at each restart
