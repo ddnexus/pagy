@@ -106,13 +106,14 @@ class EventsController < ActionController::Base
   end
 
   # This method may optionally be implemented by the application.
-  # If present, pagy adds its result (as the vars[:counts] array) to each calendar unit pagy object
-  # The helpers use that info to add an "empty-page" class to the empty page lings
-  # and to provide the tooltip feedback about the count number per page
-  # This method must return an array of counts grouped by unit
+  # It must return an array of counts grouped by unit or nil/false to skip the counts.
+  # If the counts are returned, pagy adds the "empty-page" CSS class to the empty page links
+  # and the tooltip feedback with the count to each page link.
   def pagy_calendar_counts(collection, unit, from, to)
-    # group_by_period is provided by the groupdate gem
-    collection.group_by_period(unit, :time, range: from...to).count.values
+    # The group_by_period method is provided by the groupdate gem
+    # We use the :skip_counts param for testing the output in cypress
+    collection.group_by_period(unit, :time, range: from...to).count.values \
+        unless params[:skip_counts] == 'true'
   end
 
   def index
@@ -157,6 +158,10 @@ TEMPLATE = <<~ERB
         }
         .content {
           padding: 1rem 1.5rem 2rem;
+        }
+        /* added with the pagy counts feature */
+        a.empty-page {
+          color: #888888;
         }
       </style>
     </head>
