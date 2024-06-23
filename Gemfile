@@ -32,7 +32,9 @@ group :playground do
   gem 'rouge'
   gem 'sinatra'
   gem 'sinatra-contrib'
-  gem 'sqlite3', '~> 1.4.0' # actierecord/sqlite3_adapter.rb constraint !!!
+  # activerecord/sqlite3_adapter.rb probably useless) constraint !!!
+  # https://github.com/rails/rails/blame/v7.1.3.4/activerecord/lib/active_record/connection_adapters/sqlite3_adapter.rb#L14
+  gem 'sqlite3', '~> 1.4.0'
 end
 
 # group :performance do

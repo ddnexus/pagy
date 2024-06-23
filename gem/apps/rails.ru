@@ -26,6 +26,8 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   gem 'oj'
   gem 'puma'
   gem 'rails'
+  # activerecord/sqlite3_adapter.rb probably useless) constraint !!!
+  # https://github.com/rails/rails/blame/v7.1.3.4/activerecord/lib/active_record/connection_adapters/sqlite3_adapter.rb#L14
   gem 'sqlite3', '~> 1.4.0'
 end
 
