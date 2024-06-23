@@ -3,8 +3,8 @@
 
 class Pagy # :nodoc:
   class Calendar # :nodoc:
-    # Calendar day subclass
-    class Day < Calendar
+    # Day unit subclass
+    class Day < Unit
       DEFAULT = { size:   31,   # rubocop:disable Style/MutableConstant
                   order:  :asc,
                   format: '%d' }

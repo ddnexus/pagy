@@ -2,7 +2,6 @@
 # frozen_string_literal: true
 
 require_relative '../calendar'
-require_relative '../calendar/helper'
 
 class Pagy # :nodoc:
   # Add pagination filtering by calendar unit (:year, :quarter, :month, :week, :day) to the regular pagination
@@ -20,9 +19,9 @@ class Pagy # :nodoc:
 
         conf[:pagy] ||= {}
         unless conf.key?(:active) && !conf[:active]
-          calendar, from, to = Calendar::Helper.send(:init, conf, pagy_calendar_period(collection), params)
+          calendar, from, to = Calendar.send(:init, conf, pagy_calendar_period(collection), params)
           if respond_to?(:pagy_calendar_counts)
-            calendar.units.each do |unit|
+            calendar.each_key do |unit|
               calendar[unit].vars[:counts] = pagy_calendar_counts(collection, unit, *calendar[unit].vars[:period])
             end
           end

@@ -3,8 +3,8 @@
 
 class Pagy # :nodoc:
   class Calendar # :nodoc:
-    # Calendar week subclass
-    class Week < Calendar
+    # Week unit subclass
+    class Week < Unit
       DEFAULT  = { order:  :asc,      # rubocop:disable Style/MutableConstant
                    format: '%Y-%W' }
 

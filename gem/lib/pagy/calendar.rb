@@ -1,122 +1,79 @@
 # See Pagy::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/calendar
 # frozen_string_literal: true
 
-require 'active_support'
-require 'active_support/core_ext/time'
-require 'active_support/core_ext/date_and_time/calculations'
-require 'active_support/core_ext/numeric/time'
-require 'active_support/core_ext/integer/time'
-
 require_relative '../pagy'
+require_relative 'calendar/unit'
 
 class Pagy # :nodoc:
-  # Base class for time units subclasses (Year, Quarter, Month, Week, Day)
-  class Calendar < Pagy
+  # Calendar class
+  class Calendar < Hash
     # Specific out of range error
     class OutOfRangeError < VariableError; end
 
     # List of units in desc order of duration. It can be used for custom units.
     UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
 
-    attr_reader :order, :from, :to
-
-    # Merge and validate the options, do some simple arithmetic and set a few instance variables
-    def initialize(vars) # rubocop:disable Lint/MissingSuper
-      raise InternalError, 'Pagy::Calendar is a base class; use one of its subclasses' if instance_of?(Pagy::Calendar)
-
-      vars = self.class::DEFAULT.merge(vars)  # subclass specific default
-      normalize_vars(vars)                    # general default
-      setup_vars(page: 1)
-      setup_unit_vars
-      raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
-
-      @prev = (@page - 1 unless @page == 1)
-      @next = @page == @last ? (1 if @vars[:cycle]) : @page + 1
-    end
-
-    # The label for the current page (it can pass along the I18n gem opts when it's used with the i18n extra)
-    def label(opts = {})
-      label_for(@page, opts)
-    end
-
-    # The label for any page (it can pass along the I18n gem opts when it's used with the i18n extra)
-    def label_for(page, opts = {})
-      opts[:format] ||= @vars[:format]
-      localize(starting_time_for(page.to_i), opts)  # page could be a string
-    end
-
-    protected
-
-    # The page that includes time
-    # In case of out of range time, the :fit_time option avoids the outOfRangeError
-    # and returns the closest page to the passed time argument (first or last page)
-    def page_at(time, **opts)
-      fit_time  = time
-      fit_final = @final - 1
-      unless time.between?(@initial, fit_final)
-        raise OutOfRangeError.new(self, :time, "between #{@initial} and #{fit_final}", time) unless opts[:fit_time]
-
-        if time < @final
-          fit_time = @initial
-          ordinal  = 'first'
-        else
-          fit_time = fit_final
-          ordinal  = 'last'
-        end
-        warn "Pagy::Calendar#page_at: Rescued #{time} out of range by returning the #{ordinal} page."
-      end
-      offset = page_offset_at(fit_time)   # offset starts from 0
-      @order == :asc ? offset + 1 : @last - offset
-    end
-
-    # Base class method for the setup of the unit variables (subclasses must implement it and call super)
-    def setup_unit_vars
-      raise VariableError.new(self, :format, 'to be a strftime format', @vars[:format]) unless @vars[:format].is_a?(String)
-      raise VariableError.new(self, :order, 'to be in [:asc, :desc]', @order) \
-            unless %i[asc desc].include?(@order = @vars[:order])
-
-      @starting, @ending = @vars[:period]
-      raise VariableError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @vars[:period]) \
-            unless @starting.is_a?(ActiveSupport::TimeWithZone) \
-                && @ending.is_a?(ActiveSupport::TimeWithZone) && @starting <= @ending
-    end
-
-    # Apply the strftime format to the time (overridden by the i18n extra when localization is required)
-    def localize(time, opts)
-      time.strftime(opts[:format])
-    end
-
-    # Number of time units to offset from the @initial time, in order to get the ordered starting time for the page.
-    # Used in starting_time_for(page) where page starts from 1 (e.g. page to starting_time means subtracting 1)
-    def time_offset_for(page)
-      @order == :asc ? page - 1 : @last - page
-    end
-
-    # Period of the active page (used internally for nested units)
-    def active_period
-      [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
-    end
-
-    # :nocov:
-    # This method must be implemented by the unit subclass
-    def starting_time_for(*)
-      raise NoMethodError, 'the starting_time_for method must be implemented by the unit subclass'
-    end
-
-    # This method must be implemented by the unit subclass
-    def page_offset_at(*)
-      raise NoMethodError, 'the page_offset_at method must be implemented by the unit subclass'
-    end
-    # :nocov:
-
     class << self
-      # Create a subclass instance by unit name (internal use)
+      private
+
+      # Create a unit subclass instance by using the unit name (internal use)
       def create(unit, vars)
         raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
 
         name    = unit.to_s
         name[0] = name[0].capitalize
         Object.const_get("Pagy::Calendar::#{name}").new(vars)
+      end
+
+      # Return calendar, from, to
+      def init(conf, period, params)
+        new.send(:init, conf, period, params)
+      end
+    end
+
+    # Return the current time of the smallest time unit shown
+    def showtime
+      self[@units.last].from
+    end
+
+    private
+
+    # Create the calendar
+    def init(conf, period, params)
+      @conf  = Marshal.load(Marshal.dump(conf))  # store a copy
+      @units = Calendar::UNITS & @conf.keys # get the units in time length desc order
+      raise ArgumentError, 'no calendar unit found in pagy_calendar @configuration' if @units.empty?
+
+      @period     = period
+      @params     = params
+      @page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
+      @units.each do |unit|  # set all the :page_param vars for later deletion
+        unit_page_param         = :"#{unit}_#{@page_param}"
+        conf[unit][:page_param] = unit_page_param
+        conf[unit][:page]       = @params[unit_page_param]
+      end
+      calendar = {}
+      object   = nil
+      @units.each_with_index do |unit, index|
+        params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_param] } + [@page_param]
+        conf[unit][:params] = lambda { |up| up.except(*params_to_delete.map(&:to_s)) } # rubocop:disable Style/Lambda
+        conf[unit][:period] = object&.send(:active_period) || @period
+        calendar[unit]      = object = Calendar.send(:create, unit, conf[unit])
+      end
+      [replace(calendar), object.from, object.to]
+    end
+
+    # Return the calendar object at time
+    def calendar_at(time, **opts)
+      conf        = Marshal.load(Marshal.dump(@conf))
+      page_params = {}
+      @units.inject(nil) do |object, unit|
+        conf[unit][:period] = object&.send(:active_period) || @period
+        conf[unit][:page]   = page_params[:"#{unit}_#{@page_param}"] \
+                            = Calendar.send(:create, unit, conf[unit]).send(:page_at, time, **opts)
+        conf[unit][:params] ||= {}
+        conf[unit][:params].merge!(page_params)
+        Calendar.send(:create, unit, conf[unit])
       end
     end
   end

@@ -3,8 +3,8 @@
 
 class Pagy # :nodoc:
   class Calendar # :nodoc:
-    # Calendar month subclass
-    class Month < Calendar
+    # Month unit subclass
+    class Month < Unit
       DEFAULT = { size: 12,   # rubocop:disable Style/MutableConstant
                   order: :asc,
                   format: '%b' }
