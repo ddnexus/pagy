@@ -226,17 +226,17 @@ describe 'pagy/extras/calendar' do
       _(calendar[:day].next).must_be_nil
       _(entries.map(&:time)).must_rematch :entries
     end
-  end
-  it 'runs multiple units' do
-    calendar, pagy, entries = app(params: { year_page: 2, month_page: 7, page: 2 })
-                              .send(:pagy_calendar,
-                                    Event.all, year: {},
-                                    month: {},
-                                    pagy: { items: 10 })
-    _(calendar[:year].series).must_equal [1, "2", 3]
-    _(calendar[:month].series).must_equal [1, 2, 3, 4, 5, 6, "7", 8, 9, 10, 11, 12]
-    _(pagy.series).must_equal [1, "2", 3]
-    _(entries.map(&:time)).must_rematch :entries
+    it 'runs multiple units' do
+      calendar, pagy, entries = app(params: { year_page: 2, month_page: 7, page: 2 })
+                                .send(:pagy_calendar,
+                                      Event.all, year: {},
+                                      month: {},
+                                      pagy: { items: 10 })
+      _(calendar[:year].series).must_equal [1, "2", 3]
+      _(calendar[:month].series).must_equal [1, 2, 3, 4, 5, 6, "7", 8, 9, 10, 11, 12]
+      _(pagy.series).must_equal [1, "2", 3]
+      _(entries.map(&:time)).must_rematch :entries
+    end
   end
 
   describe 'pagy_calendar_url_at' do
@@ -277,6 +277,35 @@ describe 'pagy/extras/calendar' do
                                         month: {},
                                         pagy: { items: 10 })
       _(calendar.showtime).must_equal Time.zone.local(2022, 7, 1)
+    end
+  end
+  describe "Counts feature" do
+    [MockApp::CalendarCounts, MockApp::CalendarCountsSkip].each do |c|
+      it "works with #{c}" do
+        app_counts = c.new(params: { year_page: 2,
+                                     month_page: 7,
+                                     day_page: 4,
+                                     page: 1 })
+        calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
+                                                    Event.all,
+                                                    year: {},
+                                                    month: {},
+                                                    day: {},
+                                                    pagy: { items: 10 })
+        _(app_counts.pagy_nav(calendar[:year])).must_rematch :year
+        _(app_counts.pagy_nav(calendar[:month])).must_rematch :month
+        _(app_counts.pagy_nav(calendar[:day])).must_rematch :day
+      end
+    end
+    it 'works with anchor_string' do
+      c = MockApp::CalendarCounts
+      app_counts = c.new(params: { year_page: 2,
+                                   page: 1 })
+      calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
+                                                  Event.all,
+                                                  year: {anchor_string: 'data-foo="bar"'},
+                                                  pagy: { items: 10 })
+      _(app_counts.pagy_nav(calendar[:year])).must_rematch :year
     end
   end
 end

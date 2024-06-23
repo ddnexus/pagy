@@ -22,9 +22,7 @@ class Pagy # :nodoc:
         unless conf.key?(:active) && !conf[:active]
           calendar, from, to = Calendar::Helper.send(:init, conf, pagy_calendar_period(collection), params)
           if respond_to?(:pagy_calendar_counts)
-            calendar.each_key do |unit|
-              next unless Calendar::UNITS.include?(unit)
-
+            calendar.units.each do |unit|
               calendar[unit].vars[:counts] = pagy_calendar_counts(collection, unit, *calendar[unit].vars[:period])
             end
           end

@@ -13,6 +13,8 @@ class Pagy # :nodoc:
         end
       end
 
+      attr_reader :units
+
       private
 
       # Create the calendar

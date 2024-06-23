@@ -14,6 +14,7 @@ db_path ="#{__dir__}/db/calendar.sqlite3"
 # Activerecord initializer
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: db_path)
 
+# :nocov:
 unless File.exist?(db_path)
 
   ActiveRecord::Schema.define do
@@ -543,6 +544,6 @@ unless File.exist?(db_path)
   end
 
 end
-
+# :nocov:
 # Down here to avoid logging the DB seed above at each restart
 # ActiveRecord::Base.logger = Logger.new($stdout)

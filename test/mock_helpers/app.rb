@@ -45,4 +45,10 @@ class MockApp
       collection.group_by_period(unit, :time, range: from...to).count.values
     end
   end
+
+  class CalendarCountsSkip < Calendar
+    def pagy_calendar_counts(_collection, _unit, _from, _to)
+      nil
+    end
+  end
 end
