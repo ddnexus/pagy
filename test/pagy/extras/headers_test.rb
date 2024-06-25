@@ -6,6 +6,7 @@ require 'pagy/extras/calendar'
 require 'pagy/extras/countless'
 
 require_relative '../../mock_helpers/collection'
+require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/headers' do
@@ -42,31 +43,28 @@ describe 'pagy/extras/headers' do
 
   describe '#pagy_headers with Calendar' do
     let(:app) { MockApp::Calendar.new(params: { a: 'one', b: 'two' }) }
-    before do
-      @collection = MockCollection::Calendar.new
-    end
     it 'returns the full headers hash' do
-      pagy, _records = app.send(:pagy, @collection)
+      pagy, _records = app.send(:pagy, Event.all)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy, @collection, headers: { items: 'Per-Page', count: 'Total', pages: false })
+      pagy, _records = app.send(:pagy, Event.all, headers: { items: 'Per-Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy, @collection, headers: { items: false, count: false })
+      pagy, _records = app.send(:pagy, Event.all, headers: { items: false, count: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns the countless headers hash' do
-      pagy, _records = app.send(:pagy_countless, @collection)
+      pagy, _records = app.send(:pagy_countless, Event.all)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'omit prev on first page' do
-      pagy, _records = app.send(:pagy, @collection, page: 1)
+      pagy, _records = app.send(:pagy, Event.all, page: 1)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'omit next on last page' do
-      pagy, _records = app.send(:pagy, @collection, page: 26)
+      pagy, _records = app.send(:pagy, Event.all, page: 26)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
   end
@@ -84,11 +82,8 @@ describe 'pagy/extras/headers' do
   end
   describe '#pagy_headers_merge with Calendar' do
     let(:app) { MockApp::Calendar.new }
-    before do
-      @collection = MockCollection::Calendar.new
-    end
     it 'returns the full headers hash' do
-      pagy, _records = app.send(:pagy, @collection)
+      pagy, _records = app.send(:pagy, Event.all)
       app.send(:pagy_headers_merge, pagy)
       _(app.send(:response).headers.to_hash).must_rematch :response
     end

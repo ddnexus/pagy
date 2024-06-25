@@ -20,7 +20,7 @@ class Pagy
       a  = pagy_anchor(pagy)
 
       html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}>#{
-                prev_a(pagy, a)})
+                 prev_a(pagy, a)})
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer

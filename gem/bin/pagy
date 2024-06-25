@@ -43,8 +43,6 @@ end
 Optimist.educate if ARGV.empty?
 
 run_from_repo = File.exist?(File.expand_path('../pagy.gemspec', __dir__))
-# Never install if it runs from the pagy repo (for pagy devs)
-opts[:install] = false if run_from_repo && !ENV['CI']
 
 # Handles gems
 require 'bundler/inline'

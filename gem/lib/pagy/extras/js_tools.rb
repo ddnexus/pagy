@@ -42,7 +42,7 @@ class Pagy # :nodoc:
         end
       end
     end
-    Calendar.prepend CalendarOverride if defined?(Calendar)
+    Calendar::Unit.prepend CalendarOverride if defined?(Calendar::Unit)
 
     # Additions for the Frontend
     module FrontendAddOn

@@ -7,6 +7,7 @@ require 'pagy/extras/countless'
 require 'pagy/extras/metadata'
 
 require_relative '../../mock_helpers/collection'
+require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/metadata' do
@@ -37,17 +38,14 @@ describe 'pagy/extras/metadata' do
     def calendar_app(**opts)
       MockApp::Calendar.new(**opts)
     end
-    before do
-      @collection = MockCollection::Calendar.new
-    end
     it 'checks for unknown metadata for Pagy::Calendar' do
-      calendar, _pagy, _records = calendar_app.send(:pagy_calendar, @collection,
+      calendar, _pagy, _records = calendar_app.send(:pagy_calendar, Event.all,
                                                     year: { metadata: %i[page unknown_key] })
       _ { calendar_app.send(:pagy_metadata, calendar[:year]) }.must_raise Pagy::VariableError
     end
     it 'returns only specific metadata for Pagy::Calendar' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
-                                  .send(:pagy_calendar, @collection,
+                                  .send(:pagy_calendar, Event.all,
                                         month: { metadata: %i[scaffold_url page from to prev next pages] })
       _(calendar_app.send(:pagy_metadata, calendar[:month])).must_rematch :metadata
     end
