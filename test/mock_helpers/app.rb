@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require 'rack'
 require 'active_support/core_ext/hash/indifferent_access'
+require 'groupdate'
+require 'rack'
 
 # Backend and Frontend poor man mock app
 class MockApp
@@ -28,11 +29,26 @@ class MockApp
 
   class Calendar < MockApp
     def pagy_calendar_period(collection)
-      collection.minmax.map(&:in_time_zone)
+      starting = collection.minimum(:time)
+      ending   = collection.maximum(:time)
+      [starting.in_time_zone, ending.in_time_zone]
     end
 
     def pagy_calendar_filter(collection, from, to)
-      collection.select_page_of_records(from, to)
+      collection.where(time: from...to)
+    end
+  end
+
+  class CalendarCounts < Calendar
+    def pagy_calendar_counts(collection, unit, from, to)
+      # group_by_period is provided by the groupdate gem
+      collection.group_by_period(unit, :time, range: from...to).count.values
+    end
+  end
+
+  class CalendarCountsSkip < Calendar
+    def pagy_calendar_counts(_collection, _unit, _from, _to)
+      nil
     end
   end
 end

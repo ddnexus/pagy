@@ -6,15 +6,18 @@
 - The `foundation`, `materialize`, `semantic` and `uikit` CSS extras have been discontinued and will be removed in v9 (See the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.4.5
+### Changes in 8.5.0
 
 <!-- changes start -->
-- Fix pluralization rule link on locale files (#716)
-- Install gems in pagy CI
-- Indentation changes
-- Remove :cycle false default
-- Fill aria_label.nav ca pluralized entry (#715) (Fixes #581)
-- Fix typos (#710)
+- Improve pagy playground launcher
+- Refactor calendar class structure
+- Remove automatic skipping of bundle install in playground apps
+- Update ruby calendar test
+- Update cypress calendar test
+- Refactor calendar test environment to use activerecord
+- Add code for calendar counts
+- Remove redundant Warning
+- Convert calendar.ru to calendar_rails.ru
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

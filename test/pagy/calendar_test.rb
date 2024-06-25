@@ -266,7 +266,7 @@ describe 'pagy/calendar' do
       end
     end
     it 'raises direct instantiation' do
-      _ { Pagy::Calendar.new({}) }.must_raise Pagy::InternalError
+      _ { Pagy::Calendar::Unit.new({}) }.must_raise Pagy::InternalError
     end
   end
 

@@ -3,8 +3,8 @@
 
 class Pagy # :nodoc:
   class Calendar # :nodoc:
-    # Calendar quarter subclass
-    class Quarter < Calendar
+    # Quarter unit subclass
+    class Quarter < Unit
       DEFAULT = { size:   4,      # rubocop:disable Style/MutableConstant
                   order:  :asc,
                   format: 'Q%q' } # '%q' token

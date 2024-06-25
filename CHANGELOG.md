@@ -29,6 +29,18 @@ If you upgrade from version `< 8.0.0` see the following:
   - `pagy-module.d.ts`: use `pagy.d.ts`
 <hr>
 
+## Version 8.5.0
+
+- Improve pagy playground launcher
+- Refactor calendar class structure
+- Remove automatic skipping of bundle install in playground apps
+- Update ruby calendar test
+- Update cypress calendar test
+- Refactor calendar test environment to use activerecord
+- Add code for calendar counts
+- Remove redundant Warning
+- Convert calendar.ru to calendar_rails.ru
+
 ## Version 8.4.5
 
 - Fix pluralization rule link on locale files (#716)
