@@ -277,7 +277,7 @@ If this method is defined, pagy will run it for each used calendar unit and will
 CSS class to the links to empty pages (that can be targeted to give a visual UI feedback). Pagy will also add a `title` 
 attribute to display a tooltip info for each page link.
 
-The method receives the main `collection` the `unit` symbol, and must return the array of the counts grouped by unit using the 
+The method receives the main `collection`, the `unit` symbol, and must return the array of the counts grouped by unit using the 
 `from` and `to` **local Time** objects.
 
 If your collection is an `ActiveRecord::Relation` object you won't have to do much: just add the
@@ -296,7 +296,7 @@ For other types of collection you should override the method.
 
 The extra feedback triggered by this method executes one extra count query per unit, (e.g. with a year + month calendar 
 there are 2 extra queries). That is usually OK for most environments, but it might be slow on others, so check 
-it on your actual DB to evaluate the performance.
+it on your actual DB in order to evaluate the performance.
 
 If you want to use it dynamically, you can skip the extra query and the relative feedback by returning `nil` when you need it.
 !!!

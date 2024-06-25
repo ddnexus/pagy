@@ -17,6 +17,7 @@
     "eslint": "9.5.0",
     "eslint-plugin-align-assignments": "^1.1.2",
     "retypeapp-linux-x64": "3.5.0",
+    "retypeapp-darwin-x64": "3.5.0",
     "typescript": "5.5.2",
     "typescript-eslint": "7.13.1"
   },
