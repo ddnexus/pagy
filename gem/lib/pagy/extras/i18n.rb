@@ -19,7 +19,7 @@ class Pagy # :nodoc:
       end
     end
   end
-  Calendar.prepend I18nExtra::CalendarOverride if defined?(Calendar)
+  Calendar::Unit.prepend I18nExtra::CalendarOverride if defined?(Calendar::Unit)
 
   # Add the pagy locales to the I18n.load_path
   ::I18n.load_path += Dir[Pagy.root.join('locales', '*.yml')]
