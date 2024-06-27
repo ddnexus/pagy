@@ -11,13 +11,21 @@
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as DEFAULTs:
 # Pagy::DEFAULT[:items]       = 20                    # default
-# Pagy::DEFAULT[:size]        = [1,4,4,1]             # default in pagy < 7.0
+# Pagy::DEFAULT[:size]        = 7                     # default
+# Pagy::DEFAULT[:ends]        = true                  # default
 # Pagy::DEFAULT[:page_param]  = :page                 # default
 # Pagy::DEFAULT[:count_args]  = []                    # example for non AR ORMs
 
 
 # Extras
 # See https://ddnexus.github.io/pagy/categories/extra
+
+
+# Legacy Compatibility Extras
+
+# Size extra: Enable the Array type for the `:size` variable (e.g. `size: [1,4,4,1]`)
+# See https://ddnexus.github.io/pagy/docs/extras/size
+# require 'pagy/extras/size'   # must be required before the other extras
 
 
 # Backend Extras
@@ -33,21 +41,12 @@
 # Calendar extra: Add pagination filtering by calendar time unit (year, quarter, month, week, day)
 # See https://ddnexus.github.io/pagy/docs/extras/calendar
 # require 'pagy/extras/calendar'
-# Default for each unit
-# Pagy::Calendar::Year::DEFAULT[:order]     = :asc        # Time direction of pagination
-# Pagy::Calendar::Year::DEFAULT[:format]    = '%Y'        # strftime format
-#
-# Pagy::Calendar::Quarter::DEFAULT[:order]  = :asc        # Time direction of pagination
-# Pagy::Calendar::Quarter::DEFAULT[:format] = '%Y-Q%q'    # strftime format
-#
-# Pagy::Calendar::Month::DEFAULT[:order]    = :asc        # Time direction of pagination
-# Pagy::Calendar::Month::DEFAULT[:format]   = '%Y-%m'     # strftime format
-#
-# Pagy::Calendar::Week::DEFAULT[:order]     = :asc        # Time direction of pagination
-# Pagy::Calendar::Week::DEFAULT[:format]    = '%Y-%W'     # strftime format
-#
-# Pagy::Calendar::Day::DEFAULT[:order]      = :asc        # Time direction of pagination
-# Pagy::Calendar::Day::DEFAULT[:format]     = '%Y-%m-%d'  # strftime format
+# Default for each calendar unit class in IRB:
+# >> Pagy::Calendar::Year::DEFAULT
+# >> Pagy::Calendar::Quarter::DEFAULT
+# >> Pagy::Calendar::Month::DEFAULT
+# >> Pagy::Calendar::Week::DEFAULT
+# >> Pagy::Calendar::Day::DEFAULT
 #
 # Uncomment the following lines, if you need calendar localization without using the I18n extra
 # module LocalizePagyCalendar
@@ -125,7 +124,7 @@
 
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/docs/extras/pagy#steps
-# Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
+# Pagy::DEFAULT[:steps] = { 0 => 5, 540 => 7, 720 => 9 }   # example
 
 
 # Feature Extras
@@ -166,7 +165,6 @@
 # require 'pagy/extras/jsonapi'   # must be required after the other extras
 # set to false only if you want to make :jsonapi an opt-in variable
 # Pagy::DEFAULT[:jsonapi] = false  # default true
-
 
 # Rails
 # Enable the .js file required by the helpers that use javascript
