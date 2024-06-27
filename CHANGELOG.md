@@ -27,6 +27,9 @@ If you upgrade from version `< 8.0.0` see the following:
   - `pagy-module.js`: use `pagy.mjs`
   - `pagy-dev.js`: use the `pagy.min.js`with the `pagy.min.js.map`
   - `pagy-module.d.ts`: use `pagy.d.ts`
+- The Array type for the `:size` (e.g. `size: [1, 4, 4, 1]`) that generates the classic bar. Use the `:size` set to an integer 
+  with the `gaps: true` variable (which are the default since 8.4.6). If a legacy bar is REALLY a requirement, despite its 
+  confusing behavior and complicated code, add `require 'pagy/extras/size` to your `pagy.rb` initalizer for smooth upgrades. (see [size extra](https://ddnexus.github.io/pagy/docs/extras/size))
 <hr>
 
 ## Version 8.5.0
