@@ -44,14 +44,15 @@ See also a couple of extras that handle the `:items` in some special way:
 You can control the number and position of the page links in the navigation through the `:size` variable or override the
 `series` method.
 
-==- Simple nav
+==- Fast nav
 
-You can set the `:size` variable to a single positive Integer to represent the total number of page links rendered. The current
+You can set the `:size` variable to an Integer to represent the total number of bar slots rendered. The current
 page will be placed as centered as possible in the series.
 
 For example:
 
 ```ruby
+# size < 7
 pagy = Pagy.new(count: 1000, page: 10, size: 5)
 pagy.series
 #=> [8, 9, "10", 11, 12]
@@ -60,46 +61,48 @@ pagy.series
 #=> [1, "2", 3, 4, 5]
 pagy = Pagy.new(count: 1000, page: 99, size: 5)
 pagy.series
-#=> [96, 97, 98, "99", 100]
-```
+#=> [96, 97, 98, "99", 100] 
 
-Setting the `:size` variable as a single integer has a few advantages over the classic way. It uses a simpler and faster
-algorithm, the series length is more constant, cleaner and less confusing to the user. On the other hand it does not allow the
-user to jump to the first or last page of a long series, which may or may not be a limitation. For example: with a navigation
-using `Pagy::Countless` or `Calendar` it is a clear advantage.
-
-==- Classic nav
-
-You can set the `:size` variable to an array of 4 integers in order to specify which and how many page links to show.
-
-The default is `[1,4,4,1]`, which means that you will get `1` initial page, `4` pages before the current page, `4` pages after the
-current page, and `1` final page.
-
-As usual you can set the `:size` variable as a global default by using the `Pagy::DEFAULT` hash or pass it directly to the `pagy`
-method.
-
-The navigation links will contain the number of pages set in the variables:
-
-`size[0]`...`size[1]` current page `size[2]`...`size[3]` - e.g.:
-
-```ruby
-pagy = Pagy.new count: 1000, page: 10, size: [3, 4, 4, 3] # etc
+# size >= 7 (first, last and gap added)
+pagy = Pagy.new(count: 1000, page: 10, size: 7)
 pagy.series
-#=> [1, 2, 3, :gap, 6, 7, 8, 9, "10", 11, 12, 13, 14, :gap, 48, 49, 50]
+#=> [1, :gap 9, "10", 11, :gap, 100]
+pagy = Pagy.new(count: 1000, page: 2, size: 7)
+pagy.series
+#=> [1, "2", 3, 4, 5, :gap, 100]
+pagy = Pagy.new(count: 1000, page: 99, size: 7)
+pagy.series
+#=> [1, :gap, 96, 97, 98, "99", 100] 
+
+# size >= 7; ends: false (no ends added)
+pagy = Pagy.new(count: 1000, page: 10, size: 7, ends: false)
+pagy.series
+#=> [7, 8, 9, "10", 11, 12, 13]
+pagy = Pagy.new(count: 1000, page: 2, size: 7, ends: false)
+pagy.series
+#=> [1, "2", 3, 4, 5, 6, 7]
+pagy = Pagy.new(count: 1000, page: 99, size: 7, ends: false)
+pagy.series
+#=> [94, 95, 96, 97, 98, "99", 100]
 ```
 
-As you can see by the result of the `series` method, you get 3 initial pages, 1 `:gap` (series interrupted), 4 pages before the
-current page, the current `:page` (which is a string), 4 pages after the current page, another `:gap` and 3 final pages.
+Setting the `:size` variable as a single integer has quite a few advantages over the legacy way. It uses a simpler and faster 
+algorithm and the series length is more constant, it's cleaner and less confusing to the user. By default, if the size is at 
+least `7`, it will insert the first and last pages as first and last links in the bar, also adding the `:gap`s accordingly.
 
-You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to
-see what it contains when used in combination with different core variables.
+If you want to remove the first, last and gaps slots and show only a series of contiguous pages, you can set the `:ends` 
+variable to `false`: hat is a clear advantage with nav bars using `Countless` or `Calendar`.
+
+==- Legacy nav
+
+See the [size extra](extras/size.md)
 
 ==- Skip the page links
 
-If you want to skip the generation of the page links, just set the `:size` variable to an empty array:
+If you want to skip the generation of the page links, just set the `:size` variable to `0`:
 
 ```ruby
-pagy = Pagy.new count: 1000, size: [] # etc
+pagy = Pagy.new count: 1000, size: 0 # etc
 pagy.series
 #=> []
 ```
@@ -771,7 +774,7 @@ Here are some tips that will help choosing the best way to use Pagy, depending o
 
 ==- Consider the nav_js
 
-If you need the classic pagination bar with links and info, then you have a couple of choices, depending on your environment:
+If you need the pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
 - Add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](api/javascript.md))_. That uses client
   side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more

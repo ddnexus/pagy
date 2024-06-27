@@ -3,7 +3,7 @@
 
 require_relative '../pagy'
 
-class Pagy
+class Pagy # :nodoc:
   # No need to know the count to paginate
   class Countless < Pagy
     # Merge and validate the options, do some simple arithmetic and set a few instance variables
@@ -29,11 +29,14 @@ class Pagy
       @next = @page == @last ? (1 if @vars[:cycle]) : @page + 1
       self
     end
+  end
 
+  module SeriesOverride # :nodoc:
     # Override the original series.
     # Return nil if :countless_minimal is enabled
     def series(*, **)
       super unless @vars[:countless_minimal]
     end
   end
+  prepend SeriesOverride
 end

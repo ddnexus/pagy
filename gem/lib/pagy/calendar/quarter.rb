@@ -6,6 +6,7 @@ class Pagy # :nodoc:
     # Quarter unit subclass
     class Quarter < Unit
       DEFAULT = { size:   4,      # rubocop:disable Style/MutableConstant
+                  ends: false,
                   order:  :asc,
                   format: 'Q%q' } # '%q' token
 

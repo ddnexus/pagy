@@ -64,12 +64,12 @@ For example:
 
 ```ruby pagy.rb (initializer)
 # globally
-Pagy::DEFAULT[:steps] = { 0 => 5, 540 => [3, 5, 5, 3], 720 => [5, 7, 7, 5] }
+Pagy::DEFAULT[:steps] = { 0 => 5, 540 => 7, 720 => 9 }
 ```
 
 ```ruby Controller
 # or for a single instance
-pagy, records = pagy(collection, steps: { 0 => 5, 540 => [3, 5, 5, 3], 720 => [5, 7, 7, 5] })
+pagy, records = pagy(collection, steps: { 0 => 5, 540 => 7, 720 => 9 })
 
 # or use the :size as any static pagy*_nav
 pagy, records = pagy(collection, steps: false)
@@ -81,7 +81,7 @@ or pass it to the helper
 ```
 
 The above statement means that from `0` to `540` pixels width, Pagy will use the `5` size (originating a simple nav without gaps),
-from `540` to `720` it will use the `[3,5,5,3]` size and over `720` it will use the `[5,7,7,5]` size. (Read more about the `:size`
+from `540` to `720` it will use the `7` size and over `720` it will use the `9` size. (Read more about the `:size`
 variable in the [How to control the page links](/docs/how-to#control-the-page-links) section).
 
 !!!primary :steps must contain `0` width

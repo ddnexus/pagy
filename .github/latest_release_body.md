@@ -4,20 +4,14 @@
 - New `:max_pages` variable to limit the pagination regardless the actual count
 - Better frontend helpers
 - The `foundation`, `materialize`, `semantic` and `uikit` CSS extras have been discontinued and will be removed in v9 (See the [details](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
+- Deprecate the legacy nav bar, add features to the default faster nav bar series
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.5.0
+### Changes in 8.6.0
 
 <!-- changes start -->
-- Improve pagy playground launcher
-- Refactor calendar class structure
-- Remove automatic skipping of bundle install in playground apps
-- Update ruby calendar test
-- Update cypress calendar test
-- Refactor calendar test environment to use activerecord
-- Add code for calendar counts
-- Remove redundant Warning
-- Convert calendar.ru to calendar_rails.ru
+- Add translated pluralized aria_label.nav for "ar" locale (close #577)
+- Deprecate the legacy bar. Insert first and last pages and gaps when needed into the simple bar
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

@@ -64,7 +64,8 @@ Kaminari.configure do |config|
 end
 
 Pagy::DEFAULT[:items] = 10
-Pagy::DEFAULT[:size]  = [5, 4, 4, 5]
+require 'pagy/extras/size'           # Provide legacy support of old navbars like the above
+Pagy::DEFAULT[:size]  = [5, 4, 4, 5] # Array parsed by the extra above
 ```
 
 Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see 
