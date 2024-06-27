@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
+require 'pagy/extras/size'
 
 describe 'pagy/extras/size' do
   describe '#series (size = Array)' do
@@ -116,7 +117,11 @@ describe 'pagy/extras/size' do
       _(Pagy.new(@vars3.merge(count: 15, page: 2)).series).must_equal [1, "2"]
     end
     it 'computes an empty series' do
-      _(Pagy.new(@vars3.merge(count: 100, size: 0)).series).must_equal []
+      _(Pagy.new(@vars3.merge(count: 100, size: [])).series).must_equal []
+    end
+    it 'raises Pagy::Variable errors for wrong size' do
+      _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
     end
   end
 end

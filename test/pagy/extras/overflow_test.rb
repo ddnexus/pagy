@@ -12,7 +12,7 @@ DAY    = 60 * 60 * 24
 PERIOD = [Time.zone.local(2021, 11, 4), Time.zone.local(2021, 11, 4) + 10.days].freeze
 
 describe 'pagy/extras/overflow' do
-  let(:pagy_vars)      { { page: 100, items: 10, count: 103, size: [3, 2, 2, 3] } }
+  let(:pagy_vars)      { { page: 100, items: 10, count: 103 } }
   let(:countless_vars) { { page: 100, items: 10 } }
   let(:calendar_vars)  { { period: PERIOD, page: 100 } }
   before do
@@ -112,13 +112,13 @@ describe 'pagy/extras/overflow' do
     it 'computes series for empty page for Pagy' do
       pagy = Pagy.new(pagy_vars.merge(overflow: :empty_page))
       series = pagy.series
-      _(series).must_equal [1, 2, 3, :gap, 9, 10, 11]
+      _(series).must_equal [1, :gap, 7, 8, 9, 10, 11]
       _(pagy.page).must_equal 100
     end
     it 'computes series for empty page for Pagy::Calendar' do
-      pagy = Pagy::Calendar::Day.new(calendar_vars.merge(size: [1, 4, 4, 1], overflow: :empty_page))
+      pagy = Pagy::Calendar::Day.new(calendar_vars.merge(overflow: :empty_page))
       series = pagy.series
-      _(series).must_equal [1, :gap, 7, 8, 9, 10, 11]
+      _(series).must_equal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
       _(pagy.page).must_equal 100
     end
     it 'computes empty series for Pagy::Countless' do
