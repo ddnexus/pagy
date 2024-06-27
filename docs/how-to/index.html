@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772635009305">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772784240375">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.772635009305" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772784240375" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772635009305" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772784240375" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772635009305" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.772635009305" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772784240375" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.772784240375" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.5.0</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.6.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -317,13 +317,14 @@ that you think should be added, fixed or explained better, please open an issue.
 <p>You can control the number and position of the page links in the navigation through the <code v-pre>:size</code> variable or override the
 <code v-pre>series</code> method.</p>
 <doc-panels>
-   <doc-panel id="simple-nav" collapsed>
-       <template #title>Simple nav</template>
-<p>You can set the <code v-pre>:size</code> variable to a single positive Integer to represent the total number of page links rendered. The current
+   <doc-panel id="fast-nav" collapsed>
+       <template #title>Fast nav</template>
+<p>You can set the <code v-pre>:size</code> variable to an Integer to represent the total number of bar slots rendered. The current
 page will be placed as centered as possible in the series.</p>
 <p>For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">pagy = Pagy.new(count: 1000, page: 10, size: 5)
+<pre class="language-ruby"><code v-pre class="language-ruby"># size &lt; 7
+pagy = Pagy.new(count: 1000, page: 10, size: 5)
 pagy.series
 #=&gt; [8, 9, &quot;10&quot;, 11, 12]
 pagy = Pagy.new(count: 1000, page: 2, size: 5)
@@ -331,37 +332,45 @@ pagy.series
 #=&gt; [1, &quot;2&quot;, 3, 4, 5]
 pagy = Pagy.new(count: 1000, page: 99, size: 5)
 pagy.series
-#=&gt; [96, 97, 98, &quot;99&quot;, 100]</code></pre>
-</doc-codeblock></div>
-<p>Setting the <code v-pre>:size</code> variable as a single integer has a few advantages over the classic way. It uses a simpler and faster
-algorithm, the series length is more constant, cleaner and less confusing to the user. On the other hand it does not allow the
-user to jump to the first or last page of a long series, which may or may not be a limitation. For example: with a navigation
-using <code v-pre>Pagy::Countless</code> or <code v-pre>Calendar</code> it is a clear advantage.</p>
-   </doc-panel>
-   <doc-panel id="classic-nav" collapsed>
-       <template #title>Classic nav</template>
-<p>You can set the <code v-pre>:size</code> variable to an array of 4 integers in order to specify which and how many page links to show.</p>
-<p>The default is <code v-pre>[1,4,4,1]</code>, which means that you will get <code v-pre>1</code> initial page, <code v-pre>4</code> pages before the current page, <code v-pre>4</code> pages after the
-current page, and <code v-pre>1</code> final page.</p>
-<p>As usual you can set the <code v-pre>:size</code> variable as a global default by using the <code v-pre>Pagy::DEFAULT</code> hash or pass it directly to the <code v-pre>pagy</code>
-method.</p>
-<p>The navigation links will contain the number of pages set in the variables:</p>
-<p><code v-pre>size[0]</code>...<code v-pre>size[1]</code> current page <code v-pre>size[2]</code>...<code v-pre>size[3]</code> - e.g.:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">pagy = Pagy.new count: 1000, page: 10, size: [3, 4, 4, 3] # etc
+#=&gt; [96, 97, 98, &quot;99&quot;, 100] 
+
+# size &gt;= 7 (first, last and gap added)
+pagy = Pagy.new(count: 1000, page: 10, size: 7)
 pagy.series
-#=&gt; [1, 2, 3, :gap, 6, 7, 8, 9, &quot;10&quot;, 11, 12, 13, 14, :gap, 48, 49, 50]</code></pre>
+#=&gt; [1, :gap 9, &quot;10&quot;, 11, :gap, 100]
+pagy = Pagy.new(count: 1000, page: 2, size: 7)
+pagy.series
+#=&gt; [1, &quot;2&quot;, 3, 4, 5, :gap, 100]
+pagy = Pagy.new(count: 1000, page: 99, size: 7)
+pagy.series
+#=&gt; [1, :gap, 96, 97, 98, &quot;99&quot;, 100] 
+
+# size &gt;= 7; ends: false (no ends added)
+pagy = Pagy.new(count: 1000, page: 10, size: 7, ends: false)
+pagy.series
+#=&gt; [7, 8, 9, &quot;10&quot;, 11, 12, 13]
+pagy = Pagy.new(count: 1000, page: 2, size: 7, ends: false)
+pagy.series
+#=&gt; [1, &quot;2&quot;, 3, 4, 5, 6, 7]
+pagy = Pagy.new(count: 1000, page: 99, size: 7, ends: false)
+pagy.series
+#=&gt; [94, 95, 96, 97, 98, &quot;99&quot;, 100]</code></pre>
 </doc-codeblock></div>
-<p>As you can see by the result of the <code v-pre>series</code> method, you get 3 initial pages, 1 <code v-pre>:gap</code> (series interrupted), 4 pages before the
-current page, the current <code v-pre>:page</code> (which is a string), 4 pages after the current page, another <code v-pre>:gap</code> and 3 final pages.</p>
-<p>You can easily try different options (also asymmetrical) in a console by changing the <code v-pre>:size</code>. Just check the <code v-pre>series</code> array to
-see what it contains when used in combination with different core variables.</p>
+<p>Setting the <code v-pre>:size</code> variable as a single integer has quite a few advantages over the legacy way. It uses a simpler and faster
+algorithm and the series length is more constant, it&#x27;s cleaner and less confusing to the user. By default, if the size is at
+least <code v-pre>7</code>, it will insert the first and last pages as first and last links in the bar, also adding the <code v-pre>:gap</code>s accordingly.</p>
+<p>If you want to remove the first, last and gaps slots and show only a series of contiguous pages, you can set the <code v-pre>:ends</code>
+variable to <code v-pre>false</code>: hat is a clear advantage with nav bars using <code v-pre>Countless</code> or <code v-pre>Calendar</code>.</p>
+   </doc-panel>
+   <doc-panel id="legacy-nav" collapsed>
+       <template #title>Legacy nav</template>
+<p>See the <a href="../extras/size/">size extra</a></p>
    </doc-panel>
    <doc-panel id="skip-the-page-links" collapsed>
        <template #title>Skip the page links</template>
-<p>If you want to skip the generation of the page links, just set the <code v-pre>:size</code> variable to an empty array:</p>
+<p>If you want to skip the generation of the page links, just set the <code v-pre>:size</code> variable to <code v-pre>0</code>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">pagy = Pagy.new count: 1000, size: [] # etc
+<pre class="language-ruby"><code v-pre class="language-ruby">pagy = Pagy.new count: 1000, size: 0 # etc
 pagy.series
 #=&gt; []</code></pre>
 </doc-codeblock></div>
@@ -1194,7 +1203,7 @@ need for a count query, still providing an acceptable subset of the full paginat
 <doc-panels>
    <doc-panel id="consider-the-nav-js" collapsed>
        <template #title>Consider the nav_js</template>
-<p>If you need the classic pagination bar with links and info, then you have a couple of choices, depending on your environment:</p>
+<p>If you need the pagination bar with links and info, then you have a couple of choices, depending on your environment:</p>
 <ul>
 <li>Add the <code v-pre>oj</code> gem to your gemfile and use any <code v-pre>pagy*_nav_js</code> helper <em>(see <a href="../api/javascript/">Javascript</a>)</em>. That uses client
 side rendering and it is faster and lighter than using any <code v-pre>pagy*_nav</code> helper <em>(40x faster, 36x lighter and 1,410x more

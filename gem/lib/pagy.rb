@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '8.5.0'
+  VERSION = '8.6.0'
 
   # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
   def self.root
@@ -17,6 +17,7 @@ class Pagy
               items:      20,
               outset:     0,
               size:       7,
+              ends:       true,
               count_args: [:all],  # AR friendly
               page_param: :page }
 
@@ -41,44 +42,33 @@ class Pagy
 
   # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
   def series(size: @vars[:size], **_)
-    series = []
-    if size.is_a?(Array) && size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
-      # This algorithm is up to ~5x faster and ~2.3x lighter than the previous one (pagy < 4.3)
-      left_gap_start  =     1 + size[0]
-      left_gap_end    = @page - size[1] - 1
-      right_gap_start = @page + size[2] + 1
-      right_gap_end   = @last - size[3]
-      left_gap_end    = right_gap_end  if left_gap_end   > right_gap_end
-      right_gap_start = left_gap_start if left_gap_start > right_gap_start
-      start           = 1
-      if (left_gap_end - left_gap_start).positive?
-        series.push(*start...left_gap_start, :gap)
-        start = left_gap_end + 1
-      end
-      if (right_gap_end - right_gap_start).positive?
-        series.push(*start...right_gap_start, :gap)
-        start = right_gap_end + 1
-      end
-      series.push(*start..@last)
-    elsif size.is_a?(Integer) && size.positive?    # only central series
-      # The simplest and fastest algorithm
-      size  = @last if size > @last                # reduce the max size to @last
-      left  = ((size - 1) / 2.0).floor             # left half might be 1 page shorter for even size
-      start = if @page <= left                     # beginning pages
-                1
-              elsif @page > @last - (size - left)  # end pages
-                @last - size + 1
-              else                                 # intermediate pages
-                @page - left
-              end
-      series = (start..start + size - 1).to_a
-    else
-      return [] if size.empty?
+    raise VariableError.new(self, :size, 'to be a positive Integer or 0', size) \
+          unless size.is_a?(Integer)
+    return [] if size.zero?
 
-      raise VariableError.new(self, :size, 'to be a single positive Integer or an Array of 4', size)
+    [].tap do |series|
+      if size >= @last
+        series.push(*1..@last)
+      else
+        left  = ((size - 1) / 2.0).floor             # left half might be 1 page shorter for even size
+        start = if @page <= left                     # beginning pages
+                  1
+                elsif @page > @last - (size - left)  # end pages
+                  @last - size + 1
+                else                                 # intermediate pages
+                  @page - left
+                end
+        series.push(*start...start + size)
+        # Insert first and last ends plus gaps when needed
+        if vars[:ends] && size >= 7
+          series[0]  = 1     unless series[0]  == 1
+          series[1]  = :gap  unless series[1]  == 2
+          series[-2] = :gap  unless series[-2] == @last - 1
+          series[-1] = @last unless series[-1] == @last
+        end
+      end
+      series[series.index(@page)] = @page.to_s
     end
-    series[series.index(@page)] = @page.to_s
-    series
   end
 
   # Label for any page. Allow the customization of the output (overridden by the calendar extra)
@@ -124,6 +114,7 @@ class Pagy
   end
 end
 
+require_relative 'pagy/extras/size' # will be opt in in v9.0
 require_relative 'pagy/backend'
 require_relative 'pagy/frontend'
 require_relative 'pagy/exceptions'

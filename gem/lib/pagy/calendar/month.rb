@@ -6,6 +6,7 @@ class Pagy # :nodoc:
     # Month unit subclass
     class Month < Unit
       DEFAULT = { size: 12,   # rubocop:disable Style/MutableConstant
+                  ends: false,
                   order: :asc,
                   format: '%b' }
 
