@@ -31,16 +31,7 @@ In this class the `:count` variable is always `nil`, hence some feature that dep
 The nav bar links after the current page cannot be fully displayed because a couple of items of the `:size` array depends on
 the `count`, so they have some limitations.
 
-Regardless the actual `:size` value:
-
-- `vars[:size][2]` is capped at 1 (we know only if the next page exists)
-- `vars[:size][3]` is set to 0 (we don't know the total pages)
-
-A few examples:
-
-- `[1,4,4,1]` would be treated like `[ 1,4,1,0]`
-- `[1,4,3,4]` would be treated like `[ 1,4,1,0]`
-- `[1,4,0,0]` would be treated like `[ 1,4,0,0]`
+Regardless the actual `:size` value we know only if the next page exists and we don't know the total pages
 
 The `series` method reflects on the above.
 

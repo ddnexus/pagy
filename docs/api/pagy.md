@@ -91,11 +91,10 @@ The nav helpers basically loop through this array and render the correct item by
 That is self-contained, simple and efficient.
 
 !!!primary
-This method returns an empty array if the passed `size` (i.e. the `:size` variable) is set to an empty `Array`. Useful to
-totally skip the generation of page links in the frontend.
+This method returns an empty array if the `:size` variable is set to `0`. Useful to totally skip the generation of page links in the frontend.
 
-It can also return a simpler array without gaps if the passed `:size` is a single positive `Integer`. It may be a faster and
-cleaner solution very useful in certain contexts (see the [Simple Nav](/docs/how-to.md#simple-nav))
+It can also return a simpler array without gaps if the passed `:size` is a single positive `Integer` and the `:ends` variable set to `false`.
+!!!
 
 ==- `label`
 
@@ -135,6 +134,7 @@ number `1`. For performance reasons, only the instance variables get validated.
 | `:count`         | The total count of the collection to paginate (mandatory argument)                                                                                                                    | `nil`   |
 | `:count_args`    | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                                    | [:all]  |
 | `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                         | `false` |
+| `:ends`          | Insert the first and last page into the series, plus the `:gap`s when needed. Ignored with `size < 7`.                                                                                | `7`     |
 | `:fragment`      | The arbitrary fragment string (including the "#") to add to the url. _(see [Customize the params](/docs/how-to.md#customize-the-params))_                                             | `nil`   |
 | `:items`         | The requested number of items for the page                                                                                                                                            | `20`    |
 | `:jsonapi`       | Enable `jsonapi` compliance of the pagy query params                                                                                                                                  | `false` |
@@ -144,7 +144,7 @@ number `1`. For performance reasons, only the instance variables get validated.
 | `:page_param`    | The name of the page param name used in the url. _(see [Customize the page param](/docs/how-to.md#customize-the-page-param))_                                                         | `:page` |
 | `:params`        | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customize the params](/docs/how-to.md#customize-the-params))_          | `nil`   |
 | `:request_path`  | Allows overriding the `request.path` for pagination links. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/how-to.md#pass-the-request-path))_          | `nil`   |
-| `:size`          | The size of the page links to show: can be an array of 4 items or the integer of the total page size. _(see also [Control the page links](/docs/how-to.md#control-the-page-links))_   | `7`     |
+| `:size`          | The size of the page links to show _(see also [Control the page links](/docs/how-to.md#control-the-page-links))_                                                                      | `7`     |
 
 !!!
 Extras may add and document their own variables
@@ -192,7 +192,7 @@ Which means:
 - there is always a `page` #`1` in the pagination, even if it's empty
 - `last` is always at least `1`
 - the `series` array contains always at least the page #`1`, which for a single page is also the current page, thus a string.
-  With `size: []` the `series` method returns `[]`
+  With `size: 0` the `series` method returns `[]`
 - `in`, `from` and `to` of an empty page are all `0`
 - `prev` and `next` of a single page (not necessary an empty one) are both `nil` (i.e. there is no other page)
 
@@ -206,9 +206,9 @@ constructor is not valid.
 
 ```ruby
 rescue Pagy::VariableError => e
-e.pagy #=> the pagy object that raised the exception
-e.variable #=> the offending variable symbol (e.g. :page)
-e.value #=> the value of the offending variable (e.g -3)
+  e.pagy     #=> the pagy object that raised the exception
+  e.variable #=> the offending variable symbol (e.g. :page)
+  e.value    #=> the value of the offending variable (e.g -3)
 end
 ```
 

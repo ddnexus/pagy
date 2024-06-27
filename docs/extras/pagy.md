@@ -109,7 +109,7 @@ supports navbar links (see also [Pagy::Countless](/docs/api/countless.md) for mo
 
 ### Navless/incremental
 
-If you don't need the navbar you can just set the `:size` variable to an empty value and the page links will be skipped from the
+If you don't need the navbar you can just set the `:size` variable to [0] and the page links will be skipped from the
 rendering. That works with `Pagy` and `Pagy:Countless` instances. All the `*nav` helpers will render only the `prev` and `next`
 links/buttons, allowing for a manual incremental pagination.
 
