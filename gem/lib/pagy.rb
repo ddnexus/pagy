@@ -29,10 +29,10 @@ class Pagy
     normalize_vars(vars)
     setup_vars(count: 0, page: 1, outset: 0)
     setup_items_var
+    setup_offset_var
     setup_last_var
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
-    setup_offset_var
     @from = [@offset - @outset + 1, @count].min
     @to   = [@offset - @outset + @items, @count].min
     @in   = [@to - @from + 1, @count].min
@@ -101,17 +101,17 @@ class Pagy
     setup_vars(items: 1)
   end
 
+  # Setup @offset (overridden by the gearbox extra)
+  def setup_offset_var
+    @offset = (@items * (@page - 1)) + @outset  # may be already set from gear_box
+  end
+
   # Setup @last (overridden by the gearbox extra)
   def setup_last_var
     @last = [(@count.to_f / @items).ceil, 1].max
     @last = vars[:max_pages] if vars[:max_pages] && @last > vars[:max_pages]
   end
   alias setup_pages_var setup_last_var
-
-  # Setup @offset based on the :gearbox_items variable
-  def setup_offset_var
-    @offset = (@items * (@page - 1)) + @outset  # may be already set from gear_box
-  end
 end
 
 require_relative 'pagy/extras/size' # will be opt in in v9.0
