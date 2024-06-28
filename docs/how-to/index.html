@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772862531719">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.772903015447">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../resources/css/retype.css?v=3.5.0.772862531719" rel="stylesheet">
+    <link href="../../resources/css/retype.css?v=3.5.0.772903015447" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772862531719" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../resources/js/config.js?v=3.5.0.772903015447" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772862531719" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.772862531719" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../resources/js/lunr.js?v=3.5.0.772903015447" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../resources/js/prism.js?v=3.5.0.772903015447" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -319,8 +319,8 @@ that you think should be added, fixed or explained better, please open an issue.
 <doc-panels>
    <doc-panel id="fast-nav" collapsed>
        <template #title>Fast nav</template>
-<p>You can set the <code v-pre>:size</code> variable to an Integer to represent the total number of bar slots rendered. The current
-page will be placed as centered as possible in the series.</p>
+<p>You can set the <code v-pre>:size</code> variable to an Integer representing the maximum page/gap slots rendered. The current
+page will be placed as centered as possible in the series. For that reason, <code v-pre>:size</code> works better when it&#x27;s a odd number.</p>
 <p>For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># size &lt; 7
@@ -356,11 +356,10 @@ pagy = Pagy.new(count: 1000, page: 99, size: 7, ends: false)
 pagy.series
 #=&gt; [94, 95, 96, 97, 98, &quot;99&quot;, 100]</code></pre>
 </doc-codeblock></div>
-<p>Setting the <code v-pre>:size</code> variable as a single integer has quite a few advantages over the legacy way. It uses a simpler and faster
-algorithm and the series length is more constant, it&#x27;s cleaner and less confusing to the user. By default, if the size is at
+<p>The fast nav uses a simpler and faster algorithm and the series length is more symmetrical and constant, it&#x27;s cleaner and less confusing to the user. By default, if the size is at
 least <code v-pre>7</code>, it will insert the first and last pages as first and last links in the bar, also adding the <code v-pre>:gap</code>s accordingly.</p>
-<p>If you want to remove the first, last and gaps slots and show only a series of contiguous pages, you can set the <code v-pre>:ends</code>
-variable to <code v-pre>false</code>: hat is a clear advantage with nav bars using <code v-pre>Countless</code> or <code v-pre>Calendar</code>.</p>
+<p>If you want to remove the first, last and gaps slots and show only a series of contiguous pages around the current one you can
+set the <code v-pre>:ends</code> variable to <code v-pre>false</code>. This is especially useful with <code v-pre>Calendar</code> nav bars.</p>
    </doc-panel>
    <doc-panel id="legacy-nav" collapsed>
        <template #title>Legacy nav</template>
@@ -395,8 +394,8 @@ example:</p>
 <div class="codeblock-title">controller</div>
 <pre class="language-ruby"><code v-pre class="language-ruby">@pagy, @records = pagy(my_scope, page: 3) # force page #3</code></pre>
 </doc-codeblock></div>
-<p>That will explicitly set the <code v-pre>:page</code> variable, overriding the default behavior (which usually pulls the page number from
-the <code v-pre>params[:page]</code>).</p>
+<p>That will explicitly set the <code v-pre>:page</code> variable, overriding the default behavior (which pulls the page number from
+the <code v-pre>params[:page]</code> by default).</p>
 <doc-anchor-target id="customize-the-dictionary">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#customize-the-dictionary">#</doc-anchor-trigger>
