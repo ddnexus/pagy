@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#1-repro-app
 
-VERSION = '8.6.0'
+VERSION = '8.6.1'
 
 require 'bundler/inline'
 require 'bundler'
@@ -34,7 +34,6 @@ require 'pagy/extras/pagy'
 require 'pagy/extras/items'
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
-Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
 Pagy::DEFAULT.freeze
 
 require 'sinatra/base'

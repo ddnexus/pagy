@@ -9,7 +9,7 @@ class Pagy # :nodoc:
     def series(size: @vars[:size], **_)
       return super unless size.is_a?(Array)
       return [] if size == []
-      raise VariableError.new(self, :size, 'to be an Array of size 4 || 0', size) \
+      raise VariableError.new(self, :size, 'to be an Array of 4 Integers or []', size) \
             unless size.is_a?(Array) && size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
 
       [].tap do |series|

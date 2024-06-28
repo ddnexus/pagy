@@ -18,7 +18,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#3-demo-app
 
-VERSION = '8.6.0'
+VERSION = '8.6.1'
 
 require 'bundler/inline'
 require 'bundler'
@@ -44,7 +44,6 @@ end
 require 'pagy/extras/items'
 require 'pagy/extras/trim'
 Pagy::DEFAULT[:trim_extra] = false         # opt-in trim
-Pagy::DEFAULT[:size]       = [1, 4, 4, 1]  # old size default
 
 # sinatra setup
 require 'sinatra/base'
@@ -381,18 +380,18 @@ for details</p>
 <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
 <%= highlight(html) %>
 
-<h2>pagy<%= prefix %>_nav <span class="notes">Classic nav <code>size: [1,4,4,1]</code></span></h2>
+<h2>pagy<%= prefix %>_nav <span class="notes">Classic nav <code>size: 7</code></span></h2>
 <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
 <%= highlight(html) %>
 
-<h2>pagy<%= prefix %>_nav_js <span class="notes">Classic nav <code>size: [1,4,4,1]</code></span></h2>
+<h2>pagy<%= prefix %>_nav_js <span class="notes">Classic nav <code>size: 7</code></span></h2>
 <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
 <%= highlight(html) %>
 
 <h2>pagy<%= prefix %>_nav_js <span class="notes">Responsive <code>steps: {...}</code> (Resize the window to see)</span></h2>
 <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
      aria_label: 'Pages nav_js_responsive',
-     steps: { 0 => [1,1,1,1], 500 => [1,3,3,1], 750 => [1,5,5,1], 1000 => [2,6,6,2] }) %>
+     steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
 <%= highlight(html) %>
 
 <h2>pagy<%= prefix %>_combo_nav_js</h2>

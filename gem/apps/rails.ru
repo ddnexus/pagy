@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#2-rails-app
 
-VERSION = '8.6.0'
+VERSION = '8.6.1'
 
 # Gemfile
 require 'bundler/inline'
@@ -63,7 +63,6 @@ end
 require 'pagy/extras/pagy'
 require 'pagy/extras/items'
 require 'pagy/extras/overflow'
-Pagy::DEFAULT[:size]     = [1, 4, 4, 1]
 Pagy::DEFAULT[:items]    = 10
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT.freeze
