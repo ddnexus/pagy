@@ -424,8 +424,9 @@ describe 'pagy' do
     it 'computes an empty series' do
       _(Pagy.new(@vars2.merge(count: 100, size: 0)).series).must_equal []
     end
-    it 'raises VariableError for non-integer size' do
+    it 'raises VariableError for invalid size' do
       _ { Pagy.new(count: 100, size: {}).series }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, size: -3).series }.must_raise Pagy::VariableError
     end
   end
 

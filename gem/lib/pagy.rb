@@ -43,7 +43,7 @@ class Pagy
   # Return the array of page numbers and :gap items e.g. [1, :gap, 8, "9", 10, :gap, 36]
   def series(size: @vars[:size], **_)
     raise VariableError.new(self, :size, 'to be an Integer >= 0', size) \
-          unless size.is_a?(Integer)
+          unless size.is_a?(Integer) && size >= 0
     return [] if size.zero?
 
     [].tap do |series|
@@ -53,13 +53,13 @@ class Pagy
         left  = ((size - 1) / 2.0).floor             # left half might be 1 page shorter for even size
         start = if @page <= left                     # beginning pages
                   1
-                elsif @page > @last - (size - left)  # end pages
+                elsif @page > (@last - size + left)  # end pages
                   @last - size + 1
                 else                                 # intermediate pages
                   @page - left
                 end
         series.push(*start...start + size)
-        # Insert first and last ends plus gaps when needed
+        # Set first and last pages plus gaps when needed, respecting the size
         if vars[:ends] && size >= 7
           series[0]  = 1     unless series[0]  == 1
           series[1]  = :gap  unless series[1]  == 2
