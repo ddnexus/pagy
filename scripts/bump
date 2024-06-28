@@ -58,21 +58,44 @@ for commit in $(git rev-list "$old_vers"..HEAD)
 do
 	if [[ -n $(git show --pretty="format:" --name-only --relative=gem $commit) ]]
 	then
-		git show --no-patch --format="- %s" $commit >> "$tmplog"
-		body=$(git show --no-patch --format="%b" $commit)
-		if [[ -n "$body" ]]
+		subject=$(git show --no-patch --format="- %s" $commit)
+		if [[ $subject != *"[skip-log]"* ]]
 		then
-			sed 's/^/\ \ /' <<<"$body" >> "$tmplog"
+			body=$(git show --no-patch --format="%b" $commit)
+			if [[ -n "$body" ]]
+			then
+			  body=$(echo "$body" | awk '{print "  " $0}')
+			fi
+		    echo -e "${subject}${body}" >> $tmplog
 		fi
 	fi
 done
+
+function edit_doc() {
+	doc_name=$1
+	doc_path=$2
+
+	echo -e "\n${doc_name}:"
+	cat "$doc_path"
+	echo
+	# Optional edit
+	read -rp "Do you want to edit the ${doc_name}? (y/n)> " input
+	if [[ $input = y ]] || [[ $input = Y ]]; then
+		nano "$doc_path"
+	fi
+}
+
+edit_doc 'Commit log' "$tmplog"
 
 # Insert the changes in the the release body file used by .github/workflows/create_release.yml
 # which is triggered by the :rubygem_release task (push tag)
 lead='^<!-- changes start -->$'
 tail='^<!-- changes end -->$'
+release_body_path="$root/.github/latest_release_body.md"
 sed -i "/$lead/,/$tail/{ /$lead/{p; r $tmplog
-		}; /$tail/p; d }" "$root/.github/latest_release_body.md"
+		}; /$tail/p; d }" "$release_body_path"
+
+edit_doc 'Release body' "$release_body_path"
 
 # Update CHANGELOG
 changelog=$(cat <(echo -e "<hr>\n\n## Version $new_vers\n") "$tmplog")

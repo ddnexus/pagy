@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '8.6.0'
+  VERSION = '8.6.1'
 
   # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
   def self.root
@@ -40,9 +40,9 @@ class Pagy
     @next = @page == @last ? (1 if @vars[:cycle]) : @page + 1
   end
 
-  # Return the array of page numbers and :gap items e.g. [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+  # Return the array of page numbers and :gap items e.g. [1, :gap, 8, "9", 10, :gap, 36]
   def series(size: @vars[:size], **_)
-    raise VariableError.new(self, :size, 'to be a positive Integer or 0', size) \
+    raise VariableError.new(self, :size, 'to be an Integer >= 0', size) \
           unless size.is_a?(Integer)
     return [] if size.zero?
 

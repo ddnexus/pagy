@@ -7,11 +7,11 @@
 - Deprecate the legacy nav bar, add features to the default faster nav bar series
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.6.0
+### Changes in 8.6.1
 
 <!-- changes start -->
-- Add translated pluralized aria_label.nav for "ar" locale (close #577)
-- Deprecate the legacy bar. Insert first and last pages and gaps when needed into the simple bar
+- Update playground apps and e2e tests
+- Update pagy.rb initializer
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
