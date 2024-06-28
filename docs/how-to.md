@@ -46,8 +46,8 @@ You can control the number and position of the page links in the navigation thro
 
 ==- Fast nav
 
-You can set the `:size` variable to an Integer to represent the total number of bar slots rendered. The current
-page will be placed as centered as possible in the series.
+You can set the `:size` variable to an Integer representing the maximum page/gap slots rendered. The current
+page will be placed as centered as possible in the series. For that reason, `:size` works better when it's a odd number.
 
 For example:
 
@@ -86,12 +86,11 @@ pagy.series
 #=> [94, 95, 96, 97, 98, "99", 100]
 ```
 
-Setting the `:size` variable as a single integer has quite a few advantages over the legacy way. It uses a simpler and faster 
-algorithm and the series length is more constant, it's cleaner and less confusing to the user. By default, if the size is at 
+The fast nav uses a simpler and faster algorithm and the series length is more symmetrical and constant, it's cleaner and less confusing to the user. By default, if the size is at 
 least `7`, it will insert the first and last pages as first and last links in the bar, also adding the `:gap`s accordingly.
 
-If you want to remove the first, last and gaps slots and show only a series of contiguous pages, you can set the `:ends` 
-variable to `false`: hat is a clear advantage with nav bars using `Countless` or `Calendar`.
+If you want to remove the first, last and gaps slots and show only a series of contiguous pages around the current one you can 
+set the `:ends` variable to `false`. This is especially useful with `Calendar` nav bars.
 
 ==- Legacy nav
 
@@ -125,8 +124,8 @@ example:
 @pagy, @records = pagy(my_scope, page: 3) # force page #3
 ```
 
-That will explicitly set the `:page` variable, overriding the default behavior (which usually pulls the page number from
-the `params[:page]`).
+That will explicitly set the `:page` variable, overriding the default behavior (which pulls the page number from
+the `params[:page]` by default).
 
 ## Customize the dictionary
 
