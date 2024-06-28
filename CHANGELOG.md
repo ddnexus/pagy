@@ -31,6 +31,11 @@ If you upgrade from version `< 8.0.0` see the following:
   with the `gaps: true` variable (which are the default since 8.4.6). If a legacy bar it will remain REALLY a requirement, add `require 'pagy/extras/size` to your `pagy.rb` initalizer for smooth upgrades. (see [size extra](https://ddnexus.github.io/pagy/docs/extras/size))
 <hr>
 
+## Version 8.6.1
+
+- Update playground apps and e2e tests
+- Update pagy.rb initializer
+
 ## Version 8.6.0
 
 - Add translated pluralized aria_label.nav for "ar" locale (close #577)
