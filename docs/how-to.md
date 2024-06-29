@@ -47,7 +47,7 @@ You can control the number and position of the page links in the navigation thro
 ==- Fast nav
 
 You can set the `:size` variable to an Integer representing the maximum page/gap slots rendered. The current
-page will be placed as centered as possible in the series. For that reason, `:size` works better when it's a odd number.
+page will be placed as centered as possible in the series. For that reason, `:size` works better when it's an odd number.
 
 For example:
 
@@ -109,8 +109,8 @@ pagy.series
 ==- Customize the series
 
 If changing the `:size` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place
-of gaps) you should override the `series` method. See more details and
-examples [here](https://github.com/ddnexus/pagy/issues/245).
+of gaps) you should override the `series` method. See more details and examples 
+[here](https://github.com/ddnexus/pagy/issues/245).
 
 ===
 
@@ -177,8 +177,8 @@ You may want to customize that, for example to make it more readable in your lan
 collections in the same action. Depending on the scope of the customization, you have a couple of options:
 
 1. `Pagy::DEFAULT[:page_param] = :custom_param` will be used as the global default
-2. `pagy(scope, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single
-   instance (overriding the global default)
+2. `pagy(collection, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a
+   single instance (overriding the global default)
 
 You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-vars) if you need some special way to get the page number.
 
@@ -214,7 +214,7 @@ An example using `except` and `merge!`:
 @pagy, @records = pagy(collection, params: ->(params) { params.except('not_useful').merge!('custom' => 'useful') })
 ```
 
-You can also use the `:fragment` variable to add a fragment the URLs of the pages:
+You can also use the `:fragment` variable to add a fragment to the URLs of the pages:
 
 ```ruby controller
 @pagy, @records = pagy(collection, fragment: '#your-fragment')
@@ -427,7 +427,7 @@ the [metadata extra](extras/metadata.md) and pass the pagination metadata in you
 
 ## Paginate search framework results
 
-Pagy has a few of extras for gems returning search results:
+Pagy has a few extras dedicated to gems returning search results:
 
 - [elasticsearch_rails](extras/elasticsearch_rails.md)
 - [searchkick](extras/searchkick.md)
@@ -449,7 +449,7 @@ By default pagy tries to derive parameters and variables from the request and th
 it to the `pagy*` method. That is very handy, but assumes you are paginating a single collection per request.
 
 When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination
-objects. You have the following commong ways to do so:
+objects. You have the following common ways to do so:
 
 ==- Pass the request path
 
@@ -565,17 +565,19 @@ to different existing statements.
 # pagy without calendar
 @pagy, @record = pagy(collection, any_vars: value, ...)
 # wrapped with pagy_calendar
-@calendar, @pagy, @records = pagy_calendar(collection, year: { ... },
-                                           month:            { ... },
-                                           pagy:             { any_vars: value, ... })
+@calendar, @pagy, @records = pagy_calendar(collection, 
+                                           year:  {},
+                                           month: {},
+                                           pagy:  { any_vars: value, ... })
 
 # any other backend constructors (e.g. pagy_searchkick)
 @pagy, @record = pagy_searchkick(pagy_search_args, any_vars: value, ...)
 # wrapped with pagy_calendar
-@calendar, @pagy, @records = pagy_calendar(pagy_search_args, year: { ... },
-                                           month:                  { ... },
-                                           pagy:                   { backend:  :pagy_searchkick,
-                                                                     any_vars: value, ... })
+@calendar, @pagy, @records = pagy_calendar(pagy_search_args, 
+                                           year:  {},
+                                           month: {},
+                                           pagy:  { backend:  :pagy_searchkick, 
+                                                    any_vars: value, ... })
 ```
 
 Then follow the [calendar extra documentation](extras/calendar.md) for more details.
@@ -587,12 +589,12 @@ In order to limit the pagination to a maximum number of pages, you can pass the 
 For example:
 
 ```ruby
-@pagy, @records = pagy(scope, max_pages: 50, items: 20)
+@pagy, @records = pagy(collection, max_pages: 50, items: 20)
 @records.size #=> 20   
 @pagy.count   #=> 10_000
 @pagy.last    #=> 50
 
-@pagy, @records = pagy(scope, max_pages: 50, items: 20, page: 51)
+@pagy, @records = pagy(collection, max_pages: 50, items: 20, page: 51)
 #=> Pagy::OverflowError: expected :page in 1..50; got 51
 ```
 
@@ -642,7 +644,7 @@ metadata:
 #<Tmdb::Result page=1, total_pages=23, total_results=446, results=[#<Tmdb::Movie ..>,#<Tmdb::Movie...>,...]...>
 ```
 
-As you can see it contains the pagination metadata that you can use to setup the pagination with pagy:
+As you can see, it contains the pagination metadata that you can use to setup the pagination with pagy:
 
 ```ruby controller
 # get the paginated collection
@@ -727,7 +729,7 @@ use a storage system like any SQL DB, there is no way to paginate and provide a 
 to get the collection count. That is usually not a problem if your DB is well organized and maintained, but that may not be always
 the case.
 
-Sometimes you may have to deal with some not very efficient legacy apps/DBs that you cannot totally control. In that case the
+Sometimes you may have to deal with not very efficient legacy apps/DBs that you cannot totally control. In that case the
 extra count query may affect the performance of the app quite badly.
 
 You have 2 possible solutions in order to improve the performance.
@@ -762,7 +764,7 @@ DB writing, and probably not particularly useful with a DB in constant change.
 
 ==- Avoid the count
 
-When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoid the
+When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoids the
 need for a count query, still providing an acceptable subset of the full pagination features.
 
 ===
@@ -815,8 +817,7 @@ Pass an overflowing `:page` number and Pagy will raise a `Pagy::OverflowError` e
 This often happens because users/clients paginate over the end of the record set or records go deleted and a user went to a stale
 page.
 
-You can handle the exception by using the [overflow extra](extras/overflow.md) which provides easy and ready to use solutions for
-a few common cases, or you can rescue the exception manually and do whatever fits better.
+You can handle the exception by using the [overflow extra](extras/overflow.md) which provides a few easy and ready to use solutions for a few common cases, or you can rescue the exception manually and do whatever fits you better.
 
 Here are a few options for manually handling the error in apps:
 
@@ -836,8 +837,8 @@ end
 ```
 
 !!!warning Rescue from `Pagy::OverflowError` first
-All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along
-with `rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it
+All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with 
+`rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it 
 will never get rescued.
 !!!
 
