@@ -21,35 +21,35 @@ num=$(echo "$new_vers" | grep -o '\.' | wc -l | xargs)
 [[ -n $(git diff --name-only --relative=gem "$old_vers"..HEAD) ]] || \
 	(>&2 echo "No gem changes since version $old_vers!" && exit 1)
 
-# Bump version in files
+# Bump the version in files
 esc_old_vers=${old_vers//./\\.}
 esc_new_vers=${new_vers//./\\.}
-function bump(){
-	sed -i "0,/$esc_old_vers/{s/$esc_old_vers/$esc_new_vers/}" "$1"
-}
-
-bump "$root/retype.yml"
-bump "$root/.github/ISSUE_TEMPLATE/Code.yml"
-bump "$root/.github/latest_release_body.md"
-bump "$root/gem/apps/calendar.ru"
-bump "$root/gem/apps/demo.ru"
-bump "$root/gem/apps/rails.ru"
-bump "$root/gem/apps/repro.ru"
-bump "$root/gem/bin/pagy"
-bump "$root/gem/config/pagy.rb"
-bump "$root/gem/lib/pagy.rb"
-bump "$root/gem/pagy.gemspec"
-bump "$root/src/pagy.ts"
-
-# Build javascript files
-cd "$root/src"
-./build
-cd "$root"
+for path in \
+	"retype.yml" \
+	".github/ISSUE_TEMPLATE/Code.yml" \
+	".github/latest_release_body.md" \
+	"gem/apps/calendar.ru" \
+	"gem/apps/demo.ru" \
+	"gem/apps/rails.ru" \
+	"gem/apps/repro.ru" \
+	"gem/bin/pagy" \
+	"gem/config/pagy.rb" \
+	"gem/lib/pagy.rb" \
+	"gem/pagy.gemspec" \
+	"src/pagy.ts"
+do
+	sed -i "0,/$esc_old_vers/{s/$esc_old_vers/$esc_new_vers/}" "$root/$path"
+done
 
 # Bumps docs example
 esc_old_minor_vers=${esc_old_vers%\\*}
 esc_new_minor_vers=${esc_new_vers%\\*}
 sed -i "0,/$esc_old_minor_vers/{s/$esc_old_minor_vers/$esc_new_minor_vers/}" "$root/quick-start.md"
+
+# Build javascript files
+cd "$root/src"
+./build
+cd "$root"
 
 # Set tmplog to the commit messages that have changes in the "gem" root path
 tmplog=$(mktemp)
@@ -103,7 +103,7 @@ changelog_path="$root/CHANGELOG.md"
 awk -v l="$changelog" '{sub(/<hr>/, l); print}' "$changelog_path" > "$tmplog"
 mv "$tmplog" "$changelog_path"
 
-# Run test to check the consistency across files
+# Run the test to check the consistency of versioning across files
 bundle exec ruby -Itest test/pagy_test.rb --name  "/pagy::Version match(#|::)/"
 
 # Optional update of top 100
