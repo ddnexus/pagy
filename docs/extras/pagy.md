@@ -73,19 +73,29 @@ bar links (e.g. `countless` extra).
 Return the previous page URL string or nil. Useful to build minimalistic UIs that don't use nav bar
 links (e.g. `countless` extra).
 
-==- `pagy_prev_a(pagy, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev))`
+==- `pagy_prev_a(pagy, **vars)`
 
 Return the enabled/disabled previous page anchor tag. It is the same prev link string which is
 part of the `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
 
-==- `pagy_next_a(pagy, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.prev))`
+The keyord argument used from `vars` are:
+- `text: pagy_t('pagy.prev')`
+- `aria_label: pagy_t('pagy.aria_label.prev)`
+- `anchor_string: nil`
+
+==- `pagy_next_a(pagy, **vars)`
 
 Return the enabled/disabled next page anchor tag. It is the same next link string which is part of the
 `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
+
+The keyord argument used from `vars` are:
+- `text: pagy_t('pagy.prev')`
+- `aria_label: pagy_t('pagy.aria_label.prev)`
+- `anchor_string: nil`
 
 ==- `pagy_prev_link(pagy)`
 
@@ -109,8 +119,8 @@ supports navbar links (see also [Pagy::Countless](/docs/api/countless.md) for mo
 
 ### Navless/incremental
 
-If you don't need the navbar you can just set the `:size` variable to [0] and the page links will be skipped from the
-rendering. That works with `Pagy` and `Pagy:Countless` instances. All the `*nav` helpers will render only the `prev` and `next`
+If you don't need the navbar you can just set the `:size` variable to `0` and the page links will be skipped from the rendering.
+That works with `Pagy` and `Pagy:Countless` instances. All the `*nav` helpers will render only the `prev` and `next`
 links/buttons, allowing for a manual incremental pagination.
 
 You can also use the `pagy_prev_html`, `pagy_next_html` mostly useful if you also use the `countless` extra.
@@ -124,7 +134,7 @@ require 'pagy/extras/countless'
 ```ruby incremental (controller action)
 
 def incremental
-  @pagy, @records = pagy_countless(collection, anchor_string: 'data-remote="true"')
+  @pagy, @records = pagy_countless(collection)
 end
 ```
 
@@ -154,7 +164,7 @@ end
 
 ```erb _next_link.html.erb (partial)
 <!-- Wrapped in a "pagy" class to apply the pagy CSS style -->
-<span id: 'next_link' class="pagy"><%== pagy_next_a(@pagy, text: 'More...') %><span>
+<span id: 'next_link' class="pagy"><%== pagy_next_a(@pagy, text: 'More...', anchor_string: 'data-remote="true"') %><span>
 ```
 
 ```erb incremental.js.erb (javascript template)

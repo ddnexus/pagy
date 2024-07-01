@@ -185,20 +185,13 @@ You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-var
 ## Customize the link attributes
 
 If you need to customize some HTML attribute of the page links, you may not need to override the `pagy_nav*` helper. It might be
-enough to pass some extra attribute string with the `:anchor_string` variable. For example:
+enough to pass some extra attribute string with the `:anchor_string` keyword argument. For example:
 
-```ruby
-# for all the Pagy instances
-Pagy::DEFAULT[:anchor_string] = 'data-remote="true"'
-
-# for a single Pagy instance (if you use the Pagy::Backend#pagy method)
-@pagy, @records = pagy(collection, anchor_string: 'data-remote="true"')
-
-# or directly to the constructor
-pagy = Pagy.new(count: 1000, anchor_string: 'data-remote="true"')
+```erb
+<%== pagy_nav(@pagy, anchor_string: 'data-remote="true"') %>
 ```
 
-_See more advanced details about [The anchor_string variable](api/frontend.md#the-anchor_string-variable)_
+_See more advanced details about [The anchor_string argument](api/frontend.md#the-anchor_string-argument)_
 
 ## Customize the params
 

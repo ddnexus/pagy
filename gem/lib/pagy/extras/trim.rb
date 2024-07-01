@@ -8,7 +8,7 @@ class Pagy # :nodoc:
   module TrimExtra
     # Override the original pagy_a_proc.
     # Call the pagy_trim method for page 1 if the trim_extra is enabled
-    def pagy_anchor(pagy)
+    def pagy_anchor(pagy, anchor_string: nil)
       a_proc = super
       return a_proc unless pagy.vars[:trim_extra]
 

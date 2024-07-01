@@ -47,12 +47,11 @@ class Pagy # :nodoc:
     # Override the pagy_anchor
     module FrontendOverride
       # Consider the vars[:count]
-      def pagy_anchor(pagy)
+      def pagy_anchor(pagy, anchor_string: nil)
         return super unless (counts = pagy.vars[:counts])
 
-        a_string    = pagy.vars[:anchor_string]
-        a_string    = %( #{a_string}) if a_string
-        left, right = %(<a#{a_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
+        anchor_string &&= %( #{anchor_string})
+        left, right = %(<a#{anchor_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
         # lambda used by all the helpers
         lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
           count     = counts[page - 1]
