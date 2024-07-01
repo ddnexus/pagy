@@ -32,6 +32,12 @@ If you upgrade from version `< 8.0.0` see the following:
   `require 'pagy/extras/size` to your `pagy.rb` initalizer for smooth upgrades. (see [size extra](https://ddnexus.github.io/pagy/docs/extras/size))
 <hr>
 
+## Version 8.6.2
+
+- Fix the legacy size in code and test
+- Improve code readability and size check in series
+- Fix the old terminology in the demo.ru app
+
 ## Version 8.6.1
 
 - Update playground apps and e2e tests

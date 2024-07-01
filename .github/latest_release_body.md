@@ -7,11 +7,12 @@
 - Deprecate the legacy nav bar, add features to the default faster nav bar series
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.6.1
+### Changes in 8.6.2
 
 <!-- changes start -->
-- Update playground apps and e2e tests
-- Update pagy.rb initializer
+- Fix the legacy size in code and test
+- Improve code readability and size check in series
+- Fix the old terminology in the demo.ru app
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
