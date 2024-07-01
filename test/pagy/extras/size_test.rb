@@ -119,6 +119,10 @@ describe 'pagy/extras/size' do
     it 'computes an empty series' do
       _(Pagy.new(@vars3.merge(count: 100, size: [])).series).must_equal []
     end
+    it 'use super for non array size' do
+      _(Pagy.new(@vars3.merge(count: 100, size: 0)).series).must_equal []
+      _(Pagy.new(@vars3.merge(count: 103, size: 7, page: 6)).series).must_equal [1, :gap, 5, "6", 7, :gap, 11]
+    end
     it 'raises Pagy::Variable errors for wrong size' do
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError

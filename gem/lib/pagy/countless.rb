@@ -34,7 +34,7 @@ class Pagy # :nodoc:
   module SeriesOverride # :nodoc:
     # Override the original series.
     # Return nil if :countless_minimal is enabled
-    def series(*, **)
+    def series(**)
       super unless @vars[:countless_minimal]
     end
   end

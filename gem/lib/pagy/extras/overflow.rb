@@ -67,7 +67,7 @@ class Pagy # :nodoc:
           raise                                        # same as without the extra
         when :empty_page
           @offset = @items = @from = @to = 0           # vars relative to the actual page
-          @vars[:size] = []                            # no page in the series
+          @vars[:size] = 0                             # no page in the series
           self
         else
           raise VariableError.new(self, :overflow, 'to be in [:empty_page, :exception]', @vars[:overflow])
