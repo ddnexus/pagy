@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#1-repro-app
 
-VERSION = '8.6.1'
+VERSION = '8.6.2'
 
 require 'bundler/inline'
 require 'bundler'
@@ -164,7 +164,7 @@ __END__
 
   <h4>pagy_nav_js</h4>
   <%= pagy_nav_js(@pagy, id: 'nav-js-responsive', aria_label: 'Pages nav_js_responsove',
-     steps: { 0 => [1,1,1,1], 500 => [1,3,3,1], 750 => [1,5,5,1], 1000 => [2,6,6,2] }) %>
+     steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
 
   <h4>pagy_combo_nav_js</h4>
   <%= pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>

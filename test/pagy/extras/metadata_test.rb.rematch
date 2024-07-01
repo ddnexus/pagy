@@ -1,40 +1,12 @@
 ---
-pagy/extras/metadata::#pagy_metadata for Pagy::Calendar#test_0002_returns only specific metadata for Pagy::Calendar:
+pagy/extras/metadata::#pagy_metadata for Pagy#test_0004_returns only specific metadata:
   :metadata:
-    :scaffold_url: "/foo?month_page=__pagy_page__"
+    :scaffold_url: "/foo?page=__pagy_page__"
     :page: 3
-    :from: !ruby/object:ActiveSupport::TimeWithZone
-      utc: 2021-12-01 05:00:00.000000000 Z
-      zone: &1 !ruby/object:ActiveSupport::TimeZone
-        name: EST
-      time: 2021-12-01 00:00:00.000000000 Z
-    :to: !ruby/object:ActiveSupport::TimeWithZone
-      utc: 2022-01-01 05:00:00.000000000 Z
-      zone: *1
-      time: 2022-01-01 00:00:00.000000000 Z
+    :count: 1000
     :prev: 2
     :next: 4
-    :pages: 26
-pagy/extras/metadata::#pagy_metadata for Pagy#test_0001_defines all metadata:
-  :metadata:
-  - :scaffold_url
-  - :first_url
-  - :prev_url
-  - :page_url
-  - :next_url
-  - :last_url
-  - :count
-  - :page
-  - :items
-  - :vars
-  - :pages
-  - :last
-  - :in
-  - :from
-  - :to
-  - :prev
-  - :next
-  - :series
+    :pages: 50
 pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy metadata:
   :metadata:
     :scaffold_url: "/foo?page=__pagy_page__"
@@ -50,11 +22,7 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
       :page: 3
       :items: 20
       :outset: 0
-      :size:
-      - 1
-      - 4
-      - 4
-      - 1
+      :size: 7
       :ends: true
       :count_args:
       - :all
@@ -95,8 +63,6 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
     - '3'
     - 4
     - 5
-    - 6
-    - 7
     - :gap
     - 50
     :sequels:
@@ -106,15 +72,41 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
       - '3'
       - 4
       - 5
-      - 6
-      - 7
       - :gap
       - 50
-pagy/extras/metadata::#pagy_metadata for Pagy#test_0004_returns only specific metadata:
+pagy/extras/metadata::#pagy_metadata for Pagy#test_0001_defines all metadata:
   :metadata:
-    :scaffold_url: "/foo?page=__pagy_page__"
+  - :scaffold_url
+  - :first_url
+  - :prev_url
+  - :page_url
+  - :next_url
+  - :last_url
+  - :count
+  - :page
+  - :items
+  - :vars
+  - :pages
+  - :last
+  - :in
+  - :from
+  - :to
+  - :prev
+  - :next
+  - :series
+pagy/extras/metadata::#pagy_metadata for Pagy::Calendar#test_0002_returns only specific metadata for Pagy::Calendar:
+  :metadata:
+    :scaffold_url: "/foo?month_page=__pagy_page__"
     :page: 3
-    :count: 1000
+    :from: !ruby/object:ActiveSupport::TimeWithZone
+      utc: 2021-12-01 05:00:00.000000000 Z
+      zone: &1 !ruby/object:ActiveSupport::TimeZone
+        name: EST
+      time: 2021-12-01 00:00:00.000000000 Z
+    :to: !ruby/object:ActiveSupport::TimeWithZone
+      utc: 2022-01-01 05:00:00.000000000 Z
+      zone: *1
+      time: 2022-01-01 00:00:00.000000000 Z
     :prev: 2
     :next: 4
-    :pages: 50
+    :pages: 26

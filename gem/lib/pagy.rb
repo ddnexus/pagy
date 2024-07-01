@@ -5,7 +5,7 @@ require 'pathname'
 
 # Core class
 class Pagy
-  VERSION = '8.6.1'
+  VERSION = '8.6.2'
 
   # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
   def self.root
@@ -29,10 +29,10 @@ class Pagy
     normalize_vars(vars)
     setup_vars(count: 0, page: 1, outset: 0)
     setup_items_var
+    setup_offset_var
     setup_last_var
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
-    setup_offset_var
     @from = [@offset - @outset + 1, @count].min
     @to   = [@offset - @outset + @items, @count].min
     @in   = [@to - @from + 1, @count].min
@@ -43,7 +43,7 @@ class Pagy
   # Return the array of page numbers and :gap items e.g. [1, :gap, 8, "9", 10, :gap, 36]
   def series(size: @vars[:size], **_)
     raise VariableError.new(self, :size, 'to be an Integer >= 0', size) \
-          unless size.is_a?(Integer)
+          unless size.is_a?(Integer) && size >= 0
     return [] if size.zero?
 
     [].tap do |series|
@@ -53,13 +53,13 @@ class Pagy
         left  = ((size - 1) / 2.0).floor             # left half might be 1 page shorter for even size
         start = if @page <= left                     # beginning pages
                   1
-                elsif @page > @last - (size - left)  # end pages
+                elsif @page > (@last - size + left)  # end pages
                   @last - size + 1
                 else                                 # intermediate pages
                   @page - left
                 end
         series.push(*start...start + size)
-        # Insert first and last ends plus gaps when needed
+        # Set first and last pages plus gaps when needed, respecting the size
         if vars[:ends] && size >= 7
           series[0]  = 1     unless series[0]  == 1
           series[1]  = :gap  unless series[1]  == 2
@@ -101,17 +101,17 @@ class Pagy
     setup_vars(items: 1)
   end
 
+  # Setup @offset (overridden by the gearbox extra)
+  def setup_offset_var
+    @offset = (@items * (@page - 1)) + @outset  # may be already set from gear_box
+  end
+
   # Setup @last (overridden by the gearbox extra)
   def setup_last_var
     @last = [(@count.to_f / @items).ceil, 1].max
     @last = vars[:max_pages] if vars[:max_pages] && @last > vars[:max_pages]
   end
   alias setup_pages_var setup_last_var
-
-  # Setup @offset based on the :gearbox_items variable
-  def setup_offset_var
-    @offset = (@items * (@page - 1)) + @outset  # may be already set from gear_box
-  end
 end
 
 require_relative 'pagy/extras/size' # will be opt in in v9.0

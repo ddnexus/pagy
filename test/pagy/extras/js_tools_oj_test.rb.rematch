@@ -7,8 +7,6 @@ pagy/extras/js_tools_oj::Calendar sequels and label_sequels#test_0001_generate t
     - '3'
     - 4
     - 5
-    - :gap
-    - 26
     '600':
     - 1
     - 2
@@ -16,8 +14,7 @@ pagy/extras/js_tools_oj::Calendar sequels and label_sequels#test_0001_generate t
     - 4
     - 5
     - 6
-    - :gap
-    - 26
+    - 7
   :label_sequels:
     '0':
     - Oct
@@ -25,8 +22,6 @@ pagy/extras/js_tools_oj::Calendar sequels and label_sequels#test_0001_generate t
     - Dec
     - Jan
     - Feb
-    - :gap
-    - Nov
     '600':
     - Oct
     - Nov
@@ -34,8 +29,7 @@ pagy/extras/js_tools_oj::Calendar sequels and label_sequels#test_0001_generate t
     - Jan
     - Feb
     - Mar
-    - :gap
-    - Nov
+    - Apr
 pagy/extras/js_tools_oj::#pagy_data#test_0001_uses oj:
   :data_1: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="
   :data_2: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlLCJwYWdlIl0="

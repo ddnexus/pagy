@@ -16,10 +16,9 @@ describe 'pagy/extras/overflow' do
   let(:countless_vars) { { page: 100, items: 10 } }
   let(:calendar_vars)  { { period: PERIOD, page: 100 } }
   before do
-    @pagy = Pagy.new(pagy_vars)
-    @pagy_calendar = Pagy::Calendar::Day.new(calendar_vars)
+    @pagy           = Pagy.new(pagy_vars)
+    @pagy_calendar  = Pagy::Calendar::Day.new(calendar_vars)
     @pagy_countless = Pagy::Countless.new(countless_vars).finalize(0)
-    @pagy_countless.finalize(0)
   end
 
   describe "variables" do
