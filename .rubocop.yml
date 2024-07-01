@@ -14,10 +14,6 @@ AllCops:
     - coverage/**/*
     - docs/**/*
     - gem/lib/optimist.rb
-    - gem/lib/pagy/extras/foundation.rb
-    - gem/lib/pagy/extras/materialize.rb
-    - gem/lib/pagy/extras/semantic.rb
-    - gem/lib/pagy/extras/uikit.rb
     - src/**/*
     - vendor/**/*  # fix the problem with github ruby
 

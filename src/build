@@ -12,8 +12,3 @@ bun build ./pagy.ts --target=node --no-bundle --outfile=$jdir/pagy.mjs
 
 bun build ./pagy.min.js --target=browser --minify --sourcemap=linked --outdir=$jdir
 sed -i "0,/var ./{s/var ./window.Pagy/}" $jdir/pagy.min.js
-
-# Copy the deprecated files that can break a production app
-cd $jdir
-cp pagy.min.js pagy.js
-cp pagy.mjs pagy-module.js
