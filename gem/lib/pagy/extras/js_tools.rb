@@ -13,11 +13,11 @@ class Pagy # :nodoc:
       # `Pagy` instance method used by the `pagy*_nav_js` helpers.
       # It returns the sequels of width/series generated from the :steps hash
       # Example:
-      # >> pagy = Pagy.new(count:1000, page: 20, steps: {0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3]})
+      # >> pagy = Pagy.new(count:1000, page: 20, steps: {0 => 5, 350 => 7, 550 => 9})
       # >> pagy.sequels
-      # #=> { "0"   => [1, :gap, 18, 19, "20", 21, 22, :gap, 50],
-      #       "350" => [1, 2, :gap, 17, 18, 19, "20", 21, 22, 23, :gap, 49, 50],
-      #       "550" => [1, 2, 3, :gap, 16, 17, 18, 19, "20", 21, 22, 23, 24, :gap, 48, 49, 50] }
+      # #=> { "0"   => [18, 19, "20", 21, 22],
+      #       "350" => [1, :gap, 19, "20", 21, :gap, 50],
+      #       "550" => [1 :gap, 18, 19, "20", 21, 22, :gap, 50] }
       # Notice: if :steps is false it will use the single {0 => @vars[:size]} size
       def sequels(steps: @vars[:steps] || { 0 => @vars[:size] }, **_)
         raise VariableError.new(self, :steps, 'to define the 0 width', steps) unless steps.key?(0)

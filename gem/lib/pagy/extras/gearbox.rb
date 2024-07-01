@@ -19,6 +19,18 @@ class Pagy # :nodoc:
       @items = gears[@page - 1] || gears.last
     end
 
+    # Setup @offset based on the :gearbox_items variable
+    def setup_offset_var
+      return super if !@vars[:gearbox_extra] || @vars[:items_extra]
+
+      gears   = @vars[:gearbox_items]
+      @offset = if @page <= gears.count
+                  gears[0, @page - 1].sum
+                else
+                  gears.sum + (gears.last * (@page - gears.count - 1))
+                end + @outset
+    end
+
     # Setup Pagy @last based on the :gearbox_items variable and @count
     def setup_last_var
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
@@ -37,18 +49,6 @@ class Pagy # :nodoc:
                  [pages, 1].max
                end)
       @last = vars[:max_pages] if vars[:max_pages] && @last > vars[:max_pages]
-    end
-
-    # Setup @offset based on the :gearbox_items variable
-    def setup_offset_var
-      return super if !@vars[:gearbox_extra] || @vars[:items_extra]
-
-      gears   = @vars[:gearbox_items]
-      @offset = if @page <= gears.count
-                  gears[0, @page - 1].sum
-                else
-                  gears.sum + (gears.last * (@page - gears.count - 1))
-                end + @outset
     end
   end
   prepend GearboxExtra
