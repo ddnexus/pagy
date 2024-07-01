@@ -53,37 +53,37 @@ describe 'pagy/extras/standalone' do
       _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "?a=3&b=4&page=5"
     end
     it 'renders url with fragment' do
-      pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment'
-      _(app.pagy_url_for(pagy, 6)).must_equal '/foo?page=6#fragment'
-      _(app.pagy_url_for(pagy, 6, absolute: true)).must_equal 'http://example.com:3000/foo?page=6#fragment'
-      pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment', url: 'http://www.pagy-standalone.com/subdir'
-      _(app.pagy_url_for(pagy, 6)).must_equal 'http://www.pagy-standalone.com/subdir?page=6#fragment'
-      _(app.pagy_url_for(pagy, 6, absolute: true)).must_equal 'http://www.pagy-standalone.com/subdir?page=6#fragment'
-      pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment', url: ''
-      _(app.pagy_url_for(pagy, 6)).must_equal '?page=6#fragment'
-      _(app.pagy_url_for(pagy, 6, absolute: true)).must_equal '?page=6#fragment'
+      pagy = Pagy.new count: 1000, page: 3
+      _(app.pagy_url_for(pagy, 6, fragment: '#fragment')).must_equal '/foo?page=6#fragment'
+      _(app.pagy_url_for(pagy, 6, absolute: true, fragment: '#fragment')).must_equal 'http://example.com:3000/foo?page=6#fragment'
+      pagy = Pagy.new count: 1000, page: 3, url: 'http://www.pagy-standalone.com/subdir'
+      _(app.pagy_url_for(pagy, 6, fragment: '#fragment')).must_equal 'http://www.pagy-standalone.com/subdir?page=6#fragment'
+      _(app.pagy_url_for(pagy, 6, absolute: true, fragment: '#fragment')).must_equal 'http://www.pagy-standalone.com/subdir?page=6#fragment'
+      pagy = Pagy.new count: 1000, page: 3, url: ''
+      _(app.pagy_url_for(pagy, 6, fragment: '#fragment')).must_equal '?page=6#fragment'
+      _(app.pagy_url_for(pagy, 6, absolute: true, fragment: '#fragment')).must_equal '?page=6#fragment'
     end
     it 'renders url with params and fragment' do
-      pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment'
-      _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&a=3&b=4#fragment'
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5&a=3&b=4#fragment'
-      pagy = Pagy.new count: 1000, page: 3, params: { a: [1, 2, 3] }, fragment: '#fragment', url: 'http://www.pagy-standalone.com/subdir'
-      _(app.pagy_url_for(pagy, 5)).must_equal "http://www.pagy-standalone.com/subdir?a%5B%5D=1&a%5B%5D=2&a%5B%5D=3&page=5#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://www.pagy-standalone.com/subdir?a%5B%5D=1&a%5B%5D=2&a%5B%5D=3&page=5#fragment"
-      pagy = Pagy.new count: 1000, page: 3, params: { a: nil }, fragment: '#fragment', url: ''
-      _(app.pagy_url_for(pagy, 5)).must_equal "?a&page=5#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "?a&page=5#fragment"
+      pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }
+      _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal '/foo?page=5&a=3&b=4#fragment'
+      _(app.pagy_url_for(pagy, 5, absolute: true, fragment: '#fragment')).must_equal 'http://example.com:3000/foo?page=5&a=3&b=4#fragment'
+      pagy = Pagy.new count: 1000, page: 3, params: { a: [1, 2, 3] }, url: 'http://www.pagy-standalone.com/subdir'
+      _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal "http://www.pagy-standalone.com/subdir?a%5B%5D=1&a%5B%5D=2&a%5B%5D=3&page=5#fragment"
+      _(app.pagy_url_for(pagy, 5, absolute: true, fragment: '#fragment')).must_equal "http://www.pagy-standalone.com/subdir?a%5B%5D=1&a%5B%5D=2&a%5B%5D=3&page=5#fragment"
+      pagy = Pagy.new count: 1000, page: 3, params: { a: nil }, url: ''
+      _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal "?a&page=5#fragment"
+      _(app.pagy_url_for(pagy, 5, absolute: true, fragment: '#fragment')).must_equal "?a&page=5#fragment"
     end
     it 'renders url with params lambda and fragment' do
-      pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: 3, b: 4) }, fragment: '#fragment'
-      _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&a=3&b=4#fragment'
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5&a=3&b=4#fragment'
-      pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: [1, 2, 3]) }, fragment: '#fragment', url: 'http://www.pagy-standalone.com/subdir'
-      _(app.pagy_url_for(pagy, 5)).must_equal "http://www.pagy-standalone.com/subdir?page=5&a%5B%5D=1&a%5B%5D=2&a%5B%5D=3#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://www.pagy-standalone.com/subdir?page=5&a%5B%5D=1&a%5B%5D=2&a%5B%5D=3#fragment"
-      pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: nil) }, fragment: '#fragment', url: ''
-      _(app.pagy_url_for(pagy, 5)).must_equal "?page=5&a#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "?page=5&a#fragment"
+      pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: 3, b: 4) }
+      _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal '/foo?page=5&a=3&b=4#fragment'
+      _(app.pagy_url_for(pagy, 5, absolute: true, fragment: '#fragment')).must_equal 'http://example.com:3000/foo?page=5&a=3&b=4#fragment'
+      pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: [1, 2, 3]) }, url: 'http://www.pagy-standalone.com/subdir'
+      _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal "http://www.pagy-standalone.com/subdir?page=5&a%5B%5D=1&a%5B%5D=2&a%5B%5D=3#fragment"
+      _(app.pagy_url_for(pagy, 5, absolute: true, fragment: '#fragment')).must_equal "http://www.pagy-standalone.com/subdir?page=5&a%5B%5D=1&a%5B%5D=2&a%5B%5D=3#fragment"
+      pagy = Pagy.new count: 1000, page: 3, params: ->(p) { p.merge(a: nil) }, url: ''
+      _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal "?page=5&a#fragment"
+      _(app.pagy_url_for(pagy, 5, absolute: true, fragment: '#fragment')).must_equal "?page=5&a#fragment"
     end
   end
 end

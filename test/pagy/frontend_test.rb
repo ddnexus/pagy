@@ -18,7 +18,7 @@ describe 'pagy/frontend' do
 
   # #pagy_nav helper tests in the test/extras/pagy_test.rb
 
-  describe '#pagy_a_proc' do
+  describe '#pagy_anchor' do
     it 'renders with extras' do
       pagy = Pagy.new(count: 103, page: 1)
       _(app.pagy_anchor(pagy, anchor_string: 'X').call(3)).must_equal '<a X href="/foo?page=3">3</a>'
@@ -87,47 +87,6 @@ describe 'pagy/frontend' do
       _(app.pagy_info(Pagy.new(count: 1), id: 'pagy-info', item_name: 'Widget')).must_rematch key: :info_1
       _(app.pagy_info(Pagy.new(count: 13), id: 'pagy-info', item_name: 'Widgets')).must_rematch key: :info_13
       _(app.pagy_info(Pagy.new(count: 100, page: 3), id: 'pagy-info', item_name: 'Widgets')).must_rematch key: :info_100
-    end
-  end
-
-  describe '#pagy_url_for' do
-    it 'renders basic url' do
-      pagy = Pagy.new count: 1000, page: 3
-      _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5'
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5'
-    end
-    it 'renders url with params' do
-      pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }
-      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
-    end
-    it 'renders url with fragment' do
-      pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment'
-      _(app.pagy_url_for(pagy, 6)).must_equal '/foo?page=6#fragment'
-      _(app.pagy_url_for(pagy, 6, absolute: true)).must_equal 'http://example.com:3000/foo?page=6#fragment'
-    end
-    it 'renders url with params and fragment' do
-      pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment'
-      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4#fragment"
-      _(app.pagy_url_for(pagy, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
-    end
-    it 'renders url with overridden path' do
-      pagy = Pagy.new count: 1000, page: 3, request_path: '/bar'
-      _(app.pagy_url_for(pagy, 5)).must_equal '/bar?page=5'
-    end
-  end
-
-  describe '#pagy_get_params and r' do
-    it 'overrides params' do
-      app  = MockApp.new(params: { delete_me: 'delete_me', a: 5 })
-      pagy = Pagy.new(count: 1000,
-                      page: 3,
-                      fragment: '#fragment',
-                      params: lambda do |params|
-                                params.delete('delete_me')
-                                params.merge('b' => 4, 'add_me' => 'add_me')
-                              end)
-      _(app.pagy_url_for(pagy, 5)).must_equal "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
     end
   end
 end

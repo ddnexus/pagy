@@ -207,10 +207,10 @@ An example using `except` and `merge!`:
 @pagy, @records = pagy(collection, params: ->(params) { params.except('not_useful').merge!('custom' => 'useful') })
 ```
 
-You can also use the `:fragment` variable to add a fragment to the URLs of the pages:
+You can also use the `:fragment` keyword argument to add a fragment to the URLs of the pages:
 
-```ruby controller
-@pagy, @records = pagy(collection, fragment: '#your-fragment')
+```erb view
+<%== pagy_nav(@pagy, fragment: '#your-fragment') %>
 ```
 
 !!!warning

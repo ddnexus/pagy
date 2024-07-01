@@ -6,9 +6,9 @@ class Pagy # :nodoc:
 
   # Remove the page=1 param from the first page link
   module TrimExtra
-    # Override the original pagy_a_proc.
+    # Override the original pagy_anchor.
     # Call the pagy_trim method for page 1 if the trim_extra is enabled
-    def pagy_anchor(pagy, anchor_string: nil)
+    def pagy_anchor(pagy, **_)
       a_proc = super
       return a_proc unless pagy.vars[:trim_extra]
 
