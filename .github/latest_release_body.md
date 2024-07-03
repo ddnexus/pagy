@@ -7,12 +7,12 @@
 - Deprecate the legacy nav bar, add features to the default faster nav bar series
 - See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 
-### Changes in 8.6.2
+### Changes in 8.6.3
 
 <!-- changes start -->
-- Fix the legacy size in code and test
-- Improve code readability and size check in series
-- Fix the old terminology in the demo.ru app
+- Add missing DEFAULT[:max_pages] hint to the config/pagy.rb
+- Improve activerecord handling in playground apps
+- Fix the missing "ar.pagy.aria_label.nav.other" (closes #577)
 <!-- changes end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

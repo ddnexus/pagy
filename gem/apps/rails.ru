@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#2-rails-app
 
-VERSION = '8.6.2'
+VERSION = '8.6.3'
 
 # Gemfile
 require 'bundler/inline'
@@ -67,6 +67,8 @@ Pagy::DEFAULT[:items]    = 10
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT.freeze
 
+# Activerecord initializer
+ActiveRecord::Base.logger = Logger.new(OUTPUT)
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-rails.sqlite3")
 ActiveRecord::Schema.define do
   create_table :posts, force: true do |t|
@@ -95,9 +97,6 @@ end
 Post.all.each_with_index do |post, pi|
   2.times { |ci| Comment.create(post:, body: "Comment #{ci + 1} to Post #{pi + 1}") }
 end
-
-# Down here to avoid logging the DB seed above at each restart
-ActiveRecord::Base.logger = Logger.new(OUTPUT)
 
 # Helpers
 module CommentsHelper

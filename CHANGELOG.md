@@ -32,6 +32,12 @@ If you upgrade from version `< 8.0.0` see the following:
   `require 'pagy/extras/size` to your `pagy.rb` initalizer for smooth upgrades. (see [size extra](https://ddnexus.github.io/pagy/docs/extras/size))
 <hr>
 
+## Version 8.6.3
+
+- Add missing DEFAULT[:max_pages] hint to the config/pagy.rb
+- Improve activerecord handling in playground apps
+- Fix the missing "ar.pagy.aria_label.nav.other" (closes #577)
+
 ## Version 8.6.2
 
 - Fix the legacy size in code and test

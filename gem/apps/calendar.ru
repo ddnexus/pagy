@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-calendar-app
 
-VERSION = '8.6.2'
+VERSION = '8.6.3'
 
 # Gemfile
 require 'bundler/inline'
@@ -70,6 +70,7 @@ Groupdate.time_zone = false
 Groupdate.week_start = :monday
 
 # Activerecord initializer
+ActiveRecord::Base.logger = Logger.new(OUTPUT)
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/calendar.sqlite3")
 ActiveRecord::Schema.define do
   create_table :events, force: true do |t|
@@ -735,11 +736,10 @@ TIMES = <<~TIMES
 TIMES
 
 # DB seed
+events = []
 TIMES.each_line(chomp: true).with_index do |time, i|
-  Event.create(title: "Event ##{i + 1}", time:)
+  events << { title: "Event ##{i + 1}", time: }
 end
-
-# Down here to avoid logging the DB seed above at each restart
-ActiveRecord::Base.logger = Logger.new(OUTPUT)
+Event.insert_all(events)
 
 run Calendar
