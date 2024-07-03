@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (8.6.2)
+    pagy (8.6.3)
 
 GEM
   remote: https://rubygems.org/
