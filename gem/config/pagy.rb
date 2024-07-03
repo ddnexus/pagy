@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (8.6.2)
+# Pagy initializer file (8.6.3)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -15,6 +15,7 @@
 # Pagy::DEFAULT[:ends]        = true                  # default
 # Pagy::DEFAULT[:page_param]  = :page                 # default
 # Pagy::DEFAULT[:count_args]  = []                    # example for non AR ORMs
+# Pagy::DEFAULT[:max_pages]   = 3000                  # example
 
 
 # Extras

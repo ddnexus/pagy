@@ -8,6 +8,7 @@ ar:
         two: "صفحتين"
         few: "صفحات"
         many: "صفحات"
+        other: "صفحات"
       prev: "السابق"
       next: "التالي"
     prev: "&lt;"
