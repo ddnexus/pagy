@@ -19,14 +19,5 @@ Gem::Specification.new do |s|
                     'changelog_uri'         => 'https://github.com/ddnexus/pagy/blob/master/CHANGELOG.md',
                     'support'               => 'https://github.com/ddnexus/pagy/discussions/categories/q-a' }
   s.executables << 'pagy'
-  s.post_install_message = <<~PIM
-    *********************** PAGY WARNING! ***********************
-     The foundation, materialize, semantic and uikit CSS extras
-          have been discontinued and will be removed in v9
-           https://github.com/ddnexus/pagy/discussions/672
-          The javascript files have been deprecated/renamed
-        https://ddnexus.github.io/pagy/changelog/#deprecations
-    *************************************************************
-  PIM
   s.required_ruby_version = '>= 3.1'
 end

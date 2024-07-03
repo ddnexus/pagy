@@ -111,10 +111,8 @@ class Pagy
     @last = [(@count.to_f / @items).ceil, 1].max
     @last = vars[:max_pages] if vars[:max_pages] && @last > vars[:max_pages]
   end
-  alias setup_pages_var setup_last_var
 end
 
-require_relative 'pagy/extras/size' # will be opt in in v9.0
 require_relative 'pagy/backend'
 require_relative 'pagy/frontend'
 require_relative 'pagy/exceptions'
