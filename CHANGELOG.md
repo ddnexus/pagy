@@ -38,10 +38,13 @@ If you upgrade from version `< 9.0.0` see the following:
   `:size` set to an integer with the `ends: true` variable (which are the default since 8.4.6). If a legacy bar remains REALLY 
   a requirement, add `require 'pagy/extras/size` to your `pagy.rb` initalizer. (See the [size extra](https://ddnexus.github.io/pagy/docs/extras/size))
 - The `DEFAULT[:anchor_string]` has been dropped.
-- The `:anchor_string` is not an instance variable anymore, but a keyword argument for all the helpers, because it is
-  frontend code (see the [discussion](https://github.com/ddnexus/pagy/discussions/719)). Instead of passing it to the `pagy*`
+- The `:anchor_string`and the `:fragment` are not instance variables anymore, but keyword arguments for all the helpers, because it is
+  frontend code (see the [discussion](https://github.com/ddnexus/pagy/discussions/719)). Instead of passing them to the `pagy*`
   method in the controller, pass it to any `pagy_*nav` method in the view.
-<hr>
+
+## Version 8.6.2
+
+Temporary section to pass tests
 
 ## Version 8.6.3
 

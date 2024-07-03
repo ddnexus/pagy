@@ -8,9 +8,9 @@ class Pagy # :nodoc:
   # The resulting code may not look very elegant, but produces the best benchmarks
   module BootstrapExtra
     # Pagination for bootstrap: it returns the html with the series of links to the pages
-    def pagy_bootstrap_nav(pagy, id: nil, classes: 'pagination', aria_label: nil, anchor_string: nil, **vars)
+    def pagy_bootstrap_nav(pagy, id: nil, classes: 'pagination', aria_label: nil, **vars)
       id = %( id="#{id}") if id
-      a  = pagy_anchor(pagy, anchor_string:)
+      a  = pagy_anchor(pagy, **vars)
 
       html = %(<nav#{id} class="pagy-bootstrap nav" #{nav_aria_label(pagy, aria_label:)}><ul class="#{classes}">#{
                  bootstrap_prev_html(pagy, a)})
@@ -31,10 +31,10 @@ class Pagy # :nodoc:
     end
 
     # Javascript pagination for bootstrap: it returns a nav with a data-pagy attribute used by the pagy.js file
-    def pagy_bootstrap_nav_js(pagy, id: nil, classes: 'pagination', aria_label: nil, anchor_string: nil, **vars)
+    def pagy_bootstrap_nav_js(pagy, id: nil, classes: 'pagination', aria_label: nil, **vars)
       sequels = pagy.sequels(**vars)
       id      = %( id="#{id}") if id
-      a       = pagy_anchor(pagy, anchor_string:)
+      a       = pagy_anchor(pagy, **vars)
       tokens  = { 'before'  => %(<ul class="#{classes}">#{bootstrap_prev_html(pagy, a)}),
                   'a'       => %(<li class="page-item">#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'page-link')}</li>),
                   'current' => %(<li class="page-item active"><a role="link" class="page-link" ) +
@@ -50,9 +50,9 @@ class Pagy # :nodoc:
     end
 
     # Javascript combo pagination for bootstrap: it returns a nav with a data-pagy attribute used by the pagy.js file
-    def pagy_bootstrap_combo_nav_js(pagy, id: nil, classes: 'pagination', aria_label: nil, anchor_string: nil)
+    def pagy_bootstrap_combo_nav_js(pagy, id: nil, classes: 'pagination', aria_label: nil, **vars)
       id    = %( id="#{id}") if id
-      a     = pagy_anchor(pagy, anchor_string:)
+      a     = pagy_anchor(pagy, **vars)
       pages = pagy.pages
 
       page_input = %(<input name="page" type="number" min="1" max="#{pages}" value="#{pagy.page}" aria-current="page" ) <<
@@ -61,7 +61,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="pagy-bootstrap combo-nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN))
+          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN, **vars))
         }><ul class="#{classes}">#{
           bootstrap_prev_html(pagy, a)
         }<li class="page-item pagy-bootstrap"><label class="page-link">#{

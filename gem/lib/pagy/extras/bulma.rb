@@ -9,9 +9,9 @@ class Pagy # :nodoc:
   module BulmaExtra
     # Pagination for bulma: it returns the html with the series of links to the pages
     def pagy_bulma_nav(pagy, id: nil, classes: 'pagy-bulma nav pagination is-centered',
-                       aria_label: nil, anchor_string: nil, **vars)
+                       aria_label: nil, **vars)
       id = %( id="#{id}") if id
-      a  = pagy_anchor(pagy, anchor_string:)
+      a  = pagy_anchor(pagy, **vars)
 
       html = %(<nav#{id} class="#{classes}" #{nav_aria_label(pagy, aria_label:)}>)
       html << bulma_prev_next_html(pagy, a)
@@ -33,10 +33,10 @@ class Pagy # :nodoc:
 
     # Javascript pagination for bulma: it returns a nav with a data-pagy attribute used by the Pagy.nav javascript
     def pagy_bulma_nav_js(pagy, id: nil, classes: 'pagy-bulma nav-js pagination is-centered',
-                          aria_label: nil, anchor_string: nil, **vars)
+                          aria_label: nil, **vars)
       sequels = pagy.sequels(**vars)
       id      = %( id="#{id}") if id
-      a       = pagy_anchor(pagy, anchor_string:)
+      a       = pagy_anchor(pagy, **vars)
       tokens = { 'before'  => %(#{bulma_prev_next_html(pagy, a)}<ul class="pagination-list">),
                  'a'       => %(<li>#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'pagination-link')}</li>),
                  'current' => %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
@@ -52,9 +52,9 @@ class Pagy # :nodoc:
 
     # Javascript combo pagination for bulma: it returns a nav with a data-pagy attribute used by the pagy.js file
     def pagy_bulma_combo_nav_js(pagy, id: nil, classes: 'pagy-bulma combo-nav-js pagination is-centered',
-                                aria_label: nil, anchor_string: nil)
+                                aria_label: nil, **vars)
       id    = %( id="#{id}") if id
-      a     = pagy_anchor(pagy, anchor_string:)
+      a     = pagy_anchor(pagy, **vars)
       pages = pagy.pages
 
       page_input = %(<input name="page" type="number" min="1" max="#{pages}" value="#{pagy.page}" aria-current="page") <<
@@ -64,7 +64,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="#{classes}" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN))
+          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN, **vars))
         }>#{
           bulma_prev_next_html(pagy, a)
         }<ul class="pagination-list"><li class="pagination-link"><label>#{

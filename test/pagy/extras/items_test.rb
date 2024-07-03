@@ -139,12 +139,12 @@ describe 'pagy/extras/items' do
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do
-        pagy = Pagy.new count: 1000, page: 3, fragment: '#fragment'
-        _(app.pagy_url_for(pagy, 6)).must_equal '/foo?page=6&items=20#fragment'
+        pagy = Pagy.new count: 1000, page: 3
+        _(app.pagy_url_for(pagy, 6, fragment: '#fragment')).must_equal '/foo?page=6&items=20#fragment'
       end
       it 'renders url with params and fragment' do
-        pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, fragment: '#fragment', items: 40
-        _(app.pagy_url_for(pagy, 5)).must_equal "/foo?page=5&a=3&b=4&items=40#fragment"
+        pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, items: 40
+        _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal "/foo?page=5&a=3&b=4&items=40#fragment"
       end
     end
     it 'renders items selector' do
