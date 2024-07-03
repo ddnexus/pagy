@@ -302,9 +302,9 @@ describe 'pagy/extras/calendar' do
                                    page: 1 })
       calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
                                                   Event.all,
-                                                  year: {anchor_string: 'data-foo="bar"'},
+                                                  year: {},
                                                   pagy: { items: 10 })
-      _(app_counts.pagy_nav(calendar[:year])).must_rematch :year
+      _(app_counts.pagy_nav(calendar[:year], anchor_string: 'data-foo="bar"')).must_rematch :year
     end
   end
 end

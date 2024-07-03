@@ -110,6 +110,8 @@ Here is how you should use it: in your helper call the method to get the proc (j
 
 ```ruby
 a = pagy_anchor(pagy)
+# or
+a = pagy_anchor(pagy, anchor_string: 'verbatim string')
 ```
 
 Then call the `a` proc to get the links (multiple times):
@@ -118,9 +120,10 @@ Then call the `a` proc to get the links (multiple times):
 my_link = a.(page_number, text, classes:, aria_label:)
 ```
 
-#### The anchor_string variable
+#### The anchor_string argument
 
-If you need to add some HTML attribute to ALL the page links, you can set the `:anchor_string` variable.
+If you need to add some HTML attribute to ALL the page links, you can pass the `:anchor_string` keyword argument to any pagy 
+helper, or if you use templates or override helpers, you can pass it also to the `pagy_anchor` method.
 
 !!!warning Attributes Must be Valid HTML
 For performance reasons, the `:anchor_string` string must be formatted as valid HTML attribute/value pairs because it will get 

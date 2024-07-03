@@ -130,7 +130,6 @@ number `1`. For performance reasons, only the instance variables get validated.
 
 | Variable         | Description                                                                                                                                                                           | Default |
 |:-----------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
-| `:anchor_string` | The extra attributes string (formatted as a valid HTML `attr="value"`) added to the page links _(see [Customize the link attributes](/docs/how-to.md#customize-the-link-attributes))_ | `nil`   |
 | `:count`         | The total count of the collection to paginate (mandatory argument)                                                                                                                    | `nil`   |
 | `:count_args`    | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                                    | [:all]  |
 | `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                         | `false` |

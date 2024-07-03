@@ -15,9 +15,9 @@ class Pagy
     include UrlHelpers
 
     # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
+    def pagy_nav(pagy, id: nil, aria_label: nil, anchor_string: nil, **vars)
       id = %( id="#{id}") if id
-      a  = pagy_anchor(pagy)
+      a  = pagy_anchor(pagy, anchor_string:)
 
       html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}>#{
                  prev_a(pagy, a)})
@@ -56,10 +56,9 @@ class Pagy
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_anchor(pagy)
-      a_string    = pagy.vars[:anchor_string]
-      a_string    = %( #{a_string}) if a_string
-      left, right = %(<a#{a_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
+    def pagy_anchor(pagy, anchor_string: nil)
+      anchor_string &&= %( #{anchor_string})
+      left, right = %(<a#{anchor_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
       # lambda used by all the helpers
       lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
         classes    = %( class="#{classes}") if classes

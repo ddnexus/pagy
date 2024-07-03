@@ -20,8 +20,8 @@ describe 'pagy/frontend' do
 
   describe '#pagy_a_proc' do
     it 'renders with extras' do
-      pagy = Pagy.new(count: 103, page: 1, anchor_string: 'X')
-      _(app.pagy_anchor(pagy).call(3)).must_equal '<a X href="/foo?page=3">3</a>'
+      pagy = Pagy.new(count: 103, page: 1)
+      _(app.pagy_anchor(pagy, anchor_string: 'X').call(3)).must_equal '<a X href="/foo?page=3">3</a>'
     end
   end
 
