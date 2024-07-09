@@ -797,7 +797,7 @@ the [pagy extra](extras/pagy.md).
 ==- Consider the Arel extra and/or the fast_page gem
 
 You can improve the performance for [grouped collections](#paginate-a-grouped-collection) with
-the [arel extra](http://ddnexus.github.io/pagy/extras/arel), and queries on big data
+the [arel extra](extras/arel.md), and queries on big data
 with [fast_page](https://github.com/planetscale/fast_page#pagy).
 
 ===
