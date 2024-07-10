@@ -3,7 +3,7 @@
 
 class Pagy
   # Define a few generic methods to paginate a collection out of the box,
-  # or any collection by overriding pagy_get_items and/or pagy_get_vars in your controller
+  # or any collection by overriding pagy_get_records and/or pagy_get_vars in your controller
   # See also the extras if you need specialized methods to paginate Arrays or other collections
   module Backend
     private
@@ -11,7 +11,7 @@ class Pagy
     # Return Pagy object and paginated items/results
     def pagy(collection, vars = {})
       pagy = Pagy.new(pagy_get_vars(collection, vars))
-      [pagy, pagy_get_items(collection, pagy)]
+      [pagy, pagy_get_records(collection, pagy)]
     end
 
     # Sub-method called only by #pagy: here for easy customization of variables by overriding
@@ -37,7 +37,7 @@ class Pagy
 
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding
     # You may need to override this method for collections without offset|limit
-    def pagy_get_items(collection, pagy)
+    def pagy_get_records(collection, pagy)
       collection.offset(pagy.offset).limit(pagy.items)
     end
   end

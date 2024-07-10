@@ -97,9 +97,9 @@ its returned objects will depend on the value of the `:countless_minimal` variab
 This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_countless` method. (see
 the [pagy_get_vars doc](/docs/api/backend.md#pagy-get-vars-collection-vars)).
 
-==- `pagy_countless_get_items(collection, pagy)`
+==- `pagy_countless_get_records(collection, pagy)`
 
-This sub-method is similar to the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see
-the [pagy_get_items doc](/docs/api/backend.md#pagy-get-items-collection-pagy)).
+This sub-method is similar to the `pagy_get_records` sub-method, but it is called only by the `pagy_countless` method. (see
+the [pagy_get_records doc](/docs/api/backend.md#pagy-get-items-collection-pagy)).
 
 ===

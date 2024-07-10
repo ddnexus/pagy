@@ -41,6 +41,7 @@ If you upgrade from version `< 9.0.0` see the following:
 - The `:anchor_string`and the `:fragment` are not instance variables anymore, but keyword arguments for all the helpers, because it is
   frontend code (see the [discussion](https://github.com/ddnexus/pagy/discussions/719)). Instead of passing them to the `pagy*`
   method in the controller, pass it to any `pagy_*nav` method in the view.
+- Breaking only if overridden: the internal `pagy*_get_items` methods have been renamed to `pagy*_get_records` for clarity. 
 
 ## Version 8.6.2
 

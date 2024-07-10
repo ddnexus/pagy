@@ -85,8 +85,8 @@ pagy or by any other ruby code ([#696](https://github.com/ddnexus/pagy/pull/696)
 [#704](https://github.com/ddnexus/pagy/pull/704)), but a simple pagy override may avoid it:
 
 ```rb
-## override pagy_get_items
-def pagy_get_items(collection, pagy)
+## override pagy_get_records
+def pagy_get_records(collection, pagy)
   limit = pagy.last == pagy.page ? pagy.in : pagy.items
   collection.offset(pagy.offset).limit(limit)
 end

@@ -9,7 +9,7 @@ class Pagy # :nodoc:
     # Return Pagy object and paginated collection/results
     def pagy_arel(collection, vars = {})
       pagy = Pagy.new(pagy_arel_get_vars(collection, vars))
-      [pagy, pagy_get_items(collection, pagy)]
+      [pagy, pagy_get_records(collection, pagy)]
     end
 
     # Sub-method called only by #pagy_arel: here for easy customization of variables by overriding

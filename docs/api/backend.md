@@ -62,7 +62,7 @@ the `Pagy.new` method) and returns the `Pagy` instance and the page of records. 
 
 The built-in `pagy` method is designed to be easy to customize by overriding any of the two sub-methods that it calls internally.
 You can independently change the default variables (`pagy_get_vars`) and/or the default page of items from the
-collection `pagy_get_items`).
+collection `pagy_get_records`).
 
 If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and
 self contained custom `pagy` method. (see [Writing your own Pagy methods](#writing-your-own-pagy-methods))
@@ -88,15 +88,15 @@ Get the count from the collection, considering also the `:count_args` variable. 
 
 Get the `page` from the param ,looking at the `:page_param` variable. See also [Customize the page_param](/docs/how-to.md#customize-the-page-param).
 
-==- `pagy_get_items(collection, pagy)`
+==- `pagy_get_records(collection, pagy)`
 
-Sub-method called only by the `pagy` method, it returns the page items (i.e. the records belonging to the current page).
+Sub-method called only by the `pagy` method, it returns the records belonging to the current page.
 
 Here is its source (it works with most ORMs like `ActiveRecord`, `Sequel`, `Mongoid`, ...):
 
 ```ruby
 
-def pagy_get_items(collection, pagy)
+def pagy_get_records(collection, pagy)
   collection.offset(pagy.offset).limit(pagy.items)
 end
 ```
@@ -106,7 +106,7 @@ array:
 
 ```ruby
 
-def pagy_get_items(array, pagy)
+def pagy_get_records(array, pagy)
   array[pagy.offset, pagy.items]
 end
 ```
