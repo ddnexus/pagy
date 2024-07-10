@@ -12,15 +12,8 @@ class Pagy # :nodoc:
 
     # Return Pagy object and items
     def pagy_countless(collection, vars = {})
-      pagy = Countless.new(pagy_countless_get_vars(collection, vars))
+      pagy = Countless.new(pagy_get_vars(collection, vars))
       [pagy, pagy_countless_get_records(collection, pagy)]
-    end
-
-    # Sub-method called only by #pagy_countless: here for easy customization of variables by overriding
-    def pagy_countless_get_vars(_collection, vars)
-      pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-      vars[:page] ||= pagy_get_page(vars)
-      vars
     end
 
     # Sub-method called only by #pagy_countless: here for easy customization of record-extraction by overriding

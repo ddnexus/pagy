@@ -15,17 +15,16 @@ class Pagy # :nodoc:
       private
 
       # Set the items variable considering the params and other pagy variables
-      def pagy_set_items_from_params(vars)
-        return if vars[:items]                                                             # :items explicitly set
+      def pagy_get_items(vars)
         return unless vars.key?(:items_extra) ? vars[:items_extra] : DEFAULT[:items_extra] # :items_extra is false
-        return unless (items_count = pagy_get_items_size(vars))                            # no items from request params
+        return unless (items_count = pagy_get_items_param(vars))                            # no items from request params
 
         vars[:items] = [items_count.to_i, vars.key?(:max_items) ? vars[:max_items] : DEFAULT[:max_items]].compact.min
       end
 
       # Get the items count from the params
       # Overridable by the jsonapi extra
-      def pagy_get_items_size(vars)
+      def pagy_get_items_param(vars)
         params[vars[:items_param] || DEFAULT[:items_param]]
       end
     end

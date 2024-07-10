@@ -54,10 +54,10 @@ class Pagy # :nodoc:
       # Sub-method called only by #pagy_meilisearch: here for easy customization of variables by overriding.
       # The _collection argument is not available when the method is called.
       def pagy_meilisearch_get_vars(_collection, vars)
-        pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-        vars[:items] ||= DEFAULT[:items]
-        vars[:page]  ||= pagy_get_page(vars)
-        vars
+        vars.tap do |v|
+          v[:page]  ||= pagy_get_page(v)
+          v[:items] ||= pagy_get_items(v) || DEFAULT[:items]
+        end
       end
     end
     Backend.prepend BackendAddOn

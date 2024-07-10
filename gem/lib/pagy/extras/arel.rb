@@ -14,10 +14,8 @@ class Pagy # :nodoc:
 
     # Sub-method called only by #pagy_arel: here for easy customization of variables by overriding
     def pagy_arel_get_vars(collection, vars)
-      pagy_set_items_from_params(vars) if defined?(ItemsExtra)
       vars[:count] ||= pagy_arel_count(collection)
-      vars[:page]  ||= pagy_get_page(vars)
-      vars
+      pagy_get_vars(collection, vars)
     end
 
     # Count using Arel when grouping

@@ -52,7 +52,7 @@ class Pagy # :nodoc:
       private
 
       # Override the ItemsExtra::Backend method
-      def pagy_get_items_size(vars)
+      def pagy_get_items_param(vars)
         return super if pagy_skip_jsonapi?(vars)
         return if params[:page].nil?
 
