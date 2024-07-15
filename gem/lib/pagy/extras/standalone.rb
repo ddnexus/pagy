@@ -12,10 +12,6 @@ class Pagy # :nodoc:
     module QueryUtils
       module_function
 
-      def escape(str)
-        URI.encode_www_form_component(str)
-      end
-
       def build_nested_query(value, prefix = nil)
         case value
         when Array
@@ -31,6 +27,10 @@ class Pagy # :nodoc:
 
           "#{escape(prefix)}=#{escape(value)}"
         end
+      end
+
+      def escape(str)
+        URI.encode_www_form_component(str)
       end
     end
     # :nocov:

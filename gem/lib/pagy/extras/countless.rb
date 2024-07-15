@@ -11,8 +11,8 @@ class Pagy # :nodoc:
     private
 
     # Return Pagy object and items
-    def pagy_countless(collection, vars = {})
-      pagy = Countless.new(pagy_get_vars(collection, vars))
+    def pagy_countless(collection, **vars)
+      pagy = Countless.new(**pagy_get_vars(collection, vars))
       [pagy, pagy_countless_get_records(collection, pagy)]
     end
 

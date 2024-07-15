@@ -9,7 +9,7 @@ class Pagy # :nodoc:
   # accepts an array as the :gearbox_items variable, that will determine the items for the first pages
   module GearboxExtra
     # Setup @items based on the :gearbox_items variable
-    def setup_items_var
+    def assign_items
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
       gears = @vars[:gearbox_items]
@@ -20,7 +20,7 @@ class Pagy # :nodoc:
     end
 
     # Setup @offset based on the :gearbox_items variable
-    def setup_offset_var
+    def assign_offset
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
       gears   = @vars[:gearbox_items]
@@ -32,7 +32,7 @@ class Pagy # :nodoc:
     end
 
     # Setup Pagy @last based on the :gearbox_items variable and @count
-    def setup_last_var
+    def assign_last
       return super if !@vars[:gearbox_extra] || @vars[:items_extra]
 
       gears = @vars[:gearbox_items]
@@ -48,7 +48,7 @@ class Pagy # :nodoc:
                  end
                  [pages, 1].max
                end)
-      @last = vars[:max_pages] if vars[:max_pages] && @last > vars[:max_pages]
+      @last = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
     end
   end
   prepend GearboxExtra

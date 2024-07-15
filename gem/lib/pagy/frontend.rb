@@ -1,8 +1,8 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/docs/api/frontend
 # frozen_string_literal: true
 
-require_relative 'url_helpers'
 require_relative 'i18n'
+require_relative 'url_helpers'
 
 class Pagy
   # Used for search and replace, hardcoded also in the pagy.js file
@@ -13,6 +13,37 @@ class Pagy
   # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
     include UrlHelpers
+
+    # Return a performance optimized lambda to generate the HTML anchor element (a tag)
+    # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
+    def pagy_anchor(pagy, anchor_string: nil, **vars)
+      anchor_string &&= %( #{anchor_string})
+      left, right = %(<a#{anchor_string} href="#{pagy_url_for(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
+      # lambda used by all the helpers
+      lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
+        classes    = %( class="#{classes}") if classes
+        aria_label = %( aria-label="#{aria_label}") if aria_label
+        %(#{left}#{page}#{right}#{classes}#{aria_label}>#{text}</a>)
+      end
+    end
+
+    # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
+    def pagy_info(pagy, id: nil, item_name: nil)
+      id      = %( id="#{id}") if id
+      p_count = pagy.count
+      key     = if p_count.zero?
+                  'pagy.info.no_items'
+                elsif pagy.pages == 1
+                  'pagy.info.single_page'
+                else
+                  'pagy.info.multiple_pages'
+                end
+
+      %(<span#{id} class="pagy info">#{
+          pagy_t key, item_name: item_name || pagy_t('pagy.item_name', count: p_count),
+                      count: p_count, from: pagy.from, to: pagy.to
+        }</span>)
+    end
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, id: nil, aria_label: nil, anchor_string: nil, **vars)
@@ -36,41 +67,10 @@ class Pagy
       html << %(#{next_a(pagy, a)}</nav>)
     end
 
-    # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, id: nil, item_name: nil)
-      id      = %( id="#{id}") if id
-      p_count = pagy.count
-      key     = if p_count.zero?
-                  'pagy.info.no_items'
-                elsif pagy.pages == 1
-                  'pagy.info.single_page'
-                else
-                  'pagy.info.multiple_pages'
-                end
-
-      %(<span#{id} class="pagy info">#{
-          pagy_t key, item_name: item_name || pagy_t('pagy.item_name', count: p_count),
-                      count: p_count, from: pagy.from, to: pagy.to
-        }</span>)
-    end
-
-    # Return a performance optimized lambda to generate the HTML anchor element (a tag)
-    # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_anchor(pagy, anchor_string: nil, **vars)
-      anchor_string &&= %( #{anchor_string})
-      left, right = %(<a#{anchor_string} href="#{pagy_url_for(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
-      # lambda used by all the helpers
-      lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
-        classes    = %( class="#{classes}") if classes
-        aria_label = %( aria-label="#{aria_label}") if aria_label
-        %(#{left}#{page}#{right}#{classes}#{aria_label}>#{text}</a>)
-      end
-    end
-
     # Similar to I18n.t: just ~18x faster using ~10x less memory
     # (@pagy_locale explicitly initialized in order to avoid warning)
-    def pagy_t(key, opts = {})
-      Pagy::I18n.translate(@pagy_locale ||= nil, key, opts)
+    def pagy_t(key, **opts)
+      Pagy::I18n.translate(@pagy_locale ||= nil, key, **opts)
     end
 
     private

@@ -27,7 +27,7 @@ class Pagy # :nodoc:
           end
           collection = pagy_calendar_filter(collection, from, to)
         end
-        pagy, results = send(conf[:pagy][:backend] || :pagy, collection, conf[:pagy])  # use backend: :pagy when omitted
+        pagy, results = send(conf[:pagy][:backend] || :pagy, collection, **conf[:pagy])  # use backend: :pagy when omitted
         [calendar, pagy, results]
       end
 

@@ -7,8 +7,8 @@ class Pagy # :nodoc:
     private
 
     # Return Pagy object and paginated collection/results
-    def pagy_arel(collection, vars = {})
-      pagy = Pagy.new(pagy_arel_get_vars(collection, vars))
+    def pagy_arel(collection, **vars)
+      pagy = Pagy.new(**pagy_arel_get_vars(collection, vars))
       [pagy, pagy_get_records(collection, pagy)]
     end
 

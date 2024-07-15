@@ -28,7 +28,6 @@ If you upgrade from version `< 9.0.0` see the following:
 
 - The `foundation`, `materialize`, `semantic` and `uikit` CSS extras have been removed:
   (See the [reasons](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
-- Protected method `Pagy#setup_pages_var` have been removed: use `Pagy#setup_last_var` instead
 - **Javascript renamed files**
   - `pagy.js`: use `pagy.min.js`
   - `pagy-module.js`: use `pagy.mjs`
@@ -41,12 +40,13 @@ If you upgrade from version `< 9.0.0` see the following:
 - The `:anchor_string`and the `:fragment` are not instance variables anymore, but keyword arguments for all the helpers, because it is
   frontend code (see the [discussion](https://github.com/ddnexus/pagy/discussions/719)). Instead of passing them to the `pagy*`
   method in the controller, pass it to any `pagy_*nav` method in the view.
-- Breaking only if overridden: the internal `pagy*_get_items` methods have been renamed to `pagy*_get_records` for clarity. 
-
-## Version 8.6.2
-
-Temporary section to pass tests
+- A general internal revamp has changed the positional argument for the Pagy::* objects and constructors methods to keyword arguments. If you get a `wrong number of arguments (given 1, expected 0) (ArgumentError)`, just use a double splat `**`.
+- Breaking only if overridden: 
+  - The internal Pagy protected methods have been renamed and refactored and if you use custom Pagy classes, you may need to search into the code.
+  - In particular, the internal `pagy*_get_items` methods have been renamed to `pagy*_get_records` for clarity. Besides, the `pagy_get_items` is a method more appropriately used to get the items number now.
 
 ## Version 8.6.3
+
+Temporary section to pass the tests
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)
