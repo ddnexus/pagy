@@ -19,7 +19,7 @@ class Pagy
     # Add the page and items params
     # Overridable by the jsonapi extra
     def pagy_set_query_params(page, vars, query_params)
-      query_params[vars[:page_param].to_s]  = page
+      query_params[vars[:page_param].to_s]  = page if page
       query_params[vars[:items_param].to_s] = vars[:items] if vars[:items_extra]
     end
   end
