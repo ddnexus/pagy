@@ -32,7 +32,7 @@ and [meilisearch](/docs/extras/meilisearch.md) extras for specific backend custo
 include Pagy::Backend
 
 # optional overriding of some sub-method
-def pagy_get_vars(collection, vars)
+def pagy_get_vars(collection, **vars)
   #...
 end
 
@@ -51,7 +51,7 @@ prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are i
 Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need
 of monkey-patching or perform any tricky gimmickry.
 
-==- `pagy(collection, vars=nil)`
+==- `pagy(collection, **vars)`
 
 This is the main method of this module. It takes a collection object (e.g. a scope), and an optional hash of variables (passed to
 the `Pagy.new` method) and returns the `Pagy` instance and the page of records. For example:

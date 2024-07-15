@@ -62,7 +62,7 @@ the [countless extra](/docs/extras/countless.md) for more details.
 The construction of the final `Pagy::Countless` object is split into 2 steps: the regular `initialize` method and the `finalize`
 method, which will use the retrieved items number to calculate the rest of the pagination integers.
 
-==- `Pagy::Countless.new(vars)`
+==- `Pagy::Countless.new(**vars)`
 
 The initial constructor takes the usual hash of variables, calculating only the requested `items` and the `offset`, useful to
 query the page of items.

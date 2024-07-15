@@ -45,7 +45,7 @@ require 'pagy/extras/array'
 
 ## Methods
 
-==- `pagy_array(array, vars=nil)`
+==- `pagy_array(array, **vars)`
 
 This method is the same as the generic `pagy` method, but specialized for an Array. (see
 the [pagy doc](/docs/api/backend.md#pagy-collection-vars-nil))

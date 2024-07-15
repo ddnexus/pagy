@@ -63,11 +63,11 @@ Pagy::DEFAULT.freeze
 This method returns the `pathname` of the `pagy/gem` root dir. It is useful to get the absolute path of locale and javascript
 files installed with the gem.
 
-==- `Pagy.new(vars)`
+==- `Pagy.new(**vars)`
 
 _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and return the Pagy object for you.
 
-The `Pagy.new` method accepts a single hash of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to
+The `Pagy.new` method accepts a number of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to
 create the object.
 
 ==- `series(size: @vars[:size], _**)`

@@ -73,12 +73,12 @@ Pagy creates its object out of your result.
 
 This method accepts the same arguments of the `ms_search` method and you must use it in its place in active mode.
 
-==- `Pagy.new_from_meilisearch(results, vars={})`
+==- `Pagy.new_from_meilisearch(results, **vars)`
 
 This constructor accepts a `Meiliserch` object, plus the optional pagy variables. It automatically sets the `:items`, `:page`
 and `:count` pagy variables extracted/calculated out of it.
 
-==- `pagy_meilisearch(pagy_search_args, vars={})`
+==- `pagy_meilisearch(pagy_search_args, **vars)`
 
 This method is similar to the generic `pagy` method, but specialized for Meilisearch. (see
 the [pagy doc](/docs/api/backend.md#pagy-collection-vars-nil))

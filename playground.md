@@ -105,6 +105,25 @@ _Run `pagy clone calendar` to inspect the app file._
 
 If you need to reproduce any calendar related issue, you can follow the same usage as the [Repro App](#1-repro-app).
 
+#### 5. Keyset Apps
+
+This are the interactive showcase/repro for the keyset extra with `ActiveRecord` or `Sequel` sets:
+
+!!!success Try it now!
+
+Run the interactive demo from your terminal:
+
+```sh
+pagy keyset_ar
+pagy keyset_s
+```
+
+...and point your browser to http://0.0.0.0:8000
+!!!
+
+_Run `pagy clone keyset_ar` or `pagy clone keyset_s` to inspect the app file._
+
+
 ### Troubleshooting
 
 ==- Bundler inline

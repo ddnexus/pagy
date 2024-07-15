@@ -403,8 +403,8 @@ q              = Person.ransack(params[:q])
 When your app is a service that doesn't need to serve any UI, but provides an API to some sort of client, you can serve the
 pagination metadata as HTTP headers added to your response.
 
-In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require
-the [headers extra](extras/headers.md) and use its helpers to add the headers to your responses.
+In that case you don't need the `Pagy::Frontend` nor any frontend extra. You may not even need the standard pagination, but use the [Pagy::Keyset](api/keyset.md) pagination. Anyway you may want to use
+the [headers extra](extras/headers.md) and use its helpers to add the headers to your responses, and other useful backend extras like the [items extra](extras/items.md) and the [jsonapi extra](extras/jsonapi.md).
 
 ## Paginate with JSON:API
 
@@ -759,6 +759,10 @@ DB writing, and probably not particularly useful with a DB in constant change.
 
 When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoids the
 need for a count query, still providing an acceptable subset of the full pagination features.
+
+==- Use Pagy Keyset
+
+If the slowness of the DB is caused by paginating big tables toward the ends of the collection (i.e. when the `offset` is a big number) then you should use the [keyset extra](extras/keyset.md). (See lso the [keyset API](api/keyset.md))
 
 ===
 

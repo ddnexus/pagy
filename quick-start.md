@@ -99,7 +99,8 @@ see: [elasticsearch_rails](/docs/extras/elasticsearch_rails), [meilisearch](/doc
 
 +++ Special
 You may also use
-the [calendar](/docs/extras/calendar), [countless](/docs/extras/countless), [geared](/docs/extras/gearbox), [incremental, auto-incremental, infinite](/docs/extras/pagy)
+the [calendar](/docs/extras/calendar), [countless](/docs/extras/countless), [geared](/docs/extras/gearbox), [incremental, 
+auto-incremental, infinite](/docs/extras/pagy) and [keyset](/docs/api/keyset)
 pagination
 
 +++
@@ -152,6 +153,10 @@ render json: { data: @records, pagy: pagy_metadata(@pagy, ...) }
 !!! success
 Your API is consumed by some client
 !!!
+           
+#### Consider using the Keyset pagination
+
+Orders of magnitude faster on big data... see [Pagy::Keyset](/docs/api/keyset)
 
 #### Require the [headers extra](docs/extras/headers.md)
 

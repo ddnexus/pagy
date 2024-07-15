@@ -142,7 +142,7 @@ pagy demo
 ```
 !!!
 
-==- `pagy_t(key, vars={})`
+==- `pagy_t(key, **vars)`
 
 This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally from the helpers in order to 
 get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](i18n.md) doc for details)_

@@ -82,8 +82,4 @@ them directly.
 
 The idea behind this extra comes from the [Geared Pagination](https://github.com/basecamp/geared_pagination).
 
-The main differences are:
-
-1. Pagy is not tied to `ActiveRecord` so it works in any environment
-2. The [pagy-cursor](https://github.com/Uysim/pagy-cursor) pagination is a pagy-extra implemented in its own gem
-3. Pagy is many many many times faster!
+The main differences are that Pagy is not tied to `ActiveRecord` so it works in any environment... many many many times faster!

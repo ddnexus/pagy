@@ -41,7 +41,7 @@ If your code in different actions is similar enough, you can encapsulate the sta
 application controller. For example:
 
 ```ruby Controller (pagy_render)
-def pagy_render(collection, vars={})
+def pagy_render(collection, **vars)
   pagy, records = pagy(collection, vars) # any pagy_* backend constructor works
   pagy_headers_merge(pagy)
   render json: records
@@ -129,17 +129,3 @@ This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) 
 response. It is internally used by the `pagy_headers_merge` method, so you usually don't need to use it directly. However, if you
 need to edit the headers that pagy generates (for example adding extra `link` headers), you can override it in your own
 controller.
-
-==- `pagy_headers_hash(pagy)`
-
-This method generates a hash structure of the headers, useful only if you want to include the headers as metadata within your
-JSON. For example:
-
-```ruby
-render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})
-```
-
-!!!info Metadata
-For a more complete set of metadata you should use the [metadata extra](metadata.md).
-!!!
-===

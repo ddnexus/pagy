@@ -87,7 +87,7 @@ This mode is enabled by the `:countless_minimal` variable.
 
 ## Methods
 
-==- `pagy_countless(collection, vars=nil)`
+==- `pagy_countless(collection, **vars)`
 
 This method is the same as the generic `pagy` method (see the [pagy doc](/docs/api/backend.md#pagy-collection-vars-nil)), however
 its returned objects will depend on the value of the `:countless_minimal` variable (see [Modes](#modes))
