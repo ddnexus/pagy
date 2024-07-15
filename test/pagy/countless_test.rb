@@ -9,7 +9,7 @@ describe 'pagy/countless' do
       pagy, = Pagy::Countless.new(page: 1)
       pagy.finalize(0)
       _(pagy.items).must_equal 20
-      _(pagy.pages).must_equal 1
+      _(pagy.last).must_equal 1
       _(pagy.last).must_equal 1
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
@@ -23,7 +23,6 @@ describe 'pagy/countless' do
       _(pagy).must_be_instance_of Pagy::Countless
       _(pagy.items).must_equal 20
       _(pagy.last).must_equal 2
-      _(pagy.pages).must_equal 2 # current + 1. `Countless` does not know real count
       _(pagy.in).must_equal 20
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 20
@@ -34,7 +33,7 @@ describe 'pagy/countless' do
       pagy, = Pagy::Countless.new(page: 1)
       pagy.finalize(20) # no more page - last full
       _(pagy.items).must_equal 20
-      _(pagy.pages).must_equal 1
+      _(pagy.last).must_equal 1
       _(pagy.in).must_equal 20
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 20
@@ -45,7 +44,7 @@ describe 'pagy/countless' do
       pagy, = Pagy::Countless.new(page: 1)
       pagy.finalize(4) # partial page of 4 - also last
       _(pagy.items).must_equal 20
-      _(pagy.pages).must_equal 1
+      _(pagy.last).must_equal 1
       _(pagy.in).must_equal 4
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 4
@@ -56,7 +55,7 @@ describe 'pagy/countless' do
       pagy, = Pagy::Countless.new(page: 3)
       pagy.finalize(19) # partial page of 4 - also last
       _(pagy.items).must_equal 20
-      _(pagy.pages).must_equal 3
+      _(pagy.last).must_equal 3
       _(pagy.in).must_equal 19
       _(pagy.from).must_equal 41
       _(pagy.to).must_equal 59
@@ -67,7 +66,7 @@ describe 'pagy/countless' do
       pagy, = Pagy::Countless.new(page: 3, cycle: true)
       pagy.finalize(19) # partial page of 4 - also last
       _(pagy.items).must_equal 20
-      _(pagy.pages).must_equal 3
+      _(pagy.last).must_equal 3
       _(pagy.in).must_equal 19
       _(pagy.from).must_equal 41
       _(pagy.to).must_equal 59

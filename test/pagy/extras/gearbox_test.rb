@@ -7,7 +7,7 @@ require 'pagy/extras/items'
 Pagy::DEFAULT[:items_extra] = false
 
 describe 'pagy/extras/gearbox' do
-  describe '#setup_items_var' do
+  describe '#assign_items' do
     it 'raises VariableErrors for wrong items types' do
       _ { Pagy.new(count: 3, page: 1,  gearbox_items: [-1, 10]) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 3, page: 1,  gearbox_items: [0, 10]) }.must_raise Pagy::VariableError
@@ -51,7 +51,7 @@ describe 'pagy/extras/gearbox' do
     end
   end
 
-  describe '#setup_last_var' do
+  describe '#assign_last' do
     it 'can skip gearbox for last' do
       _(Pagy.new(count: 90, page: 1, items_extra: true).last).must_equal 5
       _(Pagy.new(count: 103, page: 1, gearbox_extra: false).last).must_equal 6
@@ -79,7 +79,7 @@ describe 'pagy/extras/gearbox' do
     end
   end
 
-  describe '#setup_offset_var' do
+  describe '#assign_offset' do
     it "checks the offset in Pagy" do
       _(Pagy.new(count: 2, page: 1,  gearbox_items: [3, 10]).offset).must_equal 0
       _(Pagy.new(count: 3, page: 1,  gearbox_items: [3, 10]).offset).must_equal 0

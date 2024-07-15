@@ -11,7 +11,7 @@ module MockMeilisearch
       @query = query
       @params = { page: 1, hits_per_page: 10 }.merge(params)
 
-      super(RESULTS[@query].slice(@params[:hits_per_page] * (@params[:page] - 1), @params[:hits_per_page]) || [])
+      super(RESULTS[@query].slice(@params[:hits_per_page] * ((@params[:page] || 1) - 1), @params[:hits_per_page]) || [])
     end
 
     def raw_answer

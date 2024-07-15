@@ -19,17 +19,17 @@ def test_items_vars_params(items, vars, params)
   _(app.params.to_options).must_equal params
   [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model],
    [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-    pagy, records = app.send meth, mod.pagy_search('a').records, vars
+    pagy, records = app.send(meth, mod.pagy_search('a').records, **vars)
     _(pagy.items).must_equal items
     _(records.size).must_equal items
   end
   [[:pagy_meilisearch, MockMeilisearch::Model]].each do |meth, mod|
-    pagy, records = app.send meth, mod.pagy_search('a'), vars
+    pagy, records = app.send(meth, mod.pagy_search('a'), **vars)
     _(pagy.items).must_equal items
     _(records.size).must_equal items
   end
   %i[pagy pagy_countless pagy_array pagy_arel].each do |meth|
-    pagy, records = app.send meth, @collection, vars
+    pagy, records = app.send(meth, @collection, **vars)
     _(pagy.items).must_equal items
     _(records.size).must_equal items
   end

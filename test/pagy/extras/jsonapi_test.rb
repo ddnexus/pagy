@@ -3,8 +3,10 @@
 require_relative '../../test_helper'
 require 'pagy/extras/items'
 require 'pagy/extras/jsonapi'
+require 'pagy/extras/keyset'
 
 require_relative '../../mock_helpers/collection'
+require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/jsonapi' do
@@ -75,7 +77,7 @@ describe 'pagy/extras/jsonapi' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy, @collection, page_param: :number, items_param: :size)
       result = app.send(:pagy_jsonapi_links, pagy)
-      _(result.keys).must_equal %i[first last prev next] # not sure it's a requirementS
+      _(result.keys).must_equal %i[first last prev next]
       _(result).must_rematch :result
     end
     it 'sets the prev value to null when the link is unavailable' do
@@ -88,6 +90,29 @@ describe 'pagy/extras/jsonapi' do
       app = MockApp.new(params: { page: { page: 50 } })
       pagy, _records = app.send(:pagy, @collection)
       result = app.send(:pagy_jsonapi_links, pagy)
+      _(result[:next]).must_be_nil
+    end
+  end
+  describe '#pagy_jsonapi_links (keyset)' do
+    it 'returns the ordered links' do
+      app = MockApp.new(params: { page: { latest: 'eyJpZCI6MTB9', size: 10 } })
+      pagy, _records = app.send(:pagy_keyset,
+                                Pet.order(:id),
+                                page_param: :latest,
+                                items_param: :size)
+      result = app.send(:pagy_jsonapi_links, pagy)
+      _(result.keys).must_equal %i[first last prev next]
+      _(result).must_rematch :keyset_result
+    end
+
+    it 'sets the next value to null when the link is unavailable' do
+      app = MockApp.new(params: { page: { size: 50 } })
+      pagy, _records = app.send(:pagy_keyset,
+                                Pet.order(:id),
+                                page_param: :latest,
+                                items_param: :size)
+      result = app.send(:pagy_jsonapi_links, pagy)
+      _(result).must_rematch :keyset_result
       _(result[:next]).must_be_nil
     end
   end
