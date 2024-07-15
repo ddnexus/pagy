@@ -116,7 +116,7 @@ GEM
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
-    irb (1.13.2)
+    irb (1.14.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.7.2)
@@ -164,7 +164,7 @@ GEM
     oj (3.16.4)
       bigdecimal (>= 3.0)
     parallel (1.25.1)
-    parser (3.3.3.0)
+    parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
     psych (5.1.2)
@@ -173,7 +173,7 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)
-    rack (3.1.6)
+    rack (3.1.7)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0, < 4)
@@ -229,20 +229,20 @@ GEM
     rexml (3.3.1)
       strscan
     rouge (4.3.0)
-    rubocop (1.64.1)
+    rubocop (1.65.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
+      regexp_parser (>= 2.4, < 3.0)
       rexml (>= 3.2.5, < 4.0)
       rubocop-ast (>= 1.31.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.31.3)
       parser (>= 3.3.1.0)
-    rubocop-minitest (0.35.0)
+    rubocop-minitest (0.35.1)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-packaging (0.5.2)
@@ -254,6 +254,8 @@ GEM
       rubocop (~> 1.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    sequel (5.82.0)
+      bigdecimal
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -313,6 +315,7 @@ DEPENDENCIES
   rubocop-packaging
   rubocop-performance
   rubocop-rake
+  sequel
   simplecov
   sinatra
   sinatra-contrib
