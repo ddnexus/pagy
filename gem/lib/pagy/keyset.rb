@@ -30,7 +30,7 @@ class Pagy
       default = DEFAULT.slice(:limit, :page_param,                    # from pagy
                               :headers,                               # from headers extra
                               :jsonapi,                               # from jsonapi extra
-                              :limit_param, :max_limit, :limit_extra) # from limit_extra
+                              :limit_param, :limit_max, :limit_extra) # from limit_extra
       assign_vars({ **default, page: nil }, vars)
       assign_limit
       @set    = set

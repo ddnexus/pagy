@@ -77,7 +77,7 @@ describe 'pagy/extras/limit' do
       params = { a: "a", page: 3, limit: 12 }
       test_limit_vars_params(limit, vars, params)
     end
-    it 'uses the max_limit default' do
+    it 'uses the limit_max default' do
       limit  = 100
       vars   = {}
       params = { a: "a", page: 3, limit: 120 }
@@ -85,7 +85,7 @@ describe 'pagy/extras/limit' do
     end
     it 'doesn\'t limit from vars' do
       limit  = 1000
-      vars   = { max_limit: nil }
+      vars   = { limit_max: nil }
       params = { a: "a", limit: 1000 }
       test_limit_vars_params(limit, vars, params)
     end
@@ -94,9 +94,9 @@ describe 'pagy/extras/limit' do
       vars   = {}
       params = { a: "a", limit: limit }
 
-      Pagy::DEFAULT[:max_limit] = nil
+      Pagy::DEFAULT[:limit_max] = nil
       test_limit_vars_params(limit, vars, params)
-      Pagy::DEFAULT[:max_limit] = 100 # reset default
+      Pagy::DEFAULT[:limit_max] = 100 # reset default
     end
     it 'uses limit_param from vars' do
       limit  = 14

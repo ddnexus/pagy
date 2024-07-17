@@ -143,7 +143,7 @@
 # set to false only if you want to make :limit_extra an opt-in variable
 # Pagy::DEFAULT[:limit_extra] = false    # default true
 # Pagy::DEFAULT[:limit_param] = :limit   # default
-# Pagy::DEFAULT[:max_limit]   = 100      # default
+# Pagy::DEFAULT[:limit_max]   = 100      # default
 
 # Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/docs/extras/overflow

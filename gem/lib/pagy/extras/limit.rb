@@ -5,7 +5,7 @@ require_relative 'js_tools'
 
 class Pagy # :nodoc:
   DEFAULT[:limit_param] = :limit
-  DEFAULT[:max_limit]   = 100
+  DEFAULT[:limit_max]   = 100
   DEFAULT[:limit_extra] = true   # extra enabled by default
 
   # Allow the client to request a custom limit per page with an optional selector UI
@@ -19,7 +19,7 @@ class Pagy # :nodoc:
         return unless vars.key?(:limit_extra) ? vars[:limit_extra] : DEFAULT[:limit_extra] # :limit_extra is false
         return unless (limit_count = pagy_get_limit_param(vars))                            # no limit from request params
 
-        vars[:limit] = [limit_count.to_i, vars.key?(:max_limit) ? vars[:max_limit] : DEFAULT[:max_limit]].compact.min
+        vars[:limit] = [limit_count.to_i, vars.key?(:limit_max) ? vars[:limit_max] : DEFAULT[:limit_max]].compact.min
       end
 
       # Get the limit count from the params
@@ -45,7 +45,7 @@ class Pagy # :nodoc:
         url_token    = pagy_url_for(pagy, PAGE_TOKEN)
         vars[:limit] = limit # restore the limit
 
-        limit_input = %(<input name="limit" type="number" min="1" max="#{vars[:max_limit]}" value="#{
+        limit_input = %(<input name="limit" type="number" min="1" max="#{vars[:limit_max]}" value="#{
                           limit}" style="padding: 0; text-align: center; width: #{limit.to_s.length + 1}rem;">#{JSTools::A_TAG})
 
         %(<span#{id} class="pagy limit-selector-js" #{

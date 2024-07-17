@@ -49,7 +49,7 @@ require 'pagy/extras/limit' # works without further configuration
 Pagy::DEFAULT[:limit_extra] = false # default true
 # customize the defaults if you need to
 Pagy::DEFAULT[:limit_param] = :custom_param # default :limit
-Pagy::DEFAULT[:max_limit]   = 200 # default 100
+Pagy::DEFAULT[:limit_max]   = 200 # default 100
 ```
 
 ```ruby Controller
@@ -67,13 +67,13 @@ See [Javascript](/docs/api/javascript.md) (only if you use the `pagy_limit_selec
 |:---------------|:----------------------------------------------------|:---------|
 | `:limit_extra` | Enable or disable the feature                       | `true`   |
 | `:limit_param` | The name of the "limit" param used in the url       | `:limit` |
-| `:max_limit`   | The max limit allowed. Set it to `nil` for no limit | `100`    |
+| `:limit_max`   | The max limit allowed. Set it to `nil` for no limit | `100`    |
 
 You can use the `:limit_extra` variable to opt-out of the feature even when the extra is required.
 
 This extra uses the `:limit_param` variable to determine the param it should get the `:limit` from.
 
-The `:max_limit` is used to cap the `:limit` to that max. It is set to `100` by default. Set it to `nil` for no limit.
+The `:limit_max` is used to cap the `:limit` to that max. It is set to `100` by default. Set it to `nil` for no limit.
 
 You may want to customize the variables. Depending on the scope of the customization, you have a couple of options:
 
@@ -81,14 +81,14 @@ As a global default:
 
 ```ruby pagy.rb (initializer)
 Pagy::DEFAULT[:limit_param] = :custom_param
-Pagy::DEFAULT[:max_limit]   = 50
+Pagy::DEFAULT[:limit_max]   = 50
 ```
 
 For a single instance (overriding the global default):
 
 ```ruby Controller
-pagy(collection, limit_param: :custom_param, max_limit: 50)
-Pagy.new(count: 100, limit_param: :custom_param, max_limit: 50)
+pagy(collection, limit_param: :custom_param, limit_max: 50)
+Pagy.new(count: 100, limit_param: :custom_param, limit_max: 50)
 ```
 
 !!!info Override 'limit' in Params
@@ -109,7 +109,7 @@ The `limit` extra adds the `pagy_limit_selector_js` helper to the `Pagy::Fronten
 ==- `pagy_limit_selector_js(pagy, **vars)`
 
 This helper provides a limit selector UI, which allows the user to select any arbitrary limit per page (below
-the `:max_limit` number) in a numeric input field. It looks like:
+the `:limit_max` number) in a numeric input field. It looks like:
 
 <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> items per
 page</span>
