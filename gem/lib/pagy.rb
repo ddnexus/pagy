@@ -10,7 +10,7 @@ class Pagy
   # Core default: constant for easy access, but mutable for customizable defaults
   DEFAULT = { count_args: [:all], # rubocop:disable Style/MutableConstant
               ends:       true,
-              items:      20,
+              limit:      20,
               outset:     0,
               page:       1,
               page_param: :page,
@@ -23,7 +23,7 @@ class Pagy
 
   # Shared with Keyset
   module SharedMethods
-    attr_reader :page, :items, :vars
+    attr_reader :page, :limit, :vars
 
     # Validates and assign the passed vars: var must be present and value.to_i must be >= to min
     def assign_and_check(name_min)
@@ -34,11 +34,12 @@ class Pagy
       end
     end
 
-    # Setup @items (overridden by the gearbox extra)
-    def assign_items
-      assign_and_check(items: 1)
+    # Assign @limit (overridden by the gearbox extra)
+    def assign_limit
+      assign_and_check(limit: 1)
     end
 
+    # Assign @vars
     def assign_vars(default, vars)
       @vars = { **default, **vars.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') } }
     end
@@ -52,32 +53,34 @@ class Pagy
   def initialize(**vars)
     assign_vars(DEFAULT, vars)
     assign_and_check(count: 0, page: 1, outset: 0)
-    assign_items
+    assign_limit
     assign_offset
     assign_last
     check_overflow
     @from = [@offset - @outset + 1, @count].min
-    @to   = [@offset - @outset + @items, @count].min
+    @to   = [@offset - @outset + @limit, @count].min
     @in   = [@to - @from + 1, @count].min
     assign_prev_and_next
   end
 
   # Setup @last (overridden by the gearbox extra)
   def assign_last
-    @last = [(@count.to_f / @items).ceil, 1].max
+    @last = [(@count.to_f / @limit).ceil, 1].max
     @last = @vars[:max_pages] if @vars[:max_pages] && @last > vars[:max_pages]
   end
 
-  # Setup @offset (overridden by the gearbox extra)
+  # Assign @offset (overridden by the gearbox extra)
   def assign_offset
-    @offset = (@items * (@page - 1)) + @outset  # may be already set from gear_box
+    @offset = (@limit * (@page - 1)) + @outset  # may be already set from gear_box
   end
 
+  # Assign @prev and @next
   def assign_prev_and_next
     @prev = (@page - 1 unless @page == 1)
     @next = @page == @last ? (1 if @vars[:cycle]) : @page + 1
   end
 
+  # Checks the @page <= @last
   def check_overflow
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
   end
@@ -88,7 +91,7 @@ class Pagy
   # Label for any page. Allow the customization of the output (overridden by the calendar extra)
   def label_for(page) = page.to_s
 
-  # Return the array of page numbers and :gap items e.g. [1, :gap, 8, "9", 10, :gap, 36]
+  # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
   def series(size: @vars[:size], **_)
     raise VariableError.new(self, :size, 'to be an Integer >= 0', size) \
     unless size.is_a?(Integer) && size >= 0

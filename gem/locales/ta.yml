@@ -20,4 +20,4 @@ ta:
       single_page: "%{count} %{item_name} காட்டப்படுகின்றது"
       multiple_pages: "மொத்தம் %{count} %{item_name}, காட்டப்படுபவை %{from}-%{to}"
     combo_nav_js: "%{pages}-இல் %{page_input}-வது பக்கம்"
-    items_selector_js: "ஒரு பக்கத்திற்கு %{items_input} %{item_name} காட்டு"
+    limit_selector_js: "ஒரு பக்கத்திற்கு %{limit_input} %{item_name} காட்டு"

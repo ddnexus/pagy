@@ -223,7 +223,7 @@ items each. Clicking on next will continue to loop through.
 For example:
 
 ```ruby Controller (action)
-@pagy, @suggestions = pagy_countless(collection, count: 25, items: 5, cycle: true)
+@pagy, @suggestions = pagy_countless(collection, count: 25, limit: 5, cycle: true)
 ```
 
 Passing a forced `:count` of 25 will generate 5 pages of 5 items each that will always have a next page. Regardless the actual

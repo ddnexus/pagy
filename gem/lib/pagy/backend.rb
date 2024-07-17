@@ -8,7 +8,7 @@ class Pagy
   module Backend
     private
 
-    # Return Pagy object and paginated items/results
+    # Return Pagy object and paginated results
     def pagy(collection, **vars)
       pagy = Pagy.new(**pagy_get_vars(collection, vars))
       [pagy, pagy_get_records(collection, pagy)]
@@ -20,8 +20,8 @@ class Pagy
       (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
     end
 
-    # Override for items extra
-    def pagy_get_items(vars); end
+    # Override for limit extra
+    def pagy_get_limit(vars); end
 
     # Get the page integer from the params
     # Overridable by the jsonapi extra
@@ -32,7 +32,7 @@ class Pagy
     # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding
     # You may need to override this method for collections without offset|limit
     def pagy_get_records(collection, pagy)
-      collection.offset(pagy.offset).limit(pagy.items)
+      collection.offset(pagy.offset).limit(pagy.limit)
     end
 
     # Sub-method called only by #pagy: here for easy customization of variables by overriding
@@ -40,7 +40,7 @@ class Pagy
     def pagy_get_vars(collection, vars)
       vars.tap do |v|
         v[:count] ||= pagy_get_count(collection, v)
-        v[:items] ||= pagy_get_items(v)
+        v[:limit] ||= pagy_get_limit(v)
         v[:page]  ||= pagy_get_page(v)
       end
     end

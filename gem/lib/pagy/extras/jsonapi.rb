@@ -54,20 +54,20 @@ class Pagy # :nodoc:
     end
     Backend.prepend BackendOverride
 
-    # Module overriding ItemsExtra
-    module ItemsExtraOverride
+    # Module overriding LimitExtra
+    module LimitExtraOverride
       private
 
-      # Override the ItemsExtra::Backend method
-      def pagy_get_items_param(vars)
+      # Override the LimitExtra::Backend method
+      def pagy_get_limit_param(vars)
         return super if pagy_skip_jsonapi?(vars)
         return if params[:page].nil?
 
-        params[:page][vars[:items_param] || DEFAULT[:items_param]]
+        params[:page][vars[:limit_param] || DEFAULT[:limit_param]]
       end
     end
     # :nocov:
-    ItemsExtra::BackendAddOn.prepend ItemsExtraOverride if defined?(ItemsExtra::BackendAddOn)
+    LimitExtra::BackendAddOn.prepend LimitExtraOverride if defined?(LimitExtra::BackendAddOn)
     # :nocov:
 
     # Module overriding UrlHelper
@@ -78,7 +78,7 @@ class Pagy # :nodoc:
 
         query_params['page'] ||= {}
         query_params['page'][vars[:page_param].to_s]  = page if page
-        query_params['page'][vars[:items_param].to_s] = vars[:items] if vars[:items_extra]
+        query_params['page'][vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra]
         # :nocov:
         query_params.delete(:page) if query_params['page'].empty?
         # :nocov:

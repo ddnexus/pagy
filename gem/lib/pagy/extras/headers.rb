@@ -5,7 +5,7 @@ require_relative '../url_helpers'
 
 class Pagy # :nodoc:
   DEFAULT[:headers] = { page:  'current-page',
-                        items: 'page-items',
+                        limit: 'page-items',
                         count: 'total-count',
                         pages: 'total-pages' }
   # Add specialized backend methods to add pagination response headers
@@ -24,8 +24,8 @@ class Pagy # :nodoc:
       headers = pagy.vars[:headers]
       { 'link' => link(pagy) }.tap do |hash|
         hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]
-        hash[headers[:items]] = pagy.items.to_s \
-            if headers[:items] && !(defined?(Calendar) && pagy.is_a?(Calendar::Unit))
+        hash[headers[:limit]] = pagy.limit.to_s \
+            if headers[:limit] && !(defined?(Calendar) && pagy.is_a?(Calendar::Unit))
         return hash if (defined?(Countless) && pagy.is_a?(Countless)) || \
                        (defined?(Keyset) && pagy.is_a?(Keyset))
 

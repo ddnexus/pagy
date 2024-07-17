@@ -26,7 +26,7 @@ require 'pagy/keyset'
       it 'raises Pagy::InternalError for inconsistent page/keyset' do
         page_animal_id = Pagy::B64.urlsafe_encode({animal: 'dog', id: 23}.to_json)
         err = assert_raises(Pagy::InternalError) do
-          Pagy::Keyset.new(model.order(:id), items: 10, page: page_animal_id)
+          Pagy::Keyset.new(model.order(:id), limit: 10, page: page_animal_id)
         end
         assert_match(/page and keyset are not consistent/, err.message)
       end
@@ -35,7 +35,7 @@ require 'pagy/keyset'
       it 'use the :row_comparison' do
         pagy = Pagy::Keyset.new(model.order(:animal, :name, :id),
                                 page: "eyJhbmltYWwiOiJjYXQiLCJuYW1lIjoiRWxsYSIsImlkIjoxOH0",
-                                items: 10,
+                                limit: 10,
                                 row_comparison: true)
         records = pagy.records
         _(records.size).must_equal 10
@@ -44,7 +44,7 @@ require 'pagy/keyset'
       it 'uses :typecast_latest' do
         pagy = Pagy::Keyset.new(model.order(:id),
                                 page: "eyJpZCI6MTB9",
-                                items: 10,
+                                limit: 10,
                                 typecast_latest: ->(latest) { latest })
         _ = pagy.records
         _(pagy.latest).must_equal({id: 10})
@@ -57,7 +57,7 @@ require 'pagy/keyset'
                        end
         pagy = Pagy::Keyset.new(model.order(:id),
                                 page: "eyJpZCI6MTB9",
-                                items: 10,
+                                limit: 10,
                                 after_latest: after_latest)
         records = pagy.records
         _(records.first.id).must_equal(11)
@@ -88,37 +88,37 @@ require 'pagy/keyset'
           model.unrestrict_primary_key
           Pagy::Keyset.new(model.order(:id),
                            page: "eyJpZCI6MTB9",
-                           items: 10)
+                           limit: 10)
           _(model.restrict_primary_key?).must_equal false
           model.restrict_primary_key
           Pagy::Keyset.new(model.order(:id),
                            page: "eyJpZCI6MTB9",
-                           items: 10)
+                           limit: 10)
           _(model.restrict_primary_key?).must_equal true
         end
       end
     end
     describe 'handles the page/latest' do
       it 'handles the page/latest for the first page' do
-        pagy = Pagy::Keyset.new(model.order(:id), items: 10)
+        pagy = Pagy::Keyset.new(model.order(:id), limit: 10)
         _(pagy.instance_variable_get(:@latest)).must_be_nil
         _(pagy.next).must_equal "eyJpZCI6MTB9"
       end
       it 'handles the page/latest for the second page' do
-        pagy = Pagy::Keyset.new(model.order(:id), items: 10, page: "eyJpZCI6MTB9")
+        pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6MTB9")
         _(pagy.instance_variable_get(:@latest)).must_equal({:id => 10})
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal "eyJpZCI6MjB9"
       end
       it 'handles the page/latest for the last page' do
-        pagy = Pagy::Keyset.new(model.order(:id), items: 10, page: "eyJpZCI6NDB9")
+        pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6NDB9")
         _(pagy.next).must_be_nil
       end
     end
     describe 'other requirements' do
       it 'adds the required columns to the selected values' do
         set = model.order(:animal, :name, :id).select(:name)
-        pagy  = Pagy::Keyset.new(set, items: 10)
+        pagy  = Pagy::Keyset.new(set, limit: 10)
         pagy.records
         set = pagy.instance_variable_get(:@set)
         _((model == Pet ? set.select_values : set.opts[:select]).sort).must_equal %i[animal id name]
@@ -140,7 +140,7 @@ require 'pagy/keyset'
        mixed_set].each_with_index do |set, i|
           it "pulls all the records in set#{i} without repetions" do
             pages = slurp_by_page do |page|
-              pagy = Pagy::Keyset.new(set, page:, items: 9)
+              pagy = Pagy::Keyset.new(set, page:, limit: 9)
               {records: pagy.records, page: pagy.next}
             end
             collection = set.to_a

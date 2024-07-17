@@ -36,8 +36,8 @@ class Pagy # :nodoc:
     module PagyAddOn
       # Create a Pagy object from an Elasticsearch::Model::Response::Response object
       def new_from_elasticsearch_rails(response, **vars)
-        vars[:items] = response.search.options[:size] || 10
-        vars[:page]  = ((response.search.options[:from] || 0) / vars[:items]) + 1
+        vars[:limit] = response.search.options[:size] || 10
+        vars[:page]  = ((response.search.options[:from] || 0) / vars[:limit]) + 1
         vars[:count] = ElasticsearchRailsExtra.total_count(response)
         Pagy.new(**vars)
       end
@@ -48,13 +48,13 @@ class Pagy # :nodoc:
     module BackendAddOn
       private
 
-      # Return Pagy object and items
+      # Return Pagy object and records
       def pagy_elasticsearch_rails(pagy_search_args, **vars)
         model, query_or_payload,
         options, *called = pagy_search_args
         vars             = pagy_elasticsearch_rails_get_vars(nil, vars)
-        options[:size]   = vars[:items]
-        options[:from]   = vars[:items] * ((vars[:page] || 1) - 1)
+        options[:size]   = vars[:limit]
+        options[:from]   = vars[:limit] * ((vars[:page] || 1) - 1)
         response         = model.send(DEFAULT[:elasticsearch_rails_search], query_or_payload, **options)
         vars[:count]     = ElasticsearchRailsExtra.total_count(response)
 
@@ -71,7 +71,7 @@ class Pagy # :nodoc:
       def pagy_elasticsearch_rails_get_vars(_collection, vars)
         vars.tap do |v|
           v[:page]  ||= pagy_get_page(v)
-          v[:items] ||= pagy_get_items(v) || DEFAULT[:items]
+          v[:limit] ||= pagy_get_limit(v) || DEFAULT[:limit]
         end
       end
     end

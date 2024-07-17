@@ -63,7 +63,7 @@ Kaminari.configure do |config|
   #config.right = 0
 end
 
-Pagy::DEFAULT[:items] = 10
+Pagy::DEFAULT[:limit] = 10
 require 'pagy/extras/size'           # Provide legacy support of old navbars like the above
 Pagy::DEFAULT[:size]  = [5, 4, 4, 5] # Array parsed by the extra above
 ```
@@ -109,7 +109,7 @@ Search for keywords like `page` and `paginate` statements and use the `pagy` met
 #@records = Product.some_scope.page(params[:page]).per_page(15)
 #@records = Product.paginate(page: params[:page], per_page: 15)
 
-@pagy, @records = pagy(Product.some_scope, items: 15)
+@pagy, @records = pagy(Product.all, limit: 15)
 ```
 
 #### Search and replace in the Views
@@ -136,7 +136,7 @@ until there will be no exception.
 ## Fine tuning
 
 If the app is working and displays the pagination, it's time to adjust Pagy as you need, but if the old pagination was using
-custom items (e.g. custom params, urls, links, html elements, etc.) it will likely not work without some possibly easy adjustment.
+custom elements (e.g. custom params, urls, links, html elements, etc.) it will likely not work without some possibly easy adjustment.
 
 Please take a look at the topics in the [how-to](how-to.md) documentation: that should cover most of your custom needs.
 

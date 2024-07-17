@@ -61,7 +61,7 @@ export function testComboNav(app:string, id:string) {
     });
 }
 
-export function testItemsSelector(app:string, id:string, path = "/", trim = false) {
+export function testLimitSelector(app:string, id:string, path = "/", trim = false) {
     it(`[${app}] Test ${id}`, () => {
         const pages    = [1, 36, 50];
         const id_input = `${id} input`;
@@ -84,16 +84,16 @@ export function testItemsSelector(app:string, id:string, path = "/", trim = fals
             cy.get(id_input).focus();
             cy.get(id_input).type("{uparrow}{enter}");
             snapIds([id]);
-            // test page after changing items
-            cy.visit(`${path}?page=2&items=10`);
+            // test page after changing limit
+            cy.visit(`${path}?page=2&limit=10`);
             cy.location().should(loc => expect(loc.href).to.match(/page=2/));
-            cy.get("#items-selector-js input").type("5{enter}");
+            cy.get("#limit-selector-js input").type("5{enter}");
             cy.location().should(loc => expect(loc.href).to.match(/page=3/));
             if (trim) {  // (only demo app)
-                // test page 1 after changing items
-                cy.visit(`${path}?trim=true&page=1&items=20`);
+                // test page 1 after changing limit
+                cy.visit(`${path}?trim=true&page=1&limit=20`);
                 cy.location().should(loc => expect(loc.href).to.match(/page=1/));
-                cy.get("#items-selector-js input").type("10{enter}");
+                cy.get("#limit-selector-js input").type("10{enter}");
                 cy.location().should(loc => expect(loc.href).to.not.match(/page=1/));
                 // test page 1 (no page param) and page 3
                 for (const page of [1, 3]) {

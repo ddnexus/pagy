@@ -21,7 +21,7 @@ pagy/extras/jsonapi::#pagy_jsonapi_links#test_0001_returns the ordered links:
     :next: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
 pagy/extras/jsonapi::JsonApi#test_0002_uses the :jsonapi with page:3:
   :url_1: "/foo?page%5Bpage%5D=2"
-  :url_2: "/foo?page%5Bpage%5D=2&page%5Bitems%5D=20"
+  :url_2: "/foo?page%5Bpage%5D=2&page%5Blimit%5D=20"
 pagy/extras/jsonapi::JsonApi#test_0001_uses the :jsonapi with page:nil:
   :url_1: "/foo?page%5Bpage%5D=1"
-  :url_2: "/foo?page%5Bpage%5D=1&page%5Bitems%5D=20"
+  :url_2: "/foo?page%5Bpage%5D=1&page%5Blimit%5D=20"

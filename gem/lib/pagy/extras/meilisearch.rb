@@ -21,7 +21,7 @@ class Pagy # :nodoc:
     module PagyExtension
       # Create a Pagy object from a Meilisearch results
       def new_from_meilisearch(results, **vars)
-        vars[:items] = results.raw_answer['hitsPerPage']
+        vars[:limit] = results.raw_answer['hitsPerPage']
         vars[:page]  = results.raw_answer['page']
         vars[:count] = results.raw_answer['totalHits']
 
@@ -38,7 +38,7 @@ class Pagy # :nodoc:
       def pagy_meilisearch(pagy_search_args, **vars)
         model, term, options    = pagy_search_args
         vars                    = pagy_meilisearch_get_vars(nil, vars)
-        options[:hits_per_page] = vars[:items]
+        options[:hits_per_page] = vars[:limit]
         options[:page]          = vars[:page]
         results                 = model.send(:ms_search, term, options)
         vars[:count]            = results.raw_answer['totalHits']
@@ -56,7 +56,7 @@ class Pagy # :nodoc:
       def pagy_meilisearch_get_vars(_collection, vars)
         vars.tap do |v|
           v[:page]  ||= pagy_get_page(v)
-          v[:items] ||= pagy_get_items(v) || DEFAULT[:items]
+          v[:limit] ||= pagy_get_limit(v) || DEFAULT[:limit]
         end
       end
     end

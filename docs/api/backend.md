@@ -17,7 +17,7 @@ For overriding convenience, the `pagy` method calls two sub-methods that you may
 type of collection (e.g. different ORM types, etc.).
 
 !!!primary `Pagy::Backend` returns `pagy` instances
-Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items.
+Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated records.
 You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the
 process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods).
 !!!
@@ -61,7 +61,7 @@ the `Pagy.new` method) and returns the `Pagy` instance and the page of records. 
 ```
 
 The built-in `pagy` method is designed to be easy to customize by overriding any of the two sub-methods that it calls internally.
-You can independently change the default variables (`pagy_get_vars`) and/or the default page of items from the
+You can independently change the default variables (`pagy_get_vars`) and/or the default page of records from the
 collection `pagy_get_records`).
 
 If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and
@@ -97,17 +97,17 @@ Here is its source (it works with most ORMs like `ActiveRecord`, `Sequel`, `Mong
 ```ruby
 
 def pagy_get_records(collection, pagy)
-  collection.offset(pagy.offset).limit(pagy.items)
+  collection.offset(pagy.offset).limit(pagy.limit)
 end
 ```
 
-Override it if the extraction of the items from your collection works in a different way. For example, if you need to paginate an
+Override it if the extraction of the records from your collection works in a different way. For example, if you need to paginate an
 array:
 
 ```ruby
 
 def pagy_get_records(array, pagy)
-  array[pagy.offset, pagy.items]
+  array[pagy.offset, pagy.limit]
 end
 ```
 
@@ -130,7 +130,7 @@ For example: here is a `pagy` method that doesn't call any sub-method, that may 
 
 def pagy_custom(collection, vars = {})
   pagy = Pagy.new(count: collection.count(*vars[:count_args]), page: params[:page], **vars)
-  [pagy, collection.offset(pagy.offset).limit(pagy.items)]
+  [pagy, collection.offset(pagy.offset).limit(pagy.limit)]
 end
 ```
 

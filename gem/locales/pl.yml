@@ -22,4 +22,4 @@ pl:
       single_page: "Wyświetlono %{count} %{item_name}"
       multiple_pages: "Wyświetlono %{item_name} %{from}-%{to} z wszystkich %{count}"
     combo_nav_js: "Strona %{page_input} z %{pages}"
-    items_selector_js: "Pokaż %{items_input} %{item_name} na stronie"
+    limit_selector_js: "Pokaż %{limit_input} %{item_name} na stronie"

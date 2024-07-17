@@ -61,7 +61,7 @@ See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-compariso
 - **It supports all kinds of pagination**
   [calendar](https://ddnexus.github.io/pagy/docs/extras/calendar "paginates by dates, rather than numbers"),
   [countless](https://ddnexus.github.io/pagy/docs/extras/countless "skips an extra 'count' query"),
-  [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox "varies the items fetched depending on the page number e.g. page 1: x items, but page 2: y items etc."),
+  [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox "varies the fetched items depending on the page number e.g. page 1: x items, but page 2: y items etc."),
   [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/pagy),
   [headers](https://ddnexus.github.io/pagy/docs/extras/headers "useful for API pagination"),
   [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata "provides pagination metadata - especially useful with frameworks like Vue, React etc. and you want to render your own pagination links"),
@@ -98,7 +98,7 @@ Optionally set your defaults in the pagy initializer:
 
 ```rb
 # Optionally override some pagy default with your own in the pagy initializer
-Pagy::DEFAULT[:items] = 10 # items per page
+Pagy::DEFAULT[:limit] = 10 # items per page
 Pagy::DEFAULT[:size]  = 9  # nav bar links
 # Better user experience handled automatically
 require 'pagy/extras/overflow'
@@ -118,7 +118,7 @@ Or, choose from the following view helpers:
 | [`pagy_nav_js(@pagy)`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                               | ![`pagy_nav_js`](/docs/assets/images/bootstrap_nav_js.png)             |
 | [`pagy_info(@pagy)`](https://ddnexus.github.io/pagy/docs/api/frontend)                                                                                                                                                                    | ![`pagy_info`](/docs/assets/images/pagy_info.png)                      |
 | [`pagy_combo_nav_js(@pagy)`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                         | ![`pagy_combo_nav_js`](/docs/assets/images/bootstrap_combo_nav_js.png) |
-| [`pagy_items_selector_js`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                           | ![`pagy_items_selector_js`](/docs/assets/images/items_selector_js.png) |
+| [`pagy_limit_selector_js`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                           | ![`pagy_limit_selector_js`](/docs/assets/images/limit_selector_js.png) |
 | [`pagy_nav(@calendar[:year])`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/>[`pagy_nav(@calendar[:month])`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day` and custom) | ![calendar extra](/docs/assets/images/calendar-app.png)                |
 
 _(See the [Quick Start](https://ddnexus.github.io/pagy/quick-start))_

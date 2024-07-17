@@ -16,4 +16,4 @@ id:
       single_page: "Menampilkan %{count} %{item_name}"
       multiple_pages: "Menampilkan %{item_name} %{from}-%{to} dari total %{count}"
     combo_nav_js: "Halaman %{page_input} dari %{pages}"
-    items_selector_js: "Tampilkan %{items_input} %{item_name} per halaman"
+    limit_selector_js: "Tampilkan %{limit_input} %{item_name} per halaman"

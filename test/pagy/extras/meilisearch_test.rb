@@ -31,17 +31,17 @@ describe 'pagy/extras/meilisearch' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('a'))
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal Pagy::DEFAULT[:items]
+        _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
         _(pagy.page).must_equal app.params[:page]
-        _(results.length).must_equal Pagy::DEFAULT[:items]
+        _(results.length).must_equal Pagy::DEFAULT[:limit]
         _(results.to_a).must_rematch :results
       end
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
-                                 page: 2, items: 10, anchor_string: 'X')
+                                 page: 2, limit: 10, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal 10
+        _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 2
         _(pagy.vars[:anchor_string]).must_equal 'X'
         _(results.length).must_equal 10
@@ -49,10 +49,10 @@ describe 'pagy/extras/meilisearch' do
       end
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
-                                 page: 200, items: 10, anchor_string: 'X', overflow: :last_page)
+                                 page: 200, limit: 10, anchor_string: 'X', overflow: :last_page)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal 10
+        _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 100
         _(pagy.vars[:anchor_string]).must_equal 'X'
         _(results.length).must_equal 10
@@ -65,18 +65,18 @@ describe 'pagy/extras/meilisearch' do
         vars   = {}
         merged = app.send :pagy_meilisearch_get_vars, nil, vars
         _(merged.keys).must_include :page
-        _(merged.keys).must_include :items
+        _(merged.keys).must_include :limit
         _(merged[:page]).must_equal 3
-        _(merged[:items]).must_equal 20
+        _(merged[:limit]).must_equal 20
       end
       it 'gets vars' do
-        vars   = { page: 2, items: 10, anchor_string: 'X' }
+        vars   = { page: 2, limit: 10, anchor_string: 'X' }
         merged = app.send :pagy_meilisearch_get_vars, nil, vars
         _(merged.keys).must_include :page
-        _(merged.keys).must_include :items
+        _(merged.keys).must_include :limit
         _(merged.keys).must_include :anchor_string
         _(merged[:page]).must_equal 2
-        _(merged[:items]).must_equal 10
+        _(merged[:limit]).must_equal 10
         _(merged[:anchor_string]).must_equal 'X'
       end
     end
@@ -87,7 +87,7 @@ describe 'pagy/extras/meilisearch' do
         pagy    = Pagy.new_from_meilisearch(results)
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal 10
+        _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 1
       end
       it 'paginates results with vars' do
@@ -95,7 +95,7 @@ describe 'pagy/extras/meilisearch' do
         pagy    = Pagy.new_from_meilisearch(results, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
-        _(pagy.items).must_equal 15
+        _(pagy.limit).must_equal 15
         _(pagy.page).must_equal 3
         _(pagy.vars[:anchor_string]).must_equal 'X'
       end

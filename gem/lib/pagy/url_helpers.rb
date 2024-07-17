@@ -16,11 +16,11 @@ class Pagy
       "#{request.base_url if absolute}#{vars[:request_path] || request.path}#{query_string}#{fragment}"
     end
 
-    # Add the page and items params
+    # Add the page and limit params
     # Overridable by the jsonapi extra
     def pagy_set_query_params(page, vars, query_params)
       query_params[vars[:page_param].to_s]  = page if page
-      query_params[vars[:items_param].to_s] = vars[:items] if vars[:items_extra]
+      query_params[vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra]
     end
   end
 end

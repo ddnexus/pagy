@@ -8,7 +8,7 @@ class Pagy # :nodoc:
     def initialize(**vars) # rubocop:disable Lint/MissingSuper
       assign_vars(DEFAULT, vars)
       assign_and_check(page: 1, outset: 0)
-      assign_items
+      assign_limit
       assign_offset
     end
 
@@ -16,10 +16,10 @@ class Pagy # :nodoc:
     def finalize(fetched_size)
       raise OverflowError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
 
-      @last = fetched_size > @items ? @page + 1 : @page
+      @last = fetched_size > @limit ? @page + 1 : @page
       @last = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
       check_overflow
-      @in   = [fetched_size, @items].min
+      @in   = [fetched_size, @limit].min
       @from = @in.zero? ? 0 : @offset - @outset + 1
       @to   = @offset - @outset + @in
       assign_prev_and_next

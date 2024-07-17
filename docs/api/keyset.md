@@ -111,9 +111,9 @@ that excludes the records retrived up to that point and pulls the number of requ
 
 The current `page`. Default `nil` for the first page.
 
-=== `:items`
+=== `:limit`
 
-The number of `:items` per page. Default `DEFAULT[:items]`. You can use the [items extra](/docs/extras/items.md) to get it automatically from the request param.
+The number of `:limit` per page. Default `DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to get it automatically from the request param.
 
 === `:row_comparison`
 
@@ -154,7 +154,7 @@ Pagy::Keyset(set, typecast_latest:)
 
 ## Accessors
 
-`items`, `latest`, `page`, `vars`
+`limit`, `latest`, `page`, `vars`
 
 ## Methods
 

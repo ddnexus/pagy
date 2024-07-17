@@ -45,7 +45,7 @@ describe 'pagy' do
 
   describe '#initialize' do
     before do
-      @vars = { count: 103, items: 10 }
+      @vars = { count: 103, limit: 10 }
     end
     it 'initializes' do
       _(pagy).must_be_instance_of Pagy
@@ -53,12 +53,12 @@ describe 'pagy' do
       _(Pagy.new(count: '100')).must_be_instance_of Pagy
       _(Pagy.new(count: 100, page: '2')).must_be_instance_of Pagy
       _(Pagy.new(count: 100, page: '')).must_be_instance_of Pagy
-      _(Pagy.new(count: 100, items: '10')).must_be_instance_of Pagy
+      _(Pagy.new(count: 100, limit: '10')).must_be_instance_of Pagy
       _ { Pagy.new }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 0, page: -1) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: 0) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: {}) }.must_raise Pagy::VariableError
-      _ { Pagy.new(count: 100, page: 2, items: 0) }.must_raise Pagy::VariableError
+      _ { Pagy.new(count: 100, page: 2, limit: 0) }.must_raise Pagy::VariableError
       _ { Pagy.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
       _ { Pagy.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
       begin
@@ -117,7 +117,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 0
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 1
@@ -131,7 +131,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 10
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 11
@@ -145,7 +145,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 20
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 21
@@ -159,7 +159,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 30
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 31
@@ -173,7 +173,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 40
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 41
@@ -187,7 +187,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 50
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 51
@@ -201,7 +201,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 60
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 61
@@ -215,7 +215,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 70
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 71
@@ -229,7 +229,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 80
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 81
@@ -243,7 +243,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 90
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 91
@@ -257,7 +257,7 @@ describe 'pagy' do
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.offset).must_equal 100
       _(pagy.in).must_equal 3
       _(pagy.from).must_equal 101
@@ -267,33 +267,33 @@ describe 'pagy' do
       _(pagy.next).must_be_nil
     end
     it 'initializes outset page 1' do
-      pagy = Pagy.new(count: 87, page: 1, outset: 10, items: 10)
+      pagy = Pagy.new(count: 87, page: 1, outset: 10, limit: 10)
       _(pagy.offset).must_equal 10
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 10
       _(pagy.last).must_equal 9
     end
     it 'initializes outset page 9' do
-      pagy = Pagy.new(count: 87, page: 9, outset: 10, items: 10)
+      pagy = Pagy.new(count: 87, page: 9, outset: 10, limit: 10)
       _(pagy.offset).must_equal 90
-      _(pagy.items).must_equal 10
+      _(pagy.limit).must_equal 10
       _(pagy.in).must_equal 7
       _(pagy.from).must_equal 81
       _(pagy.to).must_equal 87
       _(pagy.last).must_equal 9
     end
     it 'handles the :cycle variable' do
-      pagy = Pagy.new(count: 100, page: 10, items: 10, cycle: true)
+      pagy = Pagy.new(count: 100, page: 10, limit: 10, cycle: true)
       _(pagy.prev).must_equal 9
       _(pagy.next).must_equal 1
     end
     it 'handles the :ma_pages variable' do
-      pagy = Pagy.new(count: 100, page: 3, items: 10, max_pages: 8)
+      pagy = Pagy.new(count: 100, page: 3, limit: 10, max_pages: 8)
       _(pagy.count).must_equal 100
       _(pagy.last).must_equal 8
-      _ { Pagy.new(count: 100, page: 9, items: 10, max_pages: 8) }.must_raise Pagy::OverflowError
+      _ { Pagy.new(count: 100, page: 9, limit: 10, max_pages: 8) }.must_raise Pagy::OverflowError
     end
     it 'initializes the request_path' do
       pagy = Pagy.new(count: 100, request_path: '/foo')
@@ -304,7 +304,7 @@ describe 'pagy' do
   describe 'accessors' do
     it 'has accessors' do
       [
-        :count, :page, :items, :vars, # input
+        :count, :page, :limit, :vars, # input
         :offset, :pages, :last, :from, :to, :in, :prev, :next, :series # output
       ].each do |meth|
         _(pagy).must_respond_to meth
@@ -315,7 +315,7 @@ describe 'pagy' do
   describe 'variables' do
     it 'has vars defaults' do
       _(Pagy::DEFAULT[:page_param]).must_equal :page
-      _(Pagy::DEFAULT[:items]).must_equal 20
+      _(Pagy::DEFAULT[:limit]).must_equal 20
       _(Pagy::DEFAULT[:page]).must_equal 1
       _(Pagy::DEFAULT[:outset]).must_equal 0
       _(Pagy::DEFAULT[:size]).must_equal 7
@@ -327,13 +327,13 @@ describe 'pagy' do
   describe '#series (size = Integer)' do
     before do
       @vars0 = { count: 103,
-                 items: 10,
+                 limit: 10,
                  size:  3 }
       @vars1 = { count: 103,
-                 items: 10,
+                 limit: 10,
                  size: 6}
       @vars2 = { count: 103,
-                 items: 10,
+                 limit: 10,
                  size: 9 }
     end
 

@@ -16,4 +16,4 @@ ja:
       single_page: "%{count} 件の%{item_name}"
       multiple_pages: "%{count} 件中 %{from}-%{to} 件目の%{item_name}を表示中"
     combo_nav_js: "%{page_input} / %{pages} ページ"
-    items_selector_js: "%{items_input} 件ずつ表示"
+    limit_selector_js: "%{limit_input} 件ずつ表示"

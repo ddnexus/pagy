@@ -22,4 +22,4 @@ uk:
       single_page: "%{count} %{item_name}"
       multiple_pages: "Загалом %{count} %{item_name}, показані з %{from} по %{to}"
     combo_nav_js: "Сторінка %{page_input} з %{pages}"
-    items_selector_js: "Показати %{items_input} %{item_name} на сторінці"
+    limit_selector_js: "Показати %{limit_input} %{item_name} на сторінці"

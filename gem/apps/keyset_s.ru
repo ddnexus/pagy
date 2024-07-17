@@ -60,9 +60,9 @@ end
 
 # Pagy initializer
 require 'pagy/extras/pagy'
-require 'pagy/extras/items'
+require 'pagy/extras/limit'
 require 'pagy/extras/keyset'
-Pagy::DEFAULT[:items] = 10
+Pagy::DEFAULT[:limit] = 10
 Pagy::DEFAULT.freeze
 
 PETS = <<~PETS

@@ -7,16 +7,16 @@ describe 'pagy/extras/size' do
   describe '#series (size = Array)' do
     before do
       @vars0 = { count: 103,
-                 items: 10,
+                 limit: 10,
                  size: [0, 2, 2, 0] }
       @vars1 = { count: 103,
-                 items: 10,
+                 limit: 10,
                  size: [3, 0, 0, 3] }
       @vars2 = { count: 103,
-                 items: 10,
+                 limit: 10,
                  size: [3, 2, 0, 0] }
       @vars3 = { count: 103,
-                 items: 10,
+                 limit: 10,
                  size: [3, 2, 2, 3] }
     end
 

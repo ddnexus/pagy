@@ -98,7 +98,7 @@ For example, the following will change the header names and will suppress the `:
 ```ruby pagy.rb (initializer)
 # global
 Pagy::DEFAULT[:headers] = {page: 'current-page', 
-                           items: 'per-page', 
+                           limit: 'per-page', 
                            pages: false, 
                            count: 'total'}
 ```
@@ -107,7 +107,7 @@ Pagy::DEFAULT[:headers] = {page: 'current-page',
 # or for single instance
 pagy, records = pagy(collection, 
                      headers: {page: 'current-page', 
-                               items: 'per-page', 
+                               limit: 'per-page', 
                                pages: false, 
                                count: 'total'})
 ```

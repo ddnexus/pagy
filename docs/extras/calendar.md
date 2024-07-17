@@ -169,7 +169,7 @@ Besides the usual pagy variables, you can add a `:backend` variable, set to the 
 use for managing the collection:
 
 ```ruby
-{ pagy: { backend: :pagy_searchkick, items: 10, ... } }
+{ pagy: { backend: :pagy_searchkick, limit: 10, ... } }
 ```
 
 Notice that the `collection` argument must be exactly what you would pass to the wrapped backend method.

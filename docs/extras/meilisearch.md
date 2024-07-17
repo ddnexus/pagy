@@ -40,7 +40,7 @@ ActiveRecord_Relation.include Pagy::Meilisearch
 collection = Article.pagy_search(params[:q])
 collection = Article.pagy_search(params[:q]).results
 # paginate it
-@pagy, @response = pagy_meilisearch(collection, items: 10)
+@pagy, @response = pagy_meilisearch(collection, limit: 10)
 ```
 
 +++ Passive Mode
@@ -75,7 +75,7 @@ This method accepts the same arguments of the `ms_search` method and you must us
 
 ==- `Pagy.new_from_meilisearch(results, **vars)`
 
-This constructor accepts a `Meiliserch` object, plus the optional pagy variables. It automatically sets the `:items`, `:page`
+This constructor accepts a `Meiliserch` object, plus the optional pagy variables. It automatically sets the `:limit`, `:page`
 and `:count` pagy variables extracted/calculated out of it.
 
 ==- `pagy_meilisearch(pagy_search_args, **vars)`

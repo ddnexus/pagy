@@ -5,7 +5,7 @@ class Pagy # :nodoc:
   # Implement the legacy bar using the array size.
   # Unless you have very specific requirements, use the faster and better looking default bar.
   module SizeExtra
-    # Setup @items based on the :gearbox_items variable
+    # Implements the old series algorithm
     def series(size: @vars[:size], **_)
       return super unless size.is_a?(Array)
       return [] if size == []

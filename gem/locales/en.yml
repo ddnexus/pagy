@@ -18,4 +18,4 @@ en:
       single_page: "Displaying %{count} %{item_name}"
       multiple_pages: "Displaying %{item_name} %{from}-%{to} of %{count} in total"
     combo_nav_js: "Page %{page_input} of %{pages}"
-    items_selector_js: "Show %{items_input} %{item_name} per page"
+    limit_selector_js: "Show %{limit_input} %{item_name} per page"

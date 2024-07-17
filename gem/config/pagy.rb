@@ -10,7 +10,7 @@
 # You can set any pagy variable as a Pagy::DEFAULT. They can also be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as DEFAULTs:
-# Pagy::DEFAULT[:items]       = 20                    # default
+# Pagy::DEFAULT[:limit]       = 20                    # default
 # Pagy::DEFAULT[:size]        = 7                     # default
 # Pagy::DEFAULT[:ends]        = true                  # default
 # Pagy::DEFAULT[:page_param]  = :page                 # default
@@ -75,7 +75,7 @@
 # See http://ddnexus.github.io/pagy/extras/headers
 # require 'pagy/extras/headers'
 # Pagy::DEFAULT[:headers] = { page: 'Current-Page',
-#                            items: 'Page-Items',
+#                            limit: 'Page-Items',
 #                            count: 'Total-Count',
 #                            pages: 'Total-Pages' }     # default
 
@@ -130,20 +130,20 @@
 
 # Feature Extras
 
-# Gearbox extra: Automatically change the number of items per page depending on the page number
+# Gearbox extra: Automatically change the limit per page depending on the page number
 # See https://ddnexus.github.io/pagy/docs/extras/gearbox
 # require 'pagy/extras/gearbox'
 # set to false only if you want to make :gearbox_extra an opt-in variable
 # Pagy::DEFAULT[:gearbox_extra] = false               # default true
-# Pagy::DEFAULT[:gearbox_items] = [15, 30, 60, 100]   # default
+# Pagy::DEFAULT[:gearbox_limit] = [15, 30, 60, 100]   # default
 
-# Items extra: Allow the client to request a custom number of items per page with an optional selector UI
-# See https://ddnexus.github.io/pagy/docs/extras/items
-# require 'pagy/extras/items'
-# set to false only if you want to make :items_extra an opt-in variable
-# Pagy::DEFAULT[:items_extra] = false    # default true
-# Pagy::DEFAULT[:items_param] = :items   # default
-# Pagy::DEFAULT[:max_items]   = 100      # default
+# Limit extra: Allow the client to request a custom limit per page with an optional selector UI
+# See https://ddnexus.github.io/pagy/docs/extras/limit
+# require 'pagy/extras/limit'
+# set to false only if you want to make :limit_extra an opt-in variable
+# Pagy::DEFAULT[:limit_extra] = false    # default true
+# Pagy::DEFAULT[:limit_param] = :limit   # default
+# Pagy::DEFAULT[:max_limit]   = 100      # default
 
 # Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/docs/extras/overflow
@@ -169,7 +169,7 @@
 
 # Rails
 # Enable the .js file required by the helpers that use javascript
-# (pagy*_nav_js, pagy*_combo_nav_js, and pagy_items_selector_js)
+# (pagy*_nav_js, pagy*_combo_nav_js, and pagy_limit_selector_js)
 # See https://ddnexus.github.io/pagy/docs/api/javascript
 
 # With the asset pipeline

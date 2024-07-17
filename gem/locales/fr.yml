@@ -18,4 +18,4 @@ fr:
       single_page: "Affichage de %{count} %{item_name}"
       multiple_pages: "Affichage des %{item_name} %{from} à %{to} sur %{count} au total"
     combo_nav_js: "Page %{page_input} sur %{pages}"
-    items_selector_js: "Afficher %{items_input} %{item_name} par page"
+    limit_selector_js: "Afficher %{limit_input} %{item_name} par page"

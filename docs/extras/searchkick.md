@@ -41,7 +41,7 @@ collection = Article.pagy_search(params[:q])
 # multi models
 collection = Searchkick.pagy_search(params[:q], models: [Article, Categories])
 # paginate it
-@pagy, @response = pagy_searchkick(collection, items: 10)
+@pagy, @response = pagy_searchkick(collection, limit: 10)
 ```
 
 +++ Passive mode
@@ -77,7 +77,7 @@ This method accepts the same arguments of the `search` method and you must use i
 ==- `Pagy.new_from_searchkick(results, **vars)`
 
 This constructor accepts a `Searchkick::Results` as the first argument, plus the optional pagy variables. It automatically sets
-the `:items`, `:page` and `:count` pagy variables extracted/calculated out of it.
+the `:limit`, `:page` and `:count` pagy variables extracted/calculated out of it.
 
 ==- `pagy_searchkick(pagy_search_args, **vars)`
 

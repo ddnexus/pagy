@@ -27,7 +27,7 @@ render json: { data: records,
 
 | Variable    | Description                                          | Default                                                                                                                                                     |
 |:------------|:-----------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `:metadata` | Array of names used to control the returned metadata | `[ :scaffold_url, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :items, :vars, :pages, :last, :from, :to, :prev, :next, :series ]` |
+| `:metadata` | Array of names used to control the returned metadata | `[ :scaffold_url, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :limit, :vars, :pages, :last, :from, :to, :prev, :next, :series ]` |
 
 As usual, depending on the scope of the customization, you can set the `:metadata` variable globally or for a single pagy
 instance.

@@ -38,7 +38,7 @@ collection = Article.pagy_search(params[:q])
 collection = Article.pagy_search(params[:q]).records
 collection = Article.pagy_search(params[:q]).results
 # paginate it
-@pagy, @response = pagy_elasticsearch_rails(collection, items: 10)
+@pagy, @response = pagy_elasticsearch_rails(collection, limit: 10)
 ```
 
 +++ Passive mode
@@ -74,7 +74,7 @@ This method accepts the same arguments of the `search` method and you must use i
 ==- `Pagy.new_from_elasticsearch_rails(response, **vars)`
 
 This constructor accepts an `Elasticsearch::Model::Response::Response`, plus the optional pagy variables. It automatically sets
-the `:items`, `:page` and `:count` pagy variables extracted/calculated out of it.
+the `:limit`, `:page` and `:count` pagy variables extracted/calculated out of it.
 
 ==- `pagy_elasticsearch_rails(pagy_search_args, **vars)`
 

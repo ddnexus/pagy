@@ -22,7 +22,7 @@ variables from the request `params`.
 require 'pagy/extras/keyset'
 
 # useful optional extras for APIs
-# require 'pagy/extras/items'
+# require 'pagy/extras/limit'
 # require 'pagy/extras/jsonapi'
 # require 'pagy/extras/headers'
 ```
@@ -60,7 +60,7 @@ of `records` pulled from the DB.
 ==- `pagy_keyset_get_vars(vars)`
 
 This sub-method is called only by the `pagy_keyset` method. It automatically sets the `:page` variable and - if you use the 
-[items extra](/docs/extras/items.md) also the`:items` variables from the request `params`.
+[limit extra](/docs/extras/limit.md) also the`:limit` variables from the request `params`.
 
 ===
 

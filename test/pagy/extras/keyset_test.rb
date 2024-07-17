@@ -2,7 +2,7 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/keyset'
-require 'pagy/extras/items'
+require 'pagy/extras/limit'
 
 require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
@@ -15,13 +15,13 @@ describe 'pagy/extras/keyset' do
         pagy, records = app.send(:pagy_keyset,
                                  model.order(:animal, :name, :id),
                                  row_comparison: true,
-                                 items: 10)
+                                 limit: 10)
         _(pagy).must_be_kind_of Pagy::Keyset
         _(records.size).must_equal 10
         _(pagy.next).must_equal "eyJhbmltYWwiOiJjYXQiLCJuYW1lIjoiRWxsYSIsImlkIjoxOH0"
       end
       it 'pulls the page from params' do
-        app = MockApp.new(params: { page: "eyJpZCI6MTB9", items: 10 })
+        app = MockApp.new(params: { page: "eyJpZCI6MTB9", limit: 10 })
         pagy, records = app.send(:pagy_keyset,
                                  model.order(:id),
                                  row_comparison: true)

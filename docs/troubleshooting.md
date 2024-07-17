@@ -87,7 +87,7 @@ pagy or by any other ruby code ([#696](https://github.com/ddnexus/pagy/pull/696)
 ```rb
 ## override pagy_get_records
 def pagy_get_records(collection, pagy)
-  limit = pagy.last == pagy.page ? pagy.in : pagy.items
+  limit = pagy.last == pagy.page ? pagy.in : pagy.limit
   collection.offset(pagy.offset).limit(limit)
 end
 ```

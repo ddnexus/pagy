@@ -27,12 +27,12 @@ class Pagy
     attr_reader :latest  # Other readers from SharedMethods
 
     def initialize(set, **vars)
-      default = DEFAULT.slice(:items, :page_param,                    # from pagy
+      default = DEFAULT.slice(:limit, :page_param,                    # from pagy
                               :headers,                               # from headers extra
                               :jsonapi,                               # from jsonapi extra
-                              :items_param, :max_items, :items_extra) # from items_extra
+                              :limit_param, :max_limit, :limit_extra) # from limit_extra
       assign_vars({ **default, page: nil }, vars)
-      assign_items
+      assign_limit
       @set    = set
       @page   = @vars[:page]
       @keyset = extract_keyset
@@ -58,8 +58,8 @@ class Pagy
       @records ||= begin
         @set    = apply_select if select?
         @set    = @vars[:after_latest]&.(@set, @latest) || after_latest if @latest
-        records = @set.limit(@items + 1).to_a
-        @more   = records.size > @items && !records.pop.nil?
+        records = @set.limit(@limit + 1).to_a
+        @more   = records.size > @limit && !records.pop.nil?
         records
       end
     end

@@ -20,4 +20,4 @@ sw:
       single_page: "Inaonyesha %{item_name} %{count}"
       multiple_pages: "Inaonyesha %{item_name} %{from}-%{to} ya %{count} kwa jumla"
     combo_nav_js: "Kurasa %{page_input} ya %{pages}"
-    items_selector_js: "Onyesha %{items_input} %{item_name} kwa kila ukurasa"
+    limit_selector_js: "Onyesha %{limit_input} %{item_name} kwa kila ukurasa"

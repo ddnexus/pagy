@@ -34,7 +34,7 @@ Your app needs a full classic pagination UI
 @pagy, @records = pagy_countless(some_scope, ...)
 ```
 
-This mode retrieves `items + 1` and uses the number of retrieved items to calculate the variables. It then removes the eventual
+This mode fetches `limit + 1` and uses the number of fetched records to calculate the variables. It then removes the eventual
 extra item from the result, so deducing whether there is a `next` page or not without the need of an extra query.
 
 !!! info
@@ -73,7 +73,7 @@ This mode is enabled by the `:countless_minimal` variable.
 
 - The `@records` collection is a regular scope.
 - The `@pagy` object cannot be used with any helpers.
-- The collection is over when `@records.size < @pagy.vars[:items]`
+- The collection is over when `@records.size < @pagy.limit`
 
 !!!
 
@@ -100,6 +100,6 @@ the [pagy_get_vars doc](/docs/api/backend.md#pagy-get-vars-collection-vars)).
 ==- `pagy_countless_get_records(collection, pagy)`
 
 This sub-method is similar to the `pagy_get_records` sub-method, but it is called only by the `pagy_countless` method. (see
-the [pagy_get_records doc](/docs/api/backend.md#pagy-get-items-collection-pagy)).
+the [pagy_get_records doc](/docs/api/backend.md#pagy-get-limit-collection-pagy)).
 
 ===

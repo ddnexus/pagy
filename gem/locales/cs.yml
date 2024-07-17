@@ -20,4 +20,4 @@ cs:
       single_page: "Zobrazeno %{count} %{item_name}"
       multiple_pages: "Zobrazeny položky %{from}-%{to} z %{count} celkem"
     combo_nav_js: "Strana %{page_input} z %{pages}"
-    items_selector_js: "Zobrazit %{items_input} %{item_name} na stránce"
+    limit_selector_js: "Zobrazit %{limit_input} %{item_name} na stránce"

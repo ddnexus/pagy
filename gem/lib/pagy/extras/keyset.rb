@@ -18,7 +18,7 @@ class Pagy # :nodoc:
     def pagy_keyset_get_vars(vars)
       vars.tap do |v|
         v[:page]  ||= pagy_get_page(v)
-        v[:items] ||= pagy_get_items(v)
+        v[:limit] ||= pagy_get_limit(v)
       end
     end
   end

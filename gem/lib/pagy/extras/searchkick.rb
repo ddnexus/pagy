@@ -24,7 +24,7 @@ class Pagy # :nodoc:
     module PagyExtension
       # Create a Pagy object from a Searchkick::Results object
       def new_from_searchkick(results, **vars)
-        vars[:items] = results.options[:per_page]
+        vars[:limit] = results.options[:per_page]
         vars[:page]  = results.options[:page]
         vars[:count] = results.total_count
         new(**vars)
@@ -40,7 +40,7 @@ class Pagy # :nodoc:
       def pagy_searchkick(pagy_search_args, **vars)
         model, term, options, block, *called = pagy_search_args
         vars               = pagy_searchkick_get_vars(nil, vars)
-        options[:per_page] = vars[:items]
+        options[:per_page] = vars[:limit]
         options[:page]     = vars[:page]
         results            = model.send(DEFAULT[:searchkick_search], term, **options, &block)
         vars[:count]       = results.total_count
@@ -58,7 +58,7 @@ class Pagy # :nodoc:
       def pagy_searchkick_get_vars(_collection, vars)
         vars.tap do |v|
           v[:page]  ||= pagy_get_page(v)
-          v[:items] ||= pagy_get_items(v) || DEFAULT[:items]
+          v[:limit] ||= pagy_get_limit(v) || DEFAULT[:limit]
         end
       end
     end
