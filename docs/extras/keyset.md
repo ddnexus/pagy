@@ -7,9 +7,15 @@ categories:
 
 # Keyset Extra
 
-Paginate with the Pagy keyset pagination technique. This is a tiny wrapper around the 
-[Pagy::Keyset API](/docs/api/keyset.md) that implements and documents the actual pagination for `ActiveRecord::Relation` or 
-`Sequel::Dataset` sets.  Please refer to the class documentation for a fuller undersanding of keyset pagination:
+Paginate with the Pagy keyset pagination technique. 
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
+
+## Overview
+
+This is a tiny wrapper around the [Pagy::Keyset API](/docs/api/keyset.md) that implements and documents the actual pagination 
+for `ActiveRecord::Relation` or `Sequel::Dataset` sets.  Please refer to the class documentation for a fuller undersanding of 
+keyset pagination:
 
 [!ref Keyset Pagination: Concepts and Overview](/docs/api/keyset.md)
 
@@ -60,8 +66,6 @@ of `records` pulled from the DB.
 ==- `pagy_keyset_get_vars(vars)`
 
 This sub-method is called only by the `pagy_keyset` method. It automatically sets the `:page` variable and - if you use the 
-[limit extra](/docs/extras/limit.md) also the`:limit` variables from the request `params`.
+[limit extra](/docs/extras/limit.md) also the `:limit` variables from the request `params`.
 
 ===
-
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-app)

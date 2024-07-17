@@ -7,7 +7,7 @@ categories:
 
 # Limit Extra
 
-Allow the client to request a custom `limit` per page with an optional selector UI. It is useful with APIs or
+Allow the client to request a custom page `limit` with an optional selector UI. It is useful with APIs or
 user-customizable UIs.
 
 !!!success Try it now!
@@ -22,8 +22,10 @@ pagy demo
 
 !!!
 
-It works also with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md) 
-and [meilisearch](meilisearch.md) extras, and with the [Pagy::Keyset Api](/docs/api/keyset.md) pagination.
+!!!success
+This extra works also with the [Pagy::Keyset API](/docs/api/keyset.md) and with the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md) 
+and [meilisearch](meilisearch.md) extras
+!!!
 
 ## Synopsis
 
@@ -61,11 +63,11 @@ See [Javascript](/docs/api/javascript.md) (only if you use the `pagy_limit_selec
 
 ## Variables
 
-| Variable       | Description                                                          | Default  |
-|:---------------|:---------------------------------------------------------------------|:---------|
-| `:limit_extra` | Enable or disable the feature                                        | `true`   |
-| `:limit_param` | The name of the limit param used in the url.                         | `:limit` |
-| `:max_limit`   | The max limit allowed to be requested. Set it to `nil` for no limit. | `100`    |
+| Variable       | Description                                         | Default  |
+|:---------------|:----------------------------------------------------|:---------|
+| `:limit_extra` | Enable or disable the feature                       | `true`   |
+| `:limit_param` | The name of the "limit" param used in the url       | `:limit` |
+| `:max_limit`   | The max limit allowed. Set it to `nil` for no limit | `100`    |
 
 You can use the `:limit_extra` variable to opt-out of the feature even when the extra is required.
 

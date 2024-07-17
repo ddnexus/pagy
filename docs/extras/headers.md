@@ -10,6 +10,10 @@ categories:
 Add [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API
 pagination. It also follows the header casing introduced by `rack` version `3+` (see https://github.com/rack/rack/issues/1592).
 
+!!!success
+This extra works also with the [Pagy::Keyset API](/docs/api/keyset.md)
+!!!
+
 ## Synopsis
 
 ```ruby pagy.rb (initializer)

@@ -432,7 +432,7 @@ Pagy has a few extras dedicated to gems returning search results:
 With particular requirements/environment an id-based pagination might work better than a classical offset-based pagination, You
 can use an interesting approach proposed [here](https://github.com/ddnexus/pagy/discussions/435#discussioncomment-4577136).
 
-## Paginate by date instead of a fixed limit
+## Paginate by date
 
 Use the [calendar extra](extras/calendar.md) that adds pagination filtering by calendar time unit (year, quarter, month, week,
 day).

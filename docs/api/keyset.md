@@ -9,12 +9,22 @@ category:
 
 Implement wicked-fast keyset pagination for big data.
 
+!!!success Pagy Keyset works with...
+- `ActiveRecord::Relation` and `Sequel::Dataset` sets
+- Single or multiple ordered columns
+- The same order direction or any combination of mixed order direction
+- The [limit](/docs/extras/limit.md), [headers](/docs/extras/headers.md) and [jsonapi](/docs/extras/jsonapi.md) extras
+
+!!!
+
 !!!  
 
 The class API is documented here, however you should not need to use this
 class directly because it is required and used internally by the [keyset extra](/docs/extras/keyset.md)
 
 !!!
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-apps)
 
 ## Concept
 
@@ -83,8 +93,11 @@ Besides:
 !!!success
 The choice to avoid backward pagination and omitting previous and last pages has a very good trade-off:
 - The code is a lot faster and simpler to maintain
-- The logic is easier to understand
+- The logic is easier to understand and use
 - Overriding is straightforward
+
+!!!info
+However, if you have a good use case that requires backward pagination, please, open a [Feature Request](https://github.com/ddnexus/pagy/discussions/categories/feature-requests)
 !!!  
 
 ### ORMs
@@ -103,7 +116,7 @@ Pagy::Keyset.new(sequel_set)
 
 You pass an uniquely ordered `set`, and `Pagy::Keyset` queries the page of records, keeping track of the last retrieved record by 
 encoding it into the `page` param of the `next` URL. At each request the `:page` is decoded and used to prepare a `when` clause 
-that excludes the records retrived up to that point and pulls the number of requested records.
+that excludes the records retrived up to that point and pulls the `:limit` of requested records.
 
 ## Variables
 
@@ -113,7 +126,7 @@ The current `page`. Default `nil` for the first page.
 
 === `:limit`
 
-The number of `:limit` per page. Default `DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to get it automatically from the request param.
+The `:limit` per page. Default `DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to have it automatically assigned from the request param.
 
 === `:row_comparison`
 
@@ -129,7 +142,7 @@ For example:
 
 ```ruby
 after_latest = lambda do |set, latest|
-  set.where(after_latest_query, **latest)
+  set.where(my_optimized_query, **latest)
 end
 
 Pagy::Keyset(set, after_latest:)
@@ -196,8 +209,8 @@ Product.order(:name, :production_date, :id)
 !!!
 
 !!!danger ... or you have a typecasting problem
-Your ORM and the storage formats don't match for one or more columns. It's a common case with `SQLite` and Time columns that 
-have been stored as strings fomatted differently than the default format used by your current ORM.
+Your ORM and the storage formats don't match for one or more columns. It's a common case with `SQLite` and Time columns.
+They may have been stored as strings fomatted differently than the default format used by your current ORM.
 
 !!!success
 - Check the actual executed DB query and the actual stored value
@@ -205,10 +218,10 @@ have been stored as strings fomatted differently than the default format used by
 - Fix the typecasting consistence of your ORM with your DB or consider using your custom typecasting with the [:typecast_latest](#typecast-latest) variable
 !!!
   
-==- The set is ok, but the DB is still slow
+==- The order is OK, but the DB is still slow
 
 !!!danger
-Most likely your index is not right, or you need a custom query
+Most likely your index is not right, or your case needs a custom query
 
 !!! Success
 

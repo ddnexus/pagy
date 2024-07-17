@@ -168,9 +168,9 @@ Pagy exposes all its internal instance variables through a few readers. They all
 | `to`     | The collection-position of the last item in the page (`:outset` excluded)                                            |
 | `vars`   | The variables hash                                                                                                   |
 
-### Lowest limit analysis
+### Lowest status analysis
 
-The lowest possible limit of the pagination is reached when the collection has `0` count. In that case the Pagy object created has
+The lowest possible status of the pagination is reached when the collection has `0` count. In that case the Pagy object created has
 the following peculiar attributes:
 
 | Attribute | Value   |

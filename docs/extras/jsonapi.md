@@ -13,6 +13,10 @@ Implements the [JSON:API](https://jsonapi.org) specifications for pagination.
 When enabled, the query params used in the pagy URLs are nested under the `page` param, as specified by
 the [Query Parameter Family](https://jsonapi.org/format/#query-parameters-families)
 e.g. `https://example.com/products?page[number]=2&page[size]=30`.
+      
+!!!success 
+This extra works also with the [Pagy::Keyset API](/docs/api/keyset.md)
+!!!
 
 ## Synopsis
 
@@ -69,7 +73,7 @@ You can use the `:jsonapi` variable to opt-out of the feature even when the extr
 ## Interaction with other features/extras
 
 This extra just nests the `:page` and `:limit` params under the JSON:API reserved `:page` param. You may want to customize
-the `:page_param` and the `:limit` params as shown in the [Synopsis](#synopsis).
+the `:page_param` and the `:limit_param` as shown in the [Synopsis](#synopsis).
 
 You may also want to use it with the [limit extra](/docs/extras/limit.md) in order to allow the client to request a specific
 number of items per page and capping it to a max number.
