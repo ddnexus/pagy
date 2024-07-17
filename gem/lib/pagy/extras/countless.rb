@@ -13,12 +13,12 @@ class Pagy # :nodoc:
     # Return Pagy object and records
     def pagy_countless(collection, **vars)
       pagy = Countless.new(**pagy_get_vars(collection, vars))
-      [pagy, pagy_countless_get_records(collection, pagy)]
+      [pagy, pagy_countless_get_items(collection, pagy)]
     end
 
     # Sub-method called only by #pagy_countless: here for easy customization of record-extraction by overriding
     # You may need to override this method for collections without offset|limit
-    def pagy_countless_get_records(collection, pagy)
+    def pagy_countless_get_items(collection, pagy)
       return collection.offset(pagy.offset).limit(pagy.limit) if pagy.vars[:countless_minimal]
 
       fetched = collection.offset(pagy.offset).limit(pagy.limit + 1).to_a # eager load limit + 1

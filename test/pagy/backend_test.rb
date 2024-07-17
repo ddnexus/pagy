@@ -81,11 +81,11 @@ describe 'pagy/backend' do
     end
   end
 
-  describe '#pagy_get_records' do
-    it 'gets records' do
+  describe '#pagy_get_items' do
+    it 'gets items' do
       collection = MockCollection.new
       pagy       = Pagy.new count: 1000
-      records    = app.send :pagy_get_records, collection, pagy
+      records    = app.send :pagy_get_items, collection, pagy
       _(records).must_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     end
   end

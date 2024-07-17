@@ -9,13 +9,7 @@ class Pagy # :nodoc:
     # Return Pagy object and paginated collection/results
     def pagy_arel(collection, **vars)
       pagy = Pagy.new(**pagy_arel_get_vars(collection, vars))
-      [pagy, pagy_get_records(collection, pagy)]
-    end
-
-    # Sub-method called only by #pagy_arel: here for easy customization of variables by overriding
-    def pagy_arel_get_vars(collection, vars)
-      vars[:count] ||= pagy_arel_count(collection)
-      pagy_get_vars(collection, vars)
+      [pagy, pagy_get_items(collection, pagy)]
     end
 
     # Count using Arel when grouping
@@ -28,6 +22,12 @@ class Pagy # :nodoc:
         sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
         collection.unscope(:order).limit(1).pluck(sql).first.to_i
       end
+    end
+
+    # Sub-method called only by #pagy_arel: here for easy customization of variables by overriding
+    def pagy_arel_get_vars(collection, vars)
+      vars[:count] ||= pagy_arel_count(collection)
+      pagy_get_vars(collection, vars)
     end
   end
   Backend.prepend ArelExtra

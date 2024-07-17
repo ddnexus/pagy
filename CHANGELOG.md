@@ -43,8 +43,7 @@ If you upgrade from version `< 9.0.0` see the following:
 - A general internal revamp has changed the positional argument for the Pagy::* objects and constructors methods to keyword arguments. If you get a `wrong number of arguments (given 1, expected 0) (ArgumentError)`, just use a double splat `**`.
 - Breaking only if overridden: 
   - The internal Pagy protected methods have been renamed and refactored and if you use custom Pagy classes, you may need to search into the code.
-  - In particular, the internal `pagy*_get_items` methods have been renamed to `pagy*_get_records` for clarity. Besides, the `pagy_get_items` has been renamed as `pagy_get_limit`.
-
+  
 ## Version 8.6.3
 
 Temporary section to pass the tests
