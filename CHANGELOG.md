@@ -25,6 +25,8 @@ If you upgrade from version `< 9.0.0` see the following:
 ## Version 9.0.0
 
 ### Breaking Changes
+    
+#### Dropped support for deprecated stuff
 
 - The `foundation`, `materialize`, `semantic` and `uikit` CSS extras have been removed:
   (See the [reasons](https://github.com/ddnexus/pagy/discussions/672#discussioncomment-9212328))
@@ -35,14 +37,40 @@ If you upgrade from version `< 9.0.0` see the following:
   - `pagy-module.d.ts`: use `pagy.d.ts`
 - The Array type for the `:size` (e.g. `size: [1, 4, 4, 1]`) that generates the classic bar is not supported anymore: use the 
   `:size` set to an integer with the `ends: true` variable (which are the default since 8.4.6). If a legacy bar remains REALLY 
-  a requirement, add `require 'pagy/extras/size` to your `pagy.rb` initalizer. (See the [size extra](https://ddnexus.github.io/pagy/docs/extras/size))
-- The `DEFAULT[:anchor_string]` has been dropped.
-- The `:anchor_string`and the `:fragment` are not instance variables anymore, but keyword arguments for all the helpers, because it is
-  frontend code (see the [discussion](https://github.com/ddnexus/pagy/discussions/719)). Instead of passing them to the `pagy*`
-  method in the controller, pass it to any `pagy_*nav` method in the view.
-- A general internal revamp has changed the positional argument for the Pagy::* objects and constructors methods to keyword arguments. If you get a `wrong number of arguments (given 1, expected 0) (ArgumentError)`, just use a double splat `**`.
-- Breaking only if overridden: 
-  - The internal Pagy protected methods have been renamed and refactored and if you use custom Pagy classes, you may need to search into the code.
+  a requirement, add `require 'pagy/extras/size` to your `pagy.rb` initalizer. (See the 
+  [size extra](https://ddnexus.github.io/pagy/docs/extras/size))
+  
+#### Simple renaming
+
+We used `items` for too many things that confused even maintainers. The "items" are now referencing only the records/elements 
+fetched from a collection (plural entity), so they are kept as before (e.g. `pagy_*get_items` methods).
+The "number of items" (singular entity), are now unmistakably referenced as the `limit` everywhere (code, API, files, extras, 
+docs, etc.). The logic didn't change so you have just to globally search 'items' and replace with `limit` and you should be 
+done... or use the detailed table below:
+
+| Type              | Search                   | Replace                      |
+|-------------------|--------------------------|------------------------------|
+| Pagy Variable     | `:items`                 | `:limit`                     |
+| Extra Path        | `pagy/extras/items`      | `pagy/extras/limit`          |
+| Extra Variable    | `:items_param`           | `:limit_param`               |
+| Default URL param | `items`                  | `limit`                      |
+| Extra Variable    | `:items_extra`           | `:limit_extra`               |
+| Extra Variable    | `:max_items`             | `:limit_max`  (now inverted) |
+| Extra Method      | `pagy_items_selector_js` | `pagy_limit_selector_js`     |
+| Extra Variable    | `:headers[:items]`       | `:headers[limit]`            |
+
+#### Code changes
+
+- The `DEFAULT[:anchor_string]` was useless and has been dropped.
+- The `:anchor_string`and the `:fragment` are not instance variables anymore, but keyword arguments for all the helpers, 
+  because it is frontend code (see the [discussion](https://github.com/ddnexus/pagy/discussions/719)). Instead of passing them to the `pagy*` method in the controller, pass it to any `pagy_*nav` method in the view.
+- A general internal revamp has changed the positional argument for the Pagy::* objects and constructors methods to keyword 
+  arguments. If you get a `wrong number of arguments (given 1, expected 0) (ArgumentError)`, just use a double splat `**`.
+
+#### Possibly breaking overrides
+
+- The internal Pagy protected methods have been renamed and refactored. If you use custom Pagy 
+  classes, you may need to search into the code.
   
 ## Version 8.6.3
 
