@@ -32,11 +32,11 @@ require 'pagy/keyset'
       end
     end
     describe 'uses optional variables' do
-      it 'use the :row_comparison' do
+      it 'use the :tuple_comparison' do
         pagy = Pagy::Keyset.new(model.order(:animal, :name, :id),
                                 page: "eyJhbmltYWwiOiJjYXQiLCJuYW1lIjoiRWxsYSIsImlkIjoxOH0",
                                 limit: 10,
-                                row_comparison: true)
+                                tuple_comparison: true)
         records = pagy.records
         _(records.size).must_equal 10
         _(records.first.id).must_equal 13
