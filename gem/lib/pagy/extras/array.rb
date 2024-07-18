@@ -7,17 +7,15 @@ class Pagy # :nodoc:
     private
 
     # Return Pagy object and paginated items
-    def pagy_array(array, vars = {})
-      pagy = Pagy.new(pagy_array_get_vars(array, vars))
-      [pagy, array[pagy.offset, pagy.items]]
+    def pagy_array(array, **vars)
+      pagy = Pagy.new(**pagy_array_get_vars(array, vars))
+      [pagy, array[pagy.offset, pagy.limit]]
     end
 
     # Sub-method called only by #pagy_array: here for easy customization of variables by overriding
     def pagy_array_get_vars(array, vars)
-      pagy_set_items_from_params(vars) if defined?(ItemsExtra)
       vars[:count] ||= array.size
-      vars[:page]  ||= pagy_get_page(vars)
-      vars
+      pagy_get_vars(array, vars)
     end
   end
   Backend.prepend ArrayExtra

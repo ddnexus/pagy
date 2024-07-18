@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.773830959919">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774604376315">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.773830959919" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.774604376315" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.773830959919" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774604376315" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.773830959919" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.773830959919" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774604376315" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774604376315" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.6.3</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -272,7 +272,7 @@
 </div>
 
 <p>The scope of the <code v-pre>Pagy</code> class is keeping track of the all integers and variables involved in the pagination. It basically takes a
-few integers (such as the count of the collection, the page number, the items per page, ...), does some simple arithmetic and
+few integers (such as the count of the collection, the page number, the limit per page, ...), does some simple arithmetic and
 creates a very small object that allocates less than 3k of memory.</p>
 <doc-anchor-target id="synopsis">
     <h2>
@@ -284,7 +284,7 @@ creates a very small object that allocates less than 3k of memory.</p>
 <div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby"># set global defaults and extra variables
 # they will get merged with every new Pagy instance
-Pagy::DEFAULT[:items]    = 25
+Pagy::DEFAULT[:limit]    = 25
 Pagy::DEFAULT[:some_var] = 'default value'
 
 # create a new instance (usually done automatically by the #pagy controller method)
@@ -300,7 +300,7 @@ pagy.vars[:instance_var]
 #=&gt; &quot;instance var&quot;
 
 # fetch instance attributes
-pagy.items
+pagy.limit
 #=&gt; 25
 
 # get the page series
@@ -320,7 +320,7 @@ variables passed with the <code v-pre>new</code> method every times a <code v-pr
 <p>You will typically use it in a <code v-pre>pagy.rb</code> initializer file to pass defaults values. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">pagy.rb (initializer)</div>
-<pre class="language-ruby"><code v-pre class="language-ruby">Pagy::DEFAULT[:items]     = 25
+<pre class="language-ruby"><code v-pre class="language-ruby">Pagy::DEFAULT[:limit]     = 25
 Pagy::DEFAULT[:my_option] = 'my option'
 ...
 Pagy::DEFAULT.freeze</code></pre>
@@ -338,14 +338,14 @@ Pagy::DEFAULT.freeze</code></pre>
 files installed with the gem.</p>
    </doc-panel>
    <doc-panel id="pagy-new-vars" collapsed>
-       <template #title><code v-pre>Pagy.new(vars)</code></template>
+       <template #title><code v-pre>Pagy.new(**vars)</code></template>
 <p><em>Notice</em>: If you use the <code v-pre>Pagy::Backend</code> its <code v-pre>pagy</code> method will instantiate and return the Pagy object for you.</p>
-<p>The <code v-pre>Pagy.new</code> method accepts a single hash of variables that will be merged with the <code v-pre>Pagy::DEFAULT</code> hash and will be used to
+<p>The <code v-pre>Pagy.new</code> method accepts a number of variables that will be merged with the <code v-pre>Pagy::DEFAULT</code> hash and will be used to
 create the object.</p>
    </doc-panel>
    <doc-panel id="series-size-vars-size" collapsed>
        <template #title><code v-pre>series(size: @vars[:size], _**)</code></template>
-<p>This method is the core of the pagination. It returns an array containing the page numbers and the <code v-pre>:gap</code> items to be rendered
+<p>This method is the core of the pagination. It returns an array containing the page numbers and the <code v-pre>:gap</code> to be rendered
 with the navigation links (e.g. <code v-pre>[1, :gap, 7, 8, &quot;9&quot;, 10, 11, :gap, 36]</code>). It accepts an optional <code v-pre>size</code> keyword argument (only
 useful for extras), defaulted on the <code v-pre>:size</code> variable.</p>
 <div class="flex mb-6">
@@ -429,7 +429,7 @@ the <code v-pre>vars</code> reader.</p>
         <div class="pr-5 ml-3 w-full">
 <p>Pagy replaces the blank values of the passed variables with their default values coming from the <code v-pre>Pagy::DEFAULT</code> hash.
 It also applies <code v-pre>to_i</code> on the values expected to be integers, so you can use values from request <code v-pre>params</code> without any problem.
-For example: <code v-pre>pagy(some_scope, items: params[:items])</code> will work without any additional cleanup.</p>
+For example: <code v-pre>pagy(some_scope, limit: params[:limit])</code> will work without any additional cleanup.</p>
         </div>
     </div>
 </div>
@@ -453,11 +453,6 @@ number <code v-pre>1</code>. For performance reasons, only the instance variable
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code v-pre>:anchor_string</code></td>
-<td style="text-align: left;">The extra attributes string (formatted as a valid HTML <code v-pre>attr=&quot;value&quot;</code>) added to the page links <em>(see <a href="../../how-to/#customize-the-link-attributes">Customize the link attributes</a>)</em></td>
-<td style="text-align: left;"><code v-pre>nil</code></td>
-</tr>
-<tr>
 <td style="text-align: left;"><code v-pre>:count</code></td>
 <td style="text-align: left;">The total count of the collection to paginate (mandatory argument)</td>
 <td style="text-align: left;"><code v-pre>nil</code></td>
@@ -478,13 +473,8 @@ number <code v-pre>1</code>. For performance reasons, only the instance variable
 <td style="text-align: left;"><code v-pre>7</code></td>
 </tr>
 <tr>
-<td style="text-align: left;"><code v-pre>:fragment</code></td>
-<td style="text-align: left;">The arbitrary fragment string (including the &quot;#&quot;) to add to the url. <em>(see <a href="../../how-to/#customize-the-params">Customize the params</a>)</em></td>
-<td style="text-align: left;"><code v-pre>nil</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>:items</code></td>
-<td style="text-align: left;">The requested number of items for the page</td>
+<td style="text-align: left;"><code v-pre>:limit</code></td>
+<td style="text-align: left;">The requested page limit (i.e. the number of records/items)</td>
 <td style="text-align: left;"><code v-pre>20</code></td>
 </tr>
 <tr>
@@ -574,15 +564,15 @@ number <code v-pre>1</code>. For performance reasons, only the instance variable
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>in</code></td>
-<td style="text-align: left;">The number of the items in the page</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code v-pre>items</code></td>
-<td style="text-align: left;">The requested number of items for the page</td>
+<td style="text-align: left;">The number of records <code v-pre>in</code> the page</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>last</code></td>
 <td style="text-align: left;">The number of the last page in the collection (ordinal meaning)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code v-pre>limit</code></td>
+<td style="text-align: left;">The page limit (requested records for the page)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>next</code></td>
@@ -590,7 +580,7 @@ number <code v-pre>1</code>. For performance reasons, only the instance variable
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>offset</code></td>
-<td style="text-align: left;">The number of items skipped from the collection in order to get the start of the current page (<code v-pre>:outset</code> included)</td>
+<td style="text-align: left;">The number of records skipped from the collection in order to get the start of the current page (<code v-pre>:outset</code> included)</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code v-pre>page</code></td>
@@ -615,13 +605,13 @@ number <code v-pre>1</code>. For performance reasons, only the instance variable
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="lowest-limit-analysis">
+<doc-anchor-target id="lowest-status-analysis">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#lowest-limit-analysis">#</doc-anchor-trigger>
-        <span>Lowest limit analysis</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#lowest-status-analysis">#</doc-anchor-trigger>
+        <span>Lowest status analysis</span>
     </h3>
 </doc-anchor-target>
-<p>The lowest possible limit of the pagination is reached when the collection has <code v-pre>0</code> count. In that case the Pagy object created has
+<p>The lowest possible status of the pagination is reached when the collection has <code v-pre>0</code> count. In that case the Pagy object created has
 the following peculiar attributes:</p>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">

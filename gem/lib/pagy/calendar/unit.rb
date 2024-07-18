@@ -13,18 +13,15 @@ class Pagy # :nodoc:
       attr_reader :order, :from, :to
 
       # Merge and validate the options, do some simple arithmetic and set a few instance variables
-      def initialize(vars)    # rubocop:disable Lint/MissingSuper
+      def initialize(**vars)    # rubocop:disable Lint/MissingSuper
         raise InternalError, 'Pagy::Calendar::Unit is a base class; use one of its subclasses' \
             if instance_of?(Pagy::Calendar::Unit)
 
-        vars = self.class::DEFAULT.merge(vars)  # subclass specific default
-        normalize_vars(vars)                    # general default
-        setup_vars(page: 1)
-        setup_unit_vars
-        raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
-
-        @prev = (@page - 1 unless @page == 1)
-        @next = @page == @last ? (1 if @vars[:cycle]) : @page + 1
+        assign_vars({ **Pagy::DEFAULT, **self.class::DEFAULT }, vars)
+        assign_and_check(page: 1)
+        assign_unit_vars
+        check_overflow
+        assign_prev_and_next
       end
 
       # The label for the current page (it can pass along the I18n gem opts when it's used with the i18n extra)
@@ -63,7 +60,7 @@ class Pagy # :nodoc:
       end
 
       # Base class method for the setup of the unit variables (subclasses must implement it and call super)
-      def setup_unit_vars
+      def assign_unit_vars
         raise VariableError.new(self, :format, 'to be a strftime format', @vars[:format]) unless @vars[:format].is_a?(String)
         raise VariableError.new(self, :order, 'to be in [:asc, :desc]', @order) \
         unless %i[asc desc].include?(@order = @vars[:order])

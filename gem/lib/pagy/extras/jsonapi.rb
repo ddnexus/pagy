@@ -24,10 +24,17 @@ class Pagy # :nodoc:
 
       # Return the jsonapi links
       def pagy_jsonapi_links(pagy, **opts)
-        { first: pagy_url_for(pagy, 1,         **opts),
-          last:  pagy_url_for(pagy, pagy.last, **opts),
-          prev:  pagy.prev ? pagy_url_for(pagy, pagy.prev, **opts) : nil,
-          next:  pagy.next ? pagy_url_for(pagy, pagy.next, **opts) : nil }
+        if defined?(Pagy::Keyset) && pagy.is_a?(Pagy::Keyset)
+          { first: pagy_url_for(pagy, nil, **opts),
+            last: nil,
+            prev: nil,
+            next:  pagy.next ? pagy_url_for(pagy, pagy.next, **opts) : nil }
+        else
+          { first: pagy_url_for(pagy, 1, **opts),
+            last:  pagy_url_for(pagy, pagy.last, **opts),
+            prev:  pagy.prev ? pagy_url_for(pagy, pagy.prev, **opts) : nil,
+            next:  pagy.next ? pagy_url_for(pagy, pagy.next, **opts) : nil }
+        end
       end
 
       # Should skip the jsonapi
@@ -40,38 +47,41 @@ class Pagy # :nodoc:
       # Override the Backend method
       def pagy_get_page(vars)
         return super if pagy_skip_jsonapi?(vars)
-        return 1 if params[:page].nil?
+        return if params[:page].nil?
 
-        [params[:page][vars[:page_param] || DEFAULT[:page_param]].to_i, 1].max
+        params[:page][vars[:page_param] || DEFAULT[:page_param]]
       end
     end
     Backend.prepend BackendOverride
 
-    # Module overriding ItemsExtra
-    module ItemsExtraOverride
+    # Module overriding LimitExtra
+    module LimitExtraOverride
       private
 
-      # Override the ItemsExtra::Backend method
-      def pagy_get_items_size(vars)
+      # Override the LimitExtra::Backend method
+      def pagy_get_limit_param(vars)
         return super if pagy_skip_jsonapi?(vars)
         return if params[:page].nil?
 
-        params[:page][vars[:items_param] || DEFAULT[:items_param]]
+        params[:page][vars[:limit_param] || DEFAULT[:limit_param]]
       end
     end
     # :nocov:
-    ItemsExtra::BackendAddOn.prepend ItemsExtraOverride if defined?(ItemsExtra::BackendAddOn)
+    LimitExtra::BackendAddOn.prepend LimitExtraOverride if defined?(LimitExtra::BackendAddOn)
     # :nocov:
 
     # Module overriding UrlHelper
     module UrlHelperOverride
       # Override UrlHelper method
-      def pagy_set_query_params(page, vars, params)
+      def pagy_set_query_params(page, vars, query_params)
         return super unless vars[:jsonapi]
 
-        params['page'] ||= {}
-        params['page'][vars[:page_param].to_s]  = page
-        params['page'][vars[:items_param].to_s] = vars[:items] if vars[:items_extra]
+        query_params['page'] ||= {}
+        query_params['page'][vars[:page_param].to_s]  = page if page
+        query_params['page'][vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra]
+        # :nocov:
+        query_params.delete(:page) if query_params['page'].empty?
+        # :nocov:
       end
     end
     UrlHelpers.prepend UrlHelperOverride

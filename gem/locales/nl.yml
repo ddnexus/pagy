@@ -18,4 +18,4 @@ nl:
       single_page: "Toont %{count} %{item_name}"
       multiple_pages: "Toont %{from}-%{to} %{item_name} van %{count} in totaal"
     combo_nav_js: "Pagina %{page_input} van %{pages}"
-    items_selector_js: "Toont %{items_input} %{item_name} per pagina"
+    limit_selector_js: "Toont %{limit_input} %{item_name} per pagina"

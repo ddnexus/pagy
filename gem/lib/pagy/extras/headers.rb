@@ -5,7 +5,7 @@ require_relative '../url_helpers'
 
 class Pagy # :nodoc:
   DEFAULT[:headers] = { page:  'current-page',
-                        items: 'page-items',
+                        limit: 'page-items',
                         count: 'total-count',
                         pages: 'total-pages' }
   # Add specialized backend methods to add pagination response headers
@@ -21,32 +21,33 @@ class Pagy # :nodoc:
 
     # Generate a hash of RFC-8288 compliant http headers
     def pagy_headers(pagy)
-      pagy_headers_hash(pagy).tap do |hash|
-        hash['link'] = hash['link'].map { |rel, link| %(<#{link}>; rel="#{rel}") }.join(', ')
+      headers = pagy.vars[:headers]
+      { 'link' => link(pagy) }.tap do |hash|
+        hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]
+        hash[headers[:limit]] = pagy.limit.to_s \
+            if headers[:limit] && !(defined?(Calendar) && pagy.is_a?(Calendar::Unit))
+        return hash if (defined?(Countless) && pagy.is_a?(Countless)) || \
+                       (defined?(Keyset) && pagy.is_a?(Keyset))
+
+        hash[headers[:pages]] = pagy.last.to_s if headers[:pages]
+        hash[headers[:count]] = pagy.count.to_s if pagy.count && headers[:count] # count may be nil with Calendar
       end
     end
 
-    # Generates a hash structure of the headers
-    def pagy_headers_hash(pagy)
-      countless             = defined?(Countless) && pagy.is_a?(Countless)
-      rel                   = { 'first' => 1, 'prev' => pagy.prev, 'next' => pagy.next }
-      rel['last']           = pagy.last unless countless
-      url_str               = pagy_url_for(pagy, PAGE_TOKEN, absolute: true)
-      link                  = rel.filter_map do |r, num|
-                                next unless num # rubocop:disable Layout/EmptyLineAfterGuardClause
-                                [r, url_str.sub(PAGE_TOKEN, num.to_s)]
-                              end.compact.to_h
-      hash                  = { 'link' => link }
-      headers               = pagy.vars[:headers]
-      hash[headers[:page]]  = pagy.page.to_s if headers[:page]
-      if headers[:items] && !(defined?(Calendar) && pagy.is_a?(Calendar))  # items is not for Calendar
-        hash[headers[:items]] = pagy.vars[:items].to_s
-      end
-      unless countless
-        hash[headers[:pages]] = pagy.pages.to_s if headers[:pages]
-        hash[headers[:count]] = pagy.count.to_s if pagy.count && headers[:count] # count may be nil with Calendar
-      end
-      hash
+    def link(pagy)
+      [].tap do |link|
+        if defined?(Keyset) && pagy.is_a?(Keyset)
+          link << %(<#{pagy_url_for(pagy, nil, absolute: true)}>; rel="first")
+          link << %(<#{pagy_url_for(pagy, pagy.next, absolute: true)}>; rel="next") if pagy.next
+        else
+          url_str = pagy_url_for(pagy, PAGE_TOKEN, absolute: true)
+          link << %(<#{url_str.sub(PAGE_TOKEN, '1')}>; rel="first")
+          link << %(<#{url_str.sub(PAGE_TOKEN, pagy.prev.to_s)}>; rel="prev") if pagy.prev
+          link << %(<#{url_str.sub(PAGE_TOKEN, pagy.next.to_s)}>; rel="next") if pagy.next
+          link << %(<#{url_str.sub(PAGE_TOKEN, pagy.last.to_s)}>; rel="last") \
+              unless defined?(Countless) && pagy.is_a?(Countless)
+        end
+      end.join(', ')
     end
   end
   Backend.prepend HeadersExtra

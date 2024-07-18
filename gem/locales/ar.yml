@@ -26,4 +26,4 @@ ar:
       single_page: "عرض %{count} %{item_name}"
       multiple_pages: "عرض %{item_name} %{from}-%{to} من اجمالي %{count}"
     combo_nav_js: "الصفحة %{page_input} من %{pages}"
-    items_selector_js: "عرض %{items_input} %{item_name} لكل صفحة"
+    limit_selector_js: "عرض %{limit_input} %{item_name} لكل صفحة"

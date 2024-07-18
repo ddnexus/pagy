@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.773830959919">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774604376315">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.773830959919" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.774604376315" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.773830959919" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774604376315" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.773830959919" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.773830959919" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774604376315" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774604376315" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.6.3</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -276,6 +276,22 @@
 <p>When enabled, the query params used in the pagy URLs are nested under the <code v-pre>page</code> param, as specified by
 the <a href="https://jsonapi.org/format/#query-parameters-families">Query Parameter Family</a>
 e.g. <code v-pre>https://example.com/products?page[number]=2&amp;page[size]=30</code>.</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>This extra works also with the <a href="../../api/keyset/">Pagy::Keyset API</a></p>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="synopsis">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#synopsis">#</doc-anchor-trigger>
@@ -308,7 +324,7 @@ e.g. <code v-pre>https://example.com/products?page[number]=2&amp;page[size]=30</
 <div class="codeblock-wrapper"><doc-codeblock>
 <div class="codeblock-title">pagy.rb (initializer)</div>
 <pre class="language-ruby"><code v-pre class="language-ruby"># optionally require other extras useful with jsonapi
-require 'pagy/extras/items'
+require 'pagy/extras/limit'
 # jsonapi must be required AFTER other extras
 require 'pagy/extras/jsonapi'
 # optionally disable it by default (opt-in)
@@ -322,9 +338,9 @@ Pagy::DEFAULT[:jsonapi] = false               # default true</code></pre>
 @pagy, @records = pagy(collection, jsonapi: true)
 # optional/custom setup
 @pagy, @records = pagy(collection, jsonapi:      true,    # enable the jsonapi specifications
-                                   items_extra:  true,    # enable the items extra
+                                   limit_extra:  true,    # enable the limit extra
                                    page_param:   :number, # use page[number] param name instead of page[page]
-                                   items_params: :size)   # use page[size] param name instead of page[items]
+                                   limit_params: :size)   # use page[size] param name instead of page[limit]
 # get the links URL hash
 links_hash = pagy_jsonapi_links(@pagy)
 #=&gt; {first: 'https://example.com/products?page[number]=1&amp;page[size]=50&amp;...',
@@ -363,9 +379,9 @@ links_hash = pagy_jsonapi_links(@pagy)
         <span>Interaction with other features/extras</span>
     </h2>
 </doc-anchor-target>
-<p>This extra just nests the <code v-pre>:page</code> and <code v-pre>:items</code> params under the JSON:API reserved <code v-pre>:page</code> param. You may want to customize
-the <code v-pre>:page_param</code> and the <code v-pre>:items</code> params as shown in the <doc-anchor-trigger to="#synopsis">Synopsis</doc-anchor-trigger>.</p>
-<p>You may also want to use it with the <a href="../items/">items extra</a> in order to allow the client to request a specific
+<p>This extra just nests the <code v-pre>:page</code> and <code v-pre>:limit</code> params under the JSON:API reserved <code v-pre>:page</code> param. You may want to customize
+the <code v-pre>:page_param</code> and the <code v-pre>:limit_param</code> as shown in the <doc-anchor-trigger to="#synopsis">Synopsis</doc-anchor-trigger>.</p>
+<p>You may also want to use it with the <a href="../limit/">limit extra</a> in order to allow the client to request a specific
 number of items per page and capping it to a max number.</p>
 <p>It works also with the <a href="../countless/">countless</a>, <a href="../searchkick/">searchkick</a>, <a href="../elasticsearch_rails/">elasticsearch_rails</a>
 and <a href="../meilisearch/">meilisearch</a> extras.</p>
@@ -397,20 +413,20 @@ of <code v-pre>first</code>, <code v-pre>last</code>, <code v-pre>prev</code>, <
                             
                                 <nav class="flex mt-14">
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../docs/extras/items/">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../../../docs/extras/i18n/">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                             <span>
                                                 <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
-                                                <span class="block mt-1">Items</span>
+                                                <span class="block mt-1">I​18​n</span>
                                             </span>
                                         </a>
                                     </div>
                             
                                     <div class="w-1/2">
-                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../docs/extras/meilisearch/">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../../../docs/extras/keyset/">
                                             <span>
                                                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                                                <span class="block mt-1">Meilisearch</span>
+                                                <span class="block mt-1">Keyset</span>
                                             </span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
                                         </a>

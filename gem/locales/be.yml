@@ -22,4 +22,4 @@ be:
       single_page: "%{count} %{item_name}"
       multiple_pages: "Усяго %{count} %{item_name}, паказаны з %{from} па %{to}"
     combo_nav_js: "Старонка %{page_input} з %{pages}"
-    items_selector_js: "Паказаць %{items_input} %{item_name} на старонцы"
+    limit_selector_js: "Паказаць %{limit_input} %{item_name} на старонцы"

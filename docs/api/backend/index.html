@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.773830959919">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774604376315">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.773830959919" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.774604376315" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.773830959919" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774604376315" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.773830959919" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.773830959919" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774604376315" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774604376315" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.6.3</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -291,7 +291,7 @@ type of collection (e.g. different ORM types, etc.).</p>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5><code v-pre>Pagy::Backend</code> returns <code v-pre>pagy</code> instances</h5>
-<p>Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items.
+<p>Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated records.
 You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the
 process. If you seek a bit more performance you are encouraged to <doc-anchor-trigger to="#writing-your-own-pagy-methods">write your own Pagy methods</doc-anchor-trigger>.</p>
         </div>
@@ -311,7 +311,7 @@ and <a href="../../extras/meilisearch/">meilisearch</a> extras for specific back
 <pre class="language-ruby"><code v-pre class="language-ruby">include Pagy::Backend
 
 # optional overriding of some sub-method
-def pagy_get_vars(collection, vars)
+def pagy_get_vars(collection, **vars)
   #...
 end
 
@@ -332,8 +332,8 @@ prefixed with the <code v-pre>&quot;pagy_get_&quot;</code> string are sub-method
 <p>Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need
 of monkey-patching or perform any tricky gimmickry.</p>
 <doc-panels>
-   <doc-panel id="pagy-collection-vars-nil" collapsed>
-       <template #title><code v-pre>pagy(collection, vars=nil)</code></template>
+   <doc-panel id="pagy-collection-vars" collapsed>
+       <template #title><code v-pre>pagy(collection, **vars)</code></template>
 <p>This is the main method of this module. It takes a collection object (e.g. a scope), and an optional hash of variables (passed to
 the <code v-pre>Pagy.new</code> method) and returns the <code v-pre>Pagy</code> instance and the page of records. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -379,20 +379,20 @@ the output <em>(see <a href="../../how-to/#customize-the-item-name">How to custo
    </doc-panel>
    <doc-panel id="pagy-get-items-collection-pagy" collapsed>
        <template #title><code v-pre>pagy_get_items(collection, pagy)</code></template>
-<p>Sub-method called only by the <code v-pre>pagy</code> method, it returns the page items (i.e. the records belonging to the current page).</p>
+<p>Sub-method called only by the <code v-pre>pagy</code> method, it returns the records belonging to the current page.</p>
 <p>Here is its source (it works with most ORMs like <code v-pre>ActiveRecord</code>, <code v-pre>Sequel</code>, <code v-pre>Mongoid</code>, ...):</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">
 def pagy_get_items(collection, pagy)
-  collection.offset(pagy.offset).limit(pagy.items)
+  collection.offset(pagy.offset).limit(pagy.limit)
 end</code></pre>
 </doc-codeblock></div>
-<p>Override it if the extraction of the items from your collection works in a different way. For example, if you need to paginate an
+<p>Override it if the extraction of the records from your collection works in a different way. For example, if you need to paginate an
 array:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">
 def pagy_get_items(array, pagy)
-  array[pagy.offset, pagy.items]
+  array[pagy.offset, pagy.limit]
 end</code></pre>
 </doc-codeblock></div>
 <div class="flex mb-6">
@@ -430,7 +430,7 @@ using one single <code v-pre>pagy</code> method would not be an option.</p>
 <pre class="language-ruby"><code v-pre class="language-ruby">
 def pagy_custom(collection, vars = {})
   pagy = Pagy.new(count: collection.count(*vars[:count_args]), page: params[:page], **vars)
-  [pagy, collection.offset(pagy.offset).limit(pagy.items)]
+  [pagy, collection.offset(pagy.offset).limit(pagy.limit)]
 end</code></pre>
 </doc-codeblock></div>
 <p>You can easily write a <code v-pre>pagy</code> method for <em>any possible</em> environment: please read how

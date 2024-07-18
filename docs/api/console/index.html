@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.773830959919">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774604376315">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.773830959919" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.774604376315" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.773830959919" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774604376315" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.773830959919" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.773830959919" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774604376315" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774604376315" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">8.6.3</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.0.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -287,7 +287,7 @@ pagy_extras :array, :metadata, ...
 ### then you can use it like inside an app
 pagy, items = pagy_array((1..1000).to_a, page: 3)
 pagy_nav(pagy)
-=&gt; [#&lt;Pagy:0x00007fdff0234880 @count=1000, @from=41, @in=20, @items=20, @last=50, @next=4, @offset=40, @outset=0, @page=3, @prev=2, @to=60, @vars={:page=&gt;3, :items=&gt;20, :outset=&gt;0, :size=&gt;7, :cycle=&gt;false, :count_args=&gt;[:all], :page_param=&gt;:page, :url=&gt;&quot;http://www.example.com/subdir&quot;, :count=&gt;1000}&gt;, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+=&gt; [#&lt;Pagy:0x00007fdff0234880 @count=1000, @from=41, @in=20, @limit=20, @last=50, @next=4, @offset=40, @outset=0, @page=3, @prev=2, @to=60, @vars={:page=&gt;3, :limit=&gt;20, :outset=&gt;0, :size=&gt;7, :cycle=&gt;false, :count_args=&gt;[:all], :page_param=&gt;:page, :url=&gt;&quot;http://www.example.com/subdir&quot;, :count=&gt;1000}&gt;, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
 =&gt; &quot;&lt;nav class=\&quot;pagy nav\&quot; aria-label=\&quot;Pages\&quot;&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2\&quot; aria-label=\&quot;Previous\&quot;&gt;&amp;lt;&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=1\&quot;&gt;1&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=2\&quot;&gt;2&lt;/a&gt;&lt;a role=\&quot;link\&quot; aria-disabled=\&quot;true\&quot; aria-current=\&quot;page\&quot; class=\&quot;current\&quot;&gt;3&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4\&quot;&gt;4&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=5\&quot;&gt;5&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=6\&quot;&gt;6&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=7\&quot;&gt;7&lt;/a&gt;&lt;a href=\&quot;http://www.example.com/subdir?page=4\&quot; aria-label=\&quot;Next\&quot;&gt;&amp;gt;&lt;/a&gt;&lt;/nav&gt;&quot;
 
 pagy_metadata(pagy)pagy_metadata(pagy)
@@ -300,9 +300,9 @@ pagy_metadata(pagy)pagy_metadata(pagy)
   :last_url     =&gt; &quot;http://www.example.com/subdir?page=50&quot;,
   :count        =&gt; 1000,
   :page         =&gt; 3,
-  :items        =&gt; 20,
+  :limit        =&gt; 20,
   :vars         =&gt; { :page       =&gt; 3,
-                     :items      =&gt; 20,
+                     :limit      =&gt; 20,
                      :outset     =&gt; 0,
                      :size       =&gt; 7,
                      :cycle      =&gt; false,
@@ -317,7 +317,7 @@ pagy_metadata(pagy)pagy_metadata(pagy)
                                      :last_url,
                                      :count,
                                      :page,
-                                     :items,
+                                     :limit,
                                      :vars,
                                      :pages,
                                      :last,

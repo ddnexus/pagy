@@ -1,8 +1,8 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/docs/api/frontend
 # frozen_string_literal: true
 
-require_relative 'url_helpers'
 require_relative 'i18n'
+require_relative 'url_helpers'
 
 class Pagy
   # Used for search and replace, hardcoded also in the pagy.js file
@@ -14,26 +14,17 @@ class Pagy
   module Frontend
     include UrlHelpers
 
-    # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
-      id = %( id="#{id}") if id
-      a  = pagy_anchor(pagy)
-
-      html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}>#{
-                 prev_a(pagy, a)})
-      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        html << case item
-                when Integer
-                  a.(item)
-                when String
-                  %(<a role="link" aria-disabled="true" aria-current="page" class="current">#{pagy.label_for(item)}</a>)
-                when :gap
-                  %(<a role="link" aria-disabled="true" class="gap">#{pagy_t('pagy.gap')}</a>)
-                else
-                  raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
-                end
+    # Return a performance optimized lambda to generate the HTML anchor element (a tag)
+    # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
+    def pagy_anchor(pagy, anchor_string: nil, **vars)
+      anchor_string &&= %( #{anchor_string})
+      left, right = %(<a#{anchor_string} href="#{pagy_url_for(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
+      # lambda used by all the helpers
+      lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
+        classes    = %( class="#{classes}") if classes
+        aria_label = %( aria-label="#{aria_label}") if aria_label
+        %(#{left}#{page}#{right}#{classes}#{aria_label}>#{text}</a>)
       end
-      html << %(#{next_a(pagy, a)}</nav>)
     end
 
     # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
@@ -54,24 +45,32 @@ class Pagy
         }</span>)
     end
 
-    # Return a performance optimized lambda to generate the HTML anchor element (a tag)
-    # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_anchor(pagy)
-      a_string    = pagy.vars[:anchor_string]
-      a_string    = %( #{a_string}) if a_string
-      left, right = %(<a#{a_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
-      # lambda used by all the helpers
-      lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
-        classes    = %( class="#{classes}") if classes
-        aria_label = %( aria-label="#{aria_label}") if aria_label
-        %(#{left}#{page}#{right}#{classes}#{aria_label}>#{text}</a>)
+    # Generic pagination: it returns the html with the series of links to the pages
+    def pagy_nav(pagy, id: nil, aria_label: nil, anchor_string: nil, **vars)
+      id = %( id="#{id}") if id
+      a  = pagy_anchor(pagy, anchor_string:)
+
+      html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}>#{
+                 prev_a(pagy, a)})
+      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+        html << case item
+                when Integer
+                  a.(item)
+                when String
+                  %(<a role="link" aria-disabled="true" aria-current="page" class="current">#{pagy.label_for(item)}</a>)
+                when :gap
+                  %(<a role="link" aria-disabled="true" class="gap">#{pagy_t('pagy.gap')}</a>)
+                else
+                  raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
+                end
       end
+      html << %(#{next_a(pagy, a)}</nav>)
     end
 
     # Similar to I18n.t: just ~18x faster using ~10x less memory
     # (@pagy_locale explicitly initialized in order to avoid warning)
-    def pagy_t(key, opts = {})
-      Pagy::I18n.translate(@pagy_locale ||= nil, key, opts)
+    def pagy_t(key, **opts)
+      Pagy::I18n.translate(@pagy_locale ||= nil, key, **opts)
     end
 
     private

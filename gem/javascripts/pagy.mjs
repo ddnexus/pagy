@@ -38,7 +38,7 @@ const Pagy = (() => {
   const initSelector = (el, [from, url_token, trimParam]) => {
     initInput(el, (inputValue) => {
       const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
-      const url = url_token.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
+      const url = url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
       return [page, url];
     }, trimParam);
   };
@@ -73,7 +73,7 @@ const Pagy = (() => {
   };
   const trim = (a, param) => a.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "");
   return {
-    version: "8.6.3",
+    version: "9.0.0",
     init(arg) {
       const target = arg instanceof Element ? arg : document;
       const elements = target.querySelectorAll("[data-pagy]");

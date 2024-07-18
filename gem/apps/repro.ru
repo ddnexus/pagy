@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#1-repro-app
 
-VERSION = '8.6.3'
+VERSION = '9.0.0'
 
 require 'bundler/inline'
 require 'bundler'
@@ -31,7 +31,7 @@ end
 # Edit this section adding/removing the extras and Pagy::DEFAULT as needed
 # pagy initializer
 require 'pagy/extras/pagy'
-require 'pagy/extras/items'
+require 'pagy/extras/limit'
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT.freeze
@@ -169,8 +169,8 @@ __END__
   <h4>pagy_combo_nav_js</h4>
   <%= pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 
-  <h4>pagy_items_selector_js</h4>
-  <%= pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
+  <h4>pagy_limit_selector_js</h4>
+  <%= pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
 
   <h4>pagy_info</h4>
   <%= pagy_info(@pagy, id: 'pagy-info') %>

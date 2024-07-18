@@ -18,7 +18,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#3-demo-app
 
-VERSION = '8.6.3'
+VERSION = '9.0.0'
 
 require 'bundler/inline'
 require 'bundler'
@@ -41,7 +41,7 @@ STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
 STYLES.each_key do |style|
   require "pagy/extras/#{STYLES[style][:extra] || style}"
 end
-require 'pagy/extras/items'
+require 'pagy/extras/limit'
 require 'pagy/extras/trim'
 Pagy::DEFAULT[:trim_extra] = false         # opt-in trim
 
@@ -403,8 +403,8 @@ for details</p>
 <%= highlight(html) %>
 
 <% if style.match(/pagy|tailwind/) %>
-<h2>pagy_items_selector_js</h2>
-<%= html = pagy_items_selector_js(@pagy, id: 'items-selector-js') %>
+<h2>pagy_limit_selector_js</h2>
+<%= html = pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
 <%= highlight(html) %>
 
 <h2>pagy_prev_a / pagy_next_a</h2>
