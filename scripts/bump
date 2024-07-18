@@ -87,11 +87,20 @@ function edit_doc() {
 
 edit_doc 'Commit log' "$tmplog"
 
-# Insert the changes in the the release body file used by .github/workflows/create_release.yml
-# which is triggered by the :rubygem_release task (push tag)
-lead='^<!-- changes start -->$'
-tail='^<!-- changes end -->$'
+# Insert the whats_new (from README) and changes in the the release body file
+# used by .github/workflows/create_release.yml which is triggered by the :rubygem_release task (push tag)
 release_body_path="$root/.github/latest_release_body.md"
+### What's New
+lead='<!-- whats_new_start -->'
+tail='<!-- whats_new_end -->'
+#whats_new=$(sed -n "/$lead/,/$tail/p" "$root/README")
+whats_new=$(sed -n "/$lead/,/$tail/{//b;p}" "$root/README.md")
+gawk -i inplace -v st="$lead" -v et="$tail" -v repl="$whats_new" '
+   $0 == st{del=1} $0 == et{$0 = repl; del=0} !del' "$release_body_path"
+
+### Changes
+lead='^<!-- changes_start -->$'
+tail='^<!-- changes_end -->$'
 sed -i "/$lead/,/$tail/{ /$lead/{p; r $tmplog
 		}; /$tail/p; d }" "$release_body_path"
 

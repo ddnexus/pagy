@@ -71,7 +71,8 @@ done... or use the detailed table below:
 
 - The internal Pagy protected methods have been renamed and refactored. If you use custom Pagy 
   classes, you may need to search into the code.
-  
+<hr>
+
 ## Version 8.6.3
 
 Temporary section to pass the tests
