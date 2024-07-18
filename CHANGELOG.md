@@ -21,6 +21,7 @@ If you upgrade from version `< 9.0.0` see the following:
 ## Deprecations
 
 - None
+<hr>
 
 ## Version 9.0.0
 
@@ -71,10 +72,20 @@ done... or use the detailed table below:
 
 - The internal Pagy protected methods have been renamed and refactored. If you use custom Pagy 
   classes, you may need to search into the code.
-<hr>
 
-## Version 8.6.3
+## Changes
 
-Temporary section to pass the tests
+- Improve Keyset::Sequel and docs
+- BREAKING: Rename :max_limit > :limit_max
+- BREAKING: Rename variable, param, accessor, extra and helper "items" to "limit"
+- Add playground keyset_ar.ru and keyset_s.ru apps and integration with the rest of the gems
+- Add keyset pagination base files 
+  - Pagy::Keyset API
+  - ActiveRecord and Sequel adapters
+- BREAKING: Transform the vars positional hash argument in keyword arguments (double splat); internal renaming of setup/assign methods
+- Refactor pagy_get_vars in various backend extras
+- BREAKING: Refactor the fragment url
+- BREAKING: Refactor the anchor_string system
+- BREAKING: Drop the support for 8+ deprecations
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)
