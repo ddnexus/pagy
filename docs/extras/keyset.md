@@ -43,12 +43,11 @@ set = Product.order(:id)
 # using same-direction ordering keyset (all :asc, or all :desc) 
 # notice the primary key as the last column as a tie-breaker for uniqueness
 set = Product.order(:brand, :model, :id)
-# allow using the row_comparison query, which requires a B-tree index ordered exactly as the set (for performance)
+# allow using the row_comparison query
 @pagy, @records = pagy_keyset(set, row_comparison: true)
 
 # ordering with mixed-direction ordering keyset
-set = Product.order(:brand, model: :desc, :id)
-# the row_comparison would be ignored 
+set = Product.order(brand: :asc, model: :desc, id: :asc) 
 @pagy, @records = pagy_keyset(set, **vars)
 ```
 
@@ -65,7 +64,8 @@ of `records` pulled from the DB.
 
 ==- `pagy_keyset_get_vars(vars)`
 
-This sub-method is called only by the `pagy_keyset` method. It automatically sets the `:page` variable and - if you use the 
-[limit extra](/docs/extras/limit.md) also the `:limit` variables from the request `params`.
+This sub-method is internally called only by the `pagy_keyset` method. It automatically sets the `:page` variable and - if you 
+use the [limit extra](/docs/extras/limit.md) also the `:limit` variables from the request `params`. Documented only for 
+overriding.
 
 ===

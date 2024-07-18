@@ -10,9 +10,9 @@ category:
 Implement wicked-fast keyset pagination for big data.
 
 !!!success Pagy Keyset works with...
-- `ActiveRecord::Relation` and `Sequel::Dataset` sets
+- `ActiveRecord::Relation` or `Sequel::Dataset` sets
 - Single or multiple ordered columns
-- The same order direction or any combination of mixed order direction
+- The same order direction or any combination of mixed order directions
 - The [limit](/docs/extras/limit.md), [headers](/docs/extras/headers.md) and [jsonapi](/docs/extras/jsonapi.md) extras
 
 !!!
@@ -28,9 +28,12 @@ class directly because it is required and used internally by the [keyset extra](
 
 ## Concept
 
-The "Keyset" pagination, also known as "SQL Seek Method" (and often, improperly called "Cursor" pagination) is a tecnique that avoids the inevitable slowness of querying pages deep into a collection (i.e. when `offset` is a big number, you're going to get slower queries).
+The "Keyset" pagination, also known as "SQL Seek Method" (and often, improperly called "Cursor" pagination) is a tecnique 
+that avoids the inevitable slowness of querying pages deep into a collection (i.e. when `offset` is a big number, you're 
+going to get slower queries).
 
-This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and pretty useless for UIs. 
+This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and pretty 
+useless for UIs. 
 
 ### Keyset or Offset pagination?
 
@@ -68,37 +71,34 @@ This tecnique comes with that huge advantage and a set of limitations that makes
 
 Pagy Keyset pagination does not waste resources and code complexity checking your set and your table config at every request.
 
-That means that you have to be sure that your set is uniquely ordered and that your tables have the right indices (for 
+That means that you have to be sure that your set is _uniquely ordered_ and that your tables have the right indexes (for 
 performance). You do it once during development, and pagy will be fast at each request. ;)
 
 ### Constraints
 
-Like any keyset pagination:
-  - You don't know the record count nor the page count
-  - The pages have no number
-  - You cannot jump to an arbitrary page
-  - You can only get the next page
-  - You know that you reached the end of the collection when `pagy.next.nil?` 
-     
-Similarly to the Pagy Offset pagination:
-  - You paginate only forward. To go backward... just reverse the order
-    in your scope and paginate forward in the reversed order.
+!!!warning With the keyset pagination technique...
+- You don't know the record count nor the page count
+- You cannot jump to an arbitrary page (no numbereed pages)
+- You can only paginate from one page to the next (in either directions)
+- The `set` must be uniquely ordered. Add the primary key (usually `:id`) as the last order column to be sure
+- You should add the best DB index for your ordering strategy for performance. The keyset pagination would work even without
+  any index, but that would defeat its purpose (performance).
+!!!
 
-Besides:
-  - You don't know the previous and the last page
-  - The `set` must be uniquely ordered. Add the primary key (usually `:id`) as the last order column to be sure
-  - You should add the best DB index for your ordering strategy for performance. The keyset pagination would work even without
-    any index, but that would defeat its purpose (performance).
-    
+!!!warning With Pagy::Keyset...
+- You don't know the `previous` and the `last` page, you only know the `first` and `next` pages, for performance and simplicity
+
 !!!success
-The choice to avoid backward pagination and omitting previous and last pages has a very good trade-off:
-- The code is a lot faster and simpler to maintain
-- The logic is easier to understand and use
-- Overriding is straightforward
+- If you want to paginate backward like: `last` ... `prev` ... `prev` ... just call `reverse_order` on your set and go forward 
+  like: `first` ... `next` ... `next` ... It does exactly the same, just faster and simpler. 
+!!!
 
-!!!info
-However, if you have a good use case that requires backward pagination, please, open a [Feature Request](https://github.com/ddnexus/pagy/discussions/categories/feature-requests)
-!!!  
+## How pagy keyset works
+
+You pass an uniquely ordered `set` and `Pagy::Keyset` queries the page of records. It keeps track of the `latest` fetched 
+record by encoding its keyset attributes into the `page` param of the `next` URL. At each request, the `:page` is decoded and 
+used to prepare a `when` clause that excludes the records fetched up to that point, and pulls the `:limit` of requested 
+records. You know that you reached the end of the collection when `pagy.next.nil?`.
 
 ### ORMs
 
@@ -111,63 +111,6 @@ Pagy::Keyset.new(active_record_set)
 Pagy::Keyset.new(sequel_set) 
 #=> #<Pagy::Keyset::Sequel:0x00000001066545e0>
 ```
-
-## How pagy keyset works
-
-You pass an uniquely ordered `set`, and `Pagy::Keyset` queries the page of records, keeping track of the last retrieved record by 
-encoding it into the `page` param of the `next` URL. At each request the `:page` is decoded and used to prepare a `when` clause 
-that excludes the records retrived up to that point and pulls the `:limit` of requested records.
-
-## Variables
-
-=== `:page`
-
-The current `page`. Default `nil` for the first page.
-
-=== `:limit`
-
-The `:limit` per page. Default `DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to have it automatically assigned from the request param.
-
-=== `:row_comparison`
-
-Boolish variable that enables the row comparison query for same-direction keysets (use B-tree indices for performance).
-Default `nil`.
-
-==- `:after_latest`
-
-A lambda to filter out the records after the `latest`. If defined, pagy will
-call it with the `set` and the `latest` arguments instead of using its auto-generated query. Use it for DB-specific extra
-optimizations if you know what you are doing.
-For example:
-
-```ruby
-after_latest = lambda do |set, latest|
-  set.where(my_optimized_query, **latest)
-end
-
-Pagy::Keyset(set, after_latest:)
-```
-
-==- `:typecast_latest`
-
-A lambda that overrides the automatic typecasting of your ORM. For example: `SQLite` stores date and times
-as strings, and the query interpolation may fail composing and comparing string dates. The `typecast_latest` is an effective
-last-resort option when fixing the typecasting in your models and/or the data in your storage is not possible.
-
-```ruby
-typecast_latest = lambda do |latest| 
-  latest[:timestamp] = Time.parse(latest[:timestamp]).strftime('%F %T')
-  latest
-end
-
-Pagy::Keyset(set, typecast_latest:)
-```
-
-===
-
-## Accessors
-
-`limit`, `latest`, `page`, `vars`
 
 ## Methods
 
@@ -186,10 +129,61 @@ The `Array` of records for the current page.
 
 ===
 
+## Variables
+
+=== `:page`
+
+The current `page`. Default `nil` for the first page.
+
+=== `:limit`
+
+The `:limit` per page. Default `DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to have it
+automatically assigned from the request param.
+
+=== `:row_comparison`
+
+Boolish variable that enables the row comparison query. Check whether your DB supports it (especially for composite index with
+mixed order). Default `nil`.
+
+==- `:after_latest`
+
+A lambda to filter out the records after the `latest`. If defined, pagy will calls it with the `set` and the `latest`
+arguments instead of using its auto-generated query. It must return the filtered set. Use it for DB-specific extra
+optimizations if you know what you are doing.
+For example:
+
+```ruby
+after_latest = lambda do |set, latest|
+  set.where(my_optimized_query, **latest)
+end
+
+Pagy::Keyset(set, after_latest:)
+```
+
+==- `:typecast_latest`
+
+A lambda that overrides the automatic typecasting of your ORM. For example: `SQLite` stores date and times as strings, and
+the query interpolation may fail composing and comparing string dates. The `typecast_latest` is an effective last-resort
+option when fixing the typecasting in your models and/or the data in your storage is not possible.
+
+```ruby
+typecast_latest = lambda do |latest| 
+  latest[:timestamp] = Time.parse(latest[:timestamp]).strftime('%F %T')
+  latest
+end
+
+Pagy::Keyset(set, typecast_latest:)
+```
+
+===
+
+## Attribute Readers
+
+`limit`, `latest`, `page`, `vars`
+
 ## Troubleshooting
 
 ==- Records may repeat or be missing from successive pages
-
 
 !!!danger Your set is not uniquely ordered
 
@@ -215,7 +209,8 @@ They may have been stored as strings fomatted differently than the default forma
 !!!success
 - Check the actual executed DB query and the actual stored value
 - Identify the column that have a format that doesn't match with the keyset
-- Fix the typecasting consistence of your ORM with your DB or consider using your custom typecasting with the [:typecast_latest](#typecast-latest) variable
+- Fix the typecasting consistence of your ORM with your DB or consider using your custom typecasting with the 
+  [:typecast_latest](#typecast-latest) variable
 !!!
   
 ==- The order is OK, but the DB is still slow
@@ -225,8 +220,8 @@ Most likely your index is not right, or your case needs a custom query
 
 !!! Success
 
-- Ensure that the index reflects exactly the columns sequence and order of your keyset
-- Research about your specific DB features: type of index and performance for different ordering
+- Ensure that the composite index reflects exactly the columns sequence and order of your keyset
+- Research about your specific DB features: type of index and performance for different ordering: use SQL `EXPLAIN` to confirm.
 - Consider using your custom optimized `when` query with the [:after_latest](#after-latest) variable
 !!!
 

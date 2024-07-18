@@ -82,7 +82,7 @@ require 'pagy/keyset'
       end
       if model == PetSequel
         it 'raises TypeError for unknown order type' do
-          _ { Pagy::Keyset.new(model.order({id: :desc})) }.must_raise TypeError
+          _ { Pagy::Keyset.new(model.order(id: :desc)) }.must_raise TypeError
         end
         it 'skips unrestricted primary keys' do
           model.unrestrict_primary_key
@@ -106,12 +106,14 @@ require 'pagy/keyset'
       end
       it 'handles the page/latest for the second page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6MTB9")
-        _(pagy.instance_variable_get(:@latest)).must_equal({:id => 10})
+        _(pagy.instance_variable_get(:@latest)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal "eyJpZCI6MjB9"
       end
       it 'handles the page/latest for the last page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6NDB9")
+        _(pagy.instance_variable_get(:@latest)).must_equal(id: 40)
+        _(pagy.records.first.id).must_equal 41
         _(pagy.next).must_be_nil
       end
     end
@@ -138,17 +140,17 @@ require 'pagy/keyset'
       [model.order(:id),
        model.order(:animal, :name, :id),
        mixed_set].each_with_index do |set, i|
-          it "pulls all the records in set#{i} without repetions" do
-            pages = slurp_by_page do |page|
-              pagy = Pagy::Keyset.new(set, page:, limit: 9)
-              {records: pagy.records, page: pagy.next}
-            end
-            collection = set.to_a
-            _(collection.size).must_equal 50
-            _(pages.flatten).must_equal collection
-            _(collection.each_slice(9).to_a).must_equal pages
+        it "pulls all the records in set#{i} without repetions" do
+          pages = slurp_by_page do |page|
+            pagy = Pagy::Keyset.new(set, page:, limit: 9)
+            {records: pagy.records, page: pagy.next}
           end
+          collection = set.to_a
+          _(collection.size).must_equal 50
+          _(pages.flatten).must_equal collection
+          _(collection.each_slice(9).to_a).must_equal pages
         end
+      end
     end
   end
 end

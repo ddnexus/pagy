@@ -7,6 +7,8 @@ require_relative 'b64'
 class Pagy
   # Implement wicked-fast keyset pagination for big data
   class Keyset
+    class TypeError < ::TypeError; end
+
     include SharedMethods
 
     # Pick the right adapter for the set
@@ -70,9 +72,8 @@ class Pagy
     def after_latest_query
       operator   = { asc: '>', desc: '<' }
       directions = @keyset.values
-      if @vars[:row_comparison] && (directions.all?(:asc) || directions.all?(:desc))
-        # Row comparison: works for same directions keysets
-        # Use B-tree index for performance
+      if @vars[:row_comparison]
+        # Row comparison: check if your DB supports it (especially if you have mixed order rows)
         columns      = @keyset.keys
         placeholders = columns.map { |column| ":#{column}" }.join(', ')
         "( #{columns.join(', ')} ) #{operator[directions.first]} ( #{placeholders} )"

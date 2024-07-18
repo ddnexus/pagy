@@ -19,9 +19,9 @@ class Pagy
           when Symbol
             keyset[item] = :asc
           when ::Sequel::SQL::OrderedExpression
-            keyset[item.expression] = item.instance_values['descending'] ? :desc : :asc
+            keyset[item.expression] = item.descending ? :desc : :asc
           else
-            raise TypeError, "#{item.class} is not a supported Sequel::SQL::OrderedExpression"
+            raise TypeError, "#{item.class.inspect} is not a supported Sequel::SQL::OrderedExpression"
           end
         end
       end
