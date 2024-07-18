@@ -97,3 +97,18 @@ pagy/extras/headers::#pagy_headers#test_0004_returns the countless headers hash:
       rel="next"
     current-page: '1'
     page-items: '20'
+pagy/extras/headers::#pagy_headers with Keyset#test_0001_returns the full headers hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=eyJpZCI6MjB9>;
+      rel="next"
+    page-items: '20'
+pagy/extras/headers::#pagy_headers with Keyset#test_0002_returns custom headers hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=eyJpZCI6NDB9>;
+      rel="next"
+    Page: eyJpZCI6MjB9
+    Per-Page: '20'
+pagy/extras/headers::#pagy_headers with Keyset#test_0003_omit next on last page:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first"
+    page-items: '50'

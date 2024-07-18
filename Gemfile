@@ -30,6 +30,7 @@ group :playground do
   gem 'rails'
   gem 'rerun'
   gem 'rouge'
+  gem 'sequel'
   gem 'sinatra'
   gem 'sinatra-contrib'
   # activerecord/sqlite3_adapter.rb probably useless) constraint !!!

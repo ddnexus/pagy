@@ -17,7 +17,7 @@ For overriding convenience, the `pagy` method calls two sub-methods that you may
 type of collection (e.g. different ORM types, etc.).
 
 !!!primary `Pagy::Backend` returns `pagy` instances
-Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated items.
+Keep in mind that the whole module is basically providing a single functionality: getting a Pagy instance and the paginated records.
 You could re-write the whole module as one single and simpler method specific to your need, eventually gaining a few IPS in the
 process. If you seek a bit more performance you are encouraged to [write your own Pagy methods](#writing-your-own-pagy-methods).
 !!!
@@ -32,7 +32,7 @@ and [meilisearch](/docs/extras/meilisearch.md) extras for specific backend custo
 include Pagy::Backend
 
 # optional overriding of some sub-method
-def pagy_get_vars(collection, vars)
+def pagy_get_vars(collection, **vars)
   #...
 end
 
@@ -51,7 +51,7 @@ prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are i
 Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need
 of monkey-patching or perform any tricky gimmickry.
 
-==- `pagy(collection, vars=nil)`
+==- `pagy(collection, **vars)`
 
 This is the main method of this module. It takes a collection object (e.g. a scope), and an optional hash of variables (passed to
 the `Pagy.new` method) and returns the `Pagy` instance and the page of records. For example:
@@ -90,24 +90,24 @@ Get the `page` from the param ,looking at the `:page_param` variable. See also [
 
 ==- `pagy_get_items(collection, pagy)`
 
-Sub-method called only by the `pagy` method, it returns the page items (i.e. the records belonging to the current page).
+Sub-method called only by the `pagy` method, it returns the records belonging to the current page.
 
 Here is its source (it works with most ORMs like `ActiveRecord`, `Sequel`, `Mongoid`, ...):
 
 ```ruby
 
 def pagy_get_items(collection, pagy)
-  collection.offset(pagy.offset).limit(pagy.items)
+  collection.offset(pagy.offset).limit(pagy.limit)
 end
 ```
 
-Override it if the extraction of the items from your collection works in a different way. For example, if you need to paginate an
+Override it if the extraction of the records from your collection works in a different way. For example, if you need to paginate an
 array:
 
 ```ruby
 
 def pagy_get_items(array, pagy)
-  array[pagy.offset, pagy.items]
+  array[pagy.offset, pagy.limit]
 end
 ```
 
@@ -130,7 +130,7 @@ For example: here is a `pagy` method that doesn't call any sub-method, that may 
 
 def pagy_custom(collection, vars = {})
   pagy = Pagy.new(count: collection.count(*vars[:count_args]), page: params[:page], **vars)
-  [pagy, collection.offset(pagy.offset).limit(pagy.items)]
+  [pagy, collection.offset(pagy.offset).limit(pagy.limit)]
 end
 ```
 

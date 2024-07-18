@@ -6,7 +6,7 @@ require 'pagy/extras/trim'
 require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/trim' do
-  describe '#pagy_a_proc' do
+  describe '#pagy_anchor' do
     it 'returns trimmed or not trimmed links' do
       [ # first page
         [{ page: 1 },                    '?page=1',                      ''],                         # only param

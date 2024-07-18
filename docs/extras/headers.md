@@ -10,6 +10,10 @@ categories:
 Add [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http response headers (and other helpers) useful for API
 pagination. It also follows the header casing introduced by `rack` version `3+` (see https://github.com/rack/rack/issues/1592).
 
+!!!success
+This extra works also with the [Pagy::Keyset API](/docs/api/keyset.md)
+!!!
+
 ## Synopsis
 
 ```ruby pagy.rb (initializer)
@@ -41,7 +45,7 @@ If your code in different actions is similar enough, you can encapsulate the sta
 application controller. For example:
 
 ```ruby Controller (pagy_render)
-def pagy_render(collection, vars={})
+def pagy_render(collection, **vars)
   pagy, records = pagy(collection, vars) # any pagy_* backend constructor works
   pagy_headers_merge(pagy)
   render json: records
@@ -98,7 +102,7 @@ For example, the following will change the header names and will suppress the `:
 ```ruby pagy.rb (initializer)
 # global
 Pagy::DEFAULT[:headers] = {page: 'current-page', 
-                           items: 'per-page', 
+                           limit: 'per-page', 
                            pages: false, 
                            count: 'total'}
 ```
@@ -107,7 +111,7 @@ Pagy::DEFAULT[:headers] = {page: 'current-page',
 # or for single instance
 pagy, records = pagy(collection, 
                      headers: {page: 'current-page', 
-                               items: 'per-page', 
+                               limit: 'per-page', 
                                pages: false, 
                                count: 'total'})
 ```
@@ -129,17 +133,3 @@ This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) 
 response. It is internally used by the `pagy_headers_merge` method, so you usually don't need to use it directly. However, if you
 need to edit the headers that pagy generates (for example adding extra `link` headers), you can override it in your own
 controller.
-
-==- `pagy_headers_hash(pagy)`
-
-This method generates a hash structure of the headers, useful only if you want to include the headers as metadata within your
-JSON. For example:
-
-```ruby
-render json: records.as_json.merge!(meta: {pagination: pagy_headers_hash(pagy)})
-```
-
-!!!info Metadata
-For a more complete set of metadata you should use the [metadata extra](metadata.md).
-!!!
-===

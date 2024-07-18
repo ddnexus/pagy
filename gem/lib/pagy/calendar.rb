@@ -17,12 +17,12 @@ class Pagy # :nodoc:
       private
 
       # Create a unit subclass instance by using the unit name (internal use)
-      def create(unit, vars)
+      def create(unit, **vars)
         raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
 
         name    = unit.to_s
         name[0] = name[0].capitalize
-        Object.const_get("Pagy::Calendar::#{name}").new(vars)
+        Object.const_get("Pagy::Calendar::#{name}").new(**vars)
       end
 
       # Return calendar, from, to
@@ -58,7 +58,7 @@ class Pagy # :nodoc:
         params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_param] } + [@page_param]
         conf[unit][:params] = lambda { |up| up.except(*params_to_delete.map(&:to_s)) } # rubocop:disable Style/Lambda
         conf[unit][:period] = object&.send(:active_period) || @period
-        calendar[unit]      = object = Calendar.send(:create, unit, conf[unit])
+        calendar[unit]      = object = Calendar.send(:create, unit, **conf[unit])
       end
       [replace(calendar), object.from, object.to]
     end
@@ -70,10 +70,10 @@ class Pagy # :nodoc:
       @units.inject(nil) do |object, unit|
         conf[unit][:period] = object&.send(:active_period) || @period
         conf[unit][:page]   = page_params[:"#{unit}_#{@page_param}"] \
-                            = Calendar.send(:create, unit, conf[unit]).send(:page_at, time, **opts)
+                            = Calendar.send(:create, unit, **conf[unit]).send(:page_at, time, **opts)
         conf[unit][:params] ||= {}
         conf[unit][:params].merge!(page_params)
-        Calendar.send(:create, unit, conf[unit])
+        Calendar.send(:create, unit, **conf[unit])
       end
     end
   end

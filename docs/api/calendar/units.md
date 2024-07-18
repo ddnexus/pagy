@@ -13,8 +13,8 @@ This is the base class inherited by all the calendar `units`. This page document
 The `Pagy::Calendar::*` subclasses provide time unit filters for the [calendar extra](/docs/extras/calendar.md)
 
 !!!warning Warning
-This classes provide time filtering for the collection, not items filtering. That's why they require a regular pagy object for 
-the final items pagination.
+This classes provide time-range filtering for the collection, not pagination by `limit`. They require a 
+regular pagy object for the final pagination in order to `limit` the number or records.
 !!!
 
 ## Overview
@@ -35,7 +35,7 @@ apart. All the classes follow the same principle. Time units with no records are
 ## Variables
 
 Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their superclass infrastructure and variables, however
-they use a completely different way to paginate (e.g.: no `:count` nor `:items` variables) and they have a few extra core
+they use a completely different way to paginate (e.g.: no `:count` nor `:limit` variables) and they have a few extra core
 variables.
 
 The following variables are specific to `Pagy::Calendar::*` instances:

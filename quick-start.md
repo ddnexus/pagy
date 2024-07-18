@@ -40,7 +40,7 @@ If you use Bundler, add the gem in the Gemfile, optionally avoiding the next maj
 see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
 ```ruby Gemfile
-gem 'pagy', '~> 8.6' # omit patch digit
+gem 'pagy', '~> 9.0' # omit patch digit
 ```
 
 +++ Without Bundler
@@ -99,7 +99,8 @@ see: [elasticsearch_rails](/docs/extras/elasticsearch_rails), [meilisearch](/doc
 
 +++ Special
 You may also use
-the [calendar](/docs/extras/calendar), [countless](/docs/extras/countless), [geared](/docs/extras/gearbox), [incremental, auto-incremental, infinite](/docs/extras/pagy)
+the [calendar](/docs/extras/calendar), [countless](/docs/extras/countless), [geared](/docs/extras/gearbox), [incremental, 
+auto-incremental, infinite](/docs/extras/pagy) and [keyset](/docs/api/keyset)
 pagination
 
 +++
@@ -152,6 +153,10 @@ render json: { data: @records, pagy: pagy_metadata(@pagy, ...) }
 !!! success
 Your API is consumed by some client
 !!!
+           
+#### Consider using the Keyset pagination
+
+Orders of magnitude faster on big data... see [Pagy::Keyset](/docs/api/keyset)
 
 #### Require the [headers extra](docs/extras/headers.md)
 

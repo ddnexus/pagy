@@ -27,7 +27,7 @@ pagy_extras :array, :metadata, ...
 ### then you can use it like inside an app
 pagy, items = pagy_array((1..1000).to_a, page: 3)
 pagy_nav(pagy)
-=> [#<Pagy:0x00007fdff0234880 @count=1000, @from=41, @in=20, @items=20, @last=50, @next=4, @offset=40, @outset=0, @page=3, @prev=2, @to=60, @vars={:page=>3, :items=>20, :outset=>0, :size=>7, :cycle=>false, :count_args=>[:all], :page_param=>:page, :url=>"http://www.example.com/subdir", :count=>1000}>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+=> [#<Pagy:0x00007fdff0234880 @count=1000, @from=41, @in=20, @limit=20, @last=50, @next=4, @offset=40, @outset=0, @page=3, @prev=2, @to=60, @vars={:page=>3, :limit=>20, :outset=>0, :size=>7, :cycle=>false, :count_args=>[:all], :page_param=>:page, :url=>"http://www.example.com/subdir", :count=>1000}>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
 => "<nav class=\"pagy nav\" aria-label=\"Pages\"><a href=\"http://www.example.com/subdir?page=2\" aria-label=\"Previous\">&lt;</a><a href=\"http://www.example.com/subdir?page=1\">1</a><a href=\"http://www.example.com/subdir?page=2\">2</a><a role=\"link\" aria-disabled=\"true\" aria-current=\"page\" class=\"current\">3</a><a href=\"http://www.example.com/subdir?page=4\">4</a><a href=\"http://www.example.com/subdir?page=5\">5</a><a href=\"http://www.example.com/subdir?page=6\">6</a><a href=\"http://www.example.com/subdir?page=7\">7</a><a href=\"http://www.example.com/subdir?page=4\" aria-label=\"Next\">&gt;</a></nav>"
 
 pagy_metadata(pagy)pagy_metadata(pagy)
@@ -40,9 +40,9 @@ pagy_metadata(pagy)pagy_metadata(pagy)
   :last_url     => "http://www.example.com/subdir?page=50",
   :count        => 1000,
   :page         => 3,
-  :items        => 20,
+  :limit        => 20,
   :vars         => { :page       => 3,
-                     :items      => 20,
+                     :limit      => 20,
                      :outset     => 0,
                      :size       => 7,
                      :cycle      => false,
@@ -57,7 +57,7 @@ pagy_metadata(pagy)pagy_metadata(pagy)
                                      :last_url,
                                      :count,
                                      :page,
-                                     :items,
+                                     :limit,
                                      :vars,
                                      :pages,
                                      :last,

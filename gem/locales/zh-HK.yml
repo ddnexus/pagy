@@ -16,4 +16,4 @@ zh-HK:
       single_page: "顯示 %{count} %{item_name}"
       multiple_pages: "共 %{count}  %{item_name}，顯示 %{from}-%{to}"
     combo_nav_js: "第 %{page_input} / %{pages} 頁"
-    items_selector_js: "每頁顯示 %{items_input} 記錄"
+    limit_selector_js: "每頁顯示 %{limit_input} 記錄"

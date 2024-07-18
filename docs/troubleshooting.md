@@ -53,11 +53,8 @@ should be uniquely aria-identified in the page.
 
 !!!danger Don't duplicate attributes with the `:anchor_string`!
 
-```ruby
-@pagy, @records = pagy(collection, anchor_string: 'class="my-class"')
-```
 ```erb
-<%== pagy_bootstrap_nav(@pagy, **vars) %>
+<%== pagy_bootstrap_nav(@pagy, anchor_string: 'class="my-class"', **vars) %>
 ```
 
 The `class` attribute with a value of `"pagination"` is already added by the `pagy_bootstrap_nav` so it's a duplicate HTML
@@ -90,7 +87,7 @@ pagy or by any other ruby code ([#696](https://github.com/ddnexus/pagy/pull/696)
 ```rb
 ## override pagy_get_items
 def pagy_get_items(collection, pagy)
-  limit = pagy.last == pagy.page ? pagy.in : pagy.items
+  limit = pagy.last == pagy.page ? pagy.in : pagy.limit
   collection.offset(pagy.offset).limit(limit)
 end
 ```

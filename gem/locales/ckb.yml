@@ -15,4 +15,4 @@ ckb:
       single_page: "پیشاندانی %{count} %{item_name}"
       multiple_pages: "پشاندانی %{item_name}ی %{from}-%{to} لە کۆی %{count} بە گشتی"
     combo_nav_js: "پەڕی %{page_input} لە %{pages}"
-    items_selector_js: "نیشاندانی %{items_input} %{item_name} لە هەر پەڕێک"
+    limit_selector_js: "نیشاندانی %{limit_input} %{item_name} لە هەر پەڕێک"

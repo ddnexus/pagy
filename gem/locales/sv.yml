@@ -18,4 +18,4 @@ sv:
       single_page: "Visar %{count} %{item_name}"
       multiple_pages: "Visar %{item_name} %{from}-%{to} av %{count} totalt"
     combo_nav_js: "Sida %{page_input} av %{pages}"
-    items_selector_js: "Visa %{items_input} %{item_name} per sida"
+    limit_selector_js: "Visa %{limit_input} %{item_name} per sida"

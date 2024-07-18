@@ -20,7 +20,7 @@ class Pagy # :nodoc:
       protected
 
       # Setup the calendar variables
-      def setup_unit_vars
+      def assign_unit_vars
         super
         @initial = @starting.beginning_of_quarter
         @final   = @ending.next_quarter.beginning_of_quarter

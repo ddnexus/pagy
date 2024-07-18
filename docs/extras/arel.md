@@ -25,12 +25,12 @@ require 'pagy/extras/arel'
 ```
 
 ```ruby Controller
-@pagy, @items = pagy_arel(a_collection, **vars)
+@pagy, @records = pagy_arel(collection, **vars)
 ```
 
 ## Methods
 
-==- `pagy_arel(collection, vars=nil)`
+==- `pagy_arel(collection, **vars)`
 
 This method is the same as the generic `pagy` method, but with improved speed for SQL `GROUP BY` collections. (see
 the [pagy doc](/docs/api/backend.md#pagy-collection-vars-nil))

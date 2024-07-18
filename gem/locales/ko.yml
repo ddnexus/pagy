@@ -14,4 +14,4 @@ ko:
       single_page: "%{count}개의 %{item_name} 표시됨"
       multiple_pages: "총 %{count}개의 %{item_name} 중 %{from}-%{to}"
     combo_nav_js: "총 %{pages} 중 %{page_input} 페이지"
-    items_selector_js: "페이지 당 %{items_input}개 표시%"
+    limit_selector_js: "페이지 당 %{limit_input}개 표시%"

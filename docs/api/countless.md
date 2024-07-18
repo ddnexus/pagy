@@ -12,7 +12,7 @@ This is a `Pagy` subclass that provides pagination without the need of any `:cou
 That may be especially useful in the following scenarios:
 
 - slow `COUNT(*)` query - result of large tables or poorly optimized DBs
-- large collections of items where the count is missing or irrelevant
+- large collections of records where the count is missing or irrelevant
 - minimalistic UI, infinite scrolling, APIs that don't benefit from a nav-bar
 - when the full nav-bar is not a requirement and/or performance is more desirable
 
@@ -28,8 +28,7 @@ In this class the `:count` variable is always `nil`, hence some feature that dep
 
 #### Nav bar
 
-The nav bar links after the current page cannot be fully displayed because a couple of items of the `:size` array depends on
-the `count`, so they have some limitations.
+The nav bar links after the current page cannot be fully displayed because they depends on the `count`.
 
 Regardless the actual `:size` value we know only if the next page exists and we don't know the total pages
 
@@ -47,9 +46,9 @@ The `pagy_info` and all the `*_combo_nav_js` helpers that use the total `count` 
 ## How countless pagination works
 
 Instead of basing all the internal calculations on the `:count` variable (passed with the constructor), this class uses the number
-of actually retrieved items to derive the pagination variables.
+of actually retrieved records to derive the pagination variables.
 
-The retrieved items number can be passed in a second step to the `finalize` method, which allows pagy to determine if there is
+The size of the fetched records can be passed in a second step to the `finalize` method, which allows pagy to determine if there is
 a `next` page, or if the current page is the `last` page, or if the current request should raise a `Pagy::OverflowError`
 exception.
 
@@ -60,16 +59,16 @@ the [countless extra](/docs/extras/countless.md) for more details.
 ## Methods
 
 The construction of the final `Pagy::Countless` object is split into 2 steps: the regular `initialize` method and the `finalize`
-method, which will use the retrieved items number to calculate the rest of the pagination integers.
+method, which will use the fetched size to calculate the rest of the pagination integers.
 
-==- `Pagy::Countless.new(vars)`
+==- `Pagy::Countless.new(**vars)`
 
-The initial constructor takes the usual hash of variables, calculating only the requested `items` and the `offset`, useful to
-query the page of items.
+The initial constructor takes the usual hash of variables, calculating only the requested `limit` and the `offset`, needed to
+query the page of records.
 
 ==- `finalize(fetched_size)`
 
-The actual calculation of all the internal variables for the pagination is calculated using the size of the fetched items. The
+The actual calculation of all the internal variables for the pagination is calculated using the fetched size. The
 method returns the finalized instance object.
 
 ===

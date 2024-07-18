@@ -22,4 +22,4 @@ sr:
       single_page: "Приказује се %{count} %{item_name}"
       multiple_pages: "Приказ %{item_name} %{from}-%{to} од %{count} укупно"
     combo_nav_js: "Страниca %{page_input} од %{pages}"
-    items_selector_js: "Прикажи %{items_input} %{item_name} по страниcи"
+    limit_selector_js: "Прикажи %{limit_input} %{item_name} по страниcи"

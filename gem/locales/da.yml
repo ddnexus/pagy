@@ -18,4 +18,4 @@ da:
       single_page: "Viser %{count} %{item_name}"
       multiple_pages: "Viser %{item_name} %{from}-%{to} af %{count} totalt"
     combo_nav_js: "Side %{page_input} af %{pages}"
-    items_selector_js: "Antal %{items_input} %{item_name} per side"
+    limit_selector_js: "Antal %{limit_input} %{item_name} per side"

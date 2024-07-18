@@ -4,10 +4,11 @@ require_relative '../../test_helper'
 require 'pagy/extras/headers'
 require 'pagy/extras/calendar'
 require 'pagy/extras/countless'
+require 'pagy/extras/keyset'
 
 require_relative '../../mock_helpers/collection'
-require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
+require_relative '../../files/models'
 
 describe 'pagy/extras/headers' do
   describe '#pagy_headers' do
@@ -20,11 +21,11 @@ describe 'pagy/extras/headers' do
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy, @collection, headers: { items: 'Per-Page', count: 'Total', pages: false })
+      pagy, _records = app.send(:pagy, @collection, headers: { limit: 'Per-Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy, @collection, headers: { items: false, count: false })
+      pagy, _records = app.send(:pagy, @collection, headers: { limit: false, count: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns the countless headers hash' do
@@ -48,11 +49,11 @@ describe 'pagy/extras/headers' do
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy, Event.all, headers: { items: 'Per-Page', count: 'Total', pages: false })
+      pagy, _records = app.send(:pagy, Event.all, headers: { limit: 'Per-Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy, Event.all, headers: { items: false, count: false })
+      pagy, _records = app.send(:pagy, Event.all, headers: { limit: false, count: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns the countless headers hash' do
@@ -65,6 +66,25 @@ describe 'pagy/extras/headers' do
     end
     it 'omit next on last page' do
       pagy, _records = app.send(:pagy, Event.all, page: 26)
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
+    end
+  end
+
+  describe '#pagy_headers with Keyset' do
+    let(:app) { MockApp.new(params: { a: 'one', b: 'two' }) }
+    it 'returns the full headers hash' do
+      pagy, _records = app.send(:pagy_keyset, Pet.order(:id))
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
+    end
+    it 'returns custom headers hash' do
+      pagy, _records = app.send(:pagy_keyset,
+                                Pet.order(:id),
+                                page: 'eyJpZCI6MjB9',
+                                headers: { limit: 'Per-Page', page: 'Page', count: 'Total', pages: false })
+      _(app.send(:pagy_headers, pagy)).must_rematch :headers
+    end
+    it 'omit next on last page' do
+      pagy, _records = app.send(:pagy_keyset, Pet.order(:id), limit: 50)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
   end

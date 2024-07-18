@@ -17,10 +17,10 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
     :last_url: "/foo?page=50"
     :count: 1000
     :page: 3
-    :items: 20
+    :limit: 20
     :vars:
       :page: 3
-      :items: 20
+      :limit: 20
       :outset: 0
       :size: 7
       :ends: true
@@ -38,7 +38,7 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
       - :last_url
       - :count
       - :page
-      - :items
+      - :limit
       - :vars
       - :pages
       - :last
@@ -84,7 +84,7 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0001_defines all metadata:
   - :last_url
   - :count
   - :page
-  - :items
+  - :limit
   - :vars
   - :pages
   - :last

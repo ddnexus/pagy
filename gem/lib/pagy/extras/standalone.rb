@@ -12,10 +12,6 @@ class Pagy # :nodoc:
     module QueryUtils
       module_function
 
-      def escape(str)
-        URI.encode_www_form_component(str)
-      end
-
       def build_nested_query(value, prefix = nil)
         case value
         when Array
@@ -32,13 +28,17 @@ class Pagy # :nodoc:
           "#{escape(prefix)}=#{escape(value)}"
         end
       end
+
+      def escape(str)
+        URI.encode_www_form_component(str)
+      end
     end
     # :nocov:
 
     # Return the URL for the page. If there is no pagy.vars[:url]
     # it works exactly as the regular #pagy_url_for, relying on the params method and Rack.
     # If there is a defined pagy.vars[:url] variable it does not need the params method nor Rack.
-    def pagy_url_for(pagy, page, absolute: false, **_)
+    def pagy_url_for(pagy, page, fragment: nil, **_)
       return super unless pagy.vars[:url]
 
       vars         = pagy.vars
@@ -46,7 +46,7 @@ class Pagy # :nodoc:
       pagy_set_query_params(page, vars, params)
       params       = vars[:params].(params) if vars[:params].is_a?(Proc)
       query_string = "?#{QueryUtils.build_nested_query(params)}"
-      "#{vars[:url]}#{query_string}#{vars[:fragment]}"
+      "#{vars[:url]}#{query_string}#{fragment}"
     end
   end
   UrlHelpers.prepend StandaloneExtra

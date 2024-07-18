@@ -1,4 +1,4 @@
-import {testNav, testComboNav, testInfo, testItemsSelector} from "../support/test-helper.ts";
+import {testNav, testComboNav, testInfo, testLimitSelector} from "../support/test-helper.ts";
 
 const app = "repro";
 describe(`[${app}] Test helpers`, () => {
@@ -11,5 +11,5 @@ describe(`[${app}] Test helpers`, () => {
     testNav(app, "#nav-js-responsive", {rjs: true});
     testComboNav(app, "#combo-nav-js");
     testInfo(app, "#pagy-info");
-    testItemsSelector(app, "#items-selector-js");  // no style, no trim
+    testLimitSelector(app, "#limit-selector-js");  // no style, no trim
 });

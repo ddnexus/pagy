@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../b64'
+
 class Pagy # :nodoc:
   DEFAULT[:steps] = false # default false will use {0 => @vars[:size]}
 
@@ -51,8 +53,7 @@ class Pagy # :nodoc:
         # Base64 encoded JSON is smaller than HTML escaped JSON
         def pagy_data(pagy, *args)
           args << pagy.vars[:page_param] if pagy.vars[:trim_extra]
-          strict_base64_encoded = [Oj.dump(args, mode: :strict)].pack('m0')
-          %(data-pagy="#{strict_base64_encoded}")
+          %(data-pagy="#{B64.encode(Oj.dump(args, mode: :strict))}")
         end
       else
         require 'json'
@@ -60,8 +61,7 @@ class Pagy # :nodoc:
         # Base64 encoded JSON is smaller than HTML escaped JSON
         def pagy_data(pagy, *args)
           args << pagy.vars[:page_param] if pagy.vars[:trim_extra]
-          strict_base64_encoded = [args.to_json].pack('m0')
-          %(data-pagy="#{strict_base64_encoded}")
+          %(data-pagy="#{B64.encode(args.to_json)}")
         end
       end
     end

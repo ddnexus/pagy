@@ -8,7 +8,7 @@ Date.beginning_of_week = :sunday
 
 def pagy(unit: :month, **vars)
   default = { period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)] }
-  Pagy::Calendar.send(:create, unit, default.merge(vars))
+  Pagy::Calendar.send(:create, unit, **default, **vars)
 end
 
 describe 'pagy/calendar' do
@@ -266,7 +266,7 @@ describe 'pagy/calendar' do
       end
     end
     it 'raises direct instantiation' do
-      _ { Pagy::Calendar::Unit.new({}) }.must_raise Pagy::InternalError
+      _ { Pagy::Calendar::Unit.new }.must_raise Pagy::InternalError
     end
   end
 

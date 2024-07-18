@@ -57,13 +57,13 @@ See [Pagy Navs](javascript/navs.md)
 
 See [Pagy Combo Navs](javascript/combo-navs.md)
 
-+++ `pagy_items_selector_js`
++++ `pagy_limit_selector_js`
 
-![pagy_items_selector_js](/docs/assets/images/items_selector_js.png)
+![pagy_limit_selector_js](/docs/assets/images/limit_selector_js.png)
 
 * Choose items numbers, per page.
 * This helper is only available in one style.
 
-See: [Items](/docs/extras/items.md)
+See: [Limit](/docs/extras/limit.md)
 
 +++

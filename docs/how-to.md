@@ -11,33 +11,34 @@ that you think should be added, fixed or explained better, please open an issue.
 
 ## Control the items per page
 
-You can control the items per page with the `items` variable. (Default `20`)
+You can control the items per page with the `limit` variable. (Default `20`)
 
 You can set its default in the `pagy.rb` initializer (see [How to configure pagy](/quick-start#configure)). For example:
 
 ```ruby pagy.rb (initializer)
-Pagy::DEFAULT[:items] = 25
+Pagy::DEFAULT[:limit] = 25
 ```
 
 You can also pass it as an instance variable to the `Pagy.new` method or to the `pagy` controller method:
 
 ```ruby
-@pagy, @records = pagy(Product.some_scope, items: 30)
+@pagy, @records = pagy(Product.all, limit: 30)
 ```
 
 !!! warning ActiveRecord `limit`
-The defined `:items` variable overrides any `limit` already set in ActiveRecord collections:
+The defined `:limit` variable overrides any `limit` already set in `ActiveRecord` collections:
 
 ```ruby
-@pagy, @products = pagy(Product.limit(5)) #=> limit(5) gets overridden
+# the limit used in the query will be 10
+@pagy, @products = pagy(Product.limit(5), limit: 10)
 ```
 
 !!!
 
-See also a couple of extras that handle the `:items` in some special way:
+See also a couple of extras that handle the `:limit` in some special way:
 
-- [gearbox](extras/gearbox.md): Automatically change the number of items per page depending on the page number
-- [items](extras/items.md): Allow the client to request a custom number of items per page with an optional selector UI
+- [gearbox](extras/gearbox.md): Automatically change the limit per page depending on the page number
+- [limit](extras/limit.md): Allow the client to request a custom `:limit` (i.e. records per page) with an optional selector UI
 
 ## Control the page links
 
@@ -185,20 +186,13 @@ You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-var
 ## Customize the link attributes
 
 If you need to customize some HTML attribute of the page links, you may not need to override the `pagy_nav*` helper. It might be
-enough to pass some extra attribute string with the `:anchor_string` variable. For example:
+enough to pass some extra attribute string with the `:anchor_string` keyword argument. For example:
 
-```ruby
-# for all the Pagy instances
-Pagy::DEFAULT[:anchor_string] = 'data-remote="true"'
-
-# for a single Pagy instance (if you use the Pagy::Backend#pagy method)
-@pagy, @records = pagy(collection, anchor_string: 'data-remote="true"')
-
-# or directly to the constructor
-pagy = Pagy.new(count: 1000, anchor_string: 'data-remote="true"')
+```erb
+<%== pagy_nav(@pagy, anchor_string: 'data-remote="true"') %>
 ```
 
-_See more advanced details about [The anchor_string variable](api/frontend.md#the-anchor_string-variable)_
+_See more advanced details about [The anchor_string argument](api/frontend.md#the-anchor_string-argument)_
 
 ## Customize the params
 
@@ -214,10 +208,10 @@ An example using `except` and `merge!`:
 @pagy, @records = pagy(collection, params: ->(params) { params.except('not_useful').merge!('custom' => 'useful') })
 ```
 
-You can also use the `:fragment` variable to add a fragment to the URLs of the pages:
+You can also use the `:fragment` keyword argument to add a fragment to the URLs of the pages:
 
-```ruby controller
-@pagy, @records = pagy(collection, fragment: '#your-fragment')
+```erb view
+<%== pagy_nav(@pagy, fragment: '#your-fragment') %>
 ```
 
 !!!warning
@@ -278,7 +272,7 @@ by Ben Koshy.
 
 ## Customize the item name
 
-The `pagy_info` and the `pagy_items_selector_js` helpers use the "item"/"items" generic name in their output. You can change that
+The `pagy_info` and the `pagy_limit_selector_js` helpers use the "item"/"items" generic name in their output. You can change that
 by editing the values of the `"pagy.item_name"` i18n key in
 the [dictionary files](https://github.com/ddnexus/pagy/blob/master/gem/locales) that your app is using.
 
@@ -286,7 +280,7 @@ Besides you can also pass the `:item_name` by passing an already pluralized stri
 
 ```erb
 <%== pagy_info(@pagy, item_name: t(`activerecord.model.product`, count: @pagy.count) %>
-<%== pagy_items_selector_js(@pagy, item_name: t('activerecord.model.product', count: @pagy.vars[:items]) %>
+<%== pagy_limit_selector_js(@pagy, item_name: t('activerecord.model.product', count: @pagy.limit) %>
 ```
 
 ## Customize CSS styles
@@ -309,7 +303,7 @@ them: here are a few alternatives:
 
 ## Override CSS rules in element "style" attribute
 
-In order to get a decent default look, a couple of helpers (i.e. `pagy*_combo_nav_js`, `pagy*_items_selector_js`) assign element
+In order to get a decent default look, a couple of helpers (i.e. `pagy*_combo_nav_js`, `pagy_limit_selector_js`) assign element
 style attributes to one or more tags. You can override their rules in your own stylesheets by using the attribute `[style]`
 selector and `!important`. Here is an example for overriding the `width` of the `input` element:
 
@@ -410,8 +404,8 @@ q              = Person.ransack(params[:q])
 When your app is a service that doesn't need to serve any UI, but provides an API to some sort of client, you can serve the
 pagination metadata as HTTP headers added to your response.
 
-In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require
-the [headers extra](extras/headers.md) and use its helpers to add the headers to your responses.
+In that case you don't need the `Pagy::Frontend` nor any frontend extra. You may not even need the standard pagination, but use the [Pagy::Keyset](api/keyset.md) pagination. Anyway you may want to use
+the [headers extra](extras/headers.md) and use its helpers to add the headers to your responses, and other useful backend extras like the [limit extra](extras/limit.md) and the [jsonapi extra](extras/jsonapi.md).
 
 ## Paginate with JSON:API
 
@@ -438,7 +432,7 @@ Pagy has a few extras dedicated to gems returning search results:
 With particular requirements/environment an id-based pagination might work better than a classical offset-based pagination, You
 can use an interesting approach proposed [here](https://github.com/ddnexus/pagy/discussions/435#discussioncomment-4577136).
 
-## Paginate by date instead of a fixed number of items
+## Paginate by date
 
 Use the [calendar extra](extras/calendar.md) that adds pagination filtering by calendar time unit (year, quarter, month, week,
 day).
@@ -529,11 +523,11 @@ independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_ta
 ```rb
   # controller action 
 def good
-  @pagy, @movies = pagy(Movie.good, items: 5)
+  @pagy, @movies = pagy(Movie.good, limit: 5)
 end
 
 def bad
-  @pagy, @movies = pagy(Movie.bad, items: 5)
+  @pagy, @movies = pagy(Movie.bad, limit: 5)
 end 
 ```
 
@@ -589,23 +583,23 @@ In order to limit the pagination to a maximum number of pages, you can pass the 
 For example:
 
 ```ruby
-@pagy, @records = pagy(collection, max_pages: 50, items: 20)
+@pagy, @records = pagy(collection, max_pages: 50, limit: 20)
 @records.size #=> 20   
 @pagy.count   #=> 10_000
 @pagy.last    #=> 50
 
-@pagy, @records = pagy(collection, max_pages: 50, items: 20, page: 51)
+@pagy, @records = pagy(collection, max_pages: 50, limit: 20, page: 51)
 #=> Pagy::OverflowError: expected :page in 1..50; got 51
 ```
 
 If the `@pagy.count` in the example is `10_000`, the pages served without `:max_pages` would be `500`, but with
 `:max_pages: 50` pagy would serve only the first `50` pages of your collection.
 
-That works at the `Pagy`/`Pagy::Countless` level, so it works with any combination of collection/extra, including `items`, 
+That works at the `Pagy`/`Pagy::Countless` level, so it works with any combination of collection/extra, including `limit`, 
 `gearbox` and search extras, however it makes no sense in `Pagy::Calendar` unit objects (which ignore it). 
 
 !!! Notice
-The `items` and `gearbox` extras serve a variable number of items per page. If your goal is limiting the pagination to a max number of records (instead of pages), you have to keep into account how you configure the `items` range.
+The `limit` and `gearbox` extras serve a variable number of records per page. If your goal is limiting the pagination to a max number of records (instead of pages), you have to keep into account how you configure the `limit` range.
 !!! 
 
 ## Paginate pre-offset and pre-limited collections
@@ -618,7 +612,7 @@ subset                   = Product.offset(100).limit(315)
 @pagy, @paginated_subset = pagy(subset, outset: 100)
 ```
 
-Assuming the `:items` default of `20`, you will get the pages with the right records you are expecting. The first page from record
+Assuming the `:limit` default of `20`, you will get the pages with the records you are expecting. The first page from record
 101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute
 readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and
 from 301 to 315 for the last page.
@@ -662,7 +656,7 @@ collection knows its count and has a way to extract a chunk of items given a sta
 if it is an `Array` or an `ActiveRecord` scope or something else: the simple mechanism is the same:
 
 1. Create a Pagy object using the count of the collection to paginate
-2. Get the page of items from the collection using the start/offset and the per-page/limit (`pagy.offset` and `pagy.items`)
+2. Get the page of items from the collection using the start/offset and the per-page/limit (`pagy.offset` and `pagy.limit`)
 
 Here is an example with an array. (Please, notice that this is only a convenient example, but you should use
 the [array](extras/array.md) extra to paginate arrays).
@@ -675,8 +669,8 @@ arr = (1..1000).to_a
 pagy = Pagy.new(count: arr.count, page: 2)
 #=> #<Pagy:0x000055e39d8feef0 ... >
 
-# Get the page of items using `pagy.offset` and `pagy.items`
-paginated = arr[pagy.offset, pagy.items]
+# Get the page using `pagy.offset` and `pagy.limit`
+paginated = arr[pagy.offset, pagy.limit]
 #=> [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]
 ```
 
@@ -767,6 +761,10 @@ DB writing, and probably not particularly useful with a DB in constant change.
 When the count caching is not an option, you may want to use the [countless extra](extras/countless.md), which totally avoids the
 need for a count query, still providing an acceptable subset of the full pagination features.
 
+==- Use Pagy Keyset
+
+If the slowness of the DB is caused by paginating big tables toward the ends of the collection (i.e. when the `offset` is a big number) then you should use the [keyset extra](extras/keyset.md). (See lso the [keyset API](api/keyset.md))
+
 ===
 
 ## Maximize Performance
@@ -853,7 +851,7 @@ If you need to test pagination, remember:
 - You can override defaults - i.e. any pagy variable can be passed to a pagy constructor. For example:
 
 ```rb
-@pagy, @books = pagy(Book.all, items: 10) # the items default has been overridden
+@pagy, @books = pagy(Book.all, limit: 10) # the default limit has been overridden
 ```
 
 ## Using your pagination templates

@@ -8,19 +8,10 @@ class Pagy
   module Backend
     private
 
-    # Return Pagy object and paginated items/results
-    def pagy(collection, vars = {})
-      pagy = Pagy.new(pagy_get_vars(collection, vars))
+    # Return Pagy object and paginated results
+    def pagy(collection, **vars)
+      pagy = Pagy.new(**pagy_get_vars(collection, vars))
       [pagy, pagy_get_items(collection, pagy)]
-    end
-
-    # Sub-method called only by #pagy: here for easy customization of variables by overriding
-    # You may need to override the count call for non AR collections
-    def pagy_get_vars(collection, vars)
-      pagy_set_items_from_params(vars) if defined?(ItemsExtra)
-      vars[:count] ||= pagy_get_count(collection, vars)
-      vars[:page]  ||= pagy_get_page(vars)
-      vars
     end
 
     # Get the count from the collection
@@ -29,16 +20,29 @@ class Pagy
       (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
     end
 
+    # Sub-method called only by #pagy: here for easy customization of fetching by overriding
+    # You may need to override this method for collections without offset|limit
+    def pagy_get_items(collection, pagy)
+      collection.offset(pagy.offset).limit(pagy.limit)
+    end
+
+    # Override for limit extra
+    def pagy_get_limit(vars); end
+
     # Get the page integer from the params
     # Overridable by the jsonapi extra
     def pagy_get_page(vars)
-      [params[vars[:page_param] || DEFAULT[:page_param]].to_i, 1].max
+      params[vars[:page_param] || DEFAULT[:page_param]]
     end
 
-    # Sub-method called only by #pagy: here for easy customization of record-extraction by overriding
-    # You may need to override this method for collections without offset|limit
-    def pagy_get_items(collection, pagy)
-      collection.offset(pagy.offset).limit(pagy.items)
+    # Sub-method called only by #pagy: here for easy customization of variables by overriding
+    # You may need to override the count call for non AR collections
+    def pagy_get_vars(collection, vars)
+      vars.tap do |v|
+        v[:count] ||= pagy_get_count(collection, v)
+        v[:limit] ||= pagy_get_limit(v)
+        v[:page]  ||= pagy_get_page(v)
+      end
     end
   end
 end

@@ -5,7 +5,7 @@
   "type": "module",
   "devDependencies": {
     "@cypress/snapshot": "^2.1.7",
-    "@types/node": "20.14.9",
+    "@types/node": "20.14.10",
     "cypress": "13.13.0",
     "cypress-html-validate": "6.1.0",
     "eslint-plugin-cypress": "3.3.0",
@@ -19,7 +19,7 @@
     "retypeapp-linux-x64": "3.5.0",
     "retypeapp-darwin-x64": "3.5.0",
     "typescript": "5.5.3",
-    "typescript-eslint": "7.15.0"
+    "typescript-eslint": "7.16.0"
   },
   "workspaces": ["e2e"]
 }

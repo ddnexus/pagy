@@ -1,4 +1,4 @@
-import {testNav, testComboNav, testInfo, testItemsSelector} from "../support/test-helper.ts";
+import {testNav, testComboNav, testInfo, testLimitSelector} from "../support/test-helper.ts";
 
 const app   = "demo";
 const paths = [
@@ -19,7 +19,7 @@ for (const path of paths) {
         testComboNav(app, "#combo-nav-js");
         testInfo(app, "#pagy-info", path);
         if (path === "/pagy") {
-            testItemsSelector(app, "#items-selector-js", path, true); // trim true
+            testLimitSelector(app, "#limit-selector-js", path, true); // trim true
         }
     });
 }

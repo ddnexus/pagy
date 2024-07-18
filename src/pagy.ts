@@ -56,11 +56,11 @@ const Pagy = (() => {
   const initCombo = (el:Element, [url_token, trimParam]:ComboArgs) =>
       initInput(el, inputValue => [inputValue, url_token.replace(/__pagy_page__/, inputValue)], trimParam);
 
-  // Init the items_selector_js helper
+  // Init the limit_selector_js helper
   const initSelector = (el:Element, [from, url_token, trimParam]:SelectorArgs) => {
     initInput(el, inputValue => {
       const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
-      const url  = url_token.replace(/__pagy_page__/, page).replace(/__pagy_items__/, inputValue);
+      const url  = url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
       return [page, url];
     }, trimParam);
   };
@@ -94,7 +94,7 @@ const Pagy = (() => {
 
   // Public interface
   return {
-    version: "8.6.3",
+    version: "9.0.0",
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
     init(arg?:Element) {

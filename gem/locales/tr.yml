@@ -16,4 +16,4 @@ tr:
       single_page: "Toplam %{count} %{item_name} gösteriliyor"
       multiple_pages: "%{count} %{item_name} içerisinden %{from}-%{to} kadarı gösteriliyor"
     combo_nav_js: "Sayfa %{page_input} / %{pages}"
-    items_selector_js: "Sayfada %{items_input} %{item_name} göster"
+    limit_selector_js: "Sayfada %{limit_input} %{item_name} göster"

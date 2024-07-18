@@ -12,7 +12,7 @@ module MockSearchkick
     def initialize(query, options = {}, &block)
       @entries = RESULTS[query]
       @options = { page: 1, per_page: 10 }.merge(options)
-      from     = @options[:per_page] * (@options[:page] - 1)
+      from     = @options[:per_page] * ((@options[:page] || 1) - 1)
       results  = @entries[from, @options[:per_page]]
       addition = yield if block
       @results = results&.map { |r| "#{addition}#{r}" }
@@ -21,7 +21,7 @@ module MockSearchkick
     def results
       @results.map { |r| "R-#{r}" }
     end
-    alias records results      # enables loops in items_test
+    alias records results      # enables loops in limit_test
 
     def total_count
       @entries.size
