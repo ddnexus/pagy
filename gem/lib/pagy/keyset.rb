@@ -3,6 +3,7 @@
 
 require 'json'
 require_relative 'b64'
+require_relative 'shared_methods'
 
 class Pagy
   # Implement wicked-fast keyset pagination for big data
