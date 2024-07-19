@@ -68,17 +68,15 @@ class Pagy
 
     protected
 
-    # Prepare the literal query to filter out the already retrieved records
+    # Prepare the literal query to filter out the already fetched records
     def after_latest_query
       operator   = { asc: '>', desc: '<' }
       directions = @keyset.values
-      if @vars[:row_comparison]
-        # Row comparison: check if your DB supports it (especially if you have mixed order rows)
+      if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
         columns      = @keyset.keys
         placeholders = columns.map { |column| ":#{column}" }.join(', ')
         "( #{columns.join(', ')} ) #{operator[directions.first]} ( #{placeholders} )"
       else
-        # Generic comparison: works for keysets ordered in mixed or same directions
         keyset = @keyset.to_a
         where  = []
         until keyset.empty?

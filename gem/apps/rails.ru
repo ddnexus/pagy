@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#2-rails-app
 
-VERSION = '9.0.0'
+VERSION = '9.0.1'
 
 # Gemfile
 require 'bundler/inline'

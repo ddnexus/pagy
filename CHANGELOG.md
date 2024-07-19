@@ -23,6 +23,11 @@ If you upgrade from version `< 9.0.0` see the following:
 - None
 <hr>
 
+## Version 9.0.1
+
+- Fix countless executing the count query
+- Rename row_comparison > tuple_comparison; ignore mixed orders
+
 ## Version 9.0.0
 
 ### Breaking Changes

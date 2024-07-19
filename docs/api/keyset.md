@@ -35,13 +35,25 @@ going to get slower queries).
 This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and pretty 
 useless for UIs. 
 
+### Keyset Glossary
+
+| Term                | Description                                                                                                                                              |
+|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `offset pagination` | Technique to fetch each page by changing the `offset` from the collection start. The usual pagy pagination.                                              |
+| `keyset pagination` | Technique to fetch the next page starting from the `latest` fetched record in an `uniquely ordered` collection.                                          |
+| `uniquely ordered`  | When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table. |
+| `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                             |
+| `keyset`            | The hash of column/direction pairs that pagy extracts from the order of the `set`.                                                                       |
+| `latest`            | The hash of `keyset` attributes of the latest retrieved record. Pagy decodes it from the `page`.                                                         |
+| `page`              | The `Base64.urlsafe_encoded` `latest` that can be passed around as a query param.                                                                        |
+
 ### Keyset or Offset pagination?
 
 !!!success Use Keyset pagination with large dataset and API
 
 - You will get the fastest pagination, regardless the table size and the relative position of the page
 
-!!!danger Do not use with UIs even with large datasets
+!!!warning Not very convenient with UIs even with large datasets
 - You would be missing all the frontend features
 - You would have to setup your DB very carefully in order to get good performance anyway
 
@@ -51,27 +63,23 @@ useless for UIs.
 
 - You will get all the frontend features
 - It will be easier to maintain because it requires almost no knowledge of SQL
-- You can avoid the slowness on big tables by simply limiting the `:max_pages` pages: the users would not browse thousands of 
+- You can avoid the slowness on big tables by simply limiting the `:max_pages` pages: the users would not browse thousands of
   records deep into your collection anyway 
 
-!!!danger Do not use with APIs
+!!!warning Not very convenient with APIs
+
+Unless your collection is small...
+
 - Your server will suffer on big data and your API will be slower for no good reasons  
 !!!
-  
-### Keyset Glossary
-    
-| Term     | Description                                                                                                                                                                                                                                                      |
-|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `set`    | The uniquely ordered `ActiveRecord::Relation` or `Sequel::Dataset` to paginate.                                                                                                                                                                                  |
-| `keyset` | The hash of column/direction pairs that pagy extracts from the order of the `set`. It works similarly to a composite primary `key` for the ordered table. For that reason the concatenation of the values of the ordered columns must be unique for each record. |
-| `latest` | The hash of `keyset` attributes of the latest retrieved record. Pagy decodes it from the `page`.                                                                                                                                                                 |
-| `page`   | The `latest` (`Base64.urlsafe_encoded`) that can be passed around as a query param.                                                                                                                                                                              |
 
+
+  
 ## Overview
 
 Pagy Keyset pagination does not waste resources and code complexity checking your set and your table config at every request.
 
-That means that you have to be sure that your set is _uniquely ordered_ and that your tables have the right indexes (for 
+That means that you have to be sure that your set is `uniquely ordered` and that your tables have the right indexes (for 
 performance). You do it once during development, and pagy will be fast at each request. ;)
 
 ### Constraints
@@ -80,7 +88,7 @@ performance). You do it once during development, and pagy will be fast at each r
 - You don't know the record count nor the page count
 - You cannot jump to an arbitrary page (no numbereed pages)
 - You can only paginate from one page to the next (in either directions)
-- The `set` must be uniquely ordered. Add the primary key (usually `:id`) as the last order column to be sure
+- The `set` must be `uniquely ordered`. Add the primary key (usually `:id`) as the last order column to be sure
 - You should add the best DB index for your ordering strategy for performance. The keyset pagination would work even without
   any index, but that would defeat its purpose (performance).
 !!!
@@ -95,7 +103,7 @@ performance). You do it once during development, and pagy will be fast at each r
 
 ## How pagy keyset works
 
-You pass an uniquely ordered `set` and `Pagy::Keyset` queries the page of records. It keeps track of the `latest` fetched 
+You pass an `uniquely ordered` `set` and `Pagy::Keyset` queries the page of records. It keeps track of the `latest` fetched 
 record by encoding its keyset attributes into the `page` param of the `next` URL. At each request, the `:page` is decoded and 
 used to prepare a `when` clause that excludes the records fetched up to that point, and pulls the `:limit` of requested 
 records. You know that you reached the end of the collection when `pagy.next.nil?`.
@@ -140,10 +148,9 @@ The current `page`. Default `nil` for the first page.
 The `:limit` per page. Default `DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to have it
 automatically assigned from the request param.
 
-=== `:row_comparison`
+=== `:tuple_comparison`
 
-Boolish variable that enables the row comparison query. Check whether your DB supports it (especially for composite index with
-mixed order). Default `nil`.
+Boolish variable that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only for same direction order, so it is ignored for mixed order queries. Check how your DB supports it (you should only use `NOT NULL` columns). Default `nil`.
 
 ==- `:after_latest`
 
@@ -185,9 +192,9 @@ Pagy::Keyset(set, typecast_latest:)
 
 ==- Records may repeat or be missing from successive pages
 
-!!!danger Your set is not uniquely ordered
+!!!danger Your set is not `uniquely ordered`
 
-Pagy does not check if your set is uniquely ordered (read why in the [overview](#overview))
+Pagy does not check if your set is `uniquely ordered` (read why in the [overview](#overview))
 
 ```rb
 # Neither columns are unique
@@ -221,7 +228,7 @@ Most likely your index is not right, or your case needs a custom query
 !!! Success
 
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
-- Research about your specific DB features: type of index and performance for different ordering: use SQL `EXPLAIN` to confirm.
+- Research about your specific DB features: type of index and performance for different ordering: use SQL `EXPLAIN ANALIZE` or similar tool to confirm.
 - Consider using your custom optimized `when` query with the [:after_latest](#after-latest) variable
 !!!
 

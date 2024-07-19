@@ -36,17 +36,17 @@ require 'pagy/extras/keyset'
 ```ruby Controller (action)
 # The set argument must be an uniquely ORDERED Activerecord Scope or Sequel Dataset 
 
-# minimal unique ordering with the primary key
+# Minimal unique ordering with the primary key
 set = Product.order(:id)
 @pagy, @records = pagy_keyset(set, **vars)
 
-# using same-direction ordering keyset (all :asc, or all :desc) 
-# notice the primary key as the last column as a tie-breaker for uniqueness
+# Using same-direction order keyset (all :asc, or all :desc) 
+# Notice the primary key added as the last column as a tie-breaker for uniqueness
 set = Product.order(:brand, :model, :id)
-# allow using the row_comparison query
-@pagy, @records = pagy_keyset(set, row_comparison: true)
+# Allow using the tuple_comparison e.g. (brand, model, id) > (:brand, :model, :id)
+@pagy, @records = pagy_keyset(set, tuple_comparison: true)
 
-# ordering with mixed-direction ordering keyset
+# Ordering with mixed-direction order keyset
 set = Product.order(brand: :asc, model: :desc, id: :asc) 
 @pagy, @records = pagy_keyset(set, **vars)
 ```

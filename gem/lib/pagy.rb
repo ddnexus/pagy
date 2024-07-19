@@ -5,7 +5,7 @@ require 'pathname'
 
 # Top superclass: it should define only what's common to all the subclasses
 class Pagy
-  VERSION = '9.0.0'
+  VERSION = '9.0.1'
 
   # Core default: constant for easy access, but mutable for customizable defaults
   DEFAULT = { count_args: [:all], # rubocop:disable Style/MutableConstant

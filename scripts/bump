@@ -93,8 +93,8 @@ release_body_path="$root/.github/latest_release_body.md"
 ### What's New
 lead='<!-- whats_new_start -->'
 tail='<!-- whats_new_end -->'
-#whats_new=$(sed -n "/$lead/,/$tail/p" "$root/README")
-whats_new=$(sed -n "/$lead/,/$tail/{//b;p}" "$root/README.md")
+whats_new=$(sed -n "/$lead/,/$tail/p" "$root/README.md")
+#whats_new=$(sed -n "/$lead/,/$tail/{//b;p}" "$root/README.md")
 gawk -i inplace -v st="$lead" -v et="$tail" -v repl="$whats_new" '
    $0 == st{del=1} $0 == et{$0 = repl; del=0} !del' "$release_body_path"
 
