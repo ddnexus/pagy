@@ -226,7 +226,7 @@ GEM
     rematch (2.1.0)
     rerun (0.14.0)
       listen (~> 3.0)
-    rexml (3.3.1)
+    rexml (3.3.2)
       strscan
     rouge (4.3.0)
     rubocop (1.65.0)
