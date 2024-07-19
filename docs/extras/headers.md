@@ -133,3 +133,9 @@ This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) 
 response. It is internally used by the `pagy_headers_merge` method, so you usually don't need to use it directly. However, if you
 need to edit the headers that pagy generates (for example adding extra `link` headers), you can override it in your own
 controller.
+   
+==- `pagy_link_header(pagy)`
+
+Return only the `link` header as a single key Hash.
+
+===

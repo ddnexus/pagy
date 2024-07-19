@@ -22,7 +22,7 @@ class Pagy # :nodoc:
     # Generate a hash of RFC-8288 compliant http headers
     def pagy_headers(pagy)
       headers = pagy.vars[:headers]
-      { 'link' => link(pagy) }.tap do |hash|
+      pagy_link_header(pagy).tap do |hash|
         hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]
         hash[headers[:limit]] = pagy.limit.to_s \
             if headers[:limit] && !(defined?(Calendar) && pagy.is_a?(Calendar::Unit))
@@ -34,8 +34,8 @@ class Pagy # :nodoc:
       end
     end
 
-    def link(pagy)
-      [].tap do |link|
+    def pagy_link_header(pagy)
+      { 'link' => [].tap do |link|
         if defined?(Keyset) && pagy.is_a?(Keyset)
           link << %(<#{pagy_url_for(pagy, nil, absolute: true)}>; rel="first")
           link << %(<#{pagy_url_for(pagy, pagy.next, absolute: true)}>; rel="next") if pagy.next
@@ -47,7 +47,7 @@ class Pagy # :nodoc:
           link << %(<#{url_str.sub(PAGE_TOKEN, pagy.last.to_s)}>; rel="last") \
               unless defined?(Countless) && pagy.is_a?(Countless)
         end
-      end.join(', ')
+      end.join(', ') }
     end
   end
   Backend.prepend HeadersExtra
