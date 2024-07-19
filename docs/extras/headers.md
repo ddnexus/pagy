@@ -76,18 +76,11 @@ If you are replacing any of the existing API-pagination gems in some already wor
 names so you will not have to change the client app that consumes them. You can do so by using the `:headers` variable _(
 see [variables](#variables) below)_
 
-### Countless Pagination
+!!!warning Countless and Keyset Pagination
 
-If your requirements allow to save one count-query per rendering by using the `pagy_countless` constructor, the headers will
-not have the `rel="last"` link, the `total-count` and the `total-pages` that are unknown with countless pagination.
+If you use the `headers` extra with the [contless](countless.md) or [keyset](keyset.md) extras, a few heder will not be available (e.g. the last link)
+!!!
 
-Example of HTTP headers produced from a `Pagy::Countless` object:
-
-```text
-Link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.com:8080/foo?page=4>; rel="next"
-current-page 3
-page-items 20
-```
 
 ## Variables
 
