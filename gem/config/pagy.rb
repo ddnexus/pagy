@@ -79,6 +79,10 @@
 #                            count: 'Total-Count',
 #                            pages: 'Total-Pages' }     # default
 
+# Keyset extra: Paginate with the Pagy keyset pagination technique
+# See http://ddnexus.github.io/pagy/extras/keyset
+# require 'pagy/extras/keyset'
+
 # Meilisearch extra: Paginate `Meilisearch` result objects
 # See https://ddnexus.github.io/pagy/docs/extras/meilisearch
 # Default :pagy_search method: change only if you use also

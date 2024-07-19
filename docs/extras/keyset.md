@@ -65,7 +65,15 @@ of `records` pulled from the DB.
 ==- `pagy_keyset_get_vars(vars)`
 
 This sub-method is internally called only by the `pagy_keyset` method. It automatically sets the `:page` variable and - if you 
-use the [limit extra](/docs/extras/limit.md) also the `:limit` variables from the request `params`. Documented only for 
+use the [limit extra](limit.md) also the `:limit` variables from the request `params`. Documented only for 
 overriding.
+
+==- `pagy_keyset_first_url(pagy, absolute: false)`
+
+Return the first page URL string. (See also the [headers](headers.md) and [jsonapi](jsonapi.md) extras for more complete solutions)
+
+==- `pagy_keyset_next_url(pagy, absolute: false)`
+
+Return the next page URL string or nil. (See also the [headers](headers.md) and [jsonapi](jsonapi.md) extras for more complete solutions)
 
 ===
