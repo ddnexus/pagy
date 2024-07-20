@@ -19,8 +19,8 @@ Implement wicked-fast keyset pagination for big data.
 
 !!!  
 
-The class API is documented here, however you should not need to use this
-class directly because it is required and used internally by the [keyset extra](/docs/extras/keyset.md)
+Concept and API are documented here, however you should not need to instantiate this
+class directly. Just use the [keyset extra](/docs/extras/keyset.md) wrapper, that integrates it with your app.
 
 !!!
 
@@ -28,14 +28,14 @@ class directly because it is required and used internally by the [keyset extra](
 
 ## Concept
 
-The "Keyset" pagination, also known as "SQL Seek Method" (and often, improperly called "Cursor" pagination) is a tecnique 
+The "Keyset" pagination, also known as "SQL Seek Method" (and often, improperly called "Cursor" pagination) is a tecnique
 that avoids the inevitable slowness of querying pages deep into a collection (i.e. when `offset` is a big number, you're 
 going to get slower queries).
 
-This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and pretty 
-useless for UIs. 
+This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and
+not very convenient for UIs. 
 
-### Keyset Glossary
+### Glossary
 
 | Term                | Description                                                                                                                                              |
 |---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -73,7 +73,6 @@ Unless your collection is small...
 - Your server will suffer on big data and your API will be slower for no good reasons  
 !!!
 
-
   
 ## Overview
 
@@ -98,15 +97,15 @@ performance). You do it once during development, and pagy will be fast at each r
 
 !!!success
 - If you want to paginate backward like: `last` ... `prev` ... `prev` ... just call `reverse_order` on your set and go forward 
-  like: `first` ... `next` ... `next` ... It does exactly the same, just faster and simpler. 
+  like: `first` ... `next` ... `next` ... It does exactly the same: just faster and simpler. 
 !!!
 
-## How pagy keyset works
+## How Pagy::Keyset works
 
 You pass an `uniquely ordered` `set` and `Pagy::Keyset` queries the page of records. It keeps track of the `latest` fetched 
-record by encoding its keyset attributes into the `page` param of the `next` URL. At each request, the `:page` is decoded and 
-used to prepare a `when` clause that excludes the records fetched up to that point, and pulls the `:limit` of requested 
-records. You know that you reached the end of the collection when `pagy.next.nil?`.
+record by encoding its keyset attributes into the `page` query string param of the `next` URL. At each request, the `:page` is 
+decoded and used to prepare a `when` clause that filters out the records fetched up to that point, and the `:limit` of requested 
+records is fetched. You know that you reached the end of the collection when `pagy.next.nil?`.
 
 ### ORMs
 
@@ -125,7 +124,7 @@ Pagy::Keyset.new(sequel_set)
 ==- `Pagy::Keyset.new(set, **vars)`
 
 The constructor takes the `set`, and an optional hash of [variables](#variables).
- It returns a `Pagy::Keyset::ActiveRecord` or `Pagy::Keyset::Sequel` object (depending by the `set` class)
+ It returns a `Pagy::Keyset::ActiveRecord` or `Pagy::Keyset::Sequel` object (depending by the `set` class).
 
 ==- `next`
 
@@ -145,8 +144,8 @@ The current `page`. Default `nil` for the first page.
 
 === `:limit`
 
-The `:limit` per page. Default `DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to have it
-automatically assigned from the request param.
+The `:limit` per page. Default `Pagy::DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to have it
+automatically assigned from the `limit` request param.
 
 === `:tuple_comparison`
 
@@ -156,8 +155,7 @@ Boolish variable that enables the tuple comparison e.g. `(brand, id) > (:brand, 
 
 A lambda to filter out the records after the `latest`. If defined, pagy will calls it with the `set` and the `latest`
 arguments instead of using its auto-generated query. It must return the filtered set. Use it for DB-specific extra
-optimizations if you know what you are doing.
-For example:
+optimizations if you know what you are doing. For example:
 
 ```ruby
 after_latest = lambda do |set, latest|
@@ -228,7 +226,10 @@ Most likely your index is not right, or your case needs a custom query
 !!! Success
 
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
-- Research about your specific DB features: type of index and performance for different ordering: use SQL `EXPLAIN ANALIZE` or similar tool to confirm.
+- Research about your specific DB features: type of index and performance for different ordering: use SQL `EXPLAIN ANALIZE` 
+  or similar tool to confirm.
+- Consider using the same direction order, enablign the `:tuple_comparison`, changing type of index (different DBs may behave 
+  differently)
 - Consider using your custom optimized `when` query with the [:after_latest](#after-latest) variable
 !!!
 

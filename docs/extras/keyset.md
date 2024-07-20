@@ -36,7 +36,8 @@ require 'pagy/extras/keyset'
 ```ruby Controller (action)
 # The set argument must be an uniquely ORDERED Activerecord Scope or Sequel Dataset 
 
-# Minimal unique ordering with the primary key
+# Minimal unique ordering with the primary key 
+# See the Pagy::Keyset docs for other variables
 set = Product.order(:id)
 @pagy, @records = pagy_keyset(set, **vars)
 
