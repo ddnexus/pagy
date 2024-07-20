@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (9.0.1)
+# Pagy initializer file (9.0.2)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -78,6 +78,10 @@
 #                            limit: 'Page-Items',
 #                            count: 'Total-Count',
 #                            pages: 'Total-Pages' }     # default
+
+# Keyset extra: Paginate with the Pagy keyset pagination technique
+# See http://ddnexus.github.io/pagy/extras/keyset
+# require 'pagy/extras/keyset'
 
 # Meilisearch extra: Paginate `Meilisearch` result objects
 # See https://ddnexus.github.io/pagy/docs/extras/meilisearch

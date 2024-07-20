@@ -9,6 +9,10 @@ categories:
 
 Paginate without the need of any count, saving one query per rendering.
 
+!!!success
+If you don't need any frontend you should consider the [Pagy::Keyset pagination](/docs/api/keyset.md) that is even faster than countless, especially with big data
+!!!
+
 ## Setup
 
 ```ruby pagy.rb (initializer)

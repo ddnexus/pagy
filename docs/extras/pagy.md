@@ -70,7 +70,7 @@ bar links (e.g. `countless` extra).
 
 ==- `pagy_next_url(pagy, absolute: false)`
 
-Return the previous page URL string or nil. Useful to build minimalistic UIs that don't use nav bar
+Return the next page URL string or nil. Useful to build minimalistic UIs that don't use nav bar
 links (e.g. `countless` extra).
 
 ==- `pagy_prev_a(pagy, **vars)`
