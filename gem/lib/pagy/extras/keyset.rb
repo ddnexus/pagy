@@ -21,6 +21,16 @@ class Pagy # :nodoc:
         v[:limit] ||= pagy_get_limit(v)
       end
     end
+
+    # Return the URL string for the first page
+    def pagy_keyset_first_url(pagy, **vars)
+      pagy_url_for(pagy, nil, **vars)
+    end
+
+    # Return the URL string for the next page or nil
+    def pagy_keyset_next_url(pagy, **vars)
+      pagy_url_for(pagy, pagy.next, **vars) if pagy.next
+    end
   end
   Backend.prepend KeysetExtra
 end
