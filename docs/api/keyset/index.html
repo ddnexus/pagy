@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774752460580">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774756868140">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.774752460580" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.774756868140" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774752460580" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774756868140" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774752460580" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774752460580" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774756868140" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774756868140" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -307,8 +307,8 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>The class API is documented here, however you should not need to use this
-class directly because it is required and used internally by the <a href="../../extras/keyset/">keyset extra</a></p>
+<p>Concept and API are documented here, however you should not need to instantiate this
+class directly. Just use the <a href="../../extras/keyset/">keyset extra</a> wrapper, that integrates it with your app.</p>
         </div>
     </div>
 </div>
@@ -324,12 +324,12 @@ class directly because it is required and used internally by the <a href="../../
 <p>The &quot;Keyset&quot; pagination, also known as &quot;SQL Seek Method&quot; (and often, improperly called &quot;Cursor&quot; pagination) is a tecnique
 that avoids the inevitable slowness of querying pages deep into a collection (i.e. when <code v-pre>offset</code> is a big number, you&#x27;re
 going to get slower queries).</p>
-<p>This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and pretty
-useless for UIs.</p>
-<doc-anchor-target id="keyset-glossary">
+<p>This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and
+not very convenient for UIs.</p>
+<doc-anchor-target id="glossary">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#keyset-glossary">#</doc-anchor-trigger>
-        <span>Keyset Glossary</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#glossary">#</doc-anchor-trigger>
+        <span>Glossary</span>
     </h3>
 </doc-anchor-target>
 <div class="table-wrapper scrollbar overflow-hidden">
@@ -528,7 +528,7 @@ any index, but that would defeat its purpose (performance).</li>
         <div class="pr-5 ml-3 w-full">
 <ul>
 <li>If you want to paginate backward like: <code v-pre>last</code> ... <code v-pre>prev</code> ... <code v-pre>prev</code> ... just call <code v-pre>reverse_order</code> on your set and go forward
-like: <code v-pre>first</code> ... <code v-pre>next</code> ... <code v-pre>next</code> ... It does exactly the same, just faster and simpler.</li>
+like: <code v-pre>first</code> ... <code v-pre>next</code> ... <code v-pre>next</code> ... It does exactly the same: just faster and simpler.</li>
 </ul>
         </div>
     </div>
@@ -536,16 +536,16 @@ like: <code v-pre>first</code> ... <code v-pre>next</code> ... <code v-pre>next<
         </div>
     </div>
 </div>
-<doc-anchor-target id="how-pagy-keyset-works">
+<doc-anchor-target id="how-pagykeyset-works">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#how-pagy-keyset-works">#</doc-anchor-trigger>
-        <span>How pagy keyset works</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#how-pagykeyset-works">#</doc-anchor-trigger>
+        <span>How Pagy::Keyset works</span>
     </h2>
 </doc-anchor-target>
 <p>You pass an <code v-pre>uniquely ordered</code> <code v-pre>set</code> and <code v-pre>Pagy::Keyset</code> queries the page of records. It keeps track of the <code v-pre>latest</code> fetched
-record by encoding its keyset attributes into the <code v-pre>page</code> param of the <code v-pre>next</code> URL. At each request, the <code v-pre>:page</code> is decoded and
-used to prepare a <code v-pre>when</code> clause that excludes the records fetched up to that point, and pulls the <code v-pre>:limit</code> of requested
-records. You know that you reached the end of the collection when <code v-pre>pagy.next.nil?</code>.</p>
+record by encoding its keyset attributes into the <code v-pre>page</code> query string param of the <code v-pre>next</code> URL. At each request, the <code v-pre>:page</code> is
+decoded and used to prepare a <code v-pre>when</code> clause that filters out the records fetched up to that point, and the <code v-pre>:limit</code> of requested
+records is fetched. You know that you reached the end of the collection when <code v-pre>pagy.next.nil?</code>.</p>
 <doc-anchor-target id="orms">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#orms">#</doc-anchor-trigger>
@@ -570,7 +570,7 @@ Pagy::Keyset.new(sequel_set)
    <doc-panel id="pagy-keyset-new-set-vars" collapsed>
        <template #title><code v-pre>Pagy::Keyset.new(set, **vars)</code></template>
 <p>The constructor takes the <code v-pre>set</code>, and an optional hash of <doc-anchor-trigger to="#variables">variables</doc-anchor-trigger>.
-It returns a <code v-pre>Pagy::Keyset::ActiveRecord</code> or <code v-pre>Pagy::Keyset::Sequel</code> object (depending by the <code v-pre>set</code> class)</p>
+It returns a <code v-pre>Pagy::Keyset::ActiveRecord</code> or <code v-pre>Pagy::Keyset::Sequel</code> object (depending by the <code v-pre>set</code> class).</p>
    </doc-panel>
    <doc-panel id="next" collapsed>
        <template #title><code v-pre>next</code></template>
@@ -594,8 +594,8 @@ It returns a <code v-pre>Pagy::Keyset::ActiveRecord</code> or <code v-pre>Pagy::
    </doc-panel>
    <doc-panel id="limit">
        <template #title><code v-pre>:limit</code></template>
-<p>The <code v-pre>:limit</code> per page. Default <code v-pre>DEFAULT[:limit]</code>. You can use the <a href="../../extras/limit/">limit extra</a> to have it
-automatically assigned from the request param.</p>
+<p>The <code v-pre>:limit</code> per page. Default <code v-pre>Pagy::DEFAULT[:limit]</code>. You can use the <a href="../../extras/limit/">limit extra</a> to have it
+automatically assigned from the <code v-pre>limit</code> request param.</p>
    </doc-panel>
    <doc-panel id="tuple-comparison">
        <template #title><code v-pre>:tuple_comparison</code></template>
@@ -605,8 +605,7 @@ automatically assigned from the request param.</p>
        <template #title><code v-pre>:after_latest</code></template>
 <p>A lambda to filter out the records after the <code v-pre>latest</code>. If defined, pagy will calls it with the <code v-pre>set</code> and the <code v-pre>latest</code>
 arguments instead of using its auto-generated query. It must return the filtered set. Use it for DB-specific extra
-optimizations if you know what you are doing.
-For example:</p>
+optimizations if you know what you are doing. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">after_latest = lambda do |set, latest|
   set.where(my_optimized_query, **latest)
@@ -756,7 +755,10 @@ They may have been stored as strings fomatted differently than the default forma
         <div class="pr-5 ml-3 w-full">
 <ul>
 <li>Ensure that the composite index reflects exactly the columns sequence and order of your keyset</li>
-<li>Research about your specific DB features: type of index and performance for different ordering: use SQL <code v-pre>EXPLAIN ANALIZE</code> or similar tool to confirm.</li>
+<li>Research about your specific DB features: type of index and performance for different ordering: use SQL <code v-pre>EXPLAIN ANALIZE</code>
+or similar tool to confirm.</li>
+<li>Consider using the same direction order, enablign the <code v-pre>:tuple_comparison</code>, changing type of index (different DBs may behave
+differently)</li>
 <li>Consider using your custom optimized <code v-pre>when</code> query with the <doc-anchor-trigger to="#after-latest">:after_latest</doc-anchor-trigger> variable</li>
 </ul>
         </div>
