@@ -23,6 +23,13 @@ If you upgrade from version `< 9.0.0` see the following:
 - None
 <hr>
 
+## Version 9.0.2
+
+- Rename and document the link header to pagy_link_header
+- Add first and next url helpers to the keyset extra; add the keyset section to config/pagy.rb
+- Fix nil page in keyset URL not overriding the params page
+- Extracted shared method
+
 ## Version 9.0.1
 
 - Fix countless executing the count query

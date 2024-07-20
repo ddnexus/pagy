@@ -6,11 +6,13 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.0.1
+### Changes in 9.0.2
 
 <!-- changes_start -->
-- Fix countless executing the count query
-- Rename row_comparison > tuple_comparison; ignore mixed orders
+- Rename and document the link header to pagy_link_header
+- Add first and next url helpers to the keyset extra; add the keyset section to config/pagy.rb
+- Fix nil page in keyset URL not overriding the params page
+- Extracted shared method
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
