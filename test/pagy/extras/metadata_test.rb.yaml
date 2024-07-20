@@ -1,5 +1,5 @@
 ---
-pagy/extras/metadata::#pagy_metadata for Pagy#test_0004_returns only specific metadata:
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0004_returns_only_specific_metadata:
   :metadata:
     :scaffold_url: "/foo?page=__pagy_page__"
     :page: 3
@@ -7,7 +7,27 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0004_returns only specific me
     :prev: 2
     :next: 4
     :pages: 50
-pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy metadata:
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0001_defines_all_metadata:
+  :metadata:
+  - :scaffold_url
+  - :first_url
+  - :prev_url
+  - :page_url
+  - :next_url
+  - :last_url
+  - :count
+  - :page
+  - :limit
+  - :vars
+  - :pages
+  - :last
+  - :in
+  - :from
+  - :to
+  - :prev
+  - :next
+  - :series
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0002_returns_the_full_pagy_metadata:
   :metadata:
     :scaffold_url: "/foo?page=__pagy_page__"
     :first_url: "/foo?page=1"
@@ -19,14 +39,14 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
     :page: 3
     :limit: 20
     :vars:
-      :page: 3
-      :limit: 20
-      :outset: 0
-      :size: 7
-      :ends: true
       :count_args:
       - :all
+      :ends: true
+      :limit: 20
+      :outset: 0
+      :page: 3
       :page_param: :page
+      :size: 7
       :countless_minimal: false
       :steps: false
       :metadata:
@@ -74,27 +94,7 @@ pagy/extras/metadata::#pagy_metadata for Pagy#test_0002_returns the full pagy me
       - 5
       - :gap
       - 50
-pagy/extras/metadata::#pagy_metadata for Pagy#test_0001_defines all metadata:
-  :metadata:
-  - :scaffold_url
-  - :first_url
-  - :prev_url
-  - :page_url
-  - :next_url
-  - :last_url
-  - :count
-  - :page
-  - :limit
-  - :vars
-  - :pages
-  - :last
-  - :in
-  - :from
-  - :to
-  - :prev
-  - :next
-  - :series
-pagy/extras/metadata::#pagy_metadata for Pagy::Calendar#test_0002_returns only specific metadata for Pagy::Calendar:
+pagy/extras/metadata___pagy_metadata_for_Pagy__Calendar_test_0002_returns_only_specific_metadata_for_Pagy__Calendar:
   :metadata:
     :scaffold_url: "/foo?month_page=__pagy_page__"
     :page: 3

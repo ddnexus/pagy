@@ -1,0 +1,10 @@
+---
+pagy/extras/limit__view_methods_test_0001_renders_limit_selector:
+  :selector_1: '<span class="pagy limit-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fJmxpbWl0PV9fcGFneV9saW1pdF9fIl0="><label>Show
+    <input name="limit" type="number" min="1" max="100" value="20" style="padding:
+    0; text-align: center; width: 3rem;"><a href="#" style="display: none;">#</a>
+    items per page</label></span>'
+  :selector_2: '<span id="test-id" class="pagy limit-selector-js" data-pagy="WyJzZWxlY3RvciIsNDEsIi9mb28/cGFnZT1fX3BhZ3lfcGFnZV9fJmxpbWl0PV9fcGFneV9saW1pdF9fIl0="><label>Show
+    <input name="limit" type="number" min="1" max="100" value="20" style="padding:
+    0; text-align: center; width: 3rem;"><a href="#" style="display: none;">#</a>
+    products per page</label></span>'

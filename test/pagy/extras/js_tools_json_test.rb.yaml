@@ -1,5 +1,5 @@
 ---
-pagy/extras/js_tools_json::Calendar sequels and label_sequels#test_0001_generate the labels for the sequels:
+pagy/extras/js_tools_json__Calendar_sequels_and_label_sequels_test_0001_generate_the_labels_for_the_sequels:
   :sequels:
     '0':
     - 4
@@ -30,5 +30,5 @@ pagy/extras/js_tools_json::Calendar sequels and label_sequels#test_0001_generate
     - Apr
     - :gap
     - Nov
-pagy/extras/js_tools_json::#pagy_data#test_0001_uses json:
+pagy/extras/js_tools_json___pagy_data_test_0001_uses_json:
   :data: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="

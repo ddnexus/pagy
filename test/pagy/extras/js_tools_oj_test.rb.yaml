@@ -1,5 +1,5 @@
 ---
-pagy/extras/js_tools_oj::Calendar sequels and label_sequels#test_0001_generate the labels for the sequels:
+pagy/extras/js_tools_oj__Calendar_sequels_and_label_sequels_test_0001_generate_the_labels_for_the_sequels:
   :sequels:
     '0':
     - 1
@@ -30,6 +30,6 @@ pagy/extras/js_tools_oj::Calendar sequels and label_sequels#test_0001_generate t
     - Feb
     - Mar
     - Apr
-pagy/extras/js_tools_oj::#pagy_data#test_0001_uses oj:
+pagy/extras/js_tools_oj___pagy_data_test_0001_uses_oj:
   :data_1: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="
   :data_2: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlLCJwYWdlIl0="

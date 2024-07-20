@@ -1,5 +1,5 @@
 ---
-pagy/extras/i18n::#pagy_info with I18n#test_0001_renders info:
+pagy/extras/i18n___pagy_info_with_I18n_test_0001_renders_info:
   :info_0: <span class="pagy info">No items found</span>
   :info_1: <span class="pagy info">Displaying 1 item</span>
   :info_13: <span class="pagy info">Displaying 13 items</span>
