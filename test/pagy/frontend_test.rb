@@ -77,16 +77,16 @@ describe 'pagy/frontend' do
 
   describe '#pagy_info' do
     it 'renders without i18n key' do
-      _(app.pagy_info(Pagy.new(count: 0))).must_rematch key: :info_0
-      _(app.pagy_info(Pagy.new(count: 1))).must_rematch key: :info_1
-      _(app.pagy_info(Pagy.new(count: 13))).must_rematch key: :info_13
-      _(app.pagy_info(Pagy.new(count: 100, page: 3))).must_rematch key: :info_100
+      _(app.pagy_info(Pagy.new(count: 0))).must_rematch :info_0
+      _(app.pagy_info(Pagy.new(count: 1))).must_rematch :info_1
+      _(app.pagy_info(Pagy.new(count: 13))).must_rematch :info_13
+      _(app.pagy_info(Pagy.new(count: 100, page: 3))).must_rematch :info_100
     end
     it 'overrides the item_name and set id' do
-      _(app.pagy_info(Pagy.new(count: 0), id: 'pagy-info', item_name: 'Widgets')).must_rematch key: :info_0
-      _(app.pagy_info(Pagy.new(count: 1), id: 'pagy-info', item_name: 'Widget')).must_rematch key: :info_1
-      _(app.pagy_info(Pagy.new(count: 13), id: 'pagy-info', item_name: 'Widgets')).must_rematch key: :info_13
-      _(app.pagy_info(Pagy.new(count: 100, page: 3), id: 'pagy-info', item_name: 'Widgets')).must_rematch key: :info_100
+      _(app.pagy_info(Pagy.new(count: 0), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_0
+      _(app.pagy_info(Pagy.new(count: 1), id: 'pagy-info', item_name: 'Widget')).must_rematch :info_1
+      _(app.pagy_info(Pagy.new(count: 13), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_13
+      _(app.pagy_info(Pagy.new(count: 100, page: 3), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_100
     end
   end
 end
