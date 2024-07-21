@@ -223,7 +223,7 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
-    rematch (3.0.0)
+    rematch (3.1.0)
     rerun (0.14.0)
       listen (~> 3.0)
     rexml (3.3.2)
