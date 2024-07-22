@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774883813577">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774971833561">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.774883813577" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.774971833561" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774883813577" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774971833561" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774883813577" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774883813577" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774971833561" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774971833561" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -307,8 +307,8 @@
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>Concept and API are documented here, however you should not need to instantiate this
-class directly. Just use the <a href="../../extras/keyset/">keyset extra</a> wrapper, that integrates it with your app.</p>
+<p>Concept and API are documented here, however you may prefer to use the <a href="../../extras/keyset/">keyset extra</a> wrapper to
+easily integrate it with your app.</p>
         </div>
     </div>
 </div>
@@ -325,7 +325,7 @@ class directly. Just use the <a href="../../extras/keyset/">keyset extra</a> wra
 that avoids the inevitable slowness of querying pages deep into a collection (i.e. when <code v-pre>offset</code> is a big number, you&#x27;re
 going to get slower queries).</p>
 <p>This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and
-not very convenient for UIs.</p>
+less convenient for UIs.</p>
 <doc-anchor-target id="glossary">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#glossary">#</doc-anchor-trigger>
@@ -343,15 +343,15 @@ not very convenient for UIs.</p>
 <tbody>
 <tr>
 <td><code v-pre>offset pagination</code></td>
-<td>Technique to fetch each page by changing the <code v-pre>offset</code> from the collection start. The usual pagy pagination.</td>
+<td>Technique to fetch each page by changing the <code v-pre>offset</code> from the collection start.<br/>It requires two queries per page (or one if <a href="../countless/">countless</a>): it&#x27;s slow toward the end of big tables.<br/>It can be used for a rich frontend: it&#x27;s the regular pagy pagination.</td>
 </tr>
 <tr>
 <td><code v-pre>keyset pagination</code></td>
-<td>Technique to fetch the next page starting from the <code v-pre>latest</code> fetched record in an <code v-pre>uniquely ordered</code> collection.</td>
+<td>Technique to fetch the next page starting from the <code v-pre>latest</code> fetched record in an <code v-pre>uniquely ordered</code> collection.<br/>It requires only one query per page: it&#x27;s very fast regardless the table size and position (if properly idexed). It has a very limited usage in frontend.</td>
 </tr>
 <tr>
 <td><code v-pre>uniquely ordered</code></td>
-<td>When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary <code v-pre>key</code> for the ordered table.</td>
+<td>When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary <code v-pre>key</code> for the ordered table, but dynamically based on the <code v-pre>keyset</code> columns.</td>
 </tr>
 <tr>
 <td><code v-pre>set</code></td>
@@ -359,15 +359,19 @@ not very convenient for UIs.</p>
 </tr>
 <tr>
 <td><code v-pre>keyset</code></td>
-<td>The hash of column/direction pairs that pagy extracts from the order of the <code v-pre>set</code>.</td>
+<td>The hash of column/direction pairs. Pagy extracts it from the order of the <code v-pre>set</code>.</td>
 </tr>
 <tr>
 <td><code v-pre>latest</code></td>
-<td>The hash of <code v-pre>keyset</code> attributes of the latest retrieved record. Pagy decodes it from the <code v-pre>page</code>.</td>
+<td>The hash of <code v-pre>keyset</code> attributes of the <code v-pre>latest</code> fetched record (from the latest page). Pagy decodes it from the <code v-pre>:page</code> variable, and uses it to filter out the already fetched records.</td>
+</tr>
+<tr>
+<td><code v-pre>next</code></td>
+<td>The next <code v-pre>page</code>, i.e. the encoded reference to the last record of the <strong>current page</strong>.</td>
 </tr>
 <tr>
 <td><code v-pre>page</code></td>
-<td>The <code v-pre>Base64.urlsafe_encoded</code> <code v-pre>latest</code> that can be passed around as a query param.</td>
+<td>The current <code v-pre>page</code>, i.e. the encoded reference to the <code v-pre>latest</code> record of the <strong>latest page</strong>.</td>
 </tr>
 </tbody>
 </table>
@@ -391,9 +395,7 @@ not very convenient for UIs.</p>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Use Keyset pagination with large dataset and API</h5>
-<ul>
-<li>You will get the fastest pagination, regardless the table size and the relative position of the page</li>
-</ul>
+<p>You will get the fastest pagination, regardless the table size and the relative position of the page</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-yellow-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -406,11 +408,8 @@ not very convenient for UIs.</p>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Not very convenient with UIs even with large datasets</h5>
-<ul>
-<li>You would be missing all the frontend features</li>
-<li>You would have to setup your DB very carefully in order to get good performance anyway</li>
-</ul>
+            <h5>Limited use for UIs</h5>
+<p>Only useful when you don&#x27;t need any frontend (e.g. infinite pagination)</p>
         </div>
     </div>
 </div>
@@ -448,11 +447,8 @@ records deep into your collection anyway</li>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Not very convenient with APIs</h5>
-<p>Unless your collection is small...</p>
-<ul>
-<li>Your server will suffer on big data and your API will be slower for no good reasons</li>
-</ul>
+            <h5>Limited use for APIs</h5>
+<p>Your server will suffer on big data and your API will be slower for no good reasons</p>
         </div>
     </div>
 </div>
@@ -468,6 +464,23 @@ records deep into your collection anyway</li>
 <p>Pagy Keyset pagination does not waste resources and code complexity checking your set and your table config at every request.</p>
 <p>That means that you have to be sure that your set is <code v-pre>uniquely ordered</code> and that your tables have the right indexes (for
 performance). You do it once during development, and pagy will be fast at each request. ;)</p>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>Quick Tip: Order by primary key for instant success</h5>
+<p>If you don&#x27;t have any particular order requirements, <code v-pre>order(:id)</code> is the best choice, because it&#x27;s unique and already indexed.</p>
+        </div>
+    </div>
+</div>
 <doc-anchor-target id="constraints">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#constraints">#</doc-anchor-trigger>
@@ -511,9 +524,7 @@ any index, but that would defeat its purpose (performance).</li>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>With Pagy::Keyset...</h5>
-<ul>
-<li>You don&#x27;t know the <code v-pre>previous</code> and the <code v-pre>last</code> page, you only know the <code v-pre>first</code> and <code v-pre>next</code> pages, for performance and simplicity</li>
-</ul>
+<p>You don&#x27;t know the <code v-pre>previous</code> and the <code v-pre>last</code> page, you only know the <code v-pre>first</code> and <code v-pre>next</code> pages, for performance and simplicity</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -526,10 +537,8 @@ any index, but that would defeat its purpose (performance).</li>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<ul>
-<li>If you want to paginate backward like: <code v-pre>last</code> ... <code v-pre>prev</code> ... <code v-pre>prev</code> ... just call <code v-pre>reverse_order</code> on your set and go forward
-like: <code v-pre>first</code> ... <code v-pre>next</code> ... <code v-pre>next</code> ... It does exactly the same: just faster and simpler.</li>
-</ul>
+<p>If you want to paginate backward like: <code v-pre>last</code> ... <code v-pre>prev</code> ... <code v-pre>prev</code> ... just call <code v-pre>reverse_order</code> on your set and go forward
+like: <code v-pre>first</code> ... <code v-pre>next</code> ... <code v-pre>next</code> ... It does exactly the same: just faster and simpler.</p>
         </div>
     </div>
 </div>
@@ -542,10 +551,14 @@ like: <code v-pre>first</code> ... <code v-pre>next</code> ... <code v-pre>next<
         <span>How Pagy::Keyset works</span>
     </h2>
 </doc-anchor-target>
-<p>You pass an <code v-pre>uniquely ordered</code> <code v-pre>set</code> and <code v-pre>Pagy::Keyset</code> queries the page of records. It keeps track of the <code v-pre>latest</code> fetched
-record by encoding its keyset attributes into the <code v-pre>page</code> query string param of the <code v-pre>next</code> URL. At each request, the <code v-pre>:page</code> is
-decoded and used to prepare a <code v-pre>when</code> clause that filters out the records fetched up to that point, and the <code v-pre>:limit</code> of requested
-records is fetched. You know that you reached the end of the collection when <code v-pre>pagy.next.nil?</code>.</p>
+<ul>
+<li>You pass an <code v-pre>uniquely ordered</code> <code v-pre>set</code> and <code v-pre>Pagy::Keyset</code> queries the page of records.</li>
+<li>It keeps track of the <code v-pre>latest</code> fetched  ecord by encoding its <code v-pre>keyset</code> attributes into the <code v-pre>page</code> query string param of the
+<code v-pre>next</code> URL.</li>
+<li>At each request, the <code v-pre>:page</code> is decoded and used to prepare a <code v-pre>when</code> clause that filters out the records already fetched, and
+the <code v-pre>:limit</code> of requested records is pulled.</li>
+<li>You know that you reached the end of the collection when <code v-pre>pagy.next.nil?</code>.</li>
+</ul>
 <doc-anchor-target id="orms">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#orms">#</doc-anchor-trigger>
@@ -574,11 +587,11 @@ It returns a <code v-pre>Pagy::Keyset::ActiveRecord</code> or <code v-pre>Pagy::
    </doc-panel>
    <doc-panel id="next" collapsed>
        <template #title><code v-pre>next</code></template>
-<p>The next <code v-pre>page</code>, i.e. the encoded <code v-pre>latest</code> hash used to exclude the records retrieved up to that point.</p>
+<p>The next <code v-pre>page</code>, i.e. the encoded reference to the last record of the current page. It is <code v-pre>nil</code> for the last page.</p>
    </doc-panel>
    <doc-panel id="records" collapsed>
        <template #title><code v-pre>records</code></template>
-<p>The <code v-pre>Array</code> of records for the current page.</p>
+<p>The <code v-pre>Array</code> of fetched records for the current page.</p>
    </doc-panel>
 </doc-panels>
 <doc-anchor-target id="variables">
@@ -590,7 +603,7 @@ It returns a <code v-pre>Pagy::Keyset::ActiveRecord</code> or <code v-pre>Pagy::
 <doc-panels>
    <doc-panel id="page">
        <template #title><code v-pre>:page</code></template>
-<p>The current <code v-pre>page</code>. Default <code v-pre>nil</code> for the first page.</p>
+<p>The current page, i.e. the encoded reference to the <code v-pre>latest</code> record of the latest page. Default <code v-pre>nil</code> for the first page.</p>
    </doc-panel>
    <doc-panel id="limit">
        <template #title><code v-pre>:limit</code></template>
@@ -599,13 +612,16 @@ automatically assigned from the <code v-pre>limit</code> request param.</p>
    </doc-panel>
    <doc-panel id="tuple-comparison">
        <template #title><code v-pre>:tuple_comparison</code></template>
-<p>Boolish variable that enables the tuple comparison e.g. <code v-pre>(brand, id) &gt; (:brand, :id)</code>. It works only for same direction order, so it is ignored for mixed order queries. Check how your DB supports it (you should only use <code v-pre>NOT NULL</code> columns). Default <code v-pre>nil</code>.</p>
+<p>Boolish variable that enables the tuple comparison e.g. <code v-pre>(brand, id) &gt; (:brand, :id)</code>. It works only for same direction order,
+hence it&#x27;s ignored for mixed order. Check how your DB supports it (your <code v-pre>keyset</code> should include only <code v-pre>NOT NULL</code> columns).
+Default
+<code v-pre>nil</code>.</p>
    </doc-panel>
    <doc-panel id="after-latest" collapsed>
        <template #title><code v-pre>:after_latest</code></template>
-<p>A lambda to filter out the records after the <code v-pre>latest</code>. If defined, pagy will calls it with the <code v-pre>set</code> and the <code v-pre>latest</code>
-arguments instead of using its auto-generated query. It must return the filtered set. Use it for DB-specific extra
-optimizations if you know what you are doing. For example:</p>
+<p><strong>Use this for DB-specific extra optimizations, if you know what you are doing.</strong></p>
+<p>If the <code v-pre>:after_latest</code> variable is set to a lambda, pagy will call it with the <code v-pre>set</code> and <code v-pre>latest</code> arguments instead of
+using its auto-generated query to filter out the records after the <code v-pre>latest</code>. It must return the filtered set. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby">after_latest = lambda do |set, latest|
   set.where(my_optimized_query, **latest)
@@ -616,7 +632,7 @@ Pagy::Keyset(set, after_latest:)</code></pre>
    </doc-panel>
    <doc-panel id="typecast-latest" collapsed>
        <template #title><code v-pre>:typecast_latest</code></template>
-<p>A lambda that overrides the automatic typecasting of your ORM. For example: <code v-pre>SQLite</code> stores date and times as strings, and
+<p>A lambda to override the automatic typecasting of your ORM. For example: <code v-pre>SQLite</code> stores date and times as strings, and
 the query interpolation may fail composing and comparing string dates. The <code v-pre>typecast_latest</code> is an effective last-resort
 option when fixing the typecasting in your models and/or the data in your storage is not possible.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -740,7 +756,7 @@ They may have been stored as strings fomatted differently than the default forma
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>Most likely your index is not right, or your case needs a custom query</p>
+            <h5>Most likely your index is not right, or your case needs a custom query</h5>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -757,7 +773,7 @@ They may have been stored as strings fomatted differently than the default forma
 <li>Ensure that the composite index reflects exactly the columns sequence and order of your keyset</li>
 <li>Research about your specific DB features: type of index and performance for different ordering: use SQL <code v-pre>EXPLAIN ANALIZE</code>
 or similar tool to confirm.</li>
-<li>Consider using the same direction order, enablign the <code v-pre>:tuple_comparison</code>, changing type of index (different DBs may behave
+<li>Consider using the same direction order, enabling the <code v-pre>:tuple_comparison</code>, changing type of index (different DBs may behave
 differently)</li>
 <li>Consider using your custom optimized <code v-pre>when</code> query with the <doc-anchor-trigger to="#after-latest">:after_latest</doc-anchor-trigger> variable</li>
 </ul>
