@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.774971833561">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.775017259409">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.774971833561" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.775017259409" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.774971833561" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.775017259409" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.774971833561" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.774971833561" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.775017259409" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.775017259409" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -382,6 +382,9 @@ less convenient for UIs.</p>
         <span>Keyset or Offset pagination?</span>
     </h3>
 </doc-anchor-target>
+<doc-tabs>
+<doc-tab v-cloak id="keyset">
+<template #title>Keyset</template>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -416,6 +419,9 @@ less convenient for UIs.</p>
         </div>
     </div>
 </div>
+</doc-tab>
+<doc-tab v-cloak id="offset">
+<template #title>Offset</template>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -431,7 +437,6 @@ less convenient for UIs.</p>
             <h5>Use Offset pagination with UIs even with large datasets</h5>
 <ul>
 <li>You will get all the frontend features</li>
-<li>It will be easier to maintain because it requires almost no knowledge of SQL</li>
 <li>You can avoid the slowness on big tables by simply limiting the <code v-pre>:max_pages</code> pages: the users would not browse thousands of
 records deep into your collection anyway</li>
 </ul>
@@ -455,32 +460,14 @@ records deep into your collection anyway</li>
         </div>
     </div>
 </div>
-<doc-anchor-target id="overview">
+</doc-tab>
+</doc-tabs>
+<doc-anchor-target id="usage">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#overview">#</doc-anchor-trigger>
-        <span>Overview</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usage">#</doc-anchor-trigger>
+        <span>Usage</span>
     </h2>
 </doc-anchor-target>
-<p>Pagy Keyset pagination does not waste resources and code complexity checking your set and your table config at every request.</p>
-<p>That means that you have to be sure that your set is <code v-pre>uniquely ordered</code> and that your tables have the right indexes (for
-performance). You do it once during development, and pagy will be fast at each request. ;)</p>
-<div class="flex mb-6">
-    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
-    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
-        <div class="flex items-center ml-4 h-7">
-            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
-                <g fill="currentColor"><g>
-                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
-                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
-                </g></g>
-            </svg>
-        </div>
-        <div class="pr-5 ml-3 w-full">
-            <h5>Quick Tip: Order by primary key for instant success</h5>
-<p>If you don&#x27;t have any particular order requirements, <code v-pre>order(:id)</code> is the best choice, because it&#x27;s unique and already indexed.</p>
-        </div>
-    </div>
-</div>
 <doc-anchor-target id="constraints">
     <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#constraints">#</doc-anchor-trigger>
@@ -501,9 +488,7 @@ performance). You do it once during development, and pagy will be fast at each r
         <div class="pr-5 ml-3 w-full">
             <h5>With the keyset pagination technique...</h5>
 <ul>
-<li>You don&#x27;t know the record count nor the page count</li>
-<li>You cannot jump to an arbitrary page (no numbereed pages)</li>
-<li>You can only paginate from one page to the next (in either directions)</li>
+<li>You can only paginate from one page to the next: no jumping to arbitrary pages</li>
 <li>The <code v-pre>set</code> must be <code v-pre>uniquely ordered</code>. Add the primary key (usually <code v-pre>:id</code>) as the last order column to be sure</li>
 <li>You should add the best DB index for your ordering strategy for performance. The keyset pagination would work even without
 any index, but that would defeat its purpose (performance).</li>
@@ -545,25 +530,81 @@ like: <code v-pre>first</code> ... <code v-pre>next</code> ... <code v-pre>next<
         </div>
     </div>
 </div>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span>Setup</span>
+    </h3>
+</doc-anchor-target>
+<p>Pagy Keyset pagination does not waste resources and code complexity checking your set and your table config at every request.</p>
+<p>That means that you have to be sure that your set is <code v-pre>uniquely ordered</code> and that your tables have the right indexes.</p>
+<p><strong>You do it once during development, and pagy will be fast at each request.</strong></p>
+<p>Depending on your order requirements, here is how you set it up:</p>
+<doc-tabs>
+<doc-tab v-cloak id="no-order-requirements">
+<template #title>No order requirements</template>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>If you don&#x27;t need any ordering, <code v-pre>order(:id)</code> is the simplest choice, because it&#x27;s unique and already indexed. It works fast out of the box without any setup.</p>
+        </div>
+    </div>
+</div>
+</doc-tab>
+<doc-tab v-cloak id="specific-order-requirements">
+<template #title>Specific order requirements</template>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-green-500" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M21 9.09c-.55 0-1 .45-1 1v.92c0 4.96-4.04 8.99-9 8.99-4.97 0-9-4.04-9-9s4.04-9 9-9c1.27 0 2.5.26 3.66.78.51.22 1.1 0 1.32-.51.23-.5 0-1.1-.51-1.32C14.06.32 12.56 0 11.01 0H11C4.94 0 0 4.93 0 10.99 0 17.06 4.93 22 10.99 22H11c6.06 0 11-4.93 11-10.99v-.92c0-.56-.45-1-1-1z"></path>
+                    <path d="M8.71 9.31a.996.996 0 10-1.41 1.41l3 3c.19.19.44.29.71.29.27 0 .52-.11.71-.29l10-10.01a.996.996 0 10-1.41-1.41L11 11.6 8.71 9.31z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+<p>If you need a specific order:</p>
+<ul>
+<li><strong>In order to make it work</strong>...<br/>
+Ensure that at least one of your ordered columns is unique OR append your primary keys to your order</li>
+<li><strong>In order to make it fast</strong>...<br/>
+Ensure to create a unique composite DB index, including the exact same columns and ordering direction of your set</li>
+</ul>
+        </div>
+    </div>
+</div>
+</doc-tab>
+</doc-tabs>
 <doc-anchor-target id="how-pagykeyset-works">
-    <h2>
+    <h3>
         <doc-anchor-trigger class="header-anchor-trigger" to="#how-pagykeyset-works">#</doc-anchor-trigger>
         <span>How Pagy::Keyset works</span>
-    </h2>
+    </h3>
 </doc-anchor-target>
 <ul>
 <li>You pass an <code v-pre>uniquely ordered</code> <code v-pre>set</code> and <code v-pre>Pagy::Keyset</code> queries the page of records.</li>
-<li>It keeps track of the <code v-pre>latest</code> fetched  ecord by encoding its <code v-pre>keyset</code> attributes into the <code v-pre>page</code> query string param of the
+<li>It keeps track of the <code v-pre>latest</code> fetched  record by encoding its <code v-pre>keyset</code> attributes into the <code v-pre>page</code> query string param of the
 <code v-pre>next</code> URL.</li>
 <li>At each request, the <code v-pre>:page</code> is decoded and used to prepare a <code v-pre>when</code> clause that filters out the records already fetched, and
 the <code v-pre>:limit</code> of requested records is pulled.</li>
 <li>You know that you reached the end of the collection when <code v-pre>pagy.next.nil?</code>.</li>
 </ul>
 <doc-anchor-target id="orms">
-    <h3>
+    <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#orms">#</doc-anchor-trigger>
         <span>ORMs</span>
-    </h3>
+    </h2>
 </doc-anchor-target>
 <p><code v-pre>Pagy::Keyset</code> implements the subclasses for <code v-pre>ActiveRecord::Relation</code> and <code v-pre>Sequel::Dataset</code> sets and instantiate them internally:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
@@ -674,7 +715,6 @@ Pagy::Keyset(set, typecast_latest:)</code></pre>
         </div>
         <div class="pr-5 ml-3 w-full">
             <h5>Your set is not <code v-pre>uniquely ordered</code></h5>
-<p>Pagy does not check if your set is <code v-pre>uniquely ordered</code> (read why in the <doc-anchor-trigger to="#overview">overview</doc-anchor-trigger>)</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># Neither columns are unique
 Product.order(:name, :production_date)</code></pre>
