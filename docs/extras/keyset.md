@@ -58,10 +58,6 @@ pagy_keyset_next_url_page(@pagy)
 #=> "/foo?page=eyJpZCI6MzB9"
 ```
 
-!!!success Quick Tip: Order by primary key for instant success
-If you don't have any particular order requirements, `order(:id)` is the best choice, because it's unique and already indexed.
-!!!
-
 ## Variables
 
 See the [Pagy::Keyset variables](/docs/api/keyset.md#variables)

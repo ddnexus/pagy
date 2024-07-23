@@ -47,6 +47,7 @@ less convenient for UIs.
 
 ### Keyset or Offset pagination?
 
++++ Keyset
 !!!success Use Keyset pagination with large dataset and API
 You will get the fastest pagination, regardless the table size and the relative position of the page
 
@@ -54,56 +55,71 @@ You will get the fastest pagination, regardless the table size and the relative 
 Only useful when you don't need any frontend (e.g. infinite pagination)
 !!!
 
++++ Offset
 !!!success Use Offset pagination with UIs even with large datasets
 - You will get all the frontend features
-- It will be easier to maintain because it requires almost no knowledge of SQL
 - You can avoid the slowness on big tables by simply limiting the `:max_pages` pages: the users would not browse thousands of
   records deep into your collection anyway 
 
 !!!warning Limited use for APIs
 Your server will suffer on big data and your API will be slower for no good reasons  
 !!!
++++
 
-## Overview
-
-Pagy Keyset pagination does not waste resources and code complexity checking your set and your table config at every request.
-
-That means that you have to be sure that your set is `uniquely ordered` and that your tables have the right indexes (for 
-performance). You do it once during development, and pagy will be fast at each request. ;)
-
-!!!success Quick Tip: Order by primary key for instant success
-If you don't have any particular order requirements, `order(:id)` is the best choice, because it's unique and already indexed.
-!!!
+## Usage
 
 ### Constraints
 
 !!!warning With the keyset pagination technique...
-- You don't know the record count nor the page count
-- You cannot jump to an arbitrary page (no numbereed pages)
-- You can only paginate from one page to the next (in either directions)
+- You can only paginate from one page to the next: no jumping to arbitrary pages
 - The `set` must be `uniquely ordered`. Add the primary key (usually `:id`) as the last order column to be sure
 - You should add the best DB index for your ordering strategy for performance. The keyset pagination would work even without
   any index, but that would defeat its purpose (performance).
-!!!
+  !!!
 
 !!!warning With Pagy::Keyset...
 You don't know the `previous` and the `last` page, you only know the `first` and `next` pages, for performance and simplicity
 
 !!!success
-If you want to paginate backward like: `last` ... `prev` ... `prev` ... just call `reverse_order` on your set and go forward 
-  like: `first` ... `next` ... `next` ... It does exactly the same: just faster and simpler. 
+If you want to paginate backward like: `last` ... `prev` ... `prev` ... just call `reverse_order` on your set and go forward
+like: `first` ... `next` ... `next` ... It does exactly the same: just faster and simpler.
 !!!
 
-## How Pagy::Keyset works
+### Setup
+
+Pagy Keyset pagination does not waste resources and code complexity checking your set and your table config at every request.
+
+That means that you have to be sure that your set is `uniquely ordered` and that your tables have the right indexes.
+
+**You do it once during development, and pagy will be fast at each request.**
+
+Depending on your order requirements, here is how you set it up:
+
++++ No order requirements
+!!!success
+If you don't need any ordering, `order(:id)` is the simplest choice, because it's unique and already indexed. It works fast out of the box without any setup.
+!!!
+
++++ Specific order requirements
+!!!success
+If you need a specific order:
+- **In order to make it work**...<br/> 
+    Ensure that at least one of your ordered columns is unique OR append your primary keys to your order
+- **In order to make it fast**...<br/> 
+    Ensure to create a unique composite DB index, including the exact same columns and ordering direction of your set
+!!!
++++
+
+### How Pagy::Keyset works
 
 - You pass an `uniquely ordered` `set` and `Pagy::Keyset` queries the page of records.
-- It keeps track of the `latest` fetched  ecord by encoding its `keyset` attributes into the `page` query string param of the 
+- It keeps track of the `latest` fetched  record by encoding its `keyset` attributes into the `page` query string param of the 
   `next` URL.
 - At each request, the `:page` is decoded and used to prepare a `when` clause that filters out the records already fetched, and 
   the `:limit` of requested records is pulled.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
 
-### ORMs
+## ORMs
 
 `Pagy::Keyset` implements the subclasses for `ActiveRecord::Relation` and `Sequel::Dataset` sets and instantiate them internally:
 
@@ -191,8 +207,6 @@ Pagy::Keyset(set, typecast_latest:)
 ==- Records may repeat or be missing from successive pages
 
 !!!danger Your set is not `uniquely ordered`
-
-Pagy does not check if your set is `uniquely ordered` (read why in the [overview](#overview))
 
 ```rb
 # Neither columns are unique
