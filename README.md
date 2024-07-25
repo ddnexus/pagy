@@ -106,7 +106,7 @@ Pagy::DEFAULT[:overflow] = :last_page
 
 ```erb
 <%# Render a view helper in your views (skipping nav links for empty pages) %>
-<%= pagy_nav(@pagy) if @pagy.pages > 1 %>
+<%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 ```
 
 Or, choose from the following view helpers:
