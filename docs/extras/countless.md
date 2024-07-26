@@ -96,11 +96,6 @@ This mode is enabled by the `:countless_minimal` variable.
 This method is the same as the generic `pagy` method (see the [pagy doc](/docs/api/backend.md#pagy-collection-vars-nil)), however
 its returned objects will depend on the value of the `:countless_minimal` variable (see [Modes](#modes))
 
-==- `pagy_countless_get_vars(_collection, vars)`
-
-This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_countless` method. (see
-the [pagy_get_vars doc](/docs/api/backend.md#pagy-get-vars-collection-vars)).
-
 ==- `pagy_countless_get_items(collection, pagy)`
 
 This sub-method is similar to the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see

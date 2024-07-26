@@ -69,12 +69,6 @@ See the [Pagy::Keyset variables](/docs/api/keyset.md#variables)
 This method is similar to the offset `pagy` method. It returns the `pagy` object (instance of `Pagy::Keyset::ActiveRecord` or 
 `Pagy::Keyset::Sequel`, depending on the set class) and the array of `records` pulled from the DB.
 
-==- `pagy_keyset_get_vars(vars)`
-
-This sub-method is internally called only by the `pagy_keyset` method. It automatically sets the `:page` variable and - if you 
-use the [limit extra](limit.md) also the `:limit` variables from the request `params`. Documented only for 
-overriding.
-
 ==- `pagy_keyset_first_url(pagy, absolute: false)`
 
 Return the first page URL string. (See also the [headers](headers.md) and [jsonapi](jsonapi.md) extras for more complete solutions)

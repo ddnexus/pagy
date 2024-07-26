@@ -117,7 +117,7 @@ of gaps) you should override the `series` method. See more details and examples
 
 ## Pass the page number
 
-You don't need to explicitly pass the page number to the `pagy` method, because it is pulled in by the `pagy_get_vars` (which is
+You don't need to explicitly pass the page number to the `pagy` method, because it is pulled in by the `pagy_get_page` (which is
 called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For
 example:
 
@@ -619,7 +619,7 @@ from 301 to 315 for the last page.
 
 ## Paginate non-ActiveRecord collections
 
-The `pagy_get_vars` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.)
+The `pagy_get_count` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.)
 you might want to change the `:count_args` default to suite your ORM count method:
 
 ```ruby pagy.rb (initializer)

@@ -59,28 +59,6 @@ describe 'pagy/extras/meilisearch' do
         _(results.to_a).must_rematch :results
       end
     end
-
-    describe '#pagy_meilisearch_get_vars' do
-      it 'gets defaults' do
-        vars   = {}
-        merged = app.send :pagy_meilisearch_get_vars, nil, vars
-        _(merged.keys).must_include :page
-        _(merged.keys).must_include :limit
-        _(merged[:page]).must_equal 3
-        _(merged[:limit]).must_equal 20
-      end
-      it 'gets vars' do
-        vars   = { page: 2, limit: 10, anchor_string: 'X' }
-        merged = app.send :pagy_meilisearch_get_vars, nil, vars
-        _(merged.keys).must_include :page
-        _(merged.keys).must_include :limit
-        _(merged.keys).must_include :anchor_string
-        _(merged[:page]).must_equal 2
-        _(merged[:limit]).must_equal 10
-        _(merged[:anchor_string]).must_equal 'X'
-      end
-    end
-
     describe 'Pagy.new_from_meilisearch' do
       it 'paginates results with defaults' do
         results = MockMeilisearch::Model.ms_search('a')

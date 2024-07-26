@@ -31,11 +31,6 @@ and [meilisearch](/docs/extras/meilisearch.md) extras for specific backend custo
 ```ruby Controller
 include Pagy::Backend
 
-# optional overriding of some sub-method
-def pagy_get_vars(collection, **vars)
-  #...
-end
-
 # use it in some action
 def index
   @pagy, @records = pagy(Product.some_scope, some_option: 'some option for this instance')
@@ -60,25 +55,9 @@ the `Pagy.new` method) and returns the `Pagy` instance and the page of records. 
 @pagy, @records = pagy(Product.my_scope, some_option: 'get merged in the pagy object')
 ```
 
-The built-in `pagy` method is designed to be easy to customize by overriding any of the two sub-methods that it calls internally.
-You can independently change the default variables (`pagy_get_vars`) and/or the default page of items from the
-collection `pagy_get_items`).
-
+The built-in `pagy` method is designed to be easy to customize by overriding any sub-methods that it calls internally.
 If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and
 self contained custom `pagy` method. (see [Writing your own Pagy methods](#writing-your-own-pagy-methods))
-
-==- `pagy_get_vars(collection, vars)`
-
-Sub-method called only by the `pagy` method, it returns the hash of variables used to initialize the Pagy object.
-
-Override it if you need to add or change some variable. For example you may want to add the `:item_name` in order to customize
-the output _(see [How to customize the item name](/docs/how-to.md#customize-the-item-name))_.
-
-!!!warning Don't remove `:count` and `:page`
-If you override it, remember that `:count` and `:page` are the only 2 required Pagy core variables, so be careful not to remove them from the returned hash.
-!!!
-
-See also the [How To](/docs/how-to.md) page for some usage examples.
 
 ==- `pagy_get_count(collection, vars)`
 

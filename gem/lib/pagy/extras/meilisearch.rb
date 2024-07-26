@@ -36,8 +36,9 @@ class Pagy # :nodoc:
 
       # Return Pagy object and results
       def pagy_meilisearch(pagy_search_args, **vars)
+        vars[:page]  ||= (pagy_get_page(vars) || 1).to_i
+        vars[:limit] ||= pagy_get_limit(vars)
         model, term, options    = pagy_search_args
-        vars                    = pagy_meilisearch_get_vars(nil, vars)
         options[:hits_per_page] = vars[:limit]
         options[:page]          = vars[:page]
         results                 = model.send(:ms_search, term, options)
@@ -49,15 +50,6 @@ class Pagy # :nodoc:
                if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
 
         [pagy, results]
-      end
-
-      # Sub-method called only by #pagy_meilisearch: here for easy customization of variables by overriding.
-      # The _collection argument is not available when the method is called.
-      def pagy_meilisearch_get_vars(_collection, vars)
-        vars.tap do |v|
-          v[:page]  ||= pagy_get_page(v)
-          v[:limit] ||= pagy_get_limit(v) || DEFAULT[:limit]
-        end
       end
     end
     Backend.prepend BackendAddOn
