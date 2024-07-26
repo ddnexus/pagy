@@ -91,7 +91,7 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
-    docile (1.4.0)
+    docile (1.4.1)
     domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.13.0)
@@ -169,7 +169,7 @@ GEM
       racc
     psych (5.1.2)
       stringio
-    public_suffix (6.0.0)
+    public_suffix (6.0.1)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)
