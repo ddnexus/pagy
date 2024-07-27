@@ -45,11 +45,11 @@ class Pagy # :nodoc:
       end
 
       # Override the Backend method
-      def pagy_get_page(vars)
-        return super if pagy_skip_jsonapi?(vars)
-        return unless params[:page]
+      def pagy_get_page(vars, force_integer: true)
+        return super if pagy_skip_jsonapi?(vars) || params[:page].nil?
 
-        params[:page][vars[:page_param] || DEFAULT[:page_param]]
+        page = params[:page][vars[:page_param] || DEFAULT[:page_param]]
+        force_integer ? (page || 1).to_i : page
       end
     end
     Backend.prepend BackendOverride

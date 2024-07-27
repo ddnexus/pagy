@@ -38,7 +38,7 @@ class Pagy # :nodoc:
 
       # Return Pagy object and results
       def pagy_searchkick(pagy_search_args, **vars)
-        vars[:page]  ||= (pagy_get_page(vars) || 1).to_i
+        vars[:page]  ||= pagy_get_page(vars)
         vars[:limit] ||= pagy_get_limit(vars)
         model, term, options, block, *called = pagy_search_args
         options[:per_page] = vars[:limit]

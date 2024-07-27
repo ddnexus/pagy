@@ -36,7 +36,7 @@ class Pagy # :nodoc:
 
       # Return Pagy object and results
       def pagy_meilisearch(pagy_search_args, **vars)
-        vars[:page]  ||= (pagy_get_page(vars) || 1).to_i
+        vars[:page]  ||= pagy_get_page(vars)
         vars[:limit] ||= pagy_get_limit(vars)
         model, term, options    = pagy_search_args
         options[:hits_per_page] = vars[:limit]

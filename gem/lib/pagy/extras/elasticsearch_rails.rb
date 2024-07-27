@@ -50,7 +50,7 @@ class Pagy # :nodoc:
 
       # Return Pagy object and records
       def pagy_elasticsearch_rails(pagy_search_args, **vars)
-        vars[:page]  ||= (pagy_get_page(vars) || 1).to_i
+        vars[:page]  ||= pagy_get_page(vars)
         vars[:limit] ||= pagy_get_limit(vars)
         model, query_or_payload, options, *called = pagy_search_args
         options[:size] = vars[:limit]
