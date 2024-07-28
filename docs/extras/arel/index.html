@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.775017259409">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.775472852512">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.775017259409" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.775472852512" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.775017259409" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.775472852512" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.775017259409" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.775017259409" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.775472852512" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.775472852512" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.0.2</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.0.3</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -318,16 +318,11 @@ clause is applied.</p>
 <p>This method is the same as the generic <code v-pre>pagy</code> method, but with improved speed for SQL <code v-pre>GROUP BY</code> collections. (see
 the <a href="../../api/backend/#pagy-collection-vars-nil">pagy doc</a>)</p>
    </doc-panel>
-   <doc-panel id="pagy-arel-get-vars-collection" collapsed>
-       <template #title><code v-pre>pagy_arel_get_vars(collection)</code></template>
-<p>This sub-method is the same as the <code v-pre>pagy_get_vars</code> sub-method, but it is called only by the <code v-pre>pagy_arel</code> method. (see
-the <a href="../../api/backend/#pagy-get-vars-collection-vars">pagy_get_vars doc</a>).</p>
-   </doc-panel>
    <doc-panel id="pagy-arel-count-collection" collapsed>
        <template #title><code v-pre>pagy_arel_count(collection)</code></template>
-<p>This sub-method it is called only by the <code v-pre>pagy_get_vars</code> method. It will detect which query to perform based on the active record
-groups (sql <code v-pre>GROUP BY</code>s). In case there aren&#x27;t group values performs a normal <code v-pre>.count(:all)</code>, otherwise it will perform
-a <code v-pre>COUNT(*) OVER ()</code>. The last tells database to perform a count of all the lines after the <code v-pre>GROUP BY</code> clause is applied.</p>
+<p>This sub-method detects which query to perform based on the active record groups (sql <code v-pre>GROUP BY</code>s). In case there aren&#x27;t
+group values performs a normal <code v-pre>.count(:all)</code>, otherwise it will perform a <code v-pre>COUNT(*) OVER ()</code>. The last tells database to
+perform a count of all the lines after the <code v-pre>GROUP BY</code> clause is applied.</p>
    </doc-panel>
 </doc-panels>
 

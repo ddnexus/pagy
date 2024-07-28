@@ -12,7 +12,9 @@ class Pagy # :nodoc:
 
     # Return Pagy object and records
     def pagy_countless(collection, **vars)
-      pagy = Countless.new(**pagy_countless_get_vars(collection, vars))
+      vars[:limit] ||= pagy_get_limit(vars)
+      vars[:page]  ||= pagy_get_page(vars)
+      pagy = Countless.new(**vars)
       [pagy, pagy_countless_get_items(collection, pagy)]
     end
 
@@ -24,15 +26,6 @@ class Pagy # :nodoc:
       fetched = collection.offset(pagy.offset).limit(pagy.limit + 1).to_a # eager load limit + 1
       pagy.finalize(fetched.size)                                         # finalize the pagy object
       fetched[0, pagy.limit]                                              # ignore eventual extra item
-    end
-
-    # Sub-method called only by #pagy: here for easy customization of variables by overriding
-    # You may need to override the count call for non AR collections
-    def pagy_countless_get_vars(_collection, vars)
-      vars.tap do |v|
-        v[:limit] ||= pagy_get_limit(v)
-        v[:page]  ||= pagy_get_page(v)
-      end
     end
   end
   Backend.prepend CountlessExtra

@@ -10,16 +10,10 @@ class Pagy # :nodoc:
 
     # Return Pagy::Keyset object and paginated records
     def pagy_keyset(set, **vars)
-      pagy = Keyset.new(set, **pagy_keyset_get_vars(vars))
+      vars[:page]  ||= pagy_get_page(vars, force_integer: false) # allow nil
+      vars[:limit] ||= pagy_get_limit(vars)
+      pagy = Keyset.new(set, **vars)
       [pagy, pagy.records]
-    end
-
-    # Sub-method called only by #pagy_keyset: here for easy customization of variables by overriding
-    def pagy_keyset_get_vars(vars)
-      vars.tap do |v|
-        v[:page]  ||= pagy_get_page(v)
-        v[:limit] ||= pagy_get_limit(v)
-      end
     end
 
     # Return the URL string for the first page
