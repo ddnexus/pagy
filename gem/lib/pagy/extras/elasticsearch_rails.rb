@@ -50,13 +50,13 @@ class Pagy # :nodoc:
 
       # Return Pagy object and records
       def pagy_elasticsearch_rails(pagy_search_args, **vars)
-        model, query_or_payload,
-        options, *called = pagy_search_args
-        vars             = pagy_elasticsearch_rails_get_vars(nil, vars)
-        options[:size]   = vars[:limit]
-        options[:from]   = vars[:limit] * ((vars[:page] || 1) - 1)
-        response         = model.send(DEFAULT[:elasticsearch_rails_search], query_or_payload, **options)
-        vars[:count]     = ElasticsearchRailsExtra.total_count(response)
+        vars[:page]  ||= pagy_get_page(vars)
+        vars[:limit] ||= pagy_get_limit(vars)
+        model, query_or_payload, options, *called = pagy_search_args
+        options[:size] = vars[:limit]
+        options[:from] = vars[:limit] * ((vars[:page] || 1) - 1)
+        response       = model.send(DEFAULT[:elasticsearch_rails_search], query_or_payload, **options)
+        vars[:count]   = ElasticsearchRailsExtra.total_count(response)
 
         pagy = ::Pagy.new(**vars)
         # with :last_page overflow we need to re-run the method in order to get the hits
@@ -64,15 +64,6 @@ class Pagy # :nodoc:
                if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
 
         [pagy, called.empty? ? response : response.send(*called)]
-      end
-
-      # Sub-method called only by #pagy_elasticsearch_rails: here for easy customization of variables by overriding
-      # the _collection argument is not available when the method is called
-      def pagy_elasticsearch_rails_get_vars(_collection, vars)
-        vars.tap do |v|
-          v[:page]  ||= pagy_get_page(v)
-          v[:limit] ||= pagy_get_limit(v) || DEFAULT[:limit]
-        end
       end
     end
     Backend.prepend BackendAddOn

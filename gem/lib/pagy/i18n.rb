@@ -118,7 +118,7 @@ class Pagy
 
     # Stores the i18n DATA structure for each loaded locale
     # default on the first locale DATA
-    DATA = Hash.new { |hash, _| hash.first[1] }
+    DATA = Hash.new { |hash,| hash.first[1] }
 
     private
 

@@ -10,7 +10,10 @@ class Pagy
 
     # Return Pagy object and paginated results
     def pagy(collection, **vars)
-      pagy = Pagy.new(**pagy_get_vars(collection, vars))
+      vars[:count] ||= pagy_get_count(collection, vars)
+      vars[:limit] ||= pagy_get_limit(vars)
+      vars[:page]  ||= pagy_get_page(vars)
+      pagy = Pagy.new(**vars)
       [pagy, pagy_get_items(collection, pagy)]
     end
 
@@ -27,22 +30,15 @@ class Pagy
     end
 
     # Override for limit extra
-    def pagy_get_limit(vars); end
+    def pagy_get_limit(_vars)
+      DEFAULT[:limit]
+    end
 
     # Get the page integer from the params
     # Overridable by the jsonapi extra
-    def pagy_get_page(vars)
-      params[vars[:page_param] || DEFAULT[:page_param]]
-    end
-
-    # Sub-method called only by #pagy: here for easy customization of variables by overriding
-    # You may need to override the count call for non AR collections
-    def pagy_get_vars(collection, vars)
-      vars.tap do |v|
-        v[:count] ||= pagy_get_count(collection, v)
-        v[:limit] ||= pagy_get_limit(v)
-        v[:page]  ||= pagy_get_page(v)
-      end
+    def pagy_get_page(vars, force_integer: true)
+      page = params[vars[:page_param] || DEFAULT[:page_param]]
+      force_integer ? (page || 1).to_i : page
     end
   end
 end

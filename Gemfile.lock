@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (9.0.2)
+    pagy (9.0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -91,7 +91,7 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
-    docile (1.4.0)
+    docile (1.4.1)
     domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.13.0)
@@ -157,9 +157,9 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.3)
-    nokogiri (1.16.6-x86_64-darwin)
+    nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.6-x86_64-linux)
+    nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     oj (3.16.4)
       bigdecimal (>= 3.0)
@@ -169,7 +169,7 @@ GEM
       racc
     psych (5.1.2)
       stringio
-    public_suffix (6.0.0)
+    public_suffix (6.0.1)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)

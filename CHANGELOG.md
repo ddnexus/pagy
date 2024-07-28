@@ -23,6 +23,15 @@ If you upgrade from version `< 9.0.0` see the following:
 - None
 <hr>
 
+## Version 9.0.3
+
+- Remove legacy and unused javascript files
+- Improve pagy_get_page with force_integer option
+- Fix jsonapi with keyset
+- Complete the internal refactoring of version 9:
+  - Remove the pagy*_get_vars methods now useless
+  - Use to_i on the page variable for the search extras
+
 ## Version 9.0.2
 
 - Rename and document the link header to pagy_link_header

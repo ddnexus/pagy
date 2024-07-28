@@ -38,8 +38,9 @@ class Pagy # :nodoc:
 
       # Return Pagy object and results
       def pagy_searchkick(pagy_search_args, **vars)
+        vars[:page]  ||= pagy_get_page(vars)
+        vars[:limit] ||= pagy_get_limit(vars)
         model, term, options, block, *called = pagy_search_args
-        vars               = pagy_searchkick_get_vars(nil, vars)
         options[:per_page] = vars[:limit]
         options[:page]     = vars[:page]
         results            = model.send(DEFAULT[:searchkick_search], term, **options, &block)
@@ -51,15 +52,6 @@ class Pagy # :nodoc:
                if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
 
         [pagy, called.empty? ? results : results.send(*called)]
-      end
-
-      # Sub-method called only by #pagy_searchkick: here for easy customization of variables by overriding
-      # the _collection argument is not available when the method is called
-      def pagy_searchkick_get_vars(_collection, vars)
-        vars.tap do |v|
-          v[:page]  ||= pagy_get_page(v)
-          v[:limit] ||= pagy_get_limit(v) || DEFAULT[:limit]
-        end
       end
     end
     Backend.prepend BackendAddOn

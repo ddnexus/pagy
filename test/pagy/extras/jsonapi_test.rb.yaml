@@ -1,13 +1,13 @@
 ---
 pagy/extras/jsonapi___pagy_jsonapi_links_(keyset)_test_0002_sets_the_next_value_to_null_when_the_link_is_unavailable:
   :keyset_result:
-    :first: "/foo?page%5Bsize%5D=50"
+    :first: "/foo?page%5Bsize%5D=50&page%5Blatest%5D"
     :last:
     :prev:
     :next:
 pagy/extras/jsonapi___pagy_jsonapi_links_(keyset)_test_0001_returns_the_ordered_links:
   :keyset_result:
-    :first: "/foo?page%5Blatest%5D=eyJpZCI6MTB9&page%5Bsize%5D=10"
+    :first: "/foo?page%5Blatest%5D&page%5Bsize%5D=10"
     :last:
     :prev:
     :next: "/foo?page%5Blatest%5D=eyJpZCI6MjB9&page%5Bsize%5D=10"

@@ -45,11 +45,11 @@ class Pagy # :nodoc:
       end
 
       # Override the Backend method
-      def pagy_get_page(vars)
-        return super if pagy_skip_jsonapi?(vars)
-        return if params[:page].nil?
+      def pagy_get_page(vars, force_integer: true)
+        return super if pagy_skip_jsonapi?(vars) || params[:page].nil?
 
-        params[:page][vars[:page_param] || DEFAULT[:page_param]]
+        page = params[:page][vars[:page_param] || DEFAULT[:page_param]]
+        force_integer ? (page || 1).to_i : page
       end
     end
     Backend.prepend BackendOverride
@@ -61,7 +61,7 @@ class Pagy # :nodoc:
       # Override the LimitExtra::Backend method
       def pagy_get_limit_param(vars)
         return super if pagy_skip_jsonapi?(vars)
-        return if params[:page].nil?
+        return unless params[:page]
 
         params[:page][vars[:limit_param] || DEFAULT[:limit_param]]
       end
@@ -77,11 +77,8 @@ class Pagy # :nodoc:
         return super unless vars[:jsonapi]
 
         query_params['page'] ||= {}
-        query_params['page'][vars[:page_param].to_s]  = page if page
+        query_params['page'][vars[:page_param].to_s]  = page
         query_params['page'][vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra]
-        # :nocov:
-        query_params.delete(:page) if query_params['page'].empty?
-        # :nocov:
       end
     end
     UrlHelpers.prepend UrlHelperOverride

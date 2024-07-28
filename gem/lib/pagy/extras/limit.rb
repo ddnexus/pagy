@@ -16,8 +16,8 @@ class Pagy # :nodoc:
 
       # Set the limit variable considering the params and other pagy variables
       def pagy_get_limit(vars)
-        return unless vars.key?(:limit_extra) ? vars[:limit_extra] : DEFAULT[:limit_extra] # :limit_extra is false
-        return unless (limit_count = pagy_get_limit_param(vars))                            # no limit from request params
+        return super unless vars.key?(:limit_extra) ? vars[:limit_extra] : DEFAULT[:limit_extra] # :limit_extra is false
+        return super unless (limit_count = pagy_get_limit_param(vars))                            # no limit from request params
 
         vars[:limit] = [limit_count.to_i, vars.key?(:limit_max) ? vars[:limit_max] : DEFAULT[:limit_max]].compact.min
       end

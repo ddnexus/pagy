@@ -3,15 +3,14 @@
 
 require 'json'
 require 'net/http'
+require_relative 'scripty'
 
 USERS_URL_FMT   = 'https://api.github.com/repos/ddnexus/pagy/contributors?page=%s'
 COMMITS_URL_FMT = 'https://github.com/ddnexus/pagy/commits?author=%s'
 IMG_WIDTH = '40'
 MAX_COUNT = 100
-START_TAG = '<!-- top100 start -->'
-END_TAG   = '<!-- top100 end -->'
 
-top100 = "#{START_TAG}\n"
+top100 = +"\n"
 count  = 0
 page   = 1
 until count >= MAX_COUNT || (users = JSON.parse(Net::HTTP.get(URI(format(USERS_URL_FMT, page))))).empty?
@@ -26,11 +25,8 @@ until count >= MAX_COUNT || (users = JSON.parse(Net::HTTP.get(URI(format(USERS_U
   end
   page += 1
 end
-top100 << "\n#{END_TAG}"
+top100 << "\n"
 
-readme_path = File.expand_path('../README.md', __dir__)
-content     = File.read(readme_path)
-content.sub!(/#{START_TAG}.*#{END_TAG}/mo, top100)
-File.write(readme_path, content)
+Scripty.tagged_file_sub('README.md', 'top100', top100)
 
 puts %("Top 100 Contributors" README section updated! (#{count}/#{MAX_COUNT}))

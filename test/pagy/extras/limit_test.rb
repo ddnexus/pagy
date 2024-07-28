@@ -41,18 +41,6 @@ describe 'pagy/extras/limit' do
     before do
       @collection = MockCollection.new
     end
-    it 'uses the defaults' do
-      vars = {}
-      app = MockApp.new
-      %i[pagy_elasticsearch_rails_get_vars pagy_searchkick_get_vars pagy_meilisearch_get_vars].each do |method|
-        merged = app.send method, nil, vars
-        _(merged[:limit]).must_equal 20
-      end
-      %i[pagy_get_vars pagy_array_get_vars pagy_arel_get_vars].each do |method|
-        merged = app.send method, @collection, {}
-        _(merged[:limit]).must_be_nil
-      end
-    end
     it 'uses the vars' do
       limit  = 15
       vars   = { limit: limit } # force limit

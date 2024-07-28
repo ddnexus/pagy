@@ -86,9 +86,4 @@ the [pagy doc](/docs/api/backend.md#pagy-collection-vars-nil))
 
 It expects to receive `YourModel.pagy_search(...)` result and returns the paginated response.
 
-==- `pagy_searchkick_get_vars(array)`
-
-This sub-method is similar to the `pagy_get_vars` sub-method, but it is called only by the `pagy_searchkick` method. (see
-the [pagy_get_vars doc](/docs/api/backend.md#pagy-get-vars-collection-vars)).
-
 ===

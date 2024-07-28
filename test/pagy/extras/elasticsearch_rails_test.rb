@@ -125,28 +125,6 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(records).must_rematch :records
       end
     end
-
-    describe '#pagy_elasticsearch_rails_get_vars' do
-      it 'gets defaults' do
-        vars   = {}
-        merged = app.send :pagy_elasticsearch_rails_get_vars, nil, vars
-        _(merged.keys).must_include :page
-        _(merged.keys).must_include :limit
-        _(merged[:page]).must_equal 3
-        _(merged[:limit]).must_equal 20
-      end
-      it 'gets vars' do
-        vars   = { page: 2, limit: 10, anchor_string: 'X' }
-        merged = app.send :pagy_elasticsearch_rails_get_vars, nil, vars
-        _(merged.keys).must_include :page
-        _(merged.keys).must_include :limit
-        _(merged.keys).must_include :anchor_string
-        _(merged[:page]).must_equal 2
-        _(merged[:limit]).must_equal 10
-        _(merged[:anchor_string]).must_equal 'X'
-      end
-    end
-
     describe 'Pagy.new_from_elasticsearch_rails' do
       it 'paginates response with defaults' do
         response = MockElasticsearchRails::Model.search('a')
