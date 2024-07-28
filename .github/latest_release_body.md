@@ -6,13 +6,15 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.0.2
+### Changes in 9.0.3
 
 <!-- changes_start -->
-- Rename and document the link header to pagy_link_header
-- Add first and next url helpers to the keyset extra; add the keyset section to config/pagy.rb
-- Fix nil page in keyset URL not overriding the params page
-- Extracted shared method
+- Remove legacy and unused javascript files
+- Improve pagy_get_page with force_integer option
+- Fix jsonapi with keyset
+- Complete the internal refactoring of version 9:
+  - Remove the pagy*_get_vars methods now useless
+  - Use to_i on the page variable for the search extras
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
