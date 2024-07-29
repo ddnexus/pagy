@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.description = 'Agnostic pagination in plain ruby. It does it all. Better.'
   s.homepage    = 'https://github.com/ddnexus/pagy'
   s.license     = 'MIT'
-  s.files       = Dir.glob('**/*')
-                     .reject { |f| f.end_with?('.md', '.gemspec') }
-                     .select { |f| File.file?(f) } + ['LICENSE.txt'] # LICENSE.txt is copied and deleted around build
+  s.files       = `git ls-files -z`.split("\0")  # rubocop:disable Packaging/GemspecGit
+                                   .reject { |f| f.end_with?('.md', '.gemspec') } \
+                                   << 'LICENSE.txt'  # LICENSE.txt is copied and deleted around build
   s.metadata    = { 'rubygems_mfa_required' => 'true',
                     'homepage_uri'          => 'https://github.com/ddnexus/pagy',
                     'documentation_uri'     => 'https://ddnexus.github.io/pagy',
