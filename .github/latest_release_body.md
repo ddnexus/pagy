@@ -6,15 +6,11 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.0.3
+### Changes in 9.0.4
 
 <!-- changes_start -->
-- Remove legacy and unused javascript files
-- Improve pagy_get_page with force_integer option
-- Fix jsonapi with keyset
-- Complete the internal refactoring of version 9:
-  - Remove the pagy*_get_vars methods now useless
-  - Use to_i on the page variable for the search extras
+- Fix groupdate timezone error on certain machines/config
+- Fix gem containing tmp files
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

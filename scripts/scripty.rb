@@ -14,11 +14,11 @@ module Scripty
   module_function :ask_and_do
 
   # Warn and exit
-  def die(message)
+  def abort(message)
     warn message
     exit 1
   end
-  module_function :die
+  module_function :abort
 
   # Optional edit
   def file_edit?(name, filepath)
@@ -43,8 +43,8 @@ module Scripty
   def tagged_file_sub(filepath, tag, new_content)
     filepath = ROOT.join(filepath).to_s
     content  = File.read(filepath)
-    content.sub!(/<!-- #{tag}_start -->.*<!-- #{tag}_end -->/m,
-                 "<!-- #{tag}_start -->#{new_content}<!-- #{tag}_end -->")
+    content.sub!(/<!-- #{tag}_start -->\n.*<!-- #{tag}_end -->/m,
+                 "<!-- #{tag}_start -->\n#{new_content}<!-- #{tag}_end -->")
     File.write(filepath, content)
   end
   module_function :tagged_file_sub
@@ -52,7 +52,7 @@ module Scripty
   def tagged_extract(filepath, tag)
     filepath = ROOT.join(filepath).to_s
     content  = File.read(filepath)
-    content[/<!-- #{tag}_start -->(.*)<!-- #{tag}_end -->/m, 1]
+    content[/<!-- #{tag}_start -->\n(.*)<!-- #{tag}_end -->/m, 1]
   end
   module_function :tagged_extract
 end
