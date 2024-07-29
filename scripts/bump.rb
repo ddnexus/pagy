@@ -5,7 +5,7 @@ require 'tempfile'
 require_relative 'scripty'
 
 # Abort if the working tree is dirty
-Scripty.die('Working tree dirty!') unless `git status --porcelain`.empty?
+Scripty.abort('Working tree dirty!') unless `git status --porcelain`.empty?
 
 # Prompt for the new version
 require_relative '../gem/lib/pagy'
@@ -15,14 +15,14 @@ print 'Enter the new version: '
 new_version = gets.chomp
 
 # Abort if the version is missing
-Scripty.die('Missing new version!') if new_version.empty?
+Scripty.abort('Missing new version!') if new_version.empty?
 
 # Abort if the version is invalid
 new_fragments = new_version.split('.')
-Scripty.die('Incomplete semantic version!') if new_fragments.size < 3
+Scripty.abort('Incomplete semantic version!') if new_fragments.size < 3
 
 # Abort if there is no gem change
-Scripty.die("No gem changes since version #{old_version}!") \
+Scripty.abort("No gem changes since version #{old_version}!") \
     if `git diff --name-only --relative=gem "#{old_version}"..HEAD`.empty?
 
 # Bump the version in files
@@ -79,14 +79,14 @@ whats_new_content = Scripty.tagged_extract('README.md', 'whats_new')
 Scripty.tagged_file_sub(release_body_path, 'whats_new', whats_new_content)
 
 # Insert the changes into latest_release_body file
-changes = "\n#{File.read(gitlog.path)}"
+changes = File.read(gitlog.path)
 Scripty.tagged_file_sub(release_body_path, 'changes', changes)
 
 # Edit the Rlease Body?
 Scripty.file_edit?('Release Body', release_body_path)
 
 # Update the CHANGELOG
-Scripty.file_sub('CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_version}\n#{changes}")
+Scripty.file_sub('CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_version}\n\n#{changes}")
 
 # Run the test to check the consistency of versioning across files
 system('bundle exec rake test_version')
