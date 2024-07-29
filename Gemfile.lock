@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (9.0.3)
+    pagy (9.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -287,7 +287,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.16)
+    zeitwerk (2.6.17)
 
 PLATFORMS
   x86_64-darwin-21
