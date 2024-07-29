@@ -64,8 +64,6 @@ require 'pagy/extras/bootstrap'
 Pagy::DEFAULT.freeze
 
 # Groupdate initializer  (https://github.com/ankane/groupdate)
-# Groupdate does not support the time zone with sqlite, so for this demo we can live with UTC
-Groupdate.time_zone = false
 # Groupdate week_start default is :sunday, while rails and pagy default to :monday
 Groupdate.week_start = :monday
 
@@ -120,8 +118,10 @@ class EventsController < ActionController::Base
   end
 
   def index
-    # We need UTC to work with the limitation of groupdate with sqlite
-    Time.zone = 'UTC'
+    # Groupdate does not support time zones with SQLite.
+    # 'UTC' does not work on certain machines config (pulling the actual local time zone utc_offset)
+    # so for this demo we use a different zone with utc_offset 0
+    Time.zone = 'GMT'
     # Default calendar
     # The conf Hash defines the pagy objects variables keyed by calendar unit and the final pagy standard object
     # The :skip is an optional and arbitrarily named param that skips the calendar pagination and uses only the pagy
