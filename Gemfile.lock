@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (9.0.4)
+    pagy (9.0.5)
 
 GEM
   remote: https://rubygems.org/
@@ -144,7 +144,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     multi_json (1.15.0)
-    mustermann (3.0.0)
+    mustermann (3.0.1)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
     net-imap (0.4.14)
@@ -172,7 +172,7 @@ GEM
     public_suffix (6.0.1)
     puma (6.4.2)
       nio4r (~> 2.0)
-    racc (1.8.0)
+    racc (1.8.1)
     rack (3.1.7)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
@@ -226,10 +226,10 @@ GEM
     rematch (3.1.0)
     rerun (0.14.0)
       listen (~> 3.0)
-    rexml (3.3.2)
+    rexml (3.3.4)
       strscan
     rouge (4.3.0)
-    rubocop (1.65.0)
+    rubocop (1.65.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -254,7 +254,7 @@ GEM
       rubocop (~> 1.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    sequel (5.82.0)
+    sequel (5.83.0)
       bigdecimal
     simplecov (0.22.0)
       docile (~> 1.1)

@@ -6,11 +6,10 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.0.4
+### Changes in 9.0.5
 
 <!-- changes_start -->
-- Fix groupdate timezone error on certain machines/config
-- Fix gem containing tmp files
+- Fix for missing variables passed to pagy_anchor from pagy_nav (closes #728)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
