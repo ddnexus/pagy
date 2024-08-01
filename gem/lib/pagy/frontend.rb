@@ -46,9 +46,9 @@ class Pagy
     end
 
     # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, id: nil, aria_label: nil, anchor_string: nil, **vars)
+    def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
       id = %( id="#{id}") if id
-      a  = pagy_anchor(pagy, anchor_string:)
+      a  = pagy_anchor(pagy, **vars)
 
       html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}>#{
                  prev_a(pagy, a)})
