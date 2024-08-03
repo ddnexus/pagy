@@ -13,13 +13,6 @@ module Scripty
   end
   module_function :ask_and_do
 
-  # Warn and exit
-  def abort(message)
-    warn message
-    exit 1
-  end
-  module_function :abort
-
   # Optional edit
   def file_edit?(name, filepath)
     filepath = ROOT.join(filepath).to_s
@@ -39,6 +32,14 @@ module Scripty
   end
   module_function :file_sub
 
+  # Extract a tagged string in filepth
+  def tagged_extract(filepath, tag)
+    filepath = ROOT.join(filepath).to_s
+    content  = File.read(filepath)
+    content[/<!-- #{tag}_start -->\n(.*)<!-- #{tag}_end -->/m, 1]
+  end
+  module_function :tagged_extract
+
   # Substitute a tagged string in filepth
   def tagged_file_sub(filepath, tag, new_content)
     filepath = ROOT.join(filepath).to_s
@@ -48,11 +49,4 @@ module Scripty
     File.write(filepath, content)
   end
   module_function :tagged_file_sub
-
-  def tagged_extract(filepath, tag)
-    filepath = ROOT.join(filepath).to_s
-    content  = File.read(filepath)
-    content[/<!-- #{tag}_start -->\n(.*)<!-- #{tag}_end -->/m, 1]
-  end
-  module_function :tagged_extract
 end

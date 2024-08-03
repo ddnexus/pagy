@@ -11,7 +11,7 @@ body:
         
         Please, understand that code issues are reserved for real, reproducible pagy bugs.
         
-        _If you are not sure that your problem is actually a bug,
+        _If you are not sure that your problem is actually a bug, or you have problems reproducing it,
         please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a) instead._
 
   - type: checkboxes
@@ -38,7 +38,7 @@ body:
         
         #### 👍 VALID code files 
         
-          - Edited copy of a single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/playground) 
+          - (Edited) copy of a single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/playground) 
           - Link to a pagy fork containing an added test file
           - A plain ruby file that can run as a single command like `ruby my_issue.rb`
           _(without any other setup step, installation or guessing, and with no or minimal interaction required)_
