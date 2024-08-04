@@ -9,12 +9,8 @@ icon: play-24
 You can showcase, clone and develop a few pagy APPs without the need to setup anything on your side!
 
 ```sh
-$ pagy --help
+$ bundle exec pagy --help
 ```
-
-!!!warning `bundle exec pagy`
-Depending on your environment you may need to prepend `bundle exec` in all the examples shown.
-!!!
 
 ### Pagy Apps
 
@@ -28,7 +24,7 @@ You can use this app as a starting point to try pagy or reproduce issues, in ord
 ||| Clone the `repro` app
 
 ```sh
-pagy clone repro
+bundle exec pagy clone repro
 ```
 
 You should find the `./repro.ru` cloned app file in the current dir. Feel free to rename or move it as you like.
@@ -40,7 +36,7 @@ This command runs your `rackup` app with a `puma` server. It also uses `rerun` t
 linux platforms):
 
 ```sh
-pagy path/to/your-repro.ru
+bundle exec pagy path/to/your-repro.ru
 ```
 
 Point a browser to http://0.0.0.0:8000
@@ -61,8 +57,8 @@ checks by passing the `--no-istall` flag
 You can use this app as a starting point to reproduce **rails related** pagy issues. It has the same usage as the [Repro App](#1-repro-app). i.e.:
 
 ```sh
-pagy clone rails
-pagy ./rails.ru
+bundle exec pagy clone rails
+bundle exec pagy ./rails.ru
 ```
 
 #### 3. Demo App
@@ -81,7 +77,7 @@ pagy demo
 ...and point your browser to http://0.0.0.0:8000
 !!!
 
-_Run `pagy clone demo` to inspect the app file_
+_Run `bundle exec pagy clone demo` to inspect the app file_
 
 If you want to see how your CSSs changes look, you can follow the same usage as the [Repro App](#1-repro-app) to iterate through
 changes.
@@ -95,13 +91,13 @@ This is the interactive showcase/repro for the calendar extra:
 Run the interactive demo from your terminal:
 
 ```sh
-pagy calendar
+bundle exec pagy calendar
 ```
 
 ...and point your browser to http://0.0.0.0:8000
 !!!
 
-_Run `pagy clone calendar` to inspect the app file._
+_Run `bundle exec pagy clone calendar` to inspect the app file._
 
 If you need to reproduce any calendar related issue, you can follow the same usage as the [Repro App](#1-repro-app).
 
@@ -114,8 +110,8 @@ This are the interactive showcase/repro for the keyset extra with `ActiveRecord`
 Run the interactive demo from your terminal:
 
 ```sh
-pagy keyset_ar
-pagy keyset_s
+bundle exec pagy keyset_ar
+bundle exec pagy keyset_s
 ```
 
 ...and point your browser to http://0.0.0.0:8000

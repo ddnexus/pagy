@@ -2,7 +2,7 @@
 
 Pull Requests are welcome!
 
-Here are a few useful information for contributors:
+Here are a few useful information for contributing:
 
 1. If you are planning for a complex PR, we suggest that you check before hand whether your
    proposed changes are going to be accepted by posting your ideas in

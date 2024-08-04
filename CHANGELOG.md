@@ -23,6 +23,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - None
 <hr>
 
+## Version 9.0.5
+
+- Fix for missing variables passed to pagy_anchor from pagy_nav (closes #728)
+
 ## Version 9.0.4
 
 - Fix groupdate timezone error on certain machines/config

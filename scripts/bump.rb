@@ -5,7 +5,7 @@ require 'tempfile'
 require_relative 'scripty'
 
 # Abort if the working tree is dirty
-Scripty.abort('Working tree dirty!') unless `git status --porcelain`.empty?
+abort('Working tree dirty!') unless `git status --porcelain`.empty?
 
 # Prompt for the new version
 require_relative '../gem/lib/pagy'
@@ -15,14 +15,14 @@ print 'Enter the new version: '
 new_version = gets.chomp
 
 # Abort if the version is missing
-Scripty.abort('Missing new version!') if new_version.empty?
+abort('Missing new version!') if new_version.empty?
 
 # Abort if the version is invalid
 new_fragments = new_version.split('.')
-Scripty.abort('Incomplete semantic version!') if new_fragments.size < 3
+abort('Incomplete semantic version!') if new_fragments.size < 3
 
 # Abort if there is no gem change
-Scripty.abort("No gem changes since version #{old_version}!") \
+abort("No gem changes since version #{old_version}!") \
     if `git diff --name-only --relative=gem "#{old_version}"..HEAD`.empty?
 
 # Bump the version in files
