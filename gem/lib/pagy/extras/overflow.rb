@@ -28,8 +28,8 @@ class Pagy # :nodoc:
           @vars[:page] = requested_page                # restore the requested page
         when :empty_page
           @offset = @limit = @in = @from = @to = 0     # vars relative to the actual page
-          if defined?(Calendar::Unit) \
-              && is_a?(Calendar::Unit)                 # only for Calendar::Units instances
+          if defined?(Pagy::Calendar::Unit) \
+              && is_a?(Pagy::Calendar::Unit)           # only for Calendar::Units instances
             edge = @order == :asc ? @final : @initial  # get the edge of the overflow side (neat, but any time would do)
             @from = @to = edge                         # set both to the edge utc time (a >=&&< query will get no records)
           end
@@ -52,7 +52,7 @@ class Pagy # :nodoc:
       end
     end
     Pagy.prepend PagyOverride
-    Pagy::Calendar::Unit.prepend PagyOverride if defined?(Calendar::Unit)
+    Pagy::Calendar::Unit.prepend PagyOverride if defined?(Pagy::Calendar::Unit)
 
     # Support for Pagy::Countless class
     module CountlessOverride
@@ -75,7 +75,7 @@ class Pagy # :nodoc:
       end
     end
     # :nocov:
-    Pagy::Countless.prepend CountlessOverride if defined?(Countless)
+    Pagy::Countless.prepend CountlessOverride if defined?(Pagy::Countless)
     # :nocov:
   end
 end
