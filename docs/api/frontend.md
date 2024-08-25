@@ -122,8 +122,12 @@ my_link = a.(page_number, text, classes:, aria_label:)
 
 #### The anchor_string argument
 
-If you need to add some HTML attribute to ALL the page links, you can pass the `:anchor_string` keyword argument to any pagy 
-helper, or if you use templates or override helpers, you can pass it also to the `pagy_anchor` method.
+This argument is typically used for passing `data-*` attributes to the enabled anchor. Avoid using it for attributes that have 
+more specific ways to be set (e.g.: `class` should be added with a specific CSS rule).
+
+If you need to add some HTML attribute to ALL the enbled page links (no `current` nor `gap`), you can pass the `:anchor_string` 
+keyword argument to any pagy helper, or if you use templates or override helpers, you can pass it also to the `pagy_anchor` 
+method. 
 
 !!!warning Attributes Must be Valid HTML
 For performance reasons, the `:anchor_string` string must be formatted as valid HTML attribute/value pairs because it will get 
