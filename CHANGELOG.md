@@ -23,6 +23,11 @@ If you upgrade from version `< 9.0.0` see the following:
 - None
 <hr>
 
+## Version 9.0.6
+
+- Fix docs (closes #732)
+- Replace pluck with pick
+
 ## Version 9.0.5
 
 - Fix for missing variables passed to pagy_anchor from pagy_nav (closes #728)

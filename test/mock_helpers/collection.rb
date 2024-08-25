@@ -20,19 +20,15 @@ class MockCollection < Array
   end
 
   def limit(value)
-    if value == 1
-      self # used in pluck
-    else
-      @collection[0, value]
-    end
+    @collection[0, value]
   end
 
   def count(*)
     size
   end
 
-  def pluck(*)
-    [size]
+  def pick(*)
+    size
   end
 
   def group_values

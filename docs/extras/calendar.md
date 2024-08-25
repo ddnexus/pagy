@@ -209,7 +209,7 @@ end
 
 # Faster version with manual pluck (1 query)
 def pagy_calendar_period(collection)
-  minmax = collection.pluck('MIN(created_at)', 'MAX(created_at)').first
+  minmax = collection.pick('MIN(created_at)', 'MAX(created_at)')
   minmax.map { |time| Time.parse(time).in_time_zone }
 end
 

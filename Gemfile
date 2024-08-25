@@ -12,6 +12,7 @@ group :test do
   gem 'i18n'
   gem 'minitest'
   gem 'minitest-reporters'
+  gem 'mutex_m'
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
   gem 'rematch'
