@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '9.0.5'
+VERSION = '9.0.6'
 APPS    = %w[repro rails demo calendar keyset_ar keyset_s].freeze
 LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
 HOST    = '0.0.0.0'
