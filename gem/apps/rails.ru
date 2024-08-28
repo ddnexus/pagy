@@ -91,8 +91,9 @@ class Comment < ActiveRecord::Base # :nodoc:
   belongs_to :post
 end # :nodoc:
 
-module Calendar # :nodoc:
-end # :nodoc:
+# Unused model, useful to test overriding conflicts
+module Calendar
+end
 
 # DB seed
 1.upto(11) do |pi|
