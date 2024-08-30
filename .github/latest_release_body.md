@@ -6,11 +6,10 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.0.6
+### Changes in 9.0.7
 
 <!-- changes_start -->
-- Fix docs (closes #732)
-- Replace pluck with pick
+- Absolutize generic define? to fix module resolution
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

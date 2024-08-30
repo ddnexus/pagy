@@ -23,6 +23,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - None
 <hr>
 
+## Version 9.0.7
+
+- Absolutize generic define? to fix module resolution
+
 ## Version 9.0.6
 
 - Fix docs (closes #732)
