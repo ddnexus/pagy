@@ -17,7 +17,7 @@ class Pagy # :nodoc:
     def pagy_metadata(pagy, absolute: nil)
       scaffold_url = pagy_url_for(pagy, PAGE_TOKEN, absolute:)
       {}.tap do |metadata|
-        keys = if defined?(Calendar::Unit) && pagy.is_a?(Calendar::Unit)
+        keys = if defined?(::Pagy::Calendar::Unit) && pagy.is_a?(Calendar::Unit)
                  pagy.vars[:metadata] - %i[count limit]
                else
                  pagy.vars[:metadata]
