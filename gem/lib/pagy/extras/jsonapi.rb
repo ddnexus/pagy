@@ -24,7 +24,7 @@ class Pagy # :nodoc:
 
       # Return the jsonapi links
       def pagy_jsonapi_links(pagy, **opts)
-        if defined?(Pagy::Keyset) && pagy.is_a?(Pagy::Keyset)
+        if defined?(::Pagy::Keyset) && pagy.is_a?(Keyset)
           { first: pagy_url_for(pagy, nil, **opts),
             last: nil,
             prev: nil,
@@ -67,7 +67,7 @@ class Pagy # :nodoc:
       end
     end
     # :nocov:
-    LimitExtra::BackendAddOn.prepend LimitExtraOverride if defined?(LimitExtra::BackendAddOn)
+    LimitExtra::BackendAddOn.prepend LimitExtraOverride if defined?(::Pagy::LimitExtra::BackendAddOn)
     # :nocov:
 
     # Module overriding UrlHelper

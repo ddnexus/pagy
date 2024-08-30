@@ -63,6 +63,7 @@ end
 require 'pagy/extras/pagy'
 require 'pagy/extras/limit'
 require 'pagy/extras/overflow'
+require 'pagy/extras/headers'
 Pagy::DEFAULT[:limit]    = 10
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT.freeze
@@ -90,6 +91,10 @@ class Comment < ActiveRecord::Base # :nodoc:
   belongs_to :post
 end # :nodoc:
 
+# Unused model, useful to test overriding conflicts
+module Calendar
+end
+
 # DB seed
 1.upto(11) do |pi|
   Post.create(title: "Post #{pi + 1}")
@@ -110,6 +115,7 @@ class CommentsController < ActionController::Base # :nodoc:
 
   def index
     @pagy, @comments = pagy(Comment.all)
+    pagy_headers_merge(@pagy)
     render inline: TEMPLATE
   end
 end

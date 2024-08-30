@@ -44,11 +44,11 @@ class Pagy # :nodoc:
         end
       end
     end
-    Calendar::Unit.prepend CalendarOverride if defined?(Calendar::Unit)
+    Calendar::Unit.prepend CalendarOverride if defined?(::Pagy::Calendar::Unit)
 
     # Additions for the Frontend
     module FrontendAddOn
-      if defined?(Oj)
+      if defined?(::Oj)
         # Return a data tag with the base64 encoded JSON-serialized args generated with the faster oj gem
         # Base64 encoded JSON is smaller than HTML escaped JSON
         def pagy_data(pagy, *args)
