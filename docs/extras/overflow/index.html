@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.778308217163">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.778428726311">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.778308217163" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.778428726311" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.778308217163" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.778428726311" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.778308217163" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.778308217163" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.778428726311" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.778428726311" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.0.7</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.0.8</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -371,7 +371,8 @@ pagy.last == pagy.page  #=&gt; false
 pagy.last               #=&gt; 5
 pagy.last == pagy.prev  #=&gt; true (the prev page is the last page relative to the overflowing page)
 pagy.next               #=&gt; nil
-pagy.offset             #=&gt; 0
+pagy.limit              #=&gt; 20 (Pagy::DEFAULT[:limit])
+pagy.offset             #=&gt; 1980
 pagy.from               #=&gt; 0
 pagy.to                 #=&gt; 0
 pagy.series             #=&gt;  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)</code></pre>
@@ -390,7 +391,8 @@ pagy.last == pagy.page  #=&gt; false
 pagy.last               #=&gt; nil
 pagy.last == pagy.prev  #=&gt; true (but nil)
 pagy.next               #=&gt; nil
-pagy.offset             #=&gt; 0
+pagy.limit              #=&gt; 20 (Pagy::DEFAULT[:limit])
+pagy.offset             #=&gt; 1980
 pagy.from               #=&gt; 0
 pagy.to                 #=&gt; 0
 pagy.series             #=&gt;  [] (no pages)</code></pre>
@@ -400,25 +402,25 @@ pagy.series             #=&gt;  [] (no pages)</code></pre>
 <pre class="language-ruby"><code v-pre class="language-ruby">require 'pagy/calendar'
 require 'pagy/extras/overflow'
 
-local_time = Time.new(2021, 10, 20, 10, 10, 10, '-09:00')
-# =&gt; 2021-10-20 10:10:10 -0900
-pagy = Pagy::Calendar::Month.new(period: [local_time, local_time + 60*60*24*130], page: 100)
+Time.zone = 'Eastern Time (US &amp; Canada)'
+period    = [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)]
+pagy      = Pagy::Calendar::Month.new(period: [local_time, local_time + 60*60*24*130], page: 100)
 
 pagy.overflow?          #=&gt; true
 pagy.vars[:page]        #=&gt; 100 (requested page)
 pagy.page               #=&gt; 100 (actual empty page)
 pagy.last == pagy.page  #=&gt; false
-pagy.last               #=&gt; 5
+pagy.last               #=&gt; 26
 pagy.last == pagy.prev  #=&gt; true (the prev page is the last page relative to the overflowing page)
 pagy.next               #=&gt; nil
-pagy.from               #=&gt; 2022-03-01 00:00:00 -0900 (end time of the final unit)
-pagy.to                 #=&gt; 2022-03-01 00:00:00 -0900 (same as from: if used it gets no records)
-pagy.series             #=&gt;  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
+pagy.from               #=&gt; Fri, 01 Dec 2023 00:00:00.000000000 EST -05:00 (end time of the final unit)
+pagy.to                 #=&gt; Fri, 01 Dec 2023 00:00:00.000000000 EST -05:00 (same as from: if used it gets no records)
+pagy.series             #=&gt;  [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26] (no string, so no current page highlighted in the UI)
 
 # small difference with order: :desc, which yield the same result of an empty page
 pagy = Pagy::Calendar::Month.new(order: :desc, period: [local_time, local_time + 60*60*24*130], page: 100)
-pagy.from               #=&gt; 2021-10-01 00:00:00 -0900 (start time of initial unit)
-pagy.to                 #=&gt; 2021-10-01 00:00:00 -0900 (same as from: if used it gets no records)</code></pre>
+pagy.from               #=&gt; Fri, 01 Oct 2021 00:00:00.000000000 EDT -04:00 (start time of initial unit)
+pagy.to                 #=&gt; Fri, 01 Oct 2021 00:00:00.000000000 EDT -04:00 (same as from: if used it gets no records)</code></pre>
 </doc-codeblock></div>
 </doc-tab>
 <doc-tab v-cloak id="last-page">
