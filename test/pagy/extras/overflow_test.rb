@@ -71,8 +71,8 @@ describe 'pagy/extras/overflow' do
     it 'works in :empty_page mode in Pagy' do
       pagy = Pagy.new(**pagy_vars.merge(overflow: :empty_page))
       _(pagy.page).must_equal 100
-      _(pagy.offset).must_equal 0
-      _(pagy.limit).must_equal 0
+      _(pagy.offset).must_equal 990
+      _(pagy.limit).must_equal 10
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0

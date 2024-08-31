@@ -70,7 +70,8 @@ pagy.last == pagy.page  #=> false
 pagy.last               #=> 5
 pagy.last == pagy.prev  #=> true (the prev page is the last page relative to the overflowing page)
 pagy.next               #=> nil
-pagy.offset             #=> 0
+pagy.limit              #=> 20 (Pagy::DEFAULT[:limit])
+pagy.offset             #=> 1980
 pagy.from               #=> 0
 pagy.to                 #=> 0
 pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
@@ -89,7 +90,8 @@ pagy.last == pagy.page  #=> false
 pagy.last               #=> nil
 pagy.last == pagy.prev  #=> true (but nil)
 pagy.next               #=> nil
-pagy.offset             #=> 0
+pagy.limit              #=> 20 (Pagy::DEFAULT[:limit])
+pagy.offset             #=> 1980
 pagy.from               #=> 0
 pagy.to                 #=> 0
 pagy.series             #=>  [] (no pages)
@@ -99,25 +101,25 @@ pagy.series             #=>  [] (no pages)
 require 'pagy/calendar'
 require 'pagy/extras/overflow'
 
-local_time = Time.new(2021, 10, 20, 10, 10, 10, '-09:00')
-# => 2021-10-20 10:10:10 -0900
-pagy = Pagy::Calendar::Month.new(period: [local_time, local_time + 60*60*24*130], page: 100)
+Time.zone = 'Eastern Time (US & Canada)'
+period    = [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)]
+pagy      = Pagy::Calendar::Month.new(period: [local_time, local_time + 60*60*24*130], page: 100)
 
 pagy.overflow?          #=> true
 pagy.vars[:page]        #=> 100 (requested page)
 pagy.page               #=> 100 (actual empty page)
 pagy.last == pagy.page  #=> false
-pagy.last               #=> 5
+pagy.last               #=> 26
 pagy.last == pagy.prev  #=> true (the prev page is the last page relative to the overflowing page)
 pagy.next               #=> nil
-pagy.from               #=> 2022-03-01 00:00:00 -0900 (end time of the final unit)
-pagy.to                 #=> 2022-03-01 00:00:00 -0900 (same as from: if used it gets no records)
-pagy.series             #=>  [1, 2, 3, 4, 5] (no string, so no current page highlighted in the UI)
+pagy.from               #=> Fri, 01 Dec 2023 00:00:00.000000000 EST -05:00 (end time of the final unit)
+pagy.to                 #=> Fri, 01 Dec 2023 00:00:00.000000000 EST -05:00 (same as from: if used it gets no records)
+pagy.series             #=>  [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26] (no string, so no current page highlighted in the UI)
 
 # small difference with order: :desc, which yield the same result of an empty page
 pagy = Pagy::Calendar::Month.new(order: :desc, period: [local_time, local_time + 60*60*24*130], page: 100)
-pagy.from               #=> 2021-10-01 00:00:00 -0900 (start time of initial unit)
-pagy.to                 #=> 2021-10-01 00:00:00 -0900 (same as from: if used it gets no records)
+pagy.from               #=> Fri, 01 Oct 2021 00:00:00.000000000 EDT -04:00 (start time of initial unit)
+pagy.to                 #=> Fri, 01 Oct 2021 00:00:00.000000000 EDT -04:00 (same as from: if used it gets no records)
 ```
 
 +++ :last_page
