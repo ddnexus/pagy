@@ -27,11 +27,11 @@ class Pagy # :nodoc:
           initialize(**vars, page: @last)              # re-run with the last page
           @vars[:page] = requested_page                # restore the requested page
         when :empty_page
-          @offset = @limit = @in = @from = @to = 0     # vars relative to the actual page
+          @in = @from = @to = 0                        # vars relative to the actual page
           if defined?(::Pagy::Calendar::Unit) \
               && is_a?(Calendar::Unit)                 # only for Calendar::Units instances
             edge = @order == :asc ? @final : @initial  # get the edge of the overflow side (neat, but any time would do)
-            @from = @to = edge                         # set both to the edge utc time (a >=&&< query will get no records)
+            @from = @to = edge                         # set both to the edge time (a >=&&< query will get no records)
           end
           @prev = @last                                # prev relative to the actual page
           extend Series                                # special series for :empty_page
