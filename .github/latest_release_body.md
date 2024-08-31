@@ -6,10 +6,10 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.0.7
+### Changes in 9.0.8
 
 <!-- changes_start -->
-- Absolutize generic define? to fix module resolution
+- Keep offset and limit variables untouched by the overflow extra in :empty_page mode (closes #733)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

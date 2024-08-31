@@ -23,6 +23,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - None
 <hr>
 
+## Version 9.0.8
+
+- Keep offset and limit variables untouched by the overflow extra in :empty_page mode (closes #733)
+
 ## Version 9.0.7
 
 - Absolutize generic define? to fix module resolution
