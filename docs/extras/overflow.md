@@ -103,7 +103,7 @@ require 'pagy/extras/overflow'
 
 Time.zone = 'Eastern Time (US & Canada)'
 period    = [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)]
-pagy      = Pagy::Calendar::Month.new(period: [local_time, local_time + 60*60*24*130], page: 100)
+pagy      = Pagy::Calendar::Month.new(period:, page: 100)
 
 pagy.overflow?          #=> true
 pagy.vars[:page]        #=> 100 (requested page)
@@ -117,7 +117,7 @@ pagy.to                 #=> Fri, 01 Dec 2023 00:00:00.000000000 EST -05:00 (same
 pagy.series             #=>  [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26] (no string, so no current page highlighted in the UI)
 
 # small difference with order: :desc, which yield the same result of an empty page
-pagy = Pagy::Calendar::Month.new(order: :desc, period: [local_time, local_time + 60*60*24*130], page: 100)
+pagy = Pagy::Calendar::Month.new(order: :desc, period:, page: 100)
 pagy.from               #=> Fri, 01 Oct 2021 00:00:00.000000000 EDT -04:00 (start time of initial unit)
 pagy.to                 #=> Fri, 01 Oct 2021 00:00:00.000000000 EDT -04:00 (same as from: if used it gets no records)
 ```
