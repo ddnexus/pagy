@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.778486748496">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.778832534162">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.5.0.778486748496" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.5.0.778832534162" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.778486748496" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.5.0.778832534162" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.778486748496" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.778486748496" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.5.0.778832534162" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.5.0.778832534162" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -321,10 +321,10 @@ easily integrate it with your app.</p>
         <span>Concept</span>
     </h2>
 </doc-anchor-target>
-<p>The &quot;Keyset&quot; pagination, also known as &quot;SQL Seek Method&quot; (and often, improperly called &quot;Cursor&quot; pagination) is a tecnique
+<p>The &quot;Keyset&quot; pagination, also known as &quot;SQL Seek Method&quot; (and often, improperly called &quot;Cursor&quot; pagination) is a technique
 that avoids the inevitable slowness of querying pages deep into a collection (i.e. when <code v-pre>offset</code> is a big number, you&#x27;re
 going to get slower queries).</p>
-<p>This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and
+<p>This technique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and
 less convenient for UIs.</p>
 <doc-anchor-target id="glossary">
     <h3>
@@ -347,7 +347,7 @@ less convenient for UIs.</p>
 </tr>
 <tr>
 <td><code v-pre>keyset pagination</code></td>
-<td>Technique to fetch the next page starting from the <code v-pre>latest</code> fetched record in an <code v-pre>uniquely ordered</code> collection.<br/>It requires only one query per page: it&#x27;s very fast regardless the table size and position (if properly idexed). It has a very limited usage in frontend.</td>
+<td>Technique to fetch the next page starting from the <code v-pre>latest</code> fetched record in an <code v-pre>uniquely ordered</code> collection.<br/>It requires only one query per page: it&#x27;s very fast regardless the table size and position (if properly indexed). It has a very limited usage in frontend.</td>
 </tr>
 <tr>
 <td><code v-pre>uniquely ordered</code></td>
@@ -653,7 +653,7 @@ automatically assigned from the <code v-pre>limit</code> request param.</p>
    </doc-panel>
    <doc-panel id="tuple-comparison">
        <template #title><code v-pre>:tuple_comparison</code></template>
-<p>Boolish variable that enables the tuple comparison e.g. <code v-pre>(brand, id) &gt; (:brand, :id)</code>. It works only for same direction order,
+<p>Boolean variable that enables the tuple comparison e.g. <code v-pre>(brand, id) &gt; (:brand, :id)</code>. It works only for same direction order,
 hence it&#x27;s ignored for mixed order. Check how your DB supports it (your <code v-pre>keyset</code> should include only <code v-pre>NOT NULL</code> columns).
 Default
 <code v-pre>nil</code>.</p>
@@ -756,7 +756,7 @@ Product.order(:name, :production_date, :id)</code></pre>
         <div class="pr-5 ml-3 w-full">
             <h5>... or you have a typecasting problem</h5>
 <p>Your ORM and the storage formats don&#x27;t match for one or more columns. It&#x27;s a common case with <code v-pre>SQLite</code> and Time columns.
-They may have been stored as strings fomatted differently than the default format used by your current ORM.</p>
+They may have been stored as strings formatted differently than the default format used by your current ORM.</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -811,7 +811,7 @@ They may have been stored as strings fomatted differently than the default forma
         <div class="pr-5 ml-3 w-full">
 <ul>
 <li>Ensure that the composite index reflects exactly the columns sequence and order of your keyset</li>
-<li>Research about your specific DB features: type of index and performance for different ordering: use SQL <code v-pre>EXPLAIN ANALIZE</code>
+<li>Research about your specific DB features: type of index and performance for different ordering: use SQL <code v-pre>EXPLAIN ANALYZE</code>
 or similar tool to confirm.</li>
 <li>Consider using the same direction order, enabling the <code v-pre>:tuple_comparison</code>, changing type of index (different DBs may behave
 differently)</li>
