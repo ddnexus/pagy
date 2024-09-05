@@ -25,11 +25,11 @@ easily integrate it with your app.
 
 ## Concept
 
-The "Keyset" pagination, also known as "SQL Seek Method" (and often, improperly called "Cursor" pagination) is a tecnique
+The "Keyset" pagination, also known as "SQL Seek Method" (and often, improperly called "Cursor" pagination) is a technique
 that avoids the inevitable slowness of querying pages deep into a collection (i.e. when `offset` is a big number, you're 
 going to get slower queries).
 
-This tecnique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and
+This technique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and
 less convenient for UIs. 
 
 ### Glossary
@@ -37,7 +37,7 @@ less convenient for UIs.
 | Term                | Description                                                                                                                                                                                                                                                                              |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `offset pagination` | Technique to fetch each page by changing the `offset` from the collection start.<br/>It requires two queries per page (or one if [countless](/docs/api/countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the regular pagy pagination. |
-| `keyset pagination` | Technique to fetch the next page starting from the `latest` fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page: it's very fast regardless the table size and position (if properly idexed). It has a very limited usage in frontend.            |
+| `keyset pagination` | Technique to fetch the next page starting from the `latest` fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page: it's very fast regardless the table size and position (if properly indexed). It has a very limited usage in frontend.            |
 | `uniquely ordered`  | When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                                  |
 | `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                             |
 | `keyset`            | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                        |
@@ -161,7 +161,7 @@ automatically assigned from the `limit` request param.
 
 === `:tuple_comparison`
 
-Boolish variable that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only for same direction order,
+Boolean variable that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only for same direction order,
 hence it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL` columns). 
 Default 
 `nil`.
@@ -223,7 +223,7 @@ Product.order(:name, :production_date, :id)
 
 !!!danger ... or you have a typecasting problem
 Your ORM and the storage formats don't match for one or more columns. It's a common case with `SQLite` and Time columns.
-They may have been stored as strings fomatted differently than the default format used by your current ORM.
+They may have been stored as strings formatted differently than the default format used by your current ORM.
 
 !!!success
 - Check the actual executed DB query and the actual stored value
@@ -239,7 +239,7 @@ They may have been stored as strings fomatted differently than the default forma
 !!! Success
 
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
-- Research about your specific DB features: type of index and performance for different ordering: use SQL `EXPLAIN ANALIZE` 
+- Research about your specific DB features: type of index and performance for different ordering: use SQL `EXPLAIN ANALYZE` 
   or similar tool to confirm.
 - Consider using the same direction order, enabling the `:tuple_comparison`, changing type of index (different DBs may behave 
   differently)

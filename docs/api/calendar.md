@@ -24,7 +24,7 @@ This method returns the current time of the smallest time unit shown. You can st
 later time using the `pagy_calendar_url_at`
 
 ```ruby
-pagy_calendar_url_at(@calendar, retrived_calendar_showtime)
+pagy_calendar_url_at(@calendar, retrieved_calendar_showtime)
 ```
 
 ===

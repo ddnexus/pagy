@@ -14,7 +14,7 @@ Paginate with the Pagy keyset pagination technique.
 ## Overview
 
 This is a tiny wrapper around the [Pagy::Keyset API](/docs/api/keyset.md). Please refer to the class documentation for a 
-fuller undersanding of keyset pagination:
+fuller understanding of keyset pagination:
 
 [!ref Keyset Pagination: Concepts and Overview](/docs/api/keyset.md)
 
