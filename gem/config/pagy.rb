@@ -104,7 +104,7 @@
 # See https://ddnexus.github.io/pagy/docs/extras/searchkick
 # Default :pagy_search method: change only if you use also
 # the elasticsearch_rails or meilisearch extra that defines the same
-# DEFAULT[:searchkick_pagy_search] = :pagy_search
+# Pagy::DEFAULT[:searchkick_pagy_search] = :pagy_search
 # Default original :search method called internally to do the actual search
 # Pagy::DEFAULT[:searchkick_search] = :search
 # require 'pagy/extras/searchkick'
