@@ -7,46 +7,41 @@ module Scripty
   ROOT = Pathname.new(`git rev-parse --show-toplevel`.chomp)
 
   # Ask for confirmation and do
-  def ask_and_do(question)
-    print question
+  def confirm_to(action)
+    print %(Do you want to #{action}? (y/n)> )
     yield if gets.chomp.start_with?(/y/i)
   end
-  module_function :ask_and_do
 
   # Optional edit
-  def file_edit?(name, filepath)
-    filepath = ROOT.join(filepath).to_s
-    puts "\n#{name}:"
-    puts File.read(filepath)
-    print "Do you want to edit #{name.inspect}? (y/n)> "
+  def edit_file?(filepath, caption = filepath)
+    filepath = ROOT.join(filepath)
+    puts "\n#{caption}:"
+    puts filepath.read
+    print "Do you want to edit #{caption.inspect}? (y/n)> "
     system("nano #{filepath}") if gets.chomp.start_with?(/y/i)
   end
-  module_function :file_edit?
 
   # Substitute a string in filepth
-  def file_sub(filepath, search, replace)
-    filepath = ROOT.join(filepath).to_s
-    content  = File.read(filepath)
+  def replace_string_in_file(filepath, search, replace)
+    filepath = ROOT.join(filepath)
+    content  = filepath.read
     content.sub!(search, replace)
-    File.write(filepath, content)
+    filepath.write(content)
   end
-  module_function :file_sub
 
   # Extract a tagged string in filepth
-  def tagged_extract(filepath, tag)
-    filepath = ROOT.join(filepath).to_s
-    content  = File.read(filepath)
-    content[/<!-- #{tag}_start -->\n(.*)<!-- #{tag}_end -->/m, 1]
+  def extract_section_from_file(filepath, section)
+    filepath = ROOT.join(filepath)
+    content  = filepath.read
+    content[/<!-- #{section}_start -->\n(.*)<!-- #{section}_end -->/m, 1]
   end
-  module_function :tagged_extract
 
   # Substitute a tagged string in filepth
-  def tagged_file_sub(filepath, tag, new_content)
-    filepath = ROOT.join(filepath).to_s
-    content  = File.read(filepath)
-    content.sub!(/<!-- #{tag}_start -->\n.*<!-- #{tag}_end -->/m,
-                 "<!-- #{tag}_start -->\n#{new_content}<!-- #{tag}_end -->")
-    File.write(filepath, content)
+  def replace_section_in_file(filepath, section, new_content)
+    filepath = ROOT.join(filepath)
+    content  = filepath.read
+    content.sub!(/<!-- #{section}_start -->\n.*<!-- #{section}_end -->/m,
+                 "<!-- #{section}_start -->\n#{new_content}<!-- #{section}_end -->")
+    filepath.write(content)
   end
-  module_function :tagged_file_sub
 end

@@ -4,6 +4,7 @@
 require 'json'
 require 'net/http'
 require_relative 'scripty'
+include Scripty  # rubocop:disable Style/MixinUsage
 
 USERS_URL_FMT   = 'https://api.github.com/repos/ddnexus/pagy/contributors?page=%s'
 COMMITS_URL_FMT = 'https://github.com/ddnexus/pagy/commits?author=%s'
@@ -27,6 +28,6 @@ until count >= MAX_COUNT || (users = JSON.parse(Net::HTTP.get(URI(format(USERS_U
 end
 top100 << "\n"
 
-Scripty.tagged_file_sub('README.md', 'top100', top100)
+replace_section_in_file('README.md', 'top100', top100)
 
 puts %("Top 100 Contributors" README section updated! (#{count}/#{MAX_COUNT}))
