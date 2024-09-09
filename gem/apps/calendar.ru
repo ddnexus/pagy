@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-calendar-app
 
-VERSION = '9.0.8'
+VERSION = '9.0.9'
 
 # Gemfile
 require 'bundler/inline'
