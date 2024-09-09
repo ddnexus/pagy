@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#1-repro-app
 
-VERSION = '9.0.8'
+VERSION = '9.0.9'
 
 require 'bundler/inline'
 require 'bundler'

@@ -6,10 +6,11 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.0.8
+### Changes in 9.0.9
 
 <!-- changes_start -->
-- Keep offset and limit variables untouched by the overflow extra in :empty_page mode (closes #733)
+- Set freeze flag to false (#737)
+- Fix: Prefix DEFAULT with Pagy:: (#736)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
