@@ -72,7 +72,7 @@
 # require 'pagy/extras/elasticsearch_rails'
 
 # Headers extra: http response headers (and other helpers) useful for API pagination
-# See http://ddnexus.github.io/pagy/extras/headers
+# See https://ddnexus.github.io/pagy/docs/extras/headers
 # require 'pagy/extras/headers'
 # Pagy::DEFAULT[:headers] = { page: 'Current-Page',
 #                            limit: 'Page-Items',
@@ -80,7 +80,7 @@
 #                            pages: 'Total-Pages' }     # default
 
 # Keyset extra: Paginate with the Pagy keyset pagination technique
-# See http://ddnexus.github.io/pagy/extras/keyset
+# See https://ddnexus.github.io/pagy/docs/extras/keyset
 # require 'pagy/extras/keyset'
 
 # Meilisearch extra: Paginate `Meilisearch` result objects
