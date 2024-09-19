@@ -51,10 +51,10 @@ set = Product.order(brand: :asc, model: :desc, id: :asc)
 @pagy, @records = pagy_keyset(set, **vars)
 
 # URL Helpers
-pagy_keyset_first_url_page(@pagy, absolute: true)
+pagy_keyset_first_url(@pagy, absolute: true)
 #=> "http://example.com/foo?page" 
 
-pagy_keyset_next_url_page(@pagy)
+pagy_keyset_next_url(@pagy)
 #=> "/foo?page=eyJpZCI6MzB9"
 ```
 

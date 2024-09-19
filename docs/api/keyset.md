@@ -37,11 +37,11 @@ less convenient for UIs.
 | Term                | Description                                                                                                                                                                                                                                                                              |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `offset pagination` | Technique to fetch each page by changing the `offset` from the collection start.<br/>It requires two queries per page (or one if [countless](/docs/api/countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the regular pagy pagination. |
-| `keyset pagination` | Technique to fetch the next page starting from the `latest` fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page: it's very fast regardless the table size and position (if properly indexed). It has a very limited usage in frontend.            |
+| `keyset pagination` | Technique to fetch the next page starting from the `latest` fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page: it's very fast regardless the table size and position (if properly indexed). It has a very limited usage in frontend.           |
 | `uniquely ordered`  | When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                                  |
 | `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                             |
 | `keyset`            | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                        |
-| `latest`            | The hash of `keyset` attributes of the `latest` fetched record (from the latest page). Pagy decodes it from the `:page` variable, and uses it to filter out the already fetched records.                                                                                                 |
+| `latest`            | The hash of `keyset` attributes of the `latest` fetched record (from the latest page). Pagy decodes it from the `:page` variable, and uses it to filter out the records already fetched.                                                                                                 |
 | `next`              | The next `page`, i.e. the encoded reference to the last record of the **current page**.                                                                                                                                                                                                  |
 | `page`              | The current `page`, i.e. the encoded reference to the `latest` record of the **latest page**.                                                                                                                                                                                            |
 
@@ -97,7 +97,8 @@ Depending on your order requirements, here is how you set it up:
 
 +++ No order requirements
 !!!success
-If you don't need any ordering, `order(:id)` is the simplest choice, because it's unique and already indexed. It works fast out of the box without any setup.
+If you don't need any ordering, `order(:id)` is the simplest choice, because it's unique and already indexed. It is fast out 
+of the box without any setup.
 !!!
 
 +++ Specific order requirements
@@ -239,7 +240,7 @@ They may have been stored as strings formatted differently than the default form
 !!! Success
 
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
-- Research about your specific DB features: type of index and performance for different ordering: use SQL `EXPLAIN ANALYZE` 
+- Research about your specific DB features, type of index and performance for different ordering. Use SQL `EXPLAIN ANALYZE` 
   or similar tool to confirm.
 - Consider using the same direction order, enabling the `:tuple_comparison`, changing type of index (different DBs may behave 
   differently)
