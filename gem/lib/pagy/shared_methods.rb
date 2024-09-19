@@ -9,8 +9,7 @@ class Pagy
     def assign_and_check(name_min)
       name_min.each do |name, min|
         raise VariableError.new(self, name, ">= #{min}", @vars[name]) \
-        unless @vars[name]&.respond_to?(:to_i) && \
-               instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
+              unless @vars[name]&.respond_to?(:to_i) && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
       end
     end
 
