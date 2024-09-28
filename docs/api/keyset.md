@@ -41,7 +41,7 @@ less convenient for UIs.
 | `uniquely ordered`  | When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                                  |
 | `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                             |
 | `keyset`            | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                        |
-| `latest`            | The hash of `keyset` attributes of the `latest` fetched record (from the latest page). Pagy decodes it from the `:page` variable, and uses it to filter out the records already fetched.                                                                                                 |
+| `latest`            | The hash of `keyset` attributes of the `latest` fetched record (from the latest page). Pagy decodes it from the `:page` variable and uses it to filter out the records already fetched.                                                                                                  |
 | `next`              | The next `page`, i.e. the encoded reference to the last record of the **current page**.                                                                                                                                                                                                  |
 | `page`              | The current `page`, i.e. the encoded reference to the `latest` record of the **latest page**.                                                                                                                                                                                            |
 
@@ -162,10 +162,9 @@ automatically assigned from the `limit` request param.
 
 === `:tuple_comparison`
 
-Boolean variable that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only for same direction order,
-hence it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL` columns). 
-Default 
-`nil`.
+Boolean variable that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction 
+order, hence it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL` columns). 
+Default `nil`.
 
 ==- `:after_latest`
 
@@ -242,7 +241,7 @@ They may have been stored as strings formatted differently than the default form
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
 - Research about your specific DB features, type of index and performance for different ordering. Use SQL `EXPLAIN ANALYZE` 
   or similar tool to confirm.
-- Consider using the same direction order, enabling the `:tuple_comparison`, changing type of index (different DBs may behave 
+- Consider using the same direction order, enabling the `:tuple_comparison`, and changing type of index (different DBs may behave 
   differently)
 - Consider using your custom optimized `when` query with the [:after_latest](#after-latest) variable
 !!!

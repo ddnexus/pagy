@@ -7,9 +7,9 @@ categories:
 
 # Keyset Extra
 
-Paginate with the Pagy keyset pagination technique. 
+Paginate with the Pagy keyset pagination technique.
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-apps)
 
 ## Overview
 
