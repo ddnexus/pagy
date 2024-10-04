@@ -1,18 +1,14 @@
-# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 en:
   pagy:
     aria_label:
-      nav:
-        one: "ཤོག་ལེབ་"
-        other: "ཤོག་ལེབ་"
+      nav: "ཤོག་ལེབ་"
       prev: "སྔོན་མ་"
       next: "ཤུལ༌མ་"
     prev: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
-    item_name:
-      one: "རྣམ་གྲངས་"
-      other: "རྣམ་གྲངས་"
+    item_name: "རྣམ་གྲངས་"
     info:
       no_items: "%{item_name}གཅིག་ཡང་འཚོལ་མ་འཐོབ།"
       single_page: "%{item_name} %{count} བཀྲམ་སྟོན་འབད་དོ།"
