@@ -15,7 +15,7 @@ You can create a Pull Request for your language, and get all the help you need t
   - [ ] Find the locale file you need in
     the [list of pluralization](https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization) and check the
     pluralization rule required in it. For example the name of the file required is `one_other`
-    for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In pagy that translates to the symbol `:one_other`.
+    for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In pagy that translates to the symbol `:one_other`. If you cannot find the pluralization in the aforementioned link, see if you can find it [in the unicode pluralization rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 
     - [ ] If the pluralization rule of your language is not the `:one_other` (default), confirm that pagy already defines the
       pluralization rule of your dictionary file in the IRB console, with `require 'pagy'; p Pagy::I18n::P11n::RULE.keys` or check
