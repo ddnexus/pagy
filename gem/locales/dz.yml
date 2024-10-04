@@ -1,0 +1,17 @@
+# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+dz:
+  pagy:
+    aria_label:
+      nav: "ཤོག་ལེབ་"
+      prev: "སྔོན་མ་"
+      next: "ཤུལ༌མ་"
+    prev: "&lt;"
+    next: "&gt;"
+    gap: "&hellip;"
+    item_name: "རྣམ་གྲངས་"
+    info:
+      no_items: "%{item_name}གཅིག་ཡང་འཚོལ་མ་འཐོབ།"
+      single_page: "%{item_name} %{count} བཀྲམ་སྟོན་འབད་དོ།"
+      multiple_pages: "བསྡོམས་ཀྱིས་ %{count} ལས་%{item_name} %{from}-%{to} བཀྲམ་སྟོན་འབད་དོ།"
+    combo_nav_js: "ཤོག་ལེབ་ %{pages} ལས་ %{page_input}།"
+    limit_selector_js: "ཤོག་ལེབ་རེ་ལུ་%{item_name} %{limit_input} སྟོན།"
