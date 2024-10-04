@@ -1,5 +1,5 @@
 # :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
-en:
+dz:
   pagy:
     aria_label:
       nav:
