@@ -6,11 +6,10 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.0.9
+### Changes in 9.1.0
 
 <!-- changes_start -->
-- Set freeze flag to false (#737)
-- Fix: Prefix DEFAULT with Pagy:: (#736)
+- Add Dzongkha (dz locale) (#741)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

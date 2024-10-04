@@ -21,7 +21,7 @@ module Scripty
     system("nano #{filepath}") if gets.chomp.start_with?(/y/i)
   end
 
-  # Substitute a string in filepth
+  # Replace a string in filepth
   def replace_string_in_file(filepath, search, replace)
     filepath = ROOT.join(filepath)
     content  = filepath.read
@@ -29,14 +29,14 @@ module Scripty
     filepath.write(content)
   end
 
-  # Extract a tagged string in filepth
+  # Extract a section from filepth
   def extract_section_from_file(filepath, section)
     filepath = ROOT.join(filepath)
     content  = filepath.read
     content[/<!-- #{section}_start -->\n(.*)<!-- #{section}_end -->/m, 1]
   end
 
-  # Substitute a tagged string in filepth
+  # Replace a section in filepth
   def replace_section_in_file(filepath, section, new_content)
     filepath = ROOT.join(filepath)
     content  = filepath.read

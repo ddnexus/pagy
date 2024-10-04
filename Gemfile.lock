@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (9.0.9)
+    pagy (9.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -98,8 +98,8 @@ GEM
       rake
     globalid (1.2.1)
       activesupport (>= 6.1)
-    groupdate (6.4.0)
-      activesupport (>= 6.1)
+    groupdate (6.5.0)
+      activesupport (>= 7)
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
@@ -251,7 +251,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.3.1)
-    sequel (5.84.0)
+    sequel (5.85.0)
       bigdecimal
     simplecov (0.22.0)
       docile (~> 1.1)
