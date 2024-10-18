@@ -46,7 +46,7 @@ class Pagy # :nodoc:
 
     # Override the pagy_anchor
     module FrontendOverride
-      # Consider the vars[:count]
+      # Consider the vars[:counts]
       def pagy_anchor(pagy, anchor_string: nil)
         return super unless (counts = pagy.vars[:counts])
 
