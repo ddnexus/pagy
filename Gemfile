@@ -37,6 +37,8 @@ group :playground do
   # activerecord/sqlite3_adapter.rb probably useless) constraint !!!
   # https://github.com/rails/rails/blame/v7.1.3.4/activerecord/lib/active_record/connection_adapters/sqlite3_adapter.rb#L14
   gem 'sqlite3', '~> 1.4.0'
+  # Required because 2.7 requires ruby 3.2 and we are still testing 3.1
+  gem 'zeitwerk', '< 2.7'
 end
 
 # group :performance do
