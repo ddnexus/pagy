@@ -3,7 +3,7 @@
 
 class Pagy
   # Define a few generic methods to paginate a collection out of the box,
-  # or any collection by overriding pagy_get_items and/or pagy_get_vars in your controller
+  # or any collection by overriding any of the `pagy_get_` methods in your controller.
   # See also the extras if you need specialized methods to paginate Arrays or other collections
   module Backend
     private
