@@ -32,8 +32,8 @@ describe 'pagy/extras/calendar' do
       _(calendar).must_be_nil
       _(records.size).must_equal 20
       _(pagy).must_be_instance_of Pagy
-      _(pagy.count).must_equal 505
-      _(pagy.pages).must_equal 26
+      _(pagy.count).must_equal 487
+      _(pagy.pages).must_equal 25
     end
     it 'raises NoMethodError for #pagy_calendar_period' do
       error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_period) }
@@ -304,6 +304,21 @@ describe 'pagy/extras/calendar' do
                                                   year: {},
                                                   pagy: { limit: 10 })
       _(app_counts.pagy_nav(calendar[:year], anchor_string: 'data-foo="bar"')).must_rematch :year
+    end
+  end
+  describe "Leap feature" do
+    c = MockApp::CalendarCounts
+    it "works with #{c} leap month" do
+      app_counts = c.new(params: { year_page: 2 })
+      calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
+                                                  Event.all,
+                                                  year: {},
+                                                  month: { leap: true },
+                                                  day: { leap: true },
+                                                  pagy: { limit: 10 })
+      _(app_counts.pagy_nav(calendar[:year])).must_rematch :year
+      _(app_counts.pagy_nav(calendar[:month])).must_rematch :month
+      _(app_counts.pagy_nav(calendar[:day])).must_rematch :day
     end
   end
 end

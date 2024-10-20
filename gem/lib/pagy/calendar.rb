@@ -26,8 +26,8 @@ class Pagy # :nodoc:
       end
 
       # Return calendar, from, to
-      def init(conf, period, params)
-        new.send(:init, conf, period, params)
+      def init(*args)
+        new.send(:init, *args)
       end
     end
 
@@ -39,7 +39,7 @@ class Pagy # :nodoc:
     private
 
     # Create the calendar
-    def init(conf, period, params)
+    def init(conf, period, params, get_counts)
       @conf  = Marshal.load(Marshal.dump(conf))  # store a copy
       @units = Calendar::UNITS & @conf.keys # get the units in time length desc order
       raise ArgumentError, 'no calendar unit found in pagy_calendar @configuration' if @units.empty?
@@ -47,18 +47,24 @@ class Pagy # :nodoc:
       @period     = period
       @params     = params
       @page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
-      @units.each do |unit|  # set all the :page_param vars for later deletion
-        unit_page_param         = :"#{unit}_#{@page_param}"
-        conf[unit][:page_param] = unit_page_param
-        conf[unit][:page]       = @params[unit_page_param]
-      end
+      # set all the :page_param vars for later deletion
+      @units.each { |unit| conf[unit][:page_param] = :"#{unit}_#{@page_param}" }
       calendar = {}
       object   = nil
       @units.each_with_index do |unit, index|
         params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_param] } + [@page_param]
-        conf[unit][:params] = lambda { |up| up.except(*params_to_delete.map(&:to_s)) } # rubocop:disable Style/Lambda
+        conf[unit][:params] = ->(up) { up.except(*params_to_delete.map(&:to_s)) }
         conf[unit][:period] = object&.send(:active_period) || @period
-        calendar[unit]      = object = Calendar.send(:create, unit, **conf[unit])
+        conf[unit][:page]   = @params[:"#{unit}_#{@page_param}"] # requested page
+        if get_counts && (counts = get_counts.(unit, conf[unit][:period]))
+          conf[unit][:counts] = counts
+          if conf[unit][:leap]
+            requested_page    = (conf[unit][:page] || 1).to_i
+            count_index       = requested_page - 1
+            conf[unit][:page] = requested_page + counts[count_index..].index(&:positive?).to_i
+          end
+        end
+        calendar[unit] = object = Calendar.send(:create, unit, **conf[unit])
       end
       [replace(calendar), object.from, object.to]
     end

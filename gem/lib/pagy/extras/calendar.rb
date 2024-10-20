@@ -19,12 +19,9 @@ class Pagy # :nodoc:
 
         conf[:pagy] ||= {}
         unless conf.key?(:active) && !conf[:active]
-          calendar, from, to = Calendar.send(:init, conf, pagy_calendar_period(collection), params)
-          if respond_to?(:pagy_calendar_counts)
-            calendar.each_key do |unit|
-              calendar[unit].vars[:counts] = pagy_calendar_counts(collection, unit, *calendar[unit].vars[:period])
-            end
-          end
+          get_counts = ->(unit, period) { pagy_calendar_counts(collection, unit, *period) } \
+                       if respond_to?(:pagy_calendar_counts)
+          calendar, from, to = Calendar.send(:init, conf, pagy_calendar_period(collection), params, get_counts)
           collection = pagy_calendar_filter(collection, from, to)
         end
         pagy, results = send(conf[:pagy][:backend] || :pagy, collection, **conf[:pagy])  # use backend: :pagy when omitted

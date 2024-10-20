@@ -42,9 +42,10 @@ The following variables are specific to `Pagy::Calendar::*` instances:
 
 | Variable  | Description                                                                                               | Default |
 |:----------|:----------------------------------------------------------------------------------------------------------|:--------|
-| `:period` | Required two items Array with the calendar starting and ending local `TimeWithZone` objects               | `nil`   |
-| `:order`  | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`  |
 | `:format` | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |         |
+| `:order`  | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`  |
+| `:period` | Required two items Array with the calendar starting and ending local `TimeWithZone` objects               | `nil`   |
+| `:leap`   | Boolean variable to leap empty pages when `pagy_calendar_count` is defined by the app                     | `nil`   |
 
 **Notice**: For the `Pagy::Calendar::Quarter` the `:format` variable can contain a non-standard `%q` format which is substituted
 with the quarter (1-4).

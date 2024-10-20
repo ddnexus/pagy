@@ -65,7 +65,7 @@ describe 'pagy/extras/headers' do
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'omit next on last page' do
-      pagy, _records = app.send(:pagy, Event.all, page: 26)
+      pagy, _records = app.send(:pagy, Event.all, page: 25)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
   end

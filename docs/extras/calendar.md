@@ -270,12 +270,9 @@ So in order to filter the actual search with the `from` and `to` local `TimeWith
 ==- `pagy_calendar_counts(collection, unit, from, to)`
 
 !!!primary Optional implementation
-This method can be implemented by the application in order to add some UI feedback to the pagy nav links
+This method can be implemented by the application in order to add some extra UI feedback to the pagy nav links and optionally 
+leap the empty pages
 !!!
-
-If this method is defined, pagy will run it for each used calendar unit and will add an extra `empty-page` 
-CSS class to the links to empty pages (that can be targeted to give a visual UI feedback). Pagy will also add a `title` 
-attribute to display a tooltip info for each page link.
 
 The method receives the main `collection`, the `unit` symbol, and must return the array of the counts grouped by unit using the 
 `from` and `to` **local Time** objects.
@@ -299,6 +296,21 @@ there are 2 extra queries). That is usually OK for most environments, but it mig
 it on your actual DB in order to evaluate the performance.
 
 If you want to use it dynamically, you can skip the extra query and the relative feedback by returning `nil` when you need it.
+!!!
+
+### UI features
+
+If this method is defined, pagy will run it for each configured calendar unit and will add an extra `empty-page`
+CSS class to the links to empty pages (that can be targeted to give a visual UI feedback or hide the empty pages). Pagy will also
+add a `title` attribute to display a tooltip info for each page link.
+
+You can also leap the empty pages, forcing the UI to land on the next page with results, regardless of the request. Just pass the 
+`leap: true` variable to the configuration of any unit to enable the behavior for that unit.
+
+!!! Browser address
+Notice that the leap feature **does not perform a new request** to the next page with results: it just serves the target page 
+as it were requested originally. That means that while the UI leaps to the next page with results, the address in the browser 
+will obviously not update.
 !!!
 
 ===
@@ -356,7 +368,7 @@ option `fit_time: true` to avoid the error and get the url to the page closest t
 
 Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time
 format to your needs by setting the `:format` variable to a standard `strftime` format. (See
-the [Pagy::Calendar variables](/docs/api/calendar.md#variables))
+the [Pagy::Calendar::Unit variables](/docs/api/calendar/units.md#variables))
 
 You can also get the [label method](/docs/api/calendar.md#methods) with e.g.: `@calendar[:month].label`, which might be useful to
 use in your UI.
