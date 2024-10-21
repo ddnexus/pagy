@@ -3,6 +3,7 @@ title: Pagy
 categories:
   - Core
   - Class
+order: 100
 ---
 
 # Pagy
