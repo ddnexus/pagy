@@ -5,6 +5,7 @@ categories:
   - Module
   - Backend
 description: This module provides the base functionality for the backend.
+order: 100
 ---
 
 # Pagy::Backend
