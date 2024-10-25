@@ -356,7 +356,7 @@ option `fit_time: true` to avoid the error and get the url to the page closest t
 
 Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time
 format to your needs by setting the `:format` variable to a standard `strftime` format. (See
-the [Pagy::Calendar variables](/docs/api/calendar.md#variables))
+the [Pagy::Calendar::Unit variables](/docs/api/calendar/units.md#variables))
 
 You can also get the [label method](/docs/api/calendar.md#methods) with e.g.: `@calendar[:month].label`, which might be useful to
 use in your UI.

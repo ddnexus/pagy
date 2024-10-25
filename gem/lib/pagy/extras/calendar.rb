@@ -19,12 +19,9 @@ class Pagy # :nodoc:
 
         conf[:pagy] ||= {}
         unless conf.key?(:active) && !conf[:active]
-          calendar, from, to = Calendar.send(:init, conf, pagy_calendar_period(collection), params)
-          if respond_to?(:pagy_calendar_counts)
-            calendar.each_key do |unit|
-              calendar[unit].vars[:counts] = pagy_calendar_counts(collection, unit, *calendar[unit].vars[:period])
-            end
-          end
+          calendar, from, to = Calendar.send(:init, conf, pagy_calendar_period(collection), params) do |unit, period|
+                                 pagy_calendar_counts(collection, unit, *period) if respond_to?(:pagy_calendar_counts)
+                               end
           collection = pagy_calendar_filter(collection, from, to)
         end
         pagy, results = send(conf[:pagy][:backend] || :pagy, collection, **conf[:pagy])  # use backend: :pagy when omitted
@@ -54,14 +51,14 @@ class Pagy # :nodoc:
         left, right = %(<a#{anchor_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
         # lambda used by all the helpers
         lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
-          count     = counts[page - 1]
-          item_name = pagy_t('pagy.item_name', count:)
+          count = counts[page - 1]
           if count.zero?
-            classes = "#{classes && (classes + ' ')}empty-page"
-            title   = %( title="#{pagy_t('pagy.info.no_items', item_name:, count:)}")
+            classes  = "#{classes && (classes + ' ')}empty-page"
+            info_key = 'pagy.info.no_items'
           else
-            title   = %( title="#{pagy_t('pagy.info.single_page', item_name:, count:)}")
+            info_key = 'pagy.info.single_page'
           end
+          title      = %( title="#{pagy_t(info_key, item_name: pagy_t('pagy.item_name', count:), count:)}")
           classes    = %( class="#{classes}") if classes
           aria_label = %( aria-label="#{aria_label}") if aria_label
           %(#{left}#{page}#{right}#{title}#{classes}#{aria_label}>#{text}</a>)
