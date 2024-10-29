@@ -26,8 +26,8 @@ class Pagy # :nodoc:
       end
 
       # Return calendar, from, to
-      def init(conf, period, params)
-        new.send(:init, conf, period, params)
+      def init(...)
+        new.send(:init, ...)
       end
     end
 
@@ -47,18 +47,20 @@ class Pagy # :nodoc:
       @period     = period
       @params     = params
       @page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
-      @units.each do |unit|  # set all the :page_param vars for later deletion
-        unit_page_param         = :"#{unit}_#{@page_param}"
-        conf[unit][:page_param] = unit_page_param
-        conf[unit][:page]       = @params[unit_page_param]
-      end
+      # set all the :page_param vars for later deletion
+      @units.each { |unit| conf[unit][:page_param] = :"#{unit}_#{@page_param}" }
       calendar = {}
       object   = nil
       @units.each_with_index do |unit, index|
         params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_param] } + [@page_param]
-        conf[unit][:params] = lambda { |up| up.except(*params_to_delete.map(&:to_s)) } # rubocop:disable Style/Lambda
+        conf[unit][:params] = ->(up) { up.except(*params_to_delete.map(&:to_s)) }
         conf[unit][:period] = object&.send(:active_period) || @period
-        calendar[unit]      = object = Calendar.send(:create, unit, **conf[unit])
+        conf[unit][:page]   = @params[:"#{unit}_#{@page_param}"] # requested page
+        # :nocov:
+        conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?  # nocov doesn't need to fail block_given?
+        # :nocov:
+        calendar[unit]      = object \
+                            = Calendar.send(:create, unit, **conf[unit])
       end
       [replace(calendar), object.from, object.to]
     end
