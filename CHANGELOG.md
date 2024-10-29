@@ -23,6 +23,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - None
 <hr>
 
+## Version 9.1.1
+
+- Simplify calendar code
+
 ## Version 9.1.0
 
 - Add Dzongkha (dz locale) (#741)
