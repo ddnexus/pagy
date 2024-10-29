@@ -6,10 +6,10 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.1.0
+### Changes in 9.1.1
 
 <!-- changes_start -->
-- Add Dzongkha (dz locale) (#741)
+- Simplify calendar code
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
