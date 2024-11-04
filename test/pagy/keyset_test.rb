@@ -49,16 +49,16 @@ require 'pagy/keyset'
         _ = pagy.records
         _(pagy.latest).must_equal({id: 10})
       end
-      it 'uses :after_latest' do
-        after_latest = if model == Pet
-                         ->(set, latest) { set.where('id > :id', **latest) }
-                       else
-                         ->(set, latest) { set.where(Sequel.lit('id > :id', **latest)) }
-                       end
+      it 'uses :filter_newest' do
+        filter_newest = if model == Pet
+                          ->(set, latest, _keyset) { set.where('id > :id', **latest) }
+                        else
+                          ->(set, latest, _keyset) { set.where(Sequel.lit('id > :id', **latest)) }
+                        end
         pagy = Pagy::Keyset.new(model.order(:id),
                                 page: "eyJpZCI6MTB9",
                                 limit: 10,
-                                after_latest: after_latest)
+                                filter_newest:)
         records = pagy.records
         _(records.first.id).must_equal(11)
       end

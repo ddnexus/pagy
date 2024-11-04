@@ -34,16 +34,16 @@ less convenient for UIs.
 
 ### Glossary
 
-| Term                | Description                                                                                                                                                                                                                                                                              |
-|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Term                | Description                                                                                                                                                                                                                                                              |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `offset pagination` | Technique to fetch each page by changing the `offset` from the collection start.<br/>It requires two queries per page (or one if [countless](/docs/api/countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the regular pagy pagination. |
-| `keyset pagination` | Technique to fetch the next page starting from the `latest` fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page: it's very fast regardless the table size and position (if properly indexed). It has a very limited usage in frontend.           |
-| `uniquely ordered`  | When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                                  |
-| `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                             |
-| `keyset`            | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                        |
-| `latest`            | The hash of `keyset` attributes of the `latest` fetched record (from the latest page). Pagy decodes it from the `:page` variable and uses it to filter out the records already fetched.                                                                                                  |
-| `next`              | The next `page`, i.e. the encoded reference to the last record of the **current page**.                                                                                                                                                                                                  |
-| `page`              | The current `page`, i.e. the encoded reference to the `latest` record of the **latest page**.                                                                                                                                                                                            |
+| `keyset pagination` | Technique to fetch the next page starting from the `latest` fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page: it's very fast regardless the table size and position (if properly indexed). It has a very limited usage in frontend. |
+| `uniquely ordered`  | When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                  |
+| `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                             |
+| `keyset`            | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                        |
+| `latest`            | The hash of `keyset` attributes of the `latest` fetched record (from the latest page). Pagy decodes it from the `:page` variable and uses it to filter the newest records.                                                                                               |
+| `next`              | The next `page`, i.e. the encoded reference to the last record of the **current page**.                                                                                                                                                                                  |
+| `page`              | The current `page`, i.e. the encoded reference to the `latest` record of the **latest page**.                                                                                                                                                                            |
 
 ### Keyset or Offset pagination?
 
@@ -116,8 +116,8 @@ If you need a specific order:
 - You pass an `uniquely ordered` `set` and `Pagy::Keyset` queries the page of records.
 - It keeps track of the `latest` fetched  record by encoding its `keyset` attributes into the `page` query string param of the 
   `next` URL.
-- At each request, the `:page` is decoded and used to prepare a `when` clause that filters out the records already fetched, and 
-  the `:limit` of requested records is pulled.
+- At each request, the `:page` is decoded and used to prepare a `when` clause that filters the newest records, and 
+  the `:limit` of records is pulled.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
 
 ## ORMs
@@ -166,19 +166,19 @@ Boolean variable that enables the tuple comparison e.g. `(brand, id) > (:brand, 
 order, hence it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL` columns). 
 Default `nil`.
 
-==- `:after_latest`
+==- `:filter_newest`
 
 **Use this for DB-specific extra optimizations, if you know what you are doing.** 
 
-If the `:after_latest` variable is set to a lambda, pagy will call it with the `set` and `latest` arguments instead of 
-using its auto-generated query to filter out the records after the `latest`. It must return the filtered set. For example:
+If the `:filter_newest` variable is set to a lambda, pagy will call it with the `set`, `latest` and `keyset` arguments instead of 
+using its auto-generated query to filter the newest records (after the `latest`). It must return the filtered set. For example:
 
 ```ruby
-after_latest = lambda do |set, latest|
-  set.where(my_optimized_query, **latest)
+filter_newest = lambda do |set, latest, keyset|
+  set.where(my_optimized_query(keyset), **latest)
 end
 
-Pagy::Keyset(set, after_latest:)
+Pagy::Keyset(set, filter_newest:)
 ```
 
 ==- `:typecast_latest`
@@ -243,7 +243,7 @@ They may have been stored as strings formatted differently than the default form
   or similar tool to confirm.
 - Consider using the same direction order, enabling the `:tuple_comparison`, and changing type of index (different DBs may behave 
   differently)
-- Consider using your custom optimized `when` query with the [:after_latest](#after-latest) variable
+- Consider using your custom optimized `when` query with the [:filter_newest](#filter-newest) variable
 !!!
 
 ===

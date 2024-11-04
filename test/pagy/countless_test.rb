@@ -79,7 +79,7 @@ describe 'pagy/countless' do
       _(pagy.prev).must_equal 2
       _(pagy.next).must_equal 1
     end
-    it 'raises exception with no retrieved records and page > 1' do
+    it 'raises exception with no fetched records and page > 1' do
       _ { Pagy::Countless.new(page: 2, overflow: :exception).finalize(0) }.must_raise Pagy::OverflowError
     end
   end

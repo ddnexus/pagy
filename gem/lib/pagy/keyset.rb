@@ -56,11 +56,17 @@ class Pagy
       @next ||= B64.urlsafe_encode(latest_from(@records.last).to_json)
     end
 
-    # Retrieve the array of records for the current page
+    # Fetch the array of records for the current page
     def records
       @records ||= begin
-        @set    = apply_select if select?
-        @set    = @vars[:after_latest]&.(@set, @latest) || after_latest if @latest
+        @set = apply_select if select?
+        if @latest
+          # :nocov:
+          @set = @vars[:after_latest]&.(@set, @latest) || # deprecated
+                 # :nocov:
+                 @vars[:filter_newest]&.(@set, @latest, @keyset) ||
+                 filter_newest
+        end
         records = @set.limit(@limit + 1).to_a
         @more   = records.size > @limit && !records.pop.nil?
         records
@@ -69,8 +75,8 @@ class Pagy
 
     protected
 
-    # Prepare the literal query to filter out the already fetched records
-    def after_latest_query
+    # Prepare the literal query to filter the newest records
+    def filter_newest_query
       operator   = { asc: '>', desc: '<' }
       directions = @keyset.values
       if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))

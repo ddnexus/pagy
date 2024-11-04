@@ -20,7 +20,7 @@ If you upgrade from version `< 9.0.0` see the following:
 
 ## Deprecations
 
-- None
+- `:after_latest` keyset variable: use `:filter_newest`
 <hr>
 
 ## Version 9.1.1
