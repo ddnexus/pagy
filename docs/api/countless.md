@@ -46,7 +46,7 @@ The `pagy_info` and all the `*_combo_nav_js` helpers that use the total `count` 
 ## How countless pagination works
 
 Instead of basing all the internal calculations on the `:count` variable (passed with the constructor), this class uses the number
-of actually retrieved records to derive the pagination variables.
+of actually fetched records to derive the pagination variables.
 
 The size of the fetched records can be passed in a second step to the `finalize` method, which allows pagy to determine if there is
 a `next` page, or if the current page is the `last` page, or if the current request should raise a `Pagy::OverflowError`

@@ -58,5 +58,5 @@ method, the `:params` variable and the `:page` param to it.
 
 ==- Dummy `params` method
 
-This extra creates a dummy `params` method (if not already defined) in the module where you include the `Pagy::Backend` (usually a controller). The method is called by pagy to retrieve backend variables coming from the request, and expects a hash, so the dummy param method returns an empty hash avoiding an error.
+This extra creates a dummy `params` method (if not already defined) in the module where you include the `Pagy::Backend` (usually a controller). The method is called by pagy to fetch the backend variables coming from the request, and expects a hash, so the dummy param method returns an empty hash avoiding an error.
 ===
