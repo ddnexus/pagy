@@ -34,15 +34,15 @@ describe 'pagy/extras/overflow' do
       _(@pagy_countless).must_be :overflow?
     end
     it 'is not overflow?' do
-      _(Pagy.new(**pagy_vars.merge(page: 2))).wont_be :overflow?
-      _(Pagy::Countless.new(**pagy_vars.merge(page: 2))).wont_be :overflow?
-      _(Pagy::Calendar::Day.new(**calendar_vars.merge(page: 2))).wont_be :overflow?
+      _(Pagy.new(**pagy_vars, page: 2)).wont_be :overflow?
+      _(Pagy::Countless.new(**pagy_vars, page: 2)).wont_be :overflow?
+      _(Pagy::Calendar::Day.new(**calendar_vars, page: 2)).wont_be :overflow?
     end
   end
 
   describe '#initialize' do
     it 'works in :last_page mode in Pagy' do
-      pagy = Pagy.new(**pagy_vars.merge(overflow: :last_page))
+      pagy = Pagy.new(**pagy_vars, overflow: :last_page)
       _(pagy).must_be_instance_of Pagy
       _(pagy.pages).must_equal 11
       _(pagy.page).must_equal pagy.last
@@ -54,7 +54,7 @@ describe 'pagy/extras/overflow' do
       _(pagy.prev).must_equal 10
     end
     it 'works in :last_page mode in Pagy::Calendar' do
-      pagy = Pagy::Calendar::Day.new(**calendar_vars.merge(overflow: :last_page))
+      pagy = Pagy::Calendar::Day.new(**calendar_vars, overflow: :last_page)
       _(pagy).must_be_instance_of Pagy::Calendar::Day
       _(pagy.pages).must_equal 11
       _(pagy.page).must_equal pagy.last
@@ -64,12 +64,12 @@ describe 'pagy/extras/overflow' do
       _(pagy.prev).must_equal 10
     end
     it 'raises OverflowError in :exception mode' do
-      _ { Pagy.new(**pagy_vars.merge(overflow: :exception)) }.must_raise Pagy::OverflowError
-      _ { Pagy::Calendar::Day.new(**calendar_vars.merge(overflow: :exception)) }.must_raise Pagy::OverflowError
-      _ { Pagy::Countless.new(**countless_vars.merge(overflow: :exception)).finalize(0) }.must_raise Pagy::OverflowError
+      _ { Pagy.new(**pagy_vars, overflow: :exception) }.must_raise Pagy::OverflowError
+      _ { Pagy::Calendar::Day.new(**calendar_vars, overflow: :exception) }.must_raise Pagy::OverflowError
+      _ { Pagy::Countless.new(**countless_vars, overflow: :exception).finalize(0) }.must_raise Pagy::OverflowError
     end
     it 'works in :empty_page mode in Pagy' do
-      pagy = Pagy.new(**pagy_vars.merge(overflow: :empty_page))
+      pagy = Pagy.new(**pagy_vars, overflow: :empty_page)
       _(pagy.page).must_equal 100
       _(pagy.offset).must_equal 990
       _(pagy.limit).must_equal 10
@@ -79,12 +79,12 @@ describe 'pagy/extras/overflow' do
       _(pagy.prev).must_equal pagy.last
     end
     it 'works in :empty_page mode in Pagy::Calendar' do
-      pagy = Pagy::Calendar::Day.new(**calendar_vars.merge(overflow: :empty_page))
+      pagy = Pagy::Calendar::Day.new(**calendar_vars, overflow: :empty_page)
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@final)
       _(pagy.to).must_equal pagy.instance_variable_get(:@final)
       _(pagy.prev).must_equal pagy.last
-      pagy = Pagy::Calendar::Day.new(**calendar_vars.merge(overflow: :empty_page, order: :desc))
+      pagy = Pagy::Calendar::Day.new(**calendar_vars, overflow: :empty_page, order: :desc)
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@initial)
       _(pagy.to).must_equal pagy.instance_variable_get(:@initial)
@@ -101,21 +101,21 @@ describe 'pagy/extras/overflow' do
       _(pagy.prev).must_be_nil
     end
     it 'raises Pagy::VariableError' do
-      _ { Pagy.new(**pagy_vars.merge(overflow: :unknown)) }.must_raise Pagy::VariableError
-      _ { Pagy::Calendar::Day.new(**calendar_vars.merge(overflow: :unknown)) }.must_raise Pagy::VariableError
-      _ { Pagy::Countless.new(**countless_vars.merge(overflow: :unknown)).finalize(0) }.must_raise Pagy::VariableError
+      _ { Pagy.new(**pagy_vars, overflow: :unknown) }.must_raise Pagy::VariableError
+      _ { Pagy::Calendar::Day.new(**calendar_vars, overflow: :unknown) }.must_raise Pagy::VariableError
+      _ { Pagy::Countless.new(**countless_vars, overflow: :unknown).finalize(0) }.must_raise Pagy::VariableError
     end
   end
 
   describe "#series singleton for :empty_page mode" do
     it 'computes series for empty page for Pagy' do
-      pagy = Pagy.new(**pagy_vars.merge(overflow: :empty_page))
+      pagy = Pagy.new(**pagy_vars, overflow: :empty_page)
       series = pagy.series
       _(series).must_equal [1, :gap, 7, 8, 9, 10, 11]
       _(pagy.page).must_equal 100
     end
     it 'computes series for empty page for Pagy::Calendar' do
-      pagy = Pagy::Calendar::Day.new(**calendar_vars.merge(overflow: :empty_page))
+      pagy = Pagy::Calendar::Day.new(**calendar_vars, overflow: :empty_page)
       series = pagy.series
       _(series).must_equal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
       _(pagy.page).must_equal 100
