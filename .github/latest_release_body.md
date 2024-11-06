@@ -6,10 +6,13 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.1.1
+### Changes in 9.2.0
 
 <!-- changes_start -->
-- Simplify calendar code
+- Simplify the keyset API:
+  - Deprecate the :after_latest variable in favour of :filter_newest
+  - Add the keyset argument to the :filter_newest lambda
+  - Rename protected after_latest_query > filter_newest_query
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

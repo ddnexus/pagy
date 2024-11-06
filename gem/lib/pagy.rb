@@ -6,7 +6,7 @@ require_relative 'pagy/shared_methods'
 
 # Top superclass: it should define only what's common to all the subclasses
 class Pagy
-  VERSION = '9.1.1'
+  VERSION = '9.2.0'
 
   # Core default: constant for easy access, but mutable for customizable defaults
   DEFAULT = { count_args: [:all], # rubocop:disable Style/MutableConstant
