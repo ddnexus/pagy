@@ -20,8 +20,15 @@ If you upgrade from version `< 9.0.0` see the following:
 
 ## Deprecations
 
-- None
+- `:after_latest` keyset variable: use `:filter_newest`
 <hr>
+
+## Version 9.2.0
+
+- Simplify the keyset API:
+  - Deprecate the :after_latest variable in favour of :filter_newest
+  - Add the keyset argument to the :filter_newest lambda
+  - Rename protected after_latest_query > filter_newest_query
 
 ## Version 9.1.1
 
