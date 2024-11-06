@@ -17,8 +17,8 @@ class Pagy
         end
       end
 
-      # Filter out the already retrieved records
-      def after_latest = @set.where(after_latest_query, **@latest)
+      # Filter the newest records
+      def filter_newest = @set.where(filter_newest_query, **@latest)
 
       # Append the missing keyset keys if the set is restricted by select
       def apply_select

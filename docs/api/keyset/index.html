@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.784107387388">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.784174634666">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.6.0.784107387388" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.6.0.784174634666" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.6.0.784107387388" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.6.0.784174634666" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.6.0.784107387388" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.6.0.784107387388" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.6.0.784174634666" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.6.0.784174634666" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.1.1</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.2.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -363,7 +363,7 @@ less convenient for UIs.</p>
 </tr>
 <tr>
 <td><code v-pre>latest</code></td>
-<td>The hash of <code v-pre>keyset</code> attributes of the <code v-pre>latest</code> fetched record (from the latest page). Pagy decodes it from the <code v-pre>:page</code> variable and uses it to filter out the records already fetched.</td>
+<td>The hash of <code v-pre>keyset</code> attributes of the <code v-pre>latest</code> fetched record (from the latest page). Pagy decodes it from the <code v-pre>:page</code> variable and uses it to filter the newest records.</td>
 </tr>
 <tr>
 <td><code v-pre>next</code></td>
@@ -597,8 +597,8 @@ Ensure to create a unique composite DB index, including the exact same columns a
 <li>You pass an <code v-pre>uniquely ordered</code> <code v-pre>set</code> and <code v-pre>Pagy::Keyset</code> queries the page of records.</li>
 <li>It keeps track of the <code v-pre>latest</code> fetched  record by encoding its <code v-pre>keyset</code> attributes into the <code v-pre>page</code> query string param of the
 <code v-pre>next</code> URL.</li>
-<li>At each request, the <code v-pre>:page</code> is decoded and used to prepare a <code v-pre>when</code> clause that filters out the records already fetched, and
-the <code v-pre>:limit</code> of requested records is pulled.</li>
+<li>At each request, the <code v-pre>:page</code> is decoded and used to prepare a <code v-pre>when</code> clause that filters the newest records, and
+the <code v-pre>:limit</code> of records is pulled.</li>
 <li>You know that you reached the end of the collection when <code v-pre>pagy.next.nil?</code>.</li>
 </ul>
 <doc-anchor-target id="orms">
@@ -658,17 +658,17 @@ automatically assigned from the <code v-pre>limit</code> request param.</p>
 order, hence it&#x27;s ignored for mixed order. Check how your DB supports it (your <code v-pre>keyset</code> should include only <code v-pre>NOT NULL</code> columns).
 Default <code v-pre>nil</code>.</p>
    </doc-panel>
-   <doc-panel id="after-latest" collapsed>
-       <template #title><code v-pre>:after_latest</code></template>
+   <doc-panel id="filter-newest" collapsed>
+       <template #title><code v-pre>:filter_newest</code></template>
 <p><strong>Use this for DB-specific extra optimizations, if you know what you are doing.</strong></p>
-<p>If the <code v-pre>:after_latest</code> variable is set to a lambda, pagy will call it with the <code v-pre>set</code> and <code v-pre>latest</code> arguments instead of
-using its auto-generated query to filter out the records after the <code v-pre>latest</code>. It must return the filtered set. For example:</p>
+<p>If the <code v-pre>:filter_newest</code> variable is set to a lambda, pagy will call it with the <code v-pre>set</code>, <code v-pre>latest</code> and <code v-pre>keyset</code> arguments instead of
+using its auto-generated query to filter the newest records (after the <code v-pre>latest</code>). It must return the filtered set. For example:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">after_latest = lambda do |set, latest|
-  set.where(my_optimized_query, **latest)
+<pre class="language-ruby"><code v-pre class="language-ruby">filter_newest = lambda do |set, latest, keyset|
+  set.where(my_optimized_query(keyset), **latest)
 end
 
-Pagy::Keyset(set, after_latest:)</code></pre>
+Pagy::Keyset(set, filter_newest:)</code></pre>
 </doc-codeblock></div>
    </doc-panel>
    <doc-panel id="typecast-latest" collapsed>
@@ -815,7 +815,7 @@ They may have been stored as strings formatted differently than the default form
 or similar tool to confirm.</li>
 <li>Consider using the same direction order, enabling the <code v-pre>:tuple_comparison</code>, and changing type of index (different DBs may behave
 differently)</li>
-<li>Consider using your custom optimized <code v-pre>when</code> query with the <doc-anchor-trigger to="#after-latest">:after_latest</doc-anchor-trigger> variable</li>
+<li>Consider using your custom optimized <code v-pre>when</code> query with the <doc-anchor-trigger to="#filter-newest">:filter_newest</doc-anchor-trigger> variable</li>
 </ul>
         </div>
     </div>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.784107387388">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.784174634666">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.6.0.784107387388" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.6.0.784174634666" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.6.0.784107387388" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.6.0.784174634666" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.6.0.784107387388" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.6.0.784174634666" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.1.1</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.2.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -289,9 +289,24 @@
     </h2>
 </doc-anchor-target>
 <ul>
-<li>None</li>
+<li><code v-pre>:after_latest</code> keyset variable: use <code v-pre>:filter_newest</code></li>
 </ul>
 <hr>
+<doc-anchor-target id="version-920">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-920">#</doc-anchor-trigger>
+        <span>Version 9.2.0</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Simplify the keyset API:
+<ul>
+<li>Deprecate the :after_latest variable in favour of :filter_newest</li>
+<li>Add the keyset argument to the :filter_newest lambda</li>
+<li>Rename protected after_latest_query &gt; filter_newest_query</li>
+</ul>
+</li>
+</ul>
 <doc-anchor-target id="version-911">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-911">#</doc-anchor-trigger>
