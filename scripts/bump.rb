@@ -70,6 +70,8 @@ replace_string_in_file('CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_versi
    .github/latest_release_body.md
    gem/apps/calendar.ru
    gem/apps/demo.ru
+   gem/apps/keyset_ar.ru
+   gem/apps/keyset_s.ru
    gem/apps/rails.ru
    gem/apps/repro.ru
    gem/bin/pagy

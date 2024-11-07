@@ -15,7 +15,7 @@
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-keyset-app
 
-VERSION = '8.6.2'
+VERSION = '9.2.0'
 
 # Gemfile
 require 'bundler/inline'
