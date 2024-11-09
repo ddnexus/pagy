@@ -6,13 +6,14 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.2.0
+### Changes in 9.2.1
 
 <!-- changes_start -->
-- Simplify the keyset API:
-  - Deprecate the :after_latest variable in favour of :filter_newest
-  - Add the keyset argument to the :filter_newest lambda
-  - Rename protected after_latest_query > filter_newest_query
+- Improve bin/pagy to dynamically find apps and descriptions
+- Apps refactoring:
+  - Update rails to 8.0
+  - Replace rails AR keyset apps with sinatra apps
+  - Improve consistency
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
