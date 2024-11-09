@@ -24,67 +24,30 @@ require 'bundler'
 Bundler.configure
 gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
+  gem 'activerecord'
+  gem 'activesupport'
   gem 'groupdate'
   gem 'puma'
-  gem 'rails', '~> 8.0'
+  gem 'sinatra'
+  gem 'sinatra-contrib'
   gem 'sqlite3'
 end
-
-# require 'rails/all'     # too much stuff
-require 'action_controller/railtie'
-require 'active_record'
-
-OUTPUT = Rails.env.showcase? ? IO::NULL : $stdout
-
-# Rails config
-class Calendar < Rails::Application # :nodoc:
-  config.root = __dir__
-  config.session_store :cookie_store, key: 'cookie_store_key'
-  Rails.application.credentials.secret_key_base = 'absolute_secret'
-
-  config.logger = Logger.new(OUTPUT)
-  Rails.logger  = config.logger
-
-  routes.draw do
-    root to: 'events#index'
-  end
-end
-
-# AR config
-dir = Rails.env.development? ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
-abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
-      unless File.writable?(dir)
 
 # Pagy initializer
 require 'pagy/extras/calendar'
 require 'pagy/extras/bootstrap'
 Pagy::DEFAULT.freeze
 
-# Groupdate initializer  (https://github.com/ankane/groupdate)
-# Groupdate week_start default is :sunday, while rails and pagy default to :monday
-Groupdate.week_start = :monday
-
-# Activerecord initializer
-ActiveRecord::Base.logger = Logger.new(OUTPUT)
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/calendar.sqlite3")
-ActiveRecord::Schema.define do
-  create_table :events, force: true do |t|
-    t.string :title
-    t.timestamp :time
+# Sinatra setup
+require 'sinatra/base'
+# Sinatra application
+class PagyCalendar < Sinatra::Base
+  configure do
+    # Templates defined in the __END__ section as @@ ...
+    enable :inline_templates
   end
-end
 
-# Models
-class Event < ActiveRecord::Base; end
-
-# Helpers
-module EventsHelper
-  include Pagy::Frontend
-end
-
-# Controllers
-class EventsController < ActionController::Base
-  include Rails.application.routes.url_helpers
+  # Controller
   include Pagy::Backend
 
   # This method must be implemented by the application.
@@ -113,7 +76,7 @@ class EventsController < ActionController::Base
         unless params[:skip_counts] == 'true'
   end
 
-  def index
+  get '/' do
     # Groupdate does not support time zones with SQLite.
     # 'UTC' does not work on certain machines config (pulling the actual local time zone utc_offset)
     # so for this demo we use a different zone with utc_offset 0
@@ -129,100 +92,41 @@ class EventsController < ActionController::Base
                                               month:  {},
                                               day:    {},
                                               active: !params[:skip])
-    render inline: TEMPLATE
+    erb :main
+  end
+
+  helpers do
+    include Pagy::Frontend
   end
 end
 
-TEMPLATE = <<~ERB
-  <!DOCTYPE html>
-  <html lang="en">
-    <html>
-    <head>
-    <title>Pagy Calendar App</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+# ActiveRecord setup
+require 'active_record'
+# Log
+output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
+ActiveRecord::Base.logger = Logger.new(output)
+# SQLite DB files
+dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
+abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
+      unless File.writable?(dir)
+# Connection
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-calendar.sqlite3")
 
-      <style type="text/css">
-        @media screen { html, body {
-          font-size: .8rem;
-          line-height: 1.1s;
-          padding: 0;
-          margin: 0;
-        } }
-        body {
-          background-color: #f7f7f7;
-          color: #51585F;"
-          font-family: sans-serif;
-        }
-        .content {
-          padding: 1rem 1.5rem 2rem;
-        }
-        /* added with the pagy counts feature */
-        a.empty-page {
-          color: #888888;
-        }
-      </style>
-    </head>
+# Groupdate initializer  (https://github.com/ankane/groupdate)
+# Groupdate week_start default is :sunday, while rails and pagy default to :monday
+Groupdate.week_start = :monday
 
-    <body>
+ActiveRecord::Schema.define do
+  create_table :events, force: true do |t|
+    t.string :title
+    t.timestamp :time
+  end
+end
 
-      <div class="container">
-        <h1>Pagy Calendar App</h1>
-        <p>Self-contained, standalone app implementing nested calendar pagination for year, month, day units.</p>
-        <p>See the <a href="https://ddnexus.github.io/pagy/docs/extras/calendar">Pagy Calendar Extra</a> for details.</p>
-        <p>Please, report the following versions in any new issue.</p>
-        <h2>Versions</h2>
-        <ul>
-          <li>Ruby:  <%== RUBY_VERSION %></li>
-          <li>Rack:  <%== Rack::RELEASE %></li>
-          <li>Rails: <%== Rails.version %></li>
-          <li>Pagy:  <%== Pagy::VERSION %></li>
-        </ul>
-        <hr>
+# Models
+class Event < ActiveRecord::Base; end
 
-        <!-- calendar UI manual toggle -->
-        <p>
-        <% if params[:skip] %>
-          <a id="toggle" href="/" >Show Calendar</a>
-        <% else %>
-          <a id="toggle" href="?skip=true" >Hide Calendar</a>
-          <br>
-          <a id="go-to-day" href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
-          <!-- You can use Time.zone.now to find the current page if your time period include today -->
-          <% end %>
-        </p>
-
-        <!-- calendar filtering navs -->
-        <% if @calendar %>
-          <p>Showtime: <%= @calendar.showtime %></p>
-          <%== pagy_bootstrap_nav(@calendar[:year], id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
-          <%== pagy_bootstrap_nav(@calendar[:month], id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
-          <%== pagy_bootstrap_nav(@calendar[:day], id: "day-nav", aria_label: "Days") %> <!-- day nav -->
-        <% end %>
-
-        <!-- page info extended for the calendar unit -->
-        <div class="alert alert-primary" role="alert">
-          <%== pagy_info(@pagy, id: 'pagy-info') %>
-          <% if @calendar %>
-            for <b><%= @calendar.showtime.strftime('%Y-%m-%d') %></b>
-          <% end %>
-        </div>
-
-        <!-- page records (time converted in your local time)-->
-        <div id="records" class="list-group">
-          <% @events.each do |event| %>
-          <p class="list-group-item"><%= event.title %> - <%= event.time.to_s %></p>
-          <% end %>
-        </div>
-
-        <!-- standard pagination of the selected month -->
-        <p><%== pagy_bootstrap_nav(@pagy, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
-      </div>
-    </body>
-  </html>
-ERB
-
+# Data
 TIMES = <<~TIMES
   2021-10-21 13:18:23 +0000
   2021-10-21 23:14:50 +0000
@@ -738,4 +642,97 @@ TIMES.each_line(chomp: true).with_index do |time, i|
 end
 Event.insert_all(events)
 
-run Calendar
+run PagyCalendar
+
+__END__
+
+@@ layout
+  <!DOCTYPE html>
+  <html lang="en">
+    <html>
+    <head>
+    <title>Pagy Calendar App</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+      <style type="text/css">
+        @media screen { html, body {
+          font-size: .8rem;
+          line-height: 1.1s;
+          padding: 0;
+          margin: 0;
+        } }
+        body {
+          background-color: #f7f7f7;
+          color: #51585F;"
+          font-family: sans-serif;
+        }
+        .content {
+          padding: 1rem 1.5rem 2rem;
+        }
+        /* added with the pagy counts feature */
+        a.empty-page {
+          color: #888888;
+        }
+      </style>
+    </head>
+
+    <body>
+      <%= yield %>
+    </body>
+</html>
+
+@@ main
+<div class="container">
+  <h1>Pagy Calendar App</h1>
+  <p>Self-contained, standalone app implementing nested calendar pagination for year, month, day units.</p>
+  <p>See the <a href="https://ddnexus.github.io/pagy/docs/extras/calendar">Pagy Calendar Extra</a> for details.</p>
+  <p>Please, report the following versions in any new issue.</p>
+  <h2>Versions</h2>
+  <ul>
+    <li>Ruby:    <%= RUBY_VERSION %></li>
+    <li>Rack:    <%= Rack::RELEASE %></li>
+    <li>Sinatra: <%= Sinatra::VERSION %></li>
+    <li>Pagy:    <%= Pagy::VERSION %></li>
+  </ul>
+  <hr>
+
+  <!-- calendar UI manual toggle -->
+  <p>
+  <% if params[:skip] %>
+    <a id="toggle" href="/" >Show Calendar</a>
+  <% else %>
+    <a id="toggle" href="?skip=true" >Hide Calendar</a>
+    <br>
+    <a id="go-to-day" href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
+    <!-- You can use Time.zone.now to find the current page if your time period include today -->
+    <% end %>
+  </p>
+
+  <!-- calendar filtering navs -->
+  <% if @calendar %>
+    <p>Showtime: <%= @calendar.showtime %></p>
+    <%= pagy_bootstrap_nav(@calendar[:year], id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
+    <%= pagy_bootstrap_nav(@calendar[:month], id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
+    <%= pagy_bootstrap_nav(@calendar[:day], id: "day-nav", aria_label: "Days") %> <!-- day nav -->
+  <% end %>
+
+  <!-- page info extended for the calendar unit -->
+  <div class="alert alert-primary" role="alert">
+    <%= pagy_info(@pagy, id: 'pagy-info') %>
+    <% if @calendar %>
+      for <b><%= @calendar.showtime.strftime('%Y-%m-%d') %></b>
+    <% end %>
+  </div>
+
+  <!-- page records (time converted in your local time)-->
+  <div id="records" class="list-group">
+    <% @events.each do |event| %>
+    <p class="list-group-item"><%= event.title %> - <%= event.time.to_s %></p>
+    <% end %>
+  </div>
+
+  <!-- standard pagination of the selected month -->
+  <p><%= pagy_bootstrap_nav(@pagy, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
+</div>
