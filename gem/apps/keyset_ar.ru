@@ -1,69 +1,96 @@
 # frozen_string_literal: true
 
-# Starting point to reproduce keyset related pagy issues
-
+# DESCRIPTION
+#    Showcase the keyset ActiveRecord pagination
+#
+# DOC
+#    https://ddnexus.github.io/pagy/playground/#5-keyset-apps
+#
+# BIN HELP
+#    bundle exec pagy -h
+#
 # DEV USAGE
-#    pagy clone rails
-#    pagy ./keyset.ru
-
+#    bundle exec pagy clone keyset_ar
+#    bundle exec pagy ./keyset_ar.ru
+#
 # URL
 #    http://0.0.0.0:8000
 
-# HELP
-#    pagy -h
-
-# DOC
-#    https://ddnexus.github.io/pagy/playground/#5-keyset-app
-
 VERSION = '9.2.0'
 
-# Gemfile
+# Bundle
 require 'bundler/inline'
 require 'bundler'
 Bundler.configure
 gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
-  gem 'oj'
+  gem 'activerecord'
   gem 'puma'
-  gem 'rails'
-  # activerecord/sqlite3_adapter.rb probably useless) constraint !!!
-  # https://github.com/rails/rails/blame/v7.1.3.4/activerecord/lib/active_record/connection_adapters/sqlite3_adapter.rb#L14
-  gem 'sqlite3', '~> 1.4.0'
-end
-
-# require 'rails/all'     # too much stuff
-require 'action_controller/railtie'
-require 'active_record'
-
-OUTPUT = Rails.env.showcase? ? IO::NULL : $stdout
-
-# Rails config
-class PagyKeyset < Rails::Application # :nodoc:
-  config.root = __dir__
-  config.session_store :cookie_store, key: 'cookie_store_key'
-  Rails.application.credentials.secret_key_base = 'absolute_secret'
-
-  config.logger = Logger.new(OUTPUT)
-  Rails.logger  = config.logger
-
-  routes.draw do
-    root to: 'pets#index'
-  end
-end
-
-dir = Rails.env.development? ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
-unless File.writable?(dir)
-  warn "ERROR: directory #{dir.inspect} is not writable (the pagy-rails-app needs to create DB files)"
-  exit 1
+  gem 'sinatra'
+  gem 'sinatra-contrib'
+  gem 'sqlite3'
 end
 
 # Pagy initializer
-require 'pagy/extras/pagy'
 require 'pagy/extras/limit'
 require 'pagy/extras/keyset'
+require 'pagy/extras/pagy'
 Pagy::DEFAULT[:limit] = 10
 Pagy::DEFAULT.freeze
 
+# Sinatra setup
+require 'sinatra/base'
+# Sinatra application
+class PagyKeyset < Sinatra::Base
+  configure do
+    # Templates defined in the __END__ section as @@ ...
+    enable :inline_templates
+  end
+
+  # Controller
+  include Pagy::Backend
+  # Root route/action
+  get '/' do
+    Time.zone = 'UTC'
+
+    @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
+    @pagy, @pets = pagy_keyset(Pet.order(@order))
+    erb :main
+  end
+  # Helper
+  helpers do
+    include Pagy::Frontend
+
+    def order_symbol(dir)
+      { asc: '&#x2197;', desc: '&#x2198;' }[dir]
+    end
+  end
+end
+
+# ActiveRecord setup
+require 'active_record'
+# Log
+output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
+ActiveRecord::Base.logger = Logger.new(output)
+# SQLite DB files
+dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
+abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
+      unless File.writable?(dir)
+# Connection
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-keyset-ar.sqlite3")
+# Schema
+ActiveRecord::Schema.define do
+  create_table :pets, force: true do |t|
+    t.string   :animal
+    t.string   :name
+    t.date     :birthdate
+  end
+end
+
+# Models
+class Pet < ActiveRecord::Base; end
+
+# Data
 PETS = <<~PETS
   Luna  | dog    | 2018-03-10
   Coco  | cat    | 2019-05-15
@@ -117,21 +144,6 @@ PETS = <<~PETS
   Coco  | dog    | 2023-05-27
 PETS
 
-# Activerecord initializer
-ActiveRecord::Base.logger = Logger.new(OUTPUT)
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-keyset-ar.sqlite3")
-ActiveRecord::Schema.define do
-  create_table :pets, force: true do |t|
-    t.string   :animal
-    t.string   :name
-    t.date     :birthdate
-  end
-end
-
-# Models
-class Pet < ActiveRecord::Base
-end
-
 # DB seed
 pets = []
 PETS.each_line(chomp: true) do |pet|
@@ -140,97 +152,75 @@ PETS.each_line(chomp: true) do |pet|
 end
 Pet.insert_all(pets)
 
-# Helpers
-module PetsHelper
-  include Pagy::Frontend
-
-  def order_symbol(dir)
-    { asc: '&#x2197;', desc: '&#x2198;' }[dir]
-  end
-end
-
-# Controllers
-class PetsController < ActionController::Base # :nodoc:
-  include Rails.application.routes.url_helpers
-  include Pagy::Backend
-
-  def index
-    Time.zone = 'UTC'
-
-    @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset(Pet.order(@order))
-    render inline: TEMPLATE
-  end
-end
-
-TEMPLATE = <<~ERB
-  <!DOCTYPE html>
-  <html lang="en">
-    <html>
-    <head>
-    <title>Pagy Keyset App</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <style type="text/css">
-        @media screen { html, body {
-          font-size: 1rem;
-          line-height: 1.2s;
-          padding: 0;
-          margin: 0;
-        } }
-        body {
-          background: white !important;
-          margin: 0 !important;
-          font-family: sans-serif !important;
-        }
-        .content {
-          padding: 1rem 1.5rem 2rem !important;
-        }
-
-        <%== Pagy.root.join('stylesheets', 'pagy.css').read %>
-      </style>
-    </head>
-
-    <body>
-
-      <div class="content">
-        <h1>Pagy Keyset App</h1>
-        <p>Self-contained, standalone Rails app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
-        <p>Please, report the following versions in any new issue.</p>
-        <h2>Versions</h2>
-        <ul>
-          <li>Ruby:  <%== RUBY_VERSION %></li>
-          <li>Rack:  <%== Rack::RELEASE %></li>
-          <li>Rails: <%== Rails.version %></li>
-          <li>Pagy:  <%== Pagy::VERSION %></li>
-        </ul>
-
-        <h3>Collection</h3>
-        <div id="records" class="collection">
-        <table border="1" cellspacing="0" cellpadding="3">
-          <tr>
-            <th>animal <%== order_symbol(@order[:animal]) %></th>
-            <th>name <%== order_symbol(@order[:name]) %></th>
-            <th>birthdate <%== order_symbol(@order[:birthdate]) %></th>
-            <th>id <%== order_symbol(@order[:id]) %></th>
-          </tr>
-          <% @pets.each do |pet| %>
-          <tr>
-            <td><%= pet.animal %></td>
-            <td><%= pet.name %></td>
-            <td><%= pet.birthdate %></td>
-            <td><%= pet.id %></td>
-          </tr>
-          <% end %>
-        </table>
-        </div>
-        <p>
-        <nav class="pagy" id="next" aria-label="Pagy next">
-          <%== pagy_next_a(@pagy, text: 'Next page &gt;') %>
-        </nav>
-      </div>
-
-    </body>
-  </html>
-ERB
-
 run PagyKeyset
+
+__END__
+
+@@ layout
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+   <title>Pagy Keyset App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css">
+    @media screen { html, body {
+      font-size: 1rem;
+      line-height: 1.2s;
+      padding: 0;
+      margin: 0;
+    } }
+    body {
+      background: white !important;
+      margin: 0 !important;
+      font-family: sans-serif !important;
+    }
+    .content {
+      padding: 1rem 1.5rem 2rem !important;
+    }
+
+    <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
+  </style>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>
+
+@@ main
+<div class="content">
+  <h1>Pagy Keyset App</h1>
+  <p>Self-contained, standalone app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
+  <p>Please, report the following versions in any new issue.</p>
+  <h2>Versions</h2>
+  <ul>
+    <li>Ruby:    <%= RUBY_VERSION %></li>
+    <li>Rack:    <%= Rack::RELEASE %></li>
+    <li>Sinatra: <%= Sinatra::VERSION %></li>
+    <li>Pagy:    <%= Pagy::VERSION %></li>
+  </ul>
+
+  <h3>Collection</h3>
+  <div id="records" class="collection">
+  <table border="1" cellspacing="0" cellpadding="3">
+    <tr>
+      <th>animal <%= order_symbol(@order[:animal]) %></th>
+      <th>name <%= order_symbol(@order[:name]) %></th>
+      <th>birthdate <%= order_symbol(@order[:birthdate]) %></th>
+      <th>id <%= order_symbol(@order[:id]) %></th>
+    </tr>
+    <% @pets.each do |pet| %>
+    <tr>
+      <td><%= pet.animal %></td>
+      <td><%= pet.name %></td>
+      <td><%= pet.birthdate %></td>
+      <td><%= pet.id %></td>
+    </tr>
+    <% end %>
+  </table>
+  </div>
+  <p>
+  <nav class="pagy" id="next" aria-label="Pagy next">
+    <%= pagy_next_a(@pagy, text: 'Next page &gt;') %>
+  </nav>
+</div>

@@ -1,22 +1,24 @@
 # frozen_string_literal: true
 
-# Starting point app to try pagy or reproduce issues
-
+# DESCRIPTION
+#    Reproduce generic/simple issues
+#
+# DOC
+#    https://ddnexus.github.io/pagy/playground/#1-repro-app
+#
+# BIN HELP
+#    bundle exec pagy -h
+#
 # DEV USAGE
-#    pagy clone repro
-#    pagy ./repro.ru
-
+#    bundle exec pagy clone repro
+#    bundle exec pagy ./repro.ru
+#
 # URL
 #    http://0.0.0.0:8000
 
-# HELP
-#    pagy -h
-
-# DOC
-#    https://ddnexus.github.io/pagy/playground/#1-repro-app
-
 VERSION = '9.2.0'
 
+# Bundle
 require 'bundler/inline'
 require 'bundler'
 Bundler.configure
@@ -36,6 +38,7 @@ require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT.freeze
 
+# Sinatra setup
 require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
@@ -141,7 +144,7 @@ __END__
 @@ main
 <div class="content">
   <h1>Pagy Repro App</h1>
-  <p> Self-contained, standalone Sinatra app usable to easily reproduce any pagy issue.</p>
+  <p> Self-contained, standalone app usable to easily reproduce any pagy issue.</p>
   <p>Please, report the following versions in any new issue.</p>
   <h2>Versions</h4>
   <ul>

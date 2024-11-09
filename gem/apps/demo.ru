@@ -1,25 +1,27 @@
 # frozen_string_literal: true
 
-# Interactive showcase for all the pagy helpers and CSS styles
-
+# DESCRIPTION
+#    Showcase all the helpers and styles
+#
+# DOC
+#    https://ddnexus.github.io/pagy/playground/#3-demo-app
+#
+# BIN HELP
+#    bundle exec pagy -h
+#
 # DEMO USAGE
-#    pagy demo
-
+#    bundle exec pagy demo
+#
 # DEV USAGE
-#    pagy clone demo
-#    pagy ./demo.ru
-
+#    bundle exec pagy clone demo
+#    bundle exec pagy ./demo.ru
+#
 # URL
 #    http://0.0.0.0:8000
 
-# HELP
-#    pagy -h
-
-# DOC
-#    https://ddnexus.github.io/pagy/playground/#3-demo-app
-
 VERSION = '9.2.0'
 
+# Bundle
 require 'bundler/inline'
 require 'bundler'
 Bundler.configure
@@ -45,10 +47,10 @@ require 'pagy/extras/limit'
 require 'pagy/extras/trim'
 Pagy::DEFAULT[:trim_extra] = false         # opt-in trim
 
-# sinatra setup
+# Sinatra setup
 require 'sinatra/base'
 
-# sinatra application
+# Sinatra application
 class PagyDemo < Sinatra::Base
   configure do
     enable :inline_templates

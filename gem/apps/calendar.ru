@@ -1,23 +1,24 @@
 # frozen_string_literal: true
 
-# Interactive showcase for the pagy calendar extra (https://ddnexus.github.io/pagy/docs/extras/calendar)
-
+# DESCRIPTION
+#    Showcase the calendar; reproduce related issues
+#
+# DOC
+#    https://ddnexus.github.io/pagy/playground/#5-calendar-app
+#
+# BIN HELP
+#    bundle exec pagy -h
+#
 # DEV USAGE
-#    pagy clone calendar
-#    pagy ./calendar.ru
-
+#    bundle exec pagy clone calendar
+#    bundle exec pagy ./calendar.ru
+#
 # URL
 #    http://0.0.0.0:8000
 
-# HELP
-#    pagy -h
-
-# DOC
-#    https://ddnexus.github.io/pagy/playground/#5-calendar-app
-
 VERSION = '9.2.0'
 
-# Gemfile
+# Bundle
 require 'bundler/inline'
 require 'bundler'
 Bundler.configure
@@ -25,10 +26,8 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'groupdate'
   gem 'puma'
-  gem 'rails'
-  # activerecord/sqlite3_adapter.rb probably useless) constraint !!!
-  # https://github.com/rails/rails/blame/v7.1.3.4/activerecord/lib/active_record/connection_adapters/sqlite3_adapter.rb#L14
-  gem 'sqlite3', '~> 1.4.0'
+  gem 'rails', '~> 8.0'
+  gem 'sqlite3'
 end
 
 # require 'rails/all'     # too much stuff
@@ -53,10 +52,8 @@ end
 
 # AR config
 dir = Rails.env.development? ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
-unless File.writable?(dir)
-  warn "ERROR: directory #{dir.inspect} is not writable (the calendar-app needs to create DB files)"
-  exit 1
-end
+abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
+      unless File.writable?(dir)
 
 # Pagy initializer
 require 'pagy/extras/calendar'
@@ -78,8 +75,7 @@ ActiveRecord::Schema.define do
 end
 
 # Models
-class Event < ActiveRecord::Base
-end
+class Event < ActiveRecord::Base; end
 
 # Helpers
 module EventsHelper
@@ -173,7 +169,7 @@ TEMPLATE = <<~ERB
 
       <div class="container">
         <h1>Pagy Calendar App</h1>
-        <p>Self-contained, standalone Rails app implementing nested calendar pagination for year, month, day units.</p>
+        <p>Self-contained, standalone app implementing nested calendar pagination for year, month, day units.</p>
         <p>See the <a href="https://ddnexus.github.io/pagy/docs/extras/calendar">Pagy Calendar Extra</a> for details.</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
