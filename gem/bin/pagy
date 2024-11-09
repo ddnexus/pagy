@@ -7,8 +7,8 @@ HOST    = '0.0.0.0'
 PORT    = '8000'
 
 require_relative '../lib/optimist'
-
-apps = Dir[File.expand_path('../apps/*.ru', __dir__)].to_h { |f| [File.basename(f, '.ru'), f] }
+require_relative '../apps/index'
+apps = PagyApps::INDEX
 opts = Optimist.options do
   text <<~HEAD
     Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)

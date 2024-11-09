@@ -3,6 +3,7 @@
 
 require 'tempfile'
 require_relative 'scripty'
+require_relative '../gem/apps/index'
 include Scripty  # rubocop:disable Style/MixinUsage
 
 # Abort if the working tree is dirty
@@ -65,20 +66,15 @@ edit_file?(release_body_path, 'Release Body')
 replace_string_in_file('CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_version}\n\n#{changes}")
 
 # Bump the version in files
-%w[retype.yml
-   .github/ISSUE_TEMPLATE/Code.yml
-   .github/latest_release_body.md
-   gem/apps/calendar.ru
-   gem/apps/demo.ru
-   gem/apps/keyset_ar.ru
-   gem/apps/keyset_s.ru
-   gem/apps/rails.ru
-   gem/apps/repro.ru
-   gem/bin/pagy
-   gem/config/pagy.rb
-   gem/lib/pagy.rb
-   gem/pagy.gemspec
-   src/pagy.ts].each do |path|
+(%w[retype.yml
+    .github/ISSUE_TEMPLATE/Code.yml
+    .github/latest_release_body.md
+    gem/bin/pagy
+    gem/config/pagy.rb
+    gem/lib/pagy.rb
+    gem/pagy.gemspec
+    src/pagy.ts] +
+    PagyApps::INDEX.values).each do |path|
   replace_string_in_file(path, old_version, new_version)
 end
 
