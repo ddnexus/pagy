@@ -28,15 +28,13 @@ group :playground do
   gem 'groupdate'
   gem 'puma'
   gem 'rackup'
-  gem 'rails'
+  gem 'rails', '~> 8.0'
   gem 'rerun'
   gem 'rouge'
   gem 'sequel'
   gem 'sinatra'
   gem 'sinatra-contrib'
-  # activerecord/sqlite3_adapter.rb probably useless) constraint !!!
-  # https://github.com/rails/rails/blame/v7.1.3.4/activerecord/lib/active_record/connection_adapters/sqlite3_adapter.rb#L14
-  gem 'sqlite3', '~> 1.4.0'
+  gem 'sqlite3'
 end
 
 # group :performance do

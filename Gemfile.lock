@@ -1,71 +1,70 @@
 PATH
   remote: gem
   specs:
-    pagy (9.2.0)
+    pagy (9.2.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    actioncable (7.2.2)
-      actionpack (= 7.2.2)
-      activesupport (= 7.2.2)
+    actioncable (8.0.0)
+      actionpack (= 8.0.0)
+      activesupport (= 8.0.0)
       nio4r (~> 2.0)
       websocket-driver (>= 0.6.1)
       zeitwerk (~> 2.6)
-    actionmailbox (7.2.2)
-      actionpack (= 7.2.2)
-      activejob (= 7.2.2)
-      activerecord (= 7.2.2)
-      activestorage (= 7.2.2)
-      activesupport (= 7.2.2)
+    actionmailbox (8.0.0)
+      actionpack (= 8.0.0)
+      activejob (= 8.0.0)
+      activerecord (= 8.0.0)
+      activestorage (= 8.0.0)
+      activesupport (= 8.0.0)
       mail (>= 2.8.0)
-    actionmailer (7.2.2)
-      actionpack (= 7.2.2)
-      actionview (= 7.2.2)
-      activejob (= 7.2.2)
-      activesupport (= 7.2.2)
+    actionmailer (8.0.0)
+      actionpack (= 8.0.0)
+      actionview (= 8.0.0)
+      activejob (= 8.0.0)
+      activesupport (= 8.0.0)
       mail (>= 2.8.0)
       rails-dom-testing (~> 2.2)
-    actionpack (7.2.2)
-      actionview (= 7.2.2)
-      activesupport (= 7.2.2)
+    actionpack (8.0.0)
+      actionview (= 8.0.0)
+      activesupport (= 8.0.0)
       nokogiri (>= 1.8.5)
-      racc
-      rack (>= 2.2.4, < 3.2)
+      rack (>= 2.2.4)
       rack-session (>= 1.0.1)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
       useragent (~> 0.16)
-    actiontext (7.2.2)
-      actionpack (= 7.2.2)
-      activerecord (= 7.2.2)
-      activestorage (= 7.2.2)
-      activesupport (= 7.2.2)
+    actiontext (8.0.0)
+      actionpack (= 8.0.0)
+      activerecord (= 8.0.0)
+      activestorage (= 8.0.0)
+      activesupport (= 8.0.0)
       globalid (>= 0.6.0)
       nokogiri (>= 1.8.5)
-    actionview (7.2.2)
-      activesupport (= 7.2.2)
+    actionview (8.0.0)
+      activesupport (= 8.0.0)
       builder (~> 3.1)
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    activejob (7.2.2)
-      activesupport (= 7.2.2)
+    activejob (8.0.0)
+      activesupport (= 8.0.0)
       globalid (>= 0.3.6)
-    activemodel (7.2.2)
-      activesupport (= 7.2.2)
-    activerecord (7.2.2)
-      activemodel (= 7.2.2)
-      activesupport (= 7.2.2)
+    activemodel (8.0.0)
+      activesupport (= 8.0.0)
+    activerecord (8.0.0)
+      activemodel (= 8.0.0)
+      activesupport (= 8.0.0)
       timeout (>= 0.4.0)
-    activestorage (7.2.2)
-      actionpack (= 7.2.2)
-      activejob (= 7.2.2)
-      activerecord (= 7.2.2)
-      activesupport (= 7.2.2)
+    activestorage (8.0.0)
+      actionpack (= 8.0.0)
+      activejob (= 8.0.0)
+      activerecord (= 8.0.0)
+      activesupport (= 8.0.0)
       marcel (~> 1.0)
-    activesupport (7.2.2)
+    activesupport (8.0.0)
       base64
       benchmark (>= 0.3)
       bigdecimal
@@ -77,12 +76,13 @@ GEM
       minitest (>= 5.1)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
+      uri (>= 0.13.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ansi (1.5.0)
     ast (2.4.2)
     base64 (0.2.0)
-    benchmark (0.3.0)
+    benchmark (0.4.0)
     bigdecimal (3.1.8)
     builder (3.3.0)
     concurrent-ruby (1.3.4)
@@ -93,8 +93,16 @@ GEM
     domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.13.0)
+    ffi (1.17.0-aarch64-linux-gnu)
+    ffi (1.17.0-aarch64-linux-musl)
+    ffi (1.17.0-arm-linux-gnu)
+    ffi (1.17.0-arm-linux-musl)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86-linux-gnu)
+    ffi (1.17.0-x86-linux-musl)
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.0-x86_64-linux-musl)
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
@@ -117,7 +125,7 @@ GEM
     irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.7.6)
+    json (2.8.1)
     language_server-protocol (3.17.0.3)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -146,7 +154,7 @@ GEM
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
-    net-imap (0.5.0)
+    net-imap (0.5.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -156,6 +164,14 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
+    nokogiri (1.16.7-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.7-arm-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.7-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.7-x86-linux)
+      racc (~> 1.4)
     nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
@@ -163,12 +179,12 @@ GEM
     oj (3.16.7)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
-    ostruct (0.6.0)
+    ostruct (0.6.1)
     parallel (1.26.3)
-    parser (3.3.5.1)
+    parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
-    psych (5.1.2)
+    psych (5.2.0)
       stringio
     public_suffix (6.0.1)
     puma (6.4.3)
@@ -184,20 +200,20 @@ GEM
       rack (>= 1.3)
     rackup (2.2.0)
       rack (>= 3)
-    rails (7.2.2)
-      actioncable (= 7.2.2)
-      actionmailbox (= 7.2.2)
-      actionmailer (= 7.2.2)
-      actionpack (= 7.2.2)
-      actiontext (= 7.2.2)
-      actionview (= 7.2.2)
-      activejob (= 7.2.2)
-      activemodel (= 7.2.2)
-      activerecord (= 7.2.2)
-      activestorage (= 7.2.2)
-      activesupport (= 7.2.2)
+    rails (8.0.0)
+      actioncable (= 8.0.0)
+      actionmailbox (= 8.0.0)
+      actionmailer (= 8.0.0)
+      actionpack (= 8.0.0)
+      actiontext (= 8.0.0)
+      actionview (= 8.0.0)
+      activejob (= 8.0.0)
+      activemodel (= 8.0.0)
+      activerecord (= 8.0.0)
+      activestorage (= 8.0.0)
+      activesupport (= 8.0.0)
       bundler (>= 1.15.0)
-      railties (= 7.2.2)
+      railties (= 8.0.0)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -205,9 +221,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    railties (7.2.2)
-      actionpack (= 7.2.2)
-      activesupport (= 7.2.2)
+    railties (8.0.0)
+      actionpack (= 8.0.0)
+      activesupport (= 8.0.0)
       irb (~> 1.13)
       rackup (>= 1.0.0)
       rake (>= 12.2)
@@ -221,7 +237,7 @@ GEM
     rdoc (6.7.0)
       psych (>= 4.0.0)
     regexp_parser (2.9.2)
-    reline (0.5.10)
+    reline (0.5.11)
       io-console (~> 0.5)
     rematch (3.1.0)
     rerun (0.14.0)
@@ -237,7 +253,7 @@ GEM
       rubocop-ast (>= 1.32.2, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.34.0)
+    rubocop-ast (1.34.1)
       parser (>= 3.3.1.0)
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
@@ -272,14 +288,24 @@ GEM
       rack-protection (= 4.0.0)
       sinatra (= 4.0.0)
       tilt (~> 2.0)
-    sqlite3 (1.4.4)
-    stringio (3.1.1)
+    sqlite3 (2.2.0-aarch64-linux-gnu)
+    sqlite3 (2.2.0-aarch64-linux-musl)
+    sqlite3 (2.2.0-arm-linux-gnu)
+    sqlite3 (2.2.0-arm-linux-musl)
+    sqlite3 (2.2.0-arm64-darwin)
+    sqlite3 (2.2.0-x86-linux-gnu)
+    sqlite3 (2.2.0-x86-linux-musl)
+    sqlite3 (2.2.0-x86_64-darwin)
+    sqlite3 (2.2.0-x86_64-linux-gnu)
+    sqlite3 (2.2.0-x86_64-linux-musl)
+    stringio (3.1.2)
     thor (1.3.2)
     tilt (2.4.0)
-    timeout (0.4.1)
+    timeout (0.4.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
+    uri (1.0.1)
     useragent (0.16.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -287,8 +313,19 @@ GEM
     zeitwerk (2.7.1)
 
 PLATFORMS
-  x86_64-darwin-21
-  x86_64-linux
+  aarch64-linux
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  x86-linux
+  x86-linux-gnu
+  x86-linux-musl
+  x86_64-darwin
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   activesupport
@@ -303,7 +340,7 @@ DEPENDENCIES
   puma
   rack
   rackup
-  rails
+  rails (~> 8.0)
   rake
   rematch
   rerun
@@ -317,7 +354,7 @@ DEPENDENCIES
   simplecov
   sinatra
   sinatra-contrib
-  sqlite3 (~> 1.4.0)
+  sqlite3
 
 BUNDLED WITH
    2.5.11

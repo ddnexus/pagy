@@ -1,24 +1,23 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '9.2.0'
-APPS    = %w[repro rails demo calendar keyset_ar keyset_s].freeze
+VERSION = '9.2.1'
 LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
 HOST    = '0.0.0.0'
 PORT    = '8000'
 
 require_relative '../lib/optimist'
+
+apps = Dir[File.expand_path('../apps/*.ru', __dir__)].to_h { |f| [File.basename(f, '.ru'), f] }
 opts = Optimist.options do
   text <<~HEAD
     Pagy #{VERSION} (https://ddnexus.github.io/pagy/playground)
     Playground to showcase, clone and develop pagy APPs
     APPs
-      repro                      Reproduce generic/simple issues
-      rails                      Reproduce rails related issues
-      demo                       Showcase all the helpers and styles
-      calendar                   Showcase the calendar; reproduce related issues
-      keyset_ar                  Showcase the keyset ActiveRecord pagination
-      keyset_s                   Showcase the keyset Sequel pagination
+    #{ apps.map do |name, path|
+         "  #{name}#{' ' * (27 - name.length)}#{File.readlines(path)[3].sub('#    ', '').strip}"
+       end.join("\n")
+     }
     USAGE
       pagy APP [options]         Showcase APP from the installed gem
       pagy clone APP             Clone APP to the current dir
@@ -46,7 +45,7 @@ Optimist.educate if ARGV.empty?
 
 run_from_repo = File.exist?(File.expand_path('../pagy.gemspec', __dir__))
 
-# Handles gems
+# Bundle
 require 'bundler/inline'
 require 'bundler'
 Bundler.configure
@@ -56,28 +55,25 @@ gemfile(opts[:install]) do
   gem 'rerun' if LINUX
 end
 
-path = ->(app) { File.expand_path("../apps/#{app}.ru", __dir__) }
-arg  = ARGV.shift
+arg = ARGV.shift
 if arg.eql?('clone')
-  arg = ARGV.shift
-  Optimist.die("Expected APP to be in [#{APPS.join(', ')}]; got #{arg.inspect}") unless APPS.include?(arg)
-  file = path.(arg)
-  name = File.basename(file)
+  name = ARGV.shift
+  Optimist.die("Expected APP to be in [#{apps.keys.join(', ')}]; got #{arg.inspect}") unless apps.key?(arg)
   if File.exist?(name)
     print "Do you want to overwrite the #{name.inspect} file? (y/n)> "
     answer = gets.chomp
     Optimist.die("#{name.inspect} file already present") unless answer.start_with?(/y/i)
   end
   require 'fileutils'
-  FileUtils.cp(file, '.', verbose: true)
+  FileUtils.cp(apps[arg], '.', verbose: true)
 else
-  if APPS.include?(arg)  # showcase env
+  if apps.key?(arg)  # showcase env
     opts[:env]   = 'showcase'
     opts[:rerun] = false
     opts[:quiet] = true
     # Avoid the creation of './tmp/local_secret.txt' for showcase env
     ENV['SECRET_KEY_BASE'] = 'absolute secret!' if arg.eql?('rails')
-    file = path.(arg)
+    file = apps[arg]
   else                   # development env
     file = arg
   end

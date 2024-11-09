@@ -23,6 +23,14 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:after_latest` keyset variable: use `:filter_newest`
 <hr>
 
+## Version 9.2.1
+
+- Improve bin/pagy to dynamically find apps and descriptions
+- Apps refactoring:
+  - Update rails to 8.0
+  - Replace rails AR keyset apps with sinatra apps
+  - Improve consistency
+
 ## Version 9.2.0
 
 - Simplify the keyset API:
