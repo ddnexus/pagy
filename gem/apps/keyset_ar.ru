@@ -90,8 +90,7 @@ end
 # Models
 class Pet < ActiveRecord::Base; end
 
-# Data
-PETS = <<~PETS
+data = <<~DATA
   Luna  | dog    | 2018-03-10
   Coco  | cat    | 2019-05-15
   Dodo  | dog    | 2020-06-25
@@ -142,11 +141,11 @@ PETS = <<~PETS
   Sary  | bird   | 2023-04-29
   Rocky | bird   | 2023-05-14
   Coco  | dog    | 2023-05-27
-PETS
+DATA
 
 # DB seed
 pets = []
-PETS.each_line(chomp: true) do |pet|
+data.each_line(chomp: true) do |pet|
   name, animal, birthdate = pet.split('|').map(&:strip)
   pets << { name:, animal:, birthdate: }
 end

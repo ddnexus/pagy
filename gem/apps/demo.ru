@@ -199,9 +199,9 @@ end
 
 run PagyDemo
 
-# We store the template in a constant instead of writing it inline, so we can highlight it more easily
+# Store the template in a constant instead of writing it inline, for easier code highlighting
 TEMPLATE = <<~ERB
-  <%# IMPORTANT: use '<%== ... ' instead of '<%= ... ' if you run this in rails %>
+  <%# IMPORTANT: replace '<%=' with '<%==' if you run this in rails %>
 
   <%# The a variable below is set to a lambda that generates the a tag %>
   <%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>

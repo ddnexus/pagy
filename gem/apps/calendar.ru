@@ -115,6 +115,7 @@ ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tm
 # Groupdate initializer  (https://github.com/ankane/groupdate)
 # Groupdate week_start default is :sunday, while rails and pagy default to :monday
 Groupdate.week_start = :monday
+ActiveSupport.to_time_preserves_timezone = :zone  # Fix ActiveSupport deprecation
 
 ActiveRecord::Schema.define do
   create_table :events, force: true do |t|
@@ -126,8 +127,8 @@ end
 # Models
 class Event < ActiveRecord::Base; end
 
-# Data
-TIMES = <<~TIMES
+# Event times
+data = <<~DATA
   2021-10-21 13:18:23 +0000
   2021-10-21 23:14:50 +0000
   2021-10-23 01:06:02 +0000
@@ -633,11 +634,11 @@ TIMES = <<~TIMES
   2023-11-12 04:22:50 +0000
   2023-11-12 08:38:58 +0000
   2023-11-13 15:43:40 +0000
-TIMES
+DATA
 
 # DB seed
 events = []
-TIMES.each_line(chomp: true).with_index do |time, i|
+data.each_line(chomp: true).with_index do |time, i|
   events << { title: "Event ##{i + 1}", time: }
 end
 Event.insert_all(events)

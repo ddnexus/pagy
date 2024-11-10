@@ -59,7 +59,7 @@ describe 'pagy/extras/meilisearch' do
         _(results.to_a).must_rematch :results
       end
     end
-    describe 'Pagy.new_from_meilisearch' do
+    describe 'new_from_meilisearch' do
       it 'paginates results with defaults' do
         results = MockMeilisearch::Model.ms_search('a')
         pagy    = Pagy.new_from_meilisearch(results)
