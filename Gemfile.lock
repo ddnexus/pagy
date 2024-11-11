@@ -266,7 +266,7 @@ GEM
       rubocop (~> 1.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    securerandom (0.3.1)
+    securerandom (0.3.2)
     sequel (5.86.0)
       bigdecimal
     simplecov (0.22.0)
