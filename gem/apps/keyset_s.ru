@@ -27,7 +27,6 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   gem 'puma'
   gem 'sequel'
   gem 'sinatra'
-  gem 'sinatra-contrib'
   gem 'sqlite3'
 end
 
@@ -43,12 +42,6 @@ require 'sinatra/base'
 require 'logger'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
-  configure do
-    # Templates defined in the __END__ section as @@ ...
-    enable :inline_templates
-  end
-
-  # Controller
   include Pagy::Backend
   # Root route/action
   get '/' do
@@ -56,13 +49,89 @@ class PagyKeyset < Sinatra::Base
     @pagy, @pets = pagy_keyset(Pet.order(:animal, :name, Sequel.desc(:birthdate), :id))
     erb :main
   end
-  # Helper
+
   helpers do
     include Pagy::Frontend
 
     def order_symbol(dir)
       { asc: '&#x2197;', desc: '&#x2198;' }[dir]
     end
+  end
+
+  # Views
+  template :layout do
+    <<~ERB
+      <!DOCTYPE html>
+      <html lang="en">
+      <html>
+      <head>
+         <title>Pagy Keyset App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+          @media screen { html, body {
+            font-size: 1rem;
+            line-height: 1.2s;
+            padding: 0;
+            margin: 0;
+          } }
+          body {
+            background: white !important;
+            margin: 0 !important;
+            font-family: sans-serif !important;
+          }
+          .content {
+            padding: 1rem 1.5rem 2rem !important;
+          }
+
+          <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
+        </style>
+      </head>
+      <body>
+        <%= yield %>
+      </body>
+      </html>
+    ERB
+  end
+
+  template :main do
+    <<~ERB
+      <div class="content">
+        <h1>Pagy Keyset App</h1>
+        <p>Self-contained, standalone app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
+        <p>Please, report the following versions in any new issue.</p>
+        <h2>Versions</h2>
+        <ul>
+          <li>Ruby:    <%= RUBY_VERSION %></li>
+          <li>Rack:    <%= Rack::RELEASE %></li>
+          <li>Sinatra: <%= Sinatra::VERSION %></li>
+          <li>Pagy:    <%= Pagy::VERSION %></li>
+        </ul>
+
+        <h3>Collection</h3>
+        <div id="records" class="collection">
+        <table border="1" cellspacing="0" cellpadding="3">
+          <tr>
+            <th>animal <%= order_symbol(@order[:animal]) %></th>
+            <th>name <%= order_symbol(@order[:name]) %></th>
+            <th>birthdate <%= order_symbol(@order[:birthdate]) %></th>
+            <th>id <%= order_symbol(@order[:id]) %></th>
+          </tr>
+          <% @pets.each do |pet| %>
+          <tr>
+            <td><%= pet.animal %></td>
+            <td><%= pet.name %></td>
+            <td><%= pet.birthdate %></td>
+            <td><%= pet.id %></td>
+          </tr>
+          <% end %>
+        </table>
+        </div>
+        <p>
+        <nav class="pagy" id="next" aria-label="Pagy next">
+          <%= pagy_next_a(@pagy, text: 'Next page &gt;') %>
+        </nav>
+      </div>
+    ERB
   end
 end
 
@@ -148,74 +217,3 @@ data.each_line(chomp: true) do |pet|
 end
 
 run PagyKeyset
-
-__END__
-
-@@ layout
-<!DOCTYPE html>
-<html lang="en">
-<html>
-<head>
-   <title>Pagy Keyset App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style type="text/css">
-    @media screen { html, body {
-      font-size: 1rem;
-      line-height: 1.2s;
-      padding: 0;
-      margin: 0;
-    } }
-    body {
-      background: white !important;
-      margin: 0 !important;
-      font-family: sans-serif !important;
-    }
-    .content {
-      padding: 1rem 1.5rem 2rem !important;
-    }
-
-    <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
-  </style>
-</head>
-<body>
-  <%= yield %>
-</body>
-</html>
-
-@@ main
-<div class="content">
-  <h1>Pagy Keyset App</h1>
-  <p>Self-contained, standalone app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
-  <p>Please, report the following versions in any new issue.</p>
-  <h2>Versions</h2>
-  <ul>
-    <li>Ruby:    <%= RUBY_VERSION %></li>
-    <li>Rack:    <%= Rack::RELEASE %></li>
-    <li>Sinatra: <%= Sinatra::VERSION %></li>
-    <li>Pagy:    <%= Pagy::VERSION %></li>
-  </ul>
-
-  <h3>Collection</h3>
-  <div id="records" class="collection">
-  <table border="1" cellspacing="0" cellpadding="3">
-    <tr>
-      <th>animal <%= order_symbol(@order[:animal]) %></th>
-      <th>name <%= order_symbol(@order[:name]) %></th>
-      <th>birthdate <%= order_symbol(@order[:birthdate]) %></th>
-      <th>id <%= order_symbol(@order[:id]) %></th>
-    </tr>
-    <% @pets.each do |pet| %>
-    <tr>
-      <td><%= pet.animal %></td>
-      <td><%= pet.name %></td>
-      <td><%= pet.birthdate %></td>
-      <td><%= pet.id %></td>
-    </tr>
-    <% end %>
-  </table>
-  </div>
-  <p>
-  <nav class="pagy" id="next" aria-label="Pagy next">
-    <%= pagy_next_a(@pagy, text: 'Next page &gt;') %>
-  </nav>
-</div>

@@ -33,7 +33,6 @@ group :playground do
   gem 'rouge'
   gem 'sequel'
   gem 'sinatra'
-  gem 'sinatra-contrib'
   gem 'sqlite3'
 end
 

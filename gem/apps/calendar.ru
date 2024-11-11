@@ -29,7 +29,6 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   gem 'groupdate'
   gem 'puma'
   gem 'sinatra'
-  gem 'sinatra-contrib'
   gem 'sqlite3'
 end
 
@@ -42,12 +41,6 @@ Pagy::DEFAULT.freeze
 require 'sinatra/base'
 # Sinatra application
 class PagyCalendar < Sinatra::Base
-  configure do
-    # Templates defined in the __END__ section as @@ ...
-    enable :inline_templates
-  end
-
-  # Controller
   include Pagy::Backend
 
   # This method must be implemented by the application.
@@ -76,6 +69,7 @@ class PagyCalendar < Sinatra::Base
         unless params[:skip_counts] == 'true'
   end
 
+  # Root route/action
   get '/' do
     # Groupdate does not support time zones with SQLite.
     # 'UTC' does not work on certain machines config (pulling the actual local time zone utc_offset)
@@ -97,6 +91,103 @@ class PagyCalendar < Sinatra::Base
 
   helpers do
     include Pagy::Frontend
+  end
+
+  # Views
+  template :layout do
+    <<~ERB
+      <!DOCTYPE html>
+      <html lang="en">
+        <html>
+        <head>
+        <title>Pagy Calendar App</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+          <style type="text/css">
+            @media screen { html, body {
+              font-size: .8rem;
+              line-height: 1.1s;
+              padding: 0;
+              margin: 0;
+            } }
+            body {
+              background-color: #f7f7f7;
+              color: #51585F;"
+              font-family: sans-serif;
+            }
+            .content {
+              padding: 1rem 1.5rem 2rem;
+            }
+            /* added with the pagy counts feature */
+            a.empty-page {
+              color: #888888;
+            }
+          </style>
+        </head>
+
+        <body>
+          <%= yield %>
+        </body>
+      </html>
+    ERB
+  end
+  template :main do
+    <<~ERB
+      <div class="container">
+        <h1>Pagy Calendar App</h1>
+        <p>Self-contained, standalone app implementing nested calendar pagination for year, month, day units.</p>
+        <p>See the <a href="https://ddnexus.github.io/pagy/docs/extras/calendar">Pagy Calendar Extra</a> for details.</p>
+        <p>Please, report the following versions in any new issue.</p>
+        <h2>Versions</h2>
+        <ul>
+          <li>Ruby:    <%= RUBY_VERSION %></li>
+          <li>Rack:    <%= Rack::RELEASE %></li>
+          <li>Sinatra: <%= Sinatra::VERSION %></li>
+          <li>Pagy:    <%= Pagy::VERSION %></li>
+        </ul>
+        <hr>
+
+        <!-- calendar UI manual toggle -->
+        <p>
+        <% if params[:skip] %>
+          <a id="toggle" href="/" >Show Calendar</a>
+        <% else %>
+          <a id="toggle" href="?skip=true" >Hide Calendar</a>
+          <br>
+          <a id="go-to-day" href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
+          <!-- You can use Time.zone.now to find the current page if your time period include today -->
+          <% end %>
+        </p>
+
+        <!-- calendar filtering navs -->
+        <% if @calendar %>
+          <p>Showtime: <%= @calendar.showtime %></p>
+          <%= pagy_bootstrap_nav(@calendar[:year], id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
+          <%= pagy_bootstrap_nav(@calendar[:month], id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
+          <%= pagy_bootstrap_nav(@calendar[:day], id: "day-nav", aria_label: "Days") %> <!-- day nav -->
+        <% end %>
+
+        <!-- page info extended for the calendar unit -->
+        <div class="alert alert-primary" role="alert">
+          <%= pagy_info(@pagy, id: 'pagy-info') %>
+          <% if @calendar %>
+            for <b><%= @calendar.showtime.strftime('%Y-%m-%d') %></b>
+          <% end %>
+        </div>
+
+        <!-- page records (time converted in your local time)-->
+        <div id="records" class="list-group">
+          <% @events.each do |event| %>
+          <p class="list-group-item"><%= event.title %> - <%= event.time.to_s %></p>
+          <% end %>
+        </div>
+
+        <!-- standard pagination of the selected month -->
+        <p><%= pagy_bootstrap_nav(@pagy, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
+      </div>
+    ERB
   end
 end
 
@@ -644,96 +735,3 @@ end
 Event.insert_all(events)
 
 run PagyCalendar
-
-__END__
-
-@@ layout
-  <!DOCTYPE html>
-  <html lang="en">
-    <html>
-    <head>
-    <title>Pagy Calendar App</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-      <style type="text/css">
-        @media screen { html, body {
-          font-size: .8rem;
-          line-height: 1.1s;
-          padding: 0;
-          margin: 0;
-        } }
-        body {
-          background-color: #f7f7f7;
-          color: #51585F;"
-          font-family: sans-serif;
-        }
-        .content {
-          padding: 1rem 1.5rem 2rem;
-        }
-        /* added with the pagy counts feature */
-        a.empty-page {
-          color: #888888;
-        }
-      </style>
-    </head>
-
-    <body>
-      <%= yield %>
-    </body>
-</html>
-
-@@ main
-<div class="container">
-  <h1>Pagy Calendar App</h1>
-  <p>Self-contained, standalone app implementing nested calendar pagination for year, month, day units.</p>
-  <p>See the <a href="https://ddnexus.github.io/pagy/docs/extras/calendar">Pagy Calendar Extra</a> for details.</p>
-  <p>Please, report the following versions in any new issue.</p>
-  <h2>Versions</h2>
-  <ul>
-    <li>Ruby:    <%= RUBY_VERSION %></li>
-    <li>Rack:    <%= Rack::RELEASE %></li>
-    <li>Sinatra: <%= Sinatra::VERSION %></li>
-    <li>Pagy:    <%= Pagy::VERSION %></li>
-  </ul>
-  <hr>
-
-  <!-- calendar UI manual toggle -->
-  <p>
-  <% if params[:skip] %>
-    <a id="toggle" href="/" >Show Calendar</a>
-  <% else %>
-    <a id="toggle" href="?skip=true" >Hide Calendar</a>
-    <br>
-    <a id="go-to-day" href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
-    <!-- You can use Time.zone.now to find the current page if your time period include today -->
-    <% end %>
-  </p>
-
-  <!-- calendar filtering navs -->
-  <% if @calendar %>
-    <p>Showtime: <%= @calendar.showtime %></p>
-    <%= pagy_bootstrap_nav(@calendar[:year], id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
-    <%= pagy_bootstrap_nav(@calendar[:month], id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
-    <%= pagy_bootstrap_nav(@calendar[:day], id: "day-nav", aria_label: "Days") %> <!-- day nav -->
-  <% end %>
-
-  <!-- page info extended for the calendar unit -->
-  <div class="alert alert-primary" role="alert">
-    <%= pagy_info(@pagy, id: 'pagy-info') %>
-    <% if @calendar %>
-      for <b><%= @calendar.showtime.strftime('%Y-%m-%d') %></b>
-    <% end %>
-  </div>
-
-  <!-- page records (time converted in your local time)-->
-  <div id="records" class="list-group">
-    <% @events.each do |event| %>
-    <p class="list-group-item"><%= event.title %> - <%= event.time.to_s %></p>
-    <% end %>
-  </div>
-
-  <!-- standard pagination of the selected month -->
-  <p><%= pagy_bootstrap_nav(@pagy, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
-</div>
