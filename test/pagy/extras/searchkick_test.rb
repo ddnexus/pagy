@@ -85,7 +85,7 @@ describe 'pagy/extras/searchkick' do
         _(results).must_rematch :results
       end
     end
-    describe 'Pagy.new_from_searchkick' do
+    describe 'new_from_searchkick' do
       it 'paginates results with defaults' do
         results = MockSearchkick::Model.search('a')
         pagy    = Pagy.new_from_searchkick(results)

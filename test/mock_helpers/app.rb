@@ -4,6 +4,8 @@ require 'active_support/core_ext/hash/indifferent_access'
 require 'groupdate'
 require 'rack'
 
+ActiveSupport.to_time_preserves_timezone = :zone  # Fix ActiveSupport deprecation
+
 # Backend and Frontend poor man mock app
 class MockApp
   attr_reader :params, :request, :response

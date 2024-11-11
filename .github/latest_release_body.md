@@ -6,14 +6,12 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.2.1
+### Changes in 9.2.2
 
 <!-- changes_start -->
-- Improve bin/pagy to dynamically find apps and descriptions
-- Apps refactoring:
-  - Update rails to 8.0
-  - Replace rails AR keyset apps with sinatra apps
-  - Improve consistency
+- Replace inline templates with template block in sinatra apps
+- Replace the rails calendar app with a sinatra app
+- Add PagyApps::INDEX
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)

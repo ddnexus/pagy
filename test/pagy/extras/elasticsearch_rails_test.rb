@@ -125,7 +125,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(records).must_rematch :records
       end
     end
-    describe 'Pagy.new_from_elasticsearch_rails' do
+    describe 'new_from_elasticsearch_rails' do
       it 'paginates response with defaults' do
         response = MockElasticsearchRails::Model.search('a')
         pagy     = Pagy.new_from_elasticsearch_rails(response)

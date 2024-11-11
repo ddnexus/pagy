@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
+require_relative '../../gem/apps/index'
 
 describe 'Version match' do
   it 'has version' do
@@ -19,8 +20,8 @@ describe 'Version match' do
     _(Pagy.root.join('bin', 'pagy').read).must_match "VERSION = '#{Pagy::VERSION}'"
   end
   it 'defines the same version in apps/*.ru' do
-    %w[calendar demo rails repro].each do |app|
-      _(Pagy.root.join('apps', "#{app}.ru").read).must_match "VERSION = '#{Pagy::VERSION}'"
+    PagyApps::INDEX.each_value do |path|
+      _(File.read(path)).must_match "VERSION = '#{Pagy::VERSION}'"
     end
   end
   it 'defines the same version in javascripts/pagy.min.js' do

@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    pagy (9.2.1)
+    pagy (9.2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -150,7 +150,6 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    multi_json (1.15.0)
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.2.0)
@@ -242,7 +241,7 @@ GEM
     rematch (3.1.0)
     rerun (0.14.0)
       listen (~> 3.0)
-    rouge (4.4.0)
+    rouge (4.5.0)
     rubocop (1.68.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -281,12 +280,6 @@ GEM
       rack (>= 3.0.0, < 4)
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
-      tilt (~> 2.0)
-    sinatra-contrib (4.0.0)
-      multi_json (>= 0.0.2)
-      mustermann (~> 3.0)
-      rack-protection (= 4.0.0)
-      sinatra (= 4.0.0)
       tilt (~> 2.0)
     sqlite3 (2.2.0-aarch64-linux-gnu)
     sqlite3 (2.2.0-aarch64-linux-musl)
@@ -353,7 +346,6 @@ DEPENDENCIES
   sequel
   simplecov
   sinatra
-  sinatra-contrib
   sqlite3
 
 BUNDLED WITH
