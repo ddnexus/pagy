@@ -16,7 +16,7 @@
 # URL
 #    http://0.0.0.0:8000
 
-VERSION = '9.2.1'
+VERSION = '9.2.2'
 
 # Bundle
 require 'bundler/inline'

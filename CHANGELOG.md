@@ -23,6 +23,12 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:after_latest` keyset variable: use `:filter_newest`
 <hr>
 
+## Version 9.2.2
+
+- Replace inline templates with template block in sinatra apps
+- Replace the rails calendar app with a sinatra app
+- Add PagyApps::INDEX
+
 ## Version 9.2.1
 
 - Improve bin/pagy to dynamically find apps and descriptions
