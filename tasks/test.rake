@@ -2,14 +2,14 @@
 
 require 'rake/testtask'
 
-# Almost each test recreates a different environment,
+# Almost each test recreates a different environment
 # and must run in a separate process in order to avoid
-# to override other tests so we create one task per test.
+# to override other tests, so we create one task per test.
 # That's a bit slow but consistent and easier when developing.
 
 # Use the :test task to run them all
 
-# Get the full list of of all the test tasks (and test files that each task run) with:
+# Get the full list of all the test tasks (and test files that each task run) with:
 # rake -D test_*
 
 names = []
