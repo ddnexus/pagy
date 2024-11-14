@@ -79,7 +79,16 @@ class Pagy
 
     protected
 
-    # Prepare the literal query to filter the newest records
+    # Prepare the literal query string (complete with the placeholders for value interpolation)
+    # used to filter the newest records.
+    # For example:
+    # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
+    # ( animal = :animal AND name = :name AND id > :id ) OR
+    # ( animal = :animal AND name < :name ) OR
+    # ( animal > :animal )
+    # When :tuple_comparison is enabled, and if the order is all :asc or all :desc,
+    # with a set like Pet.order(:animal, :name, :id) it returns the following string:
+    # ( animal, name, id ) > ( :animal, :name, :id )
     def filter_newest_query
       operator   = { asc: '>', desc: '<' }
       directions = @keyset.values
