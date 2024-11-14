@@ -27,6 +27,8 @@ body:
           required: true
         - label: I searched through the [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
           required: true
+        - label: I asked [Pagy Guru](https://gurubase.io/g/pagy)
+          required: true
 
   - type: markdown
     attributes:
