@@ -1,5 +1,6 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails
 # frozen_string_literal: true
+# You can override any of the `pagy_*` methods in your controller.
 
 class Pagy # :nodoc:
   DEFAULT[:elasticsearch_rails_search]      ||= :search

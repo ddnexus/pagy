@@ -1,5 +1,6 @@
 # See Pagy::Backend API documentation: https://ddnexus.github.io/pagy/docs/api/backend
 # frozen_string_literal: true
+# You can override any of the `pagy_*` methods in your controller.
 
 class Pagy
   # Define a few generic methods to paginate a collection out of the box,
