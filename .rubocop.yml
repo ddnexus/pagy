@@ -22,6 +22,9 @@ Layout/LineLength:
   Exclude:
   - test/**/*
 
+Layout/BeginEndAlignment:
+  EnforcedStyleAlignWith: begin
+
 Layout/ExtraSpacing:
   AllowForAlignment:
     Enabled: true

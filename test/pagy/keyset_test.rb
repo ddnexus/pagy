@@ -49,6 +49,14 @@ require 'pagy/keyset'
         _ = pagy.records
         _(pagy.latest).must_equal({id: 10})
       end
+      it 'uses :jsonify_keyset_attributes' do
+        pagy = Pagy::Keyset.new(model.order(:id),
+                                page: "eyJpZCI6MTB9",
+                                limit: 10,
+                                jsonify_keyset_attributes: lambda(&:to_json))
+        _(pagy.next).must_equal("eyJpZCI6MjB9")
+        _(pagy.latest).must_equal({id: 10})
+      end
       it 'uses :filter_newest' do
         filter_newest = if model == Pet
                           ->(set, latest, _keyset) { set.where('id > :id', **latest) }

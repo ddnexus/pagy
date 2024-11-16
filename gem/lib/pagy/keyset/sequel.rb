@@ -7,8 +7,8 @@ class Pagy
     class Sequel < Keyset
       protected
 
-      # Get the keyset attributes of the latest record
-      def latest_from(latest_record) = latest_record.to_hash.slice(*@keyset.keys)
+      # Get the keyset attributes from the record
+      def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
 
       # Extract the keyset from the set
       def extract_keyset

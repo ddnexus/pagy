@@ -114,7 +114,7 @@ If you need a specific order:
 ### How Pagy::Keyset works
 
 - You pass an `uniquely ordered` `set` and `Pagy::Keyset` queries the page of records.
-- It keeps track of the `latest` fetched  record by encoding its `keyset` attributes into the `page` query string param of the 
+- It keeps track of the `latest` fetched record by encoding its `keyset` attributes into the `page` query string param of the 
   `next` URL.
 - At each request, the `:page` is decoded and used to prepare a `when` clause that filters the newest records, and 
   the `:limit` of records is pulled.
@@ -196,6 +196,37 @@ end
 Pagy::Keyset(set, typecast_latest:)
 ```
 
+==- `:jsonify_keyset_attributes`
+
+A lambda to override the generic json encoding of the `keyset` attributes. Use it when the generic `to_json` method would lose 
+some information when decoded.
+
+For example: `Time` objects may lose or round the fractional seconds through the 
+encoding/decoding cycle, causing the ordering to fail and thus creating all sort of unexpected behaviors (e.g. skipping or 
+repeating the same page, missing or duplicated records, etc.). Here is what you can do:
+
+```ruby
+# Match the microsecods with the strings stored into the time columns of SQLite
+jsonify_keyset_attributes = lambda do |attributes|
+  # Convert it to a string matching the stored value/format in SQLite DB
+  attributes[:created_at] = attributes[:created_at].strftime('%F %T.%6N')
+  attributes.to_json
+end
+
+Pagy::Keyset(set, jsonify_keyset_attributes:)
+```
+
+!!! ActiveRecord alternative for time_precision
+
+With `ActiveRecord::Relation` set, you can fix the fractional seconds issue by just setting the `time_precision`: 
+
+```ruby
+ActiveSupport::JSON::Encoding.time_precision = 6
+```
+!!!
+
+_(Notice that it doesn't work with `Sequel::Dataset` sets)_
+
 ===
 
 ## Attribute Readers
@@ -220,8 +251,17 @@ Product.order(:name, :production_date)
 Product.order(:name, :production_date, :id)
 ```
 !!!
+ 
+!!!danger You may have an encoding problem
+The generic `to_json` method used to encode the `page` loses some information when decoded.
 
-!!!danger ... or you have a typecasting problem
+!!!success
+- Check the actual executed DB query and the actual stored value
+- Identify the column that have a format that doesn't match with the keyset
+- Use your custom encoding with the [:jsonify_keyset_attributes](#jsonify-keyset-attributes) variable
+!!!
+
+!!!danger You may have a typecasting problem
 Your ORM and the storage formats don't match for one or more columns. It's a common case with `SQLite` and Time columns.
 They may have been stored as strings formatted differently than the default format used by your current ORM.
 

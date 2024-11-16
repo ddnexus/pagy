@@ -138,6 +138,10 @@ end
 
 # ActiveRecord setup
 require 'active_record'
+
+# Match the microsecods with the strings stored into the time columns of SQLite
+# ActiveSupport::JSON::Encoding.time_precision = 6
+
 # Log
 output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
 ActiveRecord::Base.logger = Logger.new(output)
