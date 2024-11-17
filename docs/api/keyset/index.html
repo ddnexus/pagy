@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.784812877185">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785161276156">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../../../resources/css/retype.css?v=3.6.0.784812877185" rel="stylesheet">
+    <link href="../../../resources/css/retype.css?v=3.6.0.785161276156" rel="stylesheet">
 
-    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.6.0.784812877185" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../../../resources/js/config.js?v=3.6.0.785161276156" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../../../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.6.0.784812877185" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.6.0.784812877185" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../../../resources/js/lunr.js?v=3.6.0.785161276156" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../../../resources/js/prism.js?v=3.6.0.785161276156" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -53,7 +53,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../../../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.2.2</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.3.0</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -595,7 +595,7 @@ Ensure to create a unique composite DB index, including the exact same columns a
 </doc-anchor-target>
 <ul>
 <li>You pass an <code v-pre>uniquely ordered</code> <code v-pre>set</code> and <code v-pre>Pagy::Keyset</code> queries the page of records.</li>
-<li>It keeps track of the <code v-pre>latest</code> fetched  record by encoding its <code v-pre>keyset</code> attributes into the <code v-pre>page</code> query string param of the
+<li>It keeps track of the <code v-pre>latest</code> fetched record by encoding its <code v-pre>keyset</code> attributes into the <code v-pre>page</code> query string param of the
 <code v-pre>next</code> URL.</li>
 <li>At each request, the <code v-pre>:page</code> is decoded and used to prepare a <code v-pre>when</code> clause that filters the newest records, and
 the <code v-pre>:limit</code> of records is pulled.</li>
@@ -671,19 +671,45 @@ end
 Pagy::Keyset(set, filter_newest:)</code></pre>
 </doc-codeblock></div>
    </doc-panel>
-   <doc-panel id="typecast-latest" collapsed>
-       <template #title><code v-pre>:typecast_latest</code></template>
-<p>A lambda to override the automatic typecasting of your ORM. For example: <code v-pre>SQLite</code> stores date and times as strings, and
-the query interpolation may fail composing and comparing string dates. The <code v-pre>typecast_latest</code> is an effective last-resort
-option when fixing the typecasting in your models and/or the data in your storage is not possible.</p>
+   <doc-panel id="jsonify-keyset-attributes" collapsed>
+       <template #title><code v-pre>:jsonify_keyset_attributes</code></template>
+<p>A lambda to override the generic json encoding of the <code v-pre>keyset</code> attributes. Use it when the generic <code v-pre>to_json</code> method would lose
+some information when decoded.</p>
+<p>For example: <code v-pre>Time</code> objects may lose or round the fractional seconds through the
+encoding/decoding cycle, causing the ordering to fail and thus creating all sort of unexpected behaviors (e.g. skipping or
+repeating the same page, missing or duplicated records, etc.). Here is what you can do:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-ruby"><code v-pre class="language-ruby">typecast_latest = lambda do |latest| 
-  latest[:timestamp] = Time.parse(latest[:timestamp]).strftime('%F %T')
-  latest
+<pre class="language-ruby"><code v-pre class="language-ruby"># Match the microsecods with the strings stored into the time columns of SQLite
+jsonify_keyset_attributes = lambda do |attributes|
+  # Convert it to a string matching the stored value/format in SQLite DB
+  attributes[:created_at] = attributes[:created_at].strftime('%F %T.%6N')
+  attributes.to_json
 end
 
-Pagy::Keyset(set, typecast_latest:)</code></pre>
+Pagy::Keyset(set, jsonify_keyset_attributes:)</code></pre>
 </doc-codeblock></div>
+<div class="flex mb-6">
+    <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3 w-full">
+            <h5>ActiveRecord alternative for time_precision</h5>
+<p>With <code v-pre>ActiveRecord::Relation</code> set, you can fix the fractional seconds issue by just setting the <code v-pre>time_precision</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-ruby"><code v-pre class="language-ruby">ActiveSupport::JSON::Encoding.time_precision = 6</code></pre>
+</doc-codeblock></div>
+        </div>
+    </div>
+</div>
+<p><em>(Notice that it doesn&#x27;t work with <code v-pre>Sequel::Dataset</code> sets)</em></p>
    </doc-panel>
 </doc-panels>
 <doc-anchor-target id="attribute-readers">
@@ -714,7 +740,7 @@ Pagy::Keyset(set, typecast_latest:)</code></pre>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Your set is not <code v-pre>uniquely ordered</code></h5>
+            <h5>The set may not be <code v-pre>uniquely ordered</code></h5>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-ruby"><code v-pre class="language-ruby"># Neither columns are unique
 Product.order(:name, :production_date)</code></pre>
@@ -754,9 +780,8 @@ Product.order(:name, :production_date, :id)</code></pre>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>... or you have a typecasting problem</h5>
-<p>Your ORM and the storage formats don&#x27;t match for one or more columns. It&#x27;s a common case with <code v-pre>SQLite</code> and Time columns.
-They may have been stored as strings formatted differently than the default format used by your current ORM.</p>
+            <h5>You may have an encoding problem</h5>
+<p>The generic <code v-pre>to_json</code> method used to encode the <code v-pre>page</code> may lose some information when decoded</p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
@@ -772,8 +797,7 @@ They may have been stored as strings formatted differently than the default form
 <ul>
 <li>Check the actual executed DB query and the actual stored value</li>
 <li>Identify the column that have a format that doesn&#x27;t match with the keyset</li>
-<li>Fix the typecasting consistence of your ORM with your DB or consider using your custom typecasting with the
-<doc-anchor-trigger to="#typecast-latest">:typecast_latest</doc-anchor-trigger> variable</li>
+<li>Override the encoding with the <doc-anchor-trigger to="#jsonify-keyset-attributes">:jsonify_keyset_attributes</doc-anchor-trigger> variable</li>
 </ul>
         </div>
     </div>
@@ -796,7 +820,7 @@ They may have been stored as strings formatted differently than the default form
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-            <h5>Most likely your index is not right, or your case needs a custom query</h5>
+            <h5>Most likely the index is not right, or your case needs a custom query</h5>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
