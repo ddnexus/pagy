@@ -181,21 +181,6 @@ end
 Pagy::Keyset(set, filter_newest:)
 ```
 
-==- `:typecast_latest`
-
-A lambda to override the automatic typecasting of your ORM. For example: `SQLite` stores date and times as strings, and
-the query interpolation may fail composing and comparing string dates. The `typecast_latest` is an effective last-resort
-option when fixing the typecasting in your models and/or the data in your storage is not possible.
-
-```ruby
-typecast_latest = lambda do |latest| 
-  latest[:timestamp] = Time.parse(latest[:timestamp]).strftime('%F %T')
-  latest
-end
-
-Pagy::Keyset(set, typecast_latest:)
-```
-
 ==- `:jsonify_keyset_attributes`
 
 A lambda to override the generic json encoding of the `keyset` attributes. Use it when the generic `to_json` method would lose 
@@ -237,7 +222,7 @@ _(Notice that it doesn't work with `Sequel::Dataset` sets)_
 
 ==- Records may repeat or be missing from successive pages
 
-!!!danger Your set is not `uniquely ordered`
+!!!danger The set may not be `uniquely ordered`
 
 ```rb
 # Neither columns are unique
@@ -251,30 +236,19 @@ Product.order(:name, :production_date)
 Product.order(:name, :production_date, :id)
 ```
 !!!
- 
+
 !!!danger You may have an encoding problem
-The generic `to_json` method used to encode the `page` loses some information when decoded.
+The generic `to_json` method used to encode the `page` may lose some information when decoded
 
 !!!success
 - Check the actual executed DB query and the actual stored value
 - Identify the column that have a format that doesn't match with the keyset
-- Use your custom encoding with the [:jsonify_keyset_attributes](#jsonify-keyset-attributes) variable
+- Override the encoding with the [:jsonify_keyset_attributes](#jsonify-keyset-attributes) variable
 !!!
 
-!!!danger You may have a typecasting problem
-Your ORM and the storage formats don't match for one or more columns. It's a common case with `SQLite` and Time columns.
-They may have been stored as strings formatted differently than the default format used by your current ORM.
-
-!!!success
-- Check the actual executed DB query and the actual stored value
-- Identify the column that have a format that doesn't match with the keyset
-- Fix the typecasting consistence of your ORM with your DB or consider using your custom typecasting with the 
-  [:typecast_latest](#typecast-latest) variable
-!!!
-  
 ==- The order is OK, but the DB is still slow
 
-!!!danger Most likely your index is not right, or your case needs a custom query
+!!!danger Most likely the index is not right, or your case needs a custom query
 
 !!! Success
 

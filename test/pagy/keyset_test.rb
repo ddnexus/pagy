@@ -41,14 +41,6 @@ require 'pagy/keyset'
         _(records.size).must_equal 10
         _(records.first.id).must_equal 13
       end
-      it 'uses :typecast_latest' do
-        pagy = Pagy::Keyset.new(model.order(:id),
-                                page: "eyJpZCI6MTB9",
-                                limit: 10,
-                                typecast_latest: ->(latest) { latest })
-        _ = pagy.records
-        _(pagy.latest).must_equal({id: 10})
-      end
       it 'uses :jsonify_keyset_attributes' do
         pagy = Pagy::Keyset.new(model.order(:id),
                                 page: "eyJpZCI6MTB9",

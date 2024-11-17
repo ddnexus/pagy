@@ -43,7 +43,7 @@ class Pagy
       return unless @page
 
       latest  = JSON.parse(B64.urlsafe_decode(@page)).transform_keys(&:to_sym)
-      @latest = @vars[:typecast_latest]&.(latest) || typecast_latest(latest)
+      @latest = typecast_latest(latest)
       raise InternalError, 'page and keyset are not consistent' \
             unless @latest.keys == @keyset.keys
     end
