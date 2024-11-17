@@ -16,7 +16,7 @@
 # URL
 #    http://0.0.0.0:8000
 
-VERSION = '9.2.2'
+VERSION = '9.3.0'
 
 # Bundle
 require 'bundler/inline'
@@ -138,6 +138,10 @@ end
 
 # ActiveRecord setup
 require 'active_record'
+
+# Match the microsecods with the strings stored into the time columns of SQLite
+# ActiveSupport::JSON::Encoding.time_precision = 6
+
 # Log
 output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
 ActiveRecord::Base.logger = Logger.new(output)

@@ -43,7 +43,7 @@ class Pagy
       return unless @page
 
       latest  = JSON.parse(B64.urlsafe_decode(@page)).transform_keys(&:to_sym)
-      @latest = @vars[:typecast_latest]&.(latest) || typecast_latest(latest)
+      @latest = typecast_latest(latest)
       raise InternalError, 'page and keyset are not consistent' \
             unless @latest.keys == @keyset.keys
     end
@@ -53,24 +53,28 @@ class Pagy
       records
       return unless @more
 
-      @next ||= B64.urlsafe_encode(latest_from(@records.last).to_json)
+      @next ||= begin
+                  hash = keyset_attributes_from(@records.last)
+                  json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
+                  B64.urlsafe_encode(json)
+                end
     end
 
     # Fetch the array of records for the current page
     def records
       @records ||= begin
-        @set = apply_select if select?
-        if @latest
-          # :nocov:
-          @set = @vars[:after_latest]&.(@set, @latest) || # deprecated
-                 # :nocov:
-                 @vars[:filter_newest]&.(@set, @latest, @keyset) ||
-                 filter_newest
-        end
-        records = @set.limit(@limit + 1).to_a
-        @more   = records.size > @limit && !records.pop.nil?
-        records
-      end
+                     @set = apply_select if select?
+                     if @latest
+                       # :nocov:
+                       @set = @vars[:after_latest]&.(@set, @latest) || # deprecated
+                              # :nocov:
+                              @vars[:filter_newest]&.(@set, @latest, @keyset) ||
+                              filter_newest
+                     end
+                     records = @set.limit(@limit + 1).to_a
+                     @more   = records.size > @limit && !records.pop.nil?
+                     records
+                   end
     end
 
     protected

@@ -114,7 +114,7 @@ If you need a specific order:
 ### How Pagy::Keyset works
 
 - You pass an `uniquely ordered` `set` and `Pagy::Keyset` queries the page of records.
-- It keeps track of the `latest` fetched  record by encoding its `keyset` attributes into the `page` query string param of the 
+- It keeps track of the `latest` fetched record by encoding its `keyset` attributes into the `page` query string param of the 
   `next` URL.
 - At each request, the `:page` is decoded and used to prepare a `when` clause that filters the newest records, and 
   the `:limit` of records is pulled.
@@ -181,20 +181,36 @@ end
 Pagy::Keyset(set, filter_newest:)
 ```
 
-==- `:typecast_latest`
+==- `:jsonify_keyset_attributes`
 
-A lambda to override the automatic typecasting of your ORM. For example: `SQLite` stores date and times as strings, and
-the query interpolation may fail composing and comparing string dates. The `typecast_latest` is an effective last-resort
-option when fixing the typecasting in your models and/or the data in your storage is not possible.
+A lambda to override the generic json encoding of the `keyset` attributes. Use it when the generic `to_json` method would lose 
+some information when decoded.
+
+For example: `Time` objects may lose or round the fractional seconds through the 
+encoding/decoding cycle, causing the ordering to fail and thus creating all sort of unexpected behaviors (e.g. skipping or 
+repeating the same page, missing or duplicated records, etc.). Here is what you can do:
 
 ```ruby
-typecast_latest = lambda do |latest| 
-  latest[:timestamp] = Time.parse(latest[:timestamp]).strftime('%F %T')
-  latest
+# Match the microsecods with the strings stored into the time columns of SQLite
+jsonify_keyset_attributes = lambda do |attributes|
+  # Convert it to a string matching the stored value/format in SQLite DB
+  attributes[:created_at] = attributes[:created_at].strftime('%F %T.%6N')
+  attributes.to_json
 end
 
-Pagy::Keyset(set, typecast_latest:)
+Pagy::Keyset(set, jsonify_keyset_attributes:)
 ```
+
+!!! ActiveRecord alternative for time_precision
+
+With `ActiveRecord::Relation` set, you can fix the fractional seconds issue by just setting the `time_precision`: 
+
+```ruby
+ActiveSupport::JSON::Encoding.time_precision = 6
+```
+!!!
+
+_(Notice that it doesn't work with `Sequel::Dataset` sets)_
 
 ===
 
@@ -206,7 +222,7 @@ Pagy::Keyset(set, typecast_latest:)
 
 ==- Records may repeat or be missing from successive pages
 
-!!!danger Your set is not `uniquely ordered`
+!!!danger The set may not be `uniquely ordered`
 
 ```rb
 # Neither columns are unique
@@ -221,20 +237,18 @@ Product.order(:name, :production_date, :id)
 ```
 !!!
 
-!!!danger ... or you have a typecasting problem
-Your ORM and the storage formats don't match for one or more columns. It's a common case with `SQLite` and Time columns.
-They may have been stored as strings formatted differently than the default format used by your current ORM.
+!!!danger You may have an encoding problem
+The generic `to_json` method used to encode the `page` may lose some information when decoded
 
 !!!success
 - Check the actual executed DB query and the actual stored value
 - Identify the column that have a format that doesn't match with the keyset
-- Fix the typecasting consistence of your ORM with your DB or consider using your custom typecasting with the 
-  [:typecast_latest](#typecast-latest) variable
+- Override the encoding with the [:jsonify_keyset_attributes](#jsonify-keyset-attributes) variable
 !!!
-  
+
 ==- The order is OK, but the DB is still slow
 
-!!!danger Most likely your index is not right, or your case needs a custom query
+!!!danger Most likely the index is not right, or your case needs a custom query
 
 !!! Success
 
