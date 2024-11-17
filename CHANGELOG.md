@@ -23,6 +23,11 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:after_latest` keyset variable: use `:filter_newest`
 <hr>
 
+## Version 9.3.0
+
+- Remove the :typecast_latest variable
+- Add the :jsonify_keyset_attributes variable to override the encoding (#749)
+
 ## Version 9.2.2
 
 - Replace inline templates with template block in sinatra apps

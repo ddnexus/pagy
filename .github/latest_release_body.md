@@ -6,12 +6,11 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.2.2
+### Changes in 9.3.0
 
 <!-- changes_start -->
-- Replace inline templates with template block in sinatra apps
-- Replace the rails calendar app with a sinatra app
-- Add PagyApps::INDEX
+- Remove the :typecast_latest variable
+- Add the :jsonify_keyset_attributes variable to override the encoding (#749)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
