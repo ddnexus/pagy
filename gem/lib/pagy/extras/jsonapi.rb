@@ -1,5 +1,6 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/jsonapi
 # frozen_string_literal: true
+# You can override any of the `pagy_*` methods in your controller.
 
 require_relative '../url_helpers'
 
