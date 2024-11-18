@@ -1,6 +1,5 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/array
 # frozen_string_literal: true
-# You can override any of the `pagy_*` methods in your controller.
 
 class Pagy # :nodoc:
   # Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding

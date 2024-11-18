@@ -1,6 +1,5 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/calendar
 # frozen_string_literal: true
-# You can override any of the `pagy_*` methods in your controller.
 
 require_relative '../calendar'
 
