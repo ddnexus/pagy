@@ -27,6 +27,8 @@ body:
           required: true
         - label: I searched through the [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
           required: true
+        - label: I asked [Pagy Trained AI](https://gurubase.io/g/pagy) - Warning - The information may not be 100% accurate, but it serves as a good starting point for further investigation.
+          required: true
 
   - type: markdown
     attributes:

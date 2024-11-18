@@ -38,6 +38,10 @@ links:
     link: https://gitter.im/ruby-pagy/Lobby
     icon: cross-reference-24
     target: blank
+  - text: Pagy Trained AI
+    link: https://gitter.im/ruby-pagy/Lobby
+    icon: search
+    target: blank
 
 exclude:
   - README.md

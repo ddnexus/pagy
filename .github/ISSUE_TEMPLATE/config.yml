@@ -6,3 +6,6 @@ contact_links:
   - name: Pagy Q&A Discussions
     url: https://github.com/ddnexus/pagy/discussions/categories/q-a
     about: Ask and answer questions here
+  - name: Pagy Trained AI
+    url: https://gurubase.io/g/pagy
+    about: Ask the LLM and it will attempt to answer. Warning - The information may not be 100% accurate, but it serves as a good starting point for further investigation.
