@@ -23,6 +23,10 @@ If you upgrade from version `< 9.0.0` see the following:
 - `:after_latest` keyset variable: use `:filter_newest`
 <hr>
 
+## Version 9.3.1
+
+- Added qualified column names to the keyset query
+
 ## Version 9.3.0
 
 - Remove the :typecast_latest variable
