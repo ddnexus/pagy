@@ -6,11 +6,10 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.3.0
+### Changes in 9.3.1
 
 <!-- changes_start -->
-- Remove the :typecast_latest variable
-- Add the :jsonify_keyset_attributes variable to override the encoding (#749)
+- Added qualified column names to the keyset query
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
