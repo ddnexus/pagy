@@ -83,27 +83,28 @@ class Pagy
     # used to filter the newest records.
     # For example:
     # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
-    # ( animal = :animal AND name = :name AND id > :id ) OR
-    # ( animal = :animal AND name < :name ) OR
-    # ( animal > :animal )
+    # ( "pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id ) OR
+    # ( "pets"."animal" = :animal AND "pets"."name" < :name ) OR
+    # ( "pets"."animal" > :animal )
     # When :tuple_comparison is enabled, and if the order is all :asc or all :desc,
     # with a set like Pet.order(:animal, :name, :id) it returns the following string:
-    # ( animal, name, id ) > ( :animal, :name, :id )
+    # ( "pets"."animal", "pets"."name", "pets"."id" ) > ( :animal, :name, :id )
     def filter_newest_query
       operator   = { asc: '>', desc: '<' }
       directions = @keyset.values
+      table      = @set.model.table_name
+      name       = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
       if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
-        columns      = @keyset.keys
-        placeholders = columns.map { |column| ":#{column}" }.join(', ')
-        "( #{columns.join(', ')} ) #{operator[directions.first]} ( #{placeholders} )"
+        placeholders = @keyset.keys.map { |column| ":#{column}" }.join(', ')
+        "( #{name.values.join(', ')} ) #{operator[directions.first]} ( #{placeholders} )"
       else
         keyset = @keyset.to_a
         where  = []
         until keyset.empty?
           last_column, last_direction = keyset.pop
           query = +'( '
-          query << (keyset.map { |column, _d| "#{column} = :#{column}" } \
-                    << "#{last_column} #{operator[last_direction]} :#{last_column}").join(' AND ')
+          query << (keyset.map { |column, _d| "#{name[column]} = :#{column}" } \
+                    << "#{name[last_column]} #{operator[last_direction]} :#{last_column}").join(' AND ')
           query << ' )'
           where << query
         end
