@@ -34,12 +34,8 @@ links:
     link: https://github.com/ddnexus/pagy/discussions
     icon: comment-discussion-24
     target: blank
-  - text: Archived Support
-    link: https://gitter.im/ruby-pagy/Lobby
-    icon: cross-reference-24
-    target: blank
-  - text: Pagy Trained AI
-    link: https://gitter.im/ruby-pagy/Lobby
+  - text: AI Search
+    link: https://gurubase.io/g/pagy
     icon: search
     target: blank
 
