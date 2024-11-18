@@ -68,7 +68,7 @@ jobs:
           working-directory: e2e
           install: false
           config: baseUrl=http://0.0.0.0:8080,video=false
-          start: bundle exec pagy ${{ matrix.app }} -p 8080
+          start: bundle exec pagy ${{ matrix.app }} -p 8080 -i false
           wait-on: http://0.0.0.0:8080
           wait-on-timeout: 120
           spec: cypress/e2e/${{ matrix.app }}.cy.ts
