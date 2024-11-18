@@ -12,7 +12,7 @@ class Pagy # :nodoc:
 
       protected
 
-      # Setup the calendar variables
+      # Set up the calendar variables
       def assign_unit_vars
         super
         @initial = @starting.beginning_of_day
