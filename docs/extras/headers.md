@@ -86,7 +86,7 @@ If you use the `headers` extra with the [contless](countless.md) or [keyset](key
 
 | Variable   | Description                                              | Default                                                                                     |
 |:-----------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------------|
-| `:headers` | Hash variable to customize/suppress the optional headers | `{ page: 'current-page', items: 'page-items', count: 'total-count', pages: 'total-pages' }` |
+| `:headers` | Hash variable to customize/suppress the optional headers | `{ page: 'current-page', limit: 'page-items', count: 'total-count', pages: 'total-pages' }` |
 
 As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance.
 
