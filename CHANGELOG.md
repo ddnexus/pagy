@@ -4,6 +4,25 @@ icon: versions-24
 
 # CHANGELOG
 
+## Release Policy
+
+Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/), and introduces BREAKING CHANGES only for MAYOR versions.
+
+We release any new version (MAJOR, MINOR, PATCH) as soon as it is ready for release, regardless of any time constraint, 
+frequency or duration.
+
+We rarely deprecate elements (releasing a new MAYOR version is just simpler and more efficient). However, when we do, you 
+can expect the old functionality to be supported ONLY during the next releases belonging to the same MAYOR version.
+
+## Recommended Version Constraint
+
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.1`):
+
+The `gem 'pagy', '~> 9.3'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to 
+the most recent version WITHOUT BREAKING CHANGES.
+
+Increment the MAYOR version indicated in the Gemfile ONLY when you are ready to handle the BREAKING CHANGES
+
 ## Breaking Changes
 
 If you upgrade from version `< 9.0.0` see the following:

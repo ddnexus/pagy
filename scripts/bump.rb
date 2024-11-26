@@ -64,6 +64,8 @@ edit_file?(release_body_path, 'Release Body')
 
 # Update the CHANGELOG
 replace_string_in_file('CHANGELOG.md', /<hr>\n/, "<hr>\n\n## Version #{new_version}\n\n#{changes}")
+replace_string_in_file('CHANGELOG.md', "(e.g. `#{old_version}", "(e.g. `#{new_version}")
+replace_string_in_file('CHANGELOG.md', *["~> #{old_version}", "~> #{new_version}"].map { |v| v.split('.')[0, 2].join('.') })
 
 # Bump the version in files
 (%w[retype.yml

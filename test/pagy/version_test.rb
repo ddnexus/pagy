@@ -34,7 +34,10 @@ describe 'Version match' do
     _(Pagy.root.join('javascripts', 'pagy.mjs').read).must_match "version: \"#{Pagy::VERSION}\","
   end
   it 'defines the same version in CHANGELOG.md' do
-    _(Pagy.root.parent.join('CHANGELOG.md').read).must_match "## Version #{Pagy::VERSION}"
+    changelog = Pagy.root.parent.join('CHANGELOG.md').read
+    _(changelog).must_match "(e.g. `#{Pagy::VERSION}"
+    _(changelog).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
+    _(changelog).must_match "## Version #{Pagy::VERSION}"
   end
   it 'defines the same minor version in ./quick-start.md' do
     _(File.read('./quick-start.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
