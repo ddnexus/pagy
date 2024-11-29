@@ -16,7 +16,7 @@ can expect the old functionality to be supported ONLY during the next releases b
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.1`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.2`):
 
 The `gem 'pagy', '~> 9.3'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to 
 the most recent version WITHOUT BREAKING CHANGES.
@@ -41,6 +41,10 @@ If you upgrade from version `< 9.0.0` see the following:
 
 - `:after_latest` keyset variable: use `:filter_newest`
 <hr>
+
+## Version 9.3.2
+
+- Improve gapped series computation by a few milliseconds
 
 ## Version 9.3.1
 

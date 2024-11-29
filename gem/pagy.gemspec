@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'pagy'
-  s.version     = '9.3.1'
+  s.version     = '9.3.2'
   s.authors     = ['Domizio Demichelis']
   s.email       = ['dd.nexus@gmail.com']
   s.summary     = 'The best pagination ruby gem'

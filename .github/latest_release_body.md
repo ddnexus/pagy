@@ -6,10 +6,10 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.3.1
+### Changes in 9.3.2
 
 <!-- changes_start -->
-- Added qualified column names to the keyset query
+- Improve gapped series computation by a few milliseconds
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
