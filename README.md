@@ -44,7 +44,9 @@ performance due to the multiple features added to pagy since v3 (e.g. customizab
 that the difference become A LOT bigger in favor of pagy if you use `*nav_js` helpers, `Pagy::Countless` or JSON and client side
 pagination that are not part of the comparison because missing in the other gems.
 
-See the [Detailed Gems Comparison](http://ddnexus.github.io/pagination-comparison/gems.html) for full details.
+For full details about the charts above:
+- [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
+- [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
 
 </details>
 
@@ -234,7 +236,6 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 - [Documentation](https://ddnexus.github.io/pagy)
 - [How To (quick recipes)](https://ddnexus.github.io/pagy/docs/how-to/)
 - [Changelog](https://ddnexus.github.io/pagy/changelog)
-- [Deprecations](https://ddnexus.github.io/pagy/changelog#deprecations)
 - [How Pagy's Docs work?](https://github.com/ddnexus/pagy/blob/master/docs/README.md)
 
 ### Support
@@ -242,42 +243,37 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 - [Discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a)
 - [Issues](https://github.com/ddnexus/pagy/issues)
 
-### Posts and tutorials
+### Recent Posts and Tutorials
 
-- [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/docs/migration-guide) (practical guide)
-- [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
-- [Benchmarks and Memory Profiles Source](http://github.com/ddnexus/pagination-comparison) (Rails app repository)
-- [Faster Pagination with Pagy](https://viblo.asia/p/faster-pagination-with-pagy-Eb85ok9W52G) introductory tutorial by Sirajus
-  Salekin
-- [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy) by Tiago Franco
-- [Quick guide for Pagy with Sinatra and Sequel](https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417)
-  by Victor Afanasev
-- [Integrating Pagy with Hanami](http://katafrakt.me/2018/06/01/integrating-pagy-with-hanami/) by Paweł Świątkowski
-- [Stateful Tabs with Pagy](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy) by Chris Seelus
-- [Endless Scroll / Infinite Loading with Turbo Streams & Stimulus](https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/)
-  by Stefan Wienert.
-- [Build Load More Pagination with Pagy and Rails Hotwire](https://dev.to/maful/build-load-more-pagination-with-pagy-and-rails-hotwire-2ndb) [by Maful](https://dev.to/maful). (
-  This tutorial shows how you can turbo_stream with GET requests).
-- [Pagination with Hotwire](https://www.beflagrant.com/blog/pagination-with-hotwire) by Jonathan Greenberg
-- [Pagination and infinite scrolling with Rails and the Hotwire stack](https://www.colby.so/posts/pagination-and-infinite-scrolling-with-hotwire)
-  by David Colby
-- [Building a dynamic data grid with search and filters using rails, hotwire and ransack](https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html)
-  by Benito Serna.
-- [Pagination for Beginners: What is it? Why bother?](https://benkoshy.github.io/2021/11/03/pagination-basics.html) by Ben Koshy.
-- [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html)
-  by Ben Koshy.
-- [How to Override pagy methods only in specific circumstances](https://benkoshy.github.io/2020/02/01/overriding-pagy-methods.html)
-  by Ben Koshy.
-- [How to make your pagination links sticky + bounce at the bottom of your page](https://benkoshy.github.io/2020/09/15/sticky-menu.html)
-  by Ben Koshy.
+- [Build Load More Pagination with Pagy and Rails Hotwire](https://maful.web.id/posts/build-load-more-pagination-with-pagy-and-rails-hotwire/ '2023-09-17') by Maful. (This tutorial shows how you can turbo_stream with GET requests)
+- [Pagination and infinite scrolling with Rails and the Hotwire stack](https://www.colby.so/posts/infinite-scroll-with-turbo-streams-and-stimulus '2022-04-19') by David Colby
+- [Pagination with Hotwire](https://www.beflagrant.com/blog/pagination-with-hotwire '2021-09-23') by Jonathan Greenberg
+- [Pagination for Beginners: What is it? Why bother?](https://benkoshy.github.io/2021/11/03/pagination-basics.html '2021-11-03') by Ben Koshy
+- [Endless Scroll / Infinite Loading with Turbo Streams & Stimulus](https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/ '2021-04-17') by Stefan Wienert
+- [How to make your pagination links sticky + bounce at the bottom of your page](https://benkoshy.github.io/2020/09/15/sticky-menu.html '2020-09-15') by Ben Koshy
+- [How to Override pagy methods only in specific circumstances](https://benkoshy.github.io/2020/02/01/overriding-pagy-methods.html  '2020-02-01') by Ben Koshy
+- [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html '2019-10-09') by Ben Koshy
+- [Pagination with Pagy](https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy '2018-04-19') by Tiago Franco
 - [日本語の投稿](https://qiita.com/search?q=pagy)
-- [한국어 튜토리얼](https://kbs4674.tistory.com/72)
 
-### Screencasts
+### Recent Screencasts
 
-[<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="150" title="15 min - Beginner friendly - Shows installation and use of some pagy extras">](https://www.youtube.com/watch?v=1tsWL4EjhMo) [<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="150" title="18 min - Intermediate Skill Level - 'Load More' pagination using Turbo Streams">](https://www.youtube.com/watch?v=ScxUqW29F7E) [<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="17 min - Intermediate Skill Level - Pagination with Search (Ransack) and Hotwire + Infinite (Countless) Pagination" width="150">](https://www.youtube.com/watch?v=A9q6YwhLCyI) [<img src="https://img.youtube.com/vi/Qoq6HZ8gdDE/0.jpg" title="12:52 min - Intermediate Skill Level - API based pagination + using pagy_metadata" width="150">](https://www.youtube.com/watch?v=Qoq6HZ8gdDE) [<img src="https://img.youtube.com/vi/EDyZIB8FU-g/0.jpg" title="12:52 min - Intermediate Skill Level - Calendar sarch with Pagy" width="150">](https://www.youtube.com/watch?v=EDyZIB8FU-g) [<img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="150" title="11 min - Beginner - How to Install + 'Hello world' example">](https://www.youtube.com/watch?v=K4fob588tfM) [<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="150" title="31 min - Beginner - Basic Pagy Use (Tailwind, Overflow, Common Use cases) + Deep dive into building a sample Blogging Application">](https://www.youtube.com/watch?v=1sNpvTMrxl4) [<img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="150" title="5:44 min - Beginner - How to Install Pagy + Using Tailwind CSS to create a page of 'listing'">](https://www.youtube.com/watch?v=0RtYhDIKmBY) [<img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="150" title="7:23 min - Beginner - Installing Pagy + Working through errors (step-by-step)">](https://www.youtube.com/watch?v=aILtxj_LVuA) [<img src="https://img.youtube.com/vi/bVvLNpJyZuw/0.jpg" width="150" title="9:29 min - Intermediate - Infinite Scrolling with Pagy Keyset, Turbo (Rails 8)">](https://www.youtube.com/watch?v=bVvLNpJyZuw) [<img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="150" title="30:00 min - Advanced - Using Pagy In the Context of a Chat Room (Infinite Scroll, Hotwire, Stimulus JS + Using Pagy APIs)">](https://www.youtube.com/watch?v=ArBUAxEA6vM) [<img src="https://img.youtube.com/vi/4nrmf5KfD8Y/0.jpg" width="150" title="14:28 min - Intermediate - Infinite Scrolling with Turbo Streams (Rails 7)">](https://www.youtube.com/watch?v=4nrmf5KfD8Y) [<img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="150" title="5:21 min - Intermediate - Using Pagy - with a strong focus on Hotwire and filtering search results">](https://www.youtube.com/watch?v=HURqvNJF4T0) [<img src="https://img.youtube.com/vi/_j3gtKf5rRs/0.jpg" width="150" title="10:45 - Spanish Language">](https://www.youtube.com/watch?v=_j3gtKf5rRs) [<img src="https://img.youtube.com/vi/zni3nMA5_AY/0.jpg" width="150" title="10:53 - Urdu Language">](https://www.youtube.com/watch?v=zni3nMA5_AY)
+[<img src="https://img.youtube.com/vi/bVvLNpJyZuw/0.jpg" width="150" title="9:29 min - Intermediate - Infinite Scrolling with Pagy Keyset, Turbo (Rails 8) (2024-10-19)">](https://www.youtube.com/watch?v=bVvLNpJyZuw) 
+[<img src="https://img.youtube.com/vi/EDyZIB8FU-g/0.jpg" title="12:52 min - Intermediate Skill Level - Calendar sarch with Pagy (2024-01-21)" width="150">](https://www.youtube.com/watch?v=EDyZIB8FU-g)
+[<img src="https://img.youtube.com/vi/zni3nMA5_AY/0.jpg" width="150" title="10:53 - Urdu Language (2024-01-15)">](https://www.youtube.com/watch?v=zni3nMA5_AY)
+[<img src="https://img.youtube.com/vi/4nrmf5KfD8Y/0.jpg" width="150" title="14:28 min - Intermediate - Infinite Scrolling with Turbo Streams (Rails 7) (2023-06-09)">](https://www.youtube.com/watch?v=4nrmf5KfD8Y)
+[<img src="https://img.youtube.com/vi/Qoq6HZ8gdDE/0.jpg" title="12:52 min - Intermediate Skill Level - API based pagination + using pagy_metadata (2023-05-18)" width="150">](https://www.youtube.com/watch?v=Qoq6HZ8gdDE) 
+[<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="150" title="31 min - Beginner - Basic Pagy Use (Tailwind, Overflow, Common Use cases) + Deep dive into building a sample Blogging Application (2023-04-05)">](https://www.youtube.com/watch?v=1sNpvTMrxl4) 
+[<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="17 min - Intermediate Skill Level - Pagination with Search (Ransack) and Hotwire + Infinite (Countless) Pagination (2022-12-09)" width="150">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
+[<img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="150" title="5:21 min - Intermediate - Using Pagy - with a strong focus on Hotwire and filtering search results (2022-04-20)">](https://www.youtube.com/watch?v=HURqvNJF4T0)
+[<img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="150" title="18 min - Intermediate Skill Level - 'Load More' pagination using Turbo Streams (2022-03-22)">](https://www.youtube.com/watch?v=ScxUqW29F7E)
+[<img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="150" title="5:44 min - Beginner - How to Install Pagy + Using Tailwind CSS to create a page of 'listing' (2022-03-18)">](https://www.youtube.com/watch?v=0RtYhDIKmBY)
+[<img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="150" title="30:00 min - Advanced - Using Pagy In the Context of a Chat Room (Infinite Scroll, Hotwire, Stimulus JS + Using Pagy APIs) (2022-03-04)">](https://www.youtube.com/watch?v=ArBUAxEA6vM) 
+[<img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="150" title="15 min - Beginner friendly - Shows installation and use of some pagy extras (2021-05-05)">](https://www.youtube.com/watch?v=1tsWL4EjhMo)
+[<img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="150" title="7:23 min - Beginner - Installing Pagy + Working through errors (step-by-step) (2021-03-12)">](https://www.youtube.com/watch?v=aILtxj_LVuA)
+[<img src="https://img.youtube.com/vi/_j3gtKf5rRs/0.jpg" width="150" title="10:45 - Spanish Language (2020-09-11)">](https://www.youtube.com/watch?v=_j3gtKf5rRs)
 
-<br>                                                              
+<br>
 
 ## Top 💯 Contributors
 
