@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.785926382484">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786190323562">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -33,12 +33,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="resources/css/retype.css?v=3.6.0.785926382484" rel="stylesheet">
+    <link href="resources/css/retype.css?v=3.6.0.786190323562" rel="stylesheet">
 
-    <script data-cfasync="false" src="resources/js/config.js?v=3.6.0.785926382484" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="resources/js/config.js?v=3.6.0.786190323562" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.6.0.785926382484" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="resources/js/prism.js?v=3.6.0.785926382484" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="resources/js/lunr.js?v=3.6.0.786190323562" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="resources/js/prism.js?v=3.6.0.786190323562" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -318,7 +318,11 @@ and <code v-pre>kaminari v1.1.1</code>.</p>
 performance due to the multiple features added to pagy since v3 (e.g. customizable and translated aria-labels). However, consider
 that the difference become A LOT bigger in favor of pagy if you use <code v-pre>*nav_js</code> helpers, <code v-pre>Pagy::Countless</code> or JSON and client side
 pagination that are not part of the comparison because missing in the other gems.</p>
-<p>See the <a href="http://ddnexus.github.io/pagination-comparison/gems.html">Detailed Gems Comparison</a> for full details.</p>
+<p>For full details about the charts above:</p>
+<ul>
+<li><a href="https://ddnexus.github.io/pagination-comparison/gems.html">Detailed Gems Comparison</a> (charts and analysis)</li>
+<li><a href="http://github.com/ddnexus/pagination-comparison">Benchmarks and Memory Profiles Source</a> (Rails app repository)</li>
+</ul>
 </details>
 <br>
 <doc-anchor-target id="it-does-it-all-better">
@@ -512,7 +516,6 @@ requiring them (and optionally overriding some default).</p>
 <li><a href="https://ddnexus.github.io/pagy">Documentation</a></li>
 <li><a href="https://ddnexus.github.io/pagy/docs/how-to/">How To (quick recipes)</a></li>
 <li><a href="https://ddnexus.github.io/pagy/changelog">Changelog</a></li>
-<li><a href="https://ddnexus.github.io/pagy/changelog#deprecations">Deprecations</a></li>
 <li><a href="https://github.com/ddnexus/pagy/blob/master/docs/README.md">How Pagy&#x27;s Docs work?</a></li>
 </ul>
 <doc-anchor-target id="support">
@@ -525,50 +528,45 @@ requiring them (and optionally overriding some default).</p>
 <li><a href="https://github.com/ddnexus/pagy/discussions/categories/q-a">Discussions</a></li>
 <li><a href="https://github.com/ddnexus/pagy/issues">Issues</a></li>
 </ul>
-<doc-anchor-target id="posts-and-tutorials">
+<doc-anchor-target id="recent-posts-and-tutorials">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#posts-and-tutorials">#</doc-anchor-trigger>
-        <span>Posts and tutorials</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recent-posts-and-tutorials">#</doc-anchor-trigger>
+        <span>Recent Posts and Tutorials</span>
     </h3>
 </doc-anchor-target>
 <ul>
-<li><a href="https://ddnexus.github.io/pagy/docs/migration-guide">Migrate from WillPaginate and Kaminari</a> (practical guide)</li>
-<li><a href="https://ddnexus.github.io/pagination-comparison/gems.html">Detailed Gems Comparison</a> (charts and analysis)</li>
-<li><a href="http://github.com/ddnexus/pagination-comparison">Benchmarks and Memory Profiles Source</a> (Rails app repository)</li>
-<li><a href="https://viblo.asia/p/faster-pagination-with-pagy-Eb85ok9W52G">Faster Pagination with Pagy</a> introductory tutorial by Sirajus
-Salekin</li>
-<li><a href="https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy">Pagination with Pagy</a> by Tiago Franco</li>
-<li><a href="https://medium.com/@vfreefly/how-to-use-pagy-with-sequel-and-sinatra-157dfec1c417">Quick guide for Pagy with Sinatra and Sequel</a>
-by Victor Afanasev</li>
-<li><a href="http://katafrakt.me/2018/06/01/integrating-pagy-with-hanami/">Integrating Pagy with Hanami</a> by Paweł Świątkowski</li>
-<li><a href="https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy">Stateful Tabs with Pagy</a> by Chris Seelus</li>
-<li><a href="https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/">Endless Scroll / Infinite Loading with Turbo Streams &amp; Stimulus</a>
-by Stefan Wienert.</li>
-<li><a href="https://dev.to/maful/build-load-more-pagination-with-pagy-and-rails-hotwire-2ndb">Build Load More Pagination with Pagy and Rails Hotwire</a> <a href="https://dev.to/maful">by Maful</a>. (
-This tutorial shows how you can turbo_stream with GET requests).</li>
-<li><a href="https://www.beflagrant.com/blog/pagination-with-hotwire">Pagination with Hotwire</a> by Jonathan Greenberg</li>
-<li><a href="https://www.colby.so/posts/pagination-and-infinite-scrolling-with-hotwire">Pagination and infinite scrolling with Rails and the Hotwire stack</a>
-by David Colby</li>
-<li><a href="https://bhserna.com/building-data-grid-with-search-rails-hotwire-ransack.html">Building a dynamic data grid with search and filters using rails, hotwire and ransack</a>
-by Benito Serna.</li>
-<li><a href="https://benkoshy.github.io/2021/11/03/pagination-basics.html">Pagination for Beginners: What is it? Why bother?</a> by Ben Koshy.</li>
-<li><a href="https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html">Handling Pagination When POSTing Complex Search Forms</a>
-by Ben Koshy.</li>
-<li><a href="https://benkoshy.github.io/2020/02/01/overriding-pagy-methods.html">How to Override pagy methods only in specific circumstances</a>
-by Ben Koshy.</li>
-<li><a href="https://benkoshy.github.io/2020/09/15/sticky-menu.html">How to make your pagination links sticky + bounce at the bottom of your page</a>
-by Ben Koshy.</li>
+<li><a href="https://maful.web.id/posts/build-load-more-pagination-with-pagy-and-rails-hotwire/" title="2023-09-17">Build Load More Pagination with Pagy and Rails Hotwire</a> by Maful. (This tutorial shows how you can turbo_stream with GET requests)</li>
+<li><a href="https://www.colby.so/posts/infinite-scroll-with-turbo-streams-and-stimulus" title="2022-04-19">Pagination and infinite scrolling with Rails and the Hotwire stack</a> by David Colby</li>
+<li><a href="https://www.beflagrant.com/blog/pagination-with-hotwire" title="2021-09-23">Pagination with Hotwire</a> by Jonathan Greenberg</li>
+<li><a href="https://benkoshy.github.io/2021/11/03/pagination-basics.html" title="2021-11-03">Pagination for Beginners: What is it? Why bother?</a> by Ben Koshy</li>
+<li><a href="https://www.stefanwienert.de/blog/2021/04/17/endless-scroll-with-turbo-streams/" title="2021-04-17">Endless Scroll / Infinite Loading with Turbo Streams &amp; Stimulus</a> by Stefan Wienert</li>
+<li><a href="https://benkoshy.github.io/2020/09/15/sticky-menu.html" title="2020-09-15">How to make your pagination links sticky + bounce at the bottom of your page</a> by Ben Koshy</li>
+<li><a href="https://benkoshy.github.io/2020/02/01/overriding-pagy-methods.html" title="2020-02-01">How to Override pagy methods only in specific circumstances</a> by Ben Koshy</li>
+<li><a href="https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html" title="2019-10-09">Handling Pagination When POSTing Complex Search Forms</a> by Ben Koshy</li>
+<li><a href="https://www.imaginarycloud.com/blog/paginating-ruby-on-rails-apps-with-pagy" title="2018-04-19">Pagination with Pagy</a> by Tiago Franco</li>
 <li><a href="https://qiita.com/search?q=pagy">日本語の投稿</a></li>
-<li><a href="https://kbs4674.tistory.com/72">한국어 튜토리얼</a></li>
 </ul>
-<doc-anchor-target id="screencasts">
+<doc-anchor-target id="recent-screencasts">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#screencasts">#</doc-anchor-trigger>
-        <span>Screencasts</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#recent-screencasts">#</doc-anchor-trigger>
+        <span>Recent Screencasts</span>
     </h3>
 </doc-anchor-target>
-<p><a href="https://www.youtube.com/watch?v=1tsWL4EjhMo"><img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="150" title="15 min - Beginner friendly - Shows installation and use of some pagy extras"></a> <a href="https://www.youtube.com/watch?v=ScxUqW29F7E"><img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="150" title="18 min - Intermediate Skill Level - 'Load More' pagination using Turbo Streams"></a> <a href="https://www.youtube.com/watch?v=A9q6YwhLCyI"><img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="17 min - Intermediate Skill Level - Pagination with Search (Ransack) and Hotwire + Infinite (Countless) Pagination" width="150"></a> <a href="https://www.youtube.com/watch?v=Qoq6HZ8gdDE"><img src="https://img.youtube.com/vi/Qoq6HZ8gdDE/0.jpg" title="12:52 min - Intermediate Skill Level - API based pagination + using pagy_metadata" width="150"></a> <a href="https://www.youtube.com/watch?v=EDyZIB8FU-g"><img src="https://img.youtube.com/vi/EDyZIB8FU-g/0.jpg" title="12:52 min - Intermediate Skill Level - Calendar sarch with Pagy" width="150"></a> <a href="https://www.youtube.com/watch?v=K4fob588tfM"><img src="https://img.youtube.com/vi/K4fob588tfM/0.jpg" width="150" title="11 min - Beginner - How to Install + 'Hello world' example"></a> <a href="https://www.youtube.com/watch?v=1sNpvTMrxl4"><img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="150" title="31 min - Beginner - Basic Pagy Use (Tailwind, Overflow, Common Use cases) + Deep dive into building a sample Blogging Application"></a> <a href="https://www.youtube.com/watch?v=0RtYhDIKmBY"><img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="150" title="5:44 min - Beginner - How to Install Pagy + Using Tailwind CSS to create a page of 'listing'"></a> <a href="https://www.youtube.com/watch?v=aILtxj_LVuA"><img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="150" title="7:23 min - Beginner - Installing Pagy + Working through errors (step-by-step)"></a> <a href="https://www.youtube.com/watch?v=bVvLNpJyZuw"><img src="https://img.youtube.com/vi/bVvLNpJyZuw/0.jpg" width="150" title="9:29 min - Intermediate - Infinite Scrolling with Pagy Keyset, Turbo (Rails 8)"></a> <a href="https://www.youtube.com/watch?v=ArBUAxEA6vM"><img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="150" title="30:00 min - Advanced - Using Pagy In the Context of a Chat Room (Infinite Scroll, Hotwire, Stimulus JS + Using Pagy APIs)"></a> <a href="https://www.youtube.com/watch?v=4nrmf5KfD8Y"><img src="https://img.youtube.com/vi/4nrmf5KfD8Y/0.jpg" width="150" title="14:28 min - Intermediate - Infinite Scrolling with Turbo Streams (Rails 7)"></a> <a href="https://www.youtube.com/watch?v=HURqvNJF4T0"><img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="150" title="5:21 min - Intermediate - Using Pagy - with a strong focus on Hotwire and filtering search results"></a> <a href="https://www.youtube.com/watch?v=_j3gtKf5rRs"><img src="https://img.youtube.com/vi/_j3gtKf5rRs/0.jpg" width="150" title="10:45 - Spanish Language"></a> <a href="https://www.youtube.com/watch?v=zni3nMA5_AY"><img src="https://img.youtube.com/vi/zni3nMA5_AY/0.jpg" width="150" title="10:53 - Urdu Language"></a></p>
-<br>                                                              
+<p><a href="https://www.youtube.com/watch?v=bVvLNpJyZuw"><img src="https://img.youtube.com/vi/bVvLNpJyZuw/0.jpg" width="150" title="9:29 min - Intermediate - Infinite Scrolling with Pagy Keyset, Turbo (Rails 8) (2024-10-19)"></a>
+<a href="https://www.youtube.com/watch?v=EDyZIB8FU-g"><img src="https://img.youtube.com/vi/EDyZIB8FU-g/0.jpg" title="12:52 min - Intermediate Skill Level - Calendar sarch with Pagy (2024-01-21)" width="150"></a>
+<a href="https://www.youtube.com/watch?v=zni3nMA5_AY"><img src="https://img.youtube.com/vi/zni3nMA5_AY/0.jpg" width="150" title="10:53 - Urdu Language (2024-01-15)"></a>
+<a href="https://www.youtube.com/watch?v=4nrmf5KfD8Y"><img src="https://img.youtube.com/vi/4nrmf5KfD8Y/0.jpg" width="150" title="14:28 min - Intermediate - Infinite Scrolling with Turbo Streams (Rails 7) (2023-06-09)"></a>
+<a href="https://www.youtube.com/watch?v=Qoq6HZ8gdDE"><img src="https://img.youtube.com/vi/Qoq6HZ8gdDE/0.jpg" title="12:52 min - Intermediate Skill Level - API based pagination + using pagy_metadata (2023-05-18)" width="150"></a>
+<a href="https://www.youtube.com/watch?v=1sNpvTMrxl4"><img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="150" title="31 min - Beginner - Basic Pagy Use (Tailwind, Overflow, Common Use cases) + Deep dive into building a sample Blogging Application (2023-04-05)"></a>
+<a href="https://www.youtube.com/watch?v=A9q6YwhLCyI"><img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="17 min - Intermediate Skill Level - Pagination with Search (Ransack) and Hotwire + Infinite (Countless) Pagination (2022-12-09)" width="150"></a>
+<a href="https://www.youtube.com/watch?v=HURqvNJF4T0"><img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="150" title="5:21 min - Intermediate - Using Pagy - with a strong focus on Hotwire and filtering search results (2022-04-20)"></a>
+<a href="https://www.youtube.com/watch?v=ScxUqW29F7E"><img src="https://img.youtube.com/vi/ScxUqW29F7E/0.jpg" width="150" title="18 min - Intermediate Skill Level - 'Load More' pagination using Turbo Streams (2022-03-22)"></a>
+<a href="https://www.youtube.com/watch?v=0RtYhDIKmBY"><img src="https://img.youtube.com/vi/0RtYhDIKmBY/0.jpg" width="150" title="5:44 min - Beginner - How to Install Pagy + Using Tailwind CSS to create a page of 'listing' (2022-03-18)"></a>
+<a href="https://www.youtube.com/watch?v=ArBUAxEA6vM"><img src="https://img.youtube.com/vi/ArBUAxEA6vM/0.jpg" width="150" title="30:00 min - Advanced - Using Pagy In the Context of a Chat Room (Infinite Scroll, Hotwire, Stimulus JS + Using Pagy APIs) (2022-03-04)"></a>
+<a href="https://www.youtube.com/watch?v=1tsWL4EjhMo"><img src="https://img.youtube.com/vi/1tsWL4EjhMo/0.jpg" width="150" title="15 min - Beginner friendly - Shows installation and use of some pagy extras (2021-05-05)"></a>
+<a href="https://www.youtube.com/watch?v=aILtxj_LVuA"><img src="https://img.youtube.com/vi/aILtxj_LVuA/0.jpg" width="150" title="7:23 min - Beginner - Installing Pagy + Working through errors (step-by-step) (2021-03-12)"></a>
+<a href="https://www.youtube.com/watch?v=_j3gtKf5rRs"><img src="https://img.youtube.com/vi/_j3gtKf5rRs/0.jpg" width="150" title="10:45 - Spanish Language (2020-09-11)"></a></p>
+<br>
 <doc-anchor-target id="top-contributors">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#top-contributors">#</doc-anchor-trigger>
@@ -676,7 +674,7 @@ published code. It is never force-pushed.</li>
                                     <ul class="flex flex-wrap items-center text-sm">
                                     </ul>
                                 </div>
-                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© 2017-2023 <a href="https://github.com/ddnexus">Domizio Demichelis</a> - <a href="https://opensource.org/licenses/MIT">MIT License</a></p></div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© 2017-2024 <a href="https://github.com/ddnexus">Domizio Demichelis</a> - <a href="https://opensource.org/licenses/MIT">MIT License</a></p></div>
                             </footer>
                         </div>
                     </div>
