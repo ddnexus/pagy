@@ -6,7 +6,7 @@ require_relative 'pagy/shared_methods'
 
 # Top superclass: it should define only what's common to all the subclasses
 class Pagy
-  VERSION = '9.3.1'
+  VERSION = '9.3.2'
 
   # Core default: constant for easy access, but mutable for customizable defaults
   DEFAULT = { count_args: [:all], # rubocop:disable Style/MutableConstant
@@ -90,10 +90,10 @@ class Pagy
         series.push(*start...start + size)
         # Set first and last pages plus gaps when needed, respecting the size
         if vars[:ends] && size >= 7
-          series[0]  = 1     unless series[0]  == 1
+          series[0]  = 1
           series[1]  = :gap  unless series[1]  == 2
           series[-2] = :gap  unless series[-2] == @last - 1
-          series[-1] = @last unless series[-1] == @last
+          series[-1] = @last
         end
       end
       series[series.index(@page)] = @page.to_s
