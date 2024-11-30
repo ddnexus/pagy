@@ -6,8 +6,13 @@ icon: tools-24
 
 # How To
 
-This page contains the practical tips and examples to get the job done with Pagy. If there is something missing, or some topic
-that you think should be added, fixed or explained better, please open an issue.
+This page contains the practical tips and examples to get the job done with Pagy.
+
+You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pagy) for instant answers not covered in this page.
+
+## Choose between offset, countless or keyset pagination
+
+[AI-powered answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
 
 ## Control the items per page
 
@@ -47,8 +52,8 @@ You can control the number and position of the page links in the navigation thro
 
 ==- Fast nav
 
-You can set the `:size` variable to an Integer representing the maximum page/gap slots rendered. The current
-page will be placed as centered as possible in the series. For that reason, `:size` works better when it's an odd number.
+You can set the `:size` variable to an Integer representing the maximum page/gap slots rendered. The current page will be placed
+as centered as possible in the series. For that reason, `:size` works better when it's an odd number.
 
 For example:
 
@@ -87,11 +92,12 @@ pagy.series
 #=> [94, 95, 96, 97, 98, "99", 100]
 ```
 
-The fast nav uses a simpler and faster algorithm and the series length is more symmetrical and constant, it's cleaner and less confusing to the user. By default, if the size is at 
-least `7`, it will insert the first and last pages as first and last links in the bar, also adding the `:gap`s accordingly.
+The fast nav uses a simpler and faster algorithm and the series length is more symmetrical and constant, it's cleaner and less
+confusing to the user. By default, if the size is at least `7`, it will insert the first and last pages as first and last links in
+the bar, also adding the `:gap`s accordingly.
 
-If you want to remove the first, last and gaps slots and show only a series of contiguous pages around the current one you can 
-set the `:ends` variable to `false`. This is especially useful with `Calendar` nav bars.
+If you want to remove the first, last and gaps slots and show only a series of contiguous pages around the current one you can set
+the `:ends` variable to `false`. This is especially useful with `Calendar` nav bars.
 
 ==- Legacy nav
 
@@ -110,7 +116,7 @@ pagy.series
 ==- Customize the series
 
 If changing the `:size` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place
-of gaps) you should override the `series` method. See more details and examples 
+of gaps) you should override the `series` method. See more details and examples
 [here](https://github.com/ddnexus/pagy/issues/245).
 
 ===
@@ -125,8 +131,8 @@ example:
 @pagy, @records = pagy(my_scope, page: 3) # force page #3
 ```
 
-That will explicitly set the `:page` variable, overriding the default behavior (which pulls the page number from
-the `params[:page]` by default).
+That will explicitly set the `:page` variable, overriding the default behavior (which pulls the page number from the
+`params[:page]` by default).
 
 ## Customize the dictionary
 
@@ -178,10 +184,11 @@ You may want to customize that, for example to make it more readable in your lan
 collections in the same action. Depending on the scope of the customization, you have a couple of options:
 
 1. `Pagy::DEFAULT[:page_param] = :custom_param` will be used as the global default
-2. `pagy(collection, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a
-   single instance (overriding the global default)
+2. `pagy(collection, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single
+   instance (overriding the global default)
 
-You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-vars) if you need some special way to get the page number.
+You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-vars) if you need some special way to get the page
+number.
 
 ## Customize the link attributes
 
@@ -196,8 +203,8 @@ _See more advanced details about [The anchor_string argument](api/frontend.md#th
 
 ## Customize the params
 
-When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the
-variable `:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params.
+When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the variable
+`:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params.
 
 If it is a `Proc` it will receive the **key-stringified** `params` hash complete with the `page` param and it should return a
 possibly modified version of it.
@@ -214,8 +221,7 @@ You can also use the `:fragment` keyword argument to add a fragment to the URLs 
 <%== pagy_nav(@pagy, fragment: '#your-fragment') %>
 ```
 
-!!!warning
-For performance reasons the `:fragment` string must include the `"#"`!
+!!!warning For performance reasons the `:fragment` string must include the `"#"`!
 !!!
 
 ## Customize the URL
@@ -223,12 +229,14 @@ For performance reasons the `:fragment` string must include the `"#"`!
 When you need something more radical with the URL than just massaging the params, you should override the `pagy_url_for` right in
 your helper.
 
-!!!warning Override `pagy_trim` if using Trim Extra
+[!!!warning Override `pagy_trim` if using Trim Extra
+
 If you are also using the [trim extra](extras/trim.md) you should also override
 the [pagy_trim](extras/trim.md#pagy-trim-pagy-link)
 method or the `Pagy.trim` javascript function.
-!!!
 
+!!!
+]()
 The following are a couple of examples.
 
 ==- Enable fancy-routes
@@ -268,6 +276,7 @@ be posted.
 For a broader tutorial about this topic
 see [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html)
 by Ben Koshy.
+
 ===
 
 ## Customize the item name
@@ -287,9 +296,8 @@ Besides you can also pass the `:item_name` by passing an already pluralized stri
 
 For all its own interactive helpers the pagy gem includes a few [stylesheets](api/stylesheets.md) that you can customize.
 
-Besides that, pagy provides a few frontend extras
-for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md) and [tailwind](api/stylesheets.md/#pagy-tailwind-scss)
- that come with a decent styling provided by their respective framework.
+Besides that, pagy provides a few frontend extras for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md)
+and [tailwind](api/stylesheets.md/#pagy-tailwind-scss) that come with a decent styling provided by their respective framework.
 
 If you need to further customize the styles provided by the extras, you don't necessary need to override the helpers in most of
 them: here are a few alternatives:
@@ -404,8 +412,10 @@ q              = Person.ransack(params[:q])
 When your app is a service that doesn't need to serve any UI, but provides an API to some sort of client, you can serve the
 pagination metadata as HTTP headers added to your response.
 
-In that case you don't need the `Pagy::Frontend` nor any frontend extra. You may not even need the standard pagination, but use the [Pagy::Keyset](api/keyset.md) pagination. Anyway you may want to use
-the [headers extra](extras/headers.md) and use its helpers to add the headers to your responses, and other useful backend extras like the [limit extra](extras/limit.md) and the [jsonapi extra](extras/jsonapi.md).
+In that case you don't need the `Pagy::Frontend` nor any frontend extra. You may not even need the standard pagination, but use
+the [Pagy::Keyset](api/keyset.md) pagination. Anyway you may want to use the [headers extra](extras/headers.md) and use its
+helpers to add the headers to your responses, and other useful backend extras like the [limit extra](extras/limit.md) and
+the [jsonapi extra](extras/jsonapi.md).
 
 ## Paginate with JSON:API
 
@@ -442,8 +452,8 @@ day).
 By default pagy tries to derive parameters and variables from the request and the collection, so you don't have to explicitly pass
 it to the `pagy*` method. That is very handy, but assumes you are paginating a single collection per request.
 
-When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination
-objects. You have the following common ways to do so:
+When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
+You have the following common ways to do so:
 
 ==- Pass the request path
 
@@ -463,8 +473,8 @@ end
 
 ```erb
 <-- /dashboard.html.erb -->
- <%== pagy_nav(@pagy_foos) %> 
- <%== pagy_nav(@pagy_bars) %>
+<%== pagy_nav(@pagy_foos) %>
+<%== pagy_nav(@pagy_bars) %>
 <-- Pagination links of `/foos?page=2` instead of `/dashboard?page=2` -->
 <-- Pagination links of `/bars?page=2` etc. -->
 <-- Success -->
@@ -473,6 +483,7 @@ end
 !!!
 +++ Bad
 !!!danger No Path Passed In
+
 Path customization typically required when rendering multiple `@pagy` instances in the same view. e.g.:
 
 ```rb
@@ -486,13 +497,13 @@ end
 ```erb
 <-- /dashboard.html.erb -->
 <% turbo_frame "foos" do %>
- <%== pagy_nav(@pagy_foos) %> 
+<%== pagy_nav(@pagy_foos) %>
 <% end%>
 <% turbo_frame "bars" do %>
- <%== pagy_nav(@pagy_bars) %>
+<%== pagy_nav(@pagy_bars) %>
 <% end%>
- <-- Pagination links will be `/dashboard?page=2` -->
- <-- We don't want that! -->
+<-- Pagination links will be `/dashboard?page=2` -->
+<-- We don't want that! -->
 ```
 
 !!!
@@ -548,6 +559,7 @@ def index # controller action
   @pagy_nebulae, @nebulae = pagy(Nebula.all, page_param: :page_nebulae)
 end
 ```
+
 ===
 
 ## Wrap existing pagination with pagy_calendar
@@ -559,7 +571,7 @@ to different existing statements.
 # pagy without calendar
 @pagy, @record = pagy(collection, any_vars: value, ...)
 # wrapped with pagy_calendar
-@calendar, @pagy, @records = pagy_calendar(collection, 
+@calendar, @pagy, @records = pagy_calendar(collection,
                                            year:  {},
                                            month: {},
                                            pagy:  { any_vars: value, ... })
@@ -567,10 +579,10 @@ to different existing statements.
 # any other backend constructors (e.g. pagy_searchkick)
 @pagy, @record = pagy_searchkick(pagy_search_args, any_vars: value, ...)
 # wrapped with pagy_calendar
-@calendar, @pagy, @records = pagy_calendar(pagy_search_args, 
+@calendar, @pagy, @records = pagy_calendar(pagy_search_args,
                                            year:  {},
                                            month: {},
-                                           pagy:  { backend:  :pagy_searchkick, 
+                                           pagy:  { backend:  :pagy_searchkick,
                                                     any_vars: value, ... })
 ```
 
@@ -585,8 +597,8 @@ For example:
 ```ruby
 @pagy, @records = pagy(collection, max_pages: 50, limit: 20)
 @records.size #=> 20   
-@pagy.count   #=> 10_000
-@pagy.last    #=> 50
+@pagy.count #=> 10_000
+@pagy.last #=> 50
 
 @pagy, @records = pagy(collection, max_pages: 50, limit: 20, page: 51)
 #=> Pagy::OverflowError: expected :page in 1..50; got 51
@@ -595,12 +607,15 @@ For example:
 If the `@pagy.count` in the example is `10_000`, the pages served without `:max_pages` would be `500`, but with
 `:max_pages: 50` pagy would serve only the first `50` pages of your collection.
 
-That works at the `Pagy`/`Pagy::Countless` level, so it works with any combination of collection/extra, including `limit`, 
-`gearbox` and search extras, however it makes no sense in `Pagy::Calendar` unit objects (which ignore it). 
+That works at the `Pagy`/`Pagy::Countless` level, so it works with any combination of collection/extra, including `limit`,
+`gearbox` and search extras, however it makes no sense in `Pagy::Calendar` unit objects (which ignore it).
 
 !!! Notice
-The `limit` and `gearbox` extras serve a variable number of records per page. If your goal is limiting the pagination to a max number of records (instead of pages), you have to keep into account how you configure the `limit` range.
-!!! 
+
+The `limit` and `gearbox` extras serve a variable number of records per page. If your goal is limiting the pagination to a max
+number of records (instead of pages), you have to keep into account how you configure the `limit` range.
+
+!!!
 
 ## Paginate pre-offset and pre-limited collections
 
@@ -612,8 +627,8 @@ subset                   = Product.offset(100).limit(315)
 @pagy, @paginated_subset = pagy(subset, outset: 100)
 ```
 
-Assuming the `:limit` default of `20`, you will get the pages with the records you are expecting. The first page from record
-101 to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute
+Assuming the `:limit` default of `20`, you will get the pages with the records you are expecting. The first page from record 101
+to 120 of the main collection, and the last page from 401 to 415 of the main collection. Besides the `from` and `to` attribute
 readers will correctly return the numbers relative to the subset that you are paginating, i.e. from 1 to 20 for the first page and
 from 301 to 315 for the last page.
 
@@ -698,7 +713,9 @@ ready to use in your view. For example:
 ```
 
 !!!primary Extras Provide Added Functionality
+
 The [frontend extras](/categories/frontend) add a few other helpers that you can use the same way, in order to get added features
+
 !!!
 
 ## Skip single page navs
@@ -723,8 +740,8 @@ use a storage system like any SQL DB, there is no way to paginate and provide a 
 to get the collection count. That is usually not a problem if your DB is well organized and maintained, but that may not be always
 the case.
 
-Sometimes you may have to deal with not very efficient legacy apps/DBs that you cannot totally control. In that case the
-extra count query may affect the performance of the app quite badly.
+Sometimes you may have to deal with not very efficient legacy apps/DBs that you cannot totally control. In that case the extra
+count query may affect the performance of the app quite badly.
 
 You have 2 possible solutions in order to improve the performance.
 
@@ -763,7 +780,8 @@ need for a count query, still providing an acceptable subset of the full paginat
 
 ==- Use Pagy Keyset
 
-If the slowness of the DB is caused by paginating big tables toward the ends of the collection (i.e. when the `offset` is a big number) then you should use the [keyset extra](extras/keyset.md). (See lso the [keyset API](api/keyset.md))
+If the slowness of the DB is caused by paginating big tables toward the ends of the collection (i.e. when the `offset` is a big
+number) then you should use the [keyset extra](extras/keyset.md). (See lso the [keyset API](api/keyset.md))
 
 ===
 
@@ -794,9 +812,8 @@ the [pagy extra](extras/pagy.md).
 
 ==- Consider the Arel extra and/or the fast_page gem
 
-You can improve the performance for [grouped collections](#paginate-a-grouped-collection) with
-the [arel extra](extras/arel.md), and queries on big data
-with [fast_page](https://github.com/planetscale/fast_page#pagy).
+You can improve the performance for [grouped collections](#paginate-a-grouped-collection) with the [arel extra](extras/arel.md),
+and queries on big data with [fast_page](https://github.com/planetscale/fast_page#pagy).
 
 ===
 
@@ -815,7 +832,8 @@ Pass an overflowing `:page` number and Pagy will raise a `Pagy::OverflowError` e
 This often happens because users/clients paginate over the end of the record set or records go deleted and a user went to a stale
 page.
 
-You can handle the exception by using the [overflow extra](extras/overflow.md) which provides a few easy and ready to use solutions for a few common cases, or you can rescue the exception manually and do whatever fits you better.
+You can handle the exception by using the [overflow extra](extras/overflow.md) which provides a few easy and ready to use
+solutions for a few common cases, or you can rescue the exception manually and do whatever fits you better.
 
 Here are a few options for manually handling the error in apps:
 
@@ -835,9 +853,11 @@ end
 ```
 
 !!!warning Rescue from `Pagy::OverflowError` first
+
 All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with 
 `rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it 
 will never get rescued.
+
 !!!
 
 ## Test with Pagy
