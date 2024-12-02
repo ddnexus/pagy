@@ -4,7 +4,7 @@
 class Pagy
   class Keyset
     # Keyset adapter for sequel
-    class Sequel < Keyset
+    module Sequel
       protected
 
       # Get the keyset attributes from the record

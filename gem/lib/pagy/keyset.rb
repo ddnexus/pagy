@@ -11,41 +11,64 @@ class Pagy
     class TypeError < ::TypeError; end
 
     include SharedMethods
-
-    # Pick the right adapter for the set
-    def self.new(set, **vars)
-      if self == Pagy::Keyset
-        if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
-          ActiveRecord
-        elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
-          Sequel
-        else
-          raise TypeError, "expected set to be an instance of ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
-        end.new(set, **vars)
-      else
-        allocate.tap { |instance| instance.send(:initialize, set, **vars) }
-      end
-    end
-
     attr_reader :latest  # Other readers from SharedMethods
 
     def initialize(set, **vars)
+      assign_vars(default, vars)
+      assign_limit
+      assign_set(set)
+      assign_keyset
+      assign_page
+      setup_cache # Only used by Keyset::Cached
+      assign_cursor
+      return unless @cursor
+
+      assign_latest
+    end
+
+    # Assign the cursor from the cache
+    def assign_cursor
+      @cursor = @vars[:page]
+    end
+
+    # Assign the keyset extracted by the adaptor
+    def assign_keyset
+      @keyset = extract_keyset
+      raise InternalError, 'the set must be ordered' if @keyset.empty?
+    end
+
+    # Assign the latest and check its consistncy
+    def assign_latest
+      latest  = JSON.parse(B64.urlsafe_decode(@cursor)).transform_keys(&:to_sym)
+      @latest = typecast_latest(latest)
+      raise InternalError, 'latest and keyset are not consistent' \
+      unless @latest.keys == @keyset.keys
+    end
+
+    # Assign the page
+    def assign_page
+      @page = @vars[:page]
+    end
+
+    # Extend the instance with the right adapter for the set
+    def assign_set(set)
+      if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
+        extend ActiveRecord
+      elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
+        extend Sequel
+      else
+        raise TypeError, "expected set to be an instance of ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
+      end
+      @set = set
+    end
+
+    # Return the Keyset default variables
+    def default
       default = DEFAULT.slice(:limit, :page_param,                    # from pagy
                               :headers,                               # from headers extra
                               :jsonapi,                               # from jsonapi extra
                               :limit_param, :limit_max, :limit_extra) # from limit_extra
-      assign_vars({ **default, page: nil }, vars)
-      assign_limit
-      @set    = set
-      @page   = @vars[:page]
-      @keyset = extract_keyset
-      raise InternalError, 'the set must be ordered' if @keyset.empty?
-      return unless @page
-
-      latest  = JSON.parse(B64.urlsafe_decode(@page)).transform_keys(&:to_sym)
-      @latest = typecast_latest(latest)
-      raise InternalError, 'page and keyset are not consistent' \
-            unless @latest.keys == @keyset.keys
+      { **default, page: nil }
     end
 
     # Return the next page
@@ -53,11 +76,14 @@ class Pagy
       records
       return unless @more
 
-      @next ||= begin
-                  hash = keyset_attributes_from(@records.last)
-                  json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
-                  B64.urlsafe_encode(json)
-                end
+      @next ||= next_cursor
+    end
+
+    # Return the next cursor
+    def next_cursor
+      hash = keyset_attributes_from(@records.last)
+      json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
+      B64.urlsafe_encode(json)
     end
 
     # Fetch the array of records for the current page
@@ -76,6 +102,9 @@ class Pagy
                      records
                    end
     end
+
+    # Only implemented in Keyset::Cached
+    def setup_cache; end
 
     protected
 

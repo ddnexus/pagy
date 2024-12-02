@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Showcase the keyset ActiveRecord pagination
+#    Showcase the Keyset pagination with ActiveRecord sets
 #
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-keyset-apps
@@ -10,8 +10,8 @@
 #    bundle exec pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone keyset_ar
-#    bundle exec pagy ./keyset_ar.ru
+#    bundle exec pagy clone keyset
+#    bundle exec pagy ./keyset.ru
 #
 # URL
 #    http://0.0.0.0:8000
@@ -148,7 +148,7 @@ ActiveRecord::Base.logger = Logger.new(output)
 # SQLite DB files
 dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
 abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
-      unless File.writable?(dir)
+unless File.writable?(dir)
 # Connection
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-keyset-ar.sqlite3")
 # Schema

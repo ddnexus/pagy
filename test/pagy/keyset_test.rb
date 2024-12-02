@@ -28,7 +28,7 @@ require 'pagy/keyset'
         err = assert_raises(Pagy::InternalError) do
           Pagy::Keyset.new(model.order(:id), limit: 10, page: page_animal_id)
         end
-        assert_match(/page and keyset are not consistent/, err.message)
+        assert_match(/latest and keyset are not consistent/, err.message)
       end
     end
     describe 'uses optional variables' do

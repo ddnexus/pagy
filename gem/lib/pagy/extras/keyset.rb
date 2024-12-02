@@ -4,7 +4,7 @@
 require_relative '../keyset'
 
 class Pagy # :nodoc:
-  # Add keyset pagination
+  # Add keyset methods
   module KeysetExtra
     private
 

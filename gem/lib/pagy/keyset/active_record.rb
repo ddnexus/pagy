@@ -4,7 +4,7 @@
 class Pagy
   class Keyset
     # Keyset adapter for ActiveRecord
-    class ActiveRecord < Keyset
+    module ActiveRecord
       protected
 
       # Get the keyset attributes from the record
