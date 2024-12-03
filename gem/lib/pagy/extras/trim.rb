@@ -20,7 +20,7 @@ class Pagy # :nodoc:
       end
     end
 
-    # Remove the the :page_param param from the first page anchor
+    # Remove the :page_param param from the first page anchor
     def pagy_trim(pagy, a)
       a.sub!(/[?&]#{pagy.vars[:page_param]}=1\b(?!&)|\b#{pagy.vars[:page_param]}=1&/, '')
     end
