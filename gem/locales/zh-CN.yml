@@ -2,17 +2,13 @@
 zh-CN:
   pagy:
     aria_label:
-      nav:
-        one: "页" # 单数形式
-        other: "页" # 复数形式
+      nav: "页"
       prev: "上一页"
       next: "下一页"
     prev: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
-    item_name:
-      one: "项" # 单数形式
-      other: "项" # 复数形式
+    item_name: "项"
     info:
       no_items: "未找到任何 %{item_name}"
       single_page: "显示 %{count} 项 %{item_name}"
