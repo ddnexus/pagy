@@ -45,7 +45,7 @@ describe 'pagy/locales' do
         raise StandardError, "item_name must be Hash or String"
       end
     end
-    it "ensures #{locale}.yml rules (#{rule}) have the correct aria_label,nav and item_name keys applied" do
+    it "ensures #{locale}.yml has the correct aria_label,nav and item_name keys per the declared (#{rule}) rule" do
       skip if %w[ta sw].include?(locale) # ta.yml and sw.yml do not have the requisite keys yet
 
       pluralizations = counts[rule]
