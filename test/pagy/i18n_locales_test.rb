@@ -34,8 +34,8 @@ describe 'pagy/locales' do
       _(Pagy::I18n::P11n::LOCALE[locale]).must_equal Pagy::I18n::P11n::RULE[rule], message
     end
     it 'pluralizes item_name according to the rule' do
-      hash      = YAML.safe_load(f.read)
-      item_name = hash[locale]['pagy']['item_name']
+      language_yml      = YAML.safe_load(f.read)
+      item_name = language_yml[locale]['pagy']['item_name']
       case item_name
       when String
         _(rule).must_equal :other
@@ -48,18 +48,18 @@ describe 'pagy/locales' do
     it "ensures #{locale}.yml rules (#{rule}) have the correct aria_label,nav and item_name keys applied" do
       skip if %w[ta sw].include?(locale) # ta.yml and sw.yml do not have the requisite keys yet
 
-      hash = YAML.safe_load(f.read)
+      language_yml = YAML.safe_load(f.read)
       pluralizations = counts[rule]
 
       if rule == :other
         # For the :other rules, we should not have any keys under the
         # ['pagy']['item_name'] and ['pagy']['aria_label']['nav'] hierarchies.
         # We should just have a String.
-        _(hash[locale]['pagy']['item_name']).must_be_instance_of(String)
-        _(hash[locale]['pagy']['aria_label']['nav']).must_be_instance_of(String)
+        _(language_yml[locale]['pagy']['item_name']).must_be_instance_of(String)
+        _(language_yml[locale]['pagy']['aria_label']['nav']).must_be_instance_of(String)
       else
-        _(hash[locale]['pagy']['item_name'].keys.sort).must_equal pluralizations.sort, "In #{message} - check that ['pagy']['item_name'] does not have keys inconsistent with #{rule}"
-        _(hash[locale]['pagy']['aria_label']['nav'].keys.sort).must_equal pluralizations.sort, "In #{message} - check that ['pagy']['aria_label']['nav'] does not have keys inconsistent with #{rule}"
+        _(language_yml[locale]['pagy']['item_name'].keys.sort).must_equal pluralizations.sort, "In #{message} - check that ['pagy']['item_name'] does not have keys inconsistent with #{rule}"
+        _(language_yml[locale]['pagy']['aria_label']['nav'].keys.sort).must_equal pluralizations.sort, "In #{message} - check that ['pagy']['aria_label']['nav'] does not have keys inconsistent with #{rule}"
       end
     end
   end
