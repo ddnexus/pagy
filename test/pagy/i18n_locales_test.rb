@@ -53,7 +53,7 @@ describe 'pagy/locales' do
 
       if rule == :other
         # For the :other rules, we should not have any keys under the
-        # ['pagy']['item_name'] and ['pagy']['aria_label'] hierarchies.
+        # ['pagy']['item_name'] and ['pagy']['aria_label']['nav'] hierarchies.
         # We should just have a String.
         _(hash[locale]['pagy']['item_name']).must_be_instance_of(String)
         _(hash[locale]['pagy']['aria_label']['nav']).must_be_instance_of(String)
