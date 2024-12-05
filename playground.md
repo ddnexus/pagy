@@ -109,9 +109,15 @@ This are the interactive showcase/repro for the keyset extra with `ActiveRecord`
 
 Run the interactive demo from your terminal:
 
-```sh
-bundle exec pagy keyset_ar
-bundle exec pagy keyset_s
+```sh      
+bundle exec pagy | grep keyset
+  keyset                     Showcase the Keyset pagination with ActiveRecord
+  keyset_cached              Showcase the Keyset cached pagination for UI
+  keyset_sequel              Showcase the Keyset pagination with Sequel sets
+
+bundle exec pagy keyset
+bundle exec pagy keyset_cached
+bundle exec pagy keyset_sequel
 ```
 
 ...and point your browser to http://0.0.0.0:8000

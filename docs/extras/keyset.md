@@ -33,7 +33,7 @@ require 'pagy/extras/keyset'
 ```
 
 ```ruby Controller (action)
-# The set argument must be an uniquely ORDERED Activerecord Scope or Sequel Dataset 
+# The set argument must be a uniquely ORDERED Activerecord Scope or Sequel Dataset 
 
 # Minimal unique ordering with the primary key: it works fast out of the box 
 set = Product.order(:id)
