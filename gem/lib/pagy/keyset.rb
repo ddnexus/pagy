@@ -60,6 +60,25 @@ class Pagy
                 end
     end
 
+    # Return the previous page
+    def previous
+      records
+
+      @previous ||= begin
+                  hash = keyset_attributes_from(@records.first)
+                  json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
+                  B64.urlsafe_encode(json)
+                end
+
+      return @previous if previous?
+
+      nil
+    end
+
+    def previous?
+      filter_oldest.limit(1).exists?
+    end
+
     # Fetch the array of records for the current page
     def records
       @records ||= begin
