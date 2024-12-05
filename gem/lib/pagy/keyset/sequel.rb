@@ -26,8 +26,8 @@ class Pagy
         end
       end
 
-      # Filter the newest records
-      def filter_newest = @set.where(::Sequel.lit(filter_newest_query, **@latest))
+      # Filter the page records
+      def filter_records = @set.where(::Sequel.lit(filter_records_query, **@query_params))
 
       # Append the missing keyset keys if the set is restricted by select
       def apply_select

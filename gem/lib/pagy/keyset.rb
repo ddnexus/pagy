@@ -11,7 +11,6 @@ class Pagy
     class TypeError < ::TypeError; end
 
     include SharedMethods
-    attr_reader :latest  # Other readers from SharedMethods
 
     def initialize(set, **vars)
       assign_vars(default, vars)
@@ -19,11 +18,9 @@ class Pagy
       assign_set(set)
       assign_keyset
       assign_page
-      setup_cache # Only used by Keyset::Cached
+      setup_cache # Only used by Keyset::Cached (called here to avoid overriding)
       assign_cursor
-      return unless @cursor
-
-      assign_latest
+      assign_query_params
     end
 
     # Assign the cursor from the cache
@@ -37,17 +34,16 @@ class Pagy
       raise InternalError, 'the set must be ordered' if @keyset.empty?
     end
 
-    # Assign the latest and check its consistncy
-    def assign_latest
-      latest  = JSON.parse(B64.urlsafe_decode(@cursor)).transform_keys(&:to_sym)
-      @latest = typecast_latest(latest)
-      raise InternalError, 'latest and keyset are not consistent' \
-      unless @latest.keys == @keyset.keys
-    end
-
     # Assign the page
     def assign_page
       @page = @vars[:page]
+    end
+
+    # Assign the query_params
+    def assign_query_params
+      return unless @cursor
+
+      @query_params = cursor_to_query_params(@cursor)
     end
 
     # Extend the instance with the right adapter for the set
@@ -62,6 +58,16 @@ class Pagy
       @set = set
     end
 
+    # Decode a cursor, check its consistency and returns the query params
+    def cursor_to_query_params(cursor, prefix = nil)
+      identifier = JSON.parse(B64.urlsafe_decode(cursor)).transform_keys(&:to_sym)
+      raise InternalError, 'cursor and keyset are not consistent' \
+      unless identifier.keys == @keyset.keys
+
+      params = typecast_latest(identifier)
+      prefix ? params.transform_keys { |key| :"#{prefix}#{key}" } : params
+    end
+
     # Return the Keyset default variables
     def default
       default = DEFAULT.slice(:limit, :page_param,                    # from pagy
@@ -69,6 +75,13 @@ class Pagy
                               :jsonapi,                               # from jsonapi extra
                               :limit_param, :limit_max, :limit_extra) # from limit_extra
       { **default, page: nil }
+    end
+
+    # Get the records and set the @more
+    def fetch_records
+      records = @set.limit(@limit + 1).to_a
+      @more   = records.size > @limit && !records.pop.nil?
+      records
     end
 
     # Return the next page
@@ -90,16 +103,15 @@ class Pagy
     def records
       @records ||= begin
                      @set = apply_select if select?
-                     if @latest
+                     if @query_params
                        # :nocov:
-                       @set = @vars[:after_latest]&.(@set, @latest) || # deprecated
+                       @set = @vars[:after_latest]&.(@set, @query_params)            ||  # deprecated
+                              @vars[:filter_newest]&.(@set, @query_params, @keyset)  ||  # deprecated
+                              @vars[:filter_records]&.(@set, @query_params, @keyset) ||
                               # :nocov:
-                              @vars[:filter_newest]&.(@set, @latest, @keyset) ||
-                              filter_newest
+                              filter_records
                      end
-                     records = @set.limit(@limit + 1).to_a
-                     @more   = records.size > @limit && !records.pop.nil?
-                     records
+                     fetch_records
                    end
     end
 
@@ -109,32 +121,36 @@ class Pagy
     protected
 
     # Prepare the literal query string (complete with the placeholders for value interpolation)
-    # used to filter the newest records.
-    # For example:
+    # used to filter the page records. For example:
+    #
     # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
-    # ( "pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id ) OR
-    # ( "pets"."animal" = :animal AND "pets"."name" < :name ) OR
-    # ( "pets"."animal" > :animal )
+    #
+    #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR
+    #    ("pets"."animal" = :animal AND "pets"."name" < :name) OR
+    #    ("pets"."animal" > :animal)
+    #
     # When :tuple_comparison is enabled, and if the order is all :asc or all :desc,
     # with a set like Pet.order(:animal, :name, :id) it returns the following string:
-    # ( "pets"."animal", "pets"."name", "pets"."id" ) > ( :animal, :name, :id )
-    def filter_newest_query
-      operator   = { asc: '>', desc: '<' }
-      directions = @keyset.values
-      table      = @set.model.table_name
-      name       = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
+    #
+    #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
+    #
+    def filter_records_query(prefix = nil)
+      operator    = { asc: '>', desc: '<' }
+      directions  = @keyset.values
+      table       = @set.model.table_name
+      identifier  = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
+      placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
       if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
-        placeholders = @keyset.keys.map { |column| ":#{column}" }.join(', ')
-        "( #{name.values.join(', ')} ) #{operator[directions.first]} ( #{placeholders} )"
+        "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
       else
         keyset = @keyset.to_a
         where  = []
         until keyset.empty?
           last_column, last_direction = keyset.pop
-          query = +'( '
-          query << (keyset.map { |column, _d| "#{name[column]} = :#{column}" } \
-                    << "#{name[last_column]} #{operator[last_direction]} :#{last_column}").join(' AND ')
-          query << ' )'
+          query = +'('
+          query << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
+                    << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
+          query << ')'
           where << query
         end
         where.join(' OR ')

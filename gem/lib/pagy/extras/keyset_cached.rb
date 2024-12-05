@@ -13,6 +13,8 @@ class Pagy # :nodoc:
       vars[:page]  ||= pagy_get_page(vars) # numeric page
       vars[:limit] ||= pagy_get_limit(vars)
       vars[:cache] ||= session
+      # The user should assign this properly
+      vars[:cache_key] ||= ->(v) { "pagy-#{v[:limit]}" }
       pagy = Keyset::Cached.new(set, **vars)
       [pagy, pagy.records]
     end

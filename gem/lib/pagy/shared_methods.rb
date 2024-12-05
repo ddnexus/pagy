@@ -26,7 +26,7 @@ class Pagy
 
   # Shared with Keyset::Cached
   module SharedMethodsForUI
-    attr_reader :from, :in, :last, :next, :offset, :prev, :to
+    attr_reader :in, :last, :prev
     alias pages last
 
     # Label for the current page. Allow the customization of the output (overridden by the calendar extra)

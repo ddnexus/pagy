@@ -25,7 +25,7 @@ class Pagy
   include SharedMethods
   include SharedMethodsForUI
 
-  attr_reader :count
+  attr_reader :count, :from, :in, :next, :offset, :to
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(**vars)
