@@ -75,11 +75,24 @@ cache_key = ->(_) { key }
 Pagy uses the `cache_key` to store an array of `cursors` pointing to the already visited pages. If any of the pagination
 parameters changes, the `:cache_key` must change, so the `cursors` will be consistent with the displayed page of records.
 
+## ORMs
+
+`Pagy::Keyset::Cached` implements the subclasses for `ActiveRecord::Relation` and `Sequel::Dataset` sets and instantiate them internally:
+
+```ruby
+Pagy::Keyset::Cached.new(active_record_set)
+#=> #<Pagy::Keyset::Cached::ActiveRecord:0x00000001066215e0>
+ 
+Pagy::Keyset.new(sequel_set) 
+#=> #<Pagy::Keyset::Cached::Sequel:0x00000001066545e0>
+```
+
 ## Methods
 
 ==- `Pagy::Keyset::Cached.new(set, **vars)`
 
-The constructor takes the `set`, and an optional hash of [variables](#variables). It returns a `Pagy::Keyset::Cached` object.
+The constructor takes the `set`, and an optional hash of [variables](#variables). It returns a `Pagy::Keyset::Cached::ActiveRecord` or
+`Pagy::Keyset::Cached::Sequel` object (depending by the `set` class).
 
 ==- `records`
 

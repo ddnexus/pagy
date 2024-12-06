@@ -4,19 +4,46 @@
 require 'json'
 require_relative 'b64'
 require_relative 'shared_methods'
+require_relative 'keyset/active_record_adapter'
+require_relative 'keyset/sequel_adapter'
 
 class Pagy
   # Implement wicked-fast keyset pagination for big data
   class Keyset
     class TypeError < ::TypeError; end
 
+    class ActiveRecord < Keyset
+      include ActiveRecordAdapter
+    end
+
+    class Sequel < Keyset
+      include SequelAdapter
+    end
+
+    # Pick the right adapter for the set
+    def self.new(set, **vars)
+      if self == Pagy::Keyset || (defined?(Cached) && self == Pagy::Keyset::Cached)
+        if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
+          self::ActiveRecord
+        elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
+          self::Sequel
+        else
+          raise TypeError, "expected set to be an instance of ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
+        end.new(set, **vars)
+      else
+        allocate.tap { |instance| instance.send(:initialize, set, **vars) }
+      end
+    end
+
     include SharedMethods
 
     def initialize(set, **vars)
       assign_vars(default, vars)
       assign_limit
-      assign_set(set)
-      assign_keyset
+      @set    = set
+      @keyset = extract_keyset
+      raise InternalError, 'the set must be ordered' if @keyset.empty?
+
       assign_page
       setup_cache # Only used by Keyset::Cached (called here to avoid overriding)
       assign_cursor
@@ -26,12 +53,6 @@ class Pagy
     # Assign the cursor from the cache
     def assign_cursor
       @cursor = @vars[:page]
-    end
-
-    # Assign the keyset extracted by the adaptor
-    def assign_keyset
-      @keyset = extract_keyset
-      raise InternalError, 'the set must be ordered' if @keyset.empty?
     end
 
     # Assign the page
@@ -44,18 +65,6 @@ class Pagy
       return unless @cursor
 
       @query_params = cursor_to_query_params(@cursor)
-    end
-
-    # Extend the instance with the right adapter for the set
-    def assign_set(set)
-      if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
-        extend ActiveRecord
-      elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
-        extend Sequel
-      else
-        raise TypeError, "expected set to be an instance of ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
-      end
-      @set = set
     end
 
     # Decode a cursor, check its consistency and returns the query params
@@ -83,42 +92,6 @@ class Pagy
       @more   = records.size > @limit && !records.pop.nil?
       records
     end
-
-    # Return the next page
-    def next
-      records
-      return unless @more
-
-      @next ||= next_cursor
-    end
-
-    # Return the next cursor
-    def next_cursor
-      hash = keyset_attributes_from(@records.last)
-      json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
-      B64.urlsafe_encode(json)
-    end
-
-    # Fetch the array of records for the current page
-    def records
-      @records ||= begin
-                     @set = apply_select if select?
-                     if @query_params
-                       # :nocov:
-                       @set = @vars[:after_latest]&.(@set, @query_params)            ||  # deprecated
-                              @vars[:filter_newest]&.(@set, @query_params, @keyset)  ||  # deprecated
-                              @vars[:filter_records]&.(@set, @query_params, @keyset) ||
-                              # :nocov:
-                              filter_records
-                     end
-                     fetch_records
-                   end
-    end
-
-    # Only implemented in Keyset::Cached
-    def setup_cache; end
-
-    protected
 
     # Prepare the literal query string (complete with the placeholders for value interpolation)
     # used to filter the page records. For example:
@@ -156,8 +129,39 @@ class Pagy
         where.join(' OR ')
       end
     end
+
+    # Return the next page
+    def next
+      records
+      return unless @more
+
+      @next ||= next_cursor
+    end
+
+    # Return the next cursor
+    def next_cursor
+      hash = keyset_attributes_from(@records.last)
+      json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
+      B64.urlsafe_encode(json)
+    end
+
+    # Fetch the array of records for the current page
+    def records
+      @records ||= begin
+                     @set = apply_select if select?
+                     if @query_params
+                       # :nocov:
+                       @set = @vars[:after_latest]&.(@set, @query_params)            ||  # deprecated
+                              @vars[:filter_newest]&.(@set, @query_params, @keyset)  ||  # deprecated
+                              @vars[:filter_records]&.(@set, @query_params, @keyset) ||
+                              # :nocov:
+                              filter_records
+                     end
+                     fetch_records
+                   end
+    end
+
+    # Only implemented in Keyset::Cached
+    def setup_cache; end
   end
 end
-
-require_relative 'keyset/active_record'
-require_relative 'keyset/sequel'

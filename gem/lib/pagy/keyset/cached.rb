@@ -8,6 +8,13 @@ class Pagy # :nodoc:
   class Keyset
     # Implement wicked-fast keyset pagination for UI by using numeric pages that work with regular pagy navs.
     class Cached < Keyset
+      class ActiveRecord < Cached
+        include ActiveRecordAdapter
+      end
+
+      class Sequel < Cached
+        include SequelAdapter
+      end
       ON_PREFIX  = 'on_'   # Prefix for ON filter query_params
       OFF_PREFIX = 'off_'  # Prefix for OFF filter query_params
 
@@ -35,7 +42,7 @@ class Pagy # :nodoc:
 
       # Assign the query_params and define the :on and :off filter flags referring to
       # the SQL conditions of the filter_record_query, i.e. the page record selected
-      # are included between the :on and :off
+      # are included between the :on and :off filters
       #
       # The ON flag indicates that the filter query contains a SQL statement identifying where
       # the page records bregins. It is missing for page 1 (which starts from the first record).
@@ -73,6 +80,18 @@ class Pagy # :nodoc:
         end
       end
 
+      # Generate a single ON_FILTER if there is no cached next_cursor (execute with LIMIT)
+      # Generate a composite filter with ON_FILTER AND NOT OFF_FILTER if there is a cached next_cursor (execute without LIMIT)
+      def filter_records_query
+        sql = +''
+        sql << "(#{super(ON_PREFIX)})" if @filter[:on]
+        if @filter[:off]
+          sql << ' AND ' if @filter[:on]
+          sql << "NOT (#{super(OFF_PREFIX)})"
+        end
+        sql
+      end
+
       # Return the next page number and cache the next_cursor if it's missing
       def next
         records
@@ -95,20 +114,6 @@ class Pagy # :nodoc:
         @cursors = @vars[:cache][key] ||= [nil, nil]  # nil: 1-based array; nil: first cursor is nil
         last     = @cursors.size - 1 # at this point it's not the @last for the UI (see initislizer)
         raise OverflowError.new(self, :page, "in 1..#{last}", @page) if @page > last
-      end
-
-      protected
-
-      # Generate a single ON_FILTER if there is no cached next_cursor (execute with LIMIT)
-      # Generate a composite filter with ON_FILTER AND NOT OFF_FILTER if there is a cached next_cursor (execute without LIMIT)
-      def filter_records_query
-        sql = +''
-        sql << "(#{super(ON_PREFIX)})" if @filter[:on]
-        if @filter[:off]
-          sql << ' AND ' if @filter[:on]
-          sql << "NOT (#{super(OFF_PREFIX)})"
-        end
-        sql
       end
     end
   end

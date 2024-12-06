@@ -4,9 +4,7 @@
 class Pagy
   class Keyset
     # Keyset adapter for ActiveRecord
-    module ActiveRecord
-      protected
-
+    module ActiveRecordAdapter
       # Get the keyset attributes from the record
       def keyset_attributes_from(record) = record.slice(*@keyset.keys)
 

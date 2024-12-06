@@ -4,9 +4,7 @@
 class Pagy
   class Keyset
     # Keyset adapter for sequel
-    module Sequel
-      protected
-
+    module SequelAdapter
       # Get the keyset attributes from the record
       def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
 

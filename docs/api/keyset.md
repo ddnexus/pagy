@@ -148,14 +148,22 @@ If you need a specific order:
 
 ## ORMs
 
-`Pagy::Keyset` handles `ActiveRecord::Relation` and `Sequel::Dataset` sets and extends itself internally with the
-`Pagy::Keyset::ActiveRecord` or `Pagy::Keyset::Sequel` adapter modules (depending by the `set` class).
+`Pagy::Keyset` implements the subclasses for `ActiveRecord::Relation` and `Sequel::Dataset` sets and instantiate them internally:
+
+```ruby
+Pagy::Keyset.new(active_record_set)
+#=> #<Pagy::Keyset::ActiveRecord:0x00000001066215e0>
+ 
+Pagy::Keyset.new(sequel_set) 
+#=> #<Pagy::Keyset::Sequel:0x00000001066545e0>
+```
 
 ## Methods
 
 ==- `Pagy::Keyset.new(set, **vars)`
 
-The constructor takes the `set`, and an optional hash of [variables](#variables). It returns a `Pagy::Keyset` object.
+The constructor takes the `set`, and an optional hash of [variables](#variables). It returns a `Pagy::Keyset::ActiveRecord` or
+`Pagy::Keyset::Sequel` object (depending by the `set` class).
 
 ==- `next`
 
