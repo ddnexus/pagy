@@ -64,11 +64,11 @@ class Pagy
     def assign_filter_params
       return unless @cutoff
 
-      @filter_params = cutoff_to_filter_params(@cutoff)
+      @filter_params = cutoff_to_params(@cutoff)
     end
 
     # Decode a cutoff, check its consistency and returns the filter params
-    def cutoff_to_filter_params(cutoff, prefix = nil)
+    def cutoff_to_params(cutoff, prefix = nil)
       identifier = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
       raise InternalError, 'cutoff and keyset are not consistent' \
             unless identifier.keys == @keyset.keys
