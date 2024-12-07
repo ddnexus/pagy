@@ -46,13 +46,13 @@ class Pagy
 
       assign_page
       setup_cache # Only used by Keyset::Cached (called here to avoid overriding)
-      assign_cursor
-      assign_query_params
+      assign_cutoff
+      assign_filter_params
     end
 
-    # Assign the cursor from the cache
-    def assign_cursor
-      @cursor = @vars[:page]
+    # Assign the cutoff from the cache
+    def assign_cutoff
+      @cutoff = @vars[:page]
     end
 
     # Assign the page
@@ -60,18 +60,18 @@ class Pagy
       @page = @vars[:page]
     end
 
-    # Assign the query_params
-    def assign_query_params
-      return unless @cursor
+    # Assign the filter_params
+    def assign_filter_params
+      return unless @cutoff
 
-      @query_params = cursor_to_query_params(@cursor)
+      @filter_params = cutoff_to_filter_params(@cutoff)
     end
 
-    # Decode a cursor, check its consistency and returns the query params
-    def cursor_to_query_params(cursor, prefix = nil)
-      identifier = JSON.parse(B64.urlsafe_decode(cursor)).transform_keys(&:to_sym)
-      raise InternalError, 'cursor and keyset are not consistent' \
-      unless identifier.keys == @keyset.keys
+    # Decode a cutoff, check its consistency and returns the filter params
+    def cutoff_to_filter_params(cutoff, prefix = nil)
+      identifier = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
+      raise InternalError, 'cutoff and keyset are not consistent' \
+            unless identifier.keys == @keyset.keys
 
       params = typecast_latest(identifier)
       prefix ? params.transform_keys { |key| :"#{prefix}#{key}" } : params
@@ -135,11 +135,11 @@ class Pagy
       records
       return unless @more
 
-      @next ||= next_cursor
+      @next ||= next_cutoff
     end
 
-    # Return the next cursor
-    def next_cursor
+    # Return the next cutoff
+    def next_cutoff
       hash = keyset_attributes_from(@records.last)
       json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
       B64.urlsafe_encode(json)
@@ -149,11 +149,11 @@ class Pagy
     def records
       @records ||= begin
                      @set = apply_select if select?
-                     if @query_params
+                     if @filter_params
                        # :nocov:
-                       @set = @vars[:after_latest]&.(@set, @query_params)            ||  # deprecated
-                              @vars[:filter_newest]&.(@set, @query_params, @keyset)  ||  # deprecated
-                              @vars[:filter_records]&.(@set, @query_params, @keyset) ||
+                       @set = @vars[:after_latest]&.(@set, @filter_params)            ||  # deprecated
+                              @vars[:filter_newest]&.(@set, @filter_params, @keyset)  ||  # deprecated
+                              @vars[:filter_records]&.(@set, @filter_params, @keyset) ||
                               # :nocov:
                               filter_records
                      end

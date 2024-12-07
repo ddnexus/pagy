@@ -25,7 +25,7 @@ class Pagy
       end
 
       # Filter the page records
-      def filter_records = @set.where(::Sequel.lit(filter_records_query, **@query_params))
+      def filter_records = @set.where(::Sequel.lit(filter_records_query, **@filter_params))
 
       # Append the missing keyset keys if the set is restricted by select
       def apply_select

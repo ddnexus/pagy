@@ -12,7 +12,9 @@ category:
 
 Add UI support to the [Pagy::Keyset](keyset.md) like `pagy_*nav` helpers and numeric pages.
 
-This subclass provides an interface layer for the UI. It maps `cursors` to page `numbers`, allowing the backend to work with the
+## Overview
+
+This subclass provides an interface layer for the UI. It caches the `cutoffs` and maps them to page `numbers`, allowing the backend to work with the
 faster keyset technique and the frontend with the usual numeric based UI helpers, such as the `pagy_*navs`, `prev` and `next`
 buttons, etc.
 
@@ -25,10 +27,21 @@ pagination is faster because of the keyset technique.
 The API is documented here, however you may prefer to use the [keyset_cached extra](/docs/extras/keyset_cached.md)
 wrapper to easily integrate it with your app.
 
-You should also familiarize with the  [Pagy::Keyset](keyset.md) class.
+You should also familiarize with the [Pagy::Keyset](keyset.md) class.
 !!!
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-apps)
+
+## Concept
+
+The biggest limitation of the standard "keyset" pagination technique, is that basically you can only go to the next page,
+
+pk only know how to fetch a fixed number of record starting from a very 
+has only one very local parameter: the cutoff, i.e. the pointer to a very specific record in the collection. It finds it very efficiently
+
+The basic cycle of KP is pulling a fixed number of records and memorizing the identifier of the last reteived record
+
+KP is efficient because it is very local to a specific part of the collection: the :cutoff. 
 
 ## Setup
 
@@ -51,7 +64,7 @@ a [feature request](https://github.com/ddnexus/pagy/discussions/categories/featu
 
 !!!warning Warning!
 
-With the default cookie-based `session`, depending on the size of your cursors, your session cookie might overflow the 4k max
+With the default cookie-based `session`, depending on the size of your cutoffs, your session cookie might overflow the 4k max
 size. In that case you should use some other storage for the session.
 !!!
 
@@ -72,8 +85,8 @@ key       = Digest::SHA2.hexdigest([huge, list, of, variables].to_json)
 cache_key = ->(_) { key }
 ```
 
-Pagy uses the `cache_key` to store an array of `cursors` pointing to the already visited pages. If any of the pagination
-parameters changes, the `:cache_key` must change, so the `cursors` will be consistent with the displayed page of records.
+Pagy uses the `cache_key` to store an array of `cutoffs` of the already visited pages. If any of the pagination
+parameters changes, the `:cache_key` must change, so the `cutoffs` will be consistent with the displayed page of records.
 
 ## ORMs
 
@@ -112,7 +125,7 @@ The [keyset_cached extra](/docs/extras/keyset_cached.md) sets it to the `session
 ==- `:cache_key`
 
 Mandatory string **deterministically generated** from all the params/variables that may determine any variation in the paginated
-result. It is used as cache key to store the array of `cursors` pointing to the already visited pages.
+result. It is used as cache key to store the array of `cutoffs` of the already visited pages.
 
 ==- `:max_pages`
 
