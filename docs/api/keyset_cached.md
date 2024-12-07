@@ -34,14 +34,7 @@ You should also familiarize with the [Pagy::Keyset](keyset.md) class.
 
 ## Concept
 
-The biggest limitation of the standard "keyset" pagination technique, is that basically you can only go to the next page,
-
-pk only know how to fetch a fixed number of record starting from a very 
-has only one very local parameter: the cutoff, i.e. the pointer to a very specific record in the collection. It finds it very efficiently
-
-The basic cycle of KP is pulling a fixed number of records and memorizing the identifier of the last reteived record
-
-KP is efficient because it is very local to a specific part of the collection: the :cutoff. 
+TBD
 
 ## Setup
 

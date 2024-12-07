@@ -15,6 +15,7 @@ class Pagy # :nodoc:
       class Sequel < Cached
         include SequelAdapter
       end
+      # Avoid params conflicts for composite filters
       ON_PREFIX  = 'on_'   # Prefix for ON filter filter_params
       OFF_PREFIX = 'off_'  # Prefix for OFF filter filter_params
 
@@ -35,32 +36,28 @@ class Pagy # :nodoc:
         @cutoff = @cutoffs[@page]
       end
 
-      # Assign a numeric page param
+      # Assign a numeric page
       def assign_page
         assign_and_check(page: 1)
       end
 
-      # Assign the filter_params and define the :on and :off filter flags referring to
-      # the SQL conditions of the filter_record_query, i.e. the page record selected
-      # are included between the :on and :off filters
-      #
-      # The ON flag indicates that the filter query contains a SQL statement identifying where
-      # the page records bregin. It is missing for page 1 (which starts from the first record).
-      #
-      # The OFF flag indicates that the filter query contains a SQL statement identifying where
-      # the page records end. It is present when there is a cached cutoff pointing to the last page record.
-      # That is used as a repacement of the LIMIT, which may become inaccurate for cached cutoffs.
+      # Override the assignation of the filter params when the next_cutoff is cached
       def assign_filter_params
-        @filter = {}
+        @filter = {} # may contain :on and :off entries
+        return super unless (next_cutoff = @cutoffs[@page + 1]) # return super only when it's the last page
+
+        # The ON flag indicates that the filter query contains a filter identifying where
+        # the page records bregin. It is missing for page 1 (which starts from the first record).
         if @cutoff
           @filter_params = cutoff_to_filter_params(@cutoff, ON_PREFIX)
           @filter[:on]   = true # the filter is ON beyond the cutoff
         end
-        if (next_cutoff = @cutoffs[@page + 1])
-          filter_params     = cutoff_to_filter_params(next_cutoff, OFF_PREFIX)
-          (@filter_params ||= {}).merge!(filter_params)
-          @filter[:off]     = true # the filter is OFF beyond the next_cutoff
-        end
+        # The OFF flag indicates that the filter query contains a filter identifying where
+        # the page records end.
+        # The off filter is used as a repacement of the LIMIT, which may become inaccurate for cached cutoffs.
+        filter_params     = cutoff_to_filter_params(next_cutoff, OFF_PREFIX)
+        (@filter_params ||= {}).merge!(filter_params)
+        @filter[:off]     = true # the filter is OFF beyond the next_cutoff
       end
 
       # Add the default variables required by the UI
@@ -68,28 +65,29 @@ class Pagy # :nodoc:
         { **super, **DEFAULT.slice(:ends, :page, :size) }
       end
 
-      # Get the records and set the @more (different way for cached next_cutoff)
+      # Override the fetching when the next_cutoff is cached
       def fetch_records
-        # When a cached next_cutoff is present, use it to replace the LIMIT with an OFF filter condition
+        return super unless @filter[:off] # return super only when it's the last page
+
+        # The LIMIT is replaced by the :off filter.
         # That keeps the fetching accurate also when records are added or removed from a page alredy visited
-        if @filter[:off]
-          @more = true
-          @set.limit(nil).to_a
-        else
-          super
-        end
+        @more = true
+        @set.limit(nil).to_a
       end
 
-      # Generate a single ON_FILTER if there is no cached next_cutoff (execute with LIMIT)
-      # Generate a composite filter with ON_FILTER AND NOT OFF_FILTER if there is a cached next_cutoff (execute without LIMIT)
+      # Override the query when the next_cutoff is cached
       def filter_records_query
+        return super unless @filter[:off] # return super only when it's the last page
+
+        # Generate a possibly composite filter between
+        #   - page == 1: the start of the set and the next_cursor (something like: NOT OFF_FILTER)
+        #   - page > 1:  the current cursor and the next_cursor (something like: ON_FILTER AND NOT OFF_FILTER)
+        # The fetch_records will execute without the LIMIT
         sql = +''
-        sql << "(#{super(ON_PREFIX)})" if @filter[:on]
-        if @filter[:off]
-          sql << ' AND ' if @filter[:on]
-          sql << "NOT (#{super(OFF_PREFIX)})"
-        end
-        sql
+        # Generate the :on filter if flagged
+        sql << "(#{super(ON_PREFIX)}) AND " if @filter[:on]
+        # Add the :off filter
+        sql << "NOT (#{super(OFF_PREFIX)})"
       end
 
       # Return the next page number and cache the next_cutoff if it's missing
