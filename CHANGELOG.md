@@ -16,7 +16,7 @@ can expect the old functionality to be supported ONLY during the next releases b
 
 ## Recommended Version Constraint
 
-Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.2`):
+Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.3`):
 
 The `gem 'pagy', '~> 9.3'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to 
 the most recent version WITHOUT BREAKING CHANGES.
@@ -41,6 +41,14 @@ If you upgrade from version `< 9.0.0` see the following:
 
 - `:after_latest` keyset variable: use `:filter_newest`
 <hr>
+
+## Version 9.3.3
+
+- Add test for locales - to find problematic keys (#752)
+- Update locales: zh-CN, zh-HK, zh-TW  (#751) (fix #608, fix #609, fix #610)
+  - Remove :other from :aria_label key and code comment
+  - Change :item_name which had :one_other keys to default to the :other key
+  - Fix comment
 
 ## Version 9.3.2
 
