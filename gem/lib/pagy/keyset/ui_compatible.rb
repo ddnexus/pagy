@@ -7,12 +7,12 @@ require 'digest/sha2'
 class Pagy # :nodoc:
   class Keyset
     # Implement wicked-fast keyset pagination for UI by using numeric pages that work with regular pagy navs.
-    class Cached < Keyset
-      class ActiveRecord < Cached
+    class UICompatible < Keyset
+      class ActiveRecord < UICompatible
         include ActiveRecordAdapter
       end
 
-      class Sequel < Cached
+      class Sequel < UICompatible
         include SequelAdapter
       end
       # Avoid params conflicts in composite filters

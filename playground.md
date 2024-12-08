@@ -6,7 +6,7 @@ icon: play-24
 
 # Pagy Playground
 
-You can showcase, clone and develop a few pagy APPs without the need to setup anything on your side!
+You can showcase, clone and develop a few pagy APPs without the need to set up anything on your side!
 
 ```sh
 $ bundle exec pagy --help
@@ -116,8 +116,8 @@ bundle exec pagy | grep keyset
   keyset_sequel              Showcase the Keyset pagination with Sequel sets
 
 bundle exec pagy keyset
-bundle exec pagy keyset_cached
 bundle exec pagy keyset_sequel
+bundle exec pagy keyset_ui
 ```
 
 ...and point your browser to http://0.0.0.0:8000

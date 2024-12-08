@@ -10,8 +10,8 @@
 #    bundle exec pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone keyset_cached
-#    bundle exec pagy ./keyset_cached.ru
+#    bundle exec pagy clone keyset_ui
+#    bundle exec pagy ./keyset_ui.ru
 #
 # URL
 #    http://0.0.0.0:8000
@@ -32,7 +32,7 @@ end
 
 # Pagy initializer
 require 'pagy/extras/limit'
-require 'pagy/extras/keyset_cached'
+require 'pagy/extras/keyset_ui_compatible'
 require 'pagy/extras/pagy'
 Pagy::DEFAULT[:limit] = 5
 Pagy::DEFAULT.freeze
@@ -49,7 +49,7 @@ class PagyKeyset < Sinatra::Base
     Time.zone = 'UTC'
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset_cached(Pet.order(@order))
+    @pagy, @pets = pagy_keyset_ui_compatible(Pet.order(@order))
     erb :main
   end
 
@@ -68,7 +68,7 @@ class PagyKeyset < Sinatra::Base
       <html lang="en">
       <html>
       <head>
-         <title>Pagy Keyset App</title>
+         <title>Pagy Keyset UI App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
           @media screen { html, body {
@@ -99,7 +99,7 @@ class PagyKeyset < Sinatra::Base
   template :main do
     <<~ERB
       <div class="content">
-        <h1>Pagy Keyset App</h1>
+        <h1>Pagy Keyset UI App</h1>
         <p>Self-contained, standalone app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
