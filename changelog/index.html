@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/pagy">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786537918750">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.6.0.786972398553">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.6.0">
@@ -31,11 +31,11 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.6.0.786537918750" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.6.0.786972398553" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.6.0.786537918750" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.6.0.786972398553" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.6.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.6.0.786537918750" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.6.0.786972398553" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -52,7 +52,7 @@
                     <div class="flex items-center px-2 md:px-6">
                         <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
                             <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Pagy</span>
-                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.3.2</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">9.3.3</span>
                     </div>
         
                     <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
@@ -281,7 +281,7 @@ can expect the old functionality to be supported ONLY during the next releases b
         <span>Recommended Version Constraint</span>
     </h2>
 </doc-anchor-target>
-<p>Given a version number <code v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code v-pre>9.3.2</code>):</p>
+<p>Given a version number <code v-pre>MAJOR.MINOR.PATCH</code> (e.g. <code v-pre>9.3.3</code>):</p>
 <p>The <code v-pre>gem 'pagy', '~&gt; 9.3'</code> Gemfile entry (without the PATCH number) ensures that the <code v-pre>bundle update</code> command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.</p>
 <p>Increment the MAYOR version indicated in the Gemfile ONLY when you are ready to handle the BREAKING CHANGES</p>
@@ -313,6 +313,22 @@ the most recent version WITHOUT BREAKING CHANGES.</p>
 <li><code v-pre>:after_latest</code> keyset variable: use <code v-pre>:filter_newest</code></li>
 </ul>
 <hr>
+<doc-anchor-target id="version-933">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#version-933">#</doc-anchor-trigger>
+        <span>Version 9.3.3</span>
+    </h2>
+</doc-anchor-target>
+<ul>
+<li>Add test for locales - to find problematic keys (#752)</li>
+<li>Update locales: zh-CN, zh-HK, zh-TW  (#751) (fix #608, fix #609, fix #610)
+<ul>
+<li>Remove :other from :aria_label key and code comment</li>
+<li>Change :item_name which had :one_other keys to default to the :other key</li>
+<li>Fix comment</li>
+</ul>
+</li>
+</ul>
 <doc-anchor-target id="version-932">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#version-932">#</doc-anchor-trigger>
