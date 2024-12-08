@@ -16,7 +16,7 @@ class Pagy
       end
 
       # Filter the page records
-      def filter_records = @set.where(filter_records_query, **@filter_params)
+      def filter_records = @set.where(filter_records_sql, **@filter_params)
 
       # Append the missing keyset keys if the set is restricted by select
       def apply_select
@@ -27,7 +27,7 @@ class Pagy
       def select? = !@set.select_values.empty?
 
       # Typecast the latest attributes
-      def typecast_latest(latest)
+      def typecast_params(latest)
         @set.model.new(latest).slice(latest.keys)
             .to_hash.transform_keys(&:to_sym)
       end

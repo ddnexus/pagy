@@ -68,13 +68,12 @@ class Pagy
     end
 
     # Decode a cutoff, check its consistency and returns the filter params
-    def cutoff_to_params(cutoff, prefix = nil)
-      identifier = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
+    def cutoff_to_params(cutoff)
+      params = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
       raise InternalError, 'cutoff and keyset are not consistent' \
-            unless identifier.keys == @keyset.keys
+            unless params.keys == @keyset.keys
 
-      params = typecast_latest(identifier)
-      prefix ? params.transform_keys { |key| :"#{prefix}#{key}" } : params
+      typecast_params(params)
     end
 
     # Return the Keyset default variables
@@ -86,14 +85,14 @@ class Pagy
       { **default, page: nil }
     end
 
-    # Get the records and set the @more
+    # Fetch the records and set the @more
     def fetch_records
       records = @set.limit(@limit + 1).to_a
       @more   = records.size > @limit && !records.pop.nil?
       records
     end
 
-    # Prepare the literal query string (complete with the placeholders for value interpolation)
+    # Prepare the literal sql string (complete with the placeholders for value interpolation)
     # used to filter the page records. For example:
     #
     # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
@@ -107,7 +106,7 @@ class Pagy
     #
     #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
     #
-    def filter_records_query(prefix = nil)
+    def filter_records_sql(prefix = nil)
       operator    = { asc: '>', desc: '<' }
       directions  = @keyset.values
       table       = @set.model.table_name
@@ -130,19 +129,19 @@ class Pagy
       end
     end
 
+    # Generate the next cutoff
+    def generate_next_cutoff
+      hash = keyset_attributes_from(@records.last)
+      json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
+      B64.urlsafe_encode(json)
+    end
+
     # Return the next page
     def next
       records
       return unless @more
 
-      @next ||= next_cutoff
-    end
-
-    # Return the next cutoff
-    def next_cutoff
-      hash = keyset_attributes_from(@records.last)
-      json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
-      B64.urlsafe_encode(json)
+      @next ||= generate_next_cutoff
     end
 
     # Fetch the array of records for the current page

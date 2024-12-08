@@ -25,7 +25,7 @@ class Pagy
       end
 
       # Filter the page records
-      def filter_records = @set.where(::Sequel.lit(filter_records_query, **@filter_params))
+      def filter_records = @set.where(::Sequel.lit(filter_records_sql, **@filter_params))
 
       # Append the missing keyset keys if the set is restricted by select
       def apply_select
@@ -37,7 +37,7 @@ class Pagy
       def select? = !@set.opts[:select].nil?
 
       # Typecast the latest attributes
-      def typecast_latest(latest)
+      def typecast_params(latest)
         model = @set.opts[:model]
         model.unrestrict_primary_key if (restricted_pk = model.restrict_primary_key?)
         latest = model.new(latest).to_hash.slice(*latest.keys.map(&:to_sym))

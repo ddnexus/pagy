@@ -15,8 +15,8 @@ class Pagy # :nodoc:
       class Sequel < Cached
         include SequelAdapter
       end
-      # Avoid params conflicts for composite filters
-      NOT_PREFIX = 'not_'  # Prefix for NOT filter filter_params
+      # Avoid params conflicts in composite filters
+      LIMIT_PREFIX = 'limit_'  # Prefix for cutoff_params
 
       include SharedMethodsForUI
 
@@ -40,15 +40,16 @@ class Pagy # :nodoc:
         assign_and_check(page: 1)
       end
 
-      # Generate different params when the next_cutoff is cached
+      # Assign different params if @limit_cutoff to support the composite LIMIT filter
       def assign_filter_params
-        return super unless @next_cached_cutoff ||= @cutoffs[@page + 1] # return super only when it's the last page
+        # @limit_cutoff is the cached cutoff for the next page
+        return super unless @limit_cutoff ||= @cutoffs[@page + 1] # return super only when it's the last page
 
-        # Regular cutoff filter: it is missing for page 1 that doesn't have a cutoff.
+        # The regular cutoff params are missing for page 1 (which doesn't have a cutoff).
         @filter_params = cutoff_to_params(@cutoff) if @cutoff
 
-        # The NOT filter (exclude the records after the next cutoff) is used as a repacement of the LIMIT, which may become inaccurate for cached cutoffs.
-        filter_params     = cutoff_to_params(@next_cached_cutoff, NOT_PREFIX)
+        # The limit_cutoff params are preserved by prefixing them before merging
+        filter_params     = cutoff_to_params(@limit_cutoff).transform_keys { |key| :"#{LIMIT_PREFIX}#{key}" }
         (@filter_params ||= {}).merge!(filter_params)
       end
 
@@ -57,40 +58,40 @@ class Pagy # :nodoc:
         { **super, **DEFAULT.slice(:ends, :page, :size) }
       end
 
-      # Remove the LIMIT when the next_cutoff is cached
+      # Remove the LIMIT if @limit_cutoff
       def fetch_records
-        return super unless @next_cached_cutoff # super for the last page
+        return super unless @limit_cutoff # super for the last page
 
-        # The LIMIT is replaced by the NOT filter.
+        # Disable the LIMIT because it is replaced by the LIMIT filter.
         # That keeps the fetching accurate also when records are added or removed from a page alredy visited
         @more = true
         @set.limit(nil).to_a
       end
 
-      # Generate a filter between cutoffs when the next_cutoff is cached
-      def filter_records_query
-        return super unless @next_cached_cutoff # super for the last page
+      # If @limit_cutoff: generate a filter between cutoffs
+      # and use the LIMIT filter as a repacement of the SQL LIMIT.
+      def filter_records_sql
+        return super unless @limit_cutoff # super for the last page
 
         # Generate a composite filter between:
-        #   - The start of the set and the next cutoff (page == 1)
-        #     Filter logic: NOT BEYOND_NEXT_CUTOFF
-        #   - The current cutoff and the next cutoff (page > 1)
-        #     Filter logic: BEYOND_CUTOFF AND NOT BEYOND_NEXT_CUTOFF
-        # Notice: the fetch_records will execute without the LIMIT
+        #   - The beginning of the set and the @limit_cutoff if page == 1
+        #     Filter logic: NOT BEYOND_LIMIT_CUTOFF
+        #   - The current cutoff and the @limit_cutoff if page > 1
+        #     Filter logic: BEYOND_CUTOFF AND NOT BEYOND_LIMIT_CUTOFF
         sql = +''
-        # Generate the :on filter if flagged
+        # Generate the CUTOFF filter unless @page == 1 that doesn't have a cutoff
         sql << "(#{super}) AND " if @cutoff
-        # Add the NOT filter
-        sql << "NOT (#{super(NOT_PREFIX)})"
+        # Add the LIMIT filter, passing the prefix for the placeholdars
+        sql << "NOT (#{super(LIMIT_PREFIX)})"
       end
 
-      # Return the next page number and cache the next_cutoff if it's missing
+      # Return the next page number, and cache the next cutoff if it's missing from the cache (only last page)
       def next
         records
         return if !@more || (@vars[:max_pages] && @page >= @vars[:max_pages])
 
         @next ||= (@page + 1).tap do |next_page|
-                    @cutoffs[next_page] = next_cutoff unless @next_cached_cutoff
+                    @cutoffs[next_page] = generate_next_cutoff unless @limit_cutoff
                   end
       end
 
@@ -103,8 +104,8 @@ class Pagy # :nodoc:
         raise VariableError.new(self, :cache_key, 'to be a String or a Proc returning a string', key) \
               unless key.is_a?(String) && !key.empty?
 
-        @cutoffs = @vars[:cache][key] ||= [nil, nil]  # nil: 1-based array; nil: first cutoff is nil
-        last     = @cutoffs.size - 1 # at this point it's not the @last for the UI (see initislizer)
+        @cutoffs = @vars[:cache][key] ||= [nil, nil]  # nil-0: 1-based array; nil-1: first page cutoff is nil
+        last     = @cutoffs.size - 1 # at this point it's not the @last for the UI (see initializer)
         raise OverflowError.new(self, :page, "in 1..#{last}", @page) if @page > last
       end
     end
