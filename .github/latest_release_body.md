@@ -6,10 +6,14 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.3.2
+### Changes in 9.3.3
 
 <!-- changes_start -->
-- Improve gapped series computation by a few milliseconds
+- Add test for locales - to find problematic keys (#752)
+- Update locales: zh-CN, zh-HK, zh-TW  (#751) (fix #608, fix #609, fix #610)
+  - Remove :other from :aria_label key and code comment
+  - Change :item_name which had :one_other keys to default to the :other key
+  - Fix comment
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
