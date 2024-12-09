@@ -111,13 +111,13 @@ Run the interactive demo from your terminal:
 
 ```sh      
 bundle exec pagy | grep keyset
-  keyset                     Showcase the Keyset pagination with ActiveRecord
-  keyset_cached              Showcase the Keyset cached pagination for UI
-  keyset_sequel              Showcase the Keyset pagination with Sequel sets
+  keyset                     Showcase the Keyset pagination (ActiveRecord example)
+  keyset_numeric        Showcase the Keyset Numeric pagination (ActiveRecord example)
+  keyset_sequel              Showcase the Keyset pagination (Sequel example)
 
 bundle exec pagy keyset
+bundle exec pagy keyset_numeric
 bundle exec pagy keyset_sequel
-bundle exec pagy keyset_ui
 ```
 
 ...and point your browser to http://0.0.0.0:8000

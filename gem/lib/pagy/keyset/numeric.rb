@@ -1,4 +1,4 @@
-# See Pagy::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/keyset/cached
+# See Pagy::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/keyset/numeric
 # frozen_string_literal: true
 
 require_relative '../keyset'
@@ -6,19 +6,21 @@ require 'digest/sha2'
 
 class Pagy # :nodoc:
   class Keyset
-    # Implement wicked-fast keyset pagination for UI by using numeric pages that work with regular pagy navs.
-    class UICompatible < Keyset
-      class ActiveRecord < UICompatible
+    # Implement wicked-fast keyset pagination that uses numeric pages
+    # that work with regular pagy_nav and other frontend helpers.
+    class Numeric < Keyset
+      class ActiveRecord < Numeric
         include ActiveRecordAdapter
       end
 
-      class Sequel < UICompatible
+      class Sequel < Numeric
         include SequelAdapter
       end
       # Avoid params conflicts in composite filters
       LIMIT_PREFIX = 'limit_'  # Prefix for cutoff_params
 
-      include SharedMethodsForUI
+      include SharedNumericMethods
+      attr_reader :cache_key
 
       # Finalize the instance variables needed for the UI
       def initialize(set, **vars)
@@ -53,7 +55,7 @@ class Pagy # :nodoc:
         (@filter_params ||= {}).merge!(filter_params)
       end
 
-      # Add the default variables required by the UI
+      # Add the default variables required by the Frontend
       def default
         { **super, **DEFAULT.slice(:ends, :page, :size) }
       end
@@ -70,6 +72,7 @@ class Pagy # :nodoc:
 
       # If @limit_cutoff: generate a filter between cutoffs
       # and use the LIMIT filter as a repacement of the SQL LIMIT.
+      # That ensures accuracy in case of records added or removed
       def filter_records_sql
         return super unless @limit_cutoff # super for the last page
 
@@ -95,18 +98,16 @@ class Pagy # :nodoc:
                   end
       end
 
-      # Set up the cache and check for OverflowError.
+      # Set up the cache and check for OverflowError
       def setup_cache
-        raise VariableError.new(self, :cache, 'to be a Hash-like object', @vars[:cache]) \
-              unless @vars[:cache].respond_to?(:[]=) && @vars[:cache].respond_to?(:[])
-
-        key = @vars[:cache_key].is_a?(Proc) ? @vars[:cache_key].(@vars) : @vars[:cache_key]
-        raise VariableError.new(self, :cache_key, 'to be a String or a Proc returning a string', key) \
-              unless key.is_a?(String) && !key.empty?
-
-        @cutoffs = @vars[:cache][key] ||= [nil, nil]  # nil-0: 1-based array; nil-1: first page cutoff is nil
-        last     = @cutoffs.size - 1 # at this point it's not the @last for the UI (see initializer)
-        raise OverflowError.new(self, :page, "in 1..#{last}", @page) if @page > last
+        @cache_key = "pagy-#{Digest::SHA2.hexdigest(@vars[:cache_key]&.(@vars) || "#{sql_for_key}-#{@vars[:limit]}")}"
+        begin
+          @cutoffs = @vars[:cache][@cache_key] ||= [nil, nil] # nil-0: 1-based array; nil-1: first page cutoff is nil
+        rescue NoMethodError
+          raise VariableError.new(self, :cache, 'to be a Hash-like object', @vars[:cache])
+        end
+        pages = @cutoffs.size - 1
+        raise OverflowError.new(self, :page, "in 1..#{pages}", @page) if @page > pages
       end
     end
   end

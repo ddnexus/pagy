@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Showcase the Keyset pagination with ActiveRecord sets
+#    Showcase the Keyset pagination (ActiveRecord example)
 #
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-keyset-apps
@@ -98,7 +98,7 @@ class PagyKeyset < Sinatra::Base
     <<~ERB
       <div class="content">
         <h1>Pagy Keyset App</h1>
-        <p>Self-contained, standalone app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
+        <p>Self-contained, standalone app usable to easily reproduce any Keyset related pagy issue with ActiveRecord sets.</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
         <ul>

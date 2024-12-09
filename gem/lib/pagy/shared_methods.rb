@@ -24,8 +24,8 @@ class Pagy
     end
   end
 
-  # Shared with Keyset::Cached
-  module SharedMethodsForUI
+  # Shared with Keyset::Numeric
+  module SharedNumericMethods
     attr_reader :in, :last, :prev
     alias pages last
 

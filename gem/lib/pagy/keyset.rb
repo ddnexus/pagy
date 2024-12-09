@@ -22,7 +22,7 @@ class Pagy
 
     # Pick the right adapter for the set
     def self.new(set, **vars)
-      if self == Pagy::Keyset || (defined?(UICompatible) && self == Pagy::Keyset::UICompatible)
+      if self == Pagy::Keyset || (defined?(Pagy::Keyset::Numeric) && self == Pagy::Keyset::Numeric)
         if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
           self::ActiveRecord
         elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
@@ -41,11 +41,11 @@ class Pagy
       assign_vars(default, vars)
       assign_limit
       @set    = set
-      @keyset = extract_keyset
+      @keyset = vars[:keyset] = extract_keyset
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
       assign_page
-      setup_cache # Only used by Keyset::Cached (called here to avoid overriding)
+      setup_cache # Only used by Keyset::Numeric (called here to avoid overriding)
       assign_cutoff
       assign_filter_params
     end
@@ -160,7 +160,7 @@ class Pagy
                    end
     end
 
-    # Only implemented in Keyset::Cached
+    # Only implemented in Keyset::Numeric
     def setup_cache; end
   end
 end

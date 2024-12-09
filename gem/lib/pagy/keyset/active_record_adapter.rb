@@ -5,8 +5,10 @@ class Pagy
   class Keyset
     # Keyset adapter for ActiveRecord
     module ActiveRecordAdapter
-      # Get the keyset attributes from the record
-      def keyset_attributes_from(record) = record.slice(*@keyset.keys)
+      # Append the missing keyset keys if the set is restricted by select
+      def apply_select
+        @set.select(*@keyset.keys)
+      end
 
       # Extract the keyset from the set
       def extract_keyset
@@ -18,13 +20,15 @@ class Pagy
       # Filter the page records
       def filter_records = @set.where(filter_records_sql, **@filter_params)
 
-      # Append the missing keyset keys if the set is restricted by select
-      def apply_select
-        @set.select(*@keyset.keys)
-      end
+      # Get the keyset attributes from the record
+      def keyset_attributes_from(record) = record.slice(*@keyset.keys)
 
       # Set with selected columns?
       def select? = !@set.select_values.empty?
+
+      # Get a standard string omitting the statements that don't affect the paginated records
+      # TODO: Check for other statements
+      def sql_for_key = @set.only(:order, :where, :group, :having).to_sql
 
       # Typecast the latest attributes
       def typecast_params(latest)

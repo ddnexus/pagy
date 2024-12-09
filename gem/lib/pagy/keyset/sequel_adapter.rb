@@ -5,8 +5,11 @@ class Pagy
   class Keyset
     # Keyset adapter for sequel
     module SequelAdapter
-      # Get the keyset attributes from the record
-      def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
+      # Append the missing keyset keys if the set is restricted by select
+      def apply_select
+        selected = @set.opts[:select]
+        @set.select_append(*@keyset.keys.reject { |c| selected.include?(c) })
+      end
 
       # Extract the keyset from the set
       def extract_keyset
@@ -27,14 +30,15 @@ class Pagy
       # Filter the page records
       def filter_records = @set.where(::Sequel.lit(filter_records_sql, **@filter_params))
 
-      # Append the missing keyset keys if the set is restricted by select
-      def apply_select
-        selected = @set.opts[:select]
-        @set.select_append(*@keyset.keys.reject { |c| selected.include?(c) })
-      end
+      # Get the keyset attributes from the record
+      def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
 
       # Set with selected columns?
       def select? = !@set.opts[:select].nil?
+
+      # Get a standard string omitting the statements that don't affect the paginated records
+      # TODO: Check for other statements
+      def sql_for_key = @set.select_all.sql
 
       # Typecast the latest attributes
       def typecast_params(latest)

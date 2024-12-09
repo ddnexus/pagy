@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Showcase the Keyset cached pagination for UI
+#    Showcase the Keyset Numeric pagination (ActiveRecord example)
 #
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-keyset-apps
@@ -10,13 +10,13 @@
 #    bundle exec pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone keyset_ui
-#    bundle exec pagy ./keyset_ui.ru
+#    bundle exec pagy clone keyset_numeric
+#    bundle exec pagy ./keyset_numeric.ru
 #
 # URL
 #    http://0.0.0.0:8000
 
-VERSION = '9.3.2'
+VERSION = '9.3.3'
 
 # Bundle
 require 'bundler/inline'
@@ -32,7 +32,7 @@ end
 
 # Pagy initializer
 require 'pagy/extras/limit'
-require 'pagy/extras/keyset_ui_compatible'
+require 'pagy/extras/keyset_numeric'
 require 'pagy/extras/pagy'
 Pagy::DEFAULT[:limit] = 5
 Pagy::DEFAULT.freeze
@@ -49,7 +49,7 @@ class PagyKeyset < Sinatra::Base
     Time.zone = 'UTC'
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset_ui_compatible(Pet.order(@order))
+    @pagy, @pets = pagy_keyset_numeric(Pet.order(@order))
     erb :main
   end
 
@@ -68,7 +68,7 @@ class PagyKeyset < Sinatra::Base
       <html lang="en">
       <html>
       <head>
-         <title>Pagy Keyset UI App</title>
+         <title>Pagy Keyset Numeric App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
           @media screen { html, body {
@@ -99,8 +99,9 @@ class PagyKeyset < Sinatra::Base
   template :main do
     <<~ERB
       <div class="content">
-        <h1>Pagy Keyset UI App</h1>
-        <p>Self-contained, standalone app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
+        <h1>Pagy Keyset Numeric App</h1>
+        <p>Self-contained, standalone app usable to easily reproduce any Keyset Numeric related pagy issue
+        with ActiveRecord sets. Notice that Keyset Numeric works also with Sequel sets</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
         <ul>

@@ -10,14 +10,14 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pagy) for instant answers not covered in this page.
 
-## Choose between Offset, Countless, Keyset and Keyset Cached pagination
+## Choose between Offset, Countless, Keyset and Keyset Numeric pagination
  
 | Type          | Tech   | Queries | UI Support |
 |---------------| ------ |---------|------------|
 | Regular       | Offset | 2 slow  | Complete   |
 | Countless     | Offset | 1 slow  | Partial    |
 | Keyset        | Keyset | 1 fast  | None       |
-| Keyset Cached | Keyset | 1 fast  | Partial    |
+| Keyset Numeric | Keyset | 1 fast  | Partial    |
 
 [AI-powered answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
 

@@ -32,25 +32,27 @@ of querying pages deep into a collection (i.e. when `offset` is a big number, yo
 This technique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and less
 convenient for UIs in general.
 
-!!!primary Keyset pagination for UI available!
+!!!success UI-Compatible Keyset pagination is also available!
 
-If you want the best of the two world, check out the [keyset_cached extra]() that implements the support for UI helpers like the
+If you want the best of the two worlds, check out the [keyset_numeric extra](/docs/extras/keyset_numeric.md) that implements the support for UI helpers like the
 standard `pagy_*nav` helpers
+!!!
 
 ### Glossary
 
-| Term                | Description                                                                                                                                                                                                                                                                                                                                      |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `offset pagination` | Technique to fetch each page by incrementing the `offset` from the collection start.<br/>It requires two queries per page (or one if [countless](/docs/api/countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the regular pagy pagination.                                                     |
-| `keyset pagination` | Technique to fetch the next page starting AFTER the latest fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page: it's very fast regardless the table size and position (if properly indexed). It has a limited usage in frontend unless you use the [keyset_cached extra]() that supports most UI helpers. |
-| `uniquely ordered`  | When the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                                                                                          |
-| `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                                                                     |
-| `keyset`            | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                                                                |
-| `keyset attributes` | The hash of keyset-column/record-value pairs of a record.                                                                                                                                                                                                                                                                                        |
-| `cutoff`            | The point beyond the last record of a `page`.<br/>(It's the encoded string of the `keyset attributes` of the last record)                                                                                                                                                                                                                        |
-| `page`              | The current `page`, i.e. the page of records fetched beyond the `cutoff` of the **previous page**.                                                                                                                                                                                                                                               |
-| `next`              | The next `page`, i.e. the page of records fetched beyond the `cutoff` of the **current page**.                                                                                                                                                                                                                                                   |
-| `filter_params`     | The hash of `filter_params` to filter the page records beyond the `cutoff`                                                                                                                                                                                                                                                                       |
+| Term                        | Description                                                                                                                                                                                                                                                                                           |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `offset pagination`         | The technique to fetch each page by incrementing the `offset` from the collection start.<br/>It requires two queries per page (or one if [countless](/docs/api/countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the regular pagy pagination.      |
+| `keyset pagination`         | The technique to fetch the next page starting after the latest fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page: it's very fast regardless the table size and position (if properly indexed). Support only infinite pagination, no other frontend helpers. |
+| `keyset numeric pagination` | The pagy exclusive technique to use `keyset pagination` with numeric pages, supporting `pagy_*navs` and other Frontend helpers. The best technique for performance AND functionality!                                                                                                                 |
+| `uniquely ordered`          | The property of a `set`, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                      |
+| `set`                       | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                          |
+| `keyset`                    | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                     |
+| `keyset attributes`         | The hash of keyset-column/record-value pairs of a record.                                                                                                                                                                                                                                             |
+| `cutoff`                    | The point beyond the last record of a `page`. <br/>(It's the encoded string of the `keyset attributes` of the last record in a page)                                                                                                                                                                  |
+| `page`                      | The current `page`, i.e. the page of records fetched beyond the `cutoff` of the **previous page**.                                                                                                                                                                                                    |
+| `next`                      | The next `page`, i.e. the page of records fetched beyond the `cutoff` of the **current page**.                                                                                                                                                                                                        |
+| `filter_params`             | The hash of `filter_params` used to filter the page records beyond the `cutoff`                                                                                                                                                                                                                       |
 
 ### Keyset or Offset pagination?
 
@@ -84,7 +86,7 @@ Your server will suffer on big data and your API will be slower for no good reas
 
 !!!success IMPORTANT!
 
-Most of the UI constraints below can be avoided by using the [keyset_cached extra]()
+Most of the UI constraints below can be avoided by using the [keyset_numeric extra]()
 !!!
 
 !!!warning With the standard keyset pagination technique...

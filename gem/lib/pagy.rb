@@ -23,7 +23,7 @@ class Pagy
   end
 
   include SharedMethods
-  include SharedMethodsForUI
+  include SharedNumericMethods
 
   attr_reader :count, :from, :in, :next, :offset, :to
 
