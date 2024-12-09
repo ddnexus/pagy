@@ -20,6 +20,9 @@ class Pagy
       # Filter the newest records
       def filter_newest = @set.where(filter_newest_query, **@latest)
 
+      # Filter the oldest records
+      def filter_oldest = @set.reverse_order.where(filter_newest_query, **@previous)
+
       # Append the missing keyset keys if the set is restricted by select
       def apply_select
         @set.select(*@keyset.keys)
