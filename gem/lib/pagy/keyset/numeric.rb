@@ -6,8 +6,8 @@ require 'digest/sha2'
 
 class Pagy # :nodoc:
   class Keyset
-    # Implement wicked-fast keyset pagination that uses numeric pages
-    # that work with regular pagy_nav and other frontend helpers.
+    # Use keyset pagination with numeric pages
+    # supporting pagy_nav and other frontend helpers.
     class Numeric < Keyset
       class ActiveRecord < Numeric
         include ActiveRecordAdapter
@@ -16,11 +16,11 @@ class Pagy # :nodoc:
       class Sequel < Numeric
         include SequelAdapter
       end
-      # Avoid params conflicts in composite filters
-      LIMIT_PREFIX = 'limit_'  # Prefix for cutoff_params
+      # Avoid args conflicts in composite filters
+      LIMIT_PREFIX = 'limit_'  # Prefix for filter_args
 
       include SharedNumericMethods
-      attr_reader :cache_key
+      attr_reader :cutoffs
 
       # Finalize the instance variables needed for the UI
       def initialize(set, **vars)
@@ -34,6 +34,14 @@ class Pagy # :nodoc:
 
       # Get the cutoff from the cache
       def assign_cutoff
+        @cutoffs = @vars[:cutoffs] || [nil, nil]
+        pages    = @cutoffs.size - 1
+        if @page > pages
+          raise OverflowError.new(self, :page, "in 1..#{pages}", @page) unless @vars[:reset_overflow]
+
+          @page    = 1
+          @cutoffs = [nil, nil]
+        end
         @cutoff = @cutoffs[@page]
       end
 
@@ -42,22 +50,23 @@ class Pagy # :nodoc:
         assign_and_check(page: 1)
       end
 
-      # Assign different params if @limit_cutoff to support the composite LIMIT filter
-      def assign_filter_params
-        # @limit_cutoff is the cached cutoff for the next page
+      # Assign different args to support the composite LIMIT filter if @limit_cutoff
+      def assign_filter_args
+        # @limit_cutoff is the cached cutoff for the next page:
+        # the curent page has been visited, hence it's not the last
         return super unless @limit_cutoff ||= @cutoffs[@page + 1] # return super only when it's the last page
 
-        # The regular cutoff params are missing for page 1 (which doesn't have a cutoff).
-        @filter_params = cutoff_to_params(@cutoff) if @cutoff
+        # The regular cutoff args are missing for page 1 (which doesn't have a cutoff).
+        @filter_args = cutoff_to_args(@cutoff) if @cutoff
 
-        # The limit_cutoff params are preserved by prefixing them before merging
-        filter_params     = cutoff_to_params(@limit_cutoff).transform_keys { |key| :"#{LIMIT_PREFIX}#{key}" }
-        (@filter_params ||= {}).merge!(filter_params)
+        # The limit_cutoff args are preserved by prefixing them before merging
+        filter_args     = cutoff_to_args(@limit_cutoff).transform_keys { |key| :"#{LIMIT_PREFIX}#{key}" }
+        (@filter_args ||= {}).merge!(filter_args)
       end
 
       # Add the default variables required by the Frontend
       def default
-        { **super, **DEFAULT.slice(:ends, :page, :size) }
+        { **super, **DEFAULT.slice(:ends, :page, :size, :cache_key_param) }
       end
 
       # Remove the LIMIT if @limit_cutoff
@@ -70,21 +79,42 @@ class Pagy # :nodoc:
         @set.limit(nil).to_a
       end
 
-      # If @limit_cutoff: generate a filter between cutoffs
-      # and use the LIMIT filter as a repacement of the SQL LIMIT.
+      # Generate a filter BETWEEN cutoffs if @limit_cutoff; super otherwise.
+      #
+      # If @limit_cutoff there are two scenarios, depending on the page number:
+      #
+      # 1. If page == 1
+      #    Pull the inital records till the @limit_cutoff
+      #    Filter logic: NOT BEYOND_LIMIT_CUTOFF
+      #
+      # 2. If page > 1
+      #    Pull the records BETWEEN the current @cutoff and the @limit_cutoff
+      #    Filter logic: BEYOND_CUTOFF AND NOT BEYOND_LIMIT_CUTOFF
+      #
+      # The BEYOND_CUTOFF filter is like the regular keyset filter (calling super). For example:
+      # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
+      #
+      #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR
+      #    ("pets"."animal" = :animal AND "pets"."name" < :name) OR
+      #    ("pets"."animal" > :animal)
+      #
+      # The BEYOND_LIMIT_CUTOFF filter is used as a repacement of the SQL LIMIT.
       # That ensures accuracy in case of records added or removed
+      # Here is how a BEYOND_LIMIT_CUTOFF looks for the same set:
+      #
+      #    ("pets"."animal" = :limit_animal AND "pets"."name" = :limit_name AND "pets"."id" > :limit_id) OR
+      #    ("pets"."animal" = :limit_animal AND "pets"."name" < :limit_name) OR
+      #    ("pets"."animal" > :limit_animal)
+      #
+      # Notice that the :limit_* placeholder will be replaced with the values
+      # of the next cutoff (beyond which the records belong to another page)
       def filter_records_sql
         return super unless @limit_cutoff # super for the last page
 
-        # Generate a composite filter between:
-        #   - The beginning of the set and the @limit_cutoff if page == 1
-        #     Filter logic: NOT BEYOND_LIMIT_CUTOFF
-        #   - The current cutoff and the @limit_cutoff if page > 1
-        #     Filter logic: BEYOND_CUTOFF AND NOT BEYOND_LIMIT_CUTOFF
         sql = +''
-        # Generate the CUTOFF filter unless @page == 1 that doesn't have a cutoff
+        # Generate the BEYOND_CUTOFF filter unless @page == 1 that doesn't have a cutoff
         sql << "(#{super}) AND " if @cutoff
-        # Add the LIMIT filter, passing the prefix for the placeholdars
+        # Add the BEYOND_LIMIT_CUTOFF filter, passing the prefix for the placeholdars
         sql << "NOT (#{super(LIMIT_PREFIX)})"
       end
 
@@ -94,20 +124,8 @@ class Pagy # :nodoc:
         return if !@more || (@vars[:max_pages] && @page >= @vars[:max_pages])
 
         @next ||= (@page + 1).tap do |next_page|
-                    @cutoffs[next_page] = generate_next_cutoff unless @limit_cutoff
+                    @cutoffs[next_page] = derive_cutoff unless @limit_cutoff
                   end
-      end
-
-      # Set up the cache and check for OverflowError
-      def setup_cache
-        @cache_key = "pagy-#{Digest::SHA2.hexdigest(@vars[:cache_key]&.(@vars) || "#{sql_for_key}-#{@vars[:limit]}")}"
-        begin
-          @cutoffs = @vars[:cache][@cache_key] ||= [nil, nil] # nil-0: 1-based array; nil-1: first page cutoff is nil
-        rescue NoMethodError
-          raise VariableError.new(self, :cache, 'to be a Hash-like object', @vars[:cache])
-        end
-        pages = @cutoffs.size - 1
-        raise OverflowError.new(self, :page, "in 1..#{pages}", @page) if @page > pages
       end
     end
   end

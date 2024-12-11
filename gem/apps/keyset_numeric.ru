@@ -31,10 +31,10 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # Pagy initializer
-require 'pagy/extras/limit'
 require 'pagy/extras/keyset_numeric'
+require 'pagy/extras/limit'
 require 'pagy/extras/pagy'
-Pagy::DEFAULT[:limit] = 5
+Pagy::DEFAULT[:limit] = 4
 Pagy::DEFAULT.freeze
 
 # Sinatra setup
@@ -49,7 +49,7 @@ class PagyKeyset < Sinatra::Base
     Time.zone = 'UTC'
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset_numeric(Pet.order(@order))
+    @pagy, @pets = pagy_keyset_numeric(Pet.order(@order), reset_overflow: true)
     erb :main
   end
 

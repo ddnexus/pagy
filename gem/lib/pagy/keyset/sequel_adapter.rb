@@ -28,7 +28,7 @@ class Pagy
       end
 
       # Filter the page records
-      def filter_records = @set.where(::Sequel.lit(filter_records_sql, **@filter_params))
+      def filter_records = @set.where(::Sequel.lit(filter_records_sql, **@filter_args))
 
       # Get the keyset attributes from the record
       def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
@@ -36,17 +36,13 @@ class Pagy
       # Set with selected columns?
       def select? = !@set.opts[:select].nil?
 
-      # Get a standard string omitting the statements that don't affect the paginated records
-      # TODO: Check for other statements
-      def sql_for_key = @set.select_all.sql
-
       # Typecast the latest attributes
-      def typecast_params(latest)
+      def typecast_args(args)
         model = @set.opts[:model]
         model.unrestrict_primary_key if (restricted_pk = model.restrict_primary_key?)
-        latest = model.new(latest).to_hash.slice(*latest.keys.map(&:to_sym))
+        args = model.new(args).to_hash.slice(*args.keys.map(&:to_sym))
         model.restrict_primary_key if restricted_pk
-        latest
+        args
       end
     end
   end

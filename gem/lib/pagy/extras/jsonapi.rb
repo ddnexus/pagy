@@ -81,6 +81,6 @@ class Pagy # :nodoc:
         query_params['page'][vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra]
       end
     end
-    UrlHelpers.prepend UrlHelperOverride
+    Frontend.prepend UrlHelperOverride
   end
 end

@@ -22,7 +22,7 @@ class Pagy
 
     # Pick the right adapter for the set
     def self.new(set, **vars)
-      if self == Pagy::Keyset || (defined?(Pagy::Keyset::Numeric) && self == Pagy::Keyset::Numeric)
+      if self == Pagy::Keyset || (defined?(::Pagy::Keyset::Numeric) && self == Pagy::Keyset::Numeric)
         if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
           self::ActiveRecord
         elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
@@ -45,9 +45,8 @@ class Pagy
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
       assign_page
-      setup_cache # Only used by Keyset::Numeric (called here to avoid overriding)
       assign_cutoff
-      assign_filter_params
+      assign_filter_args
     end
 
     # Assign the cutoff from the cache
@@ -60,20 +59,20 @@ class Pagy
       @page = @vars[:page]
     end
 
-    # Assign the filter_params
-    def assign_filter_params
+    # Assign the filter_args
+    def assign_filter_args
       return unless @cutoff
 
-      @filter_params = cutoff_to_params(@cutoff)
+      @filter_args = cutoff_to_args(@cutoff)
     end
 
-    # Decode a cutoff, check its consistency and returns the filter params
-    def cutoff_to_params(cutoff)
-      params = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
+    # Decode a cutoff, check its consistency and returns the filter args
+    def cutoff_to_args(cutoff)
+      args = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
       raise InternalError, 'cutoff and keyset are not consistent' \
-            unless params.keys == @keyset.keys
+            unless args.keys == @keyset.keys
 
-      typecast_params(params)
+      typecast_args(args)
     end
 
     # Return the Keyset default variables
@@ -129,8 +128,8 @@ class Pagy
       end
     end
 
-    # Generate the next cutoff
-    def generate_next_cutoff
+    # Derive the cutoff of the current page, beyond which the next page starts
+    def derive_cutoff
       hash = keyset_attributes_from(@records.last)
       json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
       B64.urlsafe_encode(json)
@@ -141,26 +140,23 @@ class Pagy
       records
       return unless @more
 
-      @next ||= generate_next_cutoff
+      @next ||= derive_cutoff
     end
 
     # Fetch the array of records for the current page
     def records
       @records ||= begin
                      @set = apply_select if select?
-                     if @filter_params
+                     if @filter_args
                        # :nocov:
-                       @set = @vars[:after_latest]&.(@set, @filter_params)            ||  # deprecated
-                              @vars[:filter_newest]&.(@set, @filter_params, @keyset)  ||  # deprecated
-                              @vars[:filter_records]&.(@set, @filter_params, @keyset) ||
+                       @set = @vars[:after_latest]&.(@set, @filter_args)            ||  # deprecated
+                              @vars[:filter_newest]&.(@set, @filter_args, @keyset)  ||  # deprecated
+                              @vars[:filter_records]&.(@set, @filter_args, @keyset) ||
                               # :nocov:
                               filter_records
                      end
                      fetch_records
                    end
     end
-
-    # Only implemented in Keyset::Numeric
-    def setup_cache; end
   end
 end

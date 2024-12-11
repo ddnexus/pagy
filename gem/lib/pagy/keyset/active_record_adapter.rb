@@ -18,7 +18,7 @@ class Pagy
       end
 
       # Filter the page records
-      def filter_records = @set.where(filter_records_sql, **@filter_params)
+      def filter_records = @set.where(filter_records_sql, **@filter_args)
 
       # Get the keyset attributes from the record
       def keyset_attributes_from(record) = record.slice(*@keyset.keys)
@@ -26,13 +26,9 @@ class Pagy
       # Set with selected columns?
       def select? = !@set.select_values.empty?
 
-      # Get a standard string omitting the statements that don't affect the paginated records
-      # TODO: Check for other statements
-      def sql_for_key = @set.only(:order, :where, :group, :having).to_sql
-
       # Typecast the latest attributes
-      def typecast_params(latest)
-        @set.model.new(latest).slice(latest.keys)
+      def typecast_args(args)
+        @set.model.new(args).slice(args.keys)
             .to_hash.transform_keys(&:to_sym)
       end
     end

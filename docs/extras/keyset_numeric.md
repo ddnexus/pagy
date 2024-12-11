@@ -7,19 +7,27 @@ categories:
 
 # Keyset Numeric Extra
 
-Paginate with the Pagy Keyset Numeric pagination technique.
+Paginate with the [Pagy Keyset Numeric](/docs/api/keyset_numeric) pagination technique, using numeric pages to support `pagy_*nav`
+and the other Frontend helpers.
+
+!!!warning Experimental: the API might change in minor versions
+!!!
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-apps)
 
 ## Overview
 
-This is a tiny wrapper around the [Pagy::Keyset::Numeric API](/docs/api/keyset_numeric). Please refer to the class documentation
-for a fuller understanding of keyset pagination:
+This extra manages the cache used by the `Pagy::Keyset::Numeric` instance, allowing easy customization and integration with your
+app.
 
-[!ref Keyset Numeric Pagination: Overview](/docs/api/keyset_numeric)
+It also adds a `pagy_keyset_numeric` constructor method that can be used in your controllers, and provides the automatic setting
+of the variables from the request `params`.
 
-This extra adds a `pagy_keyset_numeric` constructor method that can be used in your controllers and provides the automatic setting of the
-variables from the request `params`.
+Please refer to the following resource:
+
+[!ref Keyset Numeric: Documentation](/docs/api/keyset_numeric.md)
+
+[!ref Keyset Pagination: Concepts and Overview](/docs/api/keyset.md)
 
 ## Synopsis
 
@@ -29,22 +37,57 @@ This section integrates the [Keyset Extra Synopsis](/docs/extras/keyset.md)
 # Basic defaults (uses the session object as the cache)
 @pagy, @records = pagy_keyset_numeric(set)
 
-# Optional custom session :cache hash
-@pagy, @records = pagy_keyset_numeric(set, cache: my_persistent_hash)
-
-# CUstom cache_key
-# If you have just a "search" field, the :cache_key may be assigned like:
-cache_key = ->(_vars) { params(:search) }
-
-# If you have also other fields 
-# and a possibly changing :limit and order (:keyset) variables:
-cache_key = lambda do |vars|
-  [ params.slice(:search, :category, :year, ...), # search params
-    vars.slice(:limit, :keyset),  # vars that change the page records
-  ].to_json
-end
-@pagy, @records = pagy_keyset_numeric(set, cache_key:)
+# Other variables
+@pagy, @records = pagy_keyset_numeric(set, reset_overflow: true, max_pages: 100, **vars)
 ```
+
+```ruby ApplicationController
+# Overriding custom cache read/write
+def pagy_cache_read(key) = my_custom_cache(key)
+
+def pagy_cache_write(key, value) = my_custom_cache(key, value)
+
+# Overriding custom cache_key
+def pagy_cache_new_key = my_custom_cache.generate_key
+```
+
+## Understanding the cache
+
+This extra uses the `session` object as the cache for `cutoffs` by default, because it's simple and works in any app, at least for
+prototyping.
+
+Notice that the `cutoffs` array can potentially grow big if you don't use `:max_pages`, especially if your `keyset` contains
+multiple ordered columns and more if their size is big. You must be aware of it.
+
+!!!danger Do not use the cookie-based session as the cache
+
+Your session cookie will likely overflow the 4k max size. You should probably use some other storage if you are fine using the
+session as the cache (e.g. `ActiveRecord::SessionStore`).
+!!!
+
+### Overriding
+
+!!!warning
+
+Besides writing and reading from it, Pagy does not expire nor handle the cache in any way. Your app should manage it like it does
+with the `session` object.
+!!!
+
+This extra uses only 3 simple methods to handle the cache:
+
+- `pagy_cache_new_key`
+- `pagy_cache_read(key)`
+- `pagy_cache_write(key, value)`
+
+You can override them in your own `ApplicationController` (as shown in the synopsys), not only changing the cache, but also
+handling other aspects of it (e.g. expiration, etc.)
+
+!!!primary Notice
+
+We are considering the implementation of a client-side cache using the Browser's `sessionStorage`.
+
+It might simplify the handling of the cache considerably, but it will require some time to design it properly, so please, hang tight and cheer for us!
+!!!
 
 ## Variables
 
@@ -54,6 +97,21 @@ See the [Pagy::Keyset::Numeric variables](/docs/api/keyset_numeric#variables)
 
 ==- `pagy_keyset_numeric(set, **vars)`
 
-This method is similar to the `pagy` (for offset pagination) method. It returns the `pagy` object and the array of `records` pulled from the DB.
+This method is similar to the `pagy` (for offset pagination) method. It returns the `pagy` object and the array of `records`
+pulled from the DB.
+
+==- `pagy_cache_read(key)`
+
+This method handles cache reading. It uses the `session` cache by default. Customize your cache by overridig it in yor app.
+
+==- `pagy_cache_write(key, value)`
+
+This method handles cache writing. It uses the `session` cache by default. Customize your cache by overridig it in yor app.
+
+==- `pagy_cache_new_key`
+
+This method must generate and return a new cache key. It is called when a new cache entry is needed. It uses a simple algorithm
+that allows 1B number shortened to max 5 letters. Customize it adding expiration or other property to the new entry, before
+returning the key.
 
 ===

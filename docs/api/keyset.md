@@ -52,7 +52,7 @@ standard `pagy_*nav` helpers
 | `cutoff`                    | The point beyond the last record of a `page`. <br/>(It's the encoded string of the `keyset attributes` of the last record in a page)                                                                                                                                                                  |
 | `page`                      | The current `page`, i.e. the page of records fetched beyond the `cutoff` of the **previous page**.                                                                                                                                                                                                    |
 | `next`                      | The next `page`, i.e. the page of records fetched beyond the `cutoff` of the **current page**.                                                                                                                                                                                                        |
-| `filter_params`             | The hash of `filter_params` used to filter the page records beyond the `cutoff`                                                                                                                                                                                                                       |
+| `filter_args`             | The hash of `filter_args` used to filter the page records beyond the `cutoff`                                                                                                                                                                                                                       |
 
 ### Keyset or Offset pagination?
 
@@ -144,7 +144,7 @@ If you need a specific order:
 
 - You pass an `uniquely ordered` `set` and `Pagy::Keyset` pulls the `:limit` of records of the first page.
 - It requests the `next` URL by setting its `page` query string param to the `cutoff` of the current page.
-- At each request, the new `:page` (i.e. the `cutoff` of the previous page) is decoded into DB `filter_params` that are coupled
+- At each request, the new `:page` (i.e. the `cutoff` of the previous page) is decoded into DB `filter_args` that are coupled
   with a `where` filter query, and the `:limit` of new records is pulled.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
 
@@ -198,12 +198,12 @@ Default `nil`.
 
 **Use this for DB-specific extra optimizations, if you know what you are doing.**
 
-If the `:filter_records` variable is set to a lambda, pagy will call it with the `set`, `filter_params` and `keyset` arguments
+If the `:filter_records` variable is set to a lambda, pagy will call it with the `set`, `filter_args` and `keyset` arguments
 instead of using its auto-generated query to filter the records. It must return the filtered set. For example:
 
 ```ruby
-filter_records = lambda do |set, filter_params, keyset|
-  set.where(my_optimized_query(keyset), **filter_params)
+filter_records = lambda do |set, filter_args, keyset|
+  set.where(my_optimized_query(keyset), **filter_args)
 end
 
 Pagy::Keyset(set, filter_records:)

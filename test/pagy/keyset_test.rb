@@ -47,13 +47,13 @@ require 'pagy/keyset'
                                 limit: 10,
                                 jsonify_keyset_attributes: lambda(&:to_json))
         _(pagy.next).must_equal("eyJpZCI6MjB9")
-        _(pagy.instance_variable_get(:@filter_params)).must_equal({id: 10})
+        _(pagy.instance_variable_get(:@filter_args)).must_equal({id: 10})
       end
       it 'uses :filter_records' do
         filter_records = if model == Pet
-                           ->(set, filter_params, _keyset) { set.where('id > :id', **filter_params) }
+                           ->(set, filter_args, _keyset) { set.where('id > :id', **filter_args) }
                          else
-                           ->(set, filter_params, _keyset) { set.where(Sequel.lit('id > :id', **filter_params)) }
+                           ->(set, filter_args, _keyset) { set.where(Sequel.lit('id > :id', **filter_args)) }
                          end
         pagy = Pagy::Keyset.new(model.order(:id),
                                 page: "eyJpZCI6MTB9",
@@ -106,13 +106,13 @@ require 'pagy/keyset'
       end
       it 'handles the page/cutoff for the second page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6MTB9")
-        _(pagy.instance_variable_get(:@filter_params)).must_equal(id: 10)
+        _(pagy.instance_variable_get(:@filter_args)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal "eyJpZCI6MjB9"
       end
       it 'handles the page/cutoff for the last page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6NDB9")
-        _(pagy.instance_variable_get(:@filter_params)).must_equal(id: 40)
+        _(pagy.instance_variable_get(:@filter_args)).must_equal(id: 40)
         _(pagy.records.first.id).must_equal 41
         _(pagy.next).must_be_nil
       end
