@@ -34,8 +34,7 @@ convenient for UIs in general.
 
 !!!success UI-Compatible Keyset pagination is also available!
 
-If you want the best of the two worlds, check out the [keyset_numeric extra](/docs/extras/keyset_numeric.md) that implements the support for UI helpers like the
-standard `pagy_*nav` helpers
+If you want the best of the two worlds, check out the [keyset_numeric extra](/docs/extras/keyset_numeric.md) that  supports for the `pagy_*nav` and the other Frontend helpers
 !!!
 
 ### Glossary
@@ -50,9 +49,10 @@ standard `pagy_*nav` helpers
 | `keyset`                    | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                     |
 | `keyset attributes`         | The hash of keyset-column/record-value pairs of a record.                                                                                                                                                                                                                                             |
 | `cutoff`                    | The point beyond the last record of a `page`. <br/>(It's the encoded string of the `keyset attributes` of the last record in a page)                                                                                                                                                                  |
+| `cutoff_args`               | The hash of `cutoff_args` used to filter the page records beyond the `cutoff`                                                                                                                                                                                                                         |
 | `page`                      | The current `page`, i.e. the page of records fetched beyond the `cutoff` of the **previous page**.                                                                                                                                                                                                    |
 | `next`                      | The next `page`, i.e. the page of records fetched beyond the `cutoff` of the **current page**.                                                                                                                                                                                                        |
-| `filter_args`             | The hash of `filter_args` used to filter the page records beyond the `cutoff`                                                                                                                                                                                                                       |
+
 
 ### Keyset or Offset pagination?
 
@@ -144,7 +144,7 @@ If you need a specific order:
 
 - You pass an `uniquely ordered` `set` and `Pagy::Keyset` pulls the `:limit` of records of the first page.
 - It requests the `next` URL by setting its `page` query string param to the `cutoff` of the current page.
-- At each request, the new `:page` (i.e. the `cutoff` of the previous page) is decoded into DB `filter_args` that are coupled
+- At each request, the new `:page` (i.e. the `cutoff` of the previous page) is decoded into `cutoff_args` that are coupled
   with a `where` filter query, and the `:limit` of new records is pulled.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
 
@@ -198,12 +198,15 @@ Default `nil`.
 
 **Use this for DB-specific extra optimizations, if you know what you are doing.**
 
-If the `:filter_records` variable is set to a lambda, pagy will call it with the `set`, `filter_args` and `keyset` arguments
+If the `:filter_records` variable is set to a lambda, pagy will call it with the `set`, `cutoff_args` and `keyset` arguments
 instead of using its auto-generated query to filter the records. It must return the filtered set. For example:
 
 ```ruby
-filter_records = lambda do |set, filter_args, keyset|
-  set.where(my_optimized_query(keyset), **filter_args)
+filter_records = lambda do |set, cutoff_args, keyset|
+  # for ActiveRecord set
+  set.where(my_beyond_cutoff_sql(keyset), **cutoff_args)
+  # for Sequel set
+  # set.where(::Sequel.lit(my_beyond_cutoff_sql(keyset), **cutoff_args))
 end
 
 Pagy::Keyset(set, filter_records:)

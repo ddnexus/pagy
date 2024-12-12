@@ -16,8 +16,8 @@ class Pagy # :nodoc:
       class Sequel < Numeric
         include SequelAdapter
       end
-      # Avoid args conflicts in composite filters
-      LIMIT_PREFIX = 'limit_'  # Prefix for filter_args
+      # Avoid args conflicts in composite SQL fragments
+      LIMIT_PREFIX = 'limit_'  # Prefix for cutoff_args
 
       include SharedNumericMethods
       attr_reader :cutoffs
@@ -45,23 +45,63 @@ class Pagy # :nodoc:
         @cutoff = @cutoffs[@page]
       end
 
-      # Assign a numeric page
-      def assign_page
-        assign_and_check(page: 1)
-      end
-
-      # Assign different args to support the composite LIMIT filter if @limit_cutoff
-      def assign_filter_args
+      # Assign different args to support the BEYOND_LIMIT_CUTOFF SQL if @limit_cutoff
+      def assign_cutoff_args
         # @limit_cutoff is the cached cutoff for the next page:
         # the curent page has been visited, hence it's not the last
         return super unless @limit_cutoff ||= @cutoffs[@page + 1] # return super only when it's the last page
 
         # The regular cutoff args are missing for page 1 (which doesn't have a cutoff).
-        @filter_args = cutoff_to_args(@cutoff) if @cutoff
+        @cutoff_args = cutoff_to_args(@cutoff) if @cutoff
 
         # The limit_cutoff args are preserved by prefixing them before merging
-        filter_args     = cutoff_to_args(@limit_cutoff).transform_keys { |key| :"#{LIMIT_PREFIX}#{key}" }
-        (@filter_args ||= {}).merge!(filter_args)
+        limit_cutoff_args = cutoff_to_args(@limit_cutoff).transform_keys { |key| :"#{LIMIT_PREFIX}#{key}" }
+        (@cutoff_args   ||= {}).merge!(limit_cutoff_args)
+      end
+
+      # Assign a numeric page
+      def assign_page
+        assign_and_check(page: 1)
+      end
+
+      # Prepare the literal SQL string (complete with the placeholders for value interpolation)
+      # used to filter the page records if @limit_cutoff; super otherwise.
+      #
+      # If @limit_cutoff there are two scenarios, depending on the page number:
+      #
+      # 1. If page == 1
+      #    Pull the inital records till the @limit_cutoff
+      #    SQL logic: NOT BEYOND_LIMIT_CUTOFF
+      #
+      # 2. If page > 1
+      #    Pull the records BETWEEN the current @cutoff and the @limit_cutoff
+      #    SQL logic: BEYOND_CUTOFF AND NOT BEYOND_LIMIT_CUTOFF
+      #
+      # The BEYOND_CUTOFF SQL is like the regular keyset SQL (calling super). For example:
+      # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
+      #
+      #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR
+      #    ("pets"."animal" = :animal AND "pets"."name" < :name) OR
+      #    ("pets"."animal" > :animal)
+      #
+      # The BEYOND_LIMIT_CUTOFF SQL is used as a repacement of the SQL LIMIT.
+      # That ensures accuracy in case of records added or removed
+      # Here is how a BEYOND_LIMIT_CUTOFF looks for the same set:
+      #
+      #    ("pets"."animal" = :limit_animal AND "pets"."name" = :limit_name AND "pets"."id" > :limit_id) OR
+      #    ("pets"."animal" = :limit_animal AND "pets"."name" < :limit_name) OR
+      #    ("pets"."animal" > :limit_animal)
+      #
+      # Notice that the :limit_* placeholder will be replaced with the arguments
+      # of the next cutoff (beyond which the records belong to another page)
+      def beyond_cutoff_sql
+        return super unless @limit_cutoff # super for the last page
+
+        sql = +''
+        # Generate the BEYOND_CUTOFF SQL unless @page == 1 that doesn't have a cutoff
+        sql << "(#{super}) AND " if @cutoff
+        # Add the BEYOND_LIMIT_CUTOFF SQL, passing the prefix for the placeholdars
+        sql << "NOT (#{super(LIMIT_PREFIX)})"
       end
 
       # Add the default variables required by the Frontend
@@ -73,49 +113,10 @@ class Pagy # :nodoc:
       def fetch_records
         return super unless @limit_cutoff # super for the last page
 
-        # Disable the LIMIT because it is replaced by the LIMIT filter.
+        # Disable the LIMIT because it is replaced by the BEYOND_LIMIT_CUTOFF SQL.
         # That keeps the fetching accurate also when records are added or removed from a page alredy visited
         @more = true
         @set.limit(nil).to_a
-      end
-
-      # Generate a filter BETWEEN cutoffs if @limit_cutoff; super otherwise.
-      #
-      # If @limit_cutoff there are two scenarios, depending on the page number:
-      #
-      # 1. If page == 1
-      #    Pull the inital records till the @limit_cutoff
-      #    Filter logic: NOT BEYOND_LIMIT_CUTOFF
-      #
-      # 2. If page > 1
-      #    Pull the records BETWEEN the current @cutoff and the @limit_cutoff
-      #    Filter logic: BEYOND_CUTOFF AND NOT BEYOND_LIMIT_CUTOFF
-      #
-      # The BEYOND_CUTOFF filter is like the regular keyset filter (calling super). For example:
-      # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
-      #
-      #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR
-      #    ("pets"."animal" = :animal AND "pets"."name" < :name) OR
-      #    ("pets"."animal" > :animal)
-      #
-      # The BEYOND_LIMIT_CUTOFF filter is used as a repacement of the SQL LIMIT.
-      # That ensures accuracy in case of records added or removed
-      # Here is how a BEYOND_LIMIT_CUTOFF looks for the same set:
-      #
-      #    ("pets"."animal" = :limit_animal AND "pets"."name" = :limit_name AND "pets"."id" > :limit_id) OR
-      #    ("pets"."animal" = :limit_animal AND "pets"."name" < :limit_name) OR
-      #    ("pets"."animal" > :limit_animal)
-      #
-      # Notice that the :limit_* placeholder will be replaced with the values
-      # of the next cutoff (beyond which the records belong to another page)
-      def filter_records_sql
-        return super unless @limit_cutoff # super for the last page
-
-        sql = +''
-        # Generate the BEYOND_CUTOFF filter unless @page == 1 that doesn't have a cutoff
-        sql << "(#{super}) AND " if @cutoff
-        # Add the BEYOND_LIMIT_CUTOFF filter, passing the prefix for the placeholdars
-        sql << "NOT (#{super(LIMIT_PREFIX)})"
       end
 
       # Return the next page number, and cache the next cutoff if it's missing from the cache (only last page)

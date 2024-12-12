@@ -46,7 +46,7 @@ class Pagy
 
       assign_page
       assign_cutoff
-      assign_filter_args
+      assign_cutoff_args
     end
 
     # Assign the cutoff from the cache
@@ -54,19 +54,56 @@ class Pagy
       @cutoff = @vars[:page]
     end
 
+    # Assign the cutoff_args
+    def assign_cutoff_args
+      return unless @cutoff
+
+      @cutoff_args = cutoff_to_args(@cutoff)
+    end
+
     # Assign the page
     def assign_page
       @page = @vars[:page]
     end
 
-    # Assign the filter_args
-    def assign_filter_args
-      return unless @cutoff
-
-      @filter_args = cutoff_to_args(@cutoff)
+    # Prepare the literal SQL string (complete with the placeholders for value interpolation)
+    # used to filter the page records. For example:
+    #
+    # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
+    #
+    #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR
+    #    ("pets"."animal" = :animal AND "pets"."name" < :name) OR
+    #    ("pets"."animal" > :animal)
+    #
+    # When :tuple_comparison is enabled, and if the order is all :asc or all :desc,
+    # with a set like Pet.order(:animal, :name, :id) it returns the following string:
+    #
+    #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
+    #
+    def beyond_cutoff_sql(prefix = nil)
+      operator    = { asc: '>', desc: '<' }
+      directions  = @keyset.values
+      table       = @set.model.table_name
+      identifier  = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
+      placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
+      if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
+        "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
+      else
+        keyset = @keyset.to_a
+        where  = []
+        until keyset.empty?
+          last_column, last_direction = keyset.pop
+          query = +'('
+          query << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
+          << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
+          query << ')'
+          where << query
+        end
+        where.join(' OR ')
+      end
     end
 
-    # Decode a cutoff, check its consistency and returns the filter args
+    # Decode a cutoff, check its consistency and returns the cutoff args
     def cutoff_to_args(cutoff)
       args = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
       raise InternalError, 'cutoff and keyset are not consistent' \
@@ -84,55 +121,18 @@ class Pagy
       { **default, page: nil }
     end
 
-    # Fetch the records and set the @more
-    def fetch_records
-      records = @set.limit(@limit + 1).to_a
-      @more   = records.size > @limit && !records.pop.nil?
-      records
-    end
-
-    # Prepare the literal sql string (complete with the placeholders for value interpolation)
-    # used to filter the page records. For example:
-    #
-    # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
-    #
-    #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR
-    #    ("pets"."animal" = :animal AND "pets"."name" < :name) OR
-    #    ("pets"."animal" > :animal)
-    #
-    # When :tuple_comparison is enabled, and if the order is all :asc or all :desc,
-    # with a set like Pet.order(:animal, :name, :id) it returns the following string:
-    #
-    #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
-    #
-    def filter_records_sql(prefix = nil)
-      operator    = { asc: '>', desc: '<' }
-      directions  = @keyset.values
-      table       = @set.model.table_name
-      identifier  = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
-      placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
-      if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
-        "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
-      else
-        keyset = @keyset.to_a
-        where  = []
-        until keyset.empty?
-          last_column, last_direction = keyset.pop
-          query = +'('
-          query << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
-                    << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
-          query << ')'
-          where << query
-        end
-        where.join(' OR ')
-      end
-    end
-
     # Derive the cutoff of the current page, beyond which the next page starts
     def derive_cutoff
       hash = keyset_attributes_from(@records.last)
       json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
       B64.urlsafe_encode(json)
+    end
+
+    # Fetch the records and set the @more flag
+    def fetch_records
+      records = @set.limit(@limit + 1).to_a
+      @more   = records.size > @limit && !records.pop.nil?
+      records
     end
 
     # Return the next page
@@ -147,11 +147,11 @@ class Pagy
     def records
       @records ||= begin
                      @set = apply_select if select?
-                     if @filter_args
+                     if @cutoff_args  # i.e. page > 1
                        # :nocov:
-                       @set = @vars[:after_latest]&.(@set, @filter_args)            ||  # deprecated
-                              @vars[:filter_newest]&.(@set, @filter_args, @keyset)  ||  # deprecated
-                              @vars[:filter_records]&.(@set, @filter_args, @keyset) ||
+                       @set = @vars[:after_latest]&.(@set, @cutoff_args)            ||  # deprecated
+                              @vars[:filter_newest]&.(@set, @cutoff_args, @keyset)  ||  # deprecated
+                              @vars[:filter_records]&.(@set, @cutoff_args, @keyset) ||
                               # :nocov:
                               filter_records
                      end

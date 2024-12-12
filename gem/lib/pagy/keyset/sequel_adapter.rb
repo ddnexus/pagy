@@ -28,7 +28,7 @@ class Pagy
       end
 
       # Filter the page records
-      def filter_records = @set.where(::Sequel.lit(filter_records_sql, **@filter_args))
+      def filter_records = @set.where(::Sequel.lit(beyond_cutoff_sql, **@cutoff_args))
 
       # Get the keyset attributes from the record
       def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
@@ -36,7 +36,7 @@ class Pagy
       # Set with selected columns?
       def select? = !@set.opts[:select].nil?
 
-      # Typecast the latest attributes
+      # Typecast the cutoff args
       def typecast_args(args)
         model = @set.opts[:model]
         model.unrestrict_primary_key if (restricted_pk = model.restrict_primary_key?)
