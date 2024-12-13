@@ -53,10 +53,10 @@ def pagy_cache_new_key = my_custom_cache.generate_key
 
 ## Understanding the cache
 
-This extra uses the `session` object as the cache for `cutoffs` by default, because it's simple and works in any app, at least for
+This extra uses the `session` object as the cache for the `cuts` by default, because it's simple and works in any app, at least for
 prototyping.
 
-Notice that the `cutoffs` array can potentially grow big if you don't use `:max_pages`, especially if your `keyset` contains
+Notice that the `cuts` array can potentially grow big if you don't use `:max_pages`, especially if your `keyset` contains
 multiple ordered columns and more if their size is big. You must be aware of it.
 
 !!!danger Do not use the cookie-based session as the cache
@@ -91,7 +91,17 @@ It might simplify the handling of the cache considerably, but it will require so
 
 ## Variables
 
-See the [Pagy::Keyset::Numeric variables](/docs/api/keyset_numeric#variables)
+This section integrates the [Pagy::Keyset::Numeric variables](/docs/api/keyset_numeric#variables).
+
+==- `:cache_key`
+
+The key used to locate the `cuts` in the cache storage.
+
+==- `:cache_key_param`
+
+The name of the cache key param. It is `:cache_key` by default. Pass a different symbol to change it.
+
+===
 
 ## Methods
 
@@ -111,7 +121,7 @@ This method handles cache writing. It uses the `session` cache by default. Custo
 ==- `pagy_cache_new_key`
 
 This method must generate and return a new cache key. It is called when a new cache entry is needed. It uses a simple algorithm
-that allows 1B number shortened to max 5 letters. Customize it adding expiration or other property to the new entry, before
+that allows 1B number shortened to max 5 letters. Customize it by adding expiration or other property to the new entry, before
 returning the key.
 
 ===

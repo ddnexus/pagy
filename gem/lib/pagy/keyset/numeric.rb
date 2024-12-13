@@ -2,7 +2,6 @@
 # frozen_string_literal: true
 
 require_relative '../keyset'
-require 'digest/sha2'
 
 class Pagy # :nodoc:
   class Keyset
@@ -17,10 +16,10 @@ class Pagy # :nodoc:
         include SequelAdapter
       end
       # Avoid args conflicts in composite SQL fragments
-      LIMIT_PREFIX = 'limit_'  # Prefix for cutoff_args
+      CUTOFF_PREFIX = 'cutoff_'  # Prefix for cut_args
 
       include SharedNumericMethods
-      attr_reader :cutoffs
+      attr_reader :cuts
 
       # Finalize the instance variables needed for the UI
       def initialize(set, **vars)
@@ -28,35 +27,32 @@ class Pagy # :nodoc:
         # Ensure next is called, so the last page used by the UI helpers is known
         self.next
         @prev = @page - 1 unless @page == 1
-        @last = @cutoffs.size - 1 # 1-based array size
+        @last = @cuts.size - 1 # 1-based array size
         @in   = @records.size
       end
 
-      # Get the cutoff from the cache
-      def assign_cutoff
-        @cutoffs = @vars[:cutoffs] || [nil, nil]
-        pages    = @cutoffs.size - 1
+      # Get the cut from the cache
+      def assign_cuts
+        @cuts = @vars[:cuts] || [nil, nil]
+        pages = @cuts.size - 1
         if @page > pages
           raise OverflowError.new(self, :page, "in 1..#{pages}", @page) unless @vars[:reset_overflow]
 
-          @page    = 1
-          @cutoffs = [nil, nil]
+          @page = 1
+          @cuts = [nil, nil]
         end
-        @cutoff = @cutoffs[@page]
+        @prev_cut = @cuts[@page]     # nil for page 1 (i.e. begins from begin of set)
+        @next_cut = @cuts[@page + 1] # known page; nil for last page
       end
 
-      # Assign different args to support the BEYOND_LIMIT_CUTOFF SQL if @limit_cutoff
-      def assign_cutoff_args
-        # @limit_cutoff is the cached cutoff for the next page:
-        # the curent page has been visited, hence it's not the last
-        return super unless @limit_cutoff ||= @cutoffs[@page + 1] # return super only when it's the last page
+      # Assign different args to support the AFTER_NEXT_CUT SQL if @next_cut
+      def assign_cut_args
+        return super unless @next_cut
 
-        # The regular cutoff args are missing for page 1 (which doesn't have a cutoff).
-        @cutoff_args = cutoff_to_args(@cutoff) if @cutoff
-
-        # The limit_cutoff args are preserved by prefixing them before merging
-        limit_cutoff_args = cutoff_to_args(@limit_cutoff).transform_keys { |key| :"#{LIMIT_PREFIX}#{key}" }
-        (@cutoff_args   ||= {}).merge!(limit_cutoff_args)
+        @cut_args = cut_to_args(@prev_cut) if @prev_cut
+        # The next_cut args are preserved by prefixing them before merging
+        next_args = cut_to_args(@next_cut).transform_keys { |key| :"#{CUTOFF_PREFIX}#{key}" }
+        (@cut_args ||= {}).merge!(next_args)
       end
 
       # Assign a numeric page
@@ -65,43 +61,44 @@ class Pagy # :nodoc:
       end
 
       # Prepare the literal SQL string (complete with the placeholders for value interpolation)
-      # used to filter the page records if @limit_cutoff; super otherwise.
+      # used to filter the page records if @next_cut; super otherwise.
       #
-      # If @limit_cutoff there are two scenarios, depending on the page number:
+      # If @next_cut there are two scenarios, depending on the page number:
       #
       # 1. If page == 1
-      #    Pull the inital records till the @limit_cutoff
-      #    SQL logic: NOT BEYOND_LIMIT_CUTOFF
+      #    Pull the inital records and filter them out after the @next_cut
+      #    SQL logic: NOT AFTER NEXT_CUT
       #
       # 2. If page > 1
-      #    Pull the records BETWEEN the current @cutoff and the @limit_cutoff
-      #    SQL logic: BEYOND_CUTOFF AND NOT BEYOND_LIMIT_CUTOFF
+      #    Pull the records BETWEEN the @prev_cut and the @next_cut
+      #    SQL logic: AFTER PREV_CUT AND NOT AFTER NEXT_CUT
       #
-      # The BEYOND_CUTOFF SQL is like the regular keyset SQL (calling super). For example:
+      # The AFTER PREV_CUT SQL is like the regular keyset SQL (calling super). For example:
       # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
       #
       #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR
       #    ("pets"."animal" = :animal AND "pets"."name" < :name) OR
       #    ("pets"."animal" > :animal)
       #
-      # The BEYOND_LIMIT_CUTOFF SQL is used as a repacement of the SQL LIMIT.
+      # Notice that the placeholders are not prefixed
+      #
+      # The AFTER NEXT_CUT SQL is used as a repacement of the SQL LIMIT.
       # That ensures accuracy in case of records added or removed
-      # Here is how a BEYOND_LIMIT_CUTOFF looks for the same set:
+      # Here is how an AFTER NEXT_CUT looks for the same set:
       #
       #    ("pets"."animal" = :limit_animal AND "pets"."name" = :limit_name AND "pets"."id" > :limit_id) OR
       #    ("pets"."animal" = :limit_animal AND "pets"."name" < :limit_name) OR
       #    ("pets"."animal" > :limit_animal)
       #
-      # Notice that the :limit_* placeholder will be replaced with the arguments
-      # of the next cutoff (beyond which the records belong to another page)
-      def beyond_cutoff_sql
-        return super unless @limit_cutoff # super for the last page
+      # Notice that the placeholders are prefixed by ":next_" which matches with the arguments prefixed keys
+      def after_cut_sql
+        return super unless @next_cut # super for the last known page
 
         sql = +''
-        # Generate the BEYOND_CUTOFF SQL unless @page == 1 that doesn't have a cutoff
-        sql << "(#{super}) AND " if @cutoff
-        # Add the BEYOND_LIMIT_CUTOFF SQL, passing the prefix for the placeholdars
-        sql << "NOT (#{super(LIMIT_PREFIX)})"
+        # Generate the AFTER PREV_CUT SQL unless @page == 1 (which starts from the fist record in the set)
+        sql << "(#{super}) AND " if @prev_cut
+        # Add the AFTER NEXT_CUT SQL, passing the prefix for the placeholdars
+        sql << "NOT (#{super(CUTOFF_PREFIX)})"
       end
 
       # Add the default variables required by the Frontend
@@ -109,23 +106,23 @@ class Pagy # :nodoc:
         { **super, **DEFAULT.slice(:ends, :page, :size, :cache_key_param) }
       end
 
-      # Remove the LIMIT if @limit_cutoff
+      # Remove the LIMIT if @next_cut
       def fetch_records
-        return super unless @limit_cutoff # super for the last page
+        return super unless @next_cut # super for the last known page
 
-        # Disable the LIMIT because it is replaced by the BEYOND_LIMIT_CUTOFF SQL.
+        # Disable the LIMIT because it is replaced by the AFTER NEXT_CUT SQL.
         # That keeps the fetching accurate also when records are added or removed from a page alredy visited
         @more = true
         @set.limit(nil).to_a
       end
 
-      # Return the next page number, and cache the next cutoff if it's missing from the cache (only last page)
+      # Return the next page number, and cache the next_cut if it's missing from the cache (only last known page)
       def next
         records
         return if !@more || (@vars[:max_pages] && @page >= @vars[:max_pages])
 
         @next ||= (@page + 1).tap do |next_page|
-                    @cutoffs[next_page] = derive_cutoff unless @limit_cutoff
+                    @cuts[next_page] = derive_next_cut unless @next_cut
                   end
       end
     end

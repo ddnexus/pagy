@@ -29,6 +29,8 @@ SimpleCov.start do
   add_group 'Keyset',     %w[gem/lib/pagy/keyset.rb
                              gem/lib/pagy/keyset/active_record.rb
                              gem/lib/pagy/keyset/sequel.rb
-                             gem/lib/pagy/extras/keyset.rb]
+                             gem/lib/pagy/keyset/numeric.rb
+                             gem/lib/pagy/extras/keyset.rb
+                             gem/lib/pagy/extras/keyset_numeric.rb]
   add_group 'Tests',      %w[test]
 end

@@ -29,12 +29,15 @@ integrate it with your app.
 The "Keyset" pagination, also known as "Cursor Pagination" or "SQL Seek Method" is a technique that avoids the inevitable slowness
 of querying pages deep into a collection (i.e. when `offset` is a big number, you're going to get slower queries).
 
-This technique comes with that huge advantage and a set of limitations that makes it particularly useful for APIs and less
+It is also accurate: while offset pagination can skip or double-show records after insertion and deletions, keyset is always accurate.
+
+This technique comes with that huge advantages and a set of limitations that makes it particularly useful for APIs and less
 convenient for UIs in general.
 
-!!!success UI-Compatible Keyset pagination is also available!
+!!!success UI-Compatible Keyset Numeric pagination is also available!
 
-If you want the best of the two worlds, check out the [keyset_numeric extra](/docs/extras/keyset_numeric.md) that  supports for the `pagy_*nav` and the other Frontend helpers
+If you want the best of the two worlds, check out the [keyset_numeric extra](/docs/extras/keyset_numeric.md) that supports for the
+`pagy_*nav` and the other Frontend helpers
 !!!
 
 ### Glossary
@@ -48,41 +51,51 @@ If you want the best of the two worlds, check out the [keyset_numeric extra](/do
 | `set`                       | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                          |
 | `keyset`                    | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                     |
 | `keyset attributes`         | The hash of keyset-column/record-value pairs of a record.                                                                                                                                                                                                                                             |
-| `cutoff`                    | The point beyond the last record of a `page`. <br/>(It's the encoded string of the `keyset attributes` of the last record in a page)                                                                                                                                                                  |
-| `cutoff_args`               | The hash of `cutoff_args` used to filter the page records beyond the `cutoff`                                                                                                                                                                                                                         |
-| `page`                      | The current `page`, i.e. the page of records fetched beyond the `cutoff` of the **previous page**.                                                                                                                                                                                                    |
-| `next`                      | The next `page`, i.e. the page of records fetched beyond the `cutoff` of the **current page**.                                                                                                                                                                                                        |
+| `cut`                       | A point in the `set` that separates the records of two contiguous `page`s. It's the encoded reference to the last record of a `page`.                                                                                                                                                                 |
+| `page`                      | The current `page`, i.e. the page of records beginning after the `prev_cut`. Also the `:page` variable, which is set to the `prev_cut`                                                                                                                                                                |
+| `next`                      | The next `page`, i.e. the page of records beginning after the `next_cut`. Also the `next_cut` value retured by the `next` method.                                                                                                                                                                       |
 
-
-### Keyset or Offset pagination?
+### Keyset, Numeric or Offset pagination?
 
 +++ Keyset
 
 !!!success Use Keyset pagination with large dataset and API
 
-You will get the fastest pagination, regardless the table size and the relative position of the page
+You will get the fastest pagination and accuracy, regardless the table size and the relative position of the page
 
 !!!warning Limited use for UIs
 
 Only useful when you don't need any frontend (e.g. infinite pagination)
 !!!
+ 
++++ Numeric
+!!!success The best of the two worlds!
+
+* The same performance of Keyset
+* Most of the Frontend features
+
+!!!warning Advanced usage
+
+It requires more effort and resource to setup
+!!!
 
 +++ Offset
-!!!success Use Offset pagination with UIs even with large datasets
+!!!success Use Offset pagination with UIs and small DBs
 
-- You will get all the frontend features
-- You can avoid the slowness on big tables by simply limiting the `:max_pages` pages: the users would not browse thousands of
+* You will get all the frontend features
+* You can avoid the slowness by simply limiting the `:max_pages` pages: the users would not browse thousands of
   records deep into your collection anyway
 
 !!!warning Limited use for APIs
 
-Your server will suffer on big data and your API will be slower for no good reasons  
+* Your server will suffer on big data and your API will be slower for no good reasons  
+* Not accurate: It can skip or double-show records after insertion and deletions.
 !!!
 +++
 
 ## Usage
 
-### Constraints for simple Keyset (non-cached) pagination
+### Constraints for simple Keyset pagination
 
 !!!success IMPORTANT!
 
@@ -143,9 +156,9 @@ If you need a specific order:
 ### How Pagy::Keyset works
 
 - You pass an `uniquely ordered` `set` and `Pagy::Keyset` pulls the `:limit` of records of the first page.
-- It requests the `next` URL by setting its `page` query string param to the `cutoff` of the current page.
-- At each request, the new `:page` (i.e. the `cutoff` of the previous page) is decoded into `cutoff_args` that are coupled
-  with a `where` filter query, and the `:limit` of new records is pulled.
+- It requests the `next` URL by setting its `page` query string param to the `next_cut` of the current page.
+- At each request, the new `page` is decoded into `cut_args` that are coupled with a `where` filter query, and the `:limit` of new
+  records is pulled.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
 
 ## ORMs
@@ -169,7 +182,7 @@ The constructor takes the `set`, and an optional hash of [variables](#variables)
 
 ==- `next`
 
-The next `page`, i.e. the `cutoff` beyond the last record of the **current page**. It is `nil` for the last page.
+The next `page`, i.e. the `cut` after the last record of the **current page**. It is `nil` for the last page.
 
 ==- `records`
 
@@ -181,7 +194,7 @@ The `Array` of fetched records for the current page.
 
 === `:page`
 
-The current page, i.e. the `cutoff` beyond the last record of the **previous page**. Default `nil` for the first page.
+The current page, i.e. the `next_cut` of the **previous page**. Default `nil` for the first page.
 
 === `:limit`
 
@@ -193,24 +206,6 @@ automatically assigned from the `limit` request param.
 Boolean variable that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction
 order, hence it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL` columns).
 Default `nil`.
-
-==- `:filter_records`
-
-**Use this for DB-specific extra optimizations, if you know what you are doing.**
-
-If the `:filter_records` variable is set to a lambda, pagy will call it with the `set`, `cutoff_args` and `keyset` arguments
-instead of using its auto-generated query to filter the records. It must return the filtered set. For example:
-
-```ruby
-filter_records = lambda do |set, cutoff_args, keyset|
-  # for ActiveRecord set
-  set.where(my_beyond_cutoff_sql(keyset), **cutoff_args)
-  # for Sequel set
-  # set.where(::Sequel.lit(my_beyond_cutoff_sql(keyset), **cutoff_args))
-end
-
-Pagy::Keyset(set, filter_records:)
-```
 
 ==- `:jsonify_keyset_attributes`
 

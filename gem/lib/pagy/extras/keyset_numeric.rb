@@ -14,12 +14,12 @@ class Pagy # :nodoc:
     def pagy_keyset_numeric(set, **vars)
       vars[:page]      ||= pagy_get_page(vars) # numeric page
       vars[:limit]     ||= pagy_get_limit(vars)
-      vars[:cache_key] ||= key = params[vars[:cache_key_param] || DEFAULT[:cache_key_param]] ||
-                                 pagy_cache_new_key
-      vars[:cutoffs]   ||= pagy_cache_read(key)
+      vars[:cache_key] ||= params[vars[:cache_key_param] || DEFAULT[:cache_key_param]] ||
+                           pagy_cache_new_key
+      vars[:cuts]      ||= pagy_cache_read(vars[:cache_key])
 
       pagy = Keyset::Numeric.new(set, **vars)
-      pagy_cache_write(key, pagy.cutoffs)
+      pagy_cache_write(vars[:cache_key], pagy.cuts)
       [pagy, pagy.records]
     end
 

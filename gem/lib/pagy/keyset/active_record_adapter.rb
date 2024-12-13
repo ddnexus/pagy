@@ -18,7 +18,7 @@ class Pagy
       end
 
       # Filter the page records
-      def filter_records = @set.where(beyond_cutoff_sql, **@cutoff_args)
+      def filter_records = @set.where(after_cut_sql, **@cut_args)
 
       # Get the keyset attributes from the record
       def keyset_attributes_from(record) = record.slice(*@keyset.keys)
@@ -26,7 +26,7 @@ class Pagy
       # Set with selected columns?
       def select? = !@set.select_values.empty?
 
-      # Typecast the cutoff args
+      # Typecast the cut args
       def typecast_args(args)
         @set.model.new(args).slice(args.keys)
             .to_hash.transform_keys(&:to_sym)
