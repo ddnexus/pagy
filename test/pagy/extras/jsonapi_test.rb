@@ -95,7 +95,7 @@ describe 'pagy/extras/jsonapi' do
   end
   describe '#pagy_jsonapi_links (keyset)' do
     it 'returns the ordered links' do
-      app = MockApp.new(params: { page: { latest: 'eyJpZCI6MTB9', size: 10 } })
+      app = MockApp.new(params: { page: { latest: 'WzIwXQ', size: 10 } })
       pagy, _records = app.send(:pagy_keyset,
                                 Pet.order(:id),
                                 page_param: :latest,

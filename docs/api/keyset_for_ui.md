@@ -33,11 +33,11 @@ You should also familiarize with the [Pagy::Keyset](keyset.md) class.
 
 This section integrates the [Keyset Glossary](keyset_for_ui.md#glossary)
 
-| Term                 | Description                                                                                                                                                                                   |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Term                       | Description                                                                                                                                                                                   |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `keyset pagination for UI` | The pagy exclusive technique to use `keyset pagination` with numeric pages, supporting `pagy_*navs` and the other Frontend helpers.<br/>The best technique for performance AND functionality! |
-| `page`               | The current page **number**                                                                                                                                                                   |
-| `cutoffs`            | The `cutoff`s of the pagination known so far, used to keep track of the visited pages.                                                                                                           |
+| `page`                     | The current page **number**                                                                                                                                                                   |
+| `cutoffs`                  | The `cutoff`s of the known pagination state, used to keep track of the visited pages during the navigation.                                                                                   |
 
 ## How Pagy Keyset For UI works
 

@@ -105,10 +105,8 @@ class Pagy
 
     # Decode a cutoff, check its consistency and returns the cutoff args
     def cutoff_to_args(cutoff)
-      args = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
-      raise InternalError, 'cutoff and keyset are not consistent' \
-            unless args.keys == @keyset.keys
-
+      values = JSON.parse(B64.urlsafe_decode(cutoff))
+      args   = @keyset.keys.zip(values).to_h
       typecast_args(args)
     end
 
@@ -123,8 +121,8 @@ class Pagy
 
     # Derive the cutoff from the last record
     def derive_cutoff
-      hash = keyset_attributes_from(@records.last)
-      json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
+      attr = keyset_attributes_from(@records.last)
+      json = @vars[:jsonify_keyset_attributes]&.(attr) || attr.values.to_json
       B64.urlsafe_encode(json)
     end
 

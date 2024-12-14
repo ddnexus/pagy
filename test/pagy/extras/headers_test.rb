@@ -79,10 +79,13 @@ describe 'pagy/extras/headers' do
     it 'returns custom headers hash' do
       pagy, _records = app.send(:pagy_keyset,
                                 Pet.order(:id),
-                                page: 'eyJpZCI6MjB9',
+                                page: 'WzIwXQ',
                                 headers: { limit: 'Per-Page', page: 'Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
+    # -{"link"=>"<http://example.com:3000/foo?a=one&b=two&page>; rel=\"first\", <http://example.com:3000/foo?a=one&b=two&page=eyJpZCI6NDB9>; rel=\"next\"", "Page"=>"eyJpZCI6MjB9", "Per-Page"=>"20"}
+    # +{"link"=>"<http://example.com:3000/foo?a=one&b=two&page>; rel=\"first\"", "Page"=>"eyJpZCI6MjB9", "Per-Page"=>"20"}
+
     it 'omit next on last page' do
       pagy, _records = app.send(:pagy_keyset, Pet.order(:id), limit: 50)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers

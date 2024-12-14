@@ -23,62 +23,42 @@ require 'pagy/keyset'
       it 'is an instance of Pagy::Keyset' do
         _(Pagy::Keyset.new(model.order(:id))).must_be_kind_of Pagy::Keyset
       end
-      it 'raises Pagy::InternalError for inconsistent page/keyset' do
-        page_animal_id = Pagy::B64.urlsafe_encode({animal: 'dog', id: 23}.to_json)
-        err = assert_raises(Pagy::InternalError) do
-          Pagy::Keyset.new(model.order(:id), limit: 10, page: page_animal_id)
-        end
-        assert_match(/cutoff and keyset are not consistent/, err.message)
-      end
     end
     describe 'uses optional variables' do
       it 'use the :tuple_comparison' do
-        pagy = Pagy::Keyset.new(model.order(:animal, :name, :id),
-                                page: "eyJhbmltYWwiOiJjYXQiLCJuYW1lIjoiRWxsYSIsImlkIjoxOH0",
-                                limit: 10,
-                                tuple_comparison: true)
+        pagy    = Pagy::Keyset.new(model.order(:animal, :name, :id),
+                                   page:             "WyJjYXQiLCJFbGxhIiwxOF0",
+                                   limit:            10,
+                                   tuple_comparison: true)
         records = pagy.records
         _(records.size).must_equal 10
         _(records.first.id).must_equal 13
       end
       it 'uses :jsonify_keyset_attributes' do
         pagy = Pagy::Keyset.new(model.order(:id),
-                                page: "eyJpZCI6MTB9",
-                                limit: 10,
-                                jsonify_keyset_attributes: lambda(&:to_json))
-        _(pagy.next).must_equal("eyJpZCI6MjB9")
-        _(pagy.instance_variable_get(:@cutoff_args)).must_equal({id: 10})
-      end
-      it 'uses :filter_records' do
-        filter_records = if model == Pet
-                           ->(set, filter_args, _keyset) { set.where('id > :id', **filter_args) }
-                         else
-                           ->(set, filter_args, _keyset) { set.where(Sequel.lit('id > :id', **filter_args)) }
-                         end
-        pagy = Pagy::Keyset.new(model.order(:id),
-                                page: "eyJpZCI6MTB9",
-                                limit: 10,
-                                filter_records:)
-        records = pagy.records
-        _(records.first.id).must_equal(11)
+                                page:                      "WzEwXQ",
+                                limit:                     10,
+                                jsonify_keyset_attributes: ->(attr) { attr.values.to_json })
+        _(pagy.next).must_equal("WzIwXQ")
+        _(pagy.instance_variable_get(:@cutoff_args)).must_equal({ id: 10 })
       end
     end
     describe '#extract_keyset' do
       it 'extracts the keyset from the set order (single column)' do
         pagy = Pagy::Keyset.new(model.order(:id))
-        _(pagy.instance_variable_get(:@keyset)).must_equal({:id => :asc})
+        _(pagy.instance_variable_get(:@keyset)).must_equal({ :id => :asc })
         set  = model == Pet ? model.order(id: :desc) : model.order(Sequel.desc(:id))
         pagy = Pagy::Keyset.new(set)
-        _(pagy.instance_variable_get(:@keyset)).must_equal({:id => :desc})
+        _(pagy.instance_variable_get(:@keyset)).must_equal({ :id => :desc })
       end
       it 'extracts the keyset from the set order (multiple columns)' do
-        set = if model == Pet
-                model.order(animal: :desc, id: :asc)
-              else
-                model.order(Sequel.desc(:animal), Sequel.asc(:id))
-              end
+        set  = if model == Pet
+                 model.order(animal: :desc, id: :asc)
+               else
+                 model.order(Sequel.desc(:animal), Sequel.asc(:id))
+               end
         pagy = Pagy::Keyset.new(set)
-        _(pagy.instance_variable_get(:@keyset)).must_equal({animal: :desc, :id => :asc})
+        _(pagy.instance_variable_get(:@keyset)).must_equal({ animal: :desc, :id => :asc })
       end
       if model == PetSequel
         it 'raises TypeError for unknown order type' do
@@ -87,12 +67,12 @@ require 'pagy/keyset'
         it 'skips unrestricted primary keys' do
           model.unrestrict_primary_key
           Pagy::Keyset.new(model.order(:id),
-                           page: "eyJpZCI6MTB9",
+                           page:  "WzEwXQ",
                            limit: 10)
           _(model.restrict_primary_key?).must_equal false
           model.restrict_primary_key
           Pagy::Keyset.new(model.order(:id),
-                           page: "eyJpZCI6MTB9",
+                           page:  "WzEwXQ",
                            limit: 10)
           _(model.restrict_primary_key?).must_equal true
         end
@@ -102,16 +82,16 @@ require 'pagy/keyset'
       it 'handles the page/cut for the first page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10)
         _(pagy.instance_variable_get(:@cut)).must_be_nil
-        _(pagy.next).must_equal "eyJpZCI6MTB9"
+        _(pagy.next).must_equal "WzEwXQ"
       end
       it 'handles the page/cut for the second page' do
-        pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6MTB9")
+        pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "WzEwXQ")
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
-        _(pagy.next).must_equal "eyJpZCI6MjB9"
+        _(pagy.next).must_equal "WzIwXQ"
       end
       it 'handles the page/cut for the last page' do
-        pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "eyJpZCI6NDB9")
+        pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "WzQwXQ")
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 40)
         _(pagy.records.first.id).must_equal 41
         _(pagy.next).must_be_nil
@@ -119,8 +99,8 @@ require 'pagy/keyset'
     end
     describe 'other requirements' do
       it 'adds the required columns to the selected values' do
-        set = model.order(:animal, :name, :id).select(:name)
-        pagy  = Pagy::Keyset.new(set, limit: 10)
+        set  = model.order(:animal, :name, :id).select(:name)
+        pagy = Pagy::Keyset.new(set, limit: 10)
         pagy.records
         set = pagy.instance_variable_get(:@set)
         _((model == Pet ? set.select_values : set.opts[:select]).sort).must_equal %i[animal id name]
@@ -132,6 +112,7 @@ require 'pagy/keyset'
         records << result[:records]
         result[:page] ? slurp_by_page(page: result[:page], records:, &block) : records
       end
+
       mixed_set = if model == Pet
                     model.order(animal: :asc, birthdate: :desc, id: :asc)
                   elsif model == PetSequel
@@ -141,9 +122,9 @@ require 'pagy/keyset'
        model.order(:animal, :name, :id),
        mixed_set].each_with_index do |set, i|
         it "pulls all the records in set#{i} without repetions" do
-          pages = slurp_by_page do |page|
+          pages      = slurp_by_page do |page|
             pagy = Pagy::Keyset.new(set, page:, limit: 9)
-            {records: pagy.records, page: pagy.next}
+            { records: pagy.records, page: pagy.next }
           end
           collection = set.to_a
           _(collection.size).must_equal 50

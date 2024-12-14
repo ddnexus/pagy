@@ -17,11 +17,10 @@ and the other Frontend helpers.
 
 ## Overview
 
-This extra manages the cache used by the `Pagy::KeysetForUI` instance, allowing easy customization and integration with your
-app.
+This extra manages the cache used by the `Pagy::KeysetForUI` instance, allowing easy customization and integration with your app.
 
-It also adds a `pagy_keyset_for_ui` constructor method that can be used in your controllers, and provides the automatic setting
-of the variables from the request `params`.
+It also adds a `pagy_keyset_for_ui` constructor method that can be used in your controllers, and provides the automatic setting of
+the variables from the request `params`.
 
 Please refer to the following resource:
 
@@ -53,8 +52,8 @@ def pagy_cache_new_key = my_custom_cache.generate_key
 
 ## Understanding the cache
 
-This extra uses the `session` object as the cache for the `cutoffs` (not the records!) by default, because it's simple and works in any app, at least for
-prototyping.
+This extra uses the `session` object as the cache for the `cutoffs` (not for the records!) by default, because it's simple and
+works in any app, at least for prototyping.
 
 Notice that the `cutoffs` array can potentially grow big if you don't use `:max_pages`, especially if your `keyset` contains
 multiple ordered columns and more if their size is big. You must be aware of it.
@@ -69,8 +68,8 @@ session as the cache (e.g. `ActiveRecord::SessionStore`).
 
 !!!warning
 
-Besides writing and reading from it, Pagy does not expire nor handle the cache in any way. Your app should manage it (e.g. like it does
-with the `session` object).
+Besides writing and reading from it, Pagy does not expire nor handle the cache in any way. Your app should manage it (e.g. like it
+does with the `session` object).
 !!!
 
 This extra uses only 3 simple methods to handle the cache:
@@ -86,7 +85,8 @@ handling other aspects of it (e.g. expiration, etc.)
 
 We are considering implementing a client-side cache using the Browser's `sessionStorage`.
 
-It might considerably simplify the handling of the cache, but it will require some time to design it properly, so please, hang tight and cheer for us!
+It might considerably simplify the handling of the cache, but it will require some time to design it properly, so please, hang
+tight and cheer for us!
 !!!
 
 ## Variables

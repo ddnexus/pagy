@@ -52,7 +52,7 @@ If you want the best of the two worlds, check out the [keyset_for_ui extra](/doc
 | `set`                      | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                          |
 | `keyset`                   | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                     |
 | `keyset attributes`        | The hash of keyset-column/record-value pairs of a record.                                                                                                                                                                                                                                             |
-| `cutoff`                   | A point in the `set` that separates the records of two contiguous `page`s. It's the encoded string of the `keyset attributes` of the last record of a `page`.                                                                                                                                         |
+| `cutoff`                   | A point in the `set` where a `page` ended. Its value is a `Base64` encoded URL-safe string.                                                                                                                                                                                                           |
 | `page`                     | The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` variable, which is set to the `cutoff` of the previous page                                                                                                                          |
 | `next`                     | The next `page`, i.e. the page of records beginning after the `cutoff`. Also the `cutoff` value retured by the `next` method.                                                                                                                                                                         |
 
@@ -164,29 +164,24 @@ If you need a specific order:
 
 #### Understanding the Cutoffs
 
-A `cutoff` defines a point in the `set`, right AFTER the last record of a `page`.
+A `cutoff` defines a point in the `set` where a `page` ended. All the records AFTER that point are or will be part of the `next` page.
 
 Let's consider an example of a simple `set`. In order to avoid confusion with numeric ids and number of records, let's assume that
-it that has an `id` column that is actually a unique alphanumeric code, and its order is:
-`order(:id)`.
+it has an `id` column populated by unique alphanumeric codes, and its order is: `order(:id)`.
 
-Assuming a LIMIT of 6, the first page will include the first 6 records in the set: no `cutoff` required so
-far...
+Assuming a LIMIT of 6, the first page will include the first 6 records in the set: no `cutoff` required so far...
 
 ```
             |   page    |                                not yet paginated    |
 beginning ->|. . . . . .|. . . . . . . . . . . . . . . . . . . . . . . . . . .|<- end of set
 ```
 
-After we pull the 6 records, we read the `id` of the last one in the page, which is `F`. So our `cutoff` can be defined like: _"
-the point after the value `F` in the `id` column"_.
+After we pull the first 6 records from the beginning of the `set`, we read the `id` of the last one, which is `F`. So our `cutoff` can be defined like: _"the point up to the value `F` in the `id` column"_.
 
-Notice that this is not like saying _"after the record `F`"_. It's important to understand that a `cutoff` refers just to a value
-in a column (or multiple column in case of muti-columns keysets) after which there will be the next page.
+Notice that this is not like saying _"up to the record `F`"_. It's important to understand that a `cutoff` refers just to a value
+in a column (or a combination of multiple column, in case of muti-columns keysets).
 
-Indeed, that very record could be deleted right after we read it, and our `cutoff` will still be the valid start for the next page
-of 6 records after the `cutoff-F`...
-
+Indeed, that very record could be deleted right after we read it, and our `cutoff` will still be the valid reference that _"we paginated the `set`, up to the "F" value"_...
 ```
             |   page    |   page    |                    not yet paginated    |
 beginning ->|. . . . . F]. . . . . .|. . . . . . . . . . . . . . . . . . . . .|<- end of set
@@ -194,8 +189,7 @@ beginning ->|. . . . . F]. . . . . .|. . . . . . . . . . . . . . . . . . . . .|<
                      cutoff-F
 ```
 
-Again, after we pull the next 6 records, we read the `id` of the last one in the page, which is `L`: so we have our new
-`cutoff-L`, which is the start of the next `page`...
+For getting the `next` page of records - this time - we pull the `next` 6 records AFTER the `cutoff-F`. Again, we read the `id` of the last one, which is `L`: so we have our new `cutoff-L`, which is the end of the current `page`, and the `next` will go AFTER it...
 
 ```
             |   page    |   page    |   page    |        not yet paginated    |
@@ -204,7 +198,7 @@ beginning ->|. . . . . F]. . . . . L]. . . . . .|. . . . . . . . . . . . . . .|<
                      cutoff-F    cutoff-L
 ```
  
-Pagy encodes the values of the `cutoffs` in a `Base64` URL-safe string that is used in the request as a param.
+Pagy encodes the values of the `cutoffs` in a `Base64` URL-safe string that is sent as a param in the `request`.
 
 ## ORMs
 
@@ -254,7 +248,7 @@ Default `nil`.
 
 ==- `:jsonify_keyset_attributes`
 
-A lambda to override the generic json encoding of the `keyset` attributes. Use it when the generic `to_json` method would lose
+A lambda to override the generic json encoding of the `keyset` attributes. It receives the keyset attributes to jsonify, and it should return a JSON string of the `attributes.values` array. Use it when the generic `to_json` method would lose
 some information when decoded.
 
 For example: `Time` objects may lose or round the fractional seconds through the encoding/decoding cycle, causing the ordering to
@@ -266,7 +260,7 @@ etc.). Here is what you can do:
 jsonify_keyset_attributes = lambda do |attributes|
   # Convert it to a string matching the stored value/format in SQLite DB
   attributes[:created_at] = attributes[:created_at].strftime('%F %T.%6N')
-  attributes.to_json
+  attributes.values.to_json  # remember to return an array of the values only
 end
 
 Pagy::Keyset(set, jsonify_keyset_attributes:)
