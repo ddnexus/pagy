@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Keyset For UI" type="RubyRunConfigurationType" factoryName="Ruby" folderName="apps">
+  <configuration default="false" name="Keyset ForUI" type="RubyRunConfigurationType" factoryName="Ruby" folderName="apps">
     <module name="pagy" />
     <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
     <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/gem/apps" />

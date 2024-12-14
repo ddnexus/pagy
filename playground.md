@@ -112,11 +112,11 @@ Run the interactive demo from your terminal:
 ```sh      
 bundle exec pagy | grep keyset
   keyset                     Showcase the Keyset pagination (ActiveRecord example)
-  keyset_numeric        Showcase the Keyset Numeric pagination (ActiveRecord example)
+  keyset_for_ui        Showcase the Keyset Numeric pagination (ActiveRecord example)
   keyset_sequel              Showcase the Keyset pagination (Sequel example)
 
 bundle exec pagy keyset
-bundle exec pagy keyset_numeric
+bundle exec pagy keyset_for_ui
 bundle exec pagy keyset_sequel
 ```
 

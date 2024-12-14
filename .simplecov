@@ -27,10 +27,10 @@ SimpleCov.start do
   add_group 'Calendar',   %w[gem/lib/pagy/calendar
                              gem/lib/pagy/extras/calendar.rb]
   add_group 'Keyset',     %w[gem/lib/pagy/keyset.rb
+                             gem/lib/pagy/keyset_for_ui.rb
                              gem/lib/pagy/keyset/active_record.rb
                              gem/lib/pagy/keyset/sequel.rb
-                             gem/lib/pagy/keyset/numeric.rb
                              gem/lib/pagy/extras/keyset.rb
-                             gem/lib/pagy/extras/keyset_numeric.rb]
+                             gem/lib/pagy/extras/keyset_for_ui.rb]
   add_group 'Tests',      %w[test]
 end

@@ -1,13 +1,13 @@
 ---
-title: Keyset Numeric
+title: Keyset For UI
 categories:
   - Backend
   - Extra
 ---
 
-# Keyset Numeric Extra
+# Keyset For UI Extra
 
-Paginate with the [Pagy Keyset Numeric](/docs/api/keyset_numeric) pagination technique, using numeric pages to support `pagy_*nav`
+Paginate with the [Pagy Keyset For UI](/docs/api/keyset_for_ui) pagination technique, using numeric pages to support `pagy_*nav`
 and the other Frontend helpers.
 
 !!!warning Experimental: the API might change in minor versions
@@ -17,15 +17,15 @@ and the other Frontend helpers.
 
 ## Overview
 
-This extra manages the cache used by the `Pagy::Keyset::Numeric` instance, allowing easy customization and integration with your
+This extra manages the cache used by the `Pagy::KeysetForUI` instance, allowing easy customization and integration with your
 app.
 
-It also adds a `pagy_keyset_numeric` constructor method that can be used in your controllers, and provides the automatic setting
+It also adds a `pagy_keyset_for_ui` constructor method that can be used in your controllers, and provides the automatic setting
 of the variables from the request `params`.
 
 Please refer to the following resource:
 
-[!ref Keyset Numeric: Documentation](/docs/api/keyset_numeric.md)
+[!ref Keyset For UI: Documentation](/docs/api/keyset_for_ui.md)
 
 [!ref Keyset Pagination: Concepts and Overview](/docs/api/keyset.md)
 
@@ -35,10 +35,10 @@ This section integrates the [Keyset Extra Synopsis](/docs/extras/keyset.md)
 
 ```ruby Controller (action)
 # Basic defaults (uses the session object as the cache)
-@pagy, @records = pagy_keyset_numeric(set)
+@pagy, @records = pagy_keyset_for_ui(set)
 
 # Other variables
-@pagy, @records = pagy_keyset_numeric(set, reset_overflow: true, max_pages: 100, **vars)
+@pagy, @records = pagy_keyset_for_ui(set, reset_overflow: true, max_pages: 100, **vars)
 ```
 
 ```ruby ApplicationController
@@ -53,10 +53,10 @@ def pagy_cache_new_key = my_custom_cache.generate_key
 
 ## Understanding the cache
 
-This extra uses the `session` object as the cache for the `cuts` by default, because it's simple and works in any app, at least for
+This extra uses the `session` object as the cache for the `cutoffs` (not the records!) by default, because it's simple and works in any app, at least for
 prototyping.
 
-Notice that the `cuts` array can potentially grow big if you don't use `:max_pages`, especially if your `keyset` contains
+Notice that the `cutoffs` array can potentially grow big if you don't use `:max_pages`, especially if your `keyset` contains
 multiple ordered columns and more if their size is big. You must be aware of it.
 
 !!!danger Do not use the cookie-based session as the cache
@@ -69,8 +69,8 @@ session as the cache (e.g. `ActiveRecord::SessionStore`).
 
 !!!warning
 
-Besides writing and reading from it, Pagy does not expire nor handle the cache in any way. Your app should manage it like it does
-with the `session` object.
+Besides writing and reading from it, Pagy does not expire nor handle the cache in any way. Your app should manage it (e.g. like it does
+with the `session` object).
 !!!
 
 This extra uses only 3 simple methods to handle the cache:
@@ -84,18 +84,18 @@ handling other aspects of it (e.g. expiration, etc.)
 
 !!!primary Notice
 
-We are considering the implementation of a client-side cache using the Browser's `sessionStorage`.
+We are considering implementing a client-side cache using the Browser's `sessionStorage`.
 
-It might simplify the handling of the cache considerably, but it will require some time to design it properly, so please, hang tight and cheer for us!
+It might considerably simplify the handling of the cache, but it will require some time to design it properly, so please, hang tight and cheer for us!
 !!!
 
 ## Variables
 
-This section integrates the [Pagy::Keyset::Numeric variables](/docs/api/keyset_numeric#variables).
+This section integrates the [Pagy::KeysetForUI variables](/docs/api/keyset_for_ui#variables).
 
 ==- `:cache_key`
 
-The key used to locate the `cuts` in the cache storage.
+The key used to locate the `cutoffs` in the cache storage.
 
 ==- `:cache_key_param`
 
@@ -105,7 +105,7 @@ The name of the cache key param. It is `:cache_key` by default. Pass a different
 
 ## Methods
 
-==- `pagy_keyset_numeric(set, **vars)`
+==- `pagy_keyset_for_ui(set, **vars)`
 
 This method is similar to the `pagy` (for offset pagination) method. It returns the `pagy` object and the array of `records`
 pulled from the DB.

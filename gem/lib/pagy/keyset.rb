@@ -22,7 +22,7 @@ class Pagy
 
     # Pick the right adapter for the set
     def self.new(set, **vars)
-      if self == Pagy::Keyset || (defined?(::Pagy::Keyset::Numeric) && self == Pagy::Keyset::Numeric)
+      if self == Pagy::Keyset || (defined?(::Pagy::KeysetForUI) && self == ::Pagy::KeysetForUI)
         if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
           self::ActiveRecord
         elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)

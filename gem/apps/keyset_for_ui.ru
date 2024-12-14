@@ -10,8 +10,8 @@
 #    bundle exec pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone keyset_numeric
-#    bundle exec pagy ./keyset_numeric.ru
+#    bundle exec pagy clone keyset_for_ui
+#    bundle exec pagy ./keyset_for_ui.ru
 #
 # URL
 #    http://0.0.0.0:8000
@@ -31,7 +31,7 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # Pagy initializer
-require 'pagy/extras/keyset_numeric'
+require 'pagy/extras/keyset_for_ui'
 require 'pagy/extras/limit'
 require 'pagy/extras/pagy'
 Pagy::DEFAULT[:limit] = 4
@@ -49,7 +49,7 @@ class PagyKeyset < Sinatra::Base
     Time.zone = 'UTC'
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset_numeric(Pet.order(@order), reset_overflow: true)
+    @pagy, @pets = pagy_keyset_for_ui(Pet.order(@order), reset_overflow: true)
     erb :main
   end
 
@@ -68,7 +68,7 @@ class PagyKeyset < Sinatra::Base
       <html lang="en">
       <html>
       <head>
-         <title>Pagy Keyset Numeric App</title>
+         <title>Pagy Keyset For UI App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
           @media screen { html, body {
@@ -99,9 +99,9 @@ class PagyKeyset < Sinatra::Base
   template :main do
     <<~ERB
       <div class="content">
-        <h1>Pagy Keyset Numeric App</h1>
-        <p>Self-contained, standalone app usable to easily reproduce any Keyset Numeric related pagy issue
-        with ActiveRecord sets. Notice that Keyset Numeric works also with Sequel sets</p>
+        <h1>Pagy Keyset For UI App</h1>
+        <p>Self-contained, standalone app usable to easily reproduce any Keyset For UI related pagy issue
+        with ActiveRecord sets. Notice that Keyset For UI works also with Sequel sets</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
         <ul>

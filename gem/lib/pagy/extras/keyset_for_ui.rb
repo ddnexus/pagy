@@ -1,24 +1,24 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/keyset_frontendble
 # frozen_string_literal: true
 
-require_relative '../keyset/numeric'
+require_relative '../keyset_for_ui'
 
 class Pagy # :nodoc:
   DEFAULT[:cache_key_param] = :cache_key
 
   # Add keyset UI Compatible methods
-  module KeysetNumericExtra
+  module KeysetForUIExtra
     private
 
-    # Return Pagy::Keyset::Numeric object and paginated records
-    def pagy_keyset_numeric(set, **vars)
+    # Return Pagy::KeysetForUI object and paginated records
+    def pagy_keyset_for_ui(set, **vars)
       vars[:page]      ||= pagy_get_page(vars) # numeric page
       vars[:limit]     ||= pagy_get_limit(vars)
       vars[:cache_key] ||= params[vars[:cache_key_param] || DEFAULT[:cache_key_param]] ||
                            pagy_cache_new_key
       vars[:cutoffs]   ||= pagy_cache_read(vars[:cache_key])
 
-      pagy = Keyset::Numeric.new(set, **vars)
+      pagy = KeysetForUI.new(set, **vars)
       pagy_cache_write(vars[:cache_key], pagy.cutoffs)
       [pagy, pagy.records]
     end
@@ -37,7 +37,7 @@ class Pagy # :nodoc:
 
     def pagy_cache_write(key, value) = session[key] = value
   end
-  Backend.prepend KeysetNumericExtra
+  Backend.prepend KeysetForUIExtra
 
   # Module overriding UrlHelper
   module UrlHelperOverride
