@@ -7,11 +7,11 @@ require_relative '../../gem/lib/pagy/b64'
 require 'pagy/keyset/numeric'
 
 [Pet, PetSequel].each do |model|
-  describe "Pagy::Keyset with #{model}" do
+  describe "Pagy Keyset with #{model}" do
     describe 'uses optional variables' do
       it 'use the :tuple_comparison' do
         pagy    = Pagy::Keyset::Numeric.new(model.order(:animal, :name, :id),
-                                            cuts:             [nil, nil, "eyJhbmltYWwiOiJjYXQiLCJuYW1lIjoiRWxsYSIsImlkIjoxOH0"],
+                                            cutoffs:          [nil, nil, "eyJhbmltYWwiOiJjYXQiLCJuYW1lIjoiRWxsYSIsImlkIjoxOH0"],
                                             page:             2,
                                             limit:            10,
                                             tuple_comparison: true)
@@ -21,38 +21,38 @@ require 'pagy/keyset/numeric'
       end
       it 'uses :jsonify_keyset_attributes' do
         pagy = Pagy::Keyset::Numeric.new(model.order(:id),
-                                         cuts:                      [nil, nil, "eyJpZCI6MTB9"],
+                                         cutoffs:                   [nil, nil, "eyJpZCI6MTB9"],
                                          page:                      2,
                                          limit:                     10,
                                          jsonify_keyset_attributes: lambda(&:to_json))
         _(pagy.next).must_equal(3)
-        _(pagy.instance_variable_get(:@cut_args)).must_equal(id: 10)
+        _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 10)
       end
     end
     describe 'handles the page/cut' do
       it 'handles the page/cut for the first page' do
         pagy = Pagy::Keyset::Numeric.new(model.order(:id),
-                                         cuts:  nil,
-                                         limit: 10)
+                                         cutoffs: nil,
+                                         limit:   10)
         _(pagy.instance_variable_get(:@cut)).must_be_nil
         _(pagy.next).must_equal 2
       end
       it 'handles the page/cut for the second page' do
         pagy = Pagy::Keyset::Numeric.new(model.order(:id),
-                                         cuts:  [nil, nil, "eyJpZCI6MTB9"],
-                                         limit: 10,
-                                         page:  2)
-        _(pagy.instance_variable_get(:@cut_args)).must_equal(id: 10)
+                                         cutoffs: [nil, nil, "eyJpZCI6MTB9"],
+                                         limit:   10,
+                                         page:    2)
+        _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal 3
-        _(pagy.cuts).must_equal [nil, nil, "eyJpZCI6MTB9", "eyJpZCI6MjB9"]
+        _(pagy.cutoffs).must_equal [nil, nil, "eyJpZCI6MTB9", "eyJpZCI6MjB9"]
       end
       it 'handles the page/cut for the last page' do
         pagy = Pagy::Keyset::Numeric.new(model.order(:id),
-                                         cuts:  [nil, nil, "eyJpZCI6NDB9"],
-                                         limit: 10,
-                                         page:  2)
-        _(pagy.instance_variable_get(:@cut_args)).must_equal(id: 40)
+                                         cutoffs: [nil, nil, "eyJpZCI6NDB9"],
+                                         limit:   10,
+                                         page:    2)
+        _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 40)
         _(pagy.records.first.id).must_equal 41
         _(pagy.next).must_be_nil
       end
@@ -61,50 +61,50 @@ require 'pagy/keyset/numeric'
       it 'raises OverflowError' do
         _ do
           Pagy::Keyset::Numeric.new(model.order(:id),
-                                    cuts:  [nil, nil, "eyJpZCI6MTB9"],
-                                    limit: 10,
-                                    page:  3)
+                                    cutoffs: [nil, nil, "eyJpZCI6MTB9"],
+                                    limit:   10,
+                                    page:    3)
         end.must_raise Pagy::OverflowError
       end
       it 'resets overflow' do
         pagy = Pagy::Keyset::Numeric.new(model.order(:id),
-                                         cuts:           [nil, nil, "eyJpZCI6MTB9", "eyJpZCI6MjB9"],
+                                         cutoffs:        [nil, nil, "eyJpZCI6MTB9", "eyJpZCI6MjB9"],
                                          reset_overflow: true,
                                          limit:          10,
                                          page:           4)
-        _(pagy.instance_variable_get(:@cut_args)).must_be_nil
+        _(pagy.instance_variable_get(:@cutoff_args)).must_be_nil
         _(pagy.records.first.id).must_equal 1
         _(pagy.next).must_equal 2
-        _(pagy.cuts).must_equal [nil, nil, "eyJpZCI6MTB9"]
+        _(pagy.cutoffs).must_equal [nil, nil, "eyJpZCI6MTB9"]
       end
     end
     describe 'handles the jumping back' do
       it 'handles the assign_cut_args jump back to the first page' do
         pagy = Pagy::Keyset::Numeric.new(model.order(:id),
-                                         cuts: [nil, nil, "eyJpZCI6MTB9"], # last visited 2
-                                         page:  1,
-                                         limit: 10)
+                                         cutoffs: [nil, nil, "eyJpZCI6MTB9"], # last visited 2
+                                         page:     1,
+                                         limit:    10)
         _(pagy.instance_variable_get(:@cut)).must_be_nil
         _(pagy.next).must_equal 2
-        _(pagy.instance_variable_get(:@cut_args)).must_equal(cutoff_id: 10)
+        _(pagy.instance_variable_get(:@cutoff_args)).must_equal(cutoff_id: 10)
       end
       it 'handles the assign_cut_args jump back to the second page' do
         pagy = Pagy::Keyset::Numeric.new(model.order(:id),
-                                         cuts:  [nil, nil, "eyJpZCI6MTB9", "eyJpZCI6MjB9"],
-                                         page:  2,
-                                         limit: 10)
-        _(pagy.instance_variable_get(:@cut_args)).must_equal({ :id => 10, :cutoff_id => 20 })
+                                         cutoffs: [nil, nil, "eyJpZCI6MTB9", "eyJpZCI6MjB9"],
+                                         page:    2,
+                                         limit:   10)
+        _(pagy.instance_variable_get(:@cutoff_args)).must_equal({ :id => 10, :cutoff_id => 20 })
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal 3
-        _(pagy.cuts).must_equal [nil, nil, "eyJpZCI6MTB9", "eyJpZCI6MjB9"]
+        _(pagy.cutoffs).must_equal [nil, nil, "eyJpZCI6MTB9", "eyJpZCI6MjB9"]
       end
     end
     describe 'other requirements' do
       it 'adds the required columns to the selected values' do
         set  = model.order(:animal, :name, :id).select(:name)
         pagy = Pagy::Keyset::Numeric.new(set,
-                                         cuts:  nil,
-                                         limit: 10)
+                                         cutoffs: nil,
+                                         limit:   10)
         pagy.records
         set = pagy.instance_variable_get(:@set)
         _((model == Pet ? set.select_values : set.opts[:select]).sort).must_equal %i[animal id name]
@@ -126,15 +126,15 @@ require 'pagy/keyset/numeric'
        model.order(:animal, :name, :id),
        mixed_set].each_with_index do |set, i|
         it "pulls all the records in set#{i} without repetions" do
-          cuts       = nil
+          cutoffs    = nil
           pages      = slurp_by_page do |page|
-            pagy = Pagy::Keyset::Numeric.new(set,
-                                             cuts:,
-                                             page:,
-                                             limit: 9)
-            cuts = pagy.cuts
-            { records: pagy.records, page: pagy.next }
-          end
+                         pagy    = Pagy::Keyset::Numeric.new(set,
+                                                             cutoffs:,
+                                                             page:,
+                                                             limit: 9)
+                         cutoffs = pagy.cutoffs
+                         { records: pagy.records, page: pagy.next }
+                       end
           collection = set.to_a
           _(collection.size).must_equal 50
           _(pages.flatten).must_equal collection

@@ -51,9 +51,9 @@ If you want the best of the two worlds, check out the [keyset_numeric extra](/do
 | `set`                       | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                          |
 | `keyset`                    | The hash of column/direction pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                     |
 | `keyset attributes`         | The hash of keyset-column/record-value pairs of a record.                                                                                                                                                                                                                                             |
-| `cut`                       | A point in the `set` that separates the records of two contiguous `page`s. It's the encoded reference to the last record of a `page`.                                                                                                                                                                 |
-| `page`                      | The current `page`, i.e. the page of records beginning after the `prev_cut`. Also the `:page` variable, which is set to the `prev_cut`                                                                                                                                                                |
-| `next`                      | The next `page`, i.e. the page of records beginning after the `next_cut`. Also the `next_cut` value retured by the `next` method.                                                                                                                                                                       |
+| `cutoff`                    | A point in the `set` that separates the records of two contiguous `page`s. It's the encoded reference to the last record of a `page`.                                                                                                                                                                 |
+| `page`                      | The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` variable, which is set to the `cutoff` of the previous page                                                                                                                          |
+| `next`                      | The next `page`, i.e. the page of records beginning after the `cutoff`. Also the `cutoff` value retured by the `next` method.                                                                                                                                                                     |
 
 ### Keyset, Numeric or Offset pagination?
 
@@ -156,8 +156,8 @@ If you need a specific order:
 ### How Pagy::Keyset works
 
 - You pass an `uniquely ordered` `set` and `Pagy::Keyset` pulls the `:limit` of records of the first page.
-- It requests the `next` URL by setting its `page` query string param to the `next_cut` of the current page.
-- At each request, the new `page` is decoded into `cut_args` that are coupled with a `where` filter query, and the `:limit` of new
+- It requests the `next` URL by setting its `page` query string param to the `cutoff` of the current page.
+- At each request, the new `page` is decoded into `cutoff_args` that are coupled with a `where` filter query, and the `:limit` of new
   records is pulled.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
 
@@ -182,7 +182,7 @@ The constructor takes the `set`, and an optional hash of [variables](#variables)
 
 ==- `next`
 
-The next `page`, i.e. the `cut` after the last record of the **current page**. It is `nil` for the last page.
+The next `page`, i.e. the `cutoff` after the last record of the **current page**. It is `nil` for the last page.
 
 ==- `records`
 
@@ -194,14 +194,14 @@ The `Array` of fetched records for the current page.
 
 === `:page`
 
-The current page, i.e. the `next_cut` of the **previous page**. Default `nil` for the first page.
+The current page, i.e. the `cutoff` of the **previous page**. Default `nil` for the first page.
 
 === `:limit`
 
 The `:limit` per page. Default `Pagy::DEFAULT[:limit]`. You can use the [limit extra](/docs/extras/limit.md) to have it
 automatically assigned from the `limit` request param.
 
-=== `:tuple_comparison`
+==- `:tuple_comparison`
 
 Boolean variable that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction
 order, hence it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL` columns).

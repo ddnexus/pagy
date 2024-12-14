@@ -45,20 +45,20 @@ class Pagy
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
       assign_page
-      assign_cuts
-      assign_cut_args
+      assign_cutoffs
+      assign_cutoff_args
     end
 
-    # Assign the prev_cut from the page variable
-    def assign_cuts
-      @prev_cut = @vars[:page]
+    # Assign the prev_cutoff from the page variable
+    def assign_cutoffs
+      @prev_cutoff = @vars[:page]
     end
 
-    # Assign the cut_args
-    def assign_cut_args
-      return unless @prev_cut
+    # Assign the cutoff_args
+    def assign_cutoff_args
+      return unless @prev_cutoff
 
-      @cut_args = cut_to_args(@prev_cut)
+      @cutoff_args = cutoff_to_args(@prev_cutoff)
     end
 
     # Assign the page
@@ -80,7 +80,7 @@ class Pagy
     #
     #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
     #
-    def after_cut_sql(prefix = nil)
+    def after_cutoff_sql(prefix = nil)
       operator    = { asc: '>', desc: '<' }
       directions  = @keyset.values
       table       = @set.model.table_name
@@ -103,10 +103,10 @@ class Pagy
       end
     end
 
-    # Decode a cut, check its consistency and returns the cut args
-    def cut_to_args(cut)
-      args = JSON.parse(B64.urlsafe_decode(cut)).transform_keys(&:to_sym)
-      raise InternalError, 'cut and keyset are not consistent' \
+    # Decode a cutoff, check its consistency and returns the cutoff args
+    def cutoff_to_args(cutoff)
+      args = JSON.parse(B64.urlsafe_decode(cutoff)).transform_keys(&:to_sym)
+      raise InternalError, 'cutoff and keyset are not consistent' \
             unless args.keys == @keyset.keys
 
       typecast_args(args)
@@ -121,8 +121,8 @@ class Pagy
       { **default, page: nil }
     end
 
-    # Derive the next_cut
-    def derive_next_cut
+    # Derive the cutoff from the last record
+    def derive_cutoff
       hash = keyset_attributes_from(@records.last)
       json = @vars[:jsonify_keyset_attributes]&.(hash) || hash.to_json
       B64.urlsafe_encode(json)
@@ -140,14 +140,14 @@ class Pagy
       records
       return unless @more
 
-      @next ||= derive_next_cut
+      @next ||= derive_cutoff
     end
 
     # Fetch the array of records for the current page
     def records
       @records ||= begin
                      @set = apply_select if select?
-                     @set = filter_records if @cut_args
+                     @set = filter_records if @cutoff_args
                      fetch_records
                    end
     end

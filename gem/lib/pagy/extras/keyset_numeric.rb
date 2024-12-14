@@ -16,10 +16,10 @@ class Pagy # :nodoc:
       vars[:limit]     ||= pagy_get_limit(vars)
       vars[:cache_key] ||= params[vars[:cache_key_param] || DEFAULT[:cache_key_param]] ||
                            pagy_cache_new_key
-      vars[:cuts]      ||= pagy_cache_read(vars[:cache_key])
+      vars[:cutoffs]   ||= pagy_cache_read(vars[:cache_key])
 
       pagy = Keyset::Numeric.new(set, **vars)
-      pagy_cache_write(vars[:cache_key], pagy.cuts)
+      pagy_cache_write(vars[:cache_key], pagy.cutoffs)
       [pagy, pagy.records]
     end
 

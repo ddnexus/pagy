@@ -18,7 +18,7 @@ class Pagy
       end
 
       # Filter the page records
-      def filter_records = @set.where(after_cut_sql, **@cut_args)
+      def filter_records = @set.where(after_cutoff_sql, **@cutoff_args)
 
       # Get the keyset attributes from the record
       def keyset_attributes_from(record) = record.slice(*@keyset.keys)
