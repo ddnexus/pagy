@@ -53,7 +53,7 @@ def pagy_cache_new_key = my_custom_cache.generate_key
 ## Understanding the cache
 
 This extra uses the `session` object as the cache for the `cutoffs` (not for the records!) by default, because it's simple and
-works in any app, at least for prototyping.
+works out of the box in any app, at least for prototyping.
 
 Notice that the `cutoffs` array can potentially grow big if you don't use `:max_pages`, especially if your `keyset` contains
 multiple ordered columns and more if their size is big. You must be aware of it.
@@ -99,7 +99,7 @@ The key used to locate the `cutoffs` in the cache storage.
 
 ==- `:cache_key_param`
 
-The name of the cache key param. It is `:cache_key` by default. Pass a different symbol to change it.
+The name of the cache key param. It is `:cache_key` by default. Pass a different symbol to change/shorten it.
 
 ===
 

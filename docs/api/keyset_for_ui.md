@@ -81,12 +81,12 @@ Querying with the LIMIT again, might cause records to get skipped or to appear t
 
 While te accuracy is guaranteed, in case of insertions or deletions of records falling in the range of the visited page, the page will obviously have a number of records different from expected.
 
-That might not be a problem in most cases, however in extreme cases, a complete page of records might get wiped out, resulting in a completely empty (or with just very few records) page. That's not a logical problem, nor a common one, but it may look weird to the users.
+That is not a logical nor common problem, however in extreme cases, a page of records might change its size so noticeably and unexpectedly that it may look somehow "broken" to the users.
 
-!!!success We are planning to fix the problem in the future by:
+!!!success We plan to implement page-rebalancing:
 
-- Adding automatic compacting of empty (or almost empty) visited pages.
-- Adding automatic splitting of eccesively grown visited pages.
+- Automatic compacting of empty (or almost empty) visited pages.
+- Automatic splitting of eccesively grown visited pages.
 !!!
 
 ## Setup
@@ -102,7 +102,7 @@ internally:
 Pagy::KeysetForUI.new(active_record_set)
 #=> #<Pagy::KeysetForUI::ActiveRecord:0x00000001066215e0>
 
-Pagy::Keyset.new(sequel_set)
+Pagy::KeysetForUI.new(sequel_set)
 #=> #<Pagy::KeysetForUI::Sequel:0x00000001066545e0>
 ```
 
@@ -134,7 +134,7 @@ Paginate only `:max_pages` ignoring the rest.
 
 ==- `:reset_overflow`
 
-Resets the pagination in case of overflow, instead of raising a `Pagy::OverflowError`. Use it when you don't need to `rescue` and handle the event in any particular way. Notice: it keeps the current `cache_key`
+Resets the pagination in case of overflow, instead of raising a `Pagy::OverflowError`. Use it when you don't need to `rescue` and handle the event in any particular way. Notice: it reuses the current `cache_key`
 
 ===
 
