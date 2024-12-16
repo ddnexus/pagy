@@ -122,10 +122,10 @@ require 'pagy/keyset'
        model.order(:animal, :name, :id),
        mixed_set].each_with_index do |set, i|
         it "pulls all the records in set#{i} without repetions" do
-          pages      = slurp_by_page do |page|
-            pagy = Pagy::Keyset.new(set, page:, limit: 9)
-            { records: pagy.records, page: pagy.next }
-          end
+          pages = slurp_by_page do |page|
+                    pagy = Pagy::Keyset.new(set, page:, limit: 9)
+                    { records: pagy.records, page: pagy.next }
+                  end
           collection = set.to_a
           _(collection.size).must_equal 50
           _(pages.flatten).must_equal collection

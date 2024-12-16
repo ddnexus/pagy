@@ -16,7 +16,6 @@ describe 'pagy/extras/js_tools_oj' do
   describe '#pagy_data' do
     it 'uses oj' do
       _(app.pagy_data(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data_1
-      _(app.pagy_data(Pagy.new(count: 10, trim_extra: true), :test_function, 'some-string', 123, true)).must_rematch :data_2
     end
   end
 

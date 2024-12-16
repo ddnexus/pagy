@@ -1,7 +1,13 @@
-type NavArgs      = readonly [Tokens, Sequels, null | LabelSequels, string?]
-type ComboArgs    = readonly [string, string?]
-type SelectorArgs = readonly [number, string, string?]
+type NavArgs      = readonly [Tokens, Sequels, null | LabelSequels, OptionArgs?]
+type ComboArgs    = readonly [string, OptionArgs?]
+type SelectorArgs = readonly [number, string, OptionArgs?]
 type JsonArgs     = ['nav', NavArgs] | ['combo', ComboArgs] | ['selector', SelectorArgs]
+type Cutoffs      = readonly [string | number]
+
+interface OptionArgs {
+  readonly page_param?:string
+  readonly cutoffs?:Cutoffs
+}
 
 interface Tokens {
   readonly before:string
@@ -20,7 +26,7 @@ const Pagy = (() => {
       entries => entries.forEach(e => e.target.querySelectorAll<NavElement>(".pagy-rjs")
                                        .forEach(el => el.pagyRender())));
   // Init the *_nav_js helpers
-  const initNav = (el:NavElement, [tokens, sequels, labelSequels, trimParam]:NavArgs) => {
+  const initNav = (el:NavElement, [tokens, sequels, labelSequels, opts]:NavArgs) => {
     const container = el.parentElement ?? el;
     const widths    = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
     let lastWidth   = -1;
@@ -42,7 +48,7 @@ const Pagy = (() => {
         } else { // active page
           filled = fillIn(tokens.current, item, label);
         }
-        html += (typeof trimParam === "string" && item == 1) ? trim(filled, trimParam) : filled;
+        html += (typeof opts?.page_param === "string" && item == 1) ? trim(filled, opts.page_param) : filled;
       });
       html        += tokens.after;
       el.innerHTML = "";
@@ -53,20 +59,20 @@ const Pagy = (() => {
   };
 
   // Init the *_combo_nav_js helpers
-  const initCombo = (el:Element, [url_token, trimParam]:ComboArgs) =>
-      initInput(el, inputValue => [inputValue, url_token.replace(/__pagy_page__/, inputValue)], trimParam);
+  const initCombo = (el:Element, [url_token, opts]:ComboArgs) =>
+      initInput(el, inputValue => [inputValue, url_token.replace(/__pagy_page__/, inputValue)], opts);
 
   // Init the limit_selector_js helper
-  const initSelector = (el:Element, [from, url_token, trimParam]:SelectorArgs) => {
+  const initSelector = (el:Element, [from, url_token, opts]:SelectorArgs) => {
     initInput(el, inputValue => {
       const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
       const url  = url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
       return [page, url];
-    }, trimParam);
+    }, opts);
   };
 
   // Init the input element
-  const initInput = (el:Element, getVars:(v:string) => [string, string], trimParam?:string) => {
+  const initInput = (el:Element, getVars:(v:string) => [string, string], opts?:OptionArgs) => {
     const input   = el.querySelector("input") as HTMLInputElement;
     const link    = el.querySelector("a") as HTMLAnchorElement;
     const initial = input.value;
@@ -79,7 +85,7 @@ const Pagy = (() => {
         return;
       }
       let [page, url] = getVars(input.value);   // eslint-disable-line prefer-const
-      if (typeof trimParam === "string" && page === "1") { url = trim(url, trimParam) }
+      if (typeof opts?.page_param === "string" && page === "1") { url = trim(url, opts.page_param) }
       link.href = url;
       link.click();
     };

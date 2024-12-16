@@ -19,7 +19,7 @@ class Pagy # :nodoc:
     CUTOFF_PREFIX = 'cutoff_' # Prefix for cutoff_args
 
     include SharedUIMethods
-    attr_reader :cutoffs
+    attr_reader :cutoff
 
     # Finalize the instance variables needed for the UI
     def initialize(set, **vars)
@@ -27,22 +27,13 @@ class Pagy # :nodoc:
       # Ensure next is called, so the last page used by the UI helpers is known
       self.next
       @prev = @page - 1 unless @page == 1
-      @last = @cutoffs.size - 1 # 1-based array size
       @in   = @records.size
     end
 
     # Get the cutoff from the cache
     def assign_cutoffs
-      @cutoffs     = @vars[:cutoffs] || [nil, nil]
-      pages        = @cutoffs.size - 1
-      if @page > pages
-        raise OverflowError.new(self, :page, "in 1..#{pages}", @page) unless @vars[:reset_overflow]
-
-        @page    = 1
-        @cutoffs = [nil, nil]
-      end
-      @prev_cutoff = @cutoffs[@page] # nil for page 1 (i.e. begins from begin of set)
-      @cutoff      = @cutoffs[@page + 1] # known page; nil for last page
+      @last, @prev_cutoff, @cutoff = @vars[:cutoffs] || [1]
+      raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
     end
 
     # Assign different args to support the AFTER_CUTOFF SQL if @cutoff
@@ -61,16 +52,21 @@ class Pagy # :nodoc:
     end
 
     # Prepare the literal SQL string (complete with the placeholders for value interpolation)
-    # used to filter the page records if @cutoff; super otherwise.
+    # used to filter the page records if the @cutoff is known.
     #
-    # If @cutoff there are two scenarios, depending on the page number:
+    # If the @cutoff is NOT known (i.e. @cutoff.nil?) it will call super
+    # (i.e. the regular keyset business: AFTER PREV_CUTOFF + LIMIT SQL).
+    #
+    # If the @cutoff is known, the LIMIT is replaced with the NOT AFTER CUTOF SQL.
+    # There are two scenarios about the page start, depending on the page number:
     #
     # 1. If page == 1
     #    Pull the inital records and filter them out after the @cutoff
     #    SQL logic: NOT AFTER CUTOFF
     #
     # 2. If page > 1
-    #    Pull the records BETWEEN the @prev_cutoff and the @cutoff
+    #    Pull the records BETWEEN the @prev_cutoff and the @cutoff,
+    #    (i.e. pull the records AFTER the @prev_cutoff and filter them out after the @cutoff)
     #    SQL logic: AFTER PREV_CUTOFF AND NOT AFTER CUTOFF
     #
     # The AFTER PREV_CUTOFF SQL is like the regular keyset SQL (calling super). For example:
@@ -101,6 +97,12 @@ class Pagy # :nodoc:
       sql << "NOT (#{super(CUTOFF_PREFIX)})"
     end
 
+    # Return the cutoff args
+    def cutoff_to_args(cutoff)
+      args   = @keyset.keys.zip(cutoff).to_h
+      typecast_args(args)
+    end
+
     # Add the default variables required by the Frontend
     def default
       { **super, **DEFAULT.slice(:ends, :page, :size, :cache_key_param) }
@@ -121,9 +123,12 @@ class Pagy # :nodoc:
       records
       return if !@more || (@vars[:max_pages] && @page >= @vars[:max_pages])
 
-      @next ||= (@page + 1).tap do |next_page|
-        @cutoffs[next_page] = derive_cutoff unless @cutoff
-      end
+      @next ||= (@page + 1).tap do
+                  unless @cutoff
+                    @cutoff = keyset_attributes_from(@records.last).values
+                    @last  += 1
+                  end
+                end
     end
   end
 end
