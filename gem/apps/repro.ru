@@ -33,7 +33,7 @@ end
 # pagy initializer
 require 'pagy/extras/pagy'
 require 'pagy/extras/limit'
-# require 'pagy/extras/trim'
+require 'pagy/extras/trim'
 require 'pagy/extras/overflow'
 Pagy::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT.freeze

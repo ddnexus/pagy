@@ -2,7 +2,6 @@
 
 require_relative '../test_helper'
 require_relative '../files/models'
-require_relative '../../gem/lib/pagy/b64'
 
 require 'pagy/keyset_for_ui'
 
@@ -11,22 +10,24 @@ require 'pagy/keyset_for_ui'
     describe 'uses optional variables' do
       it 'use the :tuple_comparison' do
         pagy    = Pagy::KeysetForUI.new(model.order(:animal, :name, :id),
-                                        cutoffs:          [2, ["cat", "Ella", 18], nil],
+                                        cutoffs:         ['key', 2, ["cat", "Ella", 18], nil],
                                         page:             2,
                                         limit:            10,
                                         tuple_comparison: true)
         records = pagy.records
         _(records.size).must_equal 10
         _(records.first.id).must_equal 13
+        _(pagy.update).must_equal ['key', 2, 0, ["dog", "Denis", 44]]
       end
       it 'uses :jsonify_keyset_attributes' do
         pagy = Pagy::KeysetForUI.new(model.order(:id),
-                                     cutoffs:                   [2, [10], nil],
+                                     cutoffs:                   ['key', 2, [10], nil],
                                      page:                      2,
                                      limit:                     10,
                                      jsonify_keyset_attributes: ->(attr) { attr.values.to_json })
         _(pagy.next).must_equal(3)
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 10)
+        _(pagy.update).must_equal ['key', 2, 0, [20]]
       end
     end
     describe 'handles the page/cut' do
@@ -35,32 +36,34 @@ require 'pagy/keyset_for_ui'
                                      limit:   10)
         _(pagy.instance_variable_get(:@cut)).must_be_nil
         _(pagy.next).must_equal 2
+        _(pagy.update).must_equal [nil, 1, 0, [10]]
       end
       it 'handles the page/cut for the second page' do
         pagy = Pagy::KeysetForUI.new(model.order(:id),
-                                     cutoffs: [2, [10]],
+                                     cutoffs: ['key', 2, [10]],
                                      limit:   10,
                                      page:    2)
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal 3
-        _(pagy.cutoff).must_equal [20]
+        _(pagy.update).must_equal ['key', 2, 0, [20]]
       end
       it 'handles the page/cut for the last page' do
         pagy = Pagy::KeysetForUI.new(model.order(:id),
-                                     cutoffs:  [5, [40]],
+                                     cutoffs:  ['key', 5, [40]],
                                      limit:   10,
                                      page:    5)
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 40)
         _(pagy.records.first.id).must_equal 41
         _(pagy.next).must_be_nil
+        _(pagy.update).must_be_nil
       end
     end
     describe 'handles overflow' do
       it 'raises OverflowError' do
         _ do
           Pagy::KeysetForUI.new(model.order(:id),
-                                cutoffs: [2, [20]],
+                                cutoffs: ['key', 2, [20]],
                                 limit:   10,
                                 page:    3)
         end.must_raise Pagy::OverflowError
@@ -69,29 +72,30 @@ require 'pagy/keyset_for_ui'
     describe 'handles the jumping back' do
       it 'handles the assign_cut_args jump back to the first page' do
         pagy = Pagy::KeysetForUI.new(model.order(:id),
-                                     cutoffs: [3, nil, [10]], # last visited 2
+                                     cutoffs: ['key', 3, nil, [10]], # last visited 2
                                      page:  1,
                                      limit: 10)
         _(pagy.instance_variable_get(:@prev_cutoff)).must_be_nil
         _(pagy.next).must_equal 2
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal(cutoff_id: 10)
+        _(pagy.update).must_be_nil
       end
       it 'handles the assign_cut_args jump back to the second page' do
         pagy = Pagy::KeysetForUI.new(model.order(:id),
-                                     cutoffs: [3, [20], [30]],
+                                     cutoffs: ['key', 3, [20], [30]],
                                      page:    2,
                                      limit:   10)
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal({ :id => 20, :cutoff_id => 30 })
         _(pagy.records.first.id).must_equal 21
         _(pagy.next).must_equal 3
-        _(pagy.cutoff).must_equal [30]
+        _(pagy.instance_variable_get(:@cutoff)).must_equal [30]
+        _(pagy.update).must_be_nil
       end
     end
     describe 'other requirements' do
       it 'adds the required columns to the selected values' do
         set  = model.order(:animal, :name, :id).select(:name)
-        pagy = Pagy::KeysetForUI.new(set,
-                                     limit:   10)
+        pagy = Pagy::KeysetForUI.new(set, limit: 10)
         pagy.records
         set = pagy.instance_variable_get(:@set)
         _((model == Pet ? set.select_values : set.opts[:select]).sort).must_equal %i[animal id name]
@@ -117,12 +121,13 @@ require 'pagy/keyset_for_ui'
           pages  = slurp_by_page do |page|
             page ||= 1  # required only because page could be nil, and we want to pass the cutoff_list index
             pagy  = Pagy::KeysetForUI.new(set,
-                                          cutoffs: [cutoff_list.size,
+                                          cutoffs: ['key',
+                                                    cutoff_list.size,
                                                     cutoff_list[page - 1],
                                                     cutoff_list[page]],
                                           page:,
                                           limit: 9)
-            cutoff_list << pagy.cutoff
+            cutoff_list << pagy.instance_variable_get(:@cutoff)
             { records: pagy.records, page: pagy.next }
           end
           collection = set.to_a

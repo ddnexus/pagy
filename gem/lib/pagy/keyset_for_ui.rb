@@ -4,8 +4,7 @@
 require_relative 'keyset'
 
 class Pagy # :nodoc:
-  # Use keyset pagination with numeric pages
-  # supporting pagy_nav and other frontend helpers.
+  # Use keyset pagination with numeric pages supporting pagy_nav and other frontend helpers.
   class KeysetForUI < Keyset
     class ActiveRecord < KeysetForUI
       include ActiveRecordAdapter
@@ -19,7 +18,7 @@ class Pagy # :nodoc:
     CUTOFF_PREFIX = 'cutoff_' # Prefix for cutoff_args
 
     include SharedUIMethods
-    attr_reader :cutoff
+    attr_reader :update
 
     # Finalize the instance variables needed for the UI
     def initialize(set, **vars)
@@ -30,9 +29,10 @@ class Pagy # :nodoc:
       @in   = @records.size
     end
 
-    # Get the cutoff from the cache
+    # Get the cutoff from the client
     def assign_cutoffs
-      @last, @prev_cutoff, @cutoff = @vars[:cutoffs] || [1]
+      # @key, is from the client and sent back as-is in order to id the requests of the same set
+      @key, @last, @prev_cutoff, @cutoff = @vars[:cutoffs] || [nil, 1]
       raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
     end
 
@@ -105,7 +105,7 @@ class Pagy # :nodoc:
 
     # Add the default variables required by the Frontend
     def default
-      { **super, **DEFAULT.slice(:ends, :page, :size, :cache_key_param) }
+      { **super, **DEFAULT.slice(:ends, :page, :size, :cutoffs_param) }
     end
 
     # Remove the LIMIT if @cutoff
@@ -118,7 +118,7 @@ class Pagy # :nodoc:
       @set.limit(nil).to_a
     end
 
-    # Return the next page number, and cache the cutoff if it's missing from the cache (only last known page)
+    # Return the next page number, prepare the @update for the client when it's new page/cutoff
     def next
       records
       return if !@more || (@vars[:max_pages] && @page >= @vars[:max_pages])
@@ -126,7 +126,8 @@ class Pagy # :nodoc:
       @next ||= (@page + 1).tap do
                   unless @cutoff
                     @cutoff = keyset_attributes_from(@records.last).values
-                    @last  += 1
+                    @update = [@key, [@last, 0, @cutoff]]   # key and splice arguments for the client cutoffs
+                    @last  += 1                           # reflect the added cutoff
                   end
                 end
     end

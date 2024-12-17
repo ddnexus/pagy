@@ -30,9 +30,16 @@ class Pagy # :nodoc:
   # Add the page_pram to the pagy_data
   module JSToolsOverride
     def pagy_data(pagy, *args)
-      args << pagy.vars.slice(:page_param) if pagy.vars[:trim_extra]
+      if pagy.vars[:trim_extra]
+        opts = args.last
+        if opts.is_a?(::Hash)
+          opts[:page_param] = pagy.vars[:page_param]
+        else
+          args << pagy.vars.slice(:page_param)
+        end
+      end
       super
     end
   end
-  JSTools.prepend JSToolsOverride
+  Frontend.prepend JSToolsOverride
 end

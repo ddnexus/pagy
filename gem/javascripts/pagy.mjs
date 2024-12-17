@@ -18,12 +18,15 @@ const Pagy = (() => {
         let filled;
         if (typeof item === "number") {
           filled = fillIn(tokens.a, item.toString(), label);
+          if (typeof opts?.page_param === "string" && item === 1) {
+            filled = trim(filled, opts.page_param);
+          }
         } else if (item === "gap") {
           filled = tokens.gap;
         } else {
           filled = fillIn(tokens.current, item, label);
         }
-        html += typeof opts?.page_param === "string" && item == 1 ? trim(filled, opts.page_param) : filled;
+        html += filled;
       });
       html += tokens.after;
       el.innerHTML = "";

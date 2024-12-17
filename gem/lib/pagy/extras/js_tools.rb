@@ -50,14 +50,12 @@ class Pagy # :nodoc:
     module FrontendAddOn
       if defined?(::Oj)
         # Return a data tag with the base64 encoded JSON-serialized args generated with the faster oj gem
-        # Base64 encoded JSON is smaller than HTML escaped JSON
         def pagy_data(_pagy, *args)
           %(data-pagy="#{B64.encode(Oj.dump(args, mode: :strict))}")
         end
       else
         require 'json'
         # Return a data tag with the base64 encoded JSON-serialized args generated with the slower to_json
-        # Base64 encoded JSON is smaller than HTML escaped JSON
         def pagy_data(_pagy, *args)
           %(data-pagy="#{B64.encode(args.to_json)}")
         end

@@ -2,11 +2,13 @@ type NavArgs      = readonly [Tokens, Sequels, null | LabelSequels, OptionArgs?]
 type ComboArgs    = readonly [string, OptionArgs?]
 type SelectorArgs = readonly [number, string, OptionArgs?]
 type JsonArgs     = ['nav', NavArgs] | ['combo', ComboArgs] | ['selector', SelectorArgs]
-type Cutoffs      = readonly [string | number]
+type Cutoff       = readonly [string | number | boolean]
+type SpliceArgs   = [number, number, Cutoff]
+type Update       = [string, SpliceArgs]
 
 interface OptionArgs {
   readonly page_param?:string
-  readonly cutoffs?:Cutoffs
+  readonly update?:Update
 }
 
 interface Tokens {
@@ -27,6 +29,7 @@ const Pagy = (() => {
                                        .forEach(el => el.pagyRender())));
   // Init the *_nav_js helpers
   const initNav = (el:NavElement, [tokens, sequels, labelSequels, opts]:NavArgs) => {
+    if (Array.isArray(opts?.update)) { update(opts.update) }
     const container = el.parentElement ?? el;
     const widths    = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
     let lastWidth   = -1;
@@ -35,7 +38,7 @@ const Pagy = (() => {
     (el.pagyRender = function () {
       const width = widths.find(w => w < container.clientWidth) || 0;
       if (width === lastWidth) { return } // no change: abort
-      let html     = tokens.before;  // already trimmed in html
+      let html     = tokens.before;       // already trimmed by ruby in html
       const series = sequels[width.toString()];
       const labels = labelSequels?.[width.toString()] ?? series.map(l => l.toString());
       series.forEach((item, i) => {
@@ -43,19 +46,29 @@ const Pagy = (() => {
         let filled;
         if (typeof item === "number") {
           filled = fillIn(tokens.a, item.toString(), label);
+          if (typeof opts?.cutoffs === "string") { filled = filled.replace(/__pagy_cutoffs__/g, cutoffsFor(item)) }
+          if (typeof opts?.page_param === "string" && item === 1) { filled = trim(filled, opts.page_param) }
         } else if (item === "gap") {
           filled = tokens.gap;
         } else { // active page
           filled = fillIn(tokens.current, item, label);
         }
-        html += (typeof opts?.page_param === "string" && item == 1) ? trim(filled, opts.page_param) : filled;
+        html += filled;
       });
-      html        += tokens.after;
+      html        += tokens.after;   // already trimmed by ruby in html
       el.innerHTML = "";
       el.insertAdjacentHTML("afterbegin", html);
       lastWidth = width;
     })();
     if (el.classList.contains("pagy-rjs")) { rjsObserver.observe(container) }
+  };
+
+  const update = ([key, spliceArgs]:Update) => {
+
+  };
+
+  const cutoffsFor = (page:number) => {
+    return page.toString('base64url');
   };
 
   // Init the *_combo_nav_js helpers
