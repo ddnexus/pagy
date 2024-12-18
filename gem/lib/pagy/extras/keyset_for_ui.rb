@@ -6,7 +6,6 @@ require_relative 'js_tools'
 
 class Pagy # :nodoc:
   DEFAULT[:cutoffs_param] = :cutoffs
-  CUTOFFS_TOKEN           = '__pagy_cutoffs__'
 
   # Add keyset UI Compatible methods
   module KeysetForUIExtra
@@ -17,7 +16,7 @@ class Pagy # :nodoc:
       vars[:page]          ||= pagy_get_page(vars) # numeric page
       vars[:limit]         ||= pagy_get_limit(vars)
       vars[:cutoffs_param] ||= DEFAULT[:cutoffs_param]
-      vars[:params]        ||= { vars[:cutoffs_param] => CUTOFFS_TOKEN } # replaced on the client side
+      vars[:params]        ||= ->(params){ params.delete(vars[:cutoffs_param]) }
       vars[:cutoffs]       ||= begin
                                  cutoffs = params[vars[:cutoffs_param]]
                                  JSON.parse(B64.urlsafe_decode(cutoffs)) if cutoffs
@@ -35,8 +34,10 @@ class Pagy # :nodoc:
         opts = args.last
         if opts.is_a?(::Hash)
           opts[:update] = pagy.update
+          opts[:cutoffs_param] = pagy.vars[:cutoffs_param]
         else
-          args << { update: pagy.update }
+          args << { update: pagy.update,
+                    cutoffs_param: pagy.vars[:cutoffs_param] }
         end
       end
       super

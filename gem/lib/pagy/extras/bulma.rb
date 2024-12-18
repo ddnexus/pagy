@@ -10,10 +10,12 @@ class Pagy # :nodoc:
     # Pagination for bulma: it returns the html with the series of links to the pages
     def pagy_bulma_nav(pagy, id: nil, classes: 'pagy-bulma nav pagination is-centered',
                        aria_label: nil, **vars)
-      id = %( id="#{id}") if id
-      a  = pagy_anchor(pagy, **vars)
+      id   = %( id="#{id}") if id
+      a    = pagy_anchor(pagy, **vars)
+      data = pagy_data(pagy, :nav)
+      data = %( #{data}) if data
 
-      html = %(<nav#{id} class="#{classes}" #{nav_aria_label(pagy, aria_label:)}>)
+      html = %(<nav#{id} class="#{classes}" #{nav_aria_label(pagy, aria_label:)}#{data}>)
       html << bulma_prev_next_html(pagy, a)
       html << %(<ul class="pagination-list">)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -46,7 +48,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}#{classes}" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :nav, tokens, sequels, pagy.label_sequels(sequels))
+          pagy_data(pagy, :nav_js, tokens, sequels, pagy.label_sequels(sequels))
         }></nav>)
     end
 
@@ -64,7 +66,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="#{classes}" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN, **vars))
+          pagy_data(pagy, :combo_js, pagy_url_for(pagy, PAGE_TOKEN, **vars))
         }>#{
           bulma_prev_next_html(pagy, a)
         }<ul class="pagination-list"><li class="pagination-link"><label>#{

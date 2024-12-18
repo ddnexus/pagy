@@ -1,13 +1,15 @@
-type NavArgs      = readonly [Tokens, Sequels, null | LabelSequels, OptionArgs?]
-type ComboArgs    = readonly [string, OptionArgs?]
-type SelectorArgs = readonly [number, string, OptionArgs?]
-type JsonArgs     = ['nav', NavArgs] | ['combo', ComboArgs] | ['selector', SelectorArgs]
-type Cutoff       = readonly [string | number | boolean]
-type SpliceArgs   = [number, number, Cutoff]
-type Update       = [string, SpliceArgs]
+type NavArgs        = readonly [OptionArgs?]
+type NavJsArgs      = readonly [Tokens, Sequels, null | LabelSequels, OptionArgs?]
+type ComboJsArgs    = readonly [string, OptionArgs?]
+type SelectorJsArgs = readonly [number, string, OptionArgs?]
+type JsonArgs       = ['nav', NavArgs] | ['nav_js', NavJsArgs] | ['combo_js', ComboJsArgs] | ['selector_js', SelectorJsArgs]
+type Cutoff         = readonly [string | number | boolean]
+type SpliceArgs     = [number, number, Cutoff]
+type Update         = [string, SpliceArgs]
 
 interface OptionArgs {
   readonly page_param?:string
+  readonly cutoffs_param?:string
   readonly update?:Update
 }
 
@@ -20,15 +22,20 @@ interface Tokens {
 }
 interface Sequels {readonly [width:string]:(string | number)[]}
 interface LabelSequels {readonly [width:string]:string[]}
-interface NavElement extends Element {pagyRender():void}
+interface NavJsElement extends Element {pagyRender():void}
 
 const Pagy = (() => {
   // The observer instance for responsive navs
   const rjsObserver = new ResizeObserver(
-      entries => entries.forEach(e => e.target.querySelectorAll<NavElement>(".pagy-rjs")
+      entries => entries.forEach(e => e.target.querySelectorAll<NavJsElement>(".pagy-rjs")
                                        .forEach(el => el.pagyRender())));
+
+  // const initNav = (el:NavElement, [opts]:NavArgs) => {
+  //
+  // }
+
   // Init the *_nav_js helpers
-  const initNav = (el:NavElement, [tokens, sequels, labelSequels, opts]:NavArgs) => {
+  const initNavJs = (el:NavJsElement, [tokens, sequels, labelSequels, opts]:NavJsArgs) => {
     if (Array.isArray(opts?.update)) { update(opts.update) }
     const container = el.parentElement ?? el;
     const widths    = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
@@ -46,8 +53,10 @@ const Pagy = (() => {
         let filled;
         if (typeof item === "number") {
           filled = fillIn(tokens.a, item.toString(), label);
-          if (typeof opts?.cutoffs === "string") { filled = filled.replace(/__pagy_cutoffs__/g, cutoffsFor(item)) }
           if (typeof opts?.page_param === "string" && item === 1) { filled = trim(filled, opts.page_param) }
+          if (typeof opts?.cutoffs_param === "string") {
+            cutoffsFor(item, opts.cutoffs_param)
+          }
         } else if (item === "gap") {
           filled = tokens.gap;
         } else { // active page
@@ -63,20 +72,20 @@ const Pagy = (() => {
     if (el.classList.contains("pagy-rjs")) { rjsObserver.observe(container) }
   };
 
-  const update = ([key, spliceArgs]:Update) => {
-
-  };
-
-  const cutoffsFor = (page:number) => {
-    return page.toString('base64url');
-  };
+  // const update = ([key, spliceArgs]:Update) => {
+  //
+  // };
+  //
+  // const cutoffsFor = (page:number, param:string) => {
+  //   return page.toString('base64url');
+  // };
 
   // Init the *_combo_nav_js helpers
-  const initCombo = (el:Element, [url_token, opts]:ComboArgs) =>
+  const initComboJs = (el:Element, [url_token, opts]:ComboJsArgs) =>
       initInput(el, inputValue => [inputValue, url_token.replace(/__pagy_page__/, inputValue)], opts);
 
   // Init the limit_selector_js helper
-  const initSelector = (el:Element, [from, url_token, opts]:SelectorArgs) => {
+  const initSelectorJs = (el:Element, [from, url_token, opts]:SelectorJsArgs) => {
     initInput(el, inputValue => {
       const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
       const url  = url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
@@ -121,16 +130,19 @@ const Pagy = (() => {
       const elements = target.querySelectorAll("[data-pagy]");
       for (const el of elements) {
         try {
-          const uint8array         = Uint8Array.from(atob(el.getAttribute("data-pagy") as string), c => c.charCodeAt(0));
-          const [keyword, ...args] = JSON.parse((new TextDecoder()).decode(uint8array)) as JsonArgs; // base64-utf8 -> JSON -> Array
-          if (keyword === "nav") {
-            initNav(el as NavElement, args as unknown as NavArgs);
-          } else if (keyword === "combo") {
-            initCombo(el, args as unknown as ComboArgs);
-          } else if (keyword === "selector") {
-            initSelector(el, args as unknown as SelectorArgs);
+          const uint8array      = Uint8Array.from(atob(el.getAttribute("data-pagy") as string), c => c.charCodeAt(0));
+          const [kind, ...args] = JSON.parse((new TextDecoder()).decode(uint8array)) as JsonArgs; // base64-utf8 -> JSON -> Array
+          // if (kind === "nav") {
+          //   initNav(el, args as unknown as NavArgs);
+          // } else
+            if (kind === "nav_js") {
+            initNavJs(el as NavJsElement, args as unknown as NavJsArgs);
+          } else if (kind === "combo_js") {
+            initComboJs(el, args as unknown as ComboJsArgs);
+          } else if (kind === "selector_js") {
+            initSelectorJs(el, args as unknown as SelectorJsArgs);
           } else {
-            console.warn("Skipped Pagy.init() for: %o\nUnknown keyword '%s'", el, keyword);
+            console.warn("Skipped Pagy.init() for: %o\nUnknown kind '%s'", el, kind);
           }
         } catch (err) { console.warn("Skipped Pagy.init() for: %o\n%s", el, err) }
       }

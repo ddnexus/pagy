@@ -1,6 +1,9 @@
 const Pagy = (() => {
   const rjsObserver = new ResizeObserver((entries) => entries.forEach((e) => e.target.querySelectorAll(".pagy-rjs").forEach((el) => el.pagyRender())));
-  const initNav = (el, [tokens, sequels, labelSequels, opts]) => {
+  const initNavJs = (el, [tokens, sequels, labelSequels, opts]) => {
+    if (Array.isArray(opts?.update)) {
+      update(opts.update);
+    }
     const container = el.parentElement ?? el;
     const widths = Object.keys(sequels).map((w) => parseInt(w)).sort((a, b) => b - a);
     let lastWidth = -1;
@@ -21,6 +24,9 @@ const Pagy = (() => {
           if (typeof opts?.page_param === "string" && item === 1) {
             filled = trim(filled, opts.page_param);
           }
+          if (typeof opts?.cutoffs_param === "string") {
+            cutoffsFor(item, opts.cutoffs_param);
+          }
         } else if (item === "gap") {
           filled = tokens.gap;
         } else {
@@ -37,8 +43,8 @@ const Pagy = (() => {
       rjsObserver.observe(container);
     }
   };
-  const initCombo = (el, [url_token, opts]) => initInput(el, (inputValue) => [inputValue, url_token.replace(/__pagy_page__/, inputValue)], opts);
-  const initSelector = (el, [from, url_token, opts]) => {
+  const initComboJs = (el, [url_token, opts]) => initInput(el, (inputValue) => [inputValue, url_token.replace(/__pagy_page__/, inputValue)], opts);
+  const initSelectorJs = (el, [from, url_token, opts]) => {
     initInput(el, (inputValue) => {
       const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
       const url = url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
@@ -83,15 +89,15 @@ const Pagy = (() => {
       for (const el of elements) {
         try {
           const uint8array = Uint8Array.from(atob(el.getAttribute("data-pagy")), (c) => c.charCodeAt(0));
-          const [keyword, ...args] = JSON.parse(new TextDecoder().decode(uint8array));
-          if (keyword === "nav") {
-            initNav(el, args);
-          } else if (keyword === "combo") {
-            initCombo(el, args);
-          } else if (keyword === "selector") {
-            initSelector(el, args);
+          const [kind, ...args] = JSON.parse(new TextDecoder().decode(uint8array));
+          if (kind === "nav_js") {
+            initNavJs(el, args);
+          } else if (kind === "combo_js") {
+            initComboJs(el, args);
+          } else if (kind === "selector_js") {
+            initSelectorJs(el, args);
           } else {
-            console.warn("Skipped Pagy.init() for: %o\nUnknown keyword '%s'", el, keyword);
+            console.warn("Skipped Pagy.init() for: %o\nUnknown kind '%s'", el, kind);
           }
         } catch (err) {
           console.warn("Skipped Pagy.init() for: %o\n%s", el, err);
