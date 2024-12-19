@@ -28,7 +28,7 @@ class Pagy # :nodoc:
   Frontend.prepend TrimExtra
 
   # Add the page_pram to the pagy_data
-  module JSToolsOverride
+  module DataHelperOverride
     def pagy_data(pagy, *args)
       if pagy.vars[:trim_extra]
         opts = args.last
@@ -41,5 +41,5 @@ class Pagy # :nodoc:
       super
     end
   end
-  Frontend.prepend JSToolsOverride
+  Frontend.prepend DataHelperOverride
 end

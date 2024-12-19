@@ -16,7 +16,7 @@ class Pagy # :nodoc:
       vars[:page]          ||= pagy_get_page(vars) # numeric page
       vars[:limit]         ||= pagy_get_limit(vars)
       vars[:cutoffs_param] ||= DEFAULT[:cutoffs_param]
-      vars[:params]        ||= ->(params){ params.delete(vars[:cutoffs_param]) }
+      vars[:params]        ||= ->(params) { params.tap { |p| p.delete(vars[:cutoffs_param].to_s) } }
       vars[:cutoffs]       ||= begin
                                  cutoffs = params[vars[:cutoffs_param]]
                                  JSON.parse(B64.urlsafe_decode(cutoffs)) if cutoffs
@@ -28,20 +28,22 @@ class Pagy # :nodoc:
   Backend.prepend KeysetForUIExtra
 
   # Add the update to the pagy_data
-  module JSToolsOverride
+  module DataHelperOverride
     def pagy_data(pagy, *args)
-      if pagy.is_a?(::Pagy::KeysetForUi)
+      if pagy.is_a?(::Pagy::KeysetForUI)
         opts = args.last
         if opts.is_a?(::Hash)
-          opts[:update] = pagy.update
+          opts[:update]        = pagy.update
           opts[:cutoffs_param] = pagy.vars[:cutoffs_param]
+          opts[:page_param]    = pagy.vars[:page_param]
         else
-          args << { update: pagy.update,
-                    cutoffs_param: pagy.vars[:cutoffs_param] }
+          args << { update:        pagy.update,
+                    cutoffs_param: pagy.vars[:cutoffs_param],
+                    page_param:    pagy.vars[:page_param] }
         end
       end
       super
     end
   end
-  Frontend.prepend JSToolsOverride
+  Frontend.prepend DataHelperOverride
 end

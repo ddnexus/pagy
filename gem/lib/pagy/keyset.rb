@@ -122,7 +122,7 @@ class Pagy
     # Derive the cutoff from the last record
     def derive_cutoff
       attr = keyset_attributes_from(@records.last)
-      json = @vars[:jsonify_keyset_attributes]&.(attr) || attr.values.to_json
+      json = (@vars[:serialize_keyset_values]&.(attr) || attr).values.to_json
       B64.urlsafe_encode(json)
     end
 

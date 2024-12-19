@@ -19,7 +19,7 @@ describe 'pagy/extras/keyset_for_ui' do
         _(pagy).must_be_kind_of Pagy::KeysetForUI
         _(records.size).must_equal 10
         _(pagy.next).must_equal 2
-        _(pagy.update).must_equal [nil, 1, 0, [10]]
+        _(pagy.update).must_equal [nil, [1, 0, [10]]]
       end
       it 'works for page 2' do
         app           = MockApp.new(params: {cutoffs: Pagy::B64.urlsafe_encode(['key', 2, [10]].to_json)})
@@ -32,7 +32,7 @@ describe 'pagy/extras/keyset_for_ui' do
         _(records.size).must_equal 10
         _(records.first.id).must_equal 11
         _(pagy.next).must_equal 3
-        _(pagy.update).must_equal ['key', 2, 0, [20]]
+        _(pagy.update).must_equal ['key', [2, 0, [20]]]
       end
       it 'works for page 5' do
         app           = MockApp.new(params: {cutoffs: Pagy::B64.urlsafe_encode(['key', 5, [40]].to_json)})
@@ -45,7 +45,7 @@ describe 'pagy/extras/keyset_for_ui' do
         _(records.size).must_equal 10
         _(records.first.id).must_equal 41
         _(pagy.next).must_be_nil
-        _(pagy.update).must_be_nil
+        _(pagy.update).must_equal ['key']
       end
     end
   end

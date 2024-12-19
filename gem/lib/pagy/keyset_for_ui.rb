@@ -32,7 +32,8 @@ class Pagy # :nodoc:
     # Get the cutoff from the client
     def assign_cutoffs
       # @key, is from the client and sent back as-is in order to id the requests of the same set
-      @key, @last, @prev_cutoff, @cutoff = @vars[:cutoffs] || [nil, 1]
+      key, @last, @prev_cutoff, @cutoff = @vars[:cutoffs] || [nil, 1]
+      @update = [key]
       raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
     end
 
@@ -108,6 +109,12 @@ class Pagy # :nodoc:
       { **super, **DEFAULT.slice(:ends, :page, :size, :cutoffs_param) }
     end
 
+    # Derive the cutoff from the last record
+    def derive_cutoff
+      attr = keyset_attributes_from(@records.last)
+      (@vars[:serialize_keyset_values]&.(attr) || attr).values
+    end
+
     # Remove the LIMIT if @cutoff
     def fetch_records
       return super unless @cutoff # super for the last known page
@@ -125,9 +132,9 @@ class Pagy # :nodoc:
 
       @next ||= (@page + 1).tap do
                   unless @cutoff
-                    @cutoff = keyset_attributes_from(@records.last).values
-                    @update = [@key, [@last, 0, @cutoff]]   # key and splice arguments for the client cutoffs
-                    @last  += 1                           # reflect the added cutoff
+                    @cutoff = derive_cutoff
+                    @update << [@last, 0, @cutoff]   # splice arguments for the client cutoffs
+                    @last += 1                        # reflect the added cutoff
                   end
                 end
     end

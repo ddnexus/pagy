@@ -5,13 +5,6 @@ class Pagy # :nodoc:
   module B64
     module_function
 
-    CHARS = [*'0'..'9', *'a'..'z', *'A'..'Z', '_', '-'].freeze
-
-    def convert(int)
-      digits = int.digits(64).reverse
-      digits.map { |i| CHARS[i] }.join
-    end
-
     def encode(bin)
       [bin].pack('m0')
     end

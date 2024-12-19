@@ -44,6 +44,17 @@ class PagyKeyset < Sinatra::Base
   enable :sessions
 
   include Pagy::Backend
+
+  get('/javascripts/:file') do
+    format = params[:file].split('.').last
+    if format == 'js'
+      content_type 'application/javascript'
+    elsif format == 'map'
+      content_type 'application/json'
+    end
+    send_file Pagy.root.join('javascripts', params[:file])
+  end
+
   # Root route/action
   get '/' do
     Time.zone = 'UTC'
@@ -69,7 +80,11 @@ class PagyKeyset < Sinatra::Base
       <html>
       <head>
          <title>Pagy Keyset For UI App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="javascripts/pagy.min.js"></script>
+         <script>
+          window.addEventListener("load", Pagy.init);
+        </script>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;

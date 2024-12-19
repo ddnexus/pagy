@@ -34,13 +34,14 @@ require 'pagy/keyset'
         _(records.size).must_equal 10
         _(records.first.id).must_equal 13
       end
-      it 'uses :jsonify_keyset_attributes' do
-        pagy = Pagy::Keyset.new(model.order(:id),
-                                page:                      "WzEwXQ",
-                                limit:                     10,
-                                jsonify_keyset_attributes: ->(attr) { attr.values.to_json })
-        _(pagy.next).must_equal("WzIwXQ")
-        _(pagy.instance_variable_get(:@cutoff_args)).must_equal({ id: 10 })
+      it 'use the :serialize_keyset_values' do
+        pagy    = Pagy::Keyset.new(model.order(:animal, :name, :id),
+                                   page:                    "WyJjYXQiLCJFbGxhIiwxOF0",
+                                   limit:                   10,
+                                   serialize_keyset_values: ->(attr) { attr.tap { |a| a[:name] = a[name].to_s } })
+        records = pagy.records
+        _(records.size).must_equal 10
+        _(records.first.id).must_equal 13
       end
     end
     describe '#extract_keyset' do
@@ -122,10 +123,10 @@ require 'pagy/keyset'
        model.order(:animal, :name, :id),
        mixed_set].each_with_index do |set, i|
         it "pulls all the records in set#{i} without repetions" do
-          pages = slurp_by_page do |page|
-                    pagy = Pagy::Keyset.new(set, page:, limit: 9)
-                    { records: pagy.records, page: pagy.next }
-                  end
+          pages      = slurp_by_page do |page|
+            pagy = Pagy::Keyset.new(set, page:, limit: 9)
+            { records: pagy.records, page: pagy.next }
+          end
           collection = set.to_a
           _(collection.size).must_equal 50
           _(pages.flatten).must_equal collection

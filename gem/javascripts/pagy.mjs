@@ -1,9 +1,57 @@
 const Pagy = (() => {
   const rjsObserver = new ResizeObserver((entries) => entries.forEach((e) => e.target.querySelectorAll(".pagy-rjs").forEach((el) => el.pagyRender())));
-  const initNavJs = (el, [tokens, sequels, labelSequels, opts]) => {
-    if (Array.isArray(opts?.update)) {
-      update(opts.update);
+  const b64 = {
+    encode: (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))),
+    toSafe: (unsafe) => unsafe.replace(/=/g, "").replace(/[+/]/g, (match) => match == "+" ? "-" : "_"),
+    safeEncode: (unicode) => b64.toSafe(b64.encode(unicode)),
+    decode: (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)))
+  };
+  const initNav = (el, [opts]) => {
+    initKeysetForUI(el, opts);
+  };
+  const initKeysetForUI = (el, opts) => {
+    if (opts === undefined || !Array.isArray(opts.update)) {
+      return;
     }
+    if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
+      console.warn("Skipped Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
+      return;
+    }
+    const [k, spliceArgs] = opts.update;
+    let key = k;
+    if (key === null) {
+      let maxKey = sessionStorage.getItem("maxKey");
+      if (maxKey === null) {
+        maxKey = "0";
+      }
+      const n = parseInt(maxKey) + 1;
+      sessionStorage.setItem("maxKey", n.toString());
+      key = n.toString(36);
+    }
+    const c = sessionStorage.getItem(key);
+    const cutoffs = c === null ? [null] : JSON.parse(c);
+    if (spliceArgs !== undefined) {
+      cutoffs.splice(...spliceArgs);
+      sessionStorage.setItem(key, JSON.stringify(cutoffs));
+    }
+    const cutoff_name = opts.cutoffs_param;
+    const page_name = opts.page_param;
+    el.addEventListener("click", (e) => {
+      const a = e.target;
+      if (a && a.nodeName == "A" && a.href !== undefined) {
+        const url = a.href;
+        const re = new RegExp(`(?<=\\?.*)${page_name}=([\\d]+)`);
+        const p = url.match(re)?.[1];
+        if (typeof p !== "string") {
+          return;
+        }
+        const page = parseInt(p);
+        const value = b64.safeEncode(JSON.stringify([key, cutoffs.length, cutoffs[page - 1], cutoffs[page]]));
+        a.href = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
+      }
+    });
+  };
+  const initNavJs = (el, [tokens, sequels, labelSequels, opts]) => {
     const container = el.parentElement ?? el;
     const widths = Object.keys(sequels).map((w) => parseInt(w)).sort((a, b) => b - a);
     let lastWidth = -1;
@@ -23,9 +71,6 @@ const Pagy = (() => {
           filled = fillIn(tokens.a, item.toString(), label);
           if (typeof opts?.page_param === "string" && item === 1) {
             filled = trim(filled, opts.page_param);
-          }
-          if (typeof opts?.cutoffs_param === "string") {
-            cutoffsFor(item, opts.cutoffs_param);
           }
         } else if (item === "gap") {
           filled = tokens.gap;
@@ -88,19 +133,20 @@ const Pagy = (() => {
       const elements = target.querySelectorAll("[data-pagy]");
       for (const el of elements) {
         try {
-          const uint8array = Uint8Array.from(atob(el.getAttribute("data-pagy")), (c) => c.charCodeAt(0));
-          const [kind, ...args] = JSON.parse(new TextDecoder().decode(uint8array));
-          if (kind === "nav_js") {
+          const [keyword, ...args] = JSON.parse(b64.decode(el.getAttribute("data-pagy")));
+          if (keyword === "nav") {
+            initNav(el, args);
+          } else if (keyword === "nav_js") {
             initNavJs(el, args);
-          } else if (kind === "combo_js") {
+          } else if (keyword === "combo_js") {
             initComboJs(el, args);
-          } else if (kind === "selector_js") {
+          } else if (keyword === "selector_js") {
             initSelectorJs(el, args);
           } else {
-            console.warn("Skipped Pagy.init() for: %o\nUnknown kind '%s'", el, kind);
+            console.warn("Skipped Pagy.init(): %o\nUnknown keyword '%s'", el, keyword);
           }
         } catch (err) {
-          console.warn("Skipped Pagy.init() for: %o\n%s", el, err);
+          console.warn("Skipped Pagy.init(): %o\n%s", el, err);
         }
       }
     }
