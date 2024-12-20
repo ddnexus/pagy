@@ -31,11 +31,16 @@ class Pagy # :nodoc:
 
     # Get the cutoff from the client
     def assign_cutoffs
-      # @key, is from the client and sent back as-is in order to id the requests of the same set
-      key, @last, @prev_cutoff, @cutoff = @vars[:cutoffs] || [nil, 1]
+      beginning_page = [nil, 1, nil, nil]
+      # key, is from the client and sent back as-is in order to id the requests of the same set
+      key, @last, @prev_cutoff, @cutoff = @vars[:cutoffs] || beginning_page
+      if @page > @last
+        key, @last, @prev_cutoff, @cutoff = beginning_page
+        @page = 1
+      end
       @update = [key]
-      raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
-    end
+      # raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
+      end
 
     # Assign different args to support the AFTER_CUTOFF SQL if @cutoff
     def assign_cutoff_args
@@ -133,8 +138,8 @@ class Pagy # :nodoc:
       @next ||= (@page + 1).tap do
                   unless @cutoff
                     @cutoff = derive_cutoff
-                    @update << [@last, 0, @cutoff]   # splice arguments for the client cutoffs
-                    @last += 1                        # reflect the added cutoff
+                    @update << [:add, @last, @cutoff]   # operation arguments for the client cutoffs
+                    @last += 1                          # reflect the added cutoff
                   end
                 end
     end

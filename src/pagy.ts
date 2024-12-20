@@ -4,16 +4,20 @@ type ComboJsArgs = readonly [string, OptionArgs?]
 type SelectorJsArgs = readonly [number, string, OptionArgs?]
 type InitArgs = ["nav", NavArgs] | ["nav_js", NavJsArgs] | ["combo_js", ComboJsArgs] | ["selector_js", SelectorJsArgs]
 type Cutoff = readonly [string | number | boolean]
-type Cutoffs = [null, ...Cutoff[]]
 type CutoffsParam = [string, number, null | Cutoff, Cutoff | undefined]
-type SpliceArgs = [number, number, Cutoff] | undefined
-type Update = [string, SpliceArgs]
+type UpdateArgs = [string, number, Cutoff] | undefined
+type Update = [string, UpdateArgs]
+
+interface Cutoffs {
+  [key:string]:Cutoff
+}
 
 interface OptionArgs {
   readonly page_param?:string
   readonly cutoffs_param?:string
   readonly update?:Update
 }
+
 
 interface Tokens {
   readonly before:string
@@ -37,11 +41,11 @@ const Pagy = (() => {
 
   const b64 = {
     encode:     (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode))),
-    toSafe:     (unsafe:string)  => unsafe.replace(/=/g, "").replace(/[+/]/g, (match) => match == "+" ? "-" : "_"),
+    toSafe:      (unsafe:string) => unsafe.replace(/=/g, "").replace(/[+/]/g, (match) => match == "+" ? "-" : "_"),
     safeEncode: (unicode:string) => b64.toSafe(b64.encode(unicode)),
-    decode:     (base64:string)  => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0))),
-    // toUnsafe:   (safe:string)    => safe.replace(/[-_]/g, (match) => match == "-" ? "+" : "/"),
-    // safeDecode: (base64:string)  => b64.decode(b64.toUnsafe(base64))
+    decode:      (base64:string) => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0))),
+    // toUnsafe:      (safe:string) => safe.replace(/[-_]/g, (match) => match == "-" ? "+" : "/"),
+    // safeDecode:  (base64:string) => b64.decode(b64.toUnsafe(base64))
   };
 
   // Init the *_nav helpers
@@ -50,33 +54,34 @@ const Pagy = (() => {
   };
 
   // Init the keyset features
-  const initKeysetForUI_ = (el:Element, opts:OptionArgs | undefined) => {
+  const initKeysetForUI = (el:Element, opts:OptionArgs | undefined) => {
     if (opts === undefined || !Array.isArray(opts.update)) { return } // not enabled
     if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
       console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
       return;
     }
+    const cutoffs_name = opts.cutoffs_param;
+    const page_name    = opts.page_param;
+    // Remove the cutoffs param from the address bar
+    history.replaceState(null, null, location.href.replace(RegExp(`&?${cutoffs_name}=.*$`), ''));
+
     // Get key
-    const [k, spliceArgs] = opts.update;
-    let key = k;
-    if (key === null) {
-      let maxKey = localStorage.getItem("maxKey");
-      if (maxKey === null) { maxKey = "0" }
-      const n = parseInt(maxKey) + 1;
-      localStorage.setItem("maxKey", n.toString());
-      key = n.toString(36);
-    }
+    const prefix = 'pagy-';
+
+    // eslint-disable-next-line prefer-const
+    let [key, updateArgs] = opts.update;
+    if (key === null) { key = prefix + Date.now().toString(36) }
     // The case of an unknown key and page > 1 should create links that go to
     // Get updated cutoffs
-    const c = localStorage.getItem(key);
-    const cutoffs = c === null ? [null] as Cutoffs : JSON.parse(c) as Cutoffs;
-    if (spliceArgs !== undefined) {
-      cutoffs.splice(...spliceArgs);
-      localStorage.setItem(key, JSON.stringify(cutoffs));
-    }
-    // Add cutoff param/value to the query string of the clicked link
-    const cutoff_name = opts.cutoffs_param;
-    const page_name   = opts.page_param;
+    const c = sessionStorage.getItem(key);
+    const cutoffs = c === null ? {} as Cutoffs : JSON.parse(c) as Cutoffs;
+      if (updateArgs !== undefined) {
+        const [op, page, cutoff] = updateArgs;
+        if (op === 'add') { cutoffs[(page).toString()] = cutoff }
+      sessionStorage.setItem(key, JSON.stringify(cutoffs));
+        console.warn("%o \n", cutoffs);
+      }
+    // Add cutoff param/value to the query string of the clicked links
     el.addEventListener("click", (e) => {
       const a:HTMLAnchorElement = e.target as HTMLAnchorElement; // checked below
       if (a && a.nodeName == "A" && a.href !== undefined) {
@@ -88,52 +93,14 @@ const Pagy = (() => {
           return;
         }
         const page  = parseInt(p);
-        const value = b64.safeEncode(JSON.stringify([key, cutoffs.length, cutoffs[page - 1], cutoffs[page]] as CutoffsParam));
-        a.href      = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
+        const value = b64.safeEncode(JSON.stringify([key,
+                                                     Object.keys(cutoffs).length + 1,
+                                                     cutoffs[(page - 1).toString()],
+                                                     cutoffs[page.toString()]] as CutoffsParam));
+        a.href      = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoffs_name}=${value}`;
       }
     });
-  };
 
-  // Init the keyset features
-  const initKeysetForUI = (el:Element, opts:OptionArgs | undefined) => {
-    if (opts === undefined || !Array.isArray(opts.update)) { return } // not enabled
-    if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
-      console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
-      return;
-    }
-    // Get key
-    const [k, spliceArgs] = opts.update;
-    let key = k;
-    if (key === null) {
-      let maxKey = localStorage.getItem("maxKey");
-      if (maxKey === null) { maxKey = "0" }
-      const n = parseInt(maxKey) + 1;
-      localStorage.setItem("maxKey", n.toString());
-      key = n.toString(36);
-    }
-    // The case of an unknown key and page > 1 should create links that go to
-    // Get updated cutoffs
-    const c = localStorage.getItem(key);
-    const cutoffs = c === null ? [null] as Cutoffs : JSON.parse(c) as Cutoffs;
-    if (spliceArgs !== undefined) {
-      cutoffs.splice(...spliceArgs);
-      localStorage.setItem(key, JSON.stringify(cutoffs));
-    }
-    // Add cutoff param/value to the query string of the clicked links
-    const cutoff_name = opts.cutoffs_param;
-    const page_name   = opts.page_param;
-    for (const a of el.querySelectorAll('a[href]') as unknown as HTMLAnchorElement[]){
-      const url = a.href;
-      // find page from url
-      const re = new RegExp(`(?<=\\?.*)${page_name}=([\\d]+)`);  // refactor removing the page param
-      const p  = url.match(re)?.[1]; // no trim allowed
-      if (typeof p !== "string") {
-        return;
-      }
-      const page  = parseInt(p);
-      const value = b64.safeEncode(JSON.stringify([key, cutoffs.length, cutoffs[page - 1], cutoffs[page]] as CutoffsParam));
-      a.href      = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
-    }
   };
 
   // Init the *_nav_js helpers

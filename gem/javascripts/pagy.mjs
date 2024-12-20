@@ -9,7 +9,8 @@ const Pagy = (() => {
   const initNav = (el, [opts]) => {
     initKeysetForUI(el, opts);
   };
-  const initKeysetForUI_ = (el, opts) => {
+  const initKeysetForUI = (el, opts) => {
+    history.replaceState(null, null, location.href.replace(/&?cutoffs=.*$/, ""));
     if (opts === undefined || !Array.isArray(opts.update)) {
       return;
     }
@@ -17,22 +18,20 @@ const Pagy = (() => {
       console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
       return;
     }
-    const [k, spliceArgs] = opts.update;
-    let key = k;
+    const prefix = "pagy-";
+    let [key, updateArgs] = opts.update;
     if (key === null) {
-      let maxKey = localStorage.getItem("maxKey");
-      if (maxKey === null) {
-        maxKey = "0";
-      }
-      const n = parseInt(maxKey) + 1;
-      localStorage.setItem("maxKey", n.toString());
-      key = n.toString(36);
+      key = prefix + Date.now().toString(36);
     }
-    const c = localStorage.getItem(key);
-    const cutoffs = c === null ? [null] : JSON.parse(c);
-    if (spliceArgs !== undefined) {
-      cutoffs.splice(...spliceArgs);
-      localStorage.setItem(key, JSON.stringify(cutoffs));
+    const c = sessionStorage.getItem(key);
+    const cutoffs = c === null ? {} : JSON.parse(c);
+    if (updateArgs !== undefined) {
+      const [op, page, cutoff] = updateArgs;
+      if (op === "add") {
+        cutoffs[page.toString()] = cutoff;
+      }
+      sessionStorage.setItem(key, JSON.stringify(cutoffs));
+      console.warn("%o \n", cutoffs);
     }
     const cutoff_name = opts.cutoffs_param;
     const page_name = opts.page_param;
@@ -46,12 +45,17 @@ const Pagy = (() => {
           return;
         }
         const page = parseInt(p);
-        const value = b64.safeEncode(JSON.stringify([key, cutoffs.length, cutoffs[page - 1], cutoffs[page]]));
+        const value = b64.safeEncode(JSON.stringify([
+          key,
+          Object.keys(cutoffs).length + 1,
+          cutoffs[(page - 1).toString()],
+          cutoffs[page.toString()]
+        ]));
         a.href = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
       }
     });
   };
-  const initKeysetForUI = (el, opts) => {
+  const initKeysetForUI_ = (el, opts) => {
     if (opts === undefined || !Array.isArray(opts.update)) {
       return;
     }
@@ -59,22 +63,20 @@ const Pagy = (() => {
       console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
       return;
     }
-    const [k, spliceArgs] = opts.update;
-    let key = k;
+    const prefix = "pagy-";
+    let [key, updateArgs] = opts.update;
     if (key === null) {
-      let maxKey = localStorage.getItem("maxKey");
-      if (maxKey === null) {
-        maxKey = "0";
-      }
-      const n = parseInt(maxKey) + 1;
-      localStorage.setItem("maxKey", n.toString());
-      key = n.toString(36);
+      key = prefix + Date.now().toString(36);
     }
-    const c = localStorage.getItem(key);
-    const cutoffs = c === null ? [null] : JSON.parse(c);
-    if (spliceArgs !== undefined) {
-      cutoffs.splice(...spliceArgs);
-      localStorage.setItem(key, JSON.stringify(cutoffs));
+    const c = sessionStorage.getItem(key);
+    const cutoffs = c === null ? {} : JSON.parse(c);
+    if (updateArgs !== undefined) {
+      const [op, page, cutoff] = updateArgs;
+      if (op === "add") {
+        cutoffs[page.toString()] = cutoff;
+      }
+      sessionStorage.setItem(key, JSON.stringify(cutoffs));
+      console.warn("%o \n", cutoffs);
     }
     const cutoff_name = opts.cutoffs_param;
     const page_name = opts.page_param;
@@ -86,7 +88,12 @@ const Pagy = (() => {
         return;
       }
       const page = parseInt(p);
-      const value = b64.safeEncode(JSON.stringify([key, cutoffs.length, cutoffs[page - 1], cutoffs[page]]));
+      const value = b64.safeEncode(JSON.stringify([
+        key,
+        Object.keys(cutoffs).length + 1,
+        cutoffs[(page - 1).toString()],
+        cutoffs[page.toString()]
+      ]));
       a.href = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
     }
   };
