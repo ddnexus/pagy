@@ -50,7 +50,7 @@ const Pagy = (() => {
   };
 
   // Init the keyset features
-  const initKeysetForUI = (el:Element, opts:OptionArgs | undefined) => {
+  const initKeysetForUI_ = (el:Element, opts:OptionArgs | undefined) => {
     if (opts === undefined || !Array.isArray(opts.update)) { return } // not enabled
     if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
       console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
@@ -60,19 +60,19 @@ const Pagy = (() => {
     const [k, spliceArgs] = opts.update;
     let key = k;
     if (key === null) {
-      let maxKey = sessionStorage.getItem("maxKey");
+      let maxKey = localStorage.getItem("maxKey");
       if (maxKey === null) { maxKey = "0" }
       const n = parseInt(maxKey) + 1;
-      sessionStorage.setItem("maxKey", n.toString());
+      localStorage.setItem("maxKey", n.toString());
       key = n.toString(36);
     }
     // The case of an unknown key and page > 1 should create links that go to
     // Get updated cutoffs
-    const c = sessionStorage.getItem(key);
+    const c = localStorage.getItem(key);
     const cutoffs = c === null ? [null] as Cutoffs : JSON.parse(c) as Cutoffs;
     if (spliceArgs !== undefined) {
       cutoffs.splice(...spliceArgs);
-      sessionStorage.setItem(key, JSON.stringify(cutoffs));
+      localStorage.setItem(key, JSON.stringify(cutoffs));
     }
     // Add cutoff param/value to the query string of the clicked link
     const cutoff_name = opts.cutoffs_param;
@@ -92,6 +92,48 @@ const Pagy = (() => {
         a.href      = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
       }
     });
+  };
+
+  // Init the keyset features
+  const initKeysetForUI = (el:Element, opts:OptionArgs | undefined) => {
+    if (opts === undefined || !Array.isArray(opts.update)) { return } // not enabled
+    if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
+      console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
+      return;
+    }
+    // Get key
+    const [k, spliceArgs] = opts.update;
+    let key = k;
+    if (key === null) {
+      let maxKey = localStorage.getItem("maxKey");
+      if (maxKey === null) { maxKey = "0" }
+      const n = parseInt(maxKey) + 1;
+      localStorage.setItem("maxKey", n.toString());
+      key = n.toString(36);
+    }
+    // The case of an unknown key and page > 1 should create links that go to
+    // Get updated cutoffs
+    const c = localStorage.getItem(key);
+    const cutoffs = c === null ? [null] as Cutoffs : JSON.parse(c) as Cutoffs;
+    if (spliceArgs !== undefined) {
+      cutoffs.splice(...spliceArgs);
+      localStorage.setItem(key, JSON.stringify(cutoffs));
+    }
+    // Add cutoff param/value to the query string of the clicked links
+    const cutoff_name = opts.cutoffs_param;
+    const page_name   = opts.page_param;
+    for (const a of el.querySelectorAll('a[href]') as unknown as HTMLAnchorElement[]){
+      const url = a.href;
+      // find page from url
+      const re = new RegExp(`(?<=\\?.*)${page_name}=([\\d]+)`);  // refactor removing the page param
+      const p  = url.match(re)?.[1]; // no trim allowed
+      if (typeof p !== "string") {
+        return;
+      }
+      const page  = parseInt(p);
+      const value = b64.safeEncode(JSON.stringify([key, cutoffs.length, cutoffs[page - 1], cutoffs[page]] as CutoffsParam));
+      a.href      = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
+    }
   };
 
   // Init the *_nav_js helpers

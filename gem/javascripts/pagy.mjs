@@ -9,30 +9,30 @@ const Pagy = (() => {
   const initNav = (el, [opts]) => {
     initKeysetForUI(el, opts);
   };
-  const initKeysetForUI = (el, opts) => {
+  const initKeysetForUI_ = (el, opts) => {
     if (opts === undefined || !Array.isArray(opts.update)) {
       return;
     }
     if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
-      console.warn("Skipped Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
+      console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
       return;
     }
     const [k, spliceArgs] = opts.update;
     let key = k;
     if (key === null) {
-      let maxKey = sessionStorage.getItem("maxKey");
+      let maxKey = localStorage.getItem("maxKey");
       if (maxKey === null) {
         maxKey = "0";
       }
       const n = parseInt(maxKey) + 1;
-      sessionStorage.setItem("maxKey", n.toString());
+      localStorage.setItem("maxKey", n.toString());
       key = n.toString(36);
     }
-    const c = sessionStorage.getItem(key);
+    const c = localStorage.getItem(key);
     const cutoffs = c === null ? [null] : JSON.parse(c);
     if (spliceArgs !== undefined) {
       cutoffs.splice(...spliceArgs);
-      sessionStorage.setItem(key, JSON.stringify(cutoffs));
+      localStorage.setItem(key, JSON.stringify(cutoffs));
     }
     const cutoff_name = opts.cutoffs_param;
     const page_name = opts.page_param;
@@ -50,6 +50,45 @@ const Pagy = (() => {
         a.href = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
       }
     });
+  };
+  const initKeysetForUI = (el, opts) => {
+    if (opts === undefined || !Array.isArray(opts.update)) {
+      return;
+    }
+    if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
+      console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
+      return;
+    }
+    const [k, spliceArgs] = opts.update;
+    let key = k;
+    if (key === null) {
+      let maxKey = localStorage.getItem("maxKey");
+      if (maxKey === null) {
+        maxKey = "0";
+      }
+      const n = parseInt(maxKey) + 1;
+      localStorage.setItem("maxKey", n.toString());
+      key = n.toString(36);
+    }
+    const c = localStorage.getItem(key);
+    const cutoffs = c === null ? [null] : JSON.parse(c);
+    if (spliceArgs !== undefined) {
+      cutoffs.splice(...spliceArgs);
+      localStorage.setItem(key, JSON.stringify(cutoffs));
+    }
+    const cutoff_name = opts.cutoffs_param;
+    const page_name = opts.page_param;
+    for (const a of el.querySelectorAll("a[href]")) {
+      const url = a.href;
+      const re = new RegExp(`(?<=\\?.*)${page_name}=([\\d]+)`);
+      const p = url.match(re)?.[1];
+      if (typeof p !== "string") {
+        return;
+      }
+      const page = parseInt(p);
+      const value = b64.safeEncode(JSON.stringify([key, cutoffs.length, cutoffs[page - 1], cutoffs[page]]));
+      a.href = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
+    }
   };
   const initNavJs = (el, [tokens, sequels, labelSequels, opts]) => {
     const container = el.parentElement ?? el;
@@ -142,11 +181,9 @@ const Pagy = (() => {
             initComboJs(el, args);
           } else if (keyword === "selector_js") {
             initSelectorJs(el, args);
-          } else {
-            console.warn("Skipped Pagy.init(): %o\nUnknown keyword '%s'", el, keyword);
           }
         } catch (err) {
-          console.warn("Skipped Pagy.init(): %o\n%s", el, err);
+          console.warn("Failed Pagy.init(): %o\n%s", el, err);
         }
       }
     }
