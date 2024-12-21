@@ -40,7 +40,7 @@ class Pagy # :nodoc:
       end
       @update = [key]
       # raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
-      end
+    end
 
     # Assign different args to support the AFTER_CUTOFF SQL if @cutoff
     def assign_cutoff_args
@@ -138,8 +138,8 @@ class Pagy # :nodoc:
       @next ||= (@page + 1).tap do
                   unless @cutoff
                     @cutoff = derive_cutoff
-                    @update << [:add, @last, @cutoff]   # operation arguments for the client cutoffs
-                    @last += 1                          # reflect the added cutoff
+                    @update << @cutoff   # operation arguments for the client cutoffs
+                    @last += 1           # reflect the added cutoff
                   end
                 end
     end

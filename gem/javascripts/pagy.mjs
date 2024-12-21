@@ -7,102 +7,44 @@ const Pagy = (() => {
     decode: (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)))
   };
   const initNav = (el, [opts]) => {
-    initKeysetForUI(el, opts);
+    initCutoff(el, opts);
   };
-  const initKeysetForUI = (el, opts) => {
-    history.replaceState(null, null, location.href.replace(/&?cutoffs=.*$/, ""));
-    if (opts === undefined || !Array.isArray(opts.update)) {
+  const initCutoff = (el, opts) => {
+    if (!opts || !Array.isArray(opts.update) || !opts.cutoffs_param || !opts.page_param) {
       return;
     }
-    if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
-      console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
-      return;
-    }
-    const prefix = "pagy-";
-    let [key, updateArgs] = opts.update;
-    if (key === null) {
-      key = prefix + Date.now().toString(36);
-    }
-    const c = sessionStorage.getItem(key);
-    const cutoffs = c === null ? {} : JSON.parse(c);
-    if (updateArgs !== undefined) {
-      const [op, page, cutoff] = updateArgs;
-      if (op === "add") {
-        cutoffs[page.toString()] = cutoff;
-      }
+    history.replaceState(null, "", location.href.replace(RegExp(`&?${opts.cutoffs_param}=.*\$`), ""));
+    let [key, latest] = opts.update;
+    key ||= "pagy-" + Date.now().toString(36);
+    const cs = sessionStorage.getItem(key);
+    const cutoffs = cs ? JSON.parse(cs) : [null];
+    if (latest) {
+      cutoffs.push(latest);
       sessionStorage.setItem(key, JSON.stringify(cutoffs));
-      console.warn("%o \n", cutoffs);
     }
-    const cutoff_name = opts.cutoffs_param;
-    const page_name = opts.page_param;
     el.addEventListener("click", (e) => {
       const a = e.target;
-      if (a && a.nodeName == "A" && a.href !== undefined) {
+      if (a && a.nodeName == "A" && a.href.length > 0) {
         const url = a.href;
-        const re = new RegExp(`(?<=\\?.*)${page_name}=([\\d]+)`);
-        const p = url.match(re)?.[1];
-        if (typeof p !== "string") {
-          return;
-        }
-        const page = parseInt(p);
+        const re = new RegExp(`(?<=\\?.*)\\b${opts.page_param}=([\\d]+)`);
+        const page = parseInt(url.match(re)?.[1]);
         const value = b64.safeEncode(JSON.stringify([
           key,
-          Object.keys(cutoffs).length + 1,
-          cutoffs[(page - 1).toString()],
-          cutoffs[page.toString()]
+          cutoffs.length,
+          cutoffs[page - 1],
+          cutoffs[page]
         ]));
-        a.href = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
+        a.href = url + `&${opts.cutoffs_param}=${value}`;
+        console.warn("listener run");
       }
     });
-  };
-  const initKeysetForUI_ = (el, opts) => {
-    if (opts === undefined || !Array.isArray(opts.update)) {
-      return;
-    }
-    if (typeof opts.cutoffs_param !== "string" || typeof opts.page_param !== "string") {
-      console.warn("Failed Pagy.initKeysetForUI():%o\n bad opts \n%o", el, opts);
-      return;
-    }
-    const prefix = "pagy-";
-    let [key, updateArgs] = opts.update;
-    if (key === null) {
-      key = prefix + Date.now().toString(36);
-    }
-    const c = sessionStorage.getItem(key);
-    const cutoffs = c === null ? {} : JSON.parse(c);
-    if (updateArgs !== undefined) {
-      const [op, page, cutoff] = updateArgs;
-      if (op === "add") {
-        cutoffs[page.toString()] = cutoff;
-      }
-      sessionStorage.setItem(key, JSON.stringify(cutoffs));
-      console.warn("%o \n", cutoffs);
-    }
-    const cutoff_name = opts.cutoffs_param;
-    const page_name = opts.page_param;
-    for (const a of el.querySelectorAll("a[href]")) {
-      const url = a.href;
-      const re = new RegExp(`(?<=\\?.*)${page_name}=([\\d]+)`);
-      const p = url.match(re)?.[1];
-      if (typeof p !== "string") {
-        return;
-      }
-      const page = parseInt(p);
-      const value = b64.safeEncode(JSON.stringify([
-        key,
-        Object.keys(cutoffs).length + 1,
-        cutoffs[(page - 1).toString()],
-        cutoffs[page.toString()]
-      ]));
-      a.href = url + (url.match(/\?/) === null ? "?" : "&") + `${cutoff_name}=${value}`;
-    }
   };
   const initNavJs = (el, [tokens, sequels, labelSequels, opts]) => {
     const container = el.parentElement ?? el;
     const widths = Object.keys(sequels).map((w) => parseInt(w)).sort((a, b) => b - a);
     let lastWidth = -1;
     const fillIn = (a, page, label) => a.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
-    (el.pagyRender = function() {
+    (el.pagyRender = () => {
       const width = widths.find((w) => w < container.clientWidth) || 0;
       if (width === lastWidth) {
         return;
@@ -113,12 +55,12 @@ const Pagy = (() => {
       series.forEach((item, i) => {
         const label = labels[i];
         let filled;
-        if (typeof item === "number") {
+        if (typeof item == "number") {
           filled = fillIn(tokens.a, item.toString(), label);
-          if (typeof opts?.page_param === "string" && item === 1) {
+          if (typeof opts?.page_param == "string" && item == 1) {
             filled = trim(filled, opts.page_param);
           }
-        } else if (item === "gap") {
+        } else if (item == "gap") {
           filled = tokens.gap;
         } else {
           filled = fillIn(tokens.current, item, label);
@@ -146,7 +88,7 @@ const Pagy = (() => {
     const input = el.querySelector("input");
     const link = el.querySelector("a");
     const initial = input.value;
-    const action = function() {
+    const action = () => {
       if (input.value === initial) {
         return;
       }
@@ -157,7 +99,7 @@ const Pagy = (() => {
         return;
       }
       let [page, url] = getVars(input.value);
-      if (typeof opts?.page_param === "string" && page === "1") {
+      if (typeof opts?.page_param == "string" && page === "1") {
         url = trim(url, opts.page_param);
       }
       link.href = url;
@@ -166,7 +108,7 @@ const Pagy = (() => {
     ["change", "focus"].forEach((e) => input.addEventListener(e, () => input.select()));
     input.addEventListener("focusout", action);
     input.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
+      if (e.key == "Enter") {
         action();
       }
     });
@@ -180,13 +122,13 @@ const Pagy = (() => {
       for (const el of elements) {
         try {
           const [keyword, ...args] = JSON.parse(b64.decode(el.getAttribute("data-pagy")));
-          if (keyword === "nav") {
+          if (keyword == "nav") {
             initNav(el, args);
-          } else if (keyword === "nav_js") {
+          } else if (keyword == "nav_js") {
             initNavJs(el, args);
-          } else if (keyword === "combo_js") {
+          } else if (keyword == "combo_js") {
             initComboJs(el, args);
-          } else if (keyword === "selector_js") {
+          } else if (keyword == "selector_js") {
             initSelectorJs(el, args);
           }
         } catch (err) {
