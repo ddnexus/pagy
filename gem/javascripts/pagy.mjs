@@ -1,5 +1,23 @@
 const Pagy = (() => {
-  const rjsObserver = new ResizeObserver((entries) => entries.forEach((e) => e.target.querySelectorAll(".pagy-rjs").forEach((el) => el.pagyRender())));
+  const sS = sessionStorage;
+  const sync = new BroadcastChannel("pagy");
+  const tabId = Date.now();
+  sync.addEventListener("message", (e) => {
+    if (e.data.from) {
+      const cutoffs = sS.getItem(e.data.key);
+      if (cutoffs) {
+        sync.postMessage({ to: e.data.from, key: e.data.key, cutoffs });
+      }
+    } else if (e.data.to) {
+      if (e.data.to == tabId) {
+        sS.setItem(e.data.key, e.data.cutoffs);
+      }
+    }
+  });
+  const rjsObserver = new ResizeObserver((entries) => entries.forEach((e) => {
+    e.target.querySelectorAll(".pagy-rjs").forEach((el) => el.pagyRender());
+    e.target.querySelectorAll(".pagy-keyset").forEach((el) => el.completeUrls());
+  }));
   const b64 = {
     encode: (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))),
     toSafe: (unsafe) => unsafe.replace(/=/g, "").replace(/[+/]/g, (match) => match == "+" ? "-" : "_"),
@@ -9,35 +27,39 @@ const Pagy = (() => {
   const initNav = (el, [opts]) => {
     initCutoff(el, opts);
   };
-  const initCutoff = (el, opts) => {
+  const initCutoff = async (el, opts) => {
     if (!opts || !Array.isArray(opts.update) || !opts.cutoffs_param || !opts.page_param) {
       return;
     }
-    history.replaceState(null, "", location.href.replace(RegExp(`&?${opts.cutoffs_param}=.*\$`), ""));
-    let [key, latest] = opts.update;
-    key ||= "pagy-" + Date.now().toString(36);
-    const cs = sessionStorage.getItem(key);
-    const cutoffs = cs ? JSON.parse(cs) : [null];
-    if (latest) {
-      cutoffs.push(latest);
-      sessionStorage.setItem(key, JSON.stringify(cutoffs));
+    const pagyId = document.cookie.split(/;\s+/).find((row) => row.startsWith("pagy="))?.split("=")[1] || Math.floor(Math.random() * 36 ** 3).toString(36);
+    document.cookie = "pagy=" + pagyId;
+    let [key, last, latest] = opts.update;
+    if (key && !(key in sS)) {
+      sync.postMessage({ from: tabId, key });
+      await new Promise((resolve) => setTimeout(() => resolve(""), 100));
     }
-    el.addEventListener("click", (e) => {
-      const a = e.target;
-      if (a && a.nodeName == "A" && a.href.length > 0) {
+    key ||= "pagy-" + Date.now().toString(36);
+    const cs = sS.getItem(key);
+    const cutoffs = cs ? JSON.parse(cs) : [null];
+    if (last && latest) {
+      cutoffs[last] = latest;
+      sS.setItem(key, JSON.stringify(cutoffs));
+    }
+    (el.completeUrls = () => {
+      for (const a of el.querySelectorAll("a[href]")) {
         const url = a.href;
         const re = new RegExp(`(?<=\\?.*)\\b${opts.page_param}=([\\d]+)`);
         const page = parseInt(url.match(re)?.[1]);
         const value = b64.safeEncode(JSON.stringify([
+          pagyId,
           key,
           cutoffs.length,
           cutoffs[page - 1],
           cutoffs[page]
         ]));
         a.href = url + `&${opts.cutoffs_param}=${value}`;
-        console.warn("listener run");
       }
-    });
+    })();
   };
   const initNavJs = (el, [tokens, sequels, labelSequels, opts]) => {
     const container = el.parentElement ?? el;

@@ -17,12 +17,22 @@ class Pagy # :nodoc:
       vars[:limit]         ||= pagy_get_limit(vars)
       vars[:cutoffs_param] ||= DEFAULT[:cutoffs_param]
       vars[:params]        ||= ->(params) { params.tap { |p| p.delete(vars[:cutoffs_param].to_s) } }
-      vars[:cutoffs]       ||= begin
-                                 cutoffs = params[vars[:cutoffs_param]]
-                                 JSON.parse(B64.urlsafe_decode(cutoffs)) if cutoffs
-                               end
+      vars[:cutoffs]       ||= get_cutoffs(vars)
       pagy = KeysetForUI.new(set, **vars)
       [pagy, pagy.records]
+    end
+
+    def get_cutoffs(vars)
+      cutoffs = params[vars[:cutoffs_param]] || return
+
+      cutoffs = JSON.parse(B64.urlsafe_decode(cutoffs))
+      pagy_id = cutoffs.shift
+      return cutoffs if request.cookies['pagy'] == pagy_id
+
+      # The url has been requested from another browser, which does not have the same sessionStorage,
+      # hence we need to restart the pagination to page 1
+      vars[:page] = 1
+      KeysetForUI::FIRST_PAGE
     end
   end
   Backend.prepend KeysetForUIExtra

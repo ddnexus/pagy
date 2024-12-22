@@ -46,7 +46,8 @@ class Pagy # :nodoc:
                  'gap'     => %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>),
                  'after'   => '</ul>' }
 
-      %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}#{classes}" #{
+      %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}#{
+                           'pagy-keyset ' if defined?(::Pagy::KeysetForUI) && Pagy.is_a?(KeysetForUI)}#{classes}" #{
           nav_aria_label(pagy, aria_label:)} #{
           pagy_data(pagy, :nav_js, tokens, sequels, pagy.label_sequels(sequels))
         }></nav>)

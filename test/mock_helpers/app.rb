@@ -9,19 +9,21 @@ ActiveSupport.to_time_preserves_timezone = :zone  # Fix ActiveSupport deprecatio
 # Backend and Frontend poor man mock app
 class MockApp
   attr_reader :params, :request, :response
-  attr_accessor :session
+  attr_accessor :session, :cookies
 
   include Pagy::Backend
   include Pagy::Frontend
 
   # App params are merged into the @request.params (and are all strings)
   # @params are taken from @request.params and merged with app params (which fixes symbols and strings in params)
-  def initialize(url: 'http://example.com:3000/foo', params: { page: 3 }, session: {})
+  def initialize(url: 'http://example.com:3000/foo', params: { page: 3 }, session: {}, cookies: {})
     @request  = Rack::Request.new(Rack::MockRequest.env_for(url, params: params))
     @params   = ActiveSupport::HashWithIndifferentAccess.new(@request.params).merge(params)
     @response = Rack::Response.new
     @session  = session
+    @cookies  = cookies
   end
+
 
   def test_i18n_call
     I18n.t('test')

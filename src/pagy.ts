@@ -4,33 +4,61 @@ type NavJsArgs      = readonly [Tokens, Sequels, null | LabelSequels, OptionArgs
 type ComboJsArgs    = readonly [string, OptionArgs?]
 type SelectorJsArgs = readonly [number, string, OptionArgs?]
 type Cutoff         = readonly [string | number | boolean]
-type Update         = [string, Cutoff | undefined ]
+type Update         = [string, number, Cutoff] | [string]
 type Cutoffs        = [null, ...Cutoff[]]
-type CutoffsParam   = [string, number, null | Cutoff, Cutoff | undefined]
+type CutoffsParam   = [string, string, number, null | Cutoff, Cutoff | undefined]
+
+interface SyncData {
+  from?: number
+  to?: number
+  key: string
+  cutoffs?: string
+}
 
 interface OptionArgs {
-  readonly page_param?:string
-  readonly cutoffs_param?:string
-  readonly update?:Update
+  readonly page_param?: string
+  readonly cutoffs_param?: string
+  readonly update?: Update
 }
 
 interface Tokens {
-  readonly before:string
-  readonly a:string
-  readonly current:string
-  readonly gap:string
-  readonly after:string
+  readonly before: string
+  readonly a: string
+  readonly current: string
+  readonly gap: string
+  readonly after: string
 }
 
 interface Sequels {readonly [width:string]:(string | number)[]}
 interface LabelSequels {readonly [width:string]:string[]}
 interface NavJsElement extends Element {pagyRender():void}
+interface CutoffElement extends NavJsElement, Element {completeUrls():void}
 
 const Pagy = (() => {
+
+  // Sync the sessionStorage keys for the cutoffs used in the new tab/window
+  // e.g. copy/paste the page number link in a new window or page link right-click "Open in a new tab/window"
+  const sS    = sessionStorage; // shorten the .min.js
+  const sync  = new BroadcastChannel("pagy");
+  const tabId = Date.now();
+
+  sync.addEventListener("message", (e: MessageEvent<SyncData>) => {
+    if (e.data.from) { // request cutoffs
+     const cutoffs = sS.getItem(e.data.key);
+      if (cutoffs) { sync.postMessage(<SyncData>{to: e.data.from, key: e.data.key, cutoffs: cutoffs}) } // send response
+    } else if (e.data.to) {  // receive cutoffs
+      if (e.data.to == tabId) {
+        sS.setItem(e.data.key, <string>e.data.cutoffs);
+      }
+    }
+  });
+
   // The observer instance for responsive navs
   const rjsObserver = new ResizeObserver(
-      entries => entries.forEach(e => e.target.querySelectorAll<NavJsElement>(".pagy-rjs")
-                                       .forEach(el => el.pagyRender())));
+      entries => entries.forEach(e => {
+        e.target.querySelectorAll<NavJsElement>(".pagy-rjs").forEach(el => el.pagyRender());
+        e.target.querySelectorAll<CutoffElement>(".pagy-keyset").forEach(el => el.completeUrls());
+      }));
 
   const b64 = {
     encode:     (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode))),
@@ -43,43 +71,49 @@ const Pagy = (() => {
 
   // Init the *_nav helpers
   const initNav = (el:Element, [opts]:NavArgs) => {
-    initCutoff(el, opts);
+    void initCutoff(<CutoffElement>el, opts);
   };
 
-  // Init the Cutoff features
-  const initCutoff = (el:Element, opts:OptionArgs | undefined) => {
+// Init the Cutoff features
+  const initCutoff = async (el:CutoffElement, opts?:OptionArgs) => {
     if (!opts || !Array.isArray(opts.update)                 // not enabled
               || !opts.cutoffs_param || !opts.page_param) {  // Bad opts
       // console.warn("Failed Pagy.initCutoff():%o\n Bad opts \n%o", el, opts);
       return;
     }
-    // Remove the cutoffs param from the address bar
-    history.replaceState(null, "", location.href.replace(RegExp(`&?${opts.cutoffs_param}=.*$`), ""));
+    const pagyId    = document.cookie.split(/;\s+/)  // it works even if malformed
+                              .find((row) => row.startsWith("pagy="))
+                              ?.split("=")[1] || Math.floor(Math.random() * 36 ** 3).toString(36);
+    document.cookie = "pagy=" + pagyId;
+
     // eslint-disable-next-line prefer-const
-    let [key, latest] = opts.update;
-    key             ||= "pagy-" + Date.now().toString(36);
-    const cs          = sessionStorage.getItem(key);
-    const cutoffs     = <Cutoffs>(cs ? JSON.parse(cs) : [null]);
-    if (latest) {
-      cutoffs.push(latest);
-      sessionStorage.setItem(key, JSON.stringify(cutoffs));
-      // opts.update[1] = undefined; // stop updating if raan multiple times
+    let [key, last, latest] = opts.update;
+    if (key && !(key in sS)) {
+      // Sync the sessiongStorage from other tabs/windows (e.g. open page in new tab/window)_
+      sync.postMessage(<SyncData>{ from: tabId, key: key });
+      // Wait for the listener to copy the cutoffs in the current sessionStorage
+      await new Promise<string|null>((resolve) => setTimeout(() => resolve(""), 100) );
     }
-    // Add cutoffs param/value to the query string of the clicked links
-    el.addEventListener("click", (e) => {
-      const a:HTMLAnchorElement = e.target as HTMLAnchorElement; // checked below
-      if (a && a.nodeName == "A" && a.href.length > 0) {
+    key ||= "pagy-" + Date.now().toString(36);
+    const cs      = sS.getItem(key);
+    const cutoffs = <Cutoffs>(cs ? JSON.parse(cs) : [null]);
+    if (last && latest) {
+      cutoffs[last] = latest;
+      sS.setItem(key, JSON.stringify(cutoffs));
+    }
+    (el.completeUrls = () => {
+      for (const a of <HTMLAnchorElement[]><unknown>el.querySelectorAll('a[href]')) {
         const url   = a.href;
         const re    = new RegExp(`(?<=\\?.*)\\b${opts.page_param}=([\\d]+)`);  // find the numeric page
         const page  = parseInt(<string>url.match(re)?.[1]);                    // sure that page=\d+ is in href
-        const value = b64.safeEncode(JSON.stringify(<CutoffsParam>[key,
-                                                     cutoffs.length,   // actual cutoffs + 1 (first null)
-                                                     cutoffs[page - 1],
-                                                     cutoffs[page]]));
-        a.href      = url + `&${opts.cutoffs_param}=${value}`;   // "&" because the query_string is always present
-        console.warn("listener run");
+        const value = b64.safeEncode(JSON.stringify(<CutoffsParam>[pagyId,
+                                                                   key,
+                                                                   cutoffs.length,   // actual cutoffs + 1 (first null)
+                                                                   cutoffs[page - 1],
+                                                                   cutoffs[page]]));
+        a.href = url + `&${opts.cutoffs_param}=${value}`;   // "&" because the query_string is always present
       }
-    });
+    })();
   };
 
   // Init the *_nav_js helpers

@@ -20,7 +20,8 @@ class Pagy # :nodoc:
                   'gap'     => %(<a class="gap" role="link" aria-disabled="true">#{pagy_t('pagy.gap')}</a>),
                   'after'   => next_a(pagy, a) }
 
-      %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}pagy nav-js" #{
+      %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}#{
+                           'pagy-keyset ' if defined?(::Pagy::KeysetForUI) && Pagy.is_a?(KeysetForUI)}pagy nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
           pagy_data(pagy, :nav_js, tokens, sequels, pagy.label_sequels(sequels))
         }></nav>)
