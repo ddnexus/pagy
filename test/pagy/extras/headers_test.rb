@@ -79,7 +79,7 @@ describe 'pagy/extras/headers' do
     it 'returns custom headers hash' do
       pagy, _records = app.send(:pagy_keyset,
                                 Pet.order(:id),
-                                page: 'eyJpZCI6MjB9',
+                                page: 'WzIwXQ',
                                 headers: { limit: 'Per-Page', page: 'Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end

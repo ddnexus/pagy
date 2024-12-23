@@ -276,7 +276,7 @@ describe 'pagy' do
 
   describe 'variables' do
     it 'has vars defaults' do
-      _(Pagy::DEFAULT[:page_param]).must_equal :page
+      _(Pagy::DEFAULT[:page_sym]).must_equal :page
       _(Pagy::DEFAULT[:limit]).must_equal 20
       _(Pagy::DEFAULT[:page]).must_equal 1
       _(Pagy::DEFAULT[:outset]).must_equal 0

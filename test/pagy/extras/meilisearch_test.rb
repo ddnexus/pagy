@@ -32,7 +32,7 @@ describe 'pagy/extras/meilisearch' do
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal app.params[:page].to_i
         _(results.length).must_equal Pagy::DEFAULT[:limit]
         _(results.to_a).must_rematch :results
       end

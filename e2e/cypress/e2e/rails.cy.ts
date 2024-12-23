@@ -10,6 +10,6 @@ describe(`[${app}] Test helpers`, () => {
     testNav(app, "#nav", {pages: ["3"]});
     testNav(app, "#nav-js", {pages: ["3"]});
     testComboNav(app, "#combo-nav-js");
-    testLimitSelector(app, "#limit-selector-js");  // no style, no trim
+    testLimitSelector(app, "#limit-selector-js");
     testInfo(app, "#pagy-info");
 });

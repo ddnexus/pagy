@@ -19,7 +19,7 @@ describe 'pagy/extras/arel' do
       _(pagy).must_be_instance_of Pagy
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-      _(pagy.page).must_equal app.params[:page]
+      _(pagy.page).must_equal app.params[:page].to_i
       _(records.size).must_equal Pagy::DEFAULT[:limit]
       _(records).must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
     end

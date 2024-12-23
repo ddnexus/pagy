@@ -11,5 +11,5 @@ describe(`[${app}] Test helpers`, () => {
     testNav(app, "#nav-js-responsive", {rjs: true});
     testComboNav(app, "#combo-nav-js");
     testInfo(app, "#pagy-info");
-    testLimitSelector(app, "#limit-selector-js");  // no style, no trim
+    testLimitSelector(app, "#limit-selector-js");
 });

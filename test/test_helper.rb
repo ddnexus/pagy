@@ -13,4 +13,3 @@ require 'pagy'
 require 'minitest/autorun'
 
 require_relative 'helpers/warning_filters'
-require_relative 'helpers/nav_tests'

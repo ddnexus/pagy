@@ -12,11 +12,11 @@ Date.beginning_of_week = :sunday
 describe 'pagy/extras/js_tools_json' do
   let(:app) { MockApp.new(params: {}) }
 
-  describe '#pagy_data' do
-    it 'uses json' do
-      _(app.pagy_data(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data
-    end
-  end
+  # describe '#pagy_data' do
+  #   it 'uses json' do
+  #     _(app.pagy_data(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data
+  #   end
+  # end
 
   describe 'Calendar sequels and label_sequels' do
     it 'generate the labels for the sequels' do

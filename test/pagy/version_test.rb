@@ -27,8 +27,11 @@ describe 'Version match' do
   it 'defines the same version in javascripts/pagy.min.js' do
     _(Pagy.root.join('javascripts', 'pagy.min.js').read).must_match "version:\"#{Pagy::VERSION}\","
   end
-  it 'defines the same version in src/pagy.min.js.map' do
-    _(Pagy.root.join('javascripts', 'pagy.min.js.map').read).must_match "version: \\\"#{Pagy::VERSION}\\\","
+  it 'defines the same version in src/pagy.js' do
+    _(Pagy.root.join('javascripts', 'pagy.js').read).must_match "version: \"#{Pagy::VERSION}\","
+  end
+  it 'defines the same version in src/pagy.js.map' do
+    _(Pagy.root.join('javascripts', 'pagy.js.map').read).must_match "version: \\\"#{Pagy::VERSION}\\\","
   end
   it 'defines the same version in src/pagy.mjs' do
     _(Pagy.root.join('javascripts', 'pagy.mjs').read).must_match "version: \"#{Pagy::VERSION}\","

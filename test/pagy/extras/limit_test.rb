@@ -16,7 +16,7 @@ require_relative '../../mock_helpers/app'
 
 def test_limit_vars_params(limit, vars, params)
   app = MockApp.new params: params
-  _(app.params.to_options).must_equal params
+  _(app.params.to_param).must_equal params.to_param
   [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model],
    [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
     pagy, records = app.send(meth, mod.pagy_search('a').records, **vars)
@@ -86,20 +86,20 @@ describe 'pagy/extras/limit' do
       test_limit_vars_params(limit, vars, params)
       Pagy::DEFAULT[:limit_max] = 100 # reset default
     end
-    it 'uses limit_param from vars' do
+    it 'uses limit_sym from vars' do
       limit  = 14
-      vars   = { limit_param: :custom }
-      params = { a: "a", page: 3, limit_param: :custom, custom: limit }
+      vars   = { limit_sym: :custom }
+      params = { a: "a", page: 3, limit_sym: :custom, custom: limit }
       test_limit_vars_params(limit, vars, params)
     end
-    it 'uses limit_param from default' do
+    it 'uses limit_sym from default' do
       limit  = 15
       vars   = {}
       params = { a: "a", page: 3, custom: 15 }
 
-      Pagy::DEFAULT[:limit_param] = :custom
+      Pagy::DEFAULT[:limit_sym] = :custom
       test_limit_vars_params(limit, vars, params)
-      Pagy::DEFAULT[:limit_param] = :limit # reset default
+      Pagy::DEFAULT[:limit_sym] = :limit # reset default
     end
     it 'doesn\'t use the :limit_extra' do
       limit  = 20
@@ -122,8 +122,8 @@ describe 'pagy/extras/limit' do
         pagy = Pagy.new count: 1000, page: 3, limit: 50
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&limit=50'
       end
-      it 'renders url with limit_param' do
-        pagy = Pagy.new count: 1000, page: 3, limit_param: :custom
+      it 'renders url with limit_sym' do
+        pagy = Pagy.new count: 1000, page: 3, limit_sym: :custom
         _(app.pagy_url_for(pagy, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do
