@@ -9,7 +9,7 @@ order: 100
 # Pagy
 
 The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a
-few integers (such as the count of the collection, the page number, the limit per page, ...), does some simple arithmetic and
+few integers (such as the count of the collection, the page number, the limit per page, ...), does some simple arithmetic and             
 creates a very small object that allocates less than 3k of memory.
 
 ## Synopsis
@@ -129,21 +129,21 @@ The only mandatory instance variable to be passed is the `:count` of the collect
 optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page
 number `1`. For performance reasons, only the instance variables get validated.
 
-| Variable         | Description                                                                                                                                                                  | Default |
-|:-----------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
-| `:count`         | The total count of the collection to paginate (mandatory argument)                                                                                                           | `nil`   |
-| `:count_args`    | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                           | [:all]  |
-| `:cycle`         | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                | `false` |
-| `:ends`          | Insert the first and last page into the series, plus the `:gap`s when needed. Ignored with `size < 7`.                                                                       | `7`     |
-| `:limit`         | The requested page limit (i.e. the number of records/items)                                                                                                                  | `20`    |
-| `:jsonapi`       | Enable `jsonapi` compliance of the pagy query params                                                                                                                         | `false` |
-| `:max_pages`     | Paginate only `:max_pages`. _(see [Paginate only max_pages](/docs/how-to.md#paginate-only-max_pages-regardless-the-count))_                                                  | `nil`   |
-| `:outset`        | The initial offset of the collection to paginate: pass it only if the collection had an offset                                                                               | `0`     |
-| `:page`          | The requested page number: extracted from the `request.params`, or forced by passing a variable                                                                              | `1`     |
-| `:page_param`    | The name of the page param name used in the url. _(see [Customize the page param](/docs/how-to.md#customize-the-page-param))_                                                | `:page` |
-| `:params`        | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customize the params](/docs/how-to.md#customize-the-params))_ | `nil`   |
-| `:request_path`  | Allows overriding the `request.path` for pagination links. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/how-to.md#pass-the-request-path))_ | `nil`   |
-| `:size`          | The size of the page links to show _(see also [Control the page links](/docs/how-to.md#control-the-page-links))_                                                             | `7`     |
+| Variable        | Description                                                                                                                                                                              | Default |
+|:----------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
+| `:count`        | The total count of the collection to paginate (mandatory argument)                                                                                                                       | `nil`   |
+| `:count_args`   | The arguments passed to the `collection.count`. You may want to set it to `[]` in ORMs different than ActiveRecord                                                                       | [:all]  |
+| `:cycle`        | Enable cycling/circular/infinite pagination: `true` sets `next` to `1` when the current page is the last page                                                                            | `false` |
+| `:ends`         | Insert the first and last page into the series, plus the `:gap`s when needed. Ignored with `size < 7`.                                                                                   | `7`     |
+| `:limit`        | The requested page limit (i.e. the number of records/items)                                                                                                                              | `20`    |
+| `:jsonapi`      | Enable `jsonapi` compliance of the pagy query params                                                                                                                                     | `false` |
+| `:max_pages`    | Paginate only `:max_pages`. _(see [Paginate only max_pages](/docs/how-to.md#paginate-only-max_pages-regardless-the-count))_                                                              | `nil`   |
+| `:outset`       | The initial offset of the collection to paginate: pass it only if the collection had an offset                                                                                           | `0`     |
+| `:page`         | The requested page number: extracted from the `request.params`, or forced by passing a variable                                                                                          | `1`     |
+| `:page_sym`     | The customizable symbol referring to the `:page` variable outside of pagy (e.g. in the `request.params`). _(see [Customize the page symbol](/docs/how-to.md#customize-the-page-symbol))_ | `:page` |
+| `:params`       | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customize the params](/docs/how-to.md#customize-the-params))_             | `nil`   |
+| `:request_path` | Allows overriding the `request.path` for pagination links. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/how-to.md#pass-the-request-path))_             | `nil`   |
+| `:size`         | The size of the page links to show _(see also [Control the page links](/docs/how-to.md#control-the-page-links))_                                                                         | `7`     |
 
 !!!
 Extras may add and document their own variables

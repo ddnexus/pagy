@@ -6,33 +6,32 @@ order: 4
 
 # Javascript Setup
 
-!!!info Notice
-A javascript setup is required only for the `pagy*_js` helpers. Just using something like `anchor_string: 'data-remote="true"'` in any instances works out of the box with any helper and without this setup.
+!!!info Notice 
+
+A javascript setup is required only for the `pagy*_js` helpers and the `pagy*_nav` for `Pagy::KeysetForUI` instances.
+Just using something like `anchor_string: 'data-remote="true"'` in any instances, works out of the box with any helper and without
+this setup.
 !!!
 
-!!!primary
-We don't publish a `npm` package, because it would not support automatic sync with the gem version.
+!!!primary We don't publish a `npm` package, because it would not support automatic sync with the gem version.
 !!!
 
-!!!success
-Add the `oj` gem to your gemfile for faster performance.
+!!!success Add the `oj` gem to your gemfile for faster performance.
 !!!
 
 ### How does it work?
 
-All the `pagy*_js` helpers render their component on the client side. The helper methods render just a minimal HTML tag that
-contains a `data-pagy` attribute.
+All the `pagy*_js` helpers, and the `pagy*_nav` for `Pagy::KeysetForUI` instances, render or complete their component on the
+client side. The helper methods render just a minimal HTML tag that contains a `data-pagy` attribute.
 
 Your app should [serve or bundle](#2-configure) a small [javascript file](#1-pick-a-javascript-file) and [run the `Pagy.init()
-`](#3-initialize-pagy) function that will take care of converting the the `data-pagy` attribute data and make it work
-in the browser.
+`](#3-initialize-pagy) function that will take care of converting the `data-pagy` attribute data and make it work in the browser.
 
 ### 1. Pick a Javascript File
 
 +++ `pagy.mjs`
 
-!!! success
-Your app uses modern build tools
+!!! success Your app uses modern build tools
 !!!
 
 * ES6 module to use with webpacker, esbuild, parcel, etc.
@@ -50,13 +49,12 @@ types_path = Pagy.root.join('javascripts', 'pagy.d.ts')
 ```
 
 +++ `pagy.min.js`
-!!! success
-Your app needs standard script or old browser compatibility
+!!! success Your app needs standard script or old browser compatibility
 !!!
 
 * It's an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file meant to be loaded as is, directly in your
   production pages and without any further processing
-* Minified (~2k) and polyfilled to work also with quite old browsers
+* Minified (~3k)
 
 [!file](/gem/javascripts/pagy.min.js)
 
@@ -64,16 +62,29 @@ Your app needs standard script or old browser compatibility
 script_path = Pagy.root.join('javascripts', 'pagy.min.js')
 ```
 
-+++ `pagy.min.js.map`
-
-!!! success
-You need to debug the javascript helpers while using the `pagy.min.js` file
++++ `pagy.js`
+!!! success Developer version: plain Javascript to use for debugging with its `pagy.js.map`
 !!!
 
-[!file](/gem/javascripts/pagy.min.js.map)
+* It's an [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file meant to be loaded as is, directly in your
+  production pages and without any further processing
+* Minified (~2k) and polyfilled to work also with quite old browsers
+
+[!file](/gem/javascripts/pagy.js)
 
 ```ruby 
-script_path = Pagy.root.join('javascripts', 'pagy.min.js.map')
+script_path = Pagy.root.join('javascripts', 'pagy.js')
+```
+
++++ `pagy.js.map`
+
+!!! success You need to debug the javascript helpers while using the `pagy.js` file
+!!!
+
+[!file](/gem/javascripts/pagy.js.map)
+
+```ruby 
+script_path = Pagy.root.join('javascripts', 'pagy.js.map')
 ```
 
 +++
@@ -86,14 +97,14 @@ Depending on your environment you have a few ways of configuring your app:
 
 In older versions of Rails, you can configure the app to look into the installed pagy gem javascript files:
 
-+++ Sprockets
++++ Propshaft
 
 ```ruby pagy.rb (initializer)
-Rails.application.config.assets.paths << Pagy.root.join('javascripts') # uncomment.
+Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 ```
 
-```js manifest.js (or "application.js" for old sprocket sprockets):
-//= require pagy
+```erb application.html.erb
+<%= javascript_include_tag "pagy" %>
 ```
 
 +++ Importmaps
@@ -110,14 +121,14 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts') #uncommen
 pin 'pagy'
 ```
 
-+++ Propshaft
++++ Sprockets
 
 ```ruby pagy.rb (initializer)
-Rails.application.config.assets.paths << Pagy.root.join('javascripts')
+Rails.application.config.assets.paths << Pagy.root.join('javascripts') # uncomment.
 ```
 
-```erb application.html.erb
-<%= javascript_include_tag "pagy" %>
+```js manifest.js (or "application.js" for old sprocket sprockets):
+//= require pagy
 ```
 
 +++
@@ -127,9 +138,10 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 In order to bundle the `pagy.mjs` your builder has to find it either with a link or local copy, or by looking into the pagy
 javascript path:
 
-+++ Generic
-You can create a symlink or a copy of the `pagy.mjs` file (available in the pagy gem) into an app compiled dir and use it as
-a regular app file. That way any builder will pick it up. For example:
++++ Generic 
+
+You can create a symlink or a copy of the `pagy.mjs` file (available in the pagy gem) into an app compiled dir and use
+it as a regular app file. That way any builder will pick it up. For example:
 
 ```ruby config/initializers/pagy.rb
 # Create/refresh the `app/javascript/pagy.mjs` symlink/copy every time 
@@ -140,6 +152,7 @@ unless Rails.env.production?
 ```
 
 +++ esbuild
+
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 
 ```json package.json
@@ -149,6 +162,7 @@ Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 ```
 
 +++ Webpack
+
 Prepend the `NODE_PATH` environment variable to the `scripts.build` command:
 
 ```json package.json
@@ -192,11 +206,12 @@ export default class extends Controller {
 
 ```erb View
 <div data-controller="pagy-initializer">
-  <%== pagy_nav_js(@pagy) %>
+<%== pagy_nav_js(@pagy) %>
 </div>
 ```
 
 +++ jsbundling-rails
+
 Import and use the pagy module:
 
 ```js app/javascript/application.js
@@ -239,6 +254,7 @@ If Javascript is disabled in the client browser, certain helpers will be useless
 !!!
 
 !!!danger Overriding `*_js` helpers is not recommended
-The `pagy*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
-and might break in a next release.
+
+The `pagy*_js` helpers are tightly coupled with the javascript code, so any
+partial overriding on one side, would be quite fragile and might break in a next release.
 !!!

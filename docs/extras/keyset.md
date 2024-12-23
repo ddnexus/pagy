@@ -13,7 +13,7 @@ Paginate with the Pagy keyset pagination technique.
 
 ## Overview
 
-This is a tiny wrapper around the [Pagy::Keyset API](/docs/api/keyset.md). Please refer to the class documentation for a 
+This is a wrapper around the [Pagy::Keyset API](/docs/api/keyset.md). Please refer to the class documentation for a 
 fuller understanding of keyset pagination:
 
 [!ref Keyset Pagination: Concepts and Overview](/docs/api/keyset.md)
@@ -33,7 +33,7 @@ require 'pagy/extras/keyset'
 ```
 
 ```ruby Controller (action)
-# The set argument must be an uniquely ORDERED Activerecord Scope or Sequel Dataset 
+# The set argument must be a uniquely ORDERED Activerecord Scope or Sequel Dataset 
 
 # Minimal unique ordering with the primary key: it works fast out of the box 
 set = Product.order(:id)

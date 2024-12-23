@@ -6,7 +6,7 @@ icon: play-24
 
 # Pagy Playground
 
-You can showcase, clone and develop a few pagy APPs without the need to setup anything on your side!
+You can showcase, clone and develop a few pagy APPs without the need to set up anything on your side!
 
 ```sh
 $ bundle exec pagy --help
@@ -109,9 +109,15 @@ This are the interactive showcase/repro for the keyset extra with `ActiveRecord`
 
 Run the interactive demo from your terminal:
 
-```sh
-bundle exec pagy keyset_ar
-bundle exec pagy keyset_s
+```sh      
+bundle exec pagy | grep keyset
+  keyset                     Showcase the Keyset pagination (ActiveRecord example)
+  keyset_for_ui        Showcase the Keyset Numeric pagination (ActiveRecord example)
+  keyset_sequel              Showcase the Keyset pagination (Sequel example)
+
+bundle exec pagy keyset
+bundle exec pagy keyset_for_ui
+bundle exec pagy keyset_sequel
 ```
 
 ...and point your browser to http://0.0.0.0:8000
