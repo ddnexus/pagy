@@ -49,7 +49,7 @@ describe 'pagy/extras/searchkick' do
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal app.params[:page].to_i
         _(results.count).must_equal Pagy::DEFAULT[:limit]
         _(results).must_rematch :results
       end
@@ -58,7 +58,7 @@ describe 'pagy/extras/searchkick' do
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal app.params[:page].to_i
         _(results.count).must_equal Pagy::DEFAULT[:limit]
         _(results).must_rematch :results
       end

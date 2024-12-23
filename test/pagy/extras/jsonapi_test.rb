@@ -62,20 +62,20 @@ describe 'pagy/extras/jsonapi' do
   describe 'JsonApi with custom named params' do
     it 'gets custom named params' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
-      pagy, _records = app.send(:pagy, @collection, page_param: :number, limit_param: :size)
+      pagy, _records = app.send(:pagy, @collection, page_sym: :number, limit_sym: :size)
       _(pagy.page).must_equal 3
       _(pagy.limit).must_equal 10
     end
     it 'sets custom named params' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
-      pagy, _records = app.send(:pagy, @collection, page_param: :number, limit_param: :size)
+      pagy, _records = app.send(:pagy, @collection, page_sym: :number, limit_sym: :size)
       _(app.send(:pagy_url_for, pagy, 4)).must_rematch :url
     end
   end
   describe '#pagy_jsonapi_links' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
-      pagy, _records = app.send(:pagy, @collection, page_param: :number, limit_param: :size)
+      pagy, _records = app.send(:pagy, @collection, page_sym: :number, limit_sym: :size)
       result = app.send(:pagy_jsonapi_links, pagy)
       _(result.keys).must_equal %i[first last prev next]
       _(result).must_rematch :result
@@ -95,11 +95,11 @@ describe 'pagy/extras/jsonapi' do
   end
   describe '#pagy_jsonapi_links (keyset)' do
     it 'returns the ordered links' do
-      app = MockApp.new(params: { page: { latest: 'eyJpZCI6MTB9', size: 10 } })
+      app = MockApp.new(params: { page: { latest: 'WzIwXQ', size: 10 } })
       pagy, _records = app.send(:pagy_keyset,
                                 Pet.order(:id),
-                                page_param: :latest,
-                                limit_param: :size)
+                                page_sym:  :latest,
+                                limit_sym: :size)
       result = app.send(:pagy_jsonapi_links, pagy)
       _(result.keys).must_equal %i[first last prev next]
       _(result).must_rematch :keyset_result
@@ -109,8 +109,8 @@ describe 'pagy/extras/jsonapi' do
       app = MockApp.new(params: { page: { size: 50 } })
       pagy, _records = app.send(:pagy_keyset,
                                 Pet.order(:id),
-                                page_param: :latest,
-                                limit_param: :size)
+                                page_sym:  :latest,
+                                limit_sym: :size)
       result = app.send(:pagy_jsonapi_links, pagy)
       _(result).must_rematch :keyset_result
       _(result[:next]).must_be_nil

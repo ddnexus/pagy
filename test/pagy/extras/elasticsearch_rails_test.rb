@@ -36,7 +36,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal app.params[:page].to_i
         _(records.count).must_equal Pagy::DEFAULT[:limit]
         _(records).must_rematch :records
       end
@@ -46,7 +46,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal app.params[:page].to_i
         _(records.count).must_equal Pagy::DEFAULT[:limit]
         _(records).must_rematch :records
       end
@@ -86,7 +86,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal app.params[:page].to_i
         _(records.count).must_equal Pagy::DEFAULT[:limit]
         _(records).must_rematch :records
       end
@@ -96,7 +96,7 @@ describe 'pagy/extras/elasticsearch_rails' do
         _(pagy).must_be_instance_of Pagy
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
-        _(pagy.page).must_equal app.params[:page]
+        _(pagy.page).must_equal app.params[:page].to_i
         _(records.count).must_equal Pagy::DEFAULT[:limit]
         _(records).must_rematch :records
       end

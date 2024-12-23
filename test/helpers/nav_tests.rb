@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 require 'pagy/extras/countless'
+require 'pagy/extras/keyset_for_ui'
 require_relative '../mock_helpers/pagy_buggy'
 require_relative '../mock_helpers/app'
+require_relative '../files/models'
 
 module NavTests
   def app
@@ -12,12 +14,15 @@ module NavTests
   def nav_tests(prefix)
     method = :"pagy#{prefix}_nav"
     [1, 20, 50].each do |page|
-      pagy = Pagy.new(count: 1000, page: page)
+      pagy  = Pagy.new(count: 1000, page: page)
       pagyx = Pagy.new(count: 1000, page: page)
       _(app.send(method, pagy)).must_rematch :"plain_#{page}"
       _(app.send(method, pagyx, id: 'test-nav-id', anchor_string: 'anchor_string')).must_rematch :"extras_#{page}"
     end
     _ { app.send(method, PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
+    pagyk = Pagy::KeysetForUI.new(Pet.order(:animal, :name, :id),
+                                  page: ['key', 2, 2, ["cat", "Ella", 18], nil])
+    _(app.send(method, pagyk)).must_rematch :keyset
   end
 
   def nav_js_tests(prefix)  # e.g. pagy_bootstrap_nav_js

@@ -45,7 +45,7 @@ pagy/extras/metadata___pagy_metadata_for_Pagy_test_0002_returns_the_full_pagy_me
       :limit: 20
       :outset: 0
       :page: 3
-      :page_param: :page
+      :page_sym: :page
       :size: 7
       :countless_minimal: false
       :steps: false
