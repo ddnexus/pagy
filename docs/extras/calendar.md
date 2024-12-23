@@ -152,8 +152,8 @@ You can add one or more levels with keys like `:year`, `:quarter`, `:month`, `:w
 the variables that will be used to initialize the relative `Pagy::Calendar::*` object. Use an empty hash for default values.
 E.g.: `year: {}, month: {}, ...`.
 
-!!!warning Do not set `:page`, `:page_param`, `:params` and `:period` keys
-The `:page`, `:page_param`, `:params` and `:period` variables for the calendar objects are managed automatically by the extra.
+!!!warning Do not set `:page`, `:page_sym`, `:params` and `:period` keys
+That variables for the calendar objects are managed automatically by the extra.
 Setting them explicitly has no effect. (See also [Calendar params](#calendar-params) for solutions in case of conflicts)
 !!!
 
@@ -330,7 +330,7 @@ This extra handles the request params of its objects automatically, and you shou
 with other params in your requests. In that case you have a couple of alternatives:
 
 - Renaming the conflicting param of your app
-- Passing a custom `:page_param` to the [Pagy configuration](#pagy-configuration). That will internally rename the `:page_param`
+- Passing a custom `:page_sym` to the [Pagy configuration](#pagy-configuration). That will internally rename the `:page_sym`
   vars and update the `:params` procs of all the calendar objects accordingly.
 
 ## View

@@ -66,7 +66,7 @@ Get the count from the collection, considering also the `:count_args` variable. 
 
 ==- `pagy_get_page(vars)`
 
-Get the `page` from the param ,looking at the `:page_param` variable. See also [Customize the page_param](/docs/how-to.md#customize-the-page-param).
+Get the `page` from the param, looking at the `:page_sym` variable. See also [Customize the page_sym](/docs/how-to.md#customize-the-page-param).
 
 ==- `pagy_get_items(collection, pagy)`
 

@@ -10,7 +10,7 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pagy) for instant answers not covered in this page.
 
-## Choose between offset, countless or keyset pagination
+## Choose the right pagination technique
 
 [AI-powered answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
 
@@ -174,17 +174,17 @@ You can also replace the `pagy.aria_label.nav` strings in the dictionary, as wel
 
 See more details in the [ARIA attributes Page](api/ARIA.md).
 
-## Customize the page param
+## Customize the page symbol
 
-Pagy uses the `:page_param` variable to determine the param it should get the page number from and create the URL for. Its default
-is set as `Pagy::DEFAULT[:page_param] = :page`, hence it will get the page number from the `params[:page]` and will create page
+Pagy uses the `:page_sym` variable to determine the param it should get the page number from and create the URL for. Its default
+is set as `Pagy::DEFAULT[:page_sym] = :page`, hence it will get the page number from the `params[:page]` and will create page
 URLs like `./?page=3` by default.
 
 You may want to customize that, for example to make it more readable in your language, or because you need to paginate different
 collections in the same action. Depending on the scope of the customization, you have a couple of options:
 
-1. `Pagy::DEFAULT[:page_param] = :custom_param` will be used as the global default
-2. `pagy(collection, page_param: :custom_param)` or `Pagy.new(count:100, page_param: :custom_param)` will be used for a single
+1. `Pagy::DEFAULT[:page_sym] = :custom_page` will be used as the global default
+2. `pagy(collection, page_sym: :custom_page)` or `Pagy.new(count:100, page_sym: :custom_page)` will be used for a single
    instance (overriding the global default)
 
 You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-vars) if you need some special way to get the page
@@ -239,7 +239,7 @@ like `your_route/23` instead of `your_route?page=23`):
 ```ruby controller
 
 def pagy_url_for(pagy, page, absolute: false)
-  params = request.query_parameters.merge(pagy.vars[:page_param] => page, only_path: !absolute)
+  params = request.query_parameters.merge(pagy.vars[:page_sym] => page, only_path: !absolute)
   url_for(params)
 end
 ```
@@ -538,17 +538,17 @@ Consider [Benito Serna's implementation of turbo-frames (on Rails) using search 
 along with a corresponding [demo app](https://github.com/bhserna/dynamic_data_grid_hotwire_ransack) for a similar implementation
 of the above logic.
 
-==- Use different page_param(s)
+==- Use different page symbols
 
 You can also
 paginate [multiple model in the same request](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy/)
-by simply using multiple `:page_param`:
+by simply using different `:page_sym` for each instance:
 
 ```rb
 
 def index # controller action
-  @pagy_stars, @stars     = pagy(Star.all, page_param: :page_stars)
-  @pagy_nebulae, @nebulae = pagy(Nebula.all, page_param: :page_nebulae)
+  @pagy_stars, @stars     = pagy(Star.all, page_sym: :page_stars)
+  @pagy_nebulae, @nebulae = pagy(Nebula.all, page_sym: :page_nebulae)
 end
 ```
 
