@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Showcase the keyset ActiveRecord pagination
+#    Showcase the Keyset Numeric pagination (ActiveRecord example)
 #
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-keyset-apps
@@ -10,8 +10,8 @@
 #    bundle exec pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone keyset_ar
-#    bundle exec pagy ./keyset_ar.ru
+#    bundle exec pagy clone keyset_for_ui
+#    bundle exec pagy ./keyset_for_ui.ru
 #
 # URL
 #    http://0.0.0.0:8000
@@ -24,29 +24,41 @@ require 'bundler'
 Bundler.configure
 gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
+  gem 'activerecord'
   gem 'puma'
-  gem 'sequel'
   gem 'sinatra'
   gem 'sqlite3'
 end
 
 # Pagy initializer
+require 'pagy/extras/keyset_for_ui'
 require 'pagy/extras/limit'
-require 'pagy/extras/keyset'
 require 'pagy/extras/pagy'
-Pagy::DEFAULT[:limit] = 10
+Pagy::DEFAULT[:limit] = 4
 Pagy::DEFAULT.freeze
 
 # Sinatra setup
 require 'sinatra/base'
-require 'logger'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
   include Pagy::Backend
+
+  get('/javascripts/:file') do
+    format = params[:file].split('.').last
+    if format == 'js'
+      content_type 'application/javascript'
+    elsif format == 'map'
+      content_type 'application/json'
+    end
+    send_file Pagy.root.join('javascripts', params[:file])
+  end
+
   # Root route/action
   get '/' do
+    Time.zone = 'UTC'
+
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset(Pet.order(:animal, :name, Sequel.desc(:birthdate), :id))
+    @pagy, @pets = pagy_keyset_for_ui(Pet.order(@order))
     erb :main
   end
 
@@ -65,8 +77,12 @@ class PagyKeyset < Sinatra::Base
       <html lang="en">
       <html>
       <head>
-         <title>Pagy Keyset App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Pagy Keyset For UI App</title>
+        <script src="javascripts/pagy.js"></script>
+         <script>
+          window.addEventListener("load", Pagy.init);
+        </script>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;
@@ -96,8 +112,9 @@ class PagyKeyset < Sinatra::Base
   template :main do
     <<~ERB
       <div class="content">
-        <h1>Pagy Keyset App</h1>
-        <p>Self-contained, standalone app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
+        <h1>Pagy Keyset For UI App</h1>
+        <p>Self-contained, standalone app usable to easily reproduce any Keyset For UI related pagy issue
+        with ActiveRecord sets. Notice that Keyset For UI works also with Sequel sets</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
         <ul>
@@ -127,35 +144,38 @@ class PagyKeyset < Sinatra::Base
         </table>
         </div>
         <p>
-        <nav class="pagy" id="next" aria-label="Pagy next">
-          <%= pagy_next_a(@pagy, text: 'Next page &gt;') %>
-        </nav>
+          <%= pagy_nav(@pagy) %>
       </div>
     ERB
   end
 end
 
-# Sequel setup
-require 'sequel'
-Sequel.default_timezone = :utc
+# ActiveRecord setup
+require 'active_record'
+
+# Match the microsecods with the strings stored into the time columns of SQLite
+# ActiveSupport::JSON::Encoding.time_precision = 6
+
+# Log
+output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
+ActiveRecord::Base.logger = Logger.new(output)
 # SQLite DB files
 dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
 abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
-unless File.writable?(dir)
+      unless File.writable?(dir)
 # Connection
-output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
-DB     = Sequel.connect(adapter: 'sqlite', user: 'root', password: 'password', host: 'localhost', port: '3306',
-                        database: "#{dir}/tmp/pagy-keyset-s.sqlite3", max_connections: 10, loggers: [Logger.new(output)])
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-keyset-ar.sqlite3")
 # Schema
-DB.create_table! :pets do
-  primary_key :id
-  String :animal,    unique: false, null: false
-  String :name,      unique: false, null: false
-  Date   :birthdate, unique: false, null: false
+ActiveRecord::Schema.define do
+  create_table :pets, force: true do |t|
+    t.string   :animal
+    t.string   :name
+    t.date     :birthdate
+  end
 end
 
 # Models
-class Pet < Sequel::Model; end
+class Pet < ActiveRecord::Base; end
 
 data = <<~DATA
   Luna  | dog    | 2018-03-10
@@ -210,10 +230,12 @@ data = <<~DATA
   Coco  | dog    | 2023-05-27
 DATA
 
-dataset = DB[:pets]
+# DB seed
+pets = []
 data.each_line(chomp: true) do |pet|
   name, animal, birthdate = pet.split('|').map(&:strip)
-  dataset.insert(name:, animal:, birthdate:)
+  pets << { name:, animal:, birthdate: }
 end
+Pet.insert_all(pets)
 
 run PagyKeyset
