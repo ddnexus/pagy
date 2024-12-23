@@ -154,12 +154,6 @@
 # require 'pagy/extras/overflow'
 # Pagy::DEFAULT[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
 
-# Trim extra: Remove the page=1 param from links
-# See https://ddnexus.github.io/pagy/docs/extras/trim
-# require 'pagy/extras/trim'
-# set to false only if you want to make :trim_extra an opt-in variable
-# Pagy::DEFAULT[:trim_extra] = false # default true
-
 # Standalone extra: Use pagy in non Rack environment/gem
 # See https://ddnexus.github.io/pagy/docs/extras/standalone
 # require 'pagy/extras/standalone'
