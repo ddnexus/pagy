@@ -17,7 +17,7 @@ require 'pagy/keyset_for_ui'
         records = pagy.records
         _(records.size).must_equal 10
         _(records.first.id).must_equal 13
-        _(pagy.update).must_equal ['key', ["dog", "Denis", 44]]
+        _(pagy.update).must_equal ['key', 2, 1, ["dog", "Denis", 44]]
       end
       it 'uses :jsonify_keyset_attributes' do
         pagy = Pagy::KeysetForUI.new(model.order(:id),
@@ -27,7 +27,7 @@ require 'pagy/keyset_for_ui'
                                      jsonify_keyset_attributes: ->(attr) { attr.values.to_json })
         _(pagy.next).must_equal(3)
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 10)
-        _(pagy.update).must_equal ['key', [20]]
+        _(pagy.update).must_equal ['key', 2, 1, [20]]
       end
     end
     describe 'handles the page/cut' do
@@ -36,7 +36,7 @@ require 'pagy/keyset_for_ui'
                                      limit: 10)
         _(pagy.instance_variable_get(:@cut)).must_be_nil
         _(pagy.next).must_equal 2
-        _(pagy.update).must_equal [nil, [10]]
+        _(pagy.update).must_equal [nil, 1, 1, [10]]
       end
       it 'handles the page/cut for the second page' do
         pagy = Pagy::KeysetForUI.new(model.order(:id),
@@ -46,7 +46,7 @@ require 'pagy/keyset_for_ui'
         _(pagy.instance_variable_get(:@cutoff_args)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal 3
-        _(pagy.update).must_equal ['key', [20]]
+        _(pagy.update).must_equal ['key', 2, 1, [20]]
       end
       it 'handles the page/cut for the last page' do
         pagy = Pagy::KeysetForUI.new(model.order(:id),
@@ -61,11 +61,12 @@ require 'pagy/keyset_for_ui'
     end
     describe 'handles overflow' do
       it 'reset on overflow' do
-        pagy = Pagy::KeysetForUI.new(model.order(:id),
-                                     cutoffs: ['key', 2, [20]],
-                                     limit:   10,
-                                     page:    3)
-        _(pagy.update).must_equal [nil, [10]]
+        _ do
+            Pagy::KeysetForUI.new(model.order(:id),
+                                  cutoffs: ['key', 2, [20]],
+                                  limit:   10,
+                                  page:    3)
+          end.must_raise Pagy::OverflowError
       end
     end
     describe 'handles the jumping back' do

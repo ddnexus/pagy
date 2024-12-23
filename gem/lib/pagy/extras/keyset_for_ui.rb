@@ -27,12 +27,9 @@ class Pagy # :nodoc:
 
       cutoffs = JSON.parse(B64.urlsafe_decode(cutoffs))
       pagy_id = cutoffs.shift
-      return cutoffs if request.cookies['pagy'] == pagy_id
-
-      # The url has been requested from another browser, which does not have the same sessionStorage,
-      # hence we need to restart the pagination to page 1
-      vars[:page] = 1
-      KeysetForUI::FIRST_PAGE
+      # No cutoffs if the url has been requested from another browser,
+      # which does not have the same sessionStorage, hence we need to restart the pagination to page 1
+      request.cookies['pagy'] == pagy_id ? cutoffs : nil
     end
   end
   Backend.prepend KeysetForUIExtra

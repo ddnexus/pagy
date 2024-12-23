@@ -16,7 +16,6 @@ class Pagy # :nodoc:
 
     # Avoid args conflicts in composite SQL fragments
     CUTOFF_PREFIX = 'cutoff_' # Prefix for cutoff_args
-    FIRST_PAGE    = [nil, 1, nil, nil].freeze
 
     include SharedUIMethods
     attr_reader :update
@@ -32,10 +31,13 @@ class Pagy # :nodoc:
 
     # Get the cutoff from the client
     def assign_cutoffs
-      # key, is from the client and sent back as-is in order to id the requests of the same set
-      key, @last, @prev_cutoff, @cutoff = @vars[:cutoffs] || FIRST_PAGE
-      @update = [key]
-      # raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
+      if @vars[:cutoffs]
+        key, @last, @prev_cutoff, @cutoff = @vars[:cutoffs]
+        raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
+      else
+        @page = @last = 1
+      end
+      @update = [key] # key, is from the client and sent back as-is in order to id the requests of the same set
     end
 
     # Assign different args to support the AFTER_CUTOFF SQL if @cutoff
@@ -134,8 +136,8 @@ class Pagy # :nodoc:
       @next ||= (@page + 1).tap do
                   unless @cutoff
                     @cutoff = derive_cutoff
-                    @update.push(@last, @cutoff)   # operation arguments for the client cutoffs
-                    @last += 1                     # reflect the added cutoff
+                    @update.push(@page, 1, @cutoff)   # splice arguments for the client cutoffs
+                    @last += 1                       # reflect the added cutoff
                   end
                 end
     end

@@ -1,7 +1,5 @@
 const Pagy = (() => {
-  const sS = sessionStorage;
-  const sync = new BroadcastChannel("pagy");
-  const tabId = Date.now();
+  const sS = sessionStorage, sync = new BroadcastChannel("pagy"), tabId = Date.now();
   sync.addEventListener("message", (e) => {
     if (e.data.from) {
       const cutoffs = sS.getItem(e.data.key);
@@ -33,24 +31,20 @@ const Pagy = (() => {
     }
     const pagyId = document.cookie.split(/;\s+/).find((row) => row.startsWith("pagy="))?.split("=")[1] || Math.floor(Math.random() * 36 ** 3).toString(36);
     document.cookie = "pagy=" + pagyId;
-    let [key, last, latest] = opts.update;
+    let [key, ...spliceArgs] = opts.update;
     if (key && !(key in sS)) {
       sync.postMessage({ from: tabId, key });
       await new Promise((resolve) => setTimeout(() => resolve(""), 100));
     }
     key ||= "pagy-" + Date.now().toString(36);
-    const cs = sS.getItem(key);
-    const cutoffs = cs ? JSON.parse(cs) : [null];
-    if (last && latest) {
-      cutoffs[last] = latest;
+    const cs = sS.getItem(key), cutoffs = cs ? JSON.parse(cs) : [null];
+    if (spliceArgs) {
+      cutoffs.splice(...spliceArgs);
       sS.setItem(key, JSON.stringify(cutoffs));
     }
     (el.completeUrls = () => {
       for (const a of el.querySelectorAll("a[href]")) {
-        const url = a.href;
-        const re = new RegExp(`(?<=\\?.*)\\b${opts.page_param}=([\\d]+)`);
-        const page = parseInt(url.match(re)?.[1]);
-        const value = b64.safeEncode(JSON.stringify([
+        const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${opts.page_param}=([\\d]+)`), page = parseInt(url.match(re)?.[1]), value = b64.safeEncode(JSON.stringify([
           pagyId,
           key,
           cutoffs.length,
@@ -62,8 +56,7 @@ const Pagy = (() => {
     })();
   };
   const initNavJs = (el, [tokens, sequels, labelSequels, opts]) => {
-    const container = el.parentElement ?? el;
-    const widths = Object.keys(sequels).map((w) => parseInt(w)).sort((a, b) => b - a);
+    const container = el.parentElement ?? el, widths = Object.keys(sequels).map((w) => parseInt(w)).sort((a, b) => b - a);
     let lastWidth = -1;
     const fillIn = (a, page, label) => a.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
     (el.pagyRender = () => {
@@ -72,8 +65,7 @@ const Pagy = (() => {
         return;
       }
       let html = tokens.before;
-      const series = sequels[width.toString()];
-      const labels = labelSequels?.[width.toString()] ?? series.map((l) => l.toString());
+      const series = sequels[width.toString()], labels = labelSequels?.[width.toString()] ?? series.map((l) => l.toString());
       series.forEach((item, i) => {
         const label = labels[i];
         let filled;
@@ -101,15 +93,12 @@ const Pagy = (() => {
   const initComboJs = (el, [url_token, opts]) => initInput(el, (inputValue) => [inputValue, url_token.replace(/__pagy_page__/, inputValue)], opts);
   const initSelectorJs = (el, [from, url_token, opts]) => {
     initInput(el, (inputValue) => {
-      const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
-      const url = url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
+      const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString(), url = url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
       return [page, url];
     }, opts);
   };
   const initInput = (el, getVars, opts) => {
-    const input = el.querySelector("input");
-    const link = el.querySelector("a");
-    const initial = input.value;
+    const input = el.querySelector("input"), link = el.querySelector("a"), initial = input.value;
     const action = () => {
       if (input.value === initial) {
         return;
@@ -139,8 +128,7 @@ const Pagy = (() => {
   return {
     version: "9.3.3",
     init(arg) {
-      const target = arg instanceof Element ? arg : document;
-      const elements = target.querySelectorAll("[data-pagy]");
+      const target = arg instanceof Element ? arg : document, elements = target.querySelectorAll("[data-pagy]");
       for (const el of elements) {
         try {
           const [keyword, ...args] = JSON.parse(b64.decode(el.getAttribute("data-pagy")));

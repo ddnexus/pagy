@@ -46,7 +46,7 @@ class Pagy # :nodoc:
                   'after'   => %(#{bootstrap_next_html pagy, a}</ul>) }
 
       %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}#{
-                           'pagy-keyset ' if defined?(::Pagy::KeysetForUI) && Pagy.is_a?(KeysetForUI)}pagy-bootstrap nav-js" #{
+                           'pagy-keyset ' if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)}pagy-bootstrap nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
           pagy_data(pagy, :nav_js, tokens, sequels, pagy.label_sequels(sequels))
         }></nav>)
