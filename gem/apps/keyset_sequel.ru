@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Showcase the keyset ActiveRecord pagination
+#    Showcase the Keyset pagination (Sequel example)
 #
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-keyset-apps
@@ -10,8 +10,8 @@
 #    bundle exec pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone keyset_ar
-#    bundle exec pagy ./keyset_ar.ru
+#    bundle exec pagy clone keyset_sequel
+#    bundle exec pagy ./keyset_sequel.ru
 #
 # URL
 #    http://0.0.0.0:8000
@@ -24,8 +24,8 @@ require 'bundler'
 Bundler.configure
 gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
-  gem 'activerecord'
   gem 'puma'
+  gem 'sequel'
   gem 'sinatra'
   gem 'sqlite3'
 end
@@ -39,15 +39,14 @@ Pagy::DEFAULT.freeze
 
 # Sinatra setup
 require 'sinatra/base'
+require 'logger'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
   include Pagy::Backend
   # Root route/action
   get '/' do
-    Time.zone = 'UTC'
-
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset(Pet.order(@order))
+    @pagy, @pets = pagy_keyset(Pet.order(:animal, :name, Sequel.desc(:birthdate), :id))
     erb :main
   end
 
@@ -98,7 +97,7 @@ class PagyKeyset < Sinatra::Base
     <<~ERB
       <div class="content">
         <h1>Pagy Keyset App</h1>
-        <p>Self-contained, standalone app usable to easily reproduce any keyset related pagy issue with ActiveRecord sets.</p>
+        <p>Self-contained, standalone app usable to easily reproduce any Keyset related pagy issue with Sequel sets.</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
         <ul>
@@ -136,32 +135,27 @@ class PagyKeyset < Sinatra::Base
   end
 end
 
-# ActiveRecord setup
-require 'active_record'
-
-# Match the microsecods with the strings stored into the time columns of SQLite
-# ActiveSupport::JSON::Encoding.time_precision = 6
-
-# Log
-output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
-ActiveRecord::Base.logger = Logger.new(output)
+# Sequel setup
+require 'sequel'
+Sequel.default_timezone = :utc
 # SQLite DB files
 dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
 abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
-      unless File.writable?(dir)
+unless File.writable?(dir)
 # Connection
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: "#{dir}/tmp/pagy-keyset-ar.sqlite3")
+output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
+DB     = Sequel.connect(adapter: 'sqlite', user: 'root', password: 'password', host: 'localhost', port: '3306',
+                        database: "#{dir}/tmp/pagy-keyset-s.sqlite3", max_connections: 10, loggers: [Logger.new(output)])
 # Schema
-ActiveRecord::Schema.define do
-  create_table :pets, force: true do |t|
-    t.string   :animal
-    t.string   :name
-    t.date     :birthdate
-  end
+DB.create_table! :pets do
+  primary_key :id
+  String :animal,    unique: false, null: false
+  String :name,      unique: false, null: false
+  Date   :birthdate, unique: false, null: false
 end
 
 # Models
-class Pet < ActiveRecord::Base; end
+class Pet < Sequel::Model; end
 
 data = <<~DATA
   Luna  | dog    | 2018-03-10
@@ -216,12 +210,10 @@ data = <<~DATA
   Coco  | dog    | 2023-05-27
 DATA
 
-# DB seed
-pets = []
+dataset = DB[:pets]
 data.each_line(chomp: true) do |pet|
   name, animal, birthdate = pet.split('|').map(&:strip)
-  pets << { name:, animal:, birthdate: }
+  dataset.insert(name:, animal:, birthdate:)
 end
-Pet.insert_all(pets)
 
 run PagyKeyset
