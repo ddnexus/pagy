@@ -43,8 +43,6 @@ STYLES.each_key do |style|
   require "pagy/extras/#{STYLES[style][:extra] || style}"
 end
 require 'pagy/extras/limit'
-require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false         # opt-in trim
 
 # Sinatra setup
 require 'sinatra/base'
@@ -59,7 +57,7 @@ class PagyDemo < Sinatra::Base
 
   get '/template' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection, trim_extra: params['trim'])
+    @pagy, @records = pagy(collection)
 
     erb :template, locals: { pagy: @pagy, style: 'pagy' }
   end
@@ -83,9 +81,9 @@ class PagyDemo < Sinatra::Base
   STYLES.each_key do |style|
     prefix = STYLES[style][:prefix] || "_#{style}"
 
-    get("/#{style}/?:trim?") do
+    get("/#{style}") do
       collection = MockCollection.new
-      @pagy, @records = pagy(collection, trim_extra: params['trim'])
+      @pagy, @records = pagy(collection)
 
       erb :helpers, locals: { style:, prefix: }
     end

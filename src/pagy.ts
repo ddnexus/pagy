@@ -88,10 +88,6 @@ const Pagy = (() => {
     input.addEventListener("keypress", e => { if (e.key === "Enter") { action() } });   // trigger action
   };
 
-  // Trim the ${page-param}=1 params in links
-  const trim = (a:string, param:string) =>
-      a.replace(new RegExp(`[?&]${param}=1\\b(?!&)|\\b${param}=1&`), "");
-
   // Public interface
   return {
     version: "9.3.3",

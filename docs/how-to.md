@@ -229,14 +229,6 @@ You can also use the `:fragment` keyword argument to add a fragment to the URLs 
 When you need something more radical with the URL than just massaging the params, you should override the `pagy_url_for` right in
 your helper.
 
-[!!!warning Override `pagy_trim` if using Trim Extra
-
-If you are also using the [trim extra](extras/trim.md) you should also override
-the [pagy_trim](extras/trim.md#pagy-trim-pagy-link)
-method or the `Pagy.trim` javascript function.
-
-!!!
-]()
 The following are a couple of examples.
 
 ==- Enable fancy-routes
@@ -727,11 +719,6 @@ For example:
 ```erb
 <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 ```
-
-## Skip page=1 param
-
-By default Pagy generates all the page links including the `page` param. If you want to remove the `page=1` param from the first
-page link, just require the [trim extra](extras/trim.md).
 
 ## Deal with a slow collection COUNT(*)
 

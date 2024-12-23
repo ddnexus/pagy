@@ -61,7 +61,7 @@ export function testComboNav(app:string, id:string) {
     });
 }
 
-export function testLimitSelector(app:string, id:string, path = "/", trim = false) {
+export function testLimitSelector(app:string, id:string, path = "/") {
     it(`[${app}] Test ${id}`, () => {
         const pages    = [1, 36, 50];
         const id_input = `${id} input`;
@@ -89,19 +89,6 @@ export function testLimitSelector(app:string, id:string, path = "/", trim = fals
             cy.location().should(loc => expect(loc.href).to.match(/page=2/));
             cy.get("#limit-selector-js input").type("5{enter}");
             cy.location().should(loc => expect(loc.href).to.match(/page=3/));
-            if (trim) {  // (only demo app)
-                // test page 1 after changing limit
-                cy.visit(`${path}?trim=true&page=1&limit=20`);
-                cy.location().should(loc => expect(loc.href).to.match(/page=1/));
-                cy.get("#limit-selector-js input").type("10{enter}");
-                cy.location().should(loc => expect(loc.href).to.not.match(/page=1/));
-                // test page 1 (no page param) and page 3
-                for (const page of [1, 3]) {
-                    const url = `${path}?trim=true&page=${page}`;
-                    cy.visit(url);
-                    ["#nav", "#nav-js", "#combo-nav-js"].forEach(id => cy.get(id).snapshot());
-                }
-            }
         }
     });
 }
