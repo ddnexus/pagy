@@ -8,9 +8,9 @@ class Pagy # :nodoc:
 
     # Return Pagy object and paginated items
     def pagy_array(array, **vars)
+      vars[:count] ||= array.size
       vars[:limit] ||= pagy_get_limit(vars)
       vars[:page]  ||= pagy_get_page(vars)
-      vars[:count] ||= array.size
       pagy = Pagy.new(**vars)
       [pagy, array[pagy.offset, pagy.limit]]
     end

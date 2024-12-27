@@ -48,7 +48,7 @@ class Pagy # :nodoc:
       def pagy_get_page(vars, force_integer: true)
         return super if pagy_skip_jsonapi?(vars) || params[:page].nil?
 
-        page = params[:page][vars[:page_param] || DEFAULT[:page_param]]
+        page = params[:page][vars[:page_sym] || DEFAULT[:page_sym]]
         force_integer ? (page || 1).to_i : page
       end
     end
@@ -63,7 +63,7 @@ class Pagy # :nodoc:
         return super if pagy_skip_jsonapi?(vars)
         return unless params[:page]
 
-        params[:page][vars[:limit_param] || DEFAULT[:limit_param]]
+        params[:page][vars[:limit_sym] || DEFAULT[:limit_sym]]
       end
     end
     # :nocov:
@@ -77,10 +77,10 @@ class Pagy # :nodoc:
         return super unless vars[:jsonapi]
 
         query_params['page'] ||= {}
-        query_params['page'][vars[:page_param].to_s]  = page
-        query_params['page'][vars[:limit_param].to_s] = vars[:limit] if vars[:limit_extra]
+        query_params['page'][vars[:page_sym].to_s]  = page
+        query_params['page'][vars[:limit_sym].to_s] = vars[:limit] if vars[:limit_extra]
       end
     end
-    UrlHelpers.prepend UrlHelperOverride
+    Frontend.prepend UrlHelperOverride
   end
 end

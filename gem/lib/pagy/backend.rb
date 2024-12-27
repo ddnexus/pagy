@@ -37,7 +37,7 @@ class Pagy
     # Get the page integer from the params
     # Overridable by the jsonapi extra
     def pagy_get_page(vars, force_integer: true)
-      page = params[vars[:page_param] || DEFAULT[:page_param]]
+      page = params[vars[:page_sym] || DEFAULT[:page_sym]]
       force_integer ? (page || 1).to_i : page
     end
   end

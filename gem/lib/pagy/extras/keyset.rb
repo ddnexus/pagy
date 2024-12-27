@@ -4,14 +4,14 @@
 require_relative '../keyset'
 
 class Pagy # :nodoc:
-  # Add keyset pagination
+  # Add keyset methods
   module KeysetExtra
     private
 
     # Return Pagy::Keyset object and paginated records
     def pagy_keyset(set, **vars)
-      vars[:page]  ||= pagy_get_page(vars, force_integer: false) # allow nil
       vars[:limit] ||= pagy_get_limit(vars)
+      vars[:page]  ||= pagy_get_page(vars, force_integer: false) # allow nil
       pagy = Keyset.new(set, **vars)
       [pagy, pagy.records]
     end
