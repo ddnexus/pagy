@@ -3,6 +3,7 @@
 
 require_relative 'i18n'
 require_relative 'url_helpers'
+require_relative 'data_helpers'
 
 class Pagy
   # Used for search and replace, hardcoded also in the pagy.js file
@@ -13,6 +14,7 @@ class Pagy
   # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
     include UrlHelpers
+    include DataHelpers
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
@@ -47,10 +49,11 @@ class Pagy
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
-      id = %( id="#{id}") if id
-      a  = pagy_anchor(pagy, **vars)
+      id   = %( id="#{id}") if id
+      a    = pagy_anchor(pagy, **vars)
+      data = %( #{pagy_data(pagy, :nav)}) if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)
 
-      html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}>#{
+      html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}#{data}>#{
                  prev_a(pagy, a)})
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
