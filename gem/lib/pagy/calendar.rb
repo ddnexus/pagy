@@ -44,18 +44,18 @@ class Pagy # :nodoc:
       @units = Calendar::UNITS & @conf.keys # get the units in time length desc order
       raise ArgumentError, 'no calendar unit found in pagy_calendar @configuration' if @units.empty?
 
-      @period     = period
-      @params     = params
-      @page_param = conf[:pagy][:page_param] || DEFAULT[:page_param]
-      # set all the :page_param vars for later deletion
-      @units.each { |unit| conf[unit][:page_param] = :"#{unit}_#{@page_param}" }
+      @period   = period
+      @params   = params
+      @page_sym = conf[:pagy][:page_sym] || DEFAULT[:page_sym]
+      # set all the :page_sym vars for later deletion
+      @units.each { |unit| conf[unit][:page_sym] = :"#{unit}_#{@page_sym}" }
       calendar = {}
       object   = nil
       @units.each_with_index do |unit, index|
-        params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_param] } + [@page_param]
+        params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_sym] } + [@page_sym]
         conf[unit][:params] = ->(up) { up.except(*params_to_delete.map(&:to_s)) }
         conf[unit][:period] = object&.send(:active_period) || @period
-        conf[unit][:page]   = @params[:"#{unit}_#{@page_param}"] # requested page
+        conf[unit][:page]   = @params[:"#{unit}_#{@page_sym}"] # requested page
         # :nocov:
         conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?  # nocov doesn't need to fail block_given?
         # :nocov:
@@ -67,14 +67,14 @@ class Pagy # :nodoc:
 
     # Return the calendar object at time
     def calendar_at(time, **opts)
-      conf        = Marshal.load(Marshal.dump(@conf))
-      page_params = {}
+      conf      = Marshal.load(Marshal.dump(@conf))
+      page_syms = {}
       @units.inject(nil) do |object, unit|
         conf[unit][:period] = object&.send(:active_period) || @period
-        conf[unit][:page]   = page_params[:"#{unit}_#{@page_param}"] \
+        conf[unit][:page]   = page_syms[:"#{unit}_#{@page_sym}"] \
                             = Calendar.send(:create, unit, **conf[unit]).send(:page_at, time, **opts)
         conf[unit][:params] ||= {}
-        conf[unit][:params].merge!(page_params)
+        conf[unit][:params].merge!(page_syms)
         Calendar.send(:create, unit, **conf[unit])
       end
     end

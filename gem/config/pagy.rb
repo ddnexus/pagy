@@ -2,7 +2,7 @@
 
 # Pagy initializer file (9.3.3)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
-# Should you just cherry pick part of this file, please maintain the require-order of the extras
+# Should you just cherry-pick part of this file, please maintain the require-order of the extras
 
 
 # Pagy Variables
@@ -10,12 +10,12 @@
 # You can set any pagy variable as a Pagy::DEFAULT. They can also be overridden per instance by just passing them to
 # Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as DEFAULTs:
-# Pagy::DEFAULT[:limit]       = 20                    # default
-# Pagy::DEFAULT[:size]        = 7                     # default
-# Pagy::DEFAULT[:ends]        = true                  # default
-# Pagy::DEFAULT[:page_param]  = :page                 # default
-# Pagy::DEFAULT[:count_args]  = []                    # example for non AR ORMs
-# Pagy::DEFAULT[:max_pages]   = 3000                  # example
+# Pagy::DEFAULT[:limit]      = 20      # default
+# Pagy::DEFAULT[:size]       = 7       # default
+# Pagy::DEFAULT[:ends]       = true    # default
+# Pagy::DEFAULT[:page_sym]   = :page   # default
+# Pagy::DEFAULT[:count_args] = []      # example for non AR ORMs
+# Pagy::DEFAULT[:max_pages]  = 3000    # example
 
 
 # Extras
@@ -146,7 +146,7 @@
 # require 'pagy/extras/limit'
 # set to false only if you want to make :limit_extra an opt-in variable
 # Pagy::DEFAULT[:limit_extra] = false    # default true
-# Pagy::DEFAULT[:limit_param] = :limit   # default
+# Pagy::DEFAULT[:limit_sym]   = :limit   # default
 # Pagy::DEFAULT[:limit_max]   = 100      # default
 
 # Overflow extra: Allow for easy handling of overflowing pages

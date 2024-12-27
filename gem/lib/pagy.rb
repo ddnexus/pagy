@@ -9,13 +9,13 @@ class Pagy
   VERSION = '9.3.3'
 
   # Core default: constant for easy access, but mutable for customizable defaults
-  DEFAULT = { count_args: [:all], # rubocop:disable Style/MutableConstant
+  DEFAULT = { count_args: [:all],  # AR friendly # rubocop:disable Style/MutableConstant
               ends:       true,
               limit:      20,
               outset:     0,
               page:       1,
-              page_param: :page,
-              size:       7 }  # AR friendly
+              page_sym:   :page,
+              size:       7 }
 
   # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
   def self.root
@@ -23,9 +23,9 @@ class Pagy
   end
 
   include SharedMethods
+  include SharedUIMethods
 
-  attr_reader :count, :from, :in, :last, :next, :offset, :prev, :to
-  alias pages last
+  attr_reader :count, :from, :in, :next, :offset, :to
 
   # Merge and validate the options, do some simple arithmetic and set the instance variables
   def initialize(**vars)
@@ -61,43 +61,6 @@ class Pagy
   # Checks the @page <= @last
   def check_overflow
     raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
-  end
-
-  # Label for the current page. Allow the customization of the output (overridden by the calendar extra)
-  def label = @page.to_s
-
-  # Label for any page. Allow the customization of the output (overridden by the calendar extra)
-  def label_for(page) = page.to_s
-
-  # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
-  def series(size: @vars[:size], **_)
-    raise VariableError.new(self, :size, 'to be an Integer >= 0', size) \
-    unless size.is_a?(Integer) && size >= 0
-    return [] if size.zero?
-
-    [].tap do |series|
-      if size >= @last
-        series.push(*1..@last)
-      else
-        left  = ((size - 1) / 2.0).floor             # left half might be 1 page shorter for even size
-        start = if @page <= left                     # beginning pages
-                  1
-                elsif @page > (@last - size + left)  # end pages
-                  @last - size + 1
-                else                                 # intermediate pages
-                  @page - left
-                end
-        series.push(*start...start + size)
-        # Set first and last pages plus gaps when needed, respecting the size
-        if vars[:ends] && size >= 7
-          series[0]  = 1
-          series[1]  = :gap  unless series[1]  == 2
-          series[-2] = :gap  unless series[-2] == @last - 1
-          series[-1] = @last
-        end
-      end
-      series[series.index(@page)] = @page.to_s
-    end
   end
 end
 
