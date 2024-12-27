@@ -13,16 +13,16 @@ class Pagy # :nodoc:
       sequels = pagy.sequels(**vars)
       id      = %( id="#{id}") if id
       a       = pagy_anchor(pagy, **vars)
-      tokens  = { 'before'  => prev_a(pagy, a),
-                  'a'       => a.(PAGE_TOKEN, LABEL_TOKEN),
-                  'current' => %(<a class="current" role="link" aria-current="page" aria-disabled="true">#{
-                                   LABEL_TOKEN}</a>),
-                  'gap'     => %(<a class="gap" role="link" aria-disabled="true">#{pagy_t('pagy.gap')}</a>),
-                  'after'   => next_a(pagy, a) }
+      tokens  = { before:  prev_a(pagy, a),
+                  a:       a.(PAGE_TOKEN, LABEL_TOKEN),
+                  current: %(<a class="current" role="link" aria-current="page" aria-disabled="true">#{
+                                LABEL_TOKEN}</a>),
+                  gap:     %(<a class="gap" role="link" aria-disabled="true">#{pagy_t('pagy.gap')}</a>),
+                  after:   next_a(pagy, a) }
 
       %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}pagy nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :nav, tokens, sequels, pagy.label_sequels(sequels))
+          pagy_data(pagy, :nav_js, tokens, sequels, pagy.label_sequels(sequels))
         }></nav>)
     end
 
@@ -37,7 +37,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="pagy combo-nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :combo, pagy_url_for(pagy, PAGE_TOKEN, **vars))}>#{
+          pagy_data(pagy, :combo_js, pagy_url_for(pagy, PAGE_TOKEN, **vars))}>#{
           prev_a(pagy, a)
         }<label>#{
           pagy_t('pagy.combo_nav_js', page_input:, pages:)

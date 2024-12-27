@@ -1,4 +1,5 @@
-const Pagy = (() => {
+// pagy.ts
+window.Pagy = (() => {
   const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window;
   let storage, sync, tabId;
   if (storageSupport) {
@@ -139,4 +140,6 @@ const Pagy = (() => {
     }
   };
 })();
-export default Pagy;
+
+//# debugId=0974C14BAD5BAB2A64756E2164756E21
+//# sourceMappingURL=pagy.js.map
