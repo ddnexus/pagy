@@ -1,46 +1,71 @@
-type InitArgs       = ["nav", CutoffArgs] | ["nav_js", NavJsArgs] | ["combo_js", ComboJsArgs] | ["selector_js", SelectorJsArgs]
-type CutoffArgs     = readonly [pageSym:string, update:[storageKey:string, splice?:SpliceArgs]]
-type SpliceArgs     = readonly [start:number, deleteCount:number, ...items:Cutoff[]]
-type Cutoff         = readonly (string | number | boolean)[]
-type CutoffsParams  = [pagyId:string, storageKey:string, pageNumber:number, pages:number, prevCutoff?:Cutoff, pageCutoff?:Cutoff]
-type NavJsArgs      = readonly [Tokens, Sequels, LabelSequels, CutoffArgs]
-type ComboJsArgs    = readonly [urlToken:string]
-type SelectorJsArgs = readonly [from:number, urlToken:string]
 interface SyncData {
   from?: number
-  to?: number
-  key: string
-  cutoffs?: string
+  to?:   number
+  key:   string
+  str?:  string
 }
-interface Tokens {
-  readonly before: string
-  readonly a: string
-  readonly current: string
-  readonly gap: string
-  readonly after: string
+type InitArgs = ["n",  NavKeysetArgs] |
+                ["nj", NavJsArgs] |
+                ["cj", ComboNavJsArgs] |
+                ["sj", SelectorJsArgs]
+
+type NavKeysetArgs = readonly [pageSym: string,
+                               update:  [storageKey: string, spliceArgs?: SpliceArgs]]
+
+type SpliceArgs = readonly [start:       number,
+                            deleteCount: number,     // it would be optional, but ts complains
+                            ...items:    Cutoff[]]
+
+type Cutoff = readonly (string | number | boolean)[]
+
+type AugmentedPageParams = [browserId:   string,
+                            storageKey:  string,
+                            pageNumber:  number,
+                            pages:       number,
+                            prevCutoff?: Cutoff,
+                            pageCutoff?: Cutoff]
+
+type NavJsArgs = readonly [Tokens,
+                           widths: number[],
+                           series: (string | number)[][],
+                           labels: string[][] | null,
+                           NavKeysetArgs?]
+
+type ComboNavJsArgs = readonly [urlToken:string]
+
+type SelectorJsArgs = readonly [from:     number,
+                                urlToken: string]
+
+type Tokens = readonly [before:  string,
+                        anchor:  string,
+                        current: string,
+                        gap:     string,
+                        after:   string]
+
+interface NavJsElement extends HTMLElement {
+  render(): void
 }
-interface Sequels {readonly [width:string]:(string | number)[]}
-interface LabelSequels {readonly [width:string]:string[]}
-interface NavJsElement extends Element {pagyRender():void}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Pagy = (() => {
-  const storageSupport = 'sessionStorage' in window && 'BroadcastChannel' in window;
-  let storage: Storage, sync: BroadcastChannel, tabId: number;
+  const storageSupport = 'sessionStorage' in window && 'BroadcastChannel' in window,
+        pageRe         = "P ";  // shorten the compiled size
+  // eslint-disable-next-line prefer-const
+  let pagy = "pagy", storage: Storage, sync: BroadcastChannel, tabId: number;
   if (storageSupport) {
-    storage = sessionStorage; // shorten the .min.js
-    sync    = new BroadcastChannel("pagy");
+    storage = sessionStorage; // shorten the compiled size
+    sync    = new BroadcastChannel(pagy);
     tabId   = Date.now();
     // Sync the sessionStorage keys for the cutoffs opened in a new tab/window
     sync.addEventListener("message", (e:MessageEvent<SyncData>) => {
       if (e.data.from) { // request cutoffs
         const cutoffs = storage.getItem(e.data.key);
         if (cutoffs) {
-          sync.postMessage(<SyncData>{to: e.data.from, key: e.data.key, cutoffs: cutoffs});
+          sync.postMessage(<SyncData>{to: e.data.from, key: e.data.key, str: cutoffs});
         } // send response
       } else if (e.data.to) {  // receive cutoffs
         if (e.data.to == tabId) {
-          storage.setItem(e.data.key, <string>e.data.cutoffs);
+          storage.setItem(e.data.key, <string>e.data.str);
         }
       }
     });
@@ -48,106 +73,100 @@ const Pagy = (() => {
   // The observer instance for responsive navs
   const rjsObserver = new ResizeObserver(
       entries => entries.forEach(e => {
-        e.target.querySelectorAll<NavJsElement>(".pagy-rjs").forEach(el => el.pagyRender());
+        e.target.querySelectorAll<NavJsElement>(".pagy-rjs").forEach(el => el.render());
       }));
 
   const B64Encode     = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode))),
         B64Safe       = (unsafe:string)  => unsafe.replace(/=/g, "").replace(/[+/]/g, (match) => match == "+" ? "-" : "_"),
         B64SafeEncode = (unicode:string) => B64Safe(B64Encode(unicode)),
         B64Decode     = (base64:string)  => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
-        // B64Unsafe     = (safe:string) => safe.replace(/[-_]/g, (match) => match == "-" ? "+" : "/"),
-        // B64SafeDecode = (base64:string) => B64Decode(B64Unsafe(base64))
+        /* B64Unsafe     = (safe:string) => safe.replace(/[-_]/g, (match) => match == "-" ? "+" : "/"),
+           B64SafeDecode = (base64:string) => B64Decode(B64Unsafe(base64)) */
 
-  // Init the Cutoffs features
-  const initCutoffs = async (el:Element, [pageSym, [storageKey, spliceArgs]]:CutoffArgs) => {
+  // Return a random key: 3 chars max, base-36 number < 36**3
+  const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
+
+  // Init for KeysetForUI paginated navs
+  const initNavKeyset = async (nav:HTMLElement, [pageSym, [storageKey, spliceArgs]]:NavKeysetArgs) => {
     if (!storageSupport) { return }
 
-    let browserId = document.cookie.split(/;\s+/)  // it works even if malformed
-                            .find((row) => row.startsWith("pagy="))
-                            ?.split("=")[1];
-    if (!browserId) {
-      document.cookie = "pagy=" + (browserId = Math.floor(Math.random() * 36 ** 3).toString(36));
-    }
+    let browserKey = document.cookie.split(/;\s+/)  // it works even if malformed
+                             .find((row) => row.startsWith(pagy + "="))
+                             ?.split("=")[1];
+    if (!browserKey) { document.cookie = pagy + "=" + (browserKey = randKey()) }
     if (storageKey && !(storageKey in storage)) {
       // Sync the sessiongStorage from other tabs/windows (e.g. open page in new tab/window)
       sync.postMessage(<SyncData>{ from: tabId, key: storageKey });
       // Wait for the listener to copy the cutoffs in the current sessionStorage
       await new Promise<string|null>((resolve) => setTimeout(() => resolve(""), 100));
     }
-    storageKey  ||= "pagy-" + Date.now().toString(36);
+    if (!storageKey) { do { storageKey = randKey() } while (storageKey in storage) } // no dup keys
     const data    = storage.getItem(storageKey),
           cutoffs = <Cutoff[]>(data ? JSON.parse(data) : [undefined]);
     if (spliceArgs) {
       cutoffs.splice(...spliceArgs);
       storage.setItem(storageKey, JSON.stringify(cutoffs));
     }
-    // Augment the page param of each url
-    for (const a of <HTMLAnchorElement[]><unknown>el.querySelectorAll('a[href]')) {
+    // Augment the page param of each href
+    for (const a of <NodeListOf<HTMLAnchorElement>><unknown>nav.querySelectorAll('a[href]')) {
       const url     = a.href,
             re      = new RegExp(`(?<=\\?.*)\\b${pageSym}=([\\d]+)`),  // find the numeric page
             pageNum = parseInt(<string>url.match(re)?.[1]),            // page=\d+ is always in href
-            value   = B64SafeEncode(JSON.stringify(<CutoffsParams>[browserId,
-                                                                   storageKey,
-                                                                   pageNum,
-                                                                   cutoffs.length,       // pages
-                                                                   cutoffs[pageNum - 1], // prevCutoff
-                                                                   cutoffs[pageNum]]));  // pageCutoff
-      a.href = url.replace(re, `${pageSym}=${value}`);
+            value   = B64SafeEncode(JSON.stringify(
+                          <AugmentedPageParams>[browserKey,
+                                                storageKey,
+                                                pageNum,
+                                                cutoffs.length,       // pages/last
+                                                cutoffs[pageNum - 1], // prevCutoff
+                                                cutoffs[pageNum]]));  // pageCutoff
+      a.href = url.replace(re, pageSym + "=" + value);
     }
   };
 
-  // Init the *_nav_js helpers
-  const initNavJs = (el:NavJsElement, [tokens, sequels, labelSequels, cutoffArgs]:NavJsArgs) => {
-    const container = el.parentElement ?? el,
-          widths    = Object.keys(sequels).map(w => parseInt(w)).sort((a, b) => b - a);
-    let lastWidth   = -1;
-    const fillIn    = (a:string, page:string, label:string) =>
-                        a.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
-    (el.pagyRender = () => {
-      const width = widths.find(w => w < container.clientWidth) || 0;
-      if (width === lastWidth) { return } // no change: abort
+  // Init the *_nav_js helper
+  const initNavJs = (nav:NavJsElement, [[before, anchor, current, gap, after],
+                     widths, series, labels, keysetArgs]:NavJsArgs) => {
+    const  parent = <HTMLElement>nav.parentElement;
+    let lastWidth = -1;
+    (nav.render = () => {
+      const index = widths.findIndex(w => w < parent.clientWidth);
+      if (widths[index] === lastWidth) { return } // no change: abort
 
-      let html     = tokens.before;
-      const series = sequels[width.toString()],
-            labels = labelSequels?.[width.toString()] ?? series.map(l => l.toString());
-      series.forEach((item, i) => {
-        const label = labels[i];
-        let filled;
-        if (typeof item == "number") {
-          filled = fillIn(tokens.a, item.toString(), label);
-        } else if (item == "gap") {
-          filled = tokens.gap;
-        } else { // active page
-          filled = fillIn(tokens.current, item, label);
-        }
-        html += filled;
+      let html = before;
+      series[index].forEach((item, i) => {
+        // Avoid if blocks and chain results for shorter .min and easier reading
+        html += item == "gap" ? gap :
+                // @ts-expect-error the item may be a number, but 'replace' type converts it to string (shorter .min)
+                (typeof item == "number" ? anchor.replace(pageRe, item) : current)
+                        .replace("L<", labels?.[index][i] ?? item + "<");
       });
-      html += tokens.after;
-
-      el.innerHTML = "";
-      el.insertAdjacentHTML("afterbegin", html);
-      lastWidth = width;
-      if (cutoffArgs) { void initCutoffs(el, cutoffArgs) }
+      html         += after;
+      nav.innerHTML = "";
+      nav.insertAdjacentHTML("afterbegin", html);
+      lastWidth = widths[index];
+      if (keysetArgs) { void initNavKeyset(nav, keysetArgs) }
     })();
-    if (el.classList.contains("pagy-rjs")) { rjsObserver.observe(container) }
+    if (nav.classList.contains(pagy + "-rjs")) { rjsObserver.observe(parent) }
   };
 
   // Init the *_combo_nav_js helpers
-  const initComboJs = (el:Element, [url_token]:ComboJsArgs) =>
-      initInput(el, inputValue => url_token.replace(/__pagy_page__/, inputValue));
+  const initComboJs = (nav:HTMLElement, [url_token]:ComboNavJsArgs) =>
+      initInput(nav, inputValue => url_token.replace(pageRe, inputValue));
 
   // Init the limit_selector_js helper
-  const initSelectorJs = (el:Element, [from, url_token]:SelectorJsArgs) => {
-    initInput(el, inputValue => {
-      const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
-      return url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
+  const initSelectorJs = (span:HTMLSpanElement, [from, url_token]:SelectorJsArgs) => {
+    initInput(span, inputValue => {
+      // @ts-expect-error the page is a number, but 'replace' type converts it to string (shorter .min)
+      return url_token.replace(pageRe, Math.max(
+          Math.ceil(from / parseInt(inputValue)), 1))
+                      .replace('L ', inputValue);
     });
   };
 
   // Init the input element
-  const initInput = (el:Element, getUrl:(v:string) => string) => {
-    const input   = <HTMLInputElement>el.querySelector("input"),
-          link    = <HTMLAnchorElement>el.querySelector("a"),
+  const initInput = (element:HTMLElement, getUrl:(v:string) => string) => {
+    const input   = <HTMLInputElement>element.querySelector("input"),
+          link    = <HTMLAnchorElement>element.querySelector("a"),
           initial = input.value,
           action  = () => {
       if (input.value === initial) { return }  // not changed
@@ -170,23 +189,23 @@ const Pagy = (() => {
     version: "9.3.3",
 
     // Scan for elements with a "data-pagy" attribute and call their init functions with the decoded args
-    init(arg?:Element) {
-      const target   = arg instanceof Element ? arg : document,
+    init(arg?:HTMLElement) {
+      const target   = arg instanceof HTMLElement ? arg : document,
             elements = target.querySelectorAll("[data-pagy]");
-      for (const el of elements) {
+      for (const element of <NodeListOf<HTMLElement>>elements) {
         try {
-          const [keyword, ...args] = <InitArgs>JSON.parse(B64Decode(<string>el.getAttribute("data-pagy")));
-          if (keyword == "nav") {
-            void initCutoffs(el, <CutoffArgs><unknown>args);
-          } else if (keyword == "nav_js") {
-            initNavJs(<NavJsElement>el, <NavJsArgs><unknown>args);
-          } else if (keyword == "combo_js") {
-            initComboJs(el, <ComboJsArgs><unknown>args);
-          } else if (keyword == "selector_js") {
-            initSelectorJs(el, <SelectorJsArgs><unknown>args);
+          const [helperId, ...args] = <InitArgs>JSON.parse(B64Decode(<string>element.getAttribute("data-pagy")));
+          if (helperId == "n") {
+            void initNavKeyset(element, <NavKeysetArgs><unknown>args);
+          } else if (helperId == "nj") {
+            initNavJs(<NavJsElement>element, <NavJsArgs><unknown>args);
+          } else if (helperId == "cj") {
+            initComboJs(element, <ComboNavJsArgs><unknown>args);
+          } else if (helperId == "sj") {
+            initSelectorJs(element, <SelectorJsArgs><unknown>args);
           }
-          //else { console.warn("Pagy.init() error: %o\nUnknown keyword '%s'", el, keyword) }
-        } catch (err) { console.warn("Pagy.init() error: %o\n%s", el, err) }
+          // else { console.warn("Pagy.init: %o\nUnknown helperId '%s'", element, helperId) }
+        } catch (err) { console.warn("Pagy.init: %o\n%s", element, err) }
       }
     }
   };

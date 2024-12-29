@@ -26,14 +26,14 @@ pagy_extras :array, :metadata, ...
 
 ### then you can use it like inside an app
 pagy, items = pagy_array((1..1000).to_a, page: 3)
-=> [#<Pagy:0x00007f59d9cd7190 @count=1000, @from=41, @in=20, @last=50, @limit=20, @next=4, @offset=40, @outset=0, @page=3, @prev=2, @to=60, @vars={:count_args=>[:all], :ends=>true, :limit=>20, :outset=>0, :page=>3, :page_sym=>:page, :size=>7, :url=>"http://www.example.com/subdir", :metadata=>[:scaffold_url, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :limit, :vars, :pages, :last, :in, :from, :to, :prev, :next, :series], :count=>1000}>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
+=> [#<Pagy:0x00007f59d9cd7190 @count=1000, @from=41, @in=20, @last=50, @limit=20, @next=4, @offset=40, @outset=0, @page=3, @prev=2, @to=60, @vars={:count_args=>[:all], :ends=>true, :limit=>20, :outset=>0, :page=>3, :page_sym=>:page, :size=>7, :url=>"http://www.example.com/subdir", :metadata=>[:url_template, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :limit, :vars, :pages, :last, :in, :from, :to, :prev, :next, :series], :count=>1000}>, [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]]
 
 pagy_nav(pagy)
 => "<nav class=\"pagy nav\" aria-label=\"Pages\"><a href=\"http://www.example.com/subdir?page=2\" aria-label=\"Previous\">&lt;</a><a href=\"http://www.example.com/subdir?page=1\">1</a><a href=\"http://www.example.com/subdir?page=2\">2</a><a role=\"link\" aria-disabled=\"true\" aria-current=\"page\" class=\"current\">3</a><a href=\"http://www.example.com/subdir?page=4\">4</a><a href=\"http://www.example.com/subdir?page=5\">5</a><a role=\"link\" aria-disabled=\"true\" class=\"gap\">&hellip;</a><a href=\"http://www.example.com/subdir?page=50\">50</a><a href=\"http://www.example.com/subdir?page=4\" aria-label=\"Next\">&gt;</a></nav>"
 
 pagy_metadata(pagy)
 =>
-{ :scaffold_url => "http://www.example.com/subdir?page=__pagy_page__",
+{ :url_template => "http://www.example.com/subdir?page=P ",
   :first_url    => "http://www.example.com/subdir?page=1",
   :prev_url     => "http://www.example.com/subdir?page=2",
   :page_url     => "http://www.example.com/subdir?page=3",
@@ -50,7 +50,7 @@ pagy_metadata(pagy)
                      :count_args => [:all],
                      :page_sym   => :page,
                      :url        => "http://www.example.com/subdir",
-                     :metadata   => [:scaffold_url,
+                     :metadata   => [:url_template,
                                      :first_url,
                                      :prev_url,
                                      :page_url,

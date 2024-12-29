@@ -80,7 +80,9 @@ _(see [Customizing the item name](/docs/how-to.md#customize-the-item-name))_
 
 ==- `pagy_url_for(pagy, page, absolute: false)`
 
-This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box and you can just ignore it.
+This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box, and you can just ignore it.
+
+If this method finds a set `:url` variable it assumes there is no `request` object, so in order to produce the final URL, it uses the `:url` variable verbatim,  only adding the query string from the `params` (if any).
 
 See also [How to customize the URL](/docs/how-to.md#customize-the-url) and [How to customize the params](/docs/how-to.md#customize-the-params).
 

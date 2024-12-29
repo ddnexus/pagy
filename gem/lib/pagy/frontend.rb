@@ -6,10 +6,6 @@ require_relative 'url_helpers'
 require_relative 'data_helpers'
 
 class Pagy
-  # Used for search and replace, hardcoded also in the pagy.js file
-  PAGE_TOKEN  = '__pagy_page__'
-  LABEL_TOKEN = '__pagy_label__'
-
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
@@ -51,7 +47,7 @@ class Pagy
     def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
       id   = %( id="#{id}") if id
       a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :nav)}) if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)
+      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)
 
       html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}#{data}>#{
                  prev_a(pagy, a)})

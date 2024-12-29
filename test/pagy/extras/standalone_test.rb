@@ -90,10 +90,10 @@ end
 
 describe 'pagy/extras/standalone/query_utils' do
   it 'handles nested hashes' do
-    _(Pagy::StandaloneExtra::QueryUtils.build_nested_query({ a: { b: 2 } })).must_equal "a%5Bb%5D=2" # "a[b]=2"
-    _(Pagy::StandaloneExtra::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
+    _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: 2 } })).must_equal "a%5Bb%5D=2" # "a[b]=2"
+    _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
   end
   it 'raises ArgumentError for wrong params' do
-    _ { Pagy::StandaloneExtra::QueryUtils.build_nested_query('just a string') }.must_raise ArgumentError
+    _ { Pagy::UrlHelpers::QueryUtils.build_nested_query('just a string') }.must_raise ArgumentError
   end
 end

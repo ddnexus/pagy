@@ -1,102 +1,101 @@
 // pagy.ts
 window.Pagy = (() => {
-  const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window;
-  let storage, sync, tabId;
+  const storageSupport = "sessionStorage" in window && "BroadcastChannel" in window, pageRe = "P ";
+  let pagy = "pagy", storage, sync, tabId;
   if (storageSupport) {
     storage = sessionStorage;
-    sync = new BroadcastChannel("pagy");
+    sync = new BroadcastChannel(pagy);
     tabId = Date.now();
     sync.addEventListener("message", (e) => {
       if (e.data.from) {
         const cutoffs = storage.getItem(e.data.key);
         if (cutoffs) {
-          sync.postMessage({ to: e.data.from, key: e.data.key, cutoffs });
+          sync.postMessage({ to: e.data.from, key: e.data.key, str: cutoffs });
         }
       } else if (e.data.to) {
         if (e.data.to == tabId) {
-          storage.setItem(e.data.key, e.data.cutoffs);
+          storage.setItem(e.data.key, e.data.str);
         }
       }
     });
   }
   const rjsObserver = new ResizeObserver((entries) => entries.forEach((e) => {
-    e.target.querySelectorAll(".pagy-rjs").forEach((el) => el.pagyRender());
+    e.target.querySelectorAll(".pagy-rjs").forEach((el) => el.render());
   }));
   const B64Encode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))), B64Safe = (unsafe) => unsafe.replace(/=/g, "").replace(/[+/]/g, (match) => match == "+" ? "-" : "_"), B64SafeEncode = (unicode) => B64Safe(B64Encode(unicode)), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
-  const initCutoffs = async (el, [pageSym, [storageKey, spliceArgs]]) => {
+  const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
+  const initNavKeyset = async (nav, [pageSym, [storageKey, spliceArgs]]) => {
     if (!storageSupport) {
       return;
     }
-    let browserId = document.cookie.split(/;\s+/).find((row) => row.startsWith("pagy="))?.split("=")[1];
-    if (!browserId) {
-      document.cookie = "pagy=" + (browserId = Math.floor(Math.random() * 36 ** 3).toString(36));
+    let browserKey = document.cookie.split(/;\s+/).find((row) => row.startsWith(pagy + "="))?.split("=")[1];
+    if (!browserKey) {
+      document.cookie = pagy + "=" + (browserKey = randKey());
     }
     if (storageKey && !(storageKey in storage)) {
       sync.postMessage({ from: tabId, key: storageKey });
       await new Promise((resolve) => setTimeout(() => resolve(""), 100));
     }
-    storageKey ||= "pagy-" + Date.now().toString(36);
+    if (!storageKey) {
+      do {
+        storageKey = randKey();
+      } while (storageKey in storage);
+    }
     const data = storage.getItem(storageKey), cutoffs = data ? JSON.parse(data) : [undefined];
     if (spliceArgs) {
       cutoffs.splice(...spliceArgs);
       storage.setItem(storageKey, JSON.stringify(cutoffs));
     }
-    for (const a of el.querySelectorAll("a[href]")) {
+    for (const a of nav.querySelectorAll("a[href]")) {
       const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${pageSym}=([\\d]+)`), pageNum = parseInt(url.match(re)?.[1]), value = B64SafeEncode(JSON.stringify([
-        browserId,
+        browserKey,
         storageKey,
         pageNum,
         cutoffs.length,
         cutoffs[pageNum - 1],
         cutoffs[pageNum]
       ]));
-      a.href = url.replace(re, `${pageSym}=${value}`);
+      a.href = url.replace(re, pageSym + "=" + value);
     }
   };
-  const initNavJs = (el, [tokens, sequels, labelSequels, cutoffArgs]) => {
-    const container = el.parentElement ?? el, widths = Object.keys(sequels).map((w) => parseInt(w)).sort((a, b) => b - a);
+  const initNavJs = (nav, [
+    [before, anchor, current, gap, after],
+    widths,
+    series,
+    labels,
+    keysetArgs
+  ]) => {
+    const parent = nav.parentElement;
     let lastWidth = -1;
-    const fillIn = (a, page, label) => a.replace(/__pagy_page__/g, page).replace(/__pagy_label__/g, label);
-    (el.pagyRender = () => {
-      const width = widths.find((w) => w < container.clientWidth) || 0;
-      if (width === lastWidth) {
+    (nav.render = () => {
+      const index = widths.findIndex((w) => w < parent.clientWidth);
+      if (widths[index] === lastWidth) {
         return;
       }
-      let html = tokens.before;
-      const series = sequels[width.toString()], labels = labelSequels?.[width.toString()] ?? series.map((l) => l.toString());
-      series.forEach((item, i) => {
-        const label = labels[i];
-        let filled;
-        if (typeof item == "number") {
-          filled = fillIn(tokens.a, item.toString(), label);
-        } else if (item == "gap") {
-          filled = tokens.gap;
-        } else {
-          filled = fillIn(tokens.current, item, label);
-        }
-        html += filled;
+      let html = before;
+      series[index].forEach((item, i) => {
+        html += item == "gap" ? gap : (typeof item == "number" ? anchor.replace(pageRe, item) : current).replace("L<", labels?.[index][i] ?? item + "<");
       });
-      html += tokens.after;
-      el.innerHTML = "";
-      el.insertAdjacentHTML("afterbegin", html);
-      lastWidth = width;
-      if (cutoffArgs) {
-        initCutoffs(el, cutoffArgs);
+      html += after;
+      nav.innerHTML = "";
+      nav.insertAdjacentHTML("afterbegin", html);
+      lastWidth = widths[index];
+      if (keysetArgs) {
+        initNavKeyset(nav, keysetArgs);
       }
     })();
-    if (el.classList.contains("pagy-rjs")) {
-      rjsObserver.observe(container);
+    if (nav.classList.contains(pagy + "-rjs")) {
+      rjsObserver.observe(parent);
     }
   };
-  const initComboJs = (el, [url_token]) => initInput(el, (inputValue) => url_token.replace(/__pagy_page__/, inputValue));
-  const initSelectorJs = (el, [from, url_token]) => {
-    initInput(el, (inputValue) => {
-      const page = Math.max(Math.ceil(from / parseInt(inputValue)), 1).toString();
-      return url_token.replace(/__pagy_page__/, page).replace(/__pagy_limit__/, inputValue);
+  const initComboJs = (nav, [url_token]) => initInput(nav, (inputValue) => url_token.replace(pageRe, inputValue));
+  const initSelectorJs = (span, [from, url_token]) => {
+    initInput(span, (inputValue) => {
+      return url_token.replace(pageRe, Math.max(Math.ceil(from / parseInt(inputValue)), 1)).replace("L ", inputValue);
     });
   };
-  const initInput = (el, getUrl) => {
-    const input = el.querySelector("input"), link = el.querySelector("a"), initial = input.value, action = () => {
+  const initInput = (element, getUrl) => {
+    const input = element.querySelector("input"), link = element.querySelector("a"), initial = input.value, action = () => {
       if (input.value === initial) {
         return;
       }
@@ -120,26 +119,26 @@ window.Pagy = (() => {
   return {
     version: "9.3.3",
     init(arg) {
-      const target = arg instanceof Element ? arg : document, elements = target.querySelectorAll("[data-pagy]");
-      for (const el of elements) {
+      const target = arg instanceof HTMLElement ? arg : document, elements = target.querySelectorAll("[data-pagy]");
+      for (const element of elements) {
         try {
-          const [keyword, ...args] = JSON.parse(B64Decode(el.getAttribute("data-pagy")));
-          if (keyword == "nav") {
-            initCutoffs(el, args);
-          } else if (keyword == "nav_js") {
-            initNavJs(el, args);
-          } else if (keyword == "combo_js") {
-            initComboJs(el, args);
-          } else if (keyword == "selector_js") {
-            initSelectorJs(el, args);
+          const [helperId, ...args] = JSON.parse(B64Decode(element.getAttribute("data-pagy")));
+          if (helperId == "n") {
+            initNavKeyset(element, args);
+          } else if (helperId == "nj") {
+            initNavJs(element, args);
+          } else if (helperId == "cj") {
+            initComboJs(element, args);
+          } else if (helperId == "sj") {
+            initSelectorJs(element, args);
           }
         } catch (err) {
-          console.warn("Pagy.init() error: %o\n%s", el, err);
+          console.warn("Pagy.init: %o\n%s", element, err);
         }
       }
     }
   };
 })();
 
-//# debugId=0974C14BAD5BAB2A64756E2164756E21
+//# debugId=207D48046B75BED164756E2164756E21
 //# sourceMappingURL=pagy.js.map

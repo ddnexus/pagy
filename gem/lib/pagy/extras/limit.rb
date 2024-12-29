@@ -32,8 +32,6 @@ class Pagy # :nodoc:
 
     # Additions for the Frontend module
     module FrontendAddOn
-      LIMIT_TOKEN = '__pagy_limit__'
-
       # Return the limit selector HTML. For example "Show [20] items per page"
       def pagy_limit_selector_js(pagy, id: nil, item_name: nil)
         return '' unless pagy.vars[:limit_extra]
@@ -41,7 +39,7 @@ class Pagy # :nodoc:
         id           = %( id="#{id}") if id
         vars         = pagy.vars
         limit        = vars[:limit]
-        vars[:limit] = LIMIT_TOKEN
+        vars[:limit] = LIMIT_TOKEN # limit token replaced in the javascript
         url_token    = pagy_url_for(pagy, PAGE_TOKEN)
         vars[:limit] = limit # restore the limit
 
@@ -49,7 +47,7 @@ class Pagy # :nodoc:
                           limit}" style="padding: 0; text-align: center; width: #{limit.to_s.length + 1}rem;">#{JSTools::A_TAG})
 
         %(<span#{id} class="pagy limit-selector-js" #{
-            pagy_data(pagy, :selector_js, pagy.from, url_token)
+            pagy_data(pagy, :sj, pagy.from, url_token)
           }><label>#{
             pagy_t('pagy.limit_selector_js',
                    item_name: item_name || pagy_t('pagy.item_name', count: limit),
