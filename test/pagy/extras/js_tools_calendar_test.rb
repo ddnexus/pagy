@@ -12,12 +12,6 @@ Date.beginning_of_week = :sunday
 describe 'pagy/extras/js_tools_json' do
   let(:app) { MockApp.new(params: {}) }
 
-  # describe '#pagy_data' do
-  #   it 'uses json' do
-  #     _(app.pagy_data(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data
-  #   end
-  # end
-
   describe 'Calendar sequels and label_sequels' do
     it 'generate the labels for the sequels' do
       steps = { 0 => 5, 600 => 7 }
@@ -28,7 +22,6 @@ describe 'pagy/extras/js_tools_json' do
                                  ends: true,   # to hit the :gap condition in the calendar sequels override
                                  page: 6)
       _(pagy.sequels).must_rematch :sequels
-      _(pagy.label_sequels).must_rematch :label_sequels
     end
   end
 end

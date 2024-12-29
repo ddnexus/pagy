@@ -40,11 +40,12 @@ class Pagy # :nodoc:
           link << %(<#{pagy_url_for(pagy, nil, absolute: true)}>; rel="first")
           link << %(<#{pagy_url_for(pagy, pagy.next, absolute: true)}>; rel="next") if pagy.next
         else
+          p = PAGE_TOKEN
           url_str = pagy_url_for(pagy, PAGE_TOKEN, absolute: true)
-          link << %(<#{url_str.sub(PAGE_TOKEN, '1')}>; rel="first")
-          link << %(<#{url_str.sub(PAGE_TOKEN, pagy.prev.to_s)}>; rel="prev") if pagy.prev
-          link << %(<#{url_str.sub(PAGE_TOKEN, pagy.next.to_s)}>; rel="next") if pagy.next
-          link << %(<#{url_str.sub(PAGE_TOKEN, pagy.last.to_s)}>; rel="last") \
+          link << %(<#{url_str.sub(p, '1')}>; rel="first")
+          link << %(<#{url_str.sub(p, pagy.prev.to_s)}>; rel="prev") if pagy.prev
+          link << %(<#{url_str.sub(p, pagy.next.to_s)}>; rel="next") if pagy.next
+          link << %(<#{url_str.sub(p, pagy.last.to_s)}>; rel="last") \
               unless defined?(::Pagy::Countless) && pagy.is_a?(Countless)
         end
       end.join(', ') }

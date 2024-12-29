@@ -28,7 +28,7 @@ describe 'pagy/extras/metadata' do
       _ { app.send(:pagy_metadata, pagy) }.must_raise Pagy::VariableError
     end
     it 'returns only specific metadata' do
-      pagy, _records = app.send(:pagy, @collection, metadata: %i[scaffold_url page count prev next pages])
+      pagy, _records = app.send(:pagy, @collection, metadata: %i[url_template page count prev next pages])
       _(app.send(:pagy_metadata, pagy)).must_rematch :metadata
     end
   end
@@ -46,7 +46,7 @@ describe 'pagy/extras/metadata' do
     it 'returns only specific metadata for Pagy::Calendar' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
                                   .send(:pagy_calendar, Event.all,
-                                        month: { metadata: %i[scaffold_url page from to prev next pages] })
+                                        month: { metadata: %i[url_template page from to prev next pages] })
       _(calendar_app.send(:pagy_metadata, calendar[:month])).must_rematch :metadata
     end
   end

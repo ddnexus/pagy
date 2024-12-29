@@ -30,7 +30,7 @@ class Pagy # :nodoc:
   # Add the arguments for the client to the pagy_data for the *nav helpers
   module DataHelperOverride
     def pagy_data(pagy, *args)
-      args.push(pagy.vars[:page_sym], pagy.update) if pagy.is_a?(::Pagy::KeysetForUI) && args[0].to_s.match(/^nav/)
+      args.push(pagy.vars[:page_sym], pagy.update) if pagy.is_a?(::Pagy::KeysetForUI) && args[0].to_s.match(/^n/)
       super
     end
   end

@@ -8,7 +8,7 @@ class Pagy
   module DataHelpers
     # Return a data tag with the base64 encoded JSON-serialized args generated with the faster oj gem
     def pagy_data(_pagy, *args)
-      data = defined?(::Oj) ? Oj.dump(args, mode: :strict) : JSON.dump(args)
+      data = defined?(::Oj) ? Oj.dump(args, mode: :compat) : JSON.dump(args)
       %(data-pagy="#{B64.encode(data)}")
     end
   end

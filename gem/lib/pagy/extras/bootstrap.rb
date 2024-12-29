@@ -11,7 +11,7 @@ class Pagy # :nodoc:
     def pagy_bootstrap_nav(pagy, id: nil, classes: 'pagination', aria_label: nil, **vars)
       id   = %( id="#{id}") if id
       a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :nav)}) if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)
+      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)
 
       html = %(<nav#{id} class="pagy-bootstrap nav" #{nav_aria_label(pagy, aria_label:)}#{data
                  }><ul class="#{classes}">#{bootstrap_prev_html(pagy, a)})
@@ -37,16 +37,16 @@ class Pagy # :nodoc:
       id      = %( id="#{id}") if id
       a       = pagy_anchor(pagy, **vars)
       tokens  = { before:  %(<ul class="#{classes}">#{bootstrap_prev_html(pagy, a)}),
-                  a:       %(<li class="page-item">#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'page-link')}</li>),
+                  anchor:  %(<li class="page-item">#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'page-link')}</li>),
                   current: %(<li class="page-item active"><a role="link" class="page-link" ) +
                            %(aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></li>),
                   gap:     %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
                                pagy_t('pagy.gap')}</a></li>),
                   after:   %(#{bootstrap_next_html pagy, a}</ul>) }
 
-      %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}pagy-bootstrap nav-js" #{
+      %(<nav#{id} class="#{'pagy-rjs ' if sequels[0].size > 1}pagy-bootstrap nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :nav_js, tokens, sequels, pagy.label_sequels(sequels))
+          pagy_data(pagy, :nj, tokens.values, *sequels)
         }></nav>)
     end
 
@@ -62,7 +62,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="pagy-bootstrap combo-nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :combo_js, pagy_url_for(pagy, PAGE_TOKEN, **vars))
+          pagy_data(pagy, :cj, pagy_url_for(pagy, PAGE_TOKEN, **vars))
         }><ul class="#{classes}">#{
           bootstrap_prev_html(pagy, a)
         }<li class="page-item pagy-bootstrap"><label class="page-link">#{

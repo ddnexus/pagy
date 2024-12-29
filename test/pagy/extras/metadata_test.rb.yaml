@@ -1,35 +1,7 @@
 ---
-pagy/extras/metadata___pagy_metadata_for_Pagy_test_0004_returns_only_specific_metadata:
-  :metadata:
-    :scaffold_url: "/foo?page=__pagy_page__"
-    :page: 3
-    :count: 1000
-    :prev: 2
-    :next: 4
-    :pages: 50
-pagy/extras/metadata___pagy_metadata_for_Pagy_test_0001_defines_all_metadata:
-  :metadata:
-  - :scaffold_url
-  - :first_url
-  - :prev_url
-  - :page_url
-  - :next_url
-  - :last_url
-  - :count
-  - :page
-  - :limit
-  - :vars
-  - :pages
-  - :last
-  - :in
-  - :from
-  - :to
-  - :prev
-  - :next
-  - :series
 pagy/extras/metadata___pagy_metadata_for_Pagy_test_0002_returns_the_full_pagy_metadata:
   :metadata:
-    :scaffold_url: "/foo?page=__pagy_page__"
+    :url_template: "/foo?page=P "
     :first_url: "/foo?page=1"
     :prev_url: "/foo?page=2"
     :page_url: "/foo?page=3"
@@ -48,9 +20,8 @@ pagy/extras/metadata___pagy_metadata_for_Pagy_test_0002_returns_the_full_pagy_me
       :page_sym: :page
       :size: 7
       :countless_minimal: false
-      :steps: false
       :metadata:
-      - :scaffold_url
+      - :url_template
       - :first_url
       - :prev_url
       - :page_url
@@ -86,17 +57,46 @@ pagy/extras/metadata___pagy_metadata_for_Pagy_test_0002_returns_the_full_pagy_me
     - :gap
     - 50
     :sequels:
-      '0':
-      - 1
-      - 2
-      - '3'
-      - 4
-      - 5
-      - :gap
-      - 50
+    - - 0
+    - - - 1
+        - 2
+        - '3'
+        - 4
+        - 5
+        - :gap
+        - 50
+    -
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0004_returns_only_specific_metadata:
+  :metadata:
+    :url_template: "/foo?page=P "
+    :page: 3
+    :count: 1000
+    :prev: 2
+    :next: 4
+    :pages: 50
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0001_defines_all_metadata:
+  :metadata:
+  - :url_template
+  - :first_url
+  - :prev_url
+  - :page_url
+  - :next_url
+  - :last_url
+  - :count
+  - :page
+  - :limit
+  - :vars
+  - :pages
+  - :last
+  - :in
+  - :from
+  - :to
+  - :prev
+  - :next
+  - :series
 pagy/extras/metadata___pagy_metadata_for_Pagy__Calendar_test_0002_returns_only_specific_metadata_for_Pagy__Calendar:
   :metadata:
-    :scaffold_url: "/foo?month_page=__pagy_page__"
+    :url_template: "/foo?month_page=P "
     :page: 3
     :from: !ruby/object:ActiveSupport::TimeWithZone
       utc: 2021-12-01 05:00:00.000000000 Z

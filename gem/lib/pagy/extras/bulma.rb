@@ -12,7 +12,7 @@ class Pagy # :nodoc:
                        aria_label: nil, **vars)
       id   = %( id="#{id}") if id
       a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :nav)}) if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)
+      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)
 
       html = %(<nav#{id} class="#{classes}" #{nav_aria_label(pagy, aria_label:)}#{data}>)
       html << bulma_prev_next_html(pagy, a)
@@ -39,15 +39,15 @@ class Pagy # :nodoc:
       id      = %( id="#{id}") if id
       a       = pagy_anchor(pagy, **vars)
       tokens = { before:  %(#{bulma_prev_next_html(pagy, a)}<ul class="pagination-list">),
-                 a:       %(<li>#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'pagination-link')}</li>),
-                 current: %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
-                              LABEL_TOKEN}</a></li>),
+                 anchor:  %(<li>#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'pagination-link')}</li>),
+                 current: %(<li><a role="link" class="pagination-link is-current" ) +
+                          %(aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></li>),
                  gap:     %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>),
                  after:   '</ul>' }
 
-      %(<nav#{id} class="#{'pagy-rjs ' if sequels.size > 1}#{classes}" #{
+      %(<nav#{id} class="#{'pagy-rjs ' if sequels[0].size > 1}#{classes}" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :nav_js, tokens, sequels, pagy.label_sequels(sequels))
+          pagy_data(pagy, :nj, tokens.values, *sequels)
         }></nav>)
     end
 
@@ -65,7 +65,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="#{classes}" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :combo_js, pagy_url_for(pagy, PAGE_TOKEN, **vars))
+          pagy_data(pagy, :cj, pagy_url_for(pagy, PAGE_TOKEN, **vars))
         }>#{
           bulma_prev_next_html(pagy, a)
         }<ul class="pagination-list"><li class="pagination-link"><label>#{
