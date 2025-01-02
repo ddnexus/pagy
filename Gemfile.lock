@@ -190,6 +190,7 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
+    pstore (0.1.4)
     psych (5.2.2)
       date
       stringio
@@ -247,7 +248,9 @@ GEM
     regexp_parser (2.10.0)
     reline (0.6.0)
       io-console (~> 0.5)
-    rematch (3.1.0)
+    rematch (3.2.0)
+      logger
+      pstore
     rerun (0.14.0)
       listen (~> 3.0)
     rouge (4.5.1)
@@ -337,6 +340,7 @@ DEPENDENCIES
   groupdate
   http
   i18n
+  irb
   minitest
   minitest-reporters
   mutex_m
@@ -347,6 +351,7 @@ DEPENDENCIES
   rackup
   rails (~> 8.0)
   rake
+  reline
   rematch
   rerun
   rouge
@@ -359,6 +364,7 @@ DEPENDENCIES
   simplecov
   sinatra
   sqlite3
+  uri
 
 BUNDLED WITH
    2.6.2

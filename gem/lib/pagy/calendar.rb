@@ -20,7 +20,7 @@ class Pagy # :nodoc:
       def create(unit, **vars)
         raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
 
-        name    = unit.to_s
+        name    = +unit.to_s
         name[0] = name[0].capitalize
         Object.const_get("Pagy::Calendar::#{name}").new(**vars)
       end

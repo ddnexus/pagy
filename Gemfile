@@ -5,7 +5,10 @@ source 'https://rubygems.org'
 gemspec path: './gem'
 
 gem 'http'         # used by the scripts/contributor-list.rb
+gem 'irb'
 gem 'rake'
+gem 'reline'
+gem 'uri'
 
 group :test do
   gem 'activesupport'

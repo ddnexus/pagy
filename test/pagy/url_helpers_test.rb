@@ -45,4 +45,14 @@ describe 'pagy/url_helpers' do
       _(app.pagy_url_for(pagy, 5, fragment: '#fragment')).must_equal "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
     end
   end
+
+  describe 'pagy/extras/standalone/query_utils' do
+    it 'handles nested hashes' do
+      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: 2 } })).must_equal "a%5Bb%5D=2" # "a[b]=2"
+      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
+    end
+    it 'raises ArgumentError for wrong params' do
+      _ { Pagy::UrlHelpers::QueryUtils.build_nested_query('just a string') }.must_raise ArgumentError
+    end
+  end
 end

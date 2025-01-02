@@ -6,8 +6,8 @@ class Pagy # :nodoc:
   module I18nExtra
     # Frontend overriding for translation
     module FrontendOverride
-      def pagy_t(key, **opts)
-        ::I18n.t(key, **opts)
+      def pagy_t(key, **)
+        ::I18n.t(key, **)
       end
     end
     Frontend.prepend I18nExtra::FrontendOverride

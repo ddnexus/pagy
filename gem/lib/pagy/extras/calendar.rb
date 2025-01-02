@@ -69,8 +69,8 @@ class Pagy # :nodoc:
     # Additions for the Frontend module
     module UrlHelperAddOn
       # Return the url for the calendar page at time
-      def pagy_calendar_url_at(calendar, time, **opts)
-        pagy_url_for(calendar.send(:calendar_at, time, **opts), 1, **opts)
+      def pagy_calendar_url_at(calendar, time, **)
+        pagy_url_for(calendar.send(:calendar_at, time, **), 1, **)
       end
     end
   end

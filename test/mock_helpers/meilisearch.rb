@@ -25,8 +25,8 @@ module MockMeilisearch
   end
 
   class Model
-    def self.ms_search(*args)
-      Results.new(*args)
+    def self.ms_search(*)
+      Results.new(*)
     end
 
     extend Pagy::Meilisearch

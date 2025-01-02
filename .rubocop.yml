@@ -6,7 +6,7 @@ require:
 
 # trying to be good  O:)
 AllCops:
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.2
   NewCops: enable
   Exclude:
     - ___*/**/*

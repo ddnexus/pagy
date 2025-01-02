@@ -23,17 +23,17 @@ class Pagy # :nodoc:
       include UrlHelpers
 
       # Return the jsonapi links
-      def pagy_jsonapi_links(pagy, **opts)
+      def pagy_jsonapi_links(pagy, **)
         if defined?(::Pagy::Keyset) && pagy.is_a?(Keyset)
-          { first: pagy_url_for(pagy, nil, **opts),
+          { first: pagy_url_for(pagy, nil, **),
             last: nil,
             prev: nil,
-            next:  pagy.next ? pagy_url_for(pagy, pagy.next, **opts) : nil }
+            next:  pagy.next ? pagy_url_for(pagy, pagy.next, **) : nil }
         else
-          { first: pagy_url_for(pagy, 1, **opts),
-            last:  pagy_url_for(pagy, pagy.last, **opts),
-            prev:  pagy.prev ? pagy_url_for(pagy, pagy.prev, **opts) : nil,
-            next:  pagy.next ? pagy_url_for(pagy, pagy.next, **opts) : nil }
+          { first: pagy_url_for(pagy, 1, **),
+            last:  pagy_url_for(pagy, pagy.last, **),
+            prev:  pagy.prev ? pagy_url_for(pagy, pagy.prev, **) : nil,
+            next:  pagy.next ? pagy_url_for(pagy, pagy.next, **) : nil }
         end
       end
 

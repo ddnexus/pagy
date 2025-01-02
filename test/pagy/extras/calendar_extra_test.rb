@@ -9,8 +9,8 @@ require_relative '../../mock_helpers/app'
 Time.zone = 'GMT'
 Date.beginning_of_week = :sunday
 
-def app(**opts)
-  MockApp::Calendar.new(**opts)
+def app(**)
+  MockApp::Calendar.new(**)
 end
 
 describe 'pagy/extras/calendar' do

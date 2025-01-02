@@ -34,8 +34,8 @@ module MockElasticsearchRails
   end
 
   class Model
-    def self.search(*args)
-      Response.new(*args)
+    def self.search(*)
+      Response.new(*)
     end
 
     extend Pagy::ElasticsearchRails
@@ -49,8 +49,8 @@ module MockElasticsearchRails
   end
 
   class ModelES7 < Model
-    def self.search(*args)
-      ResponseES7.new(*args)
+    def self.search(*)
+      ResponseES7.new(*)
     end
   end
 
@@ -73,8 +73,8 @@ module MockElasticsearchRails
   end
 
   class ModelES5 < Model
-    def self.search(*args)
-      ResponseES5.new(*args)
+    def self.search(*)
+      ResponseES5.new(*)
     end
   end
 end
