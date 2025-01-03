@@ -37,6 +37,9 @@ module NavTests
     # raise Pagy::VariableError for missing 0 step
     pagy = Pagy.new(count: 1000, page: 20, steps: { 0 => 5, 600 => 7 })
     _ { app.send(method, pagy, steps: { 600 => 7 }) }.must_raise Pagy::VariableError
+    pagyk = Pagy::KeysetForUI.new(Pet.order(:animal, :name, :id),
+                                  page: ['key', 2, 2, ["cat", "Ella", 18], nil])
+    _(app.send(method, pagyk)).must_rematch :keyset
   end
 
   def nav_js_countless_tests(prefix)  # e.g. pagy_bootstrap_nav_js
