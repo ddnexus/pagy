@@ -22,6 +22,7 @@ class Pagy # :nodoc:
       def label_sequels(*); end
     end
     Pagy.prepend PagyAddOn
+    Pagy::KeysetForUI.prepend PagyAddOn if defined?(Pagy::KeysetForUI)
 
     # Additions for Calendar class
     module CalendarOverride

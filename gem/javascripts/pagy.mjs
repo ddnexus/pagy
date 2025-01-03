@@ -21,7 +21,7 @@ const Pagy = (() => {
   const rjsObserver = new ResizeObserver((entries) => entries.forEach((e) => {
     e.target.querySelectorAll(".pagy-rjs").forEach((el) => el.render());
   }));
-  const B64Encode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))), B64Safe = (unsafe) => unsafe.replace(/=/g, "").replace(/[+/]/g, (match) => match == "+" ? "-" : "_"), B64SafeEncode = (unicode) => B64Safe(B64Encode(unicode)), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
+  const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
   const initNavKeyset = async (nav, [pageSym, [storageKey, spliceArgs]]) => {
     if (!storageSupport) {
@@ -46,7 +46,7 @@ const Pagy = (() => {
       storage.setItem(storageKey, JSON.stringify(cutoffs));
     }
     for (const a of nav.querySelectorAll("a[href]")) {
-      const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${pageSym}=([\\d]+)`), pageNum = parseInt(url.match(re)?.[1]), value = B64SafeEncode(JSON.stringify([
+      const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${pageSym}=(\\d+)`), pageNum = parseInt(url.match(re)[1]), value = B64SafeEncode(JSON.stringify([
         browserKey,
         storageKey,
         pageNum,
@@ -123,7 +123,7 @@ const Pagy = (() => {
         try {
           const [helperId, ...args] = JSON.parse(B64Decode(element.getAttribute("data-pagy")));
           if (helperId == "n") {
-            initNavKeyset(element, args);
+            initNavKeyset(element, ...args);
           } else if (helperId == "nj") {
             initNavJs(element, args);
           } else if (helperId == "cj") {

@@ -76,12 +76,17 @@ const Pagy = (() => {
         e.target.querySelectorAll<NavJsElement>(".pagy-rjs").forEach(el => el.render());
       }));
 
+  /* Full set of B64 functions
   const B64Encode     = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode))),
-        B64Safe       = (unsafe:string)  => unsafe.replace(/=/g, "").replace(/[+/]/g, (match) => match == "+" ? "-" : "_"),
+        B64Safe       = (unsafe:string)  => unsafe.replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""),
         B64SafeEncode = (unicode:string) => B64Safe(B64Encode(unicode)),
+        B64Decode     = (base64:string)  => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0))),
+        B64Unsafe     = (safe:string)    => safe.replace(/[-_]/g, (match) => match == "-" ? "+" : "/"),
+        B64SafeDecode = (base64:string)  => B64Decode(B64Unsafe(base64))
+  */
+  const B64SafeEncode = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode)))
+                                            .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""),
         B64Decode     = (base64:string)  => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
-        /* B64Unsafe     = (safe:string) => safe.replace(/[-_]/g, (match) => match == "-" ? "+" : "/"),
-           B64SafeDecode = (base64:string) => B64Decode(B64Unsafe(base64)) */
 
   // Return a random key: 3 chars max, base-36 number < 36**3
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
@@ -110,8 +115,9 @@ const Pagy = (() => {
     // Augment the page param of each href
     for (const a of <NodeListOf<HTMLAnchorElement>><unknown>nav.querySelectorAll('a[href]')) {
       const url     = a.href,
-            re      = new RegExp(`(?<=\\?.*)\\b${pageSym}=([\\d]+)`),  // find the numeric page
-            pageNum = parseInt(<string>url.match(re)?.[1]),            // page=\d+ is always in href
+            re      = new RegExp(`(?<=\\?.*)\\b${pageSym}=(\\d+)`),   // find the numeric page
+            // @ts-expect-error page=(\d+) is always in href
+            pageNum = parseInt(url.match(re)[1]),
             value   = B64SafeEncode(JSON.stringify(
                           <AugmentedPageParams>[browserKey,
                                                 storageKey,
@@ -144,7 +150,7 @@ const Pagy = (() => {
       nav.innerHTML = "";
       nav.insertAdjacentHTML("afterbegin", html);
       lastWidth = widths[index];
-      if (keysetArgs) { void initNavKeyset(nav, keysetArgs) }
+      if (keysetArgs) { void initNavKeyset(nav, <NavKeysetArgs><unknown>keysetArgs) }
     })();
     if (nav.classList.contains(pagy + "-rjs")) { rjsObserver.observe(parent) }
   };
@@ -196,7 +202,8 @@ const Pagy = (() => {
         try {
           const [helperId, ...args] = <InitArgs>JSON.parse(B64Decode(<string>element.getAttribute("data-pagy")));
           if (helperId == "n") {
-            void initNavKeyset(element, <NavKeysetArgs><unknown>args);
+            // @ts-expect-error spread 2 arguments, not 3 as it complains about
+            void initNavKeyset(element, ...<NavKeysetArgs><unknown>args);
           } else if (helperId == "nj") {
             initNavJs(<NavJsElement>element, <NavJsArgs><unknown>args);
           } else if (helperId == "cj") {
