@@ -17,7 +17,7 @@ test () {
 
 if [[ -z $app ]]
 then
-	for app in demo repro rails calendar
+	for app in demo repro rails calendar keyset_for_ui
 	do
 		port=$((port+1))
 		test &

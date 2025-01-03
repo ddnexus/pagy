@@ -59,6 +59,7 @@ class PagyKeyset < Sinatra::Base
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
     @pagy, @pets = pagy_keyset_for_ui(Pet.order(@order))
+    @ids = @pets.pluck(:id)
     erb :main
   end
 
@@ -125,13 +126,14 @@ class PagyKeyset < Sinatra::Base
         </ul>
 
         <h3>Collection</h3>
-        <div id="records" class="collection">
-        <table border="1" cellspacing="0" cellpadding="3">
+        <p id="records">@ids: <%= @ids.join(',') %></p>
+        <div class="collection">
+        <table border="1" style="border-collapse: collapse; border-spacing: 0; padding: 0.2rem;">
           <tr>
-            <th>animal <%= order_symbol(@order[:animal]) %></th>
-            <th>name <%= order_symbol(@order[:name]) %></th>
-            <th>birthdate <%= order_symbol(@order[:birthdate]) %></th>
-            <th>id <%= order_symbol(@order[:id]) %></th>
+            <th scope="col">animal <%= order_symbol(@order[:animal]) %></th>
+            <th scope="col">name <%= order_symbol(@order[:name]) %></th>
+            <th scope="col">birthdate <%= order_symbol(@order[:birthdate]) %></th>
+            <th scope="col">id <%= order_symbol(@order[:id]) %></th>
           </tr>
           <% @pets.each do |pet| %>
           <tr>
@@ -143,8 +145,16 @@ class PagyKeyset < Sinatra::Base
           <% end %>
         </table>
         </div>
+        <h3>pagy_nav</h3>
         <p>
-          <%= pagy_nav(@pagy) %>
+          <%= pagy_nav(@pagy, id: 'nav', aria_label: 'Pages (nav)') %>
+        </p>
+          <h3>pagy_nav_js (responsive)</h3>
+        <p>
+          <%= pagy_nav_js(@pagy, id: 'nav-js-responsive',
+          aria_label: 'Pages (nav_js_responsive)',
+          steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+        </p>
       </div>
     ERB
   end

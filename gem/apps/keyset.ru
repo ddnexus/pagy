@@ -110,12 +110,12 @@ class PagyKeyset < Sinatra::Base
 
         <h3>Collection</h3>
         <div id="records" class="collection">
-        <table border="1" cellspacing="0" cellpadding="3">
+        <table border="1" style="border-collapse: collapse; border-spacing: 0; padding: 0.2rem;">
           <tr>
-            <th>animal <%= order_symbol(@order[:animal]) %></th>
-            <th>name <%= order_symbol(@order[:name]) %></th>
-            <th>birthdate <%= order_symbol(@order[:birthdate]) %></th>
-            <th>id <%= order_symbol(@order[:id]) %></th>
+            <th scope="col">animal <%= order_symbol(@order[:animal]) %></th>
+            <th scope="col">name <%= order_symbol(@order[:name]) %></th>
+            <th scope="col">birthdate <%= order_symbol(@order[:birthdate]) %></th>
+            <th scope="col">id <%= order_symbol(@order[:id]) %></th>
           </tr>
           <% @pets.each do |pet| %>
           <tr>

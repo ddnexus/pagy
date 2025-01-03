@@ -120,7 +120,7 @@ class PagyDemo < Sinatra::Base
       <html lang="en">
       <head>
         <title>Pagy Demo App</title>
-        <script src="/javascripts/pagy.min.js"></script>
+        <script src="/javascripts/pagy.js"></script>
         <script>
           window.addEventListener("load", Pagy.init);
         </script>

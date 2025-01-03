@@ -1,7 +1,16 @@
+
+// Clone and remove data-pagy and href that are already tested with ruby
 export function snapIds(ids:string[]) {
     cy.get("#records").snapshot();
     for (const id of ids) {
-        cy.get(id).snapshot();
+        const el = cy.get(id).then($el => {
+            const hel = <HTMLElement>$el.get(0).cloneNode(true);
+            hel.removeAttribute('data-pagy');
+            for (const a of hel.querySelectorAll('a[href]')) { a.removeAttribute('href') }
+            return hel;
+        })
+        el.snapshot();
+        // cy.get(id).snapshot();
     }
 }
 

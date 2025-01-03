@@ -139,7 +139,7 @@ TEMPLATE = <<~ERB
     <html>
     <head>
     <title>Pagy Rails App</title>
-      <script src="/javascripts/pagy.min.js"></script>
+      <script src="/javascripts/pagy.js"></script>
       <script>
         window.addEventListener("load", Pagy.init);
       </script>
