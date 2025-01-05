@@ -62,7 +62,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="pagy-bootstrap combo-nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :cj, pagy_url_for(pagy, PAGE_TOKEN, **vars))
+          pagy_data(pagy, :cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
         }><ul class="#{classes}">#{
           bootstrap_prev_html(pagy, a)
         }<li class="page-item pagy-bootstrap"><label class="page-link">#{

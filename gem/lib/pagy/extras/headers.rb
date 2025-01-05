@@ -37,11 +37,11 @@ class Pagy # :nodoc:
     def pagy_link_header(pagy)
       { 'link' => [].tap do |link|
         if defined?(::Pagy::Keyset) && pagy.is_a?(Keyset)
-          link << %(<#{pagy_url_for(pagy, nil, absolute: true)}>; rel="first")
-          link << %(<#{pagy_url_for(pagy, pagy.next, absolute: true)}>; rel="next") if pagy.next
+          link << %(<#{pagy_page_url(pagy, nil, absolute: true)}>; rel="first")
+          link << %(<#{pagy_page_url(pagy, pagy.next, absolute: true)}>; rel="next") if pagy.next
         else
           p = PAGE_TOKEN
-          url_str = pagy_url_for(pagy, PAGE_TOKEN, absolute: true)
+          url_str = pagy_page_url(pagy, PAGE_TOKEN, absolute: true)
           link << %(<#{url_str.sub(p, '1')}>; rel="first")
           link << %(<#{url_str.sub(p, pagy.prev.to_s)}>; rel="prev") if pagy.prev
           link << %(<#{url_str.sub(p, pagy.next.to_s)}>; rel="next") if pagy.next

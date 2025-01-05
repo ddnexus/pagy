@@ -15,7 +15,7 @@ class Pagy # :nodoc:
 
     # Return the metadata hash
     def pagy_metadata(pagy, absolute: nil)
-      url_template = pagy_url_for(pagy, PAGE_TOKEN, absolute:)
+      url_template = pagy_page_url(pagy, PAGE_TOKEN, absolute:)
       {}.tap do |metadata|
         keys = if defined?(::Pagy::Calendar::Unit) && pagy.is_a?(Calendar::Unit)
                  pagy.vars[:metadata] - %i[count limit]

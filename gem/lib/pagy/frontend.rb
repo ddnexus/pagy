@@ -14,7 +14,7 @@ class Pagy
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_anchor(pagy, anchor_string: nil, **vars)
       anchor_string &&= %( #{anchor_string})
-      left, right = %(<a#{anchor_string} href="#{pagy_url_for(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
+      left, right = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
       # lambda used by all the helpers
       lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
         classes    = %( class="#{classes}") if classes

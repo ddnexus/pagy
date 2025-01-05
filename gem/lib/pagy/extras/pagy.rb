@@ -35,7 +35,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="pagy combo-nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :cj, pagy_url_for(pagy, PAGE_TOKEN, **vars))}>#{
+          pagy_data(pagy, :cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))}>#{
           prev_a(pagy, a)
         }<label>#{
           pagy_t('pagy.combo_nav_js', page_input:, pages:)
@@ -46,12 +46,12 @@ class Pagy # :nodoc:
 
     # Return the previous page URL string or nil
     def pagy_prev_url(pagy, **vars)
-      pagy_url_for(pagy, pagy.prev, **vars) if pagy.prev
+      pagy_page_url(pagy, pagy.prev, **vars) if pagy.prev
     end
 
     # Return the next page URL string or nil
     def pagy_next_url(pagy, **vars)
-      pagy_url_for(pagy, pagy.next, **vars) if pagy.next
+      pagy_page_url(pagy, pagy.next, **vars) if pagy.next
     end
 
     # Return the enabled/disabled previous page anchor tag
@@ -68,12 +68,12 @@ class Pagy # :nodoc:
 
     # Conditionally return the previous page link tag
     def pagy_prev_link(pagy, **vars)
-      %(<link href="#{pagy_url_for(pagy, pagy.prev, **vars)}"/>) if pagy.prev
+      %(<link href="#{pagy_page_url(pagy, pagy.prev, **vars)}"/>) if pagy.prev
     end
 
     # Conditionally return the next page link tag
     def pagy_next_link(pagy, **vars)
-      %(<link href="#{pagy_url_for(pagy, pagy.next, **vars)}"/>) if pagy.next
+      %(<link href="#{pagy_page_url(pagy, pagy.next, **vars)}"/>) if pagy.next
     end
   end
   Frontend.prepend PagyExtra

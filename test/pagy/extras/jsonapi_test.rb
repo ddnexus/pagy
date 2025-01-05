@@ -27,16 +27,16 @@ describe 'pagy/extras/jsonapi' do
     it 'uses the :jsonapi with page:nil' do
       app = MockApp.new(params: { page: nil })
       pagy, _records = app.send(:pagy, @collection, limit_extra: false)
-      _(app.send(:pagy_url_for, pagy, 1)).must_rematch :url_1
+      _(app.send(:pagy_page_url, pagy, 1)).must_rematch :url_1
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_url_for, pagy, 1)).must_rematch :url_2
+      _(app.send(:pagy_page_url, pagy, 1)).must_rematch :url_2
     end
     it 'uses the :jsonapi with page:3' do
       app = MockApp.new(params: { page: { page: 3 } })
       pagy, _records = app.send(:pagy, @collection, limit_extra: false)
-      _(app.send(:pagy_url_for, pagy, 2)).must_rematch :url_1
+      _(app.send(:pagy_page_url, pagy, 2)).must_rematch :url_1
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_url_for, pagy, 2)).must_rematch :url_2
+      _(app.send(:pagy_page_url, pagy, 2)).must_rematch :url_2
     end
   end
   describe 'Skip JsonApi' do
@@ -44,18 +44,18 @@ describe 'pagy/extras/jsonapi' do
       Pagy::DEFAULT[:jsonapi] = false
       app = MockApp.new(params: { page: nil })
       pagy, _records = app.send(:pagy, @collection, limit_extra: false)
-      _(app.send(:pagy_url_for, pagy, 1)).must_equal '/foo?page=1'
+      _(app.send(:pagy_page_url, pagy, 1)).must_equal '/foo?page=1'
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_url_for, pagy, 1)).must_equal '/foo?page=1&limit=20'
+      _(app.send(:pagy_page_url, pagy, 1)).must_equal '/foo?page=1&limit=20'
       Pagy::DEFAULT[:jsonapi] = true
     end
     it 'skips the :jsonapi with page:3' do
       Pagy::DEFAULT[:jsonapi] = false
       app = MockApp.new(params: { page: 3 })
       pagy, _records = app.send(:pagy, @collection, limit_extra: false)
-      _(app.send(:pagy_url_for, pagy, 2)).must_equal '/foo?page=2'
+      _(app.send(:pagy_page_url, pagy, 2)).must_equal '/foo?page=2'
       pagy, _records = app.send(:pagy, @collection)
-      _(app.send(:pagy_url_for, pagy, 2)).must_equal '/foo?page=2&limit=20'
+      _(app.send(:pagy_page_url, pagy, 2)).must_equal '/foo?page=2&limit=20'
       Pagy::DEFAULT[:jsonapi] = true
     end
   end
@@ -69,7 +69,7 @@ describe 'pagy/extras/jsonapi' do
     it 'sets custom named params' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy, @collection, page_sym: :number, limit_sym: :size)
-      _(app.send(:pagy_url_for, pagy, 4)).must_rematch :url
+      _(app.send(:pagy_page_url, pagy, 4)).must_rematch :url
     end
   end
   describe '#pagy_jsonapi_links' do

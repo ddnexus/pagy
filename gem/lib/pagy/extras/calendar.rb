@@ -48,7 +48,7 @@ class Pagy # :nodoc:
         return super unless (counts = pagy.vars[:counts])
 
         anchor_string &&= %( #{anchor_string})
-        left, right = %(<a#{anchor_string} href="#{pagy_url_for(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
+        left, right = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
         # lambda used by all the helpers
         lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
           count = counts[page - 1]
@@ -70,7 +70,7 @@ class Pagy # :nodoc:
     module UrlHelperAddOn
       # Return the url for the calendar page at time
       def pagy_calendar_url_at(calendar, time, **)
-        pagy_url_for(calendar.send(:calendar_at, time, **), 1, **)
+        pagy_page_url(calendar.send(:calendar_at, time, **), 1, **)
       end
     end
   end

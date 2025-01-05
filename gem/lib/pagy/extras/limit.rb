@@ -40,7 +40,7 @@ class Pagy # :nodoc:
         vars         = pagy.vars
         limit        = vars[:limit]
         vars[:limit] = LIMIT_TOKEN # limit token replaced in the javascript
-        url_token    = pagy_url_for(pagy, PAGE_TOKEN)
+        url_token    = pagy_page_url(pagy, PAGE_TOKEN)
         vars[:limit] = limit # restore the limit
 
         limit_input = %(<input name="limit" type="number" min="1" max="#{vars[:limit_max]}" value="#{

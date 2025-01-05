@@ -36,7 +36,7 @@ class Pagy
     # Return the URL for the page, relying on the params method and Rack by default.
     # It supports all Rack-based frameworks (Sinatra, Padrino, Rails, ...).
     # For non-rack environments you can use the standalone extra
-    def pagy_url_for(pagy, page, absolute: false, fragment: nil, **_)
+    def pagy_page_url(pagy, page, absolute: false, fragment: nil, **_)
       vars         = pagy.vars
       query_params = vars[:url] ? {} : request.GET.clone(freeze: false)
       query_params.merge!(vars[:params].transform_keys(&:to_s)) if vars[:params].is_a?(Hash)

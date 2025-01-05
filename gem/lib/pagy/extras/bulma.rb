@@ -65,7 +65,7 @@ class Pagy # :nodoc:
 
       %(<nav#{id} class="#{classes}" #{
           nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :cj, pagy_url_for(pagy, PAGE_TOKEN, **vars))
+          pagy_data(pagy, :cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
         }>#{
           bulma_prev_next_html(pagy, a)
         }<ul class="pagination-list"><li class="pagination-link"><label>#{
