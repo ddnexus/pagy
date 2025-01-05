@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/limit
 # frozen_string_literal: true
 
-require_relative 'js_tools'
+require_relative '../frontend/javascript'
 
 class Pagy # :nodoc:
   DEFAULT[:limit_sym]   = :limit
@@ -44,7 +44,8 @@ class Pagy # :nodoc:
         vars[:limit] = limit # restore the limit
 
         limit_input = %(<input name="limit" type="number" min="1" max="#{vars[:limit_max]}" value="#{
-                          limit}" style="padding: 0; text-align: center; width: #{limit.to_s.length + 1}rem;">#{JSTools::A_TAG})
+                          limit}" style="padding: 0; text-align: center; width: #{limit.to_s.length + 1}rem;">#{
+                          Frontend::Javascript::A_TAG})
 
         %(<span#{id} class="pagy limit-selector-js" #{
             pagy_data(pagy, :sj, pagy.from, url_token)

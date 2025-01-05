@@ -3,14 +3,12 @@
 
 require_relative 'i18n'
 require_relative 'url_helpers'
-require_relative 'data_helpers'
 
 class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
     include UrlHelpers
-    include DataHelpers
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to

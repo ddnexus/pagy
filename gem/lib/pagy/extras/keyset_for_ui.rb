@@ -3,6 +3,7 @@
 
 require_relative '../keyset_for_ui'
 require_relative 'countless'
+require_relative '../frontend/javascript'
 
 class Pagy # :nodoc:
   # Add keyset UI Compatible methods
@@ -34,5 +35,5 @@ class Pagy # :nodoc:
       super
     end
   end
-  Frontend.prepend DataHelperOverride
+  Frontend::Javascript::DataHelpers.prepend DataHelperOverride
 end

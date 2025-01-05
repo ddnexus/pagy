@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/pagy
 # frozen_string_literal: true
 
-require_relative 'js_tools'
+require_relative '../frontend/javascript'
 
 class Pagy # :nodoc:
   # Frontend modules are specially optimized for performance.
@@ -31,7 +31,7 @@ class Pagy # :nodoc:
       pages = pagy.pages
 
       page_input = %(<input name="page" type="number" min="1" max="#{pages}" value="#{pagy.page}" aria-current="page" ) <<
-                   %(style="text-align: center; width: #{pages.to_s.length + 1}rem; padding: 0;">#{JSTools::A_TAG})
+                   %(style="text-align: center; width: #{pages.to_s.length + 1}rem; padding: 0;">#{Frontend::Javascript::A_TAG})
 
       %(<nav#{id} class="pagy combo-nav-js" #{
           nav_aria_label(pagy, aria_label:)} #{
