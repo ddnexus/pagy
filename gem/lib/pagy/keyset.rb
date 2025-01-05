@@ -57,7 +57,8 @@ class Pagy
 
     # Assign the page
     def assign_page
-      @page = @prev_cutoff = @vars[:page]
+      @page        = @vars[:page]
+      @prev_cutoff = JSON.parse(B64.urlsafe_decode(@page)) if @page
     end
 
     # Prepare the literal SQL string (complete with the placeholders for value interpolation)
@@ -109,8 +110,7 @@ class Pagy
     # Derive the cutoff from the last record
     def derive_cutoff
       attr = keyset_attributes_from(@records.last)
-      json = (@vars[:stringify_keyset_values]&.(attr) || attr).values.to_json
-      B64.urlsafe_encode(json)
+      (@vars[:stringify_keyset_values]&.(attr) || attr).values
     end
 
     # Fetch the records and set the @more flag
@@ -122,8 +122,7 @@ class Pagy
 
     # Return the filter arguments for a cutoff
     def filter_args_for(cutoff)
-      values = JSON.parse(B64.urlsafe_decode(cutoff))
-      args   = @keyset.keys.zip(values).to_h
+      args = @keyset.keys.zip(cutoff).to_h
       typecast_args(args)
     end
 
@@ -132,7 +131,7 @@ class Pagy
       records
       return unless @more
 
-      @next ||= derive_cutoff
+      @next ||= B64.urlsafe_encode(derive_cutoff.to_json)
     end
 
     # Fetch the array of records for the current page

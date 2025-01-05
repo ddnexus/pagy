@@ -101,12 +101,6 @@ class Pagy # :nodoc:
       { **super, **DEFAULT.slice(:ends, :size) }
     end
 
-    # Derive the cutoff from the last record
-    def derive_cutoff
-      attr = keyset_attributes_from(@records.last)
-      (@vars[:stringify_keyset_values]&.(attr) || attr).values
-    end
-
     # Remove the LIMIT if @cutoff
     def fetch_records
       return super unless @cutoff # super for the last known page
@@ -115,12 +109,6 @@ class Pagy # :nodoc:
       # That keeps the fetching accurate also when records are added or removed from a page alredy visited
       @more = true
       @set.limit(nil).to_a
-    end
-
-    # Return the filter arguments for a cutoff
-    def filter_args_for(cutoff)
-      args = @keyset.keys.zip(cutoff).to_h
-      typecast_args(args)
     end
 
     # Prepare the @update for the client when it's a new page/cutoff and return the next page number
