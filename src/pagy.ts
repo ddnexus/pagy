@@ -91,7 +91,7 @@ const Pagy = (() => {
   // Return a random key: 3 chars max, base-36 number < 36**3
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
 
-  // Init for KeysetForUI paginated navs
+  // Init for Keyset::Augmented paginated navs
   const initNavKeyset = async (nav:HTMLElement, [pageSym, [storageKey, spliceArgs]]:NavKeysetArgs) => {
     if (!storageSupport) { return }
 

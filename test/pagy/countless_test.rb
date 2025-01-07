@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
-require 'pagy/extras/countless'
 
 describe 'pagy/countless' do
   describe '#finalize' do
     it 'initializes empty collection' do
-      pagy, = Pagy::Countless.new(page: 1)
+      pagy, = Pagy::Offset::Countless.new(page: 1)
       pagy.finalize(0)
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
@@ -19,10 +18,10 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
     it 'initializes first page' do
-      pagy, = Pagy::Countless.new(page: 1)
+      pagy, = Pagy::Offset::Countless.new(page: 1)
       pagy.finalize(21) # one more page
       _(pagy.count).must_be_nil
-      _(pagy).must_be_instance_of Pagy::Countless
+      _(pagy).must_be_instance_of Pagy::Offset::Countless
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 2
       _(pagy.in).must_equal 20
@@ -32,7 +31,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_equal 2
     end
     it 'initializes single full page' do
-      pagy, = Pagy::Countless.new(page: 1)
+      pagy, = Pagy::Offset::Countless.new(page: 1)
       pagy.finalize(20) # no more page - last full
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
@@ -44,7 +43,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
     it 'initialize single partial page' do
-      pagy, = Pagy::Countless.new(page: 1)
+      pagy, = Pagy::Offset::Countless.new(page: 1)
       pagy.finalize(4) # partial page of 4 - also last
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
@@ -56,7 +55,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
     it 'initializes last partial page' do
-      pagy, = Pagy::Countless.new(page: 3)
+      pagy, = Pagy::Offset::Countless.new(page: 3)
       pagy.finalize(19) # partial page of 4 - also last
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
@@ -68,7 +67,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
     it 'handles the :cycle variable' do
-      pagy, = Pagy::Countless.new(page: 3, cycle: true)
+      pagy, = Pagy::Offset::Countless.new(page: 3, cycle: true)
       pagy.finalize(19) # partial page of 4 - also last
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
@@ -80,7 +79,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_equal 1
     end
     it 'raises exception with no fetched records and page > 1' do
-      _ { Pagy::Countless.new(page: 2, overflow: :exception).finalize(0) }.must_raise Pagy::OverflowError
+      _ { Pagy::Offset::Countless.new(page: 2, overflow: :exception).finalize(0) }.must_raise Pagy::OverflowError
     end
   end
 end

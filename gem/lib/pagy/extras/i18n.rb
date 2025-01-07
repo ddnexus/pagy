@@ -1,7 +1,7 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/i18n
 # frozen_string_literal: true
 
-class Pagy # :nodoc:
+class Pagy
   # Use ::I18n gem
   module I18nExtra
     # Frontend overriding for translation
@@ -19,7 +19,7 @@ class Pagy # :nodoc:
       end
     end
   end
-  Calendar::Unit.prepend I18nExtra::CalendarOverride if defined?(::Pagy::Calendar::Unit)
+  Offset::Calendar::Unit.prepend I18nExtra::CalendarOverride if defined?(::Pagy::Offset::Calendar::Unit)
 
   # Add the pagy locales to the I18n.load_path
   ::I18n.load_path += Dir[Pagy.root.join('locales', '*.yml')]

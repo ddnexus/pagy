@@ -1,11 +1,11 @@
 ---
-title: Pagy::KeysetForUI
+title: Pagy::Keyset::Augmented
 category:
   - Feature
   - Class
 ---
 
-# Pagy::KeysetForUI
+# Pagy::Keyset::Augmented
 
 A [Pagy::Keyset](keyset.md) subclass supporting `pagy_*nav` and other Frontend helpers.
 
@@ -17,7 +17,7 @@ A [Pagy::Keyset](keyset.md) subclass supporting `pagy_*nav` and other Frontend h
 The regular `Pagy::Keyset` uses the fastest technique for SQL pagination, but it cannot work with any Frontend helper because they
 require a pagy object with numeric variables.
 
-That's why we created `Pagy::KeysetForUI`: it uses the fast keyset pagination AND supports `pagy_*navs` and other Frontend
+That's why we created `Pagy::Keyset::Augmented`: it uses the fast keyset pagination AND supports `pagy_*navs` and other Frontend
 helpers.
 
 !!!
@@ -45,7 +45,7 @@ The Keyset pagination for UI adds the numeric variables (`page`, `last`, `prev`,
 usage with most Frontend helpers. It does so by transparently exchanging data back and forth with the client, that stores the
 state of the pagination.
 
-You can use a `Pagy::KeysetForUI` object as you would with a standard `Pagy` (offset countless) object. You need just a different
+You can use a `Pagy::Keyset::Augmented` object as you would with a standard `Pagy` (offset countless) object. You need just a different
 setup and you will get a lot more performance.
 
 ==- In-depth: Understanding the data exchange
@@ -182,24 +182,24 @@ user by:
 
 ## ORMs
 
-`Pagy::KeysetForUI` implements the subclasses for `ActiveRecord::Relation` and `Sequel::Dataset` sets and instantiate them
+`Pagy::Keyset::Augmented` implements the subclasses for `ActiveRecord::Relation` and `Sequel::Dataset` sets and instantiate them
 internally:
 
 ```ruby
-Pagy::KeysetForUI.new(active_record_set)
-#=> #<Pagy::KeysetForUI::ActiveRecord:0x00000001066215e0>
+Pagy::Keyset::Augmented.new(active_record_set)
+#=> #<Pagy::Keyset::Augmented::ActiveRecord:0x00000001066215e0>
 
-Pagy::KeysetForUI.new(sequel_set)
-#=> #<Pagy::KeysetForUI::Sequel:0x00000001066545e0>
+Pagy::Keyset::Augmented.new(sequel_set)
+#=> #<Pagy::Keyset::Augmented::Sequel:0x00000001066545e0>
 ```
 
 ## Methods
 
-==- `Pagy::KeysetForUI.new(set, **vars)`
+==- `Pagy::Keyset::Augmented.new(set, **vars)`
 
 The constructor takes the `set`, and an optional hash of [variables](#variables). It returns a
-`Pagy::KeysetForUI::ActiveRecord` or
-`Pagy::KeysetForUI::Sequel` object (depending on the `set` class).
+`Pagy::Keyset::Augmented::ActiveRecord` or
+`Pagy::Keyset::Augmented::Sequel` object (depending on the `set` class).
 
 ==- `records`
 

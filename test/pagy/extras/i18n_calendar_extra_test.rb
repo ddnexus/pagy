@@ -30,20 +30,20 @@ describe 'pagy/extras/i18n' do
 
   describe '#pagy_info with I18n' do
     it 'renders info' do
-      _(app.pagy_info(Pagy.new(count: 0))).must_rematch :info_0
-      _(app.pagy_info(Pagy.new(count: 1))).must_rematch :info_1
-      _(app.pagy_info(Pagy.new(count: 13))).must_rematch :info_13
-      _(app.pagy_info(Pagy.new(count: 100, page: 3))).must_rematch :info_100
+      _(app.pagy_info(Pagy::Offset.new(count: 0))).must_rematch :info_0
+      _(app.pagy_info(Pagy::Offset.new(count: 1))).must_rematch :info_1
+      _(app.pagy_info(Pagy::Offset.new(count: 13))).must_rematch :info_13
+      _(app.pagy_info(Pagy::Offset.new(count: 100, page: 3))).must_rematch :info_100
     end
   end
 
   describe 'Calendar with I18n.l' do
     I18n.load_path += Dir[Pagy.root.join('..', 'test', 'files', 'locales', '*.yml')]
     it 'works in :en' do
-      pagy = Pagy::Calendar.send(:create, :month,
-                                 period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
-                                          Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
-                                 page: 3, format: '%B, %A')
+      pagy = Pagy::Offset::Calendar.send(:create, :month,
+                                         period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
+                                                  Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
+                                         page: 3, format: '%B, %A')
       _(pagy.label).must_equal "December, Wednesday"
       _(pagy.label(locale: :de)).must_equal "Dezember, Mittwoch"
       _(pagy.label(format: '%b')).must_equal "Dec"

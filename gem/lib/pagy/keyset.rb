@@ -3,26 +3,29 @@
 
 require 'json'
 require_relative 'b64'
-require_relative 'shared_methods'
-require_relative 'keyset/active_record_adapter'
-require_relative 'keyset/sequel_adapter'
+
+require_relative 'keyset/adapters/active_record'
+require_relative 'keyset/adapters/sequel'
 
 class Pagy
   # Implement wicked-fast keyset pagination for big data
-  class Keyset
+  class Keyset < Pagy
+
+    autoload :Augmented, 'pagy/keyset/augmented'
+
     class TypeError < ::TypeError; end
 
     class ActiveRecord < Keyset
-      include ActiveRecordAdapter
+      include Adapters::ActiveRecord
     end
 
     class Sequel < Keyset
-      include SequelAdapter
+      include Adapters::Sequel
     end
 
     # Pick the right adapter for the set and initilize the right class
     def self.new(set, **vars)
-      if self == Pagy::Keyset || (defined?(::Pagy::KeysetForUI) && self == ::Pagy::KeysetForUI)
+      if self == Pagy::Keyset || (defined?(::Pagy::Keyset::Augmented) && self == ::Pagy::Keyset::Augmented)
         if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
           self::ActiveRecord
         elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
@@ -35,10 +38,8 @@ class Pagy
       end
     end
 
-    include SharedMethods
-
-    def initialize(set, **vars)
-      assign_vars(default, vars)
+    def initialize(set, **vars) # rubocop:disable Lint/MissingSuper
+      assign_vars(vars)
       assign_limit
       @set    = set
       @keyset = vars[:keyset] || extract_keyset
@@ -75,7 +76,7 @@ class Pagy
     #
     #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
     #
-    def after_cutoff_sql(prefix = nil)   # prefix is used by the KeysetForUI instances
+    def after_cutoff_sql(prefix = nil)   # prefix is used by the Keyset::Augmented instances
       operator    = { asc: '>', desc: '<' }
       directions  = @keyset.values
       table       = @set.model.table_name
@@ -96,15 +97,6 @@ class Pagy
         end
         where.join(' OR ')
       end
-    end
-
-    # Return the Keyset default variables
-    def default
-      default = DEFAULT.slice(:limit, :page_sym,                    # from pagy
-                              :headers,                             # from headers extra
-                              :jsonapi,                             # from jsonapi extra
-                              :limit_sym, :limit_max, :limit_extra) # from limit_extra
-      { **default, page: nil }
     end
 
     # Derive the cutoff from the last record

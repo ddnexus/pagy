@@ -3,7 +3,7 @@
 
 require_relative '../url_helpers'
 
-class Pagy # :nodoc:
+class Pagy
   # Use pagy without any request object, nor Rack environment/gem, nor any defined params method,
   # even in the irb/rails console without any app or config.
   # Define a dummy params method if it's not already defined in the including module

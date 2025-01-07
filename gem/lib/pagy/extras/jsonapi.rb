@@ -3,7 +3,7 @@
 
 require_relative '../url_helpers'
 
-class Pagy # :nodoc:
+class Pagy
   DEFAULT[:jsonapi] = true
 
   # Add a specialized backend method compliant with JSON:API

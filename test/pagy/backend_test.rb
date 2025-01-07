@@ -13,8 +13,8 @@ describe 'pagy/backend' do
       @collection = MockCollection.new
     end
     it 'paginates with defaults' do
-      pagy, records = app.send(:pagy, @collection)
-      _(pagy).must_be_instance_of Pagy
+      pagy, records = app.send(:pagy_offset, @collection)
+      _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
       _(pagy.page).must_equal app.params[:page].to_i
@@ -23,7 +23,7 @@ describe 'pagy/backend' do
     end
     it 'paginates with vars' do
       pagy, records = app.send(:pagy, @collection, page: 2, limit: 10, anchor_string: 'X')
-      _(pagy).must_be_instance_of Pagy
+      _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal pagy.limit
       _(pagy.page).must_equal 2
@@ -87,7 +87,7 @@ describe 'pagy/backend' do
   describe '#pagy_get_items' do
     it 'gets items' do
       collection = MockCollection.new
-      pagy       = Pagy.new count: 1000
+      pagy       = Pagy::Offset.new count: 1000
       records    = app.send :pagy_get_items, collection, pagy
       _(records).must_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     end

@@ -8,13 +8,14 @@ class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
+    include Pagy::Autoloading
     include UrlHelpers
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_anchor(pagy, anchor_string: nil, **vars)
       anchor_string &&= %( #{anchor_string})
-      left, right = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
+      left, right   = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
       # lambda used by all the helpers
       lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
         classes    = %( class="#{classes}") if classes
@@ -36,20 +37,21 @@ class Pagy
                 end
 
       %(<span#{id} class="pagy info">#{
-          pagy_t key, item_name: item_name || pagy_t('pagy.item_name', count: p_count),
-                      count: p_count, from: pagy.from, to: pagy.to
-        }</span>)
+      pagy_t key, item_name: item_name || pagy_t('pagy.item_name', count: p_count),
+             count:          p_count, from: pagy.from, to: pagy.to
+      }</span>)
     end
 
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
       id   = %( id="#{id}") if id
       a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::KeysetForUI) && pagy.is_a?(KeysetForUI)
+      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Augmented) && pagy.is_a?(Keyset::Augmented)
 
       html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}#{data}>#{
-                 prev_a(pagy, a)})
-      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      prev_a(pagy, a)})
+      pagy.series(**vars).each do |item|
+        # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
                   a.(item)
@@ -68,6 +70,12 @@ class Pagy
     # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_t(key, **)
       Pagy::I18n.translate(@pagy_locale ||= nil, key, **)
+    end
+
+    # Return a data tag with the base64 encoded JSON-serialized args generated with the faster oj gem
+    def pagy_data(_pagy, *args)
+      data = defined?(::Oj) ? Oj.dump(args, mode: :compat) : JSON.dump(args)
+      %(data-pagy="#{B64.encode(data)}")
     end
 
     private

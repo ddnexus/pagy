@@ -2,7 +2,6 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/calendar'
-require 'pagy/frontend/javascript'
 
 require_relative '../../mock_helpers/app'
 
@@ -18,18 +17,18 @@ OJ.each do |test|
 
     describe "pagy_data #{test}" do
       it "runs #{test}" do
-        _(app.pagy_data(Pagy.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data_1
+        _(app.pagy_data(Pagy::Offset.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data_1
       end
     end
     describe "Calendar sequels and label_sequels #{test}" do
       it 'generate the labels for the sequels' do
         steps = { 0 => 5, 600 => 7 }
-        pagy = Pagy::Calendar.send(:create, :month,
-                                   period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
-                                            Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
-                                   steps: steps,
-                                   ends: true,   # to hit the :gap condition in the calendar sequels override
-                                   page: 6)
+        pagy = Pagy::Offset::Calendar.send(:create, :month,
+                                           period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
+                                                    Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
+                                           steps: steps,
+                                           ends: true,   # to hit the :gap condition in the calendar sequels override
+                                           page: 6)
         _(pagy.sequels).must_rematch :sequels
       end
     end

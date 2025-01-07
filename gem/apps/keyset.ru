@@ -40,7 +40,7 @@ Pagy::DEFAULT.freeze
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
-class PagyKeyset < Sinatra::Base
+class PagyKeysetAugmented < Sinatra::Base
   include Pagy::Backend
   # Root route/action
   get '/' do

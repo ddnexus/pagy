@@ -16,11 +16,11 @@ end
 describe 'pagy/frontend' do
   let(:app) { MockApp.new }
 
-  # #pagy_nav helper tests in the test/extras/pagy_test.rb
+  # #pagy_nav helper tests in the test/extras/offset_test.rb
 
   describe '#pagy_anchor' do
     it 'renders with extras' do
-      pagy = Pagy.new(count: 103, page: 1)
+      pagy = Pagy::Offset.new(count: 103, page: 1)
       _(app.pagy_anchor(pagy, anchor_string: 'X').call(3)).must_equal '<a X href="/foo?page=3">3</a>'
     end
   end
@@ -77,16 +77,16 @@ describe 'pagy/frontend' do
 
   describe '#pagy_info' do
     it 'renders without i18n key' do
-      _(app.pagy_info(Pagy.new(count: 0))).must_rematch :info_0
-      _(app.pagy_info(Pagy.new(count: 1))).must_rematch :info_1
-      _(app.pagy_info(Pagy.new(count: 13))).must_rematch :info_13
-      _(app.pagy_info(Pagy.new(count: 100, page: 3))).must_rematch :info_100
+      _(app.pagy_info(Pagy::Offset.new(count: 0))).must_rematch :info_0
+      _(app.pagy_info(Pagy::Offset.new(count: 1))).must_rematch :info_1
+      _(app.pagy_info(Pagy::Offset.new(count: 13))).must_rematch :info_13
+      _(app.pagy_info(Pagy::Offset.new(count: 100, page: 3))).must_rematch :info_100
     end
     it 'overrides the item_name and set id' do
-      _(app.pagy_info(Pagy.new(count: 0), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_0
-      _(app.pagy_info(Pagy.new(count: 1), id: 'pagy-info', item_name: 'Widget')).must_rematch :info_1
-      _(app.pagy_info(Pagy.new(count: 13), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_13
-      _(app.pagy_info(Pagy.new(count: 100, page: 3), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_100
+      _(app.pagy_info(Pagy::Offset.new(count: 0), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_0
+      _(app.pagy_info(Pagy::Offset.new(count: 1), id: 'pagy-info', item_name: 'Widget')).must_rematch :info_1
+      _(app.pagy_info(Pagy::Offset.new(count: 13), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_13
+      _(app.pagy_info(Pagy::Offset.new(count: 100, page: 3), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_100
     end
   end
 end

@@ -2,7 +2,6 @@
 
 require_relative '../../test_helper'
 
-require 'pagy/extras/countless'
 require 'pagy/extras/arel'
 require 'pagy/extras/array'
 require 'pagy/extras/limit'
@@ -115,31 +114,31 @@ describe 'pagy/extras/limit' do
   describe 'view_methods' do
     describe '#pagy_page_url' do
       it 'renders basic url' do
-        pagy = Pagy.new count: 1000, page: 3
+        pagy = Pagy::Offset.new count: 1000, page: 3
         _(app.pagy_page_url(pagy, 5)).must_equal '/foo?page=5&limit=20'
       end
       it 'renders basic url and limit var' do
-        pagy = Pagy.new count: 1000, page: 3, limit: 50
+        pagy = Pagy::Offset.new count: 1000, page: 3, limit: 50
         _(app.pagy_page_url(pagy, 5)).must_equal '/foo?page=5&limit=50'
       end
       it 'renders url with limit_sym' do
-        pagy = Pagy.new count: 1000, page: 3, limit_sym: :custom
+        pagy = Pagy::Offset.new count: 1000, page: 3, limit_sym: :custom
         _(app.pagy_page_url(pagy, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do
-        pagy = Pagy.new count: 1000, page: 3
+        pagy = Pagy::Offset.new count: 1000, page: 3
         _(app.pagy_page_url(pagy, 6, fragment: '#fragment')).must_equal '/foo?page=6&limit=20#fragment'
       end
       it 'renders url with params and fragment' do
-        pagy = Pagy.new count: 1000, page: 3, params: { a: 3, b: 4 }, limit: 40
+        pagy = Pagy::Offset.new count: 1000, page: 3, params: { a: 3, b: 4 }, limit: 40
         _(app.pagy_page_url(pagy, 5, fragment: '#fragment')).must_equal "/foo?page=5&a=3&b=4&limit=40#fragment"
       end
     end
     it 'renders limit selector' do
-      pagy = Pagy.new count: 1000, page: 3
+      pagy = Pagy::Offset.new count: 1000, page: 3
       _(app.pagy_limit_selector_js(pagy)).must_rematch :selector_1
       _(app.pagy_limit_selector_js(pagy, id: 'test-id', item_name: 'products')).must_rematch :selector_2
-      pagy = Pagy.new count: 1000, page: 3, limit_extra: false
+      pagy = Pagy::Offset.new count: 1000, page: 3, limit_extra: false
       _(app.pagy_limit_selector_js(pagy, id: 'test-id')).must_equal ''
     end
   end

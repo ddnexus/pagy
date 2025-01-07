@@ -18,7 +18,7 @@ describe "pagy/extras/#{EXTRA}" do
   end
 
   describe "#pagy#{PREFIX}_nav_js" do
-    it 'renders single and multiple pages when used with Pagy::Countless' do
+    it 'renders single and multiple pages when used with Pagy::Offset::Countless' do
       nav_js_countless_tests(PREFIX)
     end
     it 'renders first, intermediate and last pages with required steps' do
@@ -36,8 +36,8 @@ describe "pagy/extras/#{EXTRA}" do
     page_finalize.each do |page, finalize|
       it "renders the #{method} for page #{page}" do
         app = MockApp.new
-        pagy = Pagy.new count: 1000, page: page
-        pagy_countless = Pagy::Countless.new(page: page).finalize(finalize)
+        pagy = Pagy::Offset.new count: 1000, page: page
+        pagy_countless = Pagy::Offset::Countless.new(page: page).finalize(finalize)
         _(app.send(method, pagy)).must_rematch :r1
         _(app.send(method, pagy_countless)).must_rematch :r2
         _(app.send(method, pagy, **others)).must_rematch :r3

@@ -4,8 +4,6 @@ require_relative '../test_helper'
 require_relative '../files/models'
 require_relative '../../gem/lib/pagy/b64'
 
-require 'pagy/keyset'
-
 [Pet, PetSequel].each do |model|
   describe "Pagy Keyset with #{model}" do
     describe 'initialize' do

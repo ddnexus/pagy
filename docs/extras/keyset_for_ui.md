@@ -17,7 +17,7 @@ and other Frontend helpers.
 
 ## Overview
 
-This is a wrapper around the [Pagy::KeysetForUI API](/docs/api/keyset_for_ui.md). Please refer to the following resources:
+This is a wrapper around the [Pagy::Keyset::Augmented API](/docs/api/keyset_for_ui.md). Please refer to the following resources:
 
 [!ref Keyset For UI: Documentation](/docs/api/keyset_for_ui.md)
 

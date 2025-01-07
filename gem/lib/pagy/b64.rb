@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Pagy # :nodoc:
+class Pagy
   # Cheap Base64 specialized methods to avoid dependencies
   module B64
     module_function

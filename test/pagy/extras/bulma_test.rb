@@ -17,7 +17,7 @@ describe "pagy/extras/#{EXTRA}" do
   end
 
   describe "#pagy#{PREFIX}_nav_js" do
-    it 'renders single and multiple pages when used with Pagy::Countless' do
+    it 'renders single and multiple pages when used with Pagy::Offset::Countless' do
       nav_js_countless_tests(PREFIX)
     end
     it 'renders first, intermediate and last pages with required steps' do

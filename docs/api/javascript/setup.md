@@ -8,7 +8,7 @@ order: 4
 
 !!!info Notice
 
-A javascript setup is required only for the `pagy*_js` helpers and the `pagy*_nav` for `Pagy::KeysetForUI` instances. Just using
+A javascript setup is required only for the `pagy*_js` helpers and the `pagy*_nav` for `Pagy::Keyset::Augmented` instances. Just using
 something like `anchor_string: 'data-remote="true"'` in any instances, works out of the box with any helper and without this
 setup.
 !!!
@@ -21,7 +21,7 @@ setup.
 
 ### How does it work?
 
-All the `pagy*_js` helpers, and the `pagy*_nav` for `Pagy::KeysetForUI` instances, complete their component on the
+All the `pagy*_js` helpers, and the `pagy*_nav` for `Pagy::Keyset::Augmented` instances, complete their component on the
 client side. The helper methods serves just a minimal HTML tag that contains a `data-pagy` attribute.
 
 Your app should [serve or bundle](#2-configure) a small [javascript file](#1-pick-a-javascript-file) and [run the `Pagy.init()

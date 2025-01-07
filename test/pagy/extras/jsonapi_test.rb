@@ -3,7 +3,6 @@
 require_relative '../../test_helper'
 require 'pagy/extras/limit'
 require 'pagy/extras/jsonapi'
-require 'pagy/extras/keyset'
 
 require_relative '../../mock_helpers/collection'
 require_relative '../../files/models'

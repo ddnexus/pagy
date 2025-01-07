@@ -41,7 +41,7 @@ Pagy::DEFAULT.freeze
 require 'sinatra/base'
 require 'logger'
 # Sinatra application
-class PagyKeyset < Sinatra::Base
+class PagyKeysetAugmented < Sinatra::Base
   include Pagy::Backend
   # Root route/action
   get '/' do
@@ -216,4 +216,4 @@ data.each_line(chomp: true) do |pet|
   dataset.insert(name:, animal:, birthdate:)
 end
 
-run PagyKeyset
+run PagyKeysetAugmented

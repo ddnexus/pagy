@@ -8,7 +8,7 @@
 # Pagy Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#variables
 # You can set any pagy variable as a Pagy::DEFAULT. They can also be overridden per instance by just passing them to
-# Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
+# Pagy::Offset.new|Pagy::Offset::Countless.new|Pagy::Offset::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as DEFAULTs:
 # Pagy::DEFAULT[:limit]      = 20      # default
 # Pagy::DEFAULT[:size]       = 7       # default
@@ -43,11 +43,11 @@
 # See https://ddnexus.github.io/pagy/docs/extras/calendar
 # require 'pagy/extras/calendar'
 # Default for each calendar unit class in IRB:
-# >> Pagy::Calendar::Year::DEFAULT
-# >> Pagy::Calendar::Quarter::DEFAULT
-# >> Pagy::Calendar::Month::DEFAULT
-# >> Pagy::Calendar::Week::DEFAULT
-# >> Pagy::Calendar::Day::DEFAULT
+# >> Pagy::Offset::Calendar::Year::DEFAULT
+# >> Pagy::Offset::Calendar::Quarter::DEFAULT
+# >> Pagy::Offset::Calendar::Month::DEFAULT
+# >> Pagy::Offset::Calendar::Week::DEFAULT
+# >> Pagy::Offset::Calendar::Day::DEFAULT
 #
 # Uncomment the following lines, if you need calendar localization without using the I18n extra
 # module LocalizePagyCalendar
@@ -55,7 +55,7 @@
 #     ::I18n.l(time, **opts)
 #   end
 # end
-# Pagy::Calendar.prepend LocalizePagyCalendar
+# Pagy::Offset::Calendar.prepend LocalizePagyCalendar
 
 # Countless extra: Paginate without any count, saving one query per rendering
 # See https://ddnexus.github.io/pagy/docs/extras/countless

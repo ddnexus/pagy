@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/calendar'
 
 require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
@@ -15,13 +14,13 @@ end
 
 describe 'pagy/extras/calendar' do
   describe 'instance methods' do
-    it 'returns a Pagy::Calendar::Month instance' do
+    it 'returns a Pagy::Offset::Calendar::Month instance' do
       calendar, pagy, _records = app(params: { page: 1 }).send(:pagy_calendar,
                                                                Event.all,
                                                                month: { period: [Time.now, Time.now + 5000] },
                                                                pagy: {})
-      _(calendar[:month]).must_be_instance_of Pagy::Calendar::Month
-      _(pagy).must_be_instance_of Pagy
+      _(calendar[:month]).must_be_instance_of Pagy::Offset::Calendar::Month
+      _(pagy).must_be_instance_of Pagy::Offset
     end
     it 'skips the calendar' do
       calendar, pagy, records = app(params: { page: 1 }).send(:pagy_calendar,
@@ -31,7 +30,7 @@ describe 'pagy/extras/calendar' do
                                                               active: false)
       _(calendar).must_be_nil
       _(records.size).must_equal 20
-      _(pagy).must_be_instance_of Pagy
+      _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 505
       _(pagy.pages).must_equal 26
     end
@@ -261,10 +260,10 @@ describe 'pagy/extras/calendar' do
         .must_equal "/foo?page=1&year_page=1&month_page=1"
 
       _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2100)) }
-        .must_raise Pagy::Calendar::OutOfRangeError
+        .must_raise Pagy::Offset::Calendar::OutOfRangeError
 
       _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2000)) }
-        .must_raise Pagy::Calendar::OutOfRangeError
+        .must_raise Pagy::Offset::Calendar::OutOfRangeError
     end
   end
   describe "#showtime" do

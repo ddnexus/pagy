@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/array'
 
 require_relative '../../mock_helpers/app'
 
@@ -14,7 +13,7 @@ describe 'pagy/extras/array' do
     end
     it 'paginates with defaults' do
       pagy, records = app.send(:pagy_array, @collection)
-      _(pagy).must_be_instance_of Pagy
+      _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
       _(pagy.page).must_equal app.params[:page].to_i
@@ -23,7 +22,7 @@ describe 'pagy/extras/array' do
     end
     it 'paginates with vars' do
       pagy, records = app.send(:pagy_array, @collection, page: 2, limit: 10, anchor_string: 'X')
-      _(pagy).must_be_instance_of Pagy
+      _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal 10
       _(pagy.page).must_equal 2

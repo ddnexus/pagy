@@ -8,22 +8,8 @@ class Pagy
   # or any collection by overriding any of the `pagy_*` methods in your controller.
   # See also the extras if you need specialized methods to paginate Arrays or other collections
   module Backend
+    include Pagy::Autoloading
     private
-
-    # Return Pagy object and paginated results
-    def pagy(collection, **vars)
-      vars[:count] ||= pagy_get_count(collection, vars)
-      vars[:limit] ||= pagy_get_limit(vars)
-      vars[:page]  ||= pagy_get_page(vars)
-      pagy = Pagy.new(**vars)
-      [pagy, pagy_get_items(collection, pagy)]
-    end
-
-    # Get the count from the collection
-    def pagy_get_count(collection, vars)
-      count_args = vars[:count_args] || DEFAULT[:count_args]
-      (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
-    end
 
     # Sub-method called only by #pagy: here for easy customization of fetching by overriding
     # You may need to override this method for collections without offset|limit
