@@ -3,6 +3,7 @@ PATH
   specs:
     pagy (9.3.3)
       json
+      yaml
 
 GEM
   remote: https://rubygems.org/
@@ -87,7 +88,7 @@ GEM
     bigdecimal (3.1.9)
     builder (3.3.0)
     concurrent-ruby (1.3.4)
-    connection_pool (2.4.1)
+    connection_pool (2.5.0)
     crass (1.0.6)
     date (3.4.1)
     docile (1.4.1)
@@ -321,6 +322,7 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    yaml (0.4.0)
     zeitwerk (2.7.1)
 
 PLATFORMS

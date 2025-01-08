@@ -1,8 +1,6 @@
 # See Pagy::Offset::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/offset/countless
 # frozen_string_literal: true
 
-require_relative '../offset'
-
 class Pagy
   class Offset
     # No need to know the count to paginate
@@ -32,13 +30,11 @@ class Pagy
         self
       rescue OverflowError
         @overflow = true
-        if @vars[:overflow] == :empty_page
-          @offset      = @limit = @from = @to = 0 # vars relative to the actual page
-          @vars[:size] = 0 # no page in the series
-          self
-        else
-          raise
-        end
+        raise unless @vars[:overflow] == :empty_page
+
+        @offset      = @limit = @from = @to = 0 # vars relative to the actual page
+        @vars[:size] = 0 # no page in the series
+        self
       end
     end
 

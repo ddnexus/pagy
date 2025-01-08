@@ -63,7 +63,7 @@ class Pagy
         pagy = Offset.new(**vars)
         # with :last_page overflow we need to re-run the method in order to get the hits
         return pagy_elasticsearch_rails(pagy_search_args, **vars, page: pagy.page) \
-               if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
+               if pagy.overflow? && pagy.vars[:overflow] == :last_page
 
         [pagy, called.empty? ? response : response.send(*called)]
       end

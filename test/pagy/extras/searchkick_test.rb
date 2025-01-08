@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/overflow'
-
 require_relative '../../mock_helpers/searchkick'
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'

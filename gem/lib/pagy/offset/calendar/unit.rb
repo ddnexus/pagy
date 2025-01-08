@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_support'
-require 'active_support/core_ext/time'
-require 'active_support/core_ext/date_and_time/calculations'
-require 'active_support/core_ext/numeric/time'
-require 'active_support/core_ext/integer/time'
-
 class Pagy
   class Offset
     class Calendar
@@ -21,18 +15,22 @@ class Pagy
           assign_vars(vars)
           assign_and_check(page: 1)
           assign_unit_vars
-          check_overflow
+          return unless check_overflow
+
           assign_prev_and_next
         end
 
         # Override if :empty_page
         def check_overflow
-          super unless @vars[:overflow] == :empty_page
+          return super unless @vars[:overflow] == :empty_page
+          return true unless @page > @last
 
           @overflow = true
           @in = @from = @to = 0                        # vars relative to the actual page
           edge = @order == :asc ? @final : @initial    # get the edge of the overflow side (neat, but any time would do)
           @from = @to = edge                           # set both to the edge time (a >=&&< query will get no records)
+          @prev = @last
+          false
         end
 
         # The label for the current page (it can pass along the I18n gem opts when it's used with the i18n extra)

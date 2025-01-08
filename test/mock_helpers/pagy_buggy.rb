@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'pagy/offset'
 class PagyBuggy < Pagy::Offset
   # buggy series
   def series(_size = @vars[:size])

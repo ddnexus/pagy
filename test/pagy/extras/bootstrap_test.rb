@@ -6,7 +6,6 @@ require_relative '../../helpers/nav_tests'
 EXTRA  = 'bootstrap'
 PREFIX = '_bootstrap'
 
-
 describe "pagy/extras/#{EXTRA}" do
   include NavTests
 

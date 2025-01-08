@@ -2,7 +2,6 @@
 
 require_relative '../../test_helper'
 require 'i18n'
-require 'pagy/extras/calendar'
 require 'pagy/extras/i18n'
 
 require_relative '../../mock_helpers/app'

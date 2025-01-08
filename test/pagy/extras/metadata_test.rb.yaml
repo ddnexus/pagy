@@ -1,4 +1,66 @@
 ---
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0001_works_with_unset_DEFAULT:
+  :unset_default:
+    :url_template: "/foo?page=P "
+    :first_url: "/foo?page=1"
+    :prev_url: "/foo?page=2"
+    :page_url: "/foo?page=3"
+    :next_url: "/foo?page=4"
+    :last_url: "/foo?page=50"
+    :count: 1000
+    :page: 3
+    :limit: 20
+    :pages: 50
+    :last: 50
+    :in: 20
+    :from: 41
+    :to: 60
+    :prev: 2
+    :next: 4
+    :vars:
+      :limit: 20
+      :page_sym: :page
+      :count_args:
+      - :all
+      :ends: true
+      :outset: 0
+      :page: 3
+      :size: 7
+      :count: 1000
+    :series:
+    - 1
+    - 2
+    - '3'
+    - 4
+    - 5
+    - :gap
+    - 50
+    :sequels:
+    - - 0
+    - - - 1
+        - 2
+        - '3'
+        - 4
+        - 5
+        - :gap
+        - 50
+    -
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0003_returns_only_specific_metadata:
+  :metadata:
+    :url_template: "/foo?page=P "
+    :page: 3
+    :count: 1000
+    :prev: 2
+    :next: 4
+    :pages: 50
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0004_works_with_set_DEFAULT:
+  :set_default:
+    :url_template: "/foo?page=P "
+    :page: 3
+    :count: 1000
+    :prev: 2
+    :next: 4
+    :pages: 50
 ? pagy/extras/metadata___pagy_metadata_for_Pagy__Offset__Calendar_test_0002_returns_only_specific_metadata_for_Pagy__Offset__Calendar
 : :metadata:
     :url_template: "/foo?month_page=P "
@@ -15,32 +77,35 @@
     :prev: 2
     :next: 4
     :pages: 26
-pagy/extras/metadata___pagy_metadata_for_Pagy_test_0001_defines_all_metadata:
+pagy/extras/metadata___pagy_metadata_for_Pagy_Calendar_test_0002_returns_only_specific_metadata_for_Pagy__Offset__Calendar:
   :metadata:
-  - :url_template
-  - :first_url
-  - :prev_url
-  - :page_url
-  - :next_url
-  - :last_url
-  - :count
-  - :page
-  - :limit
-  - :vars
-  - :pages
-  - :last
-  - :in
-  - :from
-  - :to
-  - :prev
-  - :next
-  - :series
-  - :sequels
-pagy/extras/metadata___pagy_metadata_for_Pagy_test_0003_returns_only_specific_metadata:
-  :metadata:
-    :url_template: "/foo?page=P "
+    :url_template: "/foo?month_page=P "
     :page: 3
-    :count: 1000
+    :from: !ruby/object:ActiveSupport::TimeWithZone
+      utc: 2021-12-01 05:00:00.000000000 Z
+      zone: &2 !ruby/object:ActiveSupport::TimeZone
+        name: EST
+      time: 2021-12-01 00:00:00.000000000 Z
+    :to: !ruby/object:ActiveSupport::TimeWithZone
+      utc: 2022-01-01 05:00:00.000000000 Z
+      zone: *2
+      time: 2022-01-01 00:00:00.000000000 Z
     :prev: 2
     :next: 4
-    :pages: 50
+    :pages: 26
+pagy/extras/metadata___pagy_metadata_for_Pagy_test_0006_returns_only_specific_metadata_for_Pagy__Offset__Calendar:
+  :metadata:
+    :url_template: "/foo?month_page=P "
+    :page: 3
+    :from: !ruby/object:ActiveSupport::TimeWithZone
+      utc: 2021-12-01 05:00:00.000000000 Z
+      zone: &3 !ruby/object:ActiveSupport::TimeZone
+        name: EST
+      time: 2021-12-01 00:00:00.000000000 Z
+    :to: !ruby/object:ActiveSupport::TimeWithZone
+      utc: 2022-01-01 05:00:00.000000000 Z
+      zone: *3
+      time: 2022-01-01 00:00:00.000000000 Z
+    :prev: 2
+    :next: 4
+    :pages: 26

@@ -10,7 +10,6 @@ class Pagy
   # Automatically change the limit depending on the page number
   # accepts an array as the :gearbox_limit variable, that will determine the limit for the first pages
   module GearboxExtra
-
     module OffsetOverride
       # Assign @limit based on the :gearbox_limit variable
       def assign_limit

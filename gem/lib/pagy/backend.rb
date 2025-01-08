@@ -8,7 +8,8 @@ class Pagy
   # or any collection by overriding any of the `pagy_*` methods in your controller.
   # See also the extras if you need specialized methods to paginate Arrays or other collections
   module Backend
-    include Pagy::Autoloading
+    include Autoload
+
     private
 
     # Sub-method called only by #pagy: here for easy customization of fetching by overriding

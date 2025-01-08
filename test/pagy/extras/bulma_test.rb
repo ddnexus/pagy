@@ -5,7 +5,6 @@ require_relative '../../helpers/nav_tests'
 
 EXTRA  = 'bulma'
 PREFIX = '_bulma'
-require "pagy/extras/#{EXTRA}"
 
 describe "pagy/extras/#{EXTRA}" do
   include NavTests

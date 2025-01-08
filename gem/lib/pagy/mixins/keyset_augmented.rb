@@ -1,8 +1,6 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/keyset_frontendble
 # frozen_string_literal: true
 
-require_relative '../keyset/augmented'
-
 class Pagy
   module KeysetAugmentedMixin
     # Add keyset Augmented methods

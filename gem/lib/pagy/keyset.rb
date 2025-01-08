@@ -4,24 +4,14 @@
 require 'json'
 require_relative 'b64'
 
-require_relative 'keyset/adapters/active_record'
-require_relative 'keyset/adapters/sequel'
-
 class Pagy
   # Implement wicked-fast keyset pagination for big data
   class Keyset < Pagy
-
-    autoload :Augmented, 'pagy/keyset/augmented'
+    autoload :ActiveRecord, 'pagy/keyset/active_record'
+    autoload :Sequel,       'pagy/keyset/sequel'
+    autoload :Augmented,    'pagy/keyset/augmented'
 
     class TypeError < ::TypeError; end
-
-    class ActiveRecord < Keyset
-      include Adapters::ActiveRecord
-    end
-
-    class Sequel < Keyset
-      include Adapters::Sequel
-    end
 
     # Pick the right adapter for the set and initilize the right class
     def self.new(set, **vars)

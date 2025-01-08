@@ -1,8 +1,6 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/calendar
 # frozen_string_literal: true
 
-require_relative '../offset/calendar'
-
 class Pagy
   # Add pagination filtering by calendar unit (:year, :quarter, :month, :week, :day) to the regular pagination
   module CalendarMixin

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pagy/extras/searchkick'
-
 module MockSearchkick
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
               'b' => ('b-1'..'b-1000').to_a }.freeze

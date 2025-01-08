@@ -15,7 +15,7 @@ class Pagy
       def pagy_meilisearch(query, params = {})
         [self, query, params]
       end
-      alias_method DEFAULT[:meilisearch_pagy_search], :pagy_meilisearch
+      alias_method Offset::DEFAULT[:meilisearch_pagy_search], :pagy_meilisearch
     end
     Pagy::Meilisearch = ModelExtension
 
@@ -43,13 +43,13 @@ class Pagy
         model, term, options    = pagy_search_args
         options[:hits_per_page] = vars[:limit]
         options[:page]          = vars[:page]
-        results                 = model.send(:ms_search, term, options)
+        results                 = model.send(Offset::DEFAULT[:meilisearch_search], term, options)
         vars[:count]            = results.raw_answer['totalHits']
 
         pagy                    = Offset.new(**vars)
         # with :last_page overflow we need to re-run the method in order to get the hits
         return pagy_meilisearch(pagy_search_args, **vars, page: pagy.page) \
-               if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
+               if pagy.overflow? && pagy.vars[:overflow] == :last_page
 
         [pagy, results]
       end

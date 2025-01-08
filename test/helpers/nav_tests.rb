@@ -3,10 +3,8 @@
 require_relative '../mock_helpers/pagy_buggy'
 require_relative '../mock_helpers/app'
 require_relative '../files/models'
-require 'pagy/offset'
-require 'pagy/offset/countless'
-require 'pagy/keyset/augmented'
 
+require 'pagy/mixins/keyset_augmented'
 module NavTests
   def app
     MockApp.new

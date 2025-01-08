@@ -1,12 +1,23 @@
 # See Pagy::Offset::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/calendar
 # frozen_string_literal: true
 
-require_relative '../offset'
+require 'active_support'
+require 'active_support/core_ext/time'
+require 'active_support/core_ext/date_and_time/calculations'
+require 'active_support/core_ext/numeric/time'
+require 'active_support/core_ext/integer/time'
 
 class Pagy
   class Offset
     # Calendar class
     class Calendar < Hash
+      autoload :Unit,    'pagy/offset/calendar/unit'
+      autoload :Day,     'pagy/offset/calendar/day'
+      autoload :Month,   'pagy/offset/calendar/month'
+      autoload :Quarter, 'pagy/offset/calendar/quarter'
+      autoload :Week,    'pagy/offset/calendar/week'
+      autoload :Year,    'pagy/offset/calendar/year'
+
       # Specific out of range error
       class OutOfRangeError < VariableError; end
 
@@ -83,4 +94,4 @@ class Pagy
 end
 
 # Require the subclass files in UNITS (no custom unit at this point yet)
-Pagy::Offset::Calendar::UNITS.each { |unit| require "pagy/offset/calendar/#{unit}" }
+# Pagy::Offset::Calendar::UNITS.each { |unit| require "pagy/offset/calendar/#{unit}" }

@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require_relative '../url_helpers'
+require_relative '../links_helper'
 
 class Pagy
   DEFAULT[:jsonapi] = true
@@ -21,21 +22,10 @@ class Pagy
       private
 
       include UrlHelpers
+      include LinksHelper
 
       # Return the jsonapi links
-      def pagy_jsonapi_links(pagy, **)
-        if defined?(::Pagy::Keyset) && pagy.is_a?(Keyset)
-          { first: pagy_page_url(pagy, nil, **),
-            last: nil,
-            prev: nil,
-            next:  pagy.next ? pagy_page_url(pagy, pagy.next, **) : nil }
-        else
-          { first: pagy_page_url(pagy, 1, **),
-            last:  pagy_page_url(pagy, pagy.last, **),
-            prev:  pagy.prev ? pagy_page_url(pagy, pagy.prev, **) : nil,
-            next:  pagy.next ? pagy_page_url(pagy, pagy.next, **) : nil }
-        end
-      end
+      alias pagy_jsonapi_links pagy_links
 
       # Should skip the jsonapi
       def pagy_skip_jsonapi?(vars)

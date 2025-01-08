@@ -1,6 +1,7 @@
 # See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/docs/api/frontend
 # frozen_string_literal: true
 
+require_relative 'b64'
 require_relative 'i18n'
 require_relative 'url_helpers'
 
@@ -8,7 +9,7 @@ class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
-    include Pagy::Autoloading
+    include Autoload
     include UrlHelpers
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)

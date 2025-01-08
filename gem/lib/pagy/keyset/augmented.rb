@@ -1,19 +1,12 @@
 # See Pagy::Offset::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/keyset_for_ui
 # frozen_string_literal: true
 
-require_relative '../keyset'
-
 class Pagy
   class Keyset
     # Use keyset pagination with numeric pages supporting the *nav and other helpers.
     class Augmented < Keyset
-      class ActiveRecord < Augmented
-        include Adapters::ActiveRecord
-      end
-
-      class Sequel < Augmented
-        include Adapters::Sequel
-      end
+      autoload :ActiveRecord, 'pagy/keyset/augmented/active_record'
+      autoload :Sequel,       'pagy/keyset/augmented/sequel'
 
       # Avoid args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'       # Prefix for filter_args
@@ -21,7 +14,7 @@ class Pagy
                                            page: nil,
                                            size: 7 }
 
-      include SharedUIMethods
+      include UISupport
       attr_reader :update
 
       # Finalize the instance variables needed for the UI

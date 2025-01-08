@@ -19,7 +19,7 @@ describe 'pagy/console' do
       assert_operator(PagyConsole, :<, Pagy::Frontend)
     end
     it 'requires extras' do
-      _ { PagyConsole.pagy_extras :array, :pagy }.must_output "Required extras: :array, :pagy\n"
+      _ { PagyConsole.pagy_extras :gearbox, :i18n }.must_output "Required extras: :gearbox, :i18n\n"
       _(Pagy::Backend.method_defined?(:pagy_array))
       _(Pagy::Frontend.method_defined?(:pagy_nav_js))
     end

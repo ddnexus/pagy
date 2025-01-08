@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
+require 'yaml'
 
 describe 'pagy/locales' do
   let(:rules) { Pagy::I18n::P11n::RULE.keys }

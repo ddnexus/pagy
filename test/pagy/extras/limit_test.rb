@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-
-require 'pagy/extras/arel'
-require 'pagy/extras/array'
 require 'pagy/extras/limit'
 
 require_relative '../../mock_helpers/elasticsearch_rails'
@@ -27,7 +24,7 @@ def test_limit_vars_params(limit, vars, params)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
-  %i[pagy pagy_countless pagy_array pagy_arel].each do |meth|
+  %i[pagy_offset pagy_countless pagy_array pagy_arel].each do |meth|
     pagy, records = app.send(meth, @collection, **vars)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit

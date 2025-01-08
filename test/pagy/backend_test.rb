@@ -22,7 +22,7 @@ describe 'pagy/backend' do
       _(records).must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
     end
     it 'paginates with vars' do
-      pagy, records = app.send(:pagy, @collection, page: 2, limit: 10, anchor_string: 'X')
+      pagy, records = app.send(:pagy_offset, @collection, page: 2, limit: 10, anchor_string: 'X')
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal pagy.limit
@@ -39,7 +39,7 @@ describe 'pagy/backend' do
     end
     it 'gets defaults' do
       vars   = {}
-      pagy,  = app.send :pagy, @collection, **vars
+      pagy,  = app.send(:pagy_offset, @collection, **vars)
       merged = pagy.vars
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
@@ -48,7 +48,7 @@ describe 'pagy/backend' do
     end
     it 'gets vars' do
       vars   = { page: 2, limit: 10, anchor_string: 'X' }
-      pagy,  = app.send :pagy, @collection, **vars
+      pagy,  = app.send(:pagy_offset, @collection, **vars)
       merged = pagy.vars
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
@@ -62,7 +62,7 @@ describe 'pagy/backend' do
     it 'works with grouped collections' do
       collection = MockCollection::Grouped.new((1..1000).to_a)
       vars   = { page: 2, limit: 10, anchor_string: 'X' }
-      pagy,  = app.send :pagy, collection, **vars
+      pagy,  = app.send(:pagy_offset, collection, **vars)
       merged = pagy.vars
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
@@ -75,7 +75,7 @@ describe 'pagy/backend' do
     end
     it 'overrides count and page' do
       vars   = { count: 100, page: 3 }
-      pagy,  = app.send :pagy, @collection, **vars
+      pagy,  = app.send(:pagy_offset, @collection, **vars)
       merged = pagy.vars
       _(merged.keys).must_include :count
       _(merged[:count]).must_equal 100

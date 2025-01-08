@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/offset/calendar'
-require 'pagy/offset/countless'
-require 'pagy/extras/overflow'
+require 'pagy/mixins/calendar'
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
@@ -11,6 +9,7 @@ Date.beginning_of_week = :sunday
 DAY    = 60 * 60 * 24
 PERIOD = [Time.zone.local(2021, 11, 4), Time.zone.local(2021, 11, 4) + 10.days].freeze
 
+Pagy::DEFAULT[:overflow] = :empty_page
 describe 'pagy/extras/overflow' do
   let(:pagy_vars)      { { page: 100, limit: 10, count: 103 } }
   let(:countless_vars) { { page: 100, limit: 10 } }
@@ -36,7 +35,7 @@ describe 'pagy/extras/overflow' do
     it 'is not overflow?' do
       _(Pagy::Offset.new(**pagy_vars, page: 2)).wont_be :overflow?
       _(Pagy::Offset::Countless.new(**pagy_vars, page: 2)).wont_be :overflow?
-      _(Pagy::Offset::Calendar::Day.new(**calendar_vars, page: 2)).wont_be :overflow?
+      _(Pagy::Offset::Calendar::Day.new(**calendar_vars, page: 2, overflow: :empty_page)).wont_be :overflow?
     end
   end
 

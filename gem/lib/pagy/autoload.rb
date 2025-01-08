@@ -1,15 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  autoload :Frontend,           'pagy/frontend'
-  autoload :Backend,            'pagy/backend'
-  autoload :Offset,             'pagy/offset'
-  autoload :Keyset,             'pagy/keyset'
-  autoload :ElasticsearchRails, 'pagy/mixin/elasticsearch_rails'
-  autoload :Meilisearch,        'pagy/mixin/meilisearch'
-  autoload :Searchkick,         'pagy/mixin/searchkick'
-
-  module Autoloading
+  module Autoload
     METHOD_MIXINS = { pagy_arel:                   :arel,
                       pagy_array:                  :array,
                       pagy_bootstrap_nav:          :bootstrap,
@@ -20,11 +12,11 @@ class Pagy
                       pagy_bulma_combo_nav_js:     :bulma,
                       pagy_calendar:               :calendar,
                       pagy_countless:              :countless,
-                      new_from_elasticserch_rails: :elasticsearch,
+                      new_from_elasticserch_rails: :elasticsearch_rails,
                       pagy_elasticsearch_rails:    :elasticsearch_rails,
                       pagy_headers:                :headers,
                       pagy_headers_merge:          :headers,
-                      pagy_keyset:                 :keysets,
+                      pagy_keyset:                 :keyset,
                       pagy_keyset_augmented_js:    :keyset_augmented,
                       new_from_meilisearch:        :meilisearch,
                       pagy_meilisearch:            :meilisearch,
@@ -48,7 +40,7 @@ class Pagy
     def method_missing(method, ...)
       return super unless respond_to?(method)
 
-      require_relative "mixin/#{METHOD_MIXINS[method]}"
+      require_relative "mixins/#{METHOD_MIXINS[method]}"
       send(method, ...)
     end
   end

@@ -11,7 +11,7 @@ describe 'Augmented Backend' do
     describe 'pagy_augmented' do
       it 'works for page 1' do
         app           = MockApp.new(params: {})
-        pagy, records = app.send(:pagy_keyset_augmented,
+        pagy, records = app.send(:pagy_keyset_augmented_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
@@ -23,7 +23,7 @@ describe 'Augmented Backend' do
       it 'works for page 2' do
         app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['ppp', 'key', 2, 2, [10]].to_json)},
                                     cookie: 'pagy=ppp')
-        pagy, records = app.send(:pagy_keyset_augmented,
+        pagy, records = app.send(:pagy_keyset_augmented_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
@@ -36,7 +36,7 @@ describe 'Augmented Backend' do
       it 'reset pagination for missing cookie' do
         app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['zzz', 'key', 2, 2, [10]].to_json)},
                                     cookie: 'pagy=ppp')
-        pagy, records = app.send(:pagy_keyset_augmented,
+        pagy, records = app.send(:pagy_keyset_augmented_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
@@ -47,7 +47,7 @@ describe 'Augmented Backend' do
       end
       it 'fallback to Countless if page param is a number' do
         app           = MockApp.new(cookie: 'pagy=ppp')
-        pagy, records = app.send(:pagy_keyset_augmented,
+        pagy, records = app.send(:pagy_keyset_augmented_js,
                                  model.order(:id),
                                  page: 2,
                                  tuple_comparison: true,
@@ -60,7 +60,7 @@ describe 'Augmented Backend' do
       it 'works for page 5' do
         app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['ppp', 'key', 5, 5, [40]].to_json)},
                                     cookie: 'pagy=ppp')
-        pagy, records = app.send(:pagy_keyset_augmented,
+        pagy, records = app.send(:pagy_keyset_augmented_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)

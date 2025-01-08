@@ -3,10 +3,10 @@
 require_relative '../../test_helper'
 require_relative '../../helpers/nav_tests'
 require_relative '../../mock_helpers/app'
+require 'pagy/mixins/keyset_augmented'
 
 EXTRA  = 'pagy'
 PREFIX = ''
-require "pagy/extras/#{EXTRA}"
 
 describe "pagy/extras/#{EXTRA}" do
   include NavTests

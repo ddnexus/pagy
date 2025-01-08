@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/calendar'
-
 require_relative '../../mock_helpers/app'
 
 OJ = %i[without_oj with_oj].freeze

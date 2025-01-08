@@ -5,8 +5,6 @@ require_relative '../../mock_helpers/meilisearch'
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
-require 'pagy/extras/overflow'
-
 describe 'pagy/extras/meilisearch' do
   describe 'model#pagy_search' do
     it 'extends the class with #pagy_search' do

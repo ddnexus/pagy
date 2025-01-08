@@ -1,8 +1,6 @@
 # See Pagy::Offset::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/calendar
 # frozen_string_literal: true
 
-require_relative 'unit'
-
 class Pagy
   class Offset
     class Calendar

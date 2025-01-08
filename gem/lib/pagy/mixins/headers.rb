@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require_relative '../url_helpers'
+require_relative '../links_helper'
 
 class Pagy
   DEFAULT[:headers] = { page:  'current-page',
@@ -11,6 +12,7 @@ class Pagy
   # Add specialized backend methods to add pagination response headers
   module HeadersMixin
     include UrlHelpers
+    include LinksHelper
 
     private
 
@@ -20,9 +22,11 @@ class Pagy
     end
 
     # Generate a hash of RFC-8288 compliant http headers
-    def pagy_headers(pagy)
-      headers = pagy.vars[:headers]
-      pagy_link_header(pagy).tap do |hash|
+    def pagy_headers(pagy, **)
+      # If it's not in the vars, the autoloading kicked-in after the object creation,
+      # which means that no custom DEFAULT has been set, so we use the original
+      headers = pagy.vars[:headers] || DEFAULT[:headers]
+      pagy_link_header(pagy, **).tap do |hash|
         hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]
         hash[headers[:limit]] = pagy.limit.to_s \
             if headers[:limit] && !(defined?(::Pagy::Offset::Calendar) && pagy.is_a?(Offset::Calendar::Unit))
@@ -34,21 +38,8 @@ class Pagy
       end
     end
 
-    def pagy_link_header(pagy)
-      { 'link' => [].tap do |link|
-        if defined?(::Pagy::Keyset) && pagy.is_a?(Keyset)
-          link << %(<#{pagy_page_url(pagy, nil, absolute: true)}>; rel="first")
-          link << %(<#{pagy_page_url(pagy, pagy.next, absolute: true)}>; rel="next") if pagy.next
-        else
-          p = PAGE_TOKEN
-          url_str = pagy_page_url(pagy, PAGE_TOKEN, absolute: true)
-          link << %(<#{url_str.sub(p, '1')}>; rel="first")
-          link << %(<#{url_str.sub(p, pagy.prev.to_s)}>; rel="prev") if pagy.prev
-          link << %(<#{url_str.sub(p, pagy.next.to_s)}>; rel="next") if pagy.next
-          link << %(<#{url_str.sub(p, pagy.last.to_s)}>; rel="last") \
-              unless defined?(::Pagy::Offset::Countless) && pagy.is_a?(Offset::Countless)
-        end
-      end.join(', ') }
+    def pagy_link_header(pagy, absolute: true, **vars)
+      pagy_links(pagy, absolute:, **vars).map { |key, link| %(<#{link}>; rel="#{key}") }.join(', ')
     end
   end
   Backend.prepend HeadersMixin

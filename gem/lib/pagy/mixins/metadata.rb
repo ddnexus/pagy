@@ -5,7 +5,7 @@ require_relative '../url_helpers'
 
 class Pagy
   DEFAULT[:metadata] = %i[url_template first_url prev_url page_url next_url last_url
-                          count page limit vars pages last in from to prev next series sequels]
+                          count page limit pages last in from to prev next vars series sequels]
 
   # Add a specialized backend method for pagination metadata
   module MetadataMixin
@@ -16,12 +16,11 @@ class Pagy
     # Return the metadata hash
     def pagy_metadata(pagy, absolute: nil)
       url_template = pagy_page_url(pagy, PAGE_TOKEN, absolute:)
+      # If it's not in the vars, the autoloading kicked-in after the object creation,
+      # which means that no custom DEFAULT has been set, so we use the original
+      keys  = pagy.vars[:metadata] || DEFAULT[:metadata]
+      keys -= %i[count limit] if defined?(::Pagy::Offset::Calendar::Unit) && pagy.is_a?(Offset::Calendar::Unit)
       {}.tap do |metadata|
-        keys = if defined?(::Pagy::Offset::Calendar::Unit) && pagy.is_a?(Offset::Calendar::Unit)
-                 pagy.vars[:metadata] - %i[count limit]
-               else
-                 pagy.vars[:metadata]
-               end
         keys.each do |key|
           metadata[key] = case key
                           when :url_template then url_template

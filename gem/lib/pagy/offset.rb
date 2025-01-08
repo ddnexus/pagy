@@ -23,7 +23,8 @@ class Pagy
       assign_limit
       assign_offset
       assign_last
-      check_overflow
+      return unless check_overflow
+
       @from = [@offset - @outset + 1, @count].min
       @to   = [@offset - @outset + @limit, @count].min
       @in   = [@to - @from + 1, @count].min
@@ -49,7 +50,7 @@ class Pagy
 
     # Checks the @page <= @last
     def check_overflow
-      return unless @page > @last
+      return true unless @page > @last
 
       @overflow = true
       case @vars[:overflow]
@@ -57,14 +58,18 @@ class Pagy
         requested_page = @vars[:page]                # save the requested page (even after re-run)
         initialize(**vars, page: @last)              # re-run with the last page
         @vars[:page] = requested_page                # restore the requested page
+        true
       when :empty_page
         @in = @from = @to = 0                        # vars relative to the actual page
-        @page = @prev = @last                        # @prev relative to the actual page, @page for full series without current
+        @prev = @last                                # @prev relative to the actual page
+        false
       else
         raise OverflowError.new(self, :page, "in 1..#{@last}", @page)
       end
     end
 
-    include SharedUIMethods
+    def overflow? = @overflow
+
+    include UISupport
   end
 end

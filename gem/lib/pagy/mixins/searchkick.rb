@@ -18,7 +18,7 @@ class Pagy
           args.define_singleton_method(:method_missing) { |*a| args += a }
         end
       end
-      alias_method DEFAULT[:searchkick_pagy_search], :pagy_searchkick
+      alias_method Offset::DEFAULT[:searchkick_pagy_search], :pagy_searchkick
     end
     Pagy::Searchkick = ModelExtension
 
@@ -45,13 +45,13 @@ class Pagy
         model, term, options, block, *called = pagy_search_args
         options[:per_page] = vars[:limit]
         options[:page]     = vars[:page]
-        results            = model.send(DEFAULT[:searchkick_search], term, **options, &block)
+        results            = model.send(Offset::DEFAULT[:searchkick_search], term, **options, &block)
         vars[:count]       = results.total_count
 
         pagy = Offset.new(**vars)
         # with :last_page overflow we need to re-run the method in order to get the hits
         return pagy_searchkick(pagy_search_args, **vars, page: pagy.page) \
-               if defined?(::Pagy::OverflowExtra) && pagy.overflow? && pagy.vars[:overflow] == :last_page
+               if pagy.overflow? && pagy.vars[:overflow] == :last_page
 
         [pagy, called.empty? ? results : results.send(*called)]
       end

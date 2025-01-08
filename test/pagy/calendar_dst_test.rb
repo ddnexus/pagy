@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
-require 'pagy/offset/calendar'
+require 'pagy/offset/calendar'    # required to use the Time.zone= defined by activesupport
 
 Time.zone = "Pacific Time (US & Canada)"
 Date.beginning_of_week = :sunday
