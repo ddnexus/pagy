@@ -12,8 +12,7 @@ end
 describe 'Autoload thread safety' do
   threads       = []
   shared_result = []
-
-  times = 1000
+  times         = 1000
 
   times.times do
     threads << Thread.new do
@@ -33,10 +32,12 @@ describe 'Autoload thread safety' do
                  shared_result << e.class
                end
   end
-
   threads.each(&:join)
 
   it "autoload safely" do
     _(shared_result).must_equal Array.new(times, :success)
+  end
+  it "uses super" do
+    _ { MockApp.new.pagy_unknown_method }.must_raise NoMethodError
   end
 end

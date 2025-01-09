@@ -39,9 +39,9 @@ STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
            bulma:       {},
            tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css' } }.freeze
 
-STYLES.each_key do |style|
-  require "pagy/extras/#{STYLES[style][:extra] || style}"
-end
+# STYLES.each_key do |style|
+#   require "pagy/extras/#{STYLES[style][:extra] || style}"
+# end
 require 'pagy/extras/limit'
 
 # Sinatra setup
@@ -57,7 +57,7 @@ class PagyDemo < Sinatra::Base
 
   get '/template' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection)
+    @pagy, @records = pagy_offset(collection)
 
     erb :template, locals: { pagy: @pagy, style: 'pagy' }
   end
@@ -83,7 +83,7 @@ class PagyDemo < Sinatra::Base
 
     get("/#{style}") do
       collection = MockCollection.new
-      @pagy, @records = pagy(collection)
+      @pagy, @records = pagy_offset(collection)
 
       erb :helpers, locals: { style:, prefix: }
     end

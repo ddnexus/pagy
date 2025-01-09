@@ -32,15 +32,13 @@ end
 
 # Pagy initializer
 require 'pagy/extras/limit'
-require 'pagy/extras/keyset'
-require 'pagy/extras/pagy'
 Pagy::DEFAULT[:limit] = 10
 Pagy::DEFAULT.freeze
 
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
-class PagyKeysetAugmented < Sinatra::Base
+class PagyKeyset < Sinatra::Base
   include Pagy::Backend
   # Root route/action
   get '/' do

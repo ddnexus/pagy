@@ -2,7 +2,6 @@
 # frozen_string_literal: true
 
 require_relative '../pagy'  # so you can require just the extra in the console
-require_relative 'extras/standalone'
 
 class Pagy
   # Provide a ready to use pagy environment when included in irb/rails console
@@ -11,6 +10,7 @@ class Pagy
     def self.included(main)
       main.include(Backend)
       main.include(Frontend)
+      main.define_method(:params) { {} }
       DEFAULT[:url] = 'http://www.example.com/subdir'
     end
 

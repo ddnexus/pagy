@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require 'pathname'
-require_relative 'pagy/autoload'
+require_relative 'pagy/loader'
 
 # Top superclass: it should define only what's common to all the subclasses
 class Pagy
@@ -15,6 +15,7 @@ class Pagy
   autoload :ElasticsearchRails, 'pagy/mixins/elasticsearch_rails'
   autoload :Meilisearch,        'pagy/mixins/meilisearch'
   autoload :Searchkick,         'pagy/mixins/searchkick'
+  autoload :Console,            'pagy/console'
 
   VERSION     = '9.3.3'
   PAGE_TOKEN  = 'P '
@@ -28,7 +29,10 @@ class Pagy
     @root ||= Pathname.new(__dir__).parent.freeze
   end
 
-  attr_reader :page, :limit, :vars
+  attr_reader :page, :prev, :next, :in, :limit, :vars, :last
+
+  alias pages last
+  def self.predict_last? = true
 
   # Validates and assign the passed vars: var must be present and value.to_i must be >= to min
   def assign_and_check(name_min)

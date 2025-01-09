@@ -33,8 +33,6 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # Pagy initializer
-require 'pagy/extras/calendar'
-require 'pagy/extras/bootstrap'
 Pagy::DEFAULT.freeze
 
 # Sinatra setup

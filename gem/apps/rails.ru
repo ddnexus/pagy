@@ -59,13 +59,9 @@ unless File.writable?(dir)
 end
 
 # Pagy initializer
-require 'pagy/extras/pagy'
 require 'pagy/extras/limit'
-require 'pagy/extras/overflow'
-require 'pagy/extras/headers'
-Pagy::DEFAULT[:limit]    = 10
-Pagy::DEFAULT[:overflow] = :empty_page
-Pagy::DEFAULT.freeze
+Pagy::DEFAULT[:limit] = 10
+Pagy::Offset::DEFAULT[:overflow] = :empty_page
 
 # Activerecord initializer
 ActiveRecord::Base.logger = Logger.new(OUTPUT)
@@ -113,7 +109,7 @@ class CommentsController < ActionController::Base # :nodoc:
   include Pagy::Backend
 
   def index
-    @pagy, @comments = pagy(Comment.all)
+    @pagy, @comments = pagy_offset(Comment.all)
     pagy_headers_merge(@pagy)
     render inline: TEMPLATE
   end

@@ -31,10 +31,8 @@ end
 
 # Edit this section adding/removing the extras and Pagy::DEFAULT as needed
 # pagy initializer
-require 'pagy/extras/pagy'
 require 'pagy/extras/limit'
-require 'pagy/extras/overflow'
-Pagy::DEFAULT[:overflow] = :empty_page
+Pagy::Offset::DEFAULT[:overflow] = :empty_page
 Pagy::DEFAULT.freeze
 
 # Sinatra setup
@@ -56,7 +54,7 @@ class PagyRepro < Sinatra::Base
   # Edit this action as needed
   get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy(collection)
+    @pagy, @records = pagy_offset(collection)
     erb :main
   end
 

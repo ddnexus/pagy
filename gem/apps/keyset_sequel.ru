@@ -32,8 +32,6 @@ end
 
 # Pagy initializer
 require 'pagy/extras/limit'
-require 'pagy/extras/keyset'
-require 'pagy/extras/pagy'
 Pagy::DEFAULT[:limit] = 10
 Pagy::DEFAULT.freeze
 
@@ -41,7 +39,7 @@ Pagy::DEFAULT.freeze
 require 'sinatra/base'
 require 'logger'
 # Sinatra application
-class PagyKeysetAugmented < Sinatra::Base
+class PagyKeysetSequel < Sinatra::Base
   include Pagy::Backend
   # Root route/action
   get '/' do
@@ -216,4 +214,4 @@ data.each_line(chomp: true) do |pet|
   dataset.insert(name:, animal:, birthdate:)
 end
 
-run PagyKeysetAugmented
+run PagyKeysetSequel

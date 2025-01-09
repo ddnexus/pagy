@@ -9,7 +9,7 @@ class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
-    include Autoload
+    include Loader
     include UrlHelpers
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
@@ -41,30 +41,6 @@ class Pagy
       pagy_t key, item_name: item_name || pagy_t('pagy.item_name', count: p_count),
              count:          p_count, from: pagy.from, to: pagy.to
       }</span>)
-    end
-
-    # Generic pagination: it returns the html with the series of links to the pages
-    def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
-      id   = %( id="#{id}") if id
-      a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Augmented) && pagy.is_a?(Keyset::Augmented)
-
-      html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}#{data}>#{
-      prev_a(pagy, a)})
-      pagy.series(**vars).each do |item|
-        # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
-        html << case item
-                when Integer
-                  a.(item)
-                when String
-                  %(<a role="link" aria-disabled="true" aria-current="page" class="current">#{pagy.label_for(item)}</a>)
-                when :gap
-                  %(<a role="link" aria-disabled="true" class="gap">#{pagy_t('pagy.gap')}</a>)
-                else
-                  raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
-                end
-      end
-      html << %(#{next_a(pagy, a)}</nav>)
     end
 
     # Similar to I18n.t: just ~18x faster using ~10x less memory

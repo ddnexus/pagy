@@ -5,7 +5,30 @@ class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module PagyMixin
-    # pagy_nav is defined in the Frontend itself
+    # Generic pagination: it returns the html with the series of links to the pages
+    def pagy_nav(pagy, id: nil, aria_label: nil, **vars)
+      id   = %( id="#{id}") if id
+      a    = pagy_anchor(pagy, **vars)
+      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Augmented) && pagy.is_a?(Keyset::Augmented)
+
+      html = %(<nav#{id} class="pagy nav" #{nav_aria_label(pagy, aria_label:)}#{data}>#{
+      prev_a(pagy, a)})
+      pagy.series(**vars).each do |item|
+        # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+        html << case item
+                when Integer
+                  a.(item)
+                when String
+                  %(<a role="link" aria-disabled="true" aria-current="page" class="current">#{pagy.label_for(item)}</a>)
+                when :gap
+                  %(<a role="link" aria-disabled="true" class="gap">#{pagy_t('pagy.gap')}</a>)
+                else
+                  raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
+                end
+      end
+      html << %(#{next_a(pagy, a)}</nav>)
+    end
+
     # Javascript pagination: it returns a nav with a data-pagy attribute used by the pagy.js file
     def pagy_nav_js(pagy, id: nil, aria_label: nil, **vars)
       sequels = pagy.sequels(**vars)
@@ -40,38 +63,6 @@ class Pagy
         }</label>#{
           next_a(pagy, a)
         }</nav>)
-    end
-
-    # Return the previous page URL string or nil
-    def pagy_prev_url(pagy, **vars)
-      pagy_page_url(pagy, pagy.prev, **vars) if pagy.prev
-    end
-
-    # Return the next page URL string or nil
-    def pagy_next_url(pagy, **vars)
-      pagy_page_url(pagy, pagy.next, **vars) if pagy.next
-    end
-
-    # Return the enabled/disabled previous page anchor tag
-    def pagy_prev_a(pagy, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev'), **vars)
-      a = pagy_anchor(pagy, **vars)
-      prev_a(pagy, a, text:, aria_label:)
-    end
-
-    # Return the enabled/disabled next page anchor tag
-    def pagy_next_a(pagy, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.next'), **vars)
-      a = pagy_anchor(pagy, **vars)
-      next_a(pagy, a, text:, aria_label:)
-    end
-
-    # Conditionally return the previous page link tag
-    def pagy_prev_link(pagy, **vars)
-      %(<link href="#{pagy_page_url(pagy, pagy.prev, **vars)}"/>) if pagy.prev
-    end
-
-    # Conditionally return the next page link tag
-    def pagy_next_link(pagy, **vars)
-      %(<link href="#{pagy_page_url(pagy, pagy.next, **vars)}"/>) if pagy.next
     end
   end
   Frontend.prepend PagyMixin

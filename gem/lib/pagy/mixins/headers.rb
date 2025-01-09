@@ -26,7 +26,7 @@ class Pagy
       # If it's not in the vars, the autoloading kicked-in after the object creation,
       # which means that no custom DEFAULT has been set, so we use the original
       headers = pagy.vars[:headers] || DEFAULT[:headers]
-      pagy_link_header(pagy, **).tap do |hash|
+      { 'link' => pagy_link_header(pagy, **) }.tap do |hash|
         hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]
         hash[headers[:limit]] = pagy.limit.to_s \
             if headers[:limit] && !(defined?(::Pagy::Offset::Calendar) && pagy.is_a?(Offset::Calendar::Unit))
@@ -38,8 +38,8 @@ class Pagy
       end
     end
 
-    def pagy_link_header(pagy, absolute: true, **vars)
-      pagy_links(pagy, absolute:, **vars).map { |key, link| %(<#{link}>; rel="#{key}") }.join(', ')
+    def pagy_link_header(pagy, **)
+      pagy_links(pagy, **, absolute: true).map { |key, link| %(<#{link}>; rel="#{key}") }.join(', ')
     end
   end
   Backend.prepend HeadersMixin

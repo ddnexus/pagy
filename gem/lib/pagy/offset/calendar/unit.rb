@@ -85,8 +85,9 @@ class Pagy
         end
 
         # Apply the strftime format to the time (overridden by the i18n extra when localization is required)
+        # Calendar overriding for localization (see also the block in the calendar section of the config/pagy.rb initializer)
         def localize(time, opts)
-          time.strftime(opts[:format])
+          defined?(::Pagy::I18nExtra) ? ::I18n.l(time, **opts) : time.strftime(opts[:format])
         end
 
         # Number of time units to offset from the @initial time, in order to get the ordered starting time for the page.

@@ -31,6 +31,17 @@ describe 'pagy/url_helpers' do
       pagy = Pagy::Offset.new count: 1000, page: 3, request_path: '/bar'
       _(app.pagy_page_url(pagy, 5)).must_equal '/bar?page=5'
     end
+    it 'renders url with vars[:url]' do
+      pagy = Pagy::Offset.new count: 1000,
+                              page: 3,
+                              params: { a: 3, b: 4 },
+                              url: 'http://pagy.com/the/best',
+                              request_path: '/bar'
+      _(app.pagy_page_url(pagy,
+                          5,
+                          absolute: true,
+                          fragment: '#fragment')).must_equal "http://pagy.com/the/best?a=3&b=4&page=5#fragment"
+    end
   end
 
   describe '#pagy_set_query_params' do
@@ -46,10 +57,15 @@ describe 'pagy/url_helpers' do
     end
   end
 
-  describe 'pagy/extras/standalone/query_utils' do
-    it 'handles nested hashes' do
+  describe 'pagy query_utils' do
+    it 'handles hashes and arrays' do
       _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: 2 } })).must_equal "a%5Bb%5D=2" # "a[b]=2"
       _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
+      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: [1, 2, 3] })).must_equal "a%5B%5D=1&a%5B%5D=2&a%5B%5D=3" # "a[]=1&a[]=2&a[]=3
+    end
+    it 'handles unescaped params' do
+      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ b: { c: ' A ' } }, nil, ['c'])).must_equal "b%5Bc%5D= A " # "a[b][c]=3"
+      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: { c: ' A ' } } }, nil, ['c'])).must_equal "a%5Bb%5D%5Bc%5D= A " # "a[b][c]=3"
     end
     it 'raises ArgumentError for wrong params' do
       _ { Pagy::UrlHelpers::QueryUtils.build_nested_query('just a string') }.must_raise ArgumentError

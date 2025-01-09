@@ -16,7 +16,11 @@ class Pagy
           value.map { |v| build_nested_query(v, "#{prefix}[]", unescaped) }.join('&')
         when Hash
           value.map do |k, v|
-            build_nested_query(v, prefix ? "#{prefix}[#{escape(k)}]" : escape(k), unescaped)
+            new_k = prefix ? "#{prefix}[#{escape(k)}]" : escape(k)
+            if unescaped.size.positive? && new_k != k.to_s && unescaped.include?(k.to_s)
+              unescaped[unescaped.find_index(k.to_s)] = new_k
+            end
+            build_nested_query(v, new_k, unescaped)
           end.delete_if(&:empty?).join('&')
         when nil
           escape(prefix)

@@ -15,6 +15,8 @@ class Pagy
         assign_offset
       end
 
+      def self.predict_last? = false
+
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
         raise OverflowError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
