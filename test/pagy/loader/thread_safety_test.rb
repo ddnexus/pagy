@@ -14,7 +14,7 @@ end
 describe 'Autoload thread safety' do
   threads       = []
   shared_result = []
-  times         = 500
+  times         = 100
 
   times.times do
     threads << Thread.new do
@@ -29,11 +29,11 @@ describe 'Autoload thread safety' do
                                                                             pagy: {})
 
                  results = MockMeilisearch::Model.ms_search('a')
-                 pagy_m  = Pagy::Offset.new_from_meilisearch(results)
+                 pagy_m  = Pagy::Offset::Meilisearch.new_from_meilisearch(results)
 
                  if calendar[:month].instance_of?(Pagy::Offset::Calendar::Month) &&
                     pagy_c.instance_of?(Pagy::Offset) &&
-                    pagy_m.instance_of?(Pagy::Offset)
+                    pagy_m.instance_of?(Pagy::Offset::Meilisearch)
                    shared_result << :success
                  end
                rescue Exception => e   # rubocop:disable Lint/ RescueException

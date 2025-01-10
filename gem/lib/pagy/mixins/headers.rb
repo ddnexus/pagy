@@ -10,11 +10,11 @@ class Pagy
                         count: 'total-count',
                         pages: 'total-pages' }
   # Add specialized backend methods to add pagination response headers
-  module HeadersMixin
+  Backend.class_eval do
+    private
+
     include UrlHelpers
     include LinksHelper
-
-    private
 
     # Merge the pagy headers into the response.headers
     def pagy_headers_merge(pagy)
@@ -42,5 +42,4 @@ class Pagy
       pagy_links(pagy, **, absolute: true).map { |key, link| %(<#{link}>; rel="#{key}") }.join(', ')
     end
   end
-  Backend.prepend HeadersMixin
 end

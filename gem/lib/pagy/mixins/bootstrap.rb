@@ -4,7 +4,7 @@
 class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
-  module BootstrapMixin
+  Frontend.class_eval do
     # Pagination for bootstrap: it returns the html with the series of links to the pages
     def pagy_bootstrap_nav(pagy, id: nil, classes: 'pagination', aria_label: nil, **vars)
       id   = %( id="#{id}") if id
@@ -92,5 +92,4 @@ class Pagy
       end
     end
   end
-  Frontend.prepend BootstrapMixin
 end

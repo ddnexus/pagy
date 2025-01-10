@@ -4,7 +4,7 @@
 class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
-  module BulmaMixin
+  Frontend.class_eval do
     # Pagination for bulma: it returns the html with the series of links to the pages
     def pagy_bulma_nav(pagy, id: nil, classes: 'pagy-bulma nav pagination is-centered',
                        aria_label: nil, **vars)
@@ -88,5 +88,4 @@ class Pagy
               end
     end
   end
-  Frontend.prepend BulmaMixin
 end

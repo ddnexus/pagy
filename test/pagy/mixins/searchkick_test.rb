@@ -44,7 +44,7 @@ describe 'pagy/mixins/searchkick' do
       it 'paginates response with defaults' do
         pagy, response = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
         results = response.results
-        _(pagy).must_be_instance_of Pagy::Offset
+        _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
         _(pagy.page).must_equal app.params[:page].to_i
@@ -53,7 +53,7 @@ describe 'pagy/mixins/searchkick' do
       end
       it 'paginates results with defaults' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a').results)
-        _(pagy).must_be_instance_of Pagy::Offset
+        _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
         _(pagy.page).must_equal app.params[:page].to_i
@@ -63,7 +63,7 @@ describe 'pagy/mixins/searchkick' do
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
                                  page: 2, limit: 10, anchor_string: 'X')
-        _(pagy).must_be_instance_of Pagy::Offset
+        _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 2
@@ -74,7 +74,7 @@ describe 'pagy/mixins/searchkick' do
       it 'paginates with overflow' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
                                  page: 200, limit: 10, anchor_string: 'X', overflow: :last_page)
-        _(pagy).must_be_instance_of Pagy::Offset
+        _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 100
@@ -86,16 +86,16 @@ describe 'pagy/mixins/searchkick' do
     describe 'new_from_searchkick' do
       it 'paginates results with defaults' do
         results = MockSearchkick::Model.search('a')
-        pagy    = Pagy::Offset.new_from_searchkick(results)
-        _(pagy).must_be_instance_of Pagy::Offset
+        pagy    = Pagy::Offset::Searchkick.new_from_searchkick(results)
+        _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 1
       end
       it 'paginates results with vars' do
         results = MockSearchkick::Model.search('b', page: 2, per_page: 15)
-        pagy    = Pagy::Offset.new_from_searchkick(results, anchor_string: 'X')
-        _(pagy).must_be_instance_of Pagy::Offset
+        pagy    = Pagy::Offset::Searchkick.new_from_searchkick(results, anchor_string: 'X')
+        _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
         _(pagy.page).must_equal 2

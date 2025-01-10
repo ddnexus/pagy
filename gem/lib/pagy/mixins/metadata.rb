@@ -8,7 +8,7 @@ class Pagy
                           count page limit pages last in from to prev next vars series sequels]
 
   # Add a specialized backend method for pagination metadata
-  module MetadataMixin
+  Backend.class_eval do
     private
 
     include UrlHelpers
@@ -37,5 +37,4 @@ class Pagy
       end
     end
   end
-  Backend.prepend MetadataMixin
 end

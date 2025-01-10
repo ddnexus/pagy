@@ -1,13 +1,14 @@
 # See Pagy::Offset API documentation: https://ddnexus.github.io/pagy/docs/api/pagy/offset
 # frozen_string_literal: true
 
-require_relative 'loaders/offset'
-
 class Pagy
   # Implements Offset Pagination
   class Offset < Pagy
-    autoload :Calendar,  'pagy/offset/calendar'
-    autoload :Countless, 'pagy/offset/countless'
+    autoload :Calendar,           'pagy/offset/calendar'
+    autoload :Countless,          'pagy/offset/countless'
+    autoload :Meilisearch,        'pagy/offset/meilisearch'
+    autoload :Searchkick,         'pagy/offset/searchkick'
+    autoload :ElasticsearchRails, 'pagy/offset/elasticsearch_rails'
 
     # Core default: constant for easy access, but mutable for customizable defaults
     DEFAULT = { count_args: [:all],  # AR friendly # rubocop:disable Style/MutableConstant
@@ -73,6 +74,5 @@ class Pagy
     def overflow? = @overflow
 
     include UISupport
-    extend Loaders::Offset
   end
 end
