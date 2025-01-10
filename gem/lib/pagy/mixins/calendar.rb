@@ -67,13 +67,12 @@ class Pagy
     Frontend.prepend FrontendOverride
 
     # Additions for the Frontend module
-    module UrlHelperAddOn
+    module UrlHelpersAddOn
       # Return the url for the calendar page at time
       def pagy_calendar_url_at(calendar, time, **)
         pagy_page_url(calendar.send(:calendar_at, time, **), 1, **)
       end
     end
-    Backend.prepend UrlHelperAddOn
-    Frontend.prepend UrlHelperAddOn
+    UrlHelpers.prepend UrlHelpersAddOn
   end
 end

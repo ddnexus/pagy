@@ -61,7 +61,7 @@ class Pagy
     # :nocov:
 
     # Module overriding UrlHelper
-    module UrlHelperOverride
+    module UrlHelpersOverride
       # Override UrlHelper method
       def pagy_set_query_params(page, vars, query_params)
         return super unless vars[:jsonapi]
@@ -71,6 +71,6 @@ class Pagy
         query_params['page'][vars[:limit_sym].to_s] = vars[:limit] if vars[:limit_extra]
       end
     end
-    Frontend.prepend UrlHelperOverride
+    UrlHelpers.prepend UrlHelpersOverride
   end
 end

@@ -18,7 +18,7 @@ class Pagy
         vars[:limit] = limit # restore the limit
 
         limit_input = %(<input name="limit" type="number" min="1" max="#{vars[:limit_max]}" value="#{
-        limit}" style="padding: 0; text-align: center; width: #{limit.to_s.length + 1}rem;">#{A_TAG})
+                        limit}" style="padding: 0; text-align: center; width: #{limit.to_s.length + 1}rem;">#{A_TAG})
 
         %(<span#{id} class="pagy limit-selector-js" #{
         pagy_data(pagy, :sj, pagy.from, url_token)

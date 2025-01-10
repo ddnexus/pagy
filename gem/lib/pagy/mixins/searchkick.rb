@@ -22,9 +22,9 @@ class Pagy
     end
     Pagy::Searchkick = ModelExtension
 
-    # Additions for the Pagy class
-    module OffsetExtension
-      # Create a Pagy object from a Searchkick::Results object
+    # Addition for the Pagy::Offset class (requires an instance_eval to override the loader alias)
+    Offset.instance_eval do
+      # Create a Pagy::Offset object from a Searchkick::Results object
       def new_from_searchkick(results, **vars)
         vars[:limit] = results.options[:per_page]
         vars[:page]  = results.options[:page]
@@ -32,7 +32,6 @@ class Pagy
         new(**vars)
       end
     end
-    Offset.extend OffsetExtension
 
     # Add specialized backend methods to paginate Searchkick::Results
     module BackendAddOn

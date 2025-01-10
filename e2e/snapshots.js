@@ -520,8 +520,8 @@ module.exports = {
       "12": "<span id=\"pagy-info\"\n  class=\"pagy info\">Displaying 2 items</span>"
     }
   },
-  "[keyset_for_ui] Test helpers": {
-    "[keyset_for_ui] Test #nav": {
+  "[keyset_augmented] Test helpers": {
+    "[keyset_augmented] Test #nav": {
       "1": "<p id=\"records\">@ids: 38,21,12,49</p>",
       "2": "<nav id=\"nav\"\n  class=\"pagy nav\"\n  aria-label=\"Pages (nav)\"><a role=\"link\"\n    aria-disabled=\"true\"\n    aria-label=\"Previous\">&lt;</a><a role=\"link\"\n    aria-disabled=\"true\"\n    aria-current=\"page\"\n    class=\"current\">1</a><a>2</a><a aria-label=\"Next\">&gt;</a></nav>",
       "3": "<p id=\"records\">@ids: 15,48,4,25</p>",
@@ -559,7 +559,7 @@ module.exports = {
       "35": "<p id=\"records\">@ids: 37,5,20,31</p>",
       "36": "<nav id=\"nav\"\n  class=\"pagy nav\"\n  aria-label=\"Pages (nav)\"><a aria-label=\"Previous\">&lt;</a><a>1</a><a\n    role=\"link\"\n    aria-disabled=\"true\"\n    class=\"gap\">…</a><a>9</a><a>10</a><a>11</a><a role=\"link\"\n    aria-disabled=\"true\"\n    aria-current=\"page\"\n    class=\"current\">12</a><a>13</a><a aria-label=\"Next\">&gt;</a></nav>"
     },
-    "[keyset_for_ui] Test #nav-js-responsive": {
+    "[keyset_augmented] Test #nav-js-responsive": {
       "1": "<p id=\"records\">@ids: 38,21,12,49</p>",
       "2": "<nav id=\"nav-js-responsive\"\n  class=\"pagy-rjs pagy nav-js\"\n  aria-label=\"Pages (nav_js_responsive)\"><a role=\"link\"\n    aria-disabled=\"true\"\n    aria-label=\"Previous\">&lt;</a><a class=\"current\"\n    role=\"link\"\n    aria-current=\"page\"\n    aria-disabled=\"true\">1</a><a>2</a><a aria-label=\"Next\">&gt;</a></nav>",
       "3": "<p id=\"records\">@ids: 15,48,4,25</p>",

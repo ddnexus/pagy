@@ -1,6 +1,8 @@
 # See Pagy::Offset API documentation: https://ddnexus.github.io/pagy/docs/api/pagy/offset
 # frozen_string_literal: true
 
+require_relative 'loaders/offset'
+
 class Pagy
   # Implements Offset Pagination
   class Offset < Pagy
@@ -14,7 +16,7 @@ class Pagy
                 page:       1,
                 size:       7 }
 
-    attr_reader :count, :from, :next, :offset, :to
+    attr_reader :count, :from, :offset, :to
 
     # Merge and validate the options, do some simple arithmetic and set the instance variables
     def initialize(**vars) # rubocop:disable Lint/MissingSuper
@@ -71,5 +73,6 @@ class Pagy
     def overflow? = @overflow
 
     include UISupport
+    extend Loaders::Offset
   end
 end

@@ -2,9 +2,8 @@
 # frozen_string_literal: true
 
 require 'pathname'
-require_relative 'pagy/loader'
 
-# Top superclass: it should define only what's common to all the subclasses
+# Top superclass: it defines only what's common to all the subclasses
 class Pagy
   autoload :Backend,            'pagy/backend'
   autoload :Frontend,           'pagy/frontend'
@@ -24,15 +23,16 @@ class Pagy
   A_TAG       = '<a href="#" style="display: none;">#</a>'
   DEFAULT     = { limit: 20, # rubocop:disable Style/MutableConstant
                   page_sym: :page }
+
   # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
-  def self.root
-    @root ||= Pathname.new(__dir__).parent.freeze
-  end
+  def self.root = @root ||= Pathname.new(__dir__).parent.freeze
+
+  # Used by the pagy links
+  def self.predict_last? = true
 
   attr_reader :page, :prev, :next, :in, :limit, :vars, :last
 
   alias pages last
-  def self.predict_last? = true
 
   # Validates and assign the passed vars: var must be present and value.to_i must be >= to min
   def assign_and_check(name_min)

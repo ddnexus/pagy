@@ -4,12 +4,12 @@
 require_relative 'b64'
 require_relative 'i18n'
 require_relative 'url_helpers'
+require_relative 'loaders/frontend'
 
 class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
   module Frontend
-    include Loader
     include UrlHelpers
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
@@ -77,5 +77,7 @@ class Pagy
         %(<a role="link" aria-disabled="true" aria-label="#{aria_label}">#{text}</a>)
       end
     end
+
+    include Loaders::Frontend
   end
 end

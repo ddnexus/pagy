@@ -1,6 +1,6 @@
 import {testNav} from "../support/test-helper.ts";
 
-const app = "keyset_for_ui";
+const app = "keyset_augmented";
 
 describe(`[${app}] Test helpers`, () => {
     beforeEach(() => {

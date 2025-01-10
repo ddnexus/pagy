@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative '../active_record_adapter'
+require_relative '../adapters/active_record'
 
 class Pagy
   class Keyset
     class Augmented
       class ActiveRecord < Augmented
-        include ActiveRecordAdapter
+        include Adapters::ActiveRecord
       end
     end
   end

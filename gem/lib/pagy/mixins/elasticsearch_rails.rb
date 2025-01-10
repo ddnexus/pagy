@@ -34,9 +34,9 @@ class Pagy
     end
     Pagy::ElasticsearchRails = ModelExtension
 
-    # Additions for the Pagy class
-    module OffsetExtension
-      # Create a Pagy object from an Elasticsearch::Model::Response::Response object
+    # Additions for the Pagy::Offset class (requires an instance_eval to override the loader alias)
+    Offset.instance_eval do
+      # Create a Pagy::Offset object from an Elasticsearch::Model::Response::Response object
       def new_from_elasticsearch_rails(response, **vars)
         vars[:limit] = response.search.options[:size] || 10
         vars[:page]  = ((response.search.options[:from] || 0) / vars[:limit]) + 1
@@ -44,7 +44,6 @@ class Pagy
         Offset.new(**vars)
       end
     end
-    Offset.extend OffsetExtension
 
     # Add specialized backend methods to paginate ElasticsearchRails searches
     module BackendAddOn

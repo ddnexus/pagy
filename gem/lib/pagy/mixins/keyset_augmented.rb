@@ -24,12 +24,12 @@ class Pagy
     Backend.prepend BackendAddOn
 
     # Add the arguments for the client to the pagy_data for the *nav helpers
-    module DataHelperOverride
+    module FrontendOverride
       def pagy_data(pagy, *args)
         args.push([pagy.vars[:page_sym], pagy.update]) if pagy.is_a?(::Pagy::Keyset::Augmented) && args[0].to_s.match(/^n/)
         super
       end
     end
-    Frontend.prepend DataHelperOverride
+    Frontend.prepend FrontendOverride
   end
 end

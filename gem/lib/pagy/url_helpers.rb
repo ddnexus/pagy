@@ -6,7 +6,7 @@ class Pagy
   # Provide the helpers to handle the url in frontend and backend
   module UrlHelpers
     # Extracted from Rack::Utils and reformatted for rubocop
-    # Add the 'unescaped' param, and use it for simple and safe templating.
+    # Add the 'unescaped' param, and use it for simple and safe url-templating.
     module QueryUtils
       module_function
 
@@ -39,7 +39,7 @@ class Pagy
 
     # Return the URL for the page, relying on the params method and Rack by default.
     # It supports all Rack-based frameworks (Sinatra, Padrino, Rails, ...).
-    # For non-rack environments you can use the standalone extra
+    # For non-rack environments you can just set the :url variable
     def pagy_page_url(pagy, page, absolute: false, fragment: nil, **_)
       vars         = pagy.vars
       query_params = vars[:url] ? {} : request.GET.clone(freeze: false)

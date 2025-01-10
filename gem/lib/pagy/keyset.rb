@@ -13,19 +13,19 @@ class Pagy
 
     class TypeError < ::TypeError; end
 
-    # Pick the right adapter for the set and initilize the right class
+    # Allow to run Keyset.new or Keyset::ActiveRecord.new
     def self.new(set, **vars)
-      if self == Pagy::Keyset || (defined?(::Pagy::Keyset::Augmented) && self == ::Pagy::Keyset::Augmented)
-        if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
-          self::ActiveRecord
-        elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
-          self::Sequel
-        else
-          raise TypeError, "expected set to be an instance of ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
-        end.new(set, **vars)
+      # Send the adapter-class (e.g. *::ActiveRecord) directly to the initializer
+      return allocate.tap { |instance| instance.send(:initialize, set, **vars) } if /::(?:ActiveRecord|Sequel)$/.match?(name)
+
+      # Pick the right adapter-class and run new again
+      if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
+        self::ActiveRecord
+      elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
+        self::Sequel
       else
-        allocate.tap { |instance| instance.send(:initialize, set, **vars) }
-      end
+        raise TypeError, "expected set to be an instance of ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
+      end.new(set, **vars)
     end
 
     def initialize(set, **vars) # rubocop:disable Lint/MissingSuper

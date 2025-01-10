@@ -1,15 +1,13 @@
 # See Pagy::Backend API documentation: https://ddnexus.github.io/pagy/docs/api/backend
 # frozen_string_literal: true
 
-require_relative 'url_helpers'
+require_relative 'loaders/backend'
 
 class Pagy
   # Define a few generic methods to paginate a collection out of the box,
   # or any collection by overriding any of the `pagy_*` methods in your controller.
   # See also the extras if you need specialized methods to paginate Arrays or other collections
   module Backend
-    include Loader
-
     private
 
     # Sub-method called only by #pagy: here for easy customization of fetching by overriding
@@ -29,5 +27,7 @@ class Pagy
       page = params[vars[:page_sym] || DEFAULT[:page_sym]]
       force_integer ? (page || 1).to_i : page
     end
+
+    include Loaders::Backend
   end
 end

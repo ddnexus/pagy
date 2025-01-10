@@ -1,8 +1,6 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/meilisearch
 # frozen_string_literal: true
 
-require_relative '../offset'
-
 class Pagy
   Offset::DEFAULT[:meilisearch_search]      ||= :ms_search
   Offset::DEFAULT[:meilisearch_pagy_search] ||= :pagy_search
@@ -19,9 +17,9 @@ class Pagy
     end
     Pagy::Meilisearch = ModelExtension
 
-    # Extension for the Pagy class
-    module OffsetExtension
-      # Create a Pagy object from a Meilisearch results
+    # Addition for the Pagy::Offset class (requires an instance_eval to override the loader alias)
+    Offset.instance_eval do
+      # Create a Pagy::Offset object from a Meilisearch results
       def new_from_meilisearch(results, **vars)
         vars[:limit] = results.raw_answer['hitsPerPage']
         vars[:page]  = results.raw_answer['page']
@@ -30,8 +28,6 @@ class Pagy
         new(**vars)
       end
     end
-    Offset.extend OffsetExtension
-
     # Add specialized backend methods to paginate Meilisearch results
     module BackendAddOn
       private
