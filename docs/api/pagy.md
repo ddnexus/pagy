@@ -54,15 +54,16 @@ You will typically use it in a `pagy.rb` initializer file to pass defaults value
 Pagy::DEFAULT[:limit]     = 25
 Pagy::DEFAULT[:my_option] = 'my option'
 ...
-Pagy::DEFAULT.freeze
 ```
+ 
+## Constants
+
+==- `Pagy::ROOT`
+
+This constant returns the `pathname` of the `pagy/gem` root dir. It is useful to get the absolute path of locale and javascript
+files installed with the gem.
 
 ## Methods
-
-==- `Pagy.root`
-
-This method returns the `pathname` of the `pagy/gem` root dir. It is useful to get the absolute path of locale and javascript
-files installed with the gem.
 
 ==- `Pagy.new(**vars)`
 

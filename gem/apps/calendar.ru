@@ -33,7 +33,6 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # Pagy initializer
-Pagy::DEFAULT.freeze
 
 # Sinatra setup
 require 'sinatra/base'

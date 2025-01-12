@@ -133,7 +133,7 @@ class Pagy
     # Build the DATA hash out of the passed locales
     def build(*locales)
       locales.each do |locale|
-        locale[:filepath]  ||= Pagy.root.join('locales', "#{locale[:locale]}.yml")
+        locale[:filepath]  ||= Pagy::ROOT.join('locales', "#{locale[:locale]}.yml")
         locale[:pluralize] ||= P11n::LOCALE[locale[:locale]]
         dictionary = YAML.safe_load(File.read(locale[:filepath], encoding: 'UTF-8'))
         raise I18nError, %(expected :locale "#{locale[:locale]}" not found in :filepath "#{locale[:filepath].inspect}") \

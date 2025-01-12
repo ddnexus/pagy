@@ -5,7 +5,7 @@ require_relative '../offset'
 
 class Pagy
   # Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
-  Backend.class_eval do
+  Backend.module_eval do
     private
 
     # Return Pagy object and paginated items

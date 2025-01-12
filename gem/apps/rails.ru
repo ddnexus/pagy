@@ -120,9 +120,9 @@ class PagyController < ActionController::Base
   def javascripts
     format = params[:file].split('.').last
     if format == 'js'
-      render js: Pagy.root.join('javascripts', params[:file]).read
+      render js: Pagy::ROOT.join('javascripts', params[:file]).read
     elsif format == 'map'
-      render json: Pagy.root.join('javascripts', params[:file]).read
+      render json: Pagy::ROOT.join('javascripts', params[:file]).read
     end
   end
 end
@@ -166,7 +166,7 @@ TEMPLATE = <<~ERB
           If you want to customize the style,
           please replace the line below with the actual file content
         */
-        <%== Pagy.root.join('stylesheets', 'pagy.css').read %>
+        <%== Pagy::ROOT.join('stylesheets', 'pagy.css').read %>
       </style>
     </head>
 

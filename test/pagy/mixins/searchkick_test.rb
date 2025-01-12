@@ -17,10 +17,10 @@ describe 'pagy/mixins/searchkick' do
       _(args).must_equal [MockSearchkick::Model, 'a', { b: 2 }, block]
     end
     it 'allows the term argument to be optional' do
-      _(MockSearchkick::Model.pagy_search(b: 2)).must_equal [MockSearchkick::Model, '*', { b: 2 }, nil]
+      _(MockSearchkick::Model.pagy_search(b: 2)).must_equal [MockSearchkick::Model, nil, { b: 2 }, nil]
       args  = MockSearchkick::Model.pagy_search(b: 2) { |a| a * 2 }
       block = args[-1]
-      _(args).must_equal [MockSearchkick::Model, '*', { b: 2 }, block]
+      _(args).must_equal [MockSearchkick::Model, nil, { b: 2 }, block]
     end
     it 'adds an empty option hash' do
       _(MockSearchkick::Model.pagy_search('a')).must_equal [MockSearchkick::Model, 'a', {}, nil]
@@ -52,7 +52,7 @@ describe 'pagy/mixins/searchkick' do
         _(results).must_rematch :results
       end
       it 'paginates results with defaults' do
-        pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a').results)
+        pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search.results)
         _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -83,18 +83,18 @@ describe 'pagy/mixins/searchkick' do
         _(results).must_rematch :results
       end
     end
-    describe 'new_from_searchkick' do
+    describe 'new_from_search' do
       it 'paginates results with defaults' do
         results = MockSearchkick::Model.search('a')
-        pagy    = Pagy::Offset::Searchkick.new_from_searchkick(results)
+        pagy    = Pagy::Offset::Searchkick.new_from_search(results)
         _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 1
       end
-      it 'paginates results with vars' do
+      it 'paginates results with vars and no term' do
         results = MockSearchkick::Model.search('b', page: 2, per_page: 15)
-        pagy    = Pagy::Offset::Searchkick.new_from_searchkick(results, anchor_string: 'X')
+        pagy    = Pagy::Offset::Searchkick.new_from_search(results, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

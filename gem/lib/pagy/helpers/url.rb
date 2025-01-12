@@ -4,7 +4,7 @@ require 'uri'
 
 class Pagy
   # Provide the helpers to handle the url in frontend and backend
-  module UrlHelpers
+  module Url
     # Extracted from Rack::Utils and reformatted for rubocop
     # Add the 'unescaped' param, and use it for simple and safe url-templating.
     module QueryUtils

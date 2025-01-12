@@ -1,17 +1,17 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/metadata
 # frozen_string_literal: true
 
-require_relative '../url_helpers'
+require_relative '../helpers/url'
 
 class Pagy
   DEFAULT[:metadata] = %i[url_template first_url prev_url page_url next_url last_url
                           count page limit pages last in from to prev next vars series sequels]
 
   # Add a specialized backend method for pagination metadata
-  Backend.class_eval do
+  Backend.module_eval do
     private
 
-    include UrlHelpers
+    include Url
 
     # Return the metadata hash
     def pagy_metadata(pagy, absolute: nil)

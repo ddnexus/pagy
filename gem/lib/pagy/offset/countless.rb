@@ -5,7 +5,7 @@ class Pagy
   class Offset
     # No need to know the count to paginate
     class Countless < Offset
-      DEFAULT[:countless_minimal] = false
+      DEFAULT = { countless_minimal: false } # rubocop:disable Style/MutableConstant
 
       # Merge and validate the options, do some simple arithmetic and set a few instance variables
       def initialize(**vars) # rubocop:disable Lint/MissingSuper

@@ -1,8 +1,8 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/jsonapi
 # frozen_string_literal: true
 
-require_relative '../url_helpers'
-require_relative '../links_helper'
+require_relative '../helpers/url'
+require_relative '../helpers/links'
 
 class Pagy
   DEFAULT[:jsonapi] = true
@@ -21,8 +21,8 @@ class Pagy
     module BackendOverride
       private
 
-      include UrlHelpers
-      include LinksHelper
+      include Url
+      include Links
 
       # Return the jsonapi links
       alias pagy_jsonapi_links pagy_links
@@ -61,8 +61,8 @@ class Pagy
     # :nocov:
 
     # Module overriding UrlHelper
-    module UrlHelpersOverride
-      # Override UrlHelper method
+    module UrlOverride
+      # Override Url method
       def pagy_set_query_params(page, vars, query_params)
         return super unless vars[:jsonapi]
 
@@ -71,6 +71,6 @@ class Pagy
         query_params['page'][vars[:limit_sym].to_s] = vars[:limit] if vars[:limit_extra]
       end
     end
-    UrlHelpers.prepend UrlHelpersOverride
+    Url.prepend UrlOverride
   end
 end

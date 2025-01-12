@@ -2,14 +2,14 @@
 # frozen_string_literal: true
 
 require 'json'
-require_relative 'b64'
+require_relative 'helpers/b64'
 
 class Pagy
   # Implement wicked-fast keyset pagination for big data
   class Keyset < Pagy
-    autoload :ActiveRecord, 'pagy/keyset/active_record'
-    autoload :Sequel,       'pagy/keyset/sequel'
-    autoload :Augmented,    'pagy/keyset/augmented'
+    autoload :ActiveRecord, PAGY_PATH.join('keyset/active_record').to_s
+    autoload :Sequel,       PAGY_PATH.join('keyset/sequel').to_s
+    autoload :Augmented,    PAGY_PATH.join('keyset/augmented').to_s
 
     class TypeError < ::TypeError; end
 

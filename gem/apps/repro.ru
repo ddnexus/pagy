@@ -33,7 +33,6 @@ end
 # pagy initializer
 require 'pagy/extras/limit'
 Pagy::Offset::DEFAULT[:overflow] = :empty_page
-Pagy::DEFAULT.freeze
 
 # Sinatra setup
 require 'sinatra/base'
@@ -48,7 +47,7 @@ class PagyRepro < Sinatra::Base
     elsif format == 'map'
       content_type 'application/json'
     end
-    send_file Pagy.root.join('javascripts', params[:file])
+    send_file Pagy::ROOT.join('javascripts', params[:file])
   end
 
   # Edit this action as needed
@@ -102,7 +101,7 @@ class PagyRepro < Sinatra::Base
             If you want to customize the style,
             please replace the line below with the actual file content
           */
-          <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
+          <%= Pagy::ROOT.join('stylesheets', 'pagy.css').read %>
         </style>
       </head>
       <body>

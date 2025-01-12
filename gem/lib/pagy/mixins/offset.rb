@@ -5,7 +5,7 @@ require_relative '../offset'
 
 class Pagy
   # Basic offset mixin
-  Backend.class_eval do
+  Backend.module_eval do
     private
 
     # Return Pagy object and paginated results

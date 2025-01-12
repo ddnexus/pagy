@@ -48,9 +48,9 @@ describe 'pagy/frontend' do
   describe "Pagy::I18n" do
     it 'loads custom :locale, :filepath and :pluralize' do
       _(proc { i18n_load(locale: 'xx') }).must_raise Errno::ENOENT
-      _(proc { i18n_load(locale: 'xx', filepath: Pagy.root.join('locales', 'en.yml')) }).must_raise Pagy::I18nError
-      _(proc { i18n_load(locale: 'en', filepath: Pagy.root.join('locales', 'xx.yml')) }).must_raise Errno::ENOENT
-      custom_dictionary = Pagy.root.parent.join('test', 'files', 'custom.yml')
+      _(proc { i18n_load(locale: 'xx', filepath: Pagy::ROOT.join('locales', 'en.yml')) }).must_raise Pagy::I18nError
+      _(proc { i18n_load(locale: 'en', filepath: Pagy::ROOT.join('locales', 'xx.yml')) }).must_raise Errno::ENOENT
+      custom_dictionary = Pagy::ROOT.parent.join('test', 'files', 'custom.yml')
       i18n_load(locale: 'custom', filepath: custom_dictionary)
       _(Pagy::I18n.t('custom', 'pagy.aria_label.prev')).must_equal "Custom Previous"
       i18n_load(locale: 'en', pluralize: ->(_) { 'one' }) # returns always 'one' regardless the count

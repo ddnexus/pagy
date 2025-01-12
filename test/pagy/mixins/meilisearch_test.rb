@@ -11,10 +11,10 @@ describe 'pagy/mixins/meilisearch' do
       _(MockMeilisearch::Model).must_respond_to :pagy_search
     end
     it 'returns class and arguments' do
-      _(MockMeilisearch::Model.pagy_search('a', b: 2)).must_equal [MockMeilisearch::Model, 'a', { b: 2 }]
+      _(MockMeilisearch::Model.pagy_search('a', b: 2)).must_equal [MockMeilisearch::Model, 'a', { b: 2 }, nil]
     end
     it 'adds an empty option hash' do
-      _(MockMeilisearch::Model.pagy_search('a')).must_equal [MockMeilisearch::Model, 'a', {}]
+      _(MockMeilisearch::Model.pagy_search('a')).must_equal [MockMeilisearch::Model, 'a', {}, nil]
     end
   end
 
@@ -60,7 +60,7 @@ describe 'pagy/mixins/meilisearch' do
     describe 'new_from_meilisearch' do
       it 'paginates results with defaults' do
         results = MockMeilisearch::Model.ms_search('a')
-        pagy    = Pagy::Offset::Meilisearch.new_from_meilisearch(results)
+        pagy    = Pagy::Offset::Meilisearch.new_from_search(results)
         _(pagy).must_be_instance_of Pagy::Offset::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -68,7 +68,7 @@ describe 'pagy/mixins/meilisearch' do
       end
       it 'paginates results with vars' do
         results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
-        pagy    = Pagy::Offset::Meilisearch.new_from_meilisearch(results, anchor_string: 'X')
+        pagy    = Pagy::Offset::Meilisearch.new_from_search(results, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy::Offset::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

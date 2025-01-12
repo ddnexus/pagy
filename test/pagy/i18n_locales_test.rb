@@ -17,7 +17,7 @@ describe 'pagy/locales' do
   end
 
   # locale files loop
-  Pagy.root.join('locales').each_child do |f|
+  Pagy::ROOT.join('locales').each_child do |f|
     next unless f.extname == '.yml'
 
     message = "locale file #{f}"

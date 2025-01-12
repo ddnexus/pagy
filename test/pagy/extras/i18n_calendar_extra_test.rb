@@ -37,7 +37,7 @@ describe 'pagy/extras/i18n' do
   end
 
   describe 'Calendar with I18n.l' do
-    I18n.load_path += Dir[Pagy.root.join('..', 'test', 'files', 'locales', '*.yml')]
+    I18n.load_path += Dir[Pagy::ROOT.join('..', 'test', 'files', 'locales', '*.yml')]
     it 'works in :en' do
       pagy = Pagy::Offset::Calendar.send(:create, :month,
                                          period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),

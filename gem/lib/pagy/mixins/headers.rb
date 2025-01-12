@@ -1,8 +1,8 @@
 # See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/headers
 # frozen_string_literal: true
 
-require_relative '../url_helpers'
-require_relative '../links_helper'
+require_relative '../helpers/url'
+require_relative '../helpers/links'
 
 class Pagy
   DEFAULT[:headers] = { page:  'current-page',
@@ -10,11 +10,11 @@ class Pagy
                         count: 'total-count',
                         pages: 'total-pages' }
   # Add specialized backend methods to add pagination response headers
-  Backend.class_eval do
+  Backend.module_eval do
     private
 
-    include UrlHelpers
-    include LinksHelper
+    include Url
+    include Links
 
     # Merge the pagy headers into the response.headers
     def pagy_headers_merge(pagy)

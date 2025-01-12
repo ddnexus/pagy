@@ -5,27 +5,27 @@ require 'pathname'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
-  autoload :Backend,            'pagy/backend'
-  autoload :Frontend,           'pagy/frontend'
-  autoload :I18n,               'pagy/i18n'
-  autoload :UISupport,          'pagy/ui_support'
-  autoload :Offset,             'pagy/offset'
-  autoload :Keyset,             'pagy/keyset'
-  autoload :ElasticsearchRails, 'pagy/mixins/elasticsearch_rails'
-  autoload :Meilisearch,        'pagy/mixins/meilisearch'
-  autoload :Searchkick,         'pagy/mixins/searchkick'
-  autoload :Console,            'pagy/console'
+  VERSION   = '9.3.3'
+  ROOT      = Pathname.new(__dir__).parent.freeze
+  PAGY_PATH = ROOT.join('lib/pagy').freeze
 
-  VERSION     = '9.3.3'
+  autoload :Backend,            PAGY_PATH.join('backend').to_s
+  autoload :Frontend,           PAGY_PATH.join('frontend').to_s
+  autoload :I18n,               PAGY_PATH.join('helpers/i18n').to_s
+  autoload :UISupport,          PAGY_PATH.join('helpers/ui_support').to_s
+  autoload :Offset,             PAGY_PATH.join('offset').to_s
+  autoload :Keyset,             PAGY_PATH.join('keyset').to_s
+  autoload :Search,             PAGY_PATH.join('helpers/search').to_s
+  autoload :ElasticsearchRails, PAGY_PATH.join('mixins/elasticsearch_rails').to_s
+  autoload :Meilisearch,        PAGY_PATH.join('mixins/meilisearch').to_s
+  autoload :Searchkick,         PAGY_PATH.join('mixins/searchkick').to_s
+  autoload :Console,            PAGY_PATH.join('console').to_s
+
+  DEFAULT     = { limit: 20, page_sym: :page } # rubocop:disable Style/MutableConstant
   PAGE_TOKEN  = 'P '
   LABEL_TOKEN = 'L'
   LIMIT_TOKEN = 'L '
   A_TAG       = '<a href="#" style="display: none;">#</a>'
-  DEFAULT     = { limit: 20, # rubocop:disable Style/MutableConstant
-                  page_sym: :page }
-
-  # Gem root pathname to get the path of Pagy files stylesheets, javascripts, apps, locales, etc.
-  def self.root = @root ||= Pathname.new(__dir__).parent.freeze
 
   # Used by the pagy links
   def self.predict_last? = true
@@ -50,10 +50,10 @@ class Pagy
   # Assign @vars
   def assign_vars(vars)
     cclass  = self.class
-    default = cclass::DEFAULT
+    default = { **cclass::DEFAULT }
     while cclass != Pagy
       cclass  = cclass.superclass
-      default = cclass::DEFAULT.merge(default)
+      default = { **cclass::DEFAULT, **default }
     end
     @vars = { **default, **vars.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') } }
   end

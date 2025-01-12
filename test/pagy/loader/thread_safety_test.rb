@@ -29,7 +29,7 @@ describe 'Autoload thread safety' do
                                                                             pagy: {})
 
                  results = MockMeilisearch::Model.ms_search('a')
-                 pagy_m  = Pagy::Offset::Meilisearch.new_from_meilisearch(results)
+                 pagy_m  = Pagy::Offset::Meilisearch.new_from_search(results)
 
                  if calendar[:month].instance_of?(Pagy::Offset::Calendar::Month) &&
                     pagy_c.instance_of?(Pagy::Offset) &&

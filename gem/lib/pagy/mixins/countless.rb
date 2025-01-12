@@ -5,7 +5,7 @@ require_relative '../offset/countless'
 
 class Pagy
   # Paginate without the need of any count, saving one query per rendering
-  Backend.class_eval do
+  Backend.module_eval do
     private
 
     # Return Pagy object and records

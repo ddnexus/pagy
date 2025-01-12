@@ -5,14 +5,14 @@ class Pagy
   class Keyset
     # Use keyset pagination with numeric pages supporting the *nav and other helpers.
     class Augmented < Keyset
-      autoload :ActiveRecord, 'pagy/keyset/augmented/active_record'
-      autoload :Sequel,       'pagy/keyset/augmented/sequel'
+      autoload :ActiveRecord, PAGY_PATH.join('keyset/augmented/active_record').to_s
+      autoload :Sequel,       PAGY_PATH.join('keyset/augmented/sequel').to_s
 
       # Avoid args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'       # Prefix for filter_args
-      DEFAULT       = { **Keyset::DEFAULT, ends: true, # rubocop:disable Style/MutableConstant
-                                           page: nil,
-                                           size: 7 }
+      DEFAULT       = { ends: true,   # rubocop:disable Style/MutableConstant
+                        page: nil,
+                        size: 7 }
 
       include UISupport
       attr_reader :update

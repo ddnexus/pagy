@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/limit'
+require_relative '../../../gem/lib/pagy/extras/limit'
 
 require_relative '../../mock_helpers/elasticsearch_rails'
 require_relative '../../mock_helpers/searchkick'

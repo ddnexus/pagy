@@ -3,7 +3,7 @@
 
 class Pagy
   # Add keyset Augmented methods
-  Backend.class_eval do
+  Backend.module_eval do
     # Return Pagy::Keyset::Augmented object and paginated records
     def pagy_keyset_augmented_js(set, **vars)
       page = pagy_get_page(vars, force_integer: false) # allow nil

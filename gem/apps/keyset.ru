@@ -33,7 +33,6 @@ end
 # Pagy initializer
 require 'pagy/extras/limit'
 Pagy::DEFAULT[:limit] = 10
-Pagy::DEFAULT.freeze
 
 # Sinatra setup
 require 'sinatra/base'
@@ -82,7 +81,7 @@ class PagyKeyset < Sinatra::Base
             padding: 1rem 1.5rem 2rem !important;
           }
 
-          <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
+          <%= Pagy::ROOT.join('stylesheets', 'pagy.css').read %>
         </style>
       </head>
       <body>

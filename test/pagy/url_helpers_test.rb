@@ -59,16 +59,16 @@ describe 'pagy/url_helpers' do
 
   describe 'pagy query_utils' do
     it 'handles hashes and arrays' do
-      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: 2 } })).must_equal "a%5Bb%5D=2" # "a[b]=2"
-      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
-      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: [1, 2, 3] })).must_equal "a%5B%5D=1&a%5B%5D=2&a%5B%5D=3" # "a[]=1&a[]=2&a[]=3
+      _(Pagy::Url::QueryUtils.build_nested_query({ a: { b: 2 } })).must_equal "a%5Bb%5D=2" # "a[b]=2"
+      _(Pagy::Url::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
+      _(Pagy::Url::QueryUtils.build_nested_query({ a: [1, 2, 3] })).must_equal "a%5B%5D=1&a%5B%5D=2&a%5B%5D=3" # "a[]=1&a[]=2&a[]=3
     end
     it 'handles unescaped params' do
-      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ b: { c: ' A ' } }, nil, ['c'])).must_equal "b%5Bc%5D= A " # "a[b][c]=3"
-      _(Pagy::UrlHelpers::QueryUtils.build_nested_query({ a: { b: { c: ' A ' } } }, nil, ['c'])).must_equal "a%5Bb%5D%5Bc%5D= A " # "a[b][c]=3"
+      _(Pagy::Url::QueryUtils.build_nested_query({ b: { c: ' A ' } }, nil, ['c'])).must_equal "b%5Bc%5D= A " # "a[b][c]=3"
+      _(Pagy::Url::QueryUtils.build_nested_query({ a: { b: { c: ' A ' } } }, nil, ['c'])).must_equal "a%5Bb%5D%5Bc%5D= A " # "a[b][c]=3"
     end
     it 'raises ArgumentError for wrong params' do
-      _ { Pagy::UrlHelpers::QueryUtils.build_nested_query('just a string') }.must_raise ArgumentError
+      _ { Pagy::Url::QueryUtils.build_nested_query('just a string') }.must_raise ArgumentError
     end
   end
 end

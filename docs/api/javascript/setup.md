@@ -39,13 +39,13 @@ Your app should [serve or bundle](#2-configure) a small [javascript file](#1-pic
 [!file](/gem/javascripts/pagy.mjs)
 
 ```ruby 
-module_path = Pagy.root.join('javascripts', 'pagy.mjs')
+module_path = Pagy::ROOT.join('javascripts', 'pagy.mjs')
 ```
 
 [!file](/gem/javascripts/pagy.d.ts)
 
 ```ruby 
-types_path = Pagy.root.join('javascripts', 'pagy.d.ts')
+types_path = Pagy::ROOT.join('javascripts', 'pagy.d.ts')
 ```
 
 +++ `pagy.min.js`
@@ -59,7 +59,7 @@ types_path = Pagy.root.join('javascripts', 'pagy.d.ts')
 [!file](/gem/javascripts/pagy.min.js)
 
 ```ruby 
-script_path = Pagy.root.join('javascripts', 'pagy.min.js')
+script_path = Pagy::ROOT.join('javascripts', 'pagy.min.js')
 ```
 
 +++ `pagy.js`
@@ -73,7 +73,7 @@ script_path = Pagy.root.join('javascripts', 'pagy.min.js')
 [!file](/gem/javascripts/pagy.js)
 
 ```ruby 
-script_path = Pagy.root.join('javascripts', 'pagy.js')
+script_path = Pagy::ROOT.join('javascripts', 'pagy.js')
 ```
 
 +++ `pagy.js.map`
@@ -84,7 +84,7 @@ script_path = Pagy.root.join('javascripts', 'pagy.js')
 [!file](/gem/javascripts/pagy.js.map)
 
 ```ruby 
-script_path = Pagy.root.join('javascripts', 'pagy.js.map')
+script_path = Pagy::ROOT.join('javascripts', 'pagy.js.map')
 ```
 
 +++
@@ -100,7 +100,7 @@ You can configure the app to look into the installed pagy gem javascript files. 
 +++ Propshaft
 
 ```ruby pagy.rb (initializer)
-Rails.application.config.assets.paths << Pagy.root.join('javascripts')
+Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
 ```
 
 ```erb application.html.erb
@@ -110,7 +110,7 @@ Rails.application.config.assets.paths << Pagy.root.join('javascripts')
 +++ Importmaps
 
 ```ruby pagy.rb (initializer)
-Rails.application.config.assets.paths << Pagy.root.join('javascripts') #uncomment
+Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts') #uncomment
 ```
 
 ```js app/assets/config/manifest.js
@@ -124,7 +124,7 @@ pin 'pagy'
 +++ Sprockets
 
 ```ruby pagy.rb (initializer)
-Rails.application.config.assets.paths << Pagy.root.join('javascripts') # uncomment.
+Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts') # uncomment.
 ```
 
 ```js manifest.js (or "application.js" for old sprocket sprockets):
@@ -152,7 +152,7 @@ a regular app file. That way any builder will pick it up. For example:
 # Create/refresh the `app/javascript/pagy.mjs` symlink/copy every time 
 # the app restarts (unless in production), ensuring syncing when pagy is updated.
 # Replace the FileUtils.ln_sf with FileUtils.cp if your OS doesn't support file linking. 
-FileUtils.ln_sf(Pagy.root.join('javascripts', 'pagy.mjs'), Rails.root.join('app', 'javascript')) \
+FileUtils.ln_sf(Pagy::ROOT.join('javascripts', 'pagy.mjs'), Rails.root.join('app', 'javascript')) \
 unless Rails.env.production?
 ```
 
@@ -190,7 +190,7 @@ module.exports = {
 
 #### Non-Rails apps
 
-* Just ensure `Pagy.root.join('javascripts', 'pagy.js')` is served with the page.
+* Just ensure `Pagy::ROOT.join('javascripts', 'pagy.js')` is served with the page.
 
 ### 3. Initialize Pagy
 

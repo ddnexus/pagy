@@ -5,7 +5,7 @@ require_relative '../keyset'
 
 class Pagy
   # Add backend methods
-  Backend.class_eval do
+  Backend.module_eval do
     private
 
     # Return Pagy::Keyset object and paginated records
