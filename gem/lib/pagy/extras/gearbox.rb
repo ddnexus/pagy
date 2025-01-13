@@ -13,7 +13,7 @@ class Pagy
     module OffsetOverride
       # Assign @limit based on the :gearbox_limit variable
       def assign_limit
-        return super if !@vars[:gearbox_extra] || @vars[:limit_extra]
+        return super if !@vars[:gearbox_extra] || @vars[:limit_requestable]
 
         gears = @vars[:gearbox_limit]
         raise VariableError.new(self, :gearbox_limit, 'to be an Array of positives', gears) \
@@ -24,7 +24,7 @@ class Pagy
 
       # Asgnsi @offset based on the :gearbox_limit variable
       def assign_offset
-        return super if !@vars[:gearbox_extra] || @vars[:limit_extra]
+        return super if !@vars[:gearbox_extra] || @vars[:limit_requestable]
 
         gears   = @vars[:gearbox_limit]
         @offset = if @page <= gears.count
@@ -36,7 +36,7 @@ class Pagy
 
       # Assign @last based on the :gearbox_limit variable and @count
       def assign_last
-        return super if !@vars[:gearbox_extra] || @vars[:limit_extra]
+        return super if !@vars[:gearbox_extra] || @vars[:limit_requestable]
 
         gears = @vars[:gearbox_limit]
         # This algorithm is thousands of times faster than the one in the geared_pagination gem

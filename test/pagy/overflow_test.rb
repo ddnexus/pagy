@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
+require_relative '../test_helper'
 require 'pagy/mixins/calendar'
 
 Time.zone = 'EST'
@@ -10,7 +10,7 @@ DAY    = 60 * 60 * 24
 PERIOD = [Time.zone.local(2021, 11, 4), Time.zone.local(2021, 11, 4) + 10.days].freeze
 
 Pagy::DEFAULT[:overflow] = :empty_page
-describe 'pagy/extras/overflow' do
+describe 'overflow' do
   let(:pagy_vars)      { { page: 100, limit: 10, count: 103 } }
   let(:countless_vars) { { page: 100, limit: 10 } }
   let(:calendar_vars)  { { period: PERIOD, page: 100 } }

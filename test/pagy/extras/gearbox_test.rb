@@ -2,10 +2,9 @@
 
 require_relative '../../test_helper'
 require 'pagy/extras/gearbox'
-require 'pagy/extras/limit'
 require 'pagy/offset/countless'
 
-Pagy::DEFAULT[:limit_extra] = false
+Pagy::DEFAULT[:limit_requestable] = false
 
 describe 'pagy/extras/gearbox' do
   describe '#assign_limit' do
@@ -15,7 +14,7 @@ describe 'pagy/extras/gearbox' do
       _ { Pagy::Offset.new(count: 3, page: 1,  gearbox_limit: [5, "10"]) }.must_raise Pagy::VariableError
     end
     it 'can skips gearbox in Pagy' do
-      _(Pagy::Offset.new(count: 0, page: 1, limit_extra: true).limit).must_equal 20
+      _(Pagy::Offset.new(count: 0, page: 1, limit_requestable: true).limit).must_equal 20
       _(Pagy::Offset.new(count: 0, page: 1, gearbox_extra: false).limit).must_equal 20
     end
     it 'sets the limit in Pagy' do
@@ -33,7 +32,7 @@ describe 'pagy/extras/gearbox' do
       _(Pagy::Offset.new(count: 103, page: 11, gearbox_limit: [3, 10]).limit).must_equal 10
     end
     it 'can skips gearbox in Pagy::Offset::Countless' do
-      _(Pagy::Offset::Countless.new(page: 1, limit_extra: true).limit).must_equal 20
+      _(Pagy::Offset::Countless.new(page: 1, limit_requestable: true).limit).must_equal 20
       _(Pagy::Offset::Countless.new(page: 1, gearbox_extra: false).limit).must_equal 20
     end
     it 'sets the limit in Pagy::Offset::Countless' do
@@ -54,7 +53,7 @@ describe 'pagy/extras/gearbox' do
 
   describe '#assign_last' do
     it 'can skip gearbox for last' do
-      _(Pagy::Offset.new(count: 90, page: 1, limit_extra: true).last).must_equal 5
+      _(Pagy::Offset.new(count: 90, page: 1, limit_requestable: true).last).must_equal 5
       _(Pagy::Offset.new(count: 103, page: 1, gearbox_extra: false).last).must_equal 6
     end
     it 'sets the last' do

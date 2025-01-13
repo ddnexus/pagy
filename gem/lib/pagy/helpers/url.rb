@@ -59,7 +59,7 @@ class Pagy
     # Overridable by the jsonapi extra
     def pagy_set_query_params(page, vars, query_params)
       query_params[vars[:page_sym].to_s]  = page
-      query_params[vars[:limit_sym].to_s] = vars[:limit] if vars[:limit_extra]
+      query_params[vars[:limit_sym].to_s] = vars[:limit] if vars[:limit_requestable]
     end
   end
 end

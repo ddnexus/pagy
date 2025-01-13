@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
-require_relative '../../../gem/lib/pagy/extras/limit'
+require_relative '../test_helper'
+require_relative '../mock_helpers/elasticsearch_rails'
+require_relative '../mock_helpers/searchkick'
+require_relative '../mock_helpers/meilisearch'
+require_relative '../mock_helpers/arel'
+require_relative '../mock_helpers/collection'
+require_relative '../mock_helpers/app'
 
-require_relative '../../mock_helpers/elasticsearch_rails'
-require_relative '../../mock_helpers/searchkick'
-require_relative '../../mock_helpers/meilisearch'
-require_relative '../../mock_helpers/arel'
-require_relative '../../mock_helpers/collection'
-require_relative '../../mock_helpers/app'
+Pagy::DEFAULT[:limit_requestable] = true
 
 def test_limit_vars_params(limit, vars, params)
   app = MockApp.new params: params
@@ -31,7 +31,7 @@ def test_limit_vars_params(limit, vars, params)
   end
 end
 
-describe 'pagy/extras/limit' do
+describe 'limit_requestable' do
   let(:app) { MockApp.new }
   describe "controller_methods" do
     before do
@@ -67,20 +67,11 @@ describe 'pagy/extras/limit' do
       params = { a: "a", page: 3, limit: 120 }
       test_limit_vars_params(limit, vars, params)
     end
-    it 'doesn\'t limit from vars' do
-      limit  = 1000
+    it 'limit to 100 if :limit_max is not set explicitly' do
+      limit  = 100
       vars   = { limit_max: nil }
       params = { a: "a", limit: 1000 }
       test_limit_vars_params(limit, vars, params)
-    end
-    it 'doesn\'t limit from default' do
-      limit  = 1000
-      vars   = {}
-      params = { a: "a", limit: limit }
-
-      Pagy::DEFAULT[:limit_max] = nil
-      test_limit_vars_params(limit, vars, params)
-      Pagy::DEFAULT[:limit_max] = 100 # reset default
     end
     it 'uses limit_sym from vars' do
       limit  = 14
@@ -97,14 +88,12 @@ describe 'pagy/extras/limit' do
       test_limit_vars_params(limit, vars, params)
       Pagy::DEFAULT[:limit_sym] = :limit # reset default
     end
-    it 'doesn\'t use the :limit_extra' do
+    it 'doesn\'t use the :limit_requestable' do
       limit  = 20
-      vars   = { limit_extra: false }
+      vars   = { limit_requestable: false }
       params = { a: "a", page: 3, limit: 35 }
 
-      Pagy::DEFAULT[:limit_extra] = false
       test_limit_vars_params(limit, vars, params)
-      Pagy::DEFAULT[:limit_extra] = true # reset default
     end
   end
 
@@ -132,10 +121,10 @@ describe 'pagy/extras/limit' do
       end
     end
     it 'renders limit selector' do
-      pagy = Pagy::Offset.new count: 1000, page: 3
+      pagy, = app.send(:pagy_offset, MockCollection.new, page: 3)
       _(app.pagy_limit_selector_js(pagy)).must_rematch :selector_1
       _(app.pagy_limit_selector_js(pagy, id: 'test-id', item_name: 'products')).must_rematch :selector_2
-      pagy = Pagy::Offset.new count: 1000, page: 3, limit_extra: false
+      pagy, = app.send(:pagy_offset, MockCollection.new, page: 3, limit_requestable: false)
       _(app.pagy_limit_selector_js(pagy, id: 'test-id')).must_equal ''
     end
   end

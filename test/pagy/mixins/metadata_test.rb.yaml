@@ -19,6 +19,7 @@ pagy/mixins/metadata___pagy_metadata_for_Pagy_test_0001_works_with_unset_DEFAULT
     :next: 4
     :vars:
       :limit: 20
+      :limit_sym: :limit
       :page_sym: :page
       :count_args:
       - :all

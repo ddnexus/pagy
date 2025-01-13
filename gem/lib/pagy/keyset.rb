@@ -18,7 +18,7 @@ class Pagy
       # Send the adapter-class (e.g. *::ActiveRecord) directly to the initializer
       return allocate.tap { |instance| instance.send(:initialize, set, **vars) } if /::(?:ActiveRecord|Sequel)$/.match?(name)
 
-      # Pick the right adapter-class and run new again
+      # Pick the right adapter-class and run new again on the adapter class
       if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
         self::ActiveRecord
       elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)

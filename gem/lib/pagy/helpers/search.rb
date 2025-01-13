@@ -15,7 +15,7 @@ class Pagy
       vars[:page]  ||= pagy_get_page(vars)
       vars[:limit] ||= pagy_get_limit(vars)
       pagy, response, called = yield
-      # with :last_page overflow we need to re-run the method in order to get the hits
+      # With the :last_page overflow, we need to re-run the method, in order to get the hits
       if pagy.overflow? && pagy.vars[:overflow] == :last_page
         return send(caller_locations(1, 1)[0].base_label, pagy_search_args, **vars, page: pagy.page)
       end

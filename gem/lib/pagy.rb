@@ -21,7 +21,9 @@ class Pagy
   autoload :Searchkick,         PAGY_PATH.join('mixins/searchkick').to_s
   autoload :Console,            PAGY_PATH.join('console').to_s
 
-  DEFAULT     = { limit: 20, page_sym: :page } # rubocop:disable Style/MutableConstant
+  DEFAULT     = { limit:     20,    # rubocop:disable Style/MutableConstant
+                  limit_sym: :limit,
+                  page_sym:  :page }
   PAGE_TOKEN  = 'P '
   LABEL_TOKEN = 'L'
   LIMIT_TOKEN = 'L '

@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-require_relative '../extras/limit'
-
 class Pagy
   # Additions for the Frontend module
   Frontend.class_eval do
     # Return the limit selector HTML. For example "Show [20] items per page"
     def pagy_limit_selector_js(pagy, id: nil, item_name: nil)
-      return '' unless pagy.vars[:limit_extra]
+      return '' unless pagy.vars[:limit_requestable]
 
       id           = %( id="#{id}") if id
       vars         = pagy.vars

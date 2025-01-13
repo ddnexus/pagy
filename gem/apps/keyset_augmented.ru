@@ -31,8 +31,8 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # Pagy initializer
-require 'pagy/extras/limit'
-Pagy::DEFAULT[:limit] = 4
+Pagy::DEFAULT[:limit]             = 4
+Pagy::DEFAULT[:limit_requestable] = true
 
 # Sinatra setup
 require 'sinatra/base'

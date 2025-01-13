@@ -59,9 +59,9 @@ unless File.writable?(dir)
 end
 
 # Pagy initializer
-require 'pagy/extras/limit'
-Pagy::DEFAULT[:limit] = 10
-Pagy::Offset::DEFAULT[:overflow] = :empty_page
+Pagy::DEFAULT[:limit]             = 10
+Pagy::DEFAULT[:limit_requestable] = true
+Pagy::Offset::DEFAULT[:overflow]  = :empty_page
 
 # Activerecord initializer
 ActiveRecord::Base.logger = Logger.new(OUTPUT)

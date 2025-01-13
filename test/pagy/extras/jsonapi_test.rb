@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/limit'
 require 'pagy/extras/jsonapi'
 
 require_relative '../../mock_helpers/collection'
 require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
+
+Pagy::DEFAULT[:limit_requestable] = true
 
 describe 'pagy/mixins/jsonapi' do
   before do
@@ -25,14 +26,14 @@ describe 'pagy/mixins/jsonapi' do
   describe 'JsonApi' do
     it 'uses the :jsonapi with page:nil' do
       app = MockApp.new(params: { page: nil })
-      pagy, _records = app.send(:pagy_offset, @collection, limit_extra: false)
+      pagy, _records = app.send(:pagy_offset, @collection, limit_requestable: false)
       _(app.send(:pagy_page_url, pagy, 1)).must_rematch :url_1
       pagy, _records = app.send(:pagy_offset, @collection)
       _(app.send(:pagy_page_url, pagy, 1)).must_rematch :url_2
     end
     it 'uses the :jsonapi with page:3' do
       app = MockApp.new(params: { page: { page: 3 } })
-      pagy, _records = app.send(:pagy_offset, @collection, limit_extra: false)
+      pagy, _records = app.send(:pagy_offset, @collection, limit_requestable: false)
       _(app.send(:pagy_page_url, pagy, 2)).must_rematch :url_1
       pagy, _records = app.send(:pagy_offset, @collection)
       _(app.send(:pagy_page_url, pagy, 2)).must_rematch :url_2
@@ -42,7 +43,7 @@ describe 'pagy/mixins/jsonapi' do
     it 'skips the :jsonapi with page:nil' do
       Pagy::DEFAULT[:jsonapi] = false
       app = MockApp.new(params: { page: nil })
-      pagy, _records = app.send(:pagy_offset, @collection, limit_extra: false)
+      pagy, _records = app.send(:pagy_offset, @collection, limit_requestable: false)
       _(app.send(:pagy_page_url, pagy, 1)).must_equal '/foo?page=1'
       pagy, _records = app.send(:pagy_offset, @collection)
       _(app.send(:pagy_page_url, pagy, 1)).must_equal '/foo?page=1&limit=20'
@@ -51,7 +52,7 @@ describe 'pagy/mixins/jsonapi' do
     it 'skips the :jsonapi with page:3' do
       Pagy::DEFAULT[:jsonapi] = false
       app = MockApp.new(params: { page: 3 })
-      pagy, _records = app.send(:pagy_offset, @collection, limit_extra: false)
+      pagy, _records = app.send(:pagy_offset, @collection, limit_requestable: false)
       _(app.send(:pagy_page_url, pagy, 2)).must_equal '/foo?page=2'
       pagy, _records = app.send(:pagy_offset, @collection)
       _(app.send(:pagy_page_url, pagy, 2)).must_equal '/foo?page=2&limit=20'

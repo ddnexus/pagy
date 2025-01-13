@@ -31,8 +31,8 @@ end
 
 # Edit this section adding/removing the extras and Pagy::DEFAULT as needed
 # pagy initializer
-require 'pagy/extras/limit'
-Pagy::Offset::DEFAULT[:overflow] = :empty_page
+Pagy::Offset::DEFAULT[:overflow]  = :empty_page
+Pagy::DEFAULT[:limit_requestable] = true
 
 # Sinatra setup
 require 'sinatra/base'

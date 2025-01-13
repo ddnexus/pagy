@@ -42,10 +42,12 @@ STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
 # STYLES.each_key do |style|
 #   require "pagy/extras/#{STYLES[style][:extra] || style}"
 # end
-require 'pagy/extras/limit'
 
 # Sinatra setup
 require 'sinatra/base'
+
+# Pagy initializer
+Pagy::DEFAULT[:limit_requestable] = true
 
 # Sinatra application
 class PagyDemo < Sinatra::Base

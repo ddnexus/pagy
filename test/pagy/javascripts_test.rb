@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
-require_relative '../../mock_helpers/app'
+require_relative '../test_helper'
+require_relative '../mock_helpers/app'
 
 OJ = %i[without_oj with_oj].freeze
 OJ.each do |test|

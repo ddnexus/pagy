@@ -20,7 +20,6 @@ class Pagy
                                 pagy_keyset_first_url:    PAGY_PATH.join('mixins/keyset').to_s,
                                 pagy_keyset_next_url:     PAGY_PATH.join('mixins/keyset').to_s,
                                 pagy_keyset_augmented_js: PAGY_PATH.join('mixins/keyset_augmented').to_s,
-                                pagy_limit_selector_js:   PAGY_PATH.join('mixins/limit_selector').to_s,
                                 pagy_meilisearch:         PAGY_PATH.join('mixins/meilisearch').to_s,
                                 pagy_metadata:            PAGY_PATH.join('mixins/metadata').to_s,
                                 pagy_offset:              PAGY_PATH.join('mixins/offset').to_s,

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/extras/limit'
-
 require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
+
+Pagy::DEFAULT[:limit_requestable] = true
 
 describe 'pagy/mixins/keyset' do
   [Pet, PetSequel].each do |model|

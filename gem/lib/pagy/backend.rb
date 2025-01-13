@@ -16,9 +16,20 @@ class Pagy
       collection.offset(pagy.offset).limit(pagy.limit)
     end
 
-    # Override for limit extra
-    def pagy_get_limit(_vars)
-      DEFAULT[:limit]
+    # Get the limit from request, vars or DEFAULT
+    def pagy_get_limit(vars)
+      if vars.key?(:limit_requestable) ? vars[:limit_requestable] : DEFAULT[:limit_requestable]
+        limit = pagy_requested_limit(vars) || DEFAULT[:limit]
+        [limit.to_i, (vars[:limit_max] ||= DEFAULT[:limit_max] || 100)].compact.min
+      else
+        DEFAULT[:limit]
+      end
+    end
+
+    # Get the limit from the request
+    # Overridable by the jsonapi extra
+    def pagy_requested_limit(vars)
+      params[vars[:limit_sym] || DEFAULT[:limit_sym]]
     end
 
     # Get the page integer from the params

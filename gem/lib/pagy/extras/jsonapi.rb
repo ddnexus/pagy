@@ -41,15 +41,9 @@ class Pagy
         page = params[:page][vars[:page_sym] || DEFAULT[:page_sym]]
         force_integer ? (page || 1).to_i : page
       end
-    end
-    Backend.prepend BackendOverride
 
-    # Module overriding LimitExtra
-    module LimitExtraOverride
-      private
-
-      # Override the LimitExtra::Backend method
-      def pagy_get_limit_param(vars)
+      # Override the backend method
+      def pagy_requested_limit(vars)
         return super if pagy_skip_jsonapi?(vars)
         return unless params[:page]
 
@@ -57,7 +51,7 @@ class Pagy
       end
     end
     # :nocov:
-    LimitExtra::BackendAddOn.prepend LimitExtraOverride if defined?(::Pagy::LimitExtra::BackendAddOn)
+    Backend.prepend BackendOverride
     # :nocov:
 
     # Module overriding UrlHelper
@@ -68,7 +62,7 @@ class Pagy
 
         query_params['page'] ||= {}
         query_params['page'][vars[:page_sym].to_s]  = page
-        query_params['page'][vars[:limit_sym].to_s] = vars[:limit] if vars[:limit_extra]
+        query_params['page'][vars[:limit_sym].to_s] = vars[:limit] if vars[:limit_requestable]
       end
     end
     Url.prepend UrlOverride
