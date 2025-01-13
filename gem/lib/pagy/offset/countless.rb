@@ -13,6 +13,7 @@ class Pagy
         assign_and_check(page: 1, outset: 0)
         assign_limit
         assign_offset
+        @last = @vars[:last]
       end
 
       def self.predict_last? = false
@@ -21,8 +22,8 @@ class Pagy
       def finalize(fetched_size)
         raise OverflowError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
 
-        @last = fetched_size > @limit ? @page + 1 : @page
-        @last = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
+        @last ||= fetched_size > @limit ? @page + 1 : @page
+        @last   = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
         raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
         @in   = [fetched_size, @limit].min

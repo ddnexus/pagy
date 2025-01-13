@@ -2,9 +2,9 @@
 
 # Tests adapted from https://github.com/svenfuchs/rails-i18n
 
-require_relative '../test_helper'
+require_relative '../../test_helper'
 
-describe 'pagy/i18n' do
+describe 'p11n' do
   let(:p11n) { Pagy::I18n::P11n::RULE }
 
   describe :arabic do

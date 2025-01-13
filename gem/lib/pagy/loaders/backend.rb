@@ -23,7 +23,8 @@ class Pagy
                                 pagy_meilisearch:         PAGY_PATH.join('mixins/meilisearch').to_s,
                                 pagy_metadata:            PAGY_PATH.join('mixins/metadata').to_s,
                                 pagy_offset:              PAGY_PATH.join('mixins/offset').to_s,
-                                pagy_searchkick:          PAGY_PATH.join('mixins/searchkick').to_s }.freeze
+                                pagy_searchkick:          PAGY_PATH.join('mixins/searchkick').to_s,
+                                pagy_links:               PAGY_PATH.join('mixins/links') }.freeze
 
       BACKEND_METHOD_MIXINS.each_key do |method|
         class_eval "alias #{method} pagy_load_backend", __FILE__, __LINE__  # alias pagy_* pagy_load_backend

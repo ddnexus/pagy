@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative '../test_helper'
-require_relative '../mock_helpers/elasticsearch_rails'
-require_relative '../mock_helpers/searchkick'
-require_relative '../mock_helpers/meilisearch'
-require_relative '../mock_helpers/arel'
-require_relative '../mock_helpers/collection'
-require_relative '../mock_helpers/app'
+require_relative '../../test_helper'
+require_relative '../../mock_helpers/elasticsearch_rails'
+require_relative '../../mock_helpers/searchkick'
+require_relative '../../mock_helpers/meilisearch'
+require_relative '../../mock_helpers/arel'
+require_relative '../../mock_helpers/collection'
+require_relative '../../mock_helpers/app'
 
 Pagy::DEFAULT[:limit_requestable] = true
 
@@ -117,7 +117,7 @@ describe 'limit_requestable' do
       end
       it 'renders url with params and fragment' do
         pagy = Pagy::Offset.new count: 1000, page: 3, params: { a: 3, b: 4 }, limit: 40
-        _(app.pagy_page_url(pagy, 5, fragment: '#fragment')).must_equal "/foo?page=5&a=3&b=4&limit=40#fragment"
+        _(app.pagy_page_url(pagy, 5, fragment: '#fragment')).must_equal "/foo?page=5&limit=40&a=3&b=4#fragment"
       end
     end
     it 'renders limit selector' do

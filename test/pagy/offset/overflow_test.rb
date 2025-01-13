@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative '../test_helper'
-require 'pagy/mixins/calendar'
+require_relative '../../test_helper'
+require 'pagy/mixins/calendar'   # to avoid to load AR support
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
 
 DAY    = 60 * 60 * 24
 PERIOD = [Time.zone.local(2021, 11, 4), Time.zone.local(2021, 11, 4) + 10.days].freeze
-
 Pagy::DEFAULT[:overflow] = :empty_page
+
 describe 'overflow' do
   let(:pagy_vars)      { { page: 100, limit: 10, count: 103 } }
   let(:countless_vars) { { page: 100, limit: 10 } }

@@ -64,7 +64,7 @@ class Pagy
         object   = nil
         @units.each_with_index do |unit, index|
           params_to_delete    = @units[(index + 1), @units.size].map { |sub| conf[sub][:page_sym] } + [@page_sym]
-          conf[unit][:params] = ->(up) { up.except(*params_to_delete.map(&:to_s)) }
+          conf[unit][:params] = ->(up) { up.except!(*params_to_delete.map(&:to_s)) }
           conf[unit][:period] = object&.send(:active_period) || @period
           conf[unit][:page]   = @params[:"#{unit}_#{@page_sym}"] # requested page
           # :nocov:

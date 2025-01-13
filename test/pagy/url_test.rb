@@ -3,7 +3,7 @@
 require_relative '../test_helper'
 require_relative '../mock_helpers/app'
 
-describe 'pagy/url_helpers' do
+describe 'pagy/helpers/url' do
   let(:app) { MockApp.new }
 
   describe '#pagy_page_url' do
@@ -31,16 +31,14 @@ describe 'pagy/url_helpers' do
       pagy = Pagy::Offset.new count: 1000, page: 3, request_path: '/bar'
       _(app.pagy_page_url(pagy, 5)).must_equal '/bar?page=5'
     end
-    it 'renders url with vars[:url]' do
+    it 'renders url with vars[:request]' do
       pagy = Pagy::Offset.new count: 1000,
                               page: 3,
-                              params: { a: 3, b: 4 },
-                              url: 'http://pagy.com/the/best',
-                              request_path: '/bar'
+                              request: { url_prefix: 'http://pagy.com/the/best/bar',
+                                         query_params: { a: 3, b: 4 } }
       _(app.pagy_page_url(pagy,
                           5,
-                          absolute: true,
-                          fragment: '#fragment')).must_equal "http://pagy.com/the/best?a=3&b=4&page=5#fragment"
+                          fragment: '#fragment')).must_equal "http://pagy.com/the/best/bar?a=3&b=4&page=5#fragment"
     end
   end
 
@@ -51,7 +49,7 @@ describe 'pagy/url_helpers' do
                               page: 3,
                               params: lambda do |params|
                                 params.delete('delete_me')
-                                params.merge('b' => 4, 'add_me' => 'add_me')
+                                params.merge!('b' => 4, 'add_me' => 'add_me')
                               end)
       _(app.pagy_page_url(pagy, 5, fragment: '#fragment')).must_equal "/foo?a=5&page=5&b=4&add_me=add_me#fragment"
     end

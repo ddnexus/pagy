@@ -1,12 +1,12 @@
 # See Pagy::Backend API documentation: https://ddnexus.github.io/pagy/docs/api/backend
 # frozen_string_literal: true
 
+require_relative 'helpers/url'
 require_relative 'loaders/backend'
 
 class Pagy
   # Define a few generic methods to paginate a collection out of the box,
   # or any collection by overriding any of the `pagy_*` methods in your controller.
-  # See also the extras if you need specialized methods to paginate Arrays or other collections
   module Backend
     private
 
@@ -27,16 +27,21 @@ class Pagy
     end
 
     # Get the limit from the request
-    # Overridable by the jsonapi extra
     def pagy_requested_limit(vars)
-      params[vars[:limit_sym] || DEFAULT[:limit_sym]]
+      limit_sym = vars[:limit_sym] || DEFAULT[:limit_sym]
+      pagy_jsonapi?(vars) ? params[:page][limit_sym] : params[limit_sym]
     end
 
     # Get the page integer from the params
-    # Overridable by the jsonapi extra
     def pagy_get_page(vars, force_integer: true)
-      page = params[vars[:page_sym] || DEFAULT[:page_sym]]
+      page_sym = vars[:page_sym] || DEFAULT[:page_sym]
+      page     = pagy_jsonapi?(vars) ? params[:page][page_sym] : params[page_sym]
       force_integer ? (page || 1).to_i : page
+    end
+
+    def pagy_jsonapi?(vars)
+      return false unless params[:page] && (vars.key?(:jsonapi) ? vars[:jsonapi] : DEFAULT[:jsonapi]) # rubocop:disable Layout/EmptyLineAfterGuardClause
+      params[:page].respond_to?(:fetch) || raise(ReservedParamError, params[:page])
     end
 
     include Loaders::Backend

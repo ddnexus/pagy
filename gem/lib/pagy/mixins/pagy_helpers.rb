@@ -4,7 +4,7 @@
 class Pagy
   # Frontend modules are specially optimized for performance.
   # The resulting code may not look very elegant, but produces the best benchmarks
-  module PagyHelpersMixin
+  Frontend.class_eval do
     # Return the previous page URL string or nil
     def pagy_prev_url(pagy, **vars)
       pagy_page_url(pagy, pagy.prev, **vars) if pagy.prev
@@ -37,5 +37,4 @@ class Pagy
       %(<link href="#{pagy_page_url(pagy, pagy.next, **vars)}"/>) if pagy.next
     end
   end
-  Frontend.prepend PagyHelpersMixin
 end

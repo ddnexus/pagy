@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require_relative '../helpers/url'
-require_relative '../helpers/links'
+require_relative 'links'
 
 class Pagy
   DEFAULT[:headers] = { page:  'current-page',
@@ -14,7 +14,6 @@ class Pagy
     private
 
     include Url
-    include Links
 
     # Merge the pagy headers into the response.headers
     def pagy_headers_merge(pagy)

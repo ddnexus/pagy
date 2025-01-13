@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+# require_relative
 class Pagy
-  module Links
+  Backend.class_eval do
     def pagy_links(pagy, **)
       url_str = pagy_page_url(pagy, PAGE_TOKEN, **)
       { first: url_str.sub(PAGE_TOKEN, '1') }.tap do |links|

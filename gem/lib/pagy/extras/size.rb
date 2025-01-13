@@ -7,7 +7,7 @@ class Pagy
     # Unless you have very specific requirements, use the faster and better looking default bar.
     module SizeExtra
       # Implements the old series algorithm
-      def series(size: @vars[:size], **_)
+      def series(size: @vars[:size], **)
         return super unless size.is_a?(Array)
         return [] if size == []
         raise VariableError.new(self, :size, 'to be an Array of 4 Integers or []', size) \

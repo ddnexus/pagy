@@ -12,7 +12,7 @@ end
 describe 'pagy/console' do
   describe 'Pagy::Console' do
     it 'defines default :url' do
-      _(Pagy::DEFAULT[:url]).must_equal 'http://www.example.com/subdir'
+      _(Pagy::DEFAULT[:request][:url_prefix]).must_equal 'http://www.example.com/subdir'
     end
     it 'includes Pagy::Backend and Pagy::Frontend' do
       assert_operator(PagyConsole, :<, Pagy::Backend)

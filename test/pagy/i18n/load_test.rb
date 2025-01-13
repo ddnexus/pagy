@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../test_helper'
+require_relative '../../test_helper'
 
 # isolated in this file because uses the frozen public API
 describe 'pagy/i18n-load' do
