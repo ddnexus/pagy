@@ -1,4 +1,3 @@
-# See Pagy::Frontend API documentation: https://ddnexus.github.io/pagy/docs/api/frontend
 # frozen_string_literal: true
 
 require_relative 'helpers/b64'

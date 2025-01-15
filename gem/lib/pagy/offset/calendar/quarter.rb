@@ -1,4 +1,3 @@
-# See Pagy::Offset::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/calendar
 # frozen_string_literal: true
 
 class Pagy # :nodoc:

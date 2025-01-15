@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
@@ -90,6 +89,16 @@ describe 'pagy/mixins/countless' do
       _(pagy.count).must_be_nil
       _(pagy.prev).must_be_nil
       _(pagy.next).must_be_nil
+    end
+  end
+  describe 'Keep last' do
+    it 'shows series including last page' do
+      Pagy::DEFAULT[:page_sym] = :page
+      pagy, = MockApp.new(params: {page: '25 50'}).send(:pagy_countless, @collection)
+      _(pagy.series).must_equal [1, :gap, 24, "25", 26, :gap, 50]
+      _(pagy.count).must_be_nil
+      _(pagy.prev).must_equal 24
+      _(pagy.next).must_equal 26
     end
   end
 end

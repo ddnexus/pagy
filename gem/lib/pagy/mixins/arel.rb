@@ -1,4 +1,3 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/arel
 # frozen_string_literal: true
 
 require_relative 'offset'   # require the offset mixin

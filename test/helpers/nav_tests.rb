@@ -4,7 +4,9 @@ require_relative '../mock_helpers/pagy_buggy'
 require_relative '../mock_helpers/app'
 require_relative '../files/models'
 
+# required because we use the class that does not load the mixin, so wenmiss the extra pagy_data
 require 'pagy/mixins/keyset_augmented'
+
 module NavTests
   def app
     MockApp.new

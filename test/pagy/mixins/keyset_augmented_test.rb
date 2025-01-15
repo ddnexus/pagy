@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-
 require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
 
@@ -44,11 +43,10 @@ describe 'Augmented Backend' do
         _(pagy.next).must_equal 2
         _(pagy.update).must_equal [nil, [1, 1, [10]]]
       end
-      it 'fallback to Countless if page param is a number' do
-        app           = MockApp.new(cookie: 'pagy=ppp')
+      it 'fallback to Countless if page param is a string with space' do
+        app           = MockApp.new(cookie: 'pagy=ppp', params: { page: '2 3' })
         pagy, records = app.send(:pagy_keyset_augmented_js,
                                  model.order(:id),
-                                 page: 2,
                                  tuple_comparison: true,
                                  limit:            10)
         _(pagy).must_be_kind_of Pagy::Offset::Countless

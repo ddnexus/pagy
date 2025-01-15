@@ -45,6 +45,7 @@ class Pagy
     def pagy_page_url(pagy, page, absolute: false, fragment: nil, **)
       request_var, pagy_params = (vars = pagy.vars).values_at(:request, :params)
       page_name, limit_name    = vars.values_at(:page_sym, :limit_sym).map(&:to_s)
+      page                     = pagy.page_for_url(page)
       query_params             = request_var ? (request_var[:query_params] || {}) : request.GET.clone(freeze: false)
       page_and_limit           = { page_name => page }.tap { |h| h[limit_name] = vars[:limit] if vars[:limit_requestable] }
       query_params.merge!(vars[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit)

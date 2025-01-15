@@ -1,4 +1,3 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/bootstrap
 # frozen_string_literal: true
 
 class Pagy

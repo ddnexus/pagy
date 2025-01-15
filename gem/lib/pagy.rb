@@ -1,4 +1,3 @@
-# See Pagy API documentation: https://ddnexus.github.io/pagy/docs/api/pagy
 # frozen_string_literal: true
 
 require 'pathname'
@@ -59,6 +58,8 @@ class Pagy
     end
     @vars = { **default, **vars.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') } }
   end
+
+  def page_for_url(page) = page
 end
 
 require_relative 'pagy/exceptions'

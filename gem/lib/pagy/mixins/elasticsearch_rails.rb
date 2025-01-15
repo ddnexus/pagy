@@ -1,4 +1,3 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails
 # frozen_string_literal: true
 
 require_relative '../offset/elasticsearch_rails'

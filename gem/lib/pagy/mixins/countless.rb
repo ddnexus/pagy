@@ -1,4 +1,3 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/countless
 # frozen_string_literal: true
 
 require_relative '../offset/countless'
@@ -10,8 +9,17 @@ class Pagy
 
     # Return Pagy object and records
     def pagy_countless(collection, **vars)
+      if vars[:page].nil?
+        page = pagy_get_page(vars, force_integer: false) # accept nil and strings
+        if page.is_a?(String)
+          p, l = page.split.map(&:to_i)
+          vars[:page] = p
+          vars[:last] = l
+        else
+          vars[:page] = 1
+        end
+      end
       vars[:limit] ||= pagy_get_limit(vars)
-      vars[:page]  ||= pagy_get_page(vars)
       pagy = Offset::Countless.new(**vars)
       [pagy, pagy_countless_get_items(collection, pagy)]
     end

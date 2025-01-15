@@ -1,4 +1,3 @@
-# See Pagy::Offset::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/keyset_for_ui
 # frozen_string_literal: true
 
 class Pagy

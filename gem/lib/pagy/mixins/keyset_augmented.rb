@@ -1,4 +1,3 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/keyset_frontendble
 # frozen_string_literal: true
 
 class Pagy
@@ -7,7 +6,7 @@ class Pagy
     # Return Pagy::Keyset::Augmented object and paginated records
     def pagy_keyset_augmented_js(set, **vars)
       page = pagy_get_page(vars, force_integer: false) # allow nil
-      if page.to_i.positive?    # numeric page -> no augmentation -> fallback
+      if page&.match(' ')       # countless page -> no augmentation -> fallback
         return pagy_countless(set, **vars)
       elsif page.is_a?(String)  # augmented page param
         page_args = JSON.parse(B64.urlsafe_decode(page))

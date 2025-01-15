@@ -1,4 +1,3 @@
-# See the Pagy documentation: https://ddnexus.github.io/pagy/docs/extras/meilisearch
 # frozen_string_literal: true
 
 require_relative '../offset/meilisearch'

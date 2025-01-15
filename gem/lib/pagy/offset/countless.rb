@@ -1,4 +1,3 @@
-# See Pagy::Offset::Countless API documentation: https://ddnexus.github.io/pagy/docs/api/offset/countless
 # frozen_string_literal: true
 
 class Pagy
@@ -13,17 +12,19 @@ class Pagy
         assign_and_check(page: 1, outset: 0)
         assign_limit
         assign_offset
-        @last = @vars[:last]
+        @last = vars[:last].to_i
       end
 
       def self.predict_last? = false
+
+      def page_for_url(page) = "#{page}+#{@last}"
 
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
         raise OverflowError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
 
-        @last ||= fetched_size > @limit ? @page + 1 : @page
-        @last   = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
+        @last = fetched_size > @limit ? @page + 1 : @page unless @last && @page < @last
+        @last = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
         raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
 
         @in   = [fetched_size, @limit].min

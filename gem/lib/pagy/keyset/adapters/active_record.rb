@@ -1,4 +1,3 @@
-# See Pagy API documentation: https://ddnexus.github.io/pagy/docs/api/keyset
 # frozen_string_literal: true
 
 class Pagy

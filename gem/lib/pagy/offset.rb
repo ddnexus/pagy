@@ -1,4 +1,3 @@
-# See Pagy::Offset API documentation: https://ddnexus.github.io/pagy/docs/api/pagy/offset
 # frozen_string_literal: true
 
 class Pagy
