@@ -124,10 +124,10 @@ describe 'pagy/mixins/elasticsearch_rails' do
         _(records).must_rematch :records
       end
     end
-    describe 'new_from_search' do
+    describe 'Use search object' do
       it 'paginates response with defaults' do
         response = MockElasticsearchRails::Model.search('a')
-        pagy     = Pagy::Offset::ElasticsearchRails.new_from_search(response)
+        pagy     = app.send(:pagy_elasticsearch_rails, response)
         _(pagy).must_be_instance_of Pagy::Offset::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -135,7 +135,7 @@ describe 'pagy/mixins/elasticsearch_rails' do
       end
       it 'paginates response with vars' do
         response = MockElasticsearchRails::Model.search('b', from: 15, size: 15)
-        pagy     = Pagy::Offset::ElasticsearchRails.new_from_search(response, anchor_string: 'X')
+        pagy     = app.send(:pagy_elasticsearch_rails, response, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy::Offset::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
@@ -144,7 +144,7 @@ describe 'pagy/mixins/elasticsearch_rails' do
       end
       it 'paginates response with defaults on Elasticsearch 5' do
         response = MockElasticsearchRails::ModelES5.search('a')
-        pagy     = Pagy::Offset::ElasticsearchRails.new_from_search(response)
+        pagy     = app.send(:pagy_elasticsearch_rails, response)
         _(pagy).must_be_instance_of Pagy::Offset::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -152,7 +152,7 @@ describe 'pagy/mixins/elasticsearch_rails' do
       end
       it 'paginates response with vars on Elasticsearch 5' do
         response = MockElasticsearchRails::ModelES5.search('b', from: 15, size: 15)
-        pagy     = Pagy::Offset::ElasticsearchRails.new_from_search(response, anchor_string: 'X')
+        pagy     = app.send(:pagy_elasticsearch_rails, response, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy::Offset::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

@@ -83,10 +83,10 @@ describe 'pagy/mixins/searchkick' do
         _(results).must_rematch :results
       end
     end
-    describe 'new_from_search' do
+    describe 'Use search object' do
       it 'paginates results with defaults' do
         results = MockSearchkick::Model.search('a')
-        pagy    = Pagy::Offset::Searchkick.new_from_search(results)
+        pagy    = app.send(:pagy_searchkick, results)
         _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -94,7 +94,7 @@ describe 'pagy/mixins/searchkick' do
       end
       it 'paginates results with vars and no term' do
         results = MockSearchkick::Model.search('b', page: 2, per_page: 15)
-        pagy    = Pagy::Offset::Searchkick.new_from_search(results, anchor_string: 'X')
+        pagy    = app.send(:pagy_searchkick, results, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy::Offset::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

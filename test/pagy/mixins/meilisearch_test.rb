@@ -57,10 +57,10 @@ describe 'pagy/mixins/meilisearch' do
         _(results.to_a).must_rematch :results
       end
     end
-    describe 'new_from_meilisearch' do
+    describe 'Use search object' do
       it 'paginates results with defaults' do
         results = MockMeilisearch::Model.ms_search('a')
-        pagy    = Pagy::Offset::Meilisearch.new_from_search(results)
+        pagy    = app.send(:pagy_meilisearch, results)
         _(pagy).must_be_instance_of Pagy::Offset::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -68,7 +68,7 @@ describe 'pagy/mixins/meilisearch' do
       end
       it 'paginates results with vars' do
         results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
-        pagy    = Pagy::Offset::Meilisearch.new_from_search(results, anchor_string: 'X')
+        pagy    = app.send(:pagy_meilisearch, results, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy::Offset::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15

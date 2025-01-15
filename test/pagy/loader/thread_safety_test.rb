@@ -6,10 +6,6 @@ require_relative '../../mock_helpers/meilisearch'
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
-def app(**)
-  MockApp::Calendar.new(**)
-end
-
 # Use calendar and a pagy-search for the great complexity of loading and thread safety risks
 describe 'Autoload thread safety' do
   threads       = []
@@ -23,13 +19,14 @@ describe 'Autoload thread safety' do
                  Date.beginning_of_week = :sunday
 
                  period = [Time.zone.local(2022, 3, 1, 3), Time.zone.local(2023, 3, 10, 3)]
-                 calendar, pagy_c, _records = app(params: { page: 1 }).send(:pagy_calendar,
-                                                                            Event.all,
-                                                                            month: { period: period },
-                                                                            pagy: {})
+                 calendar, pagy_c, _records = MockApp::Calendar.new(params: { page: 1 })
+                                                               .send(:pagy_calendar,
+                                                                     Event.all,
+                                                                     month: { period: period },
+                                                                     pagy: {})
 
                  results = MockMeilisearch::Model.ms_search('a')
-                 pagy_m  = Pagy::Offset::Meilisearch.new_from_search(results)
+                 pagy_m  = MockApp.new.send(:pagy_meilisearch, results)
 
                  if calendar[:month].instance_of?(Pagy::Offset::Calendar::Month) &&
                     pagy_c.instance_of?(Pagy::Offset) &&

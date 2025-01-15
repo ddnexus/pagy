@@ -3,10 +3,14 @@
 class Pagy
   # Model extension
   module Search
+    class Arguments < Array
+      def respond_to_missing? = true
+
+      def method_missing(*) = push(*)
+    end
+
     def pagy_search(term = nil, **options, &block)
-      [self, term, options, block].tap do |args|
-        args.define_singleton_method(:method_missing) { |*a| args += a }
-      end
+      Arguments.new([self, term, options, block])
     end
   end
 
