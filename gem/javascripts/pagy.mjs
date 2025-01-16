@@ -23,7 +23,7 @@ const Pagy = (() => {
   }));
   const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
-  const initNavKeyset = async (nav, [pageSym, [storageKey, spliceArgs]]) => {
+  const initKeynav = async (nav, [pageSym, [storageKey, spliceArgs]]) => {
     if (!storageSupport) {
       return;
     }
@@ -62,7 +62,7 @@ const Pagy = (() => {
     widths,
     series,
     labels,
-    keysetArgs
+    keynavArgs
   ]) => {
     const parent = nav.parentElement;
     let lastWidth = -1;
@@ -79,8 +79,8 @@ const Pagy = (() => {
       nav.innerHTML = "";
       nav.insertAdjacentHTML("afterbegin", html);
       lastWidth = widths[index];
-      if (keysetArgs) {
-        initNavKeyset(nav, keysetArgs);
+      if (keynavArgs) {
+        initKeynav(nav, keynavArgs);
       }
     })();
     if (nav.classList.contains(pagy + "-rjs")) {
@@ -123,7 +123,7 @@ const Pagy = (() => {
         try {
           const [helperId, ...args] = JSON.parse(B64Decode(element.getAttribute("data-pagy")));
           if (helperId == "n") {
-            initNavKeyset(element, ...args);
+            initKeynav(element, ...args);
           } else if (helperId == "nj") {
             initNavJs(element, args);
           } else if (helperId == "cj") {

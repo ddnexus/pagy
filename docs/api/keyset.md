@@ -227,7 +227,7 @@ which naturally ends with the end of the `set`, so it doesn't have any `cutoff` 
 - A `cutoff` identifies a "cutoff value", for a `page` in the `set`. It is not a record nor a reference to it.
 - Its value is derived from the `keyset attributes values` array of the last record of the `page`, converted to JSON, and encoded
   as a Base64 URL-safe string, for easy use in URLs.
-  - `Pagy::Keyset` embeds it in the request URL; `Pagy::Keyset::Augmented` caches it on the client `sessionStorage`.
+  - `Pagy::Keyset` embeds it in the request URL; `Pagy::Keyset::Keynav` caches it on the client `sessionStorage`.
 - All the `page`s but the last, end with the `cutoff`.
 - All the `page`s but the first, begin AFTER the `cutoff` of the previous `page`.
 

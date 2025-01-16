@@ -102,9 +102,9 @@ The `limit` extra adds the `pagy_limit_selector_js` helper to the `Pagy::Fronten
 
 ==- `pagy_limit_selector_js(pagy, **vars)`
 
-!!!warning Not for Keyset::Augmented instances!
+!!!warning Not for Keyset::Keynav instances!
 
-This helper doesn't make sense, and doesn't work with `Pagy::Keyset::Augmented` instances.
+This helper doesn't make sense, and doesn't work with `Pagy::Keyset::Keynav` instances.
 !!!
 
 This helper provides a limit selector UI, which allows the user to select any arbitrary limit per page (below the `:limit_max`

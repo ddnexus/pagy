@@ -3,9 +3,9 @@
 class Pagy
   class Keyset
     # Use keyset pagination with numeric pages supporting the *nav and other helpers.
-    class Augmented < Keyset
-      autoload :ActiveRecord, PAGY_PATH.join('keyset/augmented/active_record').to_s
-      autoload :Sequel,       PAGY_PATH.join('keyset/augmented/sequel').to_s
+    class Keynav < Keyset
+      autoload :ActiveRecord, PAGY_PATH.join('keyset/keynav/active_record').to_s
+      autoload :Sequel,       PAGY_PATH.join('keyset/keynav/sequel').to_s
 
       # Avoid args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'       # Prefix for filter_args
@@ -36,7 +36,7 @@ class Pagy
         (@filter_args ||= {}).merge!(cutoff_args)
       end
 
-      # Get the augmented page from the client
+      # Get the keynav page from the client
       def assign_page
         if @vars[:page]
           storage_key, @page, @last, @prev_cutoff, @cutoff = @vars[:page]

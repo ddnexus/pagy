@@ -8,7 +8,7 @@ class Pagy
   class Keyset < Pagy
     autoload :ActiveRecord, PAGY_PATH.join('keyset/active_record').to_s
     autoload :Sequel,       PAGY_PATH.join('keyset/sequel').to_s
-    autoload :Augmented,    PAGY_PATH.join('keyset/augmented').to_s
+    autoload :Keynav, PAGY_PATH.join('keyset/keynav').to_s
 
     class TypeError < ::TypeError; end
 
@@ -67,7 +67,7 @@ class Pagy
     #
     #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
     #
-    def after_cutoff_sql(prefix = nil)   # prefix is used by the Keyset::Augmented instances
+    def after_cutoff_sql(prefix = nil)   # prefix is used by the Keyset::Keynav instances
       operator    = { asc: '>', desc: '<' }
       directions  = @keyset.values
       table       = @set.model.table_name

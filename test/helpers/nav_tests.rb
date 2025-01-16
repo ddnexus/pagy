@@ -5,7 +5,7 @@ require_relative '../mock_helpers/app'
 require_relative '../files/models'
 
 # required because we use the class that does not load the mixin, so wenmiss the extra pagy_data
-require 'pagy/mixins/keyset_augmented'
+require 'pagy/mixins/keynav'
 
 module NavTests
   def app
@@ -21,8 +21,8 @@ module NavTests
       _(app.send(method, pagyx, id: 'test-nav-id', anchor_string: 'anchor_string')).must_rematch :"extras_#{page}"
     end
     _ { app.send(method, PagyBuggy.new(count: 100)) }.must_raise Pagy::InternalError
-    pagyk = Pagy::Keyset::Augmented.new(Pet.order(:animal, :name, :id),
-                                        page: ['key', 2, 2, ["cat", "Ella", 18], nil])
+    pagyk = Pagy::Keyset::Keynav.new(Pet.order(:animal, :name, :id),
+                                     page: ['key', 2, 2, ["cat", "Ella", 18], nil])
     _(app.send(method, pagyk)).must_rematch :keyset
   end
 
@@ -38,8 +38,8 @@ module NavTests
     # raise Pagy::VariableError for missing 0 step
     pagy = Pagy::Offset.new(count: 1000, page: 20, steps: { 0 => 5, 600 => 7 })
     _ { app.send(method, pagy, steps: { 600 => 7 }) }.must_raise Pagy::VariableError
-    pagyk = Pagy::Keyset::Augmented.new(Pet.order(:animal, :name, :id),
-                                        page: ['key', 2, 2, ["cat", "Ella", 18], nil])
+    pagyk = Pagy::Keyset::Keynav.new(Pet.order(:animal, :name, :id),
+                                     page: ['key', 2, 2, ["cat", "Ella", 18], nil])
     _(app.send(method, pagyk)).must_rematch :keyset
   end
 

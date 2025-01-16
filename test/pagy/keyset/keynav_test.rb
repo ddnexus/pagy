@@ -8,20 +8,20 @@ require 'pagy/helpers/b64'
   describe "Pagy Keyset with #{model}" do
     describe 'uses optional variables' do
       it 'use the :tuple_comparison' do
-        pagy    = Pagy::Keyset::Augmented.new(model.order(:animal, :name, :id),
-                                              page:             ['key', 2, 2, ["cat", "Ella", 18], nil],
-                                              limit:            10,
-                                              tuple_comparison: true)
+        pagy    = Pagy::Keyset::Keynav.new(model.order(:animal, :name, :id),
+                                           page:             ['key', 2, 2, ["cat", "Ella", 18], nil],
+                                           limit:            10,
+                                           tuple_comparison: true)
         records = pagy.records
         _(records.size).must_equal 10
         _(records.first.id).must_equal 13
         _(pagy.update).must_equal ['key', [2, 1, ["dog", "Denis", 44]]]
       end
       it 'uses :stringify_keyset_values' do
-        pagy = Pagy::Keyset::Augmented.new(model.order(:id),
-                                           page:                    ['key', 2, 2, [10], nil],
-                                           limit:                   10,
-                                           stringify_keyset_values: ->(attr) { attr.tap { |a| a[:id] = a[:id].to_s } })
+        pagy = Pagy::Keyset::Keynav.new(model.order(:id),
+                                        page:                    ['key', 2, 2, [10], nil],
+                                        limit:                   10,
+                                        stringify_keyset_values: ->(attr) { attr.tap { |a| a[:id] = a[:id].to_s } })
         _(pagy.next).must_equal(3)
         _(pagy.instance_variable_get(:@filter_args)).must_equal(id: 10)
         _(pagy.update).must_equal ['key', [2, 1, ["20"]]]
@@ -29,25 +29,25 @@ require 'pagy/helpers/b64'
     end
     describe 'handles the page/cut' do
       it 'handles the page/cut for the first page' do
-        pagy = Pagy::Keyset::Augmented.new(model.order(:id),
-                                           limit: 10)
+        pagy = Pagy::Keyset::Keynav.new(model.order(:id),
+                                        limit: 10)
         _(pagy.instance_variable_get(:@cut)).must_be_nil
         _(pagy.next).must_equal 2
         _(pagy.update).must_equal [nil, [1, 1, [10]]]
       end
       it 'handles the page/cut for the second page' do
-        pagy = Pagy::Keyset::Augmented.new(model.order(:id),
-                                           page: ['key', 2,  2, [10]],
-                                           limit:   10)
+        pagy = Pagy::Keyset::Keynav.new(model.order(:id),
+                                        page: ['key', 2,  2, [10]],
+                                        limit:   10)
         _(pagy.instance_variable_get(:@filter_args)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal 3
         _(pagy.update).must_equal ['key', [2, 1, [20]]]
       end
       it 'handles the page/cut for the last page' do
-        pagy = Pagy::Keyset::Augmented.new(model.order(:id),
-                                           page: ['key', 5, 5, [40]],
-                                           limit:   10)
+        pagy = Pagy::Keyset::Keynav.new(model.order(:id),
+                                        page: ['key', 5, 5, [40]],
+                                        limit:   10)
         _(pagy.instance_variable_get(:@filter_args)).must_equal(id: 40)
         _(pagy.records.first.id).must_equal 41
         _(pagy.next).must_be_nil
@@ -56,18 +56,18 @@ require 'pagy/helpers/b64'
     end
     describe 'handles the jumping back' do
       it 'handles the assign_cut_args jump back to the first page' do
-        pagy = Pagy::Keyset::Augmented.new(model.order(:id),
-                                           page: ['key', 1, 3, nil, [10]], # last visited 2
-                                           limit: 10)
+        pagy = Pagy::Keyset::Keynav.new(model.order(:id),
+                                        page: ['key', 1, 3, nil, [10]], # last visited 2
+                                        limit: 10)
         _(pagy.instance_variable_get(:@prev_cutoff)).must_be_nil
         _(pagy.next).must_equal 2
         _(pagy.instance_variable_get(:@filter_args)).must_equal(cutoff_id: 10)
         _(pagy.update).must_equal ['key']
       end
       it 'handles the assign_cut_args jump back to the second page' do
-        pagy = Pagy::Keyset::Augmented.new(model.order(:id),
-                                           page: ['key', 2, 3, [20], [30]],
-                                           limit:   10)
+        pagy = Pagy::Keyset::Keynav.new(model.order(:id),
+                                        page: ['key', 2, 3, [20], [30]],
+                                        limit:   10)
         _(pagy.instance_variable_get(:@filter_args)).must_equal({ :id => 20, :cutoff_id => 30 })
         _(pagy.records.first.id).must_equal 21
         _(pagy.next).must_equal 3
@@ -78,7 +78,7 @@ require 'pagy/helpers/b64'
     describe 'other requirements' do
       it 'adds the required columns to the selected values' do
         set  = model.order(:animal, :name, :id).select(:name)
-        pagy = Pagy::Keyset::Augmented.new(set, limit: 10)
+        pagy = Pagy::Keyset::Keynav.new(set, limit: 10)
         pagy.records
         set = pagy.instance_variable_get(:@set)
         _((model == Pet ? set.select_values : set.opts[:select]).sort).must_equal %i[animal id name]
@@ -103,13 +103,13 @@ require 'pagy/helpers/b64'
           cutoff_list = [nil]
           pages       = slurp_by_page do |page|
             page ||= 1 # required only because page could be nil, and we want to pass the cutoff_list index
-            pagy = Pagy::Keyset::Augmented.new(set,
-                                               page: ['key',
-                                                      page,
-                                                      cutoff_list.size,
-                                                      cutoff_list[page - 1],
-                                                      cutoff_list[page]],
-                                               limit: 9)
+            pagy = Pagy::Keyset::Keynav.new(set,
+                                            page: ['key',
+                                                   page,
+                                                   cutoff_list.size,
+                                                   cutoff_list[page - 1],
+                                                   cutoff_list[page]],
+                                            limit: 9)
             cutoff_list << pagy.instance_variable_get(:@cutoff)
             { records: pagy.records, page: pagy.next }
           end

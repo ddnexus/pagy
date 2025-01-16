@@ -4,13 +4,13 @@ interface SyncData {
   key:   string
   str?:  string
 }
-type InitArgs = ["n",  NavKeysetArgs] |
+type InitArgs = ["n",  KeynavArgs] |
                 ["nj", NavJsArgs] |
                 ["cj", ComboNavJsArgs] |
                 ["sj", SelectorJsArgs]
 
-type NavKeysetArgs = readonly [pageSym: string,
-                               update:  [storageKey: string, spliceArgs?: SpliceArgs]]
+type KeynavArgs = readonly [pageSym: string,
+                            update:  [storageKey: string, spliceArgs?: SpliceArgs]]
 
 type SpliceArgs = readonly [start:       number,
                             deleteCount: number,     // it would be optional, but ts complains
@@ -29,7 +29,7 @@ type NavJsArgs = readonly [Tokens,
                            widths: number[],
                            series: (string | number)[][],
                            labels: string[][] | null,
-                           NavKeysetArgs?]
+                           KeynavArgs?]
 
 type ComboNavJsArgs = readonly [urlToken:string]
 
@@ -91,8 +91,8 @@ const Pagy = (() => {
   // Return a random key: 3 chars max, base-36 number < 36**3
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
 
-  // Init for Keyset::Augmented paginated navs
-  const initNavKeyset = async (nav:HTMLElement, [pageSym, [storageKey, spliceArgs]]:NavKeysetArgs) => {
+  // Init for Keyset::Keynav paginated navs
+  const initKeynav = async (nav:HTMLElement, [pageSym, [storageKey, spliceArgs]]:KeynavArgs) => {
     if (!storageSupport) { return }
 
     let browserKey = document.cookie.split(/;\s+/)  // it works even if malformed
@@ -131,7 +131,7 @@ const Pagy = (() => {
 
   // Init the *_nav_js helper
   const initNavJs = (nav:NavJsElement, [[before, anchor, current, gap, after],
-                     widths, series, labels, keysetArgs]:NavJsArgs) => {
+                     widths, series, labels, keynavArgs]:NavJsArgs) => {
     const  parent = <HTMLElement>nav.parentElement;
     let lastWidth = -1;
     (nav.render = () => {
@@ -150,7 +150,7 @@ const Pagy = (() => {
       nav.innerHTML = "";
       nav.insertAdjacentHTML("afterbegin", html);
       lastWidth = widths[index];
-      if (keysetArgs) { void initNavKeyset(nav, <NavKeysetArgs><unknown>keysetArgs) }
+      if (keynavArgs) { void initKeynav(nav, <KeynavArgs><unknown>keynavArgs) }
     })();
     if (nav.classList.contains(pagy + "-rjs")) { rjsObserver.observe(parent) }
   };
@@ -203,7 +203,7 @@ const Pagy = (() => {
           const [helperId, ...args] = <InitArgs>JSON.parse(B64Decode(<string>element.getAttribute("data-pagy")));
           if (helperId == "n") {
             // @ts-expect-error spread 2 arguments, not 3 as it complains about
-            void initNavKeyset(element, ...<NavKeysetArgs><unknown>args);
+            void initKeynav(element, ...<KeynavArgs><unknown>args);
           } else if (helperId == "nj") {
             initNavJs(<NavJsElement>element, <NavJsArgs><unknown>args);
           } else if (helperId == "cj") {

@@ -10,8 +10,8 @@
 #    bundle exec pagy -h
 #
 # DEV USAGE
-#    bundle exec pagy clone keyet_augmented
-#    bundle exec pagy ./keyset_augmented.ru
+#    bundle exec pagy clone keynav
+#    bundle exec pagy ./keynav.ru
 #
 # URL
 #    http://0.0.0.0:8000
@@ -37,7 +37,7 @@ Pagy::DEFAULT[:limit_requestable] = true
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
-class PagyKeysetAugmented < Sinatra::Base
+class PagyKeynav < Sinatra::Base
   include Pagy::Backend
 
   get('/javascripts/:file') do
@@ -55,7 +55,7 @@ class PagyKeysetAugmented < Sinatra::Base
     Time.zone = 'UTC'
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset_augmented_js(Pet.order(@order))
+    @pagy, @pets = pagy_keynav_js(Pet.order(@order))
     @ids = @pets.pluck(:id)
     erb :main
   end
@@ -75,7 +75,7 @@ class PagyKeysetAugmented < Sinatra::Base
       <html lang="en">
       <html>
       <head>
-         <title>Pagy Keyset Augmented App</title>
+         <title>Pagy Keynav App</title>
         <script src="javascripts/pagy.js"></script>
          <script>
           window.addEventListener("load", Pagy.init);
@@ -110,9 +110,9 @@ class PagyKeysetAugmented < Sinatra::Base
   template :main do
     <<~ERB
       <div class="content">
-        <h1>Pagy Keyset Augmented App</h1>
+        <h1>Pagy Keynav App</h1>
         <p>Self-contained, standalone app usable to easily reproduce any Keyset For UI related pagy issue
-        with ActiveRecord sets. Notice that Keyset Augmented works also with Sequel sets</p>
+        with ActiveRecord sets. Notice that Keynav works also with Sequel sets</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
         <ul>
@@ -245,4 +245,4 @@ data.each_line(chomp: true) do |pet|
 end
 Pet.insert_all(pets)
 
-run PagyKeysetAugmented
+run PagyKeynav

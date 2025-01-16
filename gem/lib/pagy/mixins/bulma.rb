@@ -9,7 +9,7 @@ class Pagy
                        aria_label: nil, **vars)
       id   = %( id="#{id}") if id
       a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Augmented) && pagy.is_a?(Keyset::Augmented)
+      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Keynav) && pagy.is_a?(Keyset::Keynav)
 
       html = %(<nav#{id} class="#{classes}" #{nav_aria_label(pagy, aria_label:)}#{data}>)
       html << bulma_prev_next_html(pagy, a)

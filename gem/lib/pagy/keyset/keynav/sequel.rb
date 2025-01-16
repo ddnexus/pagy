@@ -4,8 +4,8 @@ require_relative '../adapters/sequel'
 
 class Pagy
   class Keyset
-    class Augmented
-      class Sequel < Augmented
+    class Keynav
+      class Sequel < Keynav
         include Adapters::Sequel
       end
     end

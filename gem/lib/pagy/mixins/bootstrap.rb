@@ -8,7 +8,7 @@ class Pagy
     def pagy_bootstrap_nav(pagy, id: nil, classes: 'pagination', aria_label: nil, **vars)
       id   = %( id="#{id}") if id
       a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Augmented) && pagy.is_a?(Keyset::Augmented)
+      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Keynav) && pagy.is_a?(Keyset::Keynav)
 
       html = %(<nav#{id} class="pagy-bootstrap nav" #{nav_aria_label(pagy, aria_label:)}#{data
                  }><ul class="#{classes}">#{bootstrap_prev_html(pagy, a)})

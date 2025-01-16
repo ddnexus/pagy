@@ -1,11 +1,11 @@
 ---
-title: Pagy::Keyset::Augmented
+title: Pagy::Keyset::Keynav
 category:
   - Feature
   - Class
 ---
 
-# Pagy::Keyset::Augmented
+# Pagy::Keyset::Keynav
 
 A [Pagy::Keyset](keyset.md) subclass supporting `pagy_*nav` and other Frontend helpers.
 
@@ -17,7 +17,7 @@ A [Pagy::Keyset](keyset.md) subclass supporting `pagy_*nav` and other Frontend h
 The regular `Pagy::Keyset` uses the fastest technique for SQL pagination, but it cannot work with any Frontend helper because they
 require a pagy object with numeric variables.
 
-That's why we created `Pagy::Keyset::Augmented`: it uses the fast keyset pagination AND supports `pagy_*navs` and other Frontend
+That's why we created `Pagy::Keyset::Keynav`: it uses the fast keyset pagination AND supports `pagy_*navs` and other Frontend
 helpers.
 
 !!!
@@ -33,20 +33,20 @@ You should also familiarize with the [Pagy::Keyset](keyset.md) class.
 
 This section integrates the [Keyset Glossary](keyset_for_ui.md#glossary)
 
-| Term                       | Description                                                                                                                                                                               |
-|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `keyset pagination for UI` | The pagy exclusive technique to use `keyset pagination` with numeric pages, supporting `pagy_*navs` and other Frontend helpers.<br/>The best technique for performance AND functionality! |
-| `page`                     | The array of variables from the client prepared by the `keyset_for_ui` extra, to paginate the requested page.                                                                             |
-| `cutoffs`                  | The array of `cutoff`s of the known pagination state, used to keep track of the visited pages during the navigation. They are cached in the `sessionStorge` of the client.                |
+| Term                          | Description                                                                                                                                                                               |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `keyset augmented pagination` | The pagy exclusive technique to use `keyset pagination` with numeric pages, supporting `pagy_*navs` and other Frontend helpers.<br/>The best technique for performance AND functionality! |
+| `page`                        | The array of variables from the client prepared by the `keyset_for_ui` extra, to paginate the requested page.                                                                             |
+| `cutoffs`                     | The array of `cutoff`s of the known pagination state, used to keep track of the visited pages during the navigation. They are cached in the `sessionStorge` of the client.                |
 
 ## How Pagy Keyset For UI works
 
-The Keyset pagination for UI adds the numeric variables (`page`, `last`, `prev`, `next`, `in`) to its instances, supporting their
+The Augmented Keyset pagination adds the numeric variables (`page`, `last`, `prev`, `next`, `in`) to its instances, supporting their
 usage with most Frontend helpers. It does so by transparently exchanging data back and forth with the client, that stores the
 state of the pagination.
 
-You can use a `Pagy::Keyset::Augmented` object as you would with a standard `Pagy` (offset countless) object. You need just a different
-setup and you will get a lot more performance.
+You can use a `Pagy::Keyset::Keynav` object as you would with a standard `Pagy` (offset countless) object. You need just a different
+setup, and you will get a lot more performance.
 
 ==- In-depth: Understanding the data exchange
 <br/>
@@ -98,7 +98,7 @@ of the `page` that will be requested with that particular URL.
 
 <br/>
 
-The [keyset_for_ui extra](/docs/extras/keyset_for_ui.md) is responsible for decoding and checking the variables, passing them to
+The [keynav](/docs/extras/keynav.md) is responsible for decoding and checking the variables, passing them to
 this class or falling back to the `pagy_countless` constructor if the client side does not suport the
 `sessionStorage`.
 
@@ -182,24 +182,24 @@ user by:
 
 ## ORMs
 
-`Pagy::Keyset::Augmented` implements the subclasses for `ActiveRecord::Relation` and `Sequel::Dataset` sets and instantiate them
+`Pagy::Keyset::Keynav` implements the subclasses for `ActiveRecord::Relation` and `Sequel::Dataset` sets and instantiate them
 internally:
 
 ```ruby
-Pagy::Keyset::Augmented.new(active_record_set)
-#=> #<Pagy::Keyset::Augmented::ActiveRecord:0x00000001066215e0>
+Pagy::Keyset::Keynav.new(active_record_set)
+#=> #<Pagy::Keyset::Keynav::ActiveRecord:0x00000001066215e0>
 
-Pagy::Keyset::Augmented.new(sequel_set)
-#=> #<Pagy::Keyset::Augmented::Sequel:0x00000001066545e0>
+Pagy::Keyset::Keynav.new(sequel_set)
+#=> #<Pagy::Keyset::Keynav::Sequel:0x00000001066545e0>
 ```
 
 ## Methods
 
-==- `Pagy::Keyset::Augmented.new(set, **vars)`
+==- `Pagy::Keyset::Keynav.new(set, **vars)`
 
 The constructor takes the `set`, and an optional hash of [variables](#variables). It returns a
-`Pagy::Keyset::Augmented::ActiveRecord` or
-`Pagy::Keyset::Augmented::Sequel` object (depending on the `set` class).
+`Pagy::Keyset::Keynav::ActiveRecord` or
+`Pagy::Keyset::Keynav::Sequel` object (depending on the `set` class).
 
 ==- `records`
 

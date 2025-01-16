@@ -24,7 +24,7 @@ window.Pagy = (() => {
   }));
   const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
-  const initNavKeyset = async (nav, [pageSym, [storageKey, spliceArgs]]) => {
+  const initKeynav = async (nav, [pageSym, [storageKey, spliceArgs]]) => {
     if (!storageSupport) {
       return;
     }
@@ -63,7 +63,7 @@ window.Pagy = (() => {
     widths,
     series,
     labels,
-    keysetArgs
+    keynavArgs
   ]) => {
     const parent = nav.parentElement;
     let lastWidth = -1;
@@ -80,8 +80,8 @@ window.Pagy = (() => {
       nav.innerHTML = "";
       nav.insertAdjacentHTML("afterbegin", html);
       lastWidth = widths[index];
-      if (keysetArgs) {
-        initNavKeyset(nav, keysetArgs);
+      if (keynavArgs) {
+        initKeynav(nav, keynavArgs);
       }
     })();
     if (nav.classList.contains(pagy + "-rjs")) {
@@ -124,7 +124,7 @@ window.Pagy = (() => {
         try {
           const [helperId, ...args] = JSON.parse(B64Decode(element.getAttribute("data-pagy")));
           if (helperId == "n") {
-            initNavKeyset(element, ...args);
+            initKeynav(element, ...args);
           } else if (helperId == "nj") {
             initNavJs(element, args);
           } else if (helperId == "cj") {
@@ -140,5 +140,5 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=6E1AB0251C5C86F764756E2164756E21
+//# debugId=18FB2404C62F12AF64756E2164756E21
 //# sourceMappingURL=pagy.js.map
