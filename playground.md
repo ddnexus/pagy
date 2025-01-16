@@ -103,28 +103,27 @@ If you need to reproduce any calendar related issue, you can follow the same usa
 
 #### 5. Keyset Apps
 
-This are the interactive showcase/repro for the keyset extra with `ActiveRecord` or `Sequel` sets:
+These are the interactive showcase/repro for the keyset extra with `ActiveRecord` or `Sequel` sets:
 
 !!!success Try it now!
 
 Run the interactive demo from your terminal:
 
 ```sh      
-bundle exec pagy | grep keyset
+bundle exec pagy | grep key   
+  keynav                     Showcase the Keynav pagination (ActiveRecord example)
   keyset                     Showcase the Keyset pagination (ActiveRecord example)
-  keyset_for_ui        Showcase the Keyset Numeric pagination (ActiveRecord example)
   keyset_sequel              Showcase the Keyset pagination (Sequel example)
-
+ 
+bundle exec pagy keynav
 bundle exec pagy keyset
-bundle exec pagy keyset_for_ui
 bundle exec pagy keyset_sequel
 ```
 
 ...and point your browser to http://0.0.0.0:8000
 !!!
 
-_Run `pagy clone keyset_ar` or `pagy clone keyset_s` to inspect the app file._
-
+_For example run `pagy clone keyset` to inspect the app file._
 
 ### Troubleshooting
 

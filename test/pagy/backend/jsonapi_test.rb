@@ -15,7 +15,7 @@ describe 'jsonapi' do
 
   it 'raises PageParamError with page number' do
     app = MockApp.new(params: { page: 2 })
-    _ { _pagy, _records = app.send(:pagy_offset, @collection) }.must_raise Pagy::ReservedParamError
+    _ { _pagy, _records = app.send(:pagy_offset, @collection) }.must_raise Pagy::JsonapiReservedParamError
   end
 
   describe 'JsonApi' do

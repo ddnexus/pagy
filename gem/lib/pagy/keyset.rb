@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 require 'json'
-require_relative 'helpers/b64'
+require_relative 'modules/b64'
 
 class Pagy
   # Implement wicked-fast keyset pagination for big data
   class Keyset < Pagy
-    autoload :ActiveRecord, PAGY_PATH.join('keyset/active_record').to_s
-    autoload :Sequel,       PAGY_PATH.join('keyset/sequel').to_s
-    autoload :Keynav, PAGY_PATH.join('keyset/keynav').to_s
+    path = ROOT.join('lib/pagy/keyset').freeze
+    autoload :ActiveRecord, path.join('active_record')
+    autoload :Sequel,       path.join('sequel')
+    autoload :Keynav,       path.join('keynav')
 
     class TypeError < ::TypeError; end
 
     # Allow to run Keyset.new or Keyset::ActiveRecord.new
     def self.new(set, **vars)
-      # Send the adapter-class (e.g. *::ActiveRecord) directly to the initializer
+      # Run the initializer if is an adapter instance (e.g. *::ActiveRecord instance)
       return allocate.tap { |instance| instance.send(:initialize, set, **vars) } if /::(?:ActiveRecord|Sequel)$/.match?(name)
 
       # Pick the right adapter-class and run new again on the adapter class

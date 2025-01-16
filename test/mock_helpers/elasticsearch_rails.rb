@@ -36,7 +36,7 @@ module MockElasticsearchRails
       Response.new(*)
     end
 
-    extend ::Pagy::Search
+    extend Pagy::Offset::Search
   end
 
   class ResponseES7 < Response

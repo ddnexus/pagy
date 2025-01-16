@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+require_relative '../modules/ui_support'
+
 class Pagy
   class Keyset
     # Use keyset pagination with numeric pages supporting the *nav and other helpers.
     class Keynav < Keyset
-      autoload :ActiveRecord, PAGY_PATH.join('keyset/keynav/active_record').to_s
-      autoload :Sequel,       PAGY_PATH.join('keyset/keynav/sequel').to_s
+      path = ROOT.join('lib/pagy/keyset/keynav').freeze
+      autoload :ActiveRecord, path.join('active_record')
+      autoload :Sequel,       path.join('sequel')
 
       # Avoid args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'       # Prefix for filter_args

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # DESCRIPTION
-#    Showcase the Keyset Numeric pagination (ActiveRecord example)
+#    Showcase the Keynav pagination (ActiveRecord example)
 #
 # DOC
 #    https://ddnexus.github.io/pagy/playground/#5-keyset-apps

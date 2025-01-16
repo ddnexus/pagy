@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
+require_relative 'modules/ui_support'
+
 class Pagy
   # Implements Offset Pagination
   class Offset < Pagy
-    autoload :Calendar,           PAGY_PATH.join('offset/calendar').to_s
-    autoload :Countless,          PAGY_PATH.join('offset/countless').to_s
-    autoload :Meilisearch,        PAGY_PATH.join('offset/meilisearch').to_s
-    autoload :Searchkick,         PAGY_PATH.join('offset/searchkick').to_s
-    autoload :ElasticsearchRails, PAGY_PATH.join('offset/elasticsearch_rails').to_s
+    path = ROOT.join('lib/pagy/offset').freeze
+    autoload :Calendar,  path.join('calendar')
+    autoload :Countless, path.join('countless')
+    autoload :Search,    path.join('search')
 
     # Core default: constant for easy access, but mutable for customizable defaults
     DEFAULT = { count_args: [:all],  # AR friendly # rubocop:disable Style/MutableConstant

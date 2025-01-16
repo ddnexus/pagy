@@ -10,12 +10,13 @@ class Pagy
   class Offset
     # Calendar class
     class Calendar < Hash
-      autoload :Unit,    PAGY_PATH.join('offset/calendar/unit').to_s
-      autoload :Day,     PAGY_PATH.join('offset/calendar/day').to_s
-      autoload :Month,   PAGY_PATH.join('offset/calendar/month').to_s
-      autoload :Quarter, PAGY_PATH.join('offset/calendar/quarter').to_s
-      autoload :Week,    PAGY_PATH.join('offset/calendar/week').to_s
-      autoload :Year,    PAGY_PATH.join('offset/calendar/year').to_s
+      path = ROOT.join('lib/pagy/offset/calendar').freeze
+      autoload :Unit,    path.join('unit')
+      autoload :Day,     path.join('day')
+      autoload :Month,   path.join('month')
+      autoload :Quarter, path.join('quarter')
+      autoload :Week,    path.join('week')
+      autoload :Year,    path.join('year')
 
       # Specific out of range error
       class OutOfRangeError < VariableError; end

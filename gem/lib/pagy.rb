@@ -4,21 +4,16 @@ require 'pathname'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
-  VERSION   = '9.3.3'
-  ROOT      = Pathname.new(__dir__).parent.freeze
-  PAGY_PATH = ROOT.join('lib/pagy').freeze
+  VERSION = '9.3.3'
+  ROOT    = Pathname.new(__dir__).parent.freeze
 
-  autoload :Backend,            PAGY_PATH.join('backend').to_s
-  autoload :Frontend,           PAGY_PATH.join('frontend').to_s
-  autoload :I18n,               PAGY_PATH.join('helpers/i18n').to_s
-  autoload :UISupport,          PAGY_PATH.join('helpers/ui_support').to_s
-  autoload :Offset,             PAGY_PATH.join('offset').to_s
-  autoload :Keyset,             PAGY_PATH.join('keyset').to_s
-  autoload :Search,             PAGY_PATH.join('helpers/search').to_s
-  autoload :ElasticsearchRails, PAGY_PATH.join('mixins/elasticsearch_rails').to_s
-  autoload :Meilisearch,        PAGY_PATH.join('mixins/meilisearch').to_s
-  autoload :Searchkick,         PAGY_PATH.join('mixins/searchkick').to_s
-  autoload :Console,            PAGY_PATH.join('console').to_s
+  path = ROOT.join('lib/pagy').freeze
+  autoload :Backend,  path.join('backend')
+  autoload :Frontend, path.join('frontend')
+  autoload :I18n,     path.join('modules/i18n')
+  autoload :Offset,   path.join('offset')
+  autoload :Keyset,   path.join('keyset')
+  autoload :Console,  path.join('console')
 
   DEFAULT     = { limit:     20,    # rubocop:disable Style/MutableConstant
                   limit_sym: :limit,

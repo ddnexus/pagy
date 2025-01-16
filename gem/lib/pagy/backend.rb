@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/url'
-require_relative 'loaders/backend'
+require_relative 'modules/url'
+require_relative 'backend/loader'
 
 class Pagy
   # Define a few generic methods to paginate a collection out of the box,
@@ -9,7 +9,6 @@ class Pagy
   module Backend
     private
 
-    # Sub-method called only by #pagy: here for easy customization of fetching by overriding
     # You may need to override this method for collections without offset|limit
     def pagy_get_items(collection, pagy)
       collection.offset(pagy.offset).limit(pagy.limit)
@@ -40,9 +39,9 @@ class Pagy
 
     def pagy_jsonapi?(vars)
       return false unless params[:page] && (vars.key?(:jsonapi) ? vars[:jsonapi] : DEFAULT[:jsonapi]) # rubocop:disable Layout/EmptyLineAfterGuardClause
-      params[:page].respond_to?(:fetch) || raise(ReservedParamError, params[:page])
+      params[:page].respond_to?(:fetch) || raise(JsonapiReservedParamError, params[:page])
     end
 
-    include Loaders::Backend
+    include Backend::Loader
   end
 end

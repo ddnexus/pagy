@@ -79,25 +79,6 @@ pagy_metadata(pagy)
   :series       => [1, 2, "3", 4, 5, 6, 7] }
 ```
 
-+++ rails console
-
-!!!warning Warning
-
-Avoid using `rails console` with `Pagy::Console`.
-
-Use `irb` instead. However, if you need `rails console` please ensure you temporarily "unfreeze" the `Pagy::DEFAULT` hash, in
-your `pagy.rb` config file, otherwise you'll receive a "can't modify frozen Hash" exception:
-
-```rb
-# Pagy::DEFAULT.freeze  ## temporarily comment out this line, don't forget to uncomment when finished!
-```
-
-!!!
-
-Now, refer to the instructions in the [irb tab](#irb).
-
-+++
-
 ## Pagy::Console module
 
 The pagy console uses the [standalone extra](/docs/extras/standalone.md) and sets the `Pagy::DEFAULT[:url]` variable default

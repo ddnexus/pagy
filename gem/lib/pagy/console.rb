@@ -10,7 +10,7 @@ class Pagy
       main.include(Backend)
       main.include(Frontend)
       main.define_method(:params) { {} }
-      DEFAULT[:request] = { url_prefix: 'http://www.example.com/subdir' }
+      DEFAULT[:request] = { url_prefix: 'http://www.example.com/subdir', query_params: { example: '123' } }
     end
 
     # Require the extras passed as arguments

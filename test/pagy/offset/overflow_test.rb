@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/mixins/calendar'   # to avoid to load AR support
+require 'pagy/backend/calendar'   # to avoid to load AR support
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
