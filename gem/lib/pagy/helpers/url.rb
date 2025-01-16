@@ -45,12 +45,15 @@ class Pagy
     def pagy_page_url(pagy, page, absolute: false, fragment: nil, **)
       request_var, pagy_params = (vars = pagy.vars).values_at(:request, :params)
       page_name, limit_name    = vars.values_at(:page_sym, :limit_sym).map(&:to_s)
-      page                     = pagy.page_for_url(page)
       query_params             = request_var ? (request_var[:query_params] || {}) : request.GET.clone(freeze: false)
-      page_and_limit           = { page_name => page }.tap { |h| h[limit_name] = vars[:limit] if vars[:limit_requestable] }
-      query_params.merge!(vars[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit)
+      query_params.delete(vars[:jsonapi] ? 'page' : page_name)
+      page_and_limit = {}.tap do |h|
+                         h[page_name]  = pagy.page_for_url(page) # no page param for nil page
+                         h[limit_name] = vars[:limit] if vars[:limit_requestable]
+                       end.compact
+      query_params.merge!(vars[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
       case pagy_params
-      when Hash then query_params.merge!(pagy_params.transform_keys(&:to_s))
+      when Hash then query_params.merge!(pagy_params.transform_keys(&:to_s).compact)
       when Proc then pagy_params.(query_params)
       end
       query_string = "?#{QueryUtils.build_nested_query(query_params, nil, [page_name, limit_name])}"

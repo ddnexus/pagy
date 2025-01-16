@@ -32,19 +32,19 @@ describe 'pagy/mixins/keyset' do
       it 'returns the URLs for first page' do
         app = MockApp.new(params: { page: nil, limit: 10 })
         pagy, _records = app.send(:pagy_keyset, model.order(:id))
-        _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?page&limit=10"
-        _(app.send(:pagy_keyset_next_url, pagy)).must_equal "/foo?page=WzEwXQ&limit=10"
+        _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?limit=10"
+        _(app.send(:pagy_keyset_next_url, pagy)).must_equal "/foo?limit=10&page=WzEwXQ"
       end
       it 'returns the URLs for second page' do
         app = MockApp.new(params: { page: "WzEwXQ", limit: 10 })
         pagy, _records = app.send(:pagy_keyset, model.order(:id))
-        _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?page&limit=10"
-        _(app.send(:pagy_keyset_next_url, pagy)).must_equal "/foo?page=WzIwXQ&limit=10"
+        _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?limit=10"
+        _(app.send(:pagy_keyset_next_url, pagy)).must_equal "/foo?limit=10&page=WzIwXQ"
       end
       it 'returns the URLs for last page' do
         app = MockApp.new(params: { page: "WzQwXQ", limit: 10 })
         pagy, _records = app.send(:pagy_keyset, model.order(:id))
-        _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?page&limit=10"
+        _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?limit=10"
         _(app.send(:pagy_keyset_next_url, pagy)).must_be_nil
       end
     end

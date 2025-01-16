@@ -3,7 +3,7 @@ jsonapi__JsonApi_with_custom_named_params_test_0002_sets_custom_named_params:
   :url: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
 jsonapi___pagy_links_test_0001_returns_the_ordered_links:
   :result:
-    :first: "/foo?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+    :first: "/foo?page%5Bsize%5D=10"
     :prev: "/foo?page%5Bnumber%5D=2&page%5Bsize%5D=10"
     :next: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
     :last: "/foo?page%5Bnumber%5D=100&page%5Bsize%5D=10"
@@ -15,8 +15,8 @@ jsonapi__JsonApi_test_0002_uses_the__jsonapi_with_page_3:
   :url_2: "/foo?page%5Bpage%5D=2&page%5Blimit%5D=20"
 jsonapi___pagy_links_(keyset)_test_0001_returns_the_ordered_links:
   :keyset_result:
-    :first: "/foo?page%5Blatest%5D=1&page%5Bsize%5D=10"
+    :first: "/foo?page%5Bsize%5D=10"
     :next: "/foo?page%5Blatest%5D=WzMwXQ&page%5Bsize%5D=10"
 jsonapi___pagy_links_(keyset)_test_0002_sets_the_next_value_to_null_when_the_link_is_unavailable:
   :keyset_result:
-    :first: "/foo?page%5Blatest%5D=1&page%5Bsize%5D=50"
+    :first: "/foo?page%5Bsize%5D=50"

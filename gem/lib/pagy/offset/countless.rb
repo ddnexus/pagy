@@ -17,7 +17,7 @@ class Pagy
 
       def self.predict_last? = false
 
-      def page_for_url(page) = "#{page}+#{@last}"
+      def page_for_url(page) = [page || 1, @last].join('+')
 
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
