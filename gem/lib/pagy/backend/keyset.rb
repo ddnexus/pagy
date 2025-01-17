@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../keyset'
-
 class Pagy
   # Add backend methods
   Backend.module_eval do

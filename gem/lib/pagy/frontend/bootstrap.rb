@@ -8,9 +8,9 @@ class Pagy
     def pagy_bootstrap_nav(pagy, id: nil, classes: 'pagination', aria_label: nil, **vars)
       id   = %( id="#{id}") if id
       a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Keynav) && pagy.is_a?(Keyset::Keynav)
+      data = %( #{pagy_data(pagy, :n)}) if /^Pagy::Keyset::Keynav/.match?(pagy.class.name)
 
-      html = %(<nav#{id} class="pagy-bootstrap nav" #{nav_aria_label(pagy, aria_label:)}#{data
+      html = %(<nav#{id} class="pagy-bootstrap nav" #{pagy_nav_aria_label(pagy, aria_label:)}#{data
                  }><ul class="#{classes}">#{bootstrap_prev_html(pagy, a)})
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -42,7 +42,7 @@ class Pagy
                   after:   %(#{bootstrap_next_html pagy, a}</ul>) }
 
       %(<nav#{id} class="#{'pagy-rjs ' if sequels[0].size > 1}pagy-bootstrap nav-js" #{
-          nav_aria_label(pagy, aria_label:)} #{
+          pagy_nav_aria_label(pagy, aria_label:)} #{
           pagy_data(pagy, :nj, tokens.values, *sequels)
         }></nav>)
     end
@@ -58,7 +58,7 @@ class Pagy
                    %(border: none; display: inline-block;" class="page-link active">#{A_TAG})
 
       %(<nav#{id} class="pagy-bootstrap combo-nav-js" #{
-          nav_aria_label(pagy, aria_label:)} #{
+          pagy_nav_aria_label(pagy, aria_label:)} #{
           pagy_data(pagy, :cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
         }><ul class="#{classes}">#{
           bootstrap_prev_html(pagy, a)

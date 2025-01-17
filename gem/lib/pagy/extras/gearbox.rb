@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../offset'
-
 class Pagy
   Offset::DEFAULT[:gearbox_extra] = true # extra enabled by default
   Offset::DEFAULT[:gearbox_limit] = [15, 30, 60, 100]

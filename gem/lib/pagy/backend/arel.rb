@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'offset'   # require the offset mixin
-
 class Pagy
   Backend.module_eval do
     private

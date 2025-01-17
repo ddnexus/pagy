@@ -2,7 +2,7 @@
 metadata___pagy_metadata_for_Pagy_test_0001_works_with_unset_DEFAULT:
   :unset_default:
     :url_template: "/foo?page=P "
-    :first_url: "/foo?page=1"
+    :first_url: "/foo"
     :prev_url: "/foo?page=2"
     :page_url: "/foo?page=3"
     :next_url: "/foo?page=4"

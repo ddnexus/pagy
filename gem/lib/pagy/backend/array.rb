@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../offset'
-
 class Pagy
   # Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
   Backend.module_eval do

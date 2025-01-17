@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
+require_relative '../../../test_helper'
 require 'i18n'
 require 'pagy/extras/i18n'
 
-require_relative '../../mock_helpers/app'
+require_relative '../../../mock_helpers/app' # load after the extra
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday

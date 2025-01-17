@@ -23,10 +23,7 @@ class Pagy
   LIMIT_TOKEN = 'L '
   A_TAG       = '<a href="#" style="display: none;">#</a>'
 
-  # Used by the pagy links
-  def self.predict_last? = true
-
-  attr_reader :page, :prev, :next, :in, :limit, :vars, :last
+  attr_reader :page, :count, :prev, :next, :in, :limit, :vars, :last
 
   alias pages last
 
@@ -43,15 +40,14 @@ class Pagy
     assign_and_check(limit: 1)
   end
 
-  # Assign @vars
   def assign_vars(vars)
+    default = {}
     cclass  = self.class
-    default = { **cclass::DEFAULT }
-    while cclass != Pagy
+    begin
+      default = cclass::DEFAULT.merge(default)
       cclass  = cclass.superclass
-      default = { **cclass::DEFAULT, **default }
-    end
-    @vars = { **default, **vars.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') } }
+    end until cclass == Object  # rubocop:disable Lint/Loop  # see https://github.com/rubocop/rubocop-performance/issues/362
+    @vars = default.merge(vars.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') })
   end
 
   def page_for_url(page) = page

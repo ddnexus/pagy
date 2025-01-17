@@ -9,6 +9,8 @@ class Pagy
   module Backend
     private
 
+    include Url
+
     # You may need to override this method for collections without offset|limit
     def pagy_get_items(collection, pagy)
       collection.offset(pagy.offset).limit(pagy.limit)

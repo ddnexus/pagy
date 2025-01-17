@@ -54,9 +54,7 @@ class Pagy
       %(data-pagy="#{B64.encode(data)}")
     end
 
-    private
-
-    def nav_aria_label(pagy, aria_label: nil)
+    def pagy_nav_aria_label(pagy, aria_label: nil)
       aria_label ||= pagy_t('pagy.aria_label.nav', count: pagy.pages)
       %(aria-label="#{aria_label}")
     end

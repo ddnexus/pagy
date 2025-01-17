@@ -39,8 +39,6 @@ class Pagy
       assign_filter_args
     end
 
-    def self.predict_last? = false
-
     # Assign the filter_args
     def assign_filter_args
       return unless @prev_cutoff

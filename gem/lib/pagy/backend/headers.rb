@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../modules/url'
 require_relative 'links'
 
 class Pagy
@@ -11,8 +10,6 @@ class Pagy
   # Add specialized backend methods to add pagination response headers
   Backend.module_eval do
     private
-
-    include Url
 
     # Merge the pagy headers into the response.headers
     def pagy_headers_merge(pagy)
@@ -27,9 +24,8 @@ class Pagy
       { 'link' => pagy_link_header(pagy, **) }.tap do |hash|
         hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]
         hash[headers[:limit]] = pagy.limit.to_s \
-            if headers[:limit] && !(defined?(::Pagy::Offset::Calendar) && pagy.is_a?(Offset::Calendar::Unit))
-        return hash if (defined?(::Pagy::Offset::Countless) && pagy.is_a?(Offset::Countless)) || \
-                       (defined?(::Pagy::Keyset) && pagy.is_a?(Keyset))
+            if headers[:limit] && !/^Pagy::Offset::Calendar/.match?(pagy.class.name)
+        return hash unless pagy.count
 
         hash[headers[:pages]] = pagy.last.to_s if headers[:pages]
         hash[headers[:count]] = pagy.count.to_s if pagy.count && headers[:count] # count may be nil with Calendar

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../offset/search'
 require_relative 'wrapper'
 
 class Pagy
@@ -12,7 +11,8 @@ class Pagy
       search = Offset::Search::Meilisearch
       if search_obj.is_a?(Offset::Search::Arguments)
         # The search_obj is the array of pagy_search args from the model
-        pagy_wrap_search(search_obj, vars) do
+        SearchWrapper.wrap(self, search_obj, vars) do
+          # The wrapper is generic, but this block is specific for this search class
           model, term, options    = search_obj
           options[:hits_per_page] = vars[:limit]
           options[:page]          = vars[:page]

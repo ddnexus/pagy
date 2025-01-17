@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../offset/countless'
-
 class Pagy
   # Paginate without the need of any count, saving one query per rendering
   Backend.module_eval do

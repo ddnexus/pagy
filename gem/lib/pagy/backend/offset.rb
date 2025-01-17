@@ -1,8 +1,6 @@
 # See Pagy::Offset::Backend API documentation: https://ddnexus.github.io/pagy/docs/api/backend
 # frozen_string_literal: true
 
-require_relative '../offset'
-
 class Pagy
   # Basic offset mixin
   Backend.module_eval do

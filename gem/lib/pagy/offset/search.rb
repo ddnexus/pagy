@@ -2,13 +2,14 @@
 
 class Pagy
   class Offset
-    module Search
+    module Search  # Model extension
       class Arguments < Array
         def respond_to_missing? = true
 
         def method_missing(*) = push(*)
       end
 
+      # Collect the search arguments to pass to the actual search
       def pagy_search(term = nil, **options, &block)
         Arguments.new([self, term, options, block])
       end

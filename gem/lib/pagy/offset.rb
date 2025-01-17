@@ -17,7 +17,7 @@ class Pagy
                 page:       1,
                 size:       7 }
 
-    attr_reader :count, :from, :offset, :to
+    attr_reader :from, :offset, :to
 
     # Merge and validate the options, do some simple arithmetic and set the instance variables
     def initialize(**vars) # rubocop:disable Lint/MissingSuper

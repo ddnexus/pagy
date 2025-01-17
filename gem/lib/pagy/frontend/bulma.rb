@@ -9,9 +9,9 @@ class Pagy
                        aria_label: nil, **vars)
       id   = %( id="#{id}") if id
       a    = pagy_anchor(pagy, **vars)
-      data = %( #{pagy_data(pagy, :n)}) if defined?(::Pagy::Keyset::Keynav) && pagy.is_a?(Keyset::Keynav)
+      data = %( #{pagy_data(pagy, :n)}) if /^Pagy::Keyset::Keynav/.match?(pagy.class.name)
 
-      html = %(<nav#{id} class="#{classes}" #{nav_aria_label(pagy, aria_label:)}#{data}>)
+      html = %(<nav#{id} class="#{classes}" #{pagy_nav_aria_label(pagy, aria_label:)}#{data}>)
       html << bulma_prev_next_html(pagy, a)
       html << %(<ul class="pagination-list">)
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -43,7 +43,7 @@ class Pagy
                  after:   '</ul>' }
 
       %(<nav#{id} class="#{'pagy-rjs ' if sequels[0].size > 1}#{classes}" #{
-          nav_aria_label(pagy, aria_label:)} #{
+          pagy_nav_aria_label(pagy, aria_label:)} #{
           pagy_data(pagy, :nj, tokens.values, *sequels)
         }></nav>)
     end
@@ -61,7 +61,7 @@ class Pagy
                    %(background-color: #485fc7;">#{A_TAG})
 
       %(<nav#{id} class="#{classes}" #{
-          nav_aria_label(pagy, aria_label:)} #{
+          pagy_nav_aria_label(pagy, aria_label:)} #{
           pagy_data(pagy, :cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
         }>#{
           bulma_prev_next_html(pagy, a)

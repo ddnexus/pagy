@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../offset/search'
 require_relative 'wrapper'
 
 class Pagy
@@ -12,13 +11,14 @@ class Pagy
       search = Offset::Search::ElasticsearchRails
       if search_obj.is_a?(Offset::Search::Arguments)
         # The search_obj is the array of pagy_search args from the model
-        pagy_wrap_search(search_obj, vars) do
+        SearchWrapper.wrap(self, search_obj, vars) do
+          # The wrapper is generic, but this block is specific for this search class
           model, query_or_payload, options, _block, *called = search_obj
           options[:size] = vars[:limit]
           options[:from] = vars[:limit] * ((vars[:page] || 1) - 1)
-          response     = model.send(search::DEFAULT[:search_method], query_or_payload, **options)
-          vars[:count] = search.total_count(response)
-          [search.new(**vars), response, called]
+          results        = model.send(search::DEFAULT[:search_method], query_or_payload, **options)
+          vars[:count]   = search.total_count(results)
+          [search.new(**vars), results, called]
         end
       else
         # The search_obj is an elasticsearch_rails response
