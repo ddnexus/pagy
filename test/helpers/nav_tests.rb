@@ -4,8 +4,8 @@ require_relative '../mock_helpers/pagy_buggy'
 require_relative '../mock_helpers/app'
 require_relative '../files/models'
 
-# required because we use the class that does not load the mixin, so wenmiss the extra pagy_data
-require 'pagy/backend/keynav'
+# required because we use the class directly, which does not load the mixin, so we miss the extra pagy_data
+require 'pagy/backend/constructors/keynav'
 
 module NavTests
   def app

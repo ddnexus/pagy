@@ -54,7 +54,7 @@ class Pagy
       query_params.merge!(vars[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
       case pagy_params
       when Hash then query_params.merge!(pagy_params.transform_keys(&:to_s).compact)
-      when Proc then pagy_params.(query_params)
+      when Proc then pagy_params.(query_params) # it should modify the query_params: the returned value is ignored
       end
       query_string = QueryUtils.build_nested_query(query_params, nil, [page_name, limit_name])
       query_string = "?#{query_string}" unless query_string.empty?

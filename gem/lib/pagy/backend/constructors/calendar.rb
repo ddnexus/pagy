@@ -55,9 +55,9 @@ class Pagy
         else
           info_key = 'pagy.info.single_page'
         end
-        title      = %( title="#{pagy_t(info_key, item_name: pagy_t('pagy.item_name', count:), count:)}")
-        classes    = %( class="#{classes}") if classes
-        aria_label = %( aria-label="#{aria_label}") if aria_label
+        title        = %( title="#{pagy_t(info_key, item_name: pagy_t('pagy.item_name', count:), count:)}")
+        classes    &&= %( class="#{classes}")
+        aria_label &&= %( aria-label="#{aria_label}")
         %(#{left}#{page}#{right}#{title}#{classes}#{aria_label}>#{text}</a>)
       end
     end

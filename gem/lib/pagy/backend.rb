@@ -11,11 +11,6 @@ class Pagy
 
     include Url
 
-    # You may need to override this method for collections without offset|limit
-    def pagy_get_items(collection, pagy)
-      collection.offset(pagy.offset).limit(pagy.limit)
-    end
-
     # Get the limit from request, vars or DEFAULT
     def pagy_get_limit(vars)
       if vars.key?(:limit_requestable) ? vars[:limit_requestable] : DEFAULT[:limit_requestable]

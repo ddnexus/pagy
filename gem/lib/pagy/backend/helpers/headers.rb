@@ -23,12 +23,11 @@ class Pagy
       headers = pagy.vars[:headers] || DEFAULT[:headers]
       { 'link' => pagy_link_header(pagy, **) }.tap do |hash|
         hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]
-        hash[headers[:limit]] = pagy.limit.to_s \
-            if headers[:limit] && !/^Pagy::Offset::Calendar/.match?(pagy.class.name)
+        hash[headers[:limit]] = pagy.limit.to_s if headers[:limit] && !/^Pagy::Offset::Calendar/.match?(pagy.class.name)
         return hash unless pagy.count
 
         hash[headers[:pages]] = pagy.last.to_s if headers[:pages]
-        hash[headers[:count]] = pagy.count.to_s if pagy.count && headers[:count] # count may be nil with Calendar
+        hash[headers[:count]] = pagy.count.to_s if pagy.count && headers[:count]
       end
     end
 

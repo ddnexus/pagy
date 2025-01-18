@@ -2,7 +2,7 @@
 
 # require_relative
 class Pagy
-  Backend.class_eval do
+  Backend.module_eval do
     def pagy_links(pagy, **)
       url_str = pagy_page_url(pagy, PAGE_TOKEN, **)
       {}.tap do |links|

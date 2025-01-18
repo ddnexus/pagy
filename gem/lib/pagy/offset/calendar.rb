@@ -13,9 +13,9 @@ class Pagy
       path = ROOT.join('lib/pagy/offset/calendar').freeze
       autoload :Unit,    path.join('unit')
       autoload :Day,     path.join('day')
+      autoload :Week,    path.join('week')
       autoload :Month,   path.join('month')
       autoload :Quarter, path.join('quarter')
-      autoload :Week,    path.join('week')
       autoload :Year,    path.join('year')
 
       # Specific out of range error

@@ -15,31 +15,13 @@ class Pagy
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_anchor(pagy, anchor_string: nil, **vars)
       anchor_string &&= %( #{anchor_string})
-      left, right   = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
+      left, right     = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
       # lambda used by all the helpers
       lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
-        classes    = %( class="#{classes}") if classes
-        aria_label = %( aria-label="#{aria_label}") if aria_label
+        classes    &&= %( class="#{classes}")
+        aria_label &&= %( aria-label="#{aria_label}")
         %(#{left}#{page}#{right}#{classes}#{aria_label}>#{text}</a>)
       end
-    end
-
-    # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
-    def pagy_info(pagy, id: nil, item_name: nil)
-      id      = %( id="#{id}") if id
-      p_count = pagy.count
-      key     = if p_count.zero?
-                  'pagy.info.no_items'
-                elsif pagy.pages == 1
-                  'pagy.info.single_page'
-                else
-                  'pagy.info.multiple_pages'
-                end
-
-      %(<span#{id} class="pagy info">#{
-      pagy_t key, item_name: item_name || pagy_t('pagy.item_name', count: p_count),
-             count:          p_count, from: pagy.from, to: pagy.to
-      }</span>)
     end
 
     # Similar to I18n.t: just ~18x faster using ~10x less memory

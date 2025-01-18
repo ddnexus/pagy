@@ -86,8 +86,7 @@ describe 'pagy/backend' do
   describe '#pagy_get_items' do
     it 'gets items' do
       collection = MockCollection.new
-      pagy       = Pagy::Offset.new count: 1000
-      records    = app.send :pagy_get_items, collection, pagy
+      _pagy, records = app.send(:pagy_offset, collection, page: 1)
       _(records).must_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     end
   end

@@ -20,5 +20,10 @@ class Pagy
       count_args = vars[:count_args] || DEFAULT[:count_args]
       (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
     end
+
+    # You may need to override this method for collections without offset|limit
+    def pagy_get_items(collection, pagy)
+      collection.offset(pagy.offset).limit(pagy.limit)
+    end
   end
 end
