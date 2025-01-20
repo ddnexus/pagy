@@ -4,8 +4,6 @@ require_relative '../../test_helper'
 require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
 
-Pagy::DEFAULT[:limit_requestable] = true
-
 describe 'keyset' do
   [Pet, PetSequel].each do |model|
     describe '#pagy_keyset' do
@@ -23,7 +21,8 @@ describe 'keyset' do
         app = MockApp.new(params: { page: "WzEwXQ", limit: 10 })
         pagy, records = app.send(:pagy_keyset,
                                  model.order(:id),
-                                 tuple_comparison: true)
+                                 tuple_comparison: true,
+                                 requestable_limit: 100)
         _(records.first.id).must_equal 11
         _(pagy.next).must_equal "WzIwXQ"
       end
@@ -31,19 +30,25 @@ describe 'keyset' do
     describe 'URL helpers' do
       it 'returns the URLs for first page' do
         app = MockApp.new(params: { page: nil, limit: 10 })
-        pagy, _records = app.send(:pagy_keyset, model.order(:id))
+        pagy, _records = app.send(:pagy_keyset,
+                                  model.order(:id),
+                                  requestable_limit: 100)
         _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?limit=10"
         _(app.send(:pagy_keyset_next_url, pagy)).must_equal "/foo?limit=10&page=WzEwXQ"
       end
       it 'returns the URLs for second page' do
         app = MockApp.new(params: { page: "WzEwXQ", limit: 10 })
-        pagy, _records = app.send(:pagy_keyset, model.order(:id))
+        pagy, _records = app.send(:pagy_keyset,
+                                  model.order(:id),
+                                  requestable_limit: 100)
         _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?limit=10"
         _(app.send(:pagy_keyset_next_url, pagy)).must_equal "/foo?limit=10&page=WzIwXQ"
       end
       it 'returns the URLs for last page' do
         app = MockApp.new(params: { page: "WzQwXQ", limit: 10 })
-        pagy, _records = app.send(:pagy_keyset, model.order(:id))
+        pagy, _records = app.send(:pagy_keyset,
+                                  model.order(:id),
+                                  requestable_limit: 100)
         _(app.send(:pagy_keyset_first_url, pagy)).must_equal "/foo?limit=10"
         _(app.send(:pagy_keyset_next_url, pagy)).must_be_nil
       end

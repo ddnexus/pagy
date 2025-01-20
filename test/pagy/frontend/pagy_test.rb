@@ -3,7 +3,7 @@
 require_relative '../../test_helper'
 require_relative '../../helpers/nav_tests'
 require_relative '../../mock_helpers/app'
-require 'pagy/backend/constructors/keynav'
+require 'pagy/backend/paginators/keynav'
 
 MIXIN = 'pagy'
 PREFIX = ''

@@ -13,12 +13,12 @@ class Pagy
         # The search_obj is the array of pagy_search args from the model
         SearchWrapper.wrap(self, search_obj, vars) do
           # The wrapper is generic, but this block is specific for this search class
-          model, query_or_payload, options, _block, *called = search_obj
+          model, query_or_payload, options = search_obj
           options[:size] = vars[:limit]
           options[:from] = vars[:limit] * ((vars[:page] || 1) - 1)
           results        = model.send(search::DEFAULT[:search_method], query_or_payload, **options)
           vars[:count]   = search.total_count(results)
-          [search.new(**vars), results, called]
+          [search.new(**vars), results]
         end
       else
         # The search_obj is an elasticsearch_rails response

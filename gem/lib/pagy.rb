@@ -15,9 +15,9 @@ class Pagy
   autoload :Keyset,   path.join('keyset')
   autoload :Console,  path.join('console')
 
-  DEFAULT     = { limit:     20,    # rubocop:disable Style/MutableConstant
+  DEFAULT     = { limit:     20,
                   limit_sym: :limit,
-                  page_sym:  :page }
+                  page_sym:  :page }.freeze
   PAGE_TOKEN  = 'P '
   LABEL_TOKEN = 'L'
   LIMIT_TOKEN = 'L '

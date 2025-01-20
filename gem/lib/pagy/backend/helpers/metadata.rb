@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Pagy
-  DEFAULT[:metadata] = %i[url_template first_url prev_url page_url next_url last_url
-                          count page limit pages last in from to prev next vars series sequels]
+  METADATA = %i[url_template first_url prev_url page_url next_url last_url
+                count page limit pages last in from to prev next vars series sequels].freeze
 
   # Add a specialized backend method for pagination metadata
   Backend.module_eval do
@@ -11,9 +11,7 @@ class Pagy
     # Return the metadata hash
     def pagy_metadata(pagy, absolute: nil)
       url_template = pagy_page_url(pagy, PAGE_TOKEN, absolute:)
-      # If it's not in the vars, the autoloading kicked-in after the object creation,
-      # which means that no custom DEFAULT has been set, so we use the original
-      keys  = pagy.vars[:metadata] || DEFAULT[:metadata]
+      keys  = pagy.vars[:metadata] || METADATA
       keys -= %i[count limit] if /^Pagy::Offset::Calendar/.match?(pagy.class.name)
       {}.tap do |metadata|
         keys.each do |key|

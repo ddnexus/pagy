@@ -1,29 +1,22 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/backend/constructors/calendar'   # to avoid to load AR support
+require 'pagy/backend/paginators/calendar'   # to avoid to load AR support
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
 
 DAY    = 60 * 60 * 24
 PERIOD = [Time.zone.local(2021, 11, 4), Time.zone.local(2021, 11, 4) + 10.days].freeze
-Pagy::DEFAULT[:overflow] = :empty_page
 
 describe 'overflow' do
-  let(:pagy_vars)      { { page: 100, limit: 10, count: 103 } }
-  let(:countless_vars) { { page: 100, limit: 10 } }
-  let(:calendar_vars)  { { period: PERIOD, page: 100 } }
+  let(:pagy_vars)      { { page: 100, limit: 10, count: 103, overflow: :empty_page } }
+  let(:countless_vars) { { page: 100, limit: 10, overflow: :empty_page} }
+  let(:calendar_vars)  { { period: PERIOD, page: 100, overflow: :empty_page } }
   before do
     @pagy           = Pagy::Offset.new(**pagy_vars)
     @pagy_calendar  = Pagy::Offset::Calendar::Day.new(**calendar_vars)
     @pagy_countless = Pagy::Offset::Countless.new(**countless_vars).finalize(0)
-  end
-
-  describe "variables" do
-    it 'has pagy_vars defaults' do
-      _(Pagy::DEFAULT[:overflow]).must_equal :empty_page  # default for countless
-    end
   end
 
   describe "#overflow?" do

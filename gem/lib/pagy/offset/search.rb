@@ -15,7 +15,7 @@ class Pagy
       end
 
       class ElasticsearchRails < Offset
-        DEFAULT = { search_method: :search } # rubocop:disable Style/MutableConstant
+        DEFAULT = { search_method: :search }.freeze
 
         # Get the count from different version of ElasticsearchRails
         def self.total_count(results)
@@ -25,11 +25,11 @@ class Pagy
       end
 
       class Meilisearch < Offset
-        DEFAULT = { search_method: :ms_search } # rubocop:disable Style/MutableConstant
+        DEFAULT = { search_method: :ms_search }.freeze
       end
 
       class Searchkick < Offset
-        DEFAULT = { search_method: :search }  # rubocop:disable Style/MutableConstant
+        DEFAULT = { search_method: :search }.freeze
       end
     end
   end

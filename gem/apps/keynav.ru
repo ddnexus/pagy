@@ -30,15 +30,12 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   gem 'sqlite3'
 end
 
-# Pagy initializer
-Pagy::DEFAULT[:limit]             = 4
-Pagy::DEFAULT[:limit_requestable] = true
-
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
 class PagyKeynav < Sinatra::Base
   include Pagy::Backend
+  PAGY_DEFAULT = { limit: 4, requestable_limit: 100 }.freeze
 
   get('/javascripts/:file') do
     format = params[:file].split('.').last
@@ -54,9 +51,9 @@ class PagyKeynav < Sinatra::Base
   get '/' do
     Time.zone = 'UTC'
 
-    @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keynav_js(Pet.order(@order))
-    @ids = @pets.pluck(:id)
+    @order       = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
+    @pagy, @pets = pagy_keynav_js(Pet.order(@order), **PAGY_DEFAULT)
+    @ids         = @pets.pluck(:id)
     erb :main
   end
 
@@ -164,10 +161,10 @@ require 'active_record'
 # ActiveSupport::JSON::Encoding.time_precision = 6
 
 # Log
-output = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
+output                    = ENV['APP_ENV'].equal?('showcase') ? IO::NULL : $stdout
 ActiveRecord::Base.logger = Logger.new(output)
 # SQLite DB files
-dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
+dir = ENV['APP_ENV'].equal?('development') ? '.' : Dir.pwd # app dir in dev or pwd otherwise
 abort "ERROR: Cannot create DB files: the directory #{dir.inspect} is not writable." \
       unless File.writable?(dir)
 # Connection

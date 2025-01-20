@@ -49,7 +49,7 @@ class Pagy
       query_params.delete(vars[:jsonapi] ? 'page' : page_name)
       page_and_limit = {}.tap do |h|
                          h[page_name]  = pagy.page_for_url(page)
-                         h[limit_name] = vars[:limit] if vars[:limit_requestable]
+                         h[limit_name] = vars[:limit] if vars[:requestable_limit]
                        end.compact # no empty params
       query_params.merge!(vars[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
       case pagy_params

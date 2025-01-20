@@ -2,6 +2,14 @@
 
 # Pagy initializer file (9.3.3)
 
+# IMPORTANT:
+# Customizing the static and frozen Pagy::DEFAULT is not supported since version 10.0.0.
+# Pass the variables to the constructor, or pass your own DEFAULT hash.
+# For example:
+#
+# PAGY_DEFAULT = { ... }
+# pagy_offset(collection, **PAGY_DEFAULT, ...)
+
 # Extras
 # See https://ddnexus.github.io/pagy/categories/extra
 
@@ -10,17 +18,9 @@
 # require 'pagy/extras/size'   # must be required before the other extras
 
 # Gearbox extra: Automatically change the limit per page depending on the page number
+# (e.g. `gearbox_limit: [15, 30, 60, 100]`
 # See https://ddnexus.github.io/pagy/docs/extras/gearbox
 # require 'pagy/extras/gearbox'
-# set to false only if you want to make :gearbox_extra an opt-in variable
-# Pagy::DEFAULT[:gearbox_extra] = false               # default true
-# Pagy::DEFAULT[:gearbox_limit] = [15, 30, 60, 100]   # default
-
-# Jsonapi extra: Implements JSON:API specifications
-# See https://ddnexus.github.io/pagy/docs/extras/jsonapi
-# require 'pagy/extras/jsonapi'   # must be required after the other extras
-# set to false only if you want to make :jsonapi an opt-in variable
-# Pagy::DEFAULT[:jsonapi] = false  # default true
 
 # I18n extra: uses the standard i18n gem which is ~18x slower using ~10x more memory
 # than the default pagy internal i18n (see below)
@@ -53,19 +53,3 @@
 #                 { locale: 'xyz',  # not built-in
 #                   filepath: 'path/to/pagy-xyz.yml',
 #                   pluralize: lambda{ |count| ... } )
-
-# Changing DEFAULT for a class will also load the class
-# DEFAULTs get inherited from the super classes and merged with the instance argument variables
-#
-# Pagy::DEFAULT[...]                             = ...
-# Pagy::Offset::DEFAULT[...]                     = ...
-# Pagy::Offset::Calendar::Day::DEFAULT[...]      = ...
-# Pagy::Offset::Calendar::Month::DEFAULT[...]    = ...
-# Pagy::Offset::Calendar::Quarter::DEFAULT[...]  = ...
-# Pagy::Offset::Calendar::Week::DEFAULT[...]     = ...
-# Pagy::Offset::Calendar::Year::DEFAULT[...]     = ...
-# Pagy::Offset::Countless::DEFAULT[...]          = ...
-# Pagy::Offset::Search::ElasticsearchRails::DEFAULT[...] = ...
-# Pagy::Offset::Search::Meilisearch::DEFAULT[...]        = ...
-# Pagy::Offset::Search::Searchkick::DEFAULT[...]         = ...
-# Pagy::Keyset::Keynav::DEFAULT[...]          = ...

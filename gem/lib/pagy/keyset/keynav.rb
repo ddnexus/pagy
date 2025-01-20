@@ -12,9 +12,9 @@ class Pagy
 
       # Avoid args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'       # Prefix for filter_args
-      DEFAULT       = { ends: true,   # rubocop:disable Style/MutableConstant
+      DEFAULT       = { ends: true,
                         page: nil,
-                        size: 7 }
+                        size: 7 }.freeze
 
       include UISupport
       attr_reader :update

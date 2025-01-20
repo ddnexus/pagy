@@ -29,16 +29,15 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   gem 'sinatra'
 end
 
-# Edit this section adding/removing the extras and Pagy::DEFAULT as needed
+# Edit this section adding the extras as needed
 # pagy initializer
-Pagy::Offset::DEFAULT[:overflow]  = :empty_page
-Pagy::DEFAULT[:limit_requestable] = true
 
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
   include Pagy::Backend
+  PAGY_DEFAULT = { requestable_limit: 100, overflow: :empty_page }.freeze
 
   get('/javascripts/:file') do
     format = params[:file].split('.').last
@@ -53,7 +52,7 @@ class PagyRepro < Sinatra::Base
   # Edit this action as needed
   get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy_offset(collection)
+    @pagy, @records = pagy_offset(collection, **PAGY_DEFAULT)
     erb :main
   end
 

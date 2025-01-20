@@ -13,12 +13,12 @@ class Pagy
         # The search_obj is the array of pagy_search args from the model
         SearchWrapper.wrap(self, search_obj, vars) do
           # The wrapper is generic, but this block is specific for this search class
-          model, term, options, block, *called = search_obj
+          model, term, options, block = search_obj
           options[:per_page] = vars[:limit]
           options[:page]     = vars[:page]
           results            = model.send(search::DEFAULT[:search_method], term || '*', **options, &block)
           vars[:count]       = results.total_count
-          [search.new(**vars), results, called]
+          [search.new(**vars), results]
         end
       else
         # The search_obj is a searchkick results object

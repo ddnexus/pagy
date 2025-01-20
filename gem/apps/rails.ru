@@ -52,16 +52,11 @@ class PagyRails < Rails::Application # :nodoc:
 end
 
 # AR config
-dir = Rails.env.development? ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
+dir = Rails.env.development? ? '.' : Dir.pwd # app dir in dev or pwd otherwise
 unless File.writable?(dir)
   warn "ERROR: directory #{dir.inspect} is not writable (the pagy-rails-app needs to create DB files)"
   exit 1
 end
-
-# Pagy initializer
-Pagy::DEFAULT[:limit]             = 10
-Pagy::DEFAULT[:limit_requestable] = true
-Pagy::Offset::DEFAULT[:overflow]  = :empty_page
 
 # Activerecord initializer
 ActiveRecord::Base.logger = Logger.new(OUTPUT)
@@ -80,11 +75,15 @@ end
 # Models
 class Post < ActiveRecord::Base # :nodoc:
   has_many :comments
-end # :nodoc:
+end
+
+# :nodoc:
 
 class Comment < ActiveRecord::Base # :nodoc:
   belongs_to :post
-end # :nodoc:
+end
+
+# :nodoc:
 
 # Unused model, useful to test overriding conflicts
 module Calendar
@@ -107,10 +106,13 @@ end
 class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
   include Pagy::Backend
+  PAGY_DEFAULT = { limit:             10,
+                   requestable_limit: 100,
+                   overflow:          :empty_page }.freeze
 
   def index
-    @pagy, @comments = pagy_offset(Comment.all)
-    pagy_headers_merge(@pagy)
+    @pagy, @comments = pagy_offset(Comment.all, **PAGY_DEFAULT)
+    # pagy_headers_merge(@pagy)
     render inline: TEMPLATE
   end
 end

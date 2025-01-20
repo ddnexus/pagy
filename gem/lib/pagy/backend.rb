@@ -13,12 +13,9 @@ class Pagy
 
     # Get the limit from request, vars or DEFAULT
     def pagy_get_limit(vars)
-      if vars.key?(:limit_requestable) ? vars[:limit_requestable] : DEFAULT[:limit_requestable]
-        limit = pagy_requested_limit(vars) || DEFAULT[:limit]
-        [limit.to_i, (vars[:limit_max] ||= DEFAULT[:limit_max] || 100)].compact.min
-      else
-        DEFAULT[:limit]
-      end
+      return vars[:limit] || DEFAULT[:limit] unless vars[:requestable_limit] && (limit = pagy_requested_limit(vars))
+
+      [limit.to_i, vars[:requestable_limit]].min
     end
 
     # Get the limit from the request
@@ -35,7 +32,7 @@ class Pagy
     end
 
     def pagy_jsonapi?(vars)
-      return false unless params[:page] && (vars.key?(:jsonapi) ? vars[:jsonapi] : DEFAULT[:jsonapi]) # rubocop:disable Layout/EmptyLineAfterGuardClause
+      return false unless params[:page] && vars[:jsonapi] # rubocop:disable Layout/EmptyLineAfterGuardClause
       params[:page].respond_to?(:fetch) || raise(JsonapiReservedParamError, params[:page])
     end
 

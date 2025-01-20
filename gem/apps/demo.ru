@@ -46,12 +46,10 @@ STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
 # Sinatra setup
 require 'sinatra/base'
 
-# Pagy initializer
-Pagy::DEFAULT[:limit_requestable] = true
-
 # Sinatra application
 class PagyDemo < Sinatra::Base
   include Pagy::Backend
+  PAGY_DEFAULT = { requestable_limit: 100 }.freeze
 
   get '/' do
     redirect '/pagy'
@@ -59,7 +57,7 @@ class PagyDemo < Sinatra::Base
 
   get '/template' do
     collection = MockCollection.new
-    @pagy, @records = pagy_offset(collection)
+    @pagy, @records = pagy_offset(collection, **PAGY_DEFAULT)
 
     erb :template, locals: { pagy: @pagy, style: 'pagy' }
   end
@@ -85,7 +83,7 @@ class PagyDemo < Sinatra::Base
 
     get("/#{style}") do
       collection = MockCollection.new
-      @pagy, @records = pagy_offset(collection)
+      @pagy, @records = pagy_offset(collection, **PAGY_DEFAULT)
 
       erb :helpers, locals: { style:, prefix: }
     end

@@ -35,12 +35,6 @@ describe 'metadata' do
       pagy, _records = app.send(:pagy_offset, @collection, metadata: %i[url_template page count prev next pages])
       _(app.send(:pagy_metadata, pagy)).must_rematch :metadata
     end
-    # It permanently changes the  DEFAULT from now on (alpha order test required)
-    it 'works with set DEFAULT' do
-      Pagy::DEFAULT[:metadata] = %i[url_template page count prev next pages]
-      pagy, _records = app.send(:pagy_offset, @collection)
-      _(app.send(:pagy_metadata, pagy)).must_rematch :set_default
-    end
     it 'checks for unknown metadata for Pagy::Offset::Calendar' do
       calendar, _pagy, _records = calendar_app.send(:pagy_calendar, Event.all,
                                                     year: { metadata: %i[page unknown_key] })

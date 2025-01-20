@@ -5,8 +5,8 @@ class Pagy
     class Calendar
       # Week unit subclass
       class Week < Unit
-        DEFAULT  = { order:  :asc, # rubocop:disable Style/MutableConstant
-                     format: '%Y-%W' }
+        DEFAULT  = { order:  :asc,
+                     format: '%Y-%W' }.freeze
 
         protected
 

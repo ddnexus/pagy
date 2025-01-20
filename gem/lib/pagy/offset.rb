@@ -11,11 +11,11 @@ class Pagy
     autoload :Search,    path.join('search')
 
     # Core default: constant for easy access, but mutable for customizable defaults
-    DEFAULT = { count_args: [:all],  # AR friendly # rubocop:disable Style/MutableConstant
+    DEFAULT = { count_args: [:all],  # AR friendly
                 ends:       true,
                 outset:     0,
                 page:       1,
-                size:       7 }
+                size:       7 }.freeze
 
     attr_reader :from, :offset, :to
 

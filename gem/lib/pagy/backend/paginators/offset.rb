@@ -9,8 +9,8 @@ class Pagy
     # Return Pagy object and paginated results
     def pagy_offset(collection, **vars)
       vars[:count] ||= pagy_get_count(collection, vars)
-      vars[:limit] ||= pagy_get_limit(vars)
       vars[:page]  ||= pagy_get_page(vars)
+      vars[:limit]   = pagy_get_limit(vars)
       pagy = Offset.new(**vars)
       [pagy, pagy_get_items(collection, pagy)]
     end

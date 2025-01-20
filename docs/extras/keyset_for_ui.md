@@ -17,9 +17,9 @@ and other Frontend helpers.
 
 ## Overview
 
-This is a wrapper around the [Pagy::Keyset::Keynav API](/docs/api/keyset_for_ui.md). Please refer to the following resources:
+This is a wrapper around the [Pagy::Keyset::Keynav API](/docs/api/keynav). Please refer to the following resources:
 
-[!ref Keyset For UI: Documentation](/docs/api/keyset_for_ui.md)
+[!ref Keyset For UI: Documentation](/docs/api/keynav)
 
 [!ref Keyset Pagination: Concepts and Overview](/docs/api/keyset.md)
 

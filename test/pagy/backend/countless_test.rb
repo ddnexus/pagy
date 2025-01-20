@@ -8,11 +8,8 @@ describe 'countless' do
   let(:app) { MockApp.new }
   let(:last_page) { 1000 / 20 }
   before do
-    @default_page_sym = Pagy::DEFAULT[:page_sym]
+    @default_page_sym = :page
     @collection       = MockCollection.new
-  end
-  after do
-    Pagy::DEFAULT[:page_sym] = @default_page_sym
   end
 
   describe '#pagy_countless' do
@@ -62,22 +59,13 @@ describe 'countless' do
 
   describe '#pagy_countless_get_vars' do
     let(:app) { MockApp.new(params: { a: 'a', page: 3, page_number: 4 }) }
-    it 'sets :page_sym from defaults' do
-      Pagy::DEFAULT[:page_sym] = :page_number
-      pagy, paged = app.send(:pagy_countless, @collection)
-      _(pagy.count).must_be_nil
-      _(pagy.page).must_equal 4
-      _(paged).must_equal Array(61..80)
-    end
     it 'sets :page_sym from vars' do
-      Pagy::DEFAULT[:page_sym] = :page
       pagy, paged = app.send(:pagy_countless, @collection, page_sym: :page_number)
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 4
       _(paged).must_equal Array(61..80)
     end
     it 'bypasses :page_sym with :page variable' do
-      Pagy::DEFAULT[:page_sym] = :another_page_number
       pagy, paged = app.send(:pagy_countless, @collection, page_sym: :page_number, page: 1)
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 1
@@ -93,7 +81,6 @@ describe 'countless' do
   end
   describe 'Keep last' do
     it 'shows series including last page' do
-      Pagy::DEFAULT[:page_sym] = :page
       pagy, = MockApp.new(params: {page: '25 50'}).send(:pagy_countless, @collection)
       _(pagy.series).must_equal [1, :gap, 24, "25", 26, :gap, 50]
       _(pagy.count).must_be_nil
@@ -101,7 +88,6 @@ describe 'countless' do
       _(pagy.next).must_equal 26
     end
     it 'shows series including last page' do
-      Pagy::DEFAULT[:page_sym] = :page
       pagy, = MockApp.new(params: { a: 'a', page: ' 3'}).send(:pagy_countless, @collection)
       _(pagy.series).must_equal ["1", 2, 3]
       _(pagy.count).must_be_nil

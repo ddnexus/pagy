@@ -8,8 +8,6 @@ require_relative '../../mock_helpers/arel'
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
-Pagy::DEFAULT[:limit_requestable] = true
-
 def test_limit_vars_params(limit, vars, params)
   app = MockApp.new params: params
   _(app.params.to_param).must_equal params.to_param
@@ -31,7 +29,7 @@ def test_limit_vars_params(limit, vars, params)
   end
 end
 
-describe 'limit_requestable' do
+describe 'requestable_limit' do
   let(:app) { MockApp.new }
   describe "controller_methods" do
     before do
@@ -45,13 +43,13 @@ describe 'limit_requestable' do
     end
     it 'uses the params' do
       limit  = 12
-      vars   = {}
+      vars   = { requestable_limit: 100 }
       params = { a: "a", page: 3, limit: limit }
       test_limit_vars_params(limit, vars, params)
     end
     it 'uses the params without page' do
       limit  = 12
-      vars   = {}
+      vars   = { requestable_limit: 100 }
       params = { a: "a", limit: limit }
       test_limit_vars_params(limit, vars, params)
     end
@@ -61,36 +59,22 @@ describe 'limit_requestable' do
       params = { a: "a", page: 3, limit: 12 }
       test_limit_vars_params(limit, vars, params)
     end
-    it 'uses the limit_max default' do
-      limit  = 100
-      vars   = {}
-      params = { a: "a", page: 3, limit: 120 }
-      test_limit_vars_params(limit, vars, params)
-    end
-    it 'limit to 100 if :limit_max is not set explicitly' do
-      limit  = 100
-      vars   = { limit_max: nil }
-      params = { a: "a", limit: 1000 }
-      test_limit_vars_params(limit, vars, params)
-    end
     it 'uses limit_sym from vars' do
       limit  = 14
-      vars   = { limit_sym: :custom }
+      vars   = { requestable_limit: 100, limit_sym: :custom }
       params = { a: "a", page: 3, limit_sym: :custom, custom: limit }
       test_limit_vars_params(limit, vars, params)
     end
     it 'uses limit_sym from default' do
       limit  = 15
-      vars   = {}
+      vars   = { limit_sym: :custom, requestable_limit: 100 }
       params = { a: "a", page: 3, custom: 15 }
 
-      Pagy::DEFAULT[:limit_sym] = :custom
       test_limit_vars_params(limit, vars, params)
-      Pagy::DEFAULT[:limit_sym] = :limit # reset default
     end
-    it 'doesn\'t use the :limit_requestable' do
+    it 'doesn\'t use the :requestable_limit' do
       limit  = 20
-      vars   = { limit_requestable: false }
+      vars   = {}
       params = { a: "a", page: 3, limit: 35 }
 
       test_limit_vars_params(limit, vars, params)
@@ -100,31 +84,31 @@ describe 'limit_requestable' do
   describe 'view_methods' do
     describe '#pagy_page_url' do
       it 'renders basic url' do
-        pagy = Pagy::Offset.new count: 1000, page: 3
+        pagy = Pagy::Offset.new(count: 1000, page: 3, requestable_limit: 100)
         _(app.pagy_page_url(pagy, 5)).must_equal '/foo?page=5&limit=20'
       end
       it 'renders basic url and limit var' do
-        pagy = Pagy::Offset.new count: 1000, page: 3, limit: 50
+        pagy = Pagy::Offset.new(count: 1000, page: 3, limit: 50, requestable_limit: 100)
         _(app.pagy_page_url(pagy, 5)).must_equal '/foo?page=5&limit=50'
       end
       it 'renders url with limit_sym' do
-        pagy = Pagy::Offset.new count: 1000, page: 3, limit_sym: :custom
+        pagy = Pagy::Offset.new(count: 1000, page: 3, limit_sym: :custom, requestable_limit: 100)
         _(app.pagy_page_url(pagy, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do
-        pagy = Pagy::Offset.new count: 1000, page: 3
+        pagy = Pagy::Offset.new(count: 1000, page: 3, requestable_limit: 100)
         _(app.pagy_page_url(pagy, 6, fragment: '#fragment')).must_equal '/foo?page=6&limit=20#fragment'
       end
       it 'renders url with params and fragment' do
-        pagy = Pagy::Offset.new count: 1000, page: 3, params: { a: 3, b: 4 }, limit: 40
+        pagy = Pagy::Offset.new(count: 1000, page: 3, params: { a: 3, b: 4 }, limit: 40, requestable_limit: 100)
         _(app.pagy_page_url(pagy, 5, fragment: '#fragment')).must_equal "/foo?page=5&limit=40&a=3&b=4#fragment"
       end
     end
-    it 'renders limit selector' do
-      pagy, = app.send(:pagy_offset, MockCollection.new, page: 3)
+    it 'renders or skips the output depending on requestable_limit' do
+      pagy, = app.send(:pagy_offset, MockCollection.new, page: 3, requestable_limit: 100)
       _(app.pagy_limit_selector_js(pagy)).must_rematch :selector_1
       _(app.pagy_limit_selector_js(pagy, id: 'test-id', item_name: 'products')).must_rematch :selector_2
-      pagy, = app.send(:pagy_offset, MockCollection.new, page: 3, limit_requestable: false)
+      pagy, = app.send(:pagy_offset, MockCollection.new, page: 3)
       _(app.pagy_limit_selector_js(pagy, id: 'test-id')).must_equal ''
     end
   end

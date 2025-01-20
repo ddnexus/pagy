@@ -5,10 +5,10 @@ class Pagy
     class Calendar
       # Day unit subclass
       class Day < Unit
-        DEFAULT = { size:   31, # rubocop:disable Style/MutableConstant
+        DEFAULT = { size:   31,
                     ends: false,
                     order:  :asc,
-                    format: '%d' }
+                    format: '%d' }.freeze
 
         protected
 

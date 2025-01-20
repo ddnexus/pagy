@@ -5,10 +5,10 @@ class Pagy # :nodoc:
     class Calendar # :nodoc:
       # Month unit subclass
       class Month < Unit
-        DEFAULT = { size:   12,   # rubocop:disable Style/MutableConstant
+        DEFAULT = { size:   12,
                     ends:   false,
                     order:  :asc,
-                    format: '%b' }
+                    format: '%b' }.freeze
 
         protected
 

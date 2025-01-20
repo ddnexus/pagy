@@ -30,15 +30,13 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   gem 'sqlite3'
 end
 
-# Pagy initializer
-Pagy::DEFAULT[:limit]             = 10
-Pagy::DEFAULT[:limit_requestable] = true
-
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
   include Pagy::Backend
+  PAGY_DEFAULT = { limit: 10, requestable_limit: 100 }.freeze
+
   # Root route/action
   get '/' do
     Time.zone = 'UTC'

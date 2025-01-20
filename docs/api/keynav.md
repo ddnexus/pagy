@@ -31,13 +31,13 @@ You should also familiarize with the [Pagy::Keyset](keyset.md) class.
 
 ## Glossary
 
-This section integrates the [Keyset Glossary](keyset_for_ui.md#glossary)
+This section integrates the [Keyset Glossary](keynav#glossary)
 
-| Term                          | Description                                                                                                                                                                               |
-|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `keyset augmented pagination` | The pagy exclusive technique to use `keyset pagination` with numeric pages, supporting `pagy_*navs` and other Frontend helpers.<br/>The best technique for performance AND functionality! |
-| `page`                        | The array of variables from the client prepared by the `keyset_for_ui` extra, to paginate the requested page.                                                                             |
-| `cutoffs`                     | The array of `cutoff`s of the known pagination state, used to keep track of the visited pages during the navigation. They are cached in the `sessionStorge` of the client.                |
+| Term                | Description                                                                                                                                                                               |
+|---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `keynav pagination` | The pagy exclusive technique to use `keyset pagination` with numeric pages, supporting `pagy_*navs` and other Frontend helpers.<br/>The best technique for performance AND functionality! |
+| `page`              | The array of variables from the client prepared by the `keyset_for_ui` extra, to paginate the requested page.                                                                             |
+| `cutoffs`           | The array of `cutoff`s of the known pagination state, used to keep track of the visited pages during the navigation. They are cached in the `sessionStorge` of the client.                |
 
 ## How Pagy Keyset For UI works
 

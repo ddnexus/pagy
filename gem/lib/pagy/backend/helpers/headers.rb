@@ -3,10 +3,10 @@
 require_relative 'links'
 
 class Pagy
-  DEFAULT[:headers] = { page:  'current-page',
-                        limit: 'page-items',
-                        count: 'total-count',
-                        pages: 'total-pages' }
+  HEADERS = { page:  'current-page',
+              limit: 'page-items',
+              count: 'total-count',
+              pages: 'total-pages' }.freeze
   # Add specialized backend methods to add pagination response headers
   Backend.module_eval do
     private
@@ -18,9 +18,7 @@ class Pagy
 
     # Generate a hash of RFC-8288 compliant http headers
     def pagy_headers(pagy, **)
-      # If it's not in the vars, the autoloading kicked-in after the object creation,
-      # which means that no custom DEFAULT has been set, so we use the original
-      headers = pagy.vars[:headers] || DEFAULT[:headers]
+      headers = pagy.vars[:headers] || HEADERS
       { 'link' => pagy_link_header(pagy, **) }.tap do |hash|
         hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]
         hash[headers[:limit]] = pagy.limit.to_s if headers[:limit] && !/^Pagy::Offset::Calendar/.match?(pagy.class.name)
