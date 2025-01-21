@@ -47,13 +47,13 @@ describe 'pagy/extras/i18n' do
       _(pagy.label(locale: :de)).must_equal "Dezember, Mittwoch"
       _(pagy.label(format: '%b')).must_equal "Dec"
       _(pagy.label(format: '%b', locale: :de)).must_equal "Dez"
-      _(pagy.label_for(5)).must_equal "February, Tuesday"
-      _(pagy.label_for(5, locale: :de)).must_equal "Februar, Dienstag"
+      _(pagy.label(page: 5)).must_equal "February, Tuesday"
+      _(pagy.label(page: 5, locale: :de)).must_equal "Februar, Dienstag"
       I18n.locale = :de
       _(pagy.label).must_equal "Dezember, Mittwoch"
       _(pagy.label(format: '%b')).must_equal "Dez"
-      _(pagy.label_for(5)).must_equal "Februar, Dienstag"
-      _(pagy.label_for(5, format: '%b')).must_equal "Feb"
+      _(pagy.label(page: 5)).must_equal "Februar, Dienstag"
+      _(pagy.label(page: 5, format: '%b')).must_equal "Feb"
       I18n.locale = :en
     end
   end

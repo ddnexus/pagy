@@ -14,7 +14,7 @@ class Pagy
                   %(<li class="page-item">#{a.(item, classes: 'page-link')}</li>)
                 when String
                   %(<li class="page-item active"><a role="link" class="page-link" aria-current="page" aria-disabled="true">#{
-                      pagy.label_for(item)}</a></li>)
+                      pagy.label(page: item)}</a></li>)
                 when :gap
                   %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
                       pagy_t('pagy.gap')}</a></li>)

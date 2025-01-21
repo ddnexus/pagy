@@ -14,7 +14,7 @@ class Pagy
       anchor_string &&= %( #{anchor_string})
       left, right     = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
       # lambda used by all the helpers
-      lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
+      lambda do |page, text = pagy.label(page: page), classes: nil, aria_label: nil|
         classes    &&= %( class="#{classes}")
         aria_label &&= %( aria-label="#{aria_label}")
         %(#{left}#{page}#{right}#{classes}#{aria_label}>#{text}</a>)

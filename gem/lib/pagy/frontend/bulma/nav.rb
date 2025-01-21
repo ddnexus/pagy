@@ -11,10 +11,10 @@ class Pagy
       pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
-                  %(<li>#{a.(item, pagy.label_for(item), classes: 'pagination-link')}</li>)
+                  %(<li>#{a.(item, pagy.label(page: item), classes: 'pagination-link')}</li>)
                 when String
                   %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
-                      pagy.label_for(item)}</a></li>)
+                      pagy.label(page: item)}</a></li>)
                 when :gap
                   %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"

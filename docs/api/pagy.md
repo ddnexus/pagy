@@ -98,12 +98,7 @@ This method returns an empty array if the `:size` variable is set to `0`. Useful
 It can also return a simpler array without gaps if the passed `:size` is a single positive `Integer` and the `:ends` variable set to `false`.
 !!!
 
-==- `label`
-
-Label for the current page. Its only function in the `Pagy` class is supporting the API of various frontend methods that require
-labelling for `Pagy::Calendar` instances. It returns the current page label that will get displayed in the helpers.
-
-==- `label_for(page)`
+==- `label(page: @page)`
 
 Label for any page. Its only function in the `Pagy` class is supporting the API of various frontend methods that require labelling
 for `Pagy::Calendar` instances. It returns the page label that will get displayed in the helpers.

@@ -399,8 +399,8 @@ describe 'pagy' do
     end
     it 'returns any page label' do
       p = Pagy::Offset.new(count: 1000, page: 11)
-      _(p.label_for(3)).must_equal '3'
-      _(p.label_for(11)).must_equal '11'
+      _(p.label(page: 3)).must_equal '3'
+      _(p.label(page: 11)).must_equal '11'
     end
   end
 end

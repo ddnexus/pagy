@@ -33,13 +33,8 @@ class Pagy
           false
         end
 
-        # The label for the current page (it can pass along the I18n gem opts when it's used with the i18n extra)
-        def label(opts = {})
-          label_for(@page, opts)
-        end
-
         # The label for any page (it can pass along the I18n gem opts when it's used with the i18n extra)
-        def label_for(page, opts = {})
+        def label(page: @page, **opts)
           opts[:format] ||= @vars[:format]
           localize(starting_time_for(page.to_i), opts)  # page could be a string
         end
@@ -49,7 +44,7 @@ class Pagy
         protected
 
         def label_sequels(series)
-          series.map { |s| s.map { |item| item == :gap ? :gap : label_for(item) } }
+          series.map { |s| s.map { |item| item == :gap ? :gap : label(page: item) } }
         end
 
         # The page that includes time

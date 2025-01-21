@@ -95,14 +95,10 @@ the default is `:monday` consistently with the ISO-8601 standard (and Rails).
 
 ## Methods
 
-==- `label(opts = {})`
+==- `label(page: @page, **opts)`
 
-This method uses the `:format` variable to generate the current page label with the specific `TimeWithZone` period it refers to. It accepts an optional `:format` keyword argument for overriding.
-===
+This method takes a `:page` `Integer` or `String` number argument (or the current `@page` if it's missing) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
 
-==- `label_for(page, opts = {})`
-
-This method takes a page number argument (`Integer` or `String`) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
 ===
 
 ## Custom units
@@ -113,4 +109,4 @@ unit), which should define a `Pagy::Calendar::Bimester` class.
 In order to allow its full integration, you should also insert your `:bimester` unit symbol in the `Pagy::Calendar::UNITS` list,
 between `:quarter` and `:month`, which will keep the list in desc order of duration.
 
-You can also implement your own custom substitution formats for your custom units, by overriding the `label_for(page, opts)`.
+You can also implement your own custom substitution formats for your custom units, by overriding the `label(page: @page, **opts)`.

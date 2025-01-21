@@ -41,13 +41,13 @@ class Pagy
   # Override the pagy_anchor
   module CalendarFrontendOverride
     # Consider the vars[:counts]
-    def pagy_anchor(pagy, anchor_string: nil)
+    def pagy_anchor(pagy, anchor_string: nil, **vars)
       return super unless (counts = pagy.vars[:counts])
 
       anchor_string &&= %( #{anchor_string})
-      left, right = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN)}").split(PAGE_TOKEN, 2)
+      left, right = %(<a#{anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}").split(PAGE_TOKEN, 2)
       # lambda used by all the helpers
-      lambda do |page, text = pagy.label_for(page), classes: nil, aria_label: nil|
+      lambda do |page, text = pagy.label(page: page), classes: nil, aria_label: nil|
         count = counts[page - 1]
         if count.zero?
           classes  = "#{classes && (classes + ' ')}empty-page"

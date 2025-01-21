@@ -2,11 +2,8 @@
 
 class Pagy
   module UISupport
-    # Label for the current page. Allow the customization of the output (overridden by the calendar)
-    def label = @page.to_s
-
     # Label for any page. Allow the customization of the output (overridden by the calendar)
-    def label_for(page) = page.to_s
+    def label(page: @page, **) = page.to_s
 
     # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
     def series(size: @vars[:size], **_)

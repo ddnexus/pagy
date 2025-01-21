@@ -14,7 +14,7 @@ class Pagy
                 when Integer
                   a.(item)
                 when String
-                  %(<a role="link" aria-disabled="true" aria-current="page" class="current">#{pagy.label_for(item)}</a>)
+                  %(<a role="link" aria-disabled="true" aria-current="page" class="current">#{pagy.label(page: item)}</a>)
                 when :gap
                   %(<a role="link" aria-disabled="true" class="gap">#{pagy_t('pagy.gap')}</a>)
                 else

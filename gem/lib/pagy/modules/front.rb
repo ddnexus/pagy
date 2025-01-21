@@ -20,7 +20,7 @@ class Pagy
     end
 
     # Wrap the specific html for the style
-    def build_nav(frontend, pagy, html, nav_classes, id: nil, aria_label: nil, **vars)
+    def build_nav(frontend, pagy, html, nav_classes, id: nil, aria_label: nil, **_vars)
       id     &&= %( id="#{id}")
       data     = %( #{data_pagy(:n, [pagy.vars[:page_sym], pagy.update])}) if pagy.keynav?
       %(<nav#{id} class="#{nav_classes}" #{nav_aria_label(frontend, pagy, aria_label:)}#{data}>#{html}</nav>)
