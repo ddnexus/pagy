@@ -6,7 +6,7 @@ class Pagy
   Frontend.module_eval do
     # Javascript combo pagination for bootstrap: it returns a nav with a data-pagy attribute used by the pagy.js file
     def pagy_bootstrap_combo_nav_js(pagy, id: nil, classes: 'pagination', aria_label: nil, **vars)
-      id    = %( id="#{id}") if id
+      id  &&= %( id="#{id}")
       a     = pagy_anchor(pagy, **vars)
       pages = pagy.pages
 
@@ -15,8 +15,8 @@ class Pagy
                    %(border: none; display: inline-block;" class="page-link active">#{A_TAG})
 
       %(<nav#{id} class="pagy-bootstrap combo-nav-js" #{
-          pagy_nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
+          Front.nav_aria_label(self, pagy, aria_label:)} #{
+          Front.data_pagy(:cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
         }><ul class="#{classes}">#{
           bootstrap_prev_html(pagy, a)
         }<li class="page-item pagy-bootstrap"><label class="page-link">#{

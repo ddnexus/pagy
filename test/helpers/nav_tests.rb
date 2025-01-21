@@ -4,7 +4,7 @@ require_relative '../mock_helpers/pagy_buggy'
 require_relative '../mock_helpers/app'
 require_relative '../files/models'
 
-# required because we use the class directly, which does not load the mixin, so we miss the extra pagy_data
+# required because we use the class directly, which does not load the mixin, so we miss the extra data_pagy
 require 'pagy/backend/paginators/keynav'
 
 module NavTests
@@ -46,7 +46,7 @@ module NavTests
   def nav_js_countless_tests(prefix)  # e.g. pagy_bootstrap_nav_js
     method = :"pagy#{prefix}_nav_js"
     [[1, 0], [2, 23]].each do |page, rest|
-      pagy = Pagy::Offset::Countless.new(page: page).finalize(rest)
+      pagy  = Pagy::Offset::Countless.new(page: page).finalize(rest)
       pagyx = Pagy::Offset::Countless.new(page: page).finalize(rest)
       _(app.send(method, pagy)).must_rematch :"plain_#{page}_#{rest}"
       _(app.send(method, pagyx, id: 'test-nav-id', anchor_string: 'anchor_string',

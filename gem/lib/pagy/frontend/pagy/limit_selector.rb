@@ -17,7 +17,7 @@ class Pagy
                       limit}" style="padding: 0; text-align: center; width: #{limit.to_s.length + 1}rem;">#{A_TAG})
 
       %(<span#{id} class="pagy limit-selector-js" #{
-      pagy_data(pagy, :sj, pagy.from, url_token)
+      Front.data_pagy(:sj, pagy.from, url_token)
       }><label>#{
       pagy_t('pagy.limit_selector_js',
              item_name: item_name || pagy_t('pagy.item_name', count: limit),

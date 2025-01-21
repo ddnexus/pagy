@@ -12,7 +12,7 @@ class Pagy
     def pagy_metadata(pagy, absolute: nil)
       url_template = pagy_page_url(pagy, PAGE_TOKEN, absolute:)
       keys  = pagy.vars[:metadata] || METADATA
-      keys -= %i[count limit] if /^Pagy::Offset::Calendar/.match?(pagy.class.name)
+      keys -= %i[count limit] if pagy.calendar?
       {}.tap do |metadata|
         keys.each do |key|
           metadata[key] = case key

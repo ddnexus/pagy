@@ -11,7 +11,6 @@
 # pagy_offset(collection, **PAGY_DEFAULT, ...)
 
 # Extras
-# See https://ddnexus.github.io/pagy/categories/extra
 
 # Size extra: Enable the Array type for the `:size` variable (e.g. `size: [1,4,4,1]`)
 # See https://ddnexus.github.io/pagy/docs/extras/size

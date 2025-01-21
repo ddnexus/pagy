@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'modules/b64'
-require_relative 'modules/i18n'
 require_relative 'modules/url'
 require_relative 'frontend/loader'
 
 class Pagy
-  # Frontend modules are specially optimized for performance.
-  # The resulting code may not look very elegant, but produces the best benchmarks
+  # Module to include in the app helper
   module Frontend
     include Url
 
@@ -28,17 +25,6 @@ class Pagy
     # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_t(key, **)
       Pagy::I18n.translate(@pagy_locale ||= nil, key, **)
-    end
-
-    # Return a data tag with the base64 encoded JSON-serialized args generated with the faster oj gem
-    def pagy_data(_pagy, *args)
-      data = defined?(::Oj) ? Oj.dump(args, mode: :compat) : JSON.dump(args)
-      %(data-pagy="#{B64.encode(data)}")
-    end
-
-    def pagy_nav_aria_label(pagy, aria_label: nil)
-      aria_label ||= pagy_t('pagy.aria_label.nav', count: pagy.pages)
-      %(aria-label="#{aria_label}")
     end
 
     include Frontend::Loader

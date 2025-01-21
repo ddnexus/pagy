@@ -110,7 +110,7 @@ metadata___pagy_metadata_for_Pagy_test_0006_returns_only_specific_metadata_for_P
     :prev: 2
     :next: 4
     :pages: 26
-metadata___pagy_metadata_for_Pagy_test_0005_returns_only_specific_metadata_for_Pagy__Offset__Calendar:
+metadata___pagy_metadata_for_Pagy_test_0005_returns_only_specific_metadata_for_Pagy__Offset__Calendar__Unit:
   :metadata:
     :url_template: "/foo?month_page=P "
     :page: 3

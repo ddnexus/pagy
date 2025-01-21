@@ -5,7 +5,7 @@ require_relative '../../helpers/nav_tests'
 require_relative '../../mock_helpers/app'
 require 'pagy/backend/paginators/keynav'
 
-MIXIN = 'pagy'
+MIXIN  = 'pagy'
 PREFIX = ''
 
 describe MIXIN do

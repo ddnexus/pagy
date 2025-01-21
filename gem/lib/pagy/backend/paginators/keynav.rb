@@ -19,13 +19,4 @@ class Pagy
       [pagy, pagy.records]
     end
   end
-
-  # Add the arguments for the client to the pagy_data for the *nav helpers
-  module KeysetAugmentedFrontendOverride
-    def pagy_data(pagy, *args)
-      args.push([pagy.vars[:page_sym], pagy.update]) if pagy.is_a?(::Pagy::Keyset::Keynav) && args[0].to_s.match(/^n/)
-      super
-    end
-  end
-  Frontend.prepend KeysetAugmentedFrontendOverride
 end

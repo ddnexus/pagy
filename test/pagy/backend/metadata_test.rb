@@ -35,12 +35,12 @@ describe 'metadata' do
       pagy, _records = app.send(:pagy_offset, @collection, metadata: %i[url_template page count prev next pages])
       _(app.send(:pagy_metadata, pagy)).must_rematch :metadata
     end
-    it 'checks for unknown metadata for Pagy::Offset::Calendar' do
+    it 'checks for unknown metadata for Pagy::Offset::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app.send(:pagy_calendar, Event.all,
                                                     year: { metadata: %i[page unknown_key] })
       _ { calendar_app.send(:pagy_metadata, calendar[:year]) }.must_raise Pagy::VariableError
     end
-    it 'returns only specific metadata for Pagy::Offset::Calendar' do
+    it 'returns only specific metadata for Pagy::Offset::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
                                   .send(:pagy_calendar, Event.all,
                                         month: { metadata: %i[url_template page from to prev next pages] })

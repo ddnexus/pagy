@@ -7,7 +7,7 @@ class Pagy
     # Javascript combo pagination for bulma: it returns a nav with a data-pagy attribute used by the pagy.js file
     def pagy_bulma_combo_nav_js(pagy, id: nil, classes: 'pagy-bulma combo-nav-js pagination is-centered',
                                 aria_label: nil, **vars)
-      id    = %( id="#{id}") if id
+      id  &&= %( id="#{id}")
       a     = pagy_anchor(pagy, **vars)
       pages = pagy.pages
 
@@ -17,8 +17,8 @@ class Pagy
                    %(background-color: #485fc7;">#{A_TAG})
 
       %(<nav#{id} class="#{classes}" #{
-          pagy_nav_aria_label(pagy, aria_label:)} #{
-          pagy_data(pagy, :cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
+          Front.nav_aria_label(self, pagy, aria_label:)} #{
+          Front.data_pagy(:cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
         }>#{
           bulma_prev_next_html(pagy, a)
         }<ul class="pagination-list"><li class="pagination-link"><label>#{

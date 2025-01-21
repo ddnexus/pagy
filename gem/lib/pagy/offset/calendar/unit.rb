@@ -44,6 +44,8 @@ class Pagy
           localize(starting_time_for(page.to_i), opts)  # page could be a string
         end
 
+        def calendar? = true
+
         protected
 
         def label_sequels(series)

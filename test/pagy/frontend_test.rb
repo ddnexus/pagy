@@ -100,9 +100,9 @@ OJ.each do |test|
   describe 'pagy/frontend' do
     let(:app) { MockApp.new(params: {}) }
 
-    describe "pagy_data #{test}" do
+    describe "data_pagy #{test}" do
       it "runs #{test}" do
-        _(app.pagy_data(Pagy::Offset.new(count: 10), :test_function, 'some-string', 123, true)).must_rematch :data_1
+        _(Pagy::Front.data_pagy(:test_function, 'some-string', 123, true)).must_rematch :data_1
       end
     end
     describe "Calendar sequels and label_sequels #{test}" do

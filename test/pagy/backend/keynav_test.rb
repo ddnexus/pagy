@@ -4,6 +4,8 @@ require_relative '../../test_helper'
 require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
 
+require 'pagy/modules/b64'
+
 describe 'Keynav' do
   [Pet, PetSequel].each do |model|
     describe 'pagy_augmented' do
