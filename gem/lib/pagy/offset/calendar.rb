@@ -69,7 +69,7 @@ class Pagy
           conf[unit][:page]   = @params[:"#{unit}_#{@page_sym}"] # requested page
           # :nocov:
           # simplecov doesn't need to fail block_given?
-          conf[unit][:calendar_counts] = yield(unit, conf[unit][:period]) if block_given?
+          conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?
           # :nocov:
           calendar[unit] = object = Calendar.send(:create, unit, **conf[unit])
         end

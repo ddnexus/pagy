@@ -21,17 +21,24 @@ class Pagy
       pagy, results = send(conf[:pagy][:backend] || :pagy_offset, collection, **conf[:pagy])
       [calendar, pagy, results]
     end
+  end
 
-    # This method must be implemented by the application
-    def pagy_calendar_period(*)
-      raise NoMethodError, 'the pagy_calendar_period method must be implemented by the application ' \
-                           '(see https://ddnexus.github.io/pagy/docs/extras/calendar/#pagy-calendar-period-collection)'
-    end
+  module CalendarOverride
+    def pagy_anchor(pagy, anchor_string: nil, **vars)
+      return super unless (counts = pagy.vars[:counts])   # Skip unless pagy_calendar_counts is defined
 
-    # This method must be implemented by the application
-    def pagy_calendar_filter(*)
-      raise NoMethodError, 'the pagy_calendar_filter method must be implemented by the application ' \
-                           '(see https://ddnexus.github.io/pagy/docs/extras/calendar/#pagy-calendar-filter-collection-from-to)'
+      left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}")
+                    .split(PAGE_TOKEN, 2)
+      # Lambda used by all the helpers
+      lambda do |page, text = pagy.label(page: page), classes: nil, aria_label: nil|
+        count    = counts[page - 1]
+        classes  = classes ? "#{classes} empty-page" : 'empty-page' if count.zero?
+        info_key = count.zero? ? 'pagy.info.no_items' : 'pagy.info.single_page'
+        title    = %( title="#{pagy_t(info_key, item_name: pagy_t('pagy.item_name', count:), count:)}")
+        %(#{left}#{page}#{right}#{title}#{
+          %( class="#{classes}") if classes}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
+      end
     end
   end
+  Frontend.prepend CalendarOverride
 end

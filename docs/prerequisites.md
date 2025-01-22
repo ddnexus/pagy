@@ -28,7 +28,7 @@ Use pagy normally
 Your app does not use a `Rack` based framework.
 !!!
 
-Use the [standalone extra](extras/standalone.md)
+Read how to [Use Pagy with non-rack apps](how-to.md#use-pagy-with-a-non-rack-app).
 
 +++ Irb
 
@@ -41,8 +41,19 @@ Use the [Pagy::Console](api/console.md)
 
 ## Supported collections
 
-Out of the box pagy
-supports `ActiveRecord::Relation`, [array](extras/array.md), [elasticsearch_rails](extras/elasticsearch_rails.md), [searchkick](extras/searchkick.md)
-and [meilisearch](extras/meilisearch.md) collections.
+Out of the box pagy supports:
+
+### Offset pagination with:
+
+- `ActiveRecord::Relation`
+- [array](extras/array.md)
+- [elasticsearch_rails](extras/elasticsearch_rails.md)
+- [searchkick](extras/searchkick.md)
+- [meilisearch](extras/meilisearch.md)
+
+### Keyset and Keynav pagination with:
+
+- `ActiveRecord::Relation`
+- `Sequel::Dataset`
 
 In order to paginate other collections, search for "paginate" in the search field above.

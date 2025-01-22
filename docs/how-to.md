@@ -892,3 +892,17 @@ pagy demo
 !!!
 
 You may want to read also the [Pagy::Frontend API documentation](api/frontend.md) for complete control over your templates.
+
+## Use Pagy with a non-rack app
+
+For non-rack environments that don't respond to the request method, pass the `:request` variable to the paginator with your request[:url_prefix] (i.e. everything that comes before the `?` in the complete url), and your request[:query_params] hash to be merged with the pagy params and form the complete url
+
+
+```ruby
+@pagy, @records = pagy_offset(collection, request: { url_prefix:   'https://my.domain.com/path/script', 
+                                                     query_params: { a: 'a', b: 'b'} })
+```
+
+That would compose urls of the pages like: `https://my.domain.com/path/script?a=a&b=b&page=3`.
+
+Pagy rely also on the `params` method inside the app, which should be a hash of the params from the request. Define an alias or a method if your environment doesn't respond to it.

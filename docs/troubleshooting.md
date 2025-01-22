@@ -9,16 +9,19 @@ icon: alert-24
 !!!danger Don't Paginate Unordered PostgreSQL Collections!
 
 ```rb
-@pagy, @records = pagy(unordered)
+@pagy, @records = pagy_offset(unordered)
 
 # behind the scenes, pagy selects the page of records with: 
 unordered.offset(pagy.offset).limit(pagy.limit)
 ```
 
-!!!warning From the [PostgreSQL Documentation](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY)
+!!! warning
 
-When using LIMIT, it is important to use an ORDER BY clause that constrains the result rows into a unique order. Otherwise you
+From the [PostgreSQL Documentation](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY)
+
+When using LIMIT, it is important to use an ORDER BY clause that constrains the result rows into a unique order. Otherwise, you
 will get an unpredictable subset of the query's rows.
+
 !!!
 
 !!! success Ensure the PostgreSQL collection is ordered!
@@ -26,7 +29,7 @@ will get an unpredictable subset of the query's rows.
 ```rb
 # results will be predictable with #order
 ordered         = unordered.order(:id)
-@pagy, @records = pagy(ordered)
+@pagy, @records = pagy_offset(ordered)
 ```
 
 !!!
@@ -34,17 +37,18 @@ ordered         = unordered.order(:id)
 ==- Invalid HTML
 
 !!!danger Don't rely on ARIA default with multiple nav elements!
+
 Pagy sets the `aria-label` attribute of its `nav` elements with the translated and pluralized `pagy.aria_label.nav` that finds in
 the locale files. That would be (always) `"Page"/"Pages"` for the `en` locale.
 
-Since the `nav` or `role="navigation"` elements of a HTML document are considered `landmark  roles`, they
-should be uniquely aria-identified in the page.
+Since the `nav` or `role="navigation"` elements of a HTML document are considered `landmark  roles`, they should be uniquely
+aria-identified in the page.
 !!!
 
 !!!success Pass your own `aria_label` to each nav!
 
 ```erb
-<%# Explicitly set the aria_label string %> 
+<%# Explicitly set the aria_label string %>
 <%== pagy_nav(@pagy, aria_label: 'Search result pages') %>
 ```
 
@@ -69,27 +73,12 @@ pagy demo
 # ...and point your browser at http://0.0.0.0:8000
 ```
 
-!!!primary
-In the specific `bootstrap` example you could override the default bootstrap `"pagination"` class by adding other classes with:
+!!!primary In the specific `bootstrap` example you could override the default bootstrap `"pagination"` class by adding other
+classes with:
 
 ```ruby
 @pagy, @records = pagy_bootstrap_nav(collection, classes: 'pagination my-class')
 ```
 
-!!!
-
-==- Slow Last Page
-
-There has been a single report of a slow last page using very big DB tables. It's a pure DB problem and it's not caused by 
-pagy or by any other ruby code ([#696](https://github.com/ddnexus/pagy/pull/696), 
-[#704](https://github.com/ddnexus/pagy/pull/704)), but a simple pagy override may avoid it:
-
-```rb
-## override pagy_get_items
-def pagy_get_items(collection, pagy)
-  limit = pagy.last == pagy.page ? pagy.in : pagy.limit
-  collection.offset(pagy.offset).limit(limit)
-end
-```
 !!!
 ===

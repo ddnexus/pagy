@@ -33,14 +33,6 @@ describe 'calendar' do
       _(pagy.count).must_equal 505
       _(pagy.pages).must_equal 26
     end
-    it 'raises NoMethodError for #pagy_calendar_period' do
-      error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_period) }
-      _(error.message).must_match 'the pagy_calendar_period method must be implemented by the application'
-    end
-    it 'raises NoMethodError for #pagy_calendar_filter' do
-      error = assert_raises(NoMethodError) { MockApp.new.send(:pagy_calendar_filter) }
-      _(error.message).must_match 'the pagy_calendar_filter method must be implemented by the application'
-    end
     it 'raises ArgumentError for wrong conf' do
       _ { MockApp::Calendar.new.send(:pagy_calendar, Event.all, []) }.must_raise ArgumentError
       _ { MockApp::Calendar.new.send(:pagy_calendar, Event.all, unknown: {}) }.must_raise ArgumentError
@@ -273,6 +265,13 @@ describe 'calendar' do
                                         month: {},
                                         pagy: { limit: 10 })
       _(calendar.showtime).must_equal Time.zone.local(2022, 7, 1)
+    end
+  end
+  describe '#pagy_anchor with counts' do
+    it 'includes title and class in page url' do
+      pagy = Pagy::Offset.new(count: 103, page: 1, counts: {2 => 0})
+      _(MockApp::CalendarCounts.new.pagy_anchor(pagy, anchor_string: 'X').call(3, classes: 'a b c')).must_equal \
+        '<a X href="/foo?page=3" title="No items found" class="a b c empty-page">3</a>'
     end
   end
   describe "Counts feature" do

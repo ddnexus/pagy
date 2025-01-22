@@ -73,7 +73,7 @@ already filtered by the `:period` so there are no records outside it.
 
 ### Time conversions
 
-This classes can use the recommended `ActiveSupport::TimeWithZone` class or the ruby `Time` class for all their time calculations.
+This classes can use the `ActiveSupport::TimeWithZone` class for all their time calculations.
 
 Since they are meant to be used in the UI, they use the user/server local time in order to make sense for the UI. For that reason
 their input (the `:period` variable) and output (the `from` and `to` accessors) are always local time.

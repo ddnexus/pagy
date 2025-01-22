@@ -22,9 +22,6 @@ describe 'pagy/frontend' do
     it 'renders with extras' do
       pagy = Pagy::Offset.new(count: 103, page: 1)
       _(app.pagy_anchor(pagy, anchor_string: 'X').call(3)).must_equal '<a X href="/foo?page=3">3</a>'
-      pagy = Pagy::Offset.new(count: 103, page: 1, calendar_counts: {2 => 0})
-      _(app.pagy_anchor(pagy, anchor_string: 'X').call(3, classes: 'a b c'))
-        .must_equal '<a X href="/foo?page=3" title="No items found" class="a b c empty-page">3</a>'
     end
   end
 

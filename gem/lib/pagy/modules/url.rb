@@ -39,7 +39,7 @@ class Pagy
 
     # Return the URL for the page, relying on the params method and Rack by default.
     # It supports all rack-based frameworks (Sinatra, Padrino, Rails, ...).
-    # For non-rack environments that don't respond to the request method, pass the :request variable to the constructor
+    # For non-rack environments that don't respond to the request method, pass the :request variable to the paginator
     # with your request[:url_prefix] (i.e. everything that comes before the ? in the complete url),
     # and your request[:query_params] hash to be merged with the pagy params and form the complete url
     def pagy_page_url(pagy, page, absolute: false, fragment: nil, **)

@@ -29,14 +29,12 @@ if that makes sense for Pagy:
 - If it makes sense, you should add the equivalent Pagy statement and remove the legacy statement(s).
 - If it doesn't make sense, then just remove the legacy statement.
 
-!!!primary Don't stress if you miss
-Don't worry about missing something in this step: if anything won't work as before the next steps will fix it.
+!!!primary Don't stress if you miss Don't worry about missing something in this step: if anything won't work as before the next
+steps will fix it.
 !!!
 
 #### Preparation
 
-- Download the pagy initializer: you will edit it during the process.
-  [!file](/gem/config/pagy.rb)
 - Replace the legacy gem with `gem "pagy"` in the `Gemfile` and `bundle`, or install and require the gem if you don't use bundler.
 - Ensure that the legacy gem will not get loaded anymore (or it could mask some old statement still in place and not converted)
 - Add the `include Pagy::Backend` statement to the application controller.
@@ -62,13 +60,9 @@ Kaminari.configure do |config|
   #config.left = 0
   #config.right = 0
 end
-
-Pagy::DEFAULT[:limit] = 10
-require 'pagy/extras/size'           # Provide legacy support of old navbars like the above
-Pagy::DEFAULT[:size]  = [5, 4, 4, 5] # Array parsed by the extra above
 ```
 
-Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see 
+Remove all the legacy settings of the old gem(s) and uncomment and edit the new settings in the `pagy.rb` initializer _(see
 [How to configure pagy](/quick-start.md#configure))_.
 
 #### Cleanup the Models
@@ -80,16 +74,15 @@ kinds of statements scattered around in your models. You should remove them all 
 makes sense to Pagy, which of course _is absolutely not_ in the models.
 
 For example, you may want to search for keywords like `per_page`, `per` and such, which are actually configuration settings. They
-should either go into the `pagy.rb` initializer if they are global to the app, or into the specific `pagy` call in the controller
-if they are specific to an action.
+should be added to the specific pagintor call in the controller (e.g. `pagy_offset`).
 
 If the app uses the `page` scope in some of its methods or scopes in some model, that should be removed (including removing the
 argument used to pass the page number to the method/scope), leaving the rest of the scope in place. Search where the app uses the
-already paginated scope in the controllers, and use the scope in a regular `pagy` statement. For example:
+already paginated scope in the controllers, and use the scope in a paginator statement. For example:
 
 ```ruby Controller
 #@records = Product.paginated_scope(params[:page])
-@pagy, @records = pagy(Product.non_paginated_scope)
+@pagy, @records = pagy_offset(Product.non_paginated_scope)
 ```
 
 #### Search and replace in the Controllers
@@ -97,13 +90,13 @@ already paginated scope in the controllers, and use the scope in a regular `pagy
 In the controllers, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy
 pagination, so you should be able to go through each of them and convert them quite easily.
 
-Search for keywords like `page` and `paginate` statements and use the `pagy` method instead. For example:
+Search for keywords like `page` and `paginate` statements and use the `pagy_offset` paginator instead. For example:
 
 ```ruby Controller
 #@records = Product.some_scope.page(params[:page])
 #@records = Product.paginate(:page => params[:page])
 
-@pagy, @records = pagy(Product.some_scope)
+@pagy, @records = pagy_offset(Product.some_scope)
 
 #@records = Product.some_scope.page(params[:page]).per(15)
 #@records = Product.some_scope.page(params[:page]).per_page(15)
@@ -136,13 +129,14 @@ until there will be no exception.
 ## Fine tuning
 
 If the app is working and displays the pagination, it's time to adjust Pagy as you need, but if the old pagination was using
-custom elements (e.g. custom params, urls, links, html elements, etc.) it will likely not work without some possibly easy adjustment.
+custom elements (e.g. custom params, urls, links, html elements, etc.) it will likely not work without some possibly easy
+adjustment.
 
 Please take a look at the topics in the [how-to](how-to.md) documentation: that should cover most of your custom needs.
 
 ### CSS
 
-The css styling that you may have applied to the pagination elements may need some minor change. However if the app uses the
+The css styling that you may have applied to the pagination elements may need some minor change. However, if the app uses the
 pagination from bootstrap (or some other framework), the same CSSs should work seamlessly with the pagy nav helpers.
 
 ### I18n
