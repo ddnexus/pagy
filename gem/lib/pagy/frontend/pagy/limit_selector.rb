@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../utils/data_pagy'
+
 class Pagy
   Frontend.module_eval do
     # Return the limit selector HTML. For example "Show [20] items per page"
@@ -17,7 +19,7 @@ class Pagy
                       limit}" style="padding: 0; text-align: center; width: #{limit.to_s.length + 1}rem;">#{A_TAG})
 
       %(<span#{id} class="pagy limit-selector-js" #{
-      Front.data_pagy(:sj, pagy.from, url_token)
+      DataPagy.attr(:sj, pagy.from, url_token)
       }><label>#{
       pagy_t('pagy.limit_selector_js',
              item_name: item_name || pagy_t('pagy.item_name', count: limit),

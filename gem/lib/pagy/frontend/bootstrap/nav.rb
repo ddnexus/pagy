@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative '../utils/nav'
 require_relative 'prev_next'
 
 class Pagy
@@ -22,7 +23,7 @@ class Pagy
                 end
       end
       html << %(#{bootstrap_next_html(pagy, a)}</ul>)
-      Front.build_nav(self, pagy, html, 'pagy-bootstrap nav', **vars)
+      Nav.tag(self, pagy, html, 'pagy-bootstrap nav', **vars)
     end
   end
 end

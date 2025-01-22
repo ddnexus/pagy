@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'prev_next'
+require_relative '../utils/nav'
 
 class Pagy
   Frontend.module_eval do
@@ -22,7 +23,7 @@ class Pagy
                 end
       end
       html << pagy_next_a(pagy, a)
-      Front.build_nav(self, pagy, html, 'pagy nav', **vars)
+      Nav.tag(self, pagy, html, 'pagy nav', **vars)
     end
   end
 end

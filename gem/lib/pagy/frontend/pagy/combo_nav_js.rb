@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative '../utils/nav_aria_label'
+require_relative '../utils/data_pagy'
+
 class Pagy
   Frontend.module_eval do
     # Javascript combo pagination: it returns a nav with a data-pagy attribute used by the pagy.js file
@@ -12,8 +15,9 @@ class Pagy
                    %(style="text-align: center; width: #{pages.to_s.length + 1}rem; padding: 0;">#{A_TAG})
 
       %(<nav#{id} class="pagy combo-nav-js" #{
-          Front.nav_aria_label(self, pagy, aria_label:)} #{
-          Front.data_pagy(:cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))}>#{
+          NavAriaLabel.attr(self, pagy, aria_label:)} #{
+          DataPagy.attr(:cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
+        }>#{
           pagy_prev_a(pagy, a)
         }<label>#{
           pagy_t('pagy.combo_nav_js', page_input:, pages:)

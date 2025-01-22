@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'prev_next'
+require_relative '../utils/nav_aria_label'
+require_relative '../utils/data_pagy'
 
 class Pagy
   Frontend.module_eval do
@@ -15,8 +17,8 @@ class Pagy
                    %(border: none; display: inline-block;" class="page-link active">#{A_TAG})
 
       %(<nav#{id} class="pagy-bootstrap combo-nav-js" #{
-          Front.nav_aria_label(self, pagy, aria_label:)} #{
-          Front.data_pagy(:cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
+          NavAriaLabel.attr(self, pagy, aria_label:)} #{
+          DataPagy.attr(:cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
         }><ul class="#{classes}">#{
           bootstrap_prev_html(pagy, a)
         }<li class="page-item pagy-bootstrap"><label class="page-link">#{

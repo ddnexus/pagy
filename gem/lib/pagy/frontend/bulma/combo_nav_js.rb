@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'prev_next'
+require_relative '../utils/nav_aria_label'
+require_relative '../utils/data_pagy'
 
 class Pagy
   Frontend.module_eval do
@@ -17,12 +19,12 @@ class Pagy
                    %(background-color: #485fc7;">#{A_TAG})
 
       %(<nav#{id} class="#{classes}" #{
-          Front.nav_aria_label(self, pagy, aria_label:)} #{
-          Front.data_pagy(:cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
+          NavAriaLabel.attr(self, pagy, aria_label:)} #{
+          DataPagy.attr(:cj, pagy_page_url(pagy, PAGE_TOKEN, **vars))
         }>#{
           bulma_prev_next_html(pagy, a)
         }<ul class="pagination-list"><li class="pagination-link"><label>#{
-           pagy_t('pagy.combo_nav_js', page_input:, pages:)
+          pagy_t('pagy.combo_nav_js', page_input:, pages:)
         }</label></li></ul></nav>)
     end
   end

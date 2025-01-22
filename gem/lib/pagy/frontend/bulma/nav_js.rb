@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'prev_next'
+require_relative '../utils/nav_js'
 
 class Pagy
   Frontend.module_eval do
@@ -13,7 +14,7 @@ class Pagy
                           %(aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></li>),
                  gap:     %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>),
                  after:   '</ul>' }
-      Front.build_nav_js(self, pagy, tokens, classes, **vars)
+      NavJs.tag(self, pagy, tokens, classes, **vars)
     end
   end
 end

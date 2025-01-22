@@ -4,7 +4,7 @@ require_relative 'modules/url'
 require_relative 'backend/loader'
 
 class Pagy
-  # Relegate backend utilities methods that should not be used directly
+  # Relegate backend functions
   module Back
     module_function
 

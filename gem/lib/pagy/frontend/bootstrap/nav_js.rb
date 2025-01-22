@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'prev_next'
+require_relative '../utils/nav_js'
 
 class Pagy
   Frontend.module_eval do
@@ -14,7 +15,7 @@ class Pagy
                  gap:     %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
                               pagy_t('pagy.gap')}</a></li>),
                  after:   %(#{bootstrap_next_html pagy, a}</ul>) }
-      Front.build_nav_js(self, pagy, tokens, 'pagy-bootstrap nav-js', **vars)
+      NavJs.tag(self, pagy, tokens, 'pagy-bootstrap nav-js', **vars)
     end
   end
 end

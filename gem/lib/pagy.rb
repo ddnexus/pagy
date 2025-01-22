@@ -10,7 +10,6 @@ class Pagy
   path = ROOT.join('lib/pagy').freeze
   autoload :Backend,  path.join('backend')
   autoload :Frontend, path.join('frontend')
-  autoload :Front,    path.join('modules/front')
   autoload :I18n,     path.join('modules/i18n')
   autoload :Offset,   path.join('offset')
   autoload :Keyset,   path.join('keyset')
@@ -52,8 +51,8 @@ class Pagy
   end
 
   def page_for_url(page) = page
-  def keynav?   = false
-  def calendar? = false
+  def keynav?            = false
+  def calendar?          = false
 end
 
 require_relative 'pagy/exceptions'

@@ -3,6 +3,7 @@
 require_relative '../test_helper'
 require_relative '../mock_helpers/pagy_buggy'
 require_relative '../mock_helpers/app'
+require_relative '../../gem/lib/pagy/frontend/utils/data_pagy'
 
 # in test we cannot use the Pagy::I18n.load method because
 # it would freeze the Pagy::I18n::DATA hash so i18n_load
@@ -102,7 +103,7 @@ OJ.each do |test|
 
     describe "data_pagy #{test}" do
       it "runs #{test}" do
-        _(Pagy::Front.data_pagy(:test_function, 'some-string', 123, true)).must_rematch :data_1
+        _(Pagy::DataPagy.attr(:test_function, 'some-string', 123, true)).must_rematch :data_1
       end
     end
     describe "Calendar sequels and label_sequels #{test}" do
