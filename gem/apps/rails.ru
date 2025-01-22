@@ -168,7 +168,7 @@ TEMPLATE = <<~ERB
           If you want to customize the style,
           please replace the line below with the actual file content
         */
-        <%== Pagy::ROOT.join('stylesheets', 'pagy.css').read %>
+        <%== Pagy::ROOT.join('stylesheets/pagy.css').read %>
       </style>
     </head>
 

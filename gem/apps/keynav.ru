@@ -94,7 +94,7 @@ class PagyKeynav < Sinatra::Base
             padding: 1rem 1.5rem 2rem !important;
           }
 
-          <%= Pagy::ROOT.join('stylesheets', 'pagy.css').read %>
+          <%= Pagy::ROOT.join('stylesheets/pagy.css').read %>
         </style>
       </head>
       <body>

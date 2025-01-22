@@ -104,13 +104,14 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 
 #### Simple renaming (without logic changes)
 
-| Type        | Search         | Replace         | Notes                                                    |
-|-------------|----------------|-----------------|----------------------------------------------------------|
-| Variable    | `:page_param`  | `:page_sym`     | It was confusing                                         |
-| Variable    | `:limit_param` | `:limit_sym`    | It was confusing                                         |
-| Function    | `Pagy.root`    | `Pagy::ROOT`    | It's just a Pathname object                              |
-| Constructor | `pagy(`        | `pagy_offset(`  | Consistent with the other old and new constructors       |
-| Method      | `pagy_url_for` | `pagy_page_url` | The legacy naming was causing rails-related expectations |
+| Type        | Search           | Replace         | Notes                                                    |
+|-------------|------------------|-----------------|----------------------------------------------------------|
+| Variable    | `:page_param`    | `:page_sym`     | It was confusing                                         |
+| Variable    | `:limit_param`   | `:limit_sym`    | It was confusing                                         |
+| Function    | `Pagy.root`      | `Pagy::ROOT`    | It's just a Pathname object                              |
+| Constructor | `pagy(`          | `pagy_offset(`  | Consistent with the other old and new constructors       |
+| Method      | `pagy_url_for`   | `pagy_page_url` | The legacy naming was causing rails-related expectations |
+| Method/args | `label_for(page` | `label(page: `  | The name has changed and `page` is a keywork argument    |
 
 #### Core changes
 

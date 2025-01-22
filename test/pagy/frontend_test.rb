@@ -22,6 +22,9 @@ describe 'pagy/frontend' do
     it 'renders with extras' do
       pagy = Pagy::Offset.new(count: 103, page: 1)
       _(app.pagy_anchor(pagy, anchor_string: 'X').call(3)).must_equal '<a X href="/foo?page=3">3</a>'
+      pagy = Pagy::Offset.new(count: 103, page: 1, calendar_counts: {2 => 0})
+      _(app.pagy_anchor(pagy, anchor_string: 'X').call(3, classes: 'a b c'))
+        .must_equal '<a X href="/foo?page=3" title="No items found" class="a b c empty-page">3</a>'
     end
   end
 
@@ -48,16 +51,16 @@ describe 'pagy/frontend' do
   describe "Pagy::I18n" do
     it 'loads custom :locale, :filepath and :pluralize' do
       _(proc { i18n_load(locale: 'xx') }).must_raise Errno::ENOENT
-      _(proc { i18n_load(locale: 'xx', filepath: Pagy::ROOT.join('locales', 'en.yml')) }).must_raise Pagy::I18nError
-      _(proc { i18n_load(locale: 'en', filepath: Pagy::ROOT.join('locales', 'xx.yml')) }).must_raise Errno::ENOENT
+      _(proc { i18n_load(locale: 'xx', filepath: Pagy::ROOT.join('locales/en.yml')) }).must_raise Pagy::I18nError
+      _(proc { i18n_load(locale: 'en', filepath: Pagy::ROOT.join('locales/xx.yml')) }).must_raise Errno::ENOENT
       custom_dictionary = Pagy::ROOT.parent.join('test', 'files', 'custom.yml')
       i18n_load(locale: 'custom', filepath: custom_dictionary)
-      _(Pagy::I18n.t('custom', 'pagy.aria_label.prev')).must_equal "Custom Previous"
+      _(Pagy::I18n.t('pagy.aria_label.prev', locale: 'custom')).must_equal "Custom Previous"
       i18n_load(locale: 'en', pluralize: ->(_) { 'one' }) # returns always 'one' regardless the count
-      _(Pagy::I18n.t(nil, 'pagy.item_name', count: 0)).must_equal "item"
-      _(Pagy::I18n.t('en', 'pagy.item_name', count: 0)).must_equal "item"
-      _(Pagy::I18n.t('en', 'pagy.item_name', count: 1)).must_equal "item"
-      _(Pagy::I18n.t('en', 'pagy.item_name', count: 10)).must_equal "item"
+      _(Pagy::I18n.t('pagy.item_name', locale: nil, count: 0)).must_equal "item"
+      _(Pagy::I18n.t('pagy.item_name', locale: 'en', count: 0)).must_equal "item"
+      _(Pagy::I18n.t('pagy.item_name', locale: 'en', count: 1)).must_equal "item"
+      _(Pagy::I18n.t('pagy.item_name', locale: 'en', count: 10)).must_equal "item"
       i18n_load(locale: 'en') # reset for other tests
     end
     it 'switches :locale according to @pagy_locale' do

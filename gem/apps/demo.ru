@@ -251,7 +251,7 @@ class PagyDemo < Sinatra::Base
       <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
       <!-- copy and paste the pagy.tailwind style in order to edit it -->
       <style type="text/tailwindcss">
-        <%= Pagy::ROOT.join('stylesheets', 'pagy.tailwind.css').read %>
+        <%= Pagy::ROOT.join('stylesheets/pagy.tailwind.css').read %>
       </style>
     ERB
   end

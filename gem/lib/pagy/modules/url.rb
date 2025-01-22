@@ -62,5 +62,10 @@ class Pagy
 
       "#{request.base_url if absolute}#{vars[:request_path] || request.path}#{query_string}#{fragment}"
     end
+
+    # Return the url for the calendar page at time
+    def pagy_calendar_url_at(calendar, time, **)
+      pagy_page_url(calendar.send(:calendar_at, time, **), 1, **)
+    end
   end
 end

@@ -47,7 +47,7 @@ the rest untouched.
 [!file](/gem/stylesheets/pagy.scss)
 
 ```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheets', 'pagy.scss')
+stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.scss')
 ```
 
 :::code source="/gem/stylesheets/pagy.scss" :::
@@ -57,7 +57,7 @@ stylesheet_path = Pagy::ROOT.join('stylesheets', 'pagy.scss')
 [!file](/gem/stylesheets/pagy.css)
 
 ```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheets', 'pagy.css')
+stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.css')
 ```
 
 :::code source="/gem/stylesheets/pagy.css" :::
@@ -67,7 +67,7 @@ stylesheet_path = Pagy::ROOT.join('stylesheets', 'pagy.css')
 [!file](/gem/stylesheets/pagy.tailwind.css)
 
 ```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheets', 'pagy.tailwind.css')
+stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.tailwind.css')
 ```
 
 :::code source="/gem/stylesheets/pagy.tailwind.css" :::

@@ -39,8 +39,8 @@ group :playground do
   gem 'sqlite3'
 end
 
-# group :performance do
-#   gem 'benchmark-ips'
-#   gem 'kalibera'
-#   gem 'memory_profiler'
-# end
+group :performance do
+  gem 'benchmark-ips'
+  gem 'kalibera'
+  gem 'memory_profiler'
+end

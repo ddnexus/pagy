@@ -9,7 +9,7 @@ class Pagy
                a.(p_prev, pagy_t('pagy.prev'), classes: 'pagination-previous', aria_label: pagy_t('pagy.aria_label.prev'))
              else
                %(<a role="link" class="pagination-previous" disabled aria-disabled="true" aria-label="#{
-                   pagy_t('pagy.aria_label.prev')}">#{pagy_t 'pagy.prev'}</a>)
+                   pagy_t('pagy.aria_label.prev')}">#{pagy_t('pagy.prev')}</a>)
              end
       html << if (p_next = pagy.next)
                 a.(p_next, pagy_t('pagy.next'), classes: 'pagination-next', aria_label: pagy_t('pagy.aria_label.next'))

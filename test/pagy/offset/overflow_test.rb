@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/backend/paginators/calendar'   # to avoid to load AR support
+
+# Lazy trick to load ActiveSupport and crap while silencing the warnings
+calendar = Pagy::Offset::Calendar
+puts calendar
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
