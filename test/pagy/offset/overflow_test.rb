@@ -4,7 +4,7 @@ require_relative '../../test_helper'
 
 # Lazy trick to load ActiveSupport and crap while silencing the warnings
 calendar = Pagy::Offset::Calendar
-puts calendar
+calendar.is_a?(Pagy)
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday

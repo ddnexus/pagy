@@ -68,10 +68,11 @@ the legacy version was requiring more code)_
 The class hierarchy, the mixin files, and the test file structure have been deeply reorganized. The code is cleaner, more concise
 and more readable, adding fewer modules to the `ancestors` array of your app.
 
-#### The extras are almost all gone
+#### The extras are all gone
 
-They have been converted to autoloaded mixins, or integrated in the core code at zero-cost. You can use the methods that you need,
-and they will just work without the need of any explicit `require`.
+They have been converted to autoloaded mixins, or integrated in the core code at zero-cost and a few are discontinued.
+
+You can now use the methods that you need, and they will just work without the need of any explicit `require`.
 
 The only extras that are left _(for different compelling reasons)_ are: `gearbox`, `i18n` and `size`. They must be required in the
 initializer as usual.
@@ -82,7 +83,7 @@ When you jump back a few pages in the pagination nav, it remembers the last page
 
 #### Cleaner URLs
 
-- No more empty params or extra '?' in the url string URL templates are safer for string manipulation.
+- No more empty params or extra '?' in the URL string; URL templates are safer for string manipulation.
 - The `pagy_page_url` (legacy `pagy_url_for`) can be used also without a request (incorporating the legacy `standalone` extra)
 
 #### Javascript refactoring
@@ -91,27 +92,33 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 
 ### Breaking Changes
 
-#### The `Pagy::DEFAULT` is now frozen
-
-- Remove all the `Pagy::DEFAULT` variables from your code and pass their variables to the paginator method.
-- As an alternative to avoid repetitions, define your own `PAGY_DEFAULT = {...}` hash and pass it to the different paginator
-  methods:
-  For example: `pagy_offset(scope, **PAGY_DEFAULT, ...)`
-
-#### Direct instantiation of the pagy paginator method classes is not recommended
-
-- Use the provided paginator method helpers for easier usage, maintenance and forward compatibility.
-
 #### Simple renaming (without logic changes)
 
 | Type        | Search           | Replace         | Notes                                                    |
 |-------------|------------------|-----------------|----------------------------------------------------------|
+| Constructor | `pagy(`          | `pagy_offset(`  | Consistent with the other old and new constructors       |
+| Function    | `Pagy.root`      | `Pagy::ROOT`    | It's just a Pathname object                              |
 | Variable    | `:page_param`    | `:page_sym`     | It was confusing                                         |
 | Variable    | `:limit_param`   | `:limit_sym`    | It was confusing                                         |
-| Function    | `Pagy.root`      | `Pagy::ROOT`    | It's just a Pathname object                              |
-| Constructor | `pagy(`          | `pagy_offset(`  | Consistent with the other old and new constructors       |
 | Method      | `pagy_url_for`   | `pagy_page_url` | The legacy naming was causing rails-related expectations |
 | Method/args | `label_for(page` | `label(page: `  | The name has changed and `page` is a keywork argument    |
+
+#### Direct instantiation of the pagy classes is not recommended
+
+- Use the provided paginators for easier usage, maintenance and forward compatibility.
+- Use the classes only if the documentation suggests you to do so, or if you really you know what you are doing.
+
+#### The `Pagy::DEFAULT` is now frozen
+
+- Remove all the `Pagy::DEFAULT` statements and pass their variables to the paginator constructors that you use.
+- As an alternative to avoid repetitions, define your own default hash and pass it to the different paginator methods. See the new
+  initializer for details.
+
+#### Replace your `pagy.rb` config file
+
+With no more `Pagy::DEFAULT` and no more extras to require, the statements in your old version are all obsolete but any existing
+`Pagy::I18n` configuration, so it's better to start with the new version of the file, and copy over the `Pagy::I18n` (if you used
+it).
 
 #### Core changes
 
@@ -120,16 +127,21 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 
 #### Extras Changes
 
-##### `arel`, `array`, `boostrap`, `bulma`, `calendar`, `countless`, `pagy`
+All the extras are gone: here is what to
 
-- Just remove the `require 'pagy/extras/<extra-name>'` from the initializer, and continue to use their features without further
-  changes.
+##### `arel`, `array`, `boostrap`, `bulma`, `countless`, `pagy`
+
+- Just use their features without further changes.
+
+##### `calendar`
+
+If you need the I18n localization, discard your old config, and uncomment/add this line to your initializer:
+`Pagy::Offset::Calendar.localize_with_rails_i18n_gem(*your_locales)`
 
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
 
-- Remove the `require 'pagy/extras/<extra-name>'` from the initializer
 - Replace any existing `Pagy.new_from_<extra-name>` with `pagy_<extra-name>`. _(Active and passive modes are now handled by the
-  same helper.)_
+  same paginator.)_
 - Replace any existing `extend Pagy::Search` statement in your models with `extend Pagy::Offset::Search`.
 - Remove any existing `:<extra-name>_pagy_search`
   variable from your code, and use the standard `pagy_search` method instead. _(the `pagy_search` name customization has been
@@ -138,70 +150,66 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 
 ##### `headers`
 
-- Remove the `require 'pagy/extras/headers'` from the initializer.
 - Rename any existing `:scaffold_url` to `url_template`
-- Remove any existing `Pagy::DEFAULT[:metadata]` variable and pass it to the paginator method
-
-##### `i18n` (discontinued)
-
-- Remove the `require 'pagy/extras/headers'` from the initializer.
-- Ucomment the last 2 lines of the `pagy.rb` new initializer, or add them to yours:
-```ruby
-Pagy::Frontend.prepend(Module.new { def pagy_t(...) = I18n.t(...) })
-I18n.load_path += Dir[Pagy::ROOT.join('locales/*.yml')]
-```
+- Pass any existing `:headers` variable to the paginator method
 
 ##### `jsonapi`
 
-- Remove the `require 'pagy/extras/jsonapi'` from the initializer.
-- Rename `pagy_jsonapi_links` as `pagy_links`. Notice that the `nil` links are now removed as the `JSON:API`
+- Rename any existing `pagy_jsonapi_links` as `pagy_links`. Notice that the `nil` links are now removed as the `JSON:API`
   requires.
 - You should pass the `:jsonapi` variable to the paginator method when you want to trigger the feature.
 
 ##### `keyset`
 
-- Remove the `require 'pagy/extras/keyset'` from the initializer.
 - Replace any existing `:jsonify_keyset_attributes` with `stringify_keyset_values`. The lambda receives the same
   `keyset_attributes` but it must return the array of attribute values `->(keyset_attributes) { ...; keyset_attributes.values }`.
 - Remove any existing`:filter_newest`. Override the `after_cutoff_sql` method instead.
 
 ##### `limit`
 
-- Remove the `require 'pagy/extras/limit'` from the initializer.
 - You should pass the `:requestable_limit` variable - set to the max limit requestable by the client - to the paginator method
   when you want to trigger the feature.
 
 ##### `metadata`
 
-- Remove the `require 'pagy/extras/metadata'` from the initializer.
 - Rename any existing `:scaffold_url` to `url_template`
-- Remove any existing `Pagy::DEFAULT[:metadata]` variable and pass it to the paginator method
+- Pass any existing `:metadata` variable to the paginator method
 
 ##### `overflow`
 
-- Remove the `require 'pagy/extras/overflow'` from the initializer.
 - You should pass the `:overflow: ...` variable to the paginator method when you want to trigger the feature.
 
 #### `standlone`
 
-- Remove the `require 'pagy/extras/standalone'` from the initializer.
-- Replace the `:url` variable with `:request`, and its content with `{ url_prefix: 'the-previous-value-of-url' }`. You can also
-  optionally add your `query_params` hash. For example `{ query_params: { param1: 'abc', param2: 'def' }` for complete control
-  over the generated url.
+- Replace the `:url` variable with `:request` and its content with `{ url_prefix: 'the-previous-value-of-url' }`. You can also
+  optionally add your `query_params` hash. For example:
+  `request: { url_prefix: 'the-previous-value-of-url', query_params: { param1: 'abc', param2: 'def' }}` for complete control over
+  the generated url.
+
+##### `i18n` (discontinued)
+
+- If you REALLY need it, uncomment/add this line to your initializer: `Pagy::Frontend.translate_with_the_slower_i18n_gem!`
+
+##### `gearbox` (discontinued)
+
+- Copy the file at `https://github.com/ddnexus/pagy/blob/master/legacy/gearbox.rb` in your app and require the copy in the
+  initializer.
+- Remove the `:gearbox_extra` variable from your code
+- You should pass the `gearbox_limit: [...]` variable to the paginator method when you want to trigger the feature.
+- The file will not be upgraded in the future, so you must maintain it. The test file is available at
+  `https://github.com/ddnexus/pagy/blob/master/legacy/gearbox_test.rb`
+
+##### `size` (discontinued)
+
+- Copy the file at `https://github.com/ddnexus/pagy/blob/master/legacy/size.rb` in your app and require the copy in the
+  initializer.
+- The file will not be upgraded in the future, so you must maintain it. The test file is available at
+  `https://github.com/ddnexus/pagy/blob/master/legacy/size_test.rb`
 
 ##### `trim` (discontinued)
 
 - It was mostly useless and half backed, causing a lot of complications in the ruby and javascript code.
 - Use a proper way to address your requirement, like using URL rewriting at the HTTP server level.
-
-##### `gearbox`
-
-- Remove the `:gearbox_extra` variable from your code
-- You should pass the `gearbox_limit: [...]` variable to the paginator method when you want to trigger the feature.
-
-##### `i18n`, `size`
-
-- No change required.
 
 #### Possibly Breaking Overridings
 

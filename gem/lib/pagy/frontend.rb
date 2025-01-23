@@ -8,6 +8,12 @@ class Pagy
   module Frontend
     include Url
 
+    # Override pagy_t to use ::I18n.t
+    def self.translate_with_the_slower_i18n_gem!
+      prepend(Module.new { def pagy_t(...) = ::I18n.t(...) })
+      ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
+    end
+
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def pagy_anchor(pagy, anchor_string: nil, **vars)

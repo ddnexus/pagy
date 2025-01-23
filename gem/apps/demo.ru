@@ -39,10 +39,6 @@ STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
            bulma:       {},
            tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css' } }.freeze
 
-# STYLES.each_key do |style|
-#   require "pagy/extras/#{STYLES[style][:extra] || style}"
-# end
-
 # Sinatra setup
 require 'sinatra/base'
 

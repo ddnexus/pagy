@@ -29,7 +29,7 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   gem 'sinatra'
 end
 
-# Edit this section adding the extras as needed
+# Edit this section adding the legacy as needed
 # pagy initializer
 
 # Sinatra setup

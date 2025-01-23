@@ -3,11 +3,11 @@
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/app'
 
-describe 'pagy/extras/i18n' do
+describe 'pagy/legacy/i18n' do
   let(:app) { MockApp.new }
 
   ##### pagy.rb initializer ###############
-  Pagy.translate_with_the_slower_i18n_gem!
+  Pagy::Frontend.translate_with_the_slower_i18n_gem!
   #########################################
 
   describe '#pagy_t with I18n' do

@@ -27,11 +27,6 @@ class Pagy
 
   alias pages last
 
-  def self.translate_with_the_slower_i18n_gem!
-    Frontend.prepend(Module.new { def pagy_t(...) = ::I18n.t(...) })
-    ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
-  end
-
   # Validates and assign the passed vars: var must be present and value.to_i must be >= to min
   def assign_and_check(name_min)
     name_min.each do |name, min|

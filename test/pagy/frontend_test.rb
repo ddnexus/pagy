@@ -16,10 +16,10 @@ end
 describe 'pagy/frontend' do
   let(:app) { MockApp.new }
 
-  # #pagy_nav helper tests in the test/extras/offset_test.rb
+  # #pagy_nav helper tests in the test/legacy/offset_test.rb
 
   describe '#pagy_anchor' do
-    it 'renders with extras' do
+    it 'renders with legacy' do
       pagy = Pagy::Offset.new(count: 103, page: 1)
       _(app.pagy_anchor(pagy, anchor_string: 'X').call(3)).must_equal '<a X href="/foo?page=3">3</a>'
     end

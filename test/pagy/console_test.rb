@@ -5,8 +5,6 @@ require 'pagy/console'
 
 module PagyConsole
   include Pagy::Console
-  # we are not in the console so we need module_function
-  module_function :pagy_extras
 end
 
 describe 'pagy/console' do
@@ -14,11 +12,6 @@ describe 'pagy/console' do
     it 'includes Pagy::Backend and Pagy::Frontend' do
       assert_operator(PagyConsole, :<, Pagy::Backend)
       assert_operator(PagyConsole, :<, Pagy::Frontend)
-    end
-    it 'requires extras' do
-      _ { PagyConsole.pagy_extras :gearbox }.must_output "Required extras: :gearbox\n"
-      _(Pagy::Backend.method_defined?(:pagy_array))
-      _(Pagy::Frontend.method_defined?(:pagy_nav_js))
     end
   end
 end

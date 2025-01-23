@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
-require 'pagy/extras/gearbox'
+require_relative '../test/test_helper'
+require_relative 'gearbox'
 require 'pagy/offset/countless'
 
-describe 'pagy/extras/gearbox' do
+describe 'pagy/legacy/gearbox' do
   describe '#assign_limit' do
     it 'raises VariableErrors for wrong limit types' do
       _ { Pagy::Offset.new(count: 3, page: 1, gearbox_limit: [-1, 10]) }.must_raise Pagy::VariableError
       _ { Pagy::Offset.new(count: 3, page: 1, gearbox_limit: [0, 10]) }.must_raise Pagy::VariableError
-      _ { Pagy::Offset.new(count: 3, page: 1, gearbox_limit: [5, "10"]) }.must_raise Pagy::VariableError
+      _ { Pagy::Offset.new(count: 3, page: 1, gearbox_limit: [5, '10']) }.must_raise Pagy::VariableError
     end
     it 'can skips gearbox in Pagy' do
       _(Pagy::Offset.new(count: 0, page: 1, requestable_limit: 100).limit).must_equal 20
@@ -65,7 +65,7 @@ describe 'pagy/extras/gearbox' do
       _(Pagy::Offset.new(count: 24, page: 2, gearbox_limit: [3, 10], max_pages: 2).last).must_equal 2
       _ { Pagy::Offset.new(count: 24, page: 3, gearbox_limit: [3, 10], max_pages: 2) }.must_raise Pagy::OverflowError
     end
-    it "checks the last in Pagy::Offset::Countless" do
+    it 'checks the last in Pagy::Offset::Countless' do
       _(Pagy::Offset::Countless.new(page: 1, gearbox_limit: [3, 10]).finalize(2).last).must_equal 1
       _(Pagy::Offset::Countless.new(page: 1, gearbox_limit: [3, 10]).finalize(4).last).must_equal 2
       _(Pagy::Offset::Countless.new(page: 3, gearbox_limit: [3, 10]).finalize(7).last).must_equal 3
@@ -77,7 +77,7 @@ describe 'pagy/extras/gearbox' do
   end
 
   describe '#assign_offset' do
-    it "checks the offset in Pagy" do
+    it 'checks the offset in Pagy' do
       _(Pagy::Offset.new(count: 2,  page: 1,  gearbox_limit: [3, 10]).offset).must_equal 0
       _(Pagy::Offset.new(count: 3,  page: 1,  gearbox_limit: [3, 10]).offset).must_equal 0
       _(Pagy::Offset.new(count: 4,  page: 1,  gearbox_limit: [3, 10]).offset).must_equal 0
@@ -86,7 +86,7 @@ describe 'pagy/extras/gearbox' do
       _(Pagy::Offset.new(count: 60, page: 3,  gearbox_limit: [3, 10]).offset).must_equal 13
       _(Pagy::Offset.new(count: 80, page: 4,  gearbox_limit: [3, 10]).offset).must_equal 23
     end
-    it "checks the offset in Pagy::Offset::Countless" do
+    it 'checks the offset in Pagy::Offset::Countless' do
       _(Pagy::Offset::Countless.new(page: 1, gearbox_limit: [3, 10]).offset).must_equal 0
       _(Pagy::Offset::Countless.new(page: 2, gearbox_limit: [3, 10]).offset).must_equal 3
       _(Pagy::Offset::Countless.new(page: 3, gearbox_limit: [3, 10]).offset).must_equal 13

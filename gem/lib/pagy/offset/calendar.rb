@@ -25,16 +25,18 @@ class Pagy
       UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
 
       class << self
+        # :nocov:
+        # Localize with rails-i18n in any env
         def localize_with_rails_i18n_gem(*locales)
-          # :nocov:
-          raise RailsI18nLoadError, "Pagy: Gem 'rails-i18n' is not installed!" \
+          Unit.prepend(Module.new { def localize(...) = ::I18n.l(...) })
+          return if defined?(Rails)
+          raise RailsI18nLoadError, "Pagy: The gem 'rails-i18n' must be installed if you don't use Rails" \
                 unless (path = Gem.loaded_specs['rails-i18n']&.full_gem_path)
-          # :nocov:
 
           path = Pathname.new(path)
           ::I18n.load_path += locales.map { |locale| path.join("rails/locale/#{locale}.yml") }
-          Unit.prepend(Module.new { def localize(...) = ::I18n.l(...) })
         end
+        # :nocov:
 
         private
 

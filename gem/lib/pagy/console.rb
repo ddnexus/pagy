@@ -13,15 +13,9 @@ class Pagy
       # :nocov:
       main.define_method(:default_request) do
         { request: { url_prefix: 'http://www.example.com/subdir',
-          query_params: { example: '123' } } }
+                     query_params: { example: '123' } } }
       end
       # :nocov:
-    end
-
-    # Require the extras passed as arguments
-    def pagy_extras(*extras)
-      extras.each { |extra| require "pagy/extras/#{extra}" }
-      puts "Required extras: #{extras.map(&:inspect).join(', ')}"
     end
   end
 end
