@@ -118,7 +118,7 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 - If you used the `:params` variable set to a lambda, ensure that it modifies the passed `query_params` directly. The returned
   value is now ignored for a sligtly better performance.
 
-#### Extras Replacement
+#### Extras Changes
 
 ##### `arel`, `array`, `boostrap`, `bulma`, `calendar`, `countless`, `pagy`
 
@@ -141,6 +141,15 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 - Remove the `require 'pagy/extras/headers'` from the initializer.
 - Rename any existing `:scaffold_url` to `url_template`
 - Remove any existing `Pagy::DEFAULT[:metadata]` variable and pass it to the paginator method
+
+##### `i18n` (discontinued)
+
+- Remove the `require 'pagy/extras/headers'` from the initializer.
+- Ucomment the last 2 lines of the `pagy.rb` new initializer, or add them to yours:
+```ruby
+Pagy::Frontend.prepend(Module.new { def pagy_t(...) = I18n.t(...) })
+I18n.load_path += Dir[Pagy::ROOT.join('locales/*.yml')]
+```
 
 ##### `jsonapi`
 

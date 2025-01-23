@@ -25,6 +25,17 @@ class Pagy
       UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
 
       class << self
+        def localize_with_rails_i18n_gem(*locales)
+          # :nocov:
+          raise RailsI18nLoadError, "Pagy: Gem 'rails-i18n' is not installed!" \
+                unless (path = Gem.loaded_specs['rails-i18n']&.full_gem_path)
+          # :nocov:
+
+          path = Pathname.new(path)
+          ::I18n.load_path += locales.map { |locale| path.join("rails/locale/#{locale}.yml") }
+          Unit.prepend(Module.new { def localize(...) = ::I18n.l(...) })
+        end
+
         private
 
         # Create a unit subclass instance by using the unit name (internal use)

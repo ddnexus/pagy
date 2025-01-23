@@ -20,6 +20,9 @@ class Pagy
   # I18n configuration error
   class I18nError < StandardError; end
 
+  # I18n configuration error
+  class RailsI18nLoadError < LoadError; end
+
   # Generic internal error
   class InternalError < StandardError; end
 

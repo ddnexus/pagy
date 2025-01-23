@@ -18,6 +18,7 @@ group :test do
   gem 'mutex_m'                # for RubyMine
   gem 'oj', require: false     # false is for testing with or without it
   gem 'rack'
+  gem 'rails-i18n'
   gem 'rematch'
   gem 'rubocop'
   gem 'rubocop-minitest'

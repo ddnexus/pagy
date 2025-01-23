@@ -1,0 +1,33 @@
+# frozen_string_literal: true
+
+require_relative '../../test_helper'
+require_relative '../../mock_helpers/app' # load after the extra
+
+Time.zone = 'EST'
+Date.beginning_of_week = :sunday
+
+## Test not needed: Now it's a manual patch in the pagy.rb initializer
+describe 'Calendar with I18n.l' do
+  ##### pagy.rb initializer ###############
+  Pagy::Offset::Calendar.localize_with_rails_i18n_gem(:de)
+  #########################################
+
+  it 'works in :en' do
+    pagy = Pagy::Offset::Calendar.send(:create, :month,
+                                       period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
+                                                Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
+                                       page: 3, format: '%B, %A')
+    _(pagy.label).must_equal "December, Wednesday"
+    _(pagy.label(locale: :de)).must_equal "Dezember, Mittwoch"
+    _(pagy.label(format: '%b')).must_equal "Dec"
+    _(pagy.label(format: '%b', locale: :de)).must_equal "Dez"
+    _(pagy.label(page: 5)).must_equal "February, Tuesday"
+    _(pagy.label(page: 5, locale: :de)).must_equal "Februar, Dienstag"
+    I18n.locale = :de
+    _(pagy.label).must_equal "Dezember, Mittwoch"
+    _(pagy.label(format: '%b')).must_equal "Dez"
+    _(pagy.label(page: 5)).must_equal "Februar, Dienstag"
+    _(pagy.label(page: 5, format: '%b')).must_equal "Feb"
+    I18n.locale = :en
+  end
+end

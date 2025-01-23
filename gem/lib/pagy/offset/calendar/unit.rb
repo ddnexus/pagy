@@ -36,7 +36,7 @@ class Pagy
         # The label for any page (it can pass along the I18n gem opts when it's used with the i18n extra)
         def label(page: @page, **opts)
           opts[:format] ||= @vars[:format]
-          localize(starting_time_for(page.to_i), opts)  # page could be a string
+          localize(starting_time_for(page.to_i), **opts)  # page could be a string
         end
 
         def calendar? = true
@@ -81,10 +81,13 @@ class Pagy
           && @ending.is_a?(ActiveSupport::TimeWithZone) && @starting <= @ending
         end
 
-        # Apply the strftime format to the time (overridden by the i18n extra when localization is required)
-        # Calendar overriding for localization (see also the block in the calendar section of the config/pagy.rb initializer)
-        def localize(time, opts)
-          defined?(::Pagy::I18nExtra) ? ::I18n.l(time, **opts) : time.strftime(opts[:format])
+        # Apply the strftime format to the time.
+        # IMPORTANT: If you need localization of the Calendar beside :en, you must use the rails-I18n gem.
+        # In order to enable it, uncomment the specific lines at the end of the config/pagy.rb initializer.
+        # Notice that the calendar localization does not require you to use the pagy i18n extra,
+        # which is all about translation and not localization.
+        def localize(time, **opts)
+          time.strftime(opts[:format])
         end
 
         # Number of time units to offset from the @initial time, in order to get the ordered starting time for the page.

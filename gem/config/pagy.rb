@@ -2,50 +2,39 @@
 
 # Pagy initializer file (9.3.3)
 
-##### Pagy::DEFAULT #######################
 
-# Customizing the static and frozen Pagy::DEFAULT is NOT SUPPORTED since version 10.0.0.
-# Pass the variables to the constructor, or pass your own PAGY_DEFAULT hash.
+################################ Pagy::DEFAULT #################################
+# Customizing the static and frozen Pagy::DEFAULT is NOT SUPPORTED anymore!
+# Pass the variables to the paginator method, or pass your own PAGY_DEFAULT hash.
 # For example:
 #
-# PAGY_DEFAULT = { ... }
-# pagy_offset(collection, **PAGY_DEFAULT, ...)
+# PAGY_DEFAULT = { limit: 10 }
+# pagy_offset(collection, **PAGY_DEFAULT, **other_vars)
 
 
-##### Extras #######################
-
-# The extras are almost all converted to autoloaded mixins, or integrated in the core code at zero-cost.
-# You can use the methods that you need, and they will just work without the need of any explicit `require`.
-#
-# The only extras that are left (for different compelling reasons) are listed below:
-# gearbox, i18n and size. They must be required in the initializer as usual.
-
-
-# Gearbox extra: Automatically change the limit per page depending on the page number
-# (e.g. `gearbox_limit: [15, 30, 60, 100]`
+########## Extras ##############################################################
+# Gearbox extra: Automatically change the limit depending on the page number
 # See https://ddnexus.github.io/pagy/docs/extras/gearbox
 # require 'pagy/extras/gearbox'
+# Then pass e.g.: `gearbox_limit: [15, 30, 60, 100]` to the paginator method to activate the feature
 
-
-# I18n extra: uses the standard i18n gem which is ~18x slower using ~10x more memory
-# than the default pagy internal i18n (see below)
-# See https://ddnexus.github.io/pagy/docs/extras/i18n
-# require 'pagy/extras/i18n'
-
-
-# Size extra: Enable the Array type for the `:size` variable (e.g. `size: [1,4,4,1]`)
+# Size extra: Enable the legacy deprecated Array type for the `:size` variable (e.g. `size: [1,4,4,1]`)
 # See https://ddnexus.github.io/pagy/docs/extras/size
-# require 'pagy/extras/size'   # must be required before the other extras
+# require 'pagy/extras/size'
 
 
-##### Pagy::I18n configuration #######################
 
-# Pagy internal I18n: ~18x faster using ~10x less memory than the i18n gem
-# See https://ddnexus.github.io/pagy/docs/api/i18n
-# Notice: No need to configure anything in this section if your app uses only "en"
-# or if you use the i18n extra below
+
+
+################################# IMPORTANT ####################################
+# Do not configure anything below this line if you use only the :en locale
+
+
+########## Pagy Translation Besides :en ########################################
+# Use the pagy internal I18n: ~18x faster using ~10x less memory than the i18n gem
+# If you want to use the slower I18n gem, skip this and look at the end of this file.
 #
-# Examples:
+# Examples (use only one statement):
 # load the "de" built-in locale:
 # Pagy::I18n.load(locale: 'de')
 #
@@ -66,3 +55,19 @@
 #                 { locale: 'xyz',  # not built-in
 #                   filepath: 'path/to/pagy-xyz.yml',
 #                   pluralize: lambda{ |count| ... } )
+
+
+########## I18n gem Translation Besides :en ###################################
+# Uncomment the following line if you REALLY want to switch
+# to the standard I18n gem translation:
+#
+# Pagy.translate_with_the_slower_i18n_gem!
+
+
+########## Calendar Localization Besides :en ###################################
+# The calendar localization data beside :en (which is included), is provided
+# by the rails-i18n gem, which should be requested/added by your Gemfile.
+# Add the list of locale symbols and comment the following line to enable it,
+# regardless if you use the I18n gem for translations or not.
+#
+# Pagy::Offset::Calendar.localize_with_rails_i18n_gem(*your_locales)

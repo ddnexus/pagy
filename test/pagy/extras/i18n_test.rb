@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/app'
-require 'i18n'
-require 'pagy/extras/i18n'
+require_relative '../../test_helper'
+require_relative '../../mock_helpers/app'
 
 describe 'pagy/extras/i18n' do
   let(:app) { MockApp.new }
+
+  ##### pagy.rb initializer ###############
+  Pagy.translate_with_the_slower_i18n_gem!
+  #########################################
 
   describe '#pagy_t with I18n' do
     it 'does not conflict with the I18n gem namespace' do
