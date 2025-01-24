@@ -399,7 +399,7 @@ class Formatter
       ## Handle incomplete same-tag nesting
       while block.scan(/<#{name}.*?>/).size > block.scan(tag_end).size
         more, rest = rest.split(tag_end, 2)
-        block << tag_end << more
+        block << (tag_end + more)
       end
       if (match = tag_start.match(DATA_PAGY))
         search, data = match.captures
@@ -412,7 +412,7 @@ class Formatter
         process(block, level + 1)
         push.(tag_end)
       else
-        push.(tag_start << block << tag_end)
+        push.(tag_start << (block + tag_end))
       end
     end
     process(rest, level) if rest

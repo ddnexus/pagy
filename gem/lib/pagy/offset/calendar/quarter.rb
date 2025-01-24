@@ -6,7 +6,7 @@ class Pagy # :nodoc:
       # Quarter unit subclass
       class Quarter < Unit
         DEFAULT = { size:   4,
-                    ends:   false,
+                    trim:   true,
                     order:  :asc,
                     format: 'Q%q' }.freeze # '%q' token
 

@@ -100,6 +100,7 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 | Function    | `Pagy.root`      | `Pagy::ROOT`    | It's just a Pathname object                              |
 | Variable    | `:page_param`    | `:page_sym`     | It was confusing                                         |
 | Variable    | `:limit_param`   | `:limit_sym`    | It was confusing                                         |
+| Variable    | `ends: false`    | `trim: true`    | Trim is the inverse of ends                              |
 | Method      | `pagy_url_for`   | `pagy_page_url` | The legacy naming was causing rails-related expectations |
 | Method/args | `label_for(page` | `label(page: `  | The name has changed and `page` is a keywork argument    |
 

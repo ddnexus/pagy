@@ -112,9 +112,9 @@ OJ.each do |test|
         pagy = Pagy::Offset::Calendar.send(:create, :month,
                                            period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
                                                     Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
-                                           steps: steps,
-                                           ends: true,   # to hit the :gap condition in the calendar sequels override
-                                           page: 6)
+                                           steps:  steps,
+                                           trim:   false,   # to hit the :gap condition in the calendar sequels override
+                                           page:   6)
         _(pagy.sequels).must_rematch :sequels
       end
     end

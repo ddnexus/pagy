@@ -17,7 +17,7 @@ class Pagy
 
     # Get the count from the collection
     def pagy_get_count(collection, vars)
-      count_args = vars[:count_args] || DEFAULT[:count_args]
+      count_args = vars[:count_args] || [:all]
       (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
     end
 

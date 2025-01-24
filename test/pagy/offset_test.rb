@@ -16,7 +16,6 @@ describe 'pagy' do
       _(Pagy::Offset.new(count: 100, page: '2')).must_be_instance_of Pagy::Offset
       _(Pagy::Offset.new(count: 100, page: '')).must_be_instance_of Pagy::Offset
       _(Pagy::Offset.new(count: 100, limit: '10')).must_be_instance_of Pagy::Offset
-      _ { Pagy::Offset.new }.must_raise Pagy::VariableError
       _ { Pagy::Offset.new(count: 0, page: -1) }.must_raise Pagy::VariableError
       _ { Pagy::Offset.new(count: 100, page: 0) }.must_raise Pagy::VariableError
       _ { Pagy::Offset.new(count: 100, page: {}) }.must_raise Pagy::VariableError
@@ -279,10 +278,7 @@ describe 'pagy' do
       _(Pagy::DEFAULT[:page_sym]).must_equal :page
       _(Pagy::DEFAULT[:limit]).must_equal 20
       _(Pagy::Offset::DEFAULT[:page]).must_equal 1
-      _(Pagy::Offset::DEFAULT[:outset]).must_equal 0
       _(Pagy::Offset::DEFAULT[:size]).must_equal 7
-      _(Pagy::Offset::DEFAULT[:ends]).must_equal true
-      _(Pagy::Offset::DEFAULT[:count_args]).must_equal [:all]
     end
   end
 

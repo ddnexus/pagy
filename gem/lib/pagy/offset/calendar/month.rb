@@ -6,7 +6,7 @@ class Pagy # :nodoc:
       # Month unit subclass
       class Month < Unit
         DEFAULT = { size:   12,
-                    ends:   false,
+                    trim:   true,
                     order:  :asc,
                     format: '%b' }.freeze
 

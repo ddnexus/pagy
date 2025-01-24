@@ -6,7 +6,7 @@ class Pagy
       # Day unit subclass
       class Day < Unit
         DEFAULT = { size:   31,
-                    ends: false,
+                    trim:   true,
                     order:  :asc,
                     format: '%d' }.freeze
 

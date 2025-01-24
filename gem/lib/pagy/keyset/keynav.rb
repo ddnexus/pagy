@@ -12,8 +12,7 @@ class Pagy
 
       # Avoid filter args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'
-      DEFAULT       = { ends: true,
-                        page: nil,
+      DEFAULT       = { page: nil,
                         size: 7 }.freeze
 
       include UISupport

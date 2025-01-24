@@ -6,9 +6,9 @@ class Pagy
     def label(page: @page, **) = page.to_s
 
     # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
-    def series(size: @vars[:size], **_)
+    def series(size: @vars[:size], trim: @vars[:trim], **_)
       raise VariableError.new(self, :size, 'to be an Integer >= 0', size) \
-      unless size.is_a?(Integer) && size >= 0
+            unless size.is_a?(Integer) && size >= 0
       return [] if size.zero?
 
       [].tap do |series|
@@ -26,7 +26,7 @@ class Pagy
                   end
           series.push(*start...start + size)
           # Set first and last pages plus gaps when needed, respecting the size
-          if vars[:ends] && size >= 7
+          if !trim && size >= 7
             series[0]  = 1
             series[1]  = :gap unless series[1] == 2
             series[-2] = :gap unless series[-2] == @last - 1

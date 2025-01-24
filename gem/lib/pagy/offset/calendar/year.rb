@@ -6,7 +6,7 @@ class Pagy # :nodoc:
       # Year unit subclass
       class Year < Unit
         DEFAULT = { size:   10,
-                    ends:   false,
+                    trim:   true,
                     order:  :asc,
                     format: '%Y' }.freeze
 

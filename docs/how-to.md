@@ -80,14 +80,14 @@ pagy = Pagy.new(count: 1000, page: 99, size: 7)
 pagy.series
 #=> [1, :gap, 96, 97, 98, "99", 100] 
 
-# size >= 7; ends: false (no ends added)
-pagy = Pagy.new(count: 1000, page: 10, size: 7, ends: false)
+# size >= 7; trim: true (ends and gaps removed)
+pagy = Pagy.new(count: 1000, page: 10, size: 7, trim: true)
 pagy.series
 #=> [7, 8, 9, "10", 11, 12, 13]
-pagy = Pagy.new(count: 1000, page: 2, size: 7, ends: false)
+pagy = Pagy.new(count: 1000, page: 2, size: 7, trim: true)
 pagy.series
 #=> [1, "2", 3, 4, 5, 6, 7]
-pagy = Pagy.new(count: 1000, page: 99, size: 7, ends: false)
+pagy = Pagy.new(count: 1000, page: 99, size: 7, trim: true)
 pagy.series
 #=> [94, 95, 96, 97, 98, "99", 100]
 ```
