@@ -92,19 +92,10 @@ include Pagy::Backend
 # Include it in the helpers (e.g. application_helper.rb)
 include Pagy::Frontend
 
-# Wrap your collections with pagy in your actions
-@pagy, @records = pagy(Product.all)
-```
-
-Optionally set your defaults in the pagy initializer:
-
-```rb
-# Optionally override some pagy default with your own in the pagy initializer
-Pagy::DEFAULT[:limit] = 10 # items per page
-Pagy::DEFAULT[:size]  = 9  # nav bar links
-# Better user experience handled automatically
-require 'pagy/extras/overflow'
-Pagy::DEFAULT[:overflow] = :last_page
+# Wrap your collections with onr of msny paginators in your actions. For example:
+@pagy, @records = pagy_offset(Product.all)
+@pagy, @records = pagy_keyset(Product.order(my_order).all)
+@pagy, @records = pagy_keynav(Product.order(my_order).all)
 ```
 
 ```erb
@@ -150,11 +141,8 @@ _(See all the [CSS Framework Extras](https://ddnexus.github.io/pagy/categories/f
 <summary>Customization for special collections...</summary>
 
 ```rb
-# Require some special backend extra in the pagy initializer (e.g. elasticsearch_rails)
-require 'pagy/extras/elasticsearch_rails'
-
 # Extend your models (e.g. application_record.rb)
-extend Pagy::ElasticsearchRails
+extend Pagy::Offset::Search
 
 # Use it in your actions
 response         = Article.pagy_search(params[:q])
@@ -170,11 +158,7 @@ _(See all the [Search Extras](https://ddnexus.github.io/pagy/categories/search/)
 <summary>Customization for client-side|JSON rendering...</summary>
 
 ```ruby
-# Require the metadata extra in the pagy initializer
-require 'pagy/extras/metadata'
-
-# Use it in your actions
-pagy, records = pagy(Product.all)
+pagy, records = pagy_offset(Product.all)
 render json: { data: records,
                pagy: pagy_metadata(pagy) }
 ```
@@ -188,11 +172,7 @@ _(See all the [Backend Tools](https://ddnexus.github.io/pagy/categories/backend/
 <summary>Customization for headers pagination for APIs...</summary>
 
 ```ruby
-# Require the headers extra in the pagy initializer
-require 'pagy/extras/headers'
-
-# Use it in your actions
-pagy, records = pagy(Product.all)
+pagy, records = pagy_offset(Product.all)
 pagy_headers_merge(pagy)
 render json: records
 ```

@@ -34,7 +34,7 @@ class Pagy
           end
         end
         # empty_page has no current page
-        series[series.index(@page)] = @page.to_s unless @overflow && @vars[:overflow] == :empty_page
+        series[series.index(@page)] = @page.to_s unless @range_rescued && @vars[:range_rescue] == :empty_page
       end
     end
 

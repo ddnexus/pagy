@@ -60,10 +60,10 @@ describe 'elasticsearch_rails' do
         _(records.count).must_equal 10
         _(records).must_rematch :records
       end
-      it 'paginates with overflow' do
+      it 'paginates with :range_rescue' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
                                  MockElasticsearchRails::Model.pagy_search('b').records,
-                                 page: 200, limit: 10, anchor_string: 'X', overflow: :last_page)
+                                 page: 200, limit: 10, anchor_string: 'X', range_rescue: :last_page)
         _(pagy).must_be_instance_of Pagy::Offset::Search::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -110,10 +110,10 @@ describe 'elasticsearch_rails' do
         _(records.count).must_equal 10
         _(records).must_rematch :records
       end
-      it 'paginates with overflow' do
+      it 'paginates with :range_rescue' do
         pagy, records = app.send(:pagy_elasticsearch_rails,
                                  MockElasticsearchRails::Model.pagy_search('b').records,
-                                 page: 200, limit: 10, anchor_string: 'X', overflow: :last_page)
+                                 page: 200, limit: 10, anchor_string: 'X', range_rescue: :last_page)
         _(pagy).must_be_instance_of Pagy::Offset::Search::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10

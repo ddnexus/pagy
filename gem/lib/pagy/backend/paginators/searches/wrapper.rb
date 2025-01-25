@@ -10,8 +10,8 @@ class Pagy
         vars[:limit] ||= pagy_get_limit(vars)
       end
       pagy, response = yield
-      # The :last_page overflow requires rerunning the method to retrieve the hits.
-      if pagy.overflow? && pagy.vars[:overflow] == :last_page
+      # The `{ }range_rescue: :last_page }` requires rerunning the method to retrieve the hits.
+      if pagy.range_rescued? && pagy.vars[:range_rescue] == :last_page
         return backend.send(caller_locations(1, 1)[0].base_label, pagy_search_args, **vars, page: pagy.page)
       end
 

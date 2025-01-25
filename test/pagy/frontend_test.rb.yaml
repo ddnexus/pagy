@@ -16,6 +16,7 @@ pagy/frontend___pagy_info_test_0001_renders_without_i18n_key:
   :info_1: <span class="pagy info">Displaying 1 item</span>
   :info_13: <span class="pagy info">Displaying 13 items</span>
   :info_100: <span class="pagy info">Displaying items 41-60 of 100 in total</span>
+  :no_info: ''
 pagy/frontend__pagy_data_with_oj_test_0001_runs_with_oj:
   :data_1: data-pagy="WyJ0ZXN0X2Z1bmN0aW9uIiwic29tZS1zdHJpbmciLDEyMyx0cnVlXQ=="
 pagy/frontend__Calendar_sequels_and_label_sequels_without_oj_test_0001_generate_the_labels_for_the_sequels:

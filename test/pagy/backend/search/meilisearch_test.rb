@@ -45,9 +45,9 @@ describe 'meilisearch' do
         _(results.length).must_equal 10
         _(results.to_a).must_rematch :results
       end
-      it 'paginates with overflow' do
+      it 'paginates with :range_rescue' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
-                                 page: 200, limit: 10, anchor_string: 'X', overflow: :last_page)
+                                 page: 200, limit: 10, anchor_string: 'X', range_rescue: :last_page)
         _(pagy).must_be_instance_of Pagy::Offset::Search::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10

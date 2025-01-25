@@ -32,7 +32,7 @@ for paginating a SQL collection.
 Unlikely the classic OFFSET pagination, its performance are reliably fast from start to end, no matter how big is your table.
 
 It's also completely accurate. Even with insertions or deletion of records during the browsing, you will never have repeating or
-missing records from the pages, nor the expected `OverflowErrors` of OFFSET pagination.
+missing records from the pages, nor the expected `RangeError` of OFFSET pagination.
 
 This technique comes with that huge advantages and a few limitations that makes it particularly useful for APIs and less
 convenient for UIs in general.
@@ -94,7 +94,7 @@ Only useful when you don't need any frontend (e.g. infinite pagination)
 
 * Your server will suffer on big data and your API will be slower for no good reasons
 * Not accurate: It can skip or double-show records after insertion and deletions.
-* You can expect `OverflowError`s
+* You can expect `RangeError`s
   !!!
   +++
 

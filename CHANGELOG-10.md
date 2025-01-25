@@ -74,13 +74,9 @@ They have been converted to autoloaded mixins, or integrated in the core code at
 
 You can now use the methods that you need, and they will just work without the need of any explicit `require`.
 
-The only extras that are left _(for different compelling reasons)_ are: `gearbox`, `i18n` and `size`. They must be required in the
-initializer as usual.
-
 #### The Pagy::Countless remembers the last page
 
-- When you jump back a few pages in the pagination nav, it remembers the last page count, so you can jump forward as well now
-- The `{ overflow: :empty_page }` retains the series, so it's better for the UI.
+When you jump back a few pages in the pagination nav, it remembers the last page count, so you can jump forward as well now.
 
 #### Cleaner URLs
 
@@ -95,15 +91,19 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 
 #### Simple renaming (without logic changes)
 
-| Type        | Search           | Replace         | Notes                                                    |
-|-------------|------------------|-----------------|----------------------------------------------------------|
-| Constructor | `pagy(`          | `pagy_offset(`  | Consistent with the other old and new constructors       |
-| Function    | `Pagy.root`      | `Pagy::ROOT`    | It's just a Pathname object                              |
-| Variable    | `:page_param`    | `:page_sym`     | It was confusing                                         |
-| Variable    | `:limit_param`   | `:limit_sym`    | It was confusing                                         |
-| Variable    | `ends: false`    | `trim: true`    | Trim is the inverse of ends                              |
-| Method      | `pagy_url_for`   | `pagy_page_url` | The legacy naming was causing rails-related expectations |
-| Method/args | `label_for(page` | `label(page: `  | The name has changed and `page` is a keywork argument    |
+| Type        | Search                | Replace            | Notes                                                       |
+|-------------|-----------------------|--------------------|-------------------------------------------------------------|
+| Class       | `Pagy::OverflowError` | `Pagy::RangeError` | AI rebuked us about the wrong use of the 'overflow' concept |
+| Variable    | `:overflow`           | `:range_rescue`    | AI rebuked us about the wrong use of the 'overflow' concept |
+| Method      | `overflow?`           | `range_rescued?`   | AI rebuked us about the wrong use of the 'overflow' concept |
+| Constructor | `pagy(`               | `pagy_offset(`     | Consistent with the other old and new constructors          |
+| Function    | `Pagy.root`           | `Pagy::ROOT`       | Stop calling a method just to get a constant Pathname       |
+| Variable    | `:page_param`         | `:page_sym`        | The '_param' can be confused with the actual param value    |
+| Variable    | `:limit_param`        | `:limit_sym`       | The '_param' can be confused with the actual param value    |
+| Variable    | `ends: false`         | `trim: true`       | Trim is the inverse of ends, and its default is `nil`       |
+| Method      | `pagy_url_for`        | `pagy_page_url`    | The legacy naming was causing rails-related expectations    |
+| Method/args | `label_for(page`      | `label(page: `     | Simpler name and `page` is a keywork argument               |
+| Method/args | `label(page`          | `label(page: `     | Same name and `page` is a keywork argument                  |
 
 #### Direct instantiation of the pagy classes is not recommended
 
@@ -129,7 +129,7 @@ it).
 
 #### Extras Changes
 
-All the extras are gone: here is what to
+All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `arel`, `array`, `boostrap`, `bulma`, `countless`, `pagy`
 
@@ -137,7 +137,7 @@ All the extras are gone: here is what to
 
 ##### `calendar`
 
-If you need the I18n localization, discard your old config, and uncomment/add this line to your initializer:
+If you need the I18n gem localization, discard your old config, and uncomment/add this line to your initializer:
 `Pagy::Offset::Calendar.localize_with_rails_i18n_gem(*your_locales)`
 
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
@@ -179,7 +179,7 @@ If you need the I18n localization, discard your old config, and uncomment/add th
 
 ##### `overflow`
 
-- You should pass the `:overflow: ...` variable to the paginator method when you want to trigger the feature.
+- You should pass the `rescue_range: ...` variable to the paginator method when you want to trigger the feature.
 
 #### `standlone`
 
@@ -188,11 +188,11 @@ If you need the I18n localization, discard your old config, and uncomment/add th
   `request: { url_prefix: 'the-previous-value-of-url', query_params: { param1: 'abc', param2: 'def' }}` for complete control over
   the generated url.
 
-##### `i18n` (discontinued)
+##### `i18n`
 
 - If you REALLY need it, uncomment/add this line to your initializer: `Pagy::Frontend.translate_with_the_slower_i18n_gem!`
 
-##### `gearbox` (discontinued)
+##### `gearbox` (discontinued feature)
 
 - Copy the file at `https://github.com/ddnexus/pagy/blob/master/legacy/gearbox.rb` in your app and require the copy in the
   initializer.
@@ -201,14 +201,14 @@ If you need the I18n localization, discard your old config, and uncomment/add th
 - The file will not be upgraded in the future, so you must maintain it. The test file is available at
   `https://github.com/ddnexus/pagy/blob/master/legacy/gearbox_test.rb`
 
-##### `size` (discontinued)
+##### `size` (discontinued feature)
 
 - Copy the file at `https://github.com/ddnexus/pagy/blob/master/legacy/size.rb` in your app and require the copy in the
   initializer.
 - The file will not be upgraded in the future, so you must maintain it. The test file is available at
   `https://github.com/ddnexus/pagy/blob/master/legacy/size_test.rb`
 
-##### `trim` (discontinued)
+##### `trim` (discontinued feature)
 
 - It was mostly useless and half backed, causing a lot of complications in the ruby and javascript code.
 - Use a proper way to address your requirement, like using URL rewriting at the HTTP server level.

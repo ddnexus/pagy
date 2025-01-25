@@ -24,7 +24,7 @@ class Pagy
 
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
-        raise OverflowError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
+        raise RangeError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
 
         if @last && @page < @last # visited page
           @last = @page unless fetched_size > @limit # set last if last page
@@ -37,9 +37,9 @@ class Pagy
         @to   = @offset - @outset + @in
         assign_prev_and_next
         self
-      rescue OverflowError
-        @overflow = true
-        raise unless @vars[:overflow] == :empty_page
+      rescue RangeError
+        @range_rescued = true
+        raise unless @vars[:range_rescue] == :empty_page
 
         @in = @from = @to = @offset = @limit = 0     # vars relative to the actual page
         @last = @page -= 1                           # self adjust at least by 1 less

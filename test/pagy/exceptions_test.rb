@@ -5,7 +5,7 @@ require_relative '../mock_helpers/pagy_buggy'
 
 describe 'pagy/exceptions' do
   describe '#variable and #value' do
-    it 'raises for non overflow pages' do
+    it 'raises for pages in range' do
       begin
         Pagy::Offset.new(count: 1, page: 0)
       rescue Pagy::VariableError => e

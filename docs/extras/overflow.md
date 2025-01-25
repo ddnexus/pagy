@@ -9,7 +9,7 @@ categories:
 
 Allow easy handling of overflowing pages (i.e. requested page > count).
 
-It internally rescues `Pagy::OverflowError` exceptions offering the following ready to use
+It internally rescues `Pagy::RangeError` exceptions offering the following ready to use
 behaviors/modes: `:empty_page`, `:last_page`, and `:exception`.
 
 ## Synopsis
@@ -18,14 +18,14 @@ behaviors/modes: `:empty_page`, `:last_page`, and `:exception`.
 require 'pagy/extras/overflow'
 
 # default :empty_page (other options :last_page and :exception )
-Pagy::DEFAULT[:overflow] = :last_page
+Pagy::DEFAULT[:range_rescue] = :last_page
 
 # OR
 require 'pagy/countless'
 require 'pagy/extras/overflow'
 
 # default :empty_page (other option :exception )
-Pagy::DEFAULT[:overflow] = :exception
+Pagy::DEFAULT[:range_rescue] = :exception
 
 ```
 
@@ -33,21 +33,21 @@ Pagy::DEFAULT[:overflow] = :exception
 
 | Variable    | Description                                                                         | Default       |
 |:------------|:------------------------------------------------------------------------------------|:--------------|
-| `:overflow` | the modes in case of overflowing page (`:last_page`, `:empty_page` or `:exception`) | `:empty_page` |
+| `:range_rescue` | the modes in case of overflowing page (`:last_page`, `:empty_page` or `:exception`) | `:empty_page` |
 
 Set the variables - either globally, or locally:
 
 ```ruby
 # globally: e,g, pagy.rb Initializer
-Pagy::DEFAULT[:overflow] = :empty_page
+Pagy::DEFAULT[:range_rescue] = :empty_page
 
 # or for a single instance e.g. in a controller
-@pagy, @records = pagy(scope, overflow: :empty_page)
+@pagy, @records = pagy(scope, range_rescue: :empty_page)
 ```
 
 ## Modes
 
-The modes accepted by the `:overflow` variable:
+The modes accepted by the `:range_rescue` variable:
 
 - `:empty_page`
 - `:last_page`
@@ -63,7 +63,7 @@ Useful for APIs, where clients expect an empty page, in order to stop requesting
 # no exception passing an overflowing page
 pagy = Pagy.new(count: 100, page: 100)
 
-pagy.overflow?          #=> true
+pagy.range_rescued?          #=> true
 pagy.vars[:page]        #=> 100 (requested page)
 pagy.page               #=> 100 (actual empty page)
 pagy.last == pagy.page  #=> false
@@ -83,7 +83,7 @@ require 'pagy/extras/overflow'
 
 pagy = Pagy::Countless.new(count: 100, page: 100).finalize(0)
 
-pagy.overflow?          #=> true
+pagy.range_rescued?          #=> true
 pagy.vars[:page]        #=> 100 (requested page)
 pagy.page               #=> 100 (actual empty page)
 pagy.last == pagy.page  #=> false
@@ -105,7 +105,7 @@ Time.zone = 'Eastern Time (US & Canada)'
 period    = [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)]
 pagy      = Pagy::Calendar::Month.new(period:, page: 100)
 
-pagy.overflow?          #=> true
+pagy.range_rescued?          #=> true
 pagy.vars[:page]        #=> 100 (requested page)
 pagy.page               #=> 100 (actual empty page)
 pagy.last == pagy.page  #=> false
@@ -135,9 +135,9 @@ The `:last_page` mode is not available for `Pagy::Countless` instances because t
 For example:
 
 ```ruby Controller
-pagy = Pagy.new(count: 100, page: 100, overflow: :last_page)
+pagy = Pagy.new(count: 100, page: 100, range_rescue: :last_page)
 
-pagy.overflow?          #=> true
+pagy.range_rescued?          #=> true
 pagy.vars[:page]        #=> 100 (requested page)
 pagy.page               #=> 5   (current/last page)
 pagy.last == pagy.page  #=> true
@@ -145,14 +145,14 @@ pagy.last == pagy.page  #=> true
 
 +++ :exception
 
-!!!success Raise the `Pagy::OverflowError` as usual
+!!!success Raise the `Pagy::RangeError` as usual
 You can rescue from the exception and implement your own custom mode even in presence of this extra.
 !!!
 
 ```ruby
 begin
-  pagy = Pagy.new(count: 100, page: 100, overflow: :exception)
-rescue Pagy::OverflowError => e
+  pagy = Pagy.new(count: 100, page: 100, range_rescue: :exception)
+rescue Pagy::RangeError => e
   ...
 end
 ```
@@ -161,7 +161,7 @@ end
 
 ## Methods
 
-==- `overflow?`
+==- `range_rescued?`
 
 Use this method in order to know if the requested page is overflowing. The original requested page is available
 as `pagy.vars[:page]` (useful when used with the `:last_page` mode, in case you want to give some feedback about the rescue to the
@@ -171,4 +171,4 @@ user/client).
 
 ## Errors
 
-See [How to handle Pagy::OverflowError exceptions](/docs/how-to.md#handle-pagyoverflowerror-exceptions)
+See [How to handle Pagy::RangeError exceptions](/docs/how-to.md#handle-pagyoverflowerror-exceptions)

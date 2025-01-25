@@ -81,6 +81,7 @@ describe 'pagy/frontend' do
       _(app.pagy_info(Pagy::Offset.new(count: 1))).must_rematch :info_1
       _(app.pagy_info(Pagy::Offset.new(count: 13))).must_rematch :info_13
       _(app.pagy_info(Pagy::Offset.new(count: 100, page: 3))).must_rematch :info_100
+      _(app.pagy_info(Pagy::Offset::Countless.new(page: 3))).must_rematch :no_info
     end
     it 'overrides the item_name and set id' do
       _(app.pagy_info(Pagy::Offset.new(count: 0), id: 'pagy-info', item_name: 'Widgets')).must_rematch :info_0

@@ -209,11 +209,11 @@ end
 
 Mostly useful if you want to rescue from bad user input (e.g. illegal URL manipulation).
 
-==- `Pagy::OverflowError`
+==- `Pagy::RangeError`
 
 A subclass of `Pagy::VariableError`: it is raised when the `:page` variable exceeds the maximum possible value calculated for
 the `:count`, i.e. the `:page` variable is in the correct range, but it's not consistent with the current `:count`. That may
 happen when the `:count` has been reduced after a page link has been generated (e.g. some record has been just removed from the
-DB). See also the [overflow](/docs/extras/overflow.md) extra.
+DB). See also the `:range_rescue` variable.
 
 ===

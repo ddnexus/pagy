@@ -108,7 +108,7 @@ class CommentsController < ActionController::Base # :nodoc:
   include Pagy::Backend
   PAGY_DEFAULT = { limit:             10,
                    requestable_limit: 100,
-                   overflow:          :empty_page }.freeze
+                   range_rescue:          :empty_page }.freeze
 
   def index
     @pagy, @comments = pagy_offset(Comment.all, **PAGY_DEFAULT)

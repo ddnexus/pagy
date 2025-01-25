@@ -37,7 +37,7 @@ require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
   include Pagy::Backend
-  PAGY_DEFAULT = { requestable_limit: 100, overflow: :empty_page }.freeze
+  PAGY_DEFAULT = { requestable_limit: 100, range_rescue: :empty_page }.freeze
 
   get('/javascripts/:file') do
     format = params[:file].split('.').last

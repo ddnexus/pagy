@@ -79,7 +79,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_equal 1
     end
     it 'raises exception with no fetched records and page > 1' do
-      _ { Pagy::Offset::Countless.new(page: 2).finalize(0) }.must_raise Pagy::OverflowError
+      _ { Pagy::Offset::Countless.new(page: 2).finalize(0) }.must_raise Pagy::RangeError
     end
   end
   describe 'Handling the :last variable' do

@@ -180,7 +180,7 @@ class PagyDemo < Sinatra::Base
             color: white;
             background-color: rgb(30 30 30);
             padding: 1rem;
-            overflow: auto;
+            range_rescue: auto;
           }
           .content {
             padding: 0 1.5rem 2rem !important;

@@ -20,11 +20,11 @@ describe 'pagy' do
       _ { Pagy::Offset.new(count: 100, page: 0) }.must_raise Pagy::VariableError
       _ { Pagy::Offset.new(count: 100, page: {}) }.must_raise Pagy::VariableError
       _ { Pagy::Offset.new(count: 100, page: 2, limit: 0) }.must_raise Pagy::VariableError
-      _ { Pagy::Offset.new(count: 100, page: '11') }.must_raise Pagy::OverflowError
-      _ { Pagy::Offset.new(count: 100, page: 12) }.must_raise Pagy::OverflowError
+      _ { Pagy::Offset.new(count: 100, page: '11') }.must_raise Pagy::RangeError
+      _ { Pagy::Offset.new(count: 100, page: 12) }.must_raise Pagy::RangeError
       begin
         Pagy::Offset.new(count: 100, page: 12)
-      rescue Pagy::OverflowError => e
+      rescue Pagy::RangeError => e
         _(e.pagy).must_be_instance_of Pagy::Offset
       end
     end
@@ -254,7 +254,7 @@ describe 'pagy' do
       pagy = Pagy::Offset.new(count: 100, page: 3, limit: 10, max_pages: 8)
       _(pagy.count).must_equal 100
       _(pagy.last).must_equal 8
-      _ { Pagy::Offset.new(count: 100, page: 9, limit: 10, max_pages: 8) }.must_raise Pagy::OverflowError
+      _ { Pagy::Offset.new(count: 100, page: 9, limit: 10, max_pages: 8) }.must_raise Pagy::RangeError
     end
     it 'initializes the request_path' do
       pagy = Pagy::Offset.new(count: 100, request_path: '/foo')

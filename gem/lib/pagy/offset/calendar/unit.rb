@@ -16,19 +16,19 @@ class Pagy
           assign_vars(vars)
           assign_and_check(page: 1)
           assign_unit_vars
-          return unless check_overflow
+          return unless in_range?
 
           assign_prev_and_next
         end
 
         # Override if :empty_page
-        def check_overflow
-          return super unless @vars[:overflow] == :empty_page
+        def in_range?
+          return super unless @vars[:range_rescue] == :empty_page
           return true unless @page > @last
 
-          @overflow = true
+          @range_rescued = true
           @in = @from = @to = 0                        # vars relative to the actual page
-          edge = @order == :asc ? @final : @initial    # get the edge of the overflow side (neat, but any time would do)
+          edge = @order == :asc ? @final : @initial    # get the edge of the range (neat, but any time would do)
           @from = @to = edge                           # set both to the edge time (a >=&&< query will get no records)
           @prev = @last
           false

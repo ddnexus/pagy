@@ -63,7 +63,7 @@ describe 'pagy/legacy/gearbox' do
       _(Pagy::Offset.new(count: 103, page: 11, gearbox_limit: [3, 10]).last).must_equal 11
       # max_pages
       _(Pagy::Offset.new(count: 24, page: 2, gearbox_limit: [3, 10], max_pages: 2).last).must_equal 2
-      _ { Pagy::Offset.new(count: 24, page: 3, gearbox_limit: [3, 10], max_pages: 2) }.must_raise Pagy::OverflowError
+      _ { Pagy::Offset.new(count: 24, page: 3, gearbox_limit: [3, 10], max_pages: 2) }.must_raise Pagy::RangeError
     end
     it 'checks the last in Pagy::Offset::Countless' do
       _(Pagy::Offset::Countless.new(page: 1, gearbox_limit: [3, 10]).finalize(2).last).must_equal 1
@@ -72,7 +72,7 @@ describe 'pagy/legacy/gearbox' do
       _(Pagy::Offset::Countless.new(page: 3, gearbox_limit: [3, 10]).finalize(11).last).must_equal 4
       # max_pages
       _(Pagy::Offset::Countless.new(page: 2, gearbox_limit: [3, 10], max_pages: 2).finalize(11).last).must_equal 2
-      _ { Pagy::Offset::Countless.new(page: 3, gearbox_limit: [3, 10], max_pages: 2).finalize(11) }.must_raise Pagy::OverflowError
+      _ { Pagy::Offset::Countless.new(page: 3, gearbox_limit: [3, 10], max_pages: 2).finalize(11) }.must_raise Pagy::RangeError
     end
   end
 

@@ -34,9 +34,9 @@ Regardless the actual `:size` value we know only if the next page exists and we 
 
 The `series` method reflects on the above.
 
-#### :overflow variable
+#### :range_rescue variable
 
-The available values for the `:overflow` variable are `:empty_page` and `:exception`, missing the `:last_page` (which is not known
+The available values for the `:range_rescue` variable are `:empty_page` and `:exception`, missing the `:last_page` (which is not known
 in case of an exception).
 
 ### Features without support
@@ -49,7 +49,7 @@ Instead of basing all the internal calculations on the `:count` variable (passed
 of actually fetched records to derive the pagination variables.
 
 The size of the fetched records can be passed in a second step to the `finalize` method, which allows pagy to determine if there is
-a `next` page, or if the current page is the `last` page, or if the current request should raise a `Pagy::OverflowError`
+a `next` page, or if the current page is the `last` page, or if the current request should raise a `Pagy::RangeError`
 exception.
 
 Retrieving these variables may be useful to supply a UI as complete as possible, when used with classic helpers, and can be

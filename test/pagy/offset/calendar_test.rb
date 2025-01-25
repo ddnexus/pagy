@@ -181,7 +181,7 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe 'it computes date variables for last page and overflow' do
+  describe 'it computes date variables for last page and range' do
     it 'computes variables for :year' do
       p = pagy(unit: :year, page: 3)
       _(p.instance_variable_get(:@initial)).must_equal Time.zone.local(2021, 1, 1)
@@ -191,7 +191,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 3
       _(p.last).must_equal 3
       _(pagy(unit: :year, page: 3, cycle: true).next).must_equal 1
-      _ { pagy(unit: :year, page: 4) }.must_raise Pagy::OverflowError
+      _ { pagy(unit: :year, page: 4) }.must_raise Pagy::RangeError
     end
     it 'computes variables for :quarter' do
       p = pagy(unit: :quarter, page: 9)
@@ -211,7 +211,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 26
       _(p.last).must_equal 26
       _(pagy(page: 26, cycle: true).next).must_equal 1
-      _ { pagy(page: 27) }.must_raise Pagy::OverflowError
+      _ { pagy(page: 27) }.must_raise Pagy::RangeError
     end
     it 'computes variables for :week' do
       p = pagy(unit: :week, page: 109)
@@ -222,7 +222,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 109
       _(p.last).must_equal 109
       _(pagy(unit: :week, page: 109, cycle: true).next).must_equal 1
-      _ { pagy(unit: :week, page: 110) }.must_raise Pagy::OverflowError
+      _ { pagy(unit: :week, page: 110) }.must_raise Pagy::RangeError
     end
     it 'computes variables for :day' do
       p = pagy(unit: :day, page: 754)
@@ -233,7 +233,7 @@ describe 'pagy/calendar' do
       _(p.pages).must_equal 754
       _(p.last).must_equal 754
       _(pagy(unit: :day, page: 754, cycle: true).next).must_equal 1
-      _ { pagy(unit: :day, page: 755) }.must_raise Pagy::OverflowError
+      _ { pagy(unit: :day, page: 755) }.must_raise Pagy::RangeError
     end
   end
 

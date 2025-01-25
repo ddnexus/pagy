@@ -593,7 +593,7 @@ For example:
 @pagy.last #=> 50
 
 @pagy, @records = pagy(collection, max_pages: 50, limit: 20, page: 51)
-#=> Pagy::OverflowError: expected :page in 1..50; got 51
+#=> Pagy::RangeError: expected :page in 1..50; got 51
 ```
 
 If the `@pagy.count` in the example is `10_000`, the pages served without `:max_pages` would be `500`, but with
@@ -812,37 +812,37 @@ output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakema
 You can avoid the warning adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243)
 and [here](https://github.com/presidentbeef/brakeman/issues/1519).
 
-## Handle Pagy::OverflowError exceptions
+## Handle Pagy::RangeError exceptions
 
-Pass an overflowing `:page` number and Pagy will raise a `Pagy::OverflowError` exception.
+Pass a out-of-range `:page` number and Pagy will raise a `Pagy::RangeError` exception.
 
 This often happens because users/clients paginate over the end of the record set or records go deleted and a user went to a stale
 page.
 
-You can handle the exception by using the [overflow extra](extras/overflow.md) which provides a few easy and ready to use
+You can handle the exception by using the `:range_rescue` varisble which provides a few easy and ready to use
 solutions for a few common cases, or you can rescue the exception manually and do whatever fits you better.
 
 Here are a few options for manually handling the error in apps:
 
 - Do nothing and let the page render a 500
 - Rescue and render a 404
-- Rescue and redirect to the last known page (Notice: the [overflow extra](extras/overflow.md) provides the same behavior without
+- Rescue and redirect to the last known page (Notice: the `:range_rescue` variable provides the same behavior without
   redirecting)
 
 ```ruby controller
-rescue_from Pagy::OverflowError, with: :redirect_to_last_page
+rescue_from Pagy::RangeError, with: :redirect_to_last_page
 
 private
 
 def redirect_to_last_page(exception)
-  redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is overflowing. Showing page #{exception.pagy.last} instead."
+  redirect_to url_for(page: exception.pagy.last), notice: "Page ##{params[:page]} is out-of-range. Showing page #{exception.pagy.last} instead."
 end
 ```
 
-!!!warning Rescue from `Pagy::OverflowError` first
+!!!warning Rescue from `Pagy::RangeError` first
 
 All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with 
-`rescue_from Pagy::OverflowError, ...` then the `Pagy::OverflowError` line should go BEFORE the `ArgumentError` line or it 
+`rescue_from Pagy::RangeError, ...` then the `Pagy::RangeError` line should go BEFORE the `ArgumentError` line or it 
 will never get rescued.
 
 !!!

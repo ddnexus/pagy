@@ -14,13 +14,13 @@ class Pagy
     end
   end
 
-  # Specific overflow error
-  class OverflowError < VariableError; end
+  # Specific range error
+  class RangeError < VariableError; end
 
   # I18n configuration error
   class I18nError < StandardError; end
 
-  # I18n configuration error
+  # I18n localization error
   class RailsI18nLoadError < LoadError; end
 
   # Generic internal error
