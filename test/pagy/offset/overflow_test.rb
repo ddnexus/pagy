@@ -14,8 +14,8 @@ PERIOD = [Time.zone.local(2021, 11, 4), Time.zone.local(2021, 11, 4) + 10.days].
 
 describe 'overflow' do
   let(:pagy_vars)      { { page: 100, limit: 10, count: 103, overflow: :empty_page } }
-  let(:countless_vars) { { page: 100, limit: 10, overflow: :empty_page} }
   let(:calendar_vars)  { { period: PERIOD, page: 100, overflow: :empty_page } }
+  let(:countless_vars) { { page: 100, last: 50, limit: 10, overflow: :empty_page} }
   before do
     @pagy           = Pagy::Offset.new(**pagy_vars)
     @pagy_calendar  = Pagy::Offset::Calendar::Day.new(**calendar_vars)
@@ -30,7 +30,7 @@ describe 'overflow' do
     end
     it 'is not overflow?' do
       _(Pagy::Offset.new(**pagy_vars, page: 2)).wont_be :overflow?
-      _(Pagy::Offset::Countless.new(**pagy_vars, page: 2)).wont_be :overflow?
+      _(Pagy::Offset::Countless.new(**pagy_vars, page: 2, last: 2)).wont_be :overflow?
       _(Pagy::Offset::Calendar::Day.new(**calendar_vars, page: 2, overflow: :empty_page)).wont_be :overflow?
     end
   end
@@ -66,8 +66,9 @@ describe 'overflow' do
     it 'works in :empty_page mode in Pagy' do
       pagy = Pagy::Offset.new(**pagy_vars, overflow: :empty_page)
       _(pagy.page).must_equal 100
-      _(pagy.offset).must_equal 990
-      _(pagy.limit).must_equal 10
+      _(pagy.offset).must_equal 0
+      _(pagy.limit).must_equal 0
+      _(pagy.vars[:limit]).must_equal 10
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0
@@ -85,15 +86,16 @@ describe 'overflow' do
       _(pagy.to).must_equal pagy.instance_variable_get(:@initial)
       _(pagy.prev).must_equal pagy.last
     end
+    # TODO: add case for last_page for countless
     it 'works in :empty_page mode in Pagy::Offset::Countless' do
       pagy = @pagy_countless
-      _(pagy.page).must_equal 100
+      _(pagy.page).must_equal 99    # reduce error by 1
       _(pagy.offset).must_equal 0
       _(pagy.limit).must_equal 0
-      _(pagy.in).must_be_nil
+      _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0
-      _(pagy.prev).must_be_nil
+      _(pagy.prev).must_equal 99
     end
     it 'raises Pagy::VariableError' do
       _ { Pagy::Offset.new(**pagy_vars, overflow: :unknown) }.must_raise Pagy::VariableError
@@ -115,10 +117,10 @@ describe 'overflow' do
       _(series).must_equal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
       _(pagy.page).must_equal 100
     end
-    it 'computes empty series for Pagy::Offset::Countless' do
+    it 'computes series for Pagy::Offset::Countless' do
       series = @pagy_countless.series
-      _(series).must_equal []
-      _(@pagy_countless.page).must_equal 100
+      _(series).must_equal [1, :gap, 95, 96, 97, 98, 99]
+      _(@pagy_countless.page).must_equal 99   # reduce error by 1
     end
   end
 end

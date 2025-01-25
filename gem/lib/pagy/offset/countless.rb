@@ -8,9 +8,16 @@ class Pagy
       def initialize(**vars) # rubocop:disable Lint/MissingSuper
         assign_vars(vars)
         assign_and_check(page: 1, outset: 0)
-        assign_limit
+        assign_limit  # TODO: assign directly
+        assign_last
         assign_offset
-        @last = vars[:last].to_i
+      end
+
+      def countless? = true
+
+      def assign_last
+        @last = (@vars[:last] || 1).to_i
+        @last = @page = @vars[:max_pages] if @vars[:max_pages] && (@last > @vars[:max_pages] || @page > @vars[:max_pages])
       end
 
       def page_for_url(page) = [page || 1, @last].join('+')
@@ -19,9 +26,11 @@ class Pagy
       def finalize(fetched_size)
         raise OverflowError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
 
-        @last = fetched_size > @limit ? @page + 1 : @page unless @last && @page < @last
-        @last = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
-        raise OverflowError.new(self, :page, "in 1..#{@last}", @page) if @page > @last
+        if @last && @page < @last # visited page
+          @last = @page unless fetched_size > @limit # set last if last page
+        else
+          @last = fetched_size > @limit ? @page + 1 : @page unless @page == @vars[:max_pages]
+        end
 
         @in   = [fetched_size, @limit].min
         @from = @in.zero? ? 0 : @offset - @outset + 1
@@ -32,8 +41,9 @@ class Pagy
         @overflow = true
         raise unless @vars[:overflow] == :empty_page
 
-        @offset      = @limit = @from = @to = 0 # vars relative to the actual page
-        @vars[:size] = 0 # no page in the series
+        @in = @from = @to = @offset = @limit = 0     # vars relative to the actual page
+        @last = @page -= 1                           # self adjust at least by 1 less
+        @prev = @last                                # @prev relative to the actual page
         self
       end
     end

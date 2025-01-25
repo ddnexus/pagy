@@ -33,7 +33,8 @@ class Pagy
             series[-1] = @last
           end
         end
-        series[series.index(@page)] = @page.to_s unless @overflow # overflow has no current page
+        # empty_page has no current page
+        series[series.index(@page)] = @page.to_s unless @overflow && @vars[:overflow] == :empty_page
       end
     end
 

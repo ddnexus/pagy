@@ -14,7 +14,7 @@ class Pagy
         vars[:page] = page_args if request.cookies['pagy'] == page_args.shift
       end
 
-      vars[:limit] ||= pagy_get_limit(vars)
+      vars[:limit] = pagy_get_limit(vars)
       pagy = Keyset::Keynav.new(set, **vars)
       [pagy, pagy.records]
     end

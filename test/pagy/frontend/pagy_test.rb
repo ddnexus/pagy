@@ -37,7 +37,7 @@ describe MIXIN do
       it "renders the #{method} for page #{page}" do
         app = MockApp.new
         pagy = Pagy::Offset.new count: 1000, page: page
-        pagy_countless = Pagy::Offset::Countless.new(page: page).finalize(finalize)
+        pagy_countless = Pagy::Offset::Countless.new(page: page, last: page).finalize(finalize)
         _(app.send(method, pagy)).must_rematch :r1
         _(app.send(method, pagy_countless)).must_rematch :r2
         _(app.send(method, pagy, **others)).must_rematch :r3

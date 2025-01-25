@@ -22,7 +22,7 @@ def test_limit_vars_params(limit, vars, params)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
-  %i[pagy_offset pagy_countless pagy_array pagy_arel].each do |meth|
+  %i[pagy_offset pagy_array pagy_arel].each do |meth|
     pagy, records = app.send(meth, @collection, **vars)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit

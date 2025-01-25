@@ -79,7 +79,8 @@ initializer as usual.
 
 #### The Pagy::Countless remembers the last page
 
-When you jump back a few pages in the pagination nav, it remembers the last page count, so you can jump forward as well now.
+- When you jump back a few pages in the pagination nav, it remembers the last page count, so you can jump forward as well now
+- The `{ overflow: :empty_page }` retains the series, so it's better for the UI.
 
 #### Cleaner URLs
 

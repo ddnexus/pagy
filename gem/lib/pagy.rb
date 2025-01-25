@@ -36,7 +36,7 @@ class Pagy
   end
 
   # Assign @limit (overridden by the gearbox extra)
-  def assign_limit
+  def assign_limit    # TODO: remove
     assign_and_check(limit: 1)
   end
 
@@ -52,6 +52,7 @@ class Pagy
 
   def page_for_url(page) = page
   def keynav?            = false
+  def countless?         = false
   def calendar?          = false
 end
 

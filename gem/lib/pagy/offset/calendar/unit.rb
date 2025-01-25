@@ -9,6 +9,7 @@ class Pagy
 
         # Merge and validate the options, do some simple arithmetic and set a few instance variables
         def initialize(**vars)    # rubocop:disable Lint/MissingSuper
+          # TODO: remove the check
           raise InternalError, 'Pagy::Offset::Calendar::Unit is a base class; use one of its subclasses' \
               if instance_of?(Pagy::Offset::Calendar::Unit)
 

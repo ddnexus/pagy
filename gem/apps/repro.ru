@@ -53,6 +53,8 @@ class PagyRepro < Sinatra::Base
   get '/' do
     collection = MockCollection.new
     @pagy, @records = pagy_offset(collection, **PAGY_DEFAULT)
+    # @pagy, @records = pagy_countless(collection, **PAGY_DEFAULT)
+    # @pagy, @records = pagy_array(Array(1..1000), **PAGY_DEFAULT)
     erb :main
   end
 

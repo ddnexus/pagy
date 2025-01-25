@@ -7,7 +7,7 @@ class Pagy
 
     # Return Pagy::Keyset object and paginated records
     def pagy_keyset(set, **vars)
-      vars[:limit] ||= pagy_get_limit(vars)
+      vars[:limit]   = pagy_get_limit(vars)
       vars[:page]  ||= pagy_get_page(vars, force_integer: false) # allow nil
       pagy = Keyset.new(set, **vars)
       [pagy, pagy.records]

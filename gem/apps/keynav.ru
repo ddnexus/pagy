@@ -108,7 +108,7 @@ class PagyKeynav < Sinatra::Base
     <<~ERB
       <div class="content">
         <h1>Pagy Keynav App</h1>
-        <p>Self-contained, standalone app usable to easily reproduce any Keyset For UI related pagy issue
+        <p>Self-contained, standalone app usable to easily reproduce any Keynav related pagy issue
         with ActiveRecord sets. Notice that Keynav works also with Sequel sets</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>

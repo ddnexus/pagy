@@ -31,7 +31,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_equal 2
     end
     it 'initializes single full page' do
-      pagy, = Pagy::Offset::Countless.new(page: 1)
+      pagy, = Pagy::Offset::Countless.new
       pagy.finalize(20) # no more page - last full
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
@@ -43,7 +43,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
     it 'initialize single partial page' do
-      pagy, = Pagy::Offset::Countless.new(page: 1)
+      pagy, = Pagy::Offset::Countless.new
       pagy.finalize(4) # partial page of 4 - also last
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
@@ -55,8 +55,8 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
     it 'initializes last partial page' do
-      pagy, = Pagy::Offset::Countless.new(page: 3)
-      pagy.finalize(19) # partial page of 4 - also last
+      pagy, = Pagy::Offset::Countless.new(page: 3, last: 3)
+      pagy.finalize(19) # partial page of 3 - also last
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 3
@@ -67,8 +67,8 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
     it 'handles the :cycle variable' do
-      pagy, = Pagy::Offset::Countless.new(page: 3, cycle: true)
-      pagy.finalize(19) # partial page of 4 - also last
+      pagy, = Pagy::Offset::Countless.new(page: 3, last: 3, cycle: true)
+      pagy.finalize(19) # partial page of 3 - also last
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 3
@@ -79,7 +79,47 @@ describe 'pagy/countless' do
       _(pagy.next).must_equal 1
     end
     it 'raises exception with no fetched records and page > 1' do
-      _ { Pagy::Offset::Countless.new(page: 2, overflow: :exception).finalize(0) }.must_raise Pagy::OverflowError
+      _ { Pagy::Offset::Countless.new(page: 2).finalize(0) }.must_raise Pagy::OverflowError
+    end
+  end
+  describe 'Handling the :last variable' do
+    it 'gets the visited page' do
+      pagy, = Pagy::Offset::Countless.new(page: 3, last: 5)
+      pagy.finalize(21)
+      _(pagy.limit).must_equal 20
+      _(pagy.last).must_equal 5
+      _(pagy.in).must_equal 20
+      _(pagy.from).must_equal 41
+      _(pagy.to).must_equal 60
+      _(pagy.prev).must_equal 2
+      _(pagy.next).must_equal 4
+    end
+    it 'updates the @last if visited page is the last page' do
+      pagy, = Pagy::Offset::Countless.new(page: 3, last: 5)
+      pagy.finalize(15)
+      _(pagy.limit).must_equal 20
+      _(pagy.last).must_equal 3
+      _(pagy.in).must_equal 15
+      _(pagy.from).must_equal 41
+      _(pagy.to).must_equal 55
+      _(pagy.prev).must_equal 2
+      _(pagy.next).must_be_nil
+    end
+  end
+  describe 'Handling the :max_pages variable' do
+    it 'gets the visited page' do
+      pagy, = Pagy::Offset::Countless.new(page: 20, max_pages: 15)
+      pagy.finalize(21)
+      _(pagy.page).must_equal 15
+      _(pagy.last).must_equal 15
+      _(pagy.in).must_equal 20
+      _(pagy.limit).must_equal 20
+      _(pagy.offset).must_equal 280
+      _(pagy.from).must_equal 281
+      _(pagy.to).must_equal 300
+      _(pagy.prev).must_equal 14
+      _(pagy.next).must_be_nil
+      _(pagy.series).must_equal [1, :gap, 11, 12, 13, 14, "15"]
     end
   end
 end

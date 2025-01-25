@@ -4,6 +4,8 @@ class Pagy
   Frontend.module_eval do
     # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
     def pagy_info(pagy, id: nil, item_name: nil)
+      return '' unless pagy.count
+
       p_count = pagy.count
       key     = if p_count.zero?
                   'pagy.info.no_items'

@@ -15,8 +15,7 @@ class Pagy
           vars[:last] = l if l&.positive?
         end
       end
-      vars[:page]  ||= 1
-      vars[:limit] ||= pagy_get_limit(vars)
+      vars[:limit] = pagy_get_limit(vars)
       pagy = Offset::Countless.new(**vars)
       [pagy, pagy_countless_get_items(collection, pagy)]
     end
@@ -28,7 +27,7 @@ class Pagy
 
       fetched = collection.offset(pagy.offset).limit(pagy.limit + 1).to_a # eager load limit + 1
       pagy.finalize(fetched.size)                                         # finalize the pagy object
-      fetched[0, pagy.limit]                                              # ignore eventual extra item
+      fetched[0, pagy.limit]                                              # ignore the extra item
     end
   end
 end

@@ -250,7 +250,7 @@ describe 'pagy' do
       _(pagy.prev).must_equal 9
       _(pagy.next).must_equal 1
     end
-    it 'handles the :ma_pages variable' do
+    it 'handles the :max_pages variable' do
       pagy = Pagy::Offset.new(count: 100, page: 3, limit: 10, max_pages: 8)
       _(pagy.count).must_equal 100
       _(pagy.last).must_equal 8

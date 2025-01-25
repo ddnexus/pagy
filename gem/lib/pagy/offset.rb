@@ -20,9 +20,9 @@ class Pagy
     def initialize(**vars) # rubocop:disable Lint/MissingSuper
       assign_vars(vars)
       assign_and_check(count: 0, page: 1, outset: 0)
-      assign_limit
-      assign_offset
+      assign_limit  # TODO: assign directly
       assign_last
+      assign_offset
       return unless check_overflow
 
       @from = [@offset - @outset + 1, @count].min
@@ -34,7 +34,7 @@ class Pagy
     # Setup @last (overridden by the gearbox extra)
     def assign_last
       @last = [(@count.to_f / @limit).ceil, 1].max
-      @last = @vars[:max_pages] if @vars[:max_pages] && @last > vars[:max_pages]
+      @last = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
     end
 
     # Assign @offset (overridden by the gearbox extra)
@@ -56,11 +56,11 @@ class Pagy
       case @vars[:overflow]
       when :last_page
         requested_page = @vars[:page]                # save the requested page (even after re-run)
-        initialize(**vars, page: @last)              # re-run with the last page
+        initialize(**@vars, page: @last)             # re-run with the last page
         @vars[:page] = requested_page                # restore the requested page
         true
       when :empty_page
-        @in = @from = @to = 0                        # vars relative to the actual page
+        @in = @from = @to = @offset = @limit = 0     # vars relative to the actual page
         @prev = @last                                # @prev relative to the actual page
         false
       else
