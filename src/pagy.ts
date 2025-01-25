@@ -31,7 +31,7 @@ type NavJsArgs = readonly [Tokens,
                            labels: string[][] | null,
                            KeynavArgs?]
 
-type ComboNavJsArgs = readonly [urlToken:string]
+type ComboNavJsArgs = readonly [urlToken: string]
 
 type SelectorJsArgs = readonly [from:     number,
                                 urlToken: string]
@@ -155,7 +155,7 @@ const Pagy = (() => {
     if (nav.classList.contains(pagy + "-rjs")) { rjsObserver.observe(parent) }
   };
 
-  // Init the *_combo_nav_js helpers
+  // Init the *_combo_nav_js helpers     "/?page=P &limit=20"
   const initComboJs = (nav:HTMLElement, [url_token]:ComboNavJsArgs) =>
       initInput(nav, inputValue => url_token.replace(pageRe, inputValue));
 

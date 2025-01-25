@@ -15,7 +15,7 @@
 # pagy_keyset(set, **PAGY_DEFAULT, **other_vars)
 
 # Notice that it's just a hash that you can name and define how and where you prefer:
-# just remember to pass it along when you need it.
+# just remember to pass it to the paginator when you need it.
 
 
 #################################### IMPORTANT #######################################
@@ -59,7 +59,7 @@
 
 
 ############# Calendar Localization Besides :en ######################################
-# Add the list of locale symbols and comment the following line to enable it,
-# regardless if you use the I18n gem for translations or not.
+# Add the list of your locales and uncomment the following line to enable it,
+# regardless if you use the I18n gem for translations or not, Rails or not.
 #
 # Pagy::Offset::Calendar.localize_with_rails_i18n_gem(*your_locales)

@@ -16,11 +16,13 @@
 
 ---
 <!-- whats_new_start -->
-### ✴ What's new in 9.0+ ✴
-- Wicked-fast [Keyset Pagination](https://ddnexus.github.io/pagy/docs/api/keyset/) for big data! It works with `ActiveRecord::Relation` and `Sequel::Dataset` sets.
-- More [Playground Apps](https://ddnexus.github.io/pagy/playground/) to showcase, clone and develop pagy APPs without any setup on your side
-- Lots of refactorings and optimizations  
-- See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
+### ✴ What's new in 10.0+ ✴
+- New pagy-exclusive [Keynav Pagination](): `keyset` pagination with `pagy_*navs` and other
+  Frontend helpers. The best technique for performance AND functionality!
+- Wicked-fast [Keyset Pagination](https://ddnexus.github.io/pagy/docs/api/keyset/) for big data and infinite pagination.
+- Simpler API, simpler usage, simpler Doc, and real-time help with the embedded `Pagy AI`... which answers better than us 😬. 
+- Extras are gone: No more need for requires! Just use what you want, and let pagy load the minimum to make it work.
+- See the [Changelog](https://ddnexus.github.io/pagy/changelog) for breaking changes
 <!-- whats_new_end -->
 ---
 
@@ -41,8 +43,7 @@ and `kaminari v1.1.1`.
 
 While it's not up-to-date, you can expect roughly similar results with the latest versions, maybe a bit less dramatic in
 performance due to the multiple features added to pagy since v3 (e.g. customizable and translated aria-labels). However, consider
-that the difference become A LOT bigger in favor of pagy if you use `*nav_js` helpers, `Pagy::Countless` or JSON and client side
-pagination that are not part of the comparison because missing in the other gems.
+that the difference become A LOT bigger in favor of pagy if you use `*nav_js` helpers, `countless`, `keyset`, `keynav` pagination `or JSON and client side helpers that are not part of the comparison because missing in the other gems.
 
 For full details about the charts above:
 - [Detailed Gems Comparison](https://ddnexus.github.io/pagination-comparison/gems.html) (charts and analysis)
@@ -60,10 +61,9 @@ For full details about the charts above:
   With any ORM, any DB, any search
   gem, [elasticsearch_rails](https://ddnexus.github.io/pagy/docs/extras/elasticsearch_rails), [meilisearch](https://ddnexus.github.io/pagy/docs/extras/meilisearch), [searchkick](https://ddnexus.github.io/pagy/docs/extras/searchkick), `ransack`,
   and just about any list, even if you cannot count it
-- **It supports all kinds of pagination**
+- **It supports all kinds of pagination**: offset, keyset, keynav, countless, 
   [calendar](https://ddnexus.github.io/pagy/docs/extras/calendar "paginates by dates, rather than numbers"),
   [countless](https://ddnexus.github.io/pagy/docs/extras/countless "skips an extra 'count' query"),
-  [geared](https://ddnexus.github.io/pagy/docs/extras/gearbox "varies the fetched items depending on the page number e.g. page 1: x items, but page 2: y items etc."),
   [incremental, auto-incremental, infinite](https://ddnexus.github.io/pagy/docs/extras/pagy),
   [headers](https://ddnexus.github.io/pagy/docs/extras/headers "useful for API pagination"),
   [JSON](https://ddnexus.github.io/pagy/docs/extras/metadata "provides pagination metadata - especially useful with frameworks like Vue, React etc. and you want to render your own pagination links"),
@@ -92,7 +92,7 @@ include Pagy::Backend
 # Include it in the helpers (e.g. application_helper.rb)
 include Pagy::Frontend
 
-# Wrap your collections with onr of msny paginators in your actions. For example:
+# Wrap your collections with one of many pagynators in your actions. For example:
 @pagy, @records = pagy_offset(Product.all)
 @pagy, @records = pagy_keyset(Product.order(my_order).all)
 @pagy, @records = pagy_keynav(Product.order(my_order).all)
