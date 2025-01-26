@@ -6,8 +6,8 @@ require_relative '../utils/nav_js'
 class Pagy
   Frontend.module_eval do
     # Javascript pagination for bootstrap: it returns a nav with a data-pagy attribute used by the pagy.js file
-    def pagy_bootstrap_nav_js(pagy, classes: 'pagination', **vars)
-      a      = pagy_anchor(pagy, **vars)
+    def pagy_bootstrap_nav_js(pagy, classes: 'pagination', **)
+      a      = pagy_anchor(pagy, **)
       tokens = { before:  %(<ul class="#{classes}">#{bootstrap_prev_html(pagy, a)}),
                  anchor:  %(<li class="page-item">#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'page-link')}</li>),
                  current: %(<li class="page-item active"><a role="link" class="page-link" ) +
@@ -15,7 +15,7 @@ class Pagy
                  gap:     %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
                               pagy_t('pagy.gap')}</a></li>),
                  after:   %(#{bootstrap_next_html pagy, a}</ul>) }
-      NavJs.tag(self, pagy, tokens, 'pagy-bootstrap nav-js', **vars)
+      NavJs.tag(self, pagy, tokens, 'pagy-bootstrap nav-js', **)
     end
   end
 end

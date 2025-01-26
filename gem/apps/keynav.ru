@@ -149,6 +149,10 @@ class PagyKeynav < Sinatra::Base
           aria_label: 'Pages (nav_js_responsive)',
           steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
         </p>
+          <h3>pagy_combo_nav_js</h3>
+        <p>
+          <%= pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages (combo_nav_js)') %>
+        </p>
       </div>
     ERB
   end

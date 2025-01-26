@@ -45,7 +45,7 @@ class Pagy
         else
           @page = @last = 1
         end
-        @update = [storage_key] # always sent back as-is in order to id the same pagination sequence
+        @update = [storage_key, @vars[:page_sym]] # always sent back as-is in order to id the same pagination sequence
       end
 
       # Prepare the literal SQL string (complete with the placeholders for value interpolation)
@@ -112,8 +112,8 @@ class Pagy
         @next ||= begin
                     unless @cutoff
                       @cutoff = derive_cutoff
-                      @update << [@page, 1, @cutoff]   # splice arguments for the client cutoffs
-                      @last += 1                       # reflect the added cutoff
+                      @last += 1                                 # reflect the added cutoff
+                      @update.push(@last, [@page, 1, @cutoff])   # splice arguments for the client cutoffs
                     end
                     @page + 1
                   end

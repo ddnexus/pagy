@@ -8,40 +8,33 @@ type InitArgs = ["n",  KeynavArgs] |
                 ["nj", NavJsArgs] |
                 ["cj", ComboNavJsArgs] |
                 ["sj", SelectorJsArgs]
-
-type KeynavArgs = readonly [pageSym: string,
-                            update:  [storageKey: string, spliceArgs?: SpliceArgs]]
-
+type AugmentKeynav = (nav:HTMLElement, keynavArgs:KeynavArgs) => Promise<((page: string) => string)>
+type KeynavArgs = readonly [storageKey:  string | null,
+                            pageSym:     string,
+                            last:        number,
+                            spliceArgs?: SpliceArgs]
 type SpliceArgs = readonly [start:       number,
                             deleteCount: number,     // it would be optional, but ts complains
                             ...items:    Cutoff[]]
-
 type Cutoff = readonly (string | number | boolean)[]
-
-type AugmentedPageParams = [browserId:   string,
-                            storageKey:  string,
-                            pageNumber:  number,
-                            pages:       number,
-                            prevCutoff?: Cutoff,
-                            pageCutoff?: Cutoff]
-
-type NavJsArgs = readonly [Tokens,
-                           widths: number[],
-                           series: (string | number)[][],
-                           labels: string[][] | null,
-                           KeynavArgs?]
-
-type ComboNavJsArgs = readonly [urlToken: string]
-
+type AugmentedPage = [browserId:  string,
+                      storageKey: string,
+                      pageNumber: number,
+                      pages:      number,
+                      prevCutoff: Cutoff | null,
+                      pageCutoff: Cutoff | null]
+type NavJsArgs = readonly [NavJsTokens, NavJsSeries, KeynavArgs?]
+type NavJsSeries = readonly [widths: number[],
+                             series: (string | number)[][],
+                             labels: string[][] | null]
+type ComboNavJsArgs = readonly [urlToken: string, KeynavArgs?]
 type SelectorJsArgs = readonly [from:     number,
                                 urlToken: string]
-
-type Tokens = readonly [before:  string,
-                        anchor:  string,
-                        current: string,
-                        gap:     string,
-                        after:   string]
-
+type NavJsTokens = readonly [before:  string,
+                             anchor:  string,
+                             current: string,
+                             gap:     string,
+                             after:   string]
 interface NavJsElement extends HTMLElement {
   render(): void
 }
@@ -91,47 +84,55 @@ const Pagy = (() => {
   // Return a random key: 3 chars max, base-36 number < 36**3
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
 
-  // Init for Keyset::Keynav paginated navs
-  const initKeynav = async (nav:HTMLElement, [pageSym, [storageKey, spliceArgs]]:KeynavArgs) => {
-    if (!storageSupport) { return }
-
-    let browserKey = document.cookie.split(/;\s+/)  // it works even if malformed
-                             .find((row) => row.startsWith(pagy + "="))
-                             ?.split("=")[1];
-    if (!browserKey) { document.cookie = pagy + "=" + (browserKey = randKey()) }
+  // Manage the page augmentation for Keynav, called only if storageSupport
+  const augmentKeynav: AugmentKeynav = async (nav, [storageKey, pageSym, last, spliceArgs]) => {
+    let augment;
+    const browserKey = document.cookie.split(/;\s+/)  // it works even if malformed
+                               .find((row) => row.startsWith(pagy + "="))
+                               ?.split("=")[1] ?? randKey();
+    document.cookie = pagy + "=" + browserKey;  // Smaller .min size: set the cookie without checking
     if (storageKey && !(storageKey in storage)) {
       // Sync the sessiongStorage from other tabs/windows (e.g. open page in new tab/window)
       sync.postMessage(<SyncData>{ from: tabId, key: storageKey });
       // Wait for the listener to copy the cutoffs in the current sessionStorage
       await new Promise<string|null>((resolve) => setTimeout(() => resolve(""), 100));
+      if (!(storageKey in storage)) { // the storageKey didn't get copied: fallback to countless pagination
+        augment = (page: string) => page + '+' + last;
+      }
     }
-    if (!storageKey) { do { storageKey = randKey() } while (storageKey in storage) } // no dup keys
-    const data    = storage.getItem(storageKey),
+    if (!augment) { // regular keynav pagination
+      if (!storageKey) { do { storageKey = randKey() } while (storageKey in storage) } // no dup keys
+      const data = storage.getItem(storageKey),
           cutoffs = <Cutoff[]>(data ? JSON.parse(data) : [undefined]);
-    if (spliceArgs) {
-      cutoffs.splice(...spliceArgs);
-      storage.setItem(storageKey, JSON.stringify(cutoffs));
+      if (spliceArgs) {
+        cutoffs.splice(...spliceArgs);
+        storage.setItem(storageKey, JSON.stringify(cutoffs));
+      }
+      // Augment function
+      augment = (page:string) => {
+        const pageNum = parseInt(page);
+        return B64SafeEncode(JSON.stringify(
+            <AugmentedPage>[browserKey,
+                            storageKey,
+                            pageNum,
+                            cutoffs.length,       // pages/last
+                            cutoffs[pageNum - 1], // prevCutoff
+                            cutoffs[pageNum]]));  // pageCutoff
+      };
     }
     // Augment the page param of each href
     for (const a of <NodeListOf<HTMLAnchorElement>><unknown>nav.querySelectorAll('a[href]')) {
-      const url     = a.href,
-            re      = new RegExp(`(?<=\\?.*)\\b${pageSym}=(\\d+)`),   // find the numeric page
-            // @ts-expect-error page=(\d+) is always in href
-            pageNum = parseInt(url.match(re)[1]),
-            value   = B64SafeEncode(JSON.stringify(
-                          <AugmentedPageParams>[browserKey,
-                                                storageKey,
-                                                pageNum,
-                                                cutoffs.length,       // pages/last
-                                                cutoffs[pageNum - 1], // prevCutoff
-                                                cutoffs[pageNum]]));  // pageCutoff
-      a.href = url.replace(re, pageSym + "=" + value);
+      const url = a.href,
+            re  = new RegExp(`(?<=\\?.*)\\b${pageSym}=(\\d+)`);   // find the numeric page from pageSym
+            a.href = url.replace(re, pageSym + "=" + augment(url.match(re)![1]));  // eslint-disable-line @typescript-eslint/no-non-null-assertion
     }
+    // Return the augment function for furter augmentation (i.e. url token in combo_nav_js)
+    return augment;
   };
 
-  // Init the *_nav_js helper
-  const initNavJs = (nav:NavJsElement, [[before, anchor, current, gap, after],
-                     widths, series, labels, keynavArgs]:NavJsArgs) => {
+  // Build the *_nav_js helper
+  const buildNavJs = (nav:NavJsElement, [[before, anchor, current, gap, after],
+                                        [widths, series, labels], keynavArgs]:NavJsArgs) => {
     const  parent = <HTMLElement>nav.parentElement;
     let lastWidth = -1;
     (nav.render = () => {
@@ -144,27 +145,30 @@ const Pagy = (() => {
         html += item == "gap" ? gap :
                 // @ts-expect-error the item may be a number, but 'replace' type converts it to string (shorter .min)
                 (typeof item == "number" ? anchor.replace(pageRe, item) : current)
-                        .replace("L<", labels?.[index][i] ?? item + "<");
+                    .replace("L<", labels?.[index][i] ?? item + "<");
       });
       html         += after;
       nav.innerHTML = "";
       nav.insertAdjacentHTML("afterbegin", html);
       lastWidth = widths[index];
-      if (keynavArgs) { void initKeynav(nav, <KeynavArgs><unknown>keynavArgs) }
+      if (keynavArgs && storageSupport) { void augmentKeynav(nav, keynavArgs) }
     })();
     if (nav.classList.contains(pagy + "-rjs")) { rjsObserver.observe(parent) }
   };
 
-  // Init the *_combo_nav_js helpers     "/?page=P &limit=20"
-  const initComboJs = (nav:HTMLElement, [url_token]:ComboNavJsArgs) =>
-      initInput(nav, inputValue => url_token.replace(pageRe, inputValue));
+  // Init the *_combo_nav_js helpers
+  const initComboJs = async (nav:HTMLElement, [url_token, keynavArgs]:ComboNavJsArgs) => {
+    const augment = keynavArgs && storageSupport
+                    ? await augmentKeynav(nav, keynavArgs)
+                    : (page: string) => page;
+    initInput(nav, inputValue => url_token.replace(pageRe, augment(inputValue)));
+  };
 
   // Init the limit_selector_js helper
   const initSelectorJs = (span:HTMLSpanElement, [from, url_token]:SelectorJsArgs) => {
     initInput(span, inputValue => {
       // @ts-expect-error the page is a number, but 'replace' type converts it to string (shorter .min)
-      return url_token.replace(pageRe, Math.max(
-          Math.ceil(from / parseInt(inputValue)), 1))
+      return url_token.replace(pageRe, Math.max(Math.ceil(from / parseInt(inputValue)), 1))
                       .replace('L ', inputValue);
     });
   };
@@ -203,11 +207,11 @@ const Pagy = (() => {
           const [helperId, ...args] = <InitArgs>JSON.parse(B64Decode(<string>element.getAttribute("data-pagy")));
           if (helperId == "n") {
             // @ts-expect-error spread 2 arguments, not 3 as it complains about
-            void initKeynav(element, ...<KeynavArgs><unknown>args);
+            void augmentKeynav(element, ...<KeynavArgs><unknown>args);
           } else if (helperId == "nj") {
-            initNavJs(<NavJsElement>element, <NavJsArgs><unknown>args);
+            buildNavJs(<NavJsElement>element, <NavJsArgs><unknown>args);
           } else if (helperId == "cj") {
-            initComboJs(element, <ComboNavJsArgs><unknown>args);
+            void initComboJs(element, <ComboNavJsArgs><unknown>args);
           } else if (helperId == "sj") {
             initSelectorJs(element, <SelectorJsArgs><unknown>args);
           }

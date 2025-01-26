@@ -6,10 +6,10 @@ require_relative '../utils/nav'
 class Pagy
   Frontend.module_eval do
     # Pagination for bulma: it returns the html with the series of links to the pages
-    def pagy_bulma_nav(pagy, classes: 'pagination is-centered', **vars)
-      a    = pagy_anchor(pagy, **vars)
+    def pagy_bulma_nav(pagy, classes: 'pagination is-centered', **)
+      a    = pagy_anchor(pagy, **)
       html = %(#{bulma_prev_next_html(pagy, a)}<ul class="pagination-list">)
-      pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
+      pagy.series(**).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
                   %(<li>#{a.(item, pagy.label(page: item), classes: 'pagination-link')}</li>)
@@ -22,7 +22,7 @@ class Pagy
                 end
       end
       html << %(</ul>)
-      Nav.tag(self, pagy, html, "pagy-bulma nav #{classes}", **vars)
+      Nav.tag(self, pagy, html, "pagy-bulma nav #{classes}", **)
     end
   end
 end

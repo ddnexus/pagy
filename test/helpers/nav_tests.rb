@@ -57,10 +57,13 @@ module NavTests
   def combo_nav_js_tests(prefix)
     method = :"pagy#{prefix}_combo_nav_js"
     [1, 3, 6].each do |page|
-      pagy = Pagy::Offset.new(count: 103, page: page)
+      pagy  = Pagy::Offset.new(count: 103, page: page)
       pagyx = Pagy::Offset.new(count: 103, page: page)
+      pagyk = Pagy::Keyset::Keynav.new(Pet.order(:animal, :name, :id),
+                                       page: ['key', 2, 2, ["cat", "Ella", 18], nil])
       _(app.send(method, pagy)).must_rematch :"plain_#{page}"
       _(app.send(method, pagyx, id: 'test-nav-id', anchor_string: 'anchor_string')).must_rematch :"extras_#{page}"
+      _(app.send(method, pagyk)).must_rematch :keyset
     end
   end
 end

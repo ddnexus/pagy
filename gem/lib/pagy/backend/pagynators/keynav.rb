@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../../pagy/modules/b64'
+
 class Pagy
   # Add keynav methods
   Backend.module_eval do

@@ -9,10 +9,12 @@ class Pagy
     module_function
 
     # Build the nav_js tag, with the specific inner html for the style
-    def tag(frontend, pagy, html, nav_classes, id: nil, aria_label: nil, **vars)
+    def tag(frontend, pagy, html, nav_classes, id: nil, aria_label: nil, **)
       %(<nav#{%( id="#{id}") if id} class="#{nav_classes}" #{
         NavAriaLabel.attr(frontend, pagy, aria_label:)} #{
-        DataPagy.attr(:cj, frontend.pagy_page_url(pagy, PAGE_TOKEN, **vars))
+        data = [:cj, frontend.pagy_page_url(pagy, PAGE_TOKEN, **)]
+        data.push(pagy.update) if pagy.keynav?
+        DataPagy.attr(*data)
       }>#{html}</nav>)
     end
   end

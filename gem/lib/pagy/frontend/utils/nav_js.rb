@@ -9,13 +9,13 @@ class Pagy
     module_function
 
     # Build the nav_js tag, with the specific tokens for the style
-    def tag(frontend, pagy, tokens, nav_classes, id: nil, aria_label: nil, **vars)
-      sequels = pagy.sequels(**vars)
+    def tag(frontend, pagy, tokens, nav_classes, id: nil, aria_label: nil, **)
+      sequels = pagy.sequels(**)
 
       %(<nav#{id && %( id="#{id}")} class="#{'pagy-rjs ' if sequels[0].size > 1}#{nav_classes}" #{
         NavAriaLabel.attr(frontend, pagy, aria_label:)} #{
-        data = [:nj, tokens.values, *sequels]
-        data.push([pagy.vars[:page_sym], pagy.update]) if pagy.keynav?
+        data = [:nj, tokens.values, sequels]
+        data.push(pagy.update) if pagy.keynav?
         DataPagy.attr(*data)
       }></nav>)
     end

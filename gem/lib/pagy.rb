@@ -26,7 +26,7 @@ class Pagy
   PAGE_TOKEN  = 'P '
   LABEL_TOKEN = 'L'
   LIMIT_TOKEN = 'L '
-  A_TAG       = '<a href="#" style="display: none;">#</a>'
+  A_TAG       = '<a style="display: none;">#</a>'
 
   attr_reader :page, :count, :prev, :next, :in, :limit, :vars, :last
 

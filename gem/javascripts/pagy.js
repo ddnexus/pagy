@@ -24,45 +24,49 @@ window.Pagy = (() => {
   }));
   const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
-  const initKeynav = async (nav, [pageSym, [storageKey, spliceArgs]]) => {
-    if (!storageSupport) {
-      return;
-    }
-    let browserKey = document.cookie.split(/;\s+/).find((row) => row.startsWith(pagy + "="))?.split("=")[1];
-    if (!browserKey) {
-      document.cookie = pagy + "=" + (browserKey = randKey());
-    }
+  const augmentKeynav = async (nav, [storageKey, pageSym, last, spliceArgs]) => {
+    let augment;
+    const browserKey = document.cookie.split(/;\s+/).find((row) => row.startsWith(pagy + "="))?.split("=")[1] ?? randKey();
+    document.cookie = pagy + "=" + browserKey;
     if (storageKey && !(storageKey in storage)) {
       sync.postMessage({ from: tabId, key: storageKey });
       await new Promise((resolve) => setTimeout(() => resolve(""), 100));
+      if (!(storageKey in storage)) {
+        augment = (page) => page + "+" + last;
+      }
     }
-    if (!storageKey) {
-      do {
-        storageKey = randKey();
-      } while (storageKey in storage);
-    }
-    const data = storage.getItem(storageKey), cutoffs = data ? JSON.parse(data) : [undefined];
-    if (spliceArgs) {
-      cutoffs.splice(...spliceArgs);
-      storage.setItem(storageKey, JSON.stringify(cutoffs));
+    if (!augment) {
+      if (!storageKey) {
+        do {
+          storageKey = randKey();
+        } while (storageKey in storage);
+      }
+      const data = storage.getItem(storageKey), cutoffs = data ? JSON.parse(data) : [undefined];
+      if (spliceArgs) {
+        cutoffs.splice(...spliceArgs);
+        storage.setItem(storageKey, JSON.stringify(cutoffs));
+      }
+      augment = (page) => {
+        const pageNum = parseInt(page);
+        return B64SafeEncode(JSON.stringify([
+          browserKey,
+          storageKey,
+          pageNum,
+          cutoffs.length,
+          cutoffs[pageNum - 1],
+          cutoffs[pageNum]
+        ]));
+      };
     }
     for (const a of nav.querySelectorAll("a[href]")) {
-      const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${pageSym}=(\\d+)`), pageNum = parseInt(url.match(re)[1]), value = B64SafeEncode(JSON.stringify([
-        browserKey,
-        storageKey,
-        pageNum,
-        cutoffs.length,
-        cutoffs[pageNum - 1],
-        cutoffs[pageNum]
-      ]));
-      a.href = url.replace(re, pageSym + "=" + value);
+      const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${pageSym}=(\\d+)`);
+      a.href = url.replace(re, pageSym + "=" + augment(url.match(re)[1]));
     }
+    return augment;
   };
-  const initNavJs = (nav, [
+  const buildNavJs = (nav, [
     [before, anchor, current, gap, after],
-    widths,
-    series,
-    labels,
+    [widths, series, labels],
     keynavArgs
   ]) => {
     const parent = nav.parentElement;
@@ -80,15 +84,18 @@ window.Pagy = (() => {
       nav.innerHTML = "";
       nav.insertAdjacentHTML("afterbegin", html);
       lastWidth = widths[index];
-      if (keynavArgs) {
-        initKeynav(nav, keynavArgs);
+      if (keynavArgs && storageSupport) {
+        augmentKeynav(nav, keynavArgs);
       }
     })();
     if (nav.classList.contains(pagy + "-rjs")) {
       rjsObserver.observe(parent);
     }
   };
-  const initComboJs = (nav, [url_token]) => initInput(nav, (inputValue) => url_token.replace(pageRe, inputValue));
+  const initComboJs = async (nav, [url_token, keynavArgs]) => {
+    const augment = keynavArgs && storageSupport ? await augmentKeynav(nav, keynavArgs) : (page) => page;
+    initInput(nav, (inputValue) => url_token.replace(pageRe, augment(inputValue)));
+  };
   const initSelectorJs = (span, [from, url_token]) => {
     initInput(span, (inputValue) => {
       return url_token.replace(pageRe, Math.max(Math.ceil(from / parseInt(inputValue)), 1)).replace("L ", inputValue);
@@ -124,9 +131,9 @@ window.Pagy = (() => {
         try {
           const [helperId, ...args] = JSON.parse(B64Decode(element.getAttribute("data-pagy")));
           if (helperId == "n") {
-            initKeynav(element, ...args);
+            augmentKeynav(element, ...args);
           } else if (helperId == "nj") {
-            initNavJs(element, args);
+            buildNavJs(element, args);
           } else if (helperId == "cj") {
             initComboJs(element, args);
           } else if (helperId == "sj") {
@@ -140,5 +147,5 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=18FB2404C62F12AF64756E2164756E21
+//# debugId=4BE84A5F9A9E841E64756E2164756E21
 //# sourceMappingURL=pagy.js.map
