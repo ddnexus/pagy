@@ -14,7 +14,7 @@ module MockSearchkick
       from     = @options[:per_page] * ((@options[:page] || 1) - 1)
       results  = @entries[from, @options[:per_page]]
       addition = yield if block
-      @results = results&.map { |r| "#{addition}#{r}" }
+      @results = results.map { |r| "#{addition}#{r}" }
     end
 
     def results
@@ -32,6 +32,6 @@ module MockSearchkick
       Results.new(...)
     end
 
-    extend Pagy::Offset::Search
+    extend Pagy::Search
   end
 end

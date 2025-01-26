@@ -51,7 +51,6 @@ describe 'pagy/exceptions' do
       pagy = Pagy::Offset.new(count: 'string', outset: 'string')
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 0
-      _(pagy.instance_variable_get(:@outset)).must_equal 0
     end
   end
 end

@@ -1,75 +1,49 @@
 # frozen_string_literal: true
 
-require_relative 'modules/ui_support'
+require_relative 'core/assignable'
+require_relative 'core/navable'
+require_relative 'core/rangeable'
 
 class Pagy
   # Implements Offset Pagination
   class Offset < Pagy
-    path = ROOT.join('lib/pagy/offset').freeze
-    autoload :Calendar,  path.join('calendar')
-    autoload :Countless, path.join('countless')
-    autoload :Search,    path.join('search')
+    autoload :Countless, ROOT.join('lib/pagy/offset/countless')
 
-    # Core default: constant for easy access, but mutable for customizable defaults
-    DEFAULT = { page: 1,
-                size: 7 }.freeze
+    DEFAULT = { page: 1, size: 7 }.freeze
 
-    attr_reader :from, :offset, :to
+    include Core::Assignable
+    include Core::Navable
+    include Core::Rangeable
+
+    attr_reader :offset, :from, :to
 
     # Merge and validate the options, do some simple arithmetic and set the instance variables
     def initialize(**vars) # rubocop:disable Lint/MissingSuper
       assign_vars(vars)
-      assign_and_check(count: 0, page: 1, outset: 0)
-      assign_limit  # TODO: assign directly
+      assign_and_check(limit: 1, count: 0, page: 1)
       assign_last
       assign_offset
-      return unless in_range?
+      return unless in_range? { @page <= @last }
 
-      @from = [@offset - @outset + 1, @count].min
-      @to   = [@offset - @outset + @limit, @count].min
+      @from = [@offset + 1, @count].min
+      @to   = [@offset + @limit, @count].min
       @in   = [@to - @from + 1, @count].min
       assign_prev_and_next
     end
 
-    # Setup @last (overridden by the gearbox extra)
     def assign_last
       @last = [(@count.to_f / @limit).ceil, 1].max
       @last = @vars[:max_pages] if @vars[:max_pages] && @last > @vars[:max_pages]
     end
 
-    # Assign @offset (overridden by the gearbox extra)
     def assign_offset
-      @offset = (@limit * (@page - 1)) + @outset  # may be already set from gear_box
+      @offset = (@limit * (@page - 1))
     end
 
-    # Assign @prev and @next
-    def assign_prev_and_next
-      @prev = (@page - 1 unless @page == 1)
-      @next = @page == @last ? (1 if @vars[:cycle]) : @page + 1
+    # Called by false in_range?
+    def assign_empty_page_vars
+      @in = @from = @to = @offset = @limit = 0     # vars relative to the actual page
+      @prev = @last                                # @prev relative to the actual page
     end
-
-    # Checks the @page <= @last
-    def in_range?
-      return true unless @page > @last
-
-      @range_rescued = true
-      case @vars[:range_rescue]
-      when :last_page
-        requested_page = @vars[:page]                # save the requested page (even after re-run)
-        initialize(**@vars, page: @last)             # re-run with the last page
-        @vars[:page] = requested_page                # restore the requested page
-        true
-      when :empty_page
-        @in = @from = @to = @offset = @limit = 0     # vars relative to the actual page
-        @prev = @last                                # @prev relative to the actual page
-        false
-      else
-        raise RangeError.new(self, :page, "in 1..#{@last}", @page)
-      end
-    end
-
-    def range_rescued? = @range_rescued
-
-    include UISupport
   end
 end

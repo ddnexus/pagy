@@ -8,12 +8,17 @@ class Pagy
   ROOT    = Pathname.new(__dir__).parent.freeze
 
   path = ROOT.join('lib/pagy').freeze
-  autoload :Backend,  path.join('backend')
-  autoload :Frontend, path.join('frontend')
-  autoload :I18n,     path.join('modules/i18n')
-  autoload :Offset,   path.join('offset')
-  autoload :Keyset,   path.join('keyset')
-  autoload :Console,  path.join('console')
+  autoload :Backend,            path.join('backend')
+  autoload :Frontend,           path.join('frontend')
+  autoload :I18n,               path.join('modules/i18n')
+  autoload :Offset,             path.join('offset')
+  autoload :Calendar,           path.join('calendar')
+  autoload :Search,             path.join('search')
+  autoload :ElasticsearchRails, path.join('search')
+  autoload :Meilisearch,        path.join('search')
+  autoload :Searchkick,         path.join('search')
+  autoload :Keyset,             path.join('keyset')
+  autoload :Console,            path.join('console')
 
   DEFAULT     = { limit:     20,
                   limit_sym: :limit,
@@ -33,11 +38,6 @@ class Pagy
       raise VariableError.new(self, name, ">= #{min}", @vars[name]) \
             unless @vars[name].respond_to?(:to_i) && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
     end
-  end
-
-  # Assign @limit (overridden by the gearbox extra)
-  def assign_limit    # TODO: remove
-    assign_and_check(limit: 1)
   end
 
   def assign_vars(vars)

@@ -27,6 +27,6 @@ module MockMeilisearch
       Results.new(*)
     end
 
-    extend Pagy::Offset::Search
+    extend Pagy::Search
   end
 end

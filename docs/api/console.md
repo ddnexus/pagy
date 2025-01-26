@@ -31,7 +31,7 @@ pagy, items = pagy_array((1..1000).to_a, page: 3)
 pagy_nav(pagy)
 => "<nav class=\"pagy nav\" aria-label=\"Pages\"><a href=\"http://www.example.com/subdir?page=2\" aria-label=\"Previous\">&lt;</a><a href=\"http://www.example.com/subdir?page=1\">1</a><a href=\"http://www.example.com/subdir?page=2\">2</a><a role=\"link\" aria-disabled=\"true\" aria-current=\"page\" class=\"current\">3</a><a href=\"http://www.example.com/subdir?page=4\">4</a><a href=\"http://www.example.com/subdir?page=5\">5</a><a role=\"link\" aria-disabled=\"true\" class=\"gap\">&hellip;</a><a href=\"http://www.example.com/subdir?page=50\">50</a><a href=\"http://www.example.com/subdir?page=4\" aria-label=\"Next\">&gt;</a></nav>"
 
-pagy_metadata(pagy)
+pagy_data(pagy)
 =>
 { :url_template => "http://www.example.com/subdir?page=P ",
   :first_url    => "http://www.example.com/subdir?page=1",

@@ -28,9 +28,9 @@ describe 'Autoload thread safety' do
                  results = MockMeilisearch::Model.ms_search('a')
                  pagy_m  = MockApp.new.send(:pagy_meilisearch, results)
 
-                 if calendar[:month].instance_of?(Pagy::Offset::Calendar::Month) &&
+                 if calendar[:month].instance_of?(Pagy::Calendar::Month) &&
                     pagy_c.instance_of?(Pagy::Offset) &&
-                    pagy_m.instance_of?(Pagy::Offset::Search::Meilisearch)
+                    pagy_m.instance_of?(Pagy::Meilisearch)
                    shared_result << :success
                  end
                rescue Exception => e   # rubocop:disable Lint/ RescueException

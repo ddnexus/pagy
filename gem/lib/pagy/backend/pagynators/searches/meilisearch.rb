@@ -8,24 +8,23 @@ class Pagy
 
     # Paginate from search object
     def pagy_meilisearch(search_obj, **vars)
-      search = Offset::Search::Meilisearch
-      if search_obj.is_a?(Offset::Search::Arguments)
+      if search_obj.is_a?(Search::Arguments)
         # The search_obj is the array of pagy_search args from the model
         SearchWrapper.wrap(self, search_obj, vars) do
           # The wrapper is generic, but this block is specific for this search class
           model, term, options    = search_obj
           options[:hits_per_page] = vars[:limit]
           options[:page]          = vars[:page]
-          results                 = model.send(search::DEFAULT[:search_method], term, options)
+          results                 = model.send(Meilisearch::DEFAULT[:search_method], term, options)
           vars[:count]            = results.raw_answer['totalHits']
-          [search.new(**vars), results]
+          [Meilisearch.new(**vars), results]
         end
       else
         # The search_obj is a meilisearch results object
         vars[:limit] = search_obj.raw_answer['hitsPerPage']
         vars[:page]  = search_obj.raw_answer['page']
         vars[:count] = search_obj.raw_answer['totalHits']
-        search.new(**vars)
+        Meilisearch.new(**vars)
       end
     end
   end

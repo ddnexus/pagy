@@ -44,7 +44,7 @@ describe 'searchkick' do
       it 'paginates response with defaults' do
         pagy, response = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
         results = response.results
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Searchkick
+        _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
         _(pagy.page).must_equal app.params[:page].to_i
@@ -53,7 +53,7 @@ describe 'searchkick' do
       end
       it 'paginates results with defaults' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search.results)
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Searchkick
+        _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
         _(pagy.page).must_equal app.params[:page].to_i
@@ -63,21 +63,10 @@ describe 'searchkick' do
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
                                  page: 2, limit: 10, anchor_string: 'X')
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Searchkick
+        _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 2
-        _(pagy.vars[:anchor_string]).must_equal 'X'
-        _(results.count).must_equal 10
-        _(results).must_rematch :results
-      end
-      it 'paginates with :range_rescue' do
-        pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
-                                 page: 200, limit: 10, anchor_string: 'X', range_rescue: :last_page)
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Searchkick
-        _(pagy.count).must_equal 1000
-        _(pagy.limit).must_equal 10
-        _(pagy.page).must_equal 100
         _(pagy.vars[:anchor_string]).must_equal 'X'
         _(results.count).must_equal 10
         _(results).must_rematch :results
@@ -87,7 +76,7 @@ describe 'searchkick' do
       it 'paginates results with defaults' do
         results = MockSearchkick::Model.search('a')
         pagy    = app.send(:pagy_searchkick, results)
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Searchkick
+        _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 1
@@ -95,7 +84,7 @@ describe 'searchkick' do
       it 'paginates results with vars and no term' do
         results = MockSearchkick::Model.search('b', page: 2, per_page: 15)
         pagy    = app.send(:pagy_searchkick, results, anchor_string: 'X')
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Searchkick
+        _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
         _(pagy.page).must_equal 2

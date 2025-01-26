@@ -27,7 +27,7 @@ describe 'meilisearch' do
       end
       it 'paginates response with defaults' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('a'))
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Meilisearch
+        _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
         _(pagy.page).must_equal app.params[:page].to_i
@@ -37,21 +37,10 @@ describe 'meilisearch' do
       it 'paginates with vars' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
                                  page: 2, limit: 10, anchor_string: 'X')
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Meilisearch
+        _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 2
-        _(pagy.vars[:anchor_string]).must_equal 'X'
-        _(results.length).must_equal 10
-        _(results.to_a).must_rematch :results
-      end
-      it 'paginates with :range_rescue' do
-        pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
-                                 page: 200, limit: 10, anchor_string: 'X', range_rescue: :last_page)
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Meilisearch
-        _(pagy.count).must_equal 1000
-        _(pagy.limit).must_equal 10
-        _(pagy.page).must_equal 100
         _(pagy.vars[:anchor_string]).must_equal 'X'
         _(results.length).must_equal 10
         _(results.to_a).must_rematch :results
@@ -61,7 +50,7 @@ describe 'meilisearch' do
       it 'paginates results with defaults' do
         results = MockMeilisearch::Model.ms_search('a')
         pagy    = app.send(:pagy_meilisearch, results)
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Meilisearch
+        _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 1
@@ -69,7 +58,7 @@ describe 'meilisearch' do
       it 'paginates results with vars' do
         results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
         pagy    = app.send(:pagy_meilisearch, results, anchor_string: 'X')
-        _(pagy).must_be_instance_of Pagy::Offset::Search::Meilisearch
+        _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
         _(pagy.page).must_equal 3

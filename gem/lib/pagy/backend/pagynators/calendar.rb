@@ -7,13 +7,13 @@ class Pagy
 
     # Take a collection and a conf Hash with keys in CONF_KEYS and return an array with 3 items: [calendar, pagy, results]
     def pagy_calendar(collection, conf)
-      conf_keys = Offset::Calendar::UNITS + %i[pagy active]
+      conf_keys = Calendar::UNITS + %i[pagy active]
       raise ArgumentError, "keys must be in #{conf_keys.inspect}" \
             unless conf.is_a?(Hash) && (conf.keys - conf_keys).empty?
 
       conf[:pagy] ||= {}
       unless conf.key?(:active) && !conf[:active]
-        calendar, from, to = Offset::Calendar.send(:init, conf, pagy_calendar_period(collection), params) do |unit, period|
+        calendar, from, to = Calendar.send(:init, conf, pagy_calendar_period(collection), params) do |unit, period|
                                pagy_calendar_counts(collection, unit, *period) if respond_to?(:pagy_calendar_counts)
                              end
         collection = pagy_calendar_filter(collection, from, to)

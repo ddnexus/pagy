@@ -7,8 +7,7 @@ class Pagy
       # Merge and validate the options, do some simple arithmetic and set a few instance variables
       def initialize(**vars) # rubocop:disable Lint/MissingSuper
         assign_vars(vars)
-        assign_and_check(page: 1, outset: 0)
-        assign_limit  # TODO: assign directly
+        assign_and_check(limit: 1, page: 1)
         assign_last
         assign_offset
       end
@@ -24,7 +23,7 @@ class Pagy
 
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
-        raise RangeError.new(self, :page, "to be < #{@page}", @page) if fetched_size.zero? && @page > 1
+        return self unless in_range? { fetched_size.positive? || @page == 1 }
 
         if @last && @page < @last # visited page
           @last = @page unless fetched_size > @limit # set last if last page
@@ -33,17 +32,9 @@ class Pagy
         end
 
         @in   = [fetched_size, @limit].min
-        @from = @in.zero? ? 0 : @offset - @outset + 1
-        @to   = @offset - @outset + @in
+        @from = @in.zero? ? 0 : @offset + 1
+        @to   = @offset + @in
         assign_prev_and_next
-        self
-      rescue RangeError
-        @range_rescued = true
-        raise unless @vars[:range_rescue] == :empty_page
-
-        @in = @from = @to = @offset = @limit = 0     # vars relative to the actual page
-        @last = @page -= 1                           # self adjust at least by 1 less
-        @prev = @last                                # @prev relative to the actual page
         self
       end
     end

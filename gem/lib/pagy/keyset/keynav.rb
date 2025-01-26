@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-require_relative '../modules/ui_support'
+require_relative '../core/navable'
 
 class Pagy
   class Keyset
     # Use keyset pagination with support for the pagy_*nav and other helpers.
     class Keynav < Keyset
+      include Core::Navable
       path = ROOT.join('lib/pagy/keyset/keynav').freeze
       autoload :ActiveRecord, path.join('active_record')
       autoload :Sequel,       path.join('sequel')
@@ -15,7 +16,6 @@ class Pagy
       DEFAULT       = { page: nil,
                         size: 7 }.freeze
 
-      include UISupport
       attr_reader :update
 
       # Finalize the instance variables needed for the UI

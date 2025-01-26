@@ -23,7 +23,7 @@
 
 
 ############# Pagy Translation Besides :en ###########################################
-# Use the pagy internal I18n: ~18x faster using ~10x less memory than the i18n gem
+# Use the Pagy::I18n: ~18x faster using ~10x less memory than the i18n gem
 # If you want to use the slower I18n gem, skip this and look at the end of this file.
 #
 # Examples (use only one statement):
@@ -62,4 +62,4 @@
 # Add the list of your locales and uncomment the following line to enable it,
 # regardless if you use the I18n gem for translations or not, Rails or not.
 #
-# Pagy::Offset::Calendar.localize_with_rails_i18n_gem(*your_locales)
+# Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)

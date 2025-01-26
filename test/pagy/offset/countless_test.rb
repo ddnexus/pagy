@@ -66,20 +66,8 @@ describe 'pagy/countless' do
       _(pagy.prev).must_equal 2
       _(pagy.next).must_be_nil
     end
-    it 'handles the :cycle variable' do
-      pagy, = Pagy::Offset::Countless.new(page: 3, last: 3, cycle: true)
-      pagy.finalize(19) # partial page of 3 - also last
-      _(pagy.count).must_be_nil
-      _(pagy.limit).must_equal 20
-      _(pagy.last).must_equal 3
-      _(pagy.in).must_equal 19
-      _(pagy.from).must_equal 41
-      _(pagy.to).must_equal 59
-      _(pagy.prev).must_equal 2
-      _(pagy.next).must_equal 1
-    end
     it 'raises exception with no fetched records and page > 1' do
-      _ { Pagy::Offset::Countless.new(page: 2).finalize(0) }.must_raise Pagy::RangeError
+      _ { Pagy::Offset::Countless.new(page: 2, raise_range_error: true).finalize(0) }.must_raise Pagy::RangeError
     end
   end
   describe 'Handling the :last variable' do

@@ -16,11 +16,11 @@ describe 'headers' do
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy_offset, @collection, headers: { limit: 'Per-Page', count: 'Total', pages: false })
+      pagy, _records = app.send(:pagy_offset, @collection, header_names: { limit: 'Per-Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy_offset, @collection, headers: { limit: false, count: false })
+      pagy, _records = app.send(:pagy_offset, @collection, header_names: { limit: false, count: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns the countless headers hash' do
@@ -44,11 +44,11 @@ describe 'headers' do
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy_offset, Event.all, headers: { limit: 'Per-Page', count: 'Total', pages: false })
+      pagy, _records = app.send(:pagy_offset, Event.all, header_names: { limit: 'Per-Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, _records = app.send(:pagy_offset, Event.all, headers: { limit: false, count: false })
+      pagy, _records = app.send(:pagy_offset, Event.all, header_names: { limit: false, count: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'returns the countless headers hash' do
@@ -75,7 +75,7 @@ describe 'headers' do
       pagy, _records = app.send(:pagy_keyset,
                                 Pet.order(:id),
                                 page: 'WzIwXQ',
-                                headers: { limit: 'Per-Page', page: 'Page', count: 'Total', pages: false })
+                                header_names: { limit: 'Per-Page', page: 'Page', count: 'Total', pages: false })
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
     it 'omit next on last page' do

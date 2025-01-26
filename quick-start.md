@@ -145,7 +145,7 @@ require 'pagy/extras/metadata'
 #### Add the metadata to your JSON response
 
 ```ruby Controller action
-render json: { data: @records, pagy: pagy_metadata(@pagy, ...) }
+render json: { data: @records, pagy: pagy_data(@pagy, ...) }
 ```
 
 +++ API Service

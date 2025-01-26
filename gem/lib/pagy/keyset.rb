@@ -30,7 +30,7 @@ class Pagy
 
     def initialize(set, **vars) # rubocop:disable Lint/MissingSuper
       assign_vars(vars)
-      assign_limit   # TODO: assign directly
+      assign_and_check(limit: 1)
       @set    = set
       @keyset = vars[:keyset] || extract_keyset
       raise InternalError, 'the set must be ordered' if @keyset.empty?

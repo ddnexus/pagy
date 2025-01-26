@@ -107,8 +107,7 @@ class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
   include Pagy::Backend
   PAGY_DEFAULT = { limit:             10,
-                   requestable_limit: 100,
-                   range_rescue:          :empty_page }.freeze
+                   requestable_limit: 100 }.freeze
 
   def index
     @pagy, @comments = pagy_offset(Comment.all, **PAGY_DEFAULT)

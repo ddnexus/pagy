@@ -142,7 +142,7 @@ _(See all the [CSS Framework Extras](https://ddnexus.github.io/pagy/categories/f
 
 ```rb
 # Extend your models (e.g. application_record.rb)
-extend Pagy::Offset::Search
+extend Pagy::Searchable
 
 # Use it in your actions
 response         = Article.pagy_search(params[:q])
@@ -160,7 +160,7 @@ _(See all the [Search Extras](https://ddnexus.github.io/pagy/categories/search/)
 ```ruby
 pagy, records = pagy_offset(Product.all)
 render json: { data: records,
-               pagy: pagy_metadata(pagy) }
+               pagy: pagy_data(pagy) }
 ```
 
 _(See all the [Backend Tools](https://ddnexus.github.io/pagy/categories/backend/))_
@@ -242,7 +242,7 @@ See also the [How To Page](https://ddnexus.github.io/pagy/docs/how-to)
 [<img src="https://img.youtube.com/vi/EDyZIB8FU-g/0.jpg" title="12:52 min - Intermediate Skill Level - Calendar sarch with Pagy (2024-01-21)" width="150">](https://www.youtube.com/watch?v=EDyZIB8FU-g)
 [<img src="https://img.youtube.com/vi/zni3nMA5_AY/0.jpg" width="150" title="10:53 - Urdu Language (2024-01-15)">](https://www.youtube.com/watch?v=zni3nMA5_AY)
 [<img src="https://img.youtube.com/vi/4nrmf5KfD8Y/0.jpg" width="150" title="14:28 min - Intermediate - Infinite Scrolling with Turbo Streams (Rails 7) (2023-06-09)">](https://www.youtube.com/watch?v=4nrmf5KfD8Y)
-[<img src="https://img.youtube.com/vi/Qoq6HZ8gdDE/0.jpg" title="12:52 min - Intermediate Skill Level - API based pagination + using pagy_metadata (2023-05-18)" width="150">](https://www.youtube.com/watch?v=Qoq6HZ8gdDE) 
+[<img src="https://img.youtube.com/vi/Qoq6HZ8gdDE/0.jpg" title="12:52 min - Intermediate Skill Level - API based pagination + using pagy_data (2023-05-18)" width="150">](https://www.youtube.com/watch?v=Qoq6HZ8gdDE) 
 [<img src="https://img.youtube.com/vi/1sNpvTMrxl4/0.jpg" width="150" title="31 min - Beginner - Basic Pagy Use (Tailwind, Overflow, Common Use cases) + Deep dive into building a sample Blogging Application (2023-04-05)">](https://www.youtube.com/watch?v=1sNpvTMrxl4) 
 [<img src="https://img.youtube.com/vi/A9q6YwhLCyI/0.jpg" title="17 min - Intermediate Skill Level - Pagination with Search (Ransack) and Hotwire + Infinite (Countless) Pagination (2022-12-09)" width="150">](https://www.youtube.com/watch?v=A9q6YwhLCyI)
 [<img src="https://img.youtube.com/vi/HURqvNJF4T0/0.jpg" width="150" title="5:21 min - Intermediate - Using Pagy - with a strong focus on Hotwire and filtering search results (2022-04-20)">](https://www.youtube.com/watch?v=HURqvNJF4T0)

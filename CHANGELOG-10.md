@@ -48,13 +48,15 @@ None
 
 ### Overview
 
-This is a mayor, MAYOR version, with important additions and improvements, a lot easier to use and customize, it has fewer methods
-and variables, cleaner code with a brand-new documentation and the new `Pagy AI`, ready to answer your questions.
+This is a mayor, MAYOR version, produced consulting AI for suggestions.
+We made a lot of changes to make things easier, simpler and more maintenable.
+
+There is a brand-new documentation with more concise and practical guides, and better organized in-depth separate sections. We also embed the new `Pagy AI`, ready to answer your questions (faster and better than us).
 
 ### Keynav Pagination Addition
 
 We just invented the `keynav` pagination: the pagy-exclusive technique to use `keyset` pagination with `pagy_*navs` and other
-Frontend helpers. The best technique for performance AND functionality!
+Frontend helpers. The best technique for performance AND functionality! Check it out.
 
 ### Improvements
 
@@ -93,9 +95,6 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 
 | Type        | Search                | Replace            | Notes                                                       |
 |-------------|-----------------------|--------------------|-------------------------------------------------------------|
-| Class       | `Pagy::OverflowError` | `Pagy::RangeError` | AI rebuked us about the wrong use of the 'overflow' concept |
-| Variable    | `:overflow`           | `:range_rescue`    | AI rebuked us about the wrong use of the 'overflow' concept |
-| Method      | `overflow?`           | `range_rescued?`   | AI rebuked us about the wrong use of the 'overflow' concept |
 | Constructor | `pagy(`               | `pagy_offset(`     | Consistent with the other old and new constructors          |
 | Function    | `Pagy.root`           | `Pagy::ROOT`       | Stop calling a method just to get a constant Pathname       |
 | Variable    | `:page_param`         | `:page_sym`        | The '_param' can be confused with the actual param value    |
@@ -107,7 +106,7 @@ Updated the support for the pagy helpers and keynav pagination. Added the plain 
 
 #### Direct instantiation of the pagy classes is not recommended
 
-- Use the provided paginators for easier usage, maintenance and forward compatibility.
+- Use the provided `pagynators` for easier usage, maintenance and forward compatibility.
 - Use the classes only if the documentation suggests you to do so, or if you really you know what you are doing.
 
 #### The `Pagy::DEFAULT` is now frozen
@@ -126,6 +125,7 @@ it).
 
 - If you used the `:params` variable set to a lambda, ensure that it modifies the passed `query_params` directly. The returned
   value is now ignored for a sligtly better performance.
+- The `:outset`and `:cycle` variables have been removed. There were alost useless and implementing them outside pagy is trivial.
 
 #### Extras Changes
 
@@ -138,13 +138,12 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 ##### `calendar`
 
 If you need the I18n gem localization, discard your old config, and uncomment/add this line to your initializer:
-`Pagy::Offset::Calendar.localize_with_rails_i18n_gem(*your_locales)`
+`Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`
 
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
 
 - Replace any existing `Pagy.new_from_<extra-name>` with `pagy_<extra-name>`. _(Active and passive modes are now handled by the
   same paginator.)_
-- Replace any existing `extend Pagy::Search` statement in your models with `extend Pagy::Offset::Search`.
 - Remove any existing `:<extra-name>_pagy_search`
   variable from your code, and use the standard `pagy_search` method instead. _(the `pagy_search` name customization has been
   discontinued.)_
@@ -152,8 +151,8 @@ If you need the I18n gem localization, discard your old config, and uncomment/ad
 
 ##### `headers`
 
-- Rename any existing `:scaffold_url` to `url_template`
-- Pass any existing `:headers` variable to the paginator method
+- Rename any existing `:headers` variable to `:header_names` (it's a hash mapping headers to names)
+- You can pass your `:header_names` to the paginator method or to the `pagy_headers` helper method (which has priority).
 
 ##### `jsonapi`
 
@@ -174,12 +173,20 @@ If you need the I18n gem localization, discard your old config, and uncomment/ad
 
 ##### `metadata`
 
+- Rename `pagy_metadata` to `pagy_data` (indeed it's just pagy data)
 - Rename any existing `:scaffold_url` to `url_template`
-- Pass any existing `:metadata` variable to the paginator method
+- Rename any existing `:metadata` variable to `:data_keys`
+- You can pass your `:data_keys` to the paginator method or to the `pagy_data` helper method (which has priority).
 
 ##### `overflow`
 
-- You should pass the `rescue_range: ...` variable to the paginator method when you want to trigger the feature.
+- No error to rescue anymore: error only on demand. Now it works like requiring the extra and using its default.
+- Here is how to get the old behavior with the new implementation:
+  - If you used no extra (i.e. pagy raised errors): set `{ raise_range_error: true }`
+  - If you used `{ overflow: :empty_page }` or just required the overflow extra: remove it (it's the current default)
+  - If you used `{ overflow: :last_page }`: set `{ raise_range_error: true }` and use `rescue Pagy::RangeError => e` in your method, but read the note below:
+- Notice that the nav bar is served as usual also with an out-of-range request, just with empty records/results... so you should consider that the user can click on the last page link (which has already been visited anyway).
+- You have also the `pagy.in_range?` method to check it (the opposite boolean of `pagy.overflow?`).
 
 #### `standlone`
 
@@ -194,12 +201,7 @@ If you need the I18n gem localization, discard your old config, and uncomment/ad
 
 ##### `gearbox` (discontinued feature)
 
-- Copy the file at `https://github.com/ddnexus/pagy/blob/master/legacy/gearbox.rb` in your app and require the copy in the
-  initializer.
-- Remove the `:gearbox_extra` variable from your code
-- You should pass the `gearbox_limit: [...]` variable to the paginator method when you want to trigger the feature.
-- The file will not be upgraded in the future, so you must maintain it. The test file is available at
-  `https://github.com/ddnexus/pagy/blob/master/legacy/gearbox_test.rb`
+- The feature require so much overwriting for so little difference that you better just remove it from your app and nobody will even notice.
 
 ##### `size` (discontinued feature)
 

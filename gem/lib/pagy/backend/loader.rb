@@ -14,7 +14,7 @@ class Pagy
       path = ROOT.join('lib/pagy/backend').freeze
       BACKEND_METHODS = { pagy_headers:             path.join('helpers/headers'),
                           pagy_headers_merge:       path.join('helpers/headers'),
-                          pagy_metadata:            path.join('helpers/metadata'),
+                          pagy_data:                path.join('helpers/data'),
                           pagy_links:               path.join('helpers/links'),
                           pagy_arel:                path.join('pagynators/arel'),
                           pagy_array:               path.join('pagynators/array'),

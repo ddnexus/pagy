@@ -13,12 +13,12 @@ end
 
 describe 'calendar' do
   describe 'instance methods' do
-    it 'returns a Pagy::Offset::Calendar::Month instance' do
+    it 'returns a Pagy::Calendar::Month instance' do
       calendar, pagy, _records = app(params: { page: 1 }).send(:pagy_calendar,
                                                                Event.all,
                                                                month: { period: [Time.now, Time.now + 5000] },
                                                                pagy: {})
-      _(calendar[:month]).must_be_instance_of Pagy::Offset::Calendar::Month
+      _(calendar[:month]).must_be_instance_of Pagy::Calendar::Month
       _(pagy).must_be_instance_of Pagy::Offset
     end
     it 'skips the calendar' do
@@ -251,10 +251,10 @@ describe 'calendar' do
         .must_equal "/foo?page=1&year_page=1&month_page=1"
 
       _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2100)) }
-        .must_raise Pagy::Offset::Calendar::OutOfRangeError
+        .must_raise Pagy::Calendar::OutOfRangeError
 
       _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2000)) }
-        .must_raise Pagy::Offset::Calendar::OutOfRangeError
+        .must_raise Pagy::Calendar::OutOfRangeError
     end
   end
   describe "#showtime" do
@@ -271,7 +271,7 @@ describe 'calendar' do
     it 'includes title and class in page url' do
       # We need this require because we use a feature of pagy_calendar that would load with pagy_calendar,
       # but we don't call it because Pagy::Offset.new is easier to run, still testing the feature...
-      require 'pagy/backend/paginators/calendar'
+      require 'pagy/backend/pagynators/calendar'
       app = MockApp::CalendarCounts.new
       pagy = Pagy::Offset.new(count: 103, page: 1, counts: {2 => 0})
       _(app.pagy_anchor(pagy, anchor_string: 'X').call(3, classes: 'a b c')).must_equal \

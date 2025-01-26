@@ -110,12 +110,12 @@ OJ.each do |test|
     describe "Calendar sequels and label_sequels #{test}" do
       it 'generate the labels for the sequels' do
         steps = { 0 => 5, 600 => 7 }
-        pagy = Pagy::Offset::Calendar.send(:create, :month,
-                                           period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
-                                                    Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
-                                           steps:  steps,
-                                           trim:   false,   # to hit the :gap condition in the calendar sequels override
-                                           page:   6)
+        pagy = Pagy::Calendar.send(:create, :month,
+                                   period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
+                                            Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
+                                   steps:  steps,
+                                   trim:   false,   # to hit the :gap condition in the calendar sequels override
+                                   page:   6)
         _(pagy.sequels).must_rematch :sequels
       end
     end
