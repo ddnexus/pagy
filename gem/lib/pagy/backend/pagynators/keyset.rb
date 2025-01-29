@@ -14,13 +14,13 @@ class Pagy
     end
 
     # Return the URL string for the first page
-    def pagy_keyset_first_url(pagy, **vars)
-      pagy_page_url(pagy, nil, **vars)
+    def pagy_keyset_first_url(pagy, **)
+      pagy_page_url(pagy, nil, **)
     end
 
     # Return the URL string for the next page or nil
-    def pagy_keyset_next_url(pagy, **vars)
-      pagy_page_url(pagy, pagy.next, **vars) if pagy.next
+    def pagy_keyset_next_url(pagy, **)
+      pagy_page_url(pagy, pagy.next, **) if pagy.next
     end
   end
 end

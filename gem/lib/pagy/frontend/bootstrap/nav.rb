@@ -8,7 +8,7 @@ class Pagy
     # Pagination for bootstrap: it returns the html with the series of links to the pages
     def pagy_bootstrap_nav(pagy, classes: 'pagination', **)
       a    = pagy_anchor(pagy, **)
-      html = %(<ul class="#{classes}">#{bootstrap_prev_html(pagy, a)})
+      html = %(<ul class="#{classes}">#{pagy_bootstrap_html_for(:prev, pagy, a)})
       pagy.series(**).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
@@ -22,7 +22,7 @@ class Pagy
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
-      html << %(#{bootstrap_next_html(pagy, a)}</ul>)
+      html << %(#{pagy_bootstrap_html_for(:next, pagy, a)}</ul>)
       Nav.tag(self, pagy, html, 'pagy-bootstrap nav', **)
     end
   end

@@ -2,7 +2,7 @@
 
 class Pagy
   Frontend.module_eval do
-    # Conditionally return the previous page link tag
+    # Return the enabled/disabled prev page anchor tag
     def pagy_prev_a(pagy, a = nil, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev'), **)
       if (p_prev = pagy.prev)
         (a || pagy_anchor(pagy, **)).(p_prev, text, aria_label:)

@@ -9,9 +9,9 @@ class Pagy
         vars[:page]  ||= pagy_get_page(vars)
         vars[:limit] ||= pagy_get_limit(vars)
       end
-      pagy, response = yield
+      pagy, results = yield
       calling = pagy_search_args[4..]
-      [pagy, calling.empty? ? response : response.send(*calling)]
+      [pagy, calling.empty? ? results : results.send(*calling)]
     end
   end
 end

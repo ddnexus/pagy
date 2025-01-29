@@ -8,7 +8,7 @@ class Pagy
   module ComboNavJs
     module_function
 
-    # Build the nav_js tag, with the specific inner html for the style
+    # Build the combo_nav_js tag, with the specific inner html for the style
     def tag(frontend, pagy, html, nav_classes, id: nil, aria_label: nil, **)
       %(<nav#{%( id="#{id}") if id} class="#{nav_classes}" #{
         NavAriaLabel.attr(frontend, pagy, aria_label:)} #{
