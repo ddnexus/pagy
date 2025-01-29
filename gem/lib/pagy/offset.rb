@@ -7,7 +7,7 @@ require_relative 'core/rangeable'
 class Pagy
   # Implements Offset Pagination
   class Offset < Pagy
-    autoload :Countless, ROOT.join('lib/pagy/offset/countless')
+    autoload :Countless, PAGY_PATH.join('offset/countless')
 
     DEFAULT = { page: 1, size: 7 }.freeze
 

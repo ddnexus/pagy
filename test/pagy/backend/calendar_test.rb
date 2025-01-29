@@ -271,7 +271,7 @@ describe 'calendar' do
     it 'includes title and class in page url' do
       # We need this require because we use a feature of pagy_calendar that would load with pagy_calendar,
       # but we don't call it because Pagy::Offset.new is easier to run, still testing the feature...
-      require 'pagy/backend/pagynators/calendar'
+      require_relative '../../../gem/lib/pagy/backend/pagynators/calendar'
       app = MockApp::CalendarCounts.new
       pagy = Pagy::Offset.new(count: 103, page: 1, counts: {2 => 0})
       _(app.pagy_anchor(pagy, anchor_string: 'X').call(3, classes: 'a b c')).must_equal \

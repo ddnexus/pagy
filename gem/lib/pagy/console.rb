@@ -10,6 +10,7 @@ class Pagy
       main.include(Backend)
       main.include(Frontend)
       main.define_method(:params) { {} }
+
       # :nocov:
       main.define_method(:default_request) do
         { request: { url_prefix: 'http://www.example.com/subdir',

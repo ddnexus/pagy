@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
-require 'pagy/console'
+require_relative '../../gem/lib/pagy/console'
 
 module PagyConsole
   include Pagy::Console

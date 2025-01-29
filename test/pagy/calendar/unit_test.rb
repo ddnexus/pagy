@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
-require 'pagy/calendar'
+require_relative '../../../gem/lib/pagy/calendar'
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday

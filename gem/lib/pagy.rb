@@ -4,21 +4,21 @@ require 'pathname'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
-  VERSION = '9.3.3'
-  ROOT    = Pathname.new(__dir__).parent.freeze
+  VERSION   = '9.3.3'
+  ROOT      = Pathname.new(__dir__).parent.freeze
+  PAGY_PATH = ROOT.join('lib/pagy').freeze
 
-  path = ROOT.join('lib/pagy').freeze
-  autoload :Backend,            path.join('backend')
-  autoload :Frontend,           path.join('frontend')
-  autoload :I18n,               path.join('modules/i18n')
-  autoload :Offset,             path.join('offset')
-  autoload :Calendar,           path.join('calendar')
-  autoload :Search,             path.join('search')
-  autoload :ElasticsearchRails, path.join('search')
-  autoload :Meilisearch,        path.join('search')
-  autoload :Searchkick,         path.join('search')
-  autoload :Keyset,             path.join('keyset')
-  autoload :Console,            path.join('console')
+  autoload :Backend,            PAGY_PATH.join('backend')
+  autoload :Frontend,           PAGY_PATH.join('frontend')
+  autoload :I18n,               PAGY_PATH.join('i18n')
+  autoload :Offset,             PAGY_PATH.join('offset')
+  autoload :Calendar,           PAGY_PATH.join('calendar')
+  autoload :Search,             PAGY_PATH.join('search')
+  autoload :ElasticsearchRails, PAGY_PATH.join('search')
+  autoload :Meilisearch,        PAGY_PATH.join('search')
+  autoload :Searchkick,         PAGY_PATH.join('search')
+  autoload :Keyset,             PAGY_PATH.join('keyset')
+  autoload :Console,            PAGY_PATH.join('console')
 
   DEFAULT     = { limit:     20,
                   limit_sym: :limit,

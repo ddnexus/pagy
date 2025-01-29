@@ -6,10 +6,10 @@ class Pagy
   class Keyset
     # Use keyset pagination with support for the pagy_*nav and other helpers.
     class Keynav < Keyset
+      autoload :ActiveRecord, PAGY_PATH.join('keyset/keynav/active_record')
+      autoload :Sequel,       PAGY_PATH.join('keyset/keynav/sequel')
+
       include Core::Navable
-      path = ROOT.join('lib/pagy/keyset/keynav').freeze
-      autoload :ActiveRecord, path.join('active_record')
-      autoload :Sequel,       path.join('sequel')
 
       # Avoid filter args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'
@@ -112,7 +112,7 @@ class Pagy
         @next ||= begin
                     unless @cutoff
                       @cutoff = derive_cutoff
-                      @last += 1                                 # reflect the added cutoff
+                      @last  += 1                                # reflect the added cutoff
                       @update.push(@last, [@page, 1, @cutoff])   # splice arguments for the client cutoffs
                     end
                     @page + 1

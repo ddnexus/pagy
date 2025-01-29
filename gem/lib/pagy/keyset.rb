@@ -6,10 +6,9 @@ require_relative 'modules/b64'
 class Pagy
   # Implement wicked-fast keyset pagination for big data
   class Keyset < Pagy
-    path = ROOT.join('lib/pagy/keyset').freeze
-    autoload :ActiveRecord, path.join('active_record')
-    autoload :Sequel,       path.join('sequel')
-    autoload :Keynav,       path.join('keynav')
+    autoload :ActiveRecord, PAGY_PATH.join('keyset/active_record')
+    autoload :Sequel,       PAGY_PATH.join('keyset/sequel')
+    autoload :Keynav,       PAGY_PATH.join('keyset/keynav')
 
     class TypeError < ::TypeError; end
 

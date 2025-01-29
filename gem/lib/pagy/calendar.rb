@@ -9,13 +9,12 @@ require 'active_support/core_ext/integer/time'
 class Pagy
   # Calendar class
   class Calendar < Hash
-    path = ROOT.join('lib/pagy/calendar').freeze
-    autoload :Unit,    path.join('unit')
-    autoload :Day,     path.join('day')
-    autoload :Week,    path.join('week')
-    autoload :Month,   path.join('month')
-    autoload :Quarter, path.join('quarter')
-    autoload :Year,    path.join('year')
+    autoload :Unit,    PAGY_PATH.join('calendar/unit')
+    autoload :Day,     PAGY_PATH.join('calendar/day')
+    autoload :Week,    PAGY_PATH.join('calendar/week')
+    autoload :Month,   PAGY_PATH.join('calendar/month')
+    autoload :Quarter, PAGY_PATH.join('calendar/quarter')
+    autoload :Year,    PAGY_PATH.join('calendar/year')
 
     # Specific out of range error
     class OutOfRangeError < VariableError; end
@@ -28,7 +27,6 @@ class Pagy
       # Localize with rails-i18n in any env
       def localize_with_rails_i18n_gem(*locales)
         Unit.prepend(Module.new { def localize(...) = ::I18n.l(...) })
-        return if defined?(Rails)
         raise RailsI18nLoadError, "Pagy: The gem 'rails-i18n' must be installed if you don't use Rails" \
               unless (path = Gem.loaded_specs['rails-i18n']&.full_gem_path)
 
