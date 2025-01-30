@@ -24,10 +24,10 @@ class Pagy
   end
 
   module CalendarOverride
-    def pagy_anchor(pagy, anchor_string: nil, **vars)
-      return super unless (counts = pagy.vars[:counts])   # Skip unless pagy_calendar_counts is defined
+    def pagy_anchor(pagy, anchor_string: nil, **)
+      return super unless (counts = pagy.opts[:counts])   # Skip unless pagy_calendar_counts is defined
 
-      left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **vars)}")
+      left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **)}")
                     .split(PAGE_TOKEN, 2)
       # Lambda used by all the helpers
       lambda do |page, text = pagy.label(page: page), classes: nil, aria_label: nil|

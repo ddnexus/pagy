@@ -101,16 +101,19 @@ Added `Pagy::Config.install_js` function to avoid messing up with complicated ja
 
 #### Simple search and replace renaming (without logic changes)
 
-| Type        | Search           | Replace         | Notes                                                    |
-|-------------|------------------|-----------------|----------------------------------------------------------|
-| Constructor | `pagy(`          | `pagy_offset(`  | Consistent with the other old and new constructors       |
-| Function    | `Pagy.root`      | `Pagy::ROOT`    | Stop calling a method just to get a constant Pathname    |
-| Variable    | `:page_param`    | `:page_sym`     | The '_param' can be confused with the actual param value |
-| Variable    | `:limit_param`   | `:limit_sym`    | The '_param' can be confused with the actual param value |
-| Variable    | `ends: false`    | `trim: true`    | Trim is the inverse of ends, and its default is `nil`    |
-| Method      | `pagy_url_for`   | `pagy_page_url` | The legacy naming was causing rails-related expectations |
-| Method/args | `label_for(page` | `label(page: `  | Simpler name and `page` is a keywork argument            |
-| Method/args | `label(page`     | `label(page: `  | Same name and `page` is a keywork argument               |
+| Type        | Search           | Replace         | Notes                                                        |
+|-------------|------------------|-----------------|--------------------------------------------------------------|
+| Constructor | `pagy(`          | `pagy_offset(`  | Consistent with the other old and new constructors           |
+| Function    | `Pagy.root`      | `Pagy::ROOT`    | Stop calling a method just to get a constant Pathname        |
+| Accessor    | `vars`           | `opts`          | They are actually options that don't change during execution |
+| Exception   | `VariableError`  | `OptionError`   | Error for the passed options. VariableError was not accurate |
+| Accessor    | `variable`       | `option`        | OptionError instance accessor, consistent with the class     |
+| Option      | `:page_param`    | `:page_sym`     | The '_param' can be confused with the actual param value     |
+| Option      | `:limit_param`   | `:limit_sym`    | The '_param' can be confused with the actual param value     |
+| Option      | `ends: false`    | `trim: true`    | Trim is the inverse of ends, and its default is `nil`        |
+| Method      | `pagy_url_for`   | `pagy_page_url` | The legacy name was causing rails-related expectations       |
+| Method/args | `label_for(page` | `label(page: `  | Simpler name and `page` is a keywork argument                |
+| Method/args | `label(page`     | `label(page: `  | Same name and `page` is a keywork argument                   |
 
 #### The `Pagy::DEFAULT` is now frozen
 
@@ -141,8 +144,10 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `calendar`
 
-If you need the `I18n` gem localization, discard your old localization config, and uncomment/add this line to your initializer:
-`Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`
+- Discard your old localization config, and uncomment/add this line to your initializer:
+`Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`.
+  - In non-rails apps, calendar localization requires to add `rails-i18n` to your gemfile. 
+- Replace the existing `Pagy::Calendar::OutOfRangeError` with `Pagy::RangeError`
 
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
 

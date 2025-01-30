@@ -21,7 +21,7 @@ meilisearch__controller_methods___pagy_meilisearch_test_0001_paginates_response_
   - a-58
   - a-59
   - a-60
-meilisearch__controller_methods___pagy_meilisearch_test_0002_paginates_with_vars:
+meilisearch__controller_methods___pagy_meilisearch_test_0002_paginates_with_opts:
   :results:
   - b-11
   - b-12

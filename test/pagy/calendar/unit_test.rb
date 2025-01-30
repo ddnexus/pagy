@@ -6,9 +6,9 @@ require_relative '../../../gem/lib/pagy/calendar'
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
 
-def pagy(unit: :month, **vars)
+def pagy(unit: :month, **)
   default = { period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)] }
-  Pagy::Calendar.send(:create, unit, **default, **vars)
+  Pagy::Calendar.send(:create, unit, **default, **)
 end
 
 describe 'pagy/calendar' do
@@ -16,18 +16,18 @@ describe 'pagy/calendar' do
     it 'defines calendar specific accessors' do
       assert_respond_to pagy, :order
     end
-    it 'raises Pagy::VariableError' do
+    it 'raises Pagy::OptionError' do
       _ { pagy(unit: :unknown) }.must_raise Pagy::InternalError
-      _ { pagy(period: [1, 10]) }.must_raise Pagy::VariableError
-      _ { pagy(period: [Time.now]) }.must_raise Pagy::VariableError
-      _ { pagy(period: [Time.now, 2]) }.must_raise Pagy::VariableError
-      _ { pagy(period: [Time.now.utc, Time.now]) }.must_raise Pagy::VariableError
-      _ { pagy(order: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(unit: :year, format: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(unit: :quarter, format: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(unit: :month, format: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(unit: :week, format: :unknown) }.must_raise Pagy::VariableError
-      _ { pagy(unit: :day, format: :unknown) }.must_raise Pagy::VariableError
+      _ { pagy(period: [1, 10]) }.must_raise Pagy::OptionError
+      _ { pagy(period: [Time.now]) }.must_raise Pagy::OptionError
+      _ { pagy(period: [Time.now, 2]) }.must_raise Pagy::OptionError
+      _ { pagy(period: [Time.now.utc, Time.now]) }.must_raise Pagy::OptionError
+      _ { pagy(order: :unknown) }.must_raise Pagy::OptionError
+      _ { pagy(unit: :year, format: :unknown) }.must_raise Pagy::OptionError
+      _ { pagy(unit: :quarter, format: :unknown) }.must_raise Pagy::OptionError
+      _ { pagy(unit: :month, format: :unknown) }.must_raise Pagy::OptionError
+      _ { pagy(unit: :week, format: :unknown) }.must_raise Pagy::OptionError
+      _ { pagy(unit: :day, format: :unknown) }.must_raise Pagy::OptionError
     end
   end
 
@@ -272,8 +272,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 3
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 3
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 1
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
     it 'returns the page number for :year desc' do
       p = pagy(unit: :year, order: :desc)
@@ -282,8 +282,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 1
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 3
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
 
     it 'returns the page number for :quarter' do
@@ -293,8 +293,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 9
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 9
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 1
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
     it 'returns the page number for :quarter desc' do
       p = pagy(unit: :quarter, order: :desc)
@@ -303,8 +303,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 1
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 9
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
     it 'returns the page number for :month' do
       p = pagy(unit: :month)
@@ -313,8 +313,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 26
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 26
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 1
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
     it 'returns the page number for :month desc' do
       p = pagy(unit: :month, order: :desc)
@@ -323,8 +323,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13, 15, 43, 40, 0))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 1
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 26
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
 
     it 'returns the page number for :week' do
@@ -334,8 +334,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13))).must_equal 109
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 109
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 1
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
     it 'returns the page number for :week desc' do
       p = pagy(unit: :week, order: :desc)
@@ -344,8 +344,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 1
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 109
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
     it 'returns the page number for :day' do
       p = pagy(unit: :day)
@@ -354,8 +354,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13))).must_equal 754
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 754
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 1
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
     it 'returns the page number for :day desc' do
       p = pagy(unit: :day, order: :desc)
@@ -364,8 +364,8 @@ describe 'pagy/calendar' do
       _(p.send(:page_at, Time.zone.local(2023, 11, 13))).must_equal 1
       _(p.send(:page_at, Time.zone.local(2100), fit_time: true)).must_equal 1
       _(p.send(:page_at, Time.zone.local(2000), fit_time: true)).must_equal 754
-      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::Calendar::OutOfRangeError
-      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::Calendar::OutOfRangeError
+      _ { p.send(:page_at, Time.zone.local(2100)) }.must_raise Pagy::RangeError
+      _ { p.send(:page_at, Time.zone.local(2000)) }.must_raise Pagy::RangeError
     end
   end
 

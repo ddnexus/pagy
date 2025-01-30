@@ -31,7 +31,7 @@ describe 'pagy/helpers/url' do
       pagy = Pagy::Offset.new count: 1000, page: 3, request_path: '/bar'
       _(app.pagy_page_url(pagy, 5)).must_equal '/bar?page=5'
     end
-    it 'renders url with vars[:request]' do
+    it 'renders url with opts[:request]' do
       pagy = Pagy::Offset.new count: 1000,
                               page: 3,
                               request: { url_prefix: 'http://pagy.com/the/best/bar',

@@ -15,8 +15,8 @@ class Pagy
       DEFAULT = { page: 1 }.freeze
 
       # Merge and validate the options, do some simple arithmetic and set a few instance variables
-      def initialize(**vars)    # rubocop:disable Lint/MissingSuper
-        assign_vars(vars)
+      def initialize(**opts)    # rubocop:disable Lint/MissingSuper
+        assign_opts(opts)
         assign_and_check(page: 1)
         assign_unit_vars
         return unless in_range? { @page <= @last }
@@ -28,7 +28,7 @@ class Pagy
 
       # Called by false in_range?
       def assign_empty_page_vars
-        @in = @from = @to = 0                        # vars relative to the actual page
+        @in = @from = @to = 0                        # opts relative to the actual page
         edge = @order == :asc ? @final : @initial    # get the edge of the range (neat, but any time would do)
         @from = @to = edge                           # set both to the edge time (a >=&&< query will get no records)
         @prev = @last
@@ -36,7 +36,7 @@ class Pagy
 
       # The label for any page (it can pass along the I18n gem opts when it's used with the i18n extra)
       def label(page: @page, **opts)
-        opts[:format] ||= @vars[:format]
+        opts[:format] ||= @opts[:format]
         localize(starting_time_for(page.to_i), **opts)  # page could be a string
       end
 
@@ -55,7 +55,7 @@ class Pagy
         fit_time  = time
         fit_final = @final - 1
         unless time.between?(@initial, fit_final)
-          raise OutOfRangeError.new(self, :time, "between #{@initial} and #{fit_final}", time) unless opts[:fit_time]
+          raise RangeError.new(self, :time, "between #{@initial} and #{fit_final}", time) unless opts[:fit_time]
 
           if time < @final
             fit_time = @initial
@@ -72,12 +72,12 @@ class Pagy
 
       # Base class method for the setup of the unit variables (subclasses must implement it and call super)
       def assign_unit_vars
-        raise VariableError.new(self, :format, 'to be a strftime format', @vars[:format]) unless @vars[:format].is_a?(String)
-        raise VariableError.new(self, :order, 'to be in [:asc, :desc]', @order) \
-        unless %i[asc desc].include?(@order = @vars[:order])
+        raise OptionError.new(self, :format, 'to be a strftime format', @opts[:format]) unless @opts[:format].is_a?(String)
+        raise OptionError.new(self, :order, 'to be in [:asc, :desc]', @order) \
+        unless %i[asc desc].include?(@order = @opts[:order])
 
-        @starting, @ending = @vars[:period]
-        raise VariableError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @vars[:period]) \
+        @starting, @ending = @opts[:period]
+        raise OptionError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @opts[:period]) \
         unless @starting.is_a?(ActiveSupport::TimeWithZone) \
         && @ending.is_a?(ActiveSupport::TimeWithZone) && @starting <= @ending
       end

@@ -4,47 +4,47 @@ require_relative '../test_helper'
 require_relative '../mock_helpers/pagy_buggy'
 
 describe 'pagy/exceptions' do
-  describe '#variable and #value' do
+  describe '#option and #value' do
     it 'raises for pages in range' do
       begin
         Pagy::Offset.new(count: 1, page: 0)
-      rescue Pagy::VariableError => e
-        _(e.variable).must_equal :page
+      rescue Pagy::OptionError => e
+        _(e.option).must_equal :page
         _(e.value).must_equal 0
       end
 
       begin
         Pagy::Offset.new(count: 1, page: -10)
-      rescue Pagy::VariableError => e
-        _(e.variable).must_equal :page
+      rescue Pagy::OptionError => e
+        _(e.option).must_equal :page
         _(e.value).must_equal(-10)
       end
 
       begin
         Pagy::Offset.new(count: 1, page: 'string')
-      rescue Pagy::VariableError => e
-        _(e.variable).must_equal :page
+      rescue Pagy::OptionError => e
+        _(e.option).must_equal :page
         _(e.value).must_equal 'string'
       end
 
       begin
         Pagy::Offset.new(count: 1, page: {})
-      rescue Pagy::VariableError => e
-        _(e.variable).must_equal :page
+      rescue Pagy::OptionError => e
+        _(e.option).must_equal :page
         _(e.value).must_equal({})
       end
     end
 
-    it 'raises for other variables' do
+    it 'raises for other options' do
       Pagy::Offset.new(count: -10)
-    rescue Pagy::VariableError => e
-      _(e.variable).must_equal :count
+    rescue Pagy::OptionError => e
+      _(e.option).must_equal :count
       _(e.value).must_equal(-10)
     end
     it 'rescues as ArgumentError' do
       Pagy::Offset.new(count: 1, page: -10)
     rescue ArgumentError => e
-      _(e.variable).must_equal :page
+      _(e.option).must_equal :page
       _(e.value).must_equal(-10)
     end
     it 'does not raise for :count and :offset set to arbitrary strings (converted to 0)' do

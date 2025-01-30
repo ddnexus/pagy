@@ -34,21 +34,21 @@ describe 'countless' do
       _(pagy.prev).must_equal 49
       _(pagy.next).must_be_nil
     end
-    it 'returns empty series for empty :size variable for first page' do
+    it 'returns empty series for empty :size option for first page' do
       pagy, = MockApp.new(params: { page: nil }).send(:pagy_countless, @collection, size: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.prev).must_be_nil
       _(pagy.next).must_equal 2
     end
-    it 'returns empty series for empty :size variable for intermediate page' do
+    it 'returns empty series for empty :size option for intermediate page' do
       pagy, = MockApp.new(params: { page: '25 26' }).send(:pagy_countless, @collection, size: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.prev).must_equal 24
       _(pagy.next).must_equal 26
     end
-    it 'returns empty series for empty :size variable for last page' do
+    it 'returns empty series for empty :size option for last page' do
       pagy, = MockApp.new(params: { page: '50 50' }).send(:pagy_countless, @collection, size: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
@@ -59,13 +59,13 @@ describe 'countless' do
 
   describe '#pagy_countless_get_vars' do
     let(:app) { MockApp.new(params: { a: 'a', page: 3, page_number: 4 }) }
-    it 'sets :page_sym from vars' do
+    it 'sets :page_sym from opts' do
       pagy, paged = MockApp.new(params: { page_number: '4 4'}).send(:pagy_countless, @collection, page_sym: :page_number)
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 4
       _(paged).must_equal Array(61..80)
     end
-    it 'bypasses :page_sym with :page variable' do
+    it 'bypasses :page_sym with :page option' do
       pagy, paged = app.send(:pagy_countless, @collection, page_sym: :page_number, page: 1)
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 1

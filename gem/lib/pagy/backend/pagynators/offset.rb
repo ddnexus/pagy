@@ -7,17 +7,17 @@ class Pagy
     private
 
     # Return Pagy object and paginated results
-    def pagy_offset(collection, **vars)
-      vars[:count] ||= pagy_get_count(collection, vars)
-      vars[:page]  ||= pagy_get_page(vars)
-      vars[:limit]   = pagy_get_limit(vars)
-      pagy = Offset.new(**vars)
+    def pagy_offset(collection, **opts)
+      opts[:count] ||= pagy_get_count(collection, opts)
+      opts[:page]  ||= pagy_get_page(opts)
+      opts[:limit]   = pagy_get_limit(opts)
+      pagy = Offset.new(**opts)
       [pagy, pagy_get_items(collection, pagy)]
     end
 
     # Get the count from the collection
-    def pagy_get_count(collection, vars)
-      count_args = vars[:count_args] || [:all]
+    def pagy_get_count(collection, opts)
+      count_args = opts[:count_args] || [:all]
       (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
     end
 

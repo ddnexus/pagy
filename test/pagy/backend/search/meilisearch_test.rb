@@ -34,14 +34,14 @@ describe 'meilisearch' do
         _(results.length).must_equal Pagy::DEFAULT[:limit]
         _(results.to_a).must_rematch :results
       end
-      it 'paginates with vars' do
+      it 'paginates with opts' do
         pagy, results = app.send(:pagy_meilisearch, MockMeilisearch::Model.pagy_search('b'),
                                  page: 2, limit: 10, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 2
-        _(pagy.vars[:anchor_string]).must_equal 'X'
+        _(pagy.opts[:anchor_string]).must_equal 'X'
         _(results.length).must_equal 10
         _(results.to_a).must_rematch :results
       end
@@ -55,14 +55,14 @@ describe 'meilisearch' do
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 1
       end
-      it 'paginates results with vars' do
+      it 'paginates results with opts' do
         results = MockMeilisearch::Model.ms_search('b', hits_per_page: 15, page: 3)
         pagy    = app.send(:pagy_meilisearch, results, anchor_string: 'X')
         _(pagy).must_be_instance_of Pagy::Meilisearch
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
         _(pagy.page).must_equal 3
-        _(pagy.vars[:anchor_string]).must_equal 'X'
+        _(pagy.opts[:anchor_string]).must_equal 'X'
       end
     end
   end

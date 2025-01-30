@@ -28,7 +28,7 @@ describe 'Pagy data' do
     end
     it 'checks for unknown data_keys' do
       pagy, _records = app.send(:pagy_offset, @collection, data_keys: %i[page unknown_key])
-      _ { app.send(:pagy_data, pagy) }.must_raise Pagy::VariableError
+      _ { app.send(:pagy_data, pagy) }.must_raise Pagy::OptionError
     end
     it 'returns only specific dats_keys' do
       pagy, _records = app.send(:pagy_offset, @collection, data_keys: %i[url_template page count prev next pages])
@@ -41,7 +41,7 @@ describe 'Pagy data' do
     it 'checks for unknown data_keys for Pagy::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app.send(:pagy_calendar, Event.all,
                                                     year: { data_keys: %i[page unknown_key] })
-      _ { calendar_app.send(:pagy_data, calendar[:year]) }.must_raise Pagy::VariableError
+      _ { calendar_app.send(:pagy_data, calendar[:year]) }.must_raise Pagy::OptionError
     end
     it 'returns only specific data_keys for Pagy::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })

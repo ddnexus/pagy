@@ -251,10 +251,10 @@ describe 'calendar' do
         .must_equal "/foo?page=1&year_page=1&month_page=1"
 
       _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2100)) }
-        .must_raise Pagy::Calendar::OutOfRangeError
+        .must_raise Pagy::RangeError
 
       _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2000)) }
-        .must_raise Pagy::Calendar::OutOfRangeError
+        .must_raise Pagy::RangeError
     end
   end
   describe "#showtime" do

@@ -6,7 +6,7 @@ require_relative '../../../gem/lib/pagy/modules/b64'
 
 [Pet, PetSequel].each do |model|
   describe "Pagy Keyset with #{model}" do
-    describe 'uses optional variables' do
+    describe 'uses optional options' do
       it 'use the :tuple_comparison' do
         pagy    = Pagy::Keyset::Keynav.new(model.order(:animal, :name, :id),
                                            page:             ['key', 2, 2, ["cat", "Ella", 18], nil],

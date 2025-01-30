@@ -22,7 +22,7 @@ require_relative '../../gem/lib/pagy/modules/b64'
         _(Pagy::Keyset.new(model.order(:id))).must_be_kind_of Pagy::Keyset
       end
     end
-    describe 'uses optional variables' do
+    describe 'uses optional options' do
       it 'use the :tuple_comparison' do
         pagy    = Pagy::Keyset.new(model.order(:animal, :name, :id),
                                    page:             "WyJjYXQiLCJFbGxhIiwxOF0",

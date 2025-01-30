@@ -73,7 +73,7 @@ class PagyCalendar < Sinatra::Base
     # so for this demo we use a different zone with utc_offset 0
     Time.zone = 'GMT'
     # Default calendar
-    # The conf Hash defines the pagy objects variables keyed by calendar unit and the final pagy standard object
+    # The conf Hash defines the pagy objects options, keyed by calendar unit and the final pagy standard object
     # The :skip is an optional and arbitrarily named param that skips the calendar pagination and uses only the pagy
     # object to paginate the unfiltered collection. (It's active by default even without a :skip param).
     # You way want to invert the logic (also in the view) with something like `active: params[:active]`,

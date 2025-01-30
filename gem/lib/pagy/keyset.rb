@@ -13,9 +13,9 @@ class Pagy
     class TypeError < ::TypeError; end
 
     # Allow to run Keyset.new or Keyset::ActiveRecord.new
-    def self.new(set, **vars)
+    def self.new(set, **opts)
       # Run the initializer if is an adapter instance (e.g. *::ActiveRecord instance)
-      return allocate.tap { |instance| instance.send(:initialize, set, **vars) } if /::(?:ActiveRecord|Sequel)$/.match?(name)
+      return allocate.tap { |instance| instance.send(:initialize, set, **opts) } if /::(?:ActiveRecord|Sequel)$/.match?(name)
 
       # Pick the right adapter-class and run new again on the adapter class
       if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
@@ -24,14 +24,14 @@ class Pagy
         self::Sequel
       else
         raise TypeError, "expected set to be an instance of ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
-      end.new(set, **vars)
+      end.new(set, **opts)
     end
 
-    def initialize(set, **vars) # rubocop:disable Lint/MissingSuper
-      assign_vars(vars)
+    def initialize(set, **opts) # rubocop:disable Lint/MissingSuper
+      assign_opts(opts)
       assign_and_check(limit: 1)
       @set    = set
-      @keyset = vars[:keyset] || extract_keyset
+      @keyset = opts[:keyset] || extract_keyset
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
       assign_page
@@ -47,7 +47,7 @@ class Pagy
 
     # Assign the page
     def assign_page
-      @page        = @vars[:page]
+      @page        = @opts[:page]
       @prev_cutoff = JSON.parse(B64.urlsafe_decode(@page)) if @page
     end
 
@@ -71,7 +71,7 @@ class Pagy
       table       = @set.model.table_name
       identifier  = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
       placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
-      if @vars[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
+      if @opts[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
         "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
       else
         keyset = @keyset.to_a
@@ -91,7 +91,7 @@ class Pagy
     # Derive the cutoff from the last record
     def derive_cutoff
       attr = keyset_attributes_from(@records.last)
-      (@vars[:stringify_keyset_values]&.(attr) || attr).values
+      (@opts[:stringify_keyset_values]&.(attr) || attr).values
     end
 
     # Fetch the records and set the @more flag

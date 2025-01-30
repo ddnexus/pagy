@@ -17,7 +17,7 @@ Pagy_data___pagy_data_for_Pagy_test_0001_works_with_unset_DEFAULT:
     :to: 60
     :prev: 2
     :next: 4
-    :vars:
+    :opts:
       :limit: 20
       :limit_sym: :limit
       :page_sym: :page

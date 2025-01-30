@@ -22,8 +22,8 @@ describe 'pagy/legacy/size' do
 
     def series_for(page, *expected)
       expected.each_with_index do |value, index|
-        vars = instance_variable_get(:"@vars#{index}").merge(page: page)
-        _(Pagy::Offset.new(**vars).series).must_equal value
+        opts = instance_variable_get(:"@opts#{index}").merge(page: page)
+        _(Pagy::Offset.new(**opts).series).must_equal value
       end
     end
 
@@ -124,8 +124,8 @@ describe 'pagy/legacy/size' do
       _(Pagy::Offset.new(**@vars3, count: 103, size: 7, page: 6).series).must_equal [1, :gap, 5, '6', 7, :gap, 11]
     end
     it 'raises Pagy::Variable errors for wrong size' do
-      _ { Pagy::Offset.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::VariableError
-      _ { Pagy::Offset.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::VariableError
+      _ { Pagy::Offset.new(count: 100, page: 2, size: [1, 2, 3]).series }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100, page: 2, size: [1, 2, 3, '4']).series }.must_raise Pagy::OptionError
     end
   end
 end

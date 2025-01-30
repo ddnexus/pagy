@@ -29,26 +29,26 @@ class Pagy
   LIMIT_TOKEN = 'L '
   A_TAG       = '<a style="display: none;">#</a>'
 
-  attr_reader :page, :count, :prev, :next, :in, :limit, :vars, :last
+  attr_reader :page, :count, :prev, :next, :in, :limit, :opts, :last
 
   alias pages last
 
-  # Validates and assign the passed vars: var must be present and value.to_i must be >= to min
+  # Validates and assign the passed opts: var must be present and value.to_i must be >= to min
   def assign_and_check(name_min)
     name_min.each do |name, min|
-      raise VariableError.new(self, name, ">= #{min}", @vars[name]) \
-            unless @vars[name].respond_to?(:to_i) && instance_variable_set(:"@#{name}", @vars[name].to_i) >= min
+      raise OptionError.new(self, name, ">= #{min}", @opts[name]) \
+            unless @opts[name].respond_to?(:to_i) && instance_variable_set(:"@#{name}", @opts[name].to_i) >= min
     end
   end
 
-  def assign_vars(vars)
+  def assign_opts(opts)
     default = {}
     cclass  = self.class
     begin
       default = cclass::DEFAULT.merge(default)
       cclass  = cclass.superclass
     end until cclass == Object  # rubocop:disable Lint/Loop  # see https://github.com/rubocop/rubocop-performance/issues/362
-    @vars = default.merge(vars.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
+    @opts = default.merge(opts.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
   end
 
   def page_for_url(page) = page

@@ -13,7 +13,7 @@ DAY    = 60 * 60 * 24
 PERIOD = [Time.zone.local(2021, 11, 4), Time.zone.local(2021, 11, 4) + 10.days].freeze
 
 describe 'range' do
-  # all empty page vars
+  # all empty page opts
   let(:pagy_vars)      { { page: 100, limit: 10, count: 103 } }
   let(:calendar_vars)  { { period: PERIOD, page: 100 } }
   let(:countless_vars) { { page: 100, last: 50, limit: 10} }
@@ -47,7 +47,7 @@ describe 'range' do
       _(pagy.page).must_equal 100
       _(pagy.offset).must_equal 0
       _(pagy.limit).must_equal 0
-      _(pagy.vars[:limit]).must_equal 10
+      _(pagy.opts[:limit]).must_equal 10
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0

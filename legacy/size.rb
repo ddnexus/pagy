@@ -5,10 +5,10 @@ class Pagy
   # Unless you have very specific requirements, use the faster and better looking default bar.
   module SizeExtra
     # Implements the old series algorithm
-    def series(size: @vars[:size], **)
+    def series(size: @opts[:size], **)
       return super unless size.is_a?(Array)
       return [] if size == []
-      raise VariableError.new(self, :size, 'to be an Array of 4 Integers or []', size) \
+      raise OptionError.new(self, :size, 'to be an Array of 4 Integers or []', size) \
             unless size.is_a?(Array) && size.size == 4 && size.all? { |num| !num.negative? rescue false } # rubocop:disable Style/RescueModifier
 
       [].tap do |series|

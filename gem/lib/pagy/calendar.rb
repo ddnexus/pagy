@@ -16,9 +16,6 @@ class Pagy
     autoload :Quarter, PAGY_PATH.join('calendar/quarter')
     autoload :Year,    PAGY_PATH.join('calendar/year')
 
-    # Specific out of range error
-    class OutOfRangeError < VariableError; end
-
     # List of units in desc order of duration. It can be used for custom units.
     UNITS = %i[year quarter month week day]  # rubocop:disable Style/MutableConstant
 
@@ -38,12 +35,12 @@ class Pagy
       private
 
       # Create a unit subclass instance by using the unit name (internal use)
-      def create(unit, **vars)
+      def create(unit, **)
         raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
 
         name    = +unit.to_s
         name[0] = name[0].capitalize
-        Object.const_get("Pagy::Calendar::#{name}").new(**vars)
+        Object.const_get("Pagy::Calendar::#{name}").new(**)
       end
 
       # Return calendar, from, to
@@ -68,7 +65,7 @@ class Pagy
       @period   = period
       @params   = params
       @page_sym = conf[:pagy][:page_sym] || Pagy::DEFAULT[:page_sym]
-      # set all the :page_sym vars for later deletion
+      # set all the :page_sym opts for later deletion
       @units.each { |unit| conf[unit][:page_sym] = :"#{unit}_#{@page_sym}" }
       calendar = {}
       object   = nil

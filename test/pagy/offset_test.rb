@@ -7,7 +7,7 @@ describe 'pagy' do
 
   describe '#initialize' do
     before do
-      @vars = { count: 103, limit: 10 }
+      @opts = { count: 103, limit: 10 }
     end
     it 'initializes' do
       _(pagy).must_be_instance_of Pagy::Offset
@@ -16,10 +16,10 @@ describe 'pagy' do
       _(Pagy::Offset.new(count: 100, page: '2')).must_be_instance_of Pagy::Offset
       _(Pagy::Offset.new(count: 100, page: '')).must_be_instance_of Pagy::Offset
       _(Pagy::Offset.new(count: 100, limit: '10')).must_be_instance_of Pagy::Offset
-      _ { Pagy::Offset.new(count: 0, page: -1) }.must_raise Pagy::VariableError
-      _ { Pagy::Offset.new(count: 100, page: 0) }.must_raise Pagy::VariableError
-      _ { Pagy::Offset.new(count: 100, page: {}) }.must_raise Pagy::VariableError
-      _ { Pagy::Offset.new(count: 100, page: 2, limit: 0) }.must_raise Pagy::VariableError
+      _ { Pagy::Offset.new(count: 0, page: -1) }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100, page: 0) }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100, page: {}) }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100, page: 2, limit: 0) }.must_raise Pagy::OptionError
       _ { Pagy::Offset.new(count: 100, page: '11', raise_range_error: true) }.must_raise Pagy::RangeError
       _ { Pagy::Offset.new(count: 100, page: 12, raise_range_error: true) }.must_raise Pagy::RangeError
       begin
@@ -29,7 +29,7 @@ describe 'pagy' do
       end
     end
     it 'initializes count 0' do
-      pagy = Pagy::Offset.new(**@vars, count: 0)
+      pagy = Pagy::Offset.new(**@opts, count: 0)
       _(pagy.last).must_equal 1
       _(pagy.last).must_equal 1
       _(pagy.offset).must_equal 0
@@ -40,7 +40,7 @@ describe 'pagy' do
       _(pagy.next).must_be_nil
     end
     it 'initializes single page' do
-      pagy = Pagy::Offset.new(**@vars, count: 8)
+      pagy = Pagy::Offset.new(**@opts, count: 8)
       _(pagy.last).must_equal 1
       _(pagy.last).must_equal 1
       _(pagy.offset).must_equal 0
@@ -51,7 +51,7 @@ describe 'pagy' do
       _(pagy.next).must_be_nil
     end
     it 'initializes page 1 of 2' do
-      pagy = Pagy::Offset.new(**@vars, count: 15)
+      pagy = Pagy::Offset.new(**@opts, count: 15)
       _(pagy.last).must_equal 2
       _(pagy.last).must_equal 2
       _(pagy.offset).must_equal 0
@@ -62,7 +62,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 2
     end
     it 'initializes page 2 of 2' do
-      pagy = Pagy::Offset.new(**@vars, count: 15, page: 2)
+      pagy = Pagy::Offset.new(**@opts, count: 15, page: 2)
       _(pagy.last).must_equal 2
       _(pagy.last).must_equal 2
       _(pagy.offset).must_equal 10
@@ -74,7 +74,7 @@ describe 'pagy' do
       _(pagy.next).must_be_nil
     end
     it 'initializes page 1' do
-      pagy = Pagy::Offset.new(**@vars, page: 1)
+      pagy = Pagy::Offset.new(**@opts, page: 1)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -88,7 +88,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 2
     end
     it 'initializes page 2' do
-      pagy = Pagy::Offset.new(**@vars, page: 2)
+      pagy = Pagy::Offset.new(**@opts, page: 2)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -102,7 +102,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 3
     end
     it 'initializes page 3' do
-      pagy = Pagy::Offset.new(**@vars, page: 3)
+      pagy = Pagy::Offset.new(**@opts, page: 3)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -116,7 +116,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 4
     end
     it 'initializes page 4' do
-      pagy = Pagy::Offset.new(**@vars, page: 4)
+      pagy = Pagy::Offset.new(**@opts, page: 4)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -130,7 +130,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 5
     end
     it 'initializes page 5' do
-      pagy = Pagy::Offset.new(**@vars, page: 5)
+      pagy = Pagy::Offset.new(**@opts, page: 5)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -144,7 +144,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 6
     end
     it 'initializes page 6' do
-      pagy = Pagy::Offset.new(**@vars, page: 6)
+      pagy = Pagy::Offset.new(**@opts, page: 6)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -158,7 +158,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 7
     end
     it 'initializes page 7' do
-      pagy = Pagy::Offset.new(**@vars, page: 7)
+      pagy = Pagy::Offset.new(**@opts, page: 7)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -172,7 +172,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 8
     end
     it 'initializes page 8' do
-      pagy = Pagy::Offset.new(**@vars, page: 8)
+      pagy = Pagy::Offset.new(**@opts, page: 8)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -186,7 +186,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 9
     end
     it 'initializes page 9' do
-      pagy = Pagy::Offset.new(**@vars, page: 9)
+      pagy = Pagy::Offset.new(**@opts, page: 9)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -200,7 +200,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 10
     end
     it 'initializes page 10' do
-      pagy = Pagy::Offset.new(**@vars, page: 10)
+      pagy = Pagy::Offset.new(**@opts, page: 10)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -214,7 +214,7 @@ describe 'pagy' do
       _(pagy.next).must_equal 11
     end
     it 'initializes page 11' do
-      pagy = Pagy::Offset.new(**@vars, page: 11)
+      pagy = Pagy::Offset.new(**@opts, page: 11)
       _(pagy.count).must_equal 103
       _(pagy.last).must_equal 11
       _(pagy.last).must_equal 11
@@ -227,7 +227,7 @@ describe 'pagy' do
       _(pagy.page).must_equal 11
       _(pagy.next).must_be_nil
     end
-    it 'handles the :max_pages variable' do
+    it 'handles the :max_pages option' do
       pagy = Pagy::Offset.new(count: 100, page: 3, limit: 10, max_pages: 8)
       _(pagy.count).must_equal 100
       _(pagy.last).must_equal 8
@@ -235,14 +235,14 @@ describe 'pagy' do
     end
     it 'initializes the request_path' do
       pagy = Pagy::Offset.new(count: 100, request_path: '/foo')
-      _(pagy.vars[:request_path]).must_equal('/foo')
+      _(pagy.opts[:request_path]).must_equal('/foo')
     end
   end
 
   describe 'accessors' do
     it 'has accessors' do
       [
-        :count, :page, :limit, :vars, # input
+        :count, :page, :limit, :opts, # input
         :offset, :pages, :last, :from, :to, :in, :prev, :next, :series # output
       ].each do |meth|
         _(pagy).must_respond_to meth
@@ -250,8 +250,8 @@ describe 'pagy' do
     end
   end
 
-  describe 'variables' do
-    it 'has vars defaults' do
+  describe 'options' do
+    it 'has opts defaults' do
       _(Pagy::DEFAULT[:page_sym]).must_equal :page
       _(Pagy::DEFAULT[:limit]).must_equal 20
       _(Pagy::Offset::DEFAULT[:page]).must_equal 1
@@ -261,21 +261,21 @@ describe 'pagy' do
 
   describe '#series (size = Integer)' do
     before do
-      @vars0 = { count: 103,
+      @opts0 = { count: 103,
                  limit: 10,
                  size:  3 }
-      @vars1 = { count: 103,
+      @opts1 = { count: 103,
                  limit: 10,
                  size: 6}
-      @vars2 = { count: 103,
+      @opts2 = { count: 103,
                  limit: 10,
                  size: 9 }
     end
 
     def series_for(page, *expected)
       expected.each_with_index do |value, index|
-        vars = instance_variable_get(:"@vars#{index}").merge(page: page)
-        _(Pagy::Offset.new(**vars).series).must_equal value
+        opts = instance_variable_get(:"@opts#{index}").merge(page: page)
+        _(Pagy::Offset.new(**opts).series).must_equal value
       end
     end
 
@@ -346,23 +346,23 @@ describe 'pagy' do
                  [1, :gap, 5, 6, 7, 8, 9, 10, "11"]
     end
     it 'computes series for count 0' do
-      _(Pagy::Offset.new(**@vars2, count: 0).series).must_equal ["1"]
+      _(Pagy::Offset.new(**@opts2, count: 0).series).must_equal ["1"]
     end
     it 'computes series for single page' do
-      _(Pagy::Offset.new(**@vars2, count: 8).series).must_equal ["1"]
+      _(Pagy::Offset.new(**@opts2, count: 8).series).must_equal ["1"]
     end
     it 'computes series for 1 of 2 pages' do
-      _(Pagy::Offset.new(**@vars2, count: 15).series).must_equal ["1", 2]
+      _(Pagy::Offset.new(**@opts2, count: 15).series).must_equal ["1", 2]
     end
     it 'computes series for 2 of 2 pages' do
-      _(Pagy::Offset.new(**@vars2, count: 15, page: 2).series).must_equal [1, "2"]
+      _(Pagy::Offset.new(**@opts2, count: 15, page: 2).series).must_equal [1, "2"]
     end
     it 'computes an empty series' do
-      _(Pagy::Offset.new(**@vars2, count: 100, size: 0).series).must_equal []
+      _(Pagy::Offset.new(**@opts2, count: 100, size: 0).series).must_equal []
     end
-    it 'raises VariableError for invalid size' do
-      _ { Pagy::Offset.new(count: 100, size: {}).series }.must_raise Pagy::VariableError
-      _ { Pagy::Offset.new(count: 100, size: -3).series }.must_raise Pagy::VariableError
+    it 'raises OptionError for invalid size' do
+      _ { Pagy::Offset.new(count: 100, size: {}).series }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100, size: -3).series }.must_raise Pagy::OptionError
     end
   end
 

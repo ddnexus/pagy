@@ -5,9 +5,9 @@ class Pagy
     private
 
     # Return Pagy object and paginated collection/results
-    def pagy_arel(collection, **vars)
-      vars[:count] ||= pagy_arel_count(collection)
-      pagy_offset(collection, **vars)
+    def pagy_arel(collection, **opts)
+      opts[:count] ||= pagy_arel_count(collection)
+      pagy_offset(collection, **opts)
     end
 
     # Count using Arel when grouping

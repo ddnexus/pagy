@@ -8,22 +8,22 @@ require_relative '../../mock_helpers/arel'
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
-def test_limit_vars_params(limit, vars, params)
+def test_limit_opts_params(limit, opts, params)
   app = MockApp.new params: params
   _(app.params.to_param).must_equal params.to_param
   [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model],
    [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-    pagy, records = app.send(meth, mod.pagy_search('a').records, **vars)
+    pagy, records = app.send(meth, mod.pagy_search('a').records, **opts)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
   [[:pagy_meilisearch, MockMeilisearch::Model]].each do |meth, mod|
-    pagy, records = app.send(meth, mod.pagy_search('a'), **vars)
+    pagy, records = app.send(meth, mod.pagy_search('a'), **opts)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
   %i[pagy_offset pagy_array pagy_arel].each do |meth|
-    pagy, records = app.send(meth, @collection, **vars)
+    pagy, records = app.send(meth, @collection, **opts)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
@@ -35,49 +35,49 @@ describe 'requestable_limit' do
     before do
       @collection = MockCollection.new
     end
-    it 'uses the vars' do
+    it 'uses the opts' do
       limit  = 15
-      vars   = { limit: limit } # force limit
+      opts   = { limit: limit } # force limit
       params = { a: "a", page: 3, limit: 12 }
-      test_limit_vars_params(limit, vars, params)
+      test_limit_opts_params(limit, opts, params)
     end
     it 'uses the params' do
       limit  = 12
-      vars   = { requestable_limit: 100 }
+      opts   = { requestable_limit: 100 }
       params = { a: "a", page: 3, limit: limit }
-      test_limit_vars_params(limit, vars, params)
+      test_limit_opts_params(limit, opts, params)
     end
     it 'uses the params without page' do
       limit  = 12
-      vars   = { requestable_limit: 100 }
+      opts   = { requestable_limit: 100 }
       params = { a: "a", limit: limit }
-      test_limit_vars_params(limit, vars, params)
+      test_limit_opts_params(limit, opts, params)
     end
     it 'overrides the params' do
       limit  = 21
-      vars   = { limit: limit }
+      opts   = { limit: limit }
       params = { a: "a", page: 3, limit: 12 }
-      test_limit_vars_params(limit, vars, params)
+      test_limit_opts_params(limit, opts, params)
     end
-    it 'uses limit_sym from vars' do
+    it 'uses limit_sym from opts' do
       limit  = 14
-      vars   = { requestable_limit: 100, limit_sym: :custom }
+      opts   = { requestable_limit: 100, limit_sym: :custom }
       params = { a: "a", page: 3, limit_sym: :custom, custom: limit }
-      test_limit_vars_params(limit, vars, params)
+      test_limit_opts_params(limit, opts, params)
     end
     it 'uses limit_sym from default' do
       limit  = 15
-      vars   = { limit_sym: :custom, requestable_limit: 100 }
+      opts   = { limit_sym: :custom, requestable_limit: 100 }
       params = { a: "a", page: 3, custom: 15 }
 
-      test_limit_vars_params(limit, vars, params)
+      test_limit_opts_params(limit, opts, params)
     end
     it 'doesn\'t use the :requestable_limit' do
       limit  = 20
-      vars   = {}
+      opts   = {}
       params = { a: "a", page: 3, limit: 35 }
 
-      test_limit_vars_params(limit, vars, params)
+      test_limit_opts_params(limit, opts, params)
     end
   end
 
