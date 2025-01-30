@@ -19,6 +19,7 @@ class Pagy
   autoload :Searchkick,         PAGY_PATH.join('search')
   autoload :Keyset,             PAGY_PATH.join('keyset')
   autoload :Console,            PAGY_PATH.join('console')
+  autoload :Config,             PAGY_PATH.join('config')
 
   DEFAULT     = { limit:     20,
                   limit_sym: :limit,

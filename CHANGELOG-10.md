@@ -50,8 +50,9 @@ None
 
 This is a mayor, MAYOR version. We made a lot of changes to make things easier, simpler and more maintenable.
 
-There is a brand-new documentation with more concise and practical guides, and better organized in-depth separate sections. We
-also embed the new `Pagy AI`, ready to answer your questions (faster and better than us).
+There is a brand-new documentation with more concise and practical guides, and better organized in-depth separate sections.
+
+We also embed the new `Pagy AI`, ready to answer your questions (faster and better than us).
 
 ### Keynav Pagination Addition
 
@@ -67,9 +68,14 @@ the legacy version was requiring more code)_
 
 #### The extras are all gone
 
-They have been converted to autoloaded mixins, or integrated in the core code at zero-cost and a few are discontinued.
+They have been converted to autoloaded mixins, or integrated in the core code at zero-cost, or discontinued (when really useless).
 
 You can now use the methods that you need, and they will just work without the need of any explicit `require`.
+
+### The configuration is minimal and non-technical
+
+Take a look at the configuration file: all the `requires` and the `Pagy::DEFAULT` configurations are gone. The few (4) and
+optional configuration left, are simple Pagy function calls.
 
 #### Better file and namespace system organization
 
@@ -89,9 +95,11 @@ When you jump back a few pages in the pagination nav, it remembers the last page
 
 Updated the support for all the pagy helpers and `keynav` pagination. Added the plain `pagy.js` and relative source map.
 
+Added `Pagy::Config.install_js` function to avoid messing up with complicated javascript cofigurations.
+
 ### Breaking Changes
 
-#### Simple renaming (without logic changes)
+#### Simple search and replace renaming (without logic changes)
 
 | Type        | Search           | Replace         | Notes                                                    |
 |-------------|------------------|-----------------|----------------------------------------------------------|
@@ -107,26 +115,21 @@ Updated the support for all the pagy helpers and `keynav` pagination. Added the 
 #### The `Pagy::DEFAULT` is now frozen
 
 - Remove all the `Pagy::DEFAULT` statements and pass their variables to the paginator constructors that you use.
-- As an alternative to avoid repetitions, define your own default hash and pass it to the different paginator methods. See the new
-  initializer for details.
+- As an alternative to avoid repetitions, define your own default hash and pass it to the different paginator methods.
+- See the new initializer for details.
 
 #### Replace your `pagy.rb` config file
 
-With no more `Pagy::DEFAULT` and no more extras to require, the statements in your old version are all obsolete but any existing
-`Pagy::I18n` configuration, so it's better to start with the new version of the file, and copy over the `Pagy::I18n` (if you used
-it).
-
-#### Direct instantiation of the pagy classes is not recommended
-
-- Use the provided `pagynators` for easier usage, maintenance and forward compatibility.
-- Use the implementing classes only if the documentation suggests you to do so, or if you really you know what you are doing.
+With no more `Pagy::DEFAULT` and no more extras to `require`, the statements in your old version are all obsolete but any existing
+`Pagy::I18n` configuration, so it's better to start with the new version of the file, and copy over only the `Pagy::I18n.load`
+(if you used it).
 
 #### Core changes
 
 - If you used the `:params` variable set to a lambda, ensure that it modifies the passed `query_params` directly. The returned
   value is now ignored for a sligtly better performance.
-- The `:outset`and `:cycle` variables have been removed. There were seldom used and almost useless, and implementing them outside
-  pagy is trivial.
+- The `:outset` and `:cycle` variables have been removed. They were seldom used, mostly useless, and implementing them in your
+  code is trivial.
 
 #### Extras Changes
 
@@ -144,7 +147,7 @@ If you need the `I18n` gem localization, discard your old localization config, a
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
 
 - Replace any existing `Pagy.new_from_<extra-name>` with `pagy_<extra-name>`. _(Active and passive modes are now handled by the
-  same paginator.)_
+  same pagynator.)_
 - Remove any existing `:<extra-name>_pagy_search` variable from your code, and use the standard `pagy_search` method instead. _(
   the `pagy_search` name customization has been discontinued.)_
 - Rename any existing `:<extra-name>_search` variable as `:search_method` and pass it to the paginator method.
@@ -219,6 +222,11 @@ If you need the `I18n` gem localization, discard your old localization config, a
 
 - It was mostly useless and half backed, causing a lot of complications in the ruby and javascript code for no reszl benefit.
 - Use a proper way to address your requirement, like using URL rewriting at the HTTP server level.
+
+#### Direct instantiation of the pagy classes is not recommended
+
+- Use the provided `pagynators` for easier usage, maintenance and forward compatibility.
+- Use the implementing classes only if the documentation suggests you to do so, or if you really you know what you are doing.
 
 #### Possibly Breaking Overridings
 

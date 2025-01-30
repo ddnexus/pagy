@@ -18,6 +18,23 @@
 # just remember to pass it to the paginator when you need it.
 
 
+############ Install pagy javascript #####################################################
+# If you use any pagy method ending with '*_js',
+# uncomment/customize one of the following:
+
+# Generic reference to customize
+# Available file formats: 'pagy.mjs', 'pagy.js', 'pagy.js.map', 'pagy.min.js'
+# Pagy::Config.install_js('pagy.mjs', 'pagy.js', ..., app_js_dir) if develoment_env
+
+# Example for Rails
+# app_js_dir = Rails.root.join('app/javascript')
+# Install all files...
+# Pagy::Config.install_js(app_js_dir)) if Rails.env.development?
+# Install only 'pagy.mjs'...
+# Pagy::Config.install_js('pagy.mjs', app_js_dir) if Rails.env.development?
+
+
+
 #################################### IMPORTANT #######################################
 # Do not configure anything below this line if you use only the :en locale
 
@@ -40,7 +57,7 @@
 #                 { locale: 'en' },
 #                 { locale: 'es' })
 #
-# Advanced usage:
+# ADVANCED USAGE:
 # Load the "en" built-in locale, a custom "es" locale,
 # and a totally custom locale complete with a custom :pluralize proc:
 # (the first passed :locale will be used also as the default_locale)
