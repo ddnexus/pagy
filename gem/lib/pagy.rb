@@ -48,7 +48,7 @@ class Pagy
       default = cclass::DEFAULT.merge(default)
       cclass  = cclass.superclass
     end until cclass == Object  # rubocop:disable Lint/Loop  # see https://github.com/rubocop/rubocop-performance/issues/362
-    @vars = default.merge(vars.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') })
+    @vars = default.merge(vars.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
   end
 
   def page_for_url(page) = page

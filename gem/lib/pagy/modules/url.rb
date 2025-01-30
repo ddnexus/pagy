@@ -42,14 +42,14 @@ class Pagy
     # For non-rack environments that don't respond to the request method, pass the :request variable to the paginator
     # with your request[:url_prefix] (i.e. everything that comes before the ? in the complete url),
     # and your request[:query_params] hash to be merged with the pagy params and form the complete url
-    def pagy_page_url(pagy, page, absolute: false, fragment: nil, **)
+    def pagy_page_url(pagy, page, absolute: false, fragment: nil, limit_token: nil, **)
       request_var, pagy_params = (vars = pagy.vars).values_at(:request, :params)
       page_name, limit_name    = vars.values_at(:page_sym, :limit_sym).map(&:to_s)
       query_params             = request_var ? (request_var[:query_params] || {}) : request.GET.clone(freeze: false)
       query_params.delete(vars[:jsonapi] ? 'page' : page_name)
       page_and_limit = {}.tap do |h|
                          h[page_name]  = pagy.page_for_url(page)
-                         h[limit_name] = vars[:limit] if vars[:requestable_limit]
+                         h[limit_name] = limit_token || vars[:limit] if vars[:requestable_limit]
                        end.compact # no empty params
       query_params.merge!(vars[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
       case pagy_params
