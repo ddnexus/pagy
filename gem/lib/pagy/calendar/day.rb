@@ -4,10 +4,10 @@ class Pagy
   class Calendar
     # Day unit subclass
     class Day < Unit
-      DEFAULT = { size:   31,
-                  trim:   true,
-                  order:  :asc,
-                  format: '%d' }.freeze
+      DEFAULT = { length:  31,
+                  compact: true,
+                  order:   :asc,
+                  format:  '%d' }.freeze
 
       protected
 

@@ -34,22 +34,22 @@ describe 'countless' do
       _(pagy.prev).must_equal 49
       _(pagy.next).must_be_nil
     end
-    it 'returns empty series for empty :size option for first page' do
-      pagy, = MockApp.new(params: { page: nil }).send(:pagy_countless, @collection, size: 0)
+    it 'returns empty series for empty :length option for first page' do
+      pagy, = MockApp.new(params: { page: nil }).send(:pagy_countless, @collection, length: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.prev).must_be_nil
       _(pagy.next).must_equal 2
     end
-    it 'returns empty series for empty :size option for intermediate page' do
-      pagy, = MockApp.new(params: { page: '25 26' }).send(:pagy_countless, @collection, size: 0)
+    it 'returns empty series for empty :length option for intermediate page' do
+      pagy, = MockApp.new(params: { page: '25 26' }).send(:pagy_countless, @collection, length: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.prev).must_equal 24
       _(pagy.next).must_equal 26
     end
-    it 'returns empty series for empty :size option for last page' do
-      pagy, = MockApp.new(params: { page: '50 50' }).send(:pagy_countless, @collection, size: 0)
+    it 'returns empty series for empty :length option for last page' do
+      pagy, = MockApp.new(params: { page: '50 50' }).send(:pagy_countless, @collection, length: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
       _(pagy.prev).must_equal 49

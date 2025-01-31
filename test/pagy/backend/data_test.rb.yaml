@@ -22,7 +22,6 @@ Pagy_data___pagy_data_for_Pagy_test_0001_works_with_unset_DEFAULT:
       :limit_sym: :limit
       :page_sym: :page
       :page: 3
-      :size: 7
       :count: 1000
     :series:
     - 1

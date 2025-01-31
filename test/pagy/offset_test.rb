@@ -255,21 +255,20 @@ describe 'pagy' do
       _(Pagy::DEFAULT[:page_sym]).must_equal :page
       _(Pagy::DEFAULT[:limit]).must_equal 20
       _(Pagy::Offset::DEFAULT[:page]).must_equal 1
-      _(Pagy::Offset::DEFAULT[:size]).must_equal 7
     end
   end
 
-  describe '#series (size = Integer)' do
+  describe '#series (length = Integer)' do
     before do
-      @opts0 = { count: 103,
-                 limit: 10,
-                 size:  3 }
-      @opts1 = { count: 103,
-                 limit: 10,
-                 size: 6}
-      @opts2 = { count: 103,
-                 limit: 10,
-                 size: 9 }
+      @opts0 = { count:  103,
+                 limit:  10,
+                 length: 3 }
+      @opts1 = { count:  103,
+                 limit:  10,
+                 length: 6 }
+      @opts2 = { count:  103,
+                 limit:  10,
+                 length: 9 }
     end
 
     def series_for(page, *expected)
@@ -358,11 +357,11 @@ describe 'pagy' do
       _(Pagy::Offset.new(**@opts2, count: 15, page: 2).series).must_equal [1, "2"]
     end
     it 'computes an empty series' do
-      _(Pagy::Offset.new(**@opts2, count: 100, size: 0).series).must_equal []
+      _(Pagy::Offset.new(**@opts2, count: 100, length: 0).series).must_equal []
     end
-    it 'raises OptionError for invalid size' do
-      _ { Pagy::Offset.new(count: 100, size: {}).series }.must_raise Pagy::OptionError
-      _ { Pagy::Offset.new(count: 100, size: -3).series }.must_raise Pagy::OptionError
+    it 'raises OptionError for invalid length' do
+      _ { Pagy::Offset.new(count: 100, length: {}).series }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100, length: -3).series }.must_raise Pagy::OptionError
     end
   end
 

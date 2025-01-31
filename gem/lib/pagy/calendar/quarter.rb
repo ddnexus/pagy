@@ -4,10 +4,10 @@ class Pagy # :nodoc:
   class Calendar # :nodoc:
     # Quarter unit subclass
     class Quarter < Unit
-      DEFAULT = { size:   4,
-                  trim:   true,
-                  order:  :asc,
-                  format: 'Q%q' }.freeze # '%q' token
+      DEFAULT = { length:  4,
+                  compact: true,
+                  order:   :asc,
+                  format:  'Q%q' }.freeze # '%q' token
 
       # The label for any page, with the substitution of the '%q' token
       def label(page: @page, **opts)

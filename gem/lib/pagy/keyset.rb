@@ -23,8 +23,7 @@ class Pagy
                  elsif defined?(::Sequel) && set.is_a?(::Sequel::Dataset)
                    self::Sequel
                  else
-                   raise TypeError, \
-                         "expected set to be an instance of ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
+                   raise TypeError, "expected an ActiveRecord::Relation or Sequel::Dataset; got #{set.class}"
                  end
       subclass.new(set, **)
     end

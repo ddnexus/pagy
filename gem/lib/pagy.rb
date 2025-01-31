@@ -25,8 +25,8 @@ class Pagy
                   limit_sym: :limit,
                   page_sym:  :page }.freeze
   PAGE_TOKEN  = 'P '
-  LABEL_TOKEN = 'L'
   LIMIT_TOKEN = 'L '
+  LABEL_TOKEN = 'L'
   A_TAG       = '<a style="display: none;">#</a>'
 
   attr_reader :page, :count, :prev, :next, :in, :limit, :opts, :last

@@ -4,10 +4,10 @@ class Pagy # :nodoc:
   class Calendar # :nodoc:
     # Month unit subclass
     class Month < Unit
-      DEFAULT = { size:   12,
-                  trim:   true,
-                  order:  :asc,
-                  format: '%b' }.freeze
+      DEFAULT = { length:  12,
+                  compact: true,
+                  order:   :asc,
+                  format:  '%b' }.freeze
 
       protected
 

@@ -4,7 +4,7 @@ class Pagy
   class Calendar
     # Week unit subclass
     class Week < Unit
-      DEFAULT  = { size:   7,  # general default
+      DEFAULT  = { length: 7,  # general default
                    order:  :asc,
                    format: '%Y-%W' }.freeze
 

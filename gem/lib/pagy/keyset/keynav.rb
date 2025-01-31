@@ -13,8 +13,6 @@ class Pagy
 
       # Avoid filter args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'
-      DEFAULT       = { page: nil,
-                        size: 7 }.freeze
 
       attr_reader :update
 

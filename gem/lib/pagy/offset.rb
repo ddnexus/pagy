@@ -13,7 +13,7 @@ class Pagy
     include Core::Seriable
     include Core::Shiftable
 
-    DEFAULT = { page: 1, size: 7 }.freeze
+    DEFAULT = { page: 1 }.freeze
 
     attr_reader :offset, :from, :to
 
