@@ -18,20 +18,20 @@
 # just remember to pass it to the paginator when you need it.
 
 
-############ Install pagy javascript #####################################################
+############ Install Pagy Javascript #####################################################
 # If you use any pagy method ending with '*_js',
 # uncomment/customize one of the following:
 
 # Generic reference to customize
 # Available file formats: 'pagy.mjs', 'pagy.js', 'pagy.js.map', 'pagy.min.js'
-# Pagy::Config.install_js('pagy.mjs', 'pagy.js', ..., app_js_dir) if develoment_env
+# Pagy::Javascript.install('pagy.mjs', 'pagy.js', ..., javascript_path) if env_dev
 
 # Example for Rails
-# app_js_dir = Rails.root.join('app/javascript')
+# javascript_path = Rails.root.join('app/javascript')
 # Install all files...
-# Pagy::Config.install_js(app_js_dir)) if Rails.env.development?
+# Pagy::Javascript.install(javascript_path)) if Rails.env.development?
 # Install only 'pagy.mjs'...
-# Pagy::Config.install_js('pagy.mjs', app_js_dir) if Rails.env.development?
+# Pagy::Javascript.install('pagy.mjs', javascript_path) if Rails.env.development?
 
 
 

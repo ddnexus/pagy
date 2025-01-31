@@ -96,7 +96,7 @@ When you jump back a few pages in the pagination nav, it remembers the last page
 
 Updated the support for all the pagy helpers and `keynav` pagination. Added the plain `pagy.js` and relative source map.
 
-Added `Pagy::Config.install_js` function to avoid messing up with complicated javascript cofigurations.
+Added `Pagy::Javascript.install` function to avoid messing up with complicated javascript cofigurations.
 
 ### Breaking Changes
 
