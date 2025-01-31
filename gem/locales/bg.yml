@@ -5,9 +5,9 @@ bg:
       nav:
         one: "Страница"
         other: "Страници"
-      prev: "Предишна"
+      previous: "Предишна"
       next: "Следваща"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

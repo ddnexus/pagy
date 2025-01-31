@@ -7,9 +7,9 @@ pl:
         few: "Strony"
         many: "Stron"
         other: "Strony"
-      prev: "Poprzednia"
+      previous: "Poprzednia"
       next: "Następna"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

@@ -28,7 +28,7 @@ class Pagy
       @from = [@offset + 1, @count].min
       @to   = [@offset + @limit, @count].min
       @in   = [@to - @from + 1, @count].min
-      assign_prev_and_next
+      assign_previous_and_next
     end
 
     def assign_last
@@ -43,7 +43,7 @@ class Pagy
     # Called by false in_range?
     def assign_empty_page_vars
       @in = @from = @to = @offset = @limit = 0     # options relative to the actual page
-      @prev = @last                                # @prev relative to the actual page
+      @previous = @last                                # @previous relative to the actual page
     end
   end
 end

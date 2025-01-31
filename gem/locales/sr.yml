@@ -7,9 +7,9 @@ sr:
         few: "Странице"
         many: "Страница"
         other: "Странице"
-      prev: "Претходна"
+      previous: "Претходна"
       next: "Следећa "
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

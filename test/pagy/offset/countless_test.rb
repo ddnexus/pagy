@@ -14,7 +14,7 @@ describe 'pagy/countless' do
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_be_nil
     end
     it 'initializes first page' do
@@ -27,7 +27,7 @@ describe 'pagy/countless' do
       _(pagy.in).must_equal 20
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 20
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_equal 2
     end
     it 'initializes single full page' do
@@ -39,7 +39,7 @@ describe 'pagy/countless' do
       _(pagy.in).must_equal 20
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 20
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_be_nil
     end
     it 'initialize single partial page' do
@@ -51,7 +51,7 @@ describe 'pagy/countless' do
       _(pagy.in).must_equal 4
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 4
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_be_nil
     end
     it 'initializes last partial page' do
@@ -63,7 +63,7 @@ describe 'pagy/countless' do
       _(pagy.in).must_equal 19
       _(pagy.from).must_equal 41
       _(pagy.to).must_equal 59
-      _(pagy.prev).must_equal 2
+      _(pagy.previous).must_equal 2
       _(pagy.next).must_be_nil
     end
     it 'raises exception with no fetched records and page > 1' do
@@ -79,7 +79,7 @@ describe 'pagy/countless' do
       _(pagy.in).must_equal 20
       _(pagy.from).must_equal 41
       _(pagy.to).must_equal 60
-      _(pagy.prev).must_equal 2
+      _(pagy.previous).must_equal 2
       _(pagy.next).must_equal 4
     end
     it 'updates the @last if visited page is the last page' do
@@ -90,7 +90,7 @@ describe 'pagy/countless' do
       _(pagy.in).must_equal 15
       _(pagy.from).must_equal 41
       _(pagy.to).must_equal 55
-      _(pagy.prev).must_equal 2
+      _(pagy.previous).must_equal 2
       _(pagy.next).must_be_nil
     end
   end
@@ -105,7 +105,7 @@ describe 'pagy/countless' do
       _(pagy.offset).must_equal 280
       _(pagy.from).must_equal 281
       _(pagy.to).must_equal 300
-      _(pagy.prev).must_equal 14
+      _(pagy.previous).must_equal 14
       _(pagy.next).must_be_nil
       _(pagy.series).must_equal [1, :gap, 11, 12, 13, 14, "15"]
     end

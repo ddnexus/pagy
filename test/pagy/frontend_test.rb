@@ -27,7 +27,7 @@ describe 'pagy/frontend' do
 
   describe '#pagy_t' do
     it 'pluralizes' do
-      _(app.pagy_t('pagy.aria_label.prev')).must_equal "Previous"
+      _(app.pagy_t('pagy.aria_label.previous')).must_equal "Previous"
       _(app.pagy_t('pagy.item_name', count: 0)).must_equal "items"
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "item"
       _(app.pagy_t('pagy.item_name', count: 10)).must_equal "items"
@@ -52,7 +52,7 @@ describe 'pagy/frontend' do
       _(proc { i18n_load(locale: 'en', filepath: Pagy::ROOT.join('locales/xx.yml')) }).must_raise Errno::ENOENT
       custom_dictionary = Pagy::ROOT.parent.join('test/files/locales/custom.yml')
       i18n_load(locale: 'custom', filepath: custom_dictionary)
-      _(Pagy::I18n.t('pagy.aria_label.prev', locale: 'custom')).must_equal "Custom Previous"
+      _(Pagy::I18n.t('pagy.aria_label.previous', locale: 'custom')).must_equal "Custom Previous"
       i18n_load(locale: 'en', pluralize: ->(_) { 'one' }) # returns always 'one' regardless the count
       _(Pagy::I18n.t('pagy.item_name', locale: nil, count: 0)).must_equal "item"
       _(Pagy::I18n.t('pagy.item_name', locale: 'en', count: 0)).must_equal "item"

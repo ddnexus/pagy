@@ -3,7 +3,7 @@ Pagy_data___pagy_data_for_Pagy_test_0001_works_with_unset_DEFAULT:
   :unset_default:
     :url_template: "/foo?page=P "
     :first_url: "/foo"
-    :prev_url: "/foo?page=2"
+    :previous_url: "/foo?page=2"
     :page_url: "/foo?page=3"
     :next_url: "/foo?page=4"
     :last_url: "/foo?page=50"
@@ -15,7 +15,7 @@ Pagy_data___pagy_data_for_Pagy_test_0001_works_with_unset_DEFAULT:
     :in: 20
     :from: 41
     :to: 60
-    :prev: 2
+    :previous: 2
     :next: 4
     :options:
       :limit: 20
@@ -46,7 +46,7 @@ Pagy_data___pagy_data_for_Pagy_test_0003_returns_only_specific_dats_keys:
     :url_template: "/foo?page=P "
     :page: 3
     :count: 1000
-    :prev: 2
+    :previous: 2
     :next: 4
     :pages: 50
 Pagy_data___pagy_data_for_Pagy_test_0004_returns_only_specific_data_keys_(from_helper_args):
@@ -54,7 +54,7 @@ Pagy_data___pagy_data_for_Pagy_test_0004_returns_only_specific_data_keys_(from_h
     :url_template: "/foo?page=P "
     :page: 3
     :count: 1000
-    :prev: 2
+    :previous: 2
     :next: 4
     :pages: 50
 Pagy_data___pagy_data_for_Pagy_test_0006_returns_only_specific_data_keys_for_Pagy__Calendar__Unit:
@@ -70,6 +70,6 @@ Pagy_data___pagy_data_for_Pagy_test_0006_returns_only_specific_data_keys_for_Pag
       utc: 2022-01-01 05:00:00.000000000 Z
       zone: *1
       time: 2022-01-01 00:00:00.000000000 Z
-    :prev: 2
+    :previous: 2
     :next: 4
     :pages: 26

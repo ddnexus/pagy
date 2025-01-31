@@ -6,9 +6,9 @@ cs:
         one: "Stránka"
         few: "Stránky"  # use the other variant as this word is used as a bare plural without the numeral
         other: "Stránky"
-      prev: "Předchozí"
+      previous: "Předchozí"
       next: "Další"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

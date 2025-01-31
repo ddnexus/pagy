@@ -5,9 +5,9 @@ nn:
       nav:
         one: "Side"
         other: "Sider"
-      prev: "Førre"
+      previous: "Førre"
       next: "Neste"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

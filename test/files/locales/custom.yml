@@ -4,9 +4,9 @@ custom:
       nav:
         one: "Page"
         other: "Pages"
-      prev: "Custom Previous"         # test
+      previous: "Custom Previous"         # test
       next: "Next"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

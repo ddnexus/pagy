@@ -46,21 +46,21 @@ describe MIXIN do
     end
   end
 
-  describe '#pagy_prev_url' do
-    tests_for(:pagy_prev_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+  describe '#pagy_previous_url' do
+    tests_for(:pagy_previous_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_next_url' do
     tests_for(:pagy_next_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
-  describe '#pagy_prev_link' do
-    tests_for(:pagy_prev_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+  describe '#pagy_previous_link' do
+    tests_for(:pagy_previous_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_next_link' do
     tests_for(:pagy_next_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
-  describe '#pagy_prev_a' do
-    tests_for(:pagy_prev_a, [[1, 0], [3, 21], [6, 21], [50, 20]],
-              text: 'PREV', aria_label: 'My prev page')
+  describe '#pagy_previous_a' do
+    tests_for(:pagy_previous_a, [[1, 0], [3, 21], [6, 21], [50, 20]],
+              text: 'PREV', aria_label: 'My previous page')
   end
   describe '#pagy_next_a' do
     tests_for(:pagy_next_a, [[1, 0], [3, 21], [6, 21], [50, 20]],

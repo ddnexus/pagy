@@ -5,9 +5,9 @@ ckb:
     item_name: "بابەت"
     aria_label:
       nav: "پەڕەکان"
-      prev: "پاش"
+      previous: "پاش"
       next: "پێش"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     info:

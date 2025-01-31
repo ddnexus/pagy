@@ -17,12 +17,12 @@ type SpliceArgs = readonly [start:       number,
                             deleteCount: number,     // it would be optional, but ts complains
                             ...items:    Cutoff[]]
 type Cutoff = readonly (string | number | boolean)[]
-type AugmentedPage = [browserId:  string,
-                      storageKey: string,
-                      pageNumber: number,
-                      pages:      number,
-                      prevCutoff: Cutoff | null,
-                      pageCutoff: Cutoff | null]
+type AugmentedPage = [browserId:   string,
+                      storageKey:  string,
+                      pageNumber:  number,
+                      pages:       number,
+                      priorCutoff: Cutoff | null,
+                      pageCutoff:  Cutoff | null]
 type NavJsArgs = readonly [NavJsTokens, NavJsSeries, KeynavArgs?]
 type NavJsSeries = readonly [widths: number[],
                              series: (string | number)[][],
@@ -116,7 +116,7 @@ const Pagy = (() => {
                             storageKey,
                             pageNum,
                             cutoffs.length,       // pages/last
-                            cutoffs[pageNum - 1], // prevCutoff
+                            cutoffs[pageNum - 1], // priorCutoff
                             cutoffs[pageNum]]));  // pageCutoff
       };
     }

@@ -18,14 +18,14 @@ class Pagy
                            pagy_combo_nav_js:           PAGY_PATH.join('frontend/pagy/combo_nav_js'),
                            pagy_nav:                    PAGY_PATH.join('frontend/pagy/nav'),
                            pagy_nav_js:                 PAGY_PATH.join('frontend/pagy/nav_js'),
-                           pagy_prev_url:               PAGY_PATH.join('frontend/pagy/helpers'),
+                           pagy_previous_url:           PAGY_PATH.join('frontend/pagy/helpers'),
                            pagy_next_url:               PAGY_PATH.join('frontend/pagy/helpers'),
-                           pagy_prev_link:              PAGY_PATH.join('frontend/pagy/helpers'),
+                           pagy_previous_link:          PAGY_PATH.join('frontend/pagy/helpers'),
                            pagy_next_link:              PAGY_PATH.join('frontend/pagy/helpers'),
                            pagy_info:                   PAGY_PATH.join('frontend/pagy/info'),
                            pagy_limit_selector_js:      PAGY_PATH.join('frontend/pagy/limit_selector'),
-                           pagy_prev_a:                 PAGY_PATH.join('frontend/pagy/prev_next'),
-                           pagy_next_a:                 PAGY_PATH.join('frontend/pagy/prev_next') }.freeze
+                           pagy_previous_a:             PAGY_PATH.join('frontend/pagy/previous_next'),
+                           pagy_next_a:                 PAGY_PATH.join('frontend/pagy/previous_next') }.freeze
 
       FRONTEND_METHODS.each_key do |method|
         class_eval "alias #{method} pagy_load_frontend", __FILE__, __LINE__  # alias pagy_* pagy_load_frontend

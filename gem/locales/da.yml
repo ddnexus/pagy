@@ -5,9 +5,9 @@ da:
       nav:
         one: "Side"
         other: "Sider"
-      prev: "Forrige"
+      previous: "Forrige"
       next: "Næste"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

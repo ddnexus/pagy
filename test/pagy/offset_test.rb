@@ -36,7 +36,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_be_nil
     end
     it 'initializes single page' do
@@ -47,7 +47,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 8
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 8
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_be_nil
     end
     it 'initializes page 1 of 2' do
@@ -58,7 +58,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 10
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_equal 2
     end
     it 'initializes page 2 of 2' do
@@ -69,7 +69,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 5
       _(pagy.from).must_equal 11
       _(pagy.to).must_equal 15
-      _(pagy.prev).must_equal 1
+      _(pagy.previous).must_equal 1
       _(pagy.page).must_equal 2
       _(pagy.next).must_be_nil
     end
@@ -83,7 +83,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 1
       _(pagy.to).must_equal 10
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.page).must_equal 1
       _(pagy.next).must_equal 2
     end
@@ -97,7 +97,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 11
       _(pagy.to).must_equal 20
-      _(pagy.prev).must_equal 1
+      _(pagy.previous).must_equal 1
       _(pagy.page).must_equal 2
       _(pagy.next).must_equal 3
     end
@@ -111,7 +111,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 21
       _(pagy.to).must_equal 30
-      _(pagy.prev).must_equal 2
+      _(pagy.previous).must_equal 2
       _(pagy.page).must_equal 3
       _(pagy.next).must_equal 4
     end
@@ -125,7 +125,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 31
       _(pagy.to).must_equal 40
-      _(pagy.prev).must_equal 3
+      _(pagy.previous).must_equal 3
       _(pagy.page).must_equal 4
       _(pagy.next).must_equal 5
     end
@@ -139,7 +139,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 41
       _(pagy.to).must_equal 50
-      _(pagy.prev).must_equal 4
+      _(pagy.previous).must_equal 4
       _(pagy.page).must_equal 5
       _(pagy.next).must_equal 6
     end
@@ -153,7 +153,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 51
       _(pagy.to).must_equal 60
-      _(pagy.prev).must_equal 5
+      _(pagy.previous).must_equal 5
       _(pagy.page).must_equal 6
       _(pagy.next).must_equal 7
     end
@@ -167,7 +167,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 61
       _(pagy.to).must_equal 70
-      _(pagy.prev).must_equal 6
+      _(pagy.previous).must_equal 6
       _(pagy.page).must_equal 7
       _(pagy.next).must_equal 8
     end
@@ -181,7 +181,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 71
       _(pagy.to).must_equal 80
-      _(pagy.prev).must_equal 7
+      _(pagy.previous).must_equal 7
       _(pagy.page).must_equal 8
       _(pagy.next).must_equal 9
     end
@@ -195,7 +195,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 81
       _(pagy.to).must_equal 90
-      _(pagy.prev).must_equal 8
+      _(pagy.previous).must_equal 8
       _(pagy.page).must_equal 9
       _(pagy.next).must_equal 10
     end
@@ -209,7 +209,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 10
       _(pagy.from).must_equal 91
       _(pagy.to).must_equal 100
-      _(pagy.prev).must_equal 9
+      _(pagy.previous).must_equal 9
       _(pagy.page).must_equal 10
       _(pagy.next).must_equal 11
     end
@@ -223,7 +223,7 @@ describe 'pagy' do
       _(pagy.in).must_equal 3
       _(pagy.from).must_equal 101
       _(pagy.to).must_equal 103
-      _(pagy.prev).must_equal 10
+      _(pagy.previous).must_equal 10
       _(pagy.page).must_equal 11
       _(pagy.next).must_be_nil
     end
@@ -243,7 +243,7 @@ describe 'pagy' do
     it 'has accessors' do
       [
         :count, :page, :limit, :options, # input
-        :offset, :pages, :last, :from, :to, :in, :prev, :next, :series # output
+        :offset, :pages, :last, :from, :to, :in, :previous, :next, :series # output
       ].each do |meth|
         _(pagy).must_respond_to meth
       end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'prev_next'
+require_relative 'previous_next'
 require_relative '../utils/nav'
 
 class Pagy
@@ -8,7 +8,7 @@ class Pagy
     # Pagination for bulma: it returns the html with the series of links to the pages
     def pagy_bulma_nav(pagy, classes: 'pagination is-centered', **)
       a    = pagy_anchor(pagy, **)
-      html = %(#{bulma_prev_next_html(pagy, a)}<ul class="pagination-list">)
+      html = %(#{bulma_previous_next_html(pagy, a)}<ul class="pagination-list">)
       pagy.series(**).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer

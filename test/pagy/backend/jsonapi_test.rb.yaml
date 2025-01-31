@@ -4,7 +4,7 @@ jsonapi__JsonApi_with_custom_named_params_test_0002_sets_custom_named_params:
 jsonapi___pagy_links_test_0001_returns_the_ordered_links:
   :result:
     :first: "/foo?page%5Bsize%5D=10"
-    :prev: "/foo?page%5Bnumber%5D=2&page%5Bsize%5D=10"
+    :previous: "/foo?page%5Bnumber%5D=2&page%5Bsize%5D=10"
     :next: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
     :last: "/foo?page%5Bnumber%5D=100&page%5Bsize%5D=10"
 jsonapi__JsonApi_test_0001_uses_the__jsonapi_with_page_nil:

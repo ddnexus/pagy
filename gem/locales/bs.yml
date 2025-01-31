@@ -7,9 +7,9 @@ bs:
         few: "Stranice"
         many: "Stranica"
         other: "Stranice"
-      prev: "Prethodna"
+      previous: "Prethodna"
       next: "Sljedeća"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

@@ -2,10 +2,10 @@
 
 class Pagy
   Frontend.module_eval do
-    # Return the enabled/disabled prev page anchor tag
-    def pagy_prev_a(pagy, a = nil, text: pagy_t('pagy.prev'), aria_label: pagy_t('pagy.aria_label.prev'), **)
-      if pagy.prev
-        (a || pagy_anchor(pagy, **)).(pagy.prev, text, aria_label:)
+    # Return the enabled/disabled previous page anchor tag
+    def pagy_previous_a(pagy, a = nil, text: pagy_t('pagy.previous'), aria_label: pagy_t('pagy.aria_label.previous'), **)
+      if pagy.previous
+        (a || pagy_anchor(pagy, **)).(pagy.previous, text, aria_label:)
       else
         %(<a role="link" aria-disabled="true" aria-label="#{aria_label}">#{text}</a>)
       end
@@ -13,8 +13,8 @@ class Pagy
 
     # Return the enabled/disabled next page anchor tag
     def pagy_next_a(pagy, a = nil, text: pagy_t('pagy.next'), aria_label: pagy_t('pagy.aria_label.next'), **)
-      if (p_next = pagy.next)
-        (a || pagy_anchor(pagy, **)).(p_next, text, aria_label:)
+      if pagy.next
+        (a || pagy_anchor(pagy, **)).(pagy.next, text, aria_label:)
       else
         %(<a role="link" aria-disabled="true" aria-label="#{aria_label}">#{text}</a>)
       end

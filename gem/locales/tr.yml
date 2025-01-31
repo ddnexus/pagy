@@ -5,9 +5,9 @@ tr:
       # please add a comment in the https://github.com/ddnexus/pagy/issues/605
       # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
       nav: "Pages"
-      prev: "Önceki"
+      previous: "Önceki"
       next: "Sonraki"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name: "kayıt"

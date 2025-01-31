@@ -7,9 +7,9 @@ uk:
         few: "Сторінки"
         many: "Сторінок"
         other: "Сторінки"
-      prev: "Назад"
+      previous: "Назад"
       next: "Далі"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

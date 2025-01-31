@@ -5,9 +5,9 @@ nl:
       nav:
         one: "Pagina"
         other: "Pagina's"
-      prev: "Vorige"
+      previous: "Vorige"
       next: "Volgende"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'prev_next'
+require_relative 'previous_next'
 require_relative '../utils/nav_js'
 
 class Pagy
@@ -8,7 +8,7 @@ class Pagy
     # Javascript pagination for bulma: it returns a nav with a data-pagy attribute used by the Pagy.nav javascript
     def pagy_bulma_nav_js(pagy, classes: 'pagination is-centered', **)
       a      = pagy_anchor(pagy, **)
-      tokens = { before:  %(#{bulma_prev_next_html(pagy, a)}<ul class="pagination-list">),
+      tokens = { before:  %(#{bulma_previous_next_html(pagy, a)}<ul class="pagination-list">),
                  anchor:  %(<li>#{a.(PAGE_TOKEN, LABEL_TOKEN, classes: 'pagination-link')}</li>),
                  current: %(<li><a role="link" class="pagination-link is-current" ) +
                           %(aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></li>),

@@ -9,9 +9,9 @@ ar:
         few: "صفحات"
         many: "صفحات"
         other: "صفحات"
-      prev: "السابق"
+      previous: "السابق"
       next: "التالي"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

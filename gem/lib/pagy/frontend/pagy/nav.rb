@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'prev_next'
+require_relative 'previous_next'
 require_relative '../utils/nav'
 
 class Pagy
@@ -8,7 +8,7 @@ class Pagy
     # Generic pagination: it returns the html with the series of links to the pages
     def pagy_nav(pagy, **)
       a    = pagy_anchor(pagy, **)
-      html = pagy_prev_a(pagy, a)
+      html = pagy_previous_a(pagy, a)
       pagy.series(**).each do |item|
         # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item

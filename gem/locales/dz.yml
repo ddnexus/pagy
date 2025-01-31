@@ -3,9 +3,9 @@ dz:
   pagy:
     aria_label:
       nav: "ཤོག་ལེབ་"
-      prev: "སྔོན་མ་"
+      previous: "སྔོན་མ་"
       next: "ཤུལ༌མ་"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name: "རྣམ་གྲངས་"

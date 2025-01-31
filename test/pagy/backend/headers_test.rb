@@ -27,7 +27,7 @@ describe 'headers' do
       pagy, _records = app.send(:pagy_countless, @collection)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
-    it 'omit prev on first page' do
+    it 'omit previous on first page' do
       pagy, _records = app.send(:pagy_offset, @collection, page: 1)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
@@ -55,7 +55,7 @@ describe 'headers' do
       pagy, _records = app.send(:pagy_countless, Event.all)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end
-    it 'omit prev on first page' do
+    it 'omit previous on first page' do
       pagy, _records = app.send(:pagy_offset, Event.all, page: 1)
       _(app.send(:pagy_headers, pagy)).must_rematch :headers
     end

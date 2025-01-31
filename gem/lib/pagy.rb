@@ -29,7 +29,7 @@ class Pagy
   LABEL_TOKEN = 'L'
   A_TAG       = '<a style="display: none;">#</a>'
 
-  attr_reader :page, :count, :prev, :next, :in, :limit, :options, :last
+  attr_reader :page, :count, :previous, :next, :in, :limit, :options, :last
 
   alias pages last
 

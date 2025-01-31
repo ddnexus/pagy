@@ -21,7 +21,7 @@ class Pagy
         assign_unit_vars
         return unless in_range? { @page <= @last }
 
-        assign_prev_and_next
+        assign_previous_and_next
       end
 
       attr_reader :order, :from, :to
@@ -31,7 +31,7 @@ class Pagy
         @in = @from = @to = 0                        # options relative to the actual page
         edge = @order == :asc ? @final : @initial    # get the edge of the range (neat, but any time would do)
         @from = @to = edge                           # set both to the edge time (a >=&&< query will get no records)
-        @prev = @last
+        @previous = @last
       end
 
       # The label for any page (it can pass along the I18n gem options when it's used with the i18n extra)

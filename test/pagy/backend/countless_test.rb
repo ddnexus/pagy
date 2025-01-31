@@ -18,7 +18,7 @@ describe 'countless' do
                      .send(:pagy_countless, @collection)
       _(pagy.series).must_equal ['1', 2]
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_equal 2
     end
     it 'shows start-pages, :gap, before-pages, current and next for intermediate page' do
@@ -26,7 +26,7 @@ describe 'countless' do
                      .send(:pagy_countless, @collection)
       _(pagy.series).must_equal [1, :gap, 22, 23, 24, '25', 26]
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_equal 24
+      _(pagy.previous).must_equal 24
       _(pagy.next).must_equal 26
     end
     it 'shows start-pages, :gap, before-pages, current and next for last page' do
@@ -34,7 +34,7 @@ describe 'countless' do
                      .send(:pagy_countless, @collection)
       _(pagy.series).must_equal [1, :gap, 46, 47, 48, 49, '50']
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_equal 49
+      _(pagy.previous).must_equal 49
       _(pagy.next).must_be_nil
     end
     it 'returns empty series for empty :length option for first page' do
@@ -42,7 +42,7 @@ describe 'countless' do
                      .send(:pagy_countless, @collection, length: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_equal 2
     end
     it 'returns empty series for empty :length option for intermediate page' do
@@ -50,7 +50,7 @@ describe 'countless' do
                      .send(:pagy_countless, @collection, length: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_equal 24
+      _(pagy.previous).must_equal 24
       _(pagy.next).must_equal 26
     end
     it 'returns empty series for empty :length option for last page' do
@@ -58,7 +58,7 @@ describe 'countless' do
                      .send(:pagy_countless, @collection, length: 0)
       _(pagy.series).must_equal []
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_equal 49
+      _(pagy.previous).must_equal 49
       _(pagy.next).must_be_nil
     end
   end
@@ -83,7 +83,7 @@ describe 'countless' do
       pagy, = app.send(:pagy_countless, @collection, countless_minimal: true)
       _(pagy.series).must_be_nil
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_be_nil
     end
   end
@@ -93,7 +93,7 @@ describe 'countless' do
                      .send(:pagy_countless, @collection)
       _(pagy.series).must_equal [1, :gap, 24, "25", 26, :gap, 50]
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_equal 24
+      _(pagy.previous).must_equal 24
       _(pagy.next).must_equal 26
     end
     it 'shows series including last page' do
@@ -101,7 +101,7 @@ describe 'countless' do
                      .send(:pagy_countless, @collection)
       _(pagy.series).must_equal ["1", 2, 3]
       _(pagy.count).must_be_nil
-      _(pagy.prev).must_be_nil
+      _(pagy.previous).must_be_nil
       _(pagy.next).must_equal 2
     end
   end

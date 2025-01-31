@@ -5,9 +5,9 @@ pt:
       nav: 
         one: "Página"
         other: "Páginas"
-      prev: "Anterior"
+      previous: "Anterior"
       next: "Próximo"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

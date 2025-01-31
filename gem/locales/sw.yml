@@ -9,9 +9,9 @@ sw:
       nav: "Pages"
 #        one: ""
 #        other: ""
-      prev: "Awali"
+      previous: "Awali"
       next: "Ifuatayo"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

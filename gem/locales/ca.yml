@@ -5,9 +5,9 @@ ca:
       nav:
         one: "Pàgina"
         other: "Pàgines"
-      prev: "Anterior"
+      previous: "Anterior"
       next: "Següent"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

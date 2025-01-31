@@ -3,9 +3,9 @@ vi:
   pagy:
     aria_label:
       nav: "Trang"
-      prev: "Trang trước"
+      previous: "Trang trước"
       next: "Trang sau"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name: "kết quả"

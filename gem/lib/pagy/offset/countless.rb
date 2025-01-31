@@ -35,7 +35,7 @@ class Pagy
         @in   = [fetched_size, @limit].min
         @from = @in.zero? ? 0 : @offset + 1
         @to   = @offset + @in
-        assign_prev_and_next
+        assign_previous_and_next
         self
       end
     end

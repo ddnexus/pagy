@@ -7,9 +7,9 @@ be:
         few: "Старонкi"
         many: "Старонкi"
         other: "Старонкi"
-      prev: "Назад"
+      previous: "Назад"
       next: "Наперад"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

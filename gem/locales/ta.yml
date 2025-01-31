@@ -9,9 +9,9 @@ ta:
       nav: "Pages"
 #        one: ""
 #        other: ""
-      prev: "முந்தையது"
+      previous: "முந்தையது"
       next: "அடுத்தது"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

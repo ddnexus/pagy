@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Pagy
-  DATA_KEYS = %i[url_template first_url prev_url page_url next_url last_url
-                 count page limit pages last in from to prev next options series sequels].freeze
+  DATA_KEYS = %i[url_template first_url previous_url page_url next_url last_url
+                 count page limit pages last in from to previous next options series sequels].freeze
 
   # Add a specialized backend method for pagination metadata
   Backend.module_eval do
@@ -18,7 +18,7 @@ class Pagy
           data[key] = case key
                       when :url_template then url_template
                       when :first_url    then pagy_page_url(pagy, nil, **)
-                      when :prev_url     then url_template.sub(PAGE_TOKEN, pagy.prev.to_s)
+                      when :previous_url then url_template.sub(PAGE_TOKEN, pagy.previous.to_s)
                       when :page_url     then url_template.sub(PAGE_TOKEN, pagy.page.to_s)
                       when :next_url     then url_template.sub(PAGE_TOKEN, pagy.next.to_s)
                       when :last_url     then url_template.sub(PAGE_TOKEN, pagy.last.to_s)

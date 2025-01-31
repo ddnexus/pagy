@@ -5,9 +5,9 @@ sv:
       nav:
         one: "Sida"
         other: "Sidor"
-      prev: "Föregående"
+      previous: "Föregående"
       next: "Nästa"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

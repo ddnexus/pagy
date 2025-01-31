@@ -21,8 +21,8 @@ class Pagy
         super
         # Ensure next is called, so the last page used by the UI helpers is known
         self.next
-        @prev = @page - 1 unless @page == 1
-        @in   = @records.size
+        @previous = @page - 1 unless @page == 1
+        @in       = @records.size
       end
 
       # Assign different filter args to support the AFTER_CUTOFF SQL if @cutoff

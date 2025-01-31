@@ -15,7 +15,7 @@ describe 'pagy/legacy/i18n' do
       app.test_i18n_call
     end
     it 'pluralizes' do
-      _(app.pagy_t('pagy.aria_label.prev')).must_equal "Previous"
+      _(app.pagy_t('pagy.aria_label.previous')).must_equal "Previous"
       _(app.pagy_t('pagy.item_name', count: 0)).must_equal 'items'
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal  'item'
       _(app.pagy_t('pagy.item_name', count: 10)).must_equal 'items'

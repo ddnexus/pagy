@@ -5,9 +5,9 @@ km:
       # please add a comment in the https://github.com/ddnexus/pagy/issues/591
       # posting the translation of the following  "Page"/"Pages" with the plurals for this locale
       nav: "Pages"
-      prev: "មុន"
+      previous: "មុន"
       next: "បន្ទាប់"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name: "ធាតុ"

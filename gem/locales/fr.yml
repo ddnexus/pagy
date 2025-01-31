@@ -5,9 +5,9 @@ fr:
       nav:
         one: "Page"
         other: "Pages"
-      prev: "Précédent"
+      previous: "Précédent"
       next: "Suivant"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

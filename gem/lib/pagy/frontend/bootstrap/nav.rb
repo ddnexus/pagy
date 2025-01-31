@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 require_relative '../utils/nav'
-require_relative 'prev_next'
+require_relative 'previous_next'
 
 class Pagy
   Frontend.module_eval do
     # Pagination for bootstrap: it returns the html with the series of links to the pages
     def pagy_bootstrap_nav(pagy, classes: 'pagination', **)
       a    = pagy_anchor(pagy, **)
-      html = %(<ul class="#{classes}">#{pagy_bootstrap_html_for(:prev, pagy, a)})
+      html = %(<ul class="#{classes}">#{pagy_bootstrap_html_for(:previous, pagy, a)})
       pagy.series(**).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer

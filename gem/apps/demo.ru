@@ -299,12 +299,12 @@ class PagyDemo < Sinatra::Base
       <%= html = pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
       <%= highlight(html) %>
 
-      <h2>pagy_prev_a / pagy_next_a</h2>
-      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << pagy_prev_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
+      <h2>pagy_previous_a / pagy_next_a</h2>
+      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << pagy_previous_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
       <%= highlight(html) %>
 
-      <h2>pagy_prev_link / pagy_next_link <span class="notes">Link not rendered<span></h2>
-      <% html = '<head>' << (pagy_prev_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
+      <h2>pagy_previous_link / pagy_next_link <span class="notes">Link not rendered<span></h2>
+      <% html = '<head>' << (pagy_previous_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
       <%= highlight(html) %>
       <% end %>
     ERB
@@ -339,8 +339,8 @@ class PagyDemo < Sinatra::Base
     <% a = pagy_anchor(pagy) %>
     <nav class="pagy nav" aria-label="Pages">
       <%# Previous page link %>
-      <% if pagy.prev %>
-        <%= a.(pagy.prev, '&lt;', aria_label: 'Previous') %>
+      <% if pagy.previous %>
+        <%= a.(pagy.previous, '&lt;', aria_label: 'Previous') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
       <% end %>

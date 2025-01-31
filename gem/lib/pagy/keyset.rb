@@ -41,15 +41,15 @@ class Pagy
 
     # Assign the filter_args
     def assign_filter_args
-      return unless @prev_cutoff
+      return unless @prior_cutoff
 
-      @filter_args = filter_args_for(@prev_cutoff)
+      @filter_args = filter_args_for(@prior_cutoff)
     end
 
     # Assign the page
     def assign_page
       @page        = @options[:page]
-      @prev_cutoff = JSON.parse(B64.urlsafe_decode(@page)) if @page
+      @prior_cutoff = JSON.parse(B64.urlsafe_decode(@page)) if @page
     end
 
     # Prepare the literal SQL string (complete with the placeholders for value interpolation)

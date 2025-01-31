@@ -31,12 +31,12 @@ describe 'Pagy data' do
       _ { app.send(:pagy_data, pagy) }.must_raise Pagy::OptionError
     end
     it 'returns only specific dats_keys' do
-      pagy, _records = app.send(:pagy_offset, @collection, data_keys: %i[url_template page count prev next pages])
+      pagy, _records = app.send(:pagy_offset, @collection, data_keys: %i[url_template page count previous next pages])
       _(app.send(:pagy_data, pagy)).must_rematch :data
     end
     it 'returns only specific data_keys (from helper args)' do
       pagy, _records = app.send(:pagy_offset, @collection)
-      _(app.send(:pagy_data, pagy, data_keys: %i[url_template page count prev next pages])).must_rematch :data
+      _(app.send(:pagy_data, pagy, data_keys: %i[url_template page count previous next pages])).must_rematch :data
     end
     it 'checks for unknown data_keys for Pagy::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app.send(:pagy_calendar, Event.all,
@@ -46,7 +46,7 @@ describe 'Pagy data' do
     it 'returns only specific data_keys for Pagy::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
                                   .send(:pagy_calendar, Event.all,
-                                        month: { data_keys: %i[url_template page from to prev next pages] })
+                                        month: { data_keys: %i[url_template page from to previous next pages] })
       _(calendar_app.send(:pagy_data, calendar[:month])).must_rematch :data
     end
   end

@@ -66,14 +66,14 @@ describe 'jsonapi' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default, page_sym: :number, limit_sym: :size)
       result = app.send(:pagy_links, pagy)
-      _(result.keys).must_equal %i[first prev next last]
+      _(result.keys).must_equal %i[first previous next last]
       _(result).must_rematch :result
     end
-    it 'sets the prev value to null when the link is unavailable' do
+    it 'sets the previous value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 1 } })
       pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default)
       result = app.send(:pagy_links, pagy)
-      _(result[:prev]).must_be_nil
+      _(result[:previous]).must_be_nil
     end
     it 'sets the next value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 50 } })

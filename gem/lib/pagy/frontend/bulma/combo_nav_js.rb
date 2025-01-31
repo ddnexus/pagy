@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'prev_next'
+require_relative 'previous_next'
 require_relative '../utils/combo_nav_js'
 
 class Pagy
@@ -13,7 +13,7 @@ class Pagy
               %(style="text-align: center; width: #{pages.to_s.length + 1}rem; height: 1.7rem; margin:0 0.3rem; ) +
               %(border: none; border-radius: 4px; padding: 0; font-size: 1.1rem; color: white; ) +
               %(background-color: #485fc7;">#{A_TAG})
-      html  = %(#{bulma_prev_next_html(pagy, a)
+      html  = %(#{bulma_previous_next_html(pagy, a)
                 }<ul class="pagination-list"><li class="pagination-link"><label>#{
                   pagy_t('pagy.combo_nav_js', page_input: input, pages:)
                 }</label></li></ul>)

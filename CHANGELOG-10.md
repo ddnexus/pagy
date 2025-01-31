@@ -118,6 +118,7 @@ Many of the changes in the following list are seldom used by the app code, we wr
 | Method      | `pagy_url_for`   | `pagy_page_url`    | The legacy name was causing rails-related expectations                |
 | Method/args | `label_for(page` | `label(page: page` | Simpler name: `page` is now a keywork argument                        |
 | Method/args | `label(page`     | `label(page: page` | Same name: `page` is now a keywork argument                           |
+| Naming      | `*prev*`         | `*previous*`       | Unabbreviated word everywhere (option, accessor, methods, CSS class)  |
 
 #### The `Pagy::DEFAULT` is now frozen
 

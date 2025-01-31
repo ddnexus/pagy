@@ -51,19 +51,19 @@ describe 'range' do
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0
-      _(pagy.prev).must_equal pagy.last
+      _(pagy.previous).must_equal pagy.last
     end
     it 'works in :empty_page mode in Pagy::Calendar' do
       pagy = Pagy::Calendar::Day.new(**calendar_vars, range_rescue: :empty_page)
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@final)
       _(pagy.to).must_equal pagy.instance_variable_get(:@final)
-      _(pagy.prev).must_equal pagy.last
+      _(pagy.previous).must_equal pagy.last
       pagy = Pagy::Calendar::Day.new(**calendar_vars, range_rescue: :empty_page, order: :desc)
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@initial)
       _(pagy.to).must_equal pagy.instance_variable_get(:@initial)
-      _(pagy.prev).must_equal pagy.last
+      _(pagy.previous).must_equal pagy.last
     end
     it 'works in :empty_page mode in Pagy::Offset::Countless' do
       pagy = @pagy_countless
@@ -73,7 +73,7 @@ describe 'range' do
       _(pagy.in).must_equal 0
       _(pagy.from).must_equal 0
       _(pagy.to).must_equal 0
-      _(pagy.prev).must_equal 50
+      _(pagy.previous).must_equal 50
     end
   end
 

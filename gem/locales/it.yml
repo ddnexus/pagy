@@ -5,9 +5,9 @@ it:
       nav:
         one: "Pagina"
         other: "Pagine"
-      prev: "Precedente"
+      previous: "Precedente"
       next: "Seguente"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:

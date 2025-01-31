@@ -7,9 +7,9 @@ ru:
         few: "Страницы"
         many: "Страниц"
         other: "Страниц"
-      prev: "Назад"
+      previous: "Назад"
       next: "Вперёд"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:
