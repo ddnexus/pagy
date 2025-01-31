@@ -18,7 +18,7 @@ class Pagy
 
     # Generate a hash of RFC-8288-compliant http headers
     def pagy_headers(pagy, header_names: nil, **)
-      headers = header_names || pagy.opts[:header_names] || HEADER_NAMES
+      headers = header_names || pagy.options[:header_names] || HEADER_NAMES
       links   = pagy_links(pagy, **, absolute: true).map { |key, link| %(<#{link}>; rel="#{key}") }.join(', ')
       { 'link' => links }.tap do |hash|
         hash[headers[:page]]  = pagy.page.to_s if pagy.page && headers[:page]

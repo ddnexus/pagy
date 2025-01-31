@@ -25,7 +25,7 @@ class Pagy
 
   module CalendarOverride
     def pagy_anchor(pagy, anchor_string: nil, **)
-      return super unless (counts = pagy.opts[:counts])   # Skip unless pagy_calendar_counts is defined
+      return super unless (counts = pagy.options[:counts])   # Skip unless pagy_calendar_counts is defined
 
       left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **)}")
                     .split(PAGE_TOKEN, 2)

@@ -4,10 +4,10 @@ class Pagy
   module SearchWrapper
     module_function
 
-    def wrap(backend, pagy_search_args, opts)
+    def wrap(backend, pagy_search_args, options)
       backend.instance_exec do
-        opts[:page]  ||= pagy_get_page(opts)
-        opts[:limit] ||= pagy_get_limit(opts)
+        options[:page]  ||= pagy_get_page(options)
+        options[:limit] ||= pagy_get_limit(options)
       end
       pagy, results = yield
       calling = pagy_search_args[4..]

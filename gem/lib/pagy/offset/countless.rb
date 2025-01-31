@@ -5,8 +5,8 @@ class Pagy
     # No need to know the count to paginate
     class Countless < Offset
       # Merge and validate the options, do some simple arithmetic and set a few instance variables
-      def initialize(**opts) # rubocop:disable Lint/MissingSuper
-        assign_opts(opts)
+      def initialize(**) # rubocop:disable Lint/MissingSuper
+        assign_options(**)
         assign_and_check(limit: 1, page: 1)
         assign_last
         assign_offset
@@ -15,8 +15,9 @@ class Pagy
       def countless? = true
 
       def assign_last
-        @last = (@opts[:last] || 1).to_i
-        @last = @page = @opts[:max_pages] if @opts[:max_pages] && (@last > @opts[:max_pages] || @page > @opts[:max_pages])
+        @last = (@options[:last] || 1).to_i
+        @last = @page = @options[:max_pages] \
+          if @options[:max_pages] && (@last > @options[:max_pages] || @page > @options[:max_pages])
       end
 
       def page_for_url(page) = [page || 1, @last].join('+')
@@ -28,7 +29,7 @@ class Pagy
         if @last && @page < @last # visited page
           @last = @page unless fetched_size > @limit # set last if last page
         else
-          @last = fetched_size > @limit ? @page + 1 : @page unless @page == @opts[:max_pages]
+          @last = fetched_size > @limit ? @page + 1 : @page unless @page == @options[:max_pages]
         end
 
         @in   = [fetched_size, @limit].min
@@ -43,7 +44,7 @@ class Pagy
       # Override the original series.
       # Return nil if :countless_minimal is enabled
       def series(**)
-        super unless @opts[:countless_minimal]
+        super unless @options[:countless_minimal]
       end
     end
     prepend SeriesOverride

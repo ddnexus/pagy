@@ -29,26 +29,26 @@ class Pagy
   LABEL_TOKEN = 'L'
   A_TAG       = '<a style="display: none;">#</a>'
 
-  attr_reader :page, :count, :prev, :next, :in, :limit, :opts, :last
+  attr_reader :page, :count, :prev, :next, :in, :limit, :options, :last
 
   alias pages last
 
-  # Validates and assign the passed opts: var must be present and value.to_i must be >= to min
+  # Validates and assign the passed options: var must be present and value.to_i must be >= to min
   def assign_and_check(name_min)
     name_min.each do |name, min|
-      raise OptionError.new(self, name, ">= #{min}", @opts[name]) \
-            unless @opts[name].respond_to?(:to_i) && instance_variable_set(:"@#{name}", @opts[name].to_i) >= min
+      raise OptionError.new(self, name, ">= #{min}", @options[name]) \
+            unless @options[name].respond_to?(:to_i) && instance_variable_set(:"@#{name}", @options[name].to_i) >= min
     end
   end
 
-  def assign_opts(opts)
+  def assign_options(**options)
     default = {}
-    cclass  = self.class
+    current = self.class
     begin
-      default = cclass::DEFAULT.merge(default)
-      cclass  = cclass.superclass
-    end until cclass == Object  # rubocop:disable Lint/Loop  # see https://github.com/rubocop/rubocop-performance/issues/362
-    @opts = default.merge(opts.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
+      default = current::DEFAULT.merge(default)
+      current = current.superclass
+    end until current == Object  # rubocop:disable Lint/Loop  # see https://github.com/rubocop/rubocop-performance/issues/362
+    @options = default.merge(options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
   end
 
   def page_for_url(page) = page

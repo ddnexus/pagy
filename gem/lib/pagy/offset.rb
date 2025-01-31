@@ -18,8 +18,8 @@ class Pagy
     attr_reader :offset, :from, :to
 
     # Merge and validate the options, do some simple arithmetic and set the instance variables
-    def initialize(**opts) # rubocop:disable Lint/MissingSuper
-      assign_opts(opts)
+    def initialize(**) # rubocop:disable Lint/MissingSuper
+      assign_options(**)
       assign_and_check(limit: 1, count: 0, page: 1)
       assign_last
       assign_offset
@@ -33,7 +33,7 @@ class Pagy
 
     def assign_last
       @last = [(@count.to_f / @limit).ceil, 1].max
-      @last = @opts[:max_pages] if @opts[:max_pages] && @last > @opts[:max_pages]
+      @last = @options[:max_pages] if @options[:max_pages] && @last > @options[:max_pages]
     end
 
     def assign_offset
@@ -42,7 +42,7 @@ class Pagy
 
     # Called by false in_range?
     def assign_empty_page_vars
-      @in = @from = @to = @offset = @limit = 0     # opts relative to the actual page
+      @in = @from = @to = @offset = @limit = 0     # options relative to the actual page
       @prev = @last                                # @prev relative to the actual page
     end
   end

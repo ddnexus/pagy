@@ -65,7 +65,7 @@ class Pagy
       @period   = period
       @params   = params
       @page_sym = conf[:pagy][:page_sym] || Pagy::DEFAULT[:page_sym]
-      # set all the :page_sym opts for later deletion
+      # set all the :page_sym options for later deletion
       @units.each { |unit| conf[unit][:page_sym] = :"#{unit}_#{@page_sym}" }
       calendar = {}
       object   = nil
@@ -84,13 +84,13 @@ class Pagy
     end
 
     # Return the calendar object at time
-    def calendar_at(time, **opts)
+    def calendar_at(time, **options)
       conf      = Marshal.load(Marshal.dump(@conf))
       page_syms = {}
       @units.inject(nil) do |object, unit|
         conf[unit][:period] = object&.send(:active_period) || @period
         conf[unit][:page]   = page_syms[:"#{unit}_#{@page_sym}"] \
-                            = Calendar.send(:create, unit, **conf[unit]).send(:page_at, time, **opts)
+                            = Calendar.send(:create, unit, **conf[unit]).send(:page_at, time, **options)
         conf[unit][:params] ||= {}
         conf[unit][:params].merge!(page_syms)
         Calendar.send(:create, unit, **conf[unit])

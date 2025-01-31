@@ -154,11 +154,11 @@ class Pagy
     end
 
     # Translate and pluralize the key with the locale DATA
-    def translate(key, locale:, **opts)
+    def translate(key, locale:, **options)
       data, pluralize = DATA[locale]
-      translation = data[key] || (opts[:count] && data[key += ".#{pluralize.call(opts[:count])}"]) \
+      translation = data[key] || (options[:count] && data[key += ".#{pluralize.call(options[:count])}"]) \
                       or return %([translation missing: "#{key}"])
-      translation.gsub(/%{[^}]+?}/) { |match| opts[:"#{match[2..-2]}"] || match }
+      translation.gsub(/%{[^}]+?}/) { |match| options[:"#{match[2..-2]}"] || match }
     end
     alias t translate
   end

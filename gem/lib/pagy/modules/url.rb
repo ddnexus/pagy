@@ -43,15 +43,15 @@ class Pagy
     # with your request[:url_prefix] (i.e. everything that comes before the ? in the complete url),
     # and your request[:query_params] hash to be merged with the pagy params and form the complete url
     def pagy_page_url(pagy, page, absolute: false, fragment: nil, limit_token: nil, **)
-      request_var, pagy_params = (opts = pagy.opts).values_at(:request, :params)
-      page_name, limit_name    = opts.values_at(:page_sym, :limit_sym).map(&:to_s)
+      request_var, pagy_params = (options = pagy.options).values_at(:request, :params)
+      page_name, limit_name    = options.values_at(:page_sym, :limit_sym).map(&:to_s)
       query_params             = request_var ? (request_var[:query_params] || {}) : request.GET.clone(freeze: false)
-      query_params.delete(opts[:jsonapi] ? 'page' : page_name)
+      query_params.delete(options[:jsonapi] ? 'page' : page_name)
       page_and_limit = {}.tap do |h|
                          h[page_name]  = pagy.page_for_url(page)
-                         h[limit_name] = limit_token || opts[:limit] if opts[:requestable_limit]
+                         h[limit_name] = limit_token || options[:limit] if options[:requestable_limit]
                        end.compact # no empty params
-      query_params.merge!(opts[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
+      query_params.merge!(options[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
       case pagy_params
       when Hash then query_params.merge!(pagy_params.transform_keys(&:to_s).compact)
       when Proc then pagy_params.(query_params) # it should modify the query_params: the returned value is ignored
@@ -60,7 +60,7 @@ class Pagy
       query_string = "?#{query_string}" unless query_string.empty?
       return "#{request_var[:url_prefix]}#{query_string}#{fragment}" if request_var
 
-      "#{request.base_url if absolute}#{opts[:request_path] || request.path}#{query_string}#{fragment}"
+      "#{request.base_url if absolute}#{options[:request_path] || request.path}#{query_string}#{fragment}"
     end
 
     # Return the url for the calendar page at time

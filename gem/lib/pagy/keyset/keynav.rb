@@ -17,7 +17,7 @@ class Pagy
       attr_reader :update
 
       # Finalize the instance variables needed for the UI
-      def initialize(set, **opts)
+      def initialize(set, **)
         super
         # Ensure next is called, so the last page used by the UI helpers is known
         self.next
@@ -38,12 +38,12 @@ class Pagy
 
       # Get the keynav page from the client
       def assign_page
-        if @opts[:page]
-          storage_key, @page, @last, @prev_cutoff, @cutoff = @opts[:page]
+        if @options[:page]
+          storage_key, @page, @last, @prev_cutoff, @cutoff = @options[:page]
         else
           @page = @last = 1
         end
-        @update = [storage_key, @opts[:page_sym]] # always sent back as-is in order to id the same pagination sequence
+        @update = [storage_key, @options[:page_sym]] # always sent back as-is in order to id the same pagination sequence
       end
 
       # Prepare the literal SQL string (complete with the placeholders for value interpolation)
@@ -105,7 +105,7 @@ class Pagy
       # Prepare the @update for the client when it's a new page/cutoff and return the next page number
       def next
         records
-        return if !@more || (@opts[:max_pages] && @page >= @opts[:max_pages])
+        return if !@more || (@options[:max_pages] && @page >= @options[:max_pages])
 
         @next ||= begin
                     unless @cutoff

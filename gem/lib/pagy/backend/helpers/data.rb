@@ -2,7 +2,7 @@
 
 class Pagy
   DATA_KEYS = %i[url_template first_url prev_url page_url next_url last_url
-                 count page limit pages last in from to prev next opts series sequels].freeze
+                 count page limit pages last in from to prev next options series sequels].freeze
 
   # Add a specialized backend method for pagination metadata
   Backend.module_eval do
@@ -11,7 +11,7 @@ class Pagy
     # Return the data hash
     def pagy_data(pagy, data_keys: nil, **)
       url_template = pagy_page_url(pagy, PAGE_TOKEN, **)
-      keys  = data_keys || pagy.opts[:data_keys] || DATA_KEYS
+      keys  = data_keys || pagy.options[:data_keys] || DATA_KEYS
       keys -= %i[count limit] if pagy.calendar?
       {}.tap do |data|
         keys.each do |key|

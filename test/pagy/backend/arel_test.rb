@@ -21,35 +21,35 @@ describe 'arel' do
       _(records.size).must_equal Pagy::DEFAULT[:limit]
       _(records).must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
     end
-    it 'paginates with opts' do
+    it 'paginates with options' do
       pagy, records = app.send(:pagy_arel, @collection, page: 2, limit: 10, anchor_string: 'X')
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 1000
       _(pagy.limit).must_equal 10
       _(pagy.page).must_equal 2
-      _(pagy.opts[:anchor_string]).must_equal 'X'
+      _(pagy.options[:anchor_string]).must_equal 'X'
       _(records.size).must_equal pagy.limit
       _(records).must_equal [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     end
   end
 
-  describe '#pagy_arel opts' do
+  describe '#pagy_arel options' do
     before do
       @collection = MockCollection.new
     end
     it 'gets defaults' do
-      opts   = {}
-      pagy,  = app.send :pagy_arel, @collection, **opts
-      merged = pagy.opts
+      options   = {}
+      pagy,  = app.send :pagy_arel, @collection, **options
+      merged = pagy.options
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged[:count]).must_equal 1000
       _(merged[:page]).must_equal 3
     end
-    it 'gets opts' do
-      opts   = { page: 2, limit: 10, anchor_string: 'X' }
-      pagy,  = app.send :pagy_arel, @collection, **opts
-      merged = pagy.opts
+    it 'gets options' do
+      options   = { page: 2, limit: 10, anchor_string: 'X' }
+      pagy,  = app.send :pagy_arel, @collection, **options
+      merged = pagy.options
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -61,9 +61,9 @@ describe 'arel' do
     end
     it 'works with grouped collections' do
       collection = MockCollection::Grouped.new((1..1000).to_a)
-      opts   = { page: 2, limit: 10, anchor_string: 'X' }
-      pagy,  = app.send :pagy_arel, collection, **opts
-      merged = pagy.opts
+      options   = { page: 2, limit: 10, anchor_string: 'X' }
+      pagy,  = app.send :pagy_arel, collection, **options
+      merged = pagy.options
       _(merged.keys).must_include :count
       _(merged.keys).must_include :page
       _(merged.keys).must_include :limit
@@ -74,9 +74,9 @@ describe 'arel' do
       _(merged[:anchor_string]).must_equal 'X'
     end
     it 'overrides count and page' do
-      opts   = { count: 100, page: 3 }
-      pagy,  = app.send :pagy_arel, @collection, **opts
-      merged = pagy.opts
+      options   = { count: 100, page: 3 }
+      pagy,  = app.send :pagy_arel, @collection, **options
+      merged = pagy.options
       _(merged.keys).must_include :count
       _(merged[:count]).must_equal 100
       _(merged.keys).must_include :page

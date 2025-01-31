@@ -102,14 +102,16 @@ Added `Pagy::Config.install_js` function to avoid messing up with complicated ja
 
 #### Simple search and replace renaming (without logic changes)
 
+Many of the changes in the following list are seldom used by the app code, we wrote them all for completeness:
+
 | Type        | Search           | Replace            | Notes                                                                 |
 |-------------|------------------|--------------------|-----------------------------------------------------------------------|
 | Constructor | `pagy(`          | `pagy_offset(`     | Consistent with the other old and new constructors                    |
 | Function    | `Pagy.root`      | `Pagy::ROOT`       | Stop calling a method just to get a constant Pathname                 |
-| Accessor    | `pagy.vars`      | `pagy.opts`        | They are actually options that don't change during execution          |
+| Accessor    | `pagy.vars`      | `pagy.options`     | They are actually options that don't change during execution          |
 | Exception   | `VariableError`  | `OptionError`      | Error for the passed options. VariableError was not accurate          |
 | Accessor    | `err.variable`   | `err.option`       | Accessor for OptionError instance variable, consistent with the class |
-| Option      | `size: 7`        | `length: 7`        | Series length: more accurate, and avoid confusion with other "size"   |
+| Option      | `size: 7`        | `length: 7`        | Series length: more accurate, and avoid confusion with other `size`s  |
 | Option      | `ends: false`    | `compact: true`    | Compact-gapless series: the boolean inverse of `ends`                 |
 | Option      | `:page_param`    | `:page_sym`        | The '_param' could be confused with the actual param value            |
 | Option      | `:limit_param`   | `:limit_sym`       | The '_param' could be confused with the actual param value            |

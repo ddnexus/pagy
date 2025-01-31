@@ -10,7 +10,7 @@ class Pagy
       def label(page: @page, **) = page.to_s
 
       # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
-      def series(length: @opts[:length] || LENGTH, compact: @opts[:compact], **)
+      def series(length: @options[:length] || LENGTH, compact: @options[:compact], **)
         raise OptionError.new(self, :length, 'to be an Integer >= 0', length) \
               unless length.is_a?(Integer) && length >= 0
         return [] if length.zero?
@@ -42,8 +42,8 @@ class Pagy
 
       # `Pagy` instance method used by the `pagy*_nav_js` helpers.
       # Return the reverse sorted array of widths, series, and labels generated from the :steps hash
-      # Notice: if :steps is false it will use the single {0 => @opts[:length]} length
-      def sequels(steps: @opts[:steps] || { 0 => @opts[:length] || LENGTH }, **)
+      # Notice: if :steps is false it will use the single {0 => @options[:length]} length
+      def sequels(steps: @options[:steps] || { 0 => @options[:length] || LENGTH }, **)
         raise OptionError.new(self, :steps, 'to define the 0 width', steps) unless steps.key?(0)
 
         widths, series = steps.sort.reverse.map { |width, length| [width, series(length:)] }.transpose

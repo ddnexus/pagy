@@ -28,11 +28,11 @@ class Pagy
       subclass.new(set, **)
     end
 
-    def initialize(set, **opts) # rubocop:disable Lint/MissingSuper
-      assign_opts(opts)
+    def initialize(set, **) # rubocop:disable Lint/MissingSuper
+      assign_options(**)
       assign_and_check(limit: 1)
       @set    = set
-      @keyset = opts[:keyset] || extract_keyset
+      @keyset = @options[:keyset] || extract_keyset
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
       assign_page
@@ -48,7 +48,7 @@ class Pagy
 
     # Assign the page
     def assign_page
-      @page        = @opts[:page]
+      @page        = @options[:page]
       @prev_cutoff = JSON.parse(B64.urlsafe_decode(@page)) if @page
     end
 
@@ -72,7 +72,7 @@ class Pagy
       table       = @set.model.table_name
       identifier  = @keyset.to_h { |column| [column, %("#{table}"."#{column}")] }
       placeholder = @keyset.to_h { |column| [column, ":#{prefix}#{column}"] }
-      if @opts[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
+      if @options[:tuple_comparison] && (directions.all?(:asc) || directions.all?(:desc))
         "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
       else
         keyset = @keyset.to_a
@@ -92,7 +92,7 @@ class Pagy
     # Derive the cutoff from the last record
     def derive_cutoff
       attr = keyset_attributes_from(@records.last)
-      (@opts[:stringify_keyset_values]&.(attr) || attr).values
+      (@options[:stringify_keyset_values]&.(attr) || attr).values
     end
 
     # Fetch the records and set the @more flag

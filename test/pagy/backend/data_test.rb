@@ -12,8 +12,8 @@ describe 'Pagy data' do
       @collection = MockCollection.new
     end
     Time.zone = 'EST'
-    def calendar_app(**opts)
-      MockApp::Calendar.new(**opts)
+    def calendar_app(**options)
+      MockApp::Calendar.new(**options)
     end
 
     # Required to test the behaviour of the autoloaded DEFAULT constant

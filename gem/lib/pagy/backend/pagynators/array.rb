@@ -6,11 +6,11 @@ class Pagy
     private
 
     # Return Pagy object and paginated items
-    def pagy_array(array, **opts)
-      opts[:count] ||= array.size
-      opts[:limit]   = pagy_get_limit(opts)
-      opts[:page]  ||= pagy_get_page(opts)
-      pagy = Offset.new(**opts)
+    def pagy_array(array, **options)
+      options[:count] ||= array.size
+      options[:limit]   = pagy_get_limit(options)
+      options[:page]  ||= pagy_get_page(options)
+      pagy = Offset.new(**options)
       [pagy, array[pagy.offset, pagy.limit]]
     end
   end
