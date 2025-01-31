@@ -282,8 +282,8 @@ class PagyDemo < Sinatra::Base
 
       <h2>pagy<%= prefix %>_nav_js <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
       <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
-           aria_label: 'Pages nav_js_responsive',
-           steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+                                                      aria_label: 'Pages nav_js_responsive',
+                                                      steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
       <%= highlight(html) %>
 
       <h2>pagy<%= prefix %>_combo_nav_js</h2>

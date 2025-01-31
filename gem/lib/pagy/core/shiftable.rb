@@ -3,7 +3,7 @@
 class Pagy
   module Core
     # Add a few assign_* methods
-    module Assignable
+    module Shiftable
       # Assign @prev and @next
       def assign_prev_and_next
         @prev = (@page - 1 unless @page == 1)

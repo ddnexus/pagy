@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../core/navable'
+require_relative '../core/seriable'
 
 class Pagy
   class Keyset
@@ -9,7 +9,7 @@ class Pagy
       autoload :ActiveRecord, PAGY_PATH.join('keyset/keynav/active_record')
       autoload :Sequel,       PAGY_PATH.join('keyset/keynav/sequel')
 
-      include Core::Navable
+      include Core::Seriable
 
       # Avoid filter args conflicts in composite SQL fragments
       CUTOFF_PREFIX = 'cutoff_'

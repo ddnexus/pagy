@@ -3,7 +3,7 @@
 class Pagy
   module Core
     # Add methods enabling frontend navigation
-    module Navable
+    module Seriable
       # Label for any page. Allow the customization of the output (overridden by the calendar)
       def label(page: @page, **) = page.to_s
 

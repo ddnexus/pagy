@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'core/assignable'
-require_relative 'core/navable'
+require_relative 'core/shiftable'
+require_relative 'core/seriable'
 require_relative 'core/rangeable'
 
 class Pagy
@@ -9,11 +9,11 @@ class Pagy
   class Offset < Pagy
     autoload :Countless, PAGY_PATH.join('offset/countless')
 
-    DEFAULT = { page: 1, size: 7 }.freeze
-
-    include Core::Assignable
-    include Core::Navable
     include Core::Rangeable
+    include Core::Seriable
+    include Core::Shiftable
+
+    DEFAULT = { page: 1, size: 7 }.freeze
 
     attr_reader :offset, :from, :to
 

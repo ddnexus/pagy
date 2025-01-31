@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require_relative '../core/assignable'
+require_relative '../core/shiftable'
 require_relative '../core/rangeable'
-require_relative '../core/navable'
+require_relative '../core/seriable'
 
 class Pagy
   class Calendar
     # Base class for time units subclasses (Year, Quarter, Month, Week, Day)
     class Unit < Pagy
-      include Core::Assignable
-      include Core::Navable
       include Core::Rangeable
+      include Core::Seriable
+      include Core::Shiftable
 
       DEFAULT = { page: 1 }.freeze
 
@@ -74,12 +74,12 @@ class Pagy
       def assign_unit_vars
         raise OptionError.new(self, :format, 'to be a strftime format', @opts[:format]) unless @opts[:format].is_a?(String)
         raise OptionError.new(self, :order, 'to be in [:asc, :desc]', @order) \
-        unless %i[asc desc].include?(@order = @opts[:order])
+              unless %i[asc desc].include?(@order = @opts[:order])
 
         @starting, @ending = @opts[:period]
         raise OptionError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @opts[:period]) \
-        unless @starting.is_a?(ActiveSupport::TimeWithZone) \
-        && @ending.is_a?(ActiveSupport::TimeWithZone) && @starting <= @ending
+              unless @starting.is_a?(ActiveSupport::TimeWithZone) \
+                  && @ending.is_a?(ActiveSupport::TimeWithZone) && @starting <= @ending
       end
 
       # Apply the strftime format to the time.
