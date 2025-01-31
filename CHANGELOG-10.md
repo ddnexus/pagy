@@ -224,10 +224,8 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `size` (discontinued feature)
 
-- If you really want it, copy the file at `https://github.com/ddnexus/pagy/blob/master/legacy/size.rb` in your app and require the
-  copy in the initializer.
-- The file will not be upgraded in the future, so you must maintain it. The test file is available at
-  `https://github.com/ddnexus/pagy/blob/master/legacy/size_test.rb`
+- Pagination bars similar to WillPaginate and Kaminari are not good. If you still want it, you can adapt the legacy file from an
+  old commit.
 
 ##### `trim` (discontinued feature)
 
