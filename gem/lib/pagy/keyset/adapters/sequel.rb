@@ -5,12 +5,6 @@ class Pagy
     module Adapters
       # Keyset adapter for sequel
       module Sequel
-        # Append the missing keyset keys if the set is restricted by select
-        def apply_select
-          selected = @set.opts[:select]
-          @set.select_append(*@keyset.keys.reject { |c| selected.include?(c) })
-        end
-
         # Extract the keyset from the set
         def extract_keyset
           return {} unless @set.opts[:order]
@@ -27,8 +21,8 @@ class Pagy
           end
         end
 
-        # Filter the page records
-        def filter_records = @set.where(::Sequel.lit(after_cutoff_sql, **@filter_args))
+        # Apply the filtering where clause
+        def filtered = @set.where(::Sequel.lit(sql_filter, **@filter))
 
         # Get the keyset attributes from the record
         def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
@@ -36,13 +30,19 @@ class Pagy
         # Set with selected columns?
         def select? = !@set.opts[:select].nil?
 
-        # Typecast the cut args
-        def typecast_args(args)
+        # Append the missing keyset keys if the set is restricted by select
+        def selected
+          selected = @set.opts[:select]
+          @set.select_append(*@keyset.keys.reject { |c| selected.include?(c) })
+        end
+
+        # Typecast the attributes
+        def typecast(attributes)
           model = @set.opts[:model]
           model.unrestrict_primary_key if (restricted_pk = model.restrict_primary_key?)
-          args = model.new(args).to_hash.slice(*args.keys.map(&:to_sym))
+          attributes = model.new(attributes).to_hash.slice(*attributes.keys.map(&:to_sym))
           model.restrict_primary_key if restricted_pk
-          args
+          attributes
         end
       end
     end

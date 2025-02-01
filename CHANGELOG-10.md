@@ -75,13 +75,14 @@ You can now use the methods that you need, and they will just work without the n
 
 ### The configuration is minimal and non-technical
 
-Take a look at the configuration file: all the `requires` and the `Pagy::DEFAULT` configurations are gone. The few (4) and
+Take a look at the configuration file: all the extra `requires` and the `Pagy::DEFAULT` configurations are gone. The only four
 optional configuration left, are simple Pagy function calls.
 
-#### Better file and namespace system organization
+#### Better file and namespace system organization and coding style
 
 The class hierarchy, the mixin files, and the test file structure have been deeply reorganized. The code is cleaner, more concise
 and more readable, adding fewer modules to the `ancestors` array of your app.
+Abbreviated naming is gone consistently everywhere. 
 
 #### The Pagy::Countless remembers the last page
 
@@ -236,7 +237,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 #### Direct instantiation of the pagy classes is not recommended
 
 - Use the provided `pagynators` for easier usage, maintenance and forward compatibility.
-- Use the implementing classes only if the documentation suggests you to do so, or if you really you know what you are doing.
+- Use the implementing classes only if the documentation explicitly suggests you to do so, or if you know what you are doing.
 
 #### Possibly Breaking Overridings
 

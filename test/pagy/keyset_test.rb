@@ -86,13 +86,13 @@ require_relative '../../gem/lib/pagy/modules/b64'
       end
       it 'handles the page/cut for the second page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "WzEwXQ")
-        _(pagy.instance_variable_get(:@filter_args)).must_equal(id: 10)
+        _(pagy.instance_variable_get(:@filter)).must_equal(id: 10)
         _(pagy.records.first.id).must_equal 11
         _(pagy.next).must_equal "WzIwXQ"
       end
       it 'handles the page/cut for the last page' do
         pagy = Pagy::Keyset.new(model.order(:id), limit: 10, page: "WzQwXQ")
-        _(pagy.instance_variable_get(:@filter_args)).must_equal(id: 40)
+        _(pagy.instance_variable_get(:@filter)).must_equal(id: 40)
         _(pagy.records.first.id).must_equal 41
         _(pagy.next).must_be_nil
       end

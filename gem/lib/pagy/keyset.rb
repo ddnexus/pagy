@@ -12,11 +12,12 @@ class Pagy
 
     class TypeError < ::TypeError; end
 
-    # Allow to run Keyset.new or Keyset::ActiveRecord.new
+    # Allow to run Keyset.new or Keyset::ActiveRecord.new or Keyset::Sequel.new
     def self.new(set, **)
-      # Run the initializer if it's a subclass instance (check without triggering autoload)
-      return allocate.tap { |instance| instance.send(:initialize, set, **) } \
-             if /::(?:ActiveRecord|Sequel)$/.match?(name)
+      # A subclass instance runs only the initializer
+      if /::(?:ActiveRecord|Sequel)$/.match?(name)  # check without triggering autoload
+        return allocate.tap { |instance| instance.send(:initialize, set, **) }
+      end
 
       subclass = if defined?(::ActiveRecord) && set.is_a?(::ActiveRecord::Relation)
                    self::ActiveRecord
@@ -36,23 +37,60 @@ class Pagy
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
       assign_page
-      assign_filter_args
+      assign_filter
     end
 
     # Assign the filter_args
-    def assign_filter_args
+    def assign_filter
       return unless @prior_cutoff
 
-      @filter_args = filter_args_for(@prior_cutoff)
+      @filter = filter_for(@prior_cutoff)
     end
 
     # Assign the page
     def assign_page
-      @page        = @options[:page]
-      @prior_cutoff = JSON.parse(B64.urlsafe_decode(@page)) if @page
+      return unless (@page = @options[:page])
+
+      @prior_cutoff = JSON.parse(B64.urlsafe_decode(@page))
     end
 
-    # Prepare the literal SQL string (complete with the placeholders for value interpolation)
+    # Derive the cutoff from the last record
+    def derive_cutoff
+      attr = keyset_attributes_from(@records.last)
+      (@options[:stringify_keyset_values]&.(attr) || attr).values
+    end
+
+    # Fetch the records and set the @more flag
+    def fetch_records
+      @set.limit(@limit + 1).to_a.tap do |records|
+        @more = records.size > @limit && !records.pop.nil?
+      end
+    end
+
+    # Return the filter for a cutoff
+    def filter_for(cutoff, prefix = nil)
+      attributes = typecast(@keyset.keys.zip(cutoff).to_h)
+      prefix ? attributes.transform_keys { |key| :"#{prefix}#{key}" } : attributes
+    end
+
+    # Return the next page (i.e. the cutoff of the current page)
+    def next
+      records
+      return unless @more
+
+      @next ||= B64.urlsafe_encode(derive_cutoff.to_json)
+    end
+
+    # Fetch the array of records for the current page
+    def records
+      @records ||= begin
+                     @set = selected if select?
+                     @set = filtered if @filter
+                     fetch_records
+                   end
+    end
+
+    # Prepare the literal SQL filter (complete with the placeholders for value interpolation)
     # used to filter the page records. For example:
     #
     # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
@@ -66,7 +104,7 @@ class Pagy
     #
     #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
     #
-    def after_cutoff_sql(prefix = nil)   # prefix is used by the Keyset::Keynav instances
+    def sql_filter(prefix = nil)   # prefix is used by the Keyset::Keynav instances
       operator    = { asc: '>', desc: '<' }
       directions  = @keyset.values
       table       = @set.model.table_name
@@ -81,48 +119,12 @@ class Pagy
           last_column, last_direction = keyset.pop
           query = +'('
           query << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
-                     << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
+          << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
           query << ')'
           where << query
         end
         where.join(' OR ')
       end
-    end
-
-    # Derive the cutoff from the last record
-    def derive_cutoff
-      attr = keyset_attributes_from(@records.last)
-      (@options[:stringify_keyset_values]&.(attr) || attr).values
-    end
-
-    # Fetch the records and set the @more flag
-    def fetch_records
-      records = @set.limit(@limit + 1).to_a
-      @more   = records.size > @limit && !records.pop.nil?
-      records
-    end
-
-    # Return the filter arguments for a cutoff
-    def filter_args_for(cutoff)
-      args = @keyset.keys.zip(cutoff).to_h
-      typecast_args(args)
-    end
-
-    # Return the next page (i.e. the cutoff of the current page)
-    def next
-      records
-      return unless @more
-
-      @next ||= B64.urlsafe_encode(derive_cutoff.to_json)
-    end
-
-    # Fetch the array of records for the current page
-    def records
-      @records ||= begin
-                     @set = apply_select if select?
-                     @set = filter_records if @filter_args
-                     fetch_records
-                   end
     end
   end
 end
