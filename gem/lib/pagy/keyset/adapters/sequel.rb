@@ -21,28 +21,29 @@ class Pagy
           end
         end
 
-        # Apply the filtering where clause
-        def filtered = @set.where(::Sequel.lit(sql_filter, **@filter))
-
         # Get the keyset attributes from the record
         def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
-
-        # Set with selected columns?
-        def select? = !@set.opts[:select].nil?
-
-        # Append the missing keyset keys if the set is restricted by select
-        def selected
-          selected = @set.opts[:select]
-          @set.select_append(*@keyset.keys.reject { |c| selected.include?(c) })
-        end
 
         # Typecast the attributes
         def typecast(attributes)
           model = @set.opts[:model]
-          model.unrestrict_primary_key if (restricted_pk = model.restrict_primary_key?)
+          model.unrestrict_primary_key if (primary_key_is_restricted = model.restrict_primary_key?)
           attributes = model.new(attributes).to_hash.slice(*attributes.keys.map(&:to_sym))
-          model.restrict_primary_key if restricted_pk
+          model.restrict_primary_key if primary_key_is_restricted
           attributes
+        end
+
+        # Append the missing keyset keys if the set is restricted by select
+        def ensure_select
+          return if @set.opts[:select].nil?
+
+          selected = @set.opts[:select]
+          @set = @set.select_append(*@keyset.keys.reject { |c| selected.include?(c) })
+        end
+
+        # Apply the where predicate to the set
+        def apply_where(predicate, arguments)
+          @set = @set.where(::Sequel.lit(predicate, **arguments))
         end
       end
     end

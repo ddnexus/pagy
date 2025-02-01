@@ -14,7 +14,7 @@ class Pagy
 
     # Allow to run Keyset.new or Keyset::ActiveRecord.new or Keyset::Sequel.new
     def self.new(set, **)
-      # A subclass instance runs only the initializer
+      # Subclass instances run only the initializer
       if /::(?:ActiveRecord|Sequel)$/.match?(name)  # check without triggering autoload
         return allocate.tap { |instance| instance.send(:initialize, set, **) }
       end
@@ -37,40 +37,14 @@ class Pagy
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
       assign_page
-      assign_filter
     end
 
-    # Assign the filter_args
-    def assign_filter
-      return unless @prior_cutoff
-
-      @filter = filter_for(@prior_cutoff)
-    end
-
-    # Assign the page
-    def assign_page
-      return unless (@page = @options[:page])
-
-      @prior_cutoff = JSON.parse(B64.urlsafe_decode(@page))
-    end
-
-    # Derive the cutoff from the last record
-    def derive_cutoff
-      attr = keyset_attributes_from(@records.last)
-      (@options[:stringify_keyset_values]&.(attr) || attr).values
-    end
-
-    # Fetch the records and set the @more flag
-    def fetch_records
-      @set.limit(@limit + 1).to_a.tap do |records|
-        @more = records.size > @limit && !records.pop.nil?
-      end
-    end
-
-    # Return the filter for a cutoff
-    def filter_for(cutoff, prefix = nil)
-      attributes = typecast(@keyset.keys.zip(cutoff).to_h)
-      prefix ? attributes.transform_keys { |key| :"#{prefix}#{key}" } : attributes
+    # Fetch the array of records for the current page
+    def records
+      @records ||= begin
+                     ensure_select
+                     fetch_records
+                   end
     end
 
     # Return the next page (i.e. the cutoff of the current page)
@@ -81,19 +55,28 @@ class Pagy
       @next ||= B64.urlsafe_encode(derive_cutoff.to_json)
     end
 
-    # Fetch the array of records for the current page
-    def records
-      @records ||= begin
-                     @set = selected if select?
-                     @set = filtered if @filter
-                     fetch_records
-                   end
+    def keyset? = true
+
+    protected
+
+    # Assign the page
+    def assign_page
+      return unless (@page = @options[:page])
+
+      @prior_cutoff = JSON.parse(B64.urlsafe_decode(@page))
     end
 
-    # Prepare the literal SQL filter (complete with the placeholders for value interpolation)
-    # used to filter the page records. For example:
+    def fetch_records
+      apply_where(compose_predicate, arguments_from(@prior_cutoff)) if @prior_cutoff
+      @set.limit(@limit + 1).to_a.tap do |records|
+        @more = records.size > @limit && !records.pop.nil?
+      end
+    end
+
+    # Compose the parameterized predicate used to extract the page records.
     #
-    # With a set like Pet.order(animal: :asc, name: :desc, id: :asc) it returns the following string:
+    # For example: with a set like Pet.order(animal: :asc, name: :desc, id: :asc)
+    # it returns a union of intersections:
     #
     #    ("pets"."animal" = :animal AND "pets"."name" = :name AND "pets"."id" > :id) OR
     #    ("pets"."animal" = :animal AND "pets"."name" < :name) OR
@@ -104,7 +87,7 @@ class Pagy
     #
     #     ("pets"."animal", "pets"."name", "pets"."id") > (:animal, :name, :id)
     #
-    def sql_filter(prefix = nil)   # prefix is used by the Keyset::Keynav instances
+    def compose_predicate(prefix = nil)
       operator    = { asc: '>', desc: '<' }
       directions  = @keyset.values
       table       = @set.model.table_name
@@ -114,17 +97,29 @@ class Pagy
         "(#{identifier.values.join(', ')}) #{operator[directions.first]} (#{placeholder.values.join(', ')})"
       else
         keyset = @keyset.to_a
-        where  = []
+        union  = []
         until keyset.empty?
           last_column, last_direction = keyset.pop
-          query = +'('
-          query << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
-          << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
-          query << ')'
-          where << query
+          intersection = +'('
+          intersection << (keyset.map { |column, _d| "#{identifier[column]} = #{placeholder[column]}" } \
+                            << "#{identifier[last_column]} #{operator[last_direction]} #{placeholder[last_column]}").join(' AND ')
+          intersection << ')'
+          union << intersection
         end
-        where.join(' OR ')
+        union.join(' OR ')
       end
+    end
+
+    # Return the prefixed arguments from a cutoff
+    def arguments_from(cutoff, prefix = nil)
+      attributes = typecast(@keyset.keys.zip(cutoff).to_h)
+      prefix ? attributes.transform_keys { |key| :"#{prefix}#{key}" } : attributes
+    end
+
+    # Derive the cutoff from the last record (only called if @more)
+    def derive_cutoff
+      attr = keyset_attributes_from(@records.last)
+      (@options[:stringify_keyset_values]&.(attr) || attr).values
     end
   end
 end

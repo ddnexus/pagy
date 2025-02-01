@@ -15,8 +15,6 @@ class Pagy
       PRIOR_PREFIX = 'prior_'
       PAGE_PREFIX  = 'page_'
 
-      attr_reader :update
-
       # Finalize the instance variables needed for the UI
       def initialize(set, **)
         super
@@ -26,31 +24,9 @@ class Pagy
         @in       = @records.size
       end
 
-      # Support skipping the LIMIT if the page has already been visited
-      def assign_filter
-        return super unless @page_cutoff
+      attr_reader :update
 
-        @filter = filter_for(@prior_cutoff, PRIOR_PREFIX) if @prior_cutoff
-        (@filter ||= {}).merge!(filter_for(@page_cutoff, PAGE_PREFIX))
-      end
-
-      # Get the keynav page from the client
-      def assign_page
-        if @options[:page]
-          storage_key, @page, @last, @prior_cutoff, @page_cutoff = @options[:page]
-        else
-          @page = @last = 1
-        end
-        @update = [storage_key, @options[:page_sym]]
-      end
-
-      # Remove the LIMIT if the page has already been visited
-      def fetch_records
-        return super unless @page_cutoff # last known page
-
-        @more = true
-        @set.limit(nil).to_a
-      end
+      def keynav? = true
 
       # Prepare the @update for the client when it's a new page and return the next page number
       def next
@@ -67,20 +43,37 @@ class Pagy
                   end
       end
 
-      # Generate an accurate composite filter that does not need LIMIT
-      # if the page has already been visited.
-      # This will be interpolated with the @filter
-      def sql_filter
-        return super unless @page_cutoff # last known page
+      protected
 
-        sql = +''
-        # Include the records after @prior_cutoff (if any)
-        sql << "(#{super(PRIOR_PREFIX)}) AND " if @prior_cutoff
-        # Exclude the records after @page_cutoff
-        sql << "NOT (#{super(PAGE_PREFIX)})"
+      # Get the keynav page from the client
+      def assign_page
+        if @options[:page]
+          storage_key, @page, @last, @prior_cutoff, @page_cutoff = @options[:page]
+        else
+          @page = @last = 1
+        end
+        @update = [storage_key, @options[:page_sym]]
       end
 
-      def keynav? = true
+      def fetch_records
+        return super unless @page_cutoff # last page
+
+        # Composite predicate for visited pages
+        predicate = +''
+        arguments = {}
+        if @prior_cutoff # not the first page
+          # Include the records after @prior_cutoff
+          predicate << "(#{compose_predicate(PRIOR_PREFIX)}) AND "
+          arguments.merge!(arguments_from(@prior_cutoff, PRIOR_PREFIX))
+        end
+        # Exclude the records after @page_cutoff
+        predicate << "NOT (#{compose_predicate(PAGE_PREFIX)})"
+        arguments.merge!(arguments_from(@page_cutoff, PAGE_PREFIX))
+        apply_where(predicate, arguments)
+
+        @more = true          # not the last page
+        @set.limit(nil).to_a  # replaced by the composite predicate
+      end
     end
   end
 end
