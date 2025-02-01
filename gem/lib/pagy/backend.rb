@@ -8,7 +8,7 @@ class Pagy
   module Back
     module_function
 
-    # Check whether it uses jsonapi and the params are consistent
+    # Check the use of jsonapi and its consistency
     def jsonapi?(params, options)
       return false unless params[:page] && options[:jsonapi] # rubocop:disable Layout/EmptyLineAfterGuardClause
       params[:page].respond_to?(:fetch) || raise(JsonapiReservedParamError, params[:page])
@@ -21,8 +21,7 @@ class Pagy
     end
   end
 
-  # Define a few generic methods to paginate a collection out of the box,
-  # or any collection by overriding any of the `pagy_*` methods in your controller.
+  # Module to include in the app controller
   module Backend
     private
 

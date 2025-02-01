@@ -13,7 +13,7 @@ class Pagy
                  current: %(<li class="page-item active"><a role="link" class="page-link" ) +
                           %(aria-current="page" aria-disabled="true">#{LABEL_TOKEN}</a></li>),
                  gap:     %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
-                              pagy_t('pagy.gap')}</a></li>),
+                              pagy_translate('pagy.gap')}</a></li>),
                  after:   %(#{pagy_bootstrap_html_for(:next, pagy, a)}</ul>) }
       NavJs.tag(self, pagy, tokens, 'pagy-bootstrap nav-js', **)
     end

@@ -17,7 +17,7 @@ class Pagy
                   %(<li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">#{
                       pagy.label(page: item)}</a></li>)
                 when :gap
-                  %(<li><span class="pagination-ellipsis">#{pagy_t 'pagy.gap'}</span></li>)
+                  %(<li><span class="pagination-ellipsis">#{pagy_translate('pagy.gap')}</span></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end

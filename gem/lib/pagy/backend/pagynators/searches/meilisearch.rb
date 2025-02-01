@@ -9,7 +9,7 @@ class Pagy
     # Paginate from search object
     def pagy_meilisearch(search, **options)
       if search.is_a?(Search::Arguments)
-        # The search is the array of pagy_search args from the model
+        # The search is the array of pagy_search arguments
         SearchWrapper.wrap(self, search, options) do
           # The wrapper is generic, but this block is specific for this search class
           model, term, search_options    = search

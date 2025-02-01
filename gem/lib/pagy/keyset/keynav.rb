@@ -68,7 +68,8 @@ class Pagy
       end
 
       # Generate an accurate composite filter that does not need LIMIT
-      # if the page has already been visited
+      # if the page has already been visited.
+      # This will be interpolated with the @filter
       def sql_filter
         return super unless @page_cutoff # last known page
 

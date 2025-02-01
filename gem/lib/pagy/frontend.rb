@@ -6,13 +6,17 @@ require_relative 'frontend/loader'
 class Pagy
   # Module to include in the app helper
   module Frontend
-    include Url
+    module I18nGemOverride
+      def pagy_translate(...) = ::I18n.translate(...)
+      alias pagy_t pagy_translate
+    end
 
-    # Override pagy_t to use ::I18n.t
     def self.translate_with_the_slower_i18n_gem!
-      prepend(Module.new { def pagy_t(...) = ::I18n.t(...) })
+      prepend I18nGemOverride
       ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
     end
+
+    include Url
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
@@ -25,11 +29,12 @@ class Pagy
       end
     end
 
-    # Similar to I18n.t: just ~18x faster using ~10x less memory
+    # Similar to I18n.ttranslate: just ~18x faster using ~10x less memory
     # (@pagy_locale explicitly initialized in order to avoid warning)
-    def pagy_t(key, **)
+    def pagy_translate(key, **)
       Pagy::I18n.translate(key, locale: (@pagy_locale ||= nil), **)
     end
+    alias pagy_t pagy_translate
 
     include Frontend::Loader
   end

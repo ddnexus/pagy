@@ -18,7 +18,7 @@ class Pagy
       def initialize(**)    # rubocop:disable Lint/MissingSuper
         assign_options(**)
         assign_and_check(page: 1)
-        assign_unit_vars
+        assign_unit_variables
         return unless in_range? { @page <= @last }
 
         assign_previous_and_next
@@ -27,14 +27,14 @@ class Pagy
       attr_reader :order, :from, :to
 
       # Called by false in_range?
-      def assign_empty_page_vars
+      def assign_empty_page_variables
         @in = @from = @to = 0                        # options relative to the actual page
         edge = @order == :asc ? @final : @initial    # get the edge of the range (neat, but any time would do)
         @from = @to = edge                           # set both to the edge time (a >=&&< query will get no records)
         @previous = @last
       end
 
-      # The label for any page (it can pass along the I18n gem options when it's used with the i18n extra)
+      # The label for any page (it can forward the I18n gem options when it's used with the i18n extra)
       def label(page: @page, **options)
         options[:format] ||= @options[:format]
         localize(starting_time_for(page.to_i), **options)  # page could be a string
@@ -49,7 +49,7 @@ class Pagy
       end
 
       # The page that includes time
-      # In case of out of range time, the :fit_time option avoids the outOfRangeError
+      # In case of time out of range, the :fit_time option avoids the RangeError
       # and returns the closest page to the passed time argument (first or last page)
       def page_at(time, **options)
         fit_time  = time
@@ -71,7 +71,7 @@ class Pagy
       end
 
       # Base class method for the setup of the unit variables (subclasses must implement it and call super)
-      def assign_unit_vars
+      def assign_unit_variables
         raise OptionError.new(self, :format, 'to be a strftime format', @options[:format]) unless @options[:format].is_a?(String)
         raise OptionError.new(self, :order, 'to be in [:asc, :desc]', @order) \
               unless %i[asc desc].include?(@order = @options[:order])
@@ -91,7 +91,7 @@ class Pagy
         time.strftime(options[:format])
       end
 
-      # Number of time units to offset from the @initial time, in order to get the ordered starting time for the page.
+      # The number of time units to offset from the @initial time, in order to get the ordered starting time for the page.
       # Used in starting_time_for(page) where page starts from 1 (e.g. page to starting_time means subtracting 1)
       def time_offset_for(page)
         @order == :asc ? page - 1 : @last - page
@@ -103,12 +103,12 @@ class Pagy
       end
 
       # :nocov:
-      # This method must be implemented by the unit subclass
+      # This method must be implemented by the Unit subclass
       def starting_time_for(*)
         raise NoMethodError, 'the starting_time_for method must be implemented by the unit subclass'
       end
 
-      # This method must be implemented by the unit subclass
+      # This method must be implemented by the Unit subclass
       def page_offset_at(*)
         raise NoMethodError, 'the page_offset_at method must be implemented by the unit subclass'
       end

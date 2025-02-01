@@ -17,7 +17,6 @@ class Pagy
 
     attr_reader :offset, :from, :to
 
-    # Merge and validate the options, do some simple arithmetic and set the instance variables
     def initialize(**) # rubocop:disable Lint/MissingSuper
       assign_options(**)
       assign_and_check(limit: 1, count: 0, page: 1)
@@ -41,9 +40,9 @@ class Pagy
     end
 
     # Called by false in_range?
-    def assign_empty_page_vars
+    def assign_empty_page_variables
       @in = @from = @to = @offset = @limit = 0     # options relative to the actual page
-      @previous = @last                                # @previous relative to the actual page
+      @previous = @last                            # @previous relative to the actual page
     end
   end
 end

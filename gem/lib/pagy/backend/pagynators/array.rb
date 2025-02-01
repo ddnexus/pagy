@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Paginate arrays efficiently, avoiding expensive array-wrapping and without overriding
+  # Paginate arrays efficiently
   Backend.module_eval do
     private
 

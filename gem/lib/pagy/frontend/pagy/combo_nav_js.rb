@@ -10,7 +10,7 @@ class Pagy
       pages = pagy.pages
       input = %(<input name="page" type="number" min="1" max="#{pages}" value="#{pagy.page}" aria-current="page" ) +
               %(style="text-align: center; width: #{pages.to_s.length + 1}rem; padding: 0;">#{A_TAG})
-      html  = %(#{pagy_previous_a(pagy, a)}<label>#{pagy_t('pagy.combo_nav_js', page_input: input, pages:)}</label>#{
+      html  = %(#{pagy_previous_a(pagy, a)}<label>#{pagy_translate('pagy.combo_nav_js', page_input: input, pages:)}</label>#{
                 pagy_next_a(pagy, a)})
       ComboNavJs.tag(self, pagy, html, 'pagy combo-nav-js', **)
     end

@@ -1,4 +1,3 @@
-# See Pagy::Offset::Backend API documentation: https://ddnexus.github.io/pagy/docs/api/backend
 # frozen_string_literal: true
 
 class Pagy
@@ -15,13 +14,13 @@ class Pagy
       [pagy, pagy_get_items(collection, pagy)]
     end
 
-    # Get the count from the collection
+    # Get the collection count
     def pagy_get_count(collection, options)
       count_args = options[:count_args] || [:all]
       (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
     end
 
-    # You may need to override this method for collections without offset|limit
+    # Get the items for the page
     def pagy_get_items(collection, pagy)
       collection.offset(pagy.offset).limit(pagy.limit)
     end

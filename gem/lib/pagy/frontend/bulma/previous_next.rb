@@ -8,11 +8,12 @@ class Pagy
     def bulma_previous_next_html(pagy, a)
       %w[previous next].inject(+'') do |html, which|
         html << if pagy.send(which)
-                  a.(pagy.send(which), pagy_t("pagy.#{which}"), classes:    "pagination-#{which}",
-                                                                aria_label: pagy_t("pagy.aria_label.#{which}"))
+                  a.(pagy.send(which), pagy_translate("pagy.#{which}"),
+                     classes:    "pagination-#{which}",
+                     aria_label: pagy_translate("pagy.aria_label.#{which}"))
                 else
                   %(<a role="link" class="pagination-#{which}" disabled aria-disabled="true" aria-label="#{
-                  pagy_t("pagy.aria_label.#{which}")}">#{pagy_t("pagy.#{which}")}</a>)
+                  pagy_translate("pagy.aria_label.#{which}")}">#{pagy_translate("pagy.#{which}")}</a>)
                 end
       end
     end

@@ -8,11 +8,12 @@ class Pagy
     def pagy_bootstrap_html_for(which, pagy, a)
       if pagy.send(which)
         %(<li class="page-item #{which}">#{
-        a.(pagy.send(which), pagy_t("pagy.#{which}"), classes:    'page-link',
-                                                      aria_label: pagy_t("pagy.aria_label.#{which}"))}</li>)
+        a.(pagy.send(which), pagy_translate("pagy.#{which}"),
+           classes:    'page-link',
+           aria_label: pagy_translate("pagy.aria_label.#{which}"))}</li>)
       else
         %(<li class="page-item #{which} disabled"><a role="link" class="page-link" aria-disabled="true" aria-label="#{
-        pagy_t("pagy.aria_label.#{which}")}">#{pagy_t("pagy.#{which}")}</a></li>)
+        pagy_translate("pagy.aria_label.#{which}")}">#{pagy_translate("pagy.#{which}")}</a></li>)
       end
     end
   end

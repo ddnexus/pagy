@@ -17,10 +17,10 @@ class Pagy
       %(<span#{%( id="#{id}") if id} class="pagy limit-selector-js" #{
       DataPagy.attr(:sj, pagy.from, url_token)
       }><label>#{
-      pagy_t('pagy.limit_selector_js',
-             item_name: item_name || pagy_t('pagy.item_name', count: limit),
-             limit_input:,
-             count: limit)
+      pagy_translate('pagy.limit_selector_js',
+                     item_name: item_name || pagy_translate('pagy.item_name', count: limit),
+                     limit_input:,
+                     count: limit)
       }</label></span>)
     end
   end

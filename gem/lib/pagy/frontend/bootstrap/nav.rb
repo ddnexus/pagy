@@ -18,7 +18,7 @@ class Pagy
                       pagy.label(page: item)}</a></li>)
                 when :gap
                   %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
-                      pagy_t('pagy.gap')}</a></li>)
+                      pagy_translate('pagy.gap')}</a></li>)
                 else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end

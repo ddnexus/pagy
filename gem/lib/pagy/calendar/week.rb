@@ -11,7 +11,7 @@ class Pagy
       protected
 
       # Set up the calendar variables
-      def assign_unit_vars
+      def assign_unit_variables
         super
         @initial = @starting.beginning_of_week
         @final   = @ending.next_week.beginning_of_week

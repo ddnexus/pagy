@@ -9,11 +9,11 @@ class Pagy
     def pagy_keynav_js(set, **options)
       page = pagy_get_page(options, force_integer: false) # allow nil
       if page&.match(' ')       # countless page -> no augmentation -> fallback
-        return pagy_countless(set, **options)
+        return pagy_countless(set, page:, **options)
       elsif page.is_a?(String)  # keynav page param
-        page_args = JSON.parse(B64.urlsafe_decode(page))
+        page_arguments = JSON.parse(B64.urlsafe_decode(page))
         # Restart the pagination from page 1 if the url has been requested from another browser
-        options[:page] = page_args if request.cookies['pagy'] == page_args.shift
+        options[:page] = page_arguments if request.cookies['pagy'] == page_arguments.shift
       end
 
       options[:limit] = pagy_get_limit(options)

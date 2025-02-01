@@ -15,7 +15,7 @@ class Pagy
       html  = %(<ul class="#{classes}">#{
                   pagy_bootstrap_html_for(:previous, pagy, a)
                 }<li class="page-item pagy-bootstrap"><label class="page-link">#{
-                  pagy_t('pagy.combo_nav_js', page_input: input, pages:)
+                  pagy_translate('pagy.combo_nav_js', page_input: input, pages:)
                 }</label></li>#{
                   pagy_bootstrap_html_for(:next, pagy, a)
                 }</ul>)
