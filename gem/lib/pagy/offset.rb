@@ -15,8 +15,6 @@ class Pagy
 
     DEFAULT = { page: 1 }.freeze
 
-    attr_reader :offset, :from, :to
-
     def initialize(**) # rubocop:disable Lint/MissingSuper
       assign_options(**)
       assign_and_check(limit: 1, count: 0, page: 1)
@@ -29,6 +27,8 @@ class Pagy
       @in   = [@to - @from + 1, @count].min
       assign_previous_and_next
     end
+
+    attr_reader :offset, :from, :to
 
     def assign_last
       @last = [(@count.to_f / @limit).ceil, 1].max
@@ -44,5 +44,7 @@ class Pagy
       @in = @from = @to = @offset = @limit = 0     # options relative to the actual page
       @previous = @last                            # @previous relative to the actual page
     end
+
+    def offset? = true
   end
 end

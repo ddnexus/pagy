@@ -48,7 +48,7 @@ class Pagy
       query_params             = request_var ? (request_var[:query_params] || {}) : request.GET.clone(freeze: false)
       query_params.delete(options[:jsonapi] ? 'page' : page_name)
       page_and_limit = {}.tap do |h|
-                         h[page_name]  = pagy.page_for_url(page)
+                         h[page_name]  = pagy.countless? ? "#{page || 1}+#{pagy.last}" : page
                          h[limit_name] = limit_token || options[:limit] if options[:requestable_limit]
                        end.compact # no empty params
       query_params.merge!(options[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?

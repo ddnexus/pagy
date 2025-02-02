@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class Pagy
+  # Relegate internal functions. Make overriding search classes easier.
   module SearchWrapper
     module_function
 
+    # Common search logic
     def wrap(backend, pagy_search_args, options)
       backend.instance_exec do
         options[:page]  ||= pagy_get_page(options)

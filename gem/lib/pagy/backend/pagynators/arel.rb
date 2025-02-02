@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
+  # Add arel offset pagynator
   Backend.module_eval do
     private
 

@@ -7,26 +7,26 @@ class Pagy
 
       def pagy_load_backend(...)
         method_sym = __callee__
-        require BACKEND_METHODS[method_sym]
+        require_relative BACKEND_METHODS[method_sym]
         send(method_sym, ...)
       end
 
-      BACKEND_METHODS = { pagy_headers:             PAGY_PATH.join('backend/helpers/headers'),
-                          pagy_headers_merge:       PAGY_PATH.join('backend/helpers/headers'),
-                          pagy_data:                PAGY_PATH.join('backend/helpers/data'),
-                          pagy_links:               PAGY_PATH.join('backend/helpers/links'),
-                          pagy_arel:                PAGY_PATH.join('backend/pagynators/arel'),
-                          pagy_array:               PAGY_PATH.join('backend/pagynators/array'),
-                          pagy_calendar:            PAGY_PATH.join('backend/pagynators/calendar'),
-                          pagy_countless:           PAGY_PATH.join('backend/pagynators/countless'),
-                          pagy_keynav_js:           PAGY_PATH.join('backend/pagynators/keynav'),
-                          pagy_keyset:              PAGY_PATH.join('backend/pagynators/keyset'),
-                          pagy_keyset_first_url:    PAGY_PATH.join('backend/pagynators/keyset'),
-                          pagy_keyset_next_url:     PAGY_PATH.join('backend/pagynators/keyset'),
-                          pagy_offset:              PAGY_PATH.join('backend/pagynators/offset'),
-                          pagy_elasticsearch_rails: PAGY_PATH.join('backend/pagynators/searches/elasticsearch_rails'),
-                          pagy_meilisearch:         PAGY_PATH.join('backend/pagynators/searches/meilisearch'),
-                          pagy_searchkick:          PAGY_PATH.join('backend/pagynators/searches/searchkick') }.freeze
+      BACKEND_METHODS = { pagy_headers:             'helpers/headers',
+                          pagy_headers_merge:       'helpers/headers',
+                          pagy_data:                'helpers/data',
+                          pagy_links:               'helpers/links',
+                          pagy_arel:                'pagynators/arel',
+                          pagy_array:               'pagynators/array',
+                          pagy_calendar:            'pagynators/calendar',
+                          pagy_countless:           'pagynators/countless',
+                          pagy_keynav_js:           'pagynators/keynav',
+                          pagy_keyset:              'pagynators/keyset',
+                          pagy_keyset_first_url:    'pagynators/keyset',
+                          pagy_keyset_next_url:     'pagynators/keyset',
+                          pagy_offset:              'pagynators/offset',
+                          pagy_elasticsearch_rails: 'pagynators/searches/elasticsearch_rails',
+                          pagy_meilisearch:         'pagynators/searches/meilisearch',
+                          pagy_searchkick:          'pagynators/searches/searchkick' }.freeze
 
       BACKEND_METHODS.each_key do |method|
         class_eval "alias #{method} pagy_load_backend", __FILE__, __LINE__  # alias pagy_* pagy_load_backend

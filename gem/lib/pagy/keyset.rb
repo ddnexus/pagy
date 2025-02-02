@@ -12,7 +12,7 @@ class Pagy
 
     class TypeError < ::TypeError; end
 
-    # Allow to run Keyset.new or Keyset::ActiveRecord.new or Keyset::Sequel.new
+    # Initialize Keyset* and Keyset::Keynav* classes and subclasses
     def self.new(set, **)
       # Subclass instances run only the initializer
       if /::(?:ActiveRecord|Sequel)$/.match?(name)  # check without triggering autoload
@@ -39,7 +39,7 @@ class Pagy
       assign_page
     end
 
-    # Fetch the array of records for the current page
+    # Return the array of records for the current page
     def records
       @records ||= begin
                      ensure_select
@@ -59,7 +59,6 @@ class Pagy
 
     protected
 
-    # Assign the page
     def assign_page
       return unless (@page = @options[:page])
 

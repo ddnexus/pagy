@@ -2,9 +2,8 @@
 
 class Pagy
   class Offset
-    # No need to know the count to paginate
+    # Offset pagination without a count
     class Countless < Offset
-      # Merge and validate the options, do some simple arithmetic and set a few instance variables
       def initialize(**) # rubocop:disable Lint/MissingSuper
         assign_options(**)
         assign_and_check(limit: 1, page: 1)
@@ -12,15 +11,11 @@ class Pagy
         assign_offset
       end
 
-      def countless? = true
-
       def assign_last
         @last = (@options[:last] || 1).to_i
         @last = @page = @options[:max_pages] \
           if @options[:max_pages] && (@last > @options[:max_pages] || @page > @options[:max_pages])
       end
-
-      def page_for_url(page) = [page || 1, @last].join('+')
 
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
@@ -38,6 +33,8 @@ class Pagy
         assign_previous_and_next
         self
       end
+
+      def countless? = true
     end
 
     module SeriesOverride # :nodoc:

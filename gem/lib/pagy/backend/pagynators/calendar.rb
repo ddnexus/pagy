@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add pagination filtering by calendar unit (:year, :quarter, :month, :week, :day) to the regular pagination
+  # Add calendar pagynator
   Backend.module_eval do
     private
 

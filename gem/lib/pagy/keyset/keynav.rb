@@ -28,7 +28,7 @@ class Pagy
 
       def keynav? = true
 
-      # Prepare the @update for the client when it's a new page and return the next page number
+      # Prepare the @update for the client when it's a new page, and return the next page number
       def next
         records
         return if !@more || (@options[:max_pages] && @page >= @options[:max_pages])
@@ -45,7 +45,7 @@ class Pagy
 
       protected
 
-      # Get the keynav page from the client
+      # Process the page array
       def assign_page
         if @options[:page]
           storage_key, @page, @last, @prior_cutoff, @page_cutoff = @options[:page]
@@ -55,10 +55,11 @@ class Pagy
         @update = [storage_key, @options[:page_sym]]
       end
 
+      # Use a compound predicate to fetch the records
       def fetch_records
         return super unless @page_cutoff # last page
 
-        # Composite predicate for visited pages
+        # Compound predicate for visited pages
         predicate = +''
         arguments = {}
         if @prior_cutoff # not the first page
@@ -72,7 +73,7 @@ class Pagy
         apply_where(predicate, arguments)
 
         @more = true          # not the last page
-        @set.limit(nil).to_a  # replaced by the composite predicate
+        @set.limit(nil).to_a  # replaced by the compound predicate
       end
     end
   end

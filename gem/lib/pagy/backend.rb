@@ -23,9 +23,10 @@ class Pagy
 
   # Module to include in the app controller
   module Backend
-    private
-
     include Url
+    include Loader
+
+    private
 
     # Get the limit from request, options or DEFAULT
     def pagy_get_limit(options)
@@ -41,7 +42,5 @@ class Pagy
       page     = Back.jsonapi?(params, options) ? params[:page][page_sym] : params[page_sym]
       force_integer ? (page || 1).to_i : page
     end
-
-    include Backend::Loader
   end
 end

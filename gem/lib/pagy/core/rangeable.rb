@@ -2,7 +2,7 @@
 
 class Pagy
   module Core
-    # Add method supporting range checking
+    # Add method supporting range checking, range error and rescue
     module Rangeable
       # Check if in range
       def in_range?

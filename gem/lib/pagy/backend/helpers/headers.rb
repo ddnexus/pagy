@@ -7,7 +7,7 @@ class Pagy
                    limit: 'page-items',
                    count: 'total-count',
                    pages: 'total-pages' }.freeze
-  # Add specialized backend methods to add pagination response headers
+  # Add pagination response headers
   Backend.module_eval do
     private
 

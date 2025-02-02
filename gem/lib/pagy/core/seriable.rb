@@ -6,9 +6,6 @@ class Pagy
     module Seriable
       LENGTH = 7
 
-      # Label for any page. Allow the customization of the output (overridden by the calendar)
-      def label(page: @page, **) = page.to_s
-
       # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
       def series(length: @options[:length] || LENGTH, compact: @options[:compact], **)
         raise OptionError.new(self, :length, 'to be an Integer >= 0', length) \
@@ -40,15 +37,17 @@ class Pagy
         end
       end
 
-      # `Pagy` instance method used by the `pagy*_nav_js` helpers.
       # Return the reverse sorted array of widths, series, and labels generated from the :steps hash
-      # Notice: if :steps is false it will use the single {0 => @options[:length]} length
+      # If :steps is false it will use the single {0 => @options[:length]} length
       def sequels(steps: @options[:steps] || { 0 => @options[:length] || LENGTH }, **)
         raise OptionError.new(self, :steps, 'to define the 0 width', steps) unless steps.key?(0)
 
         widths, series = steps.sort.reverse.map { |width, length| [width, series(length:)] }.transpose
         [widths, series, label_sequels(series)]
       end
+
+      # Label for any page. Allow the customization of the output (overridden by the calendar)
+      def label(page: @page, **) = page.to_s
 
       # Support for the Calendar API
       def label_sequels(*); end

@@ -2,7 +2,6 @@
 
 class Pagy
   class Calendar
-    # Day unit subclass
     class Day < Unit
       DEFAULT = { length:  31,
                   compact: true,
@@ -11,7 +10,6 @@ class Pagy
 
       protected
 
-      # Set up the calendar variables
       def assign_unit_variables
         super
         @initial = @starting.beginning_of_day
@@ -21,7 +19,6 @@ class Pagy
         @to      = @from.tomorrow
       end
 
-      # Starting time for the page
       def starting_time_for(page)
         @initial.days_since(time_offset_for(page))
       end

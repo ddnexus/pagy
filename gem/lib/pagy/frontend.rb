@@ -17,6 +17,7 @@ class Pagy
     end
 
     include Url
+    include Loader
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
@@ -29,13 +30,11 @@ class Pagy
       end
     end
 
-    # Similar to I18n.ttranslate: just ~18x faster using ~10x less memory
+    # Similar to I18n.translate: just ~18x faster using ~10x less memory
     # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_translate(key, **)
       Pagy::I18n.translate(key, locale: (@pagy_locale ||= nil), **)
     end
     alias pagy_t pagy_translate
-
-    include Frontend::Loader
   end
 end

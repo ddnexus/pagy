@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'pathname'
+require_relative 'pagy/exceptions'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
@@ -19,11 +20,9 @@ class Pagy
   autoload :Searchkick,         PAGY_PATH.join('search')
   autoload :Keyset,             PAGY_PATH.join('keyset')
   autoload :Console,            PAGY_PATH.join('console')
-  autoload :Javascript,         PAGY_PATH.join('config')
+  autoload :Javascript,         PAGY_PATH.join('javascript')
 
-  DEFAULT     = { limit:     20,
-                  limit_sym: :limit,
-                  page_sym:  :page }.freeze
+  DEFAULT     = { limit: 20, limit_sym: :limit, page_sym: :page }.freeze
   PAGE_TOKEN  = 'P '
   LIMIT_TOKEN = 'L '
   LABEL_TOKEN = 'L'
@@ -33,6 +32,16 @@ class Pagy
 
   alias pages last
 
+  # Define the hierarchical identity methods, overridden by the respective classes
+  def offset?    = false
+  def countless? = false
+  def calendar?  = false
+  def search?    = false
+  def keyset?    = false
+  def keynav?    = false
+
+  protected
+
   # Validates and assign the passed options: var must be present and value.to_i must be >= to min
   def assign_and_check(name_min)
     name_min.each do |name, min|
@@ -41,6 +50,7 @@ class Pagy
     end
   end
 
+  # Merge all the DEFAULT constants of the class hierarchy with the options
   def assign_options(**options)
     default = {}
     current = self.class
@@ -48,13 +58,6 @@ class Pagy
       default = current::DEFAULT.merge(default)
       current = current.superclass
     end until current == Object  # rubocop:disable Lint/Loop  # see https://github.com/rubocop/rubocop-performance/issues/362
-    @options = default.merge(options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
+    @options = default.merge!(options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
   end
-
-  def page_for_url(page) = page
-  def keynav?            = false
-  def countless?         = false
-  def calendar?          = false
 end
-
-require_relative 'pagy/exceptions'

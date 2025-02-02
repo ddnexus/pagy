@@ -2,15 +2,12 @@
 
 class Pagy
   class Calendar
-    # Week unit subclass
     class Week < Unit
-      DEFAULT  = { length: 7,  # general default
-                   order:  :asc,
+      DEFAULT  = { order:  :asc,
                    format: '%Y-%W' }.freeze
 
       protected
 
-      # Set up the calendar variables
       def assign_unit_variables
         super
         @initial = @starting.beginning_of_week
@@ -20,7 +17,6 @@ class Pagy
         @to      = @from.next_week
       end
 
-      # Starting time for the page
       def starting_time_for(page)
         @initial.weeks_since(time_offset_for(page))
       end

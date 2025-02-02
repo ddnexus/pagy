@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Paginate arrays efficiently
+  # Add array pagynator
   Backend.module_eval do
     private
 

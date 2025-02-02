@@ -2,7 +2,6 @@
 
 class Pagy # :nodoc:
   class Calendar # :nodoc:
-    # Month unit subclass
     class Month < Unit
       DEFAULT = { length:  12,
                   compact: true,
@@ -11,7 +10,6 @@ class Pagy # :nodoc:
 
       protected
 
-      # Set up the calendar variables
       def assign_unit_variables
         super
         @initial = @starting.beginning_of_month
@@ -21,7 +19,6 @@ class Pagy # :nodoc:
         @to      = @from.next_month
       end
 
-      # Starting time for the page
       def starting_time_for(page)
         @initial.months_since(time_offset_for(page))
       end
@@ -32,7 +29,6 @@ class Pagy # :nodoc:
 
       private
 
-      # Number of months in time
       def months_in(time)
         (time.year * 12) + time.month
       end

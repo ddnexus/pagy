@@ -14,7 +14,6 @@ class Pagy
 
       DEFAULT = { page: 1 }.freeze
 
-      # Merge and validate the options, do some simple arithmetic and set a few instance variables
       def initialize(**)    # rubocop:disable Lint/MissingSuper
         assign_options(**)
         assign_and_check(page: 1)
@@ -25,6 +24,8 @@ class Pagy
       end
 
       attr_reader :order, :from, :to
+
+      def calendar? = true
 
       # Called by false in_range?
       def assign_empty_page_variables
@@ -39,8 +40,6 @@ class Pagy
         options[:format] ||= @options[:format]
         localize(starting_time_for(page.to_i), **options)  # page could be a string
       end
-
-      def calendar? = true
 
       protected
 
@@ -101,18 +100,6 @@ class Pagy
       def active_period
         [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
       end
-
-      # :nocov:
-      # This method must be implemented by the Unit subclass
-      def starting_time_for(*)
-        raise NoMethodError, 'the starting_time_for method must be implemented by the unit subclass'
-      end
-
-      # This method must be implemented by the Unit subclass
-      def page_offset_at(*)
-        raise NoMethodError, 'the page_offset_at method must be implemented by the unit subclass'
-      end
-      # :nocov:
     end
   end
 end

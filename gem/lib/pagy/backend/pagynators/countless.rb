@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Paginate without the need of any count, saving one query per rendering
+  # Add countless pagynator
   Backend.module_eval do
     private
 

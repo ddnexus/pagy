@@ -4,7 +4,7 @@ class Pagy
   DATA_KEYS = %i[url_template first_url previous_url page_url next_url last_url
                  count page limit pages last in from to previous next options series sequels].freeze
 
-  # Add a specialized backend method for pagination metadata
+  # Add pagination data
   Backend.module_eval do
     private
 

@@ -21,7 +21,7 @@ class Pagy
           end
         end
 
-        # Get the keyset attributes from the record
+        # Get the keyset attributes from a record
         def keyset_attributes_from(record) = record.to_hash.slice(*@keyset.keys)
 
         # Typecast the attributes
@@ -33,7 +33,7 @@ class Pagy
           attributes
         end
 
-        # Append the missing keyset keys if the set is restricted by select
+        # Append the missing keyset keys, if the set is restricted by select
         def ensure_select
           return if @set.opts[:select].nil?
 

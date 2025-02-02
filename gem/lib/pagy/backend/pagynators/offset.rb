@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Basic offset mixin
+  # Add offset pagynator
   Backend.module_eval do
     private
 
