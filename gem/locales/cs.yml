@@ -1,6 +1,7 @@
-# :west_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# WestSlavic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 cs:
   pagy:
+    p11n: 'WestSlavic'
     aria_label:
       nav:
         one: "Stránka"

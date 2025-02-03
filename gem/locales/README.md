@@ -6,34 +6,29 @@ If you find that some translation could be improved, please, create an issue.
 
 If you are using pagy with some language missing from the dictionary files, please, submit your translation!
 
-You can create a Pull Request for your language, and get all the help you need to correctly complete it. Here is a check list.
+You can create a Pull Request for your language, and get all the help you need to correctly complete it. Here is a checklist.
 
-### Check list for a new dictionary file:
+### Checklist for a new dictionary file:
 
 - [ ] Find the pluralization rule for your language (see below for details on how to do this).
 
   - [ ] Find the locale file you need in
     the [list of pluralization](https://github.com/svenfuchs/rails-i18n/tree/master/rails/pluralization) and check the
     pluralization rule required in it. For example the name of the file required is `one_other`
-    for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In pagy that translates to the symbol `:one_other`. If you cannot find the pluralization in the aforementioned link, see if you can find it [in the unicode pluralization rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
+    for [`en.rb`](https://github.com/svenfuchs/rails-i18n/blob/master/rails/pluralization/en.rb). In pagy that translates to `'OneOther'`. If you cannot find the pluralization in the aforementioned link, see if you can find it [in the unicode pluralization rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).
 
-    - [ ] If the pluralization rule of your language is not the `:one_other` (default), confirm that pagy already defines the
-      pluralization rule of your dictionary file in the IRB console, with `require 'pagy'; p Pagy::I18n::P11n::RULE.keys` or check
-      for it directly in the [i18n.rb file](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb#L26-L91).
+    - [ ] Confirm that pagy already defines the
+      pluralization rule of your dictionary file by checking the file in the [P18n dir](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n/p18n).
 
-      - [ ] If the rule is not defined, you can either: a) Add the rule as a new rule/lambda entry in the `Pagy::I18n::P11n::RULE`
-        constant hash and relative tests or b) Just create an issue requesting the addition to the rule/lambda entry and tests.
+      - [ ] If the rule is not defined, you can either: a) Add a new module for the pluralization (practically adapting the same pluralization from the corresponding rails-i18n file) and add some tests for it; or b) Just create an issue requesting the addition to the pluralization entry and tests.
 
-      - [ ] Add an entry for your locale to
-        the [`Pagy::I18n::P11n::LOCALE` hash](https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb#L95C1-L115).
+- [ ] Duplicate another pagy locale dictionary file and translate it to your language.
 
-- [ ] add/edit the first line comment in the language rule in your dictionary file (e.g. `# :one_other pluralization ...`. For
-  example, the [Japanese locale file](https://github.com/ddnexus/pagy/blob/master/gem/lib/locales/ja.yml#L1) uses
-  the: `# :other pluralization ...`
+  - [ ] Check that the `p11n` entry point to a module in the P18n dir 
 
 - [ ] The mandatory pluralized entry in the dictionary file are the `aria_label.nav` and the `item_name`. Please, provide all the
-  plurals needed by your language. E.g. if your language uses the `:east_slavic` you should provide the plurals
-  for `one`, `few`, `many` and `other`, if it uses `:one_other`, you should provide `one` and `other` plurals. If it uses `:other`
+  plurals needed by your language. E.g. if your language uses the `EastSlavic` you should provide the plurals
+  for `one`, `few`, `many` and `other`, if it uses `OneOther`, you should provide `one` and `other` plurals. If it uses `Other`
   you should only provide a single value. Look into other dictionary files to get some example. Ask if in doubt.
 
 Feel free to ask for help in your Pull Request.

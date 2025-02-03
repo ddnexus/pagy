@@ -92,7 +92,7 @@ include Pagy::Backend
 # Include it in the helpers (e.g. application_helper.rb)
 include Pagy::Frontend
 
-# Wrap your collections with one of many pagynators in your actions. For example:
+# Wrap your collections with one of many paginators in your actions. For example:
 @pagy, @records = pagy_offset(Product.all)
 @pagy, @records = pagy_keyset(Product.order(my_order).all)
 @pagy, @records = pagy_keynav(Product.order(my_order).all)

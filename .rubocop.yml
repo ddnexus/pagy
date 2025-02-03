@@ -6,6 +6,7 @@ require:
 
 # trying to be good  O:)
 AllCops:
+  SuggestExtensions: false
   TargetRubyVersion: 3.2
   NewCops: enable
   Exclude:

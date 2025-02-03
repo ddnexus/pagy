@@ -1,6 +1,7 @@
-# :east_slavic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# EastSlavic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 ru:
   pagy:
+    p11n: 'EastSlavic'
     aria_label:
       nav:
         one: "Страница"

@@ -1,6 +1,7 @@
-# :arabic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# Arabic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 ar:
   pagy:
+    p11n: 'Arabic'
     aria_label:
       nav:
         zero: "لا يوجد صفحات"

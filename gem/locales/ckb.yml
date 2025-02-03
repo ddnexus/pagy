@@ -1,7 +1,8 @@
-# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# Other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 
 ckb:
   pagy:
+    p11n: 'Other'
     item_name: "بابەت"
     aria_label:
       nav: "پەڕەکان"

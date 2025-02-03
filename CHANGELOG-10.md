@@ -64,8 +64,8 @@ The best technique for performance AND functionality! Check it out.
 
 #### Automatic loading of just the code that you actually use
 
-Every class, module and helper is automatically loaded only if you actually use it, without the need of any explicit `require`. _(
-the legacy version was requiring more code)_
+Every class, module and helper is automatically loaded only if you actually use it, without the need of any explicit `require`.
+The legacy version was requiring more code by default; this one is autoloading only the specific methods.
 
 #### The extras are all gone
 
@@ -75,14 +75,14 @@ You can now use the methods that you need, and they will just work without the n
 
 ### The configuration is minimal and non-technical
 
-Take a look at the configuration file: all the extra `requires` and the `Pagy::DEFAULT` configurations are gone. The only four
-optional configuration left, are simple Pagy function calls.
+Take a look at the configuration file: all the extra `requires` and the `Pagy::DEFAULT` configurations are gone. The only 3
+optional configuration left, are simple one-liner Pagy function calls.
 
 #### Better file and namespace system organization and coding style
 
 The class hierarchy, the mixin files, and the test file structure have been deeply reorganized. The code is cleaner, more concise
-and more readable, adding fewer modules to the `ancestors` array of your app.
-Abbreviated naming is gone consistently everywhere. 
+and more readable, adding fewer modules to the `ancestors` array of your app. Also, abbreviated naming is gone consistently
+everywhere.
 
 #### The Pagy::Countless remembers the last page
 
@@ -99,11 +99,17 @@ Updated the support for all the pagy helpers and `keynav` pagination. Added the 
 
 Added `Pagy::Javascript.install` function to avoid messing up with complicated javascript cofigurations.
 
+#### I18n refactoring
+
+No setup required. The locales and their pluralization are autoloaded when you app use them.
+
+The code is simpler and lighter, you can also override the lookup of dictionary files with `Pagy::I18n::PATHNAMES.unshift(Pathname.new('my/customized/dictionaries'))`. 
+
 ### Breaking Changes
 
 #### Simple search and replace renaming (without logic changes)
 
-Many of the changes in the following list are seldom used by the app code, we wrote them all for completeness:
+Your app may use just a little fraction of the renamed things in the list below, but we wrote them all for completeness:
 
 | Type        | Search           | Replace            | Notes                                                                 |
 |-------------|------------------|--------------------|-----------------------------------------------------------------------|
@@ -121,17 +127,17 @@ Many of the changes in the following list are seldom used by the app code, we wr
 | Method/args | `label(page`     | `label(page: page` | Same name: `page` is now a keywork argument                           |
 | Naming      | `*prev*`         | `*previous*`       | Unabbreviated word everywhere (option, accessor, methods, CSS class)  |
 
-#### The `Pagy::DEFAULT` is now frozen
-
-- Remove all the `Pagy::DEFAULT` statements and pass their variables to the paginator constructors that you use.
-- As an alternative to avoid repetitions, define your own default hash and pass it to the different paginator methods.
-- See the new initializer for details.
-
 #### Replace your `pagy.rb` config file
 
-With no more `Pagy::DEFAULT` and no more extras to `require`, the statements in your old version are all obsolete but any existing
-`Pagy::I18n` configuration, so it's better to start with the new version of the file, and copy over only the `Pagy::I18n.load`
-(if you used it).
+With no more `Pagy::DEFAULT` and no more extras to `require`, all the statements in your old version are obsolete, so it's better
+to start with the new version of the file.
+
+#### The `Pagy::DEFAULT` is now frozen
+
+- The `Pagy::DEFAULT` is now an internal hash and it's frozen. If you had any default set there, you should pass the options to
+  the paginator constructors.
+- As an alternative to avoid repetitions, define your own default hash and pass it to the different paginator methods/helpers.
+- See the new initializer for details.
 
 #### Core changes
 
@@ -140,7 +146,7 @@ With no more `Pagy::DEFAULT` and no more extras to `require`, the statements in 
 - The `:outset` and `:cycle` variables have been removed. They were seldom used, mostly useless, and implementing them in your
   code is trivial.
 - You can pass the `:length` and `countless` options (legacy `:size` and `ends`), preferably to the `*_nav`, `_nav_js` helpers,
-  but it's also possible to pass them to the pagynator.
+  but it's also possible to pass them to the paginator.
 
 #### Extras Changes
 
@@ -152,15 +158,15 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `calendar`
 
-- Discard your old localization config, and uncomment/add this line to your initializer:
+- Discard your old localization config (if any), and uncomment this line in the `pagy.rb` initializer:
   `Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`.
-  - In non-rails apps, calendar localization requires to add `rails-i18n` to your gemfile.
+  - In non-rails apps, calendar localization requires to add `rails-i18n` to your Gemfile.
 - Replace the existing `Pagy::Calendar::OutOfRangeError` with `Pagy::RangeError`
 
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
 
 - Replace any existing `Pagy.new_from_<extra-name>` with `pagy_<extra-name>`. _(Active and passive modes are now handled by the
-  same pagynator.)_
+  same paginator.)_
 - Remove any existing `:<extra-name>_pagy_search` variable from your code, and use the standard `pagy_search` method instead. _(
   the `pagy_search` name customization has been discontinued.)_
 - Rename any existing `:<extra-name>_search` variable as `:search_method` and pass it to the paginator method.
@@ -179,8 +185,9 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 ##### `keyset`
 
 - Replace any existing `:jsonify_keyset_attributes` with `stringify_keyset_values`. The lambda receives the same
-  `keyset_attributes` but it must return the array of attribute values `->(keyset_attributes) { ...; keyset_attributes.values }`.
-- Remove any existing`:filter_newest`. Override the `after_cutoff_sql` method instead.
+  `keyset_attributes` argument, but it must return the array of attribute values
+  `->(keyset_attributes) { ...; keyset_attributes.values }`.
+- Remove any existing`:filter_newest`. Override the `compose_predicate` method instead.
 
 ##### `limit`
 
@@ -236,7 +243,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 #### Direct instantiation of the pagy classes is not recommended
 
-- Use the provided `pagynators` for easier usage, maintenance and forward compatibility.
+- Use the provided `paginators` for easier usage, maintenance and forward compatibility.
 - Use the implementing classes only if the documentation explicitly suggests you to do so, or if you know what you are doing.
 
 #### Possibly Breaking Overridings

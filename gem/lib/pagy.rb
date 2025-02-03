@@ -12,6 +12,7 @@ class Pagy
   autoload :Backend,            PAGY_PATH.join('backend')
   autoload :Frontend,           PAGY_PATH.join('frontend')
   autoload :I18n,               PAGY_PATH.join('i18n')
+  autoload :P11n,               PAGY_PATH.join('i18n')
   autoload :Offset,             PAGY_PATH.join('offset')
   autoload :Calendar,           PAGY_PATH.join('calendar')
   autoload :Search,             PAGY_PATH.join('search')

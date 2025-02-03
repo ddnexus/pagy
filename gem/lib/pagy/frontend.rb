@@ -33,7 +33,7 @@ class Pagy
     # Similar to I18n.translate: just ~18x faster using ~10x less memory
     # (@pagy_locale explicitly initialized in order to avoid warning)
     def pagy_translate(key, **)
-      Pagy::I18n.translate(key, locale: (@pagy_locale ||= nil), **)
+      Pagy::I18n.translate(key, locale: (@pagy_locale ||= 'en'), **)
     end
     alias pagy_t pagy_translate
   end

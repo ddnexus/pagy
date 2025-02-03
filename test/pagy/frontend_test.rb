@@ -5,14 +5,6 @@ require_relative '../mock_helpers/pagy_buggy'
 require_relative '../mock_helpers/app'
 require_relative '../../gem/lib/pagy/frontend/utils/data_pagy'
 
-# in test we cannot use the Pagy::I18n.load method because
-# it would freeze the Pagy::I18n::DATA hash so i18n_load
-# do the same as Pagy::I18n.load, just omitting the freeze
-def i18n_load(*locales)
-  Pagy::I18n::DATA.clear
-  Pagy::I18n.send(:build, *locales)
-end
-
 describe 'pagy/frontend' do
   let(:app) { MockApp.new }
 
@@ -46,31 +38,15 @@ describe 'pagy/frontend' do
   end
 
   describe "Pagy::I18n" do
-    it 'loads custom :locale, :filepath and :pluralize' do
-      _(proc { i18n_load(locale: 'xx') }).must_raise Errno::ENOENT
-      _(proc { i18n_load(locale: 'xx', filepath: Pagy::ROOT.join('locales/en.yml')) }).must_raise Pagy::I18nError
-      _(proc { i18n_load(locale: 'en', filepath: Pagy::ROOT.join('locales/xx.yml')) }).must_raise Errno::ENOENT
-      custom_dictionary = Pagy::ROOT.parent.join('test/files/locales/custom.yml')
-      i18n_load(locale: 'custom', filepath: custom_dictionary)
-      _(Pagy::I18n.t('pagy.aria_label.previous', locale: 'custom')).must_equal "Custom Previous"
-      i18n_load(locale: 'en', pluralize: ->(_) { 'one' }) # returns always 'one' regardless the count
-      _(Pagy::I18n.t('pagy.item_name', locale: nil, count: 0)).must_equal "item"
-      _(Pagy::I18n.t('pagy.item_name', locale: 'en', count: 0)).must_equal "item"
-      _(Pagy::I18n.t('pagy.item_name', locale: 'en', count: 1)).must_equal "item"
-      _(Pagy::I18n.t('pagy.item_name', locale: 'en', count: 10)).must_equal "item"
-      i18n_load(locale: 'en') # reset for other tests
-    end
     it 'switches :locale according to @pagy_locale' do
-      i18n_load({ locale: 'de' }, { locale: 'en' }, { locale: 'nl' })
       app.set_pagy_locale('nl')
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "stuk"
       app.set_pagy_locale('en')
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "item"
-      app.set_pagy_locale(nil)
+      app.set_pagy_locale('de')
       _(app.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag"
       app.set_pagy_locale('unknown')
-      _(app.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag" # silently serves the first loaded locale
-      i18n_load(locale: 'en') # reset for other tests
+      _ { app.pagy_t('pagy.item_name', count: 1) }.must_raise Errno::ENOENT
       app.instance_variable_set(:@pagy_locale, nil) # reset for other tests
     end
   end

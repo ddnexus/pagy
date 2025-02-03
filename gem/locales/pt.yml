@@ -1,8 +1,9 @@
-# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# OneOther pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 pt:
   pagy:
+    p11n: 'OneOther'
     aria_label:
-      nav: 
+      nav:
         one: "Página"
         other: "Páginas"
       previous: "Anterior"

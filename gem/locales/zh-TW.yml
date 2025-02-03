@@ -1,6 +1,7 @@
-# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# Other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 zh-TW:
   pagy:
+    p11n: 'Other'
     aria_label:
       nav: "頁"
       previous: "上一頁"

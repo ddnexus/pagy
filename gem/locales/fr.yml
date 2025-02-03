@@ -1,6 +1,7 @@
-# :one_upto_two_other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# OneUptoTwoOther pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 fr:
   pagy:
+    p11n: 'OneUptoTwoOther'
     aria_label:
       nav:
         one: "Page"

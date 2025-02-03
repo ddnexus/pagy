@@ -1,6 +1,7 @@
-# :polish pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# Polish pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
 pl:
   pagy:
+    p11n: 'Polish'
     aria_label:
       nav:
         one: "Strona"

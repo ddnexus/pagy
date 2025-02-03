@@ -14,9 +14,6 @@
 # pagy_offset(collection, **PAGY_DEFAULT, **other_vars)
 # pagy_keyset(set, **PAGY_DEFAULT, **other_vars)
 
-# Notice that it's just a hash that you can name and define how and where you prefer:
-# just remember to pass it to the paginator when you need it.
-
 
 ############ Install Pagy Javascript #####################################################
 # If you use any pagy method ending with '*_js',
@@ -34,49 +31,19 @@
 # Pagy::Javascript.install('pagy.mjs', javascript_path) if Rails.env.development?
 
 
-
-#################################### IMPORTANT #######################################
-# Do not configure anything below this line if you use only the :en locale
-
-
-############# Pagy Translation Besides :en ###########################################
-# Use the Pagy::I18n: ~18x faster using ~10x less memory than the i18n gem
-# If you want to use the slower I18n gem, skip this and look at the end of this file.
-#
-# Examples (use only one statement):
-#
-# Load the "de" built-in locale:
-# Pagy::I18n.load(locale: 'de')
-#
-# Load the "de" locale defined in the custom file at :filepath:
-# Pagy::I18n.load(locale: 'de', filepath: 'path/to/pagy-de.yml')
-#
-# Load the "de", "en" and "es" built-in locales:
-# (the first passed :locale will be used also as the default_locale)
-# Pagy::I18n.load({ locale: 'de' },
-#                 { locale: 'en' },
-#                 { locale: 'es' })
-#
-# ADVANCED USAGE:
-# Load the "en" built-in locale, a custom "es" locale,
-# and a totally custom locale complete with a custom :pluralize proc:
-# (the first passed :locale will be used also as the default_locale)
-# Pagy::I18n.load({ locale: 'en' },
-#                 { locale: 'es', filepath: 'path/to/pagy-es.yml' },
-#                 { locale: 'xyz',  # not built-in
-#                   filepath: 'path/to/pagy-xyz.yml',
-#                   pluralize: lambda{ |count| ... } )
+############# Overriding Pagy::I18n dictionary lookup ######################################
+# Override the dictionary lookup for customization. Just drop your customized
+# dictionary/dictionaries in a dir and add its pathname to the lookup:
+# Pagy::I18n::PATHNAMES.unshift(Pathname.new('my/customized/dictionaries'))
 
 
-############# I18n gem Translation Besides :en ######################################
-# Uncomment the following line if you REALLY want to switch
+############# I18n gem translation ######################################
+# Uncomment the following line if you really have to switch
 # to the standard I18n gem translation:
-#
 # Pagy::Frontend.translate_with_the_slower_i18n_gem!
 
 
 ############# Calendar Localization Besides :en ######################################
 # Add the list of your locales and uncomment the following line to enable it,
 # regardless if you use the I18n gem for translations or not, Rails or not.
-#
 # Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)
