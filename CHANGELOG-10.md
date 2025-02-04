@@ -111,21 +111,22 @@ The code is simpler and lighter, you can also override the lookup of dictionary 
 
 Your app may use just a little fraction of the renamed things in the list below, but we wrote them all for completeness:
 
-| Type        | Search           | Replace            | Notes                                                                 |
-|-------------|------------------|--------------------|-----------------------------------------------------------------------|
-| Constructor | `pagy(`          | `pagy_offset(`     | Consistent with the other old and new constructors                    |
-| Function    | `Pagy.root`      | `Pagy::ROOT`       | Stop calling a method just to get a constant Pathname                 |
-| Accessor    | `pagy.vars`      | `pagy.options`     | They are actually options that don't change during execution          |
-| Exception   | `VariableError`  | `OptionError`      | Error for the passed options. VariableError was not accurate          |
-| Accessor    | `err.variable`   | `err.option`       | Accessor for OptionError instance variable, consistent with the class |
-| Option      | `size: 7`        | `length: 7`        | Series length: more accurate, and avoid confusion with other `size`s  |
-| Option      | `ends: false`    | `compact: true`    | Compact-gapless series: the boolean inverse of `ends`                 |
-| Option      | `:page_param`    | `:page_sym`        | The '_param' could be confused with the actual param value            |
-| Option      | `:limit_param`   | `:limit_sym`       | The '_param' could be confused with the actual param value            |
-| Method      | `pagy_url_for`   | `pagy_page_url`    | The legacy name was causing rails-related expectations                |
-| Method/args | `label_for(page` | `label(page: page` | Simpler name: `page` is now a keywork argument                        |
-| Method/args | `label(page`     | `label(page: page` | Same name: `page` is now a keywork argument                           |
-| Naming      | `*prev*`         | `*previous*`       | Unabbreviated word everywhere (option, accessor, methods, CSS class)  |
+| Type        | Search           | Replace                     | Notes                                                                     |
+|-------------|------------------|-----------------------------|---------------------------------------------------------------------------|
+| Constructor | `pagy(`          | `pagy_offset(`              | Consistent with the other old and new constructors                        |
+| Function    | `Pagy.root`      | `Pagy::ROOT`                | Stop calling a method just to get a constant Pathname                     |
+| Accessor    | `pagy.vars`      | `pagy.options`              | They are actually options that don't change during execution              |
+| Exception   | `VariableError`  | `OptionError`               | Error for the passed options. VariableError was not accurate              |
+| Accessor    | `err.variable`   | `err.option`                | Accessor for OptionError instance variable, consistent with the class     |
+| Option      | `size: 7`        | `length: 7`                 | Series length: more accurate, and avoid confusion with other `size`s      |
+| Option      | `ends: false`    | `compact: true`             | Compact-gapless series: the boolean inverse of `ends`                     |
+| Option      | `:page_param`    | `:page_sym`                 | The '_param' could be confused with the actual param value                |
+| Option      | `:limit_param`   | `:limit_sym`                | The '_param' could be confused with the actual param value                |
+| Method      | `pagy_anchor`    | `pagy_create_anchor_lambda` | It creates a lambda that creates an anchor tag, not the anchor tag itself |
+| Method      | `pagy_url_for`   | `pagy_page_url`             | The legacy name was causing rails-related expectations                    |
+| Method/args | `label_for(page` | `label(page: page`          | Simpler name: `page` is now a keywork argument                            |
+| Method/args | `label(page`     | `label(page: page`          | Same name: `page` is now a keywork argument                               |
+| Naming      | `*prev*`         | `*previous*`                | Unabbreviated word everywhere (option, accessor, methods, CSS class)      |
 
 #### Replace your `pagy.rb` config file
 

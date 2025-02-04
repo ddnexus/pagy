@@ -10,8 +10,7 @@ class Pagy
 
     # rubocop:disable Style/MutableConstant
     PATHNAMES = [ROOT.join('locales')]
-    # Stores the i18n DATA structure for each loaded locale
-    DATA = {}
+    DATA      = {}
     # rubocop:enable Style/MutableConstant
 
     # Translate and pluralize the key with the locale DATA

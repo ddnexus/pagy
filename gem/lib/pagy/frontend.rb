@@ -21,7 +21,7 @@ class Pagy
 
     # Return a performance optimized lambda to generate the HTML anchor element (a tag)
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def pagy_anchor(pagy, anchor_string: nil, **)
+    def pagy_create_anchor_lambda(pagy, anchor_string: nil, **)
       left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **)}")
                     .split(PAGE_TOKEN, 2)
       # Lambda used by all the helpers

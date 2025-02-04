@@ -267,14 +267,14 @@ describe 'calendar' do
       _(calendar.showtime).must_equal Time.zone.local(2022, 7, 1)
     end
   end
-  describe '#pagy_anchor with counts' do
+  describe '#pagy_create_anchor_lambda with counts' do
     it 'includes title and class in page url' do
       # We need this require because we use a feature of pagy_calendar that would load with pagy_calendar,
       # but we don't call it because Pagy::Offset.new is easier to run, still testing the feature...
       require_relative '../../../gem/lib/pagy/backend/paginators/calendar'
       app = MockApp::CalendarCounts.new
       pagy = Pagy::Offset.new(count: 103, page: 1, counts: {2 => 0})
-      _(app.pagy_anchor(pagy, anchor_string: 'X').call(3, classes: 'a b c')).must_equal \
+      _(app.pagy_create_anchor_lambda(pagy, anchor_string: 'X').call(3, classes: 'a b c')).must_equal \
         '<a X href="/foo?page=3" title="No items found" class="a b c empty-page">3</a>'
     end
   end

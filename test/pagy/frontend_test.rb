@@ -10,10 +10,10 @@ describe 'pagy/frontend' do
 
   # #pagy_nav helper tests in the test/legacy/offset_test.rb
 
-  describe '#pagy_anchor' do
+  describe '#pagy_create_anchor_lambda' do
     it 'renders with legacy' do
       pagy = Pagy::Offset.new(count: 103, page: 1)
-      _(app.pagy_anchor(pagy, anchor_string: 'X').call(3)).must_equal '<a X href="/foo?page=3">3</a>'
+      _(app.pagy_create_anchor_lambda(pagy, anchor_string: 'X').call(3)).must_equal '<a X href="/foo?page=3">3</a>'
     end
   end
 

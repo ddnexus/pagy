@@ -86,7 +86,7 @@ If this method finds a set `:url` variable it assumes there is no `request` obje
 
 See also [How to customize the URL](/docs/how-to.md#customize-the-url) and [How to customize the params](/docs/how-to.md#customize-the-params).
 
-==- `pagy_anchor(pagy)`
+==- `pagy_create_anchor_lambda(pagy)`
 
 This method is called internally to get a very specialized and fast proc that produce the HTML anchor elements (i.e. `a` tags) for the pages.
 
@@ -100,7 +100,7 @@ link tags.
 
 !!! primary
 This method is not intended to be overridden, however you could just replace it in your overridden `pagy_nav*` helpers with some
-generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_anchor` is
+generic helper like the rails `link_to`. If you intend to do so, be sure to have a very good reason, since using `pagy_create_anchor_lambda` is
 a lot faster than the rails `link_to` (benchmarked at ~22x faster using ~18x less memory on a 20 links nav).
 !!!
 
@@ -111,9 +111,9 @@ proc, then calling the proc will just interpolates the strings passed to it.
 Here is how you should use it: in your helper call the method to get the proc (just once):
 
 ```ruby
-a = pagy_anchor(pagy)
+a = pagy_create_anchor_lambda(pagy)
 # or
-a = pagy_anchor(pagy, anchor_string: 'verbatim string')
+a = pagy_create_anchor_lambda(pagy, anchor_string: 'verbatim string')
 ```
 
 Then call the `a` proc to get the links (multiple times):
@@ -128,7 +128,7 @@ This argument is typically used for passing `data-*` attributes to the enabled a
 more specific ways to be set (e.g.: `class` should be added with a specific CSS rule).
 
 If you need to add some HTML attribute to ALL the enbled page links (no `current` nor `gap`), you can pass the `:anchor_string` 
-keyword argument to any pagy helper, or if you use templates or override helpers, you can pass it also to the `pagy_anchor` 
+keyword argument to any pagy helper, or if you use templates or override helpers, you can pass it also to the `pagy_create_anchor_lambda` 
 method. 
 
 !!!warning Attributes Must be Valid HTML
