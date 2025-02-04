@@ -109,7 +109,7 @@ The code is simpler and lighter, you can also override the lookup of dictionary 
 
 #### Simple search and replace renaming (without logic changes)
 
-Your app may use just a little fraction of the renamed things in the list below, but we wrote them all for completeness:
+Your app likely uses just a little fraction of the renamed things in the list below, but we wrote them all for completeness:
 
 | Type        | Search           | Replace                     | Notes                                                                     |
 |-------------|------------------|-----------------------------|---------------------------------------------------------------------------|

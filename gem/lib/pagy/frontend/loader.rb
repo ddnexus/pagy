@@ -3,13 +3,7 @@
 class Pagy
   module Frontend
     module Loader
-      def pagy_load_frontend(...)
-        method_sym = __callee__
-        require_relative FRONTEND_METHODS[method_sym]
-        send(method_sym, ...)
-      end
-
-      FRONTEND_METHODS = { pagy_bootstrap_combo_nav_js: 'bootstrap/combo_nav_js',
+      frontend_methods = { pagy_bootstrap_combo_nav_js: 'bootstrap/combo_nav_js',
                            pagy_bootstrap_nav:          'bootstrap/nav',
                            pagy_bootstrap_nav_js:       'bootstrap/nav_js',
                            pagy_bulma_combo_nav_js:     'bulma/combo_nav_js',
@@ -27,7 +21,13 @@ class Pagy
                            pagy_previous_a:             'pagy/previous_next',
                            pagy_next_a:                 'pagy/previous_next' }.freeze
 
-      FRONTEND_METHODS.each_key do |method|
+      define_method :pagy_load_frontend do |*args, **kwargs|
+        method_sym = __callee__
+        require_relative frontend_methods[method_sym]
+        send(method_sym, *args, **kwargs)
+      end
+
+      frontend_methods.each_key do |method|
         class_eval "alias #{method} pagy_load_frontend", __FILE__, __LINE__  # alias pagy_* pagy_load_frontend
       end
     end

@@ -10,10 +10,14 @@ class Pagy
           mod10  = n % 10
           mod100 = n % 100
           case
-          when n == 1                                                                 then :one
-          when [2, 3, 4].include?(mod10) && ![12, 13, 14].include?(mod100)            then :few
-          when [0, 1, 5, 6, 7, 8, 9].include?(mod10) || [12, 13, 14].include?(mod100) then :many
-          else                                                                             :other
+          when n == 1
+            :one
+          when [2, 3, 4].include?(mod10) && ![12, 13, 14].include?(mod100)
+            :few
+          when [0, 1, 5, 6, 7, 8, 9].include?(mod10) || [12, 13, 14].include?(mod100)
+            :many
+          else
+            :other
           end
         end
       end

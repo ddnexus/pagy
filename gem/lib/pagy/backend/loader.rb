@@ -3,15 +3,7 @@
 class Pagy
   module Backend
     module Loader
-      private
-
-      def pagy_load_backend(...)
-        method_sym = __callee__
-        require_relative BACKEND_METHODS[method_sym]
-        send(method_sym, ...)
-      end
-
-      BACKEND_METHODS = { pagy_headers:             'helpers/headers',
+      backend_methods = { pagy_headers:             'helpers/headers',
                           pagy_headers_merge:       'helpers/headers',
                           pagy_data:                'helpers/data',
                           pagy_links:               'helpers/links',
@@ -28,7 +20,15 @@ class Pagy
                           pagy_meilisearch:         'paginators/searches/meilisearch',
                           pagy_searchkick:          'paginators/searches/searchkick' }.freeze
 
-      BACKEND_METHODS.each_key do |method|
+      private
+
+      define_method :pagy_load_backend do |*args, **kwargs|
+        method_sym = __callee__
+        require_relative backend_methods[method_sym]
+        send(method_sym, *args, **kwargs)
+      end
+
+      backend_methods.each_key do |method|
         class_eval "alias #{method} pagy_load_backend", __FILE__, __LINE__  # alias pagy_* pagy_load_backend
       end
     end

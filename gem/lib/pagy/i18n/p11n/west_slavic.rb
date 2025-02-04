@@ -8,9 +8,12 @@ class Pagy
 
         def plural_for(n = 0)
           case n
-          when 1       then :one
-          when 2, 3, 4 then :few
-          else              :other
+          when 1
+            :one
+          when 2, 3, 4
+            :few
+          else
+            :other
           end
         end
       end
