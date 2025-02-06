@@ -6,6 +6,10 @@ class Pagy
     module Seriable
       LENGTH = 7
 
+      def self.included(including)
+        including.alias_method :pages, :last
+      end
+
       # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
       def series(length: @options[:length] || LENGTH, compact: @options[:compact], **)
         raise OptionError.new(self, :length, 'to be an Integer >= 0', length) \

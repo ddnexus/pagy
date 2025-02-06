@@ -19,34 +19,34 @@ describe 'pagy/frontend' do
 
   describe '#pagy_t' do
     it 'pluralizes' do
-      _(app.pagy_t('pagy.aria_label.previous')).must_equal "Previous"
-      _(app.pagy_t('pagy.item_name', count: 0)).must_equal "items"
-      _(app.pagy_t('pagy.item_name', count: 1)).must_equal "item"
-      _(app.pagy_t('pagy.item_name', count: 10)).must_equal "items"
+      _(app.pagy_translate('pagy.aria_label.previous')).must_equal "Previous"
+      _(app.pagy_translate('pagy.item_name', count: 0)).must_equal "items"
+      _(app.pagy_translate('pagy.item_name', count: 1)).must_equal "item"
+      _(app.pagy_translate('pagy.item_name', count: 10)).must_equal "items"
     end
     it 'interpolates' do
-      _(app.pagy_t('pagy.info.no_items', count: 0)).must_rematch :info_0
-      _(app.pagy_t('pagy.info.single_page', count: 1)).must_rematch :info_1
-      _(app.pagy_t('pagy.info.single_page', count: 10)).must_rematch :info_10
-      _(app.pagy_t('pagy.info.multiple_pages', count: 10)).must_rematch :info_multi_10
-      _(app.pagy_t('pagy.info.multiple_pages', item_name: 'Products', count: 300, from: 101, to: 125)).must_rematch :info_multi_item_name
+      _(app.pagy_translate('pagy.info.no_items', count: 0)).must_rematch :info_0
+      _(app.pagy_translate('pagy.info.single_page', count: 1)).must_rematch :info_1
+      _(app.pagy_translate('pagy.info.single_page', count: 10)).must_rematch :info_10
+      _(app.pagy_translate('pagy.info.multiple_pages', count: 10)).must_rematch :info_multi_10
+      _(app.pagy_translate('pagy.info.multiple_pages', item_name: 'Products', count: 300, from: 101, to: 125)).must_rematch :info_multi_item_name
     end
     it 'handles missing keys' do
-      _(app.pagy_t('pagy.not_here')).must_equal '[translation missing: "pagy.not_here"]'
-      _(app.pagy_t('pagy.gap.not_here')).must_equal '[translation missing: "pagy.gap.not_here"]'
+      _(app.pagy_translate('pagy.not_here')).must_equal '[translation missing: "pagy.not_here"]'
+      _(app.pagy_translate('pagy.gap.not_here')).must_equal '[translation missing: "pagy.gap.not_here"]'
     end
   end
 
   describe "Pagy::I18n" do
     it 'switches :locale according to @pagy_locale' do
       app.set_pagy_locale('nl')
-      _(app.pagy_t('pagy.item_name', count: 1)).must_equal "stuk"
+      _(app.pagy_translate('pagy.item_name', count: 1)).must_equal "stuk"
       app.set_pagy_locale('en')
-      _(app.pagy_t('pagy.item_name', count: 1)).must_equal "item"
+      _(app.pagy_translate('pagy.item_name', count: 1)).must_equal "item"
       app.set_pagy_locale('de')
-      _(app.pagy_t('pagy.item_name', count: 1)).must_equal "Eintrag"
+      _(app.pagy_translate('pagy.item_name', count: 1)).must_equal "Eintrag"
       app.set_pagy_locale('unknown')
-      _ { app.pagy_t('pagy.item_name', count: 1) }.must_raise Errno::ENOENT
+      _ { app.pagy_translate('pagy.item_name', count: 1) }.must_raise Errno::ENOENT
       app.instance_variable_set(:@pagy_locale, nil) # reset for other tests
     end
   end

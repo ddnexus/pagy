@@ -31,8 +31,6 @@ class Pagy
 
   attr_reader :page, :count, :previous, :next, :in, :limit, :options, :last
 
-  alias pages last
-
   # Define the hierarchical identity methods, overridden by the respective classes
   def offset?    = false
   def countless? = false

@@ -6,13 +6,8 @@ require_relative 'frontend/loader'
 class Pagy
   # Module to include in the app helper
   module Frontend
-    module I18nGemOverride
-      def pagy_translate(...) = ::I18n.translate(...)
-      alias pagy_t pagy_translate
-    end
-
     def self.translate_with_the_slower_i18n_gem!
-      prepend I18nGemOverride
+      prepend(Module.new { def pagy_translate(...) = ::I18n.translate(...) })
       ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
     end
 
@@ -35,6 +30,5 @@ class Pagy
     def pagy_translate(key, **)
       Pagy::I18n.translate(key, locale: (@pagy_locale ||= 'en'), **)
     end
-    alias pagy_t pagy_translate
   end
 end
