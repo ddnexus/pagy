@@ -103,7 +103,8 @@ Added `Pagy::Javascript.install` function to avoid messing up with complicated j
 
 No setup required. The locales and their pluralization are autoloaded when you app use them.
 
-The code is simpler and lighter, you can also override the lookup of dictionary files with `Pagy::I18n::PATHNAMES.unshift(Pathname.new('my/customized/dictionaries'))`. 
+The code is simpler and lighter, you can also override the lookup of dictionary files with
+`Pagy::I18n::PATHNAMES.unshift(Pathname.new('my/customized/dictionaries'))`.
 
 ### Breaking Changes
 
@@ -137,10 +138,10 @@ to start with the new version of the file.
 
 #### The `Pagy::DEFAULT` is now frozen
 
-- The `Pagy::DEFAULT` is now an internal hash and it's frozen. If you had any default set there, you should pass the options to
-  the paginator constructors.
-- As an alternative to avoid repetitions, define your own default hash and pass it to the different paginator methods/helpers.
-- See the new initializer for details.
+- The `Pagy::DEFAULT` is now an internal hash and it's frozen. If you set any option with it, you should pass them to the
+  paginator methods.
+- As an alternative to avoid repetitions, define your own PAGY_OPTIONS hash and pass it to the different paginator
+  methods/helpers. See the new initializer for details.
 
 #### Core changes
 

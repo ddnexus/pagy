@@ -37,7 +37,7 @@ require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
   include Pagy::Backend
-  PAGY_DEFAULT = { requestable_limit: 100 }.freeze
+  PAGY_OPTIONS = { requestable_limit: 100 }.freeze
 
   get('/javascripts/:file') do
     format = params[:file].split('.').last
@@ -52,9 +52,9 @@ class PagyRepro < Sinatra::Base
   # Edit this action as needed
   get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy_offset(collection, **PAGY_DEFAULT)
-    # @pagy, @records = pagy_countless(collection, **PAGY_DEFAULT)
-    # @pagy, @records = pagy_array(Array(1..1000), **PAGY_DEFAULT)
+    @pagy, @records = pagy_offset(collection, **PAGY_OPTIONS)
+    # @pagy, @records = pagy_countless(collection, **PAGY_OPTIONS)
+    # @pagy, @records = pagy_array(Array(1..1000), **PAGY_OPTIONS)
     erb :main
   end
 

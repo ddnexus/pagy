@@ -35,7 +35,7 @@ require 'sinatra/base'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
   include Pagy::Backend
-  PAGY_DEFAULT = { limit: 10, requestable_limit: 100 }.freeze
+  PAGY_OPTIONS = { limit: 10, requestable_limit: 100 }.freeze
 
   # Root route/action
   get '/' do

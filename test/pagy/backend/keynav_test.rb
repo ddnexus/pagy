@@ -8,7 +8,7 @@ require_relative '../../../gem/lib/pagy/modules/b64'
 
 describe 'Keynav' do
   [Pet, PetSequel].each do |model|
-    describe 'pagy_augmented' do
+    describe "pagy_augmented #{model}" do
       it 'works for page 1' do
         app           = MockApp.new(params: {})
         pagy, records = app.send(:pagy_keynav_js,

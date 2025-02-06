@@ -45,7 +45,7 @@ require 'sinatra/base'
 # Sinatra application
 class PagyDemo < Sinatra::Base
   include Pagy::Backend
-  PAGY_DEFAULT = { requestable_limit: 100 }.freeze
+  PAGY_OPTIONS = { requestable_limit: 100 }.freeze
 
   get '/' do
     redirect '/pagy'
@@ -53,7 +53,7 @@ class PagyDemo < Sinatra::Base
 
   get '/template' do
     collection = MockCollection.new
-    @pagy, @records = pagy_offset(collection, **PAGY_DEFAULT)
+    @pagy, @records = pagy_offset(collection, **PAGY_OPTIONS)
 
     erb :template, locals: { pagy: @pagy, style: 'pagy' }
   end
@@ -79,7 +79,7 @@ class PagyDemo < Sinatra::Base
 
     get("/#{style}") do
       collection = MockCollection.new
-      @pagy, @records = pagy_offset(collection, **PAGY_DEFAULT)
+      @pagy, @records = pagy_offset(collection, **PAGY_OPTIONS)
 
       erb :helpers, locals: { style:, prefix: }
     end

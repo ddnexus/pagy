@@ -9,8 +9,8 @@ class Pagy
     extend self
 
     # rubocop:disable Style/MutableConstant
-    PATHNAMES = [ROOT.join('locales')]
-    DATA      = {}
+    LOOKUP_PATHNAMES = [ROOT.join('locales')]
+    DATA = {}
     # rubocop:enable Style/MutableConstant
 
     # Translate and pluralize the key with the locale DATA
@@ -24,7 +24,7 @@ class Pagy
     private
 
     def load(locale)
-      path = PATHNAMES.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
+      path = LOOKUP_PATHNAMES.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
       raise Errno::ENOENT, "missing dictionary file for #{locale.inspect} locale" unless path
 
       dictionary   = YAML.load_file(path)[locale]
@@ -33,8 +33,9 @@ class Pagy
     end
 
     # Create a flat hash with dotted notation keys
+    # e.g. { 'a' => { 'b' => {'c' => 3, 'd' => 4 }}} -> { 'a.b.c' => 3, 'a.b.d' => 4 }
     def flatten_to_dot_keys(initial, prefix = '')
-      initial.each.reduce({}) do |hash, (key, value)|
+      initial.reduce({}) do |hash, (key, value)|
         hash.merge!(value.is_a?(Hash) ? flatten_to_dot_keys(value, "#{prefix}#{key}.") : { "#{prefix}#{key}" => value })
       end
     end

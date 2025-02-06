@@ -3,7 +3,7 @@
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/app'
 
-describe 'pagy/legacy/i18n' do
+describe 'pagy/i18n' do
   let(:app) { MockApp.new }
 
   ##### pagy.rb initializer ###############

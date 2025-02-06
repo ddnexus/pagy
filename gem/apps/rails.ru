@@ -106,11 +106,11 @@ end
 class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
   include Pagy::Backend
-  PAGY_DEFAULT = { limit:             10,
+  PAGY_OPTIONS = { limit:             10,
                    requestable_limit: 100 }.freeze
 
   def index
-    @pagy, @comments = pagy_offset(Comment.all, **PAGY_DEFAULT)
+    @pagy, @comments = pagy_offset(Comment.all, **PAGY_OPTIONS)
     # pagy_headers_merge(@pagy)
     render inline: TEMPLATE
   end
