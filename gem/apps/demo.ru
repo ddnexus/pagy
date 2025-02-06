@@ -335,19 +335,19 @@ class PagyDemo < Sinatra::Base
     <%# IMPORTANT: replace '<%=' with '<%==' if you run this in rails %>
 
     <%# The a variable below is set to a lambda that generates the a tag %>
-    <%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>
-    <% create_anchor = pagy_create_anchor_lambda(pagy) %>
+    <%# Usage: anchor_tag = anchor_lambda.(page_number, text, classes: nil, aria_label: nil) %>
+    <% anchor_lambda = pagy_anchor_lambda(pagy) %>
     <nav class="pagy nav" aria-label="Pages">
       <%# Previous page link %>
       <% if pagy.previous %>
-        <%= create_anchor.(pagy.previous, '&lt;', aria_label: 'Previous') %>
+        <%= anchor_lambda.(pagy.previous, '&lt;', aria_label: 'Previous') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
       <% end %>
       <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
       <% pagy.series.each do |item| %>
         <% if item.is_a?(Integer) %>
-          <%= create_anchor.(item) %>
+          <%= anchor_lambda.(item) %>
         <% elsif item.is_a?(String) %>
           <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
         <% elsif item == :gap %>
@@ -356,7 +356,7 @@ class PagyDemo < Sinatra::Base
       <% end %>
       <%# Next page link %>
       <% if pagy.next %>
-        <%= create_anchor.(pagy.next, '&gt;', aria_label: 'Next') %>
+        <%= anchor_lambda.(pagy.next, '&gt;', aria_label: 'Next') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
       <% end %>

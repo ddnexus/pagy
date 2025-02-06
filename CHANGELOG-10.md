@@ -123,7 +123,7 @@ Your app likely uses just a little fraction of the renamed things in the list be
 | Option      | `ends: false`    | `compact: true`             | Compact-gapless series: the boolean inverse of `ends`                     |
 | Option      | `:page_param`    | `:page_sym`                 | The '_param' could be confused with the actual param value                |
 | Option      | `:limit_param`   | `:limit_sym`                | The '_param' could be confused with the actual param value                |
-| Method      | `pagy_anchor`    | `pagy_create_anchor_lambda` | It creates a lambda that creates an anchor tag, not the anchor tag itself |
+| Method      | `pagy_anchor`    | `pagy_anchor_lambda` | It creates a lambda that creates an anchor tag, not the anchor tag itself |
 | Method      | `pagy_url_for`   | `pagy_page_url`             | The legacy name was causing rails-related expectations                    |
 | Method/args | `label_for(page` | `label(page: page`          | Simpler name: `page` is now a keywork argument                            |
 | Method/args | `label(page`     | `label(page: page`          | Same name: `page` is now a keywork argument                               |

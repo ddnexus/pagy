@@ -2,7 +2,7 @@
 
 <%# The a variable below is set to a lambda that generates the a tag %>
 <%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>
-<% a = pagy_create_anchor_lambda(pagy) %>
+<% a = pagy_anchor_lambda(pagy) %>
 <nav class="pagy nav" aria-label="Pages">
   <%# Previous page link %>
   <% if pagy.prev %>

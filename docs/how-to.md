@@ -246,7 +246,7 @@ end
 
 !!!warning Performance affected!
 The above overridden method is quite slower than the original because it passes through the rails helpers. However that gets
-mitigated by the internal usage of `pagy_create_anchor_lambda` which calls the method only once even in the presence of many pages.
+mitigated by the internal usage of `pagy_anchor_lambda` which calls the method only once even in the presence of many pages.
 !!!
 
 ==- POST with page links

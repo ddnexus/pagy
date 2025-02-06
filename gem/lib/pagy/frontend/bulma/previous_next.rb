@@ -5,10 +5,10 @@ class Pagy
     private
 
     # Return the enabled/disabled previous/next page anchor tag
-    def bulma_previous_next_html(pagy, create_anchor)
+    def bulma_previous_next_html(pagy, anchor_lambda)
       %w[previous next].inject(+'') do |html, which|
         html << if pagy.send(which)
-                  create_anchor.(pagy.send(which), pagy_translate("pagy.#{which}"),
+                  anchor_lambda.(pagy.send(which), pagy_translate("pagy.#{which}"),
                                  classes: "pagination-#{which}",
                                  aria_label: pagy_translate("pagy.aria_label.#{which}"))
                 else

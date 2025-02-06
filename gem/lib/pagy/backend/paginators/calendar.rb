@@ -24,7 +24,7 @@ class Pagy
   end
 
   module CalendarOverride
-    def pagy_create_anchor_lambda(pagy, anchor_string: nil, **)
+    def pagy_anchor_lambda(pagy, anchor_string: nil, **)
       return super unless (counts = pagy.options[:counts])   # No overriding without :counts
 
       left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{pagy_page_url(pagy, PAGE_TOKEN, **)}")

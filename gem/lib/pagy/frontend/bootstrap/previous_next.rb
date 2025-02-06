@@ -5,10 +5,10 @@ class Pagy
     private
 
     # Return the enabled/disabled previous/next page anchor tag, embedded in the li tag
-    def pagy_bootstrap_html_for(which, pagy, create_anchor)
+    def pagy_bootstrap_html_for(which, pagy, anchor_lambda)
       if pagy.send(which)
         %(<li class="page-item #{which}">#{
-        create_anchor.(pagy.send(which), pagy_translate("pagy.#{which}"),
+        anchor_lambda.(pagy.send(which), pagy_translate("pagy.#{which}"),
                        classes:    'page-link',
                        aria_label: pagy_translate("pagy.aria_label.#{which}"))}</li>)
       else
