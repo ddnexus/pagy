@@ -299,8 +299,8 @@ class PagyDemo < Sinatra::Base
       <%= html = pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
       <%= highlight(html) %>
 
-      <h2>pagy_previous_a / pagy_next_a</h2>
-      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << pagy_previous_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
+      <h2>pagy_previous_anchor / pagy_next_anchor</h2>
+      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << pagy_previous_anchor(@pagy) << pagy_next_anchor(@pagy) << '</nav>' %>
       <%= highlight(html) %>
 
       <h2>pagy_previous_link / pagy_next_link <span class="notes">Link not rendered<span></h2>

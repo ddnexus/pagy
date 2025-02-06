@@ -58,12 +58,12 @@ describe MIXIN do
   describe '#pagy_next_link' do
     tests_for(:pagy_next_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
-  describe '#pagy_previous_a' do
-    tests_for(:pagy_previous_a, [[1, 0], [3, 21], [6, 21], [50, 20]],
+  describe '#pagy_previous_anchor' do
+    tests_for(:pagy_previous_anchor, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'PREV', aria_label: 'My previous page')
   end
-  describe '#pagy_next_a' do
-    tests_for(:pagy_next_a, [[1, 0], [3, 21], [6, 21], [50, 20]],
+  describe '#pagy_next_anchor' do
+    tests_for(:pagy_next_anchor, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'NEXT', aria_label: 'My next page')
   end
 end

@@ -127,6 +127,8 @@ Your app likely uses just a little fraction of the renamed things in the list be
 | Method/args | `label_for(page` | `label(page: page`          | Simpler name: `page` is now a keywork argument                            |
 | Method/args | `label(page`     | `label(page: page`          | Same name: `page` is now a keywork argument                               |
 | Naming      | `*prev*`         | `*previous*`                | Unabbreviated word everywhere (option, accessor, methods, CSS class)      |
+| Method      | `pagy_prev_a`    | `pagy_previous_anchor`      | Unabbreviated words                                                       |
+| Method      | `pagy_next_a`    | `pagy_next_anchor`          | Unabbreviated words                                                       |
 
 #### Replace your `pagy.rb` config file
 

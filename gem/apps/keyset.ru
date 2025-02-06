@@ -124,7 +124,7 @@ class PagyKeyset < Sinatra::Base
         </div>
         <p>
         <nav class="pagy" id="next" aria-label="Pagy next">
-          <%= pagy_next_a(@pagy, text: 'Next page &gt;') %>
+          <%= pagy_next_anchor(@pagy, text: 'Next page &gt;') %>
         </nav>
       </div>
     ERB

@@ -18,8 +18,8 @@ class Pagy
                            pagy_next_link:              'pagy/helpers',
                            pagy_info:                   'pagy/info',
                            pagy_limit_selector_js:      'pagy/limit_selector',
-                           pagy_previous_a:             'pagy/previous_next',
-                           pagy_next_a:                 'pagy/previous_next' }.freeze
+                           pagy_previous_anchor:        'pagy/previous_next',
+                           pagy_next_anchor:            'pagy/previous_next' }.freeze
 
       define_method :pagy_load_frontend do |*args, **kwargs|
         method_sym = __callee__

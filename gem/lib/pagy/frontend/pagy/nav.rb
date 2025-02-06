@@ -8,7 +8,7 @@ class Pagy
     # Return the html with the series of links to the pages
     def pagy_nav(pagy, **)
       create_anchor = pagy_create_anchor_lambda(pagy, **)
-      html = pagy_previous_a(pagy, create_anchor)
+      html = pagy_previous_anchor(pagy, create_anchor)
       pagy.series(**).each do |item|
         # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
@@ -22,7 +22,7 @@ class Pagy
                   raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
                 end
       end
-      html << pagy_next_a(pagy, create_anchor)
+      html << pagy_next_anchor(pagy, create_anchor)
       Nav.tag(self, pagy, html, 'pagy nav', **)
     end
   end

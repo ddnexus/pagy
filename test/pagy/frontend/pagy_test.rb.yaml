@@ -1,20 +1,20 @@
 ---
-pagy___pagy_next_a_test_0004_renders_the_pagy_next_a_for_page_50:
+pagy___pagy_next_anchor_test_0004_renders_the_pagy_next_anchor_for_page_50:
   :r1: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
   :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
   :r3: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
   :r4: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
-pagy___pagy_next_a_test_0003_renders_the_pagy_next_a_for_page_6:
+pagy___pagy_next_anchor_test_0003_renders_the_pagy_next_anchor_for_page_6:
   :r1: <a href="/foo?page=7" aria-label="Next">&gt;</a>
   :r2: <a href="/foo?page=7+7" aria-label="Next">&gt;</a>
   :r3: <a href="/foo?page=7" aria-label="My next page">NEXT</a>
   :r4: <a href="/foo?page=7+7" aria-label="My next page">NEXT</a>
-pagy___pagy_next_a_test_0001_renders_the_pagy_next_a_for_page_1:
+pagy___pagy_next_anchor_test_0001_renders_the_pagy_next_anchor_for_page_1:
   :r1: <a href="/foo?page=2" aria-label="Next">&gt;</a>
   :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
   :r3: <a href="/foo?page=2" aria-label="My next page">NEXT</a>
   :r4: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
-pagy___pagy_next_a_test_0002_renders_the_pagy_next_a_for_page_3:
+pagy___pagy_next_anchor_test_0002_renders_the_pagy_next_anchor_for_page_3:
   :r1: <a href="/foo?page=4" aria-label="Next">&gt;</a>
   :r2: <a href="/foo?page=4+4" aria-label="Next">&gt;</a>
   :r3: <a href="/foo?page=4" aria-label="My next page">NEXT</a>
@@ -191,22 +191,52 @@ pagy___pagy_next_link_test_0002_renders_the_pagy_next_link_for_page_3:
   :r2: <link href="/foo?page=4+4"/>
   :r3: <link href="http://example.com:3000/foo?page=4"/>
   :r4: <link href="http://example.com:3000/foo?page=4+4"/>
-pagy___pagy_previous_a_test_0004_renders_the_pagy_previous_a_for_page_50:
+pagy___pagy_previous_anchor_test_0004_renders_the_pagy_previous_anchor_for_page_50:
   :r1: <a href="/foo?page=49" aria-label="Previous">&lt;</a>
   :r2: <a href="/foo?page=49+50" aria-label="Previous">&lt;</a>
   :r3: <a href="/foo?page=49" aria-label="My previous page">PREV</a>
   :r4: <a href="/foo?page=49+50" aria-label="My previous page">PREV</a>
-pagy___pagy_previous_a_test_0003_renders_the_pagy_previous_a_for_page_6:
+pagy___pagy_previous_anchor_test_0003_renders_the_pagy_previous_anchor_for_page_6:
   :r1: <a href="/foo?page=5" aria-label="Previous">&lt;</a>
   :r2: <a href="/foo?page=5+7" aria-label="Previous">&lt;</a>
   :r3: <a href="/foo?page=5" aria-label="My previous page">PREV</a>
   :r4: <a href="/foo?page=5+7" aria-label="My previous page">PREV</a>
-pagy___pagy_previous_a_test_0001_renders_the_pagy_previous_a_for_page_1:
+pagy___pagy_previous_anchor_test_0001_renders_the_pagy_previous_anchor_for_page_1:
   :r1: <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
   :r2: <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
   :r3: <a role="link" aria-disabled="true" aria-label="My previous page">PREV</a>
   :r4: <a role="link" aria-disabled="true" aria-label="My previous page">PREV</a>
-pagy___pagy_previous_a_test_0002_renders_the_pagy_previous_a_for_page_3:
+pagy___pagy_previous_anchor_test_0002_renders_the_pagy_previous_anchor_for_page_3:
+  :r1: <a href="/foo?page=2" aria-label="Previous">&lt;</a>
+  :r2: <a href="/foo?page=2+4" aria-label="Previous">&lt;</a>
+  :r3: <a href="/foo?page=2" aria-label="My previous page">PREV</a>
+  :r4: <a href="/foo?page=2+4" aria-label="My previous page">PREV</a>
+pagy___pagy_next_anchornchor_test_0003_renders_the_pagy_next_anchornchor_for_page_6:
+  :r1: <a href="/foo?page=7" aria-label="Next">&gt;</a>
+  :r2: <a href="/foo?page=7+7" aria-label="Next">&gt;</a>
+  :r3: <a href="/foo?page=7" aria-label="My next page">NEXT</a>
+  :r4: <a href="/foo?page=7+7" aria-label="My next page">NEXT</a>
+pagy___pagy_next_anchornchor_test_0002_renders_the_pagy_next_anchornchor_for_page_3:
+  :r1: <a href="/foo?page=4" aria-label="Next">&gt;</a>
+  :r2: <a href="/foo?page=4+4" aria-label="Next">&gt;</a>
+  :r3: <a href="/foo?page=4" aria-label="My next page">NEXT</a>
+  :r4: <a href="/foo?page=4+4" aria-label="My next page">NEXT</a>
+pagy___pagy_next_anchornchor_test_0004_renders_the_pagy_next_anchornchor_for_page_50:
+  :r1: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
+  :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
+  :r3: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
+  :r4: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
+pagy___pagy_next_anchornchor_test_0001_renders_the_pagy_next_anchornchor_for_page_1:
+  :r1: <a href="/foo?page=2" aria-label="Next">&gt;</a>
+  :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
+  :r3: <a href="/foo?page=2" aria-label="My next page">NEXT</a>
+  :r4: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
+pagy___pagy_previous_anchornchor_test_0003_renders_the_pagy_previous_anchornchor_for_page_6:
+  :r1: <a href="/foo?page=5" aria-label="Previous">&lt;</a>
+  :r2: <a href="/foo?page=5+7" aria-label="Previous">&lt;</a>
+  :r3: <a href="/foo?page=5" aria-label="My previous page">PREV</a>
+  :r4: <a href="/foo?page=5+7" aria-label="My previous page">PREV</a>
+pagy___pagy_previous_anchornchor_test_0002_renders_the_pagy_previous_anchornchor_for_page_3:
   :r1: <a href="/foo?page=2" aria-label="Previous">&lt;</a>
   :r2: <a href="/foo?page=2+4" aria-label="Previous">&lt;</a>
   :r3: <a href="/foo?page=2" aria-label="My previous page">PREV</a>

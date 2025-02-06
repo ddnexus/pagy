@@ -20,12 +20,12 @@ require 'pagy/extras/pagy'
 ```
 
 ```erb View (helper)
-<%== pagy_nav_js(@pagy, **vars) %>
-<%== pagy_combo_nav_js(@pagy, **vars) %>
-<%== pagy_prev_a(@pagy, **vars) %>
-<%== pagy_next_a(@pagy, **vars) %>
-<%== pagy_prev_link(@pagy, **vars) %>
-<%== pagy_next_link(@pagy, **vars) %>
+<%== pagy_nav_js(@pagy, **opts) %>
+<%== pagy_combo_nav_js(@pagy, **opts) %>
+<%== pagy_prev_a(@pagy, **opts) %>
+<%== pagy_next_anchor(@pagy, **opts) %>
+<%== pagy_prev_link(@pagy, **opts) %>
+<%== pagy_next_link(@pagy, **opts) %>
 ```
 
 ```ruby URL helpers
@@ -85,7 +85,7 @@ The keyord argument used from `vars` are:
 - `aria_label: pagy_t('pagy.aria_label.prev)`
 - `anchor_string: nil`
 
-==- `pagy_next_a(pagy, **vars)`
+==- `pagy_next_anchor(pagy, **opts)`
 
 Return the enabled/disabled next page anchor tag. It is the same next link string which is part of the
 `pagy_nav` helper.
@@ -164,7 +164,7 @@ end
 
 ```erb _next_link.html.erb (partial)
 <!-- Wrapped in a "pagy" class to apply the pagy CSS style -->
-<span id: 'next_link' class="pagy"><%== pagy_next_a(@pagy, text: 'More...', anchor_string: 'data-remote="true"') %><span>
+<span id: 'next_link' class="pagy"><%== pagy_next_anchor(@pagy, text: 'More...', anchor_string: 'data-remote="true"') %><span>
 ```
 
 ```erb incremental.js.erb (javascript template)
@@ -190,7 +190,7 @@ of changes:
 **1**. Hide the link in `_next_link.html.erb` by adding a style attribute:
 
 ```erb _next_link.html.erb (partial)
-<span style="display: none;"><%== pagy_next_a(@pagy, text: 'More...') %></span>
+<span style="display: none;"><%== pagy_next_anchor(@pagy, text: 'More...') %></span>
 ```
 
 **2**. Add a javascript that will click the link when the listing-bottom appears in the viewport on load/resize/scroll. It will
