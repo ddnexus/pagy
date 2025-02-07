@@ -9,8 +9,8 @@ class Pagy
     extend self
 
     # rubocop:disable Style/MutableConstant
-    LOOKUP_PATHNAMES = [ROOT.join('locales')]
-    DATA = {}
+    PATHNAMES = [ROOT.join('locales')]
+    DATA      = {}
     # rubocop:enable Style/MutableConstant
 
     # Translate and pluralize the key with the locale DATA
@@ -24,7 +24,7 @@ class Pagy
     private
 
     def load(locale)
-      path = LOOKUP_PATHNAMES.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
+      path = PATHNAMES.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
       raise Errno::ENOENT, "missing dictionary file for #{locale.inspect} locale" unless path
 
       dictionary   = YAML.load_file(path)[locale]

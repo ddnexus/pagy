@@ -52,7 +52,7 @@ class Pagy
       records
       return unless @more
 
-      @next ||= B64.urlsafe_encode(derive_cutoff.to_json)
+      @next ||= B64.urlsafe_encode(extract_cutoff.to_json)
     end
 
     def keyset? = true
@@ -115,8 +115,8 @@ class Pagy
       prefix ? attributes.transform_keys { |key| :"#{prefix}#{key}" } : attributes
     end
 
-    # Derive the cutoff from the last record (only called if @more)
-    def derive_cutoff
+    # Extract the cutoff from the last record (only called if @more)
+    def extract_cutoff
       attr = keyset_attributes_from(@records.last)
       (@options[:stringify_keyset_values]&.(attr) || attr).values
     end

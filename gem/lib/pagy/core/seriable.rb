@@ -20,13 +20,13 @@ class Pagy
           if length >= @last
             series.push(*1..@last)
           else
-            left  = ((length - 1) / 2.0).floor            # left half might be 1 page shorter for even length
-            start = if @page <= left                      # beginning pages
+            half  = (length - 1) / 2                      # the left half might be 1 page shorter for even length
+            start = if @page <= half                      # @page in the first half
                       1
-                    elsif @page > (@last - length + left) # end pages
+                    elsif @page > (@last - length + half) # @page in the last half
                       @last - length + 1
-                    else                                  # intermediate pages
-                      @page - left
+                    else                                  # @page in the middle
+                      @page - half
                     end
             series.push(*start...start + length)
             unless compact || length < LENGTH             # Set first, last and gaps when needed

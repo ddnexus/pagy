@@ -35,7 +35,7 @@ class Pagy
 
         @next ||= begin
                     unless @page_cutoff
-                      @page_cutoff = derive_cutoff
+                      @page_cutoff = extract_cutoff
                       @last       += 1                                # reflect the added cutoff
                       @update.push(@last, [@page, 1, @page_cutoff])   # last + splice arguments for the client cutoffs
                     end

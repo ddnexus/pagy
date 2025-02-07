@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'previous_next'
 require_relative '../utils/nav_js'
 
 class Pagy

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'previous_next'
 require_relative '../utils/nav'
 
 class Pagy
@@ -10,7 +9,7 @@ class Pagy
       anchor_lambda = pagy_anchor_lambda(pagy, **)
       html = pagy_previous_anchor(pagy, anchor_lambda)
       pagy.series(**).each do |item|
-        # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]            R
+        # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
         html << case item
                 when Integer
                   anchor_lambda.(item)
