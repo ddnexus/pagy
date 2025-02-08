@@ -24,7 +24,7 @@ This is a wrapper around the [Pagy::Keyset::Keynav API](/docs/api/keynav). Pleas
 [!ref Keyset Pagination: Concepts and Overview](/docs/api/keyset.md)
 
 This extra adds a `pagy_keyset_for_ui` constructor method that can be used in your controllers, and provides the automatic setting
-of the variables from the request `params`.
+of the options from the request `params`.
 
 ## Synopsis
 
@@ -34,13 +34,13 @@ This section integrates the [Keyset Extra Synopsis](/docs/extras/keyset.md)
 # Basic defaults (uses the session object as the cache)
 @pagy, @records = pagy_keyset_for_ui(set)
 
-# Other variables
-@pagy, @records = pagy_keyset_for_ui(set, **vars)
+# Other options
+@pagy, @records = pagy_keyset_for_ui(set, **opts)
 ```
 
 ## Methods
 
-=== `pagy_keyset_for_ui(set, **vars)`
+=== `pagy_keyset_for_ui(set, **opts)`
 
 This method is similar to the `pagy` (for offset pagination) method. It returns the `pagy` object and the array of `records`
 pulled from the DB.

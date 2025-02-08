@@ -17,9 +17,9 @@ require 'pagy/extras/bulma'
 ```
 
 ```erb View (helpers)
-<%== pagy_bulma_nav(@pagy, **vars) %>
-<%== pagy_bulma_nav_js(@pagy, **vars) %>
-<%== pagy_bulma_combo_nav_js(@pagy, **vars) %>
+<%== pagy_bulma_nav(@pagy, **opts) %>
+<%== pagy_bulma_nav_js(@pagy, **opts) %>
+<%== pagy_bulma_combo_nav_js(@pagy, **opts) %>
 ```
 
 See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
@@ -38,16 +38,16 @@ You can customize them by overriding in your own view helper(s).
 
 This method is the same as the `pagy_nav`, but customized for Bulma.
 
-See the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars) documentation.
+See the [pagy_nav(pagy, **opts)](/docs/api/frontend.md#pagy-nav-pagy-opts) documentation.
 
-=== `pagy_bulma_nav_js(pagy, **vars)`
+=== `pagy_bulma_nav_js(pagy, **opts)`
 
 ![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_bulma_nav_js` looks like the `pagy_bulma_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
 
 It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/api/javascript/navs.md) documentation
 for more information.
 
-=== `pagy_bulma_combo_nav_js(pagy, **vars)`
+=== `pagy_bulma_combo_nav_js(pagy, **opts)`
 
 ![bulma_combo_nav_js](/docs/assets/images/bulma_combo_nav_js.png)
 

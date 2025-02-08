@@ -46,18 +46,18 @@ require 'pagy/extras/pagy'
 
 | Variable | Description                                                        | Default |
 |:---------|:-------------------------------------------------------------------|:--------|
-| `:steps` | Hash variable to control multiple pagy `:size` at different widths | `false` |
+| `:steps` | Hash option to control multiple pagy `:size` at different widths | `false` |
 
-=== How to use the :steps variable
+=== How to use the :steps option
 
-The `:steps` is an optional non-core variable used by the `pagy*_nav_js` navs. If it's `false`, the `pagy*_nav_js` will behave
-exactly as a static `pagy*_nav` respecting the single `:size` variable, just faster and lighter. If it's defined as a hash, it
+The `:steps` is an optional non-core option used by the `pagy*_nav_js` navs. If it's `false`, the `pagy*_nav_js` will behave
+exactly as a static `pagy*_nav` respecting the single `:size` option, just faster and lighter. If it's defined as a hash, it
 allows you to control multiple pagy `:size` at different widths.
 
 You can set the `:steps` as a hash where the keys are integers representing the widths in pixels and the values are the
-Pagy `:size` variables to be applied for that width.
+Pagy `:size` options to be applied for that width.
 
-As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance, or even
+As usual, depending on the scope of the customization, you can set the options globally or for a single pagy instance, or even
 pass it to the `pagy*_nav_js` helper as an optional keyword argument.
 
 For example:
@@ -82,7 +82,7 @@ or pass it to the helper
 
 The above statement means that from `0` to `540` pixels width, Pagy will use the `5` size (originating a simple nav without gaps),
 from `540` to `720` it will use the `7` size and over `720` it will use the `9` size. (Read more about the `:size`
-variable in the [How to control the page links](/docs/how-to#control-the-page-links) section).
+option in the [How to control the page links](/docs/how-to#control-the-page-links) section).
 
 !!!primary :steps must contain `0` width
 You can set any number of steps with any arbitrary width/size. The only requirement is that the `:steps` hash must contain always
@@ -122,9 +122,9 @@ document.getElementById('my-pagy-nav-js').render();
 
 ## Methods
 
-==- `pagy*_nav_js(pagy, **vars)`
+==- `pagy*_nav_js(pagy, **opts)`
 
-The method accepts also the same optional keyword arguments variables of
-the [pagy_nav(pagy, **vars)](/docs/api/frontend#pagy-nav-pagy-vars)
+The method accepts also the same optional keyword arguments options of
+the [pagy_nav(pagy, **opts)](/docs/api/frontend#pagy-nav-pagy-opts)
 
 ===

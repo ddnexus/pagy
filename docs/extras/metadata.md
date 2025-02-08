@@ -27,12 +27,12 @@ render json: { data: records,
 
 | Variable    | Description                                          | Default                                                                                                                                                     |
 |:------------|:-----------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `:metadata` | Array of names used to control the returned metadata | `[ :url_template, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :limit, :vars, :pages, :last, :from, :to, :prev, :next, :series ]` |
+| `:metadata` | Array of names used to control the returned metadata | `[ :url_template, :first_url, :prev_url, :page_url, :next_url, :last_url, :count, :page, :limit, :opts, :pages, :last, :from, :to, :prev, :next, :series ]` |
 
-As usual, depending on the scope of the customization, you can set the `:metadata` variable globally or for a single pagy
+As usual, depending on the scope of the customization, you can set the `:metadata` option globally or for a single pagy
 instance.
 
-IMPORTANT: Don't rely on the broad default! You should explicitly set the `:metadata` variable with only the keys that you will
+IMPORTANT: Don't rely on the broad default! You should explicitly set the `:metadata` option with only the keys that you will
 actually use in the frontend, for obvious performance reasons. Besides you can also add other pagy method names not included in
 the default.
 
@@ -65,6 +65,6 @@ For simple cases you might want to use the other few `:*_url` metadata directly,
 This extra adds a single method to the `Pagy::Backend` (available in your controllers).
 
 ==- `pagy_data(pagy, absolute: nil)`
-This method returns a hash with the keys/values defined by the `:metadata` variable. When true, the `absolute` boolean argument
+This method returns a hash with the keys/values defined by the `:metadata` option. When true, the `absolute` boolean argument
 will cause all the `:*_url` metadata to be absolute instead of relative.
 ===

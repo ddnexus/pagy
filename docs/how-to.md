@@ -16,7 +16,7 @@ You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pag
 
 ## Control the items per page
 
-You can control the items per page with the `limit` variable. (Default `20`)
+You can control the items per page with the `limit` option. (Default `20`)
 
 You can set its default in the `pagy.rb` initializer (see [How to configure pagy](/quick-start#configure)). For example:
 
@@ -24,14 +24,14 @@ You can set its default in the `pagy.rb` initializer (see [How to configure pagy
 Pagy::DEFAULT[:limit] = 25
 ```
 
-You can also pass it as an instance variable to the `Pagy.new` method or to the `pagy` controller method:
+You can also pass it as an instance option to the `Pagy.new` method or to the `pagy` controller method:
 
 ```ruby
 @pagy, @records = pagy(Product.all, limit: 30)
 ```
 
 !!! warning ActiveRecord `limit`
-The defined `:limit` variable overrides any `limit` already set in `ActiveRecord` collections:
+The defined `:limit` option overrides any `limit` already set in `ActiveRecord` collections:
 
 ```ruby
 # the limit used in the query will be 10
@@ -47,12 +47,12 @@ See also a couple of extras that handle the `:limit` in some special way:
 
 ## Control the page links
 
-You can control the number and position of the page links in the navigation through the `:size` variable or override the
+You can control the number and position of the page links in the navigation through the `:size` option or override the
 `series` method.
 
 ==- Fast nav
 
-You can set the `:size` variable to an Integer representing the maximum page/gap slots rendered. The current page will be placed
+You can set the `:size` option to an Integer representing the maximum page/gap slots rendered. The current page will be placed
 as centered as possible in the series. For that reason, `:size` works better when it's an odd number.
 
 For example:
@@ -97,7 +97,7 @@ confusing to the user. By default, if the size is at least `7`, it will insert t
 the bar, also adding the `:gap`s accordingly.
 
 If you want to remove the first, last and gaps slots and show only a series of contiguous pages around the current one you can set
-the `:ends` variable to `false`. This is especially useful with `Calendar` nav bars.
+the `:ends` option to `false`. This is especially useful with `Calendar` nav bars.
 
 ==- Legacy nav
 
@@ -105,7 +105,7 @@ See the [size extra](extras/size.md)
 
 ==- Skip the page links
 
-If you want to skip the generation of the page links, just set the `:size` variable to `0`:
+If you want to skip the generation of the page links, just set the `:size` option to `0`:
 
 ```ruby
 pagy = Pagy.new count: 1000, size: 0 # etc
@@ -131,7 +131,7 @@ example:
 @pagy, @records = pagy(my_scope, page: 3) # force page #3
 ```
 
-That will explicitly set the `:page` variable, overriding the default behavior (which pulls the page number from the
+That will explicitly set the `:page` option, overriding the default behavior (which pulls the page number from the
 `params[:page]` by default).
 
 ## Customize the dictionary
@@ -167,7 +167,7 @@ Pagy::I18n.load({ locale: 'de', filepath: 'path/to/my-custom-de.yml' },
 ## Customize the ARIA labels
 
 You can customize the `aria-label` attributes of all the pagy helpers by passing the `:aria_label` string (
-See [pagy_nav](api/frontend.md#pagy-nav-pagy-vars))
+See [pagy_nav](api/frontend.md#pagy-nav-pagy-opts))
 
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.prev` and the
 `pagy.aria_label.next`.
@@ -176,7 +176,7 @@ See more details in the [ARIA attributes Page](api/ARIA.md).
 
 ## Customize the page symbol
 
-Pagy uses the `:page_sym` variable to determine the param it should get the page number from and create the URL for. Its default
+Pagy uses the `:page_sym` option to determine the param it should get the page number from and create the URL for. Its default
 is set as `Pagy::DEFAULT[:page_sym] = :page`, hence it will get the page number from the `params[:page]` and will create page
 URLs like `./?page=3` by default.
 
@@ -187,7 +187,7 @@ collections in the same action. Depending on the scope of the customization, you
 2. `pagy(collection, page_sym: :custom_page)` or `Pagy.new(count:100, page_sym: :custom_page)` will be used for a single
    instance (overriding the global default)
 
-You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-vars) if you need some special way to get the page
+You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-opts) if you need some special way to get the page
 number.
 
 ## Customize the link attributes
@@ -203,7 +203,7 @@ _See more advanced details about [The anchor_string argument](api/frontend.md#th
 
 ## Customize the params
 
-When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the variable
+When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the option
 `:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params.
 
 If it is a `Proc` it will receive the **key-stringified** `params` hash complete with the `page` param and it should return a
@@ -239,7 +239,7 @@ like `your_route/23` instead of `your_route?page=23`):
 ```ruby controller
 
 def pagy_url_for(pagy, page, absolute: false)
-  params = request.query_parameters.merge(pagy.vars[:page_sym] => page, only_path: !absolute)
+  params = request.query_parameters.merge(pagy.opts[:page_sym] => page, only_path: !absolute)
   url_for(params)
 end
 ```
@@ -344,7 +344,7 @@ Pagy::Frontend.prepend MyOverridingModule
 
 ```rb
 # e.g. applicaton_controller.rb
-def pagy_get_count(collection, vars)
+def pagy_get_count(collection, opts)
   collection.respond_to?(:count_documents) ? collection.count_documents : super
 end
 ```
@@ -441,7 +441,7 @@ day).
 
 ## Paginate multiple independent collections
 
-By default pagy tries to derive parameters and variables from the request and the collection, so you don't have to explicitly pass
+By default pagy tries to derive parameters and options from the request and the collection, so you don't have to explicitly pass
 it to the `pagy*` method. That is very handy, but assumes you are paginating a single collection per request.
 
 When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
@@ -582,7 +582,7 @@ Then follow the [calendar extra documentation](extras/calendar.md) for more deta
 
 ## Paginate only max_pages, regardless the count
 
-In order to limit the pagination to a maximum number of pages, you can pass the `:max_pages` variable.
+In order to limit the pagination to a maximum number of pages, you can pass the `:max_pages` option.
 
 For example:
 
@@ -604,7 +604,7 @@ That works at the `Pagy`/`Pagy::Countless` level, so it works with any combinati
 
 !!! Notice
 
-The `limit` and `gearbox` extras serve a variable number of records per page. If your goal is limiting the pagination to a max
+The `limit` and `gearbox` extras serve a option number of records per page. If your goal is limiting the pagination to a max
 number of records (instead of pages), you have to keep into account how you configure the `limit` range.
 
 !!!
@@ -612,7 +612,7 @@ number of records (instead of pages), you have to keep into account how you conf
 ## Paginate pre-offset and pre-limited collections
 
 With the other pagination gems you cannot paginate a subset of a collection that you got using `offset` and `limit`. With Pagy it
-is as simple as just adding the `:outset` variable, set to the initial offset. For example:
+is as simple as just adding the `:outset` option, set to the initial offset. For example:
 
 ```ruby controller
 subset                   = Product.offset(100).limit(315)
@@ -722,7 +722,7 @@ For example:
 
 ## Deal with a slow collection COUNT(*)
 
-Every pagination gem needs the collection count in order to calculate _all_ the other variables involved in the pagination. If you
+Every pagination gem needs the collection count in order to calculate _all_ the other options involved in the pagination. If you
 use a storage system like any SQL DB, there is no way to paginate and provide a full nav system without executing an extra query
 to get the collection count. That is usually not a problem if your DB is well organized and maintained, but that may not be always
 the case.
@@ -743,7 +743,7 @@ using the rails cache:
 ```ruby controller
 # override the pagy_get_count method adding
 # the Rails.cache wrapper around the count call
-def pagy_get_count(collection, _vars)
+def pagy_get_count(collection, _opts)
   cache_key = "pagy-#{collection.model.name}:#{collection.to_sql}"
   Rails.cache.fetch(cache_key, expires_in: 20 * 60) do
     collection.count(:all)
@@ -826,7 +826,7 @@ Here are a few options for manually handling the error in apps:
 
 - Do nothing and let the page render a 500
 - Rescue and render a 404
-- Rescue and redirect to the last known page (Notice: the `:range_rescue` variable provides the same behavior without
+- Rescue and redirect to the last known page (Notice: the `:range_rescue` option provides the same behavior without
   redirecting)
 
 ```ruby controller
@@ -855,7 +855,7 @@ will never get rescued.
 If you need to test pagination, remember:
 
 - `Pagy::DEFAULT` should be set by your initializer and be frozen. You can test that your code cannot change it.
-- You can override defaults - i.e. any pagy variable can be passed to a pagy constructor. For example:
+- You can override defaults - i.e. any pagy option can be passed to a pagy constructor. For example:
 
 ```rb
 @pagy, @books = pagy(Book.all, limit: 10) # the default limit has been overridden
@@ -869,7 +869,7 @@ standards. Using your own templates is possible, but it's likely just reinventin
 !!!
 
 If you really need to use your own templates, you absolutely can. Here is a static example that doesn't use any other helper nor
-dictionary file for the sake of simplicity, however feel free to add your dynamic variables and use any helper and dictionary
+dictionary file for the sake of simplicity, however feel free to add your dynamic options and use any helper and dictionary
 entries as you need:
 
 :::code source="assets/nav.html.erb" :::
@@ -895,7 +895,7 @@ You may want to read also the [Pagy::Frontend API documentation](api/frontend.md
 
 ## Use Pagy with a non-rack app
 
-For non-rack environments that don't respond to the request method, pass the `:request` variable to the paginator with your request[:url_prefix] (i.e. everything that comes before the `?` in the complete url), and your request[:query_params] hash to be merged with the pagy params and form the complete url
+For non-rack environments that don't respond to the request method, pass the `:request` option to the paginator with your request[:url_prefix] (i.e. everything that comes before the `?` in the complete url), and your request[:query_params] hash to be merged with the pagy params and form the complete url
 
 
 ```ruby

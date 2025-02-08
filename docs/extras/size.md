@@ -7,7 +7,7 @@ categories:
 
 # Size Extra
 
-Enable the Array type for the `:size` variable (e.g. `size: [1,4,4,1]`) that generates the legacy nav bar.
+Enable the Array type for the `:size` option (e.g. `size: [1,4,4,1]`) that generates the legacy nav bar.
 
 !!!danger Use only if REALLY required!
 The behavior of the legacy nav bar was taken straight from WillPaginate and kaminari: it's ill-concieved and complicates the 
@@ -48,14 +48,14 @@ pagy.series
 
 ##  Concept and usage
 
-Besides the regular integer value generating the fast bar, you can set the `:size` variable to an array of 4 integers in order to specify which and how many page links to show.
+Besides the regular integer value generating the fast bar, you can set the `:size` option to an array of 4 integers in order to specify which and how many page links to show.
 
 For example: `[1,4,4,1]` means that you will get `1` initial page, `4` pages before the current page, `4` pages after the current page, and `1` final page.
 
-As usual you can set the `:size` variable as a global default by using the `Pagy::DEFAULT` hash or pass it directly to the 
+As usual you can set the `:size` option as a global default by using the `Pagy::DEFAULT` hash or pass it directly to the 
 `pagy` method.
 
-The navigation links will contain the number of pages set in the variables:
+The navigation links will contain the number of pages set in the options:
 
 `size[0]`...`size[1]` current page `size[2]`...`size[3]` - e.g.:
 
@@ -67,4 +67,4 @@ pagy.series
 
 As you can see by the result of the `series` method, you get 3 initial pages, 1 `:gap` (series interrupted), 4 pages before the current page, the current `:page` (which is a string), 4 pages after the current page, another `:gap` and 3 final pages.
 
-You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to see what it contains when used in combination with different core variables.
+You can easily try different options (also asymmetrical) in a console by changing the `:size`. Just check the `series` array to see what it contains when used in combination with different core options.

@@ -15,7 +15,7 @@ A [Pagy::Keyset](keyset.md) subclass supporting `pagy_*nav` and other Frontend h
 ## Overview
 
 The regular `Pagy::Keyset` uses the fastest technique for SQL pagination, but it cannot work with any Frontend helper because they
-require a pagy object with numeric variables.
+require a pagy object with numeric options.
 
 That's why we created `Pagy::Keyset::Keynav`: it uses the fast keyset pagination AND supports `pagy_*navs` and other Frontend
 helpers.
@@ -36,12 +36,12 @@ This section integrates the [Keyset Glossary](keynav#glossary)
 | Term                | Description                                                                                                                                                                               |
 |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `keynav pagination` | The pagy exclusive technique to use `keyset pagination` with numeric pages, supporting `pagy_*navs` and other Frontend helpers.<br/>The best technique for performance AND functionality! |
-| `page`              | The array of variables from the client prepared by the `keyset_for_ui` extra, to paginate the requested page.                                                                             |
+| `page`              | The array of options from the client prepared by the `keyset_for_ui` extra, to paginate the requested page.                                                                             |
 | `cutoffs`           | The array of `cutoff`s of the known pagination state, used to keep track of the visited pages during the navigation. They are cached in the `sessionStorge` of the client.                |
 
 ## How Pagy Keyset For UI works
 
-The Augmented Keyset pagination adds the numeric variables (`page`, `last`, `prev`, `next`, `in`) to its instances, supporting their
+The Augmented Keyset pagination adds the numeric options (`page`, `last`, `prev`, `next`, `in`) to its instances, supporting their
 usage with most Frontend helpers. It does so by transparently exchanging data back and forth with the client, that stores the
 state of the pagination.
 
@@ -55,8 +55,8 @@ setup, and you will get a lot more performance.
 
 <br/>
 
-The `data-pagy` attribute encodes all the variables needed for the client. Pagy already uses it for every `*_js` helpers. The
-keyset communication adds an extra array of variables that will be used by the javascript function to:
+The `data-pagy` attribute encodes all the options needed for the client. Pagy already uses it for every `*_js` helpers. The
+keyset communication adds an extra array of options that will be used by the javascript function to:
 
 1. Create, update the `cutoffs` array in the `sessionStorage` (when a new page has been visited).
 2. Augment the `page` param value in the url of the page anchors.
@@ -90,7 +90,7 @@ Then the server can just supply the page `number` in the links, and the client w
 
 !!!
 
-The client will actually set the `page` param value of each URL to an array of variables, in order to provide the complete state
+The client will actually set the `page` param value of each URL to an array of options, in order to provide the complete state
 of the `page` that will be requested with that particular URL.
 !!!
 
@@ -98,7 +98,7 @@ of the `page` that will be requested with that particular URL.
 
 <br/>
 
-The [keynav](/docs/extras/keynav.md) is responsible for decoding and checking the variables, passing them to
+The [keynav](/docs/extras/keynav.md) is responsible for decoding and checking the options, passing them to
 this class or falling back to the `pagy_countless` constructor if the client side does not suport the
 `sessionStorage`.
 
@@ -106,7 +106,7 @@ When the controller action runs, the `pagy_keyset_for_ui` checks the `page` requ
 
 - If it's a `Number`, then the browser failed to augment the `page`, so it transparently calls `pagy_countless` to provide a
   suitable object to pass to the helpers.
-- If it's a `String`, then it decodes it into the array of the variables passed by the client, it checks a few things and passes
+- If it's a `String`, then it decodes it into the array of the options passed by the client, it checks a few things and passes
   it to this class.
 - If it's `nil` it's the start of a new pagination cycle
 
@@ -195,9 +195,9 @@ Pagy::Keyset::Keynav.new(sequel_set)
 
 ## Methods
 
-==- `Pagy::Keyset::Keynav.new(set, **vars)`
+==- `Pagy::Keyset::Keynav.new(set, **opts)`
 
-The constructor takes the `set`, and an optional hash of [variables](#variables). It returns a
+The constructor takes the `set`, and an optional hash of [options](#options). It returns a
 `Pagy::Keyset::Keynav::ActiveRecord` or
 `Pagy::Keyset::Keynav::Sequel` object (depending on the `set` class).
 
@@ -209,11 +209,11 @@ The `Array` of fetched records for the current page.
 
 ## Variables
 
-This section ontegrates the [Pagy::Keyset variables](keyset.md#variables):
+This section ontegrates the [Pagy::Keyset options](keyset.md#options):
 
 ==- `:page`
 
-The array of variables from the client prepared by the `keyset_for_ui` extra, to paginate the requested page.
+The array of options from the client prepared by the `keyset_for_ui` extra, to paginate the requested page.
 
 ==- `:max_pages`
 
@@ -223,7 +223,7 @@ Paginate only `:max_pages` ignoring the rest.
 
 ## Attribute Readers
 
-`in`, `last`, `next`, `page` (number), `prev`, `vars`
+`in`, `last`, `next`, `page` (number), `prev`, `opts`
 
 ## Troubleshooting
 

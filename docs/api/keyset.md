@@ -56,7 +56,7 @@ If you want the best of the two worlds, check out the [keyset_for_ui extra](/doc
 | `keyset attributes`        | The hash of keyset-column/record-value pairs of a record.                                                                                                                                                                                                                                                     |
 | `keyset values`            | The `values` of the `keyset attributes`.                                                                                                                                                                                                                                                                      |
 | `cutoff`                   | The value that identifies where the `page` ends, and the `next` one begins. It is encoded as a `Base64` URL-safe string.                                                                                                                                                                                      |
-| `page`                     | The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` variable, which is set to the `cutoff` of the previous page                                                                                                                                  |
+| `page`                     | The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` option, which is set to the `cutoff` of the previous page                                                                                                                                  |
 | `next`                     | The next `page`, i.e. the page of records beginning after the `cutoff`. Also the `cutoff` value retured by the `next` method.                                                                                                                                                                                 |
 
 ### Choose the right pagination type
@@ -249,9 +249,9 @@ Pagy::Keyset.new(sequel_set)
 
 ## Methods
 
-==- `Pagy::Keyset.new(set, **vars)`
+==- `Pagy::Keyset.new(set, **opts)`
 
-The constructor takes the `set`, and an optional hash of [variables](#variables). It returns a `Pagy::Keyset::ActiveRecord` or
+The constructor takes the `set`, and an optional hash of [options](#options). It returns a `Pagy::Keyset::ActiveRecord` or
 `Pagy::Keyset::Sequel` object (depending on the `set` class).
 
 ==- `next`
@@ -277,7 +277,7 @@ automatically assigned from the `limit` request param.
 
 ==- `:tuple_comparison`
 
-Boolean variable that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction
+Boolean option that enables the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction
 order, hence it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL` columns).
 Default `nil`.
 
@@ -317,7 +317,7 @@ _(Notice that `Sequel::Dataset` sets must use the `:stringify_keyset_values` lam
 
 ## Attribute Readers
 
-`limit`, `page`, `vars`
+`limit`, `page`, `opts`
 
 ## Troubleshooting
 
@@ -347,7 +347,7 @@ The generic `to_json` method used to encode the `page` may lose some information
 
 - Check the actual executed DB query and the actual stored value
 - Identify the column that have a format that doesn't match with the keyset
-- Override the encoding with the [:jsonify_keyset_attributes](#jsonify-keyset-attributes) variable
+- Override the encoding with the [:jsonify_keyset_attributes](#jsonify-keyset-attributes) option
 
 !!!
 

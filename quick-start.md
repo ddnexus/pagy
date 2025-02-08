@@ -71,9 +71,9 @@ Download the configuration file linked below and require it when your app starts
 
 !!! Pagy doesn't load unnecessary code in your app!
 Uncomment/edit the `pagy.rb` file in order to **explicitly require the extras** you need and eventually customize the
-static `Pagy::DEFAULT` variables in the same file.
+static `Pagy::DEFAULT` options in the same file.
 
-You can further customize the variables per instance, by explicitly passing any variable to the `Pagy*.new` constructor or to
+You can further customize the options per instance, by explicitly passing any option to the `Pagy*.new` constructor or to
 any `pagy*` backend/controller method.
 !!!
 

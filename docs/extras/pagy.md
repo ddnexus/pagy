@@ -37,31 +37,31 @@ See [Javascript](/docs/api/javascript.md).
 
 ## Methods
 
-==- `pagy_nav(pagy, **vars)`
+==- `pagy_nav(pagy, **opts)`
 
 !!!
 This method is defined in the `Pagy::Frontend` module for efficiency, but referred here for consistency with the other frontend
 extras and the same type of components here.
 !!!
 
-See [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars).
+See [pagy_nav(pagy, **opts)](/docs/api/frontend.md#pagy-nav-pagy-opts).
 
-==- `pagy_nav_js(pagy, **vars)`
+==- `pagy_nav_js(pagy, **opts)`
 
 See [Javascript Navs](/docs/api/javascript/navs.md).
 
-==- `pagy_combo_nav_js(pagy, **vars)`
+==- `pagy_combo_nav_js(pagy, **opts)`
 
 See [Javascript Combo Navs](/docs/api/javascript/combo-navs.md).
 
-==- `pagy_info(pagy, **vars)`
+==- `pagy_info(pagy, **opts)`
 
 !!!
 This method is defined in the `Pagy::Frontend` module for efficiency, but referred here for consistency with the same type of
 components here.
 !!!
 
-See [pagy_info(pagy, **vars)](/docs/api/frontend.md#pagy-info-pagy-vars).
+See [pagy_info(pagy, **opts)](/docs/api/frontend.md#pagy-info-pagy-opts).
 
 ==- `pagy_prev_url(pagy, absolute: false)`
 
@@ -73,14 +73,14 @@ bar links (e.g. `countless` extra).
 Return the next page URL string or nil. Useful to build minimalistic UIs that don't use nav bar
 links (e.g. `countless` extra).
 
-==- `pagy_prev_a(pagy, **vars)`
+==- `pagy_prev_a(pagy, **opts)`
 
 Return the enabled/disabled previous page anchor tag. It is the same prev link string which is
 part of the `pagy_nav` helper.
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
 
-The keyord argument used from `vars` are:
+The keyord argument used from `opts` are:
 - `text: pagy_t('pagy.prev')`
 - `aria_label: pagy_t('pagy.aria_label.prev)`
 - `anchor_string: nil`
@@ -92,7 +92,7 @@ Return the enabled/disabled next page anchor tag. It is the same next link strin
 
 Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `countless` extra).
 
-The keyord argument used from `vars` are:
+The keyord argument used from `opts` are:
 - `text: pagy_t('pagy.prev')`
 - `aria_label: pagy_t('pagy.aria_label.prev)`
 - `anchor_string: nil`
@@ -119,7 +119,7 @@ supports navbar links (see also [Pagy::Countless](/docs/api/countless.md) for mo
 
 ### Navless/incremental
 
-If you don't need the navbar you can just set the `:size` variable to `0` and the page links will be skipped from the rendering.
+If you don't need the navbar you can just set the `:size` option to `0` and the page links will be skipped from the rendering.
 That works with `Pagy` and `Pagy:Countless` instances. All the `*nav` helpers will render only the `prev` and `next`
 links/buttons, allowing for a manual incremental pagination.
 

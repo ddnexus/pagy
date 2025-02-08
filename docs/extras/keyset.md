@@ -19,7 +19,7 @@ fuller understanding of keyset pagination:
 [!ref Keyset Pagination: Concepts and Overview](/docs/api/keyset.md)
 
 This extra adds a `pagy_keyset` constructor method that can be used in your controllers and provides the automatic setting of the 
-variables from the request `params`.
+options from the request `params`.
 
 ## Synopsis
 
@@ -37,8 +37,8 @@ require 'pagy/extras/keyset'
 
 # Minimal unique ordering with the primary key: it works fast out of the box 
 set = Product.order(:id)
-# See the Pagy::Keyset docs for other variables
-@pagy, @records = pagy_keyset(set, **vars)
+# See the Pagy::Keyset docs for other options
+@pagy, @records = pagy_keyset(set, **opts)
 
 # Using same-direction order keyset (all :asc, or all :desc) 
 # Notice the primary key added as the last column as a tie-breaker for uniqueness
@@ -48,7 +48,7 @@ set = Product.order(:brand, :model, :id)
 
 # Ordering with mixed-direction order keyset
 set = Product.order(brand: :asc, model: :desc, id: :asc) 
-@pagy, @records = pagy_keyset(set, **vars)
+@pagy, @records = pagy_keyset(set, **opts)
 
 # URL Helpers
 pagy_keyset_first_url(@pagy, absolute: true)
@@ -60,11 +60,11 @@ pagy_keyset_next_url(@pagy)
 
 ## Variables
 
-See the [Pagy::Keyset variables](/docs/api/keyset.md#variables)
+See the [Pagy::Keyset options](/docs/api/keyset.md#options)
 
 ## Methods
 
-==- `pagy_keyset(set, **vars)`
+==- `pagy_keyset(set, **opts)`
 
 This method is similar to the offset `pagy` method. It returns the `pagy` object (instance of `Pagy::Keyset::ActiveRecord` or 
 `Pagy::Keyset::Sequel`, depending on the set class) and the array of `records` pulled from the DB.

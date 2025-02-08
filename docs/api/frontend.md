@@ -25,8 +25,8 @@ end
 ```
 
 ```erb View
-<%== pagy_nav(@pagy, **vars) %>
-<%== pagy_info(@pagy, **vars) %>
+<%== pagy_nav(@pagy, **opts) %>
+<%== pagy_info(@pagy, **opts) %>
 ```
 
 ## Methods
@@ -35,37 +35,37 @@ All the methods in this module are prefixed with the `"pagy_"` string in order t
 
 Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need of monkey-patching or tricky gimmickry.
 
-==- `pagy_nav(pagy, **vars)`
+==- `pagy_nav(pagy, **opts)`
 
 This method takes the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
 
 ```erb View
-<%== pagy_nav(@pagy, **vars) %>
+<%== pagy_nav(@pagy, **opts) %>
 ```
 
-The method accepts also a few optional keyword arguments variables:
+The method accepts also a few optional keyword arguments options:
 
 - `:id`: the `id` HTML attribute to the `nav` tag (omitted by default)
 - `:aria_label`: an already pluralized string for the `aria-label` attribute of the `nav`, that will be used in place of 
   the default `pagy.aria_label.nav`
   defined) 
-- `:size` which use the passed value instead of the `:size` variable of the instance
+- `:size` which use the passed value instead of the `:size` option of the instance
 
 See also [ARIA Attributes](ARIA.md).
 
-==- `pagy_info(pagy, **vars)`
+==- `pagy_info(pagy, **opts)`
 
 This method provides the info about the content of the current pagination. For example:
 
 ```erb
-<%== pagy_info(@pagy, **vars) %>
+<%== pagy_info(@pagy, **opts) %>
 ```
 
 Will produce something like:
 
 <span>Displaying items <b>476-500</b> of <b>1000</b> in total</span>
 
-The method accepts also a few optional keyword arguments variables:
+The method accepts also a few optional keyword arguments options:
 
 - `:id`: the `id` HTML attribute to the `span` tag wrapping the info
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
@@ -82,7 +82,7 @@ _(see [Customizing the item name](/docs/how-to.md#customize-the-item-name))_
 
 This method is called internally in order to produce the url of a page by passing it its number. For standard usage it works out of the box, and you can just ignore it.
 
-If this method finds a set `:url` variable it assumes there is no `request` object, so in order to produce the final URL, it uses the `:url` variable verbatim,  only adding the query string from the `params` (if any).
+If this method finds a set `:request` option it assumes there is no `request` object, so in order to produce the final URL, it uses the `:url` option verbatim,  only adding the query string from the `params` (if any).
 
 See also [How to customize the URL](/docs/how-to.md#customize-the-url) and [How to customize the params](/docs/how-to.md#customize-the-params).
 
@@ -148,7 +148,7 @@ pagy demo
 ```
 !!!
 
-==- `pagy_t(key, **vars)`
+==- `pagy_t(key, **opts)`
 
 This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally from the helpers in order to 
 get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](i18n.md) doc for details)_

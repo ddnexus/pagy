@@ -35,7 +35,7 @@ Pagy::DEFAULT[:range_rescue] = :exception
 |:------------|:------------------------------------------------------------------------------------|:--------------|
 | `:range_rescue` | the modes in case of overflowing page (`:last_page`, `:empty_page` or `:exception`) | `:empty_page` |
 
-Set the variables - either globally, or locally:
+Set the options - either globally, or locally:
 
 ```ruby
 # globally: e,g, pagy.rb Initializer
@@ -47,7 +47,7 @@ Pagy::DEFAULT[:range_rescue] = :empty_page
 
 ## Modes
 
-The modes accepted by the `:range_rescue` variable:
+The modes accepted by the `:range_rescue` option:
 
 - `:empty_page`
 - `:last_page`
@@ -64,7 +64,7 @@ Useful for APIs, where clients expect an empty page, in order to stop requesting
 pagy = Pagy.new(count: 100, page: 100)
 
 pagy.range_rescued?          #=> true
-pagy.vars[:page]        #=> 100 (requested page)
+pagy.opts[:page]        #=> 100 (requested page)
 pagy.page               #=> 100 (actual empty page)
 pagy.last == pagy.page  #=> false
 pagy.last               #=> 5
@@ -84,7 +84,7 @@ require 'pagy/extras/overflow'
 pagy = Pagy::Countless.new(count: 100, page: 100).finalize(0)
 
 pagy.range_rescued?          #=> true
-pagy.vars[:page]        #=> 100 (requested page)
+pagy.opts[:page]        #=> 100 (requested page)
 pagy.page               #=> 100 (actual empty page)
 pagy.last == pagy.page  #=> false
 pagy.last               #=> nil
@@ -106,7 +106,7 @@ period    = [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023,
 pagy      = Pagy::Calendar::Month.new(period:, page: 100)
 
 pagy.range_rescued?          #=> true
-pagy.vars[:page]        #=> 100 (requested page)
+pagy.opts[:page]        #=> 100 (requested page)
 pagy.page               #=> 100 (actual empty page)
 pagy.last == pagy.page  #=> false
 pagy.last               #=> 26
@@ -138,7 +138,7 @@ For example:
 pagy = Pagy.new(count: 100, page: 100, range_rescue: :last_page)
 
 pagy.range_rescued?          #=> true
-pagy.vars[:page]        #=> 100 (requested page)
+pagy.opts[:page]        #=> 100 (requested page)
 pagy.page               #=> 5   (current/last page)
 pagy.last == pagy.page  #=> true
 ```
@@ -164,7 +164,7 @@ end
 ==- `range_rescued?`
 
 Use this method in order to know if the requested page is overflowing. The original requested page is available
-as `pagy.vars[:page]` (useful when used with the `:last_page` mode, in case you want to give some feedback about the rescue to the
+as `pagy.opts[:page]` (useful when used with the `:last_page` mode, in case you want to give some feedback about the rescue to the
 user/client).
 
 ===

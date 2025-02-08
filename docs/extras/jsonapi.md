@@ -68,7 +68,7 @@ links_hash = pagy_jsonapi_links(@pagy)
 |:-----------|:------------------------------|:--------|
 | `:jsonapi` | Enable or disable the feature | `true`  |
 
-You can use the `:jsonapi` variable to opt-out of the feature even when the extra is required.
+You can use the `:jsonapi` option to opt-out of the feature even when the extra is required.
 
 ## Interaction with other features/extras
 

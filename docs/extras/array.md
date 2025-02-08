@@ -40,14 +40,14 @@ require 'pagy/extras/array'
 ```
 
 ```ruby Controller
-@pagy, @items = pagy_array(an_array, **vars)
+@pagy, @items = pagy_array(an_array, **opts)
 ```
 
 ## Methods
 
-==- `pagy_array(array, **vars)`
+==- `pagy_array(array, **opts)`
 
 This method is the same as the generic `pagy` method, but specialized for an Array. (see
-the [pagy doc](/docs/api/backend.md#pagy-collection-vars-nil))
+the [pagy doc](/docs/api/backend.md#pagy-collection-opts-nil))
 
 ===

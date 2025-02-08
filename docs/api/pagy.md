@@ -8,14 +8,14 @@ order: 100
 
 # Pagy
 
-The scope of the `Pagy` class is keeping track of the all integers and variables involved in the pagination. It basically takes a
+The scope of the `Pagy` class is keeping track of the all integers and options involved in the pagination. It basically takes a
 few integers (such as the count of the collection, the page number, the limit per page, ...), does some simple arithmetic and             
 creates a very small object that allocates less than 3k of memory.
 
 ## Synopsis
 
 ```ruby pagy.rb (initializer)
-# set global defaults and extra variables
+# set global defaults and extra options
 # they will get merged with every new Pagy instance
 Pagy::DEFAULT[:limit]    = 25
 Pagy::DEFAULT[:some_var] = 'default value'
@@ -24,12 +24,12 @@ Pagy::DEFAULT[:some_var] = 'default value'
 pagy = Pagy.new(count: 1000, page: 3, instance_var: 'instance var')
 #=> #<Pagy:0x000056070d954330 ... >
 
-# fetch variables (with global default)
-pagy.vars[:some_var]
+# fetch options (with global default)
+pagy.opts[:some_var]
 #=> "default value"
 
-# fetch variables passed to the instance
-pagy.vars[:instance_var]
+# fetch options passed to the instance
+pagy.opts[:instance_var]
 #=> "instance var"
 
 # fetch instance attributes
@@ -43,10 +43,10 @@ pagy.series
 
 ## Global Default
 
-The `Pagy::DEFAULT` is a globally available hash used to set defaults variables. It is a constant for easy access, but it is
+The `Pagy::DEFAULT` is a globally available hash used to set defaults options. It is a constant for easy access, but it is
 mutable to allow customizable defaults. You can override it in the `pagy.rb` initializer file in order to set your own application
 global defaults. After you are done, you should `freeze` it, so it will not change accidentally. It gets merged with the
-variables passed with the `new` method every times a `Pagy` instance gets created.
+options passed with the `new` method every times a `Pagy` instance gets created.
 
 You will typically use it in a `pagy.rb` initializer file to pass defaults values. For example:
 
@@ -65,18 +65,18 @@ files installed with the gem.
 
 ## Methods
 
-==- `Pagy.new(**vars)`
+==- `Pagy.new(**opts)`
 
 _Notice_: If you use the `Pagy::Backend` its `pagy` method will instantiate and return the Pagy object for you.
 
-The `Pagy.new` method accepts a number of variables that will be merged with the `Pagy::DEFAULT` hash and will be used to
+The `Pagy.new` method accepts a number of options that will be merged with the `Pagy::DEFAULT` hash and will be used to
 create the object.
 
-==- `series(size: @vars[:size], _**)`
+==- `series(size: @opts[:size], _**)`
 
 This method is the core of the pagination. It returns an array containing the page numbers and the `:gap` to be rendered
 with the navigation links (e.g. `[1, :gap, 7, 8, "9", 10, 11, :gap, 36]`). It accepts an optional `size` keyword argument (only
-useful for extras), defaulted on the `:size` variable.
+useful for extras), defaulted on the `:size` option.
 
 !!!primary Gap: added only when necessary
 A `:gap` is added only where the series is missing at least two pages. When the series is missing only one page, the `:gap` is
@@ -93,9 +93,9 @@ The nav helpers basically loop through this array and render the correct item by
 That is self-contained, simple and efficient.
 
 !!!primary
-This method returns an empty array if the `:size` variable is set to `0`. Useful to totally skip the generation of page links in the frontend.
+This method returns an empty array if the `:size` option is set to `0`. Useful to totally skip the generation of page links in the frontend.
 
-It can also return a simpler array without gaps if the passed `:size` is a single positive `Integer` and the `:trim` variable set to `true`.
+It can also return a simpler array without gaps if the passed `:size` is a single positive `Integer` and the `:trim` option set to `true`.
 !!!
 
 ==- `label(page: @page)`
@@ -107,23 +107,23 @@ for `Pagy::Calendar` instances. It returns the page label that will get displaye
 
 ## Variables
 
-All the variables passed to the new method are merged with the `Pagy::DEFAULT` hash and are kept in the object, passed
-around with it and accessible through the `pagy.vars` hash.
+All the options passed to the new method are merged with the `Pagy::DEFAULT` hash and are kept in the object, passed
+around with it and accessible through the `pagy.opts` hash.
 
 They can be set globally by using the `Pagy::DEFAULT` hash or passed to the `Pagy.new` method and are accessible through
-the `vars` reader.
+the `opts` reader.
 
 !!!success
-Pagy replaces the blank values of the passed variables with their default values coming from the `Pagy::DEFAULT` hash.
+Pagy replaces the blank values of the passed options with their default values coming from the `Pagy::DEFAULT` hash.
 It also applies `to_i` on the values expected to be integers, so you can use values from request `params` without any problem.
 For example: `pagy(some_scope, limit: params[:limit])` will work without any additional cleanup.
 !!!
 
 ### Variables
 
-The only mandatory instance variable to be passed is the `:count` of the collection to paginate: all the other variables are
+The only mandatory instance option to be passed is the `:count` of the collection to paginate: all the other options are
 optional and have sensible defaults. Of course you will also have to pass the `page` or you will always get the default page
-number `1`. For performance reasons, only the instance variables get validated.
+number `1`. For performance reasons, only the instance options get validated.
 
 | Variable        | Description                                                                                                                                                                              | Default |
 |:----------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------|
@@ -135,20 +135,20 @@ number `1`. For performance reasons, only the instance variables get validated.
 | `:jsonapi`      | Enable `jsonapi` compliance of the pagy query params                                                                                                                                     | `false` |
 | `:max_pages`    | Paginate only `:max_pages`. _(see [Paginate only max_pages](/docs/how-to.md#paginate-only-max_pages-regardless-the-count))_                                                              | `nil`   |
 | `:outset`       | The initial offset of the collection to paginate: pass it only if the collection had an offset                                                                                           | `nil`   |
-| `:page`         | The requested page number: extracted from the `request.params`, or forced by passing a variable                                                                                          | `1`     |
-| `:page_sym`     | The customizable symbol referring to the `:page` variable outside of pagy (e.g. in the `request.params`). _(see [Customize the page symbol](/docs/how-to.md#customize-the-page-symbol))_ | `:page` |
+| `:page`         | The requested page number: extracted from the `request.params`, or forced by passing a option                                                                                          | `1`     |
+| `:page_sym`     | The customizable symbol referring to the `:page` option outside of pagy (e.g. in the `request.params`). _(see [Customize the page symbol](/docs/how-to.md#customize-the-page-symbol))_ | `:page` |
 | `:params`       | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customize the params](/docs/how-to.md#customize-the-params))_             | `nil`   |
 | `:request_path` | Allows overriding the `request.path` for pagination links. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/how-to.md#pass-the-request-path))_             | `nil`   |
 | `:size`         | The size of the page links to show _(see also [Control the page links](/docs/how-to.md#control-the-page-links))_                                                                         | `7`     |
 
 !!!
-Extras may add and document their own variables
+Extras may add and document their own options
 !!!
 
 ### Attribute Readers
 
-Pagy exposes all its internal instance variables through a few readers. They all return integers (or `nil`), except the
-`vars` hash (which contains all the input variables):
+Pagy exposes all its internal instance options through a few readers. They all return integers (or `nil`), except the
+`opts` hash (which contains all the input options):
 
 | Reader   | Description                                                                                                          |
 |:---------|:---------------------------------------------------------------------------------------------------------------------|
@@ -163,7 +163,7 @@ Pagy exposes all its internal instance variables through a few readers. They all
 | `pages`  | Alias for `last` (cardinal meaning)                                                                                  |
 | `prev`   | The previous page number or `nil` if there is no previous page                                                       |
 | `to`     | The collection-position of the last item in the page (`:outset` excluded)                                            |
-| `vars`   | The variables hash                                                                                                   |
+| `opts`   | The options hash                                                                                                   |
 
 ### Lowest status analysis
 
@@ -196,14 +196,14 @@ Which means:
 
 ==- `Pagy::VariableError`
 
-A subclass of `ArgumentError` that offers a few information for easy exception handling when some of the variable passed to the
+A subclass of `ArgumentError` that offers a few information for easy exception handling when some of the option passed to the
 constructor is not valid.
 
 ```ruby
 rescue Pagy::VariableError => e
   e.pagy     #=> the pagy object that raised the exception
-  e.variable #=> the offending variable symbol (e.g. :page)
-  e.value    #=> the value of the offending variable (e.g -3)
+  e.option #=> the offending option symbol (e.g. :page)
+  e.value    #=> the value of the offending option (e.g -3)
 end
 ```
 
@@ -211,9 +211,9 @@ Mostly useful if you want to rescue from bad user input (e.g. illegal URL manipu
 
 ==- `Pagy::RangeError`
 
-A subclass of `Pagy::VariableError`: it is raised when the `:page` variable exceeds the maximum possible value calculated for
-the `:count`, i.e. the `:page` variable is in the correct range, but it's not consistent with the current `:count`. That may
+A subclass of `Pagy::VariableError`: it is raised when the `:page` option exceeds the maximum possible value calculated for
+the `:count`, i.e. the `:page` option is in the correct range, but it's not consistent with the current `:count`. That may
 happen when the `:count` has been reduced after a page link has been generated (e.g. some record has been just removed from the
-DB). See also the `:range_rescue` variable.
+DB). See also the `:range_rescue` option.
 
 ===

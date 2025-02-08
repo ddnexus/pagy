@@ -6,13 +6,13 @@ icon: versions-24
 
 ## Release Policy
 
-Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/), and introduces BREAKING CHANGES only for MAYOR versions.
+Pagy follows the [Semantic Versioning 2.0.0](https://semver.org/), and introduces BREAKING CHANGES only for MAJOR versions.
 
 We release any new version (MAJOR, MINOR, PATCH) as soon as it is ready for release, regardless of any time constraint, frequency
 or duration.
 
-We rarely deprecate elements (releasing a new MAYOR version is just simpler and more efficient). However, when we do, you can
-expect the old/deprecated functionality to be supported ONLY during the current MAYOR version.
+We rarely deprecate elements (releasing a new MAJOR version is just simpler and more efficient). However, when we do, you can
+expect the old/deprecated functionality to be supported ONLY during the current MAJOR version.
 
 ## Recommended Version Constraint
 
@@ -21,7 +21,7 @@ Given a version number `MAJOR.MINOR.PATCH` (e.g. `10.0.0`):
 The `gem 'pagy', '~> 10.0'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to
 the most recent version WITHOUT BREAKING CHANGES.
 
-Increment the MAYOR version in your Gemfile ONLY when you are ready to handle the BREAKING CHANGES.
+Increment the MAJOR version in your Gemfile ONLY when you are ready to handle the BREAKING CHANGES.
 
 ## Breaking Changes
 
@@ -50,19 +50,17 @@ None
 
 This version is a complete redesign of the legacy code, and its API will be stable for a long time.
 
-- Simplify the usage maintenance substantially
 - Reduce the required config by 99%: no require, no extras, no DEFAULT
-- Reduce and improve all the methods, now autoloaded only if you actually use them, saving memory
+- Reduce and improve all the methods, now autoloaded only if you actually use them
 - The code structure and naming is cleaner, more concise, readable, and consistent
 - The new docs are short and to the point, easy to browse and understand
 - You can also get valuable real-time support with the new Pagy AI
-- Improve features, performance and memory usage
 
 ### New features
 
 - **Keynav Pagination**
-  - We add the pagy-exclusive `keynav` pagination, that uses the fastest `keyset` technique with all the Frontend helpers. The
-    best technique for performance and functionality!
+  - We invented the pagy-exclusive `keynav` pagination, that uses the fastest `keyset` technique with all the Frontend helpers.
+    The best technique for performance and functionality!
 - **The Countless pagination remembers the last page**
   - When you jump back a few pages in the pagination nav, you can jump forward as well now.
 - **Javascript refactoring**
@@ -70,7 +68,7 @@ This version is a complete redesign of the legacy code, and its API will be stab
   - Added the plain `pagy.js` and relative source map.
   - Updated the support for all the pagy helpers and `keynav` pagination.
 - **I18n refactoring**
-  - No setup required: the locales and their pluralization are autoloaded when you app uses them.
+  - No setup required: the locales and their pluralization are autoloaded when your app uses them.
   - You can easily override the lookup of locale files with `Pagy::I18n::PATHNAMES.unshift(my_dictionaries)`.
 - **Simpler overriding**
   - The logic of helpers and paginators methods is simpler to understand and override in your own app code.
@@ -84,7 +82,7 @@ This version is a complete redesign of the legacy code, and its API will be stab
 
 #### Simple search and replace renaming (without logic changes)
 
-This implements a consistent naming logic throughout the gem, to improve readability and understanding.
+This renaming implement a consistent logic throughout the gem, aimed to improve readability and understanding.
 
 | Type        | Search           | Replace                | Why?                                                                                      |
 |-------------|------------------|------------------------|-------------------------------------------------------------------------------------------|
@@ -121,11 +119,11 @@ to start with the new version of the file.
 #### Core changes
 
 - If you used the `:params` variable set to a lambda, ensure that it modifies the passed `query_params` directly.
-  - The returned value is now ignored for a sligtly better performance.
+  - The returned value is now ignored for a slightly better performance.
 - The `:outset` and `:cycle` variables have been removed.
   - They were seldom used, mostly useless, and implementing them in your own code is trivial.
-- You can pass the `:length` and `:compact` options (legacy `:size` and `ends`), preferably to the `*_nav`, `_nav_js` helpers, but
-  it's also possible to pass them to the paginator.
+- You can pass the `:length` and `:compact` options (legacy `:size` and `ends`), preferably to the `*_nav`, `*_nav_js` helpers, but
+  it's also possible to pass them to the paginator methods.
 
 #### Extras Changes
 
@@ -171,7 +169,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes, 
 
 ##### `limit`
 
-- Enable the feature by passing `{ requestable_limit: your_max_limit }` variable to the paginator method.
+- Enable the feature by passing `{ requestable_limit: your_max_limit }` option to the paginator method.
 
 ##### `metadata`
 
@@ -183,8 +181,8 @@ All the extras are gone. Here is what to do in order to accomodate the changes, 
 ##### `overflow`
 
 - The `Pagy::OverflowError` has been replaced by the `Pagy::RangeError`, however it is not raised by default as before.
-- Pagy rescues the `Pagy::RangeError` and serves an empty page by default. 
-  - Now it works the same as requiring the legacy extra and using its default.
+- Pagy rescues the `Pagy::RangeError` and serves an empty page by default.
+  - Now pagy works the same as it would have worked before by requiring the legacy extra and using its default.
 - The legacy `pagy.overflow?` is now `pagy.in_range?` method: it returns the opposite boolean.
 - The `{ overflow: :last_page }` has been discontinued because it provides almost no benefit (read below how to do it anyway):
   - **Why there is almost no benefit in serving the last page**
@@ -200,7 +198,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes, 
     - Use `rescue Pagy::RangeError => e` in your method
     - Redirect to `pagy_page_url(pagy, pagy.last)`
 
-#### `standlone`
+#### `standalone`
 
 - Replace the `:url` variable with `:request` _(which can also handle the query_params now)_.
 - For example: `request: { url_prefix: 'the-previous-value-of-url', query_params: { param1: 'abc', param2: 'def' }}`
@@ -221,17 +219,17 @@ All the extras are gone. Here is what to do in order to accomodate the changes, 
 
 ##### `trim` (discontinued feature)
 
-- It was mostly useless and half backed, causing a lot of complications in the ruby and javascript code for no real benefit.
+- It was mostly useless and half-backed, causing a lot of complications in the ruby and javascript code for no real benefit.
 - Use a proper way to address your requirement, like using URL rewriting at the HTTP server level.
 
 #### Direct instantiation of the pagy classes is not recommended
 
-- Use the provided paginators methods for easier usage, maintenance and forward compatibility.
+- The provided paginators methods ensure easier usage, maintenance and forward compatibility.
 - Use the implementing classes only if the documentation explicitly suggests you to do so, or if you know what you are doing.
 
 #### Possibly Breaking Overridings
 
 - The internal Pagy protected methods have been all refactored, often renamed, and sometimes removed.
-- If you use custom Pagy classes, you need to look into the pagy code.
+- If you use custom Pagy classes, you need to reconcile them by looking into the new pagy code.
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)

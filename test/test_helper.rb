@@ -30,7 +30,7 @@ module Minitest
       def with_message_and_backtrace(result)
         exception = result.failure
         msg       = "#{exception.class.name}: #{exception.message}" if exception
-        unless result.error?  # Avoid double backtrace for errors (included it in msg)
+        unless result.error?  # Avoid double backtrace for errors (included in msg)
           backtrace = "    " + Minitest.filter_backtrace(exception.backtrace)
                                        .map { |p| p.sub(%r{^#{Dir.pwd}/}, '') }  # Relative paths as minitest does
                                        .join("\n    ")

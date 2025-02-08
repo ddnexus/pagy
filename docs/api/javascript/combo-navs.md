@@ -35,16 +35,16 @@ require 'pagy/extras/pagy'
 
 ```erb Any View
 <!-- Use just one: -->
-<%== pagy_combo_nav_js(@pagy, **vars) %>
-<%== pagy_bootstrap_combo_nav_js(@pagy, **vars) %>
-<%== pagy_bulma_combo_nav_js(@pagy, **vars) %>
+<%== pagy_combo_nav_js(@pagy, **opts) %>
+<%== pagy_bootstrap_combo_nav_js(@pagy, **opts) %>
+<%== pagy_bulma_combo_nav_js(@pagy, **opts) %>
 ```
 
 ## Methods
 
-==- `pagy*_combo_nav_js(pagy, **vars)`
+==- `pagy*_combo_nav_js(pagy, **opts)`
 
-The method accepts also the same optional keyword arguments variables of
-the [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars)
+The method accepts also the same optional keyword arguments options of
+the [pagy_nav(pagy, **opts)](/docs/api/frontend.md#pagy-nav-pagy-opts)
 
 ===

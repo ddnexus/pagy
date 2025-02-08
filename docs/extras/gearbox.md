@@ -12,7 +12,7 @@ Automatically change the `limit` depending on the page number.
 Instead of generating all the pages with a fixed limit, the app can serve pages with an increasing number of records in
 order to speed things up for wild-browsing and improving the user experience.
 
-You can set this up by simply setting the `:gearbox_limit` variable to an array of integers. For example, you would set
+You can set this up by simply setting the `:gearbox_limit` option to an array of integers. For example, you would set
 the  `gearbox_limit` to `[10, 20, 40, 80]` to get page `1` with `limit: 10`, page `2` with `limit: 20`, page `3` with `limit: 40` and all the
 other pages with `limit: 80`.
 
@@ -51,8 +51,8 @@ Pagy::DEFAULT[:gearbox_limit] = [10, 20, 50]   # your own default
 ```
 
 ```ruby Controller (action)
-# Optionally override the :gearbox_limit variable to a constructor to have it only for that instance
-@pagy, @records = pagy(collection, gearbox_limit: [30, 60, 100], **vars)
+# Optionally override the :gearbox_limit option to a constructor to have it only for that instance
+@pagy, @records = pagy(collection, gearbox_limit: [30, 60, 100], **opts)
 
 # You can still use instances with fixed pagination even after requiring the extra
 # use the default Pagy::DEFAULT[:limit]

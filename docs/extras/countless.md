@@ -22,7 +22,7 @@ require 'pagy/extras/countless'
 ## Modes
 
 This extra uses the [Pagy::Countless subclass](/docs/api/countless.md) internally. You can use it in two different modes by
-enabling the `:countless_minimal` variable (or not).
+enabling the `:countless_minimal` option (or not).
 
 +++ Default mode
 
@@ -38,7 +38,7 @@ Your app needs a full classic pagination UI
 @pagy, @records = pagy_countless(some_scope, ...)
 ```
 
-This mode fetches `limit + 1` and uses the number of fetched records to calculate the variables. It then removes the eventual
+This mode fetches `limit + 1` and uses the number of fetched records to calculate the options. It then removes the eventual
 extra item from the result, so deducing whether there is a `next` page or not without the need of an extra query.
 
 !!! info
@@ -71,7 +71,7 @@ require 'pagy/extras/countless'
 @pagy, @records = pagy_countless(some_scope, countless_minimal: true, ...)
 ```
 
-This mode is enabled by the `:countless_minimal` variable.
+This mode is enabled by the `:countless_minimal` option.
 
 !!! info
 
@@ -91,10 +91,10 @@ This mode is enabled by the `:countless_minimal` variable.
 
 ## Methods
 
-==- `pagy_countless(collection, **vars)`
+==- `pagy_countless(collection, **opts)`
 
-This method is the same as the generic `pagy` method (see the [pagy doc](/docs/api/backend.md#pagy-collection-vars-nil)), however
-its returned objects will depend on the value of the `:countless_minimal` variable (see [Modes](#modes))
+This method is the same as the generic `pagy` method (see the [pagy doc](/docs/api/backend.md#pagy-collection-opts-nil)), however
+its returned objects will depend on the value of the `:countless_minimal` option (see [Modes](#modes))
 
 ==- `pagy_countless_get_items(collection, pagy)`
 

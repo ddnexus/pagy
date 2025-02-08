@@ -95,7 +95,7 @@ The whole usage boils down to these steps:
 
 ## Variables and Accessors
 
-See [Pagy::Calendar](/docs/api/calendar.md#variables)
+See [Pagy::Calendar](/docs/api/calendar.md#options)
 
 ## Methods
 
@@ -138,7 +138,7 @@ argument expected by the wrapped method.
 ### `configuration` argument
 
 The `configuration` argument must be a Hash structure with the keys representing the type of configuration and the values being
-the Hash of the variables that you want to pass for the creation of the specific pagy object (or a `boolean` for
+the Hash of the options that you want to pass for the creation of the specific pagy object (or a `boolean` for
 the [Active flag](#active-flag)).
 
 The `configuration` hash can be composed by the following types of configuration:
@@ -149,11 +149,11 @@ The calendar configuration determines the calendar objects generated. These are 
 time units.
 
 You can add one or more levels with keys like `:year`, `:quarter`, `:month`, `:week`, `:day`. Each key must be set to the hash of
-the variables that will be used to initialize the relative `Pagy::Calendar::*` object. Use an empty hash for default values.
+the options that will be used to initialize the relative `Pagy::Calendar::*` object. Use an empty hash for default values.
 E.g.: `year: {}, month: {}, ...`.
 
 !!!warning Do not set `:page`, `:page_sym`, `:params` and `:period` keys
-That variables for the calendar objects are managed automatically by the extra.
+That options for the calendar objects are managed automatically by the extra.
 Setting them explicitly has no effect. (See also [Calendar params](#calendar-params) for solutions in case of conflicts)
 !!!
 
@@ -162,10 +162,10 @@ Setting them explicitly has no effect. (See also [Calendar params](#calendar-par
 This is the optional configuration of the final pagination object (produced by the wrapped method) which is always used regardless
 the value of the [Active flag](#active-flag).
 
-You can pass one optional `:pagy` key, set to the hash of the variables to initialize the `Pagy` object. It has none of the
+You can pass one optional `:pagy` key, set to the hash of the options to initialize the `Pagy` object. It has none of the
 restriction mentioned in the [Calendar configuration](#calendar-configuration).
 
-Besides the usual pagy variables, you can add a `:backend` variable, set to the name of the backend extra method that you want to
+Besides the usual pagy options, you can add a `:backend` option, set to the name of the backend extra method that you want to
 use for managing the collection:
 
 ```ruby
@@ -189,7 +189,7 @@ This method must be implemented by the application.
 
 It receives a `collection` argument that must not be changed by the method, but can be used to return the starting and ending
 local `TimeWithZone` objects array defining the calendar `:period`. See
-the [Pagy::Calendar Variables](/docs/api/calendar.md#variables) for details.
+the [Pagy::Calendar Variables](/docs/api/calendar.md#options) for details.
 
 Depending on the type of storage, the `collection` argument can contain a different kind of object:
 
@@ -227,7 +227,7 @@ See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 #### Search frameworks storage
 
 _If you use `ElasticSearchRails`, `Searchkick`, `Meilisearch` the `collection` argument is just the Array of the captured search
-arguments that you passed to the `Model.pagy_search` method. That array is what pagy uses internally to setup its variables before
+arguments that you passed to the `Model.pagy_search` method. That array is what pagy uses internally to setup its options before
 passing it to the standard `Model.search` method to do the actual search._
 
 So you should use what you need from the `collection` array and do your own `Model.search(...)` in order to get the starting and
@@ -262,7 +262,7 @@ See also [Time conversion](/docs/api/calendar.md#time-conversions) for details.
 #### Search frameworks storage
 
 _If you use `ElasticSearchRails`, `Searchkick`, `Meilisearch` the `collection` argument is just the Array of the captured search
-arguments that you passed to the `Model.pagy_search` method. That array is what pagy uses internally to setup its variables before
+arguments that you passed to the `Model.pagy_search` method. That array is what pagy uses internally to setup its options before
 passing it to the standard `Model.search` method to do the actual search._
 
 So in order to filter the actual search with the `from` and `to` local `TimeWithZone` objects, you should simply return the same array with the filtering added to its relevant item. Pagy will use it to do the actual (filtered) search.
@@ -321,7 +321,7 @@ collection scope).
 
 If you use the `:week` time unit, consider that the first day of the week could be different for different locales.
 
-You may want to adjust it by setting the `Date.beginning_of_week` variable to the symbol of the first day of the week (
+You may want to adjust it by setting the `Date.beginning_of_week` option to the symbol of the first day of the week (
 e.g. `Date.beginning_of_week = :sunday`). Notice the default is `:monday` consistently with the ISO-8601 standard (and Rails).
 
 ### Calendar params
@@ -331,7 +331,7 @@ with other params in your requests. In that case you have a couple of alternativ
 
 - Renaming the conflicting param of your app
 - Passing a custom `:page_sym` to the [Pagy configuration](#pagy-configuration). That will internally rename the `:page_sym`
-  vars and update the `:params` procs of all the calendar objects accordingly.
+  opts and update the `:params` procs of all the calendar objects accordingly.
 
 ## View
 
@@ -355,15 +355,15 @@ option `fit_time: true` to avoid the error and get the url to the page closest t
 ### Label format
 
 Each page link in the calendar navs is conveniently labeled with the specific `Time` period it refers to. You can change the time
-format to your needs by setting the `:format` variable to a standard `strftime` format. (See
-the [Pagy::Calendar::Unit variables](/docs/api/calendar/units.md#variables))
+format to your needs by setting the `:format` option to a standard `strftime` format. (See
+the [Pagy::Calendar::Unit options](/docs/api/calendar/units.md#options))
 
 You can also get the [label method](/docs/api/calendar.md#methods) with e.g.: `@calendar[:month].label`, which might be useful to
 use in your UI.
 
 ### I18n localization
 
-Pagy implements its own faster version of the i18n `translate` method (see [pagy_t](/docs/api/frontend/#pagy-t-key-vars)), but
+Pagy implements its own faster version of the i18n `translate` method (see [pagy_t](/docs/api/frontend/#pagy-t-key-opts)), but
 does not provide any built-in `localize` method. If you need localization of calendar labels in other locales, you should delegate
 it to the `I18n` gem, so that a change in the global `I18n.locale` will automatically localize all the time labels accordingly.
 

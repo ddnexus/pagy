@@ -34,11 +34,11 @@ apart. All the classes follow the same principle. Time units with no records are
 
 ## Variables
 
-Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their superclass infrastructure and variables, however
-they use a completely different way to paginate (e.g.: no `:count` nor `:limit` variables) and they have a few extra core
-variables.
+Being subclasses of `Pagy`, the `Pagy::Calendar::*` classes share most of their superclass infrastructure and options, however
+they use a completely different way to paginate (e.g.: no `:count` nor `:limit` options) and they have a few extra core
+options.
 
-The following variables are specific to `Pagy::Calendar::*` instances:
+The following options are specific to `Pagy::Calendar::*` instances:
 
 | Variable  | Description                                                                                               | Default |
 |:----------|:----------------------------------------------------------------------------------------------------------|:--------|
@@ -46,13 +46,13 @@ The following variables are specific to `Pagy::Calendar::*` instances:
 | `:order`  | Order of pagination: it can be`:asc` or `:desc`                                                           | `:asc`  |
 | `:format` | String containing the `strftime` extendable format used for labelling (each subclass has its own default) |         |
 
-**Notice**: For the `Pagy::Calendar::Quarter` the `:format` variable can contain a non-standard `%q` format which is substituted
+**Notice**: For the `Pagy::Calendar::Quarter` the `:format` option can contain a non-standard `%q` format which is substituted
 with the quarter (1-4).
 
-## DEFAULT variables
+## DEFAULT options
 
-The calendar defaults are not part of the `Pagy::DEFAULT` variables. Each subclass has its own `Pagy::Calendar::*::DEFAULT`
-variable hash that you can set independently. See the pagy initializer file for details.
+The calendar defaults are not part of the `Pagy::DEFAULT` options. Each subclass has its own `Pagy::Calendar::*::DEFAULT`
+option hash that you can set independently. See the pagy initializer file for details.
 
 ## Attribute Readers
 
@@ -60,7 +60,7 @@ variable hash that you can set independently. See the pagy initializer file for 
 |:--------|:----------------------------------------------------------|
 | `from`  | The local `TimeWithZone` of the start of the current page |
 | `to`    | The local `TimeWithZone` of the end of the current page   |
-| `order` | The `:order` variable                                     |
+| `order` | The `:order` option                                     |
 
 ### About from and to objects
 
@@ -76,7 +76,7 @@ already filtered by the `:period` so there are no records outside it.
 This classes can use the `ActiveSupport::TimeWithZone` class for all their time calculations.
 
 Since they are meant to be used in the UI, they use the user/server local time in order to make sense for the UI. For that reason
-their input (the `:period` variable) and output (the `from` and `to` accessors) are always local time.
+their input (the `:period` option) and output (the `from` and `to` accessors) are always local time.
 
 If you use `ActiveRecord`, your app should set the `Time.zone` for your user or your server. Then you can convert an UTC time from
 the storage to a local `TimeWithZone` object for the calendar very easily with:
@@ -97,7 +97,7 @@ the default is `:monday` consistently with the ISO-8601 standard (and Rails).
 
 ==- `label(page: @page, **opts)`
 
-This method takes a `:page` `Integer` or `String` number argument (or the current `@page` if it's missing) and uses the `:format` variable to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
+This method takes a `:page` `Integer` or `String` number argument (or the current `@page` if it's missing) and uses the `:format` option to generate its label with the specific `Time` period it refers to. It accepts an optional `:format` keyword argument for overriding.
 
 ===
 

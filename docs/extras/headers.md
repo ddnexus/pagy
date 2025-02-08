@@ -45,8 +45,8 @@ If your code in different actions is similar enough, you can encapsulate the sta
 application controller. For example:
 
 ```ruby Controller (pagy_render)
-def pagy_render(collection, **vars)
-  pagy, records = pagy(collection, vars) # any pagy_* backend constructor works
+def pagy_render(collection, **opts)
+  pagy, records = pagy(collection, opts) # any pagy_* backend constructor works
   pagy_headers_merge(pagy)
   render json: records
 end
@@ -73,8 +73,8 @@ total-count 1000
 ### Customize the header names
 
 If you are replacing any of the existing API-pagination gems in some already working app, you may want to customize the header
-names so you will not have to change the client app that consumes them. You can do so by using the `:headers` variable _(
-see [variables](#variables) below)_
+names so you will not have to change the client app that consumes them. You can do so by using the `:headers` option _(
+see [options](#options) below)_
 
 !!!warning Countless and Keyset Pagination
 
@@ -86,9 +86,9 @@ If you use the `headers` extra with the [contless](countless.md) or [keyset](key
 
 | Variable   | Description                                              | Default                                                                                     |
 |:-----------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------------|
-| `:headers` | Hash variable to customize/suppress the optional headers | `{ page: 'current-page', limit: 'page-items', count: 'total-count', pages: 'total-pages' }` |
+| `:headers` | Hash option to customize/suppress the optional headers | `{ page: 'current-page', limit: 'page-items', count: 'total-count', pages: 'total-pages' }` |
 
-As usual, depending on the scope of the customization, you can set the variables globally or for a single pagy instance.
+As usual, depending on the scope of the customization, you can set the options globally or for a single pagy instance.
 
 For example, the following will change the header names and will suppress the `:pages` ('Total-Pages') header:
 

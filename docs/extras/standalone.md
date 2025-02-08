@@ -22,7 +22,7 @@ module, or in the irb/rails console or for testing/playing with backend and fron
 This extra creates a dummy `params` method (if not already defined) in the module where you will include
 the `Pagy::Backend` (usually a controller).
 
-Besides that you have just to define a `:url` variable and the [pagy_url_for](/docs/api/frontend.md#pagy-url-for) method will assume there is no `request` object, so in order to produce the final URL, it will use the `:url` variable verbatim, only adding the query string from the `params` (if any).
+Besides that you have just to define a `:url` option and the [pagy_url_for](/docs/api/frontend.md#pagy-url-for) method will assume there is no `request` object, so in order to produce the final URL, it will use the `:url` option verbatim, only adding the query string from the `params` (if any).
 
 ## Synopsis
 
@@ -34,7 +34,7 @@ Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'
 ```
 
 ```ruby Controller
-# pass a :url variable to work in standalone mode (no need of any request object nor Rack env)
+# pass a :url option to work in standalone mode (no need of any request object nor Rack env)
 @pagy, @products = pagy(collection, url: 'http://www.example.com/subdir', params: {...})
 ```
 
@@ -42,6 +42,6 @@ Pagy::DEFAULT[:url] = 'http://www.example.com/subdir'
 
 ==- Dummy `params` method
 
-The method is called by `pagy` to fetch the backend variables coming from the request, and expects a hash, so the dummy param method returns an empty hash avoiding an error.
+The method is called by `pagy` to fetch the backend options coming from the request, and expects a hash, so the dummy param method returns an empty hash avoiding an error.
 
 ===

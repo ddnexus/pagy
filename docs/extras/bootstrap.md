@@ -18,9 +18,9 @@ require 'pagy/extras/bootstrap'
 ```
 
 ```erb View (helper)
-<%== pagy_bootstrap_nav(@pagy, **vars) %>
-<%== pagy_bootstrap_nav_js(@pagy, **vars) %>
-<%== pagy_bootstrap_combo_nav_js(@pagy, **vars) %>
+<%== pagy_bootstrap_nav(@pagy, **opts) %>
+<%== pagy_bootstrap_nav_js(@pagy, **opts) %>
+<%== pagy_bootstrap_combo_nav_js(@pagy, **opts) %>
 ```
 
 See: [Javascript](/docs/api/javascript.md) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
@@ -33,21 +33,21 @@ This extra adds 3 nav helpers to the `Pagy::Frontend` module.
 You can customize them by overriding in your own view helper(s).
 !!!
 
-=== `pagy_bootstrap_nav(pagy, **vars)`
+=== `pagy_bootstrap_nav(pagy, **opts)`
 
 ![pagy_bootstrap_nav](/docs/assets/images/bootstrap_nav.png)
 
 This method is the same as the `pagy_nav`, but customized for Bootstrap.
 
-See: [pagy_nav(pagy, **vars)](/docs/api/frontend.md#pagy-nav-pagy-vars).
+See: [pagy_nav(pagy, **opts)](/docs/api/frontend.md#pagy-nav-pagy-opts).
 
-=== `pagy_bootstrap_nav_js(pagy, **vars)`
+=== `pagy_bootstrap_nav_js(pagy, **opts)`
 
 ![bootstrap_nav_js: Responsive nav.](/docs/assets/images/bootstrap_nav_js.png)
 
 See: [Javascript Navs](/docs/api/javascript/navs.md).
 
-=== `pagy_bootstrap_combo_nav_js(pagy, **vars)`
+=== `pagy_bootstrap_combo_nav_js(pagy, **opts)`
 
 ![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 

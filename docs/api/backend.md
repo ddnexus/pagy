@@ -47,9 +47,9 @@ prefixed with the `"pagy_get_"` string are sub-methods/getter methods that are i
 Please, keep in mind that overriding any method is very easy with Pagy. Indeed you can do it right where you are using it: no need
 of monkey-patching or perform any tricky gimmickry.
 
-==- `pagy(collection, **vars)`
+==- `pagy(collection, **opts)`
 
-This is the main method of this module. It takes a collection object (e.g. a scope), and an optional hash of variables (passed to
+This is the main method of this module. It takes a collection object (e.g. a scope), and an optional hash of options (passed to
 the `Pagy.new` method) and returns the `Pagy` instance and the page of records. For example:
 
 ```ruby
@@ -60,13 +60,13 @@ The built-in `pagy` method is designed to be easy to customize by overriding any
 If you need to use multiple different types of collections in the same app or action, you may want to define some alternative and
 self contained custom `pagy` method. (see [Writing your own Pagy methods](#writing-your-own-pagy-methods))
 
-==- `pagy_get_count(collection, vars)`
+==- `pagy_get_count(collection, opts)`
 
-Get the count from the collection, considering also the `:count_args` variable. Override it if you need to calculate the count in some special way, or cache it. e.g. overriding [`pagy_get_count` when using mongoid](../how-to/#override-pagy_get_count-use-count_documents-with-mongoid).
+Get the count from the collection, considering also the `:count_args` option. Override it if you need to calculate the count in some special way, or cache it. e.g. overriding [`pagy_get_count` when using mongoid](../how-to/#override-pagy_get_count-use-count_documents-with-mongoid).
 
-==- `pagy_get_page(vars)`
+==- `pagy_get_page(opts)`
 
-Get the `page` from the param, looking at the `:page_sym` variable. See also [Customize the page_sym](/docs/how-to.md#customize-the-page-param).
+Get the `page` from the param, looking at the `:page_sym` option. See also [Customize the page_sym](/docs/how-to.md#customize-the-page-param).
 
 ==- `pagy_get_items(collection, pagy)`
 
@@ -108,8 +108,8 @@ For example: here is a `pagy` method that doesn't call any sub-method, that may 
 
 ```ruby Controller
 
-def pagy_custom(collection, vars = {})
-  pagy = Pagy.new(count: collection.count(*vars[:count_args]), page: params[:page], **vars)
+def pagy_custom(collection, opts = {})
+  pagy = Pagy.new(count: collection.count(*opts[:count_args]), page: params[:page], **opts)
   [pagy, collection.offset(pagy.offset).limit(pagy.limit)]
 end
 ```

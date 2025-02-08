@@ -66,10 +66,10 @@ See [Javascript](/docs/api/javascript.md) (only if you use the `pagy_limit_selec
 | Variable       | Description                                                                                                | Default  |
 |:---------------|:-----------------------------------------------------------------------------------------------------------|:---------|
 | `:limit_extra` | Enable or disable the feature (e.g. opt-out of the feature even when the extra is required)                | `true`   |
-| `:limit_sym`   | The customizable symbol referring to the `:limit` variable outside of pagy (e.g. in the `request.params`). | `:limit` |
+| `:limit_sym`   | The customizable symbol referring to the `:limit` option outside of pagy (e.g. in the `request.params`). | `:limit` |
 | `:limit_max`   | The max limit allowed. Set it to `nil` for no limit                                                        | `100`    |
 
-You may want to customize the variables. Depending on the scope of the customization, you have a couple of options:
+You may want to customize the options. Depending on the scope of the customization, you have a couple of options:
 
 As a global default:
 
@@ -100,7 +100,7 @@ pagy(scope, limit: 30)
 
 The `limit` extra adds the `pagy_limit_selector_js` helper to the `Pagy::Frontend` module.
 
-==- `pagy_limit_selector_js(pagy, **vars)`
+==- `pagy_limit_selector_js(pagy, **opts)`
 
 !!!warning Not for Keyset::Keynav instances!
 
@@ -115,7 +115,7 @@ page</span>
 
 It returns an empty string if the `:limit_extra` is `false`.
 
-The method accepts also a few optional keyword arguments variables:
+The method accepts also a few optional keyword arguments options:
 
 - `:id` which adds the `id` HTML attribute to the `nav` tag
 - `:item_name` an already pluralized string that will be used in place of the default `item/items`
