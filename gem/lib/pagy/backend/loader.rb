@@ -7,7 +7,6 @@ class Pagy
                           pagy_headers_merge:       'helpers/headers',
                           pagy_data:                'helpers/data',
                           pagy_links:               'helpers/links',
-                          pagy_arel:                'paginators/arel',
                           pagy_array:               'paginators/array',
                           pagy_calendar:            'paginators/calendar',
                           pagy_countless:           'paginators/countless',

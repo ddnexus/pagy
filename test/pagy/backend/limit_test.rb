@@ -4,7 +4,6 @@ require_relative '../../test_helper'
 require_relative '../../mock_helpers/elasticsearch_rails'
 require_relative '../../mock_helpers/searchkick'
 require_relative '../../mock_helpers/meilisearch'
-require_relative '../../mock_helpers/arel'
 require_relative '../../mock_helpers/collection'
 require_relative '../../mock_helpers/app'
 
@@ -22,7 +21,7 @@ def test_limit_options_params(limit, options, params)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
-  %i[pagy_offset pagy_array pagy_arel].each do |meth|
+  %i[pagy_offset pagy_array].each do |meth|
     pagy, records = app.send(meth, @collection, **options)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit

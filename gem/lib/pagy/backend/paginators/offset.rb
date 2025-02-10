@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add offset pagynator
+  # Add offset paginator
   Backend.module_eval do
     private
 
@@ -17,7 +17,14 @@ class Pagy
     # Get the collection count
     def pagy_get_count(collection, options)
       count_args = options[:count_args] || [:all]
-      (count     = collection.count(*count_args)).is_a?(Hash) ? count.size : count
+      count      = if options[:count_over] && !collection.group_values.empty?
+                     # COUNT(*) OVER ()
+                     sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
+                     collection.unscope(:order).pick(sql).to_i
+                   else
+                     collection.count(*count_args)
+                   end
+      count.is_a?(Hash) ? count.size : count
     end
 
     # Get the items for the page

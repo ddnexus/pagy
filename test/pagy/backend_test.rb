@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 require_relative '../test_helper'
+require_relative '../mock_helpers/arel'
 require_relative '../mock_helpers/collection'
 require_relative '../mock_helpers/app'
 
 describe 'pagy/backend' do
   let(:app) { MockApp.new }
 
-  describe '#pagy' do
+  describe 'pagy_offset' do
     before do
       @collection = MockCollection.new
     end
@@ -29,6 +30,20 @@ describe 'pagy/backend' do
       _(pagy.options[:anchor_string]).must_equal 'X'
       _(records.count).must_equal 10
       _(records).must_equal [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    end
+    it 'paginates with count_over' do
+      collection = MockCollection::Grouped.new((1..1000).to_a)
+      options   = { page: 2, limit: 10, anchor_string: 'X', count_over: true }
+      pagy,  = app.send :pagy_offset, collection, **options
+      merged = pagy.options
+      _(merged.keys).must_include :count
+      _(merged.keys).must_include :page
+      _(merged.keys).must_include :limit
+      _(merged.keys).must_include :anchor_string
+      _(merged[:count]).must_equal 1000
+      _(merged[:page]).must_equal 2
+      _(merged[:limit]).must_equal 10
+      _(merged[:anchor_string]).must_equal 'X'
     end
   end
 

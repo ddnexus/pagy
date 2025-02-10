@@ -31,10 +31,6 @@ class MockCollection < Array
     size
   end
 
-  def group_values
-    []
-  end
-
   class Grouped < MockCollection
     def count(*)
       @collection.to_h { |v| [v, v + 1] }
