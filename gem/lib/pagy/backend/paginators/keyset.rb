@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add keynav pagynator
+  # Add keynav paginator
   Backend.module_eval do
     private
 

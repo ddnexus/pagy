@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.version     = '9.3.3'
   s.authors     = ['Domizio Demichelis']
   s.email       = ['dd.nexus@gmail.com']
-  s.summary     = 'The best pagination ruby gem'
-  s.description = 'Agnostic pagination in plain ruby. It does it all. Better.'
+  s.summary     = 'The ruby gem for pagination'
+  s.description = 'Agnostic pagination in plain ruby.'
   s.homepage    = 'https://github.com/ddnexus/pagy'
   s.license     = 'MIT'
   s.files       = `git ls-files -z`.split("\0")  # rubocop:disable Packaging/GemspecGit

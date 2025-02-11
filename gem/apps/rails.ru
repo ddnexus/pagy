@@ -111,7 +111,7 @@ class CommentsController < ActionController::Base # :nodoc:
 
   def index
     @pagy, @comments = pagy_offset(Comment.all, **PAGY_OPTIONS)
-    # pagy_headers_merge(@pagy)
+    # pagy_merge_headers(@pagy)
     render inline: TEMPLATE
   end
 end

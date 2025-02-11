@@ -39,9 +39,9 @@ class Pagy
 
     module SeriesOverride # :nodoc:
       # Override the original series.
-      # Return nil if :countless_minimal is enabled
+      # Return nil if :headless is enabled
       def series(**)
-        super unless @options[:countless_minimal]
+        super unless @options[:headless]
       end
     end
     prepend SeriesOverride

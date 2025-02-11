@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add countless pagynator
+  # Add countless paginator
   Backend.module_eval do
     private
 
@@ -23,7 +23,7 @@ class Pagy
     # Sub-method called only by #pagy_countless: here for easy customization of record-extraction by overriding
     # You may need to override this method for collections without offset|limit
     def pagy_countless_get_items(collection, pagy)
-      return collection.offset(pagy.offset).limit(pagy.limit) if pagy.options[:countless_minimal]
+      return collection.offset(pagy.offset).limit(pagy.limit) if pagy.options[:headless]
 
       fetched = collection.offset(pagy.offset).limit(pagy.limit + 1).to_a # eager load limit + 1
       pagy.finalize(fetched.size)                                         # finalize the pagy object

@@ -61,28 +61,28 @@ describe 'jsonapi' do
       _(app.send(:pagy_page_url, pagy, 4)).must_rematch :url
     end
   end
-  describe '#pagy_links' do
+  describe '#pagy_links_hash' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default, page_sym: :number, limit_sym: :size)
-      result = app.send(:pagy_links, pagy)
+      result = app.send(:pagy_links_hash, pagy)
       _(result.keys).must_equal %i[first previous next last]
       _(result).must_rematch :result
     end
     it 'sets the previous value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 1 } })
       pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default)
-      result = app.send(:pagy_links, pagy)
+      result = app.send(:pagy_links_hash, pagy)
       _(result[:previous]).must_be_nil
     end
     it 'sets the next value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 50 } })
       pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default)
-      result = app.send(:pagy_links, pagy)
+      result = app.send(:pagy_links_hash, pagy)
       _(result[:next]).must_be_nil
     end
   end
-  describe '#pagy_links (keyset)' do
+  describe '#pagy_links_hash (keyset)' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { latest: 'WzIwXQ', size: 10 } })
       pagy, _records = app.send(:pagy_keyset,
@@ -90,7 +90,7 @@ describe 'jsonapi' do
                                 **@pagy_default,
                                 page_sym:  :latest,
                                 limit_sym: :size)
-      result = app.send(:pagy_links, pagy)
+      result = app.send(:pagy_links_hash, pagy)
       _(result.keys).must_equal %i[first next]
       _(result).must_rematch :keyset_result
     end
@@ -102,7 +102,7 @@ describe 'jsonapi' do
                                 **@pagy_default,
                                 page_sym:  :latest,
                                 limit_sym: :size)
-      result = app.send(:pagy_links, pagy)
+      result = app.send(:pagy_links_hash, pagy)
       _(result).must_rematch :keyset_result
       _(result[:next]).must_be_nil
     end

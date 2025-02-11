@@ -3,7 +3,7 @@
 require_relative 'wrapper'
 
 class Pagy
-  # Add elasticsearch_rails pagynator
+  # Add elasticsearch_rails paginator
   Backend.module_eval do
     private
 

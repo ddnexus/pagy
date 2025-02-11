@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 class Pagy
-  DATA_KEYS = %i[url_template first_url previous_url page_url next_url last_url
-                 count page limit pages last in from to previous next options series sequels].freeze
-
   # Add pagination data
   Backend.module_eval do
     private
 
     # Return the data hash
-    def pagy_data(pagy, data_keys: nil, **)
+    def pagy_extract_hash(pagy, pluck_keys: nil, **)
       url_template = pagy_page_url(pagy, PAGE_TOKEN, **)
-      keys  = data_keys || pagy.options[:data_keys] || DATA_KEYS
+      keys  = pluck_keys || pagy.options[:pluck_keys] ||
+              %i[url_template first_url previous_url page_url next_url last_url
+                 count page limit pages last in from to previous next options series sequels]
       keys -= %i[count limit] if pagy.calendar?
       {}.tap do |data|
         keys.each do |key|

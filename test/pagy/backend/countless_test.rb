@@ -78,9 +78,9 @@ describe 'countless' do
       _(pagy.page).must_equal 1
       _(paged).must_equal Array(1..20)
     end
-    it 'can use :countless_minimal with page param without last' do
+    it 'can use :headless with page param without last' do
       app   = MockApp.new(params: { page: 25 })
-      pagy, = app.send(:pagy_countless, @collection, countless_minimal: true)
+      pagy, = app.send(:pagy_countless, @collection, headless: true)
       _(pagy.series).must_be_nil
       _(pagy.count).must_be_nil
       _(pagy.previous).must_be_nil

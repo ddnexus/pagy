@@ -1,54 +1,5 @@
 ---
-headers___pagy_headers_test_0006_omit_next_on_last_page:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=49>;
-      rel="previous", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
-    current-page: '50'
-    page-items: '20'
-    total-pages: '50'
-    total-count: '1000'
-headers___pagy_headers_test_0003_returns_custom_headers_hash:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
-      rel="next", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
-headers___pagy_headers_test_0004_returns_the_countless_headers_hash:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two&page=1+2>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2+2>;
-      rel="next"
-    current-page: '1'
-    page-items: '20'
-headers___pagy_headers_test_0005_omit_previous_on_first_page:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
-      rel="next", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
-    current-page: '1'
-    page-items: '20'
-    total-pages: '50'
-    total-count: '1000'
-headers___pagy_headers_test_0001_returns_the_full_headers_hash:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
-      rel="next", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
-    current-page: '1'
-    page-items: '20'
-    total-pages: '50'
-    total-count: '1000'
-headers___pagy_headers_test_0002_returns_custom_headers_hash:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
-      rel="next", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
-    Per-Page: '20'
-    Total: '1000'
-headers___pagy_headers_merge_test_0001_returns_the_full_headers_hash:
-  :response: !ruby/hash:Rack::Headers
-    link: <http://example.com:3000/foo>; rel="first", <http://example.com:3000/foo?page=2>;
-      rel="previous", <http://example.com:3000/foo?page=4>; rel="next", <http://example.com:3000/foo?page=50>;
-      rel="last"
-    current-page: '3'
-    page-items: '20'
-    total-pages: '50'
-    total-count: '1000'
-headers___pagy_headers_merge_with_Calendar_test_0001_returns_the_full_headers_hash:
+headers___pagy_merge_headers_with_Calendar_test_0001_returns_the_full_headers_hash:
   :response: !ruby/hash:Rack::Headers
     link: <http://example.com:3000/foo>; rel="first", <http://example.com:3000/foo?page=2>;
       rel="previous", <http://example.com:3000/foo?page=4>; rel="next", <http://example.com:3000/foo?page=26>;
@@ -57,22 +8,15 @@ headers___pagy_headers_merge_with_Calendar_test_0001_returns_the_full_headers_ha
     page-items: '20'
     total-pages: '26'
     total-count: '505'
-headers___pagy_headers_with_Keyset_test_0001_returns_the_full_headers_hash:
+headers___pagy_headers_hash_with_Calendar_test_0001_returns_the_full_headers_hash:
   :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=WzIwXQ>;
-      rel="next"
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
+      rel="next", <http://example.com:3000/foo?a=one&b=two&page=26>; rel="last"
+    current-page: '1'
     page-items: '20'
-headers___pagy_headers_with_Keyset_test_0003_omit_next_on_last_page:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first"
-    page-items: '50'
-headers___pagy_headers_with_Keyset_test_0002_returns_custom_headers_hash:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=WzQwXQ>;
-      rel="next"
-    Page: WzIwXQ
-    Per-Page: '20'
-headers___pagy_headers_with_Calendar_test_0006_omit_next_on_last_page:
+    total-pages: '26'
+    total-count: '505'
+headers___pagy_headers_hash_with_Calendar_test_0006_omit_next_on_last_page:
   :headers:
     link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=25>;
       rel="previous", <http://example.com:3000/foo?a=one&b=two&page=26>; rel="last"
@@ -80,17 +24,11 @@ headers___pagy_headers_with_Calendar_test_0006_omit_next_on_last_page:
     page-items: '20'
     total-pages: '26'
     total-count: '505'
-headers___pagy_headers_with_Calendar_test_0003_returns_custom_headers_hash:
+headers___pagy_headers_hash_with_Calendar_test_0003_returns_custom_headers_hash:
   :headers:
     link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
       rel="next", <http://example.com:3000/foo?a=one&b=two&page=26>; rel="last"
-headers___pagy_headers_with_Calendar_test_0004_returns_the_countless_headers_hash:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two&page=1+2>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2+2>;
-      rel="next"
-    current-page: '1'
-    page-items: '20'
-headers___pagy_headers_with_Calendar_test_0005_omit_previous_on_first_page:
+headers___pagy_headers_hash_with_Calendar_test_0005_omit_previous_on_first_page:
   :headers:
     link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
       rel="next", <http://example.com:3000/foo?a=one&b=two&page=26>; rel="last"
@@ -98,17 +36,79 @@ headers___pagy_headers_with_Calendar_test_0005_omit_previous_on_first_page:
     page-items: '20'
     total-pages: '26'
     total-count: '505'
-headers___pagy_headers_with_Calendar_test_0001_returns_the_full_headers_hash:
-  :headers:
-    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
-      rel="next", <http://example.com:3000/foo?a=one&b=two&page=26>; rel="last"
-    current-page: '1'
-    page-items: '20'
-    total-pages: '26'
-    total-count: '505'
-headers___pagy_headers_with_Calendar_test_0002_returns_custom_headers_hash:
+headers___pagy_headers_hash_with_Calendar_test_0002_returns_custom_headers_hash:
   :headers:
     link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
       rel="next", <http://example.com:3000/foo?a=one&b=two&page=26>; rel="last"
     Per-Page: '20'
     Total: '505'
+headers___pagy_headers_hash_with_Calendar_test_0004_returns_the_countless_headers_hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two&page=1+2>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2+2>;
+      rel="next"
+    current-page: '1'
+    page-items: '20'
+headers___pagy_headers_hash_with_Keyset_test_0001_returns_the_full_headers_hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=WzIwXQ>;
+      rel="next"
+    page-items: '20'
+headers___pagy_headers_hash_with_Keyset_test_0002_returns_custom_headers_hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=WzQwXQ>;
+      rel="next"
+    Page: WzIwXQ
+    Per-Page: '20'
+headers___pagy_headers_hash_with_Keyset_test_0003_omit_next_on_last_page:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first"
+    page-items: '50'
+headers___pagy_merge_headers_test_0001_returns_the_full_headers_hash:
+  :response: !ruby/hash:Rack::Headers
+    link: <http://example.com:3000/foo>; rel="first", <http://example.com:3000/foo?page=2>;
+      rel="previous", <http://example.com:3000/foo?page=4>; rel="next", <http://example.com:3000/foo?page=50>;
+      rel="last"
+    current-page: '3'
+    page-items: '20'
+    total-pages: '50'
+    total-count: '1000'
+headers___pagy_headers_hash_test_0001_returns_the_full_headers_hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
+      rel="next", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
+    current-page: '1'
+    page-items: '20'
+    total-pages: '50'
+    total-count: '1000'
+headers___pagy_headers_hash_test_0006_omit_next_on_last_page:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=49>;
+      rel="previous", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
+    current-page: '50'
+    page-items: '20'
+    total-pages: '50'
+    total-count: '1000'
+headers___pagy_headers_hash_test_0003_returns_custom_headers_hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
+      rel="next", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
+headers___pagy_headers_hash_test_0005_omit_previous_on_first_page:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
+      rel="next", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
+    current-page: '1'
+    page-items: '20'
+    total-pages: '50'
+    total-count: '1000'
+headers___pagy_headers_hash_test_0002_returns_custom_headers_hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2>;
+      rel="next", <http://example.com:3000/foo?a=one&b=two&page=50>; rel="last"
+    Per-Page: '20'
+    Total: '1000'
+headers___pagy_headers_hash_test_0004_returns_the_countless_headers_hash:
+  :headers:
+    link: <http://example.com:3000/foo?a=one&b=two&page=1+2>; rel="first", <http://example.com:3000/foo?a=one&b=two&page=2+2>;
+      rel="next"
+    current-page: '1'
+    page-items: '20'

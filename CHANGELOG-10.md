@@ -65,7 +65,7 @@ This version is a complete redesign of the legacy code, and its API will be stab
   - When you jump back a few pages in the pagination nav, you can jump forward as well now.
 - **Javascript refactoring**
   - The new `Pagy::Javascript.sync_source` function used in the `pagy.js` initializer, avoids complicated configurations.
-  - Added the plain `pagy.js` and relative source map.
+  - Added the plain `pagy.js` and relative source map files.
   - Updated the support for all the pagy helpers and `keynav` pagination.
 - **I18n refactoring**
   - No setup required: the locales and their pluralization are autoloaded when your app uses them.
@@ -132,65 +132,71 @@ to start with the new version of the file.
 
 #### Extras Changes
 
-All the extras are gone. Here is what to do in order to accomodate the changes, besides removing all their `require`s from the
-`pagy.rb` initializer:
+All the extras are gone. Here is what to do in order to accomodate the changes:
 
-##### `array`, `boostrap`, `bulma`, `countless`, `pagy`
+- Remove all `require 'pagy/extras/*` statements from the `pagy.rb` initializer.
+
+##### `array`, `boostrap`, `bulma`, `pagy`
 
 - Just use their methods without further changes.
 
 ##### `arel`
 
-- Replace `pagy_arel` with `pagy_offset` and add `{ count_over: true }` to the existing options.
+- Replace `pagy_arel` with `pagy_offset` and add `count_over: true` to the existing options.
+
+##### `countless`
+
+- Rename any existing `:countless_minimal` to `:headless`.
 
 ##### `calendar`
 
 - Discard your old localization config (if any), and uncomment and customize this line in the `pagy.rb` initializer:
   `Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`.
   - _Notice: In non-rails apps, calendar localization requires to add `rails-i18n` to your Gemfile._
-- Replace the existing (if any) `Pagy::Calendar::OutOfRangeError` with `Pagy::RangeError`
-- Keep the rest unchanged 
+- Replace the existing (if any) `Pagy::Calendar::OutOfRangeError` with `Pagy::RangeError`.
+- Keep the rest unchanged.
 
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
 
 - **Active and passive modes are now handled by the same paginator method.**
   - Replace any existing `Pagy.new_from_<extra-name>` with `pagy_<extra-name>`.
 - **The name customization of the `pagy_search` has been discontinued.**
-  - Remove any existing `:<extra-name>_pagy_search` variable from your code
+  - Remove any existing `:<extra-name>_pagy_search` variable from your code.
   - Replace your existing custom method name with the standard `pagy_search` method instead.
 - Rename any existing `:<extra-name>_search` variable to `:search_method` and pass it to the paginator method.
-- Keep the rest unchanged
+- Keep the rest unchanged.
 
 ##### `headers`
 
-- Rename any existing `:headers` option to `:header_names` (renamed because it's a hash, mapping headers to names)
-- Pass your `:header_names` _preferably_ to the `headers` helper method, but you can also pass it to the paginator method.
+- Rename any existing `pagy_headers_merge` to `pagy_merge_headers`.
+- Rename any existing `:headers` option to `:header_names` (renamed because it's a hash, mapping headers to names).
+- Pass your `:header_names` _preferably_ to the `headers` or `pagy_merge_headers` helper method, but you can also pass it to the paginator method.
 
 ##### `jsonapi`
 
-- Rename any existing `pagy_jsonapi_links` to `pagy_links`.
+- Rename any existing `pagy_jsonapi_links` to `pagy_links_hash`.
   - _Notice that the `nil` links are now removed as the `JSON:API` specifications require._
-- Enable the feature by passing the `{ jsonapi: true }` option to the paginator method.
+- Enable the feature by passing the `jsonapi: true` option to the paginator method.
 
 ##### `keyset`
 
-- Replace any existing `:jsonify_keyset_attributes` with `stringify_keyset_values`
-  - The lambda receives the same `keyset_attributes` argument, but it must return the array of attribute values
+- Replace any existing `:jsonify_keyset_attributes` with `stringify_keyset_values`.
+  - The lambda receives the same `keyset_attributes` argument, but it must return the array of attribute values.
     `->(keyset_attributes) { ...; keyset_attributes.values }`.
 - Remove any existing`:filter_newest`. Override the `compose_predicate` method instead.
 
 ##### `limit`
 
-- Rename the existing `:limit_param` to `:limit_sym` 
-- Delete the existing `:limit_max` and `:limit_extra` 
-- Enable the feature by passing `{ requestable_limit: your_max_limit }` option to the paginator method.
+- Rename the existing `:limit_param` to `:limit_sym`
+- Delete the existing `:limit_max` and `:limit_extra`
+- Enable the feature by passing `requestable_limit: your_max_limit` option to the paginator method.
 
 ##### `metadata`
 
-- Rename `pagy_metadata` to `pagy_data` (renamed because it's just pagy data)
-- Rename any existing `:scaffold_url` to `url_template` (renamed because it's a template string)
-- Rename any existing `:metadata` option to `:data_keys` (renamed because they are the keys of the data to use)
-- Pass your `:data_keys` array _preferably_ to the `pagy_data` helper method, but you can also pass it to the paginator method.
+- Rename `pagy_metadata` to `pagy_extract_hash` (renamed because it's what it does).
+- Rename any existing `:scaffold_url` to `url_template` (renamed because it's a template string).
+- Rename any existing `:metadata` option to `:pluck_keys` (renamed because they are the keys that you can pluck).
+- Pass your `:pluck_keys` array _preferably_ to the `pagy_extract_hash` helper method, but you can also pass it to the paginator method.
 
 ##### `overflow`
 
@@ -198,29 +204,29 @@ All the extras are gone. Here is what to do in order to accomodate the changes, 
 - Pagy rescues the `Pagy::RangeError` and serves an empty page by default.
   - Now pagy works the same as it would have worked before by requiring the overflow extra and using its default.
 - The legacy `pagy.overflow?` is now `pagy.in_range?` method: it checks/returns the opposite state/boolean.
-- The `{ overflow: :last_page }` option has been discontinued because it provides almost no benefit (read below how to do it
+- The `overflow: :last_page` option has been discontinued because it provides almost no benefit (read below how to do it
   anyway):
   - **Why there is almost no benefit in serving the last page**
-    - The nav bar of an out-of-range request is rendered with the same links rendered for the last page
+    - The nav bar of an out-of-range request is rendered with the same links rendered for the last page.
     - The difference is just that there are no records/results to show.
     - The previous page button points to the last page, so if the users really want to see the last page results (which they have
       already seen, BTW), they can just use the link.
 - **Summary**:
-  - If you used no extra (i.e. pagy raised errors): set `{ raise_range_error: true }`
-  - If you used `{ overflow: :empty_page }` or just required the overflow extra: just remove it (it's the current default now)
-  - If you used `{ overflow: :last_page }` and you really want it despite what explained before:
-    - Set `{ raise_range_error: true }`
-    - Use `rescue Pagy::RangeError => e` in your method
-    - Redirect to `pagy_page_url(pagy, pagy.last)`
+  - If you used no extra (i.e. pagy raised errors): set `raise_range_error: true`.
+  - If you used `overflow: :empty_page ` or just required the overflow extra: just remove it (it's the current default now).
+  - If you used `overflow: :last_page` and you really want it despite what explained before:
+    - Set `raise_range_error: true`.
+    - Use `rescue Pagy::RangeError => e` in your method.
+    - Redirect to `pagy_page_url(pagy, pagy.last)`.
 
 ##### `standalone`
 
 - Replace the `:url` variable with `:request` _(which can also handle the query_params now)_.
-- For example: `request: { url_prefix: 'the-previous-value-of-url', query_params: { param1: 'abc', param2: 'def' }}`
+- For example: `request: { url_prefix: 'the-previous-value-of-url', query_params: { param1: 'abc', param2: 'def' }}`.
 
 ##### `i18n`
 
-- If you really need it, uncomment/add this line to your initializer: `Pagy::Frontend.translate_with_the_slower_i18n_gem!`
+- If you really need it, uncomment/add this line to your initializer: `Pagy::Frontend.translate_with_the_slower_i18n_gem!`.
 
 ##### `gearbox` (discontinued feature)
 

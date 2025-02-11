@@ -3,10 +3,10 @@
 class Pagy
   module Backend
     module Loader
-      backend_methods = { pagy_headers:             'helpers/headers',
-                          pagy_headers_merge:       'helpers/headers',
-                          pagy_data:                'helpers/data',
-                          pagy_links:               'helpers/links',
+      backend_methods = { pagy_extract_hash:        'helpers/extract_hash',
+                          pagy_headers_hash:        'helpers/headers',
+                          pagy_merge_headers:       'helpers/headers',
+                          pagy_links_hash:          'helpers/links_hash',
                           pagy_array:               'paginators/array',
                           pagy_calendar:            'paginators/calendar',
                           pagy_countless:           'paginators/countless',

@@ -3,7 +3,7 @@
 require_relative 'wrapper'
 
 class Pagy
-  # Add searchkick pagynator
+  # Add searchkick paginator
   Backend.module_eval do
     private
 

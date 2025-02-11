@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add array pagynator
+  # Add array paginator
   Backend.module_eval do
     private
 

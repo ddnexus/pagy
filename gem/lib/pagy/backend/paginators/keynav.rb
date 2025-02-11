@@ -3,7 +3,7 @@
 require_relative '../../../pagy/modules/b64'
 
 class Pagy
-  # Add keynav pagynator
+  # Add keynav paginator
   Backend.module_eval do
     # Return Pagy::Keyset::Keynav object and paginated records
     def pagy_keynav_js(set, **options)

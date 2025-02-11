@@ -3,7 +3,7 @@
 require_relative 'wrapper'
 
 class Pagy
-  # Add meilisearch pagynator
+  # Add meilisearch paginator
   Backend.module_eval do
     private
 
