@@ -78,8 +78,8 @@ the `:page_sym` and the `:limit_sym` as shown in the [Synopsis](#synopsis).
 You may also want to use it with the [limit extra](/docs/extras/limit.md) in order to allow the client to request a specific
 number of items per page and capping it to a max number.
 
-It works also with the [keyset](keyset.md), [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md)
-and [meilisearch](/docs/extras/meilisearch.md) extras.
+It works also with the [keyset](keyset.md), [countless](countless.md), [searchkick](../api/backend_methods/paginators/search/searchkick.md), [elasticsearch_rails](../api/backend_methods/paginators/search/elasticsearch_rails.md)
+and [meilisearch](/docs/api/backend_methods/paginators/search/meilisearch.md) extras.
 
 It does not make sense (and doesn't work) with the [Calendar](countless.md) extra.
 

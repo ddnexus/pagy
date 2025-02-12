@@ -102,7 +102,7 @@ Search for keywords like `page` and `paginate` statements and use the `pagy_offs
 #@records = Product.some_scope.page(params[:page]).per_page(15)
 #@records = Product.paginate(page: params[:page], per_page: 15)
 
-@pagy, @records = pagy(Product.all, limit: 15)
+@pagy, @records = pagy_offset(Product.all, limit: 15)
 ```
 
 #### Search and replace in the Views
@@ -116,7 +116,7 @@ Search for keywords like `will_paginate` and `paginate` statement and use one of
 <%= will_paginate @records %>
 <%= paginate @records %>
 
-<%== pagy_nav @pagy %>
+<%== pagy_nav(@pagy) %>
 ```
 
 ## Find the remaining code

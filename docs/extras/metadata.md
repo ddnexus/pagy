@@ -64,7 +64,7 @@ For simple cases you might want to use the other few `:*_url` metadata directly,
 
 This extra adds a single method to the `Pagy::Backend` (available in your controllers).
 
-==- `pagy_data(pagy, absolute: nil)`
+==- `pagy_extract_hash(pagy, absolute: nil)`
 This method returns a hash with the keys/values defined by the `:metadata` option. When true, the `absolute` boolean argument
 will cause all the `:*_url` metadata to be absolute instead of relative.
 ===

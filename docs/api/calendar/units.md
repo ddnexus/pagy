@@ -3,7 +3,7 @@ title: Pagy::Calendar::Unit
 category:
   - Feature
   - Class
-image: "none"
+image: none
 ---
 
 # Pagy::Calendar::Unit

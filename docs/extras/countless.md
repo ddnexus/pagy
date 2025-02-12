@@ -22,7 +22,7 @@ require 'pagy/extras/countless'
 ## Modes
 
 This extra uses the [Pagy::Countless subclass](/docs/api/countless.md) internally. You can use it in two different modes by
-enabling the `:countless_minimal` option (or not).
+enabling the `:headless` option (or not).
 
 +++ Default mode
 
@@ -53,14 +53,14 @@ extra item from the result, so deducing whether there is a `next` page or not wi
 Your app uses no or limited pagination UI
 !!!
 
-### Set Up countless_minimal mode
+### Set Up headless mode
 
 <br>
 
 ```ruby pagy.rb (initializer)
 require 'pagy/extras/countless'
 # optionally enable the minimal mode by default
-# Pagy::DEFAULT[:countless_minimal] = true
+# Pagy::DEFAULT[:headless] = true
 ```
 
 ### Usage
@@ -68,10 +68,10 @@ require 'pagy/extras/countless'
 <br>
 
 ```ruby Controller (lazy loading)
-@pagy, @records = pagy_countless(some_scope, countless_minimal: true, ...)
+@pagy, @records = pagy_countless(some_scope, headless: true, ...)
 ```
 
-This mode is enabled by the `:countless_minimal` option.
+This mode is enabled by the `:headless` option.
 
 !!! info
 
@@ -87,18 +87,18 @@ This mode is enabled by the `:countless_minimal` option.
 
 | Variable             | Description                       | Default |
 |:---------------------|:----------------------------------|:--------|
-| `:countless_minimal` | enable the countless minimal mode | `false` |
+| `:headless` | enable the countless minimal mode | `false` |
 
 ## Methods
 
 ==- `pagy_countless(collection, **opts)`
 
-This method is the same as the generic `pagy` method (see the [pagy doc](/docs/api/backend.md#pagy-collection-opts-nil)), however
-its returned objects will depend on the value of the `:countless_minimal` option (see [Modes](#modes))
+This method is the same as the generic `pagy` method (see the [pagy doc](/docs/api/methods/backend.md#pagy-collection-opts-nil)), however
+its returned objects will depend on the value of the `:headless` option (see [Modes](#modes))
 
 ==- `pagy_countless_get_items(collection, pagy)`
 
 This sub-method is similar to the `pagy_get_items` sub-method, but it is called only by the `pagy_countless` method. (see
-the [pagy_get_items doc](/docs/api/backend.md#pagy-get-limit-collection-pagy)).
+the [pagy_get_items doc](/docs/api/methods/backend.md#pagy-get-limit-collection-pagy)).
 
 ===

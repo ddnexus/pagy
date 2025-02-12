@@ -24,7 +24,7 @@ require 'pagy/extras/headers'
 # paginate as usual with any pagy_* backend constructor
 pagy, records = pagy(collection)
 # explicitly merge the headers to the response
-pagy_headers_merge(pagy)
+pagy_merge_headers(pagy)
 render json: records
 ```
 
@@ -34,7 +34,7 @@ Instead of explicitly merging the headers before each rendering, if you use rail
 application-wide and when `@pagy` is available), by adding an `after_action` in your application controller:
 
 ```ruby Controller (after_action)
-after_action { pagy_headers_merge(@pagy) if @pagy }
+after_action { pagy_merge_headers(@pagy) if @pagy }
 
 # and use it in any action (notice @pagy that enables the merging)
 @pagy, records = pagy(collection)
@@ -47,7 +47,7 @@ application controller. For example:
 ```ruby Controller (pagy_render)
 def pagy_render(collection, **opts)
   pagy, records = pagy(collection, opts) # any pagy_* backend constructor works
-  pagy_headers_merge(pagy)
+  pagy_merge_headers(pagy)
   render json: records
 end
 
@@ -111,19 +111,19 @@ pagy, records = pagy(collection,
 
 ## Methods
 
-==- `pagy_headers_merge(pagy)`
+==- `pagy_merge_headers(pagy)`
 
 This method relies on the `response` method in your controller returning a `Rack::Response` object.
 
-You should use it before rendering: it simply merges the `pagy_headers` to the `response.headers` internally.
+You should use it before rendering: it simply merges the `pagy_headers_hash` to the `response.headers` internally.
 
-If your app doesn't implement the `response` object that way, you should override the `pagy_headers_merge` method in your
-controller or use the `pagy_headers` method directly.
+If your app doesn't implement the `response` object that way, you should override the `pagy_merge_headers` method in your
+controller or use the `pagy_headers_hash` method directly.
 
-==- `pagy_headers(pagy)`
+==- `pagy_headers_hash(pagy)`
 
 This method generates a hash of [RFC-8288](https://tools.ietf.org/html/rfc8288) compliant http headers to send with the
-response. It is internally used by the `pagy_headers_merge` method, so you usually don't need to use it directly. However, if you
+response. It is internally used by the `pagy_merge_headers` method, so you usually don't need to use it directly. However, if you
 need to edit the headers that pagy generates (for example adding extra `link` headers), you can override it in your own
 controller.
    

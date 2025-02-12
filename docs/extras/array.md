@@ -48,6 +48,6 @@ require 'pagy/extras/array'
 ==- `pagy_array(array, **opts)`
 
 This method is the same as the generic `pagy` method, but specialized for an Array. (see
-the [pagy doc](/docs/api/backend.md#pagy-collection-opts-nil))
+the [pagy doc](/docs/api/methods/backend.md#pagy-collection-opts-nil))
 
 ===

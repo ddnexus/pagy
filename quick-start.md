@@ -95,7 +95,7 @@ include Pagy::Backend
 
 +++ Search
 For search backends
-see: [elasticsearch_rails](/docs/extras/elasticsearch_rails), [meilisearch](/docs/extras/meilisearch), [searchkick](/docs/extras/searchkick), [ransack](/docs/how-to/#paginate-ransack-results).
+see: [elasticsearch_rails](/docs/api/backend_methods/paginators/search/elasticsearch_rails.md), [meilisearch](/docs/api/backend_methods/paginators/search/meilisearch.md), [searchkick](/docs/api/backend_methods/paginators/search/searchkick.md), [ransack](/docs/how-to/#paginate-ransack-results).
 
 +++ Special
 You may also use
@@ -145,7 +145,7 @@ require 'pagy/extras/metadata'
 #### Add the metadata to your JSON response
 
 ```ruby Controller action
-render json: { data: @records, pagy: pagy_data(@pagy, ...) }
+render json: { data: @records, pagy: pagy_extract_hash(@pagy, ...) }
 ```
 
 +++ API Service
@@ -167,7 +167,7 @@ require 'pagy/extras/headers'
 #### Add the pagination headers to your responses
 
  ```ruby Controller
- after_action { pagy_headers_merge(@pagy) if @pagy }
+ after_action { pagy_merge_headers(@pagy) if @pagy }
  ```
 
 #### Render your JSON response as usual

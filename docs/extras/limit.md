@@ -23,8 +23,8 @@ pagy demo
 !!!
 
 !!!success This extra works also with the [Pagy::Keyset API](/docs/api/keyset.md) and with
-the [countless](countless.md), [searchkick](searchkick.md), [elasticsearch_rails](elasticsearch_rails.md)
-and [meilisearch](meilisearch.md) extras
+the [countless](countless.md), [searchkick](../api/backend_methods/paginators/search/searchkick.md), [elasticsearch_rails](../api/backend_methods/paginators/search/elasticsearch_rails.md)
+and [meilisearch](../api/backend_methods/paginators/search/meilisearch.md) extras
 !!!
 
 ## Synopsis

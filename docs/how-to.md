@@ -15,19 +15,13 @@ You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pag
 [AI-powered answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
 
 ## Control the items per page
+ 
+==- Server side
 
-You can control the items per page with the `limit` option. (Default `20`)
-
-You can set its default in the `pagy.rb` initializer (see [How to configure pagy](/quick-start#configure)). For example:
-
-```ruby pagy.rb (initializer)
-Pagy::DEFAULT[:limit] = 25
-```
-
-You can also pass it as an instance option to the `Pagy.new` method or to the `pagy` controller method:
+Use the `limit` option passing it to ANY paginator method. For example:
 
 ```ruby
-@pagy, @records = pagy(Product.all, limit: 30)
+@pagy, @records = pagy_offset(collection, limit: 30)
 ```
 
 !!! warning ActiveRecord `limit`
@@ -35,109 +29,96 @@ The defined `:limit` option overrides any `limit` already set in `ActiveRecord` 
 
 ```ruby
 # the limit used in the query will be 10
-@pagy, @products = pagy(Product.limit(5), limit: 10)
+@pagy, @products = pagy_offset(collection, limit: 10)
 ```
 
 !!!
 
-See also a couple of extras that handle the `:limit` in some special way:
+==- Client Side
 
-- [gearbox](extras/gearbox.md): Automatically change the limit per page depending on the page number
-- [limit](extras/limit.md): Allow the client to request a custom `:limit` (i.e. records per page) with an optional selector UI
+You can also allow the client to request a custom limit by using the `:requestable_limit` option, set to the maximum requestable limit.
+
+```ruby
+# The client can request any limit up-to 1_000
+@pagy, @products = pagy_offset(collection, requestable_limit: 1_000)
+```
+
+Optionally, you can use the `pagy_limit_selector_js` helper to provide a UI selector to the user.
+[TODO REPLACE LINK]
+
+===
 
 ## Control the page links
 
-You can control the number and position of the page links in the navigation through the `:size` option or override the
+You can control the number and position of the page links in the navigation through the `:length` option or overriding the
 `series` method.
 
-==- Fast nav
+==- Using `:length`
 
-You can set the `:size` option to an Integer representing the maximum page/gap slots rendered. The current page will be placed
-as centered as possible in the series. For that reason, `:size` works better when it's an odd number.
+The `:length` option determines the length of the series of page links, used by the helpers providing a nav bar. The option should be passed to the nav helper but it can also be passed to the paginator.
 
-For example:
+The current page is placed
+as centered as possible in the series, so `:length` works better when it's an odd number.
+
+By default, the series includes the first/last and `:gap`s pages (if the `:length` is at least `7`)
+
+Set the `compact: true` option, to ingore first/last and gaps, and get always an uninterrupted/compact series.
+
+Use `length: 0` to skip the generation of the series:
+
+Examples:
 
 ```ruby
-# size < 7
-pagy = Pagy.new(count: 1000, page: 10, size: 5)
+# Skip the generation of the series
+pagy, = pagy_offset(collection, page: 99, length: 0)
+pagy.series
+#=> []
+
+# length < 7   (compact series by default)
+pagy, = pagy_offset(collection, page: 10, length: 5)
 pagy.series
 #=> [8, 9, "10", 11, 12]
-pagy = Pagy.new(count: 1000, page: 2, size: 5)
+pagy, = pagy_offset(collection, page: 2, length: 5)
 pagy.series
 #=> [1, "2", 3, 4, 5]
-pagy = Pagy.new(count: 1000, page: 99, size: 5)
+pagy, = pagy_offset(collection, page: 99, length: 5)
 pagy.series
 #=> [96, 97, 98, "99", 100] 
 
-# size >= 7 (first, last and gap added)
-pagy = Pagy.new(count: 1000, page: 10, size: 7)
+# length >= 7 (first, last and gap added)
+pagy, = pagy_offset(collection, page: 10, length: 7)
 pagy.series
-#=> [1, :gap 9, "10", 11, :gap, 100]
-pagy = Pagy.new(count: 1000, page: 2, size: 7)
+#=> [1, :gap, 9, "10", 11, :gap, 100] 
+pagy, = pagy_offset(collection, page: 10, length: 7, compact: true)
+pagy.series
+#=> [7, 8, 9, "10", 11, 12, 13]  # compact series without gaps 
+pagy, = pagy_offset(collection, page: 2, length: 7)
 pagy.series
 #=> [1, "2", 3, 4, 5, :gap, 100]
-pagy = Pagy.new(count: 1000, page: 99, size: 7)
+pagy, = pagy_offset(collection, page: 99, length: 7)
 pagy.series
 #=> [1, :gap, 96, 97, 98, "99", 100] 
-
-# size >= 7; trim: true (ends and gaps removed)
-pagy = Pagy.new(count: 1000, page: 10, size: 7, trim: true)
-pagy.series
-#=> [7, 8, 9, "10", 11, 12, 13]
-pagy = Pagy.new(count: 1000, page: 2, size: 7, trim: true)
-pagy.series
-#=> [1, "2", 3, 4, 5, 6, 7]
-pagy = Pagy.new(count: 1000, page: 99, size: 7, trim: true)
-pagy.series
-#=> [94, 95, 96, 97, 98, "99", 100]
 ```
 
-The fast nav uses a simpler and faster algorithm and the series length is more symmetrical and constant, it's cleaner and less
-confusing to the user. By default, if the size is at least `7`, it will insert the first and last pages as first and last links in
-the bar, also adding the `:gap`s accordingly.
+==- Overriding `series`
 
-If you want to remove the first, last and gaps slots and show only a series of contiguous pages around the current one you can set
-the `:ends` option to `false`. This is especially useful with `Calendar` nav bars.
-
-==- Legacy nav
-
-See the [size extra](extras/size.md)
-
-==- Skip the page links
-
-If you want to skip the generation of the page links, just set the `:size` option to `0`:
-
-```ruby
-pagy = Pagy.new count: 1000, size: 0 # etc
-pagy.series
-#=> []
-```
-
-==- Customize the series
-
-If changing the `:size` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place
-of gaps) you should override the `series` method. See more details and examples
-[here](https://github.com/ddnexus/pagy/issues/245).
+If changing the `:length` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place
+of gaps) you should override the `series` method (defined in the `Pagy::Core::Seriable` module).
 
 ===
 
 ## Pass the page number
 
-You don't need to explicitly pass the page number to the `pagy` method, because it is pulled in by the `pagy_get_page` (which is
-called internally by the `pagy` method). However you can force a `page` number by just passing it to the `pagy` method. For
-example:
+You don't need to explicitly pass the page number to the `pagy` method, because pagy gets it from the `params[:page]`, however,
+you can force a `page` number by just passing it to the `pagy` method. For example:
 
 ```ruby controller
-@pagy, @records = pagy(my_scope, page: 3) # force page #3
+@pagy, @records = pagy_offset(collection, page: 3) # force page #3
 ```
-
-That will explicitly set the `:page` option, overriding the default behavior (which pulls the page number from the
-`params[:page]` by default).
 
 ## Customize the dictionary
 
-Pagy composes its output strings using standard i18n dictionaries. That can be used to change the language and customize your
-specific app.
+Pagy uses standard i18n dictionaries to translate its string and allow overriding. (see [Pagy::I18n documentation](api/i18n).)
 
 <details>
 
@@ -148,25 +129,17 @@ specific app.
 </details>
 <br>
 
-If you are ok with the default supported locale dictionaries just refer to [Pagy::I18n](api/i18n.md).
+Customize the translations by creating a customized copy of the dictionaries in a dir (e.g. `config/locales`), and unshift its pathname to the `PATHNAMES` array.
 
-If you want to customize the translations or some specific output, you should edit the relevant entries in the pagy dictionary.
-
-If you explicitly use the [i18n extra](extras/i18n.md), override the pagy target entries in your own custom dictionary (refer to
-the I18n official documentation).
-
-If you don't use the above extra (and rely on the pagy faster code) you can copy and edit the dictionary files that your app uses
-and configure pagy to use them.
+Example for Rails:
 
 ```ruby pagy.rb (initializer)
-# load the "en" and "de" locale defined in the custom files at :filepath:
-Pagy::I18n.load({ locale: 'de', filepath: 'path/to/my-custom-de.yml' },
-                { locale: 'en', filepath: 'path/to/my-custom-en.yml' })
+Pagy::I18n::PATHNAMES.unshift(Rails.root.join('config/locales'))
 ```
 
 ## Customize the ARIA labels
 
-You can customize the `aria-label` attributes of all the pagy helpers by passing the `:aria_label` string (
+Customize the `aria-label` attributes of any `*nav*` helpers by passing the `:aria_label` string (
 See [pagy_nav](api/frontend.md#pagy-nav-pagy-opts))
 
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.prev` and the
@@ -174,26 +147,17 @@ You can also replace the `pagy.aria_label.nav` strings in the dictionary, as wel
 
 See more details in the [ARIA attributes Page](api/ARIA.md).
 
-## Customize the page symbol
+## Customize the page or limit symbols
 
-Pagy uses the `:page_sym` option to determine the param it should get the page number from and create the URL for. Its default
-is set as `Pagy::DEFAULT[:page_sym] = :page`, hence it will get the page number from the `params[:page]` and will create page
-URLs like `./?page=3` by default.
+By default, pagy gets the page from the `params[:page]` and creates the URLs using the `:page` query_param `?page=3`.
 
-You may want to customize that, for example to make it more readable in your language, or because you need to paginate different
-collections in the same action. Depending on the scope of the customization, you have a couple of options:
+Set the `page_sym: :your_symbol` to override the URL generation (i.e. `?your_symbol=3`)
 
-1. `Pagy::DEFAULT[:page_sym] = :custom_page` will be used as the global default
-2. `pagy(collection, page_sym: :custom_page)` or `Pagy.new(count:100, page_sym: :custom_page)` will be used for a single
-   instance (overriding the global default)
-
-You can also override the [pagy_get_page](/docs/api/backend.md#pagy-get-page-opts) if you need some special way to get the page
-number.
+Set the `limit_sym` to customize the `limit` param the same way.
 
 ## Customize the link attributes
 
-If you need to customize some HTML attribute of the page links, you may not need to override the `pagy_nav*` helper. It might be
-enough to pass some extra attribute string with the `:anchor_string` keyword argument. For example:
+Customize the HTML attribute of the page links by passing some extra attribute string with the `:anchor_string` keyword argument. For example:
 
 ```erb
 <%== pagy_nav(@pagy, anchor_string: 'data-remote="true"') %>
@@ -203,16 +167,15 @@ _See more advanced details about [The anchor_string argument](api/frontend.md#th
 
 ## Customize the params
 
-When you need to add some custom param or alter the params embedded in the URLs of the page links, you can set the option
-`:params` to a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params.
+Alter the params embedded in the URLs of the page links by setting the option
+`:params` to a `Hash` of params to merge, or a `Proc` that can edit/add/delete the request params.
 
-If it is a `Proc` it will receive the **key-stringified** `params` hash complete with the `page` param and it should return a
-possibly modified version of it.
+If it is a `Proc` it will receive the **key-stringified** `params` hash complete with the `page` param, and it should modify it in place.
 
-An example using `except` and `merge!`:
+An example using `except!` (available in Rails) and `merge!`:
 
 ```ruby controller
-@pagy, @records = pagy(collection, params: ->(params) { params.except('not_useful').merge!('custom' => 'useful') })
+@pagy, @records = pagy_offset(collection, params: ->(params) { params.except!('not_useful').merge!('custom' => 'useful') })
 ```
 
 You can also use the `:fragment` keyword argument to add a fragment to the URLs of the pages:
@@ -221,85 +184,15 @@ You can also use the `:fragment` keyword argument to add a fragment to the URLs 
 <%== pagy_nav(@pagy, fragment: '#your-fragment') %>
 ```
 
-!!!warning For performance reasons the `:fragment` string must include the `"#"`!
+!!!warning For efficiency reasons the `:fragment` string must include the `"#"`!
 !!!
-
-## Customize the URL
-
-When you need something more radical with the URL than just massaging the params, you should override the `pagy_url_for` right in
-your helper.
-
-The following are a couple of examples.
-
-==- Enable fancy-routes
-
-The following is a Rails-specific alternative that supports fancy-routes (e.g. `get 'your_route(/:page)' ...` that produce paths
-like `your_route/23` instead of `your_route?page=23`):
-
-```ruby controller
-
-def pagy_url_for(pagy, page, absolute: false)
-  params = request.query_parameters.merge(pagy.opts[:page_sym] => page, only_path: !absolute)
-  url_for(params)
-end
-```
-
-!!!warning Performance affected!
-The above overridden method is quite slower than the original because it passes through the rails helpers. However that gets
-mitigated by the internal usage of `pagy_anchor_lambda` which calls the method only once even in the presence of many pages.
-!!!
-
-==- POST with page links
-
-You may need to POST a very complex search form that would generate an URL potentially too long to be handled by a browser, and
-your page links may need to use POST and not GET. In that case you can try this simple solution:
-
-```ruby controller
-
-def pagy_url_for(_pagy, page, **_)
-  page
-end
-```
-
-That would produce links that look like e.g. `<a href="2">2</a>`. Then you can attach a javascript "click" event on the page
-links. When triggered, the `href` content (i.e. the page number) should get copied to a hidden `"page"` input and the form should
-be posted.
-
-For a broader tutorial about this topic
-see [Handling Pagination When POSTing Complex Search Forms](https://benkoshy.github.io/2019/10/09/paginating-search-results-with-a-post-request.html)
-by Ben Koshy.
-
-===
-
-## Customize the item name
-
-The `pagy_info` and the `pagy_limit_selector_js` helpers use the "item"/"items" generic name in their output. You can change that
-by editing the values of the `"pagy.item_name"` i18n key in
-the [dictionary files](https://github.com/ddnexus/pagy/blob/master/gem/locales) that your app is using.
-
-Besides you can also pass the `:item_name` by passing an already pluralized string directly to the helper call:
-
-```erb
-<%== pagy_info(@pagy, item_name: t(`activerecord.model.product`, count: @pagy.count) %>
-<%== pagy_limit_selector_js(@pagy, item_name: t('activerecord.model.product', count: @pagy.limit) %>
-```
 
 ## Customize CSS styles
 
-For all its own interactive helpers the pagy gem includes a few [stylesheets](api/stylesheets.md) that you can customize.
+Pagy includes a few [stylesheets](api/stylesheets.md) that you can customize, and provides a few styled frontend for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md)
+ that come with a decent styling provided by their respective framework.
 
-Besides that, pagy provides a few frontend extras for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md)
-and [tailwind](api/stylesheets.md/#pagy-tailwind-scss) that come with a decent styling provided by their respective framework.
-
-If you need to further customize the styles provided by the extras, you don't necessary need to override the helpers in most of
-them: here are a few alternatives:
-
-- Check whether the specific extra offers customization (e.g. [bulma](extras/bulma.md))
-- Define the CSS styles to apply to the pagy CSS classes
-- If sass/scss is available: extend the pagy CSS classes with some framework defined class, using the `@extend` sass/scss
-  directive
-- Use the jQuery `addClass` method
-- Use a couple of lines of plain javascript
+You can also override the specific helper method.
 
 ## Override CSS rules in element "style" attribute
 
@@ -352,6 +245,7 @@ end
 ## Paginate an Array
 
 See the [array](extras/array.md) extra.
+[TODO REPLACE LINK]
 
 ## Paginate ActiveRecord collections
 
@@ -360,14 +254,14 @@ differently:
 
 ==- Grouped collection
 
-For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel extra](extras/arel.md).
+For better performance of grouped ActiveRecord collection counts, you may want to take a look at the [arel extra](extras/arel.md). [TODO REPLACE LINK]
 
 ==- Decorated collection
 
 Do it in 2 steps: first get the page of records without decoration, and then apply the decoration to it. For example:
 
 ```ruby controller
-@pagy, records     = pagy(Post.all)
+@pagy, records     = pagy_offset(Post.all)
 @decorated_records = records.decorate # or YourDecorator.method(records) whatever works
 ```
 
@@ -378,10 +272,10 @@ get the right count in a couple of ways:
 
 ```ruby controller
 # Passing the right arguments to the internal `collection.count(...)` (See the ActiveRecord documentation for details)
-@pagy, @records = pagy(custom_scope, count_args: [:join])
+@pagy, @records = pagy_offset(custom_scope, count_args: [:join])
 
 # or directly pass the right count to pagy (that will directly use it skipping its own `collection.count(:all)`)
-@pagy, @records = pagy(custom_scope, count: custom_count)
+@pagy, @records = pagy_offset(custom_scope, count: custom_count)
 ```
 
 ==- Ransack results
@@ -390,7 +284,7 @@ Ransack `result` returns an `ActiveRecord` collection, which can be paginated ou
 
 ```ruby controller
 q              = Person.ransack(params[:q])
-@pagy, @people = pagy(q.result)
+@pagy, @people = pagy_offset(q.result)
 ```
 
 ==- PostgreSQL Collections
@@ -401,38 +295,39 @@ q              = Person.ransack(params[:q])
 
 ## Paginate for generic API clients
 
-When your app is a service that doesn't need to serve any UI, but provides an API to some sort of client, you can serve the
-pagination metadata as HTTP headers added to your response.
+Check out:
+- [Pagy::Keyset](api/keyset.md) 
+- [headers extra](extras/headers.md) 
+- [limit extra](extras/limit.md)
+- [jsonapi extra](extras/jsonapi.md)
 
-In that case you don't need the `Pagy::Frontend` nor any frontend extra. You may not even need the standard pagination, but use
-the [Pagy::Keyset](api/keyset.md) pagination. Anyway you may want to use the [headers extra](extras/headers.md) and use its
-helpers to add the headers to your responses, and other useful backend extras like the [limit extra](extras/limit.md) and
-the [jsonapi extra](extras/jsonapi.md).
+[TODO REPLACE LINKS]
 
 ## Paginate with JSON:API
 
-See the [jsonapi extra](extras/jsonapi.md).
+Pass the `jsonapi: true` to the paginator, optionally using `:page_sym` and `:limit_sym`:
+
+```ruby
+# JSON:API nested query_params: E.g.: ?page[number]=2&page[size]=100
+@pagy, @records = pagy_offset(collection, jsonapi: true, page_sym: :number, limit_sym: :size)
+```
 
 ## Paginate for Javascript Frameworks
 
 If your app uses ruby as pure backend and some javascript frameworks as the frontend (e.g. Vue.js, react.js, ...), then you may
 want to generate the whole pagination UI directly in javascript (with your own code or using some available javascript module).
 
-In that case you don't need the `Pagy::Frontend` nor any frontend extra. You should only require
-the [metadata extra](extras/metadata.md) and pass the pagination metadata in your JSON response.
+Use [metadata extra](extras/metadata.md) and pass the pagination metadata in your JSON response.
+[TODO REPLACE LINK]
 
 ## Paginate search framework results
 
 Pagy has a few extras dedicated to gems returning search results:
 
-- [elasticsearch_rails](extras/elasticsearch_rails.md)
-- [searchkick](extras/searchkick.md)
-- [meilisearch](extras/meilisearch.md)
-
-## Paginate by id instead of offset
-
-With particular requirements/environment an id-based pagination might work better than a classical offset-based pagination, You
-can use an interesting approach proposed [here](https://github.com/ddnexus/pagy/discussions/435#discussioncomment-4577136).
+- [elasticsearch_rails](api/backend_methods/paginators/search/elasticsearch_rails.md)
+- [searchkick](api/backend_methods/paginators/search/searchkick.md)
+- [meilisearch](api/backend_methods/paginators/search/meilisearch.md)
+  [TODO REPLACE LINKS]
 
 ## Paginate by date
 
@@ -441,7 +336,7 @@ day).
 
 ## Paginate multiple independent collections
 
-By default pagy tries to derive parameters and options from the request and the collection, so you don't have to explicitly pass
+By default, pagy tries to derive parameters and options from the request and the collection, so you don't have to explicitly pass
 it to the `pagy*` method. That is very handy, but assumes you are paginating a single collection per request.
 
 When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
@@ -449,7 +344,7 @@ You have the following common ways to do so:
 
 ==- Pass the request path
 
-By default pagy generates its links reusing the same `request_path` of the request, however if you want to generate links pointing
+By default, pagy generates its links reusing the same `request_path` of the request, however if you want to generate links pointing
 to a different controller/path, you should explicitly pass the targeted `:request_path`. For example:
 
 +++ Good
@@ -458,8 +353,8 @@ to a different controller/path, you should explicitly pass the targeted `:reques
 ```rb
 # dashboard_controller
 def index
-  @pagy_foos, @foos = pagy(Foo.all, request_path: '/foos')
-  @pagy_bars, @bars = pagy(Bar.all, request_path: '/bars')
+  @pagy_foos, @foos = pagy_offset(Foo.all, request_path: '/foos')
+  @pagy_bars, @bars = pagy_offset(Bar.all, request_path: '/bars')
 end
 ```
 
@@ -481,8 +376,8 @@ Path customization typically required when rendering multiple `@pagy` instances 
 ```rb
 # dashboard_controller
 def index
-  @pagy_foos, @foos = pagy(Foo.all)
-  @pagy_bars, @bars = pagy(Bars.all)
+  @pagy_foos, @foos = pagy_offset(Foo.all)
+  @pagy_bars, @bars = pagy_offset(Bars.all)
 end
 ```
 
@@ -526,11 +421,11 @@ independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_ta
 ```rb
   # controller action 
 def good
-  @pagy, @movies = pagy(Movie.good, limit: 5)
+  @pagy, @movies = pagy_offset(Movie.good, limit: 5)
 end
 
 def bad
-  @pagy, @movies = pagy(Movie.bad, limit: 5)
+  @pagy, @movies = pagy_offset(Movie.bad, limit: 5)
 end 
 ```
 
@@ -547,8 +442,8 @@ by simply using different `:page_sym` for each instance:
 ```rb
 
 def index # controller action
-  @pagy_stars, @stars     = pagy(Star.all, page_sym: :page_stars)
-  @pagy_nebulae, @nebulae = pagy(Nebula.all, page_sym: :page_nebulae)
+  @pagy_stars, @stars     = pagy_offset(Star.all, page_sym: :page_stars)
+  @pagy_nebulae, @nebulae = pagy_offset(Nebula.all, page_sym: :page_nebulae)
 end
 ```
 
@@ -561,7 +456,7 @@ to different existing statements.
 
 ```ruby controller
 # pagy without calendar
-@pagy, @record = pagy(collection, any_vars: value, ...)
+@pagy, @record = pagy_offset(collection, any_vars: value, ...)
 # wrapped with pagy_calendar
 @calendar, @pagy, @records = pagy_calendar(collection,
                                            year:  {},
@@ -587,12 +482,12 @@ In order to limit the pagination to a maximum number of pages, you can pass the 
 For example:
 
 ```ruby
-@pagy, @records = pagy(collection, max_pages: 50, limit: 20)
+@pagy, @records = pagy_offset(collection, max_pages: 50, limit: 20)
 @records.size #=> 20   
 @pagy.count #=> 10_000
 @pagy.last #=> 50
 
-@pagy, @records = pagy(collection, max_pages: 50, limit: 20, page: 51)
+@pagy, @records = pagy_offset(collection, max_pages: 50, limit: 20, page: 51)
 #=> Pagy::RangeError: expected :page in 1..50; got 51
 ```
 
@@ -616,7 +511,7 @@ is as simple as just adding the `:outset` option, set to the initial offset. For
 
 ```ruby controller
 subset                   = Product.offset(100).limit(315)
-@pagy, @paginated_subset = pagy(subset, outset: 100)
+@pagy, @paginated_subset = pagy_offset(subset, outset: 100)
 ```
 
 Assuming the `:limit` default of `20`, you will get the pages with the records you are expecting. The first page from record 101
@@ -684,7 +579,7 @@ paginated = arr[pagy.offset, pagy.limit]
 This is basically what the `pagy` method included in your controller does for you in one go:
 
 ```ruby controller
-@pagy, @products = pagy(Product.some_scope)
+@pagy, @products = pagy_offset(Product.some_scope)
 ```
 
 Then of course, regardless the kind of collection, you can render the navigation links in your view:
@@ -693,7 +588,7 @@ Then of course, regardless the kind of collection, you can render the navigation
 <%== pagy_nav(@pagy) %>
 ```
 
-See the [Pagy::Backend API documentation](api/backend.md) for more details.
+See the [Pagy::Backend API documentation](api/methods/backend.md) for more details.
 
 ## Use the pagy_nav* helpers
 
@@ -812,22 +707,14 @@ output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakema
 You can avoid the warning adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243)
 and [here](https://github.com/presidentbeef/brakeman/issues/1519).
 
-## Handle Pagy::RangeError exceptions
+## Raise Pagy::RangeError exceptions
 
-Pass a out-of-range `:page` number and Pagy will raise a `Pagy::RangeError` exception.
-
-This often happens because users/clients paginate over the end of the record set or records go deleted and a user went to a stale
+With the OFFSET pagination technique, it may happen that the users/clients paginate over the end of the record set or records go deleted and a user went to a stale
 page.
 
-You can handle the exception by using the `:range_rescue` varisble which provides a few easy and ready to use
-solutions for a few common cases, or you can rescue the exception manually and do whatever fits you better.
+By default, Pagy doesn't raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and serves the UI navigators as usual, so the user can click to a different page.
 
-Here are a few options for manually handling the error in apps:
-
-- Do nothing and let the page render a 500
-- Rescue and render a 404
-- Rescue and redirect to the last known page (Notice: the `:range_rescue` option provides the same behavior without
-  redirecting)
+Sometimes you may want to take a diffrent action, so you can set the `raise_range_error: true` option, and `rescue` it and do whatever fits your app better. For example:
 
 ```ruby controller
 rescue_from Pagy::RangeError, with: :redirect_to_last_page
@@ -841,9 +728,9 @@ end
 
 !!!warning Rescue from `Pagy::RangeError` first
 
-All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with 
-`rescue_from Pagy::RangeError, ...` then the `Pagy::RangeError` line should go BEFORE the `ArgumentError` line or it 
-will never get rescued.
+All Pagy exceptions are subclasses of `ArgumentError`, so if you need to `rescue_from ArgumentError, ...` along with
+`rescue_from Pagy::RangeError, ...` then the `Pagy::RangeError` line should go BEFORE the `ArgumentError` line, or it will never
+get rescued.
 
 !!!
 
@@ -858,7 +745,7 @@ If you need to test pagination, remember:
 - You can override defaults - i.e. any pagy option can be passed to a pagy constructor. For example:
 
 ```rb
-@pagy, @books = pagy(Book.all, limit: 10) # the default limit has been overridden
+@pagy, @books = pagy_offset(Book.all, limit: 10) # the default limit has been overridden
 ```
 
 ## Using your pagination templates
@@ -895,14 +782,16 @@ You may want to read also the [Pagy::Frontend API documentation](api/frontend.md
 
 ## Use Pagy with a non-rack app
 
-For non-rack environments that don't respond to the request method, pass the `:request` option to the paginator with your request[:url_prefix] (i.e. everything that comes before the `?` in the complete url), and your request[:query_params] hash to be merged with the pagy params and form the complete url
-
+For non-rack environments that don't respond to the request method, pass the `:request` option to the paginator with your
+request[:url_prefix] (i.e. everything that comes before the `?` in the complete url), and your request[:query_params] hash to be
+merged with the pagy params and form the complete url
 
 ```ruby
-@pagy, @records = pagy_offset(collection, request: { url_prefix:   'https://my.domain.com/path/script', 
-                                                     query_params: { a: 'a', b: 'b'} })
+@pagy, @records = pagy_offset(collection, request: { url_prefix:   'https://my.domain.com/path/script',
+                                                     query_params: { a: 'a', b: 'b' } })
 ```
 
 That would compose urls of the pages like: `https://my.domain.com/path/script?a=a&b=b&page=3`.
 
-Pagy rely also on the `params` method inside the app, which should be a hash of the params from the request. Define an alias or a method if your environment doesn't respond to it.
+Pagy rely also on the `params` method inside the app, which should be a hash of the params from the request. Define an alias or a
+method if your environment doesn't respond to it.
