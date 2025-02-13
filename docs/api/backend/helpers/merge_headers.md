@@ -7,7 +7,7 @@ title: pagy_merge_headers
 
 It also follows the header casing introduced by `rack` version `3+` _(see the [rack-issue](https://github.com/rack/rack/issues/1592))_.
 
-```ruby Controller (action)
+```ruby Controller
 # Paginate as usual with ANY pagy_* backend paginator
 pagy, records = pagy_offset(collection, **options)
 # Merge the headers to the response
@@ -17,27 +17,27 @@ render json: records
 
 ==- Options
 
-#### `header_names`
-<br/>
+- `header_names`
+  - The default pagy `:headers_names` are:
+    ```ruby
+    { page:  'current-page',
+      limit: 'page-items',
+      count: 'total-count',
+      pages: 'total-pages' }
+    ```
+  - You can customize or suppress them. For example:
 
-The default pagy `:headers_names` are:
-
-```ruby
-{ page:  'current-page',
-  limit: 'page-items',
-  count: 'total-count',
-  pages: 'total-pages' }
-```
-
-You can customize or suppress them. For example:
-
-```ruby Controller
-pagy_merge_header(pagy, header_names: { page:  'current-page',
-                                        limit: 'per-page',
-                                        pages: false,           # suppress the output
-                                        count: 'total' })
-# Notice that you can pass the `:header_names` option also to the paginator 
-```
+    ```ruby Controller
+    pagy_merge_header(pagy, header_names: { page:  'current-page',
+                                            limit: 'per-page',
+                                            pages: false,  # suppress the output
+                                            count: 'total' })
+    # Notice that you can pass the `:header_names` option also to the paginator 
+    ```
+- `absolute: true`
+  - URL absolute
+- `fragment: '#...'`
+  - URL fragment string
 
 ==- Customization
 <br/>
@@ -55,7 +55,7 @@ render json: records
 ==- Suggestions
 <br/>
 
-Instead of explicitly merging the headers before each rendering, if you use rails you can get them automatically merged (application-wide and when `@pagy` is available), by adding an `after_action` in your application controller:
+Instead of explicitly merging the headers before each rendering, if you use rails, you can get them automatically merged (application-wide and when `@pagy` is available), by adding an `after_action` in your application controller:
 
 ```ruby Controller (after_action)
 after_action { pagy_merge_headers(@pagy) if @pagy }

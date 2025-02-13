@@ -1,7 +1,6 @@
 ---
 title: Paginators
-expanded: true
-order: -100
+order: -50
 ---
 
 **Paginators** are methods that wrap a collection and return a pagy object and the page of results/records.

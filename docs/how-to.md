@@ -118,7 +118,7 @@ you can force a `page` number by just passing it to the `pagy` method. For examp
 
 ## Customize the dictionary
 
-Pagy uses standard i18n dictionaries to translate its string and allow overriding. (see [Pagy::I18n documentation](api/i18n).)
+Pagy uses standard i18n dictionaries to translate its string and allow overriding. (see [Pagy::I18n documentation](api/frontend/support/i18n.md).)
 
 <details>
 
@@ -145,7 +145,7 @@ See [pagy_nav](api/frontend.md#pagy-nav-pagy-opts))
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.prev` and the
 `pagy.aria_label.next`.
 
-See more details in the [ARIA attributes Page](api/ARIA.md).
+See more details in the [ARIA attributes Page](api/frontend/support/ARIA.md).
 
 ## Customize the page or limit symbols
 
@@ -189,7 +189,7 @@ You can also use the `:fragment` keyword argument to add a fragment to the URLs 
 
 ## Customize CSS styles
 
-Pagy includes a few [stylesheets](api/stylesheets.md) that you can customize, and provides a few styled frontend for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md)
+Pagy includes a few [stylesheets](api/frontend/support/stylesheets.md) that you can customize, and provides a few styled frontend for [bootstrap](extras/bootstrap.md), [bulma](extras/bulma.md)
  that come with a decent styling provided by their respective framework.
 
 You can also override the specific helper method.
@@ -324,9 +324,9 @@ Use [metadata extra](extras/metadata.md) and pass the pagination metadata in you
 
 Pagy has a few extras dedicated to gems returning search results:
 
-- [elasticsearch_rails](api/backend_methods/paginators/search/elasticsearch_rails.md)
-- [searchkick](api/backend_methods/paginators/search/searchkick.md)
-- [meilisearch](api/backend_methods/paginators/search/meilisearch.md)
+- [elasticsearch_rails](api/backend/paginators/search/elasticsearch_rails.md)
+- [searchkick](api/backend/paginators/search/searchkick.md)
+- [meilisearch](api/backend/paginators/search/meilisearch.md)
   [TODO REPLACE LINKS]
 
 ## Paginate by date
@@ -675,7 +675,7 @@ Here are some tips that will help choosing the best way to use Pagy, depending o
 
 If you need the pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
-- Add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](api/javascript.md))_. That uses client
+- Add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](api/frontend/support/javascript.md))_. That uses client
   side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more
   efficient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
 

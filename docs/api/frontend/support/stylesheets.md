@@ -44,7 +44,7 @@ the rest untouched.
 
 +++ pagy.scss
 
-[!file](/gem/stylesheets/pagy.scss)
+[!file](/stylesheets/pagy.scss)
 
 ```ruby 
 stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.scss')
@@ -54,7 +54,7 @@ stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.scss')
 
 +++ pagy.css
 
-[!file](/gem/stylesheets/pagy.css)
+[!file](/stylesheets/pagy.css)
 
 ```ruby 
 stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.css')
@@ -64,17 +64,13 @@ stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.css')
 
 +++ pagy.tailwind.css
 
-[!file](/gem/stylesheets/pagy.tailwind.css)
+[!file](/stylesheets/pagy.tailwind.css)
 
 ```ruby 
 stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.tailwind.css')
 ```
 
 :::code source="/gem/stylesheets/pagy.tailwind.css" :::
-
-!!!warning
-Sometimes there might be differences in how the styles are processed by tailwind in different versions/frameworks, and a slightly different approach might be required to achieve the desired result. (See [#714](https://github.com/ddnexus/pagy/discussions/714) for more details)
-!!!
 
 +++
 

@@ -1,5 +1,5 @@
 ---
-title: Backend Methods
+title: Backend
 order: 100
 ---
 

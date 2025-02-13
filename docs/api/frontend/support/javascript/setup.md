@@ -36,13 +36,13 @@ Your app should [serve or bundle](#2-configure) a small [javascript file](#1-pic
 
 * ES6 module to use with webpacker, esbuild, parcel, etc.
 
-[!file](/gem/javascripts/pagy.mjs)
+[!file](/javascripts/pagy.mjs)
 
 ```ruby 
 module_path = Pagy::ROOT.join('javascripts/pagy.mjs')
 ```
 
-[!file](/gem/javascripts/pagy.d.ts)
+[!file](/javascripts/pagy.d.ts)
 
 ```ruby 
 types_path = Pagy::ROOT.join('javascripts/pagy.d.ts')
@@ -56,7 +56,7 @@ types_path = Pagy::ROOT.join('javascripts/pagy.d.ts')
   production pages and without any further processing
 * Minified (~3k)
 
-[!file](/gem/javascripts/pagy.min.js)
+[!file](/javascripts/pagy.min.js)
 
 ```ruby 
 script_path = Pagy::ROOT.join('javascripts/pagy.min.js')
@@ -70,7 +70,7 @@ script_path = Pagy::ROOT.join('javascripts/pagy.min.js')
   production pages and without any further processing
 * Minified ~2.6k
 
-[!file](/gem/javascripts/pagy.js)
+[!file](/javascripts/pagy.js)
 
 ```ruby 
 script_path = Pagy::ROOT.join('javascripts/pagy.js')
@@ -81,7 +81,7 @@ script_path = Pagy::ROOT.join('javascripts/pagy.js')
 !!! success You need to debug the javascript helpers while using the `pagy.js` file
 !!!
 
-[!file](/gem/javascripts/pagy.js.map)
+[!file](/javascripts/pagy.js.map)
 
 ```ruby 
 script_path = Pagy::ROOT.join('javascripts/pagy.js.map')

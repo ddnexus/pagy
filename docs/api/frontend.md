@@ -1,5 +1,5 @@
 ---
-title: Pagy::Frontend
+title: Frontend
 categories: 
 - Core
 - Module
@@ -51,7 +51,7 @@ The method accepts also a few optional keyword arguments options:
   defined) 
 - `:size` which use the passed value instead of the `:size` option of the instance
 
-See also [ARIA Attributes](ARIA.md).
+See also [ARIA Attributes](frontend/support/ARIA.md).
 
 ==- `pagy_info(pagy, **opts)`
 
@@ -151,6 +151,6 @@ pagy demo
 ==- `pagy_t(key, **opts)`
 
 This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally from the helpers in order to 
-get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](i18n.md) doc for details)_
+get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](frontend/support/i18n.md) doc for details)_
 
 ===

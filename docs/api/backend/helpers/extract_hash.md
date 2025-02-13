@@ -17,7 +17,7 @@ render json: { data: @records, pagy: pagy_hash }
 
 - `pluck_keys`
 
-  - For efficiency reasons you should always set the `:pluck_keys` option t restrict the output to ONLY the keys that you use.
+  - For efficiency reasons you should always set the `:pluck_keys` option to restrict the output to ONLY the keys that you use.
     Notice that you can also add other pagy method names not included in the default below:
 
     - count
@@ -46,10 +46,11 @@ This is a URL string containing the `"P "` page token in place of the page value
 
 For example: `'/foo?page=P &bar=baz'`).
 
-You can replace with Javascript to create th actual page URLs:
+Replace it with Javascript to create the actual page URLs:
 
 ```js
-pageUrl = url_template.replace("P ", pageValue)
+pageUrl = url_template.replace("P ", '123')
+// '/foo?page=123&bar=baz'
 ```
 
 !!!warning You may not need it for simple cases!

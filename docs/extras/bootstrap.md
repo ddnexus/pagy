@@ -23,7 +23,7 @@ require 'pagy/extras/bootstrap'
 <%== pagy_bootstrap_combo_nav_js(@pagy, **opts) %>
 ```
 
-See: [Javascript](/docs/api/javascript.md) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
+See: [Javascript](/docs/api/frontend/support/javascript.md) if you use `pagy_bootstrap_nav_js` or `pagy_bootstrap_combo_nav_js`.
 
 ## Methods
 
@@ -45,12 +45,12 @@ See: [pagy_nav(pagy, **opts)](/docs/api/frontend.md#pagy-nav-pagy-opts).
 
 ![bootstrap_nav_js: Responsive nav.](/docs/assets/images/bootstrap_nav_js.png)
 
-See: [Javascript Navs](/docs/api/javascript/navs.md).
+See: [Javascript Navs](/docs/api/frontend/support/javascript/navs.md).
 
 === `pagy_bootstrap_combo_nav_js(pagy, **opts)`
 
 ![bootstrap_combo_nav_js](/docs/assets/images/bootstrap_combo_nav_js.png)
 
-See: [Javascript Combo Navs](/docs/api/javascript/combo-navs.md).
+See: [Javascript Combo Navs](/docs/api/frontend/support/javascript/combo-navs.md).
 
 ===

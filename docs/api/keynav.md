@@ -178,7 +178,7 @@ user by:
 ## Setup
 
 - See the [Keyset Setup](keyset.md#setup)
-- You need also to [Setup Javascript](/docs/api/javascript/setup.mdS)
+- You need also to [Setup Javascript](/docs/api/frontend/support/javascript/setup.mdS)
 
 ## ORMs
 

@@ -16,7 +16,7 @@ _(year, quarter, month, week, and day)_ to the pagination
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#4-calendar-app)
 
-!!!success Use this paginator when the results have mostly populated pages/time-units
+!!!success Use this paginator when the results have mostly populated pages/time-units.
 !!!
 !!!danger Don't use it for sparse records with many empty pages.
 !!!
