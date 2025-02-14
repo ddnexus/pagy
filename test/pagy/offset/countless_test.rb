@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
+require_relative '../../mock_helpers/app'
 
 describe 'pagy/countless' do
+  let(:app) { MockApp.new }
   describe '#finalize' do
     it 'initializes empty collection' do
       pagy, = Pagy::Offset::Countless.new(page: 1)

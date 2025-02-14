@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
-require_relative 'modules/b64'
+require_relative 'support/b64'
 
 class Pagy
   # Implement wicked-fast keyset pagination for big data
@@ -37,6 +37,7 @@ class Pagy
       raise InternalError, 'the set must be ordered' if @keyset.empty?
 
       assign_page
+      self.next
     end
 
     # Return the array of records for the current page
@@ -53,6 +54,16 @@ class Pagy
       return unless @more
 
       @next ||= B64.urlsafe_encode(extract_cutoff.to_json)
+    end
+
+    # Return the URL string for the first page
+    def keyset_first_url(**)
+      page_url(nil, **)
+    end
+
+    # Return the URL string for the next page or nil
+    def keyset_next_url(**)
+      page_url(@next, **) if self.next
     end
 
     def keyset? = true

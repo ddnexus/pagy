@@ -95,7 +95,7 @@ include Pagy::Backend
 
 +++ Search
 For search backends
-see: [elasticsearch_rails](/docs/api/backend_methods/paginators/search/elasticsearch_rails.md), [meilisearch](/docs/api/backend_methods/paginators/search/meilisearch.md), [searchkick](/docs/api/backend_methods/paginators/search/searchkick.md), [ransack](/docs/how-to/#paginate-ransack-results).
+see: [elasticsearch_rails](/docs/api/backend/paginators/search/elasticsearch_rails.md), [meilisearch](/docs/api/backend/paginators/search/meilisearch.md), [searchkick](/docs/api/backend/paginators/search/searchkick.md), [ransack](/docs/how-to/#paginate-ransack-results).
 
 +++ Special
 You may also use
@@ -127,7 +127,7 @@ include Pagy::Frontend
 
 #### Pick a stylesheet or a CSS framework
 
-- For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](/docs/api/stylesheets.md)
+- For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](/docs/api/frontend/support/stylesheets.md)
 - For different CSS frameworks and different helpers (static, responsive, compact, etc.), you can look at the [bootstrap](docs/extras/bootstrap.md), [bulma](docs/extras/bulma.md) extras
 
 +++ Javascript Framework

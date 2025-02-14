@@ -38,7 +38,7 @@ end
 require 'sinatra/base'
 # Sinatra application
 class PagyCalendar < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Paginators
 
   # This method must be implemented by the application.
   # It must return the starting and ending local Time objects array defining the calendar :period

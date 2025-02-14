@@ -5,7 +5,7 @@ require_relative '../mock_helpers/app'
 require_relative '../files/models'
 
 # required because we use the class directly, which does not load the mixin, so we miss the extra data_pagy
-require_relative '../../gem/lib/pagy/backend/paginators/keynav'
+require_relative '../../gem/lib/pagy/paginators/keynav'
 
 module NavTests
   def app
@@ -13,7 +13,7 @@ module NavTests
   end
 
   def nav_tests(prefix)
-    method = :"pagy#{prefix}_nav"
+    method = :"#{prefix}_nav"
     [1, 20, 50].each do |page|
       pagy  = Pagy::Offset.new(count: 1000, page: page)
       pagyx = Pagy::Offset.new(count: 1000, page: page)

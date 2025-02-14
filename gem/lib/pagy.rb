@@ -2,6 +2,8 @@
 
 require 'pathname'
 require_relative 'pagy/exceptions'
+require_relative 'pagy/support/core/linkable'
+require_relative 'pagy/support/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
@@ -9,8 +11,7 @@ class Pagy
   ROOT      = Pathname.new(__dir__).parent.freeze
   PAGY_PATH = ROOT.join('lib/pagy').freeze
 
-  autoload :Backend,            PAGY_PATH.join('backend')
-  autoload :Frontend,           PAGY_PATH.join('frontend')
+  autoload :Paginators,         PAGY_PATH.join('paginators')
   autoload :I18n,               PAGY_PATH.join('i18n')
   autoload :P11n,               PAGY_PATH.join('i18n')
   autoload :Offset,             PAGY_PATH.join('offset')
@@ -28,6 +29,15 @@ class Pagy
   LIMIT_TOKEN = 'L '
   LABEL_TOKEN = 'L'
   A_TAG       = '<a style="display: none;">#</a>'
+
+  include Core::Linkable
+  include Loader
+
+  def self.translate_with_the_slower_i18n_gem!
+    send(:remove_const, :I18n) if defined?(I18n)
+    send(:const_set, :I18n, ::I18n)
+    ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
+  end
 
   attr_reader :page, :count, :previous, :next, :in, :limit, :options, :last
 
@@ -51,8 +61,9 @@ class Pagy
 
   # Merge all the DEFAULT constants of the class hierarchy with the options
   def assign_options(**options)
-    default = {}
-    current = self.class
+    @request = options.delete(:request)
+    default  = {}
+    current  = self.class
     begin
       default = current::DEFAULT.merge(default)
       current = current.superclass

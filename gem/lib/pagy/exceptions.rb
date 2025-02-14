@@ -17,9 +17,6 @@ class Pagy
   # Specific range error
   class RangeError < OptionError; end
 
-  # I18n configuration error
-  class I18nError < StandardError; end
-
   # I18n localization error
   class RailsI18nLoadError < LoadError; end
 

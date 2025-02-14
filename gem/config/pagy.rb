@@ -37,7 +37,7 @@
 ############# I18n gem translation ###################################################
 # Uncomment the following line if you really have to switch
 # to the standard I18n gem translation:
-# Pagy::Frontend.translate_with_the_slower_i18n_gem!
+# Pagy.translate_with_the_slower_i18n_gem!
 
 
 ############# Calendar Localization Besides :en ######################################

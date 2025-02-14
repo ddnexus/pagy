@@ -58,7 +58,9 @@ class Pagy
 
     # Create the calendar
     def init(conf, period, params)
-      @conf  = Marshal.load(Marshal.dump(conf))  # store a copy
+      request = conf.delete(:request)
+      @conf   = Marshal.load(Marshal.dump(conf))  # store a copy
+      @conf[request] = request
       @units = Calendar::UNITS & @conf.keys # get the units in time length desc order
       raise ArgumentError, 'no calendar unit found in pagy_calendar @configuration' if @units.empty?
 
@@ -78,6 +80,7 @@ class Pagy
         # simplecov doesn't need to fail block_given?
         conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?
         # :nocov:
+
         calendar[unit] = object = Calendar.send(:create, unit, **conf[unit])
       end
       [replace(calendar), object.from, object.to]

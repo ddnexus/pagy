@@ -34,7 +34,7 @@ end
 require 'sinatra/base'
 # Sinatra application
 class PagyKeynav < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Paginators
   PAGY_OPTIONS = { limit: 4, requestable_limit: 100 }.freeze
 
   get('/javascripts/:file') do
@@ -58,8 +58,6 @@ class PagyKeynav < Sinatra::Base
   end
 
   helpers do
-    include Pagy::Frontend
-
     def order_symbol(dir)
       { asc: '&#x2197;', desc: '&#x2198;' }[dir]
     end
@@ -139,19 +137,19 @@ class PagyKeynav < Sinatra::Base
           <% end %>
         </table>
         </div>
-        <h3>pagy_nav</h3>
+        <h3>pagy.nav</h3>
         <p>
-          <%= pagy_nav(@pagy, id: 'nav', aria_label: 'Pages (nav)') %>
+          <%= @pagy.nav(id: 'nav', aria_label: 'Pages (nav)') %>
         </p>
-          <h3>pagy_nav_js (responsive)</h3>
+          <h3>pagy.nav_js (responsive)</h3>
         <p>
-          <%= pagy_nav_js(@pagy, id: 'nav-js-responsive',
-                                 aria_label: 'Pages (nav_js_responsive)',
-                                 steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+          <%= @pagy.nav_js(id: 'nav-js-responsive',
+                           aria_label: 'Pages (nav_js_responsive)',
+                           steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
         </p>
-          <h3>pagy_combo_nav_js</h3>
+          <h3>pagy.combo_nav_js</h3>
         <p>
-          <%= pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages (combo_nav_js)') %>
+          <%= @pagy.combo_nav_js(id: 'combo-nav-js', aria_label: 'Pages (combo_nav_js)') %>
         </p>
       </div>
     ERB

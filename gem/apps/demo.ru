@@ -20,7 +20,6 @@
 #    http://0.0.0.0:8000
 
 VERSION = '9.3.3'
-
 # Bundle
 require 'bundler/inline'
 require 'bundler'
@@ -44,7 +43,7 @@ require 'sinatra/base'
 
 # Sinatra application
 class PagyDemo < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Paginators
   PAGY_OPTIONS = { requestable_limit: 100 }.freeze
 
   get '/' do
@@ -75,7 +74,7 @@ class PagyDemo < Sinatra::Base
 
   # One route/action per style
   STYLES.each_key do |style|
-    prefix = STYLES[style][:prefix] || "_#{style}"
+    prefix = STYLES[style][:prefix] || "#{style}_"
 
     get("/#{style}") do
       collection = MockCollection.new
@@ -86,8 +85,6 @@ class PagyDemo < Sinatra::Base
   end
 
   helpers do
-    include Pagy::Frontend
-
     def style_menu
       html = +%(<div id="style-menu"> )
       STYLES.each_key { |style| html << %(<a href="/#{style}">#{style}</a>) }
@@ -268,43 +265,43 @@ class PagyDemo < Sinatra::Base
       <h2>Collection</h2>
       <p id="records">@records: <%= @records.join(',') %></p>
 
-      <h2>pagy<%= prefix %>_nav <span class="notes">Simple nav <code>size: 5</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
+      <h2>pagy.<%= prefix %>nav <span class="notes">Simple nav <code>size: 5</code></span></h2>
+      <%= html = @pagy.send(:"#{prefix}nav", id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
       <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
+      <h2>pagy.<%= prefix %>nav <span class="notes">Fast nav <code>size: 7</code></span></h2>
+      <%= html = @pagy.send(:"#{prefix}nav", id: 'nav', aria_label: 'Pages nav') %>
       <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav_js <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+      <h2>pagy.<%= prefix %>nav_js <span class="notes">Fast nav <code>size: 7</code></span></h2>
+      <%= html = @pagy.send(:"#{prefix}nav_js", id: 'nav-js', aria_label: 'Pages nav_js') %>
       <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav_js <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
-      <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
-                                                      aria_label: 'Pages nav_js_responsive',
-                                                      steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+      <h2>pagy.<%= prefix %>nav_js <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
+      <%= html = @pagy.send(:"#{prefix}nav_js", id: 'nav-js-responsive',
+                                                aria_label: 'Pages nav_js_responsive',
+                                                steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
       <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_combo_nav_js</h2>
-      <%= html = send(:"pagy#{prefix}_combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+      <h2>pagy.<%= prefix %>combo_nav_js</h2>
+      <%= html = @pagy.send(:"#{prefix}combo_nav_js", id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
       <%= highlight(html) %>
 
-      <h2>pagy_info</h2>
-      <%= html = pagy_info(@pagy, id: 'pagy-info') %>
+      <h2>pagy.info</h2>
+      <%= html = @pagy.info(id: 'pagy-info') %>
       <%= highlight(html) %>
 
       <% if style.match(/pagy|tailwind/) %>
-      <h2>pagy_limit_selector_js</h2>
-      <%= html = pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
+      <h2>pagy.limit_selector_js</h2>
+      <%= html = @pagy.limit_selector_js(id: 'limit-selector-js') %>
       <%= highlight(html) %>
 
-      <h2>pagy_previous_anchor / pagy_next_anchor</h2>
-      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << pagy_previous_anchor(@pagy) << pagy_next_anchor(@pagy) << '</nav>' %>
+      <h2>pagy.previous_anchor / pagy.next_anchor</h2>
+      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_anchor << @pagy.next_anchor << '</nav>' %>
       <%= highlight(html) %>
 
-      <h2>pagy_previous_link / pagy_next_link <span class="notes">Link not rendered<span></h2>
-      <% html = '<head>' << (pagy_previous_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
+      <h2>@pagy.previous_link / @pagy.next_link <span class="notes">Link not rendered<span></h2>
+      <% html = '<head>' << (@pagy.previous_link||'') << (@pagy.next_link||'') << '</head>' %>
       <%= highlight(html) %>
       <% end %>
     ERB
@@ -336,7 +333,7 @@ class PagyDemo < Sinatra::Base
 
     <%# The a variable below is set to a lambda that generates the a tag %>
     <%# Usage: anchor_tag = anchor_lambda.(page_number, text, classes: nil, aria_label: nil) %>
-    <% anchor_lambda = pagy_anchor_lambda(pagy) %>
+    <% anchor_lambda = pagy.anchor_lambda %>
     <nav class="pagy nav" aria-label="Pages">
       <%# Previous page link %>
       <% if pagy.previous %>

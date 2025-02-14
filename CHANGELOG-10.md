@@ -168,9 +168,9 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `headers`
 
-- Rename any existing `pagy_headers_merge` to `pagy_merge_headers`.
+- Remove any existing `pagy_headers_merge`. Use `response.headers.merge!(@pagy.headers_hash(**))`
 - Rename any existing `:headers` option to `:header_names` (renamed because it's a hash, mapping headers to names).
-- Pass your `:header_names` _preferably_ to the `headers` or `pagy_merge_headers` helper method, but you can also pass it to the paginator method.
+- Pass your `:header_names` _preferably_ to the `@pagy.headers_hash` helper method, but you can also pass it to the paginator method.
 
 ##### `jsonapi`
 

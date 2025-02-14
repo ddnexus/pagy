@@ -4,12 +4,12 @@ require_relative '../../test_helper'
 require_relative '../../helpers/nav_tests'
 
 MIXIN = 'bootstrap'
-PREFIX = '_bootstrap'
+PREFIX = 'bootstrap_'
 
 describe MIXIN do
   include NavTests
 
-  describe "#pagy#{PREFIX}_nav" do
+  describe "#{PREFIX}nav" do
     it 'renders first, intermediate and last pages' do
       nav_tests(PREFIX)
     end

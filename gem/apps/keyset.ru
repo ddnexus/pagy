@@ -34,7 +34,7 @@ end
 require 'sinatra/base'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Paginators
   PAGY_OPTIONS = { limit: 10, requestable_limit: 100 }.freeze
 
   # Root route/action
@@ -47,8 +47,6 @@ class PagyKeyset < Sinatra::Base
   end
 
   helpers do
-    include Pagy::Frontend
-
     def order_symbol(dir)
       { asc: '&#x2197;', desc: '&#x2198;' }[dir]
     end
@@ -124,7 +122,7 @@ class PagyKeyset < Sinatra::Base
         </div>
         <p>
         <nav class="pagy" id="next" aria-label="Pagy next">
-          <%= pagy_next_anchor(@pagy, text: 'Next page &gt;') %>
+          <%= @pagy.next_anchor(text: 'Next page &gt;') %>
         </nav>
       </div>
     ERB

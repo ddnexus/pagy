@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
-require_relative '../core/shiftable'
-require_relative '../core/rangeable'
-require_relative '../core/seriable'
+require_relative '../support/core/shiftable'
+require_relative '../support/core/rangeable'
+require_relative '../support/core/seriable'
 
 class Pagy
   class Calendar
     # Base class for time units subclasses (Year, Quarter, Month, Week, Day)
+    #
+    # To define a "bimester" unit you should:
+    # - Define a `Pagy::Calendar::Bimester` class
+    # - Add the `:bimester` unit symbol in the `Pagy::Calendar::UNITS`
+    # - Ensure the desc durtion order of the UNITS (i.e. insert it between `:quarter` and `:month`)
     class Unit < Pagy
       include Core::Rangeable
       include Core::Seriable
@@ -83,7 +88,7 @@ class Pagy
 
       # Apply the strftime format to the time.
       # IMPORTANT: If you need localization of the Calendar beside :en, you must use the rails-I18n gem.
-      # In order to enable it, uncomment the specific lines at the end of the config/pagy.rb initializer.
+      # In order to enable it, uncomment the specific lines of the pagy.rb initializer.
       # Notice that the calendar localization does not require you to use the pagy i18n extra,
       # which is all about translation and not localization.
       def localize(time, **options)
@@ -99,6 +104,22 @@ class Pagy
       # Period of the active page (used internally for nested units)
       def active_period
         [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
+      end
+
+      def anchor_lambda(anchor_string: nil, **)
+        return super unless (counts = @options[:counts])   # No overriding without :counts
+
+        left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{page_url(PAGE_TOKEN, **)}")
+                      .split(PAGE_TOKEN, 2)
+        # Lambda used by all the helpers
+        lambda do |page, text = label(page: page), classes: nil, aria_label: nil|
+          count    = counts[page - 1]
+          classes  = classes ? "#{classes} empty-page" : 'empty-page' if count.zero?
+          info_key = count.zero? ? 'pagy.info.no_items' : 'pagy.info.single_page'
+          title    = %( title="#{I18n.translate(info_key, item_name: I18n.translate('pagy.item_name', count:), count:)}")
+          %(#{left}#{page}#{right}#{title}#{
+          %( class="#{classes}") if classes}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
+        end
       end
     end
   end

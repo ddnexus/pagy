@@ -7,8 +7,7 @@ class Pagy
   module Console
     # Include Backend, Frontend and set the default request
     def self.included(main)
-      main.include(Backend)
-      main.include(Frontend)
+      main.include(Paginators)
       main.define_method(:params) { {} }
 
       # :nocov:

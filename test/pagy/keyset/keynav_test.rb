@@ -2,7 +2,7 @@
 
 require_relative '../../test_helper'
 require_relative '../../files/models'
-require_relative '../../../gem/lib/pagy/modules/b64'
+require_relative '../../../gem/lib/pagy/support/b64'
 
 describe "Pagy Keynav" do
   [Pet, PetSequel].each do |model|

@@ -97,15 +97,10 @@ Post.all.each_with_index do |post, pi|
   2.times { |ci| Comment.create(post:, body: "Comment #{ci + 1} to Post #{pi + 1}") }
 end
 
-# Helpers
-module CommentsHelper
-  include Pagy::Frontend
-end
-
 # Controllers
 class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
-  include Pagy::Backend
+  include Pagy::Paginators
   PAGY_OPTIONS = { limit:             10,
                    requestable_limit: 100 }.freeze
 
@@ -193,20 +188,20 @@ TEMPLATE = <<~ERB
         </div>
         <hr>
 
-        <h4>pagy_nav</h4>
-        <%== pagy_nav(@pagy, id: 'nav', aria_label: 'Pages nav') %>
+        <h4>pagy.nav</h4>
+        <%== @pagy.nav(id: 'nav', aria_label: 'Pages nav') %>
 
-        <h4>pagy_nav_js</h4>
-        <%== pagy_nav_js(@pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+        <h4>pagy.nav_js</h4>
+        <%== @pagy.nav_js(id: 'nav-js', aria_label: 'Pages nav_js') %>
 
-        <h4>pagy_combo_nav_js</h4>
-        <%== pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <h4>pagy.combo_nav_js</h4>
+        <%== @pagy.combo_nav_js(id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 
-        <h4>pagy_limit_selector_js</h4>
-        <%== pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
+        <h4>pagy.limit_selector_js</h4>
+        <%== @pagy.limit_selector_js(id: 'limit-selector-js') %>
 
-        <h4>pagy_info</h4>
-        <%== pagy_info(@pagy, id: 'pagy-info') %>
+        <h4>pagy.info</h4>
+        <%== @pagy.info(id: 'pagy-info') %>
       </div>
 
     </body>

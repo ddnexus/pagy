@@ -36,7 +36,7 @@ end
 require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Paginators
   PAGY_OPTIONS = { requestable_limit: 100 }.freeze
 
   get('/javascripts/:file') do
@@ -56,11 +56,6 @@ class PagyRepro < Sinatra::Base
     # @pagy, @records = pagy_countless(collection, **PAGY_OPTIONS)
     # @pagy, @records = pagy_array(Array(1..1000), **PAGY_OPTIONS)
     erb :main
-  end
-
-  # Edit this section adding your own helpers as needed
-  helpers do
-    include Pagy::Frontend
   end
 
   # Views
@@ -131,24 +126,24 @@ class PagyRepro < Sinatra::Base
 
         <hr>
 
-        <h4>pagy_nav</h4>
-        <%= pagy_nav(@pagy, id: 'nav', aria_label: 'Pages nav') %>
+        <h4>pagy.nav</h4>
+        <%= @pagy.nav(id: 'nav', aria_label: 'Pages nav') %>
 
-        <h4>pagy_nav_js</h4>
-        <%= pagy_nav_js(@pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+        <h4>pagy.nav_js</h4>
+        <%= @pagy.nav_js(id: 'nav-js', aria_label: 'Pages nav_js') %>
 
-        <h4>pagy_nav_js</h4>
-        <%= pagy_nav_js(@pagy, id: 'nav-js-responsive', aria_label: 'Pages nav_js_responsove',
+        <h4>pagy.nav_js</h4>
+        <%= @pagy.nav_js(id: 'nav-js-responsive', aria_label: 'Pages nav_js_responsove',
            steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
 
-        <h4>pagy_combo_nav_js</h4>
-        <%= pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <h4>pagy.combo_nav_js</h4>
+        <%= @pagy.combo_nav_js(id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 
-        <h4>pagy_limit_selector_js</h4>
-        <%= pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
+        <h4>pagy.limit_selector_js</h4>
+        <%= @pagy.limit_selector_js(id: 'limit-selector-js') %>
 
-        <h4>pagy_info</h4>
-        <%= pagy_info(@pagy, id: 'pagy-info') %>
+        <h4>pagy.info</h4>
+        <%= @pagy.info(id: 'pagy-info') %>
       </div>
     ERB
   end

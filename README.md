@@ -35,11 +35,12 @@ This version is a complete redesign of the legacy code: its API will be stable f
 
 [<img src="docs/assets/images/ips-chart.png" title="~40x Faster!">](https://ddnexus.github.io/pagination-comparison/gems.html#ips-benchmark) [<img src="docs/assets/images/memory-chart.png" title="~36x Lighter!">](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile) [<img src="docs/assets/images/objects-chart.png" title="~35x Simpler!">](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile) [<img src="docs/assets/images/resource-consumption-chart.png" title="1,410x More Efficient!">](https://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio)
 
-## 👍 Now it's better
+## 👍 Now it's more... with less
 
-- It works with any environment and collection 
-- It supports all kinds of pagination techniques, CSS frameworks and APIs
-- It implements server side or faster client-side rendering
+- It works with any environment and collection
+- It can use OFFSET, COUNTLESS, KEYSET, KEYNAV, CALENDAR pagination techniques
+- It implements server side or faster client-side rendering for most CSS frameworks and APIs
+- It autoloads ONLY the methods that you actually use, with almost zero config
 - It has 100% of test coverage for Ruby, HTML and Javascript E2E
 
 ## 🧐 Examples

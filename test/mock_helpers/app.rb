@@ -29,8 +29,7 @@ class MockApp
     @pagy_locale = locale
   end
 
-  include Pagy::Backend
-  include Pagy::Frontend
+  include Pagy::Paginators
 
   class Calendar < MockApp
     def pagy_calendar_period(collection)
