@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require_relative 'support/core/shiftable'
-require_relative 'support/core/seriable'
-require_relative 'support/core/rangeable'
+require_relative 'support/features/shiftable'
+require_relative 'support/features/seriable'
+require_relative 'support/features/rangeable'
 
 class Pagy
   # Implements Offset Pagination
   class Offset < Pagy
     autoload :Countless, PAGY_PATH.join('offset/countless')
 
-    include Core::Rangeable
-    include Core::Seriable
-    include Core::Shiftable
+    include Rangeable
+    include Seriable
+    include Shiftable
 
     DEFAULT = { page: 1 }.freeze
 

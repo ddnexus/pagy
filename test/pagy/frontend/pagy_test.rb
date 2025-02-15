@@ -3,67 +3,66 @@
 require_relative '../../test_helper'
 require_relative '../../helpers/nav_tests'
 require_relative '../../mock_helpers/app'
-require_relative '../../../gem/lib/pagy/backend/paginators/keynav'
+require_relative '../../../gem/lib/pagy/paginators/keynav'
 
-MIXIN  = 'pagy'
-PREFIX = ''
+STYLE = nil
 
-describe MIXIN do
+describe 'Pagy nav test' do
   include NavTests
 
-  describe "#pagy#{PREFIX}_nav" do
+  describe "nav" do
     it 'renders first, intermediate and last pages' do
-      nav_tests(PREFIX)
+      nav_tests(STYLE)
     end
   end
 
-  describe "#pagy#{PREFIX}_nav_js" do
+  describe "nav_js" do
     it 'renders single and multiple pages when used with Pagy::Offset::Countless' do
-      nav_js_countless_tests(PREFIX)
+      nav_js_countless_tests(STYLE)
     end
     it 'renders first, intermediate and last pages with required steps' do
-      nav_js_tests(PREFIX)
+      nav_js_tests(STYLE)
     end
   end
 
-  describe "#pagy#{PREFIX}_combo_nav_js" do
+  describe "combo_nav_js" do
     it 'renders first, intermediate and last pages' do
-      combo_nav_js_tests(PREFIX)
+      combo_nav_js_tests(STYLE)
     end
   end
 
   def self.tests_for(method, page_finalize, **others)
     page_finalize.each do |page, finalize|
       it "renders the #{method} for page #{page}" do
-        app = MockApp.new
-        pagy = Pagy::Offset.new count: 1000, page: page
-        pagy_countless = Pagy::Offset::Countless.new(page: page, last: page).finalize(finalize)
-        _(app.send(method, pagy)).must_rematch :r1
-        _(app.send(method, pagy_countless)).must_rematch :r2
-        _(app.send(method, pagy, **others)).must_rematch :r3
-        _(app.send(method, pagy_countless, **others)).must_rematch :r4
+        request = MockApp.new.request
+        pagy = Pagy::Offset.new(count: 1000, page: page, request:)
+        pagy_countless = Pagy::Offset::Countless.new(page: page, last: page, request:).finalize(finalize)
+        _(pagy.send(method)).must_rematch :r1
+        _(pagy_countless.send(method)).must_rematch :r2
+        _(pagy.send(method, **others)).must_rematch :r3
+        _(pagy_countless.send(method, **others)).must_rematch :r4
       end
     end
   end
 
   describe '#pagy_previous_url' do
-    tests_for(:pagy_previous_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+    tests_for(:previous_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_next_url' do
-    tests_for(:pagy_next_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+    tests_for(:next_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_previous_link' do
-    tests_for(:pagy_previous_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+    tests_for(:previous_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_next_link' do
-    tests_for(:pagy_next_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+    tests_for(:next_link, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
   describe '#pagy_previous_anchor' do
-    tests_for(:pagy_previous_anchor, [[1, 0], [3, 21], [6, 21], [50, 20]],
+    tests_for(:previous_anchor, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'PREV', aria_label: 'My previous page')
   end
   describe '#pagy_next_anchor' do
-    tests_for(:pagy_next_anchor, [[1, 0], [3, 21], [6, 21], [50, 20]],
+    tests_for(:next_anchor, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'NEXT', aria_label: 'My next page')
   end
 end

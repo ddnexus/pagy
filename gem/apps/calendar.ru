@@ -86,10 +86,6 @@ class PagyCalendar < Sinatra::Base
     erb :main
   end
 
-  helpers do
-    include Pagy::Frontend
-  end
-
   # Views
   template :layout do
     <<~ERB
@@ -153,7 +149,7 @@ class PagyCalendar < Sinatra::Base
         <% else %>
           <a id="toggle" href="?skip=true" >Hide Calendar</a>
           <br>
-          <a id="go-to-day" href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
+          <a id="go-to-day" href="<%= @calendar.url_at(Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
           <!-- You can use Time.zone.now to find the current page if your time period include today -->
           <% end %>
         </p>
@@ -161,14 +157,14 @@ class PagyCalendar < Sinatra::Base
         <!-- calendar filtering navs -->
         <% if @calendar %>
           <p>Showtime: <%= @calendar.showtime %></p>
-          <%= pagy_bootstrap_nav(@calendar[:year], id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
-          <%= pagy_bootstrap_nav(@calendar[:month], id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
-          <%= pagy_bootstrap_nav(@calendar[:day], id: "day-nav", aria_label: "Days") %> <!-- day nav -->
+          <%= @calendar[:year].nav(style: :bootstrap, id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
+          <%= @calendar[:month].nav(style: :bootstrap, id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
+          <%= @calendar[:day].nav(style: :bootstrap, id: "day-nav", aria_label: "Days") %> <!-- day nav -->
         <% end %>
 
         <!-- page info extended for the calendar unit -->
         <div class="alert alert-primary" role="alert">
-          <%= pagy_info(@pagy, id: 'pagy-info') %>
+          <%= @pagy.info(id: 'pagy-info') %>
           <% if @calendar %>
             for <b><%= @calendar.showtime.strftime('%Y-%m-%d') %></b>
           <% end %>
@@ -182,7 +178,7 @@ class PagyCalendar < Sinatra::Base
         </div>
 
         <!-- standard pagination of the selected month -->
-        <p><%= pagy_bootstrap_nav(@pagy, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
+        <p><%= @pagy.nav(style: :bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
       </div>
     ERB
   end

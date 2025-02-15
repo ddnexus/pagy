@@ -25,10 +25,6 @@ class MockApp
     I18n.t('test')
   end
 
-  def set_pagy_locale(locale) # rubocop:disable Naming/AccessorMethodName
-    @pagy_locale = locale
-  end
-
   include Pagy::Paginators
 
   class Calendar < MockApp

@@ -15,7 +15,7 @@ describe 'pagy/i18n' do
       app.test_i18n_call
     end
     it 'is the actual gem module' do
-      _(Pagy::I18n::VERSION).must_equal ::I18n::VERSION
+      _(Pagy::I18n::VERSION).must_equal I18n::VERSION
     end
     it 'pluralizes' do
       _(Pagy::I18n.translate('pagy.aria_label.previous')).must_equal "Previous"

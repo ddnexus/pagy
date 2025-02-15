@@ -50,6 +50,8 @@ None
 
 This version is a complete redesign of the legacy code, and its API will be stable for a long time.
 
+Lots of changes in this list, but the ones typically affecting a single app are just a few statements. We promise! 
+
 - Reduce the required config by **99%**: no require, no extras, no DEFAULT
 - All the methods are **autoloaded only if you use them**
 - The code structure and naming is cleaner, more concise, readable, and consistent
@@ -89,25 +91,23 @@ _Notice that your app will likely use a little fraction of the list below_
 
 {.compact}
 
-| Type        | Search (old)     | Replace with (new)     | Why?                                                                                      |
-|-------------|------------------|------------------------|-------------------------------------------------------------------------------------------|
-| Constructor | `pagy(`          | `pagy_offset(`         | Because it's consistent with the other old and new paginator methods                      |
-| Function    | `Pagy.root`      | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                    |
-| Accessor    | `pagy.vars`      | `pagy.options`         | Because they are actually `options` that don't change during execution                    |
-| Exception   | `VariableError`  | `OptionError`          | Because it's consistent with the `options` argument                                       |
-| Accessor    | `e.variable`     | `e.option`             | Because it's consistent with its `OptionError` class                                      |
-| Method      | `pagy_anchor`    | `pagy_anchor_lambda`   | Because it creates a lambda, not the anchor tag itself                                    |
-| Method      | `pagy_url_for`   | `pagy_page_url`        | Because `_url_for` suggests diversifiable results, and rails-related expectations         |
-| Method      | `pagy_t`         | `pagy_translate`       | Because we don't use abbreviated words anymore                                            |
-| Method      | `pagy_prev_a`    | `pagy_previous_anchor` | Because we don't use abbreviated words anymore                                            |
-| Method      | `pagy_next_a`    | `pagy_next_anchor`     | Because we don't use abbreviated words anymore                                            |
-| Naming      | `*prev*`         | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)    |
-| Option      | `size: 7`        | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s |
-| Option      | `ends: false`    | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                  |
-| Option      | `:page_param`    | `:page_sym`            | Because `page_param` make people think "page param value"                                 |
-| Option      | `:limit_param`   | `:limit_sym`           | Because `limit_param` make people think "limit param value"                               |
-| Method/args | `label_for(page` | `label(page: page`     | Because `_for` suggests diversifiable results, and `page` is now a keywork argument       |
-| Method/args | `label(page`     | `label(page: page`     | Because we don't need two methods, and `page` is now a keywork argument                   |
+| Type        | Search (old)             | Replace with (new)         | Why?                                                                                      |
+|-------------|--------------------------|----------------------------|-------------------------------------------------------------------------------------------|
+| Constructor | `pagy(`                  | `pagy_offset(`             | Because it's consistent with the other old and new paginator methods                      |
+| Function    | `Pagy.root`              | `Pagy::ROOT`               | Because we don't need to call a method just to get a constant Pathname                    |
+| Accessor    | `pagy.vars`              | `pagy.options`             | Because they are actually `options` that don't change during execution                    |
+| Exception   | `VariableError`          | `OptionError`              | Because it's consistent with the `options` argument                                       |
+| Accessor    | `e.variable`             | `e.option`                 | Because it's consistent with its `OptionError` class                                      |
+| Method      | `pagy_anchor(pagy`       | `pagy.anchor_lambda(`      | Because it creates a lambda, not the anchor tag itself, and it's a pagy instance method   |
+| Method      | `pagy_url_for(@pagy`     | `@pagy.page_url(`          | Because `_url_for` suggests diversifiable results, and rails-related expectations         |
+| Method      | `pagy_t`                 | `I18n.translate`           | Because we don't use abbreviated words anymore, and it's exacly like with the I18n gem    |
+| Naming      | `*prev*`                 | `*previous*`               | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)    |
+| Option      | `size: 7`                | `length: 7`                | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s |
+| Option      | `ends: false`            | `compact: true`            | Because it's an opt-in option of the `series`, boolean inverse of `ends`                  |
+| Option      | `:page_param`            | `:page_sym`                | Because `page_param` make people think "page param value"                                 |
+| Option      | `:limit_param`           | `:limit_sym`               | Because `limit_param` make people think "limit param value"                               |
+| Method/args | `label_for(page`         | `label(page: page`         | Because `_for` suggests diversifiable results, and `page` is now a keywork argument       |
+| Method/args | `label(page`             | `label(page: page`         | Because we don't need two methods, and `page` is now a keywork argument                   |
 
 #### Replace your `pagy.rb` config file
 
@@ -120,6 +120,20 @@ to start with the new version of the file.
   paginator methods.
 - As an alternative to avoid repetitions, define your own `PAGY_OPTIONS` hash and pass it to the different paginator
   methods/helpers. See the new `pagy.rb` initializer for details.
+
+#### The `Pagy::Backend` has been replaced by `Pagy::Paginators`
+
+- Replace the `include Pagy::Backend` with `include Pagy::Paginators`
+- All the old **paginators** (i.e. the one returning pagy, and records) are still backend method
+- Just one change: `pagy(` is now `pagy_offset(` for consistency with the other old and new paginator methods
+- See how to deal with other helpers added by extras in the [Extras Changes](#extras-changes)
+
+#### The `Pagy::Frontend` is gone
+
+- Frontend methods returning HTML code are now `@pagy` instance methods. Easier and cleaner.
+- Remove any existing `include Pagy::Frontend`
+- You should convert all the existing `pagy_*` methods **ONLY in the views**.
+- See the [Extras Changes](#extras-changes) for a details
 
 #### Core changes
 
@@ -136,17 +150,46 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 - Remove all `require 'pagy/extras/*` statements from the `pagy.rb` initializer.
 
-##### `array`, `boostrap`, `bulma`, `pagy`
+##### `array`
 
-- Just use their methods without further changes.
+- Just use the method without further changes.
 
 ##### `arel`
 
 - Replace `pagy_arel` with `pagy_offset` and add `count_over: true` to the existing options.
 
+##### `boostrap`
+
+- Replace any existing `pagy_bootstrap_nav(@pagy` with `@pagy.nav(style: :bootstrap`
+- Replace any existing `pagy_bootstrap_nav_js(@pagy` with `@pagy.nav_js(style: :bootstrap`
+- Replace any existing `pagy_bootstrap_combo_nav_js(@pagy` with `@pagy.combo_nav_js(style: :bootstrap`
+
+##### `bulma`
+
+- Replace any existing `pagy_bulma_nav(@pagy` with `@pagy.nav(style: :bulma`
+- Replace any existing `pagy_bulma_nav_js(@pagy` with `@pagy.nav_js(style: :bulma`
+- Replace any existing `pagy_bulma_combo_nav_js(@pagy` with `@pagy.combo_nav_js(style: :bulma`
+
+##### `pagy` (and all helpers)
+
+| Search (old)                   | Replace with (new)         |
+|--------------------------------|----------------------------|
+| `pagy_nav(@pagy`               | `@pagy.nav(`               |
+| `pagy_nav_js(@pagy`            | `@pagy.nav_js(`            |
+| `pagy_combo_nav_js(@pagy`      | `@pagy.combo_nav_js(`      |
+| `pagy_info(@pagy`              | `@pagy.info(`              |
+| `pagy_limit_selector_js(@pagy` | `@pagy.limit_selector_js(` |
+| `pagy_prev_url(@pagy`          | `@pagy.previous_url(`      |
+| `pagy_next_url(@pagy`          | `@pagy.next_url(`          |
+| `pagy_prev_link(@pagy`         | `@pagy.previous_link(`     |
+| `pagy_next_link(@pagy`         | `@pagy.next_link(`         |
+| `pagy_prev_a(@pagy`            | `@pagy.previous_anchor(`   |
+| `pagy_next_a(@pagy`            | `@pagy.next_anchor(`       |
+
 ##### `countless`
 
 - Rename any existing `:countless_minimal` to `:headless`.
+- Keep the rest unchanged.
 
 ##### `calendar`
 

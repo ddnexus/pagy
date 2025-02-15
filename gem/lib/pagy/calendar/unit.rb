@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../support/core/shiftable'
-require_relative '../support/core/rangeable'
-require_relative '../support/core/seriable'
+require_relative '../support/features/shiftable'
+require_relative '../support/features/rangeable'
+require_relative '../support/features/seriable'
 
 class Pagy
   class Calendar
@@ -13,11 +13,11 @@ class Pagy
     # - Add the `:bimester` unit symbol in the `Pagy::Calendar::UNITS`
     # - Ensure the desc durtion order of the UNITS (i.e. insert it between `:quarter` and `:month`)
     class Unit < Pagy
-      include Core::Rangeable
-      include Core::Seriable
-      include Core::Shiftable
-
       DEFAULT = { page: 1 }.freeze
+
+      include Rangeable
+      include Seriable
+      include Shiftable
 
       def initialize(**)    # rubocop:disable Lint/MissingSuper
         assign_options(**)

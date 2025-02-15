@@ -54,14 +54,27 @@ class Pagy
       self[@units.last].from
     end
 
+    # Return the url for the calendar (shortest unit) page at time
+    def url_at(time, **)
+      conf      = Marshal.load(Marshal.dump(@conf))
+      page_syms = {}
+      @units.inject(nil) do |object, unit|
+        conf[unit][:period] = object&.send(:active_period) || @period
+        conf[unit][:page]   = page_syms[:"#{unit}_#{@page_sym}"] \
+                            = Calendar.send(:create, unit, **conf[unit]).send(:page_at, time, **)
+        conf[unit][:params] ||= {}
+        conf[unit][:params].merge!(page_syms)
+        Calendar.send(:create, unit, request: @request, **conf[unit])
+      end.page_url(1, **)
+    end
+
     private
 
     # Create the calendar
     def init(conf, period, params)
-      request = conf.delete(:request)
-      @conf   = Marshal.load(Marshal.dump(conf))  # store a copy
-      @conf[request] = request
-      @units = Calendar::UNITS & @conf.keys # get the units in time length desc order
+      @request = conf.delete(:request)
+      @conf    = Marshal.load(Marshal.dump(conf))  # store a copy
+      @units   = Calendar::UNITS & @conf.keys # get the units in time length desc order
       raise ArgumentError, 'no calendar unit found in pagy_calendar @configuration' if @units.empty?
 
       @period   = period
@@ -81,23 +94,9 @@ class Pagy
         conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?
         # :nocov:
 
-        calendar[unit] = object = Calendar.send(:create, unit, **conf[unit])
+        calendar[unit] = object = Calendar.send(:create, unit, request: @request, **conf[unit])
       end
       [replace(calendar), object.from, object.to]
-    end
-
-    # Return the calendar object at time
-    def calendar_at(time, **options)
-      conf      = Marshal.load(Marshal.dump(@conf))
-      page_syms = {}
-      @units.inject(nil) do |object, unit|
-        conf[unit][:period] = object&.send(:active_period) || @period
-        conf[unit][:page]   = page_syms[:"#{unit}_#{@page_sym}"] \
-                            = Calendar.send(:create, unit, **conf[unit]).send(:page_at, time, **options)
-        conf[unit][:params] ||= {}
-        conf[unit][:params].merge!(page_syms)
-        Calendar.send(:create, unit, **conf[unit])
-      end
     end
   end
 end

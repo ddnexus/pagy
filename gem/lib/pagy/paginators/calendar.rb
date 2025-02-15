@@ -5,11 +5,6 @@ class Pagy
   Paginators.module_eval do
     private
 
-    # Return the url for the calendar page at time
-    def pagy_calendar_url_at(calendar, time, **)
-      calendar.send(:calendar_at, time, **).page_url(1, **)
-    end
-
     # Take a collection and an options Hash and return an array with 3 items: [calendar, pagy, results]
     def pagy_calendar(collection, options)
       allowed_options = Calendar::UNITS + %i[pagy active]

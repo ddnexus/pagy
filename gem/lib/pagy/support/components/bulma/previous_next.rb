@@ -17,5 +17,6 @@ class Pagy
                 end
       end
     end
+    private :bulma_previous_next_html
   end
 end

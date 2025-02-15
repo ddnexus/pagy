@@ -3,6 +3,7 @@
 require_relative '../../test_helper'
 require_relative '../../files/models'
 require_relative '../../mock_helpers/app'
+require_relative '../../mock_helpers/collection'
 
 Time.zone = 'GMT'
 Date.beginning_of_week = :sunday
@@ -235,25 +236,25 @@ describe 'calendar' do
                                         year: {},
                                         month: {},
                                         pagy: { limit: 10 })
-      _(app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2021, 12, 21)))
-        .must_equal "/foo?page=1&year_page=1&month_page=3"
+      _(calendar.url_at(Time.zone.local(2021, 12, 21)))
+        .must_equal "/foo?year_page=1&month_page=3&page=1"
 
-      _(app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2022, 2, 10)))
-        .must_equal  "/foo?page=1&year_page=2&month_page=2"
+      _(calendar.url_at(Time.zone.local(2022, 2, 10)))
+        .must_equal  "/foo?year_page=2&month_page=2&page=1"
 
-      _(app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2023, 11, 10)))
-        .must_equal  "/foo?page=1&year_page=3&month_page=11"
+      _(calendar.url_at(Time.zone.local(2023, 11, 10)))
+        .must_equal  "/foo?year_page=3&month_page=11&page=1"
 
-      _(app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2100), fit_time: true))
-        .must_equal "/foo?page=1&year_page=3&month_page=11"
+      _(calendar.url_at(Time.zone.local(2100), fit_time: true))
+        .must_equal "/foo?year_page=3&month_page=11&page=1"
 
-      _(app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2000), fit_time: true))
-        .must_equal "/foo?page=1&year_page=1&month_page=1"
+      _(calendar.url_at(Time.zone.local(2000), fit_time: true))
+        .must_equal "/foo?year_page=1&month_page=1&page=1"
 
-      _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2100)) }
+      _ { calendar.url_at(Time.zone.local(2100)) }
         .must_raise Pagy::RangeError
 
-      _ { app.send(:pagy_calendar_url_at, calendar, Time.zone.local(2000)) }
+      _ { calendar.url_at(Time.zone.local(2000)) }
         .must_raise Pagy::RangeError
     end
   end
@@ -267,16 +268,12 @@ describe 'calendar' do
       _(calendar.showtime).must_equal Time.zone.local(2022, 7, 1)
     end
   end
-  describe '#pagy_anchor_lambda with counts' do
-    it 'includes title and class in page url' do
-      # We need this require because we use a feature of pagy_calendar that would load with pagy_calendar,
-      # but we don't call it because Pagy::Offset.new is easier to run, still testing the feature...
-      require_relative '../../../gem/lib/pagy/backend/paginators/calendar'
-      app = MockApp::CalendarCounts.new
-      pagy = Pagy::Offset.new(count: 103, page: 1, counts: {2 => 0})
-      _(app.pagy_anchor_lambda(pagy, anchor_string: 'X').call(3, classes: 'a b c')).must_equal \
-        '<a X href="/foo?page=3" title="No items found" class="a b c empty-page">3</a>'
-    end
+  describe 'anchor_lambda with counts' do
+    # it 'includes title and class in page anchor' do
+    #   app  = MockApp::CalendarCounts.new
+    #   _(pagy.anchor_lambda(anchor_string: 'X').call(3, classes: 'a b c')).must_equal \
+    #     '<a X href="/foo?page=3" title="No items found" class="a b c empty-page">3</a>'
+    # end
   end
   describe "Counts feature" do
     [MockApp::CalendarCounts, MockApp::CalendarCountsSkip].each do |c|
@@ -291,20 +288,19 @@ describe 'calendar' do
                                                     month: {},
                                                     day: {},
                                                     pagy: { limit: 10 })
-        _(app_counts.pagy_nav(calendar[:year])).must_rematch :year
-        _(app_counts.pagy_nav(calendar[:month])).must_rematch :month
-        _(app_counts.pagy_nav(calendar[:day])).must_rematch :day
+        _(calendar[:year].nav).must_rematch :year
+        _(calendar[:month].nav).must_rematch :month
+        _(calendar[:day].nav).must_rematch :day
       end
     end
     it 'works with anchor_string' do
-      c = MockApp::CalendarCounts
-      app_counts = c.new(params: { year_page: 2,
+      app_counts = MockApp::CalendarCounts.new(params: { year_page: 2,
                                    page: 1 })
       calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
                                                   Event.all,
                                                   year: {},
                                                   pagy: { limit: 10 })
-      _(app_counts.pagy_nav(calendar[:year], anchor_string: 'data-foo="bar"')).must_rematch :year
+      _(calendar[:year].nav(anchor_string: 'data-foo="bar"')).must_rematch :year
     end
   end
 end

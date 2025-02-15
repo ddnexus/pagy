@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require_relative '../support/core/seriable'
+require_relative '../support/features/seriable'
 
 class Pagy
   class Keyset
     # Use keyset pagination with support for all the frontend helpers
     class Keynav < Keyset
-      autoload :ActiveRecord, PAGY_PATH.join('keyset/keynav/active_record')
-      autoload :Sequel,       PAGY_PATH.join('keyset/keynav/sequel')
-
-      include Core::Seriable
-
       # Avoid conflicts between filter arguments in composite SQL fragments
       PRIOR_PREFIX = 'prior_'
       PAGE_PREFIX  = 'page_'
+
+      autoload :ActiveRecord, PAGY_PATH.join('keyset/keynav/active_record')
+      autoload :Sequel,       PAGY_PATH.join('keyset/keynav/sequel')
+
+      include Seriable
 
       # Finalize the instance variables needed for the UI
       def initialize(set, **)

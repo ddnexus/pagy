@@ -2,14 +2,19 @@
 
 require 'pathname'
 require_relative 'pagy/exceptions'
-require_relative 'pagy/support/core/linkable'
+require_relative 'pagy/support/features/linkable'
 require_relative 'pagy/support/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
-  VERSION   = '9.3.3'
-  ROOT      = Pathname.new(__dir__).parent.freeze
-  PAGY_PATH = ROOT.join('lib/pagy').freeze
+  VERSION     = '9.3.3'
+  ROOT        = Pathname.new(__dir__).parent.freeze
+  PAGY_PATH   = ROOT.join('lib/pagy').freeze
+  DEFAULT     = { limit: 20, limit_sym: :limit, page_sym: :page }.freeze
+  PAGE_TOKEN  = 'P '
+  LIMIT_TOKEN = 'L '
+  LABEL_TOKEN = 'L'
+  A_TAG       = '<a style="display: none;">#</a>'
 
   autoload :Paginators,         PAGY_PATH.join('paginators')
   autoload :I18n,               PAGY_PATH.join('i18n')
@@ -24,17 +29,11 @@ class Pagy
   autoload :Console,            PAGY_PATH.join('console')
   autoload :Javascript,         PAGY_PATH.join('javascript')
 
-  DEFAULT     = { limit: 20, limit_sym: :limit, page_sym: :page }.freeze
-  PAGE_TOKEN  = 'P '
-  LIMIT_TOKEN = 'L '
-  LABEL_TOKEN = 'L'
-  A_TAG       = '<a style="display: none;">#</a>'
-
-  include Core::Linkable
+  include Linkable
   include Loader
 
   def self.translate_with_the_slower_i18n_gem!
-    send(:remove_const, :I18n) if defined?(I18n)
+    send(:remove_const, :I18n)
     send(:const_set, :I18n, ::I18n)
     ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
   end
