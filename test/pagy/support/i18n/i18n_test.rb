@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
-require_relative '../../mock_helpers/pagy_buggy'
-require_relative '../../mock_helpers/app'
-require_relative '../../mock_helpers/collection'
-require_relative '../../../gem/lib/pagy/support/components/utils/data_pagy_attribute'
+require_relative '../../../test_helper'
+require_relative '../../../mock_helpers/pagy_buggy'
+require_relative '../../../mock_helpers/app'
+require_relative '../../../mock_helpers/collection'
+require_relative '../../../../gem/lib/pagy/support/components/utils/data_pagy_attribute'
 
 describe 'Pagy::I18n' do
   describe 'translate' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'paginators/loader'
+require_relative 'loader'
 
 class Pagy
   # Relegate backend functions

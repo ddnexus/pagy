@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../../test_helper'
-require_relative '../../mock_helpers/app'
+require_relative '../../../test_helper'
+require_relative '../../../mock_helpers/app'
 
 describe 'pagy/i18n' do
   let(:app) { MockApp.new }

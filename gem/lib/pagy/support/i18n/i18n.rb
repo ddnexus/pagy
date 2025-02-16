@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'yaml'
-require_relative 'i18n/p11n'
+require_relative 'p11n'
 
 class Pagy
   # Pagy i18n implementation, compatible with the I18n gem, just a lot faster and lighter

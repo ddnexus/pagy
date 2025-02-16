@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'support/features/shiftable'
-require_relative 'support/features/seriable'
-require_relative 'support/features/rangeable'
+require_relative '../support/features/shiftable'
+require_relative '../support/features/seriable'
+require_relative '../support/features/rangeable'
 
 class Pagy
   # Implements Offset Pagination

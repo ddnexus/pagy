@@ -65,7 +65,7 @@ This version is a complete redesign of the legacy code, and its API will be stab
 - **The Countless pagination remembers the last page**
   - When you jump back a few pages in the pagination nav, you can jump forward as well now.
 - **Javascript refactoring**
-  - The new `Pagy::Javascript.sync_source` function used in the `pagy.js` initializer, avoids complicated configurations.
+  - The new `Pagy.sync_javascript_source` function used in the `pagy.js` initializer, avoids complicated configurations.
   - Added the plain `pagy.js` and relative source map files.
   - Updated the support for all the pagy helpers and `keynav` pagination.
 - **I18n refactoring**

@@ -16,18 +16,16 @@ class Pagy
   LABEL_TOKEN = 'L'
   A_TAG       = '<a style="display: none;">#</a>'
 
-  autoload :Paginators,         PAGY_PATH.join('paginators')
-  autoload :I18n,               PAGY_PATH.join('i18n')
-  autoload :P11n,               PAGY_PATH.join('i18n')
-  autoload :Offset,             PAGY_PATH.join('offset')
-  autoload :Calendar,           PAGY_PATH.join('calendar')
-  autoload :Search,             PAGY_PATH.join('search')
-  autoload :ElasticsearchRails, PAGY_PATH.join('search')
-  autoload :Meilisearch,        PAGY_PATH.join('search')
-  autoload :Searchkick,         PAGY_PATH.join('search')
-  autoload :Keyset,             PAGY_PATH.join('keyset')
+  autoload :Paginators,         PAGY_PATH.join('paginators/paginators')
+  autoload :I18n,               PAGY_PATH.join('support/i18n/i18n')
+  autoload :Calendar,           PAGY_PATH.join('calendar/calendar')
+  autoload :Offset,             PAGY_PATH.join('offset/offset')
+  autoload :Search,             PAGY_PATH.join('offset/search')
+  autoload :ElasticsearchRails, PAGY_PATH.join('offset/search')
+  autoload :Meilisearch,        PAGY_PATH.join('offset/search')
+  autoload :Searchkick,         PAGY_PATH.join('offset/search')
+  autoload :Keyset,             PAGY_PATH.join('keyset/keyset')
   autoload :Console,            PAGY_PATH.join('console')
-  autoload :Javascript,         PAGY_PATH.join('javascript')
 
   include Linkable
   include Loader
@@ -36,6 +34,12 @@ class Pagy
     send(:remove_const, :I18n)
     send(:const_set, :I18n, ::I18n)
     ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
+  end
+
+  # Ensure that the pagy javascript source files are installed and in sync with the Pagy::VERSION
+  def self.sync_javascript_source(destination, *files)
+    files = %w[pagy.mjs pagy.js pagy.js.map pagy.min.js] if files.empty?
+    files.each { |file| FileUtils.cp(ROOT.join('javascripts', file), destination) }
   end
 
   attr_reader :page, :count, :previous, :next, :in, :limit, :options, :last

@@ -107,7 +107,7 @@ Client side rendering:
 ```rb
 # pagy.rb initializer
 javascript_dir = Rails.root.join('app/javascript')
-Pagy::Javascript.sync_source(javascript_dir, 'pagy.mjs') if Rails.env.development?
+Pagy.sync_javascript_source(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
 ```erb
 <%# Render client side nav bar helpers of different types and styles %>

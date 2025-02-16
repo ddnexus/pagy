@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'wrapper'
+require_relative 'search_wrapper'
 
 class Pagy
   # Add searchkick paginator
-  Paginators.module_eval do
+  module Paginators
     private
 
     # Paginate from search object

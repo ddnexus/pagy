@@ -15,16 +15,16 @@
 
 
 ############ Sync Pagy Javascript Source #############################################
-# All the pagy method ending with '*_js', require one of the following lines
-# running at app startup in development environment:
+# All the pagy method ending with '*_js', require syncing javascript source
+# at app startup in development environment:
 
 # Generic reference to customize
 # Available source formats: pagy.mjs, pagy.js, pagy.js.map, pagy.min.js
-# Pagy::Javascript.sync_source(app_js_source_path, 'pagy.mjs', ...) if dev_env
+# Pagy.sync_javascript_source(app_js_source_path, 'pagy.mjs', ...) if dev_env
 
 # Example for Rails
 # javascript_dir = Rails.root.join('app/javascript')
-# Pagy::Javascript.sync_source(javascript_dir, 'pagy.mjs') if Rails.env.development?
+# Pagy.sync_javascript_source(javascript_dir, 'pagy.mjs') if Rails.env.development?
 
 
 ############# Overriding Pagy::I18n lookup ###########################################
