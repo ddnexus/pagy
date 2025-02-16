@@ -14,9 +14,9 @@ fr:
     item_name:
       one: "élément"
       other: "éléments"
-    info:
+    info_tag:
       no_items: "Aucun %{item_name} trouvé"
       single_page: "Affichage de %{count} %{item_name}"
       multiple_pages: "Affichage des %{item_name} %{from} à %{to} sur %{count} au total"
-    combo_nav_js: "Page %{page_input} sur %{pages}"
-    limit_selector_js: "Afficher %{limit_input} %{item_name} par page"
+    combo_nav_js_tag: "Page %{page_input} sur %{pages}"
+    limit_selector_js_tag: "Afficher %{limit_input} %{item_name} par page"

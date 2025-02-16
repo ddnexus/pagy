@@ -259,43 +259,43 @@ class PagyDemo < Sinatra::Base
       <h2>Collection</h2>
       <p id="records">@records: <%= @records.join(',') %></p>
 
-      <h2>pagy.nav<span class="notes">Simple nav <code>size: 5</code></span></h2>
-      <%= html = @pagy.nav(style:, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
+      <h2>pagy.nav_tag <span class="notes">Simple nav <code>size: 5</code></span></h2>
+      <%= html = @pagy.nav_tag(style:, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
       <%= highlight(html) %>
 
-      <h2>pagy.nav<span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = @pagy.nav(style:, id: 'nav', aria_label: 'Pages nav') %>
+      <h2>pagy.nav_tag <span class="notes">Fast nav <code>size: 7</code></span></h2>
+      <%= html = @pagy.nav_tag(style:, id: 'nav', aria_label: 'Pages nav') %>
       <%= highlight(html) %>
 
-      <h2>pagy.nav_js <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = @pagy.nav_js(style:, id: 'nav-js', aria_label: 'Pages nav_js') %>
+      <h2>pagy.nav_js_tag <span class="notes">Fast nav <code>size: 7</code></span></h2>
+      <%= html = @pagy.nav_js_tag(style:, id: 'nav-js', aria_label: 'Pages nav_js') %>
       <%= highlight(html) %>
 
-      <h2>pagy.nav_js <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
-      <%= html = @pagy.nav_js(style:, id: 'nav-js-responsive',
+      <h2>pagy.nav_js_tag <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
+      <%= html = @pagy.nav_js_tag(style:, id: 'nav-js-responsive',
                               aria_label: 'Pages nav_js_responsive',
                               steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
       <%= highlight(html) %>
 
-      <h2>pagy.combo_nav_js</h2>
-      <%= html = @pagy.combo_nav_js(style:, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+      <h2>pagy.combo_nav_js_tag</h2>
+      <%= html = @pagy.combo_nav_js_tag(style:, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
       <%= highlight(html) %>
 
-      <h2>pagy.info</h2>
-      <%= html = @pagy.info(id: 'pagy-info') %>
+      <h2>pagy.info_tag</h2>
+      <%= html = @pagy.info_tag(id: 'pagy-info') %>
       <%= highlight(html) %>
 
       <% if name&.match(/pagy|tailwind/) %>
-      <h2>pagy.limit_selector_js</h2>
-      <%= html = @pagy.limit_selector_js(id: 'limit-selector-js') %>
+      <h2>pagy.limit_selector_js_tag</h2>
+      <%= html = @pagy.limit_selector_js_tag(id: 'limit-selector-js') %>
       <%= highlight(html) %>
 
-      <h2>pagy.previous_anchor / pagy.next_anchor</h2>
-      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_anchor << @pagy.next_anchor << '</nav>' %>
+      <h2>pagy.previous_a_tag / pagy.next_a_tag</h2>
+      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_a_tag << @pagy.next_a_tag << '</nav>' %>
       <%= highlight(html) %>
 
-      <h2>@pagy.previous_link / @pagy.next_link <span class="notes">Link not rendered<span></h2>
-      <% html = '<head>' << (@pagy.previous_link||'') << (@pagy.next_link||'') << '</head>' %>
+      <h2>@pagy.previous_link_tag / @pagy.next_link_tag <span class="notes">Link not rendered<span></h2>
+      <% html = '<head>' << (@pagy.previous_link_tag||'') << (@pagy.next_link_tag||'') << '</head>' %>
       <%= highlight(html) %>
       <% end %>
     ERB
@@ -326,19 +326,19 @@ class PagyDemo < Sinatra::Base
     <%# IMPORTANT: replace '<%=' with '<%==' if you run this in rails %>
 
     <%# The a variable below is set to a lambda that generates the a tag %>
-    <%# Usage: anchor_tag = anchor_lambda.(page_number, text, classes: nil, aria_label: nil) %>
-    <% anchor_lambda = pagy.anchor_lambda %>
+    <%# Usage: anchor_tag = a_lambda.(page_number, text, classes: nil, aria_label: nil) %>
+    <% a_lambda = pagy.a_lambda %>
     <nav class="pagy nav" aria-label="Pages">
       <%# Previous page link %>
       <% if pagy.previous %>
-        <%= anchor_lambda.(pagy.previous, '&lt;', aria_label: 'Previous') %>
+        <%= a_lambda.(pagy.previous, '&lt;', aria_label: 'Previous') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
       <% end %>
       <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
       <% pagy.series.each do |item| %>
         <% if item.is_a?(Integer) %>
-          <%= anchor_lambda.(item) %>
+          <%= a_lambda.(item) %>
         <% elsif item.is_a?(String) %>
           <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
         <% elsif item == :gap %>
@@ -347,7 +347,7 @@ class PagyDemo < Sinatra::Base
       <% end %>
       <%# Next page link %>
       <% if pagy.next %>
-        <%= anchor_lambda.(pagy.next, '&gt;', aria_label: 'Next') %>
+        <%= a_lambda.(pagy.next, '&gt;', aria_label: 'Next') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
       <% end %>

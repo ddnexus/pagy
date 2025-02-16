@@ -12,9 +12,9 @@ id:
     next: "&gt;"
     gap: "&hellip;"
     item_name: "item"
-    info:
+    info_tag:
       no_items: "Tidak ditemukan %{item_name}"
       single_page: "Menampilkan %{count} %{item_name}"
       multiple_pages: "Menampilkan %{item_name} %{from}-%{to} dari total %{count}"
-    combo_nav_js: "Halaman %{page_input} dari %{pages}"
-    limit_selector_js: "Tampilkan %{limit_input} %{item_name} per halaman"
+    combo_nav_js_tag: "Halaman %{page_input} dari %{pages}"
+    limit_selector_js_tag: "Tampilkan %{limit_input} %{item_name} per halaman"

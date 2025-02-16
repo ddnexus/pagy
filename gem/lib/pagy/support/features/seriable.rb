@@ -5,7 +5,6 @@ class Pagy
   module Seriable
     LENGTH = 7
 
-    # TODO: remove
     def self.included(including)
       including.alias_method :pages, :last
     end
@@ -20,7 +19,7 @@ class Pagy
         if length >= @last
           series.push(*1..@last)
         else
-          half  = (length - 1) / 2                      # the left half might be 1 page shorter for even length
+          half  = (length - 1) / 2                      # the left half might be 1 page shorter when length is even
           start = if @page <= half                      # @page in the first half
                     1
                   elsif @page > (@last - length + half) # @page in the last half
@@ -47,10 +46,10 @@ class Pagy
       raise OptionError.new(self, :steps, 'to define the 0 width', steps) unless steps.key?(0)
 
       widths, series = steps.sort.reverse.map { |width, length| [width, series(length:)] }.transpose
-      [widths, series, label_sequels(series)]
+      [widths, series, page_labels(series)]
     end
 
     # Support for the Calendar API
-    def label_sequels(*); end
+    def page_labels(*); end
   end
 end

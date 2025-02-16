@@ -18,9 +18,9 @@ be:
       few: "запісы"
       many: "запісаў"
       other: "запісаў"
-    info:
+    info_tag:
       no_items: "Пакуль %{item_name} няма"
       single_page: "%{count} %{item_name}"
       multiple_pages: "Усяго %{count} %{item_name}, паказаны з %{from} па %{to}"
-    combo_nav_js: "Старонка %{page_input} з %{pages}"
-    limit_selector_js: "Паказаць %{limit_input} %{item_name} на старонцы"
+    combo_nav_js_tag: "Старонка %{page_input} з %{pages}"
+    limit_selector_js_tag: "Паказаць %{limit_input} %{item_name} на старонцы"

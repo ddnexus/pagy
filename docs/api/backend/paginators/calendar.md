@@ -73,7 +73,7 @@ end
 <%== pagy_nav(@calendar[:month]) %>
 
 <!-- pagy info extended for the calendar unit -->
-<%== pagy_info(@pagy) %> for <%== @calendar[:month].label(format: '%B %Y') %>
+<%== pagy_info(@pagy) %> for <%== @calendar[:month].page_label(@pagy.page, format: '%B %Y') %>
 
 ... display @records ...
 

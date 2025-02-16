@@ -14,9 +14,9 @@ es:
     item_name:
       one: "ítem"
       other: "ítems"
-    info:
+    info_tag:
       no_items: "Sin resultados"
       single_page: "Mostrando %{count} %{item_name}"
       multiple_pages: "Mostrando %{item_name} %{from}-%{to} de %{count} en total"
-    combo_nav_js: "Página %{page_input} de %{pages}"
-    limit_selector_js: "Mostrar %{limit_input} %{item_name} por página"
+    combo_nav_js_tag: "Página %{page_input} de %{pages}"
+    limit_selector_js_tag: "Mostrar %{limit_input} %{item_name} por página"

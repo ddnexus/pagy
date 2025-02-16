@@ -41,15 +41,31 @@ class Pagy
       end
 
       # The label for any page (it can forward the I18n gem options when it's used with the i18n extra)
-      def label(page: @page, **options)
+      def page_label(page, **options)
         options[:format] ||= @options[:format]
         localize(starting_time_for(page.to_i), **options)  # page could be a string
       end
 
+      def a_lambda(anchor_string: nil, **)
+        return super unless (counts = @options[:counts])   # No overriding without :counts
+
+        left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{page_url(PAGE_TOKEN, **)}")
+                      .split(PAGE_TOKEN, 2)
+        # Lambda used by all the helpers
+        lambda do |page, text = page_label(page), classes: nil, aria_label: nil|
+          count    = counts[page - 1]
+          classes  = classes ? "#{classes} empty-page" : 'empty-page' if count.zero?
+          info_key = count.zero? ? 'pagy.info_tag.no_items' : 'pagy.info_tag.single_page'
+          title    = %( title="#{I18n.translate(info_key, item_name: I18n.translate('pagy.item_name', count:), count:)}")
+          %(#{left}#{page}#{right}#{title}#{
+          %( class="#{classes}") if classes}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
+        end
+      end
+
       protected
 
-      def label_sequels(series)
-        series.map { |s| s.map { |item| item == :gap ? :gap : label(page: item) } }
+      def page_labels(series)
+        series.map { |s| s.map { |item| item == :gap ? :gap : page_label(item) } }
       end
 
       # The page that includes time
@@ -104,22 +120,6 @@ class Pagy
       # Period of the active page (used internally for nested units)
       def active_period
         [[@starting, @from].max, [@to - 1, @ending].min] # -1 sec: include only last unit day
-      end
-
-      def anchor_lambda(anchor_string: nil, **)
-        return super unless (counts = @options[:counts])   # No overriding without :counts
-
-        left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{page_url(PAGE_TOKEN, **)}")
-                      .split(PAGE_TOKEN, 2)
-        # Lambda used by all the helpers
-        lambda do |page, text = label(page: page), classes: nil, aria_label: nil|
-          count    = counts[page - 1]
-          classes  = classes ? "#{classes} empty-page" : 'empty-page' if count.zero?
-          info_key = count.zero? ? 'pagy.info.no_items' : 'pagy.info.single_page'
-          title    = %( title="#{I18n.translate(info_key, item_name: I18n.translate('pagy.item_name', count:), count:)}")
-          %(#{left}#{page}#{right}#{title}#{
-          %( class="#{classes}") if classes}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
-        end
       end
     end
   end

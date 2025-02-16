@@ -14,9 +14,9 @@ pt-BR:
     item_name:
       one: "item"
       other: "itens"
-    info:
+    info_tag:
       no_items: "Sem resultados"
       single_page: "Mostrando %{count} %{item_name}"
       multiple_pages: "Mostrando %{item_name} %{from}-%{to} do total de %{count}"
-    combo_nav_js: "Página %{page_input} de %{pages}"
-    limit_selector_js: "Mostrar %{limit_input} %{item_name} por página"
+    combo_nav_js_tag: "Página %{page_input} de %{pages}"
+    limit_selector_js_tag: "Mostrar %{limit_input} %{item_name} por página"

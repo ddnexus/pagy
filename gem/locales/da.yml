@@ -14,9 +14,9 @@ da:
     item_name:
       one: "resultat"
       other: "resultater"
-    info:
+    info_tag:
       no_items: "Ingen %{item_name} fundet"
       single_page: "Viser %{count} %{item_name}"
       multiple_pages: "Viser %{item_name} %{from}-%{to} af %{count} totalt"
-    combo_nav_js: "Side %{page_input} af %{pages}"
-    limit_selector_js: "Antal %{limit_input} %{item_name} per side"
+    combo_nav_js_tag: "Side %{page_input} af %{pages}"
+    limit_selector_js_tag: "Antal %{limit_input} %{item_name} per side"

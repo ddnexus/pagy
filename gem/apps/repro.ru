@@ -126,24 +126,24 @@ class PagyRepro < Sinatra::Base
 
         <hr>
 
-        <h4>pagy.nav</h4>
-        <%= @pagy.nav(id: 'nav', aria_label: 'Pages nav') %>
+        <h4>pagy.nav_tag</h4>
+        <%= @pagy.nav_tag(id: 'nav', aria_label: 'Pages nav') %>
 
-        <h4>pagy.nav_js</h4>
-        <%= @pagy.nav_js(id: 'nav-js', aria_label: 'Pages nav_js') %>
+        <h4>pagy.nav_js_tag</h4>
+        <%= @pagy.nav_js_tag(id: 'nav-js', aria_label: 'Pages nav_js') %>
 
-        <h4>pagy.nav_js</h4>
-        <%= @pagy.nav_js(id: 'nav-js-responsive', aria_label: 'Pages nav_js_responsove',
+        <h4>pagy.nav_js_tag</h4>
+        <%= @pagy.nav_js_tag(id: 'nav-js-responsive', aria_label: 'Pages nav_js_responsove',
            steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
 
-        <h4>pagy.combo_nav_js</h4>
-        <%= @pagy.combo_nav_js(id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <h4>pagy.combo_nav_js_tag</h4>
+        <%= @pagy.combo_nav_js_tag(id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 
-        <h4>pagy.limit_selector_js</h4>
-        <%= @pagy.limit_selector_js(id: 'limit-selector-js') %>
+        <h4>pagy.limit_selector_js_tag</h4>
+        <%= @pagy.limit_selector_js_tag(id: 'limit-selector-js') %>
 
-        <h4>pagy.info</h4>
-        <%= @pagy.info(id: 'pagy-info') %>
+        <h4>pagy.info_tag</h4>
+        <%= @pagy.info_tag(id: 'pagy-info') %>
       </div>
     ERB
   end

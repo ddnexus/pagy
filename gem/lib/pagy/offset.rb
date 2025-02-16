@@ -41,8 +41,8 @@ class Pagy
 
     # Called by false in_range?
     def assign_empty_page_variables
-      @in = @from = @to = @offset = @limit = 0     # options relative to the actual page
-      @previous = @last                            # @previous relative to the actual page
+      @in = @from = @to = 0     # options relative to the actual page
+      @previous = @last         # @previous relative to the actual page
     end
 
     def offset? = true

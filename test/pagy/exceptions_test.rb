@@ -5,7 +5,7 @@ require_relative '../mock_helpers/pagy_buggy'
 
 describe 'pagy/exceptions' do
   describe '#option and #value' do
-    it 'raises for pages in range' do
+    it 'raises for wrong page type' do
       begin
         Pagy::Offset.new(count: 1, page: 0)
       rescue Pagy::OptionError => e
@@ -48,7 +48,7 @@ describe 'pagy/exceptions' do
       _(e.value).must_equal(-10)
     end
     it 'does not raise for :count and :offset set to arbitrary strings (converted to 0)' do
-      pagy = Pagy::Offset.new(count: 'string', outset: 'string')
+      pagy = Pagy::Offset.new(count: 'string')
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 0
     end

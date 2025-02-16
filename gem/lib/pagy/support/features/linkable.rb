@@ -65,15 +65,15 @@ class Pagy
     end
 
     # Label for any page. Allow the customization of the output (overridden by the calendar)
-    def label(page: @page, **) = page.to_s
+    def page_label(page, **) = page.to_s
 
-    # Return a performance optimized lambda to generate the HTML anchor element (a tag)
+    # Return a performance optimized lambda to generate the HTML a tag
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def anchor_lambda(anchor_string: nil, **)
+    def a_lambda(anchor_string: nil, **)
       left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{page_url(PAGE_TOKEN, **)}")
                     .split(PAGE_TOKEN, 2)
       # Lambda used by all the helpers
-      lambda do |page, text = label(page: page), classes: nil, aria_label: nil|
+      lambda do |page, text = page_label(page), classes: nil, aria_label: nil|
         %(#{left}#{page}#{right}#{%( class="#{classes}") if classes}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
       end
     end

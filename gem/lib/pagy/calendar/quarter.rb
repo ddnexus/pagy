@@ -9,7 +9,7 @@ class Pagy # :nodoc:
                   format:  'Q%q' }.freeze # '%q' token
 
       # The label for any page, with the substitution of the '%q' token
-      def label(page: @page, **options)
+      def page_label(page, **options)
         starting_time = starting_time_for(page.to_i)  # page could be a string
         options[:format] = (options[:format] || @options[:format]).gsub('%q') { (starting_time.month / 3.0).ceil }
         localize(starting_time, **options)

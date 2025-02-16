@@ -18,9 +18,9 @@ ru:
       few: "записи"
       many: "записей"
       other: "записей"
-    info:
+    info_tag:
       no_items: "Пока %{item_name} нет"
       single_page: "%{count} %{item_name}"
       multiple_pages: "Всего %{count} %{item_name}, показаны с %{from} по %{to}"
-    combo_nav_js: "Страница %{page_input} из %{pages}"
-    limit_selector_js: "Показать %{limit_input} %{item_name} на странице"
+    combo_nav_js_tag: "Страница %{page_input} из %{pages}"
+    limit_selector_js_tag: "Показать %{limit_input} %{item_name} на странице"

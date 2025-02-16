@@ -157,14 +157,14 @@ class PagyCalendar < Sinatra::Base
         <!-- calendar filtering navs -->
         <% if @calendar %>
           <p>Showtime: <%= @calendar.showtime %></p>
-          <%= @calendar[:year].nav(style: :bootstrap, id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
-          <%= @calendar[:month].nav(style: :bootstrap, id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
-          <%= @calendar[:day].nav(style: :bootstrap, id: "day-nav", aria_label: "Days") %> <!-- day nav -->
+          <%= @calendar[:year].nav_tag(style: :bootstrap, id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
+          <%= @calendar[:month].nav_tag(style: :bootstrap, id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
+          <%= @calendar[:day].nav_tag(style: :bootstrap, id: "day-nav", aria_label: "Days") %> <!-- day nav -->
         <% end %>
 
         <!-- page info extended for the calendar unit -->
         <div class="alert alert-primary" role="alert">
-          <%= @pagy.info(id: 'pagy-info') %>
+          <%= @pagy.info_tag(id: 'pagy-info') %>
           <% if @calendar %>
             for <b><%= @calendar.showtime.strftime('%Y-%m-%d') %></b>
           <% end %>
@@ -178,7 +178,7 @@ class PagyCalendar < Sinatra::Base
         </div>
 
         <!-- standard pagination of the selected month -->
-        <p><%= @pagy.nav(style: :bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
+        <p><%= @pagy.nav_tag(style: :bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
       </div>
     ERB
   end

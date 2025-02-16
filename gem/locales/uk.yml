@@ -18,9 +18,9 @@ uk:
       few: "записів"
       many: "записів"
       other: "записів"
-    info:
+    info_tag:
       no_items: "Більше %{item_name} немає"
       single_page: "%{count} %{item_name}"
       multiple_pages: "Загалом %{count} %{item_name}, показані з %{from} по %{to}"
-    combo_nav_js: "Сторінка %{page_input} з %{pages}"
-    limit_selector_js: "Показати %{limit_input} %{item_name} на сторінці"
+    combo_nav_js_tag: "Сторінка %{page_input} з %{pages}"
+    limit_selector_js_tag: "Показати %{limit_input} %{item_name} на сторінці"

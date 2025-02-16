@@ -14,9 +14,9 @@ bg:
     item_name:
       one: "резултат"
       other: "резултати"
-    info:
+    info_tag:
       no_items: "Няма намерени %{item_name}"
       single_page: "Показани са %{count} %{item_name}"
       multiple_pages: "Показани са %{item_name} %{from}-%{to} от %{count} общо"
-    combo_nav_js: "Страница %{page_input} от %{pages}"
-    limit_selector_js: "Покажи %{limit_input} %{item_name} на страница"
+    combo_nav_js_tag: "Страница %{page_input} от %{pages}"
+    limit_selector_js_tag: "Покажи %{limit_input} %{item_name} на страница"

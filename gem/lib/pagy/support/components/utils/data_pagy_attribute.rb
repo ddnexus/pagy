@@ -12,5 +12,4 @@ class Pagy
     data = defined?(Oj) ? Oj.dump(args, mode: :compat) : JSON.dump(args)
     %(data-pagy="#{B64.encode(data)}")
   end
-  private :data_pagy_attribute
 end

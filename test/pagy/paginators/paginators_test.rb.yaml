@@ -1,0 +1,9 @@
+---
+paginators_jsonapi__JsonApi_with_custom_named_params_test_0002_sets_custom_named_params:
+  :url: "/foo?page%5Bnumber%5D=4&page%5Bsize%5D=10"
+paginators_jsonapi__JsonApi_test_0001_uses_the__jsonapi_with_page_nil:
+  :url_1: "/foo?page%5Bpage%5D=1"
+  :url_2: "/foo?page%5Bpage%5D=1&page%5Blimit%5D=20"
+paginators_jsonapi__JsonApi_test_0002_uses_the__jsonapi_with_page_3:
+  :url_1: "/foo?page%5Bpage%5D=2"
+  :url_2: "/foo?page%5Bpage%5D=2&page%5Blimit%5D=20"
