@@ -14,6 +14,6 @@ class Pagy
       data = [:cj, page_url(PAGE_TOKEN, **)]
       data.push(@update) if keynav?
       data_pagy_attribute(*data)
-    }>#{html}</nav>)
+      }>#{html}</nav>)
   end
 end

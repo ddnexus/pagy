@@ -15,6 +15,6 @@ class Pagy
       data = [:nj, tokens.values, sequels]
       data.push(@update) if keynav?
       data_pagy_attribute(*data)
-    }></nav>)
+      }></nav>)
   end
 end

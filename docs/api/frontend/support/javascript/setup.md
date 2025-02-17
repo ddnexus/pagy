@@ -9,7 +9,7 @@ order: 4
 !!!info Notice
 
 A javascript setup is required only for the `pagy*_js` helpers and the `pagy*_nav` for `Pagy::Keyset::Keynav` instances. Just using
-something like `anchor_string: 'data-remote="true"'` in any instances, works out of the box with any helper and without this
+something like `a_string_attributes: 'data-remote="true"'` in any instances, works out of the box with any helper and without this
 setup.
 !!!
 

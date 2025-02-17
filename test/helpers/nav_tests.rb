@@ -17,7 +17,7 @@ module NavTests
       pagy  = Pagy::Offset.new(count: 1000, page: page, request:)
       pagyx = Pagy::Offset.new(count: 1000, page: page, request:)
       _(pagy.nav_tag(style:)).must_rematch :"plain_#{page}"
-      _(pagyx.nav_tag(style:, id: 'test-nav-id', anchor_string: 'anchor_string')).must_rematch :"extras_#{page}"
+      _(pagyx.nav_tag(style:, id: 'test-nav-id', a_string_attributes: 'anchor_string')).must_rematch :"extras_#{page}"
     end
     _ { PagyBuggy.new(count: 100, request:).nav_tag(style:) }.must_raise Pagy::InternalError
     pagyk = Pagy::Keyset::Keynav.new(Pet.order(:animal, :name, :id),
@@ -31,7 +31,7 @@ module NavTests
       pagy  = Pagy::Offset.new(count: 1000, page: page, request:)
       pagyx = Pagy::Offset.new(count: 1000, page: page, request:)
       _(pagy.nav_js_tag(style:)).must_rematch :"plain_#{page}"
-      _(pagyx.nav_js_tag(style:, id: 'test-nav-id', anchor_string: 'anchor_string',
+      _(pagyx.nav_js_tag(style:, id: 'test-nav-id', a_string_attributes: 'anchor_string',
                          steps:      { 0 => 5, 600 => 7 })).must_rematch :"extras_#{page}"
     end
     # raise Pagy::OptionError for missing 0 step
@@ -48,7 +48,7 @@ module NavTests
       pagy  = Pagy::Offset::Countless.new(page: page, last: page, request:).finalize(rest)
       pagyx = Pagy::Offset::Countless.new(page: page, last: page, request:).finalize(rest)
       _(pagy.nav_js_tag(style:)).must_rematch :"plain_#{page}_#{rest}"
-      _(pagyx.nav_js_tag(style:, id: 'test-nav-id', anchor_string: 'anchor_string',
+      _(pagyx.nav_js_tag(style:, id: 'test-nav-id', a_string_attributes: 'anchor_string',
                          steps:      { 0 => 5, 600 => 7 })).must_rematch :"extras_#{page}_#{rest}"
     end
   end
@@ -60,7 +60,7 @@ module NavTests
       pagyk = Pagy::Keyset::Keynav.new(Pet.order(:animal, :name, :id),
                                        page: ['key', 2, 2, ["cat", "Ella", 18], nil], request:)
       _(pagy.combo_nav_js_tag(style:)).must_rematch :"plain_#{page}"
-      _(pagyx.combo_nav_js_tag(style:, id: 'test-nav-id', anchor_string: 'anchor_string')).must_rematch :"extras_#{page}"
+      _(pagyx.combo_nav_js_tag(style:, id: 'test-nav-id', a_string_attributes: 'anchor_string')).must_rematch :"extras_#{page}"
       _(pagyk.combo_nav_js_tag(style:)).must_rematch :keyset
     end
   end

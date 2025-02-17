@@ -46,10 +46,10 @@ class Pagy
         localize(starting_time_for(page.to_i), **options)  # page could be a string
       end
 
-      def a_lambda(anchor_string: nil, **)
+      def a_lambda(a_string_attributes: nil, **)
         return super unless (counts = @options[:counts])   # No overriding without :counts
 
-        left, right = %(<a#{%( #{anchor_string}) if anchor_string} href="#{page_url(PAGE_TOKEN, **)}")
+        left, right = %(<a#{%( #{a_string_attributes}) if a_string_attributes} href="#{page_url(PAGE_TOKEN, **)}")
                       .split(PAGE_TOKEN, 2)
         # Lambda used by all the helpers
         lambda do |page, text = page_label(page), classes: nil, aria_label: nil|

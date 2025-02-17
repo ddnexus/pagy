@@ -83,7 +83,7 @@ Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `cou
 The keyord argument used from `opts` are:
 - `text: pagy_t('pagy.prev')`
 - `aria_label: pagy_t('pagy.aria_label.prev)`
-- `anchor_string: nil`
+- `a_string_attributes: nil`
 
 ==- `pagy_next_anchor(pagy, **opts)`
 
@@ -95,7 +95,7 @@ Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `cou
 The keyord argument used from `opts` are:
 - `text: pagy_t('pagy.prev')`
 - `aria_label: pagy_t('pagy.aria_label.prev)`
-- `anchor_string: nil`
+- `a_string_attributes: nil`
 
 ==- `pagy_prev_link(pagy)`
 
@@ -164,7 +164,7 @@ end
 
 ```erb _next_link.html.erb (partial)
 <!-- Wrapped in a "pagy" class to apply the pagy CSS style -->
-<span id: 'next_link' class="pagy"><%== pagy_next_anchor(@pagy, text: 'More...', anchor_string: 'data-remote="true"') %><span>
+<span id: 'next_link' class="pagy"><%== pagy_next_anchor(@pagy, text: 'More...', a_string_attributes: 'data-remote="true"') %><span>
 ```
 
 ```erb incremental.js.erb (javascript template)

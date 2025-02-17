@@ -15,7 +15,7 @@ class Pagy
                %(background-color: #485fc7;">#{A_TAG})
     html     = %(#{bulma_previous_next_html(a_lambda)
                  }<ul class="pagination-list"><li class="pagination-link"><label>#{
-                   I18n.translate('pagy.combo_nav_js_tag', page_input: input, pages: @last)
+                 I18n.translate('pagy.combo_nav_js_tag', page_input: input, pages: @last)
                  }</label></li></ul>)
     wrap_combo_nav_js(html, "pagy-bulma combo-nav-js #{classes}", **)
   end

@@ -157,13 +157,13 @@ Set the `limit_sym` to customize the `limit` param the same way.
 
 ## Customize the link attributes
 
-Customize the HTML attribute of the page links by passing some extra attribute string with the `:anchor_string` keyword argument. For example:
+Customize the HTML attribute of the page links by passing some extra attribute string with the `:a_string_attributes` keyword argument. For example:
 
 ```erb
-<%== pagy_nav(@pagy, anchor_string: 'data-remote="true"') %>
+<%== pagy_nav(@pagy, a_string_attributes: 'data-remote="true"') %>
 ```
 
-_See more advanced details about [The anchor_string argument](api/frontend.md#the-anchor_string-argument)_
+_See more advanced details about [The a_string_attributes argument](api/frontend.md#the-a_string_attributes-argument)_
 
 ## Customize the params
 

@@ -55,10 +55,10 @@ aria-identified in the page.
 !!!
 <hr>
 
-!!!danger Don't duplicate attributes with the `:anchor_string`!
+!!!danger Don't duplicate attributes with the `:a_string_attributes`!
 
 ```erb
-<%== pagy_bootstrap_nav(@pagy, anchor_string: 'class="my-class"', **opts) %>
+<%== pagy_bootstrap_nav(@pagy, a_string_attributes: 'class="my-class"', **opts) %>
 ```
 
 The `class` attribute with a value of `"pagination"` is already added by the `pagy_bootstrap_nav` so it's a duplicate HTML

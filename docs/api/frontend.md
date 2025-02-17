@@ -113,7 +113,7 @@ Here is how you should use it: in your helper call the method to get the proc (j
 ```ruby
 a = pagy_anchor_lambda(pagy)
 # or
-a = pagy_anchor_lambda(pagy, anchor_string: 'verbatim string')
+a = pagy_anchor_lambda(pagy, a_string_attributes: 'verbatim string')
 ```
 
 Then call the `a` proc to get the links (multiple times):
@@ -122,17 +122,17 @@ Then call the `a` proc to get the links (multiple times):
 my_link = a.(page_number, text, classes:, aria_label:)
 ```
 
-#### The anchor_string argument
+#### The a_string_attributes argument
 
 This argument is typically used for passing `data-*` attributes to the enabled anchor. Avoid using it for attributes that have 
 more specific ways to be set (e.g.: `class` should be added with a specific CSS rule).
 
-If you need to add some HTML attribute to ALL the enbled page links (no `current` nor `gap`), you can pass the `:anchor_string` 
+If you need to add some HTML attribute to ALL the enbled page links (no `current` nor `gap`), you can pass the `:a_string_attributes` 
 keyword argument to any pagy helper, or if you use templates or override helpers, you can pass it also to the `pagy_anchor_lambda` 
 method. 
 
 !!!warning Attributes Must be Valid HTML
-For performance reasons, the `:anchor_string` string must be formatted as valid HTML attribute/value pairs because it will get 
+For performance reasons, the `:a_string_attributes` string must be formatted as valid HTML attribute/value pairs because it will get 
 inserted *verbatim* in the HTML of the `a` tag.
 !!!
 

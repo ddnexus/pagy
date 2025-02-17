@@ -28,7 +28,7 @@ class Pagy
                     @page - half
                   end
           series.push(*start...start + length)
-          unless compact || length < LENGTH             # Set first, last and gaps when needed
+          unless compact || length < LENGTH             # Set first, last and :gap when needed
             series[0]  = 1
             series[1]  = :gap unless series[1]  == 2
             series[-2] = :gap unless series[-2] == @last - 1

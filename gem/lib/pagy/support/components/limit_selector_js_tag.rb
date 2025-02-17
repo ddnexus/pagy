@@ -13,11 +13,11 @@ class Pagy
 
     %(<span#{%( id="#{id}") if id} class="pagy limit-selector-js" #{
       data_pagy_attribute(:sj, @from, url_token)
-    }><label>#{
+      }><label>#{
       I18n.translate('pagy.limit_selector_js_tag',
                      item_name: item_name || I18n.translate('pagy.item_name', count: @limit),
                      limit_input:,
                      count: @limit)
-    }</label></span>)
+      }</label></span>)
   end
 end
