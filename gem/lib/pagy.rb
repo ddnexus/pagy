@@ -70,7 +70,7 @@ class Pagy
     begin
       default = current::DEFAULT.merge(default)
       current = current.superclass
-    end until current == Object  # rubocop:disable Lint/Loop  # see https://github.com/rubocop/rubocop-performance/issues/362
+    end until current == Object  # rubocop:disable Lint/Loop  -- see https://github.com/rubocop/rubocop-performance/issues/362
     @options = default.merge!(options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
   end
 end

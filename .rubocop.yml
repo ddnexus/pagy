@@ -1,8 +1,10 @@
-require:
-  - rubocop-minitest
-  - rubocop-packaging
+plugins:
   - rubocop-performance
+  - rubocop-minitest
   - rubocop-rake
+
+require:
+  - rubocop-packaging
 
 # trying to be good  O:)
 AllCops:
