@@ -6,7 +6,7 @@ categories:
   - Paginators
 ---
 
-!!!warning Consider using `pagy_keynav` if possible!
+!!!warning Consider using `pagy_keynav` when possible!
 It has exactly the same UI features, but it uses the fastest `keyset` pagination, particular convenient with big, slow collection results. 
 !!!
 

@@ -2,8 +2,7 @@
 
 class Pagy
   module Loader
-    pagy_methods = { previous_url:          'helpers/previous_next_urls',
-                     next_url:              'helpers/previous_next_urls',
+    pagy_methods = { page_url:              'helpers/page_url',
                      pluck_hash:            'helpers/pluck_hash',
                      headers_hash:          'helpers/headers_hash',
                      links_hash:            'helpers/links_hash',

@@ -5,7 +5,7 @@ require_relative '../../../helpers/nav_tests'
 
 STYLE = :bootstrap
 
-describe STYLE.to_s do
+describe STYLE do
   include NavTests
 
   describe "#{STYLE} nav" do

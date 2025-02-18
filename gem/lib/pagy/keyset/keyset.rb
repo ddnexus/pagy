@@ -56,16 +56,6 @@ class Pagy
       @next ||= B64.urlsafe_encode(extract_cutoff.to_json)
     end
 
-    # Return the URL string for the first page
-    def keyset_first_url(**)
-      page_url(nil, **)
-    end
-
-    # Return the URL string for the next page or nil
-    def keyset_next_url(**)
-      page_url(@next, **) if self.next
-    end
-
     def keyset? = true
 
     protected

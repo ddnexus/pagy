@@ -1,12 +1,12 @@
 ---
 title: Paginators
 icon: database
-order: -50
+order: 100
 ---
 
 **Paginators** are methods that wrap a collection and return a pagy object and the page of results/records.
 
-Use them in your app by including the module in `ApplicationController`:
+Include the module in `ApplicationController`:
 
 ```ruby Controller
 include Pagy::Paginators
@@ -17,6 +17,8 @@ include Pagy::Paginators
 
 ```ruby Controller Action
 @pagy, @records = pagy_offset(collection, **options)
+@pagy, @records = pagy_keyset(set, **options)
+...
 ```
 
 - `@pagy` is the pagination object: the first argument required by every `Backend` or `Frontend` helper/navigator method
@@ -27,30 +29,37 @@ include Pagy::Paginators
 Instead, use the provided paginator methods, which handle the correct class selection and initialization.
 !!!
 
-==- Options (for all paginators)
+==- Common Options
 
-- `:page`
-  - Set it only to force the current `:page`. _(It is sets automatically from the request params)_.
-- `:limit`
-  - Set the number of items per page (default `20`)
-- `requestable_limit: max_limit`
-  - Allow the client to set the `:limit` in the `request` params, up-to the `max_limit` value
-- `jsonapi: true`
-  - Enable JSON:API-compliant URLs and query_params
-- `:params`
-  - Set it to a `Hash` of params to merge with the query params, or a `Lambda` that can edit/add/delete the request params. Keys
-    must be strings.
-- `:max_pages`
-  - Allow only `:max_pages`
-- `:page_sym`
-  - Set it to change the symbol of the `:page` in URLs and query_params (default `:page`).
-- `:limit_sym`
-  - Set it to change the symbol of the `:limit` in URLs and query_params (default `:limit`).
+!!! Options for all paginators
 
-!!! Individual paginators may offer additional options, which are documented with the paginator itself.
+Individual paginators may offer additional options, which are documented with the paginator itself.
 !!!
 
-==- Readers (for all paginators)
+- `:page`
+  - Set it only to force the current `:page`. _(It is set automatically from the request params)_.
+  - `:limit`
+    - Set the number of items per page (default `20`)
+  - `requestable_limit: max_limit`
+    - Allow the client to set the `:limit` in the `request` params, up-to the `max_limit` value
+  - `jsonapi: true`
+    - Enable JSON:API-compliant URLs and query_params
+  - `:params`
+    - Set it to a `Hash` of params to merge with the query params, or a `Lambda` that can edit/add/delete the request params. Keys
+      must be strings.
+  - `:max_pages`
+    - Allow only `:max_pages`
+  - `:page_sym`
+    - Set it to change the symbol of the `:page` in URLs and query_params (default `:page`).
+  - `:limit_sym`
+    - Set it to change the symbol of the `:limit` in URLs and query_params (default `:limit`).
+
+==- Common Readers
+
+!!! Readers for all paginators
+
+Individual paginators may offer additional readers, wich are documented with the paginator itself.
+!!!
 
 - `page`
   - The current page
@@ -68,9 +77,6 @@ Instead, use the provided paginator methods, which handle the correct class sele
   - The options of the object
 - `count`
   - The collection count. `nil` for countless pagination techniques
-
-!!! Individual paginators may offer additional readers, wich are documented with the paginator itself.
-!!!
 
 === Paginators
 

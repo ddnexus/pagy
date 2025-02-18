@@ -6,7 +6,7 @@ require_relative '../../../mock_helpers/app'
 require_relative '../../../files/models'
 
 describe 'headers_hash' do
-  describe '#headers_hash with Offset' do
+  describe 'headers_hash with Offset' do
     let(:app) { MockApp.new(params: { a: 'one', b: 'two' }) }
     before do
       @collection = MockCollection.new
@@ -37,7 +37,7 @@ describe 'headers_hash' do
     end
   end
 
-  describe '#headers_hash with Calendar' do
+  describe 'headers_hash with Calendar' do
     let(:app) { MockApp::Calendar.new(params: { a: 'one', b: 'two' }) }
     it 'returns the full headers hash' do
       pagy, = app.send(:pagy_offset, Event.all)
@@ -65,7 +65,7 @@ describe 'headers_hash' do
     end
   end
 
-  describe '#headers_hash with Keyset' do
+  describe 'headers_hash with Keyset' do
     let(:app) { MockApp.new(params: { a: 'one', b: 'two' }) }
     it 'returns the full headers hash' do
       pagy, = app.send(:pagy_keyset, Pet.order(:id))

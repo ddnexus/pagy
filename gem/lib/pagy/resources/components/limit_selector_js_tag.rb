@@ -7,7 +7,7 @@ class Pagy
   def limit_selector_js_tag(id: nil, item_name: nil)
     raise OptionError.new(self, :requestable_limit, 'to be defined', nil) unless @options[:requestable_limit]
 
-    url_token   = page_url(PAGE_TOKEN, limit_token: LIMIT_TOKEN)
+    url_token   = compose_page_url(PAGE_TOKEN, limit_token: LIMIT_TOKEN)
     limit_input = %(<input name="limit" type="number" min="1" max="#{@options[:requestable_limit]}" value="#{
                     @limit}" style="padding: 0; text-align: center; width: #{@limit.to_s.length + 1}rem;">#{A_TAG})
 

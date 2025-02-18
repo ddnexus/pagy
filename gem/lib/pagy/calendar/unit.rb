@@ -51,7 +51,7 @@ class Pagy
       def a_lambda(a_string_attributes: nil, **)
         return super unless (counts = @options[:counts])   # No overriding without :counts
 
-        left, right = %(<a#{%( #{a_string_attributes}) if a_string_attributes} href="#{page_url(PAGE_TOKEN, **)}")
+        left, right = %(<a#{%( #{a_string_attributes}) if a_string_attributes} href="#{compose_page_url(PAGE_TOKEN, **)}")
                       .split(PAGE_TOKEN, 2)
         # Lambda used by all the helpers
         lambda do |page, text = page_label(page), classes: nil, aria_label: nil|

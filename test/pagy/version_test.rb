@@ -43,6 +43,6 @@ describe 'Version match' do
     _(changelog).must_match "## Version #{Pagy::VERSION}"
   end
   it 'defines the same minor version in ./quick-start.md' do
-    _(File.read('./quick-start.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
+    _(File.read('./docs/guides/quick-start.md')).must_match "gem 'pagy', '~> #{Pagy::VERSION.sub(/\.\d+$/, '')}"
   end
 end

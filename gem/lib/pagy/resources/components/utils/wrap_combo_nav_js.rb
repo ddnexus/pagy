@@ -11,7 +11,7 @@ class Pagy
   def wrap_combo_nav_js(html, nav_classes, id: nil, aria_label: nil, **)
     %(<nav#{%( id="#{id}") if id} class="#{nav_classes}" #{
       nav_aria_label_attribute(aria_label:)} #{
-      data = [:cj, page_url(PAGE_TOKEN, **)]
+      data = [:cj, compose_page_url(PAGE_TOKEN, **)]
       data.push(@update) if keynav?
       data_pagy_attribute(*data)
       }>#{html}</nav>)

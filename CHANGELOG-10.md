@@ -229,6 +229,8 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
   - The lambda receives the same `keyset_attributes` argument, but it must return the array of attribute values.
     `->(keyset_attributes) { ...; keyset_attributes.values }`.
 - Remove any existing`:filter_newest`. Override the `compose_predicate` method instead.
+- Replace any existing `pagy_keyset_first_url` with `@pagy.page_url(:first`
+- Replace any existing `pagy_keyset_next_url` with `@pagy.page_url(:next`
 
 ##### `limit`
 
@@ -295,7 +297,10 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 #### Possibly Breaking Overridings
 
-- The internal Pagy protected methods have been all refactored, often renamed, and sometimes removed.
-- If you use custom Pagy classes, you need to reconcile them by looking into the new pagy code.
+- Support for overriding methods in your controllers/helpers has been mostly removed, and it's discouraged.
+- The cleanest way for local overriding is using ruby refinements. For global overriding you can use the `pagy.rb` initializer.
+- Check the [how-to Override Pagy]
+- Besides the internal Pagy protected methods have been all refactored, often renamed, and sometimes removed.
+- For internal overriding you likely need to reconcile them by looking into the new pagy code.
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)

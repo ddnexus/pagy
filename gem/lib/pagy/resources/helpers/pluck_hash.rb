@@ -6,16 +6,16 @@ class Pagy
     keys ||= %i[url_template first_url previous_url page_url next_url last_url
                 count page limit pages last in from to previous next options series sequels]
     keys -= %i[count limit] if calendar?
-    url_template = page_url(PAGE_TOKEN, **)
+    url_template = compose_page_url(PAGE_TOKEN, **)
     {}.tap do |data|
       keys.each do |key|
         data[key] = case key
                     when :url_template then url_template
-                    when :first_url then page_url(nil, **)
+                    when :first_url    then compose_page_url(nil, **)
                     when :previous_url then url_template.sub(PAGE_TOKEN, @previous.to_s)
-                    when :page_url then url_template.sub(PAGE_TOKEN, @page.to_s)
-                    when :next_url then url_template.sub(PAGE_TOKEN, @next.to_s)
-                    when :last_url then url_template.sub(PAGE_TOKEN, @last.to_s)
+                    when :page_url     then url_template.sub(PAGE_TOKEN, @page.to_s)
+                    when :next_url     then url_template.sub(PAGE_TOKEN, @next.to_s)
+                    when :last_url     then url_template.sub(PAGE_TOKEN, @last.to_s)
                     else send(key)
                     end
       rescue NoMethodError

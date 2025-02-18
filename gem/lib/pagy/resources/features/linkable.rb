@@ -44,7 +44,7 @@ class Pagy
     # - base_url (e.g. 'http://www.example.com')
     # - path (e.g. '/path')
     # - GET (e.g. a string-key hash of the request query_params)
-    def page_url(page, absolute: false, fragment: nil, limit_token: nil, **)
+    def compose_page_url(page, absolute: false, fragment: nil, limit_token: nil, **)
       raise OptionError.new(self, :request, 'to be defined', @request) unless @request
 
       page_name, limit_name = @options.values_at(:page_sym, :limit_sym).map(&:to_s)
@@ -70,7 +70,7 @@ class Pagy
     # Return a performance optimized lambda to generate the HTML a tag
     # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
     def a_lambda(a_string_attributes: nil, **)
-      left, right = %(<a#{" #{a_string_attributes}" if a_string_attributes} href="#{page_url(PAGE_TOKEN, **)}")
+      left, right = %(<a#{" #{a_string_attributes}" if a_string_attributes} href="#{compose_page_url(PAGE_TOKEN, **)}")
                     .split(PAGE_TOKEN, 2)
       # Lambda used by all the helpers
       lambda do |page, text = page_label(page), classes: nil, aria_label: nil|

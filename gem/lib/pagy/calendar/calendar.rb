@@ -65,7 +65,7 @@ class Pagy
         conf[unit][:params] ||= {}
         conf[unit][:params].merge!(page_syms)
         Calendar.send(:create, unit, request: @request, **conf[unit])
-      end.send(:page_url, 1, **)
+      end.send(:compose_page_url, 1, **)
     end
 
     private

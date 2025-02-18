@@ -7,15 +7,15 @@ categories:
 image: none
 ---
 
-!!!warning Active Support Required!
+!!!warning ActiveSupport Required!
 !!!
 
 `pagy_calendar` is a compund `time-range` and `OFFSET` paginator, that can add any combination of filtering by calendar time unit
 _(year, quarter, month, week, and day)_ to the pagination
 
-![calendar_app](/docs/assets/images/calendar-app.png)
+![calendar_app](/assets/images/calendar-app.png)
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#4-calendar-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/guide/playground.md#4-calendar-app)
 
 !!!success Use this paginator when the results have mostly populated pages/time-units.
 !!!

@@ -18,7 +18,7 @@ class Pagy
       define_method :pagy_load_paginators do |*args, **kwargs|
         method_sym = __callee__
         require_relative paginators[method_sym]
-        self.class.send(:protected, method_sym)  # protected for the including class
+        self.class.send(:protected, method_sym)
         send(method_sym, *args, **kwargs)
       end
 

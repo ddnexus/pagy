@@ -24,8 +24,6 @@ class Pagy
   module Paginators
     include Loader
 
-    private
-
     # Get the limit from request, options or DEFAULT
     def pagy_get_limit(options)
       return options[:limit] || DEFAULT[:limit] \
@@ -39,6 +37,12 @@ class Pagy
       page_sym = options[:page_sym] || DEFAULT[:page_sym]
       page     = Back.jsonapi?(params, options) ? params[:page][page_sym] : params[page_sym]
       force_integer ? (page || 1).to_i : page
+    end
+
+    def self.included(including)
+      instance_methods(false).each do |method_name|
+        including.send(:protected, method_name)
+      end
     end
   end
 end

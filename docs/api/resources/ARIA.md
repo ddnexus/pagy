@@ -3,7 +3,7 @@ title: ARIA Attributes
 icon: tag
 categories:
   - Feature
-order: 110
+order: 100
 ---
 
 # ARIA Attributes

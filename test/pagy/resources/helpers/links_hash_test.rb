@@ -5,13 +5,13 @@ require_relative '../../../mock_helpers/app'
 require_relative '../../../mock_helpers/collection'
 require_relative '../../../files/models'
 
-describe '#links_hash' do
+describe 'links_hash' do
   before do
     @collection = MockCollection.new
     @pagy_default = { requestable_limit: 100, jsonapi: true }
   end
 
-  describe '#links_hash' do
+  describe 'links_hash' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
       pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default, page_sym: :number, limit_sym: :size)
@@ -32,7 +32,7 @@ describe '#links_hash' do
       _(result[:next]).must_be_nil
     end
   end
-  describe '#links_hash (keyset)' do
+  describe 'links_hash (keyset)' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { latest: 'WzIwXQ', size: 10 } })
       pagy, _records = app.send(:pagy_keyset,

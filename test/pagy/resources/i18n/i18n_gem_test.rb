@@ -10,7 +10,7 @@ describe 'pagy/i18n' do
   Pagy.translate_with_the_slower_i18n_gem!
   #########################################
 
-  describe '#pagy_t with I18n' do
+  describe 'translate with I18n' do
     it 'does not conflict with the I18n gem namespace' do
       app.test_i18n_call
     end
@@ -28,7 +28,7 @@ describe 'pagy/i18n' do
     end
   end
 
-  describe '#pagy_info with I18n' do
+  describe 'info_tag with I18n' do
     it 'renders info' do
       _(Pagy::Offset.new(count: 0).info_tag).must_rematch :info_0
       _(Pagy::Offset.new(count: 1).info_tag).must_rematch :info_1

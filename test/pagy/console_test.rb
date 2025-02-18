@@ -13,7 +13,7 @@ describe 'Pagy::Console' do
     @mock_context = MockContext.new
   end
 
-  describe '#params' do
+  describe 'params' do
     it 'returns the request params' do
       result = @mock_context.params
       _(result).must_equal({ example: '123' })
@@ -22,11 +22,11 @@ describe 'Pagy::Console' do
 
   describe 'included' do
     it 'includes Pagy::Backend and Pagy::Frontend' do
-      assert_operator(MockContext, :<, Pagy::Paginators)
+      _(MockContext).must_be :<, Pagy::Paginators
     end
   end
 
-  describe '#request' do
+  describe 'request' do
     it 'returns an instance of the Request class' do
       result = @mock_context.request
       _(result).must_be_instance_of Pagy::Console::Request
@@ -43,7 +43,7 @@ describe 'Pagy::Console' do
     end
   end
 
-  describe '#collection' do
+  describe 'collection' do
     it 'returns an instance of the SeriesCollection class' do
       result = @mock_context.collection.new
       _(result).must_be_instance_of Pagy::Console::Collection

@@ -45,12 +45,12 @@ describe 'Pagy nav test' do
     end
   end
 
-  describe '#pagy_previous_url' do
-    tests_for(:previous_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
-  end
-  describe '#pagy_next_url' do
-    tests_for(:next_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
-  end
+  # describe '#pagy_previous_url' do
+  #   tests_for(:previous_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+  # end
+  # describe '#pagy_next_url' do
+  #   tests_for(:next_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
+  # end
   describe 'previous_link_tag' do
     tests_for(:previous_link_tag, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
   end
