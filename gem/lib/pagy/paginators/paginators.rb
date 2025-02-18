@@ -3,8 +3,8 @@
 require_relative 'loader'
 
 class Pagy
-  # Relegate backend functions
-  module Back
+  # Relegate backend functions to get the value of options from params
+  module Get
     module_function
 
     # Check the use of jsonapi and its consistency
@@ -18,31 +18,25 @@ class Pagy
       limit_sym = options[:limit_sym] || DEFAULT[:limit_sym]
       jsonapi?(params, options) ? params[:page][limit_sym] : params[limit_sym]
     end
-  end
-
-  # Module to include in the app controller
-  module Paginators
-    include Loader
 
     # Get the limit from request, options or DEFAULT
-    def pagy_get_limit(options)
+    def limit_from(params, options)
       return options[:limit] || DEFAULT[:limit] \
-             unless options[:requestable_limit] && (limit = Back.requested_limit(params, options))
+      unless options[:requestable_limit] && (limit = requested_limit(params, options))
 
       [limit.to_i, options[:requestable_limit]].min
     end
 
     # Get the page integer from the params
-    def pagy_get_page(options, force_integer: true)
+    def page_from(params, options, force_integer: true)
       page_sym = options[:page_sym] || DEFAULT[:page_sym]
-      page     = Back.jsonapi?(params, options) ? params[:page][page_sym] : params[page_sym]
+      page     = jsonapi?(params, options) ? params[:page][page_sym] : params[page_sym]
       force_integer ? (page || 1).to_i : page
     end
+  end
 
-    def self.included(including)
-      instance_methods(false).each do |method_name|
-        including.send(:protected, method_name)
-      end
-    end
+  # Module to include in the app controller
+  module Paginators
+    include Loader
   end
 end

@@ -7,7 +7,7 @@ class Pagy
   module Paginators
     # Return Pagy::Keyset::Keynav object and paginated records
     def pagy_keynav_js(set, **options)
-      page = pagy_get_page(options, force_integer: false) # allow nil
+      page = Get.page_from(params, options, force_integer: false) # allow nil
       if page&.match(' ')       # countless page -> no augmentation -> fallback
         return pagy_countless(set, page:, **options)
       elsif page.is_a?(String)  # keynav page param
@@ -17,7 +17,7 @@ class Pagy
       end
 
       options[:request] ||= request
-      options[:limit]     = pagy_get_limit(options)
+      options[:limit]     = Get.limit_from(params, options)
       pagy = Keyset::Keynav.new(set, **options)
       [pagy, pagy.records]
     end

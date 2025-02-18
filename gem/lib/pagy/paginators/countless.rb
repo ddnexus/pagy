@@ -6,7 +6,7 @@ class Pagy
     # Return Pagy object and records
     def pagy_countless(collection, **options)
       if options[:page].nil?
-        page = pagy_get_page(options, force_integer: false) # accept nil and strings
+        page = Get.page_from(params, options, force_integer: false) # accept nil and strings
         if page.is_a?(String)
           p, l = page.split(/ /, 2).map(&:to_i)
           options[:page] = p if p.positive?
@@ -14,7 +14,7 @@ class Pagy
         end
       end
       options[:request] ||= request
-      options[:limit]     = pagy_get_limit(options)
+      options[:limit]     = Get.limit_from(params, options)
       pagy = Offset::Countless.new(**options)
       [pagy, pagy.records(collection)]
     end

@@ -7,8 +7,8 @@ class Pagy
     def pagy_array(array, **options)
       options[:request] ||= request
       options[:count]   ||= array.size
-      options[:page]    ||= pagy_get_page(options)
-      options[:limit]     = pagy_get_limit(options)
+      options[:page]    ||= Get.page_from(params, options)
+      options[:limit]     = Get.limit_from(params, options)
       pagy = Offset.new(**options)
       [pagy, array[pagy.offset, pagy.limit]]
     end
