@@ -51,7 +51,7 @@ The method accepts also a few optional keyword arguments options:
   defined) 
 - `:size` which use the passed value instead of the `:size` option of the instance
 
-See also [ARIA Attributes](frontend/support/ARIA.md).
+See also [ARIA Attributes](resources/ARIA.md).
 
 ==- `pagy_info(pagy, **opts)`
 
@@ -76,7 +76,7 @@ The method accepts also a few optional keyword arguments options:
 
 Displaying Products <b>476-500</b> of <b>1000</b> in total
 
-_(see [Customizing the item name](/docs/how-to.md#customize-the-item-name))_
+_(see [Customizing the item name](/docs/Practical%20Guide/how-to.md#customize-the-item-name))_
 
 ==- `pagy_url_for(pagy, page, absolute: false)`
 
@@ -84,13 +84,13 @@ This method is called internally in order to produce the url of a page by passin
 
 If this method finds a set `:request` option it assumes there is no `request` object, so in order to produce the final URL, it uses the `:url` option verbatim,  only adding the query string from the `params` (if any).
 
-See also [How to customize the URL](/docs/how-to.md#customize-the-url) and [How to customize the params](/docs/how-to.md#customize-the-params).
+See also [How to customize the URL](/docs/Practical%20Guide/how-to.md#customize-the-url) and [How to customize the params](/docs/Practical%20Guide/how-to.md#customize-the-params).
 
 ==- `pagy_anchor_lambda(pagy)`
 
 This method is called internally to get a very specialized and fast proc that produce the HTML anchor elements (i.e. `a` tags) for the pages.
 
-For standard usage you may just need to read [How to customize the link attributes](/docs/how-to.md#customize-the-link-attributes), for advanced usage see below.
+For standard usage you may just need to read [How to customize the link attributes](/docs/Practical%20Guide/how-to.md#customize-the-link-attributes), for advanced usage see below.
 
 
 ### Advanced Usage
@@ -151,6 +151,6 @@ pagy demo
 ==- `pagy_t(key, **opts)`
 
 This method is similar to the `I18n.t` and its equivalent rails `t` helper. It is called internally from the helpers in order to 
-get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](frontend/support/i18n.md) doc for details)_
+get the interpolated strings out of a YAML dictionary file. _(see the [Pagy::I18n](resources/i18n.md) doc for details)_
 
 ===

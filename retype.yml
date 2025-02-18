@@ -2,7 +2,7 @@ serve:
   watch:
     mode: disk  # no more surprises with retype not copying download link files!
 
-input: .
+input: docs
 output: .retype
 url: https://ddnexus.github.io/pagy
 

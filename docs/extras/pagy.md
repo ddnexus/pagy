@@ -11,7 +11,7 @@ categories:
 Adds the pagy styled versions of the javascript-powered navs and a few other components to support countless or navless
 pagination (incremental, auto-incremental, infinite pagination).
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#3-demo-app)
 
 ## Synopsis
 
@@ -33,7 +33,7 @@ pagy_prev_url(@pagy, absolute: bool)
 pagy_next_url(@pagy, absolute: bool)
 ```
 
-See [Javascript](/docs/api/frontend/support/javascript.md).
+See [Javascript](/docs/api/resources/javascript.md).
 
 ## Methods
 
@@ -48,11 +48,11 @@ See [pagy_nav(pagy, **opts)](/docs/api/frontend.md#pagy-nav-pagy-opts).
 
 ==- `pagy_nav_js(pagy, **opts)`
 
-See [Javascript Navs](/docs/api/frontend/support/javascript/navs.md).
+See [Javascript Navs](/docs/api/resources/javascript/navs.md).
 
 ==- `pagy_combo_nav_js(pagy, **opts)`
 
-See [Javascript Combo Navs](/docs/api/frontend/support/javascript/combo-navs.md).
+See [Javascript Combo Navs](/docs/api/resources/javascript/combo-navs.md).
 
 ==- `pagy_info(pagy, **opts)`
 

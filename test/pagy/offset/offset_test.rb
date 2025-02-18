@@ -226,10 +226,7 @@ describe 'pagy offset' do
 
   describe 'accessors' do
     it 'has accessors' do
-      [
-        :count, :page, :limit, :options, # input
-        :offset, :pages, :last, :from, :to, :in, :previous, :next, :series # output
-      ].each do |meth|
+      %i[count page limit options offset pages last from to in previous next].each do |meth|
         _(pagy).must_respond_to meth
       end
     end
@@ -290,37 +287,35 @@ describe 'pagy offset' do
       [1, :gap, 5, 6, 7, 8, 9, 10, "11"]]].each do |page, *expected|
       expected.each_with_index do |value, index|
         it "computes series for page #{page}, length #{OPTS_WITH_LENGTH[index][:length]}" do
-          _(Pagy::Offset.new(**OPTS_WITH_LENGTH[index], page:).series).must_equal value
+          _(Pagy::Offset.new(**OPTS_WITH_LENGTH[index], page:).send(:series)).must_equal value
         end
       end
     end
 
     it 'computes series for count 0' do
-      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 0).series).must_equal ["1"]
+      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 0).send(:series)).must_equal ["1"]
     end
     it 'computes series for single page' do
-      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 8).series).must_equal ["1"]
+      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 8).send(:series)).must_equal ["1"]
     end
     it 'computes series for 1 of 2 pages' do
-      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 15).series).must_equal ["1", 2]
+      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 15).send(:series)).must_equal ["1", 2]
     end
     it 'computes series for 2 of 2 pages' do
-      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 15, page: 2).series).must_equal [1, "2"]
-    end
-    it 'computes an empty series' do
-      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 100).series(length: 0)).must_equal []
+      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 15, page: 2).send(:series)).must_equal [1, "2"]
+      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 100).send(:series, length: 0)).must_equal []
     end
     it 'raises OptionError for invalid length' do
-      _ { Pagy::Offset.new(count: 100).series(length: {}) }.must_raise Pagy::OptionError
-      _ { Pagy::Offset.new(count: 100).series(length: -3) }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100).send(:series, length: {}) }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100).send(:series, length: -3) }.must_raise Pagy::OptionError
     end
   end
 
   describe 'labels' do
     it 'returns any page label' do
       p = Pagy::Offset.new(count: 1000, page: 11)
-      _(p.page_label(3)).must_equal '3'
-      _(p.page_label(11)).must_equal '11'
+      _(p.send(:page_label, 3)).must_equal '3'
+      _(p.send(:page_label, 11)).must_equal '11'
     end
   end
 end

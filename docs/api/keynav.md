@@ -27,7 +27,7 @@ wrapper to handle the client `storageSession` cache automatically and easily int
 You should also familiarize with the [Pagy::Keyset](keyset.md) class.
 !!!
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-apps)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#5-keyset-apps)
 
 ## Glossary
 
@@ -178,7 +178,7 @@ user by:
 ## Setup
 
 - See the [Keyset Setup](keyset.md#setup)
-- You need also to [Setup Javascript](/docs/api/frontend/support/javascript/setup.mdS)
+- You need also to [Setup Javascript](/docs/api/resources/javascript/setup.mdS)
 
 ## ORMs
 

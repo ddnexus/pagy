@@ -16,6 +16,6 @@ describe 'Calendar sequels and page_labels' do
                                steps:   steps,
                                compact: false,   # to hit the :gap condition in the calendar sequels override
                                page:    6)
-    _(pagy.sequels).must_rematch :sequels
+    _(pagy.send(:sequels)).must_rematch :sequels
   end
 end

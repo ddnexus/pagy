@@ -9,7 +9,7 @@ categories:
 
 Paginate with the Pagy keyset pagination technique.
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-apps)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#5-keyset-apps)
 
 ## Overview
 

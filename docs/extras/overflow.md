@@ -171,4 +171,4 @@ user/client).
 
 ## Errors
 
-See [How to handle Pagy::RangeError exceptions](/docs/how-to.md#handle-pagyoverflowerror-exceptions)
+See [How to handle Pagy::RangeError exceptions](/docs/Practical%20Guide/how-to.md#handle-pagyoverflowerror-exceptions)

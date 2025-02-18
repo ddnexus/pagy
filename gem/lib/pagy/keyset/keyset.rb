@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
-require_relative '../support/b64'
+require_relative '../resources/b64'
 
 class Pagy
   # Implement wicked-fast keyset pagination for big data

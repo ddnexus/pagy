@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../pagy/support/b64'
+require_relative '../../pagy/resources/b64'
 
 class Pagy
   # Add keynav paginator

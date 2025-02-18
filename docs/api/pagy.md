@@ -133,13 +133,13 @@ number `1`. For performance reasons, only the instance options get validated.
 | `:trim`         | Removes the first and last page and `:gap`s when needed. Ignored with `size < 7` which is trimmed by default.                                                                            | `nil`   |
 | `:limit`        | The requested page limit (i.e. the number of records/items)                                                                                                                              | `20`    |
 | `:jsonapi`      | Enable `jsonapi` compliance of the pagy query params                                                                                                                                     | `false` |
-| `:max_pages`    | Paginate only `:max_pages`. _(see [Paginate only max_pages](/docs/how-to.md#paginate-only-max_pages-regardless-the-count))_                                                              | `nil`   |
+| `:max_pages`    | Paginate only `:max_pages`. _(see [Paginate only max_pages](/docs/Practical%20Guide/how-to.md#paginate-only-max_pages-regardless-the-count))_                                                              | `nil`   |
 | `:outset`       | The initial offset of the collection to paginate: pass it only if the collection had an offset                                                                                           | `nil`   |
 | `:page`         | The requested page number: extracted from the `request.params`, or forced by passing a option                                                                                          | `1`     |
-| `:page_sym`     | The customizable symbol referring to the `:page` option outside of pagy (e.g. in the `request.params`). _(see [Customize the page symbol](/docs/how-to.md#customize-the-page-symbol))_ | `:page` |
-| `:params`       | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customize the params](/docs/how-to.md#customize-the-params))_             | `nil`   |
-| `:request_path` | Allows overriding the `request.path` for pagination links. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/how-to.md#pass-the-request-path))_             | `nil`   |
-| `:size`         | The size of the page links to show _(see also [Control the page links](/docs/how-to.md#control-the-page-links))_                                                                         | `7`     |
+| `:page_sym`     | The customizable symbol referring to the `:page` option outside of pagy (e.g. in the `request.params`). _(see [Customize the page symbol](/docs/Practical%20Guide/how-to.md#customize-the-page-symbol))_ | `:page` |
+| `:params`       | It can be a `Hash` of params to add to the URL, or a `Proc` that can edit/add/delete the request params _(see [Customize the params](/docs/Practical%20Guide/how-to.md#customize-the-params))_             | `nil`   |
+| `:request_path` | Allows overriding the `request.path` for pagination links. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/Practical%20Guide/how-to.md#pass-the-request-path))_             | `nil`   |
+| `:size`         | The size of the page links to show _(see also [Control the page links](/docs/Practical%20Guide/how-to.md#control-the-page-links))_                                                                         | `7`     |
 
 !!!
 Extras may add and document their own options

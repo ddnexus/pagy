@@ -2,7 +2,7 @@
 icon: versions-24
 ---
 
-# CHANGELOG
+# Changelog
 
 ## Release Policy
 

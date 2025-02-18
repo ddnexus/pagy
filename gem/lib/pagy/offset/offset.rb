@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../support/features/shiftable'
-require_relative '../support/features/seriable'
-require_relative '../support/features/rangeable'
+require_relative '../resources/features/shiftable'
+require_relative '../resources/features/seriable'
+require_relative '../resources/features/rangeable'
 
 class Pagy
   # Implements Offset Pagination
@@ -30,6 +30,10 @@ class Pagy
 
     attr_reader :offset, :from, :to
 
+    protected
+
+    def offset? = true
+
     def assign_last
       @last = [(@count.to_f / @limit).ceil, 1].max
       @last = @options[:max_pages] if @options[:max_pages] && @last > @options[:max_pages]
@@ -44,7 +48,5 @@ class Pagy
       @in = @from = @to = 0     # options relative to the actual page
       @previous = @last         # @previous relative to the actual page
     end
-
-    def offset? = true
   end
 end

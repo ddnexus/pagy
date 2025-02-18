@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../support/features/seriable'
+require_relative '../resources/features/seriable'
 
 class Pagy
   class Keyset
-    # Use keyset pagination with support for all the frontend helpers
+    # Use keyset pagination with resources for all the frontend helpers
     class Keynav < Keyset
       # Avoid conflicts between filter arguments in composite SQL fragments
       PRIOR_PREFIX = 'prior_'

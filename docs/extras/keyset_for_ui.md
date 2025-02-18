@@ -13,7 +13,7 @@ and other Frontend helpers.
 !!!warning Experimental: the API might change in minor versions
 !!!
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-apps)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#5-keyset-apps)
 
 ## Overview
 

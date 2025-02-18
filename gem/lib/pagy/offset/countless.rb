@@ -11,12 +11,6 @@ class Pagy
         assign_offset
       end
 
-      def assign_last
-        @last = (@options[:last] || 1).to_i
-        @last = @page = @options[:max_pages] \
-          if @options[:max_pages] && (@last > @options[:max_pages] || @page > @options[:max_pages])
-      end
-
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
         return self unless in_range? { fetched_size.positive? || @page == 1 }
@@ -34,7 +28,15 @@ class Pagy
         self
       end
 
+      protected
+
       def countless? = true
+
+      def assign_last
+        @last = (@options[:last] || 1).to_i
+        @last = @page = @options[:max_pages] \
+        if @options[:max_pages] && (@last > @options[:max_pages] || @page > @options[:max_pages])
+      end
     end
 
     module SeriesOverride # :nodoc:

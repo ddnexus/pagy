@@ -22,7 +22,7 @@ Concept and API are documented here, however you should use the [keyset extra](/
 it with your app.
 !!!
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/playground.md#5-keyset-apps)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#5-keyset-apps)
 
 ## Concept
 

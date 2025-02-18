@@ -248,8 +248,8 @@ describe 'pagy/calendar' do
   describe '#label' do
     it 'uses the default and custom format' do
       p = pagy(unit: :month, order: :desc, page: 2)
-      _(p.page_label(2)).must_equal 'Oct'
-      _(p.page_label(2, format: '%B %Y')).must_equal 'October 2023'
+      _(p.send(:page_label, 2)).must_equal 'Oct'
+      _(p.send(:page_label, 2, format: '%B %Y')).must_equal 'October 2023'
     end
   end
 
@@ -257,8 +257,8 @@ describe 'pagy/calendar' do
     %i[year quarter month week day].each do |unit|
       it "labels the #{unit}" do
         p = pagy(unit: unit)
-        _(p.page_label(1)).must_rematch  :p1
-        _(p.page_label(2)).must_rematch  :p2
+        _(p.send(:page_label, 1)).must_rematch  :p1
+        _(p.send(:page_label, 2)).must_rematch  :p2
       end
     end
   end
@@ -369,7 +369,7 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe 'Deprecated support' do
+  describe 'Deprecated resources' do
     it 'sets the beginning_of_week from :offset' do
       pagy(unit: :week, offset: 0)
       _(Date.beginning_of_week).must_equal :sunday

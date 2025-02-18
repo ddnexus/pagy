@@ -34,9 +34,9 @@ end
 
 # pagy initializer
 NAMES = { pagy:        { css_anchor: 'pagy-scss' },
-           bootstrap:   { style: :bootstrap },
-           bulma:       { style: :bulma },
-           tailwind:    { css_anchor: 'pagy-tailwind-css' } }.freeze
+          bootstrap:   { style: :bootstrap },
+          bulma:       { style: :bulma },
+          tailwind:    { css_anchor: 'pagy-tailwind-css' } }.freeze
 
 # Sinatra setup
 require 'sinatra/base'
@@ -54,7 +54,7 @@ class PagyDemo < Sinatra::Base
     collection = MockCollection.new
     @pagy, @records = pagy_offset(collection, **PAGY_OPTIONS)
 
-    erb :template, locals: { pagy: @pagy, style: 'pagy', css_anchor: 'pagy-scss' }
+    erb :template, locals: { pagy: @pagy, name: 'pagy', css_anchor: 'pagy-scss' }
   end
 
   get('/javascripts/:file') do
@@ -327,7 +327,7 @@ class PagyDemo < Sinatra::Base
 
     <%# The a variable below is set to a lambda that generates the a tag %>
     <%# Usage: anchor_tag = a_lambda.(page_number, text, classes: nil, aria_label: nil) %>
-    <% a_lambda = pagy.a_lambda %>
+    <% a_lambda = pagy.send(:a_lambda) %>
     <nav class="pagy nav" aria-label="Pages">
       <%# Previous page link %>
       <% if pagy.previous %>
@@ -336,7 +336,7 @@ class PagyDemo < Sinatra::Base
         <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
       <% end %>
       <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
-      <% pagy.series.each do |item| %>
+      <% pagy.send(:series).each do |item| %>
         <% if item.is_a?(Integer) %>
           <%= a_lambda.(item) %>
         <% elsif item.is_a?(String) %>

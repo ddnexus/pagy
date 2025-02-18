@@ -32,6 +32,12 @@ class Pagy
         def apply_where(predicate, arguments)
           @set = @set.where(predicate, **arguments)
         end
+
+        def self.included(including)
+          instance_methods(false).each do |method_name|
+            including.send(:protected, method_name)
+          end
+        end
       end
     end
   end

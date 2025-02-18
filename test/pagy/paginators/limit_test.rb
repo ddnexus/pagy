@@ -94,15 +94,15 @@ describe 'requestable_limit' do
       end
       it 'renders url with limit_sym' do
         pagy = Pagy::Offset.new(count: 1000, page: 3, limit_sym: :custom, requestable_limit: 100, request:)
-        _(pagy.page_url(5)).must_equal '/foo?page=5&custom=20'
+        _(pagy.send(:page_url, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do
         pagy = Pagy::Offset.new(count: 1000, page: 3, requestable_limit: 100, request:)
-        _(pagy.page_url(6, fragment: '#fragment')).must_equal '/foo?page=6&limit=20#fragment'
+        _(pagy.send(:page_url, 6, fragment: '#fragment')).must_equal '/foo?page=6&limit=20#fragment'
       end
       it 'renders url with params and fragment' do
         pagy = Pagy::Offset.new(count: 1000, page: 3, params: { a: 3, b: 4 }, limit: 40, requestable_limit: 100, request:)
-        _(pagy.page_url(5, fragment: '#fragment')).must_equal "/foo?page=5&limit=40&a=3&b=4#fragment"
+        _(pagy.send(:page_url, 5, fragment: '#fragment')).must_equal "/foo?page=5&limit=40&a=3&b=4#fragment"
       end
     end
     it 'renders or skips the output depending on requestable_limit' do

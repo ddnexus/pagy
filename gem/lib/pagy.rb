@@ -2,8 +2,8 @@
 
 require 'pathname'
 require_relative 'pagy/exceptions'
-require_relative 'pagy/support/features/linkable'
-require_relative 'pagy/support/loader'
+require_relative 'pagy/resources/features/linkable'
+require_relative 'pagy/resources/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
@@ -17,7 +17,7 @@ class Pagy
   A_TAG       = '<a style="display: none;">#</a>'
 
   autoload :Paginators,         PAGY_PATH.join('paginators/paginators')
-  autoload :I18n,               PAGY_PATH.join('support/i18n/i18n')
+  autoload :I18n,               PAGY_PATH.join('resources/i18n/i18n')
   autoload :Calendar,           PAGY_PATH.join('calendar/calendar')
   autoload :Offset,             PAGY_PATH.join('offset/offset')
   autoload :Search,             PAGY_PATH.join('offset/search')
@@ -44,6 +44,8 @@ class Pagy
 
   attr_reader :page, :count, :previous, :next, :in, :limit, :options, :last
 
+  protected
+
   # Define the hierarchical identity methods, overridden by the respective classes
   def offset?    = false
   def countless? = false
@@ -51,8 +53,6 @@ class Pagy
   def search?    = false
   def keyset?    = false
   def keynav?    = false
-
-  protected
 
   # Validates and assign the passed options: var must be present and value.to_i must be >= to min
   def assign_and_check(name_min)

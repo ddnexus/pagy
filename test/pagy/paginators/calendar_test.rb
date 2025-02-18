@@ -46,7 +46,7 @@ describe 'calendar' do
                                                                     Event.all,
                                                                     year: {},
                                                                     pagy: { limit: 600 })
-      _(calendar[:year].series).must_equal ["1", 2, 3]
+      _(calendar[:year].send(:series)).must_equal ["1", 2, 3]
       _(calendar[:year].pages).must_equal 3
       _(calendar[:year].previous).must_be_nil
       _(calendar[:year].next).must_equal 2
@@ -57,7 +57,7 @@ describe 'calendar' do
                                        Event.all,
                                        year: {},
                                        pagy: { limit: 600 })
-      _(calendar[:year].series).must_equal [1, "2", 3]
+      _(calendar[:year].send(:series)).must_equal [1, "2", 3]
       _(calendar[:year].pages).must_equal 3
       _(calendar[:year].previous).must_equal 1
       _(calendar[:year].next).must_equal 3
@@ -68,7 +68,7 @@ describe 'calendar' do
                                        Event.all,
                                        year: {},
                                        pagy: { limit: 600 })
-      _(calendar[:year].series).must_equal [1, 2, '3']
+      _(calendar[:year].send(:series)).must_equal [1, 2, '3']
       _(calendar[:year].previous).must_equal 2
       _(calendar[:year].next).must_be_nil
       _(entries.map(&:time)).must_rematch :entries_3
@@ -81,7 +81,7 @@ describe 'calendar' do
                                        Event.all,
                                        quarter: {},
                                        pagy:    { limit: 600 })
-      _(calendar[:quarter].series).must_equal ["1", 2, 3, 4]
+      _(calendar[:quarter].send(:series)).must_equal ["1", 2, 3, 4]
       _(calendar[:quarter].pages).must_equal 9
       _(calendar[:quarter].previous).must_be_nil
       _(calendar[:quarter].next).must_equal 2
@@ -93,7 +93,7 @@ describe 'calendar' do
                                        Event.all,
                                        quarter: {},
                                        pagy:    { limit: 600 })
-      _(calendar[:quarter].series).must_equal [3, "4", 5, 6]
+      _(calendar[:quarter].send(:series)).must_equal [3, "4", 5, 6]
       _(calendar[:quarter].pages).must_equal 9
       _(calendar[:quarter].previous).must_equal 3
       _(calendar[:quarter].next).must_equal 5
@@ -105,7 +105,7 @@ describe 'calendar' do
                                        Event.all,
                                        quarter: {},
                                        pagy:    { limit: 600 })
-      _(calendar[:quarter].series).must_equal [6, 7, 8, "9"]
+      _(calendar[:quarter].send(:series)).must_equal [6, 7, 8, "9"]
       _(calendar[:quarter].pages).must_equal 9
       _(calendar[:quarter].previous).must_equal 8
       _(calendar[:quarter].next).must_be_nil
@@ -117,7 +117,7 @@ describe 'calendar' do
                                        Event.all,
                                        month: {},
                                        pagy:  { limit: 600 })
-      _(calendar[:month].series).must_equal ["1", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+      _(calendar[:month].send(:series)).must_equal ["1", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
       _(calendar[:month].pages).must_equal 26
       _(calendar[:month].previous).must_be_nil
       _(calendar[:month].next).must_equal 2
@@ -129,7 +129,7 @@ describe 'calendar' do
                                        Event.all,
                                        month: {},
                                        pagy:  { limit: 600 })
-      _(calendar[:month].series).must_equal [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, "25", 26]
+      _(calendar[:month].send(:series)).must_equal [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, "25", 26]
       _(calendar[:month].previous).must_equal 24
       _(calendar[:month].next).must_equal 26
       _(entries.map(&:time)).must_rematch :entries
@@ -140,7 +140,7 @@ describe 'calendar' do
                                        Event.all,
                                        month: {},
                                        pagy:  { limit: 600 })
-      _(calendar[:month].series).must_equal [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, "26"]
+      _(calendar[:month].send(:series)).must_equal [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, "26"]
       _(calendar[:month].previous).must_equal 25
       _(calendar[:month].next).must_be_nil
       _(entries.map(&:time)).must_rematch :entries
@@ -151,7 +151,7 @@ describe 'calendar' do
                                        Event.all,
                                        week: { first_weekday: :sunday },
                                        pagy: { limit: 600 })
-      _(calendar[:week].series).must_equal ["1", 2, 3, 4, 5, :gap, 109]
+      _(calendar[:week].send(:series)).must_equal ["1", 2, 3, 4, 5, :gap, 109]
       _(calendar[:week].pages).must_equal 109
       _(calendar[:week].previous).must_be_nil
       _(calendar[:week].next).must_equal 2
@@ -163,7 +163,7 @@ describe 'calendar' do
                                        Event.all,
                                        week: { first_weekday: :sunday },
                                        pagy: { limit: 600 })
-      _(calendar[:week].series).must_equal [1, :gap, 24, "25", 26, :gap, 109]
+      _(calendar[:week].send(:series)).must_equal [1, :gap, 24, "25", 26, :gap, 109]
       _(calendar[:week].previous).must_equal 24
       _(calendar[:week].next).must_equal 26
       _(entries.map(&:time)).must_rematch :entries
@@ -174,7 +174,7 @@ describe 'calendar' do
                                        Event.all,
                                        week: { first_weekday: :sunday },
                                        pagy: { limit: 600 })
-      _(calendar[:week].series).must_equal [1, :gap, 105, 106, 107, 108, "109"]
+      _(calendar[:week].send(:series)).must_equal [1, :gap, 105, 106, 107, 108, "109"]
       _(calendar[:week].previous).must_equal 108
       _(calendar[:week].next).must_be_nil
       _(entries.map(&:time)).must_rematch :entries
@@ -185,7 +185,7 @@ describe 'calendar' do
                                        Event40.all,
                                        day:  {},
                                        pagy: { limit: 600 })
-      _(calendar[:day].series).must_equal ["1", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+      _(calendar[:day].send(:series)).must_equal ["1", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 
       _(calendar[:day].pages).must_equal 60
       _(calendar[:day].previous).must_be_nil
@@ -198,7 +198,7 @@ describe 'calendar' do
                                        Event40.all,
                                        day:  {},
                                        pagy: { limit: 600 })
-      _(calendar[:day].series).must_equal([10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, "25", 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40])
+      _(calendar[:day].send(:series)).must_equal([10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, "25", 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40])
 
       _(calendar[:day].previous).must_equal 24
       _(calendar[:day].next).must_equal 26
@@ -210,7 +210,7 @@ describe 'calendar' do
                                        Event40.all,
                                        day:  {},
                                        pagy: { limit: 600 })
-      _(calendar[:day].series).must_equal [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, "60"]
+      _(calendar[:day].send(:series)).must_equal [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, "60"]
       _(calendar[:day].previous).must_equal 59
       _(calendar[:day].next).must_be_nil
       _(entries.map(&:time)).must_rematch :entries
@@ -218,12 +218,13 @@ describe 'calendar' do
     it 'runs multiple units' do
       calendar, pagy, entries = app(params: { year_page: 2, month_page: 7, page: 2 })
                                 .send(:pagy_calendar,
-                                      Event.all, year: {},
-                                      month:           {},
-                                      pagy:            { limit: 10 })
-      _(calendar[:year].series).must_equal [1, "2", 3]
-      _(calendar[:month].series).must_equal [1, 2, 3, 4, 5, 6, "7", 8, 9, 10, 11, 12]
-      _(pagy.series).must_equal [1, "2", 3]
+                                      Event.all,
+                                      year:  {},
+                                      month: {},
+                                      pagy:  { limit: 10 })
+      _(calendar[:year].send(:series)).must_equal [1, "2", 3]
+      _(calendar[:month].send(:series)).must_equal [1, 2, 3, 4, 5, 6, "7", 8, 9, 10, 11, 12]
+      _(pagy.send(:series)).must_equal [1, "2", 3]
       _(entries.map(&:time)).must_rematch :entries
     end
   end
@@ -270,7 +271,7 @@ describe 'calendar' do
   end
   describe 'a_lambda with counts' do
     it 'includes title and class in page anchor' do
-      app_counts = MockApp::CalendarCounts.new
+      app_counts                = MockApp::CalendarCounts.new
       calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
                                                   Event.all,
                                                   year:  {},
@@ -278,17 +279,17 @@ describe 'calendar' do
                                                   day:   {},
                                                   pagy:  { limit: 10 })
 
-      _(calendar[:day].a_lambda(a_string_attributes: 'X').call(2, classes: 'a b c')).must_equal \
+      _(calendar[:day].send(:a_lambda, a_string_attributes: 'X').call(2, classes: 'a b c')).must_equal \
         "<a X href=\"/foo?day_page=2\" title=\"No items found\" class=\"a b c empty-page\">22</a>"
     end
   end
   describe "Counts feature" do
     [MockApp::CalendarCounts, MockApp::CalendarCountsSkip].each do |c|
       it "works with #{c}" do
-        app_counts = c.new(params: { year_page: 2,
-                                     month_page: 7,
-                                     day_page: 4,
-                                     page: 1 })
+        app_counts                = c.new(params: { year_page:  2,
+                                                    month_page: 7,
+                                                    day_page:   4,
+                                                    page:       1 })
         calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
                                                     Event.all,
                                                     year:  {},

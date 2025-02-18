@@ -18,17 +18,17 @@ describe 'Calendar with I18n.l' do
                                period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
                                         Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
                                page: 3, format: '%B, %A')
-    _(pagy.page_label(3)).must_equal "December, Wednesday"
-    _(pagy.page_label(3, locale: :de)).must_equal "Dezember, Mittwoch"
-    _(pagy.page_label(3, format: '%b')).must_equal "Dec"
-    _(pagy.page_label(3, format: '%b', locale: :de)).must_equal "Dez"
-    _(pagy.page_label(5)).must_equal "February, Tuesday"
-    _(pagy.page_label(5, locale: :de)).must_equal "Februar, Dienstag"
+    _(pagy.send(:page_label, 3)).must_equal "December, Wednesday"
+    _(pagy.send(:page_label, 3, locale: :de)).must_equal "Dezember, Mittwoch"
+    _(pagy.send(:page_label, 3, format: '%b')).must_equal "Dec"
+    _(pagy.send(:page_label, 3, format: '%b', locale: :de)).must_equal "Dez"
+    _(pagy.send(:page_label, 5)).must_equal "February, Tuesday"
+    _(pagy.send(:page_label, 5, locale: :de)).must_equal "Februar, Dienstag"
     I18n.locale = :de
-    _(pagy.page_label(3)).must_equal "Dezember, Mittwoch"
-    _(pagy.page_label(3, format: '%b')).must_equal "Dez"
-    _(pagy.page_label(5)).must_equal "Februar, Dienstag"
-    _(pagy.page_label(5, format: '%b')).must_equal "Feb"
+    _(pagy.send(:page_label, 3)).must_equal "Dezember, Mittwoch"
+    _(pagy.send(:page_label, 3, format: '%b')).must_equal "Dez"
+    _(pagy.send(:page_label, 5)).must_equal "Februar, Dienstag"
+    _(pagy.send(:page_label, 5, format: '%b')).must_equal "Feb"
     I18n.locale = :en
   end
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../support/features/shiftable'
-require_relative '../support/features/rangeable'
-require_relative '../support/features/seriable'
+require_relative '../resources/features/shiftable'
+require_relative '../resources/features/rangeable'
+require_relative '../resources/features/seriable'
 
 class Pagy
   class Calendar
@@ -29,6 +29,8 @@ class Pagy
       end
 
       attr_reader :order, :from, :to
+
+      protected
 
       def calendar? = true
 
@@ -61,8 +63,6 @@ class Pagy
           %( class="#{classes}") if classes}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
         end
       end
-
-      protected
 
       def page_labels(series)
         series.map { |s| s.map { |item| item == :gap ? :gap : page_label(item) } }
