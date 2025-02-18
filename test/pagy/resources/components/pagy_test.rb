@@ -36,7 +36,7 @@ describe 'Pagy nav test' do
       it "renders the #{method} for page #{page}" do
         request = MockApp.new.request
         pagy = Pagy::Offset.new(count: 1000, page: page, request:)
-        pagy_countless = Pagy::Offset::Countless.new(page: page, last: page, request:).finalize(finalize)
+        pagy_countless = Pagy::Offset::Countless.new(page: page, last: page, request:).send(:finalize, finalize)
         _(pagy.send(method)).must_rematch :r1
         _(pagy_countless.send(method)).must_rematch :r2
         _(pagy.send(method, **others)).must_rematch :r3

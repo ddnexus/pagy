@@ -5,14 +5,11 @@ require_relative 'search_wrapper'
 class Pagy
   # Add elasticsearch_rails paginator
   module Paginators
-    private
-
     # Paginate from search object
     def pagy_elasticsearch_rails(search, **options)
       if search.is_a?(Search::Arguments)
         # The search is the array of pagy_search arguments
         SearchWrapper.wrap(self, search, options) do
-          # The wrapper is generic, but this block is specific for this search class
           model, query_or_payload, search_options = search
           search_options[:size] = options[:limit]
           search_options[:from] = options[:limit] * ((options[:page] || 1) - 1)

@@ -7,13 +7,26 @@ require_relative '../resources/features/rangeable'
 class Pagy
   # Implements Offset Pagination
   class Offset < Pagy
+    DEFAULT = { page: 1 }.freeze
+
     autoload :Countless, PAGY_PATH.join('offset/countless')
+
+    # Get the collection count
+    def self.get_count(collection, options)
+      count_args = options[:count_args] || [:all]
+      count      = if options[:count_over] && !collection.group_values.empty?
+                     # COUNT(*) OVER ()
+                     sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
+                     collection.unscope(:order).pick(sql).to_i
+                   else
+                     collection.count(*count_args)
+                   end
+      count.is_a?(Hash) ? count.size : count
+    end
 
     include Rangeable
     include Seriable
     include Shiftable
-
-    DEFAULT = { page: 1 }.freeze
 
     def initialize(**) # rubocop:disable Lint/MissingSuper
       assign_options(**)
@@ -29,6 +42,10 @@ class Pagy
     end
 
     attr_reader :offset, :from, :to
+
+    def records(collection)
+      collection.offset(@offset).limit(@limit)
+    end
 
     protected
 

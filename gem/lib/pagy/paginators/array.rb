@@ -2,9 +2,7 @@
 
 class Pagy
   # Add array paginator
-  Paginators.module_eval do
-    private
-
+  module Paginators
     # Return Pagy object and paginated items
     def pagy_array(array, **options)
       options[:request] ||= request

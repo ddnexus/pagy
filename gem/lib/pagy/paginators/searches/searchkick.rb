@@ -5,14 +5,11 @@ require_relative 'search_wrapper'
 class Pagy
   # Add searchkick paginator
   module Paginators
-    private
-
     # Paginate from search object
     def pagy_searchkick(search, **options)
       if search.is_a?(Search::Arguments)
         # The search is the array of pagy_search arguments
         SearchWrapper.wrap(self, search, options) do
-          # The wrapper is generic, but this block is specific for this search class
           model, term, search_options, block = search
           search_options[:per_page] = options[:limit]
           search_options[:page]     = options[:page]

@@ -4,7 +4,7 @@ require_relative '../../pagy/resources/b64'
 
 class Pagy
   # Add keynav paginator
-  Paginators.module_eval do
+  module Paginators
     # Return Pagy::Keyset::Keynav object and paginated records
     def pagy_keynav_js(set, **options)
       page = pagy_get_page(options, force_integer: false) # allow nil

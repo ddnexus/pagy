@@ -45,8 +45,8 @@ module NavTests
   def nav_js_countless_tests(style)
     # e.g. pagy_bootstrap_nav_js
     [[1, 0], [2, 23]].each do |page, rest|
-      pagy  = Pagy::Offset::Countless.new(page: page, last: page, request:).finalize(rest)
-      pagyx = Pagy::Offset::Countless.new(page: page, last: page, request:).finalize(rest)
+      pagy  = Pagy::Offset::Countless.new(page: page, last: page, request:).send(:finalize, rest)
+      pagyx = Pagy::Offset::Countless.new(page: page, last: page, request:).send(:finalize, rest)
       _(pagy.nav_js_tag(style:)).must_rematch :"plain_#{page}_#{rest}"
       _(pagyx.nav_js_tag(style:, id: 'test-nav-id', a_string_attributes: 'anchor_string',
                          steps:      { 0 => 5, 600 => 7 })).must_rematch :"extras_#{page}_#{rest}"

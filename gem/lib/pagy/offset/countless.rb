@@ -11,6 +11,16 @@ class Pagy
         assign_offset
       end
 
+      def records(collection)
+        return super if @options[:headless]
+
+        fetched = collection.offset(@offset).limit(@limit + 1).to_a # eager load limit + 1
+        finalize(fetched.size)                                      # finalize the pagy object
+        fetched[0, @limit]                                          # ignore the extra item
+      end
+
+      protected
+
       # Finalize the instance variables based on the fetched size
       def finalize(fetched_size)
         return self unless in_range? { fetched_size.positive? || @page == 1 }
@@ -27,8 +37,6 @@ class Pagy
         assign_previous_and_next
         self
       end
-
-      protected
 
       def countless? = true
 

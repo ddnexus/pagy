@@ -8,7 +8,7 @@ describe 'pagy/countless' do
   describe '#finalize' do
     it 'initializes empty collection' do
       pagy, = Pagy::Offset::Countless.new(page: 1)
-      pagy.finalize(0)
+      pagy.send(:finalize, 0)
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -21,7 +21,7 @@ describe 'pagy/countless' do
     end
     it 'initializes first page' do
       pagy, = Pagy::Offset::Countless.new(page: 1)
-      pagy.finalize(21) # one more page
+      pagy.send(:finalize, 21) # one more page
       _(pagy.count).must_be_nil
       _(pagy).must_be_instance_of Pagy::Offset::Countless
       _(pagy.limit).must_equal 20
@@ -34,7 +34,7 @@ describe 'pagy/countless' do
     end
     it 'initializes single full page' do
       pagy, = Pagy::Offset::Countless.new
-      pagy.finalize(20) # no more page - last full
+      pagy.send(:finalize, 20) # no more page - last full
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -46,7 +46,7 @@ describe 'pagy/countless' do
     end
     it 'initialize single partial page' do
       pagy, = Pagy::Offset::Countless.new
-      pagy.finalize(4) # partial page of 4 - also last
+      pagy.send(:finalize, 4) # partial page of 4 - also last
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 1
@@ -58,7 +58,7 @@ describe 'pagy/countless' do
     end
     it 'initializes last partial page' do
       pagy, = Pagy::Offset::Countless.new(page: 3, last: 3)
-      pagy.finalize(19) # partial page of 3 - also last
+      pagy.send(:finalize, 19) # partial page of 3 - also last
       _(pagy.count).must_be_nil
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 3
@@ -69,13 +69,13 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
     it 'raises exception with no fetched records and page > 1' do
-      _ { Pagy::Offset::Countless.new(page: 2, raise_range_error: true).finalize(0) }.must_raise Pagy::RangeError
+      _ { Pagy::Offset::Countless.new(page: 2, raise_range_error: true).send(:finalize, 0) }.must_raise Pagy::RangeError
     end
   end
   describe 'Handling the :last variable' do
     it 'gets the visited page' do
       pagy, = Pagy::Offset::Countless.new(page: 3, last: 5)
-      pagy.finalize(21)
+      pagy.send(:finalize, 21)
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 5
       _(pagy.in).must_equal 20
@@ -86,7 +86,7 @@ describe 'pagy/countless' do
     end
     it 'updates the @last if visited page is the last page' do
       pagy, = Pagy::Offset::Countless.new(page: 3, last: 5)
-      pagy.finalize(15)
+      pagy.send(:finalize, 15)
       _(pagy.limit).must_equal 20
       _(pagy.last).must_equal 3
       _(pagy.in).must_equal 15
@@ -99,7 +99,7 @@ describe 'pagy/countless' do
   describe 'Handling the :max_pages variable' do
     it 'gets the visited page' do
       pagy, = Pagy::Offset::Countless.new(page: 20, max_pages: 15)
-      pagy.finalize(21)
+      pagy.send(:finalize, 21)
       _(pagy.page).must_equal 15
       _(pagy.last).must_equal 15
       _(pagy.in).must_equal 20

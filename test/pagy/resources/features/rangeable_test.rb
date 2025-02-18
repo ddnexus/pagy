@@ -20,7 +20,7 @@ describe 'range' do
   before do
     @pagy           = Pagy::Offset.new(**pagy_vars)
     @pagy_calendar  = Pagy::Calendar::Day.new(**calendar_vars)
-    @pagy_countless = Pagy::Offset::Countless.new(**countless_vars).finalize(0)
+    @pagy_countless = Pagy::Offset::Countless.new(**countless_vars).send(:finalize, 0)
   end
 
   describe "#range_rescued?" do
@@ -31,7 +31,7 @@ describe 'range' do
     end
     it 'is not range_rescued?' do
       _(Pagy::Offset.new(**pagy_vars, page: 2)).must_be :in_range?
-      _(Pagy::Offset::Countless.new(page: 2, last: 2, limit: 10).finalize(5)).must_be :in_range?
+      _(Pagy::Offset::Countless.new(page: 2, last: 2, limit: 10).send(:finalize, 5)).must_be :in_range?
       _(Pagy::Calendar::Day.new(**calendar_vars, page: 2)).must_be :in_range?
     end
   end
@@ -40,7 +40,7 @@ describe 'range' do
     it 'raises RangeError in :exception mode' do
       _ { Pagy::Offset.new(**pagy_vars, raise_range_error: true) }.must_raise Pagy::RangeError
       _ { Pagy::Calendar::Day.new(**calendar_vars, raise_range_error: true) }.must_raise Pagy::RangeError
-      _ { Pagy::Offset::Countless.new(**countless_vars, raise_range_error: true).finalize(0) }.must_raise Pagy::RangeError
+      _ { Pagy::Offset::Countless.new(**countless_vars, raise_range_error: true).send(:finalize, 0) }.must_raise Pagy::RangeError
     end
     it 'works in :empty_page mode in Pagy' do
       pagy = Pagy::Offset.new(**pagy_vars, range_rescue: :empty_page)

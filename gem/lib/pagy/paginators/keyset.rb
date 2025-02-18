@@ -2,9 +2,7 @@
 
 class Pagy
   # Add keynav paginator
-  Paginators.module_eval do
-    private
-
+  module Paginators
     # Return Pagy::Keyset object and paginated records
     def pagy_keyset(set, **options)
       options[:request] ||= request

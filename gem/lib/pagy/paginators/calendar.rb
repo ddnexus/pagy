@@ -2,9 +2,7 @@
 
 class Pagy
   # Add calendar paginator
-  Paginators.module_eval do
-    private
-
+  module Paginators
     # Take a collection and an options Hash and return an array with 3 items: [calendar, pagy, results]
     def pagy_calendar(collection, options)
       allowed_options = Calendar::UNITS + %i[pagy active]
