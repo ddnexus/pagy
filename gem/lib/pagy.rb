@@ -64,7 +64,6 @@ class Pagy
 
   # Merge all the DEFAULT constants of the class hierarchy with the options
   def assign_options(**options)
-    @request = options.delete(:request)
     default  = {}
     current  = self.class
     begin

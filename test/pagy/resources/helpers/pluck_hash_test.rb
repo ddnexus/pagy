@@ -31,12 +31,12 @@ describe 'Pluck pagy hash' do
       _ { pagy.pluck_hash }.must_raise Pagy::OptionError
     end
     it 'returns only specific keys' do
-      pagy, _records = app.send(:pagy_offset, @collection, keys: %i[url_template page count previous next pages])
+      pagy, _records = app.send(:pagy_offset, @collection, keys: %i[url_template page count previous next last])
       _(pagy.pluck_hash).must_rematch :data
     end
     it 'returns only specific keys (from helper args)' do
       pagy, _records = app.send(:pagy_offset, @collection)
-      _(pagy.pluck_hash(keys: %i[url_template page count previous next pages])).must_rematch :data
+      _(pagy.pluck_hash(keys: %i[url_template page count previous next last])).must_rematch :data
     end
     it 'checks for unknown keys for Pagy::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app.send(:pagy_calendar, Event.all,
@@ -46,7 +46,7 @@ describe 'Pluck pagy hash' do
     it 'returns only specific keys for Pagy::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
                                   .send(:pagy_calendar, Event.all,
-                                        month: { keys: %i[url_template page from to previous next pages] })
+                                        month: { keys: %i[url_template page from to previous next last] })
       _(calendar[:month].pluck_hash).must_rematch :data
     end
   end

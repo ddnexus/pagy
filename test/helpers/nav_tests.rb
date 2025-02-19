@@ -9,7 +9,7 @@ require_relative '../../gem/lib/pagy/paginators/keynav'
 
 module NavTests
   def request
-    MockApp.new.request
+    Pagy::Get.hash_from(MockApp.new.request)
   end
 
   def nav_tests(style)

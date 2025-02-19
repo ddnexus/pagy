@@ -5,6 +5,8 @@ require_relative 'search_wrapper'
 class Pagy
   # Add elasticsearch_rails paginator
   module Paginators
+    protected
+
     # Paginate from search object
     def pagy_elasticsearch_rails(search, **options)
       if search.is_a?(Search::Arguments)

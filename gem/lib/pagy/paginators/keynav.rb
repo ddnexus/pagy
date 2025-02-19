@@ -5,6 +5,8 @@ require_relative '../../pagy/resources/b64'
 class Pagy
   # Add keynav paginator
   module Paginators
+    protected
+
     # Return Pagy::Keyset::Keynav object and paginated records
     def pagy_keynav_js(set, **options)
       page = Get.page_from(params, options, force_integer: false) # allow nil
@@ -16,7 +18,7 @@ class Pagy
         options[:page] = page_arguments if request.cookies['pagy'] == page_arguments.shift
       end
 
-      options[:request] ||= request
+      options[:request] ||= Get.hash_from(request)
       options[:limit]     = Get.limit_from(params, options)
       pagy = Keyset::Keynav.new(set, **options)
       [pagy, pagy.records]

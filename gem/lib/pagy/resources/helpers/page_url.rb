@@ -3,11 +3,11 @@
 class Pagy
   # Return the page url for any page
   # :nocov:
-  def page_url(page = nil, **)
+  def page_url(page, **)
     case page
     when :first
       compose_page_url(nil, **)
-    when :current, nil
+    when :current
       compose_page_url(@page, **) if @page
     when :previous
       compose_page_url(@previous, **) if @previous

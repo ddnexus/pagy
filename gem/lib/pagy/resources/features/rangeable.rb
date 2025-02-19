@@ -3,6 +3,8 @@
 class Pagy
   # Add method supporting range checking, range error and rescue
   module Rangeable
+    protected
+
     # Check if in range
     def in_range?
       return @in_range if defined?(@in_range) || (@in_range = yield)
@@ -10,10 +12,6 @@ class Pagy
 
       assign_empty_page_variables
       false
-    end
-
-    def self.included(including)
-      including.send(:protected, :in_range?)
     end
   end
 end

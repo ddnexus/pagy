@@ -4,7 +4,7 @@ class Pagy
   # Pluck the pagy internal data
   def pluck_hash(keys: @options[:keys], **)
     keys ||= %i[url_template first_url previous_url page_url next_url last_url
-                count page limit pages last in from to previous next options series sequels]
+                count page limit last in from to previous next options series sequels]
     keys -= %i[count limit] if calendar?
     url_template = compose_page_url(PAGE_TOKEN, **)
     {}.tap do |data|

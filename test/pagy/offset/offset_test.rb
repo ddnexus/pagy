@@ -226,7 +226,7 @@ describe 'pagy offset' do
 
   describe 'accessors' do
     it 'has accessors' do
-      %i[count page limit options offset pages last from to in previous next].each do |meth|
+      %i[count page limit options offset last from to in previous next].each do |meth|
         _(pagy).must_respond_to meth
       end
     end

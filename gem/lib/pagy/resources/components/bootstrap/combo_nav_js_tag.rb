@@ -9,8 +9,8 @@ class Pagy
   # Javascript combo pagination for bootstrap: it returns a nav with a data-pagy attribute used by the pagy.js file
   def bootstrap_combo_nav_js_tag(classes: 'pagination', **)
     a_lambda = a_lambda(**)
-    input    = %(<input name="page" type="number" min="1" max="#{pages}" value="#{@page}" aria-current="page" ) +
-               %(style="text-align: center; width: #{pages.to_s.length + 1}rem; padding: 0; ) +
+    input    = %(<input name="page" type="number" min="1" max="#{last}" value="#{@page}" aria-current="page" ) +
+               %(style="text-align: center; width: #{last.to_s.length + 1}rem; padding: 0; ) +
                %(border: none; display: inline-block;" class="page-link active">#{A_TAG})
     html     = %(<ul class="#{classes}">#{
                  bootstrap_html_for(:previous, a_lambda)

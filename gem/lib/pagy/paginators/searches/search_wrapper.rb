@@ -8,7 +8,7 @@ class Pagy
     # Common search logic
     def wrap(backend, pagy_search_args, options)
       backend.instance_exec do
-        options[:request] ||= request
+        options[:request] ||= Get.hash_from(request)
         options[:page]    ||= Get.page_from(params, options)
         options[:limit]   ||= Get.limit_from(params, options)
       end

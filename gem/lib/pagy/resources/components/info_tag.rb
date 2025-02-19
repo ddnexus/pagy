@@ -3,8 +3,6 @@
 class Pagy
   # Return examples: "Displaying items 41-60 of 324 in total" or "Displaying Products 41-60 of 324 in total"
   def info_tag(id: nil, item_name: nil)
-    return '' unless @count
-
     key = if @count.zero?
             'pagy.info_tag.no_items'
           elsif @last == 1

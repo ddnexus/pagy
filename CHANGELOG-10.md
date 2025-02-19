@@ -48,11 +48,13 @@ None
 
 ### Overview
 
-This version is a complete redesign of the legacy code, and its API will be stable for a long time.
+This version is a complete redesign of the legacy code.
+Your old code will require quite a few (but minor) changes in order to work.
+After that... **this API will be stable for a long time**: we promise.
 
 - Reduce the required config by **99%**: no require, no extras, no DEFAULT
-- All the methods are **autoloaded only if you use them**
-- Explicit, unambiguous naming: less docs to search to understand what a method does
+- All the methods are **autoloaded only if you use them**. Unused method consume no memory.
+- Explicit, unambiguous naming: less documentation to search in order to know what a method does
 - The code structure and naming is cleaner, more concise, readable, and consistent
 - The new docs are short and to the point, easy to browse and understand
 - You can also get valuable real-time support with the new Pagy AI
@@ -80,34 +82,6 @@ This version is a complete redesign of the legacy code, and its API will be stab
   - URL templates are safer and easier for string manipulation.
 
 ### Breaking Changes / Updating Guide
-
-#### Simple search and replace renaming (without logic changes)
-
-These renamings implement a consistent logic throughout the gem, aimed to avoid confusion and to improve readability and
-understanding.
-
-_Notice that your app will likely use a little fraction of the list below_
-
-{.compact}
-
-| Type        | Search (old)         | Replace with (new)     | Why?                                                                                      |
-|-------------|----------------------|------------------------|-------------------------------------------------------------------------------------------|
-| Constructor | `pagy(`              | `pagy_offset(`         | Because it's consistent with the other old and new paginator methods                      |
-| Function    | `Pagy.root`          | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                    |
-| Accessor    | `pagy.vars`          | `pagy.options`         | Because they are actually `options` that don't change during execution                    |
-| Exception   | `VariableError`      | `OptionError`          | Because it's consistent with the `options` argument                                       |
-| Accessor    | `e.variable`         | `e.option`             | Because it's consistent with its `OptionError` class                                      |
-| Method      | `pagy_anchor(pagy`   | `pagy.a_lambda(`       | Because it creates a lambda, not the a tag itself, and it's a pagy instance method        |
-| Option      | `:anchor_string`     | `:a_string_attributes` | Because it is explicit and unambiguous                                                    |
-| Method      | `pagy_url_for(@pagy` | `@pagy.page_url(`      | Because `_url_for` suggests diversifiable results, and rails-related expectations         |
-| Method      | `pagy_t`             | `I18n.translate`       | Because we don't use abbreviated words anymore, and it's exactly like with the I18n gem   |
-| Naming      | `*prev*`             | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)    |
-| Option      | `size: 7`            | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s |
-| Option      | `ends: false`        | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                  |
-| Option      | `:page_param`        | `:page_sym`            | Because `page_param` make people think "page param value"                                 |
-| Option      | `:limit_param`       | `:limit_sym`           | Because `limit_param` make people think "limit param value"                               |
-| Method/args | `label_for`          | `page_label`           | Because `_for` suggests diversifiable results                                             |
-| Method/args | `label`              | `page_label`           | Because we don't need two methods                                                         |
 
 #### Replace your `pagy.rb` config file
 
@@ -143,6 +117,35 @@ to start with the new version of the file.
   - They were seldom used, mostly useless, and implementing them in your own code is trivial.
 - You should pass the `:length` and `:compact` options (legacy `:size` and `ends`), _preferably_ to the `*_nav`, `*_nav_js`
   helpers, but it's also possible to pass them to the paginator methods.
+
+#### Simple search and replace renaming (without logic changes)
+
+These renamings implement a consistent logic throughout the gem, aimed to avoid confusion and to improve readability and
+understanding.
+
+_Notice that your app will likely use a little fraction of the list below_
+
+{.compact}
+
+| Type        | Search (old)         | Replace with (new)     | Why?                                                                                      |
+|-------------|----------------------|------------------------|-------------------------------------------------------------------------------------------|
+| Constructor | `pagy(`              | `pagy_offset(`         | Because it's consistent with the other old and new paginator methods                      |
+| Function    | `Pagy.root`          | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                    |
+| Accessor    | `pagy.vars`          | `pagy.options`         | Because they are actually `options` that don't change during execution                    |
+| Accessor    | `pagy.pages`         | `pagy.last`            | Because they are just an alias that we removed for simplicity                             |
+| Exception   | `VariableError`      | `OptionError`          | Because it's consistent with the `options` argument                                       |
+| Accessor    | `e.variable`         | `e.option`             | Because it's consistent with its `OptionError` class                                      |
+| Method      | `pagy_anchor(pagy`   | `pagy.a_lambda(`       | Because it creates a lambda, not the a tag itself, and it's a pagy instance method        |
+| Option      | `:anchor_string`     | `:a_string_attributes` | Because it is explicit and unambiguous                                                    |
+| Method      | `pagy_url_for(@pagy` | `@pagy.page_url(`      | Because `_url_for` suggests diversifiable results, and rails-related expectations         |
+| Method      | `pagy_t`             | `I18n.translate`       | Because we don't use abbreviated words anymore, and it's exactly like with the I18n gem   |
+| Naming      | `*prev*`             | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)    |
+| Option      | `size: 7`            | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s |
+| Option      | `ends: false`        | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                  |
+| Option      | `:page_param`        | `:page_sym`            | Because `page_param` make people think "page param value"                                 |
+| Option      | `:limit_param`       | `:limit_sym`           | Because `limit_param` make people think "limit param value"                               |
+| Method/args | `label_for`          | `page_label`           | Because `_for` suggests diversifiable results                                             |
+| Method/args | `label`              | `page_label`           | Because we don't need two methods                                                         |
 
 #### Extras Changes
 
@@ -268,8 +271,13 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `standalone`
 
-- Replace the `:url` variable with `:request` _(which can also handle the query_params now)_.
-- For example: `request: { url_prefix: 'the-previous-value-of-url', query_params: { param1: 'abc', param2: 'def' }}`.
+- Replace the `:url` variable with the `:request` option hash. For example:
+
+  ```ruby
+  request: { base_url:     'http://www.example.com',
+             path:         '/path',
+             query_params: { 'param1' => 1234 } } # string keys only  
+  ```
 
 ##### `i18n`
 

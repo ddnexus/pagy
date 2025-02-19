@@ -10,7 +10,6 @@ Pluck_pagy_hash__pluck_hash_for_Pagy_test_0001_works_with_unset_DEFAULT:
     :count: 1000
     :page: 3
     :limit: 20
-    :pages: 50
     :last: 50
     :in: 20
     :from: 41
@@ -22,6 +21,11 @@ Pluck_pagy_hash__pluck_hash_for_Pagy_test_0001_works_with_unset_DEFAULT:
       :limit_sym: :limit
       :page_sym: :page
       :page: 3
+      :request:
+        :base_url: http://example.com:3000
+        :path: "/foo"
+        :query_params:
+          page: '3'
       :count: 1000
     :series:
     - 1
@@ -48,7 +52,7 @@ Pluck_pagy_hash__pluck_hash_for_Pagy_test_0003_returns_only_specific_keys:
     :count: 1000
     :previous: 2
     :next: 4
-    :pages: 50
+    :last: 50
 Pluck_pagy_hash__pluck_hash_for_Pagy_test_0004_returns_only_specific_keys_(from_helper_args):
   :data:
     :url_template: "/foo?page=P "
@@ -56,7 +60,7 @@ Pluck_pagy_hash__pluck_hash_for_Pagy_test_0004_returns_only_specific_keys_(from_
     :count: 1000
     :previous: 2
     :next: 4
-    :pages: 50
+    :last: 50
 Pluck_pagy_hash__pluck_hash_for_Pagy_test_0006_returns_only_specific_keys_for_Pagy__Calendar__Unit:
   :data:
     :url_template: "/foo?month_page=P "
@@ -72,4 +76,4 @@ Pluck_pagy_hash__pluck_hash_for_Pagy_test_0006_returns_only_specific_keys_for_Pa
       time: 2022-01-01 00:00:00.000000000 Z
     :previous: 2
     :next: 4
-    :pages: 26
+    :last: 26

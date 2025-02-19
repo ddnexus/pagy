@@ -14,10 +14,9 @@ describe 'Calendar with I18n.l' do
   #########################################
 
   it 'works in :en' do
-    pagy = Pagy::Calendar.send(:create, :month,
-                               period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
-                                        Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
-                               page: 3, format: '%B, %A')
+    pagy = Pagy::Calendar::Month.new(period: [Time.zone.local(2021, 10, 21, 13, 18, 23, 0),
+                                              Time.zone.local(2023, 11, 13, 15, 43, 40, 0)],
+                                     page: 3, format: '%B, %A')
     _(pagy.send(:page_label, 3)).must_equal "December, Wednesday"
     _(pagy.send(:page_label, 3, locale: :de)).must_equal "Dezember, Mittwoch"
     _(pagy.send(:page_label, 3, format: '%b')).must_equal "Dec"

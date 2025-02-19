@@ -3,6 +3,8 @@
 class Pagy
   # Add methods enabling navigation with *_nav and *_nav_js helpers
   module Seriable
+    protected
+
     LENGTH = 7
 
     # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
@@ -47,12 +49,5 @@ class Pagy
 
     # Support for the Calendar API
     def page_labels(*); end
-
-    def self.included(including)
-      instance_methods(false).each do |method_name|
-        including.send(:protected, method_name)
-      end
-      including.alias_method :pages, :last
-    end
   end
 end

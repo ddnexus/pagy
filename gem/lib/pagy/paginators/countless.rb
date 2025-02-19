@@ -3,6 +3,8 @@
 class Pagy
   # Add countless paginator
   module Paginators
+    protected
+
     # Return Pagy object and records
     def pagy_countless(collection, **options)
       if options[:page].nil?
@@ -13,7 +15,7 @@ class Pagy
           options[:last] = l if l&.positive?
         end
       end
-      options[:request] ||= request
+      options[:request] ||= Get.hash_from(request)
       options[:limit]     = Get.limit_from(params, options)
       pagy = Offset::Countless.new(**options)
       [pagy, pagy.records(collection)]

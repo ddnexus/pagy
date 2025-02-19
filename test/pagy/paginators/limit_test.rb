@@ -82,7 +82,7 @@ describe 'requestable_limit' do
 
   describe 'view_methods' do
     describe '#pagy_page_url' do
-      let(:request) { MockApp.new.request }
+      let(:request) { Pagy::Get.hash_from(MockApp.new.request) }
 
       it 'renders basic url' do
         pagy = Pagy::Offset.new(count: 1000, page: 3, requestable_limit: 100)

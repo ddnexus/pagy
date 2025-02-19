@@ -21,7 +21,6 @@ describe 'pagy/helpers/url' do
       _(pagy.page_url(:previous)).must_equal '/foo?page=2'
       _(pagy.page_url(:next)).must_equal '/foo?page=4'
       _(pagy.page_url(:current)).must_equal '/foo?page=3'
-      _(pagy.page_url).must_equal '/foo?page=3'
     end
   end
 end

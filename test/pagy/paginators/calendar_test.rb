@@ -32,7 +32,7 @@ describe 'calendar' do
       _(records.size).must_equal 20
       _(pagy).must_be_instance_of Pagy::Offset
       _(pagy.count).must_equal 505
-      _(pagy.pages).must_equal 26
+      _(pagy.last).must_equal 26
     end
     it 'raises ArgumentError for wrong conf' do
       _ { MockApp::Calendar.new.send(:pagy_calendar, Event.all, []) }.must_raise ArgumentError
@@ -47,7 +47,7 @@ describe 'calendar' do
                                                                     year: {},
                                                                     pagy: { limit: 600 })
       _(calendar[:year].send(:series)).must_equal ["1", 2, 3]
-      _(calendar[:year].pages).must_equal 3
+      _(calendar[:year].last).must_equal 3
       _(calendar[:year].previous).must_be_nil
       _(calendar[:year].next).must_equal 2
       _(entries.map(&:time)).must_rematch :entries
@@ -58,7 +58,7 @@ describe 'calendar' do
                                        year: {},
                                        pagy: { limit: 600 })
       _(calendar[:year].send(:series)).must_equal [1, "2", 3]
-      _(calendar[:year].pages).must_equal 3
+      _(calendar[:year].last).must_equal 3
       _(calendar[:year].previous).must_equal 1
       _(calendar[:year].next).must_equal 3
       _(entries.map(&:time)).must_rematch :entries_2
@@ -82,7 +82,7 @@ describe 'calendar' do
                                        quarter: {},
                                        pagy:    { limit: 600 })
       _(calendar[:quarter].send(:series)).must_equal ["1", 2, 3, 4]
-      _(calendar[:quarter].pages).must_equal 9
+      _(calendar[:quarter].last).must_equal 9
       _(calendar[:quarter].previous).must_be_nil
       _(calendar[:quarter].next).must_equal 2
       _(entries.map(&:time)).must_rematch :entries
@@ -94,7 +94,7 @@ describe 'calendar' do
                                        quarter: {},
                                        pagy:    { limit: 600 })
       _(calendar[:quarter].send(:series)).must_equal [3, "4", 5, 6]
-      _(calendar[:quarter].pages).must_equal 9
+      _(calendar[:quarter].last).must_equal 9
       _(calendar[:quarter].previous).must_equal 3
       _(calendar[:quarter].next).must_equal 5
       _(entries.map(&:time)).must_rematch :entries
@@ -106,7 +106,7 @@ describe 'calendar' do
                                        quarter: {},
                                        pagy:    { limit: 600 })
       _(calendar[:quarter].send(:series)).must_equal [6, 7, 8, "9"]
-      _(calendar[:quarter].pages).must_equal 9
+      _(calendar[:quarter].last).must_equal 9
       _(calendar[:quarter].previous).must_equal 8
       _(calendar[:quarter].next).must_be_nil
       _(entries.map(&:time)).must_rematch :entries
@@ -118,7 +118,7 @@ describe 'calendar' do
                                        month: {},
                                        pagy:  { limit: 600 })
       _(calendar[:month].send(:series)).must_equal ["1", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-      _(calendar[:month].pages).must_equal 26
+      _(calendar[:month].last).must_equal 26
       _(calendar[:month].previous).must_be_nil
       _(calendar[:month].next).must_equal 2
       _(entries.map(&:time)).must_rematch :entries
@@ -152,7 +152,7 @@ describe 'calendar' do
                                        week: { first_weekday: :sunday },
                                        pagy: { limit: 600 })
       _(calendar[:week].send(:series)).must_equal ["1", 2, 3, 4, 5, :gap, 109]
-      _(calendar[:week].pages).must_equal 109
+      _(calendar[:week].last).must_equal 109
       _(calendar[:week].previous).must_be_nil
       _(calendar[:week].next).must_equal 2
       _(entries.map(&:time)).must_rematch :entries
@@ -187,7 +187,7 @@ describe 'calendar' do
                                        pagy: { limit: 600 })
       _(calendar[:day].send(:series)).must_equal ["1", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 
-      _(calendar[:day].pages).must_equal 60
+      _(calendar[:day].last).must_equal 60
       _(calendar[:day].previous).must_be_nil
       _(calendar[:day].next).must_equal 2
       _(entries.map(&:time)).must_rematch :entries

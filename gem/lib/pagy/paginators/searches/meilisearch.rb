@@ -5,6 +5,8 @@ require_relative 'search_wrapper'
 class Pagy
   # Add meilisearch paginator
   module Paginators
+    protected
+
     # Paginate from search object
     def pagy_meilisearch(search, **options)
       if search.is_a?(Search::Arguments)

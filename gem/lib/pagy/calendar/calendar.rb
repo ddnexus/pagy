@@ -34,15 +34,6 @@ class Pagy
 
       private
 
-      # Create a unit subclass instance by using the unit name (internal use)
-      def create(unit, **)
-        raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
-
-        name    = +unit.to_s
-        name[0] = name[0].capitalize
-        Object.const_get("Pagy::Calendar::#{name}").new(**)
-      end
-
       # Return calendar, from, to
       def init(...)
         new.send(:init, ...)
@@ -61,10 +52,10 @@ class Pagy
       @units.inject(nil) do |object, unit|
         conf[unit][:period] = object&.send(:active_period) || @period
         conf[unit][:page]   = page_syms[:"#{unit}_#{@page_sym}"] \
-                            = Calendar.send(:create, unit, **conf[unit]).send(:page_at, time, **)
+                            = create(unit, **conf[unit]).send(:page_at, time, **)
         conf[unit][:params] ||= {}
         conf[unit][:params].merge!(page_syms)
-        Calendar.send(:create, unit, request: @request, **conf[unit])
+        create(unit, **conf[unit])
       end.send(:compose_page_url, 1, **)
     end
 
@@ -72,7 +63,6 @@ class Pagy
 
     # Create the calendar
     def init(conf, period, params)
-      @request = conf.delete(:request)
       @conf    = Marshal.load(Marshal.dump(conf))  # store a copy
       @units   = Calendar::UNITS & @conf.keys # get the units in time length desc order
       raise ArgumentError, 'no calendar unit found in pagy_calendar @configuration' if @units.empty?
@@ -94,9 +84,18 @@ class Pagy
         conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?
         # :nocov:
 
-        calendar[unit] = object = Calendar.send(:create, unit, request: @request, **conf[unit])
+        calendar[unit] = object = create(unit, **conf[unit])
       end
       [replace(calendar), object.from, object.to]
+    end
+
+    # Create a unit subclass instance by using the unit name (internal use)
+    def create(unit, **)
+      raise InternalError, "unit must be in #{UNITS.inspect}; got #{unit}" unless UNITS.include?(unit)
+
+      name    = +unit.to_s
+      name[0] = name[0].capitalize
+      Object.const_get("Pagy::Calendar::#{name}").new(**, request: @conf[:request])
     end
   end
 end
