@@ -32,8 +32,8 @@ describe 'Pagy::Console' do
       _(result).must_be_instance_of Pagy::Console::Request
     end
 
-    it 'has a default url_base' do
-      result = @mock_context.request.url_base
+    it 'has a default base_url' do
+      result = @mock_context.request.base_url
       _(result).must_equal 'http://www.example.com'
     end
 

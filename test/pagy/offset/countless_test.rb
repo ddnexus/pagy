@@ -2,6 +2,7 @@
 
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/app'
+require_relative '../../../gem/lib/pagy/resources/components/support/series' # just to check the series
 
 describe 'pagy/countless' do
   let(:app) { MockApp.new }
@@ -109,7 +110,7 @@ describe 'pagy/countless' do
       _(pagy.to).must_equal 300
       _(pagy.previous).must_equal 14
       _(pagy.next).must_be_nil
-      _(pagy.series).must_equal [1, :gap, 11, 12, 13, 14, "15"]
+      _(pagy.send(:series)).must_equal [1, :gap, 11, 12, 13, 14, "15"]
     end
   end
 end

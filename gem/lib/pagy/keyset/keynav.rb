@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../resources/features/seriable'
-
 class Pagy
   class Keyset
     # Use keyset pagination with resources for all the frontend helpers
@@ -13,8 +11,6 @@ class Pagy
       autoload :ActiveRecord, PAGY_PATH.join('keyset/keynav/active_record')
       autoload :Sequel,       PAGY_PATH.join('keyset/keynav/sequel')
 
-      include Seriable
-
       # Finalize the instance variables needed for the UI
       def initialize(set, **)
         super
@@ -24,9 +20,7 @@ class Pagy
         @in       = @records.size
       end
 
-      attr_reader :update
-
-      def keynav? = true
+      attr_reader :update, :previous, :last
 
       # Prepare the @update for the client when it's a new page, and return the next page number
       def next
@@ -44,6 +38,8 @@ class Pagy
       end
 
       protected
+
+      def keynav? = true
 
       # Process the page array
       def assign_page

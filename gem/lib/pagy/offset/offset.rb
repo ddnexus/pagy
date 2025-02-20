@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../resources/features/shiftable'
-require_relative '../resources/features/seriable'
 require_relative '../resources/features/rangeable'
 
 class Pagy
@@ -25,7 +24,6 @@ class Pagy
     end
 
     include Rangeable
-    include Seriable
     include Shiftable
 
     def initialize(**) # rubocop:disable Lint/MissingSuper
@@ -41,7 +39,7 @@ class Pagy
       assign_previous_and_next
     end
 
-    attr_reader :offset, :count, :from, :to, :in
+    attr_reader :offset, :count, :from, :to, :in, :previous, :last
 
     def records(collection)
       collection.offset(@offset).limit(@limit)

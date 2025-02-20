@@ -1,22 +1,23 @@
 ---
-title: pagy_countless
-icon: arrow-left
+title: :countless
+icon: plug
+order: 90
 categories:
   - Paginators
 ---
 
-!!!warning Consider using `pagy_keynav` when possible!
-It has exactly the same UI features, but it uses the fastest `keyset` pagination, particular convenient with big, slow collection results. 
+!!!warning Consider using `:keynav` when possible!
+`:keynav` has exactly the same UI features, but it uses the fastest `keyset` pagination, particularly convenient with big, slow collection results. 
 !!!
 
-`pagy_countless` is an OFFSET paginator that skips the `COUNT` query, saving one query per rendering.
+`:countless` is an OFFSET paginator that skips the `COUNT` query, saving one query per rendering.
 
 - It offers an **almost complete** support for **almost all** the navigation helpers, with just these limitations:
   - The nav bar links after the last known page are not shown
   - The `pagy_info` helper is not supported
 
 ```ruby Controller 
-@pagy, @records = pagy_countless(collection, **options)
+@pagy, @records = pagy(:countless, collection, **options)
 ```
 
 - `@pagy` can be used with any supported helper.
@@ -27,8 +28,9 @@ It has exactly the same UI features, but it uses the fastest `keyset` pagination
 - `headless: true`
   - Use this option when you don't need any UI (e.g. infinite scrolling) and/or to avoid eager loading. In that case:
     - `@pagy` cannot be used with any helpers
-    - `@records` is a regular scope
+    - `@records` is a regular collection
     - The collection is over when `@records.size < @pagy.limit`
- 
+
 See also [Common Options](../paginators.md#common-options)
+
 ===

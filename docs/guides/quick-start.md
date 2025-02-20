@@ -95,7 +95,7 @@ include Pagy::Backend
 
 +++ Search
 For search backends
-see: [elasticsearch_rails](/docs/api/paginators/searches/elasticsearch_rails.md), [meilisearch](/docs/api/paginators/searches/meilisearch.md), [searchkick](/docs/api/paginators/searches/searchkick.md), [ransack](/docs/how-to/#paginate-ransack-results).
+see: [elasticsearch_rails](/docs/api/paginators/elasticsearch_rails.md), [meilisearch](/docs/api/paginators/meilisearch.md), [searchkick](/docs/api/paginators/searchkick.md), [ransack](/docs/how-to/#paginate-ransack-results).
 
 +++ Special
 You may also use

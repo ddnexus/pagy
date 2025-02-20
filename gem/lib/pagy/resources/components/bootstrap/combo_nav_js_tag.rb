@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'previous_next_html'
-require_relative '../utils/wrap_combo_nav_js'
+require_relative '../support/combo_nav_js'
 
 class Pagy
   private

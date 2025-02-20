@@ -1,13 +1,14 @@
 ---
-title: pagy_keynav
-icon: arrow-left
+title: :keynav
+icon: plug
+order: 70
 categories:
   - Paginators
 ---
 
-`pagy_keyset` is a KEYSET paginator usable with `ActiveRecord::Relation` and `Sequel::Dataset` ordered set.
+`:keyset` is a KEYSET paginator usable with `ActiveRecord::Relation` and `Sequel::Dataset` ordered set.
 
-It uses the fastest pagination technique, which triggers two SQL queries:
+It uses the **fastest** pagination technique, which triggers one SQL query, without using OFFSET (which is potentially slow):
 
 It **does not** support **ANY** helpers nor navigators.
 

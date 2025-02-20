@@ -3,8 +3,6 @@
 class Pagy
   # Add method supporting range checking, range error and rescue
   module Rangeable
-    protected
-
     # Check if in range
     def in_range?
       return @in_range if defined?(@in_range) || (@in_range = yield)

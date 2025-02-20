@@ -21,7 +21,7 @@ def test_limit_options_params(limit, options, params)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
-  %i[offset array].each do |paginator|
+  %i[offset].each do |paginator|
     pagy, records = app.send(:pagy, paginator, @collection, **options)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit

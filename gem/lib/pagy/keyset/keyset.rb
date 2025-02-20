@@ -56,9 +56,9 @@ class Pagy
       @next ||= B64.urlsafe_encode(extract_cutoff.to_json)
     end
 
-    def keyset? = true
-
     protected
+
+    def keyset? = true
 
     def assign_page
       return unless (@page = @options[:page])

@@ -5,13 +5,9 @@ class Pagy
   module B64
     module_function
 
-    def encode(bin)
-      [bin].pack('m0')
-    end
+    def encode(bin) = [bin].pack('m0')
 
-    def decode(str)
-      str.unpack1('m0')
-    end
+    def decode(str) = str.unpack1('m0')
 
     def urlsafe_encode(bin)
       str = encode(bin)

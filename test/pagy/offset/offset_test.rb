@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../test_helper'
+require_relative '../../../gem/lib/pagy/resources/components/support/series' # just to check the series
 
 OPTIONS = { count: 103, limit: 10 }.freeze
 OPTS_WITH_LENGTH = [3, 6, 9].map { |l| OPTIONS.merge(length: l) }.freeze
@@ -308,14 +309,6 @@ describe 'pagy offset' do
     it 'raises OptionError for invalid length' do
       _ { Pagy::Offset.new(count: 100).send(:series, length: {}) }.must_raise Pagy::OptionError
       _ { Pagy::Offset.new(count: 100).send(:series, length: -3) }.must_raise Pagy::OptionError
-    end
-  end
-
-  describe 'labels' do
-    it 'returns any page label' do
-      p = Pagy::Offset.new(count: 1000, page: 11)
-      _(p.send(:page_label, 3)).must_equal '3'
-      _(p.send(:page_label, 11)).must_equal '11'
     end
   end
 end

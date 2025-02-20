@@ -1,12 +1,13 @@
 ---
-title: pagy_meilisearch
-icon: arrow-left
+title: :meilisearch
+icon: search
+order: 40
 categories:
   - Paginators
   - Search
 ---
 
-# pagy_meilisearch
+`:meilisearch` is a paginator for  `Meilisearch` results.
 
 Paginator method for `Meilisearch` results.
 
@@ -26,7 +27,7 @@ ActiveRecord_Relation.include Pagy::Meilisearch
 search = Article.pagy_search(params[:q])
 search = Article.pagy_search(params[:q]).results
 # paginate it
-@pagy, @response = pagy_meilisearch(search, **options)
+@pagy, @response = pagy(:meilisearch, search, **options)
 ```
 
 +++ Passive Mode
@@ -37,7 +38,7 @@ Pagy creates its object out of your result.
 
 ```ruby Controller
 @results = Model.ms_search(nil, hits_per_page: 10, page: 10, ...)
-@pagy    = pagy_meilisearch(@results, **options)
+@pagy    = pagy(:meilisearch, @results, **options)
 ```
 
 +++
@@ -47,6 +48,6 @@ Pagy creates its object out of your result.
 - `search_method: :my_search`
   - Customize the name of the search method (default `:ms_search`)
     
-See also [Common Options](../../paginators.md#common-options)
+See also [Common Options](../paginators.md#common-options)
 
 ===

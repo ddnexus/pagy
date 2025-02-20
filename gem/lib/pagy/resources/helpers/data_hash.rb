@@ -4,7 +4,7 @@ class Pagy
   # Generate a hash of the wanted internal data
   def data_hash(data_keys: @options[:data_keys] ||
     %i[url_template first_url previous_url page_url next_url last_url
-       count page limit last in from to previous next options series sequels], **)
+       count page limit last in from to previous next options], **)
     data_keys   -= %i[count limit] if calendar?
     url_template = compose_page_url(PAGE_TOKEN, **)
     {}.tap do |data|

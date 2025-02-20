@@ -1,6 +1,6 @@
 ---
 title: data_hash
-icon: arrow-right
+icon: list-unordered
 order: 100
 ---
 

@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-require_relative '../pagy'  # so you can require just the extra in the console
-
 class Pagy
   # Provide a ready to use pagy environment when included in irb/rails console
   module Console
     class Request
-      attr_accessor :url_base, :path, :params
+      attr_accessor :base_url, :path, :params
 
       def initialize
-        @url_base = 'http://www.example.com'
+        @base_url = 'http://www.example.com'
         @path     = '/path'
         @params   = { example: '123' }
       end
@@ -23,33 +21,22 @@ class Pagy
         @collection = clone
       end
 
-      def offset(value)
-        @collection = self[value..]
-        self
-      end
+      def offset(value) = tap { @collection = self[value..] }
 
-      def limit(value)
-        @collection[0, value]
-      end
+      def limit(value) = @collection[0, value]
 
-      def count(*)
-        size
-      end
+      def count(*) = size
     end
 
     include Backend
 
     # Direct reference to request.params via a method
-    def params
-      request.params
-    end
+    def params = request.params
 
     def request
       @request ||= Request.new
     end
 
-    def collection
-      Collection
-    end
+    def collection = Collection
   end
 end

@@ -39,7 +39,7 @@ steps will fix it.
 - Ensure that the legacy gem will not get loaded anymore (or it could mask some old statement still in place and not converted)
 - Add the `include Pagy::Backend` statement to the application controller.
 - Add the `include Pagy::Frontend` statement to the application helper.
-- Keep handy the legacy gem doc and the [Pagy API doc](../api/pagy.md) in parallel.
+- Keep handy the legacy gem doc and the [Pagy API doc](../api/paginators) in parallel.
 
 #### Application-wide search and replace
 

@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class Pagy
-  autoload :ArrayPaginator,              PAGY_PATH.join('paginators/array')
-  autoload :CalendarPaginator,           PAGY_PATH.join('paginators/calendar')
-  autoload :CountlessPaginator,          PAGY_PATH.join('paginators/countless')
-  autoload :KeynavPaginator,             PAGY_PATH.join('paginators/keynav')
-  autoload :KeysetPaginator,             PAGY_PATH.join('paginators/keyset')
   autoload :OffsetPaginator,             PAGY_PATH.join('paginators/offset')
+  autoload :CountlessPaginator,          PAGY_PATH.join('paginators/countless')
+  autoload :KeysetPaginator,             PAGY_PATH.join('paginators/keyset')
+  autoload :KeynavPaginator,             PAGY_PATH.join('paginators/keynav')
+  autoload :CalendarPaginator,           PAGY_PATH.join('paginators/calendar')
   autoload :ElasticsearchRailsPaginator, PAGY_PATH.join('paginators/searches/elasticsearch_rails')
   autoload :MeilisearchPaginator,        PAGY_PATH.join('paginators/searches/meilisearch')
   autoload :SearchkickPaginator,         PAGY_PATH.join('paginators/searches/searchkick')
@@ -15,17 +14,16 @@ class Pagy
   module Backend
     protected
 
-    paginators_map = { array:               :ArrayPaginator,
-                       calendar:            :CalendarPaginator,
+    paginators_map = { offset:              :OffsetPaginator,
                        countless:           :CountlessPaginator,
-                       keynav_js:           :KeynavPaginator,
                        keyset:              :KeysetPaginator,
-                       offset:              :OffsetPaginator,
+                       keynav_js:           :KeynavPaginator,
+                       calendar:            :CalendarPaginator,
                        elasticsearch_rails: :ElasticsearchRailsPaginator,
                        meilisearch:         :MeilisearchPaginator,
                        searchkick:          :SearchkickPaginator }.freeze
 
-    define_method :pagy do |paginator, collection, **options|
+    define_method :pagy do |paginator = :offset, collection, **options|
       Pagy.const_get(paginators_map[paginator]).paginate(self, collection, **options)
     end
   end
@@ -40,16 +38,16 @@ class Pagy
       params[:page].respond_to?(:fetch) || raise(JsonapiReservedParamError, params[:page])
     end
 
-    # Get the limit from the request
-    def requested_limit(params, options)
+    # Get the limit from the params
+    def requested_limit_from(params, options)
       limit_sym = options[:limit_sym] || DEFAULT[:limit_sym]
       jsonapi?(params, options) ? params[:page][limit_sym] : params[limit_sym]
     end
 
-    # Get the limit from request, options or DEFAULT
+    # Get the limit from the params, options or DEFAULT
     def limit_from(params, options)
       return options[:limit] || DEFAULT[:limit] \
-      unless options[:requestable_limit] && (limit = requested_limit(params, options))
+      unless options[:requestable_limit] && (limit = requested_limit_from(params, options))
 
       [limit.to_i, options[:requestable_limit]].min
     end

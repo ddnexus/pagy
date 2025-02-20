@@ -23,7 +23,7 @@ class Pagy
       # :nocov:
       # Localize with rails-i18n in any env
       def localize_with_rails_i18n_gem(*locales)
-        Unit.prepend(Module.new { def localize(...) = ::I18n.l(...) })
+        Unit.prepend(Module.new { def localize(...) = ::I18n.localize(...) })
         raise RailsI18nLoadError, "Pagy: The gem 'rails-i18n' must be installed if you don't use Rails" \
               unless (path = Gem.loaded_specs['rails-i18n']&.full_gem_path)
 
@@ -63,12 +63,8 @@ class Pagy
 
     # Create the calendar
     def init(conf, period, params)
-      @conf  = Marshal.load(Marshal.dump(conf))  # store a copy
-      @units = Calendar::UNITS & @conf.keys # get the units in time length desc order
-      # :nocov:
-      raise ArgumentError, 'no calendar unit found in calendar configuration' if @units.empty?
-      # :nocov:
-
+      @conf     = Marshal.load(Marshal.dump(conf))  # store a copy
+      @units    = Calendar::UNITS & @conf.keys # get the units in time length desc order
       @period   = period
       @params   = params
       @page_sym = conf[:pagy][:page_sym] || Pagy::DEFAULT[:page_sym]

@@ -260,25 +260,25 @@ class PagyDemo < Sinatra::Base
       <p id="records">@records: <%= @records.join(',') %></p>
 
       <h2>pagy.nav_tag <span class="notes">Simple nav <code>size: 5</code></span></h2>
-      <%= html = @pagy.nav_tag(style:, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
+      <%= html = @pagy.nav_tag(style, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
       <%= highlight(html) %>
 
       <h2>pagy.nav_tag <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = @pagy.nav_tag(style:, id: 'nav', aria_label: 'Pages nav') %>
+      <%= html = @pagy.nav_tag(style, id: 'nav', aria_label: 'Pages nav') %>
       <%= highlight(html) %>
 
       <h2>pagy.nav_js_tag <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = @pagy.nav_js_tag(style:, id: 'nav-js', aria_label: 'Pages nav_js') %>
+      <%= html = @pagy.nav_js_tag(style, id: 'nav-js', aria_label: 'Pages nav_js') %>
       <%= highlight(html) %>
 
       <h2>pagy.nav_js_tag <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
-      <%= html = @pagy.nav_js_tag(style:, id: 'nav-js-responsive',
+      <%= html = @pagy.nav_js_tag(style, id: 'nav-js-responsive',
                               aria_label: 'Pages nav_js_responsive',
                               steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
       <%= highlight(html) %>
 
       <h2>pagy.combo_nav_js_tag</h2>
-      <%= html = @pagy.combo_nav_js_tag(style:, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+      <%= html = @pagy.combo_nav_js_tag(style, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
       <%= highlight(html) %>
 
       <h2>pagy.info_tag</h2>

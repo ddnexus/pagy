@@ -1,6 +1,6 @@
 ---
 title: headers_hash
-icon: arrow-right
+icon: list-unordered
 ---
 
 `headers_hash` generates the standard `link` header defined in the

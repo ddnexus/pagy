@@ -103,7 +103,7 @@ pagy.series
 ==- Overriding `series`
 
 If changing the `:length` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place
-of gaps) you should override the `series` method (defined in the `Pagy::Core::Seriable` module).
+of gaps) you should override the `series` method.
 
 ===
 
@@ -324,9 +324,9 @@ Use [metadata extra](extras/metadata.md) and pass the pagination metadata in you
 
 Pagy has a few extras dedicated to gems returning search results:
 
-- [elasticsearch_rails](../api/paginators/searches/elasticsearch_rails.md)
-- [searchkick](../api/paginators/searches/searchkick.md)
-- [meilisearch](../api/paginators/searches/meilisearch.md)
+- [elasticsearch_rails](../api/paginators/elasticsearch_rails.md)
+- [searchkick](../api/paginators/searchkick.md)
+- [meilisearch](../api/paginators/meilisearch.md)
   [TODO REPLACE LINKS]
 
 ## Paginate by date

@@ -1,6 +1,6 @@
 ---
-title: ARIA Attributes
-icon: tag
+title: ARIA
+icon: accessibility
 categories:
   - Feature
 order: 100
@@ -8,7 +8,7 @@ order: 100
 
 # ARIA Attributes
 
-Since version `7.0.0` pagy has introduced a consistent set of ARIA compliant attributes in all its `pagy*_nav` helpers.
+Since version `7.0.0` pagy has introduced a consistent set of ARIA compliant attributes in all its helpers.
 
 +++ Nav helpers
 
@@ -34,7 +34,7 @@ non-valid document), instead, you should pass your own (possibly translated and 
 
 ```erb
 <%# Explicitly set the aria_label string %> 
-<%== pagy_nav(@pagy, aria_label: 'Search result pages') %>
+<%== @pagy.nav(aria_label: 'Search result pages') %>
 ```
 
 !!!
@@ -48,6 +48,6 @@ non-valid document), instead, you should pass your own (possibly translated and 
   their native language) and an explicit attribute would be redundant and inefficient.
 - All the disabled links have the `aria-disabled="true"` attribute.
 - The current page is marked with the `aria-current="page"` attribute.
-- The `role="link"` is added to the link elements of the styles that don't use an `a` element or don't have a `href` attribute.
+- The `role="link"` is added to the link elements of the styles that don't use an `a` tag or don't have a `href` attribute.
 
 +++

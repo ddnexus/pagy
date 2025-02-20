@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'utils/wrap_combo_nav_js'
+require_relative 'support/combo_nav_js'
 
 class Pagy
   # Javascript combo pagination: it returns a nav with a data-pagy attribute used by the pagy.js file
-  def combo_nav_js_tag(style: nil, **)
-    if style
-      require_relative "#{style}/combo_nav_js_tag"
-      return send(:"#{style}_combo_nav_js_tag", **)
-    end
+  def combo_nav_js_tag(style = nil, **)
+    return send(:"#{style}_combo_nav_js_tag", **) if style
 
     a_lambda = a_lambda(**)
     input    = %(<input name="page" type="number" min="1" max="#{@last}" value="#{@page}" aria-current="page" ) +

@@ -3,7 +3,7 @@
 require_relative '../../../test_helper'
 require_relative '../../../mock_helpers/app'
 require_relative '../../../mock_helpers/collection'
-require_relative '../../../../gem/lib/pagy/resources/components/utils/data_pagy_attribute'
+require_relative '../../../../gem/lib/pagy/resources/components/support/data_pagy_attribute'
 
 OJ = %i[without_oj with_oj].freeze
 describe 'pagy/data_pagy_attribute' do

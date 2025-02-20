@@ -2,7 +2,6 @@
 
 require_relative '../resources/features/shiftable'
 require_relative '../resources/features/rangeable'
-require_relative '../resources/features/seriable'
 
 class Pagy
   class Calendar
@@ -16,7 +15,6 @@ class Pagy
       DEFAULT = { page: 1 }.freeze
 
       include Rangeable
-      include Seriable
       include Shiftable
 
       def initialize(**)    # rubocop:disable Lint/MissingSuper
@@ -28,7 +26,7 @@ class Pagy
         assign_previous_and_next
       end
 
-      attr_reader :order, :from, :to
+      attr_reader :order, :from, :to, :previous, :last
 
       protected
 
@@ -40,32 +38,6 @@ class Pagy
         edge = @order == :asc ? @final : @initial    # get the edge of the range (neat, but any time would do)
         @from = @to = edge                           # set both to the edge time (a >=&&< query will get no records)
         @previous = @last
-      end
-
-      # The label for any page (it can forward the I18n gem options when it's used with the i18n extra)
-      def page_label(page, **options)
-        options[:format] ||= @options[:format]
-        localize(starting_time_for(page.to_i), **options)  # page could be a string
-      end
-
-      def a_lambda(a_string_attributes: nil, **)
-        return super unless (counts = @options[:counts])   # No overriding without :counts
-
-        left, right = %(<a#{%( #{a_string_attributes}) if a_string_attributes} href="#{compose_page_url(PAGE_TOKEN, **)}")
-                      .split(PAGE_TOKEN, 2)
-        # Lambda used by all the helpers
-        lambda do |page, text = page_label(page), classes: nil, aria_label: nil|
-          count    = counts[page - 1]
-          classes  = classes ? "#{classes} empty-page" : 'empty-page' if count.zero?
-          info_key = count.zero? ? 'pagy.info_tag.no_items' : 'pagy.info_tag.single_page'
-          title    = %( title="#{I18n.translate(info_key, item_name: I18n.translate('pagy.item_name', count:), count:)}")
-          %(#{left}#{page}#{right}#{title}#{
-          %( class="#{classes}") if classes}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
-        end
-      end
-
-      def page_labels(series)
-        series.map { |s| s.map { |item| item == :gap ? :gap : page_label(item) } }
       end
 
       # The page that includes time
@@ -92,10 +64,7 @@ class Pagy
 
       # Base class method for the setup of the unit variables (subclasses must implement it and call super)
       def assign_unit_variables
-        raise OptionError.new(self, :format, 'to be a strftime format', @options[:format]) unless @options[:format].is_a?(String)
-        raise OptionError.new(self, :order, 'to be in [:asc, :desc]', @order) \
-              unless %i[asc desc].include?(@order = @options[:order])
-
+        @order = @options[:order]
         @starting, @ending = @options[:period]
         raise OptionError.new(self, :period, 'to be a an Array of min and max TimeWithZone instances', @options[:period]) \
               unless @starting.is_a?(ActiveSupport::TimeWithZone) \

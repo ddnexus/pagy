@@ -2,6 +2,7 @@
 
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/app' # load after the extra
+require_relative '../../../gem/lib/pagy/resources/components/support/a_lambda' # just to check the page_label
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday

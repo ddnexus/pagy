@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'utils/data_pagy_attribute'
+require_relative 'support/data_pagy_attribute'
 
 class Pagy
   # Return the limit selector HTML. For example "Show [20] items per page"

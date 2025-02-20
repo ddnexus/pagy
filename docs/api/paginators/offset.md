@@ -1,11 +1,12 @@
 ---
-title: pagy_offset
-icon: arrow-left
+title: :offset
+icon: plug
+order: 100
 categories: 
-- Paginators
+  - Paginators
 ---
 
-`pagy_offset` is a generic OFFSET paginator method, usable with ORMs collections.
+`:offset` is a generic OFFSET paginator usable with ORMs collections.
 
 It uses the full OFFSET pagination technique, which triggers two SQL queries: 
 
@@ -15,7 +16,7 @@ It uses the full OFFSET pagination technique, which triggers two SQL queries:
 It **fully** supports **ALL** the helpers and navigators.
 
 ```ruby Controller
-@pagy, @records = pagy_offset(collection, **options)
+@pagy, @records = pagy(:offset, collection, **options)
 ```
 
 ==- Options
@@ -24,6 +25,12 @@ It **fully** supports **ALL** the helpers and navigators.
   - Use this option with `GROUP BY` collections to get the total number of results using `COUNT(*) OVER ()`.
 - `:count_args`
   - The arguments passed to the `collection.count` (default `[:all]`). You may want to set it to `[]` in ORMs different from `ActiveRecord` 
+- `array: true`
+  - Enable pagination of `Array` collections.
+    - **Use only** with collections that are already loaded in memory. (e.g. cached indices, pointers, etc.)
+    - **Do not use** with any persistent storage collection (database, search, etc.)!
+- `raise_range_error: true`
+  - Enable the `Pagy::RangeError` (wich is rescued to an empty page by default)
 
 See also [Common Options](../paginators.md#common-options)
 
@@ -45,5 +52,10 @@ See also [Common Options](../paginators.md#common-options)
   - The last page
 
 See also [Common Readers](../paginators.md#common-readers)
+
+==- Exceptions
+
+- `Pagy::RangeError`
+  - A subclass of `Pagy::OptionError`. Raised for out-of-range `:page` requests, with `raise_range_error: true` option.
 
 ===

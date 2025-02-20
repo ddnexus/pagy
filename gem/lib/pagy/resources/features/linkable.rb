@@ -67,19 +67,5 @@ class Pagy
       query_string = "?#{query_string}" unless query_string.empty?
       "#{request[:base_url] if absolute}#{@options[:request_path] || request[:path]}#{query_string}#{fragment}"
     end
-
-    # Label for any page. Allow the customization of the output (overridden by the calendar)
-    def page_label(page, **) = page.to_s
-
-    # Return a performance optimized lambda to generate the HTML a tag
-    # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-    def a_lambda(a_string_attributes: nil, **)
-      left, right = %(<a#{" #{a_string_attributes}" if a_string_attributes} href="#{compose_page_url(PAGE_TOKEN, **)}")
-                    .split(PAGE_TOKEN, 2)
-      # Lambda used by all the helpers
-      lambda do |page, text = page_label(page), classes: nil, aria_label: nil|
-        %(#{left}#{page}#{right}#{%( class="#{classes}") if classes}#{%( aria-label="#{aria_label}") if aria_label}>#{text}</a>)
-      end
-    end
   end
 end

@@ -47,9 +47,9 @@ Out of the box pagy supports:
 
 - `ActiveRecord::Relation`
 - [array](extras/array.md)
-- [elasticsearch_rails](../api/paginators/searches/elasticsearch_rails.md)
-- [searchkick](../api/paginators/searches/searchkick.md)
-- [meilisearch](../api/paginators/searches/meilisearch.md)
+- [elasticsearch_rails](../api/paginators/elasticsearch_rails.md)
+- [searchkick](../api/paginators/searchkick.md)
+- [meilisearch](../api/paginators/meilisearch.md)
 
 ### Keyset and Keynav pagination with:
 

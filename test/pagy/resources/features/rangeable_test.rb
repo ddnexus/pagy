@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../../test_helper'
+require_relative '../../../../gem/lib/pagy/resources/components/support/series' # just to check the series
 
 # Lazy trick to load ActiveSupport and crap while silencing the warnings
 calendar = Pagy::Calendar
@@ -76,7 +77,7 @@ describe 'range' do
   describe "#series singleton for :empty_page mode" do
     it 'computes series for empty page for Pagy' do
       pagy = Pagy::Offset.new(**pagy_vars)
-      series = pagy.series
+      series = pagy.send(:series)
       _(series).must_equal [1, :gap, 7, 8, 9, 10, 11]
       _(pagy.page).must_equal 100
     end
@@ -87,7 +88,7 @@ describe 'range' do
       _(pagy.page).must_equal 100
     end
     it 'computes series for Pagy::Offset::Countless' do
-      series = @pagy_countless.series
+      series = @pagy_countless.send(:series)
       _(series).must_equal [1, :gap, 46, 47, 48, 49, 50]
       _(@pagy_countless.page).must_equal 100   # reduce error by 1
     end

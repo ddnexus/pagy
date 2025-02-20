@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../utils/wrap_nav'
+require_relative '../support/nav'
 require_relative 'previous_next_html'
 
 class Pagy

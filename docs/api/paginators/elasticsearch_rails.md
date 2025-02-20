@@ -1,16 +1,19 @@
 ---
-title: pagy_elasticsearch_rails
-icon: arrow-left
+title: :elasticsearch_rails
+icon: search
+order: 50
 categories:
   - Paginators
   - Search
 ---
 
-`pagy_elasticsearch_rails` is a paginator method for `ElasticsearchRails` response objects.
+`:elasticsearch_rails` is a paginator for `ElasticsearchRails` response objects.
 
 +++ Active mode
 
-!!! success Pagy searches and paginates You use the `pagy_search` method in place of the `search` method.
+!!! success Pagy searches and paginate
+
+You use the `pagy_search` method in place of the `search` method.
 !!!
 
 ```ruby Model
@@ -23,19 +26,21 @@ search = Article.pagy_search(params[:q])
 search = Article.pagy_search(params[:q]).records
 search = Article.pagy_search(params[:q]).results
 # paginate it
-@pagy, @response = pagy_elasticsearch_rails(search, **options)
+@pagy, @response = pagy(:elasticsearch_rails, search, **options)
 ```
 
 +++ Passive mode
 
-!!! success You search and paginate Pagy creates its object out of your result.
+!!! success You search and paginate
+
+Pagy creates its object out of your result.
 !!!
 
 ```ruby Controller
 # standard response (already paginated)
 @response = Article.search('*', from: 0, size: 10, ...)
 # get the pagy object out of it
-@pagy = pagy_elasticsearch_rails(@response, **options)
+@pagy = pagy(:elasticsearch_rails, @response, **options)
 ```
 
 +++
@@ -45,6 +50,6 @@ search = Article.pagy_search(params[:q]).results
 - `search_method: :my_search`
   - Customize the name of the search method (default `:search`)
 
-See also [Common Options](../../paginators.md#common-options)
+See also [Common Options](../paginators.md#common-options)
 
 ===

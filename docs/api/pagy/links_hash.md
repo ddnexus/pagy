@@ -1,6 +1,6 @@
 ---
-title: pagy.links_hash
-icon: arrow-right
+title: links_hash
+icon: list-unordered
 ---
 
 `pagy_links_hash` returns the `:first`, `:previous`, `:next`, `:last` non`nil` URLs hash.

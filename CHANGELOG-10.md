@@ -99,7 +99,7 @@ to start with the new version of the file.
 
 - Remove any existing `include Pagy::Frontend`
 - The paginators (i.e. the `pagy_*` methods returning the `@pagy` instance and the `@records`) got integrated in the `pagy`
-  method. All the other `pagy_*` helpers are now `@pagy` instance methods.
+  method. All the other `pagy_*` helpers provided by `pagy::Frontend` are now `@pagy` instance methods.
 - See how to replace them in the [Extras Changes](#extras-changes).
 
 #### Core changes
@@ -182,9 +182,9 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `boostrap`, `bulma`
 
-- Replace any existing `pagy_<extra-name>_nav(@pagy, ...)` with `@pagy.nav_tag(style: :<extra-name>, ...)`
-- Replace any existing `pagy_<extra-name>_nav_js(@pagy, ...)` with `@pagy.nav_js_tag(style: :<extra-name>, ...)`
-- Replace any existing `pagy_<extra-name>_combo_nav_js(@pagy, ...)` with `@pagy.combo_nav_js_tag(style: :<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_nav(@pagy, ...)` with `@pagy.nav_tag(:<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_nav_js(@pagy, ...)` with `@pagy.nav_js_tag(:<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_combo_nav_js(@pagy, ...)` with `@pagy.combo_nav_js_tag(:<extra-name>, ...)`
 
 ##### `countless`
 

@@ -14,7 +14,7 @@ For all its own interactive helpers shown above, the pagy gem includes a few sty
 copy.
 
 !!!warning
-You don't need any stylesheet if you use a frontend extra like: 
+You don't need any stylesheet if you use `:bootstrap` or `:bulma` `:style` option  
 [bootstrap](/docs/extras/bootstrap) and [bulma](/docs/extras/bulma)
 !!!
 

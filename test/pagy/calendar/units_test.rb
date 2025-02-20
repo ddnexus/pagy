@@ -2,6 +2,7 @@
 
 require_relative '../../test_helper'
 require_relative '../../../gem/lib/pagy/calendar/calendar'
+require_relative '../../../gem/lib/pagy/resources/components/support/a_lambda' # just to check the page_label
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday
@@ -22,12 +23,6 @@ describe 'pagy/calendar' do
       _ { pagy(Pagy::Calendar::Month, period: [Time.now]) }.must_raise Pagy::OptionError
       _ { pagy(Pagy::Calendar::Month, period: [Time.now, 2]) }.must_raise Pagy::OptionError
       _ { pagy(Pagy::Calendar::Month, period: [Time.now.utc, Time.now]) }.must_raise Pagy::OptionError
-      _ { pagy(Pagy::Calendar::Month, order: :unknown) }.must_raise Pagy::OptionError
-      _ { pagy(Pagy::Calendar::Year, format: :unknown) }.must_raise Pagy::OptionError
-      _ { pagy(Pagy::Calendar::Quarter, format: :unknown) }.must_raise Pagy::OptionError
-      _ { pagy(Pagy::Calendar::Month, format: :unknown) }.must_raise Pagy::OptionError
-      _ { pagy(Pagy::Calendar::Week, format: :unknown) }.must_raise Pagy::OptionError
-      _ { pagy(Pagy::Calendar::Day, format: :unknown) }.must_raise Pagy::OptionError
     end
   end
 

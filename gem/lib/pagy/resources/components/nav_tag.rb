@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'utils/wrap_nav'
+require_relative 'support/nav'
 
 class Pagy
   # Return the html with the series of links to the pages
-  def nav_tag(style: nil, **)
-    if style
-      require_relative "#{style}/nav_tag"
-      return send(:"#{style}_nav_tag", **)
-    end
+  def nav_tag(style = nil, **)
+    return send(:"#{style}_nav_tag", **) if style
 
     a_lambda = a_lambda(**)
     html     = previous_a_tag(a_lambda)

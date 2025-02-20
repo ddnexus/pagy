@@ -1,32 +1,39 @@
 ---
-title: Paginators
+title: pagy
 icon: database
-order: 100
+order: 200
+categories:
+  - Paginators
 ---
 
-**Paginators** are methods that wrap a collection and return a pagy object and the page of results/records.
+# pagy (method)
 
-Include the module in `ApplicationController`:
+The `pagy` method starts every pagination. It wraps a collection and returns a pagy object and the page of results/records.
+
+You get access to it by including the `Pagy::Backend` module in `ApplicationController`:
 
 ```ruby Controller
-include Pagy::Paginators
+include Pagy::Backend
 ```
 
-!!!success Pagy's methods are autoloaded on demand. Unused methods consume no memory.
-!!!
+Then you use it in your actions:
 
 ```ruby Controller Action
-@pagy, @records = pagy_offset(collection, **options)
-@pagy, @records = pagy_keyset(set, **options)
+@pagy, @records = pagy(:offset, collection, **options)
+@pagy, @records = pagy(:keyset, set, **options)
 ...
 ```
-
-- `@pagy` is the pagination object: the first argument required by every `Backend` or `Frontend` helper/navigator method
+- `:offset`, `:keyset`, etc. are symbols identifying the paginator to use, i.e. the internal method handling that type of pagination.
+- `@pagy` is the pagination object. It provides all the UI components and helpers to use in your code, as instance methods.
 - `@records` are the records belonging to the requested page
+
+
+!!!success All the pagy methods are autoloaded on demand. Unused methods consume no memory.
+!!!
 
 !!!warning Avoid direct instantiation of Pagy classes.
 
-Instead, use the provided paginator methods, which handle the correct class selection and initialization.
+Instead, use the `pagy` method, which handle the correct class selection and initialization.
 !!!
 
 ==- Common Options
@@ -45,7 +52,7 @@ Individual paginators may offer additional options, which are documented with th
 - `jsonapi: true`
   - Enable JSON:API-compliant URLs and query_params
 - `:params`
-  - Set it to a `Hash` of params to merge with the query params, or a `Lambda` that can edit/add/delete the request params (modify the query_params: yhe result is ignored). Keys
+  - Set it to a `Hash` of params to merge with the query params, or a `Lambda` that can edit/add/delete the request params (modify the query_params directly: the result is ignored). Keys
     must be strings.
 - `:max_pages`
   - Allow only `:max_pages`
@@ -53,8 +60,10 @@ Individual paginators may offer additional options, which are documented with th
   - Set it to change the symbol of the `:page` in URLs and query_params (default `:page`).
 - `:limit_sym`
   - Set it to change the symbol of the `:limit` in URLs and query_params (default `:limit`).
+- `:request_path`
+  - Override the request path in pagination URLs. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/Practical%20Guide/how-to.md#pass-the-request-path))_
 - `:request`
-  - **Set this hash only for non-rack environments** _(It is set automatically from the request)_. For example: 
+  - **Set this hash only for non-rack environments** _(It is set automatically from the request)_. For example:
     ```ruby
      { base_url:     'http://www.example.com',
        path:         '/path',
@@ -77,16 +86,24 @@ Individual paginators may offer additional readers, wich are documented with the
 - `next`
   - The next page
 
+==- Exceptions
+
+- `Pagy::OptionError`
+  - A subclass of `ArgumentError` that offers information to rescue invalid options passed to the constructor.
+  - For example: `rescue Pagy::OptionError => e`
+    - `e.pagy` the pagy object
+    - `e.option` the offending option symbol (e.g. `:page`)
+    - `e.value` the value of the offending option (e.g. `-3`)
+
 === Paginators
 
-- [pagy_array](paginators/array.md)
-- [pagy_calendar](paginators/calendar.md)
-- [pagy_countless](paginators/countless.md)
-- [pagy_keynav](paginators/keynav.md)
-- [pagy_keyset](paginators/keyset.md)
-- [pagy_offset](paginators/offset.md)
-- [pagy_elasticsearch_rails](paginators/searches/elasticsearch_rails.md)
-- [pagy_meilisearch](paginators/searches/meilisearch.md)
-- [pagy_searchkick](paginators/searches/searchkick.md)
+- [:offset](paginators/offset.md)
+- [:countless](paginators/countless.md)
+- [:keyset](paginators/keyset.md)
+- [:keynav](paginators/keynav.md)
+- [:calendar](paginators/calendar.md)
+- [:elasticsearch_rails](paginators/elasticsearch_rails.md)
+- [:meilisearch](paginators/meilisearch.md)
+- [:searchkick](paginators/searchkick.md)
 
 ===

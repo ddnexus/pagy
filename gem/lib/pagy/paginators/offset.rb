@@ -9,11 +9,11 @@ class Pagy
     def paginate(backend, collection, **options)
       backend.instance_eval do
         options[:request] ||= Get.hash_from(request)
-        options[:count]   ||= Pagy::Offset.get_count(collection, options)
+        options[:count]   ||= options[:array] ? collection.size : Offset.get_count(collection, options)
         options[:page]    ||= Get.page_from(params, options)
         options[:limit]     = Get.limit_from(params, options)
-        pagy = Pagy::Offset.new(**options)
-        [pagy, pagy.records(collection)]
+        pagy = Offset.new(**options)
+        [pagy, options[:array] ? collection[pagy.offset, pagy.limit] : pagy.records(collection)]
       end
     end
   end
