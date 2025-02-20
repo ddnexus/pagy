@@ -42,7 +42,7 @@ class Pagy
     files.each { |file| FileUtils.cp(ROOT.join('javascripts', file), destination) }
   end
 
-  attr_reader :page, :count, :previous, :next, :in, :limit, :options, :last
+  attr_reader :page, :next, :in, :limit, :options
 
   protected
 

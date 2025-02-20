@@ -18,11 +18,11 @@ describe "Pagy Keynav" do
           _(records.first.id).must_equal 13
           _(pagy.update).must_equal ['key', :page, 3, [2, 1, ["dog", "Denis", 44]]]
         end
-        it 'uses :stringify_keyset_values' do
+        it 'uses :pre_serialize' do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
                                           page:                    ['key', 2, 2, [10], nil],
                                           limit:                   10,
-                                          stringify_keyset_values: ->(attr) { attr.tap { |a| a[:id] = a[:id].to_s } })
+                                          pre_serialize: ->(attr) { attr[:id] = attr[:id].to_s })
           _(pagy.next).must_equal(3)
           _(pagy.update).must_equal ['key', :page, 3, [2, 1, ["20"]]]
         end

@@ -41,7 +41,7 @@ class Pagy
       assign_previous_and_next
     end
 
-    attr_reader :offset, :from, :to
+    attr_reader :offset, :count, :from, :to, :in
 
     def records(collection)
       collection.offset(@offset).limit(@limit)

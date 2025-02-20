@@ -33,11 +33,11 @@ describe "Pagy Keyset" do
           _(records.size).must_equal 10
           _(records.first.id).must_equal 13
         end
-        it 'use the :stringify_keyset_values' do
+        it 'use the :pre_serialize' do
           pagy    = Pagy::Keyset.new(model.order(:animal, :name, :id),
-                                     page:                    "WyJjYXQiLCJFbGxhIiwxOF0",
-                                     limit:                   10,
-                                     stringify_keyset_values: ->(attr) { attr.tap { |a| a[:name] = a[:name].to_s } })
+                                     page:          "WyJjYXQiLCJFbGxhIiwxOF0",
+                                     limit:         10,
+                                     pre_serialize: ->(attr) { attr[:name] = attr[:name].to_s })
           records = pagy.records
           _(pagy.next).must_equal "WyJkb2ciLCJEZW5pcyIsNDRd"
           _(records.size).must_equal 10

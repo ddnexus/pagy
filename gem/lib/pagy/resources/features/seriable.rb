@@ -3,6 +3,8 @@
 class Pagy
   # Add methods enabling navigation with *_nav and *_nav_js helpers
   module Seriable
+    attr_reader :previous, :last
+
     protected
 
     LENGTH = 7
