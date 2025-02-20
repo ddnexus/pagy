@@ -2,8 +2,8 @@
 title: pagy_meilisearch
 icon: arrow-left
 categories:
-- Search
-- Backend
+  - Paginators
+  - Search
 ---
 
 # pagy_meilisearch

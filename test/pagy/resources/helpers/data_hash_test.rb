@@ -6,7 +6,7 @@ require_relative '../../../files/models'
 require_relative '../../../mock_helpers/app'
 
 describe 'Pluck pagy hash' do
-  describe 'pluck_hash for Pagy' do
+  describe 'data_hash for Pagy' do
     let(:app) { MockApp.new }
     before do
       @collection = MockCollection.new
@@ -24,30 +24,30 @@ describe 'Pluck pagy hash' do
 
     it 'works with unset DEFAULT' do
       pagy, _records = app.send(:pagy_offset, @collection)
-      _(pagy.pluck_hash).must_rematch :unset_default
+      _(pagy.data_hash).must_rematch :unset_default
     end
     it 'checks for unknown keys' do
-      pagy, _records = app.send(:pagy_offset, @collection, keys: %i[page unknown_key])
-      _ { pagy.pluck_hash }.must_raise Pagy::OptionError
+      pagy, _records = app.send(:pagy_offset, @collection, data_keys: %i[page unknown_key])
+      _ { pagy.data_hash }.must_raise Pagy::OptionError
     end
     it 'returns only specific keys' do
-      pagy, _records = app.send(:pagy_offset, @collection, keys: %i[url_template page count previous next last])
-      _(pagy.pluck_hash).must_rematch :data
+      pagy, _records = app.send(:pagy_offset, @collection, data_keys: %i[url_template page count previous next last])
+      _(pagy.data_hash).must_rematch :data
     end
     it 'returns only specific keys (from helper args)' do
       pagy, _records = app.send(:pagy_offset, @collection)
-      _(pagy.pluck_hash(keys: %i[url_template page count previous next last])).must_rematch :data
+      _(pagy.data_hash(data_keys: %i[url_template page count previous next last])).must_rematch :data
     end
     it 'checks for unknown keys for Pagy::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app.send(:pagy_calendar, Event.all,
-                                                    year: { keys: %i[page unknown_key] })
-      _ { calendar[:year].pluck_hash }.must_raise Pagy::OptionError
+                                                    year: { data_keys: %i[page unknown_key] })
+      _ { calendar[:year].data_hash }.must_raise Pagy::OptionError
     end
     it 'returns only specific keys for Pagy::Calendar::Unit' do
       calendar, _pagy, _records = calendar_app(params: { month_page: 3 })
                                   .send(:pagy_calendar, Event.all,
-                                        month: { keys: %i[url_template page from to previous next last] })
-      _(calendar[:month].pluck_hash).must_rematch :data
+                                        month: { data_keys: %i[url_template page from to previous next last] })
+      _(calendar[:month].data_hash).must_rematch :data
     end
   end
 end

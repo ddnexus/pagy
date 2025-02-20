@@ -2,7 +2,6 @@
 title: pagy_array
 icon: arrow-left
 categories:
-  - Backend
   - Paginators
 ---
 
@@ -17,6 +16,7 @@ It **fully** supports **ALL** the helpers and navigators.
 !!!danger Bad!
 
 ```rb
+
 def index
   @pagy, @comments = pagy_array(Comment.all.to_a) # your code is wasting memory!
 end
@@ -28,6 +28,7 @@ Do not use `pagy_array` with any persistent storage collection (database, elasti
 !!!success Good
 
 ```rb
+
 def index
   @pagy, @special_items = pagy_array(array_from_memory)
 end
@@ -38,10 +39,10 @@ Use with collections that are already loaded in memory. (e.g. arrays of cached i
 
 ==- Options
 
-See [pagy_offset options](offset.md#specific-options)
+See [pagy_offset options](offset.md#options)
 
 ==- Readers
 
-See [pagy_offset readers](offset.md#specific-readers)
-                           
+See [pagy_offset readers](offset.md#readers)
+
 ===

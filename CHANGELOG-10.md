@@ -48,9 +48,8 @@ None
 
 ### Overview
 
-This version is a complete redesign of the legacy code.
-Your old code will require quite a few (but minor) changes in order to work.
-After that... **this API will be stable for a long time**: we promise.
+This version is a complete redesign of the legacy code. Your old code will require quite a few (but minor) changes in order to
+work. After that... **this API will be stable for a long time**: we promise.
 
 - Reduce the required config by **99%**: no require, no extras, no DEFAULT
 - All the methods are **autoloaded only if you use them**. Unused method consume no memory.
@@ -216,24 +215,25 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `headers`
 
-- Remove any existing `pagy_headers_merge`. Merge it with `response.headers.merge!(@pagy.headers_hash(**))`
-- Pass your `:headers` option _preferably_ to the `headers_hash` helper method, but you can also pass it to the paginator method,
-  although is less direct.
+- Remove any existing `pagy_headers_merge`. Merge it with `response.headers.merge!(@pagy.headers_hash)`
+- Rename any existing `:headers` variable to `:headers_map` (renamed because it's a map of the headers)
+- Pass the `:headers_map` option directly to the `headers_hash` helper (or to the paginator if needed)
 
 ##### `jsonapi`
 
-- Rename any existing `pagy_jsonapi_links` to `pagy_links_hash`.
+- Rename any existing `pagy_jsonapi_links(@pagy` to `@pagy.links_hash(`.
   - _Notice that the `nil` links are now removed as the `JSON:API` specifications require._
 - Enable the feature by passing the `jsonapi: true` option to the paginator method.
 
 ##### `keyset`
 
-- Replace any existing `:jsonify_keyset_attributes` with `stringify_keyset_values`.
-  - The lambda receives the same `keyset_attributes` argument, but it must return the array of attribute values.
-    `->(keyset_attributes) { ...; keyset_attributes.values }`.
+- Replace any existing `:jsonify_keyset_attributes` with `:pre_serialize`.
+  - The lambda receives the same `keyset_attributes` argument, but it must modifiy directly the serialization of specific values.
+    The lambda's return value is ignored.
+    `->(attrs) { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }`.
 - Remove any existing`:filter_newest`. Override the `compose_predicate` method instead.
-- Replace any existing `pagy_keyset_first_url` with `@pagy.page_url(:first`
-- Replace any existing `pagy_keyset_next_url` with `@pagy.page_url(:next`
+- Replace any existing `pagy_keyset_first_url(@pagy` with `@pagy.page_url(:first`
+- Replace any existing `pagy_keyset_next_url(@pagy` with `@pagy.page_url(:next`
 
 ##### `limit`
 
@@ -243,11 +243,10 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `metadata`
 
-- Rename `pagy_metadata` to `@pagy.pluck_hash` (renamed because it's what it does and return).
+- Rename `pagy_metadata(@pagy` to `@pagy.data_hash(` (renamed because it's what it does and return).
 - Rename any existing `:scaffold_url` to `url_template` (renamed because it's a template string).
-- Rename any existing `:metadata` option to `:keys` (renamed because they are keys).
-- Pass your `:keys` array _preferably_ to the `pluck_hash` helper method, but you can also pass it to the paginator method,
-  although is less direct.
+- Rename any existing `:metadata` option to `:data_keys` (renamed because they are keys).
+- Pass the `:data_keys` option directly to the `data_hash` helper (or to the paginator if needed)
 
 ##### `overflow`
 

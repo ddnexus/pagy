@@ -1,19 +1,20 @@
 ---
-title: pagy.merge_headers
+title: headers_hash
 icon: arrow-right
 ---
 
-`pagy_merge_headers` generates the standard `link` header defined in the
-[RFC-8288](https://tools.ietf.org/html/rfc8288), adds 4 customizable headers useful for pagination, and merges them into the `response.headers`.
+`headers_hash` generates the standard `link` header defined in the
+[RFC-8288](https://tools.ietf.org/html/rfc8288), adds 4 customizable headers useful for pagination, that you can merge into the `response.headers`.
 
 It also follows the header casing introduced by `rack` version `3+` _(see the [rack-issue](https://github.com/rack/rack/issues/1592))_.
 
 ```ruby Controller
 # Paginate as usual with ANY pagy_* backend paginator
-pagy, records = pagy_offset(collection, **options)
+@pagy, @records = pagy_offset(collection, **options)
 # Merge the headers to the response
-pagy_merge_headers(pagy, **options)
-render json: records
+headers = @pagy.headers_hash(**options)
+response.headers.merge!(headers)
+render json: @records
 ```
 
 ==- Options

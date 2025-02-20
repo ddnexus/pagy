@@ -1,9 +1,8 @@
 ---
 title: pagy_keynav
 icon: arrow-left
-categories: 
-- Backend
-- Paginators
+categories:
+  - Paginators
 ---
 
 `pagy_keyset` is a KEYSET paginator usable with `ActiveRecord::Relation` and `Sequel::Dataset` ordered set.

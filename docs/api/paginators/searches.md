@@ -4,8 +4,8 @@ icon: database
 order: -100
 expanded: true
 categories:
-- Backend
-- Search Paginators
+  - Paginators
+  - Sesrch
 ---
 
 The search paginators are specialized methods for handling `ElasticsearchRails`, `Meilisearch` and `Searchkick` collections.

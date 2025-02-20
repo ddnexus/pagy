@@ -1,17 +1,16 @@
 ---
 title: pagy_elasticsearch_rails
 icon: arrow-left
-categories: 
-- Search
-- Backend
+categories:
+  - Paginators
+  - Search
 ---
 
 `pagy_elasticsearch_rails` is a paginator method for `ElasticsearchRails` response objects.
 
 +++ Active mode
 
-!!! success Pagy searches and paginates
-You use the `pagy_search` method in place of the `search` method.
+!!! success Pagy searches and paginates You use the `pagy_search` method in place of the `search` method.
 !!!
 
 ```ruby Model
@@ -29,8 +28,7 @@ search = Article.pagy_search(params[:q]).results
 
 +++ Passive mode
 
-!!! success You search and paginate
-Pagy creates its object out of your result.
+!!! success You search and paginate Pagy creates its object out of your result.
 !!!
 
 ```ruby Controller
@@ -41,7 +39,7 @@ Pagy creates its object out of your result.
 ```
 
 +++
- 
+
 ==- Options
 
 - `search_method: :my_search`

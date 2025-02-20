@@ -2,7 +2,6 @@
 title: pagy_offset
 icon: arrow-left
 categories: 
-- Backend
 - Paginators
 ---
 
@@ -32,10 +31,18 @@ See also [Common Options](../paginators.md#common-options)
 
 - `offset`
   - The OFFSET used in the SQL query
+- `count`
+  - The collection count
 - `from`
   - The position in the collection of the first item in the page. Different Pagy classes can use diffrent value-types for it
 - `to`
   - The position in the collection of the last item in the page. Different Pagy classes can use diffrent value-types for it
+- `in`
+  - The actual items in the page
+- `previous`
+  - The previous page
+- `last`
+  - The last page
 
 See also [Common Readers](../paginators.md#common-readers)
 

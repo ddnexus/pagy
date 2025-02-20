@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Pagy
+  # Generte  hash of the pagination links
   def links_hash(**)
     url = compose_page_url(PAGE_TOKEN, **)
     { first: compose_page_url(nil, **) }.tap do |links| # first is present, but the URL omits the nil page param

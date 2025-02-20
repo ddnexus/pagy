@@ -2,8 +2,8 @@
 title: pagy_searchkick
 icon: arrow-left
 categories:
-- Search
-- Backend
+  - Paginators
+  - Search
 ---
 
 # pagy_searchkick
@@ -16,8 +16,7 @@ Searchkick.extend Pagy::Searchkick
 
 +++ Active mode
 
-!!! success Pagy searches and paginates
-You use the `pagy_search` method in place of the `search` method.
+!!! success Pagy searches and paginates You use the `pagy_search` method in place of the `search` method.
 !!!
 
 ```ruby Model
@@ -35,8 +34,7 @@ search = Searchkick.pagy_search(params[:q], models: [Article, Categories])
 
 +++ Passive mode
 
-!!! success You search and paginate
-Pagy creates its object out of your result.
+!!! success You search and paginate Pagy creates its object out of your result.
 !!!
 
 ```ruby Controller

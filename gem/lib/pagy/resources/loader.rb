@@ -4,7 +4,7 @@ class Pagy
   module Loader
     # Define the autoloading system for each helper/component method
     methods = { page_url:              'helpers/page_url',
-                pluck_hash:            'helpers/pluck_hash',
+                data_hash:             'helpers/data_hash',
                 headers_hash:          'helpers/headers_hash',
                 links_hash:            'helpers/links_hash',
                 next_a_tag:            'components/previous_next_tags',

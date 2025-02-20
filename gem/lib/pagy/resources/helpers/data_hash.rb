@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Pluck the pagy internal data
-  def pluck_hash(keys: @options[:keys], **)
-    keys ||= %i[url_template first_url previous_url page_url next_url last_url
-                count page limit last in from to previous next options series sequels]
-    keys -= %i[count limit] if calendar?
+  # Generate a hash of the wanted internal data
+  def data_hash(data_keys: @options[:data_keys] ||
+    %i[url_template first_url previous_url page_url next_url last_url
+       count page limit last in from to previous next options series sequels], **)
+    data_keys   -= %i[count limit] if calendar?
     url_template = compose_page_url(PAGE_TOKEN, **)
     {}.tap do |data|
-      keys.each do |key|
+      data_keys.each do |key|
         data[key] = case key
                     when :url_template then url_template
                     when :first_url    then compose_page_url(nil, **)

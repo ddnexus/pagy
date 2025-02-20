@@ -1,15 +1,15 @@
 ---
-title: pagy.pluck_hash
+title: data_hash
 icon: arrow-right
 order: 100
 ---
 
-`pluck_hash` extracts a hash of the key/values that you pluck from the pagy object. It is useful to export the pagination
+`data_hash` extracts a hash of the key/values that you pluck from the pagy object. It is useful to export the pagination
 data to Javascript frameworks like Vue.js, react.js, etc.
 
 ```ruby Controller (action)
 @pagy, @records = pagy_offset(collection, **options)
-pagy_hash       = pagy_extract_hash(@pagy, pluck_keys: %i[page previous next previous_url next_url ...])
+pagy_hash       = pagy_extract_hash(@pagy, data_keys: %i[page previous next previous_url next_url ...])
 #=> { page: 3, previous: 2, next: 4, previous_url: ... } 
 render json: { data: @records, pagy: pagy_hash }
 ```

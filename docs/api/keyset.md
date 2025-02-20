@@ -294,7 +294,7 @@ Here is what you can do:
 # Match the microsecods with the strings stored into the time columns of SQLite
 stringify_keyset_values = lambda do |attrs|
   # Convert it to a string matching the stored value/format in SQLite DB
-  attrs.tap { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }
+  attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N')
 end
 
 Pagy::Keyset(set, stringify_keyset_values:)

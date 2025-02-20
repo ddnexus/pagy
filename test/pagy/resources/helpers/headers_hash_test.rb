@@ -16,11 +16,11 @@ describe 'headers_hash' do
       _(pagy.headers_hash).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, = app.send(:pagy_offset, @collection, headers: { limit: 'Per-Page', count: 'Total', pages: false })
+      pagy, = app.send(:pagy_offset, @collection, headers_map: { limit: 'Per-Page', count: 'Total', pages: false })
       _(pagy.headers_hash).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, = app.send(:pagy_offset, @collection, headers: { limit: false, count: false })
+      pagy, = app.send(:pagy_offset, @collection, headers_map: { limit: false, count: false })
       _(pagy.headers_hash).must_rematch :headers
     end
     it 'returns the countless headers hash' do
@@ -44,11 +44,11 @@ describe 'headers_hash' do
       _(pagy.headers_hash).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, = app.send(:pagy_offset, Event.all, headers: { limit: 'Per-Page', count: 'Total', pages: false })
+      pagy, = app.send(:pagy_offset, Event.all, headers_map: { limit: 'Per-Page', count: 'Total', pages: false })
       _(pagy.headers_hash).must_rematch :headers
     end
     it 'returns custom headers hash' do
-      pagy, = app.send(:pagy_offset, Event.all, headers: { limit: false, count: false })
+      pagy, = app.send(:pagy_offset, Event.all, headers_map: { limit: false, count: false })
       _(pagy.headers_hash).must_rematch :headers
     end
     it 'returns the countless headers hash' do
@@ -75,7 +75,7 @@ describe 'headers_hash' do
       pagy, = app.send(:pagy_keyset,
                        Pet.order(:id),
                        page: 'WzIwXQ',
-                       headers: { limit: 'Per-Page', page: 'Page', count: 'Total', pages: false })
+                       headers_map: { limit: 'Per-Page', page: 'Page', count: 'Total', pages: false })
       _(pagy.headers_hash).must_rematch :headers
     end
     it 'omit next on last page' do

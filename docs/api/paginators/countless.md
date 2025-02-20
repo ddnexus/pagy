@@ -2,7 +2,6 @@
 title: pagy_countless
 icon: arrow-left
 categories:
-  - Backend
   - Paginators
 ---
 

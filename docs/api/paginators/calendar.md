@@ -2,7 +2,6 @@
 title: pagy_calendar
 icon: arrow-left
 categories:
-  - Backend
   - Paginators
 image: none
 ---
