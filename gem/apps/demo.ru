@@ -43,7 +43,7 @@ require 'sinatra/base'
 
 # Sinatra application
 class PagyDemo < Sinatra::Base
-  include Pagy::Paginators
+  include Pagy::Backend
   PAGY_OPTIONS = { requestable_limit: 100 }.freeze
 
   get '/' do
@@ -52,7 +52,7 @@ class PagyDemo < Sinatra::Base
 
   get '/template' do
     collection = MockCollection.new
-    @pagy, @records = pagy_offset(collection, **PAGY_OPTIONS)
+    @pagy, @records = pagy(:offset, collection, **PAGY_OPTIONS)
 
     erb :template, locals: { pagy: @pagy, name: 'pagy', css_anchor: 'pagy-scss' }
   end
@@ -76,7 +76,7 @@ class PagyDemo < Sinatra::Base
   NAMES.each do |name, value|
     get("/#{name}") do
       collection = MockCollection.new
-      @pagy, @records = pagy_offset(collection, **PAGY_OPTIONS)
+      @pagy, @records = pagy(:offset, collection, **PAGY_OPTIONS)
 
       erb :helpers, locals: { name:, style: value[:style], css_anchor: value[:css_anchor] }
     end

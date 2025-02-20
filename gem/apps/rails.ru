@@ -100,7 +100,7 @@ end
 # Controllers
 class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
-  include Pagy::Paginators
+  include Pagy::Backend
   PAGY_OPTIONS = { limit:             10,
                    requestable_limit: 100 }.freeze
 

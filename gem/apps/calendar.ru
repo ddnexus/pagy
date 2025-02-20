@@ -38,7 +38,7 @@ end
 require 'sinatra/base'
 # Sinatra application
 class PagyCalendar < Sinatra::Base
-  include Pagy::Paginators
+  include Pagy::Backend
 
   # This method must be implemented by the application.
   # It must return the starting and ending local Time objects array defining the calendar :period
@@ -78,11 +78,11 @@ class PagyCalendar < Sinatra::Base
     # object to paginate the unfiltered collection. (It's active by default even without a :skip param).
     # You way want to invert the logic (also in the view) with something like `active: params[:active]`,
     # which would be inactive by default and only active on demand.
-    @calendar, @pagy, @events = pagy_calendar(Event.all,
-                                              year:   {},
-                                              month:  {},
-                                              day:    {},
-                                              active: !params[:skip])
+    @calendar, @pagy, @events = pagy(:calendar, Event.all,
+                                     year:   {},
+                                     month:  {},
+                                     day:    {},
+                                     active: !params[:skip])
     erb :main
   end
 

@@ -15,7 +15,7 @@ end
 describe 'calendar' do
   describe 'instance methods' do
     it 'returns a Pagy::Calendar::Month instance' do
-      calendar, pagy, _records = app(params: { page: 1 }).send(:pagy_calendar,
+      calendar, pagy, _records = app(params: { page: 1 }).send(:pagy, :calendar,
                                                                Event.all,
                                                                month: { period: [Time.now, Time.now + 5000] },
                                                                pagy:  {})
@@ -23,7 +23,7 @@ describe 'calendar' do
       _(pagy).must_be_instance_of Pagy::Offset
     end
     it 'skips the calendar' do
-      calendar, pagy, records = app(params: { page: 1 }).send(:pagy_calendar,
+      calendar, pagy, records = app(params: { page: 1 }).send(:pagy, :calendar,
                                                               Event.all,
                                                               month:  { period: [Time.now, Time.now + 5000] },
                                                               pagy:   {},
@@ -35,14 +35,14 @@ describe 'calendar' do
       _(pagy.last).must_equal 26
     end
     it 'raises ArgumentError for wrong conf' do
-      _ { MockApp::Calendar.new.send(:pagy_calendar, Event.all, []) }.must_raise ArgumentError
-      _ { MockApp::Calendar.new.send(:pagy_calendar, Event.all, unknown: {}) }.must_raise ArgumentError
-      _ { MockApp::Calendar.new.send(:pagy_calendar, Event.all, year: []) }.must_raise TypeError
-      _ { MockApp::Calendar.new.send(:pagy_calendar, Event.all, {}) }.must_raise ArgumentError
+      _ { MockApp::Calendar.new.send(:pagy, :calendar, Event.all, []) }.must_raise ArgumentError
+      _ { MockApp::Calendar.new.send(:pagy, :calendar, Event.all, unknown: {}) }.must_raise ArgumentError
+      _ { MockApp::Calendar.new.send(:pagy, :calendar, Event.all, year: []) }.must_raise TypeError
+      _ { MockApp::Calendar.new.send(:pagy, :calendar, Event.all, {}) }.must_raise ArgumentError
     end
     it 'selects :year for the pages and check the total' do
       total                    = 0
-      calendar, _pagy, entries = app(params: { year_page: 1 }).send(:pagy_calendar,
+      calendar, _pagy, entries = app(params: { year_page: 1 }).send(:pagy, :calendar,
                                                                     Event.all,
                                                                     year: {},
                                                                     pagy: { limit: 600 })
@@ -53,7 +53,7 @@ describe 'calendar' do
       _(entries.map(&:time)).must_rematch :entries
       total                    += entries.size
       calendar, _pagy, entries = app(params: { year_page: 2 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        year: {},
                                        pagy: { limit: 600 })
@@ -64,7 +64,7 @@ describe 'calendar' do
       _(entries.map(&:time)).must_rematch :entries_2
       total                    += entries.size
       calendar, _pagy, entries = app(params: { year_page: 3 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        year: {},
                                        pagy: { limit: 600 })
@@ -77,7 +77,7 @@ describe 'calendar' do
     end
     it 'selects :quarter for the first page' do
       calendar, _pagy, entries = app(params: { quarter_page: 1 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        quarter: {},
                                        pagy:    { limit: 600 })
@@ -89,7 +89,7 @@ describe 'calendar' do
     end
     it 'selects :quarter for an intermediate page' do
       calendar, _pagy, entries = app(params: { quarter_page: 4 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        quarter: {},
                                        pagy:    { limit: 600 })
@@ -101,7 +101,7 @@ describe 'calendar' do
     end
     it 'selects :quarter for last page' do
       calendar, _pagy, entries = app(params: { quarter_page: 9 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        quarter: {},
                                        pagy:    { limit: 600 })
@@ -113,7 +113,7 @@ describe 'calendar' do
     end
     it 'selects :month for the first page' do
       calendar, _pagy, entries = app(params: { month_page: 1 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        month: {},
                                        pagy:  { limit: 600 })
@@ -125,7 +125,7 @@ describe 'calendar' do
     end
     it 'selects :month for an intermediate page' do
       calendar, _pagy, entries = app(params: { month_page: 25 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        month: {},
                                        pagy:  { limit: 600 })
@@ -136,7 +136,7 @@ describe 'calendar' do
     end
     it 'selects :month for the last page' do
       calendar, _pagy, entries = app(params: { month_page: 26 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        month: {},
                                        pagy:  { limit: 600 })
@@ -147,7 +147,7 @@ describe 'calendar' do
     end
     it 'selects :week for the first page' do
       calendar, _pagy, entries = app(params: { week_page: 1 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        week: { first_weekday: :sunday },
                                        pagy: { limit: 600 })
@@ -159,7 +159,7 @@ describe 'calendar' do
     end
     it 'selects :week for an intermediate page' do
       calendar, _pagy, entries = app(params: { week_page: 25 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        week: { first_weekday: :sunday },
                                        pagy: { limit: 600 })
@@ -170,7 +170,7 @@ describe 'calendar' do
     end
     it 'selects :week for the last page' do
       calendar, _pagy, entries = app(params: { week_page: 109 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event.all,
                                        week: { first_weekday: :sunday },
                                        pagy: { limit: 600 })
@@ -181,7 +181,7 @@ describe 'calendar' do
     end
     it 'selects :day for the first page' do
       calendar, _pagy, entries = app(params: { day_page: 1 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event40.all,
                                        day:  {},
                                        pagy: { limit: 600 })
@@ -194,7 +194,7 @@ describe 'calendar' do
     end
     it 'selects :day for an intermediate page' do
       calendar, _pagy, entries = app(params: { day_page: 25 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event40.all,
                                        day:  {},
                                        pagy: { limit: 600 })
@@ -206,7 +206,7 @@ describe 'calendar' do
     end
     it 'selects :day for the last page' do
       calendar, _pagy, entries = app(params: { day_page: 60 })
-                                 .send(:pagy_calendar,
+                                 .send(:pagy, :calendar,
                                        Event40.all,
                                        day:  {},
                                        pagy: { limit: 600 })
@@ -217,7 +217,7 @@ describe 'calendar' do
     end
     it 'runs multiple units' do
       calendar, pagy, entries = app(params: { year_page: 2, month_page: 7, page: 2 })
-                                .send(:pagy_calendar,
+                                .send(:pagy, :calendar,
                                       Event.all,
                                       year:  {},
                                       month: {},
@@ -232,7 +232,7 @@ describe 'calendar' do
   describe 'pagy_calendar_url_at' do
     it 'returns the url' do
       calendar, _pagy, _entries = app(params: { year_page: 2, month_page: 7, page: 2 })
-                                  .send(:pagy_calendar,
+                                  .send(:pagy, :calendar,
                                         Event.all,
                                         year:  {},
                                         month: {},
@@ -262,7 +262,7 @@ describe 'calendar' do
   describe "#showtime" do
     it "returns the showtime" do
       calendar, _pagy, _entries = app(params: { year_page: 2, month_page: 7, page: 2 })
-                                  .send(:pagy_calendar, Event.all,
+                                  .send(:pagy, :calendar, Event.all,
                                         year:  {},
                                         month: {},
                                         pagy:  { limit: 10 })
@@ -272,7 +272,7 @@ describe 'calendar' do
   describe 'a_lambda with counts' do
     it 'includes title and class in page anchor' do
       app_counts                = MockApp::CalendarCounts.new
-      calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
+      calendar, _pagy, _entries = app_counts.send(:pagy, :calendar,
                                                   Event.all,
                                                   year:  {},
                                                   month: {},
@@ -290,7 +290,7 @@ describe 'calendar' do
                                                     month_page: 7,
                                                     day_page:   4,
                                                     page:       1 })
-        calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
+        calendar, _pagy, _entries = app_counts.send(:pagy, :calendar,
                                                     Event.all,
                                                     year:  {},
                                                     month: {},
@@ -304,7 +304,7 @@ describe 'calendar' do
     it 'works with a_string_attributes' do
       app_counts                = MockApp::CalendarCounts.new(params: { year_page: 2,
                                                                         page:      1 })
-      calendar, _pagy, _entries = app_counts.send(:pagy_calendar,
+      calendar, _pagy, _entries = app_counts.send(:pagy, :calendar,
                                                   Event.all,
                                                   year: {},
                                                   pagy: { limit: 10 })

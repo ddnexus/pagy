@@ -15,7 +15,7 @@ describe 'pagy/data_pagy_attribute' do
 
       describe "data_pagy_attribute #{test}" do
         it "runs #{test}" do
-          pagy, = app.send(:pagy_offset, MockCollection.new, count: 100)
+          pagy, = app.send(:pagy, :offset, MockCollection.new, count: 100)
           _(pagy.send(:data_pagy_attribute, :test_function, 'some-string', 123, true)).must_rematch :data_1
         end
       end

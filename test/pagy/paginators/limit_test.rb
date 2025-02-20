@@ -10,19 +10,19 @@ require_relative '../../mock_helpers/app'
 def test_limit_options_params(limit, options, params)
   app = MockApp.new params: params
   _(app.params.to_param).must_equal params.to_param
-  [[:pagy_elasticsearch_rails, MockElasticsearchRails::Model],
-   [:pagy_searchkick, MockSearchkick::Model]].each do |meth, mod|
-    pagy, records = app.send(meth, mod.pagy_search('a').records, **options)
+  [[:elasticsearch_rails, MockElasticsearchRails::Model],
+   [:searchkick, MockSearchkick::Model]].each do |paginator, mod|
+    pagy, records = app.send(:pagy, paginator, mod.pagy_search('a').records, **options)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
-  [[:pagy_meilisearch, MockMeilisearch::Model]].each do |meth, mod|
-    pagy, records = app.send(meth, mod.pagy_search('a'), **options)
+  [[:meilisearch, MockMeilisearch::Model]].each do |paginator, mod|
+    pagy, records = app.send(:pagy, paginator, mod.pagy_search('a'), **options)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
-  %i[pagy_offset pagy_array].each do |meth|
-    pagy, records = app.send(meth, @collection, **options)
+  %i[offset array].each do |paginator|
+    pagy, records = app.send(:pagy, paginator, @collection, **options)
     _(pagy.limit).must_equal limit
     _(records.size).must_equal limit
   end
@@ -106,10 +106,10 @@ describe 'requestable_limit' do
       end
     end
     it 'renders or skips the output depending on requestable_limit' do
-      pagy, = app.send(:pagy_offset, MockCollection.new, page: 3, requestable_limit: 100)
+      pagy, = app.send(:pagy, :offset, MockCollection.new, page: 3, requestable_limit: 100)
       _(pagy.limit_selector_js_tag).must_rematch :selector_1
       _(pagy.limit_selector_js_tag(id: 'test-id', item_name: 'products')).must_rematch :selector_2
-      pagy, = app.send(:pagy_offset, MockCollection.new, page: 3)
+      pagy, = app.send(:pagy, :offset, MockCollection.new, page: 3)
       _ { pagy.limit_selector_js_tag(id: 'test-id') }.must_raise Pagy::OptionError
     end
   end

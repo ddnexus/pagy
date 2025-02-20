@@ -49,13 +49,14 @@ None
 ### Overview
 
 This version is a complete redesign of the legacy code. Your old code will require quite a few (but minor) changes in order to
-work. After that... **this API will be stable for a long time**: we promise.
+work. After that... **this API will be stable for a long time**.
 
 - Reduce the required config by **99%**: no require, no extras, no DEFAULT
 - All the methods are **autoloaded only if you use them**. Unused method consume no memory.
-- Explicit, unambiguous naming: less documentation to search in order to know what a method does
-- The code structure and naming is cleaner, more concise, readable, and consistent
-- The new docs are short and to the point, easy to browse and understand
+- Explicit, unambiguous naming. Less documentation to search to know what a method does.
+- The `pagy` method handles **all** the collections and pagination techniques. No pollution in your controllers.
+- All the UI components and helpers are now instance methods of `@pagy`. Easier, direct without pollution.
+- The new docs are short and to the point, easy to browse and understand.
 - You can also get valuable real-time support with the new Pagy AI
 
 ### New features
@@ -89,24 +90,17 @@ to start with the new version of the file.
 
 #### The `Pagy::DEFAULT` is now frozen
 
-- The `Pagy::DEFAULT` is now an internal hash and it's frozen. If you set any option with it, you should pass them to the
-  paginator methods.
+- The `Pagy::DEFAULT` is now an internal hash and it's frozen. If your app was setting any option with it, you should pass them to
+  the `pagy` methods.
 - As an alternative to avoid repetitions, define your own `PAGY_OPTIONS` hash and pass it to the different paginator
   methods/helpers. See the new `pagy.rb` initializer for details.
 
-#### The `Pagy::Backend` has been replaced by `Pagy::Paginators`
+#### All the `pagy_*` methods and the `Pagy::Frontend` are gone
 
-- Replace the `include Pagy::Backend` with `include Pagy::Paginators`
-- All the old **paginators** (i.e. the one returning pagy, and records) are still backend method
-- Just one change: `pagy(` is now `pagy_offset(` for consistency with the other old and new paginator methods
-- See how to deal with other helpers added by extras in the [Extras Changes](#extras-changes)
-
-#### The `Pagy::Frontend` is gone
-
-- Frontend methods returning HTML code are now `@pagy` instance methods. Easier and cleaner.
 - Remove any existing `include Pagy::Frontend`
-- You should convert all the existing `pagy_*` methods **ONLY in the views**.
-- See the [Extras Changes](#extras-changes) for a details
+- The paginators (i.e. the `pagy_*` methods returning the `@pagy` instance and the `@records`) got integrated in the `pagy`
+  method. All the other `pagy_*` helpers are now `@pagy` instance methods.
+- See how to replace them in the [Extras Changes](#extras-changes).
 
 #### Core changes
 
@@ -122,27 +116,35 @@ to start with the new version of the file.
 These renamings implement a consistent logic throughout the gem, aimed to avoid confusion and to improve readability and
 understanding.
 
-_Notice that your app will likely use a little fraction of the list below_
+##### Public API
 
 {.compact}
 
 | Type        | Search (old)         | Replace with (new)     | Why?                                                                                      |
 |-------------|----------------------|------------------------|-------------------------------------------------------------------------------------------|
-| Constructor | `pagy(`              | `pagy_offset(`         | Because it's consistent with the other old and new paginator methods                      |
 | Function    | `Pagy.root`          | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                    |
 | Accessor    | `pagy.vars`          | `pagy.options`         | Because they are actually `options` that don't change during execution                    |
 | Accessor    | `pagy.pages`         | `pagy.last`            | Because they are just an alias that we removed for simplicity                             |
 | Exception   | `VariableError`      | `OptionError`          | Because it's consistent with the `options` argument                                       |
 | Accessor    | `e.variable`         | `e.option`             | Because it's consistent with its `OptionError` class                                      |
-| Method      | `pagy_anchor(pagy`   | `pagy.a_lambda(`       | Because it creates a lambda, not the a tag itself, and it's a pagy instance method        |
 | Option      | `:anchor_string`     | `:a_string_attributes` | Because it is explicit and unambiguous                                                    |
-| Method      | `pagy_url_for(@pagy` | `@pagy.page_url(`      | Because `_url_for` suggests diversifiable results, and rails-related expectations         |
-| Method      | `pagy_t`             | `I18n.translate`       | Because we don't use abbreviated words anymore, and it's exactly like with the I18n gem   |
 | Naming      | `*prev*`             | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)    |
 | Option      | `size: 7`            | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s |
 | Option      | `ends: false`        | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                  |
 | Option      | `:page_param`        | `:page_sym`            | Because `page_param` make people think "page param value"                                 |
 | Option      | `:limit_param`       | `:limit_sym`           | Because `limit_param` make people think "limit param value"                               |
+ 
+##### Internal API
+
+You may check these if you override some internal method:
+
+{.compact}
+
+| Type        | Search (old)         | Replace with (new)     | Why?                                                                                      |
+|-------------|----------------------|------------------------|-------------------------------------------------------------------------------------------|
+| Method      | `pagy_url_for(@pagy` | `@pagy.page_url(`      | Because `_url_for` suggests diversifiable results, and rails-related expectations         |
+| Method      | `pagy_anchor(pagy`   | `pagy.a_lambda(`       | Because it creates a lambda, not the a tag itself, and it's a pagy instance method        |
+| Method      | `pagy_t`             | `I18n.translate`       | Because we don't use abbreviated words anymore, and it's exactly like with the I18n gem   |
 | Method/args | `label_for`          | `page_label`           | Because `_for` suggests diversifiable results                                             |
 | Method/args | `label`              | `page_label`           | Because we don't need two methods                                                         |
 
@@ -154,49 +156,45 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `array`
 
-- Just use the method without further changes.
+- Replace `pagy_array` with `pagy(:array, ...)`
 
 ##### `arel`
 
-- Replace `pagy_arel` with `pagy_offset` and add `count_over: true` to the existing options.
+- Replace `pagy_arel(...)` with `pagy(:offset, count_over: true, ...)`.
 
-##### `boostrap`
-
-- Replace any existing `pagy_bootstrap_nav(@pagy` with `@pagy.nav_tag(style: :bootstrap`
-- Replace any existing `pagy_bootstrap_nav_js(@pagy` with `@pagy.nav_js_tag(style: :bootstrap`
-- Replace any existing `pagy_bootstrap_combo_nav_js(@pagy` with `@pagy.combo_nav_js_tag(style: :bootstrap`
-
-##### `bulma`
-
-- Replace any existing `pagy_bulma_nav(@pagy` with `@pagy.nav_tag(style: :bulma`
-- Replace any existing `pagy_bulma_nav_js(@pagy` with `@pagy.nav_js_tag(style: :bulma`
-- Replace any existing `pagy_bulma_combo_nav_js(@pagy` with `@pagy.combo_nav_js_tag(style: :bulma`
-
-##### `pagy` (and all helpers)
+##### `pagy`
 
 - All the old helpers are now `@pagy` instance methods with more explicit names (e.g. `_tag`)
 
-| Search (old)                   | Replace with (new)             |
-|--------------------------------|--------------------------------|
-| `pagy_nav(@pagy`               | `@pagy.nav_tag(`               |
-| `pagy_nav_js(@pagy`            | `@pagy.nav_js_tag(`            |
-| `pagy_combo_nav_js(@pagy`      | `@pagy.combo_nav_js_tag(`      |
-| `pagy_info(@pagy`              | `@pagy.info_tag(`              |
-| `pagy_limit_selector_js(@pagy` | `@pagy.limit_selector_js_tag(` |
-| `pagy_prev_url(@pagy`          | `@pagy.previous_url(`          |
-| `pagy_next_url(@pagy`          | `@pagy.next_url(`              |
-| `pagy_prev_link(@pagy`         | `@pagy.previous_link_tag(`     |
-| `pagy_next_link(@pagy`         | `@pagy.next_link_tag(`         |
-| `pagy_prev_a(@pagy`            | `@pagy.previous_a_tag(`        |
-| `pagy_next_a(@pagy`            | `@pagy.next_a_tag(`            |
+| Search (old)                         | Replace with (new)                 |
+|--------------------------------------|------------------------------------|
+| `pagy_nav(@pagy, ...)`               | `@pagy.nav_tag(...)`               |
+| `pagy_nav_js(@pagy, ...)`            | `@pagy.nav_js_tag(...)`            |
+| `pagy_combo_nav_js(@pagy, ...)`      | `@pagy.combo_nav_js_tag(...)`      |
+| `pagy_info(@pagy, ...)`              | `@pagy.info_tag(...)`              |
+| `pagy_limit_selector_js(@pagy, ...)` | `@pagy.limit_selector_js_tag(...)` |
+| `pagy_prev_url(@pagy, ...)`          | `@pagy.page_url(:previous, ...)`   |
+| `pagy_next_url(@pagy, ...)`          | `@pagy.page_url(:next, ...)`       |
+| `pagy_prev_link(@pagy, ...)`         | `@pagy.previous_link_tag(...)`     |
+| `pagy_next_link(@pagy, ...)`         | `@pagy.next_link_tag(...)`         |
+| `pagy_prev_a(@pagy, ...)`            | `@pagy.previous_a_tag(...)`        |
+| `pagy_next_a(@pagy, ...)`            | `@pagy.next_a_tag(...)`            |
+
+##### `boostrap`, `bulma`
+
+- Replace any existing `pagy_<extra-name>_nav(@pagy, ...)` with `@pagy.nav_tag(style: :<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_nav_js(@pagy, ...)` with `@pagy.nav_js_tag(style: :<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_combo_nav_js(@pagy, ...)` with `@pagy.combo_nav_js_tag(style: :<extra-name>, ...)`
 
 ##### `countless`
 
-- Rename any existing `:countless_minimal` to `:headless`.
+- Replace `pagy_countless(...)` with `pagy(:countless, ...)`
+- Rename any existing `countless_minimal: true` to `headless: true`.
 - Keep the rest unchanged.
 
 ##### `calendar`
 
+- Replace `pagy_calendar(...)` with `pagy(:calendar, ...)`
 - Discard your old localization config (if any), and uncomment and customize this line in the `pagy.rb` initializer:
   `Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`.
   - _Notice: In non-rails apps, calendar localization requires to add `rails-i18n` to your Gemfile._
@@ -205,6 +203,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
 
+- Replace `pagy_<extra-name>(...)` with `pagy(:<extra-name>, ...)`
 - **Active and passive modes are now handled by the same paginator method.**
   - Replace any existing `Pagy.new_from_<extra-name>` with `pagy_<extra-name>`.
 - **The name customization of the `pagy_search` has been discontinued.**
@@ -215,38 +214,39 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `headers`
 
-- Remove any existing `pagy_headers_merge`. Merge it with `response.headers.merge!(@pagy.headers_hash)`
-- Rename any existing `:headers` variable to `:headers_map` (renamed because it's a map of the headers)
+- Replace any existing `pagy_headers(...)` with `@pagy.headers_hash(...)`.
+- Replace any existing `pagy_headers_merge` with `response.headers.merge!(@pagy.headers_hash)`
+- Rename any existing `:headers` variable to `:headers_map` (renamed because it's the map of the headers)
 - Pass the `:headers_map` option directly to the `headers_hash` helper (or to the paginator if needed)
 
 ##### `jsonapi`
 
-- Rename any existing `pagy_jsonapi_links(@pagy` to `@pagy.links_hash(`.
+- Rename any existing `pagy_jsonapi_links(@pagy, ...)` to `@pagy.links_hash(...)`.
   - _Notice that the `nil` links are now removed as the `JSON:API` specifications require._
 - Enable the feature by passing the `jsonapi: true` option to the paginator method.
 
 ##### `keyset`
 
+- Replace `pagy_keyset(...)` with `pagy(:keyset, ...)`
 - Replace any existing `:jsonify_keyset_attributes` with `:pre_serialize`.
-  - The lambda receives the same `keyset_attributes` argument, but it must modifiy directly the serialization of specific values.
-    The lambda's return value is ignored.
-    `->(attrs) { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }`.
+  - The lambda receives the same `keyset_attributes` argument, but it must modifiy directly the specific values. The lambda's
+    return value is ignored. For example: `->(attrs) { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }`.
 - Remove any existing`:filter_newest`. Override the `compose_predicate` method instead.
-- Replace any existing `pagy_keyset_first_url(@pagy` with `@pagy.page_url(:first`
-- Replace any existing `pagy_keyset_next_url(@pagy` with `@pagy.page_url(:next`
+- Replace any existing `pagy_keyset_first_url(@pagy, ...)` with `@pagy.page_url(:first, ...)`
+- Replace any existing `pagy_keyset_next_url(@pagy, ...)` with `@pagy.page_url(:next, ...)`
 
 ##### `limit`
 
 - Rename the existing `:limit_param` to `:limit_sym`
 - Delete the existing `:limit_max` and `:limit_extra`
-- Enable the feature by passing `requestable_limit: your_max_limit` option to the paginator method.
+- Enable the feature by passing `requestable_limit: your_max_limit` option to the `pagy` method.
 
 ##### `metadata`
 
-- Rename `pagy_metadata(@pagy` to `@pagy.data_hash(` (renamed because it's what it does and return).
+- Rename `pagy_metadata(@pagy, ...)` to `@pagy.data_hash(...)` (renamed because it's what it does and return).
 - Rename any existing `:scaffold_url` to `url_template` (renamed because it's a template string).
-- Rename any existing `:metadata` option to `:data_keys` (renamed because they are keys).
-- Pass the `:data_keys` option directly to the `data_hash` helper (or to the paginator if needed)
+- Rename any existing `:metadata` option to `:data_keys` (renamed because they are the keys identifying the data).
+- Pass the `:data_keys` option directly to the `data_hash` helper (or to the `pagy` method if needed)
 
 ##### `overflow`
 
@@ -266,7 +266,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
   - If you used `overflow: :last_page` and you really want it despite what explained before:
     - Set `raise_range_error: true`.
     - Use `rescue Pagy::RangeError => e` in your method.
-    - Redirect to `pagy_page_url(pagy, pagy.last)`.
+    - Redirect to `@pagy.page_url(:last)`.
 
 ##### `standalone`
 
@@ -280,7 +280,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `i18n`
 
-- If you really need it, uncomment/add this line to your initializer: `Pagy::Frontend.translate_with_the_slower_i18n_gem!`.
+- If you really need it, uncomment/add this line to your initializer: `Pagy.translate_with_the_slower_i18n_gem!`.
 
 ##### `gearbox` (discontinued feature)
 
@@ -299,7 +299,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 #### Direct instantiation of the pagy classes is not recommended
 
-- The provided paginators methods ensure easier usage, maintenance and forward compatibility.
+- The provided `pagy(:<paginator>, ...)` method ensure easier usage, maintenance and forward compatibility.
 - Use the implementing classes only if the documentation explicitly suggests you to do so, or if you know what you are doing.
 
 #### Possibly Breaking Overridings

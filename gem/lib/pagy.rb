@@ -16,7 +16,7 @@ class Pagy
   LABEL_TOKEN = 'L'
   A_TAG       = '<a style="display: none;">#</a>'
 
-  autoload :Paginators,         PAGY_PATH.join('paginators/paginators')
+  autoload :Backend,            PAGY_PATH.join('backend')
   autoload :I18n,               PAGY_PATH.join('resources/i18n/i18n')
   autoload :Calendar,           PAGY_PATH.join('calendar/calendar')
   autoload :Offset,             PAGY_PATH.join('offset/offset')
@@ -26,9 +26,6 @@ class Pagy
   autoload :Searchkick,         PAGY_PATH.join('offset/search')
   autoload :Keyset,             PAGY_PATH.join('keyset/keyset')
   autoload :Console,            PAGY_PATH.join('console')
-
-  include Linkable
-  include Loader
 
   def self.translate_with_the_slower_i18n_gem!
     send(:remove_const, :I18n)
@@ -41,6 +38,9 @@ class Pagy
     files = %w[pagy.mjs pagy.js pagy.js.map pagy.min.js] if files.empty?
     files.each { |file| FileUtils.cp(ROOT.join('javascripts', file), destination) }
   end
+
+  include Linkable
+  include Loader
 
   attr_reader :page, :next, :in, :limit, :options
 

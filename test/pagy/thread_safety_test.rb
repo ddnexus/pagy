@@ -20,13 +20,13 @@ describe 'Autoload thread safety' do
 
                  period = [Time.zone.local(2022, 3, 1, 3), Time.zone.local(2023, 3, 10, 3)]
                  calendar, pagy_c, _records = MockApp::Calendar.new(params: { page: 1 })
-                                                               .send(:pagy_calendar,
+                                                               .send(:pagy, :calendar,
                                                                      Event.all,
                                                                      month: { period: period },
                                                                      pagy: {})
 
                  results = MockMeilisearch::Model.ms_search('a')
-                 pagy_m  = MockApp.new.send(:pagy_meilisearch, results)
+                 pagy_m  = MockApp.new.send(:pagy, :meilisearch, results)
 
                  if calendar[:month].instance_of?(Pagy::Calendar::Month) &&
                     pagy_c.instance_of?(Pagy::Offset) &&

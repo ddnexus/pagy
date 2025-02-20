@@ -9,7 +9,7 @@ describe 'keyset' do
     describe "#pagy_keyset #{model}" do
       it 'returns Pagy::Keyset object and records' do
         app = MockApp.new(params: { page: nil })
-        pagy, records = app.send(:pagy_keyset,
+        pagy, records = app.send(:pagy, :keyset,
                                  model.order(:animal, :name, :id),
                                  tuple_comparison: true,
                                  limit: 10)
@@ -19,7 +19,7 @@ describe 'keyset' do
       end
       it 'pulls the page from params' do
         app = MockApp.new(params: { page: "WzEwXQ", limit: 10 })
-        pagy, records = app.send(:pagy_keyset,
+        pagy, records = app.send(:pagy, :keyset,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  requestable_limit: 100)
@@ -30,7 +30,7 @@ describe 'keyset' do
     describe "URL helpers #{model}" do
       it 'returns the URLs for first page' do
         app = MockApp.new(params: { page: nil, limit: 10 })
-        pagy, _records = app.send(:pagy_keyset,
+        pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
                                   requestable_limit: 100)
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"
@@ -38,7 +38,7 @@ describe 'keyset' do
       end
       it 'returns the URLs for second page' do
         app = MockApp.new(params: { page: "WzEwXQ", limit: 10 })
-        pagy, _records = app.send(:pagy_keyset,
+        pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
                                   requestable_limit: 100)
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"
@@ -46,7 +46,7 @@ describe 'keyset' do
       end
       it 'returns the URLs for last page' do
         app = MockApp.new(params: { page: "WzQwXQ", limit: 10 })
-        pagy, _records = app.send(:pagy_keyset,
+        pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
                                   requestable_limit: 100)
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"

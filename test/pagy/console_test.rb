@@ -22,7 +22,7 @@ describe 'Pagy::Console' do
 
   describe 'included' do
     it 'includes Pagy::Backend and Pagy::Frontend' do
-      _(MockContext).must_be :<, Pagy::Paginators
+      _(MockContext).must_be :<, Pagy::Backend
     end
   end
 

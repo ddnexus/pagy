@@ -37,7 +37,7 @@ class Pagy
       end
     end
 
-    include Paginators
+    include Backend
 
     # Direct reference to request.params via a method
     def params

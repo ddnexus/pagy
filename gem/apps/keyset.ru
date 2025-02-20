@@ -34,7 +34,7 @@ end
 require 'sinatra/base'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
-  include Pagy::Paginators
+  include Pagy::Backend
   PAGY_OPTIONS = { limit: 10, requestable_limit: 100 }.freeze
 
   # Root route/action
@@ -42,7 +42,7 @@ class PagyKeyset < Sinatra::Base
     Time.zone = 'UTC'
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset(Pet.order(@order))
+    @pagy, @pets = pagy(:keyset, Pet.order(@order))
     erb :main
   end
 

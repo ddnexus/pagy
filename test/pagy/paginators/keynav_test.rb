@@ -11,7 +11,7 @@ describe 'Keynav' do
     describe "pagy_augmented #{model}" do
       it 'works for page 1' do
         app           = MockApp.new(params: {})
-        pagy, records = app.send(:pagy_keynav_js,
+        pagy, records = app.send(:pagy, :keynav_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
@@ -23,7 +23,7 @@ describe 'Keynav' do
       it 'works for page 2' do
         app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['ppp', 'key', 2, 2, [10]].to_json)},
                                     cookie: 'pagy=ppp')
-        pagy, records = app.send(:pagy_keynav_js,
+        pagy, records = app.send(:pagy, :keynav_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
@@ -36,7 +36,7 @@ describe 'Keynav' do
       it 'reset pagination for missing cookie' do
         app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['zzz', 'key', 2, 2, [10]].to_json)},
                                     cookie: 'pagy=ppp')
-        pagy, records = app.send(:pagy_keynav_js,
+        pagy, records = app.send(:pagy, :keynav_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
@@ -47,7 +47,7 @@ describe 'Keynav' do
       end
       it 'fallback to Countless if page param is a string with space' do
         app           = MockApp.new(cookie: 'pagy=ppp', params: { page: '2 3' })
-        pagy, records = app.send(:pagy_keynav_js,
+        pagy, records = app.send(:pagy, :keynav_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)
@@ -59,7 +59,7 @@ describe 'Keynav' do
       it 'works for page 5' do
         app           = MockApp.new(params: {page: Pagy::B64.urlsafe_encode(['ppp', 'key', 5, 5, [40]].to_json)},
                                     cookie: 'pagy=ppp')
-        pagy, records = app.send(:pagy_keynav_js,
+        pagy, records = app.send(:pagy, :keynav_js,
                                  model.order(:id),
                                  tuple_comparison: true,
                                  limit:            10)

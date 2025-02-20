@@ -35,7 +35,7 @@ require 'sinatra/base'
 require 'logger'
 # Sinatra application
 class PagyKeysetSequel < Sinatra::Base
-  include Pagy::Paginators
+  include Pagy::Backend
   PAGY_OPTIONS = { limit: 10, requestable_limit: 100 }.freeze
 
   # Root route/action

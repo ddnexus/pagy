@@ -14,20 +14,20 @@ describe 'links_hash' do
   describe 'links_hash' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
-      pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default, page_sym: :number, limit_sym: :size)
+      pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default, page_sym: :number, limit_sym: :size)
       result = pagy.links_hash
       _(result.keys).must_equal %i[first previous next last]
       _(result).must_rematch :result
     end
     it 'sets the previous value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 1 } })
-      pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default)
+      pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default)
       result = pagy.links_hash
       _(result[:previous]).must_be_nil
     end
     it 'sets the next value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { page: 50 } })
-      pagy, _records = app.send(:pagy_offset, @collection, **@pagy_default)
+      pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default)
       result = pagy.links_hash
       _(result[:next]).must_be_nil
     end
@@ -35,7 +35,7 @@ describe 'links_hash' do
   describe 'links_hash (keyset)' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { latest: 'WzIwXQ', size: 10 } })
-      pagy, _records = app.send(:pagy_keyset,
+      pagy, _records = app.send(:pagy, :keyset,
                                 Pet.order(:id),
                                 **@pagy_default,
                                 page_sym:  :latest,
@@ -47,7 +47,7 @@ describe 'links_hash' do
 
     it 'sets the next value to null when the link is unavailable' do
       app = MockApp.new(params: { page: { size: 50 } })
-      pagy, _records = app.send(:pagy_keyset,
+      pagy, _records = app.send(:pagy, :keyset,
                                 Pet.order(:id),
                                 **@pagy_default,
                                 page_sym:  :latest,

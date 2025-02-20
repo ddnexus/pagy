@@ -42,7 +42,7 @@ describe 'searchkick' do
         @collection = MockCollection.new
       end
       it 'paginates response with defaults' do
-        pagy, response = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
+        pagy, response = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search('a') { 'B-' })
         results = response.results
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
@@ -52,7 +52,7 @@ describe 'searchkick' do
         _(results).must_rematch :results
       end
       it 'paginates results with defaults' do
-        pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search.results)
+        pagy, results = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search.results)
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal Pagy::DEFAULT[:limit]
@@ -61,7 +61,7 @@ describe 'searchkick' do
         _(results).must_rematch :results
       end
       it 'paginates with options' do
-        pagy, results = app.send(:pagy_searchkick, MockSearchkick::Model.pagy_search('b').results,
+        pagy, results = app.send(:pagy, :searchkick, MockSearchkick::Model.pagy_search('b').results,
                                  page: 2, limit: 10, a_string_attributes: 'X')
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
@@ -75,7 +75,7 @@ describe 'searchkick' do
     describe 'Use search object' do
       it 'paginates results with defaults' do
         results = MockSearchkick::Model.search('a')
-        pagy    = app.send(:pagy_searchkick, results)
+        pagy    = app.send(:pagy, :searchkick, results)
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
@@ -83,7 +83,7 @@ describe 'searchkick' do
       end
       it 'paginates results with options and no term' do
         results = MockSearchkick::Model.search('b', page: 2, per_page: 15)
-        pagy    = app.send(:pagy_searchkick, results, a_string_attributes: 'X')
+        pagy    = app.send(:pagy, :searchkick, results, a_string_attributes: 'X')
         _(pagy).must_be_instance_of Pagy::Searchkick
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
