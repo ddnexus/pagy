@@ -177,7 +177,7 @@ class PagyCalendar < Sinatra::Base
           <% end %>
         </div>
 
-        <!-- standard pagination of the selected month -->
+        <!-- standard pagination of the last unit (month) -->
         <p><%= @pagy.nav_tag(:bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.last > 1 %><p/>
       </div>
     ERB

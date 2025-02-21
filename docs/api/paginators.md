@@ -24,11 +24,13 @@ Then you use it in your actions:
 ...
 ```
 - `:offset`, `:keyset`, etc. are symbols identifying the paginator to use, i.e. the internal method handling that type of pagination.
-- `@pagy` is the pagination object. It provides all the UI components and helpers to use in your code, as instance methods.
+- `@pagy` is the pagination object. It provides an instance method for every UI components and helpers to use in your code.
 - `@records` are the records belonging to the requested page
 
 
-!!!success All the pagy methods are autoloaded on demand. Unused methods consume no memory.
+!!!success Every pagy method is autoloaded on demand
+
+Unused methods consume no memory.
 !!!
 
 !!!warning Avoid direct instantiation of Pagy classes.
@@ -49,21 +51,21 @@ Individual paginators may offer additional options, which are documented with th
   - Set the number of items per page (default `20`)
 - `requestable_limit: max_limit`
   - Allow the client to set the `:limit` in the `request` params, up-to the `max_limit` value
-- `jsonapi: true`
-  - Enable JSON:API-compliant URLs and query_params
-- `:params`
-  - Set it to a `Hash` of params to merge with the query params, or a `Lambda` that can edit/add/delete the request params (modify the query_params directly: the result is ignored). Keys
-    must be strings.
 - `:max_pages`
   - Allow only `:max_pages`
+- `jsonapi: true`
+  - Enable JSON:API-compliant URLs and query_params
 - `:page_sym`
   - Set it to change the symbol of the `:page` in URLs and query_params (default `:page`).
 - `:limit_sym`
   - Set it to change the symbol of the `:limit` in URLs and query_params (default `:limit`).
+- `:params`
+  - Set it to a `Hash` of params to merge with the query params, or a `Lambda` that can edit/add/delete the request params (modify the query_params directly: the result is ignored). Keys
+    must be strings.
 - `:request_path`
   - Override the request path in pagination URLs. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/Practical%20Guide/how-to.md#pass-the-request-path))_
 - `:request`
-  - **Set this hash only for non-rack environments** _(It is set automatically from the request)_. For example:
+  - **Set this hash only for non-rack environments**. _(It is set automatically from the request)_. For example:
     ```ruby
      { base_url:     'http://www.example.com',
        path:         '/path',

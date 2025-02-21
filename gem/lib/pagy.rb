@@ -39,6 +39,8 @@ class Pagy
     files.each { |file| FileUtils.cp(ROOT.join('javascripts', file), destination) }
   end
 
+  def self.options = @options ||= {}
+
   include Linkable
   include Loader
 
@@ -70,6 +72,6 @@ class Pagy
       default = current::DEFAULT.merge(default)
       current = current.superclass
     end until current == Object  # rubocop:disable Lint/Loop  -- see https://github.com/rubocop/rubocop-performance/issues/362
-    @options = default.merge!(options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
+    @options = default.merge!(Pagy.options.merge(options).delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
   end
 end

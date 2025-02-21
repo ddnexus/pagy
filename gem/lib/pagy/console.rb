@@ -22,21 +22,15 @@ class Pagy
       end
 
       def offset(value) = tap { @collection = self[value..] }
-
-      def limit(value) = @collection[0, value]
-
-      def count(*) = size
+      def limit(value)  = @collection[0, value]
+      def count(*)      = size
     end
 
     include Backend
 
     # Direct reference to request.params via a method
-    def params = request.params
-
-    def request
-      @request ||= Request.new
-    end
-
+    def params     = request.params
+    def request    = @request ||= Request.new
     def collection = Collection
   end
 end

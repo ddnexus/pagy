@@ -35,7 +35,6 @@ require 'sinatra/base'
 # Sinatra application
 class PagyKeynav < Sinatra::Base
   include Pagy::Backend
-  PAGY_OPTIONS = { limit: 4, requestable_limit: 100 }.freeze
 
   get('/javascripts/:file') do
     format = params[:file].split('.').last
@@ -52,7 +51,7 @@ class PagyKeynav < Sinatra::Base
     Time.zone = 'UTC'
 
     @order       = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy(:keynav_js, Pet.order(@order), **PAGY_OPTIONS)
+    @pagy, @pets = pagy(:keynav_js, Pet.order(@order), limit: 4, requestable_limit: 100)
     @ids         = @pets.pluck(:id)
     erb :main
   end

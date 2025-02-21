@@ -101,12 +101,11 @@ end
 class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
   include Pagy::Backend
-  PAGY_OPTIONS = { limit:             10,
-                   requestable_limit: 100 }.freeze
 
   def index
-    @pagy, @comments = pagy_offset(Comment.all, **PAGY_OPTIONS)
-    # pagy_merge_headers(@pagy)
+    @pagy, @comments = pagy(:offset, Comment.all, limit: 10, requestable_limit: 100)
+    # Reload the page in the network tab of the Chrome Inspector to check
+    # response.headers.merge!(@pagy.headers_hash)
     render inline: TEMPLATE
   end
 end

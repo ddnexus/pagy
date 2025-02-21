@@ -3,15 +3,8 @@
 # Pagy initializer file (9.3.3)
 
 
-###################################### DEFAULT #######################################
-# Customizing the static and frozen Pagy::DEFAULT is NOT SUPPORTED anymore!
-#
-# As an alternative to avoid repetitions, define your own options hash here or in your
-# app code, and pass it to the paginator method. For example:
-#
-# PAGY_OPTIONS = { limit: 10 }.freeze
-# pagy_offset(collection, **PAGY_OPTIONS, **other_options)
-# pagy_keyset(set, **PAGY_OPTIONS, **other_options)
+################################## Global Options ####################################
+# Pagy.options[:limit] = 10
 
 
 ############ Sync Pagy Javascript Source #############################################
@@ -31,7 +24,7 @@
 # Override the dictionary lookup for customization. Just drop your customized
 # dictionary/dictionaries in a dir and unshift its pathname to the PATHNAMES array.
 # Example for Rails:
-# Pagy::I18n::PATHNAMES.unshift(Rails.root.join('config/locales'))
+# Pagy::I18n.pathnames.unshift(Rails.root.join('config/locales'))
 
 
 ############# I18n gem translation ###################################################

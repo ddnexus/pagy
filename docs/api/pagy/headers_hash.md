@@ -9,8 +9,8 @@ icon: list-unordered
 It also follows the header casing introduced by `rack` version `3+` _(see the [rack-issue](https://github.com/rack/rack/issues/1592))_.
 
 ```ruby Controller
-# Paginate as usual with ANY pagy_* backend paginator
-@pagy, @records = pagy_offset(collection, **options)
+# Any paginator will work
+@pagy, @records = pagy(:offset, collection, **options)
 # Merge the headers to the response
 headers = @pagy.headers_hash(**options)
 response.headers.merge!(headers)
@@ -23,7 +23,7 @@ render json: @records
   - The default pagy `:headers_names` are:
     ```ruby
     { page:  'current-page',
-      limit: 'page-items',
+      limit: 'page-limit',
       count: 'total-count',
       pages: 'total-pages' }
     ```

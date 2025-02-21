@@ -41,10 +41,12 @@ NAMES = { pagy:        { css_anchor: 'pagy-scss' },
 # Sinatra setup
 require 'sinatra/base'
 
+# Pagy init
+Pagy.options[:requestable_limit] = 100
+
 # Sinatra application
 class PagyDemo < Sinatra::Base
   include Pagy::Backend
-  PAGY_OPTIONS = { requestable_limit: 100 }.freeze
 
   get '/' do
     redirect '/pagy'
@@ -52,7 +54,7 @@ class PagyDemo < Sinatra::Base
 
   get '/template' do
     collection = MockCollection.new
-    @pagy, @records = pagy(:offset, collection, **PAGY_OPTIONS)
+    @pagy, @records = pagy(:offset, collection)
 
     erb :template, locals: { pagy: @pagy, name: 'pagy', css_anchor: 'pagy-scss' }
   end
@@ -76,7 +78,7 @@ class PagyDemo < Sinatra::Base
   NAMES.each do |name, value|
     get("/#{name}") do
       collection = MockCollection.new
-      @pagy, @records = pagy(:offset, collection, **PAGY_OPTIONS)
+      @pagy, @records = pagy(:offset, collection)
 
       erb :helpers, locals: { name:, style: value[:style], css_anchor: value[:css_anchor] }
     end

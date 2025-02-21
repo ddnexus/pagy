@@ -30,14 +30,14 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # Edit this section adding the legacy as needed
-# pagy initializer
+# Pagy initializer
+Pagy.options[:requestable_limit] = 100
 
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
   include Pagy::Backend
-  PAGY_OPTIONS = { requestable_limit: 100 }.freeze
 
   get('/javascripts/:file') do
     format = params[:file].split('.').last
@@ -52,9 +52,11 @@ class PagyRepro < Sinatra::Base
   # Edit this action as needed
   get '/' do
     collection = MockCollection.new
-    @pagy, @records = pagy(:offset, collection, **PAGY_OPTIONS)
-    # @pagy, @records = pagy_countless(collection, **PAGY_OPTIONS)
-    # @pagy, @records = pagy_array(Array(1..1000), **PAGY_OPTIONS)
+    @pagy, @records = pagy(collection)
+    # @pagy, @records = pagy(:offset, collection, limit: 7, requestable_limit: 30)
+    # @pagy, @records = pagy(:countless, collection)
+    # @pagy, @records = pagy(Array(1..1000), array: true)
+    # response.headers.merge!(@pagy.headers_hash)
     erb :main
   end
 

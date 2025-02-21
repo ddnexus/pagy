@@ -36,12 +36,12 @@ require 'logger'
 # Sinatra application
 class PagyKeysetSequel < Sinatra::Base
   include Pagy::Backend
-  PAGY_OPTIONS = { limit: 10, requestable_limit: 100 }.freeze
 
   # Root route/action
   get '/' do
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy_keyset(Pet.order(:animal, :name, Sequel.desc(:birthdate), :id))
+    @pagy, @pets = pagy(:keyset, Pet.order(:animal, :name, Sequel.desc(:birthdate), :id),
+                        limit: 10, requestable_limit: 100)
     erb :main
   end
 

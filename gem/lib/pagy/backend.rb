@@ -24,7 +24,7 @@ class Pagy
                        searchkick:          :SearchkickPaginator }.freeze
 
     define_method :pagy do |paginator = :offset, collection, **options|
-      Pagy.const_get(paginators_map[paginator]).paginate(self, collection, **options)
+      Pagy.const_get(paginators_map[paginator]).paginate(self, collection, **Pagy.options, **options)
     end
   end
 

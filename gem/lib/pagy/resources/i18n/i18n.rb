@@ -7,10 +7,9 @@ class Pagy
   # Pagy i18n implementation, compatible with the I18n gem, just a lot faster and lighter
   module I18n
     extend self
-    # rubocop:disable Style/MutableConstant
-    PATHNAMES = [ROOT.join('locales')]
-    DATA      = {}
-    # rubocop:enable Style/MutableConstant
+
+    def pathnames = @pathnames ||= [ROOT.join('locales')]
+    def locales   = @locales   ||= {}
 
     # Store the variable for the duration of a single request
     def locale=(value)
@@ -19,9 +18,9 @@ class Pagy
 
     def locale = Thread.current[:pagy_locale] || 'en'
 
-    # Translate and pluralize the key with the locale DATA
+    # Translate and pluralize the key with the locale entries
     def translate(key, **options)
-      data, p11n  = DATA[locale] || self.load
+      data, p11n  = locales[locale] || self.load
       translation = data[key] || (options[:count] && data[key += ".#{p11n.plural_for(options[:count])}"]) \
                       or return %([translation missing: "#{key}"])
       translation.gsub(/%{[^}]+?}/) { |match| options[:"#{match[2..-2]}"] || match }
@@ -30,12 +29,12 @@ class Pagy
     private
 
     def load
-      path = PATHNAMES.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
+      path = pathnames.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
       raise Errno::ENOENT, "missing dictionary file for #{locale.inspect} locale" unless path
 
-      dictionary   = YAML.load_file(path)[locale]
-      p11n         = dictionary['pagy'].delete('p11n')
-      DATA[locale] = [flatten_to_dot_keys(dictionary), Object.const_get("Pagy::I18n::P11n::#{p11n}")]
+      dictionary      = YAML.load_file(path)[locale]
+      p11n            = dictionary['pagy'].delete('p11n')
+      locales[locale] = [flatten_to_dot_keys(dictionary), Object.const_get("Pagy::I18n::P11n::#{p11n}")]
     end
 
     # Create a flat hash with dotted notation keys

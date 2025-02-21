@@ -85,21 +85,16 @@ work. After that... **this API will be stable for a long time**.
 
 #### Replace your `pagy.rb` config file
 
-With no more `Pagy::DEFAULT` and no more extras to `require`, all the statements in your old version are obsolete, so it's better
-to start with the new version of the file.
-
-#### The `Pagy::DEFAULT` is now frozen
-
-- The `Pagy::DEFAULT` is now an internal hash and it's frozen. If your app was setting any option with it, you should pass them to
-  the `pagy` methods.
-- As an alternative to avoid repetitions, define your own `PAGY_OPTIONS` hash and pass it to the different paginator
-  methods/helpers. See the new `pagy.rb` initializer for details.
+- Pratically all the statements in the old file are obsolete, so it's probably better to start with the new version of the file,
+  which is very short.
+- The `Pagy::DEFAULT` is now frozen and used internally. Use the `Pagy.options` hash for the same effect.
+- Copy over the `Pagy::DEFAULT` that apply (most are not needed anymore) and replace `Pagy::DEFAULT` with `Pagy.options`.
 
 #### All the `pagy_*` methods and the `Pagy::Frontend` are gone
 
 - Remove any existing `include Pagy::Frontend`
 - The paginators (i.e. the `pagy_*` methods returning the `@pagy` instance and the `@records`) got integrated in the `pagy`
-  method. All the other `pagy_*` helpers provided by `pagy::Frontend` are now `@pagy` instance methods.
+  method. All the other `pagy_*` helpers provided by the `Pagy::Frontend` are now `@pagy` instance methods.
 - See how to replace them in the [Extras Changes](#extras-changes).
 
 #### Core changes
@@ -120,33 +115,33 @@ understanding.
 
 {.compact}
 
-| Type        | Search (old)         | Replace with (new)     | Why?                                                                                      |
-|-------------|----------------------|------------------------|-------------------------------------------------------------------------------------------|
-| Function    | `Pagy.root`          | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                    |
-| Accessor    | `pagy.vars`          | `pagy.options`         | Because they are actually `options` that don't change during execution                    |
-| Accessor    | `pagy.pages`         | `pagy.last`            | Because they are just an alias that we removed for simplicity                             |
-| Exception   | `VariableError`      | `OptionError`          | Because it's consistent with the `options` argument                                       |
-| Accessor    | `e.variable`         | `e.option`             | Because it's consistent with its `OptionError` class                                      |
-| Option      | `:anchor_string`     | `:a_string_attributes` | Because it is explicit and unambiguous                                                    |
-| Naming      | `*prev*`             | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)    |
-| Option      | `size: 7`            | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s |
-| Option      | `ends: false`        | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                  |
-| Option      | `:page_param`        | `:page_sym`            | Because `page_param` make people think "page param value"                                 |
-| Option      | `:limit_param`       | `:limit_sym`           | Because `limit_param` make people think "limit param value"                               |
- 
+| Type      | Search (old)     | Replace with (new)     | Why?                                                                                      |
+|-----------|------------------|------------------------|-------------------------------------------------------------------------------------------|
+| Function  | `Pagy.root`      | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                    |
+| Accessor  | `pagy.vars`      | `pagy.options`         | Because they are actually `options` that don't change during execution                    |
+| Accessor  | `pagy.pages`     | `pagy.last`            | Because they are just an alias that we removed for simplicity                             |
+| Exception | `VariableError`  | `OptionError`          | Because it's consistent with the `options` argument                                       |
+| Accessor  | `e.variable`     | `e.option`             | Because it's consistent with its `OptionError` class                                      |
+| Option    | `:anchor_string` | `:a_string_attributes` | Because it is explicit and unambiguous                                                    |
+| Naming    | `*prev*`         | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)    |
+| Option    | `size: 7`        | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s |
+| Option    | `ends: false`    | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                  |
+| Option    | `:page_param`    | `:page_sym`            | Because `page_param` make people think "page param value"                                 |
+| Option    | `:limit_param`   | `:limit_sym`           | Because `limit_param` make people think "limit param value"                               |
+
 ##### Internal API
 
 You may check these if you override some internal method:
 
 {.compact}
 
-| Type        | Search (old)         | Replace with (new)     | Why?                                                                                      |
-|-------------|----------------------|------------------------|-------------------------------------------------------------------------------------------|
-| Method      | `pagy_url_for(@pagy` | `@pagy.page_url(`      | Because `_url_for` suggests diversifiable results, and rails-related expectations         |
-| Method      | `pagy_anchor(pagy`   | `pagy.a_lambda(`       | Because it creates a lambda, not the a tag itself, and it's a pagy instance method        |
-| Method      | `pagy_t`             | `I18n.translate`       | Because we don't use abbreviated words anymore, and it's exactly like with the I18n gem   |
-| Method/args | `label_for`          | `page_label`           | Because `_for` suggests diversifiable results                                             |
-| Method/args | `label`              | `page_label`           | Because we don't need two methods                                                         |
+| Type        | Search (old)         | Replace with (new) | Why?                                                                                    |
+|-------------|----------------------|--------------------|-----------------------------------------------------------------------------------------|
+| Method      | `pagy_url_for(@pagy` | `@pagy.page_url(`  | Because `_url_for` suggests diversifiable results, and rails-related expectations       |
+| Method      | `pagy_anchor(pagy`   | `pagy.a_lambda(`   | Because it creates a lambda, not the a tag itself, and it's a pagy instance method      |
+| Method      | `pagy_t`             | `I18n.translate`   | Because we don't use abbreviated words anymore, and it's exactly like with the I18n gem |
+| Method/args | `label_for`          | `page_label`       | Because `_for` suggests diversifiable results                                           |
+| Method/args | `label`              | `page_label`       | Because we don't need two methods                                                       |
 
 #### Extras Changes
 

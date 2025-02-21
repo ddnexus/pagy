@@ -6,7 +6,7 @@ require_relative 'links_hash'
 class Pagy
   # Generate a hash of RFC-8288-compliant http headers
   def headers_hash(headers_map: @options[:headers_map] ||
-    { page: 'current-page', limit: 'page-items', count: 'total-count', pages: 'total-pages' }, **)
+    { page: 'current-page', limit: 'page-limit', count: 'total-count', pages: 'total-pages' }, **)
     links = links_hash(**, absolute: true).map { |key, link| %(<#{link}>; rel="#{key}") }.join(', ')
     { 'link' => links }.tap do |hash|
       hash[headers_map[:page]]  = @page.to_s if @page && headers_map[:page]
