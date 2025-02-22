@@ -1,6 +1,6 @@
 ---
 title: :offset
-icon: plug
+icon: list-ordered
 order: 100
 categories: 
   - Paginators

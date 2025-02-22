@@ -46,7 +46,7 @@ None
 
 ## Version 10.0.0
 
-### Overview
+### Pagy 10: more with less!
 
 This version is a complete redesign of the legacy code. Your old code will require quite a few (but minor) changes in order to
 work. After that... **this API will be stable for a long time**.
@@ -72,7 +72,7 @@ work. After that... **this API will be stable for a long time**.
   - Updated the support for all the pagy helpers and `keynav` pagination.
 - **I18n refactoring**
   - No setup required: the locales and their pluralization are autoloaded when your app uses them.
-  - You can easily override the lookup of locale files with `Pagy::I18n::PATHNAMES.unshift(my_dictionaries)`.
+  - You can easily override the lookup of locale files with `Pagy::I18n.pathnames << my_dictionaries`.
 - **Simpler overriding**
   - The logic of helpers and paginators methods is simpler to understand and override in your own app code.
   - You won't even need to know anything about the implementation classes.

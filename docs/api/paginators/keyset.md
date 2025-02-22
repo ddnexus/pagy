@@ -1,7 +1,7 @@
 ---
 title: :keyset
-icon: plug
-order: 80
+icon: list-ordered
+order: 70
 categories:
   - Paginators
 ---

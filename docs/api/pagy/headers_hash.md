@@ -1,6 +1,10 @@
 ---
 title: headers_hash
 icon: list-unordered
+order: 190
+categories:
+  - Instance Methods
+  - Helpers
 ---
 
 `headers_hash` generates the standard `link` header defined in the

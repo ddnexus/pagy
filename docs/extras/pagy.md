@@ -33,7 +33,7 @@ pagy_prev_url(@pagy, absolute: bool)
 pagy_next_url(@pagy, absolute: bool)
 ```
 
-See [Javascript](/docs/api/resources/javascript.md).
+See [Javascript](/docs/resources/javascript.md).
 
 ## Methods
 
@@ -48,11 +48,11 @@ See [pagy_nav(pagy, **opts)](/docs/api/frontend.md#pagy-nav-pagy-opts).
 
 ==- `pagy_nav_js(pagy, **opts)`
 
-See [Javascript Navs](/docs/api/resources/javascript/navs.md).
+See [Javascript Navs](/docs/resources/javascript/navs.md).
 
 ==- `pagy_combo_nav_js(pagy, **opts)`
 
-See [Javascript Combo Navs](/docs/api/resources/javascript/combo-navs.md).
+See [Javascript Combo Navs](/docs/resources/javascript/combo-navs.md).
 
 ==- `pagy_info(pagy, **opts)`
 

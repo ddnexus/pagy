@@ -1,6 +1,6 @@
 ---
 title: :countless
-icon: plug
+icon: list-ordered
 order: 90
 categories:
   - Paginators

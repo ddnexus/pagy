@@ -1,7 +1,7 @@
 ---
 title: :keynav
-icon: plug
-order: 70
+icon: list-ordered
+order: 80
 categories:
   - Paginators
 ---

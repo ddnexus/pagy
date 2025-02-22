@@ -1,6 +1,6 @@
 ---
 title: :calendar
-icon: plug
+icon: calendar
 order: 60
 categories:
   - Paginators

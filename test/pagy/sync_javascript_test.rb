@@ -4,48 +4,72 @@ require_relative '../test_helper'
 require 'fileutils'
 require 'pathname'
 
-describe ".sync_javascript_source" do
+describe ".sync_javascript" do # Renamed to match the method
   let(:destination) { Dir.mktmpdir }
+  let(:all_files) { %w[pagy.mjs pagy.js pagy.js.map pagy.min.js] }
 
   after do
     FileUtils.rm_rf(destination)
   end
 
-  it "copies all default javascript files" do
-    Pagy.sync_javascript_source(destination)
+  it "copies all default javascript formats" do # Changed from 'files' to 'formats'
+    Pagy.sync_javascript(destination)
 
-    expected_files = %w[pagy.mjs pagy.js pagy.js.map pagy.min.js]
-    expected_files.each do |file|
-      _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to be copied" # Correct
+     all_files.each do |file|
+      _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to be copied"
     end
   end
 
-  it "copies specified javascript files" do
-    files = %w[pagy.js pagy.min.js]
-    Pagy.sync_javascript_source(destination, *files)
+  it "copies specified javascript formats" do # Changed from 'files' to 'formats'
+    formats = %i[js min] # Using symbols for formats
+    Pagy.sync_javascript(destination, *formats)
 
-    files.each do |file|
-      _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to be copied" # Correct
+    %w[pagy.js pagy.min.js].each do |file|
+      _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to be copied"
     end
 
     %w[pagy.mjs pagy.js.map].each do |file|
-      _(File.exist?(File.join(destination, file))).must_equal false, "Did NOT expect #{file} to be copied" # Correct
+      _(File.exist?(File.join(destination, file))).must_equal false, "Did NOT expect #{file} to be copied"
     end
   end
 
   it "raises an error if source file does not exist" do
-    _ { Pagy.sync_javascript_source(destination, "nonexistent_file.js") }.must_raise Errno::ENOENT # Correct (this one was already correct)
+    _ { Pagy.sync_javascript(destination, :nonexistent) }.must_raise Errno::ENOENT # Adjusted to use symbol
   end
 
   it "overwrites existing files" do
     file = "pagy.js"
     FileUtils.touch(File.join(destination, file))
     original_mtime = File.mtime(File.join(destination, file))
-    sleep 0.1 # Small delay (still not ideal, but keeping it as requested)
+    sleep 0.1
 
-    Pagy.sync_javascript_source(destination, file)
+    Pagy.sync_javascript(destination, :js) # Adjusted to use symbol
 
-    _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to be copied" # Correct
-    _(original_mtime < File.mtime(File.join(destination, file))).must_equal true, "File should have been overwritten" # Correct
+    _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to be copied"
+    _(original_mtime < File.mtime(File.join(destination, file))).must_equal true, "File should have been overwritten"
+  end
+
+  it "removes files not specified when copying a subset of formats" do # Adjusted description
+    keep_files   = %w[pagy.js pagy.min.js]
+    remove_files = all_files - keep_files
+
+    all_files.each { |file| FileUtils.cp(Pagy::ROOT.join('javascripts', file), destination) }
+    Pagy.sync_javascript(destination, :js, :min) # Adjusted to use symbols
+
+    keep_files.each do |file|
+      _(File.exist?(File.join(destination, file))).must_equal true, "Expected #{file} to remain"
+    end
+    remove_files.each do |file|
+      _(File.exist?(File.join(destination, file))).must_equal false, "Expected #{file} to be removed"
+    end
+  end
+
+  it "handles paths with Pathname objects" do
+    destination_path = Pathname.new(destination)
+    Pagy.sync_javascript(destination_path)
+
+    all_files.each do |file|
+      _(File.exist?(destination_path.join(file))).must_equal true, "Expected #{file} to be copied"
+    end
   end
 end

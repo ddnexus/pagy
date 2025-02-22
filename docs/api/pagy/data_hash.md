@@ -1,7 +1,10 @@
 ---
 title: data_hash
 icon: list-unordered
-order: 100
+order: 200
+categories:
+- Instance Methods
+- Helpers
 ---
 
 `data_hash` extracts a hash of the key/values that you pluck from the pagy object. It is useful to export the pagination

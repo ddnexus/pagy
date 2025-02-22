@@ -1,12 +1,12 @@
 ---
-title: pagy
+title: pagy • Paginators
 icon: database
 order: 200
 categories:
   - Paginators
 ---
 
-# pagy (method)
+# pagy - Paginator Method
 
 The `pagy` method starts every pagination. It wraps a collection and returns a pagy object and the page of results/records.
 

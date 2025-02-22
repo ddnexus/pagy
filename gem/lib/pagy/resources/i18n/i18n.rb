@@ -29,7 +29,7 @@ class Pagy
     private
 
     def load
-      path = pathnames.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
+      path = pathnames.reverse.map { |p| p.join("#{locale}.yml") }.find(&:exist?)
       raise Errno::ENOENT, "missing dictionary file for #{locale.inspect} locale" unless path
 
       dictionary      = YAML.load_file(path)[locale]

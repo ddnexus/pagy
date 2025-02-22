@@ -1,7 +1,7 @@
 ---
-title: links_hash
-icon: list-unordered
-order: 180
+title: page_url
+icon: arrow-right
+order: 175
 categories:
   - Instance Methods
   - Helpers

@@ -3,6 +3,7 @@
 require 'pathname'
 require_relative 'pagy/exceptions'
 require_relative 'pagy/resources/features/linkable'
+require_relative 'pagy/resources/features/configurable'
 require_relative 'pagy/resources/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
@@ -27,20 +28,9 @@ class Pagy
   autoload :Keyset,             PAGY_PATH.join('keyset/keyset')
   autoload :Console,            PAGY_PATH.join('console')
 
-  def self.translate_with_the_slower_i18n_gem!
-    send(:remove_const, :I18n)
-    send(:const_set, :I18n, ::I18n)
-    ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
-  end
-
-  # Ensure that the pagy javascript source files are installed and in sync with the Pagy::VERSION
-  def self.sync_javascript_source(destination, *files)
-    files = %w[pagy.mjs pagy.js pagy.js.map pagy.min.js] if files.empty?
-    files.each { |file| FileUtils.cp(ROOT.join('javascripts', file), destination) }
-  end
-
   def self.options = @options ||= {}
 
+  extend Configurable
   include Linkable
   include Loader
 
@@ -72,6 +62,6 @@ class Pagy
       default = current::DEFAULT.merge(default)
       current = current.superclass
     end until current == Object  # rubocop:disable Lint/Loop  -- see https://github.com/rubocop/rubocop-performance/issues/362
-    @options = default.merge!(Pagy.options.merge(options).delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
+    @options = default.merge!(options.delete_if { |k, v| default.key?(k) && (v.nil? || v == '') }).freeze
   end
 end
