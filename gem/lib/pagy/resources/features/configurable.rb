@@ -9,14 +9,12 @@ class Pagy
       ::I18n.load_path += Dir[ROOT.join('locales/*.yml')]
     end
 
-    # Ensure that the pagy javascript target formats are installed and in sync with the Pagy::VERSION
-    def sync_javascript(destination, *formats)
-      files = { mjs: 'pagy.mjs', js: 'pagy.js', map: 'pagy.js.map', min: 'pagy.min.js' }
-      (invalid = formats - files.keys).empty? || raise(Errno::ENOENT, "Invalid format(s): #{invalid.join(', ')}")
-
-      targets = formats.empty? ? files.values : files.values_at(*formats)
+    # Sync the pagy javascript targets
+    def sync_javascript(destination, *targets)
+      names   = %w[pagy.mjs pagy.js pagy.js.map pagy.min.js]
+      targets = names if targets.empty?
       targets.each { |filename| FileUtils.cp(ROOT.join('javascripts', filename), destination) }
-      (files.values - targets).each { |filename| FileUtils.rm_f(File.join(destination, filename)) }
+      (names - targets).each { |filename| FileUtils.rm_f(File.join(destination, filename)) }
     end
   end
 end

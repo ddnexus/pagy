@@ -14,14 +14,14 @@ class Pagy
     end
   end
 
+  # Search classes do not use OFFSET for querying a DB,
+  # however they use the same positional technique used by Offset
   class SearchBase < Offset
     DEFAULT = { search_method: :search }.freeze
 
     def search? = true
   end
 
-  # Offset classes do not use offset for querying a DB, so they are
-  # not actually offset subclasses, but rather offset-mimicking classes
   class ElasticsearchRails < SearchBase
     # Get the count from different version of ElasticsearchRails
     def self.total_count(results)

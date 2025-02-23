@@ -48,10 +48,14 @@ None
 
 ### Pagy 10: more with less!
 
-This version is a complete redesign of the legacy code. Your old code will require quite a few (but minor) changes in order to
-work. After that... **this API will be stable for a long time**.
+This version is a complete redesign of the legacy code.
 
-- Reduce the required config by **99%**: no require, no extras, no DEFAULT
+Your old code will require quite a few (but minor) changes in order to work. After that... **this API will be stable for a long
+time**.
+
+#### Changes Overview
+
+- Reduce the required config by **99%**: no requires, no extras, no DEFAULT
 - All the methods are **autoloaded only if you use them**. Unused method consume no memory.
 - Explicit, unambiguous naming. Less documentation to search to know what a method does.
 - The `pagy` method handles **all** the collections and pagination techniques. No pollution in your controllers.
@@ -66,16 +70,21 @@ work. After that... **this API will be stable for a long time**.
     The best technique for performance and functionality!
 - **The Countless pagination remembers the last page**
   - When you jump back a few pages in the pagination nav, you can jump forward as well now.
+- **Super simple API**
+  - Just two ways to interact with the pagination:
+    1. Through the `pagy(...)` paginator, which paginates any collection with any technique, returning the `@pagy` instance and
+       the `@records`
+    2. Throught the `@pagy` instance, which provides all the helpers and navs (e.g. `@pagy.nav_tag`, `@pagy.info_tag`, etc.)
+- **Simpler overriding**
+  - The logic of helpers and paginators methods is simpler to understand and override in your own app code.
+  - You won't even need to know anything about the implementation classes.
 - **Javascript refactoring**
-  - The new `Pagy.sync_javascript_source` function used in the `pagy.js` initializer, avoids complicated configurations.
+  - The new `Pagy.sync_javascript` function used in the `pagy.js` initializer, avoids complicated configurations.
   - Added the plain `pagy.js` and relative source map files.
   - Updated the support for all the pagy helpers and `keynav` pagination.
 - **I18n refactoring**
   - No setup required: the locales and their pluralization are autoloaded when your app uses them.
   - You can easily override the lookup of locale files with `Pagy::I18n.pathnames << my_dictionaries`.
-- **Simpler overriding**
-  - The logic of helpers and paginators methods is simpler to understand and override in your own app code.
-  - You won't even need to know anything about the implementation classes.
 - **Cleaner URLs**
   - The `pagy_page_url` (legacy `pagy_url_for`) can be used also without a request (incorporating the legacy `standalone` extra)
   - No more empty params or extra '?' in the URL string
@@ -87,15 +96,19 @@ work. After that... **this API will be stable for a long time**.
 
 - Pratically all the statements in the old file are obsolete, so it's probably better to start with the new version of the file,
   which is very short.
-- The `Pagy::DEFAULT` is now frozen and used internally. Use the `Pagy.options` hash for the same effect.
+- The `Pagy::DEFAULT` is now frozen and used internally. Use the `Pagy.options` hash to the same effect.
 - Copy over the `Pagy::DEFAULT` that apply (most are not needed anymore) and replace `Pagy::DEFAULT` with `Pagy.options`.
 
 #### All the `pagy_*` methods and the `Pagy::Frontend` are gone
 
 - Remove any existing `include Pagy::Frontend`
 - The paginators (i.e. the `pagy_*` methods returning the `@pagy` instance and the `@records`) got integrated in the `pagy`
-  method. All the other `pagy_*` helpers provided by the `Pagy::Frontend` are now `@pagy` instance methods.
-- See how to replace them in the [Extras Changes](#extras-changes).
+  method.
+  - Notice that the old `pagy(...)` statement is still working as-is, but it should _preferably_ be updated with the new
+    explicit syntax as `pagy(:offset, ...)`.
+  - All the other pagy_backend methods are gone. _(See how to replace them in the [Extras Changes](#extras-changes))_
+- All the `pagy_*` helpers provided by the `Pagy::Frontend` are now `@pagy` instance methods (and most have been renamed). _(See
+  how to replace them in the [Extras Changes](#extras-changes))_
 
 #### Core changes
 
@@ -115,19 +128,20 @@ understanding.
 
 {.compact}
 
-| Type      | Search (old)     | Replace with (new)     | Why?                                                                                      |
-|-----------|------------------|------------------------|-------------------------------------------------------------------------------------------|
-| Function  | `Pagy.root`      | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                    |
-| Accessor  | `pagy.vars`      | `pagy.options`         | Because they are actually `options` that don't change during execution                    |
-| Accessor  | `pagy.pages`     | `pagy.last`            | Because they are just an alias that we removed for simplicity                             |
-| Exception | `VariableError`  | `OptionError`          | Because it's consistent with the `options` argument                                       |
-| Accessor  | `e.variable`     | `e.option`             | Because it's consistent with its `OptionError` class                                      |
-| Option    | `:anchor_string` | `:a_string_attributes` | Because it is explicit and unambiguous                                                    |
-| Naming    | `*prev*`         | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)    |
-| Option    | `size: 7`        | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s |
-| Option    | `ends: false`    | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                  |
-| Option    | `:page_param`    | `:page_sym`            | Because `page_param` make people think "page param value"                                 |
-| Option    | `:limit_param`   | `:limit_sym`           | Because `limit_param` make people think "limit param value"                               |
+| Type      | Search (old)     | Replace with (new)     | Why?                                                                                              |
+|-----------|------------------|------------------------|---------------------------------------------------------------------------------------------------|
+| Method    | `pagy(...)`      | `pagy(:offset, ...)`   | Because it's explicit and consistent with the other paginators (however `:offset` can be omitted) |
+| Function  | `Pagy.root`      | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                            |
+| Accessor  | `pagy.vars`      | `pagy.options`         | Because they are actually `options` that don't change during execution                            |
+| Accessor  | `pagy.pages`     | `pagy.last`            | Because they are just an alias that we removed for simplicity                                     |
+| Exception | `VariableError`  | `OptionError`          | Because it's consistent with the `options` argument                                               |
+| Accessor  | `e.variable`     | `e.option`             | Because it's consistent with its `OptionError` class                                              |
+| Option    | `:anchor_string` | `:a_string_attributes` | Because it is explicit and unambiguous                                                            |
+| Naming    | `*prev*`         | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)            |
+| Option    | `size: 7`        | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s         |
+| Option    | `ends: false`    | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                          |
+| Option    | `:page_param`    | `:page_sym`            | Because `page_param` make people think "page param value"                                         |
+| Option    | `:limit_param`   | `:limit_sym`           | Because `limit_param` make people think "limit param value"                                       |
 
 ##### Internal API
 
@@ -151,7 +165,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `array`
 
-- Replace `pagy_array` with `pagy(:array, ...)`
+- Replace `pagy_array(...)` with `pagy(:offset,...)`
 
 ##### `arel`
 

@@ -28,14 +28,24 @@ class Pagy
     end
   end
 
-  # Get the option values from params
+  # Get the option values from the request/params
   module Get
     module_function
+
+    # Get the hash of elements for the URL
+    def hash_from(request) = request.instance_eval { { base_url:, path:, query_params: self.GET } }
 
     # Check the use of jsonapi and its consistency
     def jsonapi?(params, options)
       return false unless params[:page] && options[:jsonapi] # rubocop:disable Layout/EmptyLineAfterGuardClause
       params[:page].respond_to?(:fetch) || raise(JsonapiReservedParamError, params[:page])
+    end
+
+    # Get the page integer from the params
+    def page_from(params, options, force_integer: true)
+      page_sym = options[:page_sym] || DEFAULT[:page_sym]
+      page     = jsonapi?(params, options) ? params[:page][page_sym] : params[page_sym]
+      force_integer ? (page || 1).to_i : page
     end
 
     # Get the limit from the params
@@ -50,20 +60,6 @@ class Pagy
       unless options[:requestable_limit] && (limit = requested_limit_from(params, options))
 
       [limit.to_i, options[:requestable_limit]].min
-    end
-
-    # Get the page integer from the params
-    def page_from(params, options, force_integer: true)
-      page_sym = options[:page_sym] || DEFAULT[:page_sym]
-      page     = jsonapi?(params, options) ? params[:page][page_sym] : params[page_sym]
-      force_integer ? (page || 1).to_i : page
-    end
-
-    # Get the hash of elements for the URL
-    def hash_from(request)
-      { base_url:     request.base_url,
-        path:         request.path,
-        query_params: request.GET }
     end
   end
 end

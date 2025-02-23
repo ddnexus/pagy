@@ -15,11 +15,11 @@
 ############ Sync Javascript #########################################################
 # IF:   Your code uses any pagy method ending with `_js`
 # AND:  Your app use a javascript builder (e.g. esbuild, webpack, etc.)
-# THEN: Sync javascript at app startup in development environment with the following
+# THEN: Sync 'pagy.mjs' at app startup in development environment:
 # Example for Rails:
 #
 # javascript_dir = Rails.root.join('app/javascript')
-# Pagy.sync_javascript(javascript_dir, :mjs) if Rails.env.development?
+# Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 
 
 ############# Overriding Pagy::I18n lookup ###########################################

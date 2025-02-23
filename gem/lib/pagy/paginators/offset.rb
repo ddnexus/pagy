@@ -5,16 +5,29 @@ class Pagy
   module OffsetPaginator
     module_function
 
-    # Return Pagy object and paginated results
+    # Return instance and page of results
     def paginate(backend, collection, **options)
       backend.instance_eval do
         options[:request] ||= Get.hash_from(request)
-        options[:count]   ||= options[:array] ? collection.size : Offset.get_count(collection, options)
         options[:page]    ||= Get.page_from(params, options)
         options[:limit]     = Get.limit_from(params, options)
+        options[:count]   ||= collection.instance_of?(Array) ? collection.size : OffsetPaginator.get_count(collection, options)
         pagy = Offset.new(**options)
-        [pagy, options[:array] ? collection[pagy.offset, pagy.limit] : pagy.records(collection)]
+        [pagy, collection.instance_of?(Array) ? collection[pagy.offset, pagy.limit] : pagy.records(collection)]
       end
+    end
+
+    # Get the collection count
+    def get_count(collection, options)
+      count_args = options[:count_args] || [:all]
+      count      = if options[:count_over] && !collection.group_values.empty?
+                     # COUNT(*) OVER ()
+                     sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
+                     collection.unscope(:order).pick(sql).to_i
+                   else
+                     collection.count(*count_args)
+                   end
+      count.is_a?(Hash) ? count.size : count
     end
   end
 end
