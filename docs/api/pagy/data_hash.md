@@ -11,19 +11,17 @@ categories:
 data to Javascript frameworks like Vue.js, react.js, etc.
 
 ```ruby Controller (action)
-@pagy, @records = pagy_offset(collection, **options)
-pagy_hash       = pagy_extract_hash(@pagy, data_keys: %i[page previous next previous_url next_url ...])
+@pagy, @records = pagy(:offset, collection, **options)
+pagy_hash       = @pagy.data_hash(data_keys: %i[page previous next previous_url next_url ...])
 #=> { page: 3, previous: 2, next: 4, previous_url: ... } 
 render json: { data: @records, pagy: pagy_hash }
 ```
 
 ==- Options
 
-- `pluck_keys`
-
-  - For efficiency reasons you should always set the `:pluck_keys` option to restrict the output to ONLY the keys that you use.
+- `data_keys`
+  - For efficiency reasons you should always set the `:data_keys` option to restrict the output to ONLY the keys that you use.
     Notice that you can also add other pagy method names not included in the default below:
-
     - count
     - first_url
     - from
@@ -43,6 +41,11 @@ render json: { data: @records, pagy: pagy_hash }
     - series
     - to
     - url_template
+- `absolute: true`
+  - URL absolute
+- `fragment: '#...'`
+  - URL fragment string
+
 
 ==- Usage of `:url_template`
 
@@ -59,7 +62,7 @@ pageUrl = url_template.replace("P ", '123')
 
 !!!warning You may not need it for simple cases!
 
-Consider to use the few `:*_url` pluck_keys directly, instead of using the `:url_template`.
+Consider to use the few `:*_url` data_keys directly, instead of using the `:url_template`.
 !!!
-      
+
 ===

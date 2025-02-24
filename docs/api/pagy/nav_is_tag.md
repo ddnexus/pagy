@@ -7,3 +7,88 @@ categories:
   - Navs
   - Tags
 ---
+
+The `nav_js_tag` looks like a normal `nav_tag` but it has a few added features:
+
+1. Client-side rendering
+2. Optional responsiveness
+3. Better performance and resource usage (see [Maximizing Performance](../../guides/how-to#maximize-performance))
+
+![Responsive nav_js_tag (:bootstrap style)](/assets/images/bootstrap_nav_js.png)
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../resources/playground.md#3-demo-app)
+
+```erb
+<!-- Use just one: -->
+<%== @pagy.nav_js_tag(**options %>  <%# native pagy style %>
+<%== @pagy.nav_js_tag(:bootstrap, **options) %>
+<%== @pagy.nav_js_tag(:bulma, **options) %>
+```
+
+==- Tag Options
+
+!!!success Prefer Tag Options
+
+Tag options passed to the tag helper are clear and explicit. However, they could also be passed to the paginator, and set as
+`Pagy.options` as well.
+!!!
+
+- `slots: 9`
+  - The number of slots/pages shown in the navigation bar.
+  - `slots < 7` causes the slots to be filled by contiguous pages around the current one
+  - `slots >= 7` causes the first and last slots to be occupied by first and last pages, separated by the rest with a `...` (
+    `:gap`) slot when needed.
+  - Even numbers determine the current page to be in the central slot.
+- `steps: { 0 => 5, 540 => 7, 720 => 9 }`
+  - Enable responsiveness. Assign different number of `:slots` to different tag widths.
+- `compact: true`
+  - Fill all the slots with contiguos pages, regardles the number of slots.
+
+==- In Depth: `:steps` Option
+
+Notice: when `:steps` is not set, the `nav_js_tag` behave exactly as a `nav_tag`: just faster.
+
+Set it as a hash, where the keys are integers representing the widths in pixels, and the values are the `:slots` options to be
+applied for that width.
+
+For example:
+
+`{ 0 => 5, 540 => 7, 720 => 9 }` means that from `0` to `540` pixels width, Pagy will use `5` slots, from `540` to `720` it will
+use `7` slots and over `720` it will use `9` slots. (Read more about the `:slots`
+option in the [How to control the page links](/docs/how-to#control-the-page-links) section).
+
+!!!primary :steps must contain `0` width You can set any number of steps with any arbitrary width/slots. The only requirement is
+that the `:steps` hash must contain always the `0` width or a `Pagy::OptionsError` exception will be raised.
+!!!
+
+#### Setting the right steps
+
+Setting the `:steps` can create a nice transition between widths or some apparently erratic behavior.
+
+Here is what you should consider/ensure:
+
+1. The pagy slots changes in discrete `:steps`, defined by the width/slots pairs.
+
+2. The automatic transition from one step to another depends on the width available to the pagy nav. That width is the _internal
+   available width_ of its container (excluding eventual horizontal padding).
+
+3. You should ensure that - for each step - each assigned number of `:slots` produces a nav that can be contained in its width.
+
+4. You should ensure that the minimum internal width for the container div, be equal (or a bit bigger) to the smaller positive
+   width. (`540` pixels in our previous example).
+
+5. If the container width snaps to specific widths in discrete steps, you should sync the quantity and widths of the pagy `:steps`
+   to the quantity and internal widths for each discrete step of the container.
+
+===
+
+!!!warning Window Resizing
+
+The `nav_js_tag` elements are automatically re-rendered on window resize. However, if the container width changes *without*
+being triggered by a window resize (i.e. another javascript function did it), you need to explicitly re-render:
+
+```js
+document.getElementById('my-pagy-nav-js').render();
+```
+
+!!!

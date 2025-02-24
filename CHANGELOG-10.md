@@ -116,7 +116,7 @@ time**.
   - The returned value is now ignored for a slightly better performance.
 - The `:outset` and `:cycle` variables have been removed.
   - They were seldom used, mostly useless, and implementing them in your own code is trivial.
-- You should pass the `:length` and `:compact` options (legacy `:size` and `ends`), _preferably_ to the `*_nav`, `*_nav_js`
+- You should pass the `:slots` and `:compact` options (legacy `:size` and `ends`), _preferably_ to the `*_nav`, `*_nav_js`
   helpers, but it's also possible to pass them to the paginator methods.
 
 #### Simple search and replace renaming (without logic changes)
@@ -128,21 +128,21 @@ understanding.
 
 {.compact}
 
-| Type      | Search (old)     | Replace with (new)     | Why?                                                                                              |
-|-----------|------------------|------------------------|---------------------------------------------------------------------------------------------------|
-| Method    | `pagy(...)`      | `pagy(:offset, ...)`   | Because it's explicit and consistent with the other paginators (however `:offset` can be omitted) |
-| Function  | `Pagy.root`      | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                            |
-| Accessor  | `pagy.vars`      | `pagy.options`         | Because they are actually `options` that don't change during execution                            |
-| Accessor  | `pagy.pages`     | `pagy.last`            | Because they are just an alias that we removed for simplicity                                     |
-| Exception | `VariableError`  | `OptionError`          | Because it's consistent with the `options` argument                                               |
-| Accessor  | `e.variable`     | `e.option`             | Because it's consistent with its `OptionError` class                                              |
-| Option    | `:anchor_string` | `:a_string_attributes` | Because it is explicit and unambiguous                                                            |
-| Naming    | `*prev*`         | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)            |
-| Option    | `size: 7`        | `length: 7`            | Because it's the linear `length` of the `series`, and avoids confusion with other `size`s         |
-| Option    | `ends: false`    | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                          |
-| Option    | `:page_param`    | `:page_sym`            | Because `page_param` make people think "page param value"                                         |
-| Option    | `:limit_param`   | `:limit_sym`           | Because `limit_param` make people think "limit param value"                                       |
-
+| Type      | Search (old)          | Replace with (new)     | Why?                                                                                              |
+|-----------|-----------------------|------------------------|---------------------------------------------------------------------------------------------------|
+| Method    | `pagy(...)`           | `pagy(:offset, ...)`   | Because it's explicit and consistent with the other paginators (however `:offset` can be omitted) |
+| Function  | `Pagy.root`           | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                            |
+| Accessor  | `pagy.vars`           | `pagy.options`         | Because they are actually `options` that don't change during execution                            |
+| Accessor  | `pagy.pages`          | `pagy.last`            | Because they are just an alias that we removed for simplicity                                     |
+| Exception | `VariableError`       | `OptionError`          | Because it's consistent with the `options` argument                                               |
+| Accessor  | `e.variable`          | `e.option`             | Because it's consistent with its `OptionError` class                                              |
+| Option    | `:anchor_string`      | `:a_string_attributes` | Because it is explicit and unambiguous                                                            |
+| Naming    | `*prev*`              | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)            |
+| Option    | `size: 7`             | `slots: 7`             | Because it's actually the number of page slots, and avoids confusion with other `size`s           |
+| Option    | `ends: false`         | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                          |
+| Option    | `:page_param`         | `:page_sym`            | Because `page_param` make people think "page param value"                                         |
+| Option    | `:limit_param`        | `:limit_sym`           | Because `limit_param` make people think "limit param value"                                       |
+| Variable  | `@pagy_locale = ...`  | `Pagy::I18n = ...`     | Because the `Pagy::I18n` API is now fully compatible with the `i18n` gem                          |
 ##### Internal API
 
 You may check these if you override some internal method:

@@ -1,28 +1,31 @@
 # frozen_string_literal: true
 
 # Pagy initializer file (9.3.3)
-
+# See https://ddnexus.github.io/pagy/api/initializer/
 
 ############ Global Options #########################################################
-# Add your global options here. They will get applied to all paginators.
+# Add your global options here. They will get applied to all the paginator instances.
 # For example:
 #
 # Pagy.options[:limit] = 10               # Limit the items per page
 # Pagy.options[:requestable_limit] = 100  # The client can request a limit up to 100
 # Pagy.options[:max_pages] = 200          # Allow only 200 pages
+# Pagy.options[:jsonapi] = true           # Use JSON:API compilant params and URLs
 
 
 ############ Sync Javascript #########################################################
-# IF:   Your code uses any pagy method ending with `_js`
-# AND:  Your app use a javascript builder (e.g. esbuild, webpack, etc.)
-# THEN: Sync 'pagy.mjs' at app startup in development environment:
-# Example for Rails:
+# See https://ddnexus.github.io/pagy/api/javascript/
+# Examples for Rails:
+# For apps with an assets pipeline
+# Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
 #
+# For apps with a javascript builder (e.g. esbuild, webpack, etc.)
 # javascript_dir = Rails.root.join('app/javascript')
 # Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 
 
 ############# Overriding Pagy::I18n lookup ###########################################
+# See https://ddnexus.github.io/pagy/resources/i18n/
 # Override the dictionary lookup for customization. Just drop your customized
 # dictionary/dictionaries in a dir and add its pathname to the I18n pathnames.
 # Example for Rails:
@@ -39,6 +42,6 @@
 
 
 ############# I18n gem translation ###################################################
-# Uncomment the following line if you need to switch to the standard I18n gem:
+# See https://ddnexus.github.io/pagy/resources/i18n/
 #
 # Pagy.translate_with_the_slower_i18n_gem!

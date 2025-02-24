@@ -20,8 +20,8 @@ categories:
 @pagy, @records = pagy(:countless, collection, **options)
 ```
 
-- `@pagy` can be used with any supported helper.
-- `@records` is an eager-loaded `Array` of records.
+- `@pagy` is the pagination object. It provides the [instance methods](../pagy.md#instance-methods) to use in your code.
+- `@records` is the eager-loaded `Array` of the page records.
 
 ==- Options
 

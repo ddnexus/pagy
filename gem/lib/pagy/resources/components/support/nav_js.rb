@@ -10,11 +10,11 @@ class Pagy
   private
 
   # Return the reverse sorted array of widths, series, and labels generated from the :steps hash
-  # If :steps is false it will use the single {0 => @options[:length]} length
-  def sequels(steps: @options[:steps] || { 0 => @options[:length] || SERIES_LENGTH }, **)
+  # If :steps is false it will use the single {0 => @options[:slots]} length
+  def sequels(steps: @options[:steps] || { 0 => @options[:slots] || SERIES_SLOTS }, **)
     raise OptionError.new(self, :steps, 'to define the 0 width', steps) unless steps.key?(0)
 
-    widths, series = steps.sort.reverse.map { |width, length| [width, series(length:)] }.transpose
+    widths, series = steps.sort.reverse.map { |width, slots| [width, series(slots:)] }.transpose
     [widths, series, page_labels(series)]
   end
 

@@ -4,7 +4,7 @@ require_relative '../../test_helper'
 require_relative '../../../gem/lib/pagy/resources/components/support/series' # just to check the series
 
 OPTIONS = { count: 103, limit: 10 }.freeze
-OPTS_WITH_LENGTH = [3, 6, 9].map { |l| OPTIONS.merge(length: l) }.freeze
+OPTS_WITH_LENGTH = [3, 6, 9].map { |l| OPTIONS.merge(slots: l) }.freeze
 
 describe 'pagy offset' do
   let(:pagy) { Pagy::Offset.new(count: 100, page: 4) }
@@ -287,7 +287,7 @@ describe 'pagy offset' do
       [6, 7, 8, 9, 10, "11"],
       [1, :gap, 5, 6, 7, 8, 9, 10, "11"]]].each do |page, *expected|
       expected.each_with_index do |value, index|
-        it "computes series for page #{page}, length #{OPTS_WITH_LENGTH[index][:length]}" do
+        it "computes series for page #{page}, length #{OPTS_WITH_LENGTH[index][:slots]}" do
           _(Pagy::Offset.new(**OPTS_WITH_LENGTH[index], page:).send(:series)).must_equal value
         end
       end
@@ -304,11 +304,11 @@ describe 'pagy offset' do
     end
     it 'computes series for 2 of 2 pages' do
       _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 15, page: 2).send(:series)).must_equal [1, "2"]
-      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 100).send(:series, length: 0)).must_equal []
+      _(Pagy::Offset.new(**OPTS_WITH_LENGTH[2], count: 100).send(:series, slots: 0)).must_equal []
     end
     it 'raises OptionError for invalid length' do
-      _ { Pagy::Offset.new(count: 100).send(:series, length: {}) }.must_raise Pagy::OptionError
-      _ { Pagy::Offset.new(count: 100).send(:series, length: -3) }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100).send(:series, slots: {}) }.must_raise Pagy::OptionError
+      _ { Pagy::Offset.new(count: 100).send(:series, slots: -3) }.must_raise Pagy::OptionError
     end
   end
 end

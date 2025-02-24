@@ -1,6 +1,6 @@
 ---
 title: How To
-order: 8
+order: 90
 icon: tools-24
 ---
 
@@ -50,59 +50,59 @@ Optionally, you can use the `pagy_limit_selector_js` helper to provide a UI sele
 
 ## Control the page links
 
-You can control the number and position of the page links in the navigation through the `:length` option or overriding the
+You can control the number and position of the page links in the navigation through the `:slots` option or overriding the
 `series` method.
 
-==- Using `:length`
+==- Using `:slots`
 
-The `:length` option determines the length of the series of page links, used by the helpers providing a nav bar. The option should be passed to the nav helper but it can also be passed to the paginator.
+The `:slots` option determines the length of the series of page links, used by the helpers providing a nav bar. The option should be passed to the nav helper but it can also be passed to the paginator.
 
 The current page is placed
-as centered as possible in the series, so `:length` works better when it's an odd number.
+as centered as possible in the series, so `:slots` works better when it's an odd number.
 
-By default, the series includes the first/last and `:gap`s pages (if the `:length` is at least `7`)
+By default, the series includes the first/last and `:gap`s pages (if the `:slots` is at least `7`)
 
 Set the `compact: true` option, to ingore first/last and gaps, and get always an uninterrupted/compact series.
 
-Use `length: 0` to skip the generation of the series:
+Use `slots: 0` to skip the generation of the series:
 
 Examples:
 
 ```ruby
 # Skip the generation of the series
-pagy, = pagy_offset(collection, page: 99, length: 0)
+pagy, = pagy_offset(collection, page: 99, slots: 0)
 pagy.series
 #=> []
 
 # length < 7   (compact series by default)
-pagy, = pagy_offset(collection, page: 10, length: 5)
+pagy, = pagy_offset(collection, page: 10, slots: 5)
 pagy.series
 #=> [8, 9, "10", 11, 12]
-pagy, = pagy_offset(collection, page: 2, length: 5)
+pagy, = pagy_offset(collection, page: 2, slots: 5)
 pagy.series
 #=> [1, "2", 3, 4, 5]
-pagy, = pagy_offset(collection, page: 99, length: 5)
+pagy, = pagy_offset(collection, page: 99, slots: 5)
 pagy.series
 #=> [96, 97, 98, "99", 100] 
 
 # length >= 7 (first, last and gap added)
-pagy, = pagy_offset(collection, page: 10, length: 7)
+pagy, = pagy_offset(collection, page: 10, slots: 7)
 pagy.series
 #=> [1, :gap, 9, "10", 11, :gap, 100] 
-pagy, = pagy_offset(collection, page: 10, length: 7, compact: true)
+pagy, = pagy_offset(collection, page: 10, slots: 7, compact: true)
 pagy.series
 #=> [7, 8, 9, "10", 11, 12, 13]  # compact series without gaps 
-pagy, = pagy_offset(collection, page: 2, length: 7)
+pagy, = pagy_offset(collection, page: 2, slots: 7)
 pagy.series
 #=> [1, "2", 3, 4, 5, :gap, 100]
-pagy, = pagy_offset(collection, page: 99, length: 7)
+pagy, = pagy_offset(collection, page: 99, slots: 7)
 pagy.series
 #=> [1, :gap, 96, 97, 98, "99", 100] 
 ```
 
 ==- Overriding `series`
 
-If changing the `:length` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place
+If changing the `:slots` is not enough for your requirements (e.g. if you need to add intermediate segments or midpoints in place
 of gaps) you should override the `series` method.
 
 ===
@@ -189,7 +189,7 @@ You can also use the `:fragment` keyword argument to add a fragment to the URLs 
 
 ## Customize CSS styles
 
-Pagy includes a few [stylesheets](../resources/stylesheets.md) that you can customize, and provides a few styled frontend for [bootstrap](../extras/bootstrap.md), [bulma](../extras/bulma.md)
+Pagy includes a few [stylesheets](../api/stylesheets.md) that you can customize, and provides a few styled frontend for [bootstrap](../extras/bootstrap.md), [bulma](../extras/bulma.md)
  that come with a decent styling provided by their respective framework.
 
 You can also override the specific helper method.
@@ -675,7 +675,7 @@ Here are some tips that will help choosing the best way to use Pagy, depending o
 
 If you need the pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
-- Add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](../resources/javascript.md))_. That uses client
+- Add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](../api/javascript.md))_. That uses client
   side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more
   efficient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
 

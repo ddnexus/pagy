@@ -33,30 +33,18 @@ render json: @records
     ```
   - You can customize or suppress them. For example:
 
-    ```ruby Controller
-    pagy_merge_header(pagy, header_names: { page:  'current-page',
-                                            limit: 'per-page',
-                                            pages: false,  # suppress the output
-                                            count: 'total' })
+    ```ruby Controller 
+    headers_map = { page:  'current-page',
+                    limit: 'per-page',
+                    pages: false,  # suppress the output
+                    count: 'total' }
+    headers = @pagy.headers_hash(pagy, headers_map:)
     # Notice that you can pass the `:header_names` option also to the paginator 
     ```
 - `absolute: true`
-  - URL absolute
+  - The URL is ALWAYS absolute for this helper.
 - `fragment: '#...'`
   - URL fragment string
-
-==- Customization
-<br/>
-
-`pagy_headers_hash` is the method that does the heavy lifting to prepare the hash of headers. You can use it directly if you need to customize your header further, before manually merging them.
-
-```ruby Controller (action)
-header_hash = pagy_headers_hash(pagy, **options)
-# do something with the header_hash
-# then nerge them manually
-response.headers.merge!(header_hash)
-render json: records
-```
 
 ==- Suggestions
 <br/>
@@ -64,10 +52,10 @@ render json: records
 Instead of explicitly merging the headers before each rendering, if you use rails, you can get them automatically merged (application-wide and when `@pagy` is available), by adding an `after_action` in your application controller:
 
 ```ruby Controller (after_action)
-after_action { pagy_merge_headers(@pagy) if @pagy }
+after_action { response.headers.merge!(@pagy.headers_hash) if @pagy }
 
 # and use it in any action (notice @pagy that enables the merging)
-@pagy, records = pagy_offset(collection, **options)
+@pagy, records = pagy(:offset, collection, **options)
 render json: records
 ```
 
@@ -77,8 +65,8 @@ application controller. For example:
 ```ruby Controller (pagy_render)
 
 def pagy_render(collection, **)
-  pagy, records = pagy_offset(collection, **) # any other paginator works
-  pagy_merge_headers(pagy, **)
+  pagy, records = pagy(:offset, collection, **) # any other paginator works
+  response.headers.merge!(header_hash)
   render json: records
 end
 

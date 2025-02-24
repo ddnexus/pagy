@@ -1,30 +1,30 @@
 # frozen_string_literal: true
 
 class Pagy
-  SERIES_LENGTH = 7
+  SERIES_SLOTS = 7
 
   protected
 
   # Return the array of page numbers and :gap e.g. [1, :gap, 8, "9", 10, :gap, 36]
-  def series(length: @options[:length] || SERIES_LENGTH, compact: @options[:compact], **)
-    raise OptionError.new(self, :length, 'to be an Integer >= 0', length) \
-          unless length.is_a?(Integer) && length >= 0
-    return [] if length.zero?
+  def series(slots: @options[:slots] || SERIES_SLOTS, compact: @options[:compact], **)
+    raise OptionError.new(self, :slots, 'to be an Integer >= 0', slots) \
+          unless slots.is_a?(Integer) && slots >= 0
+    return [] if slots.zero?
 
     [].tap do |series|
-      if length >= @last
+      if slots >= @last
         series.push(*1..@last)
       else
-        half  = (length - 1) / 2                      # the left half might be 1 page shorter when length is even
+        half  = (slots - 1) / 2                       # the left half might be 1 page shorter when the slots are even
         start = if @page <= half                      # @page in the first half
                   1
-                elsif @page > (@last - length + half) # @page in the last half
-                  @last - length + 1
+                elsif @page > (@last - slots + half)  # @page in the last half
+                  @last - slots + 1
                 else                                  # @page in the middle
                   @page - half
                 end
-        series.push(*start...start + length)
-        unless compact || length < SERIES_LENGTH             # Set first, last and :gap when needed
+        series.push(*start...start + slots)
+        unless compact || slots < SERIES_SLOTS        # Set first, last and :gap when needed
           series[0]  = 1
           series[1]  = :gap unless series[1]  == 2
           series[-2] = :gap unless series[-2] == @last - 1

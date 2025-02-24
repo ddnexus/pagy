@@ -22,7 +22,7 @@ require 'pagy/extras/bulma'
 <%== pagy_bulma_combo_nav_js(@pagy, **opts) %>
 ```
 
-See [Javascript](/docs/resources/javascript.md) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
+See [Javascript](/docs/api/javascript.md) if you use `pagy_bulma_nav_js` or `pagy_bulma_combo_nav_js`.
 
 ## Methods
 
@@ -34,7 +34,7 @@ You can customize them by overriding in your own view helper(s).
 
 === `pagy_bulma_nav(pagy)`
 
-![bulma_nav - medium view size](/docs/assets/images/bulma_nav_medium.png)
+![bulma_nav - medium view size](/assets/images/bulma_nav_medium.png)
 
 This method is the same as the `pagy_nav`, but customized for Bulma.
 
@@ -42,14 +42,14 @@ See the [pagy_nav(pagy, **opts)](/docs/api/frontend.md#pagy-nav-pagy-opts) docum
 
 === `pagy_bulma_nav_js(pagy, **opts)`
 
-![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_bulma_nav_js` looks like the `pagy_bulma_nav` helper.](/docs/assets/images/bootstrap_nav_js.png)
+![Warning: Bootstrap style shown above as a representative example - the responsive `pagy_bulma_nav_js` looks like the `pagy_bulma_nav` helper.](/assets/images/bootstrap_nav_js.png)
 
 It's rendered on the client, with optional responsiveness. See the [Javascript Navs](/docs/resources/javascript/navs.md) documentation
 for more information.
 
 === `pagy_bulma_combo_nav_js(pagy, **opts)`
 
-![bulma_combo_nav_js](/docs/assets/images/bulma_combo_nav_js.png)
+![bulma_combo_nav_js](/assets/images/bulma_combo_nav_js.png)
 
 See the [Javascript Combo Navs](/docs/resources/javascript/combo-navs.md) documentation.
 

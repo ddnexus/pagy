@@ -1,7 +1,7 @@
 ---
 title: Playground
-order: 4
-icon: play-24
+order: 100
+icon: play
 ---
 
 # Pagy Playground

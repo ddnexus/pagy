@@ -35,7 +35,7 @@ This version is a complete redesign of the legacy code: its API will be stable f
 
 [<img src="docs/assets/images/ips-chart.png" title="~40x Faster!">](https://ddnexus.github.io/pagination-comparison/gems.html#ips-benchmark) [<img src="docs/assets/images/memory-chart.png" title="~36x Lighter!">](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile) [<img src="docs/assets/images/objects-chart.png" title="~35x Simpler!">](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile) [<img src="docs/assets/images/resource-consumption-chart.png" title="1,410x More Efficient!">](https://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio)
 
-## 👍 Now it's more... with less
+### 👍 Now it's more... with less
 
 - It works with any environment and collection
 - It can use OFFSET, COUNTLESS, KEYSET, KEYNAV, CALENDAR pagination techniques
@@ -43,7 +43,7 @@ This version is a complete redesign of the legacy code: its API will be stable f
 - It autoloads ONLY the methods that you actually use, with almost zero config
 - It has 100% of test coverage for Ruby, HTML and Javascript E2E
 
-## 🧐 Examples
+### 🧐 Examples
 
 Pagination code:
 
@@ -51,28 +51,25 @@ Pagination code:
 # Include it in the controllers (e.g. application_controller.rb)
 include Pagy::Backend
 
-# Include it in the helpers (e.g. application_helper.rb)
-include Pagy::Frontend
-
 # Wrap your collections with one of many paginators in your actions. For example:
-@pagy, @records = pagy_offset(Product.all)
-@pagy, @records = pagy_keyset(Product.order(my_order).all)
+@pagy, @records = pagy(:offset, Product.all)
+@pagy, @records = pagy(:keyset, Product.order(my_order).all)
 ``` 
 Pagination with JSON:API:
 
 ```ruby
 # JSON:API nested query_params: E.g.: ?page[number]=2&page[size]=100
-@pagy, @records = pagy_offset(Product.all, jsonapi: true)
-@pagy, @records = pagy_keyset(Product.all, jsonapi: true)
+@pagy, @records = pagy(:offset, Product.all, jsonapi: true)
+@pagy, @records = pagy(:keyset, Product.all, jsonapi: true)
 render json: { data:  @records,
-               links: pagy_links_hash(@pagy) }
+               links: @pagy.links_hash }
 ```
 
 JSON-client pagination:
 
 ```ruby
 render json: { data: @records,
-               pagy: pagy_extract_hash(@pagy) }
+               pagy: @pagy.data_hash }
 ```
 
 Search code:
@@ -83,62 +80,60 @@ extend Pagy::Search
 
 # Paginate with pagy:
 search = Product.pagy_search(params[:q])
-@pagy, @response = pagy_elasticsearch_rails(search)
-@pagy, @results  = pagy_meilisearch(search)
-@pagy, @results  = pagy_searchkick(search)
+@pagy, @response = pagy(:elasticsearch_rails, search)
+@pagy, @results  = pagy(:meilisearch, search)
+@pagy, @results  = pagy(:searchkick, search)
 
 # Or get pagy from paginated results:
 @results = Product.search(params[:q])
-@pagy    = pagy_elasticsearch_rails(@results)
-@pagy    = pagy_meilisearch(@results)
-@pagy    = pagy_searchkick(@results)
+@pagy    = pagy(:elasticsearch_rails, @results)
+@pagy    = pagy(:meilisearch, @results)
+@pagy    = pagy(:searchkick, @results)
 ```
 
 Server side rendering:
 
 ```erb
 <%# Render nav bar helpers with different styles %>
-<%== pagy_nav(@pagy) %> 
-<%== pagy_bootstrap_nav(@pagy) %>
-<%== pagy_bulma_nav(@pagy) %>
+<%== @pagy.nav_tag %>
+<%== @pagy.nav_tag(:bootstrap) %>
+<%== @pagy.nav_tag(:bulma) %>
 ```
 Client side rendering:
 
 ```rb
 # pagy.rb initializer
 javascript_dir = Rails.root.join('app/javascript')
-Pagy.sync_javascript_source(javascript_dir, 'pagy.mjs') if Rails.env.development?
+Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
 ```erb
 <%# Render client side nav bar helpers of different types and styles %>
-<%== pagy_nav_js(@pagy) %> 
-<%== pagy_bootstrap_nav_js(@pagy) %>
-<%== pagy_bulma_nav_js(@pagy) %>
+<%== @pagy.nav_js_tag %> 
+<%== @pagy.nav_js_tag(:bootstrap) %>
+<%== @pagy.nav_js_tag(:bulma) %>
 
-<%== pagy_combo_nav_js(@pagy) %>
-<%== pagy_bootstrap_combo_nav_js(@pagy) %>
-<%== pagy_bulma_combo_nav_js(@pagy) %>
+<%== @pagy.combo_nav_js_tag %>
+<%== @pagy.combo_nav_js_tag(:bootstrap) %>
+<%== @pagy.combo_nav_js_tag(:bulma) %>
 ```
 
 View helpers:
 
-| Helper Name                                                                                                                                                                                                                          | Preview (Bootstrap Style shown)                                        |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| [`pagy_nav(@pagy)`](https://ddnexus.github.io/pagy/docs/api/frontend)                                                                                                                                                                | ![`pagy_nav`](/docs/assets/images/bootstrap_nav.png)                   |
-| [`pagy_nav_js(@pagy)`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                          | ![`pagy_nav_js`](/docs/assets/images/bootstrap_nav_js.png)             |
-| [`pagy_info(@pagy)`](https://ddnexus.github.io/pagy/docs/api/frontend)                                                                                                                                                               | ![`pagy_info`](/docs/assets/images/pagy_info.png)                      |
-| [`pagy_combo_nav_js(@pagy)`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                    | ![`pagy_combo_nav_js`](/docs/assets/images/bootstrap_combo_nav_js.png) |
-| [`pagy_limit_selector_js`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                      | ![`pagy_limit_selector_js`](/docs/assets/images/limit_selector_js.png) |
-| [`pagy_nav(@calendar[:year])`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/>[`pagy_nav(@calendar[:month])`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day` and custom) | ![calendar extra](/docs/assets/images/calendar-app.png)                |
+| Helper Name                                                                                                                                                                                                                | Preview (Bootstrap Style shown)                                        |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| [`@pagy.nav_tag`](https://ddnexus.github.io/pagy/docs/api/frontend)                                                                                                                                                        | ![`pagy_nav`](/assets/images/bootstrap_nav.png)                   |
+| [`@pagy.nav_js_tag`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                  | ![`pagy_nav_js`](/assets/images/bootstrap_nav_js.png)             |
+| [`@pagy.info_tag`](https://ddnexus.github.io/pagy/docs/api/frontend)                                                                                                                                                       | ![`pagy_info`](/assets/images/pagy_info.png)                      |
+| [`@pagy.combo_nav_js_tag`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                            | ![`pagy_combo_nav_js`](/assets/images/bootstrap_combo_nav_js.png) |
+| [`@pagy.limit_selector_js_tag`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                       | ![`pagy_limit_selector_js`](/assets/images/limit_selector_js.png) |
+| [`@calendar[:year].nav_tag`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/>[`@calendar[:month].nav_tag`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day`) | ![calendar extra](/assets/images/calendar-app.png)                |
 
-## Documentation
+### Documentation
 
-- [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/docs/migration-guide) (practical guide)
-- [Quick Start](https://ddnexus.github.io/pagy/quick-start)
-- [Documentation](https://ddnexus.github.io/pagy)
-- [How To (quick recipes)](https://ddnexus.github.io/pagy/docs/how-to/)
+- [Quick Start](https://ddnexus.github.io/pagy/guides/quick-start)
+- [How To (quick recipes)](https://ddnexus.github.io/pagy/guides/how-to/)
 - [Changelog](https://ddnexus.github.io/pagy/changelog)
-- [How Pagy's Docs work?](https://github.com/ddnexus/pagy/blob/master/docs/README.md)
+- [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/guides/migration-guide) (practical guide)
 
 ### Support
 
@@ -146,7 +141,7 @@ View helpers:
 - [Issues](https://github.com/ddnexus/pagy/issues)
 
 
-## Top 💯 Contributors
+### Top 💯 Contributors
 
 <!-- top100_start -->
 
@@ -155,7 +150,7 @@ View helpers:
 
 <br/>
 
-## 👏 Credits
+### 👏 Credits
 
 Many thanks to:
 
@@ -164,7 +159,7 @@ Many thanks to:
 - [JetBrains](http://www.jetbrains.com?from=https%3A%2F%2Fgithub.com%2Fddnexus%2Fpagy) for their free OpenSource license project
 - [The Stargazers](https://github.com/ddnexus/pagy/stargazers) for showing their support
 
-## 📦 Repository Info
+### 📦 Repository Info
 
 <details>
 
@@ -198,10 +193,10 @@ See [Contributing](https://github.com/ddnexus/pagy/blob/master/.github/CONTRIBUT
 
 <br>
 
-## 💞 Related Projects
+### 💞 Related Projects
 
 [Search rubygems.org](https://rubygems.org/search?query=pagy)
 
-## 📃 License
+### 📃 License
 
 [MIT](https://opensource.org/licenses/MIT)

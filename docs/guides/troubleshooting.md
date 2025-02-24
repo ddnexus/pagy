@@ -1,7 +1,7 @@
 ---
-order: 1
 title: Troubleshooting
-icon: alert-24
+icon: alert
+order: 10
 ---
 
 ==- Records may randomly repeat in different pages (or be missing)

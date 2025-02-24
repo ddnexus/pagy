@@ -1,9 +1,7 @@
 ---
 title: ARIA
 icon: accessibility
-categories:
-  - Feature
-order: 100
+order: 80
 ---
 
 # ARIA Attributes

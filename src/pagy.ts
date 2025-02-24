@@ -130,7 +130,7 @@ const Pagy = (() => {
     return augment;
   };
 
-  // Build the *_nav_js helper
+  // Build the nav_js_tag helper
   const buildNavJs = (nav:NavJsElement, [[before, anchor, current, gap, after],
                                         [widths, series, labels], keynavArgs]:NavJsArgs) => {
     const  parent = <HTMLElement>nav.parentElement;
@@ -156,7 +156,7 @@ const Pagy = (() => {
     if (nav.classList.contains(pagy + "-rjs")) { rjsObserver.observe(parent) }
   };
 
-  // Init the *_combo_nav_js helpers
+  // Init the combo_nav_js_tag helpers
   const initComboJs = async (nav:HTMLElement, [url_token, keynavArgs]:ComboNavJsArgs) => {
     const augment = keynavArgs && storageSupport
                     ? await augmentKeynav(nav, keynavArgs)
@@ -164,7 +164,7 @@ const Pagy = (() => {
     initInput(nav, inputValue => url_token.replace(pageRe, augment(inputValue)));
   };
 
-  // Init the limit_selector_js helper
+  // Init the limit_selector_js_tag helper
   const initSelectorJs = (span:HTMLSpanElement, [from, url_token]:SelectorJsArgs) => {
     initInput(span, inputValue => {
       // @ts-expect-error the page is a number, but 'replace' type converts it to string (shorter .min)

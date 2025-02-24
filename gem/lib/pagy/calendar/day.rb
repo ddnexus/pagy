@@ -3,7 +3,7 @@
 class Pagy
   class Calendar
     class Day < Unit
-      DEFAULT = { length:  31,
+      DEFAULT = { slots:  31,
                   compact: true,
                   order:   :asc,
                   format:  '%d' }.freeze

@@ -1,12 +1,13 @@
 ---
-title: Stylesheets
+title: pagy • Stylesheets
 icon: file
+order: 70
 image: none
 ---
 
 # Stylesheets
 
-<img src="/pagy/docs/assets/images/pagy-style.png" width="300" title="Pagy Style">
+![Pagy Style](../assets/images/pagy-style.png){width=300}
 
 ## Overview
 
@@ -14,8 +15,7 @@ For all its own interactive helpers shown above, the pagy gem includes a few sty
 copy.
 
 !!!warning
-You don't need any stylesheet if you use `:bootstrap` or `:bulma` `:style` option  
-[bootstrap](/docs/extras/bootstrap) and [bulma](/docs/extras/bulma)
+You don't need any stylesheet if you use tag components with `:bootstrap` or `:bulma` styles
 !!!
 
 ### HTML Structure
@@ -23,7 +23,7 @@ You don't need any stylesheet if you use `:bootstrap` or `:bulma` `:style` optio
 In order to ensure a minimalistic valid output, still complete with all the ARIA attributes, we use a single line with the minimum
 number of tags and class attributes that can identify all the parts of the nav bars:
 
-- The output of `pagy_nav` and `pagy_nav_js` are a series of `a` tags inside a wrapper `nav` tag
+- The output of `nav_tag` and `nav_js_tag` helpers, is a series of `a` tags inside a wrapper `nav` tag
 - The disabled links are so because they are missing the `href` attributes
 - The `pagy nav` and `pagy nav-js` classes are assigned to the `nav` tag
 - The `current` and `gap` classes are assigned to the specific `a` tags
@@ -45,7 +45,7 @@ the rest untouched.
 
 +++ pagy.scss
 
-[!file](/stylesheets/pagy.scss)
+[!file](../gem/stylesheets/pagy.scss)
 
 ```ruby 
 stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.scss')
@@ -55,7 +55,7 @@ stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.scss')
 
 +++ pagy.css
 
-[!file](/stylesheets/pagy.css)
+[!file](../gem/stylesheets/pagy.css)
 
 ```ruby 
 stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.css')
@@ -65,7 +65,7 @@ stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.css')
 
 +++ pagy.tailwind.css
 
-[!file](/stylesheets/pagy.tailwind.css)
+[!file](../gem/stylesheets/pagy.tailwind.css)
 
 ```ruby 
 stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.tailwind.css')

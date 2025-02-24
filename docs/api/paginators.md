@@ -1,12 +1,10 @@
 ---
-title: pagy • Paginators
+title: pagy • Paginator
 icon: database
 order: 200
 categories:
   - Paginators
 ---
-
-# pagy - Paginator Method
 
 The `pagy` method starts every pagination. It wraps a collection and returns a pagy object and the page of results/records.
 
@@ -21,9 +19,9 @@ Then you use it in your actions:
 ```ruby Controller Action
 @pagy, @records = pagy(:offset, collection, **options)
 @pagy, @records = pagy(:keyset, set, **options)
-...
+@pagy, @records = pagy(...)
 ```
-- `:offset`, `:keyset`, etc. are symbols identifying the paginator to use, i.e. the internal method handling that type of pagination.
+- `:offset`, `:keyset`, etc. are symbols identifying the [paginator](#paginators) to use, i.e. the internal method handling that type of pagination.
 - `@pagy` is the pagination object. It provides an instance method for every UI components and helpers to use in your code.
 - `@records` are the records belonging to the requested page
 
@@ -39,6 +37,12 @@ Instead, use the `pagy` method, which handle the correct class selection and ini
 !!!
 
 ==- Common Options
+
+!!!success Options are inheritable
+
+`Pagy.options` > `pagy` > `@pagy`
+However, prefer to pass them as down the chain as possible, for explicit readability and easier maintenance.
+!!!
 
 !!! Options for all paginators
 
@@ -88,8 +92,12 @@ Individual paginators may offer additional readers, wich are documented with the
 - `next`
   - The next page
 
-==- Exceptions
+==- Common Exceptions
 
+!!! Exception for all paginators
+
+Individual paginators may raise specific exceptions, wich are documented with the paginator itself.
+!!!
 - `Pagy::OptionError`
   - A subclass of `ArgumentError` that offers information to rescue invalid options passed to the constructor.
   - For example: `rescue Pagy::OptionError => e`
@@ -99,13 +107,13 @@ Individual paginators may offer additional readers, wich are documented with the
 
 === Paginators
 
-- [:offset](paginators/offset.md)
-- [:countless](paginators/countless.md)
-- [:keyset](paginators/keyset.md)
-- [:keynav](paginators/keynav.md)
-- [:calendar](paginators/calendar.md)
-- [:elasticsearch_rails](paginators/elasticsearch_rails.md)
-- [:meilisearch](paginators/meilisearch.md)
-- [:searchkick](paginators/searchkick.md)
+[:icon-list-ordered: :offset](paginators/offset.md)<br/>
+[:icon-list-ordered: :countless](paginators/countless.md)<br/>
+[:icon-list-ordered: :keynav_js](paginators/keynav_js)<br/>
+[:icon-infinity: :keyset](paginators/keyset.md)<br/>
+[:icon-calendar: :calendar](paginators/calendar.md)<br/>
+[:icon-search: :elasticsearch_rails](paginators/elasticsearch_rails.md)<br/>
+[:icon-search: :meilisearch](paginators/meilisearch.md)<br/>
+[:icon-search: :searchkick](paginators/searchkick.md)<br/>
 
 ===

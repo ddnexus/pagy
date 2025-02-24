@@ -33,7 +33,7 @@ pagy_prev_url(@pagy, absolute: bool)
 pagy_next_url(@pagy, absolute: bool)
 ```
 
-See [Javascript](/docs/resources/javascript.md).
+See [Javascript](/docs/api/javascript.md).
 
 ## Methods
 
