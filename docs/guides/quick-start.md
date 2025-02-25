@@ -15,15 +15,21 @@ gem 'pagy', '~> 9.3' # omit patch digit
 
 ### 2. Use
 
+!!!success Every pagy method is autoloaded on demand
+
+Unused methods consume no memory.
+!!!
+
 - Include the `Pagy::Backend`:
   ```ruby ApplicationController/AnyController
   include Pagy::Backend
   ```
+
 - Paginate any collection, with any technique, using the `pagy` method:
   ```ruby Controller Controller/action
   @pagy, @records = pagy(:offset, Product.some_scope, **options)
   ```
-  See all the available [paginators](../api/paginators.md#paginators)
+  See all the available [paginators](../toolbox/paginator#paginators)
 
 - Render navigator tags and other helpers with the `@pagy` instance methods:
 
@@ -34,13 +40,13 @@ gem 'pagy', '~> 9.3' # omit patch digit
   <%== @pagy.combo_nav_js_tag(:bulma) %>
   <%== @pagy.info_tag %>
   ``` 
-  See all the available [@pagy instance methods](../api/pagy.md)
+  See all the available [@pagy instance methods](../toolbox/instance)
 
 ### 3. Configure global options or special features
 
-See [pagy.rb initializer](../api/initializer.md)
+See [pagy.rb initializer](../toolbox/initializer.md)
 
 #### Pick a stylesheet or a CSS framework
 
-- For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](/docs/api/stylesheets.md)
+- For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](/docs/resources/stylesheet)
 - For `:bootstrap` and `:bulma` style you don't need any special CSS file.

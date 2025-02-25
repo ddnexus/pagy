@@ -7,15 +7,15 @@ output: .retype
 url: https://ddnexus.github.io/pagy
 
 branding:
-  title: Pagy
+  title: 🐸 Pagy
   label: 9.3.3
   colors:
     label:
-      text: "#FFFFFF"
-      background: "#99004D"
+      text: "#000000"
+      background: "#d3f01d"
 
 meta:
-  title: " | Pagy"
+  title: " 🐸 Pagy"
 
 links:
   - text: GitHub

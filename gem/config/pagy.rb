@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 # Pagy initializer file (9.3.3)
-# See https://ddnexus.github.io/pagy/api/initializer/
+# See https://ddnexus.github.io/pagy/toolbox/initializer/
 
 ############ Global Options #########################################################
-# Add your global options here. They will get applied to all the paginator instances.
+# Add your global options here. They will get applied to all the @pagy instances.
 # For example:
 #
 # Pagy.options[:limit] = 10               # Limit the items per page
@@ -14,7 +14,7 @@
 
 
 ############ Sync Javascript #########################################################
-# See https://ddnexus.github.io/pagy/api/javascript/
+# See https://ddnexus.github.io/pagy/resources/javascript/
 # Examples for Rails:
 # For apps with an assets pipeline
 # Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')

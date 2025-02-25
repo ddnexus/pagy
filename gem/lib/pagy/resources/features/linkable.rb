@@ -46,26 +46,27 @@ class Pagy
     # - :base_url     (e.g. 'http://www.example.com')
     # - :path         (e.g. '/path')
     # - :query_params (e.g. a string-key hash of the request query_params)
-    def compose_page_url(page, absolute: false, fragment: nil, limit_token: nil, **)
-      page_name, limit_name = @options.values_at(:page_sym, :limit_sym).map(&:to_s)
-      params, request       = @options.values_at(:params, :request)
+    def compose_page_url(page, limit_token: nil, **options)
+      options = @options.merge(options)
+      page_name, limit_name = options.values_at(:page_sym, :limit_sym).map(&:to_s)
+      params, request       = options.values_at(:params, :request)
       raise OptionError.new(self, :request, 'to be a Hash', request) \
             unless request&.is_a?(Hash) # rubocop:disable Lint/RedundantSafeNavigation
 
       query_params = request[:query_params].clone(freeze: false)
-      query_params.delete(@options[:jsonapi] ? 'page' : page_name)
+      query_params.delete(options[:jsonapi] ? 'page' : page_name)
       page_and_limit = {}.tap do |h|
         h[page_name]  = countless? ? "#{page || 1}+#{@last}" : page
-        h[limit_name] = limit_token || @options[:limit] if @options[:requestable_limit]
+        h[limit_name] = limit_token || options[:limit] if options[:requestable_limit]
       end.compact # no empty params
-      query_params.merge!(@options[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
+      query_params.merge!(options[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
       case params
       when Hash then query_params.merge!(params.compact.transform_keys(&:to_s))
       when Proc then params.(query_params) # it should modify the query_params: the returned value is ignored
       end
       query_string = QueryUtils.build_nested_query(query_params, nil, [page_name, limit_name])
       query_string = "?#{query_string}" unless query_string.empty?
-      "#{request[:base_url] if absolute}#{@options[:request_path] || request[:path]}#{query_string}#{fragment}"
+      "#{request[:base_url] if options[:absolute]}#{options[:request_path] || request[:path]}#{query_string}#{options[:fragment]}"
     end
   end
 end

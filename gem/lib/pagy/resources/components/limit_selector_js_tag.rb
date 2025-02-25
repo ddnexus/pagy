@@ -4,8 +4,8 @@ require_relative 'support/data_pagy_attribute'
 
 class Pagy
   # Return the limit selector HTML. For example "Show [20] items per page"
-  def limit_selector_js_tag(id: nil, item_name: nil)
-    raise OptionError.new(self, :requestable_limit, 'to be defined', nil) unless @options[:requestable_limit]
+  def limit_selector_js_tag(id: nil, item_name: nil, requestable_limit: @options[:requestable_limit], **)
+    raise OptionError.new(self, :requestable_limit, 'to be truthy', requestable_limit) unless requestable_limit
 
     url_token   = compose_page_url(PAGE_TOKEN, limit_token: LIMIT_TOKEN)
     limit_input = %(<input name="limit" type="number" min="1" max="#{@options[:requestable_limit]}" value="#{

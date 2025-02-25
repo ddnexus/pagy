@@ -140,7 +140,7 @@ Pagy::I18n::PATHNAMES.unshift(Rails.root.join('config/locales'))
 ## Customize the ARIA labels
 
 Customize the `aria-label` attributes of any `*nav*` helpers by passing the `:aria_label` string (
-See [pagy_nav](../api/frontend.md#pagy-nav-pagy-opts))
+See [pagy_nav](../toolbox/frontend.md#pagy-nav-pagy-opts))
 
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.prev` and the
 `pagy.aria_label.next`.
@@ -163,7 +163,7 @@ Customize the HTML attribute of the page links by passing some extra attribute s
 <%== pagy_nav(@pagy, a_string_attributes: 'data-remote="true"') %>
 ```
 
-_See more advanced details about [The a_string_attributes argument](../api/frontend.md#the-a_string_attributes-argument)_
+_See more advanced details about [The a_string_attributes argument](../toolbox/frontend.md#the-a_string_attributes-argument)_
 
 ## Customize the params
 
@@ -189,7 +189,7 @@ You can also use the `:fragment` keyword argument to add a fragment to the URLs 
 
 ## Customize CSS styles
 
-Pagy includes a few [stylesheets](../api/stylesheets.md) that you can customize, and provides a few styled frontend for [bootstrap](../extras/bootstrap.md), [bulma](../extras/bulma.md)
+Pagy includes a few [stylesheets](../resources/stylesheet) that you can customize, and provides a few styled frontend for [bootstrap](../extras/bootstrap.md), [bulma](../extras/bulma.md)
  that come with a decent styling provided by their respective framework.
 
 You can also override the specific helper method.
@@ -296,7 +296,7 @@ q              = Person.ransack(params[:q])
 ## Paginate for generic API clients
 
 Check out:
-- [Pagy::Keyset](../api/keyset.md) 
+- [Pagy::Keyset](../toolbox/keyset.md) 
 - [headers extra](extras/headers.md) 
 - [limit extra](extras/limit.md)
 - [jsonapi extra](extras/jsonapi.md)
@@ -324,9 +324,9 @@ Use [metadata extra](extras/metadata.md) and pass the pagination metadata in you
 
 Pagy has a few extras dedicated to gems returning search results:
 
-- [elasticsearch_rails](../api/paginators/elasticsearch_rails.md)
-- [searchkick](../api/paginators/searchkick.md)
-- [meilisearch](../api/paginators/meilisearch.md)
+- [elasticsearch_rails](../toolbox/paginator/elasticsearch_rails.md)
+- [searchkick](../toolbox/paginator/searchkick.md)
+- [meilisearch](../toolbox/paginator/meilisearch.md)
   [TODO REPLACE LINKS]
 
 ## Paginate by date
@@ -663,7 +663,7 @@ need for a count query, still providing an acceptable subset of the full paginat
 ==- Use Pagy Keyset
 
 If the slowness of the DB is caused by paginating big tables toward the ends of the collection (i.e. when the `offset` is a big
-number) then you should use the [keyset extra](../extras/keyset.md). (See lso the [keyset API](../api/keyset.md))
+number) then you should use the [keyset extra](../extras/keyset.md). (See lso the [keyset API](../toolbox/keyset.md))
 
 ===
 
@@ -675,7 +675,7 @@ Here are some tips that will help choosing the best way to use Pagy, depending o
 
 If you need the pagination bar with links and info, then you have a couple of choices, depending on your environment:
 
-- Add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](../api/javascript.md))_. That uses client
+- Add the `oj` gem to your gemfile and use any `pagy*_nav_js` helper _(see [Javascript](../resources/javascript.md))_. That uses client
   side rendering and it is faster and lighter than using any `pagy*_nav` helper _(40x faster, 36x lighter and 1,410x more
   efficient than Kaminari)_. _Notice: the `oj` gem is not a requirement but helps the performance when it is available._
 
@@ -778,7 +778,7 @@ pagy demo
 ...and point your browser at http://0.0.0.0:8000/template
 !!!
 
-You may want to read also the [Pagy::Frontend API documentation](../api/frontend.md) for complete control over your templates.
+You may want to read also the [Pagy::Frontend API documentation](../toolbox/frontend.md) for complete control over your templates.
 
 ## Use Pagy with a non-rack app
 
