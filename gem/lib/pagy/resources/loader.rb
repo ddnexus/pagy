@@ -11,8 +11,6 @@ class Pagy
                                      combo_nav_js_tag:           'components/combo_nav_js_tag',
                                      info_tag:                   'components/info_tag',
                                      limit_selector_js_tag:      'components/limit_selector_js_tag',
-                                     previous_link_tag:          'components/link_tags',
-                                     next_link_tag:              'components/link_tags',
                                      nav_tag:                    'components/nav_tag',
                                      nav_js_tag:                 'components/nav_js_tag' },
                         protected: { bootstrap_nav_tag:          'components/bootstrap/nav_tag',

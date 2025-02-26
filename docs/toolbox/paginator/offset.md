@@ -23,7 +23,7 @@ It **fully** supports **ALL** the helpers and navigators.
 
 - `count_over: true`
   - Use this option with `GROUP BY` collections to get the total number of results using `COUNT(*) OVER ()`.
-- `:count_args`
+- `:count_arguments`
   - The arguments passed to the `collection.count` (default `[:all]`). You may want to set it to `[]` in ORMs different from `ActiveRecord` 
 - `raise_range_error: true`
   - Enable the `Pagy::RangeError` (wich is rescued to an empty page by default)
@@ -55,5 +55,7 @@ See also [Common Readers](../paginator#common-readers)
 
 - `Pagy::RangeError`
   - A subclass of `Pagy::OptionError`. Raised for out-of-range `:page` requests, with `raise_range_error: true` option.
+
+See also [Common Exceptions](../paginator#common-exceptions)
 
 ===

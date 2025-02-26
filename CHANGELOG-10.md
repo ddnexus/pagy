@@ -115,7 +115,10 @@ time**.
 - If you used the `:params` variable set to a lambda, ensure that it modifies the passed `query_params` directly.
   - The returned value is now ignored for a slightly better performance.
 - The `:outset` and `:cycle` variables have been removed.
-  - They were seldom used, mostly useless, and implementing them in your own code is trivial.
+  - They were seldom used, mostly useless, and implementing them in your own code is trivial. 
+- The `:anchor_string` variable has been removed
+  - It was only helpfut for adding `data-remote="true"`, which is obsolete and rails apps using it cannot run on ruby 3.2
+- The `pagy_prev_link` and `pagy_next_link` have been removed: they were just useless.
 - You should pass the `:slots` and `:compact` options (legacy `:size` and `ends`), _preferably_ to the `*_nav`, `*_nav_js`
   helpers, but it's also possible to pass them to the paginator methods.
 
@@ -128,21 +131,21 @@ understanding.
 
 {.compact}
 
-| Type      | Search (old)          | Replace with (new)     | Why?                                                                                              |
-|-----------|-----------------------|------------------------|---------------------------------------------------------------------------------------------------|
-| Method    | `pagy(...)`           | `pagy(:offset, ...)`   | Because it's explicit and consistent with the other paginators (however `:offset` can be omitted) |
-| Function  | `Pagy.root`           | `Pagy::ROOT`           | Because we don't need to call a method just to get a constant Pathname                            |
-| Accessor  | `pagy.vars`           | `pagy.options`         | Because they are actually `options` that don't change during execution                            |
-| Accessor  | `pagy.pages`          | `pagy.last`            | Because they are just an alias that we removed for simplicity                                     |
-| Exception | `VariableError`       | `OptionError`          | Because it's consistent with the `options` argument                                               |
-| Accessor  | `e.variable`          | `e.option`             | Because it's consistent with its `OptionError` class                                              |
-| Option    | `:anchor_string`      | `:a_string_attributes` | Because it is explicit and unambiguous                                                            |
-| Naming    | `*prev*`              | `*previous*`           | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)            |
-| Option    | `size: 7`             | `slots: 7`             | Because it's actually the number of page slots, and avoids confusion with other `size`s           |
-| Option    | `ends: false`         | `compact: true`        | Because it's an opt-in option of the `series`, boolean inverse of `ends`                          |
-| Option    | `:page_param`         | `:page_sym`            | Because `page_param` make people think "page param value"                                         |
-| Option    | `:limit_param`        | `:limit_sym`           | Because `limit_param` make people think "limit param value"                                       |
-| Variable  | `@pagy_locale = ...`  | `Pagy::I18n = ...`     | Because the `Pagy::I18n` API is now fully compatible with the `i18n` gem                          |
+| Type      | Search (old)         | Replace with (new)   | Why?                                                                                              |
+|-----------|----------------------|----------------------|---------------------------------------------------------------------------------------------------|
+| Method    | `pagy(...)`          | `pagy(:offset, ...)` | Because it's explicit and consistent with the other paginators (however `:offset` can be omitted) |
+| Function  | `Pagy.root`          | `Pagy::ROOT`         | Because we don't need to call a method just to get a constant Pathname                            |
+| Accessor  | `pagy.vars`          | `pagy.options`       | Because they are actually `options` that don't change during execution                            |
+| Accessor  | `pagy.pages`         | `pagy.last`          | Because they are just an alias that we removed for simplicity                                     |
+| Exception | `VariableError`      | `OptionError`        | Because it's consistent with the `options` argument                                               |
+| Accessor  | `e.variable`         | `e.option`           | Because it's consistent with its `OptionError` class                                              |
+| Naming    | `*prev*`             | `*previous*`         | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)            |
+| Option    | `size: 7`            | `slots: 7`           | Because it's actually the number of page slots, and avoids confusion with other `size`s           |
+| Option    | `ends: false`        | `compact: true`      | Because it's an opt-in option of the `series`, boolean inverse of `ends`                          |
+| Option    | `:count_args`        | `:count_arguments`   | Because we don't use abbreviated words anymore                                         |
+| Option    | `:page_param`        | `:page_sym`          | Because `page_param` make people think "page param value"                                         |
+| Option    | `:limit_param`       | `:limit_sym`         | Because `limit_param` make people think "limit param value"                                       |
+| Variable  | `@pagy_locale = ...` | `Pagy::I18n = ...`   | Because the `Pagy::I18n` API is now fully compatible with the `i18n` gem                          |
 ##### Internal API
 
 You may check these if you override some internal method:
@@ -184,8 +187,6 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 | `pagy_limit_selector_js(@pagy, ...)` | `@pagy.limit_selector_js_tag(...)` |
 | `pagy_prev_url(@pagy, ...)`          | `@pagy.page_url(:previous, ...)`   |
 | `pagy_next_url(@pagy, ...)`          | `@pagy.page_url(:next, ...)`       |
-| `pagy_prev_link(@pagy, ...)`         | `@pagy.previous_link_tag(...)`     |
-| `pagy_next_link(@pagy, ...)`         | `@pagy.next_link_tag(...)`         |
 | `pagy_prev_a(@pagy, ...)`            | `@pagy.previous_a_tag(...)`        |
 | `pagy_next_a(@pagy, ...)`            | `@pagy.next_a_tag(...)`            |
 

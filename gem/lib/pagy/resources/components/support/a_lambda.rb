@@ -13,9 +13,8 @@ class Pagy
 
   # Return a performance optimized lambda to generate the anchor tag
   # Benchmarked on a 20 link nav: it is ~22x faster and uses ~18x less memory than rails' link_to
-  def a_lambda(a_string_attributes: nil, **)
-    left, right = %(<a#{" #{a_string_attributes}" if a_string_attributes} href="#{compose_page_url(PAGE_TOKEN, **)}")
-                  .split(PAGE_TOKEN, 2)
+  def a_lambda(**)
+    left, right = %(<a href="#{compose_page_url(PAGE_TOKEN, **)}").split(PAGE_TOKEN, 2)
 
     if (counts = @options[:counts]) # only for calendar + counts
       lambda do |page, text = page_label(page), classes: nil, aria_label: nil|

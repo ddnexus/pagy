@@ -1,5 +1,5 @@
 ---
-title: pagy • Initializer
+title: pagy 🐸 Initializer
 icon: gear
 order: 100
 ---
@@ -20,7 +20,8 @@ Pagy has an inheritable options system that allow you to set and override option
 
 !!!warning 
 
-Prefer to pass the options as down the chain as possible, for explicit readability and easier maintenance.
+- Pass the options as down the chain as possible, for explicit readability and maintenance.
+- Pass them up the chain, when you truly need them broadly applied.
 !!!
 
 ### Initializer file

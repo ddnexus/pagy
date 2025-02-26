@@ -31,13 +31,13 @@ paginator uses KEYSET pagination and supports all the nav tags and helpers.
 
 There are a few peculiar aspects of the keyset pagination technique that you might not be familiar with. Here is a concise list:
 
-{ .compact}
+{ .compact }
 
 | Term                | Description                                                                                                                                                                                                                                                                                                            |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `offset pagination` | The technique to fetch each page by incrementing the `offset` from the collection start.<br/>It requires two queries per page (or only one if you use [countless](countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the regular pagy pagination.                    |
 | `keyset pagination` | The technique to fetch the next page starting after the latest fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page (whitout OFFSET). It's very fast regardless the table size and position (if properly indexed). Support only infinite pagination, no other frontend helpers. |
-| `keynav pagination` | The pagy exclusive technique to use `keyset pagination` with numeric pages, supporting all the navigators and helpers. The best technique for performance AND functionality!                                                                                                                                           |
+| `keynav pagination` | The pagy exclusive technique to use `keyset pagination` with numeric variables, supporting almost all UI helpers.<br/>The best technique for performance AND functionality!                                                                                                                                            |
 | `uniquely ordered`  | The property of a `set`, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                                       |
 | `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                                           |
 | `keyset`            | The hash of column/order pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                                          |
@@ -132,11 +132,7 @@ See also [Common Readers](../paginator#common-readers)
   records is pulled.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
 
-<br/>
-
-##### In Depth: Cutoffs
-
-<br/>
+==- In Depth: Cutoffs
 
 The `cutoff` of a `page` is the **value** that identifies where the `page` _has ended_, and the `next` one begins.
 

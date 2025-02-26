@@ -13,7 +13,7 @@ describe 'countless' do
     @collection       = MockCollection.new
   end
 
-  describe '#pagy_countless' do
+  describe 'countless' do
     it 'shows current and next for first page' do
       pagy, = MockApp.new(params: { page: nil })
                      .send(:pagy, :countless, @collection)
@@ -67,7 +67,7 @@ describe 'countless' do
     end
   end
 
-  describe '#pagy_countless_get_vars' do
+  describe 'countless get_vars' do
     let(:app) { MockApp.new(params: { a: 'a', page: 3, page_number: 4 }) }
     it 'sets :page_sym from options' do
       pagy, paged = MockApp.new(params: { page_number: '4 4'})

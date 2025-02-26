@@ -1,6 +1,6 @@
-
 # Pagy 🐸 The Leaping Gem!
 
+<br/>
 
 <span>[![Gem Version](https://img.shields.io/gem/v/pagy.svg?label=Pagy&colorA=1f7a1f&colorB=d3f01d)](https://rubygems.org/gems/pagy)</span> <span>
 [![Ruby](https://img.shields.io/badge/Ruby-EOL-ruby.svg?colorA=99004d&colorB=cc0066)](https://endoflife.date/ruby)</span> <span>
@@ -14,8 +14,10 @@
 [![Stars](https://shields.io/github/stars/ddnexus/pagy?style=social)](https://github.com/ddnexus/pagy/stargazers)</span> <span>
 [![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Pagy%20Guru-006BFF)](https://gurubase.io/g/pagy)</span>
 
+---
+
 <!-- whats_new_start -->
-### What's new in 10.0+
+### 🐸 What's new in 10.0+
 
 This version is a complete redesign of the legacy code: its API will be stable for a long time.
 
@@ -35,13 +37,17 @@ This version is a complete redesign of the legacy code: its API will be stable f
 
 [<img src="docs/assets/images/ips-chart.png" title="~40x Faster!">](https://ddnexus.github.io/pagination-comparison/gems.html#ips-benchmark) [<img src="docs/assets/images/memory-chart.png" title="~36x Lighter!">](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile) [<img src="docs/assets/images/objects-chart.png" title="~35x Simpler!">](https://ddnexus.github.io/pagination-comparison/gems.html#memory-profile) [<img src="docs/assets/images/resource-consumption-chart.png" title="1,410x More Efficient!">](https://ddnexus.github.io/pagination-comparison/gems.html#efficiency-ratio)
 
-### 🐸 now it's more... with less
+<br/>
+
+### 🐸 Now it's more... with less
 
 - It works with any environment and collection
 - It can use OFFSET, COUNTLESS, KEYSET, KEYNAV, CALENDAR pagination techniques
 - It implements server side or faster client-side rendering for most CSS frameworks and APIs
 - It autoloads ONLY the methods that you actually use, with almost zero config
 - It has 100% of test coverage for Ruby, HTML and Javascript E2E
+
+---
 
 ### 🐸 Examples
 
@@ -122,24 +128,24 @@ View helpers:
 | Helper Name                                                                                                                                                                                                                | Preview (Bootstrap Style shown)                                  |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
 | [`@pagy.nav_tag`](https://ddnexus.github.io/pagy/toolbox/instance/nav_tag)                                                                                                                                                 | ![`nav_tag`](/assets/images/bootstrap_nav.png)                   |
-| [`@pagy.nav_js_tag`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                  | ![`pagy_nav_js`](/assets/images/bootstrap_nav_js.png)            |
+| [`@pagy.nav_js_tag`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                  | ![`nav_js_tqg`](/assets/images/bootstrap_nav_js.png)             |
 | [`@pagy.info_tag`](https://ddnexus.github.io/pagy/toolbox/instance/nav_js_tag)                                                                                                                                             | ![`info_tag`](/assets/images/pagy_info.png)                      |
 | [`@pagy.combo_nav_js_tag`](https://ddnexus.github.io/toolbox/instance/combo_nav_js_tag)                                                                                                                                    | ![`combo_nav_js_tag`](/assets/images/bootstrap_combo_nav_js.png) |
 | [`@pagy.limit_selector_js_tag`](https://ddnexus.github.io/pagy/toolbox/instance/limit_seletor_js_tag)                                                                                                                      | ![`limit_selector_js_tag`](/assets/images/limit_selector_js.png) |
-| [`@calendar[:year].nav_tag`](https://ddnexus.github.io/toolbox/paginator/calendar)<br/>[`@calendar[:month].nav_tag`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day`) | ![calendar](/assets/images/calendar-app.png)               |
+| [`@calendar[:year].nav_tag`](https://ddnexus.github.io/toolbox/paginator/calendar)<br/>[`@calendar[:month].nav_tag`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day`) | ![calendar](/assets/images/calendar-app.png)                     |
 
-### 🐸 Documentation
+---
+
+### 🐸 Support and Docs
 
 - [Quick Start](https://ddnexus.github.io/pagy/guides/quick-start)
 - [How To (quick recipes)](https://ddnexus.github.io/pagy/guides/how-to/)
-- [Changelog](https://ddnexus.github.io/pagy/changelog)
 - [Migrate from WillPaginate and Kaminari](https://ddnexus.github.io/pagy/guides/migration-guide) (practical guide)
-
-### 🐸 Support
-
 - [Discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a)
 - [Issues](https://github.com/ddnexus/pagy/issues)
+- [Changelog](https://ddnexus.github.io/pagy/changelog)
 
+---
 
 ### Top 💯 Contributors
 

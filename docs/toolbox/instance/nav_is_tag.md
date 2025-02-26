@@ -24,6 +24,35 @@ The `nav_js_tag` looks like a normal [nav_tag](nav_tag.md), but it has a few add
 <%== @pagy.nav_js_tag(:bootstrap, **options) %>
 <%== @pagy.nav_js_tag(:bulma, **options) %>
 ```
+  
+==- Caveats
+
+!!!warning HTML Fallback
+
+If Javascript is disabled in the client browser, this helper will not render anything. You should implement your own HTML fallback:
+
+```erb
+<noscript><%== pagy_nav(@pagy) %></noscript>
+```
+
+!!!
+
+!!!warning Window Resizing
+
+The `nav_js_tag` elements are automatically re-rendered on window resize. However, if the container width changes *without*
+being triggered by a window resize (i.e. another javascript function did it), you need to explicitly re-render:
+
+```js
+document.getElementById('my-pagy-nav-js').render();
+```
+
+!!!
+
+!!!danger Overriding `*_js` helpers is not recommended
+
+The `pagy*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
+and might break in a next release.
+!!!
 
 ==- Styles
 
@@ -45,8 +74,6 @@ The `nav_js_tag` looks like a normal [nav_tag](nav_tag.md), but it has a few add
   - Fill all the slots with contiguos pages, regardles the number of slots.
 - `steps: { 0 => 5, 540 => 7, 720 => 9 }`
   - Enable responsiveness. Assign different number of `:slots` to different tag widths.
-- `a_string_attributes: nil`
-  - Add string attributes to the `a` tag
 
 See also [Common Nav Options](../instance.md#common-nav-options) and [Common URL Options](../instance.md#common-url-options)
 
@@ -87,14 +114,3 @@ Here is what you should consider/ensure:
    to the quantity and internal widths for each discrete step of the container.
 
 ===
-
-!!!warning Window Resizing
-
-The `nav_js_tag` elements are automatically re-rendered on window resize. However, if the container width changes *without*
-being triggered by a window resize (i.e. another javascript function did it), you need to explicitly re-render:
-
-```js
-document.getElementById('my-pagy-nav-js').render();
-```
-
-!!!

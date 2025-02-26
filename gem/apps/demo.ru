@@ -295,10 +295,6 @@ class PagyDemo < Sinatra::Base
       <h2>pagy.previous_a_tag / pagy.next_a_tag</h2>
       <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_a_tag << @pagy.next_a_tag << '</nav>' %>
       <%= highlight(html) %>
-
-      <h2>@pagy.previous_link_tag / @pagy.next_link_tag <span class="notes">Link not rendered<span></h2>
-      <% html = '<head>' << (@pagy.previous_link_tag||'') << (@pagy.next_link_tag||'') << '</head>' %>
-      <%= highlight(html) %>
       <% end %>
     ERB
   end

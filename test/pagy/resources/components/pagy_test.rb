@@ -44,24 +44,11 @@ describe 'Pagy nav test' do
       end
     end
   end
-
-  # describe '#pagy_previous_url' do
-  #   tests_for(:previous_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
-  # end
-  # describe '#pagy_next_url' do
-  #   tests_for(:next_url, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
-  # end
-  describe 'previous_link_tag' do
-    tests_for(:previous_link_tag, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
-  end
-  describe '#next_link_tag' do
-    tests_for(:next_link_tag, [[1, 21], [3, 21], [6, 21], [50, 20]], absolute: true)
-  end
-  describe '#previous_a_tag' do
+  describe 'previous_a_tag' do
     tests_for(:previous_a_tag, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'PREV', aria_label: 'My previous page')
   end
-  describe '#next_a_tag' do
+  describe 'next_a_tag' do
     tests_for(:next_a_tag, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'NEXT', aria_label: 'My next page')
   end

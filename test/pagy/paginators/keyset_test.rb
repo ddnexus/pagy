@@ -6,7 +6,7 @@ require_relative '../../mock_helpers/app'
 
 describe 'keyset' do
   [Pet, PetSequel].each do |model|
-    describe "#pagy_keyset #{model}" do
+    describe ":keyset #{model}" do
       it 'returns Pagy::Keyset object and records' do
         app = MockApp.new(params: { page: nil })
         pagy, records = app.send(:pagy, :keyset,

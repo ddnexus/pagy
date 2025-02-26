@@ -50,8 +50,6 @@ Try it with the [Pagy Console](../../sandbox/console.md):
   - Even numbers determine the current page to be in the central slot.
 - `compact: true`
   - Fill all the slots with contiguos pages, regardles the number of slots.
-- `a_string_attributes: nil`
-  - Add string attributes to the `a` tag
 
 See also [Common Nav Options](../instance.md#common-nav-options) and [Common URL Options](../instance.md#common-url-options)
 

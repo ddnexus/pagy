@@ -36,8 +36,6 @@ Try it with the [Pagy Console](../../sandbox/console.md):
   - Override the default generated page label
 - `aria_label: 'My Link'`
   - Override the default aria label string looked up in the dictionary
-- `a_string_attributes: nil`
-  - Add string attributes to the a tag
 
 See also [Common URL Options](../instance.md#common-url-options)
 

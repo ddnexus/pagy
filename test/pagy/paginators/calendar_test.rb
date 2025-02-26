@@ -231,7 +231,7 @@ describe 'calendar' do
     end
   end
 
-  describe 'pagy_calendar_url_at' do
+  describe 'calendar_url_at' do
     it 'returns the url' do
       calendar, _pagy, _entries = app(params: { year_page: 2, month_page: 7, page: 2 })
                                   .send(:pagy, :calendar,
@@ -281,8 +281,8 @@ describe 'calendar' do
                                                   day:   {},
                                                   pagy:  { limit: 10 })
 
-      _(calendar[:day].send(:a_lambda, a_string_attributes: 'X').call(2, classes: 'a b c')).must_equal \
-        "<a X href=\"/foo?day_page=2\" title=\"No items found\" class=\"a b c empty-page\">22</a>"
+      _(calendar[:day].send(:a_lambda).call(2, classes: 'a b c')).must_equal \
+        "<a href=\"/foo?day_page=2\" title=\"No items found\" class=\"a b c empty-page\">22</a>"
     end
   end
   describe "Counts feature" do
@@ -302,15 +302,6 @@ describe 'calendar' do
         _(calendar[:month].nav_tag).must_rematch :month
         _(calendar[:day].nav_tag).must_rematch :day
       end
-    end
-    it 'works with a_string_attributes' do
-      app_counts                = MockApp::CalendarCounts.new(params: { year_page: 2,
-                                                                        page:      1 })
-      calendar, _pagy, _entries = app_counts.send(:pagy, :calendar,
-                                                  Event.all,
-                                                  year: {},
-                                                  pagy: { limit: 10 })
-      _(calendar[:year].nav_tag(a_string_attributes: 'data-foo="bar"')).must_rematch :year
     end
   end
 end

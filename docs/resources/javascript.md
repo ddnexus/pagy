@@ -7,7 +7,7 @@ image: none
 
 # Javascript
 
-!!!warning The helpers/paginators named `*_js` require pagy javascript support!
+!!!warning The helpers/paginators named `*_js*` require pagy javascript support!
 
 Just add the proper file and statements indicated below.
 !!!

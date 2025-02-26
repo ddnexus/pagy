@@ -1,11 +1,10 @@
 ---
 calendar__Counts_feature_test_0003_works_with_anchor_string:
-  :year: <nav class="pagy nav" aria-label="Pages"><a data-foo="bar" href="/foo?year_page=1"
-    title="Displaying 50 items" aria-label="Previous">&lt;</a><a data-foo="bar" href="/foo?year_page=1"
-    title="Displaying 50 items">2021</a><a role="link" aria-disabled="true" aria-current="page"
-    class="current">2022</a><a data-foo="bar" href="/foo?year_page=3" title="Displaying
-    220 items">2023</a><a data-foo="bar" href="/foo?year_page=3" title="Displaying
-    220 items" aria-label="Next">&gt;</a></nav>
+  :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" title="Displaying
+    50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1" title="Displaying
+    50 items">2021</a><a role="link" aria-disabled="true" aria-current="page" class="current">2022</a><a
+    href="/foo?year_page=3" title="Displaying 220 items">2023</a><a href="/foo?year_page=3"
+    title="Displaying 220 items" aria-label="Next">&gt;</a></nav>
 calendar__Counts_feature_test_0001_works_with_MockApp__CalendarCounts:
   :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" title="Displaying
     50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1" title="Displaying
@@ -836,9 +835,14 @@ calendar__instance_methods_test_0014_selects__day_for_the_first_page:
   - 2021-10-21 13:18:23.000000000 Z
   - 2021-10-21 23:14:50.000000000 Z
 calendar__Counts_feature_test_0003_works_with_a_string_attributes:
-  :year: <nav class="pagy nav" aria-label="Pages"><a data-foo="bar" href="/foo?year_page=1"
-    title="Displaying 50 items" aria-label="Previous">&lt;</a><a data-foo="bar" href="/foo?year_page=1"
-    title="Displaying 50 items">2021</a><a role="link" aria-disabled="true" aria-current="page"
-    class="current">2022</a><a data-foo="bar" href="/foo?year_page=3" title="Displaying
-    220 items">2023</a><a data-foo="bar" href="/foo?year_page=3" title="Displaying
-    220 items" aria-label="Next">&gt;</a></nav>
+  :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" title="Displaying
+    50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1" title="Displaying
+    50 items">2021</a><a role="link" aria-disabled="true" aria-current="page" class="current">2022</a><a
+    href="/foo?year_page=3" title="Displaying 220 items">2023</a><a href="/foo?year_page=3"
+    title="Displaying 220 items" aria-label="Next">&gt;</a></nav>
+calendar__Counts_feature_test_0003_works_with:
+  :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" title="Displaying
+    50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1" title="Displaying
+    50 items">2021</a><a role="link" aria-disabled="true" aria-current="page" class="current">2022</a><a
+    href="/foo?year_page=3" title="Displaying 220 items">2023</a><a href="/foo?year_page=3"
+    title="Displaying 220 items" aria-label="Next">&gt;</a></nav>

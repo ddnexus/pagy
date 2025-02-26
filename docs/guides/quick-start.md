@@ -7,7 +7,7 @@ icon: rocket-24
 
 ### 1. Install
 
-:icon-light-bulb: Avoid the next major version with breaking changes (see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
+:icon-light-bulb: Avoid unexpected breaking changes (see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint)):
 
 ```ruby Gemfile
 gem 'pagy', '~> 9.3' # omit patch digit
@@ -25,7 +25,7 @@ Unused methods consume no memory.
   include Pagy::Backend
   ```
 
-- Paginate any collection, with any technique, using the `pagy` method:
+- Paginate any collection, with any technique, using the `pagy` paginator method:
   ```ruby Controller Controller/action
   @pagy, @records = pagy(:offset, Product.some_scope, **options)
   ```
@@ -40,7 +40,7 @@ Unused methods consume no memory.
   <%== @pagy.combo_nav_js_tag(:bulma) %>
   <%== @pagy.info_tag %>
   ``` 
-  See all the available [@pagy instance methods](../toolbox/instance)
+  See all the available [@pagy methods](../toolbox/instance)
 
 ### 3. Configure global options or special features
 
@@ -50,3 +50,7 @@ See [pagy.rb initializer](../toolbox/initializer.md)
 
 - For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](/docs/resources/stylesheet)
 - For `:bootstrap` and `:bulma` style you don't need any special CSS file.
+
+#### If you use any `*_js*` method...
+
+Add [Javascript support](../resources/javascript)

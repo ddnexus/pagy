@@ -51,12 +51,11 @@ describe 'elasticsearch_rails' do
       it 'paginates with options' do
         pagy, records = app.send(:pagy, :elasticsearch_rails,
                                  MockElasticsearchRails::Model.pagy_search('b').records,
-                                 page: 2, limit: 10, a_string_attributes: 'X')
+                                 page: 2, limit: 10)
         _(pagy).must_be_instance_of Pagy::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 2
-        _(pagy.options[:a_string_attributes]).must_equal 'X'
         _(records.count).must_equal 10
         _(records).must_rematch :records
       end
@@ -89,12 +88,11 @@ describe 'elasticsearch_rails' do
       it 'paginates with options' do
         pagy, records = app.send(:pagy, :elasticsearch_rails,
                                  MockElasticsearchRails::ModelES7.pagy_search('b').records,
-                                 page: 2, limit: 10, a_string_attributes: 'X')
+                                 page: 2, limit: 10)
         _(pagy).must_be_instance_of Pagy::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 10
         _(pagy.page).must_equal 2
-        _(pagy.options[:a_string_attributes]).must_equal 'X'
         _(records.count).must_equal 10
         _(records).must_rematch :records
       end
@@ -110,12 +108,11 @@ describe 'elasticsearch_rails' do
       end
       it 'paginates response with options' do
         response = MockElasticsearchRails::Model.search('b', from: 15, size: 15)
-        pagy     = app.send(:pagy, :elasticsearch_rails, response, a_string_attributes: 'X')
+        pagy     = app.send(:pagy, :elasticsearch_rails, response)
         _(pagy).must_be_instance_of Pagy::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
         _(pagy.page).must_equal 2
-        _(pagy.options[:a_string_attributes]).must_equal 'X'
       end
       it 'paginates response with defaults on Elasticsearch 5' do
         response = MockElasticsearchRails::ModelES5.search('a')
@@ -127,12 +124,11 @@ describe 'elasticsearch_rails' do
       end
       it 'paginates response with options on Elasticsearch 5' do
         response = MockElasticsearchRails::ModelES5.search('b', from: 15, size: 15)
-        pagy     = app.send(:pagy, :elasticsearch_rails, response, a_string_attributes: 'X')
+        pagy     = app.send(:pagy, :elasticsearch_rails, response)
         _(pagy).must_be_instance_of Pagy::ElasticsearchRails
         _(pagy.count).must_equal 1000
         _(pagy.limit).must_equal 15
         _(pagy.page).must_equal 2
-        _(pagy.options[:a_string_attributes]).must_equal 'X'
       end
     end
   end
