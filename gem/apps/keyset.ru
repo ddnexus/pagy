@@ -34,7 +34,7 @@ end
 require 'sinatra/base'
 # Sinatra application
 class PagyKeyset < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   # Root route/action
   get '/' do

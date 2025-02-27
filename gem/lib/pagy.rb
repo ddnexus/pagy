@@ -1,32 +1,32 @@
 # frozen_string_literal: true
 
 require 'pathname'
-require_relative 'pagy/exceptions'
-require_relative 'pagy/resources/features/linkable'
-require_relative 'pagy/resources/features/configurable'
-require_relative 'pagy/resources/loader'
+require_relative 'pagy/classes/exceptions'
+require_relative 'pagy/modules/abilities/linkable'
+require_relative 'pagy/modules/abilities/configurable'
+require_relative 'pagy/toolbox/methods/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
   VERSION     = '9.3.3'
   ROOT        = Pathname.new(__dir__).parent.freeze
-  PAGY_PATH   = ROOT.join('lib/pagy').freeze
   DEFAULT     = { limit: 20, limit_sym: :limit, page_sym: :page }.freeze
   PAGE_TOKEN  = 'P '
   LIMIT_TOKEN = 'L '
   LABEL_TOKEN = 'L'
   A_TAG       = '<a style="display: none;">#</a>'
 
-  autoload :Backend,            PAGY_PATH.join('backend')
-  autoload :I18n,               PAGY_PATH.join('resources/i18n/i18n')
-  autoload :Calendar,           PAGY_PATH.join('calendar/calendar')
-  autoload :Offset,             PAGY_PATH.join('offset/offset')
-  autoload :Search,             PAGY_PATH.join('offset/search')
-  autoload :ElasticsearchRails, PAGY_PATH.join('offset/search')
-  autoload :Meilisearch,        PAGY_PATH.join('offset/search')
-  autoload :Searchkick,         PAGY_PATH.join('offset/search')
-  autoload :Keyset,             PAGY_PATH.join('keyset/keyset')
-  autoload :Console,            PAGY_PATH.join('console')
+  path = Pathname.new(__FILE__).sub_ext('')
+  autoload :Method,             path.join('toolbox/paginators/method')
+  autoload :I18n,               path.join('modules/i18n/i18n')
+  autoload :Console,            path.join('modules/console')
+  autoload :Calendar,           path.join('classes/calendar/calendar')
+  autoload :Offset,             path.join('classes/offset/offset')
+  autoload :Search,             path.join('classes/offset/search')
+  autoload :ElasticsearchRails, path.join('classes/offset/search')
+  autoload :Meilisearch,        path.join('classes/offset/search')
+  autoload :Searchkick,         path.join('classes/offset/search')
+  autoload :Keyset,             path.join('classes/keyset/keyset')
 
   def self.options = @options ||= {}
 

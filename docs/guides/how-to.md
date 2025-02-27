@@ -19,7 +19,7 @@ You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pag
 - **Client Side**
   - Use the `limit` option, combined with the `:requestable_limit` option, that allows the client to request a `:limit` up-to the
     `:requestable_limit`
-  - Additionally, you can use the [limit_selector_js_tag](../toolbox/instance/limit_selector_is_tag.md) helper to provide a UI
+  - Additionally, you can use the [limit_selector_js_tag](../toolbox/methods/limit_selector_is_tag.md) helper to provide a UI
     selector to the user.
 
 ```ruby
@@ -32,16 +32,16 @@ You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pag
 The defined `:limit` option overrides any `limit` already set in `ActiveRecord` collections
 !!!
 
-See [Common Options](../toolbox/paginator.md#common-options).
+See [Common Options](../toolbox/paginators#common-options).
 
 ==- Control the pagination bar
 
-Pagy offers the [nav_tag](../toolbox/instance/nav_tag.md) and [nav_js_tag](../toolbox/instance/nav_js_tag.md) helpers with a
+Pagy offers the [nav_tag](../toolbox/methods/nav_tag.md) and [nav_js_tag](../toolbox/methods/nav_js_tag.md) helpers with a
 pagination bar.
 
 You can control the number and position of the page links in the navigation through:
 
-- The [:slots and :compact options](../toolbox/instance/nav_tag.md#options).
+- The [:slots and :compact options](../toolbox/methods/nav_tag.md#options).
 - Overriding the `series` method for full control over the pagination bar
 
 ==- Force the `:page`
@@ -62,7 +62,7 @@ See [I18n](../resources/i18n.md).
 
 Customize the `aria-label` attributes of any `*nav*` helper by passing the `:aria_label` string
 
-See [:aria_label option](../toolbox/instance.md#common-nav-options)
+See [:aria_label option](../toolbox/methods#common-nav-options)
 
 You can also replace the `pagy.aria_label.nav` strings in the dictionary, as well as the `pagy.aria_label.previous` and the
 `pagy.aria_label.next`.
@@ -77,7 +77,7 @@ Set the `page_sym: :your_symbol` to override the URL generation (i.e. `?your_sym
 
 Set the `limit_sym` to customize the `limit` param the same way.
 
-See [Common Options](../toolbox/paginator#common-options)
+See [Common Options](../toolbox/paginators#common-options)
 
 ==- Customize the params
 
@@ -141,7 +141,7 @@ Pagy::AnyModule.prepend MyOverridingModule
 
 ==- Paginate an Array
 
-Just pass it as the collection, to the [:offset paginator](../toolbox/paginator/offset.md)
+Just pass it as the collection, to the [:offset paginator](../toolbox/paginators/offset.md)
 
 ==- Paginate ActiveRecord collections
 
@@ -149,7 +149,7 @@ Pagy works out of the box with `ActiveRecord` collections, however here are a fe
 differently:
 
 - **Grouped collections**
-  - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginator/offset.md#options) option
+  - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginators/offset.md#options) option
 - **Decorated collections**
   - Do it in two steps:
     1. Get the page of records without decoration
@@ -171,16 +171,16 @@ differently:
   @pagy, @people = pagy(:offset, q.result)
   ```
 - **PostgreSQL Collections**
-  - [Always order your collections!](../toolbox/paginator.md#troubleshooting)
+  - [Always order your collections!](../toolbox/paginators#troubleshooting)
 
 ==- Paginate for generic API clients
 
 Check out:
 
-- [:keyset paginator](../toolbox/paginator/keyset.md)
-- [headers_hash helper](../toolbox/instance/headers_hash.md)
-- [:requestable_limit option](../toolbox/paginator.md#common-options)
-- [:jsonapi option](../toolbox/paginator.md#common-options)
+- [:keyset paginator](../toolbox/paginators/keyset.md)
+- [headers_hash helper](../toolbox/methods/headers_hash.md)
+- [:requestable_limit option](../toolbox/paginators#common-options)
+- [:jsonapi option](../toolbox/paginators#common-options)
 
 ==- Paginate with JSON:API
 
@@ -193,20 +193,20 @@ Pass the `jsonapi: true` to the paginator, optionally using `:page_sym` and `:li
 
 ==- Paginate for Javascript Frameworks
 
-You can JSON send to the client selected `@pagy` instance data with the [data_hash helper](../toolbox/instance/data_hash.md) and
+You can JSON send to the client selected `@pagy` instance data with the [data_hash helper](../toolbox/methods/data_hash.md) and
 pass the pagination metadata in your JSON response.
 
 ==- Paginate search framework results
 
 See these pagnators:
 
-- [elasticsearch_rails](../toolbox/paginator/elasticsearch_rails.md)
-- [searchkick](../toolbox/paginator/searchkick.md)
-- [meilisearch](../toolbox/paginator/meilisearch.md)
+- [elasticsearch_rails](../toolbox/paginators/elasticsearch_rails.md)
+- [searchkick](../toolbox/paginators/searchkick.md)
+- [meilisearch](../toolbox/paginators/meilisearch.md)
 
 ==- Paginate by date
 
-Use the [:calendar paginator](../toolbox/paginator/calendar.md) that adds pagination filtering by calendar time unit (year,
+Use the [:calendar paginator](../toolbox/paginators/calendar.md) that adds pagination filtering by calendar time unit (year,
 quarter, month, week, day).
 
 ==- Paginate multiple independent collections
@@ -394,16 +394,16 @@ rendered... or maybe you don't. If you don't:
 
 Check out these paginators:
 
-- [:countless](../toolbox/paginator/countless.md)
-- [:keyset](../toolbox/paginator/keyset.md)
-- [:keynav_js](../toolbox/paginator/keynav.md)
+- [:countless](../toolbox/paginators/countless.md)
+- [:keyset](../toolbox/paginators/keyset.md)
+- [:keynav_js](../toolbox/paginators/keynav.md)
 
 ==- Maximize Performance
 
 - Consider the paginators:
-  - [:countless](../toolbox/paginator/countless.md)
-  - [:keyset](../toolbox/paginator/keyset.md)
-  - [:keynav_js](../toolbox/paginator/keynav.md)
+  - [:countless](../toolbox/paginators/countless.md)
+  - [:keyset](../toolbox/paginators/keyset.md)
+  - [:keynav_js](../toolbox/paginators/keynav.md)
 - Consider the `*_js_nav_tag`s (a few orders of magnitute faster)
   - Add the `oj` gem to your gemfile
 

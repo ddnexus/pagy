@@ -34,7 +34,7 @@ end
 require 'sinatra/base'
 # Sinatra application
 class PagyKeynav < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   get('/javascripts/:file') do
     format = params[:file].split('.').last

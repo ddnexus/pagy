@@ -35,7 +35,7 @@ require 'sinatra/base'
 require 'logger'
 # Sinatra application
 class PagyKeysetSequel < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   # Root route/action
   get '/' do

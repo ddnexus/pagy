@@ -25,7 +25,7 @@ class MockApp
     I18n.t('test')
   end
 
-  include Pagy::Backend
+  include Pagy::Method
 
   class Calendar < MockApp
     def pagy_calendar_period(collection)

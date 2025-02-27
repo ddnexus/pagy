@@ -21,9 +21,9 @@
 
 This version is a complete redesign of the legacy code: its API will be stable for a long time.
 
-- We invented the pagy-exclusive `keynav` pagination, that uses the fastest `keyset` technique with all the Frontend helpers. The best
-  technique for performance and functionality!
-- Wicked-fast [Keyset Pagination](https://ddnexus.github.io/pagy/docs/api/keyset/) for big data and infinite pagination.
+- We invented the pagy-exclusive [keynav](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js) pagination, that uses the
+  fastest `keyset` technique with all the Frontend helpers. The best technique for performance and functionality!
+- Wicked-fast [Keyset Paginator](https://ddnexus.github.io/pagy/toolbox/paginators/keyset) for big data and infinite pagination.
 - Reduce the required config by 99%: no require, no extras, no DEFAULT
 - Reduce and improve all the methods, now autoloaded ONLY if you actually use them
 - New docs: short and to the point, easy to browse and understand
@@ -61,6 +61,7 @@ include Pagy::Backend
 @pagy, @records = pagy(:offset, Product.all)
 @pagy, @records = pagy(:keyset, Product.order(my_order).all)
 ``` 
+
 Pagination with JSON:API:
 
 ```ruby
@@ -85,7 +86,7 @@ Search code:
 extend Pagy::Search
 
 # Paginate with pagy:
-search = Product.pagy_search(params[:q])
+search           = Product.pagy_search(params[:q])
 @pagy, @response = pagy(:elasticsearch_rails, search)
 @pagy, @results  = pagy(:meilisearch, search)
 @pagy, @results  = pagy(:searchkick, search)
@@ -105,6 +106,7 @@ Server side rendering:
 <%== @pagy.nav_tag(:bootstrap) %>
 <%== @pagy.nav_tag(:bulma) %>
 ```
+
 Client side rendering:
 
 ```rb
@@ -112,9 +114,10 @@ Client side rendering:
 javascript_dir = Rails.root.join('app/javascript')
 Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
+
 ```erb
 <%# Render client side nav bar helpers of different types and styles %>
-<%== @pagy.nav_js_tag %> 
+<%== @pagy.nav_js_tag %>
 <%== @pagy.nav_js_tag(:bootstrap) %>
 <%== @pagy.nav_js_tag(:bulma) %>
 
@@ -125,14 +128,14 @@ Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 
 View helpers:
 
-| Helper Name                                                                                                                                                                                                                | Preview (Bootstrap Style shown)                                  |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| [`@pagy.nav_tag`](https://ddnexus.github.io/pagy/toolbox/instance/nav_tag)                                                                                                                                                 | ![`nav_tag`](/assets/images/bootstrap_nav.png)                   |
-| [`@pagy.nav_js_tag`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                  | ![`nav_js_tqg`](/assets/images/bootstrap_nav_js.png)             |
-| [`@pagy.info_tag`](https://ddnexus.github.io/pagy/toolbox/instance/nav_js_tag)                                                                                                                                             | ![`info_tag`](/assets/images/pagy_info.png)                      |
-| [`@pagy.combo_nav_js_tag`](https://ddnexus.github.io/toolbox/instance/combo_nav_js_tag)                                                                                                                                    | ![`combo_nav_js_tag`](/assets/images/bootstrap_combo_nav_js.png) |
-| [`@pagy.limit_selector_js_tag`](https://ddnexus.github.io/pagy/toolbox/instance/limit_seletor_js_tag)                                                                                                                      | ![`limit_selector_js_tag`](/assets/images/limit_selector_js.png) |
-| [`@calendar[:year].nav_tag`](https://ddnexus.github.io/toolbox/paginator/calendar)<br/>[`@calendar[:month].nav_tag`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day`) | ![calendar](/assets/images/calendar-app.png)                     |
+| Helper Name                                                                                                                                                                                                                 | Preview (Bootstrap Style shown)                                  |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| [`@pagy.nav_tag`](https://ddnexus.github.io/pagy/toolbox/methods/nav_tag)                                                                                                                                                   | ![`nav_tag`](/assets/images/bootstrap_nav.png)                   |
+| [`@pagy.nav_js_tag`](https://ddnexus.github.io/pagy/docs/api/javascript/)                                                                                                                                                   | ![`pagy_nav_js`](/assets/images/bootstrap_nav_js.png)            |
+| [`@pagy.info_tag`](https://ddnexus.github.io/pagy/toolbox/methods/nav_js_tag)                                                                                                                                               | ![`info_tag`](/assets/images/pagy_info.png)                      |
+| [`@pagy.combo_nav_js_tag`](https://ddnexus.github.io/toolbox/methods/combo_nav_js_tag)                                                                                                                                      | ![`combo_nav_js_tag`](/assets/images/bootstrap_combo_nav_js.png) |
+| [`@pagy.limit_selector_js_tag`](https://ddnexus.github.io/pagy/toolbox/methods/limit_seletor_js_tag)                                                                                                                        | ![`limit_selector_js_tag`](/assets/images/limit_selector_js.png) |
+| [`@calendar[:year].nav_tag`](https://ddnexus.github.io/toolbox/paginators/calendar)<br/>[`@calendar[:month].nav_tag`](https://ddnexus.github.io/pagy/docs/extras/calendar/)<br/> (other units: `:quarter`, `:week`, `:day`) | ![calendar](/assets/images/calendar-app.png)                     |
 
 ---
 

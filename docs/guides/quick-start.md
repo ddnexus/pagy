@@ -15,21 +15,24 @@ gem 'pagy', '~> 9.3' # omit patch digit
 
 ### 2. Use
 
-!!!success Every pagy method is autoloaded on demand
-
-Unused methods consume no memory.
-!!!
-
-- Include the `Pagy::Backend`:
+- Include the `pagy` method:
   ```ruby ApplicationController/AnyController
-  include Pagy::Backend
-  ```
+  include Pagy::Method
+  ``` 
 
-- Paginate any collection, with any technique, using the `pagy` paginator method:
+- Now, you can use it to paginate ANY collection, with ANY technique:
   ```ruby Controller Controller/action
-  @pagy, @records = pagy(:offset, Product.some_scope, **options)
+  @pagy, @records = pagy(:offset, Product.some_scope, **options) # :offset paginator
+   @pagy, @records = pagy(:keyset, Product.some_scope, **options) # :keyset paginator
+   ...
   ```
-  See all the available [paginators](../toolbox/paginator#paginators)
+  
+  !!!success The `pagy` method autoloads paginators on demand
+
+  Unused code consumes no memory.
+  !!!
+  
+  See all the available [paginators](../toolbox/paginators#paginators)
 
 - Render navigator tags and other helpers with the `@pagy` instance methods:
 
@@ -40,7 +43,7 @@ Unused methods consume no memory.
   <%== @pagy.combo_nav_js_tag(:bulma) %>
   <%== @pagy.info_tag %>
   ``` 
-  See all the available [@pagy methods](../toolbox/instance)
+  See all the available [@pagy methods](../toolbox/methods)
 
 ### 3. Configure global options or special features
 

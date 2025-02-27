@@ -37,7 +37,7 @@ Pagy.options[:requestable_limit] = 100
 require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   get('/javascripts/:file') do
     format = params[:file].split('.').last

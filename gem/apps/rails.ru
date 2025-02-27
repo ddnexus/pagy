@@ -100,7 +100,7 @@ end
 # Controllers
 class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
-  include Pagy::Backend
+  include Pagy::Method
 
   def index
     @pagy, @comments = pagy(:offset, Comment.all, limit: 10, requestable_limit: 100)

@@ -46,7 +46,7 @@ Pagy.options[:requestable_limit] = 100
 
 # Sinatra application
 class PagyDemo < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   get '/' do
     redirect '/pagy'
