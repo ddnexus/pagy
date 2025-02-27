@@ -2,7 +2,7 @@
 title: nav_tag
 icon: code
 order: 170
-image: none
+image: ""
 categories:
   - Methods
   - Navs

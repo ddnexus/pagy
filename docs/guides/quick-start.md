@@ -51,7 +51,7 @@ gem 'pagy', '~> 9.3' # omit patch digit
 
 #### Pick a stylesheet or a CSS framework
 
-- For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](/docs/resources/stylesheet)
+- For native pagy helpers (used also with tailwind), you can integrate the [Pagy Stylesheets](../resources/stylesheet)
 - For `:bootstrap` and `:bulma` style you don't need any special CSS file.
 
 #### If you use any `*_js*` method...

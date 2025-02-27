@@ -99,6 +99,10 @@ time**.
 - The `Pagy::DEFAULT` is now frozen and used internally. Use the `Pagy.options` hash to the same effect.
 - Copy over the `Pagy::DEFAULT` that apply (most are not needed anymore) and replace `Pagy::DEFAULT` with `Pagy.options`.
 
+#### The `Pagy::Backend` has been replaced
+
+- Replace `include Pagy::Backend` with `include Pagy::Method`, beause pagy includes only the `pagy` method now.
+
 #### All the `pagy_*` methods and the `Pagy::Frontend` are gone
 
 - Remove any existing `include Pagy::Frontend`
@@ -146,6 +150,8 @@ understanding.
 | Option    | `:page_param`        | `:page_sym`          | Because `page_param` make people think "page param value"                                         |
 | Option    | `:limit_param`       | `:limit_sym`         | Because `limit_param` make people think "limit param value"                                       |
 | Variable  | `@pagy_locale = ...` | `Pagy::I18n = ...`   | Because the `Pagy::I18n` API is now fully compatible with the `i18n` gem                          |
+| Path      | `'javascripts'`      | `'javascript'`       | Because it is the "javascript" dir, with one single file in a few formats                         |
+| Path      | `'stylesheets'`      | `'stylesheet'`       | Because it is the "stylescript" dir, with one single file in a few formats                        |
 
 ##### Internal API
 

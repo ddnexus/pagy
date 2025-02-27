@@ -51,7 +51,7 @@ Individual paginators may offer additional options, which are documented with th
   - Set it to a `Hash` of params to merge with the query params, or a `Lambda` that can edit/add/delete the request params (modify the query_params directly: the result is ignored). Keys
     must be strings.
 - `:request_path`
-  - Override the request path in pagination URLs. Pass the path only (not the absolute url). _(see [Pass the request path](/docs/Practical%20Guide/how-to.md#pass-the-request-path))_
+  - Override the request path in pagination URLs. Pass the path only (not the absolute url). _(see [Pass the request path](../guides/how-to.md#pass-the-request-path))_
 - `:request`
   - **Set this hash only for non-rack environments**. _(It is set automatically from the request)_. For example:
     ```ruby

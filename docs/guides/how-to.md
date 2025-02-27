@@ -95,11 +95,11 @@ An example using `except!` (available in Rails) and `merge!`:
 
 ==- Add a URL fragment
 
-You can use the [:fragment](../toolbox/instance.rb#common-url-option) option:
+You can use the [:fragment](../toolbox/methods.md#common-url-options) option:
 
 ==- Customize CSS styles
 
-Pagy includes a few [stylesheets](../resources/stylesheet) that you can customize, and provides the syled version of all the `nav`
+Pagy includes a few [stylesheet](../resources/stylesheet) files that you can customize, and provides the syled version of all the `nav`
 tags for `:bootstrap` and `:bulma`.
 
 You can also override the specific helper method.
@@ -107,7 +107,7 @@ You can also override the specific helper method.
 ==- Override CSS rules in element "style" attribute
 
 A couple of helpers (i.e. `combo_nav_js_tag`, `limit_selector_js_tag`) assign element style attributes to one or more tags. You
-can override their rules in your own stylesheets by using the attribute `[style]`
+can override their rules in your own stylesheet files by using the attribute `[style]`
 selector and `!important`. Here is an example for overriding the `width` of the `input` element:
 
 ```css
@@ -217,7 +217,7 @@ it to the `pagy*` method. That is very handy, but assumes you are paginating a s
 When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
 You have the following common ways to do so:
 
-#### Pass the request path
+==- Pass the request path
 
 By default, pagy generates its links reusing the same `request_path` of the request, however if you want to generate links
 pointing to a different controller/path, you should explicitly pass the targeted `:request_path`. For example:
@@ -396,14 +396,14 @@ Check out these paginators:
 
 - [:countless](../toolbox/paginators/countless.md)
 - [:keyset](../toolbox/paginators/keyset.md)
-- [:keynav_js](../toolbox/paginators/keynav.md)
+- [:keynav_js](../toolbox/paginators/keynav_js.md)
 
 ==- Maximize Performance
 
 - Consider the paginators:
   - [:countless](../toolbox/paginators/countless.md)
   - [:keyset](../toolbox/paginators/keyset.md)
-  - [:keynav_js](../toolbox/paginators/keynav.md)
+  - [:keynav_js](../toolbox/paginators/keynav_js.md)
 - Consider the `*_js_nav_tag`s (a few orders of magnitute faster)
   - Add the `oj` gem to your gemfile
 
@@ -479,8 +479,6 @@ pagy demo
 ...and point your browser at http://0.0.0.0:8000/template
 !!!
 
-You may want to read also the [Pagy::Frontend API documentation](../toolbox/frontend.md) for complete control over your templates.
-
 ==- Use Pagy with a non-rack app
 
 For non-rack environments that don't respond to the request method, you should pass the `:request` option to the paginator, set
@@ -493,4 +491,10 @@ with a hash with the following keys:
 Pagy rely also on the `params` method inside the app, which should be a hash of the params from the request. Define an alias or a
 method if your environment doesn't respond to it.
  
+==- Use `pagy` outside of a controller
+
+The `pagy` method expects to be used in a controller or in any environmment that defines `params` and `request`, because it relies on them to set options like ':page' and to create the URLs from the request.
+
+If you use it in a model for example, you should explicitly pass the options that `pagy` would search into the `params`. You should also pass the request hash that you 
+
 ===

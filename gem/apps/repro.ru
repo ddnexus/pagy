@@ -39,14 +39,14 @@ require 'sinatra/base'
 class PagyRepro < Sinatra::Base
   include Pagy::Method
 
-  get('/javascripts/:file') do
+  get('/javascript/:file') do
     format = params[:file].split('.').last
     if format == 'js'
       content_type 'application/javascript'
     elsif format == 'map'
       content_type 'application/json'
     end
-    send_file Pagy::ROOT.join('javascripts', params[:file])
+    send_file Pagy::ROOT.join('javascript', params[:file])
   end
 
   # Edit this action as needed
@@ -68,7 +68,7 @@ class PagyRepro < Sinatra::Base
       <html>
       <head>
          <title>Pagy Repro App</title>
-        <script src="javascripts/pagy.js"></script>
+        <script src="javascript/pagy.js"></script>
         <script>
           window.addEventListener("load", Pagy.init);
         </script>
@@ -99,7 +99,7 @@ class PagyRepro < Sinatra::Base
             If you want to customize the style,
             please replace the line below with the actual file content
           */
-          <%= Pagy::ROOT.join('stylesheets/pagy.css').read %>
+          <%= Pagy::ROOT.join('stylesheet/pagy.css').read %>
         </style>
       </head>
       <body>

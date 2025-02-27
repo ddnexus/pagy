@@ -8,7 +8,7 @@ categories:
 
 !!!warning Consider using the `:keynav_js` paginator when possible!
 
-The [:keynav_js](paginator/keynav.md) has exactly the same UI features, but it uses the fastest `keyset` pagination, particularly convenient with big, slow collection results. 
+The [:keynav_js](keynav_js.md) has exactly the same UI features, but it uses the fastest `keyset` pagination, particularly convenient with big, slow collection results. 
 !!!
 
 `:countless` is an OFFSET paginator that skips the `COUNT` query, saving one query per rendering.
@@ -21,7 +21,7 @@ The [:keynav_js](paginator/keynav.md) has exactly the same UI features, but it u
 @pagy, @records = pagy(:countless, collection, **options)
 ```
 
-- `@pagy` is the pagination object. It provides the [instance methods](../methods#instance-methods) to use in your code.
+- `@pagy` is the pagination object. It provides the [instance methods](../methods#methods) to use in your code.
 - `@records` is the eager-loaded `Array` of the page records.
 
 ==- Options

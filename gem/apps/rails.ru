@@ -47,7 +47,7 @@ class PagyRails < Rails::Application # :nodoc:
 
   routes.draw do
     root to: 'comments#index'
-    get '/javascripts/:file', to: 'pagy#javascripts', file: /.*/
+    get '/javascript/:file', to: 'pagy#javascript', file: /.*/
   end
 end
 
@@ -112,12 +112,12 @@ end
 
 # You don't need this in real rails apps (see https://ddnexus.github.io/pagy/docs/api/javascript/setup/#2-configure)
 class PagyController < ActionController::Base
-  def javascripts
+  def javascript
     format = params[:file].split('.').last
     if format == 'js'
-      render js: Pagy::ROOT.join('javascripts', params[:file]).read
+      render js: Pagy::ROOT.join('javascript', params[:file]).read
     elsif format == 'map'
-      render json: Pagy::ROOT.join('javascripts', params[:file]).read
+      render json: Pagy::ROOT.join('javascript', params[:file]).read
     end
   end
 end
@@ -130,7 +130,7 @@ TEMPLATE = <<~ERB
     <html>
     <head>
     <title>Pagy Rails App</title>
-      <script src="/javascripts/pagy.js"></script>
+      <script src="/javascript/pagy.js"></script>
       <script>
         window.addEventListener("load", Pagy.init);
       </script>
@@ -161,7 +161,7 @@ TEMPLATE = <<~ERB
           If you want to customize the style,
           please replace the line below with the actual file content
         */
-        <%== Pagy::ROOT.join('stylesheets/pagy.css').read %>
+        <%== Pagy::ROOT.join('stylesheet/pagy.css').read %>
       </style>
     </head>
 

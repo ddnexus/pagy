@@ -2,7 +2,7 @@
 title: combo_nav_js_tag
 icon: code
 order: 150
-image: none
+image: ""
 categories:
   - Methods
   - Navs
@@ -16,7 +16,7 @@ see [Maximizing Performance](../../guides/how-to.md#maximize-performance)) still
 
 ![combo_nav_js (:bootstrap style)](/assets/images/bootstrap_combo_nav_js.png)
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#3-demo-app)
 
 
 ```erb Any View

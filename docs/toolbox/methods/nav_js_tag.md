@@ -2,7 +2,7 @@
 title: nav_js_tag
 icon: code
 order: 160
-image: none
+image: ""
 categories:
   - Methods
   - Navs
@@ -88,7 +88,7 @@ For example:
 
 `{ 0 => 5, 540 => 7, 720 => 9 }` means that from `0` to `540` pixels width, Pagy will use `5` slots, from `540` to `720` it will
 use `7` slots and over `720` it will use `9` slots. (Read more about the `:slots`
-option in the [How to control the page links](/docs/how-to#control-the-page-links) section).
+option in the [How to control the pagination bar](../../guides/how-to#control-the-pagination-bar) section).
 
 !!!primary :steps must contain `0` width You can set any number of steps with any arbitrary width/slots. The only requirement is
 that the `:steps` hash must contain always the `0` width or a `Pagy::OptionsError` exception will be raised.

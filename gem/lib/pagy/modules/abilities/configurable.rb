@@ -13,7 +13,7 @@ class Pagy
     def sync_javascript(destination, *targets)
       names   = %w[pagy.mjs pagy.js pagy.js.map pagy.min.js]
       targets = names if targets.empty?
-      targets.each { |filename| FileUtils.cp(ROOT.join('javascripts', filename), destination) }
+      targets.each { |filename| FileUtils.cp(ROOT.join('javascript', filename), destination) }
       (names - targets).each { |filename| FileUtils.rm_f(File.join(destination, filename)) }
     end
   end

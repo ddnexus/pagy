@@ -2,7 +2,7 @@
 title: Stylesheet
 icon: file
 order: 90
-image: none
+image: ""
 ---
 
 # Stylesheet
@@ -30,47 +30,47 @@ number of tags and class attributes that can identify all the parts of the nav b
 
 !!! Notice
 
-- The stylesheets target the disabled `a` tags by using the `pagy a:not([href])` selector
+- The stylesheet target the disabled `a` tags by using the `pagy a:not([href])` selector
 - You can make the `gap` look like the other pages by removing the `:not(.gap)`
 - You can target the previous and next links by using `pagy a:first-child` and `pagy a:last-child` pseudo classes
 
 !!!
 
 !!!success 
-You can totally transform the stylesheets below by just editing the content inside the curly brackets, usually leaving
+You can totally transform the stylesheet below by just editing the content inside the curly brackets, usually leaving
 the rest untouched.
 !!!
 
 +++ pagy.scss
 
-[!file](../gem/stylesheets/pagy.scss)
+[!file](../gem/stylesheet/pagy.scss)
 
 ```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.scss')
+stylesheet_path = Pagy::ROOT.join('stylesheet/pagy.scss')
 ```
 
-:::code source="/gem/stylesheets/pagy.scss" title="pagy.scss":::
+:::code source="/gem/stylesheet/pagy.scss" title="pagy.scss":::
 
 +++ pagy.css
 
-[!file](../gem/stylesheets/pagy.css)
+[!file](../gem/stylesheet/pagy.css)
 
 ```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.css')
+stylesheet_path = Pagy::ROOT.join('stylesheet/pagy.css')
 ```
 
-:::code source="/gem/stylesheets/pagy.css" title="pagy.css":::
+:::code source="/gem/stylesheet/pagy.css" title="pagy.css":::
 
 +++ pagy.tailwind.css
 
-[!file](../gem/stylesheets/pagy.tailwind.css)
+[!file](../gem/stylesheet/pagy.tailwind.css)
 
 ```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheets/pagy.tailwind.css')
+stylesheet_path = Pagy::ROOT.join('stylesheet/pagy.tailwind.css')
 ```
 
-:::code source="/gem/stylesheets/pagy.tailwind.css" title="pagy.tailwind.css":::
+:::code source="/gem/stylesheet/pagy.tailwind.css" title="pagy.tailwind.css":::
 
 +++
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../sandbox/playground.md#3-demo-app)

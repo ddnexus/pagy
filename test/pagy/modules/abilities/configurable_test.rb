@@ -51,7 +51,7 @@ describe ".sync_javascript" do
     keep_files   = %w[pagy.js pagy.min.js]
     remove_files = all_files - keep_files
 
-    all_files.each { |file| FileUtils.cp(Pagy::ROOT.join('javascripts', file), destination) }
+    all_files.each { |file| FileUtils.cp(Pagy::ROOT.join('javascript', file), destination) }
     Pagy.sync_javascript(destination, 'pagy.js', 'pagy.min.js')
 
     keep_files.each do |file|

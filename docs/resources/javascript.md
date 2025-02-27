@@ -2,7 +2,7 @@
 title: Javascript
 icon: file-code
 order: 100
-image: none
+image: ""
 ---
 
 # Javascript
@@ -24,15 +24,14 @@ Just add the proper file and statements indicated below.
   - Source map file for debugging
 - `pagy.d.ts`
   - Pagy types if you need to work on it in typescript
-    [!file](/javascripts/pagy.d.ts)
 
 #### 2. Make the files available to your app
 
 Depending on the architecture of your app, you have a couple of alternatives:
 
-1. Either add the pagy javascripts path to the assets path: 
+1. Either add the pagy javascript path to the assets path: 
   ```ruby
-  Rails.application.config.assets.paths << Pagy::ROOT.join('javascripts')
+  Rails.application.config.assets.paths << Pagy::ROOT.join('javascript')
   ```
   - This works with Propshaft, Importmaps, Sprocket, etc.
 

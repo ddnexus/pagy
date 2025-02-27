@@ -46,7 +46,7 @@ See [ARIA](../resources/aria.md)
 [:icon-list-unordered: links_hash](methods/links_hash.md)<br/>
 [:icon-arrow-right: page_url](methods/page_url.md)<br/>
 [:icon-code: nav_tag](methods/nav_tag.md)<br/>
-[:icon-code: nav_js_tag](methods/nav_is_tag.md)<br/>
+[:icon-code: nav_js_tag](methods/nav_js_tag)<br/>
 [:icon-code: combo_nav_js_tag](methods/combo_nav_js_tag.md)<br/>
 [:icon-code-square: info_tag](methods/info_tag.md)<br/>
 [:icon-code-square: limit_selector_is_tag.md](methods/limit_selector_is_tag.md)<br/>

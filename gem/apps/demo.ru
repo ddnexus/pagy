@@ -59,19 +59,19 @@ class PagyDemo < Sinatra::Base
     erb :template, locals: { pagy: @pagy, name: 'pagy', css_anchor: 'pagy-scss' }
   end
 
-  get('/javascripts/:file') do
+  get('/javascript/:file') do
     format = params[:file].split('.').last
     if format == 'js'
       content_type 'application/javascript'
     elsif format == 'map'
       content_type 'application/json'
     end
-    send_file Pagy::ROOT.join('javascripts', params[:file])
+    send_file Pagy::ROOT.join('javascript', params[:file])
   end
 
-  get('/stylesheets/:file') do
+  get('/stylesheet/:file') do
     content_type 'text/css'
-    send_file Pagy::ROOT.join('stylesheets', params[:file])
+    send_file Pagy::ROOT.join('stylesheet', params[:file])
   end
 
   # One route/action per style
@@ -113,7 +113,7 @@ class PagyDemo < Sinatra::Base
       <html lang="en">
       <head>
         <title>Pagy Demo App</title>
-        <script src="/javascripts/pagy.js"></script>
+        <script src="/javascript/pagy.js"></script>
         <script>
           window.addEventListener("load", Pagy.init);
         </script>
@@ -223,7 +223,7 @@ class PagyDemo < Sinatra::Base
   template :pagy_head do
     <<~ERB
       <!-- copy and paste the pagy style in order to edit it -->
-      <link rel="stylesheet" href="/stylesheets/pagy.css">
+      <link rel="stylesheet" href="/stylesheet/pagy.css">
     ERB
   end
 
@@ -244,7 +244,7 @@ class PagyDemo < Sinatra::Base
       <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
       <!-- copy and paste the pagy.tailwind style in order to edit it -->
       <style type="text/tailwindcss">
-        <%= Pagy::ROOT.join('stylesheets/pagy.tailwind.css').read %>
+        <%= Pagy::ROOT.join('stylesheet/pagy.tailwind.css').read %>
       </style>
     ERB
   end
@@ -254,7 +254,7 @@ class PagyDemo < Sinatra::Base
       <h1><%= name %></h1>
 
       <% if css_anchor %>
-        and the <a href="http://ddnexus.github.io/pagy/docs/api/stylesheets/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
+        and the <a href="http://ddnexus.github.io/pagy/docs/api/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
       <% end %>
       for details</p>
 

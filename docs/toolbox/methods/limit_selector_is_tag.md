@@ -29,9 +29,6 @@ Try it with the [Pagy Console](../../sandbox/console.md):
 It looks like: <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per
 page</span>
 
-_(see [How to customize the item name](../../guides/how-to.md#customize-the-item-name))_
-
-
 !!!success Pagy requests the _right_ page number
 
 After selecting a new limit, pagy reloads the page that roughly contains the same items shown before the reload.

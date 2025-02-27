@@ -2,9 +2,9 @@
 title: :calendar
 icon: calendar
 order: 60
+image: ""
 categories:
   - Paginators
-image: none
 ---
 
 !!!warning ActiveSupport Required!
@@ -15,7 +15,7 @@ _(year, quarter, month, week, and day)_ to the pagination
 
 ![calendar_app](/assets/images/calendar-app.png)
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](/guide/playground.md#4-calendar-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#4-calendar-app)
 
 !!!success Use this paginator when the results have mostly populated pages/time-units.
 !!!
@@ -174,7 +174,7 @@ If the `:pagy` key/value is omitted, a default `Pagy` instance will be created b
 <br/>
 
 The calendar is active by default, however you can add an optional `:active` boolean flag to the `configuration` hash in order to
-switch it ON or OFF, depending on its usefulness in different conditions (see the [Use cases](#use-cases)).
+switch it ON or OFF, depending on its usefulness in different conditions.
 
 ==- `pagy_calendar_period(collection)`
 
@@ -184,8 +184,7 @@ This method must be implemented by the application.
 !!!
 
 It receives a `collection` argument that must not be changed by the method, but can be used to return the starting and ending
-local `TimeWithZone` objects array defining the calendar `:period`. See
-the [Pagy::Calendar Variables](/docs/toolbox/calendar.md#options) for details.
+local `TimeWithZone` objects array defining the calendar `:period`.
 
 Depending on the type of storage, the `collection` argument can contain a different kind of object:
 
@@ -362,7 +361,7 @@ format to your needs by passing the `:format` option, set to a standard `strftim
                                              year:  { format: '...' },
                                              month: { format: '...' })
 ```
-You can also get the [label method](/docs/toolbox/calendar.md#methods) with e.g.: `@calendar[:month].label`, which might be useful to
+You can also get the `label` method with e.g.: `@calendar[:month].label`, which might be useful to
 use in your UI.
 
 #### I18n localization
