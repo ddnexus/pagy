@@ -12,7 +12,7 @@ categories:
   - The nav bar links after the last known page are not shown
   - The `pagy_info` helper is not supported
 - It requires [Javscript Support](../../resources/javascript.md) and a browser that implements `sessionStorage`.
-  - If that conditions are not met, it falls back to the `:countless` paginator
+  - If that conditions are not met, it falls back to the [:countless paginator](countless.md)
 
 ```ruby Controller 
 @pagy, @records = pagy(:keynav_js, collection, **options)
@@ -23,7 +23,7 @@ categories:
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](/docs/Practical%20Guide/playground.md#5-keyset-apps)
 
-!!!warning These docs interate the [:keyset](keyset.md) docs
+!!!warning These docs integrate the [:keyset](keyset.md) docs
 
 It's easier to understand if you familiarize with the [:keyset](keyset.md) docs.
 !!!
@@ -46,7 +46,7 @@ The Augmented Keyset pagination adds the numeric options (`page`, `last`, `prev`
 usage with the UI. It does so by transparently exchanging data back and forth with the client, that stores the state of the
 pagination.
 
-You can use the `:keyset_js` paginator as you would with the `:countless` paginator. You just need
+You can use the `:keyset_js` paginator as you would with the [:countless paginator](countless.md). You just need
 the [Keyset Setup](keyset.md#setup) and [Javascript Support](../../resources/javascript.md), and you will get a lot more
 performance.
 

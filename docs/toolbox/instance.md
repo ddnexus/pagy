@@ -8,6 +8,8 @@ categories:
 
 The `@pagy` instance provides all the helpers, navs and components methods you need.
 
+The instance class is determined by the paginator used, and you can safely ignore it. Just use its methods.
+
 ==- Common Nav Options
 
 - `id: 'my-nav'`:
@@ -27,6 +29,8 @@ The `nav` elements are `landmark  roles`, and should be distinctly labeled.
 ```
 
 !!!
+
+See [ARIA](../resources/aria.md)
 
 ==- Common URL Options
 

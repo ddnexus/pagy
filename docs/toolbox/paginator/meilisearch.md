@@ -43,11 +43,19 @@ Pagy creates its object out of your result.
 
 +++
 
-==- Special Options
+!!!
+Search paginators do not use OFFSET for querying a DB, however they use the same positional technique used by the [:offset] pagintors, sharing the same options and readers
+!!!
+
+==- Options
 
 - `search_method: :my_search`
   - Customize the name of the search method (default `:ms_search`)
-    
-See also [Common Options](../paginator#common-options)
+
+See also [Offset Options](offset.md#options)
+
+==- Readers
+
+See [Offset Readers](offset.md#readers)
 
 ===

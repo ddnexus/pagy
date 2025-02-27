@@ -78,7 +78,7 @@ pagy_render(collection, **options)
 link <https://example.com:8080/foo?page=1>; rel="first", <https://example.com:8080/foo?page=2>; rel="prev", <https://example.
 com:8080/foo?page=4>; rel="next", <https://example.com:8080/foo?page=50>; rel="last"
 current-page 3
-page-items 20
+page-limit 20
 total-pages 50
 total-count 1000
 ```

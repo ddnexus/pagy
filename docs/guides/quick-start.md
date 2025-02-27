@@ -1,6 +1,6 @@
 ---
 order: 100
-icon: rocket-24
+icon: rocket
 ---
 
 # Quick Start
@@ -44,7 +44,7 @@ Unused methods consume no memory.
 
 ### 3. Configure global options or special features
 
-See [pagy.rb initializer](../toolbox/initializer.md)
+- See [pagy.rb initializer](../toolbox/initializer.md)
 
 #### Pick a stylesheet or a CSS framework
 
@@ -53,4 +53,4 @@ See [pagy.rb initializer](../toolbox/initializer.md)
 
 #### If you use any `*_js*` method...
 
-Add [Javascript support](../resources/javascript)
+- Add [Javascript support](../resources/javascript)

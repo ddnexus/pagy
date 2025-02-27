@@ -16,12 +16,17 @@ The `:keyset` is the **fastest** paginator for SQL collections.
   - Any combination of order directions
 - Unlikely the classic OFFSET pagination:
   - Its performance are reliably fast from start to end, no matter how big is your table.
-  - It's completely accurate. Even with insertions or deletion of records during browsing, you will never have repeating or missing records
+  - It's completely accurate. Even with insertions or deletion of records during browsing, you will never have repeating or
+    missing records
   - Does not suffer from `RangeError`s
-!!!
+    !!!
 
-- It **does not** support **ANY** helpers nor UI components, only API or infinite scrolling. However, the [:keynav](keynav_js)
-paginator uses KEYSET pagination and supports all the nav tags and helpers.
+- It **does not** support **ANY** helpers nor UI components, only API or infinite scrolling.
+
+!!!success
+
+Use the [:keynav_js](keynav_js.md) paginator for KEYSET pagination with alsomst complete UI support.
+!!!
 
 ```ruby Controller
 @pagy, @records = pagy(:keyset, set, **options)
@@ -51,7 +56,7 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 
 !!!success IMPORTANT!
 
-Almost all the constraints below can be avoided by using the [:keynav](keynav_js) paginator when you need a proper UI.
+Almost all the constraints below can be avoided by using the [:keynav_js](keynav_js) paginator when you need a proper UI.
 !!!
 
 !!!warning With the standard keyset pagination technique...
@@ -84,17 +89,17 @@ Depending on your order requirements, here is how you set it up:
 
 If you need a specific order:
 
-- **In order to make it work**...<br/>
-  Ensure that at least one of your ordered columns is unique OR append your primary keys to your order
+- **In order to make it work**...
+  - Ensure that at least one of your ordered columns is unique OR append your primary keys to your order
 - **In order to make it fast**...<br/>
-  Ensure to create a unique composite DB index, including the exact same columns and ordering direction of your set
+  - Ensure to create a unique composite DB index, including the exact same columns and ordering direction of your set
 
 !!!
 
 +++ No order requirements
 !!!success
 
-If you don't need any ordering, `order(:id)` is the simplest choice, because it's unique and already indexed.
+If you don't need any ordering, `order(:id)` is the simplest choice, because the `id` column is unique and already indexed.
 
 It is fast out of the box without any setup.
 
@@ -127,7 +132,7 @@ See also [Common Readers](../paginator#common-readers)
 <br/>
 
 - You pass an `uniquely ordered` `set` and pagy pulls the `:limit` of records of the first page.
-- It requests the `next` URL by setting its `page` query string param to the `cutoff` of the current page.
+- You requests the `next` URL, which has the `page` query string param set to the `cutoff` of the current page.
 - At each request, the new `page` is decoded into arguments that are coupled with a `where` filter query, and the `:limit` of new
   records is pulled.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
@@ -180,19 +185,18 @@ beginning of set >[· · · · · · · · · X]· · · · · · · · · Y]· 
 ```
 
 When we pull the `next` page from the `cutoff-Y`, we find only the remaining 9 records, which means that it's the _"last page"_,
-which naturally ends with the end of the `set`, so it doesn't have any `cutoff` value to spearate it from further records.
+which naturally ends with the end of the `set`, so it doesn't have any `cutoff` value to separate it from further records.
 
 !!! Keynotes
 
-- A `cutoff` identifies a "cutoff value", for a `page` in the `set`. It is not a record nor a reference to it.
-- Its value is derived from the `keyset attributes values` array of the last record of the `page`, converted to JSON, and encoded
-  as a Base64 URL-safe string, for easy use in URLs.
-  - The `:keyset` paginator embeds it in the request URL; the `:keynav` paginator caches it on the client `sessionStorage`.
+- A `cutoff` identifies a "cutoff value", for a `page` in the `set`. It is not a record, nor a reference to it.
+- Its value is extracted from the `keyset attributes values` array of the last record of the `page`, converted to JSON, and
+  encoded as a Base64 URL-safe string, for easy use in URLs.
+  - The `:keyset` paginator embeds it in the request URL; the `:keynav_js` paginator caches it on the client `sessionStorage`.
 - All the `page`s but the last, end with the `cutoff`.
 - All the `page`s but the first, begin AFTER the `cutoff` of the previous `page`.
 
 !!!
-
 
 ==- Troubleshooting
 

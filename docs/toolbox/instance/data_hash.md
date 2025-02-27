@@ -37,8 +37,6 @@ render json: { data: @records, pagy: pagy_hash }
     - pages
     - previous
     - previous_url
-    - sequels
-    - series
     - to
     - url_template
 

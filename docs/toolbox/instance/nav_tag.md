@@ -27,6 +27,7 @@ Try it with the [Pagy Console](../../sandbox/console.md):
 >> puts @pagy.nav_tag
 <nav class="pagy nav" aria-label="Pages"><a href="/path?example=123&page=2" aria-label="Previous">&lt;</a><a href="/path?example=123&page=1">1</a><a href="/path?example=123&page=2">2</a><a role="link" aria-disabled="true" aria-current="page" class="current">3</a><a href="/path?example=123&page=4">4</a><a href="/path?example=123&page=5">5</a><a role="link" aria-disabled="true" class="gap">&hellip;</a><a href="/path?example=123&page=50">50</a><a href="/path?example=123&page=4" aria-label="Next">&gt;</a></nav>
 => nil
+
 >> puts @pagy.nav_tag(:bulma, id: 'my-nav', aria_label: 'Products', slots: 3)
 <nav id="my-nav" class="pagy-bulma nav pagination is-centered" aria-label="Products"><a href="/path?example=123&page=2" class="pagination-previous" aria-label="Previous">&lt;</a><a href="/path?example=123&page=4" class="pagination-next" aria-label="Next">&gt;</a><ul class="pagination-list"><li><a href="/path?example=123&page=2" class="pagination-link">2</a></li><li><a role="link" class="pagination-link is-current" aria-current="page" aria-disabled="true">3</a></li><li><a href="/path?example=123&page=4" class="pagination-link">4</a></li></ul></nav>
 => nil

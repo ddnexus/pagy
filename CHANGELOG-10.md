@@ -104,8 +104,8 @@ time**.
 - Remove any existing `include Pagy::Frontend`
 - The paginators (i.e. the `pagy_*` methods returning the `@pagy` instance and the `@records`) got integrated in the `pagy`
   method.
-  - Notice that the old `pagy(...)` statement is still working as-is, but it should _preferably_ be updated with the new
-    explicit syntax as `pagy(:offset, ...)`.
+  - Notice that the old `pagy(...)` statement is still working as-is, but it should _preferably_ be updated with the new explicit
+    syntax as `pagy(:offset, ...)`.
   - All the other pagy_backend methods are gone. _(See how to replace them in the [Extras Changes](#extras-changes))_
 - All the `pagy_*` helpers provided by the `Pagy::Frontend` are now `@pagy` instance methods (and most have been renamed). _(See
   how to replace them in the [Extras Changes](#extras-changes))_
@@ -115,7 +115,7 @@ time**.
 - If you used the `:params` variable set to a lambda, ensure that it modifies the passed `query_params` directly.
   - The returned value is now ignored for a slightly better performance.
 - The `:outset` and `:cycle` variables have been removed.
-  - They were seldom used, mostly useless, and implementing them in your own code is trivial. 
+  - They were seldom used, mostly useless, and implementing them in your own code is trivial.
 - The `:anchor_string` variable has been removed
   - It was only helpfut for adding `data-remote="true"`, which is obsolete and rails apps using it cannot run on ruby 3.2
 - The `pagy_prev_link` and `pagy_next_link` have been removed: they were just useless.
@@ -142,10 +142,11 @@ understanding.
 | Naming    | `*prev*`             | `*previous*`         | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)            |
 | Option    | `size: 7`            | `slots: 7`           | Because it's actually the number of page slots, and avoids confusion with other `size`s           |
 | Option    | `ends: false`        | `compact: true`      | Because it's an opt-in option of the `series`, boolean inverse of `ends`                          |
-| Option    | `:count_args`        | `:count_arguments`   | Because we don't use abbreviated words anymore                                         |
+| Option    | `:count_args`        | `:count_arguments`   | Because we don't use abbreviated words anymore                                                    |
 | Option    | `:page_param`        | `:page_sym`          | Because `page_param` make people think "page param value"                                         |
 | Option    | `:limit_param`       | `:limit_sym`         | Because `limit_param` make people think "limit param value"                                       |
 | Variable  | `@pagy_locale = ...` | `Pagy::I18n = ...`   | Because the `Pagy::I18n` API is now fully compatible with the `i18n` gem                          |
+
 ##### Internal API
 
 You may check these if you override some internal method:

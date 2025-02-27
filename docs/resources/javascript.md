@@ -48,7 +48,7 @@ After that, either the filepath is available in the assets, or the file is copie
 
 #### 3. Add the Pagy.init listener
 
-The final goal of the javascript support is using `Pagy.init` as an event listener, attached to a suitable event for your app:
+The final goal of the javascript support is using `Pagy.init` as an event listener, added to a suitable event for your app:
 
 ```javascript
 // Import the Pagy module if you use pagy.mjs 

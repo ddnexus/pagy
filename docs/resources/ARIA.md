@@ -23,19 +23,19 @@ used by your app to be already correctly translated and pluralized. If it's not,
 in the file itself. Thank you!
 !!!
 
-!!!danger Validation
-Since the `nav` or `role="navigation"` elements of a HTML document are considered `landmark  roles`, they
-should be uniquely aria-identified in the page.
+!!!danger Don't rely on ARIA default with multiple nav elements!
 
-If you use more than one pagy helper in the same page, you should not rely on the default (that would otherwise generate a
-non-valid document), instead, you should pass your own (possibly translated and pluralized) `aria-label` string. For example:
+The `nav` elements are `landmark  roles`, and should be distinctly labeled.
+
+!!!success Override multiple navs' default with distinct `aria_label`s!
 
 ```erb
-<%# Explicitly set the aria_label string %> 
-<%== @pagy.nav(aria_label: 'Search result pages') %>
+<%# Explicitly set the aria_label %>
+<%== @pagy.nav_tag(aria_label: 'Search result pages') %>
 ```
 
 !!!
+
 
 +++ Links
 

@@ -8,11 +8,11 @@ This page contains the practical tips and examples to get the job done with Pagy
 
 You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pagy) for instant answers not covered in this page.
 
-### Choose the right pagination technique
+==- Choose the right pagination technique         
 
 [AI-powered answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
 
-### Control the items per page
+==- Control the items per page
 
 - **Server side**
   - Use the `:limit` option.
@@ -34,22 +34,17 @@ The defined `:limit` option overrides any `limit` already set in `ActiveRecord` 
 
 See [Common Options](../toolbox/paginator.md#common-options).
 
-### Control the pagination bar
+==- Control the pagination bar
 
 Pagy offers the [nav_tag](../toolbox/instance/nav_tag.md) and [nav_js_tag](../toolbox/instance/nav_js_tag.md) helpers with a
 pagination bar.
 
-You can control the number and position of the page links in the navigation through
-the [:slots and :compact options](../toolbox/instance/nav_tag.md#options).
+You can control the number and position of the page links in the navigation through:
 
-==- For full control override the  `series` method
+- The [:slots and :compact options](../toolbox/instance/nav_tag.md#options).
+- Overriding the `series` method for full control over the pagination bar
 
-:::code source="/gem/lib/pagy/resources/components/support/series.rb" title="
-/gem/lib/pagy/resources/components/support/series.rb":::
-
-===
-
-### Force the `:page`
+==- Force the `:page`
 
 Pagy gets the page from the `params[:page]`. You can force a `page` number by just passing it to the `pagy` method. For example:
 
@@ -57,13 +52,13 @@ Pagy gets the page from the `params[:page]`. You can force a `page` number by ju
 @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
 ```
 
-### Customize the dictionary
+==- Customize the dictionary
 
 Pagy uses standard i18n dictionaries to translate its string and allow overriding.
 
 See [I18n](../resources/i18n.md).
 
-### Customize the ARIA labels
+==- Customize the ARIA labels
 
 Customize the `aria-label` attributes of any `*nav*` helper by passing the `:aria_label` string
 
@@ -74,7 +69,7 @@ You can also replace the `pagy.aria_label.nav` strings in the dictionary, as wel
 
 See [ARIA](../resources/ARIA.md).
 
-### Customize the page and limit symbols
+==- Customize the page and limit symbols
 
 By default, pagy gets the page from the `params[:page]` and creates the URLs using the `:page` query_param `?page=3`.
 
@@ -84,7 +79,7 @@ Set the `limit_sym` to customize the `limit` param the same way.
 
 See [Common Options](../toolbox/paginator#common-options)
 
-### Customize the params
+==- Customize the params
 
 Alter the params embedded in the URLs of the page links by setting the option `:params` to a `Hash` of params to merge, or a
 `Proc` that can edit/add/delete the request params.
@@ -98,18 +93,18 @@ An example using `except!` (available in Rails) and `merge!`:
 @pagy, @records = pagy(:offset, collection, params: ->(params) { params.except!('not_useful').merge!('custom' => 'useful') })
 ```
 
-### Add a URL fragment
+==- Add a URL fragment
 
 You can use the [:fragment](../toolbox/instance.rb#common-url-option) option:
 
-### Customize CSS styles
+==- Customize CSS styles
 
 Pagy includes a few [stylesheets](../resources/stylesheet) that you can customize, and provides the syled version of all the `nav`
 tags for `:bootstrap` and `:bulma`.
 
 You can also override the specific helper method.
 
-### Override CSS rules in element "style" attribute
+==- Override CSS rules in element "style" attribute
 
 A couple of helpers (i.e. `combo_nav_js_tag`, `limit_selector_js_tag`) assign element style attributes to one or more tags. You
 can override their rules in your own stylesheets by using the attribute `[style]`
@@ -121,7 +116,7 @@ selector and `!important`. Here is an example for overriding the `width` of the 
 }
 ```
 
-### Override pagy methods
+==- Override pagy methods
 
 - Find the method to override
 - Find its path in the repo (e.g. 'pagy/...')
@@ -144,11 +139,11 @@ end
 Pagy::AnyModule.prepend MyOverridingModule
 ```
 
-### Paginate an Array
+==- Paginate an Array
 
 Just pass it as the collection, to the [:offset paginator](../toolbox/paginator/offset.md)
 
-### Paginate ActiveRecord collections
+==- Paginate ActiveRecord collections
 
 Pagy works out of the box with `ActiveRecord` collections, however here are a few specific collection that might be treated a bit
 differently:
@@ -178,7 +173,7 @@ differently:
 - **PostgreSQL Collections**
   - [Always order your collections!](../toolbox/paginator.md#troubleshooting)
 
-### Paginate for generic API clients
+==- Paginate for generic API clients
 
 Check out:
 
@@ -187,7 +182,7 @@ Check out:
 - [:requestable_limit option](../toolbox/paginator.md#common-options)
 - [:jsonapi option](../toolbox/paginator.md#common-options)
 
-### Paginate with JSON:API
+==- Paginate with JSON:API
 
 Pass the `jsonapi: true` to the paginator, optionally using `:page_sym` and `:limit_sym`:
 
@@ -196,12 +191,12 @@ Pass the `jsonapi: true` to the paginator, optionally using `:page_sym` and `:li
 @pagy, @records = pagy(:offset, collection, jsonapi: true, page_sym: :number, limit_sym: :size)
 ```
 
-### Paginate for Javascript Frameworks
+==- Paginate for Javascript Frameworks
 
 You can JSON send to the client selected `@pagy` instance data with the [data_hash helper](../toolbox/instance/data_hash.md) and
 pass the pagination metadata in your JSON response.
 
-### Paginate search framework results
+==- Paginate search framework results
 
 See these pagnators:
 
@@ -209,12 +204,12 @@ See these pagnators:
 - [searchkick](../toolbox/paginator/searchkick.md)
 - [meilisearch](../toolbox/paginator/meilisearch.md)
 
-### Paginate by date
+==- Paginate by date
 
 Use the [:calendar paginator](../toolbox/paginator/calendar.md) that adds pagination filtering by calendar time unit (year,
 quarter, month, week, day).
 
-### Paginate multiple independent collections
+==- Paginate multiple independent collections
 
 By default, pagy tries to derive parameters and options from the request and the collection, so you don't have to explicitly pass
 it to the `pagy*` method. That is very handy, but assumes you are paginating a single collection per request.
@@ -327,7 +322,7 @@ def index # controller action
 end
 ```
 
-### Paginate only max_pages, regardless the count
+==- Paginate only max_pages, regardless the count
 
 In order to limit the pagination to a maximum number of pages, you can pass the `:max_pages` option.
 
@@ -356,7 +351,7 @@ number of records (instead of pages), you have to keep into account how you conf
 
 !!!
 
-### Paginate non-ActiveRecord collections
+==- Paginate non-ActiveRecord collections
 
 The `pagy_get_count` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.)
 you might want to change the `:count_arguments` default to suite your ORM count method:
@@ -365,7 +360,7 @@ you might want to change the `:count_arguments` default to suite your ORM count 
 Pagy.options[:count_arguments] = []
 ```
 
-### Paginate collections with metadata
+==- Paginate collections with metadata
 
 When your collection is already paginated and contains count and pagination metadata, you don't need any `pagy*` controller
 method. For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection
@@ -386,7 +381,7 @@ tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
 @movies = tobj.results
 ```
 
-### Skip single page navs
+==- Skip single page navs
 
 Unlike other gems, Pagy does not decide for you that the nav of a single page of results must not be rendered. You may want it
 rendered... or maybe you don't. If you don't:
@@ -395,15 +390,15 @@ rendered... or maybe you don't. If you don't:
 <%== @pagy.nav_tag if @pagy.pages > 1 %>
 ```
 
-### Deal with a slow collection COUNT(*)
+==- Deal with a slow collection COUNT(*)
 
-Check out these pagiators:
+Check out these paginators:
 
 - [:countless](../toolbox/paginator/countless.md)
 - [:keyset](../toolbox/paginator/keyset.md)
 - [:keynav_js](../toolbox/paginator/keynav.md)
 
-### Maximize Performance
+==- Maximize Performance
 
 - Consider the paginators:
   - [:countless](../toolbox/paginator/countless.md)
@@ -412,7 +407,7 @@ Check out these pagiators:
 - Consider the `*_js_nav_tag`s (a few orders of magnitute faster)
   - Add the `oj` gem to your gemfile
 
-### Ignore Brakeman UnescapedOutputs false positives warnings
+==- Ignore Brakeman UnescapedOutputs false positives warnings
 
 Pagy output html safe HTML, however, being an agnostic pagination gem it does not use the specific `html_safe` rails helper on its
 output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakeman) gem, that will raise a warning.
@@ -420,7 +415,7 @@ output. That is noted by the [Brakeman](https://github.com/presidentbeef/brakema
 You can avoid the warning adding it to the `brakeman.ignore` file. More details [here](https://github.com/ddnexus/pagy/issues/243)
 and [here](https://github.com/presidentbeef/brakeman/issues/1519).
 
-### Raise Pagy::RangeError exceptions
+==- Raise Pagy::RangeError exceptions
 
 With the OFFSET pagination technique, it may happen that the users/clients paginate over the end of the record set or records go
 deleted and a user went to a stale page.
@@ -449,12 +444,12 @@ get rescued.
 
 !!!
 
-### Test with Pagy
+==- Test with Pagy
 
 * Pagy has 100% test coverage.
 * You only need to test pagy if you have overridden methods.
 
-### Using your pagination templates
+==- Using your pagination templates
 
 !!!warning Warning!
 The pagy nav helpers are not only a lot faster than templates, but accept dynamic arguments and comply with ARIA and I18n
@@ -486,7 +481,7 @@ pagy demo
 
 You may want to read also the [Pagy::Frontend API documentation](../toolbox/frontend.md) for complete control over your templates.
 
-### Use Pagy with a non-rack app
+==- Use Pagy with a non-rack app
 
 For non-rack environments that don't respond to the request method, you should pass the `:request` option to the paginator, set
 with a hash with the following keys:
@@ -497,3 +492,5 @@ with a hash with the following keys:
 
 Pagy rely also on the `params` method inside the app, which should be a hash of the params from the request. Define an alias or a
 method if your environment doesn't respond to it.
+ 
+===

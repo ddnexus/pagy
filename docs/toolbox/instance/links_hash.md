@@ -7,7 +7,7 @@ categories:
   - Helpers
 ---
 
-`pagy_links_hash` returns the `:first`, `:previous`, `:next`, `:last` non`nil` URLs hash.
+`pagy_links_hash` returns the `:first`, `:previous`, `:next`, `:last` non-`nil` URLs hash.
 
 It respects `jsonapi: true`.
 

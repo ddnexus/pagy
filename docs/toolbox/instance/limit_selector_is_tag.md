@@ -20,6 +20,7 @@ Try it with the [Pagy Console](../../sandbox/console.md):
 >> puts @pagy.limit_selector_js_tag(requestable_limit: 100)
 <span class="pagy limit-selector-js" data-pagy="WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><label>Show <input name="limit" type="number" min="1" max="" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> items per page</label></span>
 => nil
+
 >> puts @pagy.limit_selector_js_tag(requestable_limit: 100, id: 'my-elector', item_name: 'Products')
 <span id="my-elector" class="pagy limit-selector-js" data-pagy="WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><label>Show <input name="limit" type="number" min="1" max="" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> Products per page</label></span>
 => nil

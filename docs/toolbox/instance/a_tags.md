@@ -22,9 +22,11 @@ Try it with the [Pagy Console](../../sandbox/console.md):
 >> puts @pagy.previous_a_tag
 <a href="/path?example=123&page=2" aria-label="Previous">&lt;</a>
 => nil
+
 >> puts @pagy.next_a_tag
 <a href="/path?example=123&page=4" aria-label="Next">&gt;</a>
 => nil
+
 >> puts @pagy.next_a_tag(text: 'show me', aria_label: 'my-next')
 <a href="/path?example=123&page=4" aria-label="my-next">show me</a>
 => nil
