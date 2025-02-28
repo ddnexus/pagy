@@ -16,7 +16,7 @@ Useful to build minimalistic helpers UIs that don't use nav bar links (e.g. `:co
 <%== @pagy.next_a_tag %>
 ```
 
-Try it with the [Pagy Console](../../sandbox/console.md):
+Try this method in the [Pagy Console](../../sandbox/console.md):
 
 ```ruby
 >> puts @pagy.previous_a_tag

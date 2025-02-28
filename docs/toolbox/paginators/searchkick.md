@@ -17,7 +17,7 @@ Searchkick.extend Pagy::Search
 
 !!! success Pagy searches and paginates
 
-You use the `pagy_search` method in place of the `search` method.
+Use the `pagy_search` method instead of the `search` method.
 !!!
 
 ```ruby Model
@@ -49,7 +49,7 @@ Pagy creates its object out of your result.
 
 +++
 !!!
-Search paginators do not use OFFSET for querying a DB, however they use the same positional technique used by the [:offset] pagintors, sharing the same options and readers
+Search paginators do not use OFFSET for querying a database. However, they employ the same positional technique used by the [:offset] paginators, sharing the same options and readers.
 !!!
 
 ==- Options

@@ -8,29 +8,29 @@ categories:
 
 !!!warning Consider using the `:keynav_js` paginator when possible!
 
-The [:keynav_js](keynav_js.md) has exactly the same UI features, but it uses the fastest `keyset` pagination, particularly convenient with big, slow collection results. 
+The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the faster `keyset` pagination, making it particularly suitable for large, slow collection results.
 !!!
 
-`:countless` is an OFFSET paginator that skips the `COUNT` query, saving one query per rendering.
+`:countless` is an OFFSET paginator that avoids the `COUNT` query, reducing the number of queries per rendering by one.
 
-- It offers an **almost complete** support for **almost all** the navigation helpers, with just these limitations:
-  1. The nav bar links after the last/higher visited page are not shown
-  2. The `pagy_info` helper is not supported
+- It provides **nearly complete** support for **most** navigation helpers, with the following limitations:
+  1. Nav bar links beyond the last or highest visited page are not displayed.
+  2. The `info_tag` helper is not supported.
 
 ```ruby Controller 
 @pagy, @records = pagy(:countless, collection, **options)
 ```
 
-- `@pagy` is the pagination object. It provides the [instance methods](../methods#methods) to use in your code.
-- `@records` is the eager-loaded `Array` of the page records.
+- `@pagy` is the pagination object, offering the [instance methods](../methods#methods) needed for your code.
+- `@records` represents the eager-loaded `Array` of records for the page.
 
 ==- Options
 
-- `headless: true`
-  - Use this option when you don't need any UI (e.g. infinite scrolling) and/or to avoid eager loading. In that case:
-    - `@pagy` cannot be used with any helpers
-    - `@records` is a regular collection
-    - The collection is over when `@records.size < @pagy.limit`
+- `headless: true` (Optional flag)
+  - Use this option when UI is unnecessary (e.g., for infinite scrolling) and/or to skip eager loading. In this scenario:
+    - `@pagy` is incompatible with any helpers.
+    - `@records` behaves like a standard collection.
+    - The collection ends when `@records.size < @pagy.limit`.
 
 See also [Offset Options](offset.md#options)
 

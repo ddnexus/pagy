@@ -8,7 +8,7 @@ You can use the initializer to configure pagy for your app.
 
 ### Inheritable Options
 
-Pagy has an inheritable options system that allow you to set and override options at three different levels:
+Pagy has an inheritable options system that allows you to set and override options at three different levels:
 
 - `Pagy.options`
   - Global options for all paginators and methods
@@ -20,13 +20,13 @@ Pagy has an inheritable options system that allow you to set and override option
 
 !!!warning 
 
-- Pass the options as down the chain as possible, for explicit readability and maintenance.
+- Pass the options as far down the chain as possible, for explicit readability and maintenance.
 - Pass them up the chain, when you truly need them broadly applied.
 !!!
 
 ### Initializer file
 
-Download/copy the small file below and ensure it loads _(e.g. save it into the Rails' `config/initializers` dir, or require it)_. Read its comments for detsils.
+Download or copy the small file below and ensure it loads _(e.g., save it into the Rails `config/initializers` directory or require it)_. Read its comments for details.
 
 [!file pagy.rb](../gem/config/pagy.rb)
 

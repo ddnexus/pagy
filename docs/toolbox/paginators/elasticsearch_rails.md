@@ -46,7 +46,7 @@ Pagy creates its object out of your result.
 +++
 
 !!!
-Search paginators do not use OFFSET for querying a DB, however they use the same positional technique used by the [:offset] pagintors, sharing the same options and readers
+Search paginators do not use OFFSET for querying a database. However, they employ the same positional technique used by the [:offset] paginators, sharing the same options and readers.
 !!!
 
 ==- Options

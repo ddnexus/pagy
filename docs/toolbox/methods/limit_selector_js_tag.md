@@ -8,13 +8,13 @@ categories:
 ---
 
 
-The `limit_selector_js_tag` allows the user to select any arbitrary limit per page, up-to the `:requestable_limit` option. It raises an `OptionError` exception if the `:requestable_limit` is not truthy.
+The `limit_selector_js_tag` allows the user to select any arbitrary limit per page, up to the `:requestable_limit` option. It raises an `OptionError` exception if the `:requestable_limit` is not truthy.
 
 ```erb some_view.html.erb
 <%== @pagy.limit_selector_js_tag %>
 ```
 
-Try it with the [Pagy Console](../../sandbox/console.md):
+Try this method in the [Pagy Console](../../sandbox/console.md):
 
 ```ruby
 >> puts @pagy.limit_selector_js_tag(requestable_limit: 100)

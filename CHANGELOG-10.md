@@ -48,28 +48,26 @@ None
 
 ### Pagy 10: more with less!
 
-This version is a complete redesign of the legacy code.
+This version introduces a complete redesign of the legacy code.
 
-Your old code will require quite a few (but minor) changes in order to work. After that... **this API will be stable for a long
-time**.
+Your existing code will require minor adjustments to function. Following these changes, **this API will remain stable for a long time**.
 
-#### Changes Overview
+#### Overview of Changes
 
-- Reduce the required config by **99%**: no requires, no extras, no DEFAULT
-- All the methods are **autoloaded only if you use them**. Unused method consume no memory.
-- Explicit, unambiguous naming. Less documentation to search to know what a method does.
+- Config requirements reduced by **99%**: no `requires`, no `extras`.
+- Methods are **autoloaded only when used**, ensuring unused methods consume no memory.
+- Explicit and unambiguous naming reduces the need to search documentation to understand method functionality.
 - The `pagy` method handles **all** the collections and pagination techniques. No pollution in your controllers.
 - All the UI components and helpers are now instance methods of `@pagy`. Easier, direct without pollution.
-- The new docs are short and to the point, easy to browse and understand.
+- The new documentation is concise, straightforward, and easier to navigate and understand.
 - You can also get valuable real-time support with the new Pagy AI
 
 ### New features
 
 - **Keynav Pagination**
-  - We invented the pagy-exclusive `keynav` pagination, that uses the fastest `keyset` technique with all the Frontend helpers.
-    The best technique for performance and functionality!
+  - Introducing pagy-exclusive `keynav` pagination, which leverages the fastest `keyset` technique alongside all frontend helpers. This offers superior performance and functionality!
 - **The Countless pagination remembers the last page**
-  - When you jump back a few pages in the pagination nav, you can jump forward as well now.
+  - Pagination nav now allows jumping forward after navigating back a few pages.
 - **Super simple API**
   - Just two ways to interact with the pagination:
     1. Through the `pagy(...)` paginator, which paginates any collection with any technique, returning the `@pagy` instance and
@@ -77,7 +75,7 @@ time**.
     2. Throught the `@pagy` instance, which provides all the helpers and navs (e.g. `@pagy.nav_tag`, `@pagy.info_tag`, etc.)
 - **Simpler overriding**
   - The logic of helpers and paginators methods is simpler to understand and override in your own app code.
-  - You won't even need to know anything about the implementation classes.
+  - You don't need to be familiar with the implementation classes.
 - **Javascript refactoring**
   - The new `Pagy.sync_javascript` function used in the `pagy.js` initializer, avoids complicated configurations.
   - Added the plain `pagy.js` and relative source map files.
@@ -94,34 +92,31 @@ time**.
 
 #### Replace your `pagy.rb` config file
 
-- Pratically all the statements in the old file are obsolete, so it's probably better to start with the new version of the file,
-  which is very short.
+- Nearly all statements in the old file are obsolete; it's recommended to start fresh with the new, concise version of the file.
 - The `Pagy::DEFAULT` is now frozen and used internally. Use the `Pagy.options` hash to the same effect.
-- Copy over the `Pagy::DEFAULT` that apply (most are not needed anymore) and replace `Pagy::DEFAULT` with `Pagy.options`.
+- Copy over the relevant `Pagy::DEFAULT` values (most are no longer needed) and replace `Pagy::DEFAULT` with `Pagy.options`.
 
 #### The `Pagy::Backend` has been replaced
 
-- Replace `include Pagy::Backend` with `include Pagy::Method`, beause pagy includes only the `pagy` method now.
+- Replace `include Pagy::Backend` with `include Pagy::Method` since Pagy now includes only the `pagy` method.
 
 #### All the `pagy_*` methods and the `Pagy::Frontend` are gone
 
 - Remove any existing `include Pagy::Frontend`
 - The paginators (i.e. the `pagy_*` methods returning the `@pagy` instance and the `@records`) got integrated in the `pagy`
   method.
-  - Notice that the old `pagy(...)` statement is still working as-is, but it should _preferably_ be updated with the new explicit
-    syntax as `pagy(:offset, ...)`.
-  - All the other pagy_backend methods are gone. _(See how to replace them in the [Extras Changes](#extras-changes))_
+  - The old `pagy(...)` statement works as-is, but it is _preferable_ to update it to the new explicit syntax: `pagy(:offset, ...)`.
 - All the `pagy_*` helpers provided by the `Pagy::Frontend` are now `@pagy` instance methods (and most have been renamed). _(See
   how to replace them in the [Extras Changes](#extras-changes))_
 
 #### Core changes
 
-- If you used the `:params` variable set to a lambda, ensure that it modifies the passed `query_params` directly.
+- If the `:params` variable was set to a lambda, ensure it directly modifies the passed `query_params`.
   - The returned value is now ignored for a slightly better performance.
 - The `:outset` and `:cycle` variables have been removed.
   - They were seldom used, mostly useless, and implementing them in your own code is trivial.
 - The `:anchor_string` variable has been removed
-  - It was only helpfut for adding `data-remote="true"`, which is obsolete and rails apps using it cannot run on ruby 3.2
+  - It was only helpful for adding `data-remote="true"`, which is obsolete. Rails apps relying on it cannot run on Ruby 3.2.
 - The `pagy_prev_link` and `pagy_next_link` have been removed: they were just useless.
 - You should pass the `:slots` and `:compact` options (legacy `:size` and `ends`), _preferably_ to the `*_nav`, `*_nav_js`
   helpers, but it's also possible to pass them to the paginator methods.
@@ -207,34 +202,36 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 - Replace `pagy_countless(...)` with `pagy(:countless, ...)`
 - Rename any existing `countless_minimal: true` to `headless: true`.
-- Keep the rest unchanged.
-
+- Leave all remaining elements unchanged.
+ 
 ##### `calendar`
 
-- Replace `pagy_calendar(...)` with `pagy(:calendar, ...)`
-- Discard your old localization config (if any), and uncomment and customize this line in the `pagy.rb` initializer:
+- Replace `pagy_calendar(...)` with `pagy(:calendar, ...)`.
+- Remove your old localization configuration (if any), then uncomment and customize the following line in the `pagy.rb` initializer:
   `Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`.
-  - _Notice: In non-rails apps, calendar localization requires to add `rails-i18n` to your Gemfile._
-- Replace the existing (if any) `Pagy::Calendar::OutOfRangeError` with `Pagy::RangeError`.
-- Keep the rest unchanged.
+  - _Note: In non-Rails applications, calendar localization requires adding `rails-i18n` to your Gemfile._
+- Replace any existing `Pagy::Calendar::OutOfRangeError` with `Pagy::RangeError`.
+- Rename the current `:active` flag to `:skip`; this sets the opposite boolean value.
+- Rename any existing `:pagy` configuration key to `:offset`.
+- Leave all remaining elements unchanged.
 
 ##### `elasticsearch_rails`, `meilisearch`, `searchkick`
 
-- Replace `pagy_<extra-name>(...)` with `pagy(:<extra-name>, ...)`
-- **Active and passive modes are now handled by the same paginator method.**
-  - Replace any existing `Pagy.new_from_<extra-name>` with `pagy_<extra-name>`.
-- **The name customization of the `pagy_search` has been discontinued.**
+- Replace `pagy_<extra-name>(...)` with `pagy(:<extra-name>, ...)`.
+- **Active and passive modes are now handled by the same paginator method:**
+- Replace any existing `Pagy.new_from_<extra-name>` with `pagy(:<extra-name>, ...)`.
+- **Customization of the `pagy_search` method name has been discontinued:**
   - Remove any existing `:<extra-name>_pagy_search` variable from your code.
-  - Replace your existing custom method name with the standard `pagy_search` method instead.
-- Rename any existing `:<extra-name>_search` variable to `:search_method` and pass it to the paginator method.
-- Keep the rest unchanged.
+  - Replace custom method names with the standard `pagy_search` method.
+- Rename any existing `:<extra-name>_search` variable to `:search_method` and provide it to the paginator method.
+- All other elements remain unchanged.
 
 ##### `headers`
 
-- Replace any existing `pagy_headers(...)` with `@pagy.headers_hash(...)`.
-- Replace any existing `pagy_headers_merge` with `response.headers.merge!(@pagy.headers_hash)`
-- Rename any existing `:headers` variable to `:headers_map` (renamed because it's the map of the headers)
-- Pass the `:headers_map` option directly to the `headers_hash` helper (or to the paginator if needed)
+- Replace any instance of `pagy_headers(...)` with `@pagy.headers_hash(...)`.
+- Replace any instance of `pagy_headers_merge` with `response.headers.merge!(@pagy.headers_hash)`.
+- Rename any instance of the `:headers` variable to `:headers_map` (renamed to clarify that it represents a map of the headers).
+- Pass the `:headers_map` option directly to the `headers_hash` helper or to the paginator, as needed.
 
 ##### `jsonapi`
 
@@ -243,44 +240,45 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 - Enable the feature by passing the `jsonapi: true` option to the paginator method.
 
 ##### `keyset`
-
-- Replace `pagy_keyset(...)` with `pagy(:keyset, ...)`
+- Replace `pagy_keyset(...)` with `pagy(:keyset, ...)`.
 - Replace any existing `:jsonify_keyset_attributes` with `:pre_serialize`.
-  - The lambda receives the same `keyset_attributes` argument, but it must modifiy directly the specific values. The lambda's
+  - The lambda receives the same `keyset_attributes` argument, but it must modify the specific values directly. The lambda's
     return value is ignored. For example: `->(attrs) { attrs[:created_at] = attrs[:created_at].strftime('%F %T.%6N') }`.
-- Remove any existing`:filter_newest`. Override the `compose_predicate` method instead.
-- Replace any existing `pagy_keyset_first_url(@pagy, ...)` with `@pagy.page_url(:first, ...)`
+- Remove any existing `:filter_newest`. Override the `compose_predicate` method instead.
+- Replace any existing `pagy_keyset_first_url(@pagy, ...)` with `@pagy.page_url(:first, ...)`.
+- Replace any existing `pagy_keyset_next_url(@pagy, ...)` with `@pagy.page_url(:next, ...)`.
 - Replace any existing `pagy_keyset_next_url(@pagy, ...)` with `@pagy.page_url(:next, ...)`
 
 ##### `limit`
 
-- Rename the existing `:limit_param` to `:limit_sym`
-- Delete the existing `:limit_max` and `:limit_extra`
+- Rename the existing `:limit_param` to `:limit_sym`.
+- Delete the existing `:limit_max` and `:limit_extra`.
 - Enable the feature by passing `requestable_limit: your_max_limit` option to the `pagy` method.
 
 ##### `metadata`
 
-- Rename `pagy_metadata(@pagy, ...)` to `@pagy.data_hash(...)` (renamed because it's what it does and return).
-- Rename any existing `:scaffold_url` to `url_template` (renamed because it's a template string).
-- Rename any existing `:metadata` option to `:data_keys` (renamed because they are the keys identifying the data).
-- Pass the `:data_keys` option directly to the `data_hash` helper (or to the `pagy` method if needed)
+- Rename `pagy_metadata(@pagy, ...)` to `@pagy.data_hash(...)` (renamed to reflect its functionality and return value).
+- Rename any existing `:scaffold_url` to `url_template` (renamed to clarify that it is a template string).
+- Rename any existing `:metadata` option to `:data_keys` (renamed to specify that they correspond to data-identifying keys).
+- Pass the `:data_keys` option directly to the `data_hash` helper or the `pagy` method, depending on the context.
+
 
 ##### `overflow`
 
-- The `Pagy::OverflowError` has been replaced by the `Pagy::RangeError`, however it is not raised by default as before.
+- The `Pagy::OverflowError` has been replaced by the `Pagy::RangeError`; however, it is no longer raised by default.
 - Pagy rescues the `Pagy::RangeError` and serves an empty page by default.
-  - Now pagy works the same as it would have worked before by requiring the overflow extra and using its default.
-- The legacy `pagy.overflow?` is now `pagy.in_range?` method: it checks/returns the opposite state/boolean.
-- The `overflow: :last_page` option has been discontinued because it provides almost no benefit (read below how to do it anyway):
-  - **Why there is almost no benefit in serving the last page**
-    - The nav bar of an out-of-range request is rendered with the same links rendered for the last page.
-    - The difference is just that there are no records/results to show.
-    - The previous page button points to the last page, so if the users really want to see the last page results (which they have
-      already seen, BTW), they can just use the link.
+  - Now, Pagy behaves the same as it did before when requiring the overflow extra and using its default settings.
+- The legacy `pagy.overflow?` is now the `pagy.in_range?` method, which checks/returns the opposite state/boolean.
+- The `overflow: :last_page` option has been discontinued because it provides nearly no benefit (read below for alternatives):
+  - **Why there is little benefit in serving the last page**
+    - The navigation bar for an out-of-range request is rendered identically to that of the last page.
+    - The only difference is that there are no records/results to display.
+    - The "previous page" button points to the last page, so if users truly want to see the last page results (which they have
+      already seen), they can simply click the link.
 - **Summary**:
-  - If you used no extra (i.e. pagy raised errors): set `raise_range_error: true`.
-  - If you used `overflow: :empty_page ` or just required the overflow extra: just remove it (it's the current default now).
-  - If you used `overflow: :last_page` and you really want it despite what explained before:
+  - If you did not use any extra (i.e., Pagy raised errors), set `raise_range_error: true`.
+  - If you used `overflow: :empty_page` or just required the overflow extra, simply remove it (this is now the default behavior).
+  - If you used `overflow: :last_page` and still want this behavior despite the reasons above:
     - Set `raise_range_error: true`.
     - Use `rescue Pagy::RangeError => e` in your method.
     - Redirect to `@pagy.page_url(:last)`.
@@ -297,34 +295,33 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `i18n`
 
-- If you really need it, uncomment/add this line to your initializer: `Pagy.translate_with_the_slower_i18n_gem!`.
+- If absolutely necessary, uncomment or add this line to your initializer: `Pagy.translate_with_the_slower_i18n_gem!`.
 
 ##### `gearbox` (discontinued feature)
 
-- The feature requires so much overwriting for so little difference that you can just remove it from your app, and nobody will
-  even notice.
+- Due to extensive overwriting for minimal benefit, you can safely remove this feature from your app without noticeable impact.
 
 ##### `size` (discontinued feature)
 
-- Pagination bars similar to WillPaginate and Kaminari are not good for a lot of reasons. If you still want it, you can adapt the
-  legacy file from an old commit.
+- Pagination bars similar to WillPaginate and Kaminari may cause issues for various reasons. If still required, adapt the
+  legacy file from a previous commit.
 
 ##### `trim` (discontinued feature)
 
-- It was mostly useless and half-backed, causing a lot of complications in the ruby and javascript code for no real benefit.
-- Use a proper way to address your requirement, like using URL rewriting at the HTTP server level.
+- It was mostly useless and half-baked, causing numerous complications in both the Ruby and JavaScript code for no significant benefit.
+- Use an appropriate approach to address your requirement, such as utilizing URL rewriting at the HTTP server level.
 
 #### Direct instantiation of the pagy classes is not recommended
 
-- The provided `pagy(:<paginator>, ...)` method ensure easier usage, maintenance and forward compatibility.
+- The provided `pagy(:<paginator>, ...)` method ensures easier usage, maintenance, and forward compatibility.
 - Use the implementing classes only if the documentation explicitly suggests you to do so, or if you know what you are doing.
 
 #### Possibly Breaking Overridings
 
-- Support for overriding methods in your controllers/helpers has been mostly removed, and it's discouraged.
-- The cleanest way for local overriding is using ruby refinements. For global overriding you can use the `pagy.rb` initializer.
-- Check the [how-to Override Pagy]
-- Besides the internal Pagy protected methods have been all refactored, often renamed, and sometimes removed.
-- For internal overriding you likely need to reconcile them by looking into the new pagy code.
+- Overriding methods in controllers/helpers is strongly discouraged.
+- The cleanest approach for local overriding is via Ruby refinements. For global overriding, use the `pagy.rb` initializer.
+- Check the [How To Override Pagy Method](https://ddnexus.github.io/pagy/guides/how-to.md#override-pagy-methods)
+- Additionally, internal Pagy protected methods have been extensively refactored, frequently renamed, and occasionally removed.
+- Reconcile internal overrides by reviewing the updated Pagy codebase.
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)

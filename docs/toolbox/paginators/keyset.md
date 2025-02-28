@@ -14,10 +14,10 @@ The `:keyset` is the **fastest** paginator for SQL collections.
   - `ActiveRecord::Relation` or `Sequel::Dataset` sets
   - Single or multiple ordered columns
   - Any combination of order directions
-- Unlikely the classic OFFSET pagination:
-  - Its performance are reliably fast from start to end, no matter how big is your table.
-  - It's completely accurate. Even with insertions or deletion of records during browsing, you will never have repeating or
-    missing records
+- Unlike the classic OFFSET pagination:
+  - Its performance is reliably fast from start to end, no matter how big your table is.
+  - It's completely accurate. Even with insertions or deletions of records during browsing, you will never have repeating or
+    missing records.
   - Does not suffer from `RangeError`s
     !!!
 
@@ -25,7 +25,7 @@ The `:keyset` is the **fastest** paginator for SQL collections.
 
 !!!success
 
-Use the [:keynav_js](keynav_js.md) paginator for KEYSET pagination with alsomst complete UI support.
+Use the [:keynav_js](keynav_js.md) paginator for KEYSET pagination with almost complete UI support.
 !!!
 
 ```ruby Controller
@@ -41,7 +41,7 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 | Term                | Description                                                                                                                                                                                                                                                                                                            |
 |---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `offset pagination` | The technique to fetch each page by incrementing the `offset` from the collection start.<br/>It requires two queries per page (or only one if you use [countless](countless.md)): it's slow toward the end of big tables.<br/>It can be used for a rich frontend: it's the regular pagy pagination.                    |
-| `keyset pagination` | The technique to fetch the next page starting after the latest fetched record in an `uniquely ordered` collection.<br/>It requires only one query per page (whitout OFFSET). It's very fast regardless the table size and position (if properly indexed). Support only infinite pagination, no other frontend helpers. |
+| `keyset pagination` | The technique to fetch the next page starting after the latest fetched record in a `uniquely ordered` collection.<br/>It requires only one query per page (without OFFSET). It's very fast regardless of the table size and position (if properly indexed). Supports only infinite pagination, with no other frontend helpers. |
 | `keynav pagination` | The pagy exclusive technique to use `keyset pagination` with numeric variables, supporting almost all UI helpers.<br/>The best technique for performance AND functionality!                                                                                                                                            |
 | `uniquely ordered`  | The property of a `set`, when the concatenation of the values of the ordered columns is unique for each record. It is similar to a composite primary `key` for the ordered table, but dynamically based on the `keyset` columns.                                                                                       |
 | `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                                           |
@@ -63,24 +63,24 @@ Almost all the constraints below can be avoided by using the [:keynav_js](keynav
 
 - You can only paginate from one page to the next: no jumping to arbitrary pages
 - The `set` must be `uniquely ordered`. Add the primary key (usually `:id`) as the last order column to be sure
-- You should add the best DB index for your ordering strategy, or it will be slow.
+- You should add the most suitable DB index for your ordering strategy, or it will be slow.
 
 !!!
 
 !!!warning With Pagy::Keyset...
 
-You don't know the `previous` and the `last` page, you only know the `first` and `next` pages, for performance and simplicity
+You don't know the `previous` and the `last` page; you only know the `first` and `next` pages for performance and simplicity.
 
 !!!success
 
-If you want to paginate backward like: `last` ... `prev` ... `prev` ... just call `reverse_order` on your set and go forward like:
+If you want to paginate backward, like: `last` ... `prev` ... `prev`, just call `reverse_order` on your set and proceed forward like:
 `first` ... `next` ... `next` ... It does exactly the same: just faster and simpler.
 
 !!!
 
 ==- Setup
 
-Ensure that your set is `uniquely ordered` and that your tables have the right indexes.
+Ensure that your set is `uniquely ordered` and that your tables have the appropriate indexes.
 
 Depending on your order requirements, here is how you set it up:
 
@@ -92,14 +92,14 @@ If you need a specific order:
 - **In order to make it work**...
   - Ensure that at least one of your ordered columns is unique OR append your primary keys to your order
 - **In order to make it fast**...<br/>
-  - Ensure to create a unique composite DB index, including the exact same columns and ordering direction of your set
+  - Ensure that you create a unique composite DB index, including the exact same columns and ordering direction of your set.
 
 !!!
 
 +++ No order requirements
 !!!success
 
-If you don't need any ordering, `order(:id)` is the simplest choice, because the `id` column is unique and already indexed.
+If you don't need any specific ordering, `order(:id)` is the simplest choice because the `id` column is unique and already indexed.
 
 It is fast out of the box without any setup.
 
@@ -112,7 +112,7 @@ It is fast out of the box without any setup.
   - Set it only to force the `keyset` hash of column/order pairs. _(It is set automatically from the set)_
 - `:tuple_comparison`
   - Set it to `true` to enable the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction
-    order, hence it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL`
+    order; hence, it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL`
     columns).
 - `:pre_serialize`
   - Set it to a `lambda` that receives the `keyset_attributes` hash. Modify this hash directly to customize the serialization of
@@ -133,8 +133,8 @@ See also [Common Readers](../paginators#common-readers)
 
 - You pass an `uniquely ordered` `set` and pagy pulls the `:limit` of records of the first page.
 - You requests the `next` URL, which has the `page` query string param set to the `cutoff` of the current page.
-- At each request, the new `page` is decoded into arguments that are coupled with a `where` filter query, and the `:limit` of new
-  records is pulled.
+- At each request, the new `page` is decoded into arguments that are coupled with a `where` filter query, and a `:limit` of new
+  records is retrieved.
 - You know that you reached the end of the collection when `pagy.next.nil?`.
 
 ==- In Depth: Cutoffs
@@ -154,7 +154,7 @@ beginning of set >[· · · · · · · · · ·]· · · · · · · · · · �
 
 At this point, it's the exact same first page pulled with OFFSET pagination, however, we don't want to use OFFSET to get the
 records after the first 10: that would be slow in a big table, so we need a way to identify the beginning of the next page without
-COUNTing the records (i.e. the whole point we want to avoid for performance).
+COUNTing the records (i.e., the whole point we want to avoid for performance).
 
 So we read the `id` of the last one, which is the value `X` in our example... and that is the `cutoff` value of the first page. It
 can be described like:
@@ -164,7 +164,7 @@ Notice that this is not like saying _"up to the record `X`"_. It's important to 
 value of a column (or the values of multiple column, in case of multi-columns keysets).
 
 Indeed, that very record could be deleted right after we read it, and our `cutoff-X` will still be the valid truth that we
-paginated the `set`, up to the "X" value", cutting any further record off the `page`...
+paginated the `set` up to the "X" value, cutting any further record off the `page`...
 
 ```
                   │ first page (10)  >│ second page (10) >│ rest (9)       >│
@@ -209,7 +209,7 @@ which naturally ends with the end of the `set`, so it doesn't have any `cutoff` 
 !!!danger The set may not be `uniquely ordered`
 
 ```rb
-# Neither columns are unique
+# Neither column is unique
 Product.order(:name, :production_date)
 ```
 
@@ -229,7 +229,7 @@ The generic `to_json` method used to encode the `page` may lose some information
 !!!success
 
 - Check the actual executed DB query and the actual stored value
-- Identify the column that have a format that doesn't match with the keyset
+- Identify the column that has a format that doesn't match with the keyset
 - Override the encoding with the [:pre_serialize](#options) option
 
 !!!
@@ -245,7 +245,7 @@ The generic `to_json` method used to encode the `page` may lose some information
 !!! Success
 
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
-- Research about your specific DB features, type of index and performance for different ordering. Use SQL `EXPLAIN ANALYZE` or
+- Research your specific DB features, type of index, and performance for different ordering. Use SQL `EXPLAIN ANALYZE` or
   similar tool to confirm.
 - Consider using the same direction order, enabling the `:tuple_comparison`, and changing type of index (different DBs may behave
   differently).

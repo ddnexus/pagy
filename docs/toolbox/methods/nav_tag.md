@@ -9,7 +9,7 @@ categories:
   - Tags
 ---
 
-This method takes the Pagy object and returns the HTML string with the pagination links, which are wrapped in a `nav` tag and are ready to use in your view. For example:
+`nav_tag` returns an HTML string containing pagination links, wrapped in a `nav` tag, ready to be used in your view. For example:
 
 ![nav_tag (:bootstrap style)](/assets/images/bootstrap_nav.png){width=300}
 
@@ -21,7 +21,7 @@ This method takes the Pagy object and returns the HTML string with the paginatio
 <%== @pagy.nav_tag(:bulma, **options) %>
 ```
 
-Try it with the [Pagy Console](../../sandbox/console.md):
+Try this method in the [Pagy Console](../../sandbox/console.md):
 
 ```ruby
 >> puts @pagy.nav_tag
@@ -36,18 +36,17 @@ Try it with the [Pagy Console](../../sandbox/console.md):
 ==- Styles
 
 - default
-- `:boostrap`
-  - Set `classes: 'pagination bootstrap class` to override the default `'pagination'` class.
+- `:bootstrap`
+  - Set `classes: 'pagination bootstrap class'` to override the default `'pagination'` class.
 - `:bulma`
-  - Set `classes: 'pagination bulma class` to override the default `'pagination is-centered'` classes.
+  - Set `classes: 'pagination bulma class'` to override the default `'pagination is-centered'` classes.
 
 ==- Options
 
 - `slots: 9`
   - Override the default number of page `:slots` used for the navigation bar.
   - `slots < 7` causes the slots to be filled by contiguous pages around the current one
-  - `slots >= 7` causes the first and last slots to be occupied by first and last pages, separated by the rest with a `...` (
-    `:gap`) slot when needed.
+  - `slots >= 7` causes the first and last slots to be occupied by first and last pages, separated by the rest with a `...` (`:gap`) slot when needed.
   - Even numbers determine the current page to be in the central slot.
 - `compact: true`
   - Fill all the slots with contiguos pages, regardles the number of slots.

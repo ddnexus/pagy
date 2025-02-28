@@ -4,9 +4,9 @@ order: 90
 icon: tools
 ---
 
-This page contains the practical tips and examples to get the job done with Pagy.
+This page provides practical tips and examples to help you effectively use Pagy.
 
-You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pagy) for instant answers not covered in this page.
+You can also [ask the Pagy-trained AI](https://gurubase.io/g/pagy) for instant answers to questions not covered on this page.
 
 ==- Choose the right pagination technique         
 
@@ -17,9 +17,9 @@ You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pag
 - **Server side**
   - Use the `:limit` option.
 - **Client Side**
-  - Use the `limit` option, combined with the `:requestable_limit` option, that allows the client to request a `:limit` up-to the
-    `:requestable_limit`
-  - Additionally, you can use the [limit_selector_js_tag](../toolbox/methods/limit_selector_is_tag.md) helper to provide a UI
+  - Use the `limit` option combined with the `:requestable_limit` option, which allows the client to request a `:limit` up to the
+    specified `:requestable_limit`.
+  - Additionally, you can use the [limit_selector_js_tag](../toolbox/methods/limit_selector_js_tag) helper to provide a UI
     selector to the user.
 
 ```ruby
@@ -29,24 +29,24 @@ You can also [Ask any question to the Pagy trained AI](https://gurubase.io/g/pag
 
 !!! warning ActiveRecord `limit`
 
-The defined `:limit` option overrides any `limit` already set in `ActiveRecord` collections
+The `:limit` option defined here will override any existing `limit` set in `ActiveRecord` collections.
 !!!
 
 See [Common Options](../toolbox/paginators#common-options).
 
 ==- Control the pagination bar
 
-Pagy offers the [nav_tag](../toolbox/methods/nav_tag.md) and [nav_js_tag](../toolbox/methods/nav_js_tag.md) helpers with a
+Pagy provides [nav_tag](../toolbox/methods/nav_tag.md) and [nav_js_tag](../toolbox/methods/nav_js_tag.md) helpers for displaying a
 pagination bar.
 
-You can control the number and position of the page links in the navigation through:
+You can customize the number and position of page links in the navigation bar using:
 
 - The [:slots and :compact options](../toolbox/methods/nav_tag.md#options).
 - Overriding the `series` method for full control over the pagination bar
 
 ==- Force the `:page`
 
-Pagy gets the page from the `params[:page]`. You can force a `page` number by just passing it to the `pagy` method. For example:
+Pagy retrieves the page from the `params[:page]`. To force a specific page number, pass it directly to the `pagy` method. For example:
 
 ```ruby controller
 @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
@@ -54,13 +54,13 @@ Pagy gets the page from the `params[:page]`. You can force a `page` number by ju
 
 ==- Customize the dictionary
 
-Pagy uses standard i18n dictionaries to translate its string and allow overriding.
+Pagy uses standard i18n dictionaries for string translations and supports overriding them.
 
 See [I18n](../resources/i18n.md).
 
 ==- Customize the ARIA labels
 
-Customize the `aria-label` attributes of any `*nav*` helper by passing the `:aria_label` string
+You can customize the `aria-label` attributes of any `*nav*` helper by providing a `:aria_label` string.
 
 See [:aria_label option](../toolbox/methods#common-nav-options)
 
@@ -71,9 +71,9 @@ See [ARIA](../resources/ARIA.md).
 
 ==- Customize the page and limit symbols
 
-By default, pagy gets the page from the `params[:page]` and creates the URLs using the `:page` query_param `?page=3`.
+By default, Pagy retrieves the page from `params[:page]` and generates URLs using the `:page` query parameter, e.g., `?page=3`.
 
-Set the `page_sym: :your_symbol` to override the URL generation (i.e. `?your_symbol=3`)
+Set `page_sym: :your_symbol` to customize URL generation, e.g., `?your_symbol=3`.
 
 Set the `limit_sym` to customize the `limit` param the same way.
 
@@ -81,34 +81,32 @@ See [Common Options](../toolbox/paginators#common-options)
 
 ==- Customize the params
 
-Alter the params embedded in the URLs of the page links by setting the option `:params` to a `Hash` of params to merge, or a
-`Proc` that can edit/add/delete the request params.
+Modify the parameters embedded in page link URLs by using the `:params` option, which can be a `Hash` of parameters to merge or a
+`Proc` to edit, add, or delete request parameters.
 
 If it is a `Proc` it will receive the **key-stringified** `query_params` hash complete with the pagy-added params, and it should
 modify it in place.
 
-An example using `except!` (available in Rails) and `merge!`:
+Here is an example with `except!` (available in Rails) and `merge!`:
 
-```ruby controller
+```ruby
 @pagy, @records = pagy(:offset, collection, params: ->(params) { params.except!('not_useful').merge!('custom' => 'useful') })
 ```
 
 ==- Add a URL fragment
 
-You can use the [:fragment](../toolbox/methods.md#common-url-options) option:
+You can use the [:fragment](../toolbox/methods.md#common-url-options) option.
 
 ==- Customize CSS styles
 
-Pagy includes a few [stylesheet](../resources/stylesheet) files that you can customize, and provides the syled version of all the `nav`
-tags for `:bootstrap` and `:bulma`.
+Pagy includes a [stylesheet](../resources/stylesheet) (in different formats) for customization, as well as styled `nav` tags for `:bootstrap` and `:bulma`.
 
 You can also override the specific helper method.
 
 ==- Override CSS rules in element "style" attribute
 
-A couple of helpers (i.e. `combo_nav_js_tag`, `limit_selector_js_tag`) assign element style attributes to one or more tags. You
-can override their rules in your own stylesheet files by using the attribute `[style]`
-selector and `!important`. Here is an example for overriding the `width` of the `input` element:
+The `combo_nav_js_tag` and `limit_selector_js_tag` use inline style attributes. You can override these rules in your stylesheet files using the `[style]`
+attribute selector and `!important`. Below is an example of overriding the `width` of an `input` element:
 
 ```css
 .pagy input[style] {
@@ -118,21 +116,20 @@ selector and `!important`. Here is an example for overriding the `width` of the 
 
 ==- Override pagy methods
 
-- Find the method to override
-- Find its path in the repo (e.g. 'pagy/...')
-- Find the name of the module where is defined (e.g. `Pagy::...`).
+- Identify its path in the repository (e.g., 'pagy/...').
+- Note the name of the module where it is defined (e.g., `Pagy::...`).
 
-If you need help ask in the [Q&A discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a)
+If you need assistance, visit the [Q&A discussions](https://github.com/ddnexus/pagy/discussions/categories/q-a).
 
 Copy and paste the original method in the [Pagy Initializer](../toolbox/initializer.md)
 
 ```ruby pagy.rb (initializer)
 require 'pagy/...' # path to the overridden method file
 module MyOverridingModule # wrap it with your arbitrarily named module
-  def any_method # edit/define your method with the same name
-    #...
+  def any_method # Edit or define your method with the identical name
+    # Custom logic here...
     super
-    #...
+    # Custom logic here...
   end
 end
 # prepend your module to the overridden module 
@@ -141,19 +138,18 @@ Pagy::AnyModule.prepend MyOverridingModule
 
 ==- Paginate an Array
 
-Just pass it as the collection, to the [:offset paginator](../toolbox/paginators/offset.md)
+Simply pass it as the collection to the [:offset](../toolbox/paginators/offset.md) paginator.
 
 ==- Paginate ActiveRecord collections
 
-Pagy works out of the box with `ActiveRecord` collections, however here are a few specific collection that might be treated a bit
-differently:
+Pagy works seamlessly with `ActiveRecord` collections, but certain collections may require specific handling:
 
 - **Grouped collections**
   - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginators/offset.md#options) option
 - **Decorated collections**
   - Do it in two steps:
     1. Get the page of records without decoration
-    2. Apply the decoration to it.
+    2. Decorate the retrieved records.
   ```ruby controller
   @pagy, records     = pagy(:offset, Post.all)
   @decorated_records = records.decorate # or YourDecorator.method(records) whatever works
@@ -162,20 +158,20 @@ differently:
   - The default pagy `collection.count(:all)` may not get the actual count:
   ```ruby controller
   # pass the right count to pagy (that will directly use it skipping its own `collection.count(:all)`)
-  @pagy, @records = pagy(:offset, custom_scope, count: custom_count)
+  @pagy, @records = pagy(:offset, custom_scope, count: custom_count) # Example implementation
   ```
 - **Ransack results**
-  - Ransack `result` returns an `ActiveRecord` collection, which can be paginated out of the box:
+  - Ransack's `result` method returns an `ActiveRecord` collection that is ready for pagination:
   ```ruby controller
   q = Person.ransack(params[:q])
   @pagy, @people = pagy(:offset, q.result)
   ```
 - **PostgreSQL Collections**
-  - [Always order your collections!](../toolbox/paginators#troubleshooting)
+  - [Always ensure your collections are ordered!](../toolbox/paginators#troubleshooting)
 
 ==- Paginate for generic API clients
 
-Check out:
+Explore the following options:
 
 - [:keyset paginator](../toolbox/paginators/keyset.md)
 - [headers_hash helper](../toolbox/methods/headers_hash.md)
@@ -184,7 +180,7 @@ Check out:
 
 ==- Paginate with JSON:API
 
-Pass the `jsonapi: true` to the paginator, optionally using `:page_sym` and `:limit_sym`:
+Enable `jsonapi: true`, optionally providing `:page_sym` and `:limit_sym`:
 
 ```ruby
 # JSON:API nested query_params: E.g.: ?page[number]=2&page[size]=100
@@ -193,12 +189,12 @@ Pass the `jsonapi: true` to the paginator, optionally using `:page_sym` and `:li
 
 ==- Paginate for Javascript Frameworks
 
-You can JSON send to the client selected `@pagy` instance data with the [data_hash helper](../toolbox/methods/data_hash.md) and
-pass the pagination metadata in your JSON response.
+You can send selected `@pagy` instance data to the client as JSON using the [data_hash helper](../toolbox/methods/data_hash.md),
+including pagination metadata in your JSON response.
 
 ==- Paginate search framework results
 
-See these pagnators:
+See these paginators:
 
 - [elasticsearch_rails](../toolbox/paginators/elasticsearch_rails.md)
 - [searchkick](../toolbox/paginators/searchkick.md)
@@ -206,27 +202,20 @@ See these pagnators:
 
 ==- Paginate by date
 
-Use the [:calendar paginator](../toolbox/paginators/calendar.md) that adds pagination filtering by calendar time unit (year,
+Use the [:calendar](../toolbox/paginators/calendar.md) paginator for pagination filtering by calendar time units (e.g., year,
 quarter, month, week, day).
 
 ==- Paginate multiple independent collections
 
-By default, pagy tries to derive parameters and options from the request and the collection, so you don't have to explicitly pass
-it to the `pagy*` method. That is very handy, but assumes you are paginating a single collection per request.
-
 When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
-You have the following common ways to do so:
+Here are some common methods to achieve this:
 
-==- Pass the request path
+#### Pass the request path
+<br/>
 
-By default, pagy generates its links reusing the same `request_path` of the request, however if you want to generate links
-pointing to a different controller/path, you should explicitly pass the targeted `:request_path`. For example:
-
-+++ Good
-!!!success Request Path Passed In:
+By default, Pagy generates links using the same `request_path` as the request. To generate links pointing to a different controller or path, explicitly pass the desired `:request_path`. For example:
 
 ```rb
-# dashboard_controller
 def index
   @pagy_foos, @foos = pagy(:offset, Foo.all, request_path: '/foos')
   @pagy_bars, @bars = pagy(:offset, Bar.all, request_path: '/bars')
@@ -234,44 +223,15 @@ end
 ```
 
 ```erb
-<-- /dashboard.html.erb -->
 <%== @pagy_foos.nav_tag %>
 <%== @pagy_bars.nav_tag %>
-<-- Pagination links of `/foos?page=2` instead of `/dashboard?page=2` -->
-<-- Pagination links of `/bars?page=2` etc. -->
-<-- Success -->
+<!-- Pagination links of `/foos?page=2` instead of `/dashboard?page=2` -->
+<!-- Pagination links of `/bars?page=2` etc. -->
 ```
-
-!!!
-+++ Bad
-!!!danger No Path Passed In
-
-Path customization typically required when rendering multiple `@pagy` instances in the same view. e.g.:
-
-```rb
-# dashboard_controller
-def index
-  @pagy_foos, @foos = pagy(:offset, Foo.all)
-  @pagy_bars, @bars = pagy(:offset, Bars.all)
-end
-```
-
-```erb
-<-- /dashboard.html.erb -->
-<% turbo_frame "foos" do %>
-<%== pagy_nav(@pagy_foos) %>
-<% end%>
-<% turbo_frame "bars" do %>
-<%== pagy_nav(@pagy_bars) %>
-<% end%>
-<-- Pagination links will be `/dashboard?page=2` -->
-<-- We don't want that! -->
-```
-
-!!!
-+++
 
 #### Use separate turbo frames actions
+
+<br/>
 
 If you're using [hotwire](https://hotwired.dev/) ([turbo-rails](https://github.com/hotwired/turbo-rails) being the Rails
 implementation), another way of maintaining independent contexts is using separate turbo frames actions. Just wrap each
@@ -310,6 +270,8 @@ of the above logic.
 
 #### Use different page symbols
 
+<br/>
+
 You can also
 paginate [multiple model in the same request](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy/)
 by simply using different `:page_sym` for each instance:
@@ -324,37 +286,11 @@ end
 
 ==- Paginate only max_pages, regardless the count
 
-In order to limit the pagination to a maximum number of pages, you can pass the `:max_pages` option.
-
-For example:
-
-```ruby
-@pagy, @records = pagy(:offset, collection, max_pages: 50, limit: 20)
-@records.size #=> 20   
-@pagy.count #=> 10_000
-@pagy.last #=> 50
-
-@pagy, @records = pagy(:offset, collection, max_pages: 50, limit: 20, page: 51)
-#=> Pagy::RangeError: expected :page in 1..50; got 51
-```
-
-If the `@pagy.count` in the example is `10_000`, the pages served without `:max_pages` would be `500`, but with
-`:max_pages: 50` pagy would serve only the first `50` pages of your collection.
-
-That works at the `Pagy`/`Pagy::Countless` level, so it works with any combination of collection/extra, including `limit`,
-`gearbox` and search extras, however it makes no sense in `Pagy::Calendar` unit objects (which ignore it).
-
-!!! Notice
-
-The `limit` and `gearbox` extras serve a option number of records per page. If your goal is limiting the pagination to a max
-number of records (instead of pages), you have to keep into account how you configure the `limit` range.
-
-!!!
+See [:max_pages](../toolbox/paginators.md#common-options) option.
 
 ==- Paginate non-ActiveRecord collections
 
-The `pagy_get_count` method works out of the box with `ActiveRecord` collections; for other collections (e.g. `mongoid`, etc.)
-you might want to change the `:count_arguments` default to suite your ORM count method:
+For collections other than `ActiveRecord` (e.g. `mongoid`, etc.), you might want to change the `:count_arguments` default to suite your ORM count method:
 
 ```ruby pagy.rb (initializer)
 Pagy.options[:count_arguments] = []
@@ -363,7 +299,9 @@ Pagy.options[:count_arguments] = []
 ==- Paginate collections with metadata
 
 When your collection is already paginated and contains count and pagination metadata, you don't need any `pagy*` controller
-method. For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection
+method. 
+
+For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection
 metadata:
 
 ```rb
@@ -423,7 +361,7 @@ deleted and a user went to a stale page.
 By default, Pagy doesn't raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and
 serves the UI navigators as usual, so the user can click to a different page.
 
-Sometimes you may want to take a diffrent action, so you can set the `raise_range_error: true` option, and `rescue` it and do
+Sometimes you may want to take a diffrent action, so you can set the `raise_range_error: true` option, `rescue` it and do
 whatever fits your app better. For example:
 
 ```ruby controller
@@ -491,10 +429,25 @@ with a hash with the following keys:
 Pagy rely also on the `params` method inside the app, which should be a hash of the params from the request. Define an alias or a
 method if your environment doesn't respond to it.
  
-==- Use `pagy` outside of a controller
+==- Use `pagy` outside of a controller or view
 
-The `pagy` method expects to be used in a controller or in any environmment that defines `params` and `request`, because it relies on them to set options like ':page' and to create the URLs from the request.
+The `pagy` method is intended for environments that define both `params` and `request`, as it depends on them to set several options.
 
-If you use it in a model for example, you should explicitly pass the options that `pagy` would search into the `params`. You should also pass the request hash that you 
+If you define a method (e.g., in a model) that uses `pagy`, the call will originate either from the controller or the view.
+
+The simplest way to make it work is as follows:
+
+```ruby YourModel
+include Pagy::Method
+
+def self.paginated(view, my_arg1, my_arg2, **)
+  collection = my_method(my_arg1, my_arg2)
+  view.instance_eval { pagy(:offset, collection, **) }
+end
+```
+
+```ERB view
+<% pagy, records = YourModel.paginated(self, my_arg1, my_arg2, **options) %>
+```
 
 ===

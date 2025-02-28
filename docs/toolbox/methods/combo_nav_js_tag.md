@@ -18,13 +18,12 @@ see [Maximizing Performance](../../guides/how-to.md#maximize-performance)) still
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#3-demo-app)
 
-
 ```erb Any View
 <%== @pagy.combo_nav_js_tag(**options) %>
 <%== @pagy.combo_nav_js_tag(:bootstrap, **options) %>
 <%== @pagy.combo_nav_js_tag(:bulma, **options) %>
 ```
-Try it with the [Pagy Console](../../sandbox/console.md):
+Try this method in the [Pagy Console](../../sandbox/console.md):
 
 ```ruby
 >> puts @pagy.combo_nav_js_tag

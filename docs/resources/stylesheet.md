@@ -11,17 +11,17 @@ image: ""
 
 ## Overview
 
-For all its own interactive helpers shown above, the pagy gem includes a few stylesheet files that you can download, link or
-copy.
+Pagy includes a few stylesheet files that you can download, link, or copy.
 
 !!!warning
-You don't need any stylesheet if you use tag components with `:bootstrap` or `:bulma` styles
+
+You don't need any stylesheets if you use tag components with `:bootstrap` or `:bulma` styles.
 !!!
 
 ### HTML Structure
 
-In order to ensure a minimalistic valid output, still complete with all the ARIA attributes, we use a single line with the minimum
-number of tags and class attributes that can identify all the parts of the nav bars:
+To ensure a minimalistic valid output, complete with all the ARIA attributes, we use a single line with the minimum number of tags
+and class attributes required to identify all the parts of the nav bars:
 
 - The output of `nav_tag` and `nav_js_tag` helpers, is a series of `a` tags inside a wrapper `nav` tag
 - The disabled links are so because they are missing the `href` attributes
@@ -30,15 +30,16 @@ number of tags and class attributes that can identify all the parts of the nav b
 
 !!! Notice
 
-- The stylesheet target the disabled `a` tags by using the `pagy a:not([href])` selector
+- The stylesheet targets the disabled `a` tags using the `pagy a:not([href])` selector.
 - You can make the `gap` look like the other pages by removing the `:not(.gap)`
 - You can target the previous and next links by using `pagy a:first-child` and `pagy a:last-child` pseudo classes
 
 !!!
 
-!!!success 
-You can totally transform the stylesheet below by just editing the content inside the curly brackets, usually leaving
-the rest untouched.
+!!!success
+
+You can easily transform the stylesheet below by editing the content inside the curly brackets, usually leaving the rest
+untouched. everything else untouched.
 !!!
 
 +++ pagy.scss

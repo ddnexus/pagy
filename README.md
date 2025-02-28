@@ -23,10 +23,10 @@ This version is a complete redesign of the legacy code: its API will be stable f
 
 - We invented the pagy-exclusive [keynav](https://ddnexus.github.io/pagy/toolbox/paginators/keynav_js) pagination, that uses the
   fastest `keyset` technique with all the Frontend helpers. The best technique for performance and functionality!
-- Wicked-fast [Keyset Paginator](https://ddnexus.github.io/pagy/toolbox/paginators/keyset) for big data and infinite pagination.
-- Reduce the required config by 99%: no require, no extras, no DEFAULT
-- Reduce and improve all the methods, now autoloaded ONLY if you actually use them
-- New docs: short and to the point, easy to browse and understand
+- Blazing-fast [Keyset Paginator](https://ddnexus.github.io/pagy/toolbox/paginators/keyset) designed for big data and infinite pagination.
+- Reduce the required configuration by 99%: no require, no extras
+- Improved all methods, now autoloaded **only** when used.
+- New documentation: concise, easy to browse, and simple to understand.
 - New Pagy AI for valuable real-time support
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for breaking changes
 <!-- whats_new_end -->
@@ -41,11 +41,11 @@ This version is a complete redesign of the legacy code: its API will be stable f
 
 ### 🐸 Now it's more... with less
 
-- It works with any environment and collection
+- Compatible with all environments and collection types
 - It can use OFFSET, COUNTLESS, KEYSET, KEYNAV, CALENDAR pagination techniques
-- It implements server side or faster client-side rendering for most CSS frameworks and APIs
+- It supports server-side rendering or faster client-side rendering for popular CSS frameworks and APIs.
 - It autoloads ONLY the methods that you actually use, with almost zero config
-- It has 100% of test coverage for Ruby, HTML and Javascript E2E
+- It boasts 100% test coverage for Ruby, HTML, and JavaScript end-to-end (E2E)
 
 ---
 
@@ -55,14 +55,17 @@ Pagination code:
 
 ```rb
 # Include it in the controllers (e.g. application_controller.rb)
-include Pagy::Backend
+include Pagy::Method
 
 # Wrap your collections with one of many paginators in your actions. For example:
+# Offset-based pagination
 @pagy, @records = pagy(:offset, Product.all)
+
+# Keyset-based pagination (for ordered collections)
 @pagy, @records = pagy(:keyset, Product.order(my_order).all)
 ``` 
 
-Pagination with JSON:API:
+JSON:API pagination:
 
 ```ruby
 # JSON:API nested query_params: E.g.: ?page[number]=2&page[size]=100
@@ -127,6 +130,8 @@ Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
 
 View helpers:
+
+Pagy offers a variety of view helpers for pagination. Below is a list of available UI components, along with their previews (Bootstrap styling example).
 
 | Helper Name                                                                                                                                                                                                                 | Preview (Bootstrap Style shown)                                  |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|

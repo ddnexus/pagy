@@ -28,7 +28,7 @@ Now, you can use it to paginate ANY collection, with ANY technique:
 
 ==- Common Options
 
-!!! Options for all paginators
+!!! Common Options for Paginators
 
 Individual paginators may offer additional options, which are documented with the paginator itself.
 !!!
@@ -36,24 +36,24 @@ Individual paginators may offer additional options, which are documented with th
 - `:page`
   - Set it only to force the current `:page`. _(It is set automatically from the request params)_.
 - `:limit`
-  - Set the number of items per page (default `20`)
+  - Specifies the number of items per page (default: `20`)
 - `requestable_limit: max_limit`
-  - Allow the client to set the `:limit` in the `request` params, up-to the `max_limit` value
+  - Allows the client to set the `:limit` in the `request` params, up to the `max_limit` value
 - `:max_pages`
-  - Allow only `:max_pages`
+  - Restricts pagination to only `:max_pages`. (`Pagy::Calendar::*` unit objects ignore it)
 - `jsonapi: true`
-  - Enable JSON:API-compliant URLs and query_params
+  - Enables JSON:API-compliant URLs and query_params
 - `:page_sym`
   - Set it to change the symbol of the `:page` in URLs and query_params (default `:page`).
 - `:limit_sym`
   - Set it to change the symbol of the `:limit` in URLs and query_params (default `:limit`).
 - `:params`
-  - Set it to a `Hash` of params to merge with the query params, or a `Lambda` that can edit/add/delete the request params (modify the query_params directly: the result is ignored). Keys
+  - Use a `Hash` of params to merge with the query params, or a `Lambda` to edit/add/delete the request params (modify the query_params directly: the result is ignored). Keys
     must be strings.
 - `:request_path`
-  - Override the request path in pagination URLs. Pass the path only (not the absolute url). _(see [Pass the request path](../guides/how-to.md#pass-the-request-path))_
+  - Overrides the request path in pagination URLs. Pass the path only (not the absolute URL). _(see [Pass the request path](../guides/how-to.md#pass-the-request-path))_
 - `:request`
-  - **Set this hash only for non-rack environments**. _(It is set automatically from the request)_. For example:
+  - **Use this hash only for non-rack environments**. _(It is set automatically from the request)_. For example:
     ```ruby
      { base_url:     'http://www.example.com',
        path:         '/path',
@@ -62,9 +62,9 @@ Individual paginators may offer additional options, which are documented with th
 
 ==- Common Readers
 
-!!! Readers for all paginators
+!!! Common Readers for Paginators
 
-Individual paginators may offer additional readers, wich are documented with the paginator itself.
+Individual paginators may offer additional readers, which are documented with the paginator itself.
 !!!
 
 - `page`
@@ -78,9 +78,9 @@ Individual paginators may offer additional readers, wich are documented with the
 
 ==- Common Exceptions
 
-!!! Exception for all paginators
+!!! Common Exceptions for Paginators
 
-Individual paginators may raise specific exceptions, wich are documented with the paginator itself.
+Individual paginators may raise specific exceptions, which are documented with the paginator itself.
 !!!
 - `Pagy::OptionError`
   - A subclass of `ArgumentError` that offers information to rescue invalid options passed to the constructor.
@@ -91,7 +91,7 @@ Individual paginators may raise specific exceptions, wich are documented with th
 
 ==- Troubleshooting
 
-##### Records may randomly repeat in different pages (or be missing)
+##### Records may repeat in different pages (or sometimes be missing)
 
 <br/>
 
@@ -106,17 +106,16 @@ unordered.offset(pagy.offset).limit(pagy.limit)
 
 !!! warning
 
-From the [PostgreSQL Documentation](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY)
+Citation: [PostgreSQL Documentation](https://www.postgresql.org/docs/16/queries-limit.html#:~:text=When%20using%20LIMIT,ORDER%20BY)
 
-When using LIMIT, it is important to use an ORDER BY clause that constrains the result rows into a unique order. Otherwise, you
-will get an unpredictable subset of the query's rows.
+When using LIMIT, always include an ORDER BY clause to constrain the result rows into a unique order. Otherwise, the subset of rows retrieved may be unpredictable.
 
 !!!
 
 !!! success Ensure the PostgreSQL collection is ordered!
 
 ```rb
-# results will be predictable with #order
+# Results will be consistent and predictable with #order
 ordered         = unordered.order(:id)
 @pagy, @records = pagy_offset(ordered)
 ```

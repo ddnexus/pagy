@@ -4,12 +4,12 @@ icon: terminal
 order: 90
 ---
 
-Allows you to test Pagy in an [irb](https://github.com/ruby/irb)/[pry](https://github.com/pry/pry) etc., without an app, but with an environment stubbed for you.
+Allows you to test Pagy in an [irb](https://github.com/ruby/irb)/[pry](https://github.com/pry/pry) environment without an app, but with a pre-configured stubbed environment for you.
 
-It also adds a few of useful methods that you can call for creating a simple collection that can be paginated with the `:offset` paginator, or for setting the params, etc.
+It also provides a few useful methods that you can use to create a simple collection paginated with the `:offset` paginator or to set the parameters as needed.
 
 ```ruby
-=> require 'pagy`
+=> require 'pagy'
 => true
 
 >> include Pagy::Console
@@ -24,7 +24,7 @@ It also adds a few of useful methods that you can call for creating a simple col
 >> collection
 => Collection
 
->> pagy, records = pagy(:offset, collection.new, limit: 10)
+>> pagy, records = pagy(:offset, collection.new, limit: 10) # Example pagination of sample data
 => [#<Pagy::Offset:0x00007fb92fb35840 @count=1000, @from=1, @in=10, @in_range=true, @last=100, @limit=10, @next=2, @offset=0, @options={limit: 10, limit_sym: :limit, page_sym: :page, page: 1, request: {base_url: "http://www.example.com", path: "/path", query_params: {example: "123"}}, count: 1000}, @page=1, @to=10>, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
 
 >> pagy.data_hash

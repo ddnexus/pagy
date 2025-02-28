@@ -7,7 +7,7 @@ categories:
   - Search
 ---
 
-`:meilisearch` is a paginator for  `Meilisearch` results.
+`:meilisearch` is a paginator designed for `Meilisearch` results.
 
 Paginator method for `Meilisearch` results.
 
@@ -37,20 +37,20 @@ Pagy creates its object out of your result.
 !!!
 
 ```ruby Controller
-@results = Model.ms_search(nil, hits_per_page: 10, page: 10, ...)
+@results = Model.ms_search(nil, hits_per_page: 10, page: 10, **options)
 @pagy    = pagy(:meilisearch, @results, **options)
 ```
 
 +++
 
 !!!
-Search paginators do not use OFFSET for querying a DB, however they use the same positional technique used by the [:offset] pagintors, sharing the same options and readers
+Search paginators do not use OFFSET for querying a database. However, they employ the same positional technique used by the [:offset] paginators, sharing the same options and readers.
 !!!
 
 ==- Options
 
 - `search_method: :my_search`
-  - Customize the name of the search method (default `:ms_search`)
+  - Allows customization of the search method name (default: `:ms_search`)
 
 See also [Offset Options](offset.md#options)
 

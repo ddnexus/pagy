@@ -24,9 +24,9 @@ should be quite simple.
 
 #### Preparation
 
-- Replace the legacy gem with `gem "pagy"` in the `Gemfile` and uninstall the legacy gem.
-- Add `include Pagy::Backend` statement to the application controller.
-- Keep handy both the legacy gem and the pagy docs in parallel.
+- Replace the legacy gem with `gem "pagy"` in the `Gemfile`, then uninstall the legacy gem.
+- Add `include Pagy::Method` statement to the application controller,
+- Keep both the legacy gem and Pagy documentation accessible for reference.
 
 #### Application-wide search and replace
 
@@ -37,13 +37,13 @@ Remove all the legacy settings of the old gem.
 
 #### Cleanup the Models
 
-Search for keywords like `per_page`, `per` and such, which are actually configuration settings. They should be added to the
-specific paginator call in the controller (e.g. `pagy(:offset, collection, limit: 10)`) or globally to the pagy initializer (e.g.
-`Pagy.options[:limit] = 10`)
+Look for terms like `per_page`, `per`, and similar, as these are configuration settings. Include them in the
+appropriate paginator call in the controller (e.g., `pagy(:offset, collection, limit: 10)`) or globally in the Pagy initializer
+(e.g., `Pagy.options[:limit] = 10`).
 
-If the app uses the `page` scope in some of its methods or scopes in some model, that should be removed (including removing the
-argument used to pass the page number to the method/scope), leaving the rest of the scope in place. Search where the app uses the
-already paginated scope in the controllers, and use the scope in a paginator statement. For example:
+If the app uses the `page` scope in model methods or scopes, remove it, along with the argument used to pass the page number,
+while preserving the rest of the scope. Locate where the app applies this paginated scope in the controllers and replace it with
+the scope in a paginator statement. For example:
 
 ```ruby Controller
 #@records = Product.paginated_scope(params[:page])
@@ -52,8 +52,7 @@ already paginated scope in the controllers, and use the scope in a paginator sta
 
 #### Search and replace in the Controllers
 
-In the controllers, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy
-pagination, so you should be able to go through each of them and convert them quite easily.
+In controllers, legacy pagination statements generally map directly to Pagy pagination, making them straightforward to convert.
 
 Search for keywords like `page` and `paginate` statements and use the `pagy(:offset, ...)` paginator instead. For example:
 
@@ -72,8 +71,7 @@ Search for keywords like `page` and `paginate` statements and use the `pagy(:off
 
 #### Search and replace in the Views
 
-Also in the views, the occurrence of statements from legacy pagination should have a one-to-one relationship with the Pagy
-pagination, so you should be able to go through each of them and convert them quite easily.
+Similarly, in views, legacy pagination statements typically correspond directly to Pagy pagination, simplifying conversion.
 
 Search for keywords like `will_paginate` and `paginate` statement and use one of the `nav_tag` methods. For example:
 
@@ -88,18 +86,17 @@ Search for keywords like `will_paginate` and `paginate` statement and use one of
 
 If the app has tests it's time to run them. If not, start the app and navigate through its pages.
 
-If anything of the old code is still in place you should get some exception. In that case, just remove the old code and retry
+If any legacy code remains, it will raise an exception. Remove the old code and retry until no exceptions occur.
 until there will be no exception.
 
 ## Fine-tuning
 
-If the app is working and displays the pagination, it's time to adjust Pagy as you need. However, if the old pagination was using
-custom elements (e.g. custom params, urls, links, html elements, etc.) it will likely not work without some possibly easy
-adjustment.
+Once the app displays pagination correctly, customize Pagy as needed. If the previous pagination used
+custom elements (e.g., custom params, URLs, links, HTML elements, etc.), adjustments may be required for compatibility.
 
 Please take a look at the topics in the [how-to](how-to.md) documentation: that should cover most of your custom needs.
 
 ### CSS
 
-The css styling that you may have applied to the pagination elements may need some minor change. However, if the app uses the
-pagination from bootstrap (or some other framework), the same CSSs should work seamlessly with the pagy nav helpers.
+CSS styling applied to pagination elements may require minor adjustments. However, if the app uses
+pagination from Bootstrap or another framework, the existing CSS should function seamlessly with Pagy navigation helpers.

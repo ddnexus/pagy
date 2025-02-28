@@ -6,14 +6,14 @@ categories:
   - Paginators
 ---
 
-`:offset` is a generic OFFSET paginator usable with ORMs collections, and regular `Array` objects.
+`:offset` is a generic OFFSET paginator usable with ORM collections and regular `Array` objects.
 
-It uses the full OFFSET pagination technique, which triggers two SQL queries: 
+It uses the complete OFFSET pagination technique, which triggers two SQL queries:
 
 - a `COUNT` query to get the count
 - an `OFFSET` + `LIMIT` query to get the records
 
-It **fully** supports **ALL** the helpers and navigators.
+It **fully** supports all the helpers and navigators.
 
 ```ruby Controller
 @pagy, @records = pagy(:offset, collection, **options)
@@ -22,11 +22,11 @@ It **fully** supports **ALL** the helpers and navigators.
 ==- Options
 
 - `count_over: true`
-  - Use this option with `GROUP BY` collections to get the total number of results using `COUNT(*) OVER ()`.
+  - Use this option with `GROUP BY` collections to calculate the total number of results using `COUNT(*) OVER ()`.
 - `:count_arguments`
-  - The arguments passed to the `collection.count` (default `[:all]`). You may want to set it to `[]` in ORMs different from `ActiveRecord` 
+  - The arguments passed to the `collection.count` (default: `[:all]`). You may want to set it to `[]` in ORM systems other than `ActiveRecord`. 
 - `raise_range_error: true`
-  - Enable the `Pagy::RangeError` (wich is rescued to an empty page by default)
+  - Enable the `Pagy::RangeError` (which is rescued to an empty page by default).
 
 See also [Common Options](../paginators#common-options)
 
@@ -37,9 +37,9 @@ See also [Common Options](../paginators#common-options)
 - `count`
   - The collection count
 - `from`
-  - The position in the collection of the first item in the page. Different Pagy classes can use diffrent value-types for it
+  - The position in the collection of the first item on the page. Different Pagy classes may use different value types for it.
 - `to`
-  - The position in the collection of the last item in the page. Different Pagy classes can use diffrent value-types for it
+  - The position in the collection of the last item on the page. Different Pagy classes may use different value types for it.
 - `in`
   - The actual items in the page
 - `previous`
@@ -54,7 +54,7 @@ See also [Common Readers](../paginators#common-readers)
 ==- Exceptions
 
 - `Pagy::RangeError`
-  - A subclass of `Pagy::OptionError`. Raised for out-of-range `:page` requests, with `raise_range_error: true` option.
+  - A subclass of `Pagy::OptionError`. Raised for out-of-range `:page` requests when the `raise_range_error: true` option is enabled.
 
 See also [Common Exceptions](../paginators#common-exceptions)
 
