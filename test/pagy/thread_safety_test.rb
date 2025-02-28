@@ -23,7 +23,7 @@ describe 'Autoload thread safety' do
                                                                .send(:pagy, :calendar,
                                                                      Event.all,
                                                                      month: { period: period },
-                                                                     pagy: {})
+                                                                     offset: {})
 
                  results = MockMeilisearch::Model.ms_search('a')
                  pagy_m  = MockApp.new.send(:pagy, :meilisearch, results)

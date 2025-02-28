@@ -82,7 +82,7 @@ class PagyCalendar < Sinatra::Base
                                      year:   {},
                                      month:  {},
                                      day:    {},
-                                     active: !params[:skip])
+                                     skip: params[:skip])
     erb :main
   end
 

@@ -68,7 +68,7 @@ class Pagy
       @units    = Calendar::UNITS & @conf.keys # get the units in time length desc order
       @period   = period
       @params   = params
-      @page_sym = conf[:pagy][:page_sym] || Pagy::DEFAULT[:page_sym]
+      @page_sym = conf[:offset][:page_sym] || Pagy::DEFAULT[:page_sym]
       # set all the :page_sym options for later deletion
       @units.each { |unit| conf[unit][:page_sym] = :"#{unit}_#{@page_sym}" }
       calendar = {}
