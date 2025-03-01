@@ -1,21 +1,24 @@
-# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# See https://ddnexus.github.io/pagy/resources/i18n
+
 de:
   pagy:
+    p11n: 'OneOther'
     aria_label:
       nav:
         one: "Seite"
         other: "Seiten"
-      prev: "Zurück"
+      previous: "Zurück"
       next: "Weiter"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:
       one: "Eintrag"
       other: "Einträge"
-    info:
+    info_tag:
+      no_count: "Seite %{page} von %{pages}"
       no_items: "Keine %{item_name} gefunden"
       single_page: "Zeige %{count} %{item_name}"
       multiple_pages: "Zeige %{item_name} %{from}-%{to} von %{count} gesamt"
-    combo_nav_js: "Seite %{page_input} von %{pages}"
-    limit_selector_js: "Zeige %{limit_input} %{item_name} pro Seite"
+    combo_nav_js_tag: "Seite %{page_input} von %{pages}"
+    limit_selector_js_tag: "Zeige %{limit_input} %{item_name} pro Seite"

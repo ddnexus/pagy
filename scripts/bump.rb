@@ -41,7 +41,7 @@ commits.each do |commit|
   gitlog.puts body
 end
 # Abort if there is no gem change
-abort("No gem changes since version #{old_version}!") if gitlog.size.zero? # rubocop:disable Style/ZeroLengthPredicate (bug)
+abort("No gem changes since version #{old_version}!") if gitlog.size.zero? # rubocop:disable Style/ZeroLengthPredicate -- (bug)
 
 gitlog.close
 

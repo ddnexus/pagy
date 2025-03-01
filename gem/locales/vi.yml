@@ -1,17 +1,20 @@
-# :other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# See https://ddnexus.github.io/pagy/resources/i18n
+
 vi:
   pagy:
+    p11n: 'Other'
     aria_label:
       nav: "Trang"
-      prev: "Trang trước"
+      previous: "Trang trước"
       next: "Trang sau"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name: "kết quả"
-    info:
+    info_tag:
+      no_count: "Trang %{page} trên %{pages}"
       no_items: "Không tìm thấy %{item_name} nào"
       single_page: "%{count} %{item_name}"
       multiple_pages: "Đang hiển thị %{from}-%{to} trong tổng số %{count} %{item_name}"
-    combo_nav_js: "Trang %{page_input} trên %{pages}"
-    limit_selector_js: "Hiển thị %{limit_input} %{item_name} mỗi trang"
+    combo_nav_js_tag: "Trang %{page_input} trên %{pages}"
+    limit_selector_js_tag: "Hiển thị %{limit_input} %{item_name} mỗi trang"

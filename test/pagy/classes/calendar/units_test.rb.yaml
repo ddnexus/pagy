@@ -1,0 +1,16 @@
+---
+Pagy_Calendar__label_test_0001_labels_the_Pagy__Calendar__Year:
+  :p1: '2021'
+  :p2: '2022'
+Pagy_Calendar__label_test_0005_labels_the_Pagy__Calendar__Day:
+  :p1: '21'
+  :p2: '22'
+Pagy_Calendar__label_test_0002_labels_the_Pagy__Calendar__Quarter:
+  :p1: Q4
+  :p2: Q1
+Pagy_Calendar__label_test_0003_labels_the_Pagy__Calendar__Month:
+  :p1: Oct
+  :p2: Nov
+Pagy_Calendar__label_test_0004_labels_the_Pagy__Calendar__Week:
+  :p1: 2021-41
+  :p2: 2021-42

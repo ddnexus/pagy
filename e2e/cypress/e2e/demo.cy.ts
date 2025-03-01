@@ -19,7 +19,7 @@ for (const path of paths) {
         testComboNav(app, "#combo-nav-js");
         testInfo(app, "#pagy-info", path);
         if (path === "/pagy") {
-            testLimitSelector(app, "#limit-selector-js", path, true); // trim true
+            testLimitSelector(app, "#limit-selector-js", path);
         }
     });
 }

@@ -5,10 +5,14 @@ set -e
 root="$(git rev-parse --show-toplevel)"
 . "$root/scripts/cd-and-back.sh"
 
-jdir="$root/gem/javascripts"
+jdir="$root/gem/javascript"
 
 echo 'Generating javascript files'
 bun build ./pagy.ts --target=node --no-bundle --outfile=$jdir/pagy.mjs
+echo 'export default Pagy;' >> $jdir/pagy.mjs
 
-bun build ./pagy.min.js --target=browser --minify --sourcemap=linked --outdir=$jdir
+bun build ./pagy.js --target=browser --minify --outfile=$jdir/pagy.min.js
 sed -i "0,/var ./{s/var ./window.Pagy/}" $jdir/pagy.min.js
+
+bun build ./pagy.js --target=browser --sourcemap=linked --outdir=$jdir
+sed -i "0,/var Pagy/{s/var Pagy/window.Pagy/}" $jdir/pagy.js

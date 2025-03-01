@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pagy/extras/searchkick'
-
 module MockSearchkick
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
               'b' => ('b-1'..'b-1000').to_a }.freeze
@@ -10,12 +8,13 @@ module MockSearchkick
     attr_reader :options
 
     def initialize(query, options = {}, &block)
+      query    = 'a' if query == '*' # testing default query with the actual Model.search
       @entries = RESULTS[query]
       @options = { page: 1, per_page: 10 }.merge(options)
       from     = @options[:per_page] * ((@options[:page] || 1) - 1)
       results  = @entries[from, @options[:per_page]]
       addition = yield if block
-      @results = results&.map { |r| "#{addition}#{r}" }
+      @results = results.map { |r| "#{addition}#{r}" }
     end
 
     def results
@@ -33,6 +32,6 @@ module MockSearchkick
       Results.new(...)
     end
 
-    extend Pagy::Searchkick
+    extend Pagy::Search
   end
 end

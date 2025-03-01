@@ -18,11 +18,13 @@
 
 VERSION = '9.3.3'
 
-# Gemfile
+if VERSION != Pagy::VERSION
+  Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
+end
+
+# Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
-gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
+gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
@@ -47,25 +49,16 @@ class PagyRails < Rails::Application # :nodoc:
 
   routes.draw do
     root to: 'comments#index'
-    get '/javascripts/:file', to: 'pagy#javascripts', file: /.*/
+    get '/javascript/:file', to: 'pagy#javascript', file: /.*/
   end
 end
 
 # AR config
-dir = Rails.env.development? ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
+dir = Rails.env.development? ? '.' : Dir.pwd # app dir in dev or pwd otherwise
 unless File.writable?(dir)
   warn "ERROR: directory #{dir.inspect} is not writable (the pagy-rails-app needs to create DB files)"
   exit 1
 end
-
-# Pagy initializer
-require 'pagy/extras/pagy'
-require 'pagy/extras/limit'
-require 'pagy/extras/overflow'
-require 'pagy/extras/headers'
-Pagy::DEFAULT[:limit]    = 10
-Pagy::DEFAULT[:overflow] = :empty_page
-Pagy::DEFAULT.freeze
 
 # Activerecord initializer
 ActiveRecord::Base.logger = Logger.new(OUTPUT)
@@ -84,11 +77,15 @@ end
 # Models
 class Post < ActiveRecord::Base # :nodoc:
   has_many :comments
-end # :nodoc:
+end
+
+# :nodoc:
 
 class Comment < ActiveRecord::Base # :nodoc:
   belongs_to :post
-end # :nodoc:
+end
+
+# :nodoc:
 
 # Unused model, useful to test overriding conflicts
 module Calendar
@@ -102,31 +99,27 @@ Post.all.each_with_index do |post, pi|
   2.times { |ci| Comment.create(post:, body: "Comment #{ci + 1} to Post #{pi + 1}") }
 end
 
-# Helpers
-module CommentsHelper
-  include Pagy::Frontend
-end
-
 # Controllers
 class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
-  include Pagy::Backend
+  include Pagy::Method
 
   def index
-    @pagy, @comments = pagy(Comment.all)
-    pagy_headers_merge(@pagy)
+    @pagy, @comments = pagy(:offset, Comment.all, limit: 10, requestable_limit: 100)
+    # Reload the page in the network tab of the Chrome Inspector to check
+    # response.headers.merge!(@pagy.headers_hash)
     render inline: TEMPLATE
   end
 end
 
 # You don't need this in real rails apps (see https://ddnexus.github.io/pagy/docs/api/javascript/setup/#2-configure)
 class PagyController < ActionController::Base
-  def javascripts
+  def javascript
     format = params[:file].split('.').last
     if format == 'js'
-      render js: Pagy.root.join('javascripts', params[:file]).read
+      render js: Pagy::ROOT.join('javascript', params[:file]).read
     elsif format == 'map'
-      render json: Pagy.root.join('javascripts', params[:file]).read
+      render json: Pagy::ROOT.join('javascript', params[:file]).read
     end
   end
 end
@@ -139,7 +132,7 @@ TEMPLATE = <<~ERB
     <html>
     <head>
     <title>Pagy Rails App</title>
-      <script src="/javascripts/pagy.min.js"></script>
+      <script src="/javascript/pagy.js"></script>
       <script>
         window.addEventListener("load", Pagy.init);
       </script>
@@ -170,7 +163,7 @@ TEMPLATE = <<~ERB
           If you want to customize the style,
           please replace the line below with the actual file content
         */
-        <%== Pagy.root.join('stylesheets', 'pagy.css').read %>
+        <%== Pagy::ROOT.join('stylesheet/pagy.css').read %>
       </style>
     </head>
 
@@ -196,20 +189,20 @@ TEMPLATE = <<~ERB
         </div>
         <hr>
 
-        <h4>pagy_nav</h4>
-        <%== pagy_nav(@pagy, id: 'nav', aria_label: 'Pages nav') %>
+        <h4>pagy.nav_tag</h4>
+        <%== @pagy.nav_tag(id: 'nav', aria_label: 'Pages nav') %>
 
-        <h4>pagy_nav_js</h4>
-        <%== pagy_nav_js(@pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+        <h4>pagy.nav_js_tag</h4>
+        <%== @pagy.nav_js_tag(id: 'nav-js', aria_label: 'Pages nav_js') %>
 
-        <h4>pagy_combo_nav_js</h4>
-        <%== pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <h4>pagy.combo_nav_js_tag</h4>
+        <%== @pagy.combo_nav_js_tag(id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 
-        <h4>pagy_limit_selector_js</h4>
-        <%== pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
+        <h4>pagy.limit_selector_js_tag</h4>
+        <%== @pagy.limit_selector_js_tag(id: 'limit-selector-js') %>
 
-        <h4>pagy_info</h4>
-        <%== pagy_info(@pagy, id: 'pagy-info') %>
+        <h4>pagy.info_tag</h4>
+        <%== @pagy.info_tag(id: 'pagy-info') %>
       </div>
 
     </body>

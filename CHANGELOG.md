@@ -2,7 +2,7 @@
 icon: versions-24
 ---
 
-# CHANGELOG
+# Changelog
 
 ## Release Policy
 
@@ -21,7 +21,7 @@ Given a version number `MAJOR.MINOR.PATCH` (e.g. `9.3.3`):
 The `gem 'pagy', '~> 9.3'` Gemfile entry (without the PATCH number) ensures that the `bundle update` command will update pagy to 
 the most recent version WITHOUT BREAKING CHANGES.
 
-Increment the MAYOR version indicated in the Gemfile ONLY when you are ready to handle the BREAKING CHANGES
+Increment the MAYOR version in the Gemfile ONLY when you are ready to handle the BREAKING CHANGES.
 
 ## Breaking Changes
 
