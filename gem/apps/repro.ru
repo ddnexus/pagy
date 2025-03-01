@@ -20,13 +20,15 @@ VERSION = '9.3.3'
 
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
 gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
   gem 'sinatra'
+end
+unless ENV['PAGY_INSTALL_BUNDLE'] == 'true'
+  require 'bundler'
+  Bundler.configure
 end
 
 # Edit this section adding the legacy as needed
@@ -55,7 +57,7 @@ class PagyRepro < Sinatra::Base
     @pagy, @records = pagy(collection)
     # @pagy, @records = pagy(:offset, collection, limit: 7, requestable_limit: 30)
     # @pagy, @records = pagy(:countless, collection)
-    # @pagy, @records = pagy(Array(1..1000), array: true)
+    # @pagy, @records = pagy(Array(1..1000))
     # response.headers.merge!(@pagy.headers_hash)
     erb :main
   end

@@ -20,14 +20,16 @@ VERSION = '9.3.3'
 
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
 gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'puma'
   gem 'sequel'
   gem 'sinatra'
   gem 'sqlite3'
+end
+unless ENV['PAGY_INSTALL_BUNDLE'] == 'true'
+  require 'bundler'
+  Bundler.configure
 end
 
 # Sinatra setup

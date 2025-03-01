@@ -27,10 +27,10 @@ within the file. Thank you!
 
 The `nav` elements are `landmark  roles`, and should be distinctly labeled.
 
-!!!success Override the default `aria-label`s for multiple navs with distinct values!
+!!!success Override the default `:aria_label`s for multiple navs with distinct values!
 
 ```erb
-<%# Explicitly set the `aria-label` %>
+<%# Explicitly set the aria_label %>
 <%== @pagy.nav_tag(aria_label: 'Search result pages') %>
 ```
 

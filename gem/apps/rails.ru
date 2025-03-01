@@ -20,14 +20,16 @@ VERSION = '9.3.3'
 
 # Gemfile
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
 gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
   gem 'rails', '~> 8.0'
   gem 'sqlite3'
+end
+unless ENV['PAGY_INSTALL_BUNDLE'] == 'true'
+  require 'bundler'
+  Bundler.configure
 end
 
 # require 'rails/all'     # too much stuff

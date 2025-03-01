@@ -47,12 +47,15 @@ run_from_repo = File.exist?(File.expand_path('../pagy.gemspec', __dir__))
 
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
 gemfile(opts[:install]) do
   source 'https://rubygems.org'
+  gem 'logger'
   gem 'rackup'
   gem 'rerun' if LINUX
+end
+unless opts[:install]
+  require 'bundler'
+  Bundler.configure
 end
 
 arg = ARGV.shift

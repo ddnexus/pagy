@@ -20,10 +20,9 @@
 #    http://0.0.0.0:8000
 
 VERSION = '9.3.3'
+
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
 gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   source 'https://rubygems.org'
   gem 'oj'
@@ -31,12 +30,16 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
   gem 'rouge'
   gem 'sinatra'
 end
+unless ENV['PAGY_INSTALL_BUNDLE'] == 'true'
+  require 'bundler'
+  Bundler.configure
+end
 
 # pagy initializer
-NAMES = { pagy:        { css_anchor: 'pagy-scss' },
-          bootstrap:   { style: :bootstrap },
-          bulma:       { style: :bulma },
-          tailwind:    { css_anchor: 'pagy-tailwind-css' } }.freeze
+NAMES = { pagy:      { css_anchor: 'pagy-scss' },
+          bootstrap: { style: :bootstrap },
+          bulma:     { style: :bulma },
+          tailwind:  { css_anchor: 'pagy-tailwind-css' } }.freeze
 
 # Sinatra setup
 require 'sinatra/base'
@@ -53,7 +56,7 @@ class PagyDemo < Sinatra::Base
   end
 
   get '/template' do
-    collection = MockCollection.new
+    collection      = MockCollection.new
     @pagy, @records = pagy(:offset, collection)
 
     erb :template, locals: { pagy: @pagy, name: 'pagy', css_anchor: 'pagy-scss' }
@@ -77,7 +80,7 @@ class PagyDemo < Sinatra::Base
   # One route/action per style
   NAMES.each do |name, value|
     get("/#{name}") do
-      collection = MockCollection.new
+      collection      = MockCollection.new
       @pagy, @records = pagy(:offset, collection)
 
       erb :helpers, locals: { name:, style: value[:style], css_anchor: value[:css_anchor] }
@@ -101,7 +104,7 @@ class PagyDemo < Sinatra::Base
       formatter = Rouge::Formatters::HTMLInline.new('monokai.sublime')
       summary   = { html: 'Served HTML (pretty formatted)', erb: 'ERB Template' }
       %(<details><summary>#{summary[format]}</summary><pre>\n#{
-         formatter.format(lexer.lex(html))
+      formatter.format(lexer.lex(html))
       }</pre></details>)
     end
   end
@@ -392,8 +395,8 @@ class Formatter
       end
       if (match = tag_start.match(DATA_PAGY))
         search, data = match.captures
-        formatted = data.scan(/.{1,76}/).join("\n")
-        replace = %(\n#{INDENT * (level + 1)}data-pagy="#{formatted}")
+        formatted    = data.scan(/.{1,76}/).join("\n")
+        replace      = %(\n#{INDENT * (level + 1)}data-pagy="#{formatted}")
         tag_start.sub!(search, replace)
       end
       if block.match(WRAPPER)

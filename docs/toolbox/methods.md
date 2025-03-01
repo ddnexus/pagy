@@ -25,11 +25,11 @@ The instance class is determined by the paginator used, but you can safely ignor
 - `aria_label: 'My Label'`:
   - Override the default `pagy.aria_label.nav` string of the `aria-label` attribute. (Use an already pluralized string).
 
-!!!danger Don't rely on ARIA defaults when using multiple navigation elements!
+!!!danger Don't rely on ARIA default with multiple nav elements!
 
-The `nav` elements are `landmark roles` and should be distinctly labeled.
+The `nav` elements are `landmark  roles`, and should be distinctly labeled.
 
-!!!success Override the defaults for multiple navigation elements with distinct `aria_label`s!
+!!!success Override the default `:aria_label`s for multiple navs with distinct values!
 
 ```erb
 <%# Explicitly set the aria_label %>
