@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
-require_relative 'search_wrapper'
+require_relative '../../modules/searcher'
 
 class Pagy
-  # Add searchkick paginator
   module SearchkickPaginator
     module_function
 
-    # Paginate from search object
-    def paginate(backend, search, **options)
-      backend.instance_eval do
+    # Paginate from search object.
+    def paginate(context, search, **options)
+      context.instance_eval do
         if search.is_a?(Search::Arguments)
           # The search is the array of pagy_search arguments
-          SearchWrapper.wrap(self, search, options) do
+          Searcher.wrap(self, search, options) do
             model, term, search_options, block = search
             search_options[:per_page] = options[:limit]
             search_options[:page]     = options[:page]

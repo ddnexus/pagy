@@ -47,7 +47,7 @@ See also [Common URL Options](../methods#common-url-options)
 ==- Suggestions
 <br/>
 
-Instead of explicitly merging the headers before each rendering, if you use rails, you can Test this method in the (application-wide and when `@pagy` is available), by adding an `after_action` to your application controller:
+Instead of explicitly merging the headers before each rendering, if you use rails, you can use this method in the application (and when `@pagy` is available), by adding an `after_action` to your application controller:
 
 ```ruby Controller (after_action)
 after_action { response.headers.merge!(@pagy.headers_hash) if @pagy }
@@ -63,7 +63,7 @@ application controller. For example:
 ```ruby Controller (pagy_render)
 
 def pagy_render(collection, **)
-  pagy, records = pagy(:offset, collection, **) # any other paginator works
+  pagy, records = pagy(:offset, collection, **) # any other paginator works as well
   response.headers.merge!(header_hash) # Adds pagination headers to the response
   render json: records
 end

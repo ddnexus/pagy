@@ -12,7 +12,7 @@ def pagy(cclass = Pagy::Calendar::Month, **)
   cclass.new(**default, **)
 end
 
-describe 'pagy/calendar' do
+describe 'Pagy Calendar' do
   describe 'instance methods and variables' do
     it 'defines calendar specific accessors' do
       _(pagy(Pagy::Calendar::Month)).must_respond_to :order
@@ -207,7 +207,7 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe '#time_offset_for' do
+  describe 'time_offset_for' do
     it 'inverts the order' do
       p = pagy(unit: :month, order: :desc)
       _(p.send(:time_offset_for, 1)).must_equal 25
@@ -219,7 +219,7 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe '#label' do
+  describe 'label' do
     it 'uses the default and custom format' do
       p = pagy(unit: :month, order: :desc, page: 2)
       _(p.send(:page_label, 2)).must_equal 'Oct'
@@ -227,7 +227,7 @@ describe 'pagy/calendar' do
     end
   end
 
-  describe '#label' do
+  describe 'label' do
     [Pagy::Calendar::Year, Pagy::Calendar::Quarter, Pagy::Calendar::Month, Pagy::Calendar::Week, Pagy::Calendar::Day].each do |unit|
       it "labels the #{unit}" do
         p = pagy(unit)
@@ -238,7 +238,7 @@ describe 'pagy/calendar' do
   end
 
   # [Time.zone.local(2021, 10, 21, 13, 18, 23, 0), Time.zone.local(2023, 11, 13, 15, 43, 40, 0)]
-  describe '#page_at' do
+  describe 'page_at' do
     it 'returns the page number for :year' do
       p = pagy(Pagy::Calendar::Year)
       _(p.send(:page_at, Time.zone.local(2021, 10, 21, 13, 18, 23, 0))).must_equal 1

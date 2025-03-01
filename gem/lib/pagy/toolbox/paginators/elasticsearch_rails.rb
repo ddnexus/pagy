@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
-require_relative 'search_wrapper'
+require_relative '../../modules/searcher'
 
 class Pagy
-  # Add elasticsearch_rails paginator
   module ElasticsearchRailsPaginator
     module_function
 
     # Paginate from search object
-    def paginate(backend, search, **options)
-      backend.instance_eval do
+    def paginate(context, search, **options)
+      context.instance_eval do
         if search.is_a?(Search::Arguments)
           # The search is the array of pagy_search arguments
-          SearchWrapper.wrap(self, search, options) do
+          Searcher.wrap(self, search, options) do
             model, query_or_payload, search_options = search
             search_options[:size] = options[:limit]
             search_options[:from] = options[:limit] * ((options[:page] || 1) - 1)

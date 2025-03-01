@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add countless paginator
   module CountlessPaginator
     module_function
 
     # Return Pagy object and records
-    def paginate(backend, collection, **options)
-      backend.instance_eval do
+    def paginate(context, collection, **options)
+      context.instance_eval do
         if options[:page].nil?
           page = Get.page_from(params, options, force_integer: false) # accept nil and strings
           if page.is_a?(String)

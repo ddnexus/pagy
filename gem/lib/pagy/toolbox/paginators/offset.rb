@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add offset paginator
   module OffsetPaginator
     module_function
 
     # Return instance and page of results
-    def paginate(backend, collection, **options)
-      backend.instance_eval do
+    def paginate(context, collection, **options)
+      context.instance_eval do
         options[:request] ||= Get.hash_from(request)
         options[:page]    ||= Get.page_from(params, options)
         options[:limit]     = Get.limit_from(params, options)

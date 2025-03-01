@@ -48,7 +48,7 @@ document.getElementById('my-pagy-nav-js').render();
 
 !!!
 
-!!!warning Overriding `*_js*` helpers is not recommended
+!!!danger Overriding `*_js*` helpers is not recommended
 
 The `*_js*` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
 and might break in a next release.
@@ -56,25 +56,14 @@ and might break in a next release.
 
 ==- Styles
 
-- default
-- `:bootstrap`
-  - Set `classes: 'pagination bootstrap class'` to override the default `'pagination'` class.
-- `:bulma`
-  - Set `classes: 'pagination bulma class'` to override the default `'pagination is-centered'` classes.
+See [Common Nav Styles](../methods.md#common-nav-styles)
 
 ==- Options
 
-- `slots: 9`
-  - Override the default number of page `:slots` used for the navigation bar.
-  - `slots < 7` causes the slots to be filled by contiguous pages around the current one
-  - `slots >= 7` causes the first and last slots to be occupied by first and last pages, separated by the rest with a `...` (`:gap`) slot when needed.
-  - Even numbers determine the current page to be in the central slot.
-- `compact: true`
-  - Fill all the slots with contiguos pages, regardles the number of slots.
 - `steps: { 0 => 5, 540 => 7, 720 => 9 }`
   - Enable responsiveness. Assign different number of `:slots` to different tag widths.
 
-See also [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../methods#common-url-options)
+See also other applicabe options: [nav_tag Options](nav_tag.md#options)
 
 ==- In Depth: `:steps` Option
 
@@ -105,7 +94,7 @@ Consider these guidelines to achieve optimal results:
 
 2. Ensure the container's width accommodates all slots for a smooth transition as it resizes.
 
-3. Synchronize the pagy `:steps` with your container's discrete width changes for consistent alignment.
+3. Synchronize the pagy `:steps` with your container's discrete width changes, for consistent alignment.
 
 4. Test responsiveness to confirm that assigned slots fit within the corresponding width for each step.
 

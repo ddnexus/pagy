@@ -4,7 +4,7 @@ icon: terminal
 order: 90
 ---
 
-Allows you to test Pagy in an [irb](https://github.com/ruby/irb)/[pry](https://github.com/pry/pry) environment without an app, but with a pre-configured stubbed environment for you.
+Allows you to interact with Pagy in an [irb](https://github.com/ruby/irb)/[pry](https://github.com/pry/pry) environment without an app, but with a pre-configured stubbed environment for you.
 
 It also provides a few useful methods that you can use to create a simple collection paginated with the `:offset` paginator or to set the parameters as needed.
 

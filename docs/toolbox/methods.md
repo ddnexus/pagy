@@ -6,11 +6,19 @@ categories:
   - Methods
 ---
 
-The `@pagy` instance provides all the helpers, navigation, and component methods you need.
+The `@pagy` instance methods provides all the helpers, navigation, and component you need.
 
 The instance class is determined by the paginator used, but you can safely ignore it. Simply utilize its methods.
 
-==- Common Nav Options
+==- Common Nav Styles
+
+- default
+- `:bootstrap`
+  - Set `classes: 'pagination any_class'` style option to override the default `'pagination'` class.
+- `:bulma`
+  - Set `classes: 'pagination any_class'` style option to override the default `'pagination is-centered'` classes.
+  
+  ==- Common Nav Options
 
 - `id: 'my-nav'`:
   - Set the `id` HTML attribute of the `nav` tag.

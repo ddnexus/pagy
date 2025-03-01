@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 require_relative '../../../files/models'
 require_relative '../../../mock_helpers/app'
 
-describe 'keyset' do
+describe 'Keyset' do
   [Pet, PetSequel].each do |model|
     describe ":keyset #{model}" do
       it 'returns Pagy::Keyset object and records' do

@@ -20,7 +20,7 @@ describe ".sync_javascript" do
   end
 
   it "copies specified javascript targets" do
-    targets = %w[pagy.js pagy.min.js] # Using symbols for targets
+    targets = %w[pagy.js pagy.min.js]
     Pagy.sync_javascript(destination, *targets)
 
     %w[pagy.js pagy.min.js].each do |file|

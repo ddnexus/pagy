@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class Pagy
-  # Add keynav paginator
   module KeysetPaginator
     module_function
 
     # Return Pagy::Keyset object and paginated records
-    def paginate(backend, set, **options)
-      backend.instance_eval do
+    def paginate(context, set, **options)
+      context.instance_eval do
         options[:request] ||= Get.hash_from(request)
         options[:page]    ||= Get.page_from(params, options, force_integer: false) # allow nil
         options[:limit]     = Get.limit_from(params, options)

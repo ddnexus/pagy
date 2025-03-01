@@ -5,7 +5,7 @@ require_relative '../../../mock_helpers/arel'
 require_relative '../../../mock_helpers/collection'
 require_relative '../../../mock_helpers/app'
 
-describe 'pagy/backend' do
+describe 'Offset' do
   let(:app) { MockApp.new }
 
   describe ':offset' do
@@ -44,7 +44,7 @@ describe 'pagy/backend' do
     end
   end
 
-  describe '#pagy options' do
+  describe 'pagy options' do
     before do
       @collection = MockCollection.new
     end
@@ -88,14 +88,6 @@ describe 'pagy/backend' do
       _(merged[:count]).must_equal 100
       _(merged.keys).must_include :page
       _(merged[:page]).must_equal 3
-    end
-  end
-
-  describe '#pagy_get_items' do
-    it 'gets items' do
-      collection = MockCollection.new
-      _pagy, records = app.send(:pagy, :offset, collection, page: 1)
-      _(records).must_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     end
   end
 end

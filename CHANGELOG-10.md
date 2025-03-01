@@ -50,7 +50,7 @@ None
 
 This version introduces a complete redesign of the legacy code.
 
-Your existing code will require minor adjustments to function. Following these changes, **this API will remain stable for a long time**.
+Your existing code will require several minor adjustments to function. Following these changes, **this API will remain stable for a long time**.
 
 #### Overview of Changes
 
@@ -240,6 +240,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 - Enable the feature by passing the `jsonapi: true` option to the paginator method.
 
 ##### `keyset`
+
 - Replace `pagy_keyset(...)` with `pagy(:keyset, ...)`.
 - Replace any existing `:jsonify_keyset_attributes` with `:pre_serialize`.
   - The lambda receives the same `keyset_attributes` argument, but it must modify the specific values directly. The lambda's
@@ -262,20 +263,20 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 - Rename any existing `:metadata` option to `:data_keys` (renamed to specify that they correspond to data-identifying keys).
 - Pass the `:data_keys` option directly to the `data_hash` helper or the `pagy` method, depending on the context.
 
-
 ##### `overflow`
 
 - The `Pagy::OverflowError` has been replaced by the `Pagy::RangeError`; however, it is no longer raised by default.
 - Pagy rescues the `Pagy::RangeError` and serves an empty page by default.
   - Now, Pagy behaves the same as it did before when requiring the overflow extra and using its default settings.
 - The legacy `pagy.overflow?` is now the `pagy.in_range?` method, which checks/returns the opposite state/boolean.
-- The `overflow: :last_page` option has been discontinued because it provides nearly no benefit (read below for alternatives):
+- The `overflow: :last_page` behavior has been discontinued because it provides nearly no benefit:
   - **Why there is little benefit in serving the last page**
     - The navigation bar for an out-of-range request is rendered identically to that of the last page.
     - The only difference is that there are no records/results to display.
     - The "previous page" button points to the last page, so if users truly want to see the last page results (which they have
       already seen), they can simply click the link.
 - **Summary**:
+  - The `:overflow` variable is not used anymore.
   - If you did not use any extra (i.e., Pagy raised errors), set `raise_range_error: true`.
   - If you used `overflow: :empty_page` or just required the overflow extra, simply remove it (this is now the default behavior).
   - If you used `overflow: :last_page` and still want this behavior despite the reasons above:
@@ -303,7 +304,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `size` (discontinued feature)
 
-- Pagination bars similar to WillPaginate and Kaminari may cause issues for various reasons. If still required, adapt the
+- Pagination bars similar to WillPaginate and Kaminari are not good for a lot of reasons. If still required, adapt the
   legacy file from a previous commit.
 
 ##### `trim` (discontinued feature)

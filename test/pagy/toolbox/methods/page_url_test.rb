@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 require_relative '../../../mock_helpers/app'
 require_relative '../../../mock_helpers/collection'
 
-describe 'pagy/helpers/url' do
+describe 'Pagy URLs' do
   let(:app) { MockApp.new }
 
   before do

@@ -44,7 +44,7 @@ describe "Pagy Keyset" do
           _(records.first.id).must_equal 13
         end
       end
-      describe '#extract_keyset' do
+      describe 'extract_keyset' do
         it 'extracts the keyset from the set order (single column)' do
           pagy = Pagy::Keyset.new(model.order(:id))
           _(pagy.instance_variable_get(:@keyset)).must_equal({ :id => :asc })

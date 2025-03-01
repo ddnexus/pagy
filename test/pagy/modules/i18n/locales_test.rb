@@ -26,7 +26,7 @@ describe 'pagy/locales' do
     p11n    = pagy.delete('p11n')
 
     it "includes a comment with the #{p11n} pluralization and the i18n.rb reference" do
-      _(comment).must_match 'https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb', message
+      _(comment).must_match 'https://ddnexus.github.io/pagy/resources/i18n', message
     end
     it "pluralizes the 'item_name' according to the #{p11n} rules" do
       item_name = pagy['item_name']

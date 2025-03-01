@@ -8,7 +8,7 @@ Time.zone = 'EST'
 Date.beginning_of_week = :sunday
 
 ## Test not needed: Now it's a manual patch in the pagy.rb initializer
-describe 'Calendar with I18n.l' do
+describe 'Calendar with I18n.localize' do
   ##### pagy.rb initializer ###############
   require 'rails-i18n'
   Pagy::Calendar.localize_with_rails_i18n_gem(:de)

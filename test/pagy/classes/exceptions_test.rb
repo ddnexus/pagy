@@ -3,7 +3,7 @@
 require_relative '../../test_helper'
 require_relative '../../mock_helpers/pagy_buggy'
 
-describe 'pagy/exceptions' do
+describe 'Pagy Exceptions' do
   describe 'option and value' do
     it 'raises for wrong page type' do
       begin

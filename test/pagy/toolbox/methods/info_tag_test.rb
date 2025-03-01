@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 
-describe '#info_tag' do
+describe 'info_tag' do
   it 'renders without i18n key' do
     _(Pagy::Offset.new(count: 0).info_tag).must_rematch :info_0
     _(Pagy::Offset.new(count: 1).info_tag).must_rematch :info_1

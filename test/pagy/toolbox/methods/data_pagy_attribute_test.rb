@@ -6,7 +6,7 @@ require_relative '../../../mock_helpers/collection'
 require_relative '../../../../gem/lib/pagy/toolbox/methods/support/data_pagy_attribute'
 
 OJ = %i[without_oj with_oj].freeze
-describe 'pagy/data_pagy_attribute' do
+describe 'Pagy data_pagy_attribute' do
   OJ.each do |test|
     require 'oj' if test == :with_oj
 

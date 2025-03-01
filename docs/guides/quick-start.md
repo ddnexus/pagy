@@ -13,7 +13,15 @@ icon: rocket
 gem 'pagy', '~> 9.3' # omit the patch version
 ```
 
+#### • Play with it directly...
+
+- **...in the Browser**
+  - Run `pagy demo` in your terminal, and visit http://0.0.0.0:8000
+- **...in IRB**
+  - Include the [Pagy::Console](../sandbox/console)
+
 ### 2. Use
+
 
 - Include the `pagy` method:
   ```ruby ApplicationController/AnyController

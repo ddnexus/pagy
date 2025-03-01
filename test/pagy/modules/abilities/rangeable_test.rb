@@ -24,27 +24,27 @@ describe 'range' do
     @pagy_countless = Pagy::Offset::Countless.new(**countless_vars).send(:finalize, 0)
   end
 
-  describe "#range_rescued?" do
-    it 'must be range_rescued?' do
+  describe "in_range?" do
+    it 'wont be in_range?' do
       _(@pagy).wont_be :in_range?
       _(@pagy_calendar).wont_be :in_range?
       _(@pagy_countless).wont_be :in_range?
     end
-    it 'is not range_rescued?' do
+    it 'is in_range?' do
       _(Pagy::Offset.new(**pagy_vars, page: 2)).must_be :in_range?
       _(Pagy::Offset::Countless.new(page: 2, last: 2, limit: 10).send(:finalize, 5)).must_be :in_range?
       _(Pagy::Calendar::Day.new(**calendar_vars, page: 2)).must_be :in_range?
     end
   end
 
-  describe '#initialize' do
-    it 'raises RangeError in :exception mode' do
+  describe 'initialize' do
+    it 'raises RangeError' do
       _ { Pagy::Offset.new(**pagy_vars, raise_range_error: true) }.must_raise Pagy::RangeError
       _ { Pagy::Calendar::Day.new(**calendar_vars, raise_range_error: true) }.must_raise Pagy::RangeError
       _ { Pagy::Offset::Countless.new(**countless_vars, raise_range_error: true).send(:finalize, 0) }.must_raise Pagy::RangeError
     end
-    it 'works in :empty_page mode in Pagy' do
-      pagy = Pagy::Offset.new(**pagy_vars, range_rescue: :empty_page)
+    it 'works with empty_page in Pagy' do
+      pagy = Pagy::Offset.new(**pagy_vars)
       _(pagy.page).must_equal 100
       _(pagy.options[:limit]).must_equal 10
       _(pagy.in).must_equal 0
@@ -52,8 +52,8 @@ describe 'range' do
       _(pagy.to).must_equal 0
       _(pagy.previous).must_equal pagy.last
     end
-    it 'works in :empty_page mode in Pagy::Calendar' do
-      pagy = Pagy::Calendar::Day.new(**calendar_vars, range_rescue: :empty_page)
+    it 'works with empty_page in in Pagy::Calendar' do
+      pagy = Pagy::Calendar::Day.new(**calendar_vars)
       _(pagy.page).must_equal 100
       _(pagy.from).must_equal pagy.instance_variable_get(:@final)
       _(pagy.to).must_equal pagy.instance_variable_get(:@final)
@@ -64,7 +64,7 @@ describe 'range' do
       _(pagy.to).must_equal pagy.instance_variable_get(:@initial)
       _(pagy.previous).must_equal pagy.last
     end
-    it 'works in :empty_page mode in Pagy::Offset::Countless' do
+    it 'works with empty_page in Pagy::Offset::Countless' do
       pagy = @pagy_countless
       _(pagy.page).must_equal 100
       _(pagy.in).must_equal 0
@@ -74,7 +74,7 @@ describe 'range' do
     end
   end
 
-  describe "#series singleton for :empty_page mode" do
+  describe "series singleton for :empty_page" do
     it 'computes series for empty page for Pagy' do
       pagy = Pagy::Offset.new(**pagy_vars)
       series = pagy.send(:series)
@@ -82,7 +82,7 @@ describe 'range' do
       _(pagy.page).must_equal 100
     end
     it 'computes series for empty page for Pagy::Calendar' do
-      pagy = Pagy::Calendar::Day.new(**calendar_vars, range_rescue: :empty_page)
+      pagy = Pagy::Calendar::Day.new(**calendar_vars)
       series = pagy.send(:series)
       _(series).must_equal([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
       _(pagy.page).must_equal 100

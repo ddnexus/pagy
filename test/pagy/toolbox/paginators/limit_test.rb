@@ -81,7 +81,7 @@ describe 'requestable_limit' do
   end
 
   describe 'view_methods' do
-    describe 'page_url' do
+    describe 'compose_page_url' do
       let(:request) { Pagy::Get.hash_from(MockApp.new.request) }
 
       it 'renders basic url' do

@@ -4,9 +4,9 @@ require_relative '../../../test_helper'
 require_relative '../../../mock_helpers/app'
 require_relative '../../../../gem/lib/pagy/toolbox/methods/support/series' # just to check the series
 
-describe 'pagy/countless' do
+describe 'Pagy Countless' do
   let(:app) { MockApp.new }
-  describe '#finalize' do
+  describe 'finalize' do
     it 'initializes empty collection' do
       pagy, = Pagy::Offset::Countless.new(page: 1)
       pagy.send(:finalize, 0)
@@ -73,7 +73,7 @@ describe 'pagy/countless' do
       _ { Pagy::Offset::Countless.new(page: 2, raise_range_error: true).send(:finalize, 0) }.must_raise Pagy::RangeError
     end
   end
-  describe 'Handling the :last variable' do
+  describe 'Handling the last page' do
     it 'gets the visited page' do
       pagy, = Pagy::Offset::Countless.new(page: 3, last: 5)
       pagy.send(:finalize, 21)
@@ -97,7 +97,7 @@ describe 'pagy/countless' do
       _(pagy.next).must_be_nil
     end
   end
-  describe 'Handling the :max_pages variable' do
+  describe 'Handling the :max_pages option' do
     it 'gets the visited page' do
       pagy, = Pagy::Offset::Countless.new(page: 20, max_pages: 15)
       pagy.send(:finalize, 21)

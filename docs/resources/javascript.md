@@ -12,36 +12,29 @@ Simply add the appropriate files and statements as outlined below.
 
 #### 1. Choose the format that matches your app's configuration or use case
 
-- `pagy.mjs`
-  - ES6 module for webpacker, esbuild, parcel, etc.
-- `pagy.min.js`
-  - A compact (~2.6k) minified [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file
-- `pagy.js`
-  - A plain [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file, ideal for debugging, accompanied by `pagy.js.map`
-- `pagy.js.map`
-  - A source map file designed for debugging purposes
-- `pagy.d.ts`
-  - Pagy TypeScript type definitions for advanced integration or customization
+- `pagy.mjs` _ES6 module for buiders like webpacker, esbuild, parcel, etc._
+- `pagy.min.js` _A compact (~2.6k) minified [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file_
+- `pagy.js` _A plain [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) file, ideal for debugging, accompanied by `pagy.js.map`_
+- `pagy.js.map` _A source map file designed for debugging purposes_
+- `pagy.d.ts` _Pagy TypeScript type definitions for advanced integration or customization_
 
 #### 2. Make the files available to your app
 
 Depending on your app's architecture, you have a couple of options:
 
-1. Add the Pagy JavaScript path to the assets path:
+- **Add the Pagy JavaScript path to the assets path** 
+  - _Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
   ```ruby
   Rails.application.config.assets.paths << Pagy::ROOT.join('javascript')
   ```
-  - _Compatible with Propshaft, Importmaps, Sprockets, and similar tools._
-
-2. Alternatively, uncomment or modify the following lines in the [pagy.rb initializer](../toolbox/initializer.md):
+- **Alternatively, uncomment/edit the following lines in the [pagy.rb initializer](../toolbox/initializer.md)**
+  - _This works with builders like esbuild, Webpack, jsbundling-rails, etc._
   ```ruby 
   # Example for Rails
   javascript_dir = Rails.root.join('app/javascript')
   Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
   ```
-  - _This works with builders like esbuild, Webpack, jsbundling-rails, etc._
-
-Afterward, the file path will either be available in the assets or copied (and kept synced) to your app's JavaScript directory. Load it like any other JavaScript file or module you already use in your app.
+- **Load it like any other JavaScript file or module you already use in your app**
 
 #### 3. Set up the `Pagy.init` Listener
 

@@ -7,7 +7,7 @@ require_relative '../../../../gem/lib/pagy/toolbox/methods/support/a_lambda' # j
 Time.zone = "Pacific Time (US & Canada)"
 Date.beginning_of_week = :sunday
 
-describe 'pagy/calendar_dst' do
+describe 'DST last page_label' do
   describe ':day unit' do
     it 'calculates the last label out of DST' do
       starting = Time.zone.local(2022, 3, 1, 3)   # PST

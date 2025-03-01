@@ -44,11 +44,7 @@ and might break in a next release.
 
 ==- Styles
 
-- default
-- `:boostrap`
-  - Set `classes: 'pagination bootstrap class` to override the default `'pagination'` class.
-- `:bulma`
-  - Set `classes: 'pagination bulma class` to override the default `'pagination is-centered'` classes.
+See [Common Nav Styles](../methods.md#common-nav-styles)
 
 ==- Options
 

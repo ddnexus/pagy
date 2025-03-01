@@ -35,11 +35,7 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
 
 ==- Styles
 
-- default
-- `:bootstrap`
-  - Set `classes: 'pagination bootstrap class'` to override the default `'pagination'` class.
-- `:bulma`
-  - Set `classes: 'pagination bulma class'` to override the default `'pagination is-centered'` classes.
+See [Common Nav Styles](../methods.md#common-nav-styles)
 
 ==- Options
 
@@ -47,10 +43,10 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
   - Override the default number of page `:slots` used for the navigation bar.
   - `slots < 7` causes the slots to be filled by contiguous pages around the current one
   - `slots >= 7` causes the first and last slots to be occupied by first and last pages, separated by the rest with a `...` (`:gap`) slot when needed.
-  - Even numbers determine the current page to be in the central slot.
+  - Odd numbers of slots determine the current page to be in the central slot.
 - `compact: true`
   - Fill all the slots with contiguos pages, regardles the number of slots.
 
-See also [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../methods#common-url-options)
+See also other appicable options: [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../methods#common-url-options)
 
 ===

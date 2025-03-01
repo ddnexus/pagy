@@ -6,7 +6,7 @@ require_relative '../../../mock_helpers/app'
 require_relative '../../../mock_helpers/collection'
 require_relative '../../../../gem/lib/pagy/toolbox/methods/support/data_pagy_attribute'
 
-describe 'Pagy::I18n' do
+describe 'Pagy I18n' do
   describe 'translate' do
     it 'pluralizes' do
       _(Pagy::I18n.translate('pagy.aria_label.previous')).must_equal "Previous"

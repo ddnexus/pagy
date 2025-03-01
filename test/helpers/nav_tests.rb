@@ -5,7 +5,7 @@ require_relative '../mock_helpers/app'
 require_relative '../files/models'
 
 # required because we use the class directly, which does not load the mixin, so we miss the extra data_pagy
-require_relative '../../gem/lib/pagy/toolbox/paginators/keynav'
+require_relative '../../gem/lib/pagy/toolbox/paginators/keynav_js'
 
 module NavTests
   def request

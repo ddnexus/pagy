@@ -3,13 +3,13 @@
 require_relative '../../../pagy/modules/b64'
 
 class Pagy
-  # Add keynav paginator
-  module KeynavPaginator
+  module KeynavJsPaginator
     module_function
 
-    # Return Pagy::Keyset::Keynav object and paginated records
-    def paginate(backend, set, **options)
-      backend.instance_eval do
+    # Return Pagy::Keyset::Keynav object and paginated records.
+    # Fall back to :countless if the :page has no client data.
+    def paginate(context, set, **options)
+      context.instance_eval do
         page = Get.page_from(params, options, force_integer: false) # allow nil
         if page&.match(' ')       # countless page -> no augmentation -> fallback
           return pagy(:countless, set, page:, **options)
