@@ -49,13 +49,13 @@ class Pagy
     # Return the url for the calendar (shortest unit) page at time
     def url_at(time, **)
       conf      = Marshal.load(Marshal.dump(@conf))
-      page_syms = {}
+      page_keys = {}
       @units.inject(nil) do |object, unit|
         conf[unit][:period] = object&.send(:active_period) || @period
-        conf[unit][:page]   = page_syms[:"#{unit}_#{@page_sym}"] \
+        conf[unit][:page]   = page_keys["#{unit}_#{@page_key}"] \
                             = create(unit, **conf[unit]).send(:page_at, time, **)
         conf[unit][:params] ||= {}
-        conf[unit][:params].merge!(page_syms)
+        conf[unit][:params].merge!(page_keys)
         create(unit, **conf[unit])
       end.send(:compose_page_url, 1, **)
     end
@@ -68,16 +68,16 @@ class Pagy
       @units    = Calendar::UNITS & @conf.keys # get the units in time length desc order
       @period   = period
       @params   = params
-      @page_sym = conf[:offset][:page_sym] || Pagy::DEFAULT[:page_sym]
-      # set all the :page_sym options for later deletion
-      @units.each { |unit| conf[unit][:page_sym] = :"#{unit}_#{@page_sym}" }
+      @page_key = conf[:offset][:page_key] || Pagy::DEFAULT[:page_key]
+      # set all the :page_key options for later deletion
+      @units.each { |unit| conf[unit][:page_key] = "#{unit}_#{@page_key}" }
       calendar = {}
       object   = nil
       @units.each_with_index do |unit, index|
-        params_to_delete    = @units[(index + 1), @units.length].map { |sub| conf[sub][:page_sym] } + [@page_sym]
+        params_to_delete    = @units[(index + 1), @units.length].map { |sub| conf[sub][:page_key] } + [@page_key]
         conf[unit][:params] = ->(up) { up.except!(*params_to_delete.map(&:to_s)) }
         conf[unit][:period] = object&.send(:active_period) || @period
-        conf[unit][:page]   = @params[:"#{unit}_#{@page_sym}"] # requested page
+        conf[unit][:page]   = @params["#{unit}_#{@page_key}"] # requested page
         # :nocov:
         # simplecov doesn't need to fail block_given?
         conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?

@@ -69,15 +69,15 @@ describe 'countless' do
 
   describe 'countless get_vars' do
     let(:app) { MockApp.new(params: { a: 'a', page: 3, page_number: 4 }) }
-    it 'sets :page_sym from options' do
+    it 'sets :page_key from options' do
       pagy, paged = MockApp.new(params: { page_number: '4 4'})
-                           .send(:pagy, :countless, @collection, page_sym: :page_number)
+                           .send(:pagy, :countless, @collection, page_key: 'page_number')
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 4
       _(paged).must_equal Array(61..80)
     end
-    it 'bypasses :page_sym with :page option' do
-      pagy, paged = app.send(:pagy, :countless, @collection, page_sym: :page_number, page: 1)
+    it 'bypasses :page_key with :page option' do
+      pagy, paged = app.send(:pagy, :countless, @collection, page_key: :page_number, page: 1)
       _(pagy.count).must_be_nil
       _(pagy.page).must_equal 1
       _(paged).must_equal Array(1..20)

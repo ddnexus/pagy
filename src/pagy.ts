@@ -10,7 +10,7 @@ type InitArgs = ["n",  KeynavArgs] |
                 ["sj", SelectorJsArgs]
 type AugmentKeynav = (nav:HTMLElement, keynavArgs:KeynavArgs) => Promise<((page: string) => string)>
 type KeynavArgs = readonly [storageKey:  string | null,
-                            pageSym:     string,
+                            pageKey:     string,
                             last:        number,
                             spliceArgs?: SpliceArgs]
 type SpliceArgs = readonly [start:       number,
@@ -85,7 +85,7 @@ const Pagy = (() => {
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
 
   // Manage the page augmentation for Keynav, called only if storageSupport
-  const augmentKeynav: AugmentKeynav = async (nav, [storageKey, pageSym, last, spliceArgs]) => {
+  const augmentKeynav: AugmentKeynav = async (nav, [storageKey, pageKey, last, spliceArgs]) => {
     let augment;
     const browserKey = document.cookie.split(/;\s+/)  // it works even if malformed
                                .find((row) => row.startsWith(pagy + "="))
@@ -123,8 +123,8 @@ const Pagy = (() => {
     // Augment the page param of each href
     for (const a of <NodeListOf<HTMLAnchorElement>><unknown>nav.querySelectorAll('a[href]')) {
       const url = a.href,
-            re  = new RegExp(`(?<=\\?.*)\\b${pageSym}=(\\d+)`);   // find the numeric page from pageSym
-      a.href    = url.replace(re, pageSym + "=" + augment(url.match(re)![1]));  // eslint-disable-line @typescript-eslint/no-non-null-assertion
+            re  = new RegExp(`(?<=\\?.*)\\b${pageKey}=(\\d+)`);   // find the numeric page from pageKey
+      a.href    = url.replace(re, pageKey + "=" + augment(url.match(re)![1]));  // eslint-disable-line @typescript-eslint/no-non-null-assertion
     }
     // Return the augment function for furter augmentation (i.e. url token in combo_nav_js)
     return augment;

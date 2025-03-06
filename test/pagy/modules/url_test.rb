@@ -36,9 +36,14 @@ describe 'pagy/helpers/url' do
       pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, request_path: '/bar')
       _(pagy.send(:compose_page_url, 5)).must_equal '/bar?page=5'
     end
-    it 'raises OptionError for missing @request' do
-      pagy, = Pagy::Offset.new(count: 1000, page: 3)
-      _ { pagy.send(:compose_page_url, 1) }.must_raise Pagy::OptionError
+    it 'renders url with overridden request' do
+      pagy, = app.send(:pagy, :offset, @collection,
+                       count: 1000,
+                       page: 3,
+                       request: { base_url: 'http://example.com',
+                                  path: '/path',
+                                  params: { 'a' => '1', 'b' => '2' } })
+      _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal 'http://example.com/path?a=1&b=2&page=5'
     end
   end
 
@@ -63,9 +68,10 @@ describe 'pagy/helpers/url' do
       _(Pagy::Linkable::QueryUtils.build_nested_query({ a: { b: { c: 3 } } })).must_equal "a%5Bb%5D%5Bc%5D=3" # "a[b][c]=3"
       _(Pagy::Linkable::QueryUtils.build_nested_query({ a: [1, 2, 3] })).must_equal "a%5B%5D=1&a%5B%5D=2&a%5B%5D=3" # "a[]=1&a[]=2&a[]=3
     end
+    # We pass symbol key just for easy testing but the build_nested_query expects string keys
     it 'handles unescaped params' do
-      _(Pagy::Linkable::QueryUtils.build_nested_query({ b: { c: ' A ' } }, nil, ['c'])).must_equal "b%5Bc%5D= A " # "a[b][c]=3"
-      _(Pagy::Linkable::QueryUtils.build_nested_query({ a: { b: { c: ' A ' } } }, nil, ['c'])).must_equal "a%5Bb%5D%5Bc%5D= A " # "a[b][c]=3"
+      _(Pagy::Linkable::QueryUtils.build_nested_query({ b: { 'c' => ' A ' } }, nil, ['c'])).must_equal "b%5Bc%5D= A " # "a[b][c]=3"
+      _(Pagy::Linkable::QueryUtils.build_nested_query({ a: { b: { 'c' => ' A ' } } }, nil, ['c'])).must_equal "a%5Bb%5D%5Bc%5D= A " # "a[b][c]=3"
     end
     it "handles nil and '' values" do
       _("res: #{Pagy::Linkable::QueryUtils.build_nested_query({ b: nil })}").must_equal "res: b"

@@ -23,7 +23,7 @@ describe 'data_hash for Pagy' do
 
   it 'works with unset DEFAULT' do
     pagy, _records = app.send(:pagy, :offset, @collection)
-    _(pagy.data_hash).must_rematch :unset_default
+    _(pagy.data_hash.keys).must_rematch :unset_default
   end
   it 'checks for unknown keys' do
     pagy, _records = app.send(:pagy, :offset, @collection, data_keys: %i[page unknown_key])

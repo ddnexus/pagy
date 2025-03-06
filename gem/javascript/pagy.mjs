@@ -23,7 +23,7 @@ const Pagy = (() => {
   }));
   const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : ""), B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const randKey = () => Math.floor(Math.random() * 36 ** 3).toString(36);
-  const augmentKeynav = async (nav, [storageKey, pageSym, last, spliceArgs]) => {
+  const augmentKeynav = async (nav, [storageKey, pageKey, last, spliceArgs]) => {
     let augment;
     const browserKey = document.cookie.split(/;\s+/).find((row) => row.startsWith(pagy + "="))?.split("=")[1] ?? randKey();
     document.cookie = pagy + "=" + browserKey;
@@ -58,8 +58,8 @@ const Pagy = (() => {
       };
     }
     for (const a of nav.querySelectorAll("a[href]")) {
-      const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${pageSym}=(\\d+)`);
-      a.href = url.replace(re, pageSym + "=" + augment(url.match(re)[1]));
+      const url = a.href, re = new RegExp(`(?<=\\?.*)\\b${pageKey}=(\\d+)`);
+      a.href = url.replace(re, pageKey + "=" + augment(url.match(re)[1]));
     }
     return augment;
   };

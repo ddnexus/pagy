@@ -33,7 +33,7 @@ describe 'Pagy nav test' do
   def self.tests_for(method, page_finalize, **others)
     page_finalize.each do |page, finalize|
       it "renders the #{method} for page #{page}" do
-        request        = Pagy::Get.hash_from(MockApp.new.request)
+        request        = MockApp.new.request
         pagy           = Pagy::Offset.new(count: 1000, page: page, request:)
         pagy_countless = Pagy::Offset::Countless.new(page: page, last: page, request:).send(:finalize, finalize)
         _(pagy.send(method)).must_rematch :r1

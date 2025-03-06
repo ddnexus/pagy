@@ -6,7 +6,7 @@ require_relative '../files/models'
 
 module NavTests
   def request
-    Pagy::Get.hash_from(MockApp.new.request)
+    MockApp.new.request
   end
 
   def nav_tests(style)

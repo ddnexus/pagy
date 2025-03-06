@@ -10,7 +10,7 @@ require_relative 'pagy/toolbox/methods/loader'
 class Pagy
   VERSION     = '9.3.3'
   ROOT        = Pathname.new(__dir__).parent.freeze
-  DEFAULT     = { limit: 20, limit_sym: :limit, page_sym: :page }.freeze
+  DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = 'P '
   LIMIT_TOKEN = 'L '
   LABEL_TOKEN = 'L'

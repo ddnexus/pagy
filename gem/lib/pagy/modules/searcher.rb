@@ -8,9 +8,9 @@ class Pagy
     # Common search logic
     def wrap(context, pagy_search_args, options)
       context.instance_exec do
-        options[:request] ||= Get.hash_from(request)
-        options[:page]    ||= Get.page_from(params, options)
-        options[:limit]   ||= Get.limit_from(params, options)
+        options[:request] = Request.new(options[:request] || request, options)
+        options[:page]  ||= options[:request].page(options)
+        options[:limit] ||= options[:request].limit(options)
       end
       pagy, results = yield
       calling = pagy_search_args[4..]

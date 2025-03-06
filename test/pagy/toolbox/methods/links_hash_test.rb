@@ -14,7 +14,7 @@ describe 'links_hash' do
   describe 'links_hash' do
     it 'returns the ordered links' do
       app = MockApp.new(params: { page: { number: 3, size: 10 } })
-      pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default, page_sym: :number, limit_sym: :size)
+      pagy, _records = app.send(:pagy, :offset, @collection, **@pagy_default, page_key: 'number', limit_key: 'size')
       result = pagy.links_hash
       _(result.keys).must_equal %i[first previous next last]
       _(result).must_rematch :result
@@ -38,8 +38,8 @@ describe 'links_hash' do
       pagy, _records = app.send(:pagy, :keyset,
                                 Pet.order(:id),
                                 **@pagy_default,
-                                page_sym:  :latest,
-                                limit_sym: :size)
+                                page_key:  'latest',
+                                limit_key: 'size')
       result = pagy.links_hash
       _(result.keys).must_equal %i[first next]
       _(result).must_rematch :keyset_result
@@ -50,8 +50,8 @@ describe 'links_hash' do
       pagy, _records = app.send(:pagy, :keyset,
                                 Pet.order(:id),
                                 **@pagy_default,
-                                page_sym:  :latest,
-                                limit_sym: :size)
+                                page_key:  'latest',
+                                limit_key: 'size')
       result = pagy.links_hash
       _(result).must_rematch :keyset_result
       _(result[:next]).must_be_nil

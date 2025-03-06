@@ -58,15 +58,15 @@ describe 'requestable_limit' do
       params = { a: "a", page: 3, limit: 12 }
       test_limit_options_params(limit, options, params)
     end
-    it 'uses limit_sym from options' do
+    it 'uses limit_key from options' do
       limit  = 14
-      options   = { requestable_limit: 100, limit_sym: :custom }
-      params = { a: "a", page: 3, limit_sym: :custom, custom: limit }
+      options   = { requestable_limit: 100, limit_key: 'custom' }
+      params = { a: "a", page: 3, limit_key: 'custom', custom: limit }
       test_limit_options_params(limit, options, params)
     end
-    it 'uses limit_sym from default' do
+    it 'uses limit_key from default' do
       limit  = 15
-      options   = { limit_sym: :custom, requestable_limit: 100 }
+      options   = { limit_key: 'custom', requestable_limit: 100 }
       params = { a: "a", page: 3, custom: 15 }
 
       test_limit_options_params(limit, options, params)
@@ -82,7 +82,7 @@ describe 'requestable_limit' do
 
   describe 'view_methods' do
     describe 'compose_page_url' do
-      let(:request) { Pagy::Get.hash_from(MockApp.new.request) }
+      let(:request) { MockApp.new.request }
 
       it 'renders basic url' do
         pagy = Pagy::Offset.new(count: 1000, page: 3, requestable_limit: 100)
@@ -92,8 +92,8 @@ describe 'requestable_limit' do
         pagy = Pagy::Offset.new(count: 1000, page: 3, limit: 50, requestable_limit: 100)
         _(pagy.limit).must_equal 50
       end
-      it 'renders url with limit_sym' do
-        pagy = Pagy::Offset.new(count: 1000, page: 3, limit_sym: :custom, requestable_limit: 100, request:)
+      it 'renders url with limit_key' do
+        pagy = Pagy::Offset.new(count: 1000, page: 3, limit_key: 'custom', requestable_limit: 100, request:)
         _(pagy.send(:compose_page_url, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do

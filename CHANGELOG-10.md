@@ -94,6 +94,7 @@ Your existing code will require several minor adjustments to function. Following
 
 - If the `:params` variable was set to a lambda, ensure it directly modifies the passed `query_params`.
   - The returned value is now ignored for a slightly better performance.
+- The `:page_key` and `:limit_key` (legacy `:page_param` and `:limit_param`) are strings now, not symbols.
 - The `:outset` and `:cycle` variables have been removed.
   - They were seldom used, mostly useless, and implementing them in your own code is trivial.
 - The `:anchor_string` variable has been removed
@@ -111,23 +112,23 @@ understanding.
 
 {.compact}
 
-| Type      | Search (old)         | Replace with (new)   | Why?                                                                                              |
-|-----------|----------------------|----------------------|---------------------------------------------------------------------------------------------------|
-| Method    | `pagy(...)`          | `pagy(:offset, ...)` | Because it's explicit and consistent with the other paginators (however `:offset` can be omitted) |
-| Function  | `Pagy.root`          | `Pagy::ROOT`         | Because we don't need to call a method just to get a constant Pathname                            |
-| Accessor  | `pagy.vars`          | `pagy.options`       | Because they are actually `options` that don't change during execution                            |
-| Accessor  | `pagy.pages`         | `pagy.last`          | Because they are just an alias that we removed for simplicity                                     |
-| Exception | `VariableError`      | `OptionError`        | Because it's consistent with the `options` argument                                               |
-| Accessor  | `e.variable`         | `e.option`           | Because it's consistent with its `OptionError` class                                              |
-| Naming    | `*prev*`             | `*previous*`         | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS)            |
-| Option    | `size: 7`            | `slots: 7`           | Because it's actually the number of page slots, and avoids confusion with other `size`s           |
-| Option    | `ends: false`        | `compact: true`      | Because it's an opt-in option of the `series`, boolean inverse of `ends`                          |
-| Option    | `:count_args`        | `:count_arguments`   | Because we don't use abbreviated words anymore                                                    |
-| Option    | `:page_param`        | `:page_sym`          | Because `page_param` make people think "page param value"                                         |
-| Option    | `:limit_param`       | `:limit_sym`         | Because `limit_param` make people think "limit param value"                                       |
-| Variable  | `@pagy_locale = ...` | `Pagy::I18n = ...`   | Because the `Pagy::I18n` API is now fully compatible with the `i18n` gem                          |
-| Path      | `'javascripts'`      | `'javascript'`       | Because it is the "javascript" dir, with one single file in a few formats                         |
-| Path      | `'stylesheets'`      | `'stylesheet'`       | Because it is the "stylescript" dir, with one single file in a few formats                        |
+| Type      | Search (old)         | Replace with (new)   | Why?                                                                                               |
+|-----------|----------------------|----------------------|----------------------------------------------------------------------------------------------------|
+| Method    | `pagy(...)`          | `pagy(:offset, ...)` | Because it's explicit and consistent with the other paginators (however `:offset` can be omitted). |
+| Function  | `Pagy.root`          | `Pagy::ROOT`         | Because we don't need to call a method just to get a constant Pathname.                            |
+| Accessor  | `pagy.vars`          | `pagy.options`       | Because they are actually `options` that don't change during execution.                            |
+| Accessor  | `pagy.pages`         | `pagy.last`          | Because they are just an alias that we removed for simplicity.                                     |
+| Exception | `VariableError`      | `OptionError`        | Because it's consistent with the `options` argument.                                               |
+| Accessor  | `e.variable`         | `e.option`           | Because it's consistent with its `OptionError` class.                                              |
+| Naming    | `*prev*`             | `*previous*`         | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS).            |
+| Option    | `size: 7`            | `slots: 7`           | Because it's actually the number of page slots, and avoids confusion with other `size`s.           |
+| Option    | `ends: false`        | `compact: true`      | Because it's an opt-in option of the `series`, boolean inverse of `ends`.                          |
+| Option    | `:count_args`        | `:count_arguments`   | Because we don't use abbreviated words anymore.                                                    |
+| Option    | `:page_param`        | `:page_key`          | Because `page_param` make people think "page param value". Value is a string now, not a symbol.    |
+| Option    | `:limit_param`       | `:limit_key`         | Because `limit_param` make people think "limit param value". Value is a string now, not a symbol.  |
+| Variable  | `@pagy_locale = ...` | `Pagy::I18n = ...`   | Because the `Pagy::I18n` API is now fully compatible with the `i18n` gem                           |
+| Path      | `'javascripts'`      | `'javascript'`       | Because it is the "javascript" dir, with one single file in a few formats                          |
+| Path      | `'stylesheets'`      | `'stylesheet'`       | Because it is the "stylescript" dir, with one single file in a few formats                         |
 
 ##### Internal API
 

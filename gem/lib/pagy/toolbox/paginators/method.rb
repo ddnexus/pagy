@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../modules/get'
+require_relative '../../classes/request'
 
 class Pagy
   paginators = { offset:              :OffsetPaginator,

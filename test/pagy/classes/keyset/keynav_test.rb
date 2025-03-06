@@ -16,7 +16,7 @@ describe "Pagy Keynav" do
           records = pagy.records
           _(records.size).must_equal 10
           _(records.first.id).must_equal 13
-          _(pagy.update).must_equal ['key', :page, 3, [2, 1, ["dog", "Denis", 44]]]
+          _(pagy.update).must_equal ['key', 'page', 3, [2, 1, ["dog", "Denis", 44]]]
         end
         it 'uses :pre_serialize' do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
@@ -24,7 +24,7 @@ describe "Pagy Keynav" do
                                           limit:                   10,
                                           pre_serialize: ->(attr) { attr[:id] = attr[:id].to_s })
           _(pagy.next).must_equal(3)
-          _(pagy.update).must_equal ['key', :page, 3, [2, 1, ["20"]]]
+          _(pagy.update).must_equal ['key', 'page', 3, [2, 1, ["20"]]]
         end
       end
       describe 'handles the page/cut' do
@@ -33,7 +33,7 @@ describe "Pagy Keynav" do
                                           limit: 10)
           _(pagy.instance_variable_get(:@cut)).must_be_nil
           _(pagy.next).must_equal 2
-          _(pagy.update).must_equal [nil, :page, 2, [1, 1, [10]]]
+          _(pagy.update).must_equal [nil, 'page', 2, [1, 1, [10]]]
         end
         it 'handles the page/cut for the second page' do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
@@ -41,7 +41,7 @@ describe "Pagy Keynav" do
                                           limit: 10)
           _(pagy.records.first.id).must_equal 11
           _(pagy.next).must_equal 3
-          _(pagy.update).must_equal ['key', :page, 3, [2, 1, [20]]]
+          _(pagy.update).must_equal ['key', 'page', 3, [2, 1, [20]]]
         end
         it 'handles the page/cut for the last page' do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
@@ -49,7 +49,7 @@ describe "Pagy Keynav" do
                                           limit: 10)
           _(pagy.records.first.id).must_equal 41
           _(pagy.next).must_be_nil
-          _(pagy.update).must_equal ['key', :page]
+          _(pagy.update).must_equal %w[key page]
         end
       end
       describe 'handles the jumping back' do
@@ -59,7 +59,7 @@ describe "Pagy Keynav" do
                                           limit: 10)
           _(pagy.instance_variable_get(:@prior_cutoff)).must_be_nil
           _(pagy.next).must_equal 2
-          _(pagy.update).must_equal ['key', :page]
+          _(pagy.update).must_equal %w[key page]
         end
         it 'handles the assign_cut_args jump back to the second page' do
           pagy = Pagy::Keyset::Keynav.new(model.order(:id),
@@ -69,7 +69,7 @@ describe "Pagy Keynav" do
           _(pagy.records.first.id).must_equal 21
           _(pagy.next).must_equal 3
           _(pagy.instance_variable_get(:@page_cutoff)).must_equal [30]
-          _(pagy.update).must_equal ['key', :page]
+          _(pagy.update).must_equal %w[key page]
         end
       end
       describe 'other requirements' do

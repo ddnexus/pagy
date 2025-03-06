@@ -428,16 +428,13 @@ with a hash with the following keys:
 
 - `:base_url`     (e.g. 'http://www.example.com')
 - `:path`         (e.g. '/path')
-- `:query_params` (e.g. a string-key hash of the request query_params)
-
-Pagy rely also on the `params` method inside the app, which should be a hash of the params from the request. Define an alias or a
-method if your environment doesn't respond to it.
+- `:params` (e.g. a string-key hash of the request query params)
  
 ==- Use `pagy` outside of a controller or view
 
-The `pagy` method is intended for environments that define both `params` and `request`, as it depends on them to set several options.
+The `pagy` method needs to set a few options that depend on the availability of the `self.request` method in the class/module where you included it.
 
-If you define a method (e.g., in a model) that uses `pagy`, the call will originate either from the controller or the view.
+For example, if you call the `pagy` method for a model (that included the `Pagy::Method`), it would almost certainly not have the `request` method available.
 
 The simplest way to make it work is as follows:
 
@@ -445,7 +442,7 @@ The simplest way to make it work is as follows:
 include Pagy::Method
 
 def self.paginated(view, my_arg1, my_arg2, **)
-  collection = my_method(my_arg1, my_arg2)
+  collection = ...
   view.instance_eval { pagy(:offset, collection, **) }
 end
 ```

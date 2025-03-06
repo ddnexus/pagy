@@ -235,7 +235,7 @@ describe 'pagy offset' do
 
   describe 'options' do
     it 'has options defaults' do
-      _(Pagy::DEFAULT[:page_sym]).must_equal :page
+      _(Pagy::DEFAULT[:page_key]).must_equal 'page'
       _(Pagy::DEFAULT[:limit]).must_equal 20
       _(Pagy::Offset::DEFAULT[:page]).must_equal 1
     end
