@@ -41,19 +41,19 @@ class Pagy
     # Return the URL for the page, relying on the Pagy::Request
     def compose_page_url(page, limit_token: nil, **options)
       options = @options.merge(options)
-      request, page_key, limit_key, params = options.values_at(:request, :page_key, :limit_key, :params)
-      query_params = request.params.clone(freeze: false)
-      query_params.delete(options[:jsonapi] ? 'page' : page_key)
+      request, page_key, limit_key, query_tweak = options.values_at(:request, :page_key, :limit_key, :query_tweak)
+      query_hash = request.query_hash.clone(freeze: false)
+      query_hash.delete(options[:jsonapi] ? 'page' : page_key)
       page_and_limit = {}.tap do |h|
         h[page_key]  = countless? ? "#{page || 1}+#{@last}" : page
         h[limit_key] = limit_token || options[:limit] if options[:requestable_limit]
       end.compact # no empty params
-      query_params.merge!(options[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
-      case params
-      when Hash then query_params.merge!(params.compact.transform_keys(&:to_s))
-      when Proc then params.(query_params) # it should modify the query_params: the returned value is ignored
+      query_hash.merge!(options[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
+      case query_tweak
+      when Hash then query_hash.merge!(query_tweak)
+      when Proc then query_tweak.(query_hash) # it should modify the query_params: the returned value is ignored
       end
-      query_string = QueryUtils.build_nested_query(query_params, nil, [page_key, limit_key])
+      query_string = QueryUtils.build_nested_query(query_hash, nil, [page_key, limit_key])
       query_string = "?#{query_string}" unless query_string.empty?
       "#{request.base_url if options[:absolute]}#{options[:request_path] || request.path}#{query_string}#{options[:fragment]}"
     end

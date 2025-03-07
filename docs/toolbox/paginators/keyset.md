@@ -91,9 +91,7 @@ Ensure that your set is `uniquely ordered`, and that your tables have the approp
 Depending on your order requirements, here is how you set it up:
 
 +++ Specific order requirements
-!!!success
-
-If you need a specific order:
+!!!success If you need a specific ordering...
 
 - **In order to make it work**...
   - Ensure that at least one of your ordered columns is unique OR append your primary keys to your order
@@ -103,9 +101,9 @@ If you need a specific order:
 !!!
 
 +++ No order requirements
-!!!success
+!!!success If you don't need any specific ordering...
 
-If you don't need any specific ordering, `order(:id)` is the simplest choice because the `id` column is unique and already indexed.
+`order(:id)` is the simplest choice because the `id` column is unique and already indexed.
 
 It is fast out of the box without any setup.
 

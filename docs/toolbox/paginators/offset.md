@@ -27,8 +27,6 @@ It **fully** supports all the helpers and navigators.
 
 ==- Options
 
-- `:count_arguments`
-  - The arguments passed to the `collection.count` (default: `[:all]`). You may want to set it to `[]` in ORM systems other than `ActiveRecord`. 
 - `count_over: true`
   - Use this option with `GROUP BY` collections to calculate the total number of results using `COUNT(*) OVER ()`.
 - `raise_range_error: true`

@@ -1,12 +1,12 @@
 ---
-label: pagy 🐸 Initializer
+label: pagy 💚 Initializer
 icon: gear
 order: 100
 ---
 
 #
 
-## 🐸 Initializer
+## <span style="font-size: .65em; vertical-align: middle">💚</span> Initializer
 
 ---
 

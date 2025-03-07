@@ -52,7 +52,7 @@ You can customize the number and position of page links in the navigation bar us
 
 ==- Force the `:page`
 
-Pagy retrieves the page from the `params[:page]`. To force a specific page number, pass it directly to the `pagy` method. For example:
+Pagy retrieves the page from the `'page'` request query hash. To force a specific page number, pass it directly to the `pagy` method. For example:
 
 ```ruby controller
 @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
@@ -77,26 +77,16 @@ See [ARIA](../resources/ARIA.md).
 
 ==- Customize the page and limit symbols
 
-By default, Pagy retrieves the page from `params[:page]` and generates URLs using the `:page` query parameter, e.g., `?page=3`.
+By default, Pagy retrieves the page from the request query hash and generates URLs using the `"page"` key, e.g., `?page=3`.
 
-- Set `page_sym: :your_symbol` to customize URL generation, e.g., `?your_symbol=3`.
-- Set the `limit_sym` to customize the `limit` param the same way.
+- Set `page_key: "your_key"` to customize URL generation, e.g., `?your_key=3`.
+- Set the `limit_key` to customize the `limit` param the same way.
 
 See [Common Options](../toolbox/paginators#common-options)
 
-==- Customize the params
+==- Customize the URL query
 
-Modify the parameters embedded in page link URLs by using the `:params` option, which can be:
-- a `Hash` of parameters to merge
-- a `Proc` to edit, add, or delete request parameters.
-  - The `Proc` will receive the **key-stringified** `query_params` hash complete with the pagy-added params, and it should modify
-    it in place.
-
-Here is an example with `except!` (available in Rails) and `merge!`:
-
-```ruby
-@pagy, @records = pagy(:offset, collection, params: ->(params) { params.except!('not_useful').merge!('custom' => 'useful') })
-```
+See the [:query_tweak Option](../toolbox/paginators.md#common-options)
 
 ==- Add a URL fragment
 
@@ -185,11 +175,11 @@ Explore the following options:
 
 ==- Paginate with JSON:API
 
-Enable `jsonapi: true`, optionally providing `:page_sym` and `:limit_sym`:
+Enable `jsonapi: true`, optionally providing `:page_key` and `:limit_key`:
 
 ```ruby
 # JSON:API nested query_params: E.g.: ?page[number]=2&page[size]=100
-@pagy, @records = pagy(:offset, collection, jsonapi: true, page_sym: :number, limit_sym: :size)
+@pagy, @records = pagy(:offset, collection, jsonapi: true, page_key: 'number', limit_key: 'size'R)
 ```
 
 ==- Paginate for Javascript Frameworks
@@ -279,27 +269,19 @@ of the above logic.
 
 You can also
 paginate [multiple model in the same request](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy/)
-by simply using different `:page_sym` for each instance:
+by simply using different `:page_key` for each instance:
 
 ```rb
 
 def index # controller action
-  @pagy_stars, @stars     = pagy(:offset, Star.all, page_sym: :page_stars)
-  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_sym: :page_nebulae)
+  @pagy_stars, @stars     = pagy(:offset, Star.all, page_key: :page_stars)
+  @pagy_nebulae, @nebulae = pagy(:offset, Nebula.all, page_key: :page_nebulae)
 end
 ```
 
 ==- Paginate only max_pages, regardless the count
 
 See [:max_pages](../toolbox/paginators.md#common-options) option.
-
-==- Paginate non-ActiveRecord collections
-
-For collections other than `ActiveRecord` (e.g. `mongoid`, etc.), you might want to change the `:count_arguments` default to suite your ORM count method:
-
-```ruby pagy.rb (initializer)
-Pagy.options[:count_arguments] = []
-```
 
 ==- Paginate collections with metadata
 
@@ -319,7 +301,7 @@ As you can see, it contains the pagination metadata that you can use to set up t
 # get the paginated collection
 tobj = Tmdb::Search.movie("Harry Potter", page: params[:page])
 # use its count and page to initialize the @pagy object
-@pagy = Pagy::Offset.new(count: tobj.total_results, page: tobj.page, request: Pagy::Get.hash_from(request))
+@pagy = Pagy::Offset.new(count: tobj.total_results, page: tobj.page, request: Pagy::Request.new(request))
 # set the paginated collection records
 @movies = tobj.results
 ```
@@ -426,9 +408,9 @@ pagy demo
 For non-rack environments that don't respond to the request method, you should pass the `:request` option to the paginator, set
 with a hash with the following keys:
 
-- `:base_url`     (e.g. 'http://www.example.com')
-- `:path`         (e.g. '/path')
-- `:params` (e.g. a string-key hash of the request query params)
+- `:base_url`   (e.g. 'http://www.example.com')
+- `:path`       (e.g. '/path')
+- `:query_hash` (e.g. a string-keyed hash of the request query)
  
 ==- Use `pagy` outside of a controller or view
 
@@ -467,10 +449,10 @@ def filtered_action
   if params[:filter_key] # already cached
      filters = session[params[:filter_key]] 
   else                   # first request
-    filters          = params[:filters]
-    key              = Digest::SHA1.hexdigest(filters.sort.to_json)
-    session[key]     = filters
-    options[:params] = { filter_key: key } 
+    filters      = params[:filters]
+    key          = Digest::SHA1.hexdigest(filters.sort.to_json)
+    session[key] = filters
+    options[:query_tweak] = { filter_key: key } 
   end
   collection      = Product.where(**filters)
   @pagy, @records = pagy(:offset, collection, **options)

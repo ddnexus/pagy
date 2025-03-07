@@ -51,7 +51,8 @@ None
 This version introduces a complete redesign of the legacy code.
 
 - **New [Keynav](https://ddnexus.github.io/pagy/toolbox/paginator/keynav_js.md) Pagination**
-  - The pagy-exclusive technique using [keyset](https://ddnexus.github.io/pagy/toolbox/paginator/keyset.md) pagination alongside all frontend helpers.
+  - The pagy-exclusive technique using [keyset](https://ddnexus.github.io/pagy/toolbox/paginator/keyset.md) pagination alongside
+    all frontend helpers.
 - **Method Autoloading**
   - Methods are autoloaded only if used, unused methods consume no memory.
 - **Intelligent automation**
@@ -67,9 +68,10 @@ This version introduces a complete redesign of the legacy code.
 
 Take a look at the [Examples](https://github.com/ddnexus/pagy#examples) for a quick overview.
 
-### Breaking Changes / Updating Guide  
+### Breaking Changes / Updating Guide
 
-Your existing code will require several minor adjustments to function. Following these changes, **this API will remain stable for a long time**.
+Your existing code will require several minor adjustments to function. Following these changes, **this API will remain stable for
+a long time**.
 
 #### Replace your `pagy.rb` config file
 
@@ -86,15 +88,20 @@ Your existing code will require several minor adjustments to function. Following
 - Remove any existing `include Pagy::Frontend`
 - The paginators (i.e. the `pagy_*` methods returning the `@pagy` instance and the `@records`) got integrated in the `pagy`
   method.
-  - The old `pagy(...)` statement works as-is, but it is _preferable_ to update it to the new explicit syntax: `pagy(:offset, ...)`.
+  - The old `pagy(...)` statement works as-is, but it is _preferable_ to update it to the new explicit syntax:
+    `pagy(:offset, ...)`.
 - All the `pagy_*` helpers provided by the `Pagy::Frontend` are now `@pagy` instance methods (and most have been renamed). _(See
   how to replace them in the [Extras Changes](#extras-changes))_
 
 #### Core changes
 
-- If the `:params` variable was set to a lambda, ensure it directly modifies the passed `query_params`.
-  - The returned value is now ignored for a slightly better performance.
-- The `:page_key` and `:limit_key` (legacy `:page_param` and `:limit_param`) are strings now, not symbols.
+- The `:params` variable/option has been replaced with the `:query_tweak` option. It has nothing to do with params anymore,
+  because it's a specific override, besides they have string keys and not symbol keys (for significant fewer conversions).
+  - If set to a lambda, ensure it directly modifies the passed `query_params`. The returned value is now ignored for a slightly
+    better performance.
+- The `:page_param` and `:limit_param` have been replaced by `:page_key` and `:limit_key`, which are strings now, not symbols (for
+  significant fewer conversions).
+- The `count_args` variable has been removed. Pagy will set it automatically.
 - The `:outset` and `:cycle` variables have been removed.
   - They were seldom used, mostly useless, and implementing them in your own code is trivial.
 - The `:anchor_string` variable has been removed
@@ -123,7 +130,6 @@ understanding.
 | Naming    | `*prev*`             | `*previous*`         | Because we don't use abbreviated words anymore (check: option, accessor, methods, CSS).            |
 | Option    | `size: 7`            | `slots: 7`           | Because it's actually the number of page slots, and avoids confusion with other `size`s.           |
 | Option    | `ends: false`        | `compact: true`      | Because it's an opt-in option of the `series`, boolean inverse of `ends`.                          |
-| Option    | `:count_args`        | `:count_arguments`   | Because we don't use abbreviated words anymore.                                                    |
 | Option    | `:page_param`        | `:page_key`          | Because `page_param` make people think "page param value". Value is a string now, not a symbol.    |
 | Option    | `:limit_param`       | `:limit_key`         | Because `limit_param` make people think "limit param value". Value is a string now, not a symbol.  |
 | Variable  | `@pagy_locale = ...` | `Pagy::I18n = ...`   | Because the `Pagy::I18n` API is now fully compatible with the `i18n` gem                           |
@@ -185,11 +191,12 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 - Replace `pagy_countless(...)` with `pagy(:countless, ...)`
 - Rename any existing `countless_minimal: true` to `headless: true`.
 - Leave all remaining elements unchanged.
- 
+
 ##### `calendar`
 
 - Replace `pagy_calendar(...)` with `pagy(:calendar, ...)`.
-- Remove your old localization configuration (if any), then uncomment and customize the following line in the `pagy.rb` initializer:
+- Remove your old localization configuration (if any), then uncomment and customize the following line in the `pagy.rb`
+  initializer:
   `Pagy::Calendar.localize_with_rails_i18n_gem(*your_locales)`.
   - _Note: In non-Rails applications, calendar localization requires adding `rails-i18n` to your Gemfile._
 - Replace any existing `Pagy::Calendar::OutOfRangeError` with `Pagy::RangeError`.
@@ -234,7 +241,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `limit`
 
-- Rename the existing `:limit_param` to `:limit_sym`.
+- Rename the existing `:limit_param` to `:limit_key`.
 - Delete the existing `:limit_max` and `:limit_extra`.
 - Enable the feature by passing `requestable_limit: your_max_limit` option to the `pagy` method.
 
@@ -286,12 +293,13 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `size` (discontinued feature)
 
-- Pagination bars similar to WillPaginate and Kaminari are not good for a lot of reasons. If still required, adapt the
-  legacy file from a previous commit.
+- Pagination bars similar to WillPaginate and Kaminari are not good for a lot of reasons. If still required, adapt the legacy file
+  from a previous commit.
 
 ##### `trim` (discontinued feature)
 
-- It was mostly useless and half-baked, causing numerous complications in both the Ruby and JavaScript code for no significant benefit.
+- It was mostly useless and half-baked, causing numerous complications in both the Ruby and JavaScript code for no significant
+  benefit.
 - Use an appropriate approach to address your requirement, such as utilizing URL rewriting at the HTTP server level.
 
 #### Direct instantiation of the pagy classes is not recommended

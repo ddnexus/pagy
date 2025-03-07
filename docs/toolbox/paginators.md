@@ -1,5 +1,5 @@
 ---
-label: pagy 🐸 Paginators
+label: pagy 💚 Paginators
 icon: database
 order: 90
 categories:
@@ -8,19 +8,20 @@ categories:
 
 #
 
-## 🐸 Paginators
+##  <span style="font-size: .65em; vertical-align: middle">💚</span> Paginators
 
 ---
 
-The `pagy` method starts every pagination. It paginates a collection and returns the `@pagy` instance and the page of `@records`.
+### `pagy` method
+
+The `pagy` method starts every pagination. 
 
 Include the `Pagy::Method` where you are going to use it _(usually in ApplicationContoller)_:
 
 ```ruby
 include Pagy::Method
 ```
-
-Now, you can use it to paginate ANY collection, with ANY technique:
+You can use it to paginate ANY collection, with ANY technique:
 
 ```ruby
 @pagy, @records = pagy(:offset, collection, **options)
@@ -31,6 +32,9 @@ Now, you can use it to paginate ANY collection, with ANY technique:
 - `@pagy` is the pagination istance. It provides methods for every UI components and helpers to use in your code.
 - `@records` are the records belonging to the requested page
 
+### Paginators
+
+The `paginators` are internal methods that provide different type of pagination for different types of collections, with a common API.
 
 ==- Common Options
 
@@ -39,32 +43,37 @@ Now, you can use it to paginate ANY collection, with ANY technique:
 Individual paginators may offer additional options, which are documented with the paginator itself.
 !!!
 
-- `:page`
-  - Set it only to force the current `:page`. _(It is set automatically from the request params)_.
-- `:limit`
+- `page: 3`
+  - Set it only to force the current `:page`. _(It is set automatically from the request query hash)_.
+- `limit: 10`
   - Specifies the number of items per page (default: `20`)
-- `requestable_limit: max_limit`
-  - Allows the client to set the `:limit` in the `request` params, up to the `max_limit` value
-- `:max_pages`
+- `requestable_limit: 1_000`
+  - Allows the client to set the `:limit` in the `request` query, up to `1_000` in the example
+- `max_pages: 500`
   - Restricts pagination to only `:max_pages`. (`Pagy::Calendar::*` unit objects ignore it)
 - `jsonapi: true`
   - Enables JSON:API-compliant URLs and query_params
-- `:page_sym`
-  - Set it to change the symbol of the `:page` in URLs and query_params (default `:page`).
-- `:limit_sym`
-  - Set it to change the symbol of the `:limit` in URLs and query_params (default `:limit`).
-- `:params`
-  - Set it to a `Hash` of params to merge with the query params.
-  - Set it to  a `Lambda` to edit/add/delete the request params (modify the query_params directly: the result is ignored). Keys
-    must be strings.
-- `:request_path`
+- `page_key: 'custom_page'`
+  - Set it to change the key string used for the `:page` in URLs (default `'page'`).
+- `limit_key: 'custom_limit'`
+  - Set it to change the key string used for the `:limit` in URLs (default `'limit'`).
+- `query_tweak: tweak`
+  - Set it to a _string-keyed_ `Hash` to merge with the URL `query_hash`.
+    ```ruby
+    tweak = { 'custom' => 'useful' }
+    ```
+  - Set it to a `Lambda` to directly edit the passed `query_hash` itself. Its result is ignored.
+    ```ruby
+    tweak = ->(query_hash) { query_hash.except!('not_useful').merge!('custom' => 'useful') }
+    ```
+- `request_path: '/custom_path'`
   - Overrides the request path in pagination URLs. Pass the path only (not the absolute URL). _(see [Pass the request path](../guides/how-to.md#paginate-multiple-independent-collections))_
-- `:request`
+- `request: custom_request`
   - **Set this hash only in non-rack environments** or when instructed by the docs. _(It is set automatically from the request)_. For example:
     ```ruby
-     { base_url:     'http://www.example.com',
-       path:         '/path',
-       query_params: { 'param1' => 1234 } } # string keys only
+    { base_url:   'http://www.example.com',
+      path:       '/path',
+      query_hash: { 'param1' => 1234 } } # string keys only
     ```
 
 ==- Common Readers

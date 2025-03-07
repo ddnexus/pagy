@@ -13,7 +13,7 @@
 # Pagy.options[:jsonapi] = true           # Use JSON:API compliant parameters and URLs
 
 
-############ Sync JavaScript ###############################################################
+############ JavaScript ####################################################################
 # See https://ddnexus.github.io/pagy/resources/javascript/ for further details.
 # Examples for Rails:
 # For apps with an assets pipeline
@@ -32,7 +32,7 @@
 # Pagy::I18n.pathnames << Rails.root.join('config/locales')
 
 
-############# Calendar Localization for Languages Other Than :en ###########################
+############# Calendar Localization for non-en locles ###########################
 # Add your desired locales to the list and uncomment the following line to enable them,
 # regardless of whether you use the I18n gem for translations or not, whether with
 # Rails or not.

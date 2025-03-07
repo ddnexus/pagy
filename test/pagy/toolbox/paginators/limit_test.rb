@@ -82,7 +82,7 @@ describe 'requestable_limit' do
 
   describe 'view_methods' do
     describe 'compose_page_url' do
-      let(:request) { MockApp.new.request }
+      let(:request) { Pagy::Request.new(MockApp.new.request) }
 
       it 'renders basic url' do
         pagy = Pagy::Offset.new(count: 1000, page: 3, requestable_limit: 100)
@@ -101,7 +101,7 @@ describe 'requestable_limit' do
         _(pagy.send(:compose_page_url, 6, fragment: '#fragment')).must_equal '/foo?page=6&limit=20#fragment'
       end
       it 'renders url with params and fragment' do
-        pagy = Pagy::Offset.new(count: 1000, page: 3, params: { a: 3, b: 4 }, limit: 40, requestable_limit: 100, request:)
+        pagy = Pagy::Offset.new(count: 1000, page: 3, query_tweak: { a: 3, b: 4 }, limit: 40, requestable_limit: 100, request:)
         _(pagy.send(:compose_page_url, 5, fragment: '#fragment')).must_equal "/foo?page=5&limit=40&a=3&b=4#fragment"
       end
     end

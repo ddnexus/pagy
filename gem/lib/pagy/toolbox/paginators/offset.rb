@@ -18,13 +18,14 @@ class Pagy
 
     # Get the collection count
     def get_count(collection, options)
-      count = if options[:count_over] && !collection.group_values.empty?
-                # COUNT(*) OVER ()
-                sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
-                collection.unscope(:order).pick(sql).to_i
-              else
-                collection.count(*(options[:count_arguments] || [:all]))
-              end
+      arguments = [:all] if defined?(::ActiveRecord) && collection.is_a?(::ActiveRecord::Relation)
+      count     = if options[:count_over] && !collection.group_values.empty?
+                    # COUNT(*) OVER ()
+                    sql = Arel.star.count.over(Arel::Nodes::Grouping.new([]))
+                    collection.unscope(:order).pick(sql).to_i
+                  else
+                    collection.count(*arguments)
+                  end
       count.is_a?(Hash) ? count.size : count
     end
   end

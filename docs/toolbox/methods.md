@@ -1,5 +1,5 @@
 ---
-label: pagy 🐸 Methods
+label: pagy 💚 Methods
 icon: mention
 order: 80
 categories:
@@ -8,11 +8,11 @@ categories:
 
 #
 
-## 🐸 Methods
+## <span style="font-size: .65em; vertical-align: middle">💚</span> Methods
 
 ---
 
-The `@pagy` instance provides methods for every UI components and helpers to use in your code.
+The `@pagy` instance provides methods for every navigation tag and helper to use in your code.
 
 Its class is determined by the paginator used, but you can safely ignore it. Simply utilize its methods.
 
