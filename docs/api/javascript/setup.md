@@ -169,6 +169,8 @@ module.exports = {
 }
 ```
 
++++
+
 #### Non-Rails apps
 
 * Just ensure `Pagy.root.join('javascripts', 'pagy.js')` is served with the page.
