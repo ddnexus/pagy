@@ -97,7 +97,7 @@ a long time**.
 
 - The `:params` variable/option has been replaced with the `:query_tweak` option. It has nothing to do with params anymore,
   because it's a specific override, besides they have string keys and not symbol keys (for significant fewer conversions).
-  - If set to a lambda, ensure it directly modifies the passed `query_params`. The returned value is now ignored for a slightly
+  - If set to a lambda, ensure it directly modifies the passed `query_hash`. The returned value is now ignored for a slightly
     better performance.
 - The `:page_param` and `:limit_param` have been replaced by `:page_key` and `:limit_key`, which are strings now, not symbols (for
   significant fewer conversions).
@@ -167,6 +167,8 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 ##### `pagy`
 
 - All the old helpers are now `@pagy` instance methods with more explicit names (e.g. `_tag`)
+
+{.compact}
 
 | Search (old)                         | Replace with (new)                 |
 |--------------------------------------|------------------------------------|
@@ -280,8 +282,10 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
   ```ruby
   request: { base_url:     'http://www.example.com',
              path:         '/path',
-             query_params: { 'param1' => 1234 } } # string keys only  
+             query_hash:   { 'param1' => 1234 }, # string-keyed hash
+             cookie:       'xyz' } # 'pagy' cookie, only for keynav  
   ```
+  See [Use Pagy with a non-rack app](https://ddnexus.github.io/pagy/guides/how-to.md#use-pagy-with-a-non-rack-app)
 
 ##### `i18n`
 

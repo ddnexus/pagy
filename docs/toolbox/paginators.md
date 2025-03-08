@@ -52,7 +52,7 @@ Individual paginators may offer additional options, which are documented with th
 - `max_pages: 500`
   - Restricts pagination to only `:max_pages`. (`Pagy::Calendar::*` unit objects ignore it)
 - `jsonapi: true`
-  - Enables JSON:API-compliant URLs and query_params
+  - Enables JSON:API-compliant URLs
 - `page_key: 'custom_page'`
   - Set it to change the key string used for the `:page` in URLs (default `'page'`).
 - `limit_key: 'custom_limit'`
@@ -71,9 +71,10 @@ Individual paginators may offer additional options, which are documented with th
 - `request: custom_request`
   - **Set this hash only in non-rack environments** or when instructed by the docs. _(It is set automatically from the request)_. For example:
     ```ruby
-    { base_url:   'http://www.example.com',
-      path:       '/path',
-      query_hash: { 'param1' => 1234 } } # string keys only
+    custom_request =  { base_url:     'http://www.example.com',
+                        path:         '/path',
+                        query_hash:   { 'param1' => 1234 }, # string-keyed hash
+                        cookie:       'xyz' } # 'pagy' cookie, only for keynav 
     ```
 
 ==- Common Readers

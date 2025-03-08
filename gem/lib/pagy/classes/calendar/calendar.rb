@@ -76,8 +76,8 @@ class Pagy
       @units.each_with_index do |unit, index|
         params_to_delete = @units[(index + 1), @units.length].map { |sub| conf[sub][:page_key] } + [@page_key]
         conf[unit][:query_tweak] = ->(up) { up.except!(*params_to_delete.map(&:to_s)) }
-        conf[unit][:period] = object&.send(:active_period) || @period
-        conf[unit][:page]   = @query_hash["#{unit}_#{@page_key}"] # requested page
+        conf[unit][:period]      = object&.send(:active_period) || @period
+        conf[unit][:page]        = @query_hash["#{unit}_#{@page_key}"] # requested page
         # :nocov:
         # simplecov doesn't need to fail block_given?
         conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?

@@ -51,7 +51,7 @@ class Pagy
       query_hash.merge!(options[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
       case query_tweak
       when Hash then query_hash.merge!(query_tweak)
-      when Proc then query_tweak.(query_hash) # it should modify the query_params: the returned value is ignored
+      when Proc then query_tweak.(query_hash) # it should modify the query_hash: the returned value is ignored
       end
       query_string = QueryUtils.build_nested_query(query_hash, nil, [page_key, limit_key])
       query_string = "?#{query_string}" unless query_string.empty?

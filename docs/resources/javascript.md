@@ -13,7 +13,7 @@ image: ""
 
 !!!warning The helpers and paginators named `*_js*` require Pagy JavaScript support.
 
-Simply add the appropriate files and statements as outlined below.
+Simply add the appropriate file(s) and statements as outlined below.
 !!!
 
 #### 1. Choose the format that matches your app's configuration

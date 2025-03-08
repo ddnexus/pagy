@@ -9,8 +9,8 @@ class Pagy
     def wrap(context, pagy_search_args, options)
       context.instance_exec do
         options[:request] = Request.new(options[:request] || request, options)
-        options[:page]  ||= options[:request].page(options)
-        options[:limit] ||= options[:request].limit(options)
+        options[:page]  ||= options[:request].resolve_page(options)
+        options[:limit] ||= options[:request].resolve_limit(options)
       end
       pagy, results = yield
       calling = pagy_search_args[4..]

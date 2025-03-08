@@ -8,8 +8,8 @@ class Pagy
     def paginate(context, set, **options)
       context.instance_eval do
         request = Request.new(options[:request] || self.request, options)
-        options[:page] ||= request.page(options, force_integer: false) # allow nil
-        options[:limit]  = request.limit(options)
+        options[:page] ||= request.resolve_page(options, force_integer: false) # allow nil
+        options[:limit]  = request.resolve_limit(options)
         pagy = Keyset.new(set, **options, request:)
         [pagy, pagy.records]
       end

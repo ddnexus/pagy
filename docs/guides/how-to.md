@@ -178,7 +178,7 @@ Explore the following options:
 Enable `jsonapi: true`, optionally providing `:page_key` and `:limit_key`:
 
 ```ruby
-# JSON:API nested query_params: E.g.: ?page[number]=2&page[size]=100
+# JSON:API nested query string: E.g.: ?page[number]=2&page[size]=100
 @pagy, @records = pagy(:offset, collection, jsonapi: true, page_key: 'number', limit_key: 'size'R)
 ```
 
@@ -405,12 +405,7 @@ pagy demo
 
 ==- Use Pagy with a non-rack app
 
-For non-rack environments that don't respond to the request method, you should pass the `:request` option to the paginator, set
-with a hash with the following keys:
-
-- `:base_url`   (e.g. 'http://www.example.com')
-- `:path`       (e.g. '/path')
-- `:query_hash` (e.g. a string-keyed hash of the request query)
+For non-rack environments that don't respond to the request method, you should pass the [:request](../toolbox/paginators.md#common-options) option to the paginator.
  
 ==- Use `pagy` outside of a controller or view
 

@@ -8,11 +8,11 @@
 [![Commits](https://img.shields.io/github/commit-activity/y/ddnexus/pagy.svg?label=Commits&colorA=004d99&colorB=0073e6)](https://github.com/ddnexus/pagy/commits/master/)</span> <span>
 [![Downloads](https://img.shields.io/gem/dt/pagy.svg?label=Downloads&colorA=004d99&colorB=0073e6)](https://rubygems.org/gems/pagy)</span> <span>
 [![Stars](https://shields.io/github/stars/ddnexus/pagy?style=social)](https://github.com/ddnexus/pagy/stargazers)</span> <span>
-[![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Pagy%20Guru-006BFF)](https://gurubase.io/g/pagy)</span>
+[![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20Pagy%20AI-006BFF)](https://gurubase.io/g/pagy)</span>
 
 ---
 
-# Pagy <img src="assets/images/pagy-the-frog.png" alt="🐸" style="display: inline; vertical-align: bottom; width: 2.4em;"> the leaping gem!
+# Pagy <img src="assets/images/pagy-the-frog.png" alt="💚" style="display: inline; vertical-align: bottom; width: 2.4em;"> the leaping gem!
 
 <br/>
 
@@ -85,7 +85,7 @@ _See all the available [paginators](http://ddnexus.github.io/pagy/toolbox/pagina
 ##### JSON:API pagination
 
 ```ruby
-# JSON:API nested query_params. E.g.: ?page[number]=2&page[size]=100
+# JSON:API nested query string. E.g.: ?page[number]=2&page[size]=100
 @pagy, @records = pagy(:offset, Product.all, jsonapi: true)
 @pagy, @records = pagy(:keyset, Product.order(my_order).all, jsonapi: true)
 render json: { links: @pagy.links_hash, data: @records }
