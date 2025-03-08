@@ -12,8 +12,8 @@ branding:
   label: 9.3.3
   colors:
     label:
-      text: "#000000"
-      background: "#e1260d"
+      text: "#ffffff"
+      background: "#1f7a1f"
 
 meta:
   title: " 💚 Pagy"
