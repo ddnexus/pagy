@@ -18,9 +18,11 @@ class Pagy # :nodoc:
 
     # Module overriding Backend
     module BackendOverride
-      private
-
       include UrlHelpers
+
+      private(*UrlHelpers.instance_methods)
+
+      private
 
       # Return the jsonapi links
       def pagy_jsonapi_links(pagy, **opts)
