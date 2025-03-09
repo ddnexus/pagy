@@ -219,9 +219,9 @@ describe 'pagy offset' do
       _(pagy.last).must_equal 8
       _ { Pagy::Offset.new(count: 100, page: 9, limit: 10, max_pages: 8, raise_range_error: true) }.must_raise Pagy::RangeError
     end
-    it 'initializes the request_path' do
-      pagy = Pagy::Offset.new(count: 100, request_path: '/foo')
-      _(pagy.options[:request_path]).must_equal('/foo')
+    it 'initializes the path' do
+      pagy = Pagy::Offset.new(count: 100, path: '/foo')
+      _(pagy.options[:path]).must_equal('/foo')
     end
   end
 

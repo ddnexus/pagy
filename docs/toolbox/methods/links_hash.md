@@ -15,8 +15,6 @@ categories:
 
 `links_hash` returns the `:first`, `:previous`, `:next`, `:last` non-`nil` URLs hash.
 
-It respects `jsonapi: true`.
-
 !!!success It works with all paginators
 !!!
 
@@ -26,6 +24,6 @@ link_hash = @pagy.links_hash(**options)
 
 ==- Options
 
-See [Common URL Options](../methods#common-url-options)
+See [Common URL Options](../paginators.md#common-url-options)
 
 ===

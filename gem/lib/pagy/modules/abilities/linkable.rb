@@ -41,21 +41,19 @@ class Pagy
     # Return the URL for the page, relying on the Pagy::Request
     def compose_page_url(page, limit_token: nil, **options)
       options = @options.merge(options)
-      request, page_key, limit_key, query_tweak = options.values_at(:request, :page_key, :limit_key, :query_tweak)
-      query_hash = request.query_hash.clone(freeze: false)
-      query_hash.delete(options[:jsonapi] ? 'page' : page_key)
-      page_and_limit = {}.tap do |h|
-        h[page_key]  = countless? ? "#{page || 1}+#{@last}" : page
-        h[limit_key] = limit_token || options[:limit] if options[:requestable_limit]
-      end.compact # no empty params
-      query_hash.merge!(options[:jsonapi] ? { 'page' => page_and_limit } : page_and_limit) if page_and_limit.size.positive?
-      case query_tweak
-      when Hash then query_hash.merge!(query_tweak)
-      when Proc then query_tweak.(query_hash) # it should modify the query_hash: the returned value is ignored
-      end
-      query_string = QueryUtils.build_nested_query(query_hash, nil, [page_key, limit_key])
+      request, page_key, limit_key, jsonapi, absolute, path, fragment, querify =
+        options.values_at(:request, :page_key, :limit_key, :jsonapi, :absolute, :path, :fragment, :querify)
+      query = request.queried.clone(freeze: false)
+      query.delete(jsonapi ? 'page' : page_key)
+      paging = {}.tap do |h|
+                 h[page_key]  = countless? ? "#{page || 1}+#{@last}" : page
+                 h[limit_key] = limit_token || options[:limit] if options[:requestable_limit]
+               end.compact # No empty params
+      query.merge!(jsonapi ? { 'page' => paging } : paging) if paging.size.positive?
+      querify&.(query) # Must modify the queried: the returned value is ignored
+      query_string = QueryUtils.build_nested_query(query, nil, [page_key, limit_key])
       query_string = "?#{query_string}" unless query_string.empty?
-      "#{request.base_url if options[:absolute]}#{options[:request_path] || request.path}#{query_string}#{options[:fragment]}"
+      "#{request.base_url if absolute}#{path || request.path}#{query_string}#{fragment}"
     end
   end
 end

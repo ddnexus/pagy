@@ -34,7 +34,22 @@ You can use it to paginate ANY collection, with ANY technique:
 
 ### Paginators
 
-The `paginators` are internal methods that provide different type of pagination for different types of collections, with a common API.
+The `paginators` are internal methods that provide different type of pagination for different types of collections, with a common API. They are passed to the `pagy` method by their symbolic name. (e.g, `:offset`, `:keyset`, `countless`, etc.)
+
+
+!!!success Paginators are autoloaded only if used!
+
+Unused code consumes no memory.
+!!!
+
+[:icon-list-ordered: :offset](paginators/offset.md)<br/>
+[:icon-list-ordered: :countless](paginators/countless.md)<br/>
+[:icon-list-ordered: :keynav_js](paginators/keynav_js)<br/>
+[:icon-infinity: :keyset](paginators/keyset.md)<br/>
+[:icon-calendar: :calendar](paginators/calendar.md)<br/>
+[:icon-search: :elasticsearch_rails](paginators/elasticsearch_rails.md)<br/>
+[:icon-search: :meilisearch](paginators/meilisearch.md)<br/>
+[:icon-search: :searchkick](paginators/searchkick.md)<br/>
 
 ==- Common Options
 
@@ -43,38 +58,46 @@ The `paginators` are internal methods that provide different type of pagination 
 Individual paginators may offer additional options, which are documented with the paginator itself.
 !!!
 
-- `page: 3`
-  - Set it only to force the current `:page`. _(It is set automatically from the request query hash)_.
 - `limit: 10`
   - Specifies the number of items per page (default: `20`)
-- `requestable_limit: 1_000`
-  - Allows the client to set the `:limit` in the `request` query, up to `1_000` in the example
 - `max_pages: 500`
   - Restricts pagination to only `:max_pages`. (`Pagy::Calendar::*` unit objects ignore it)
-- `jsonapi: true`
-  - Enables JSON:API-compliant URLs
-- `page_key: 'custom_page'`
-  - Set it to change the key string used for the `:page` in URLs (default `'page'`).
-- `limit_key: 'custom_limit'`
-  - Set it to change the key string used for the `:limit` in URLs (default `'limit'`).
-- `query_tweak: tweak`
-  - Set it to a _string-keyed_ `Hash` to merge with the URL `query_hash`.
-    ```ruby
-    tweak = { 'custom' => 'useful' }
-    ```
-  - Set it to a `Lambda` to directly edit the passed `query_hash` itself. Its result is ignored.
-    ```ruby
-    tweak = ->(query_hash) { query_hash.except!('not_useful').merge!('custom' => 'useful') }
-    ```
-- `request_path: '/custom_path'`
-  - Overrides the request path in pagination URLs. Pass the path only (not the absolute URL). _(see [Pass the request path](../guides/how-to.md#paginate-multiple-independent-collections))_
+- `page: 3`
+  - Set it only to force the current `:page`. _(It is set automatically from the request query hash)_.
+- `requestable_limit: 1_000`
+  - Allows the client to set the `:limit` in the `request` query, up to `1_000` in the example
 - `request: custom_request`
   - **Set this hash only in non-rack environments** or when instructed by the docs. _(It is set automatically from the request)_. For example:
     ```ruby
-    custom_request =  { base_url:     'http://www.example.com',
-                        path:         '/path',
-                        query_hash:   { 'param1' => 1234 }, # string-keyed hash
-                        cookie:       'xyz' } # 'pagy' cookie, only for keynav 
+    custom_request =  { base_url: 'http://www.example.com',
+                        path:     '/path',
+                        queried:  { 'param1' => 1234 }, # The string-keyed hash queried from the request
+                        cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
+    ```
+
+==- Common URL Options
+
+!!! Common URL options for all [paginators](#paginators) and `@pagy` [methods](methods.md#methods)
+
+These options control give you full control over the URL composition.
+!!!
+
+- `absolute: true`
+  - Makes the URL absolute.
+- `fragment: '#...'`
+  - URL fragment string. _(It must include the leding `"#"`!_)
+- `jsonapi: true`
+  - Enables JSON:API-compliant URLs, with nested query string (e.g., `?page[number]=2&page[size]=100`)
+- `limit_key: 'custom_limit'`
+  - Set it to change the key string used for the `:limit` in URLs (default `'limit'`).
+- `page_key: 'custom_page'`
+  - Set it to change the key string used for the `:page` in URLs (default `'page'`).
+- `path: '/custom_path'`
+  - Overrides the request path in pagination URLs. Use the path only (not the absolute URL). _(see [Override the request path](../guides/how-to.md#paginate-multiple-independent-collections))_
+- `querify: tweak`
+  - Set it to a `Lambda` to directly edit the passed string-keyed query hash` itself. Its result is ignored.
+    ```ruby
+    tweak = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
     ```
 
 ==- Common Readers
@@ -138,21 +161,5 @@ ordered         = unordered.order(:id)
 ```
 
 !!!
-
-=== Paginators
-
-  !!!success Paginators are autoloaded only if used!
-
-  Unused code consumes no memory.
-  !!!
-
-[:icon-list-ordered: :offset](paginators/offset.md)<br/>
-[:icon-list-ordered: :countless](paginators/countless.md)<br/>
-[:icon-list-ordered: :keynav_js](paginators/keynav_js)<br/>
-[:icon-infinity: :keyset](paginators/keyset.md)<br/>
-[:icon-calendar: :calendar](paginators/calendar.md)<br/>
-[:icon-search: :elasticsearch_rails](paginators/elasticsearch_rails.md)<br/>
-[:icon-search: :meilisearch](paginators/meilisearch.md)<br/>
-[:icon-search: :searchkick](paginators/searchkick.md)<br/>
 
 ===

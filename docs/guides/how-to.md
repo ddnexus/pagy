@@ -14,7 +14,7 @@ This page provides practical tips and examples to help you effectively use Pagy.
 
 You can also [ask the Pagy-trained AI](https://gurubase.io/g/pagy) for instant answers to questions not covered on this page.
 
-==- Choose the right pagination technique         
+==- Choose the right pagination technique
 
 [AI-powered answer](https://gurubase.io/g/pagy/choose-between-pagy-offset-countless-keyset)
 
@@ -52,7 +52,8 @@ You can customize the number and position of page links in the navigation bar us
 
 ==- Force the `:page`
 
-Pagy retrieves the page from the `'page'` request query hash. To force a specific page number, pass it directly to the `pagy` method. For example:
+Pagy retrieves the page from the `'page'` request query hash. To force a specific page number, pass it directly to the `pagy`
+method. For example:
 
 ```ruby controller
 @pagy, @records = pagy(:offset, collection, page: 3) # force page #3
@@ -75,32 +76,43 @@ You can also replace the `pagy.aria_label.nav` strings in the dictionary, as wel
 
 See [ARIA](../resources/ARIA.md).
 
-==- Customize the page and limit symbols
+==- Customize the page and limit URL keys
 
 By default, Pagy retrieves the page from the request query hash and generates URLs using the `"page"` key, e.g., `?page=3`.
 
-- Set `page_key: "your_key"` to customize URL generation, e.g., `?your_key=3`.
-- Set the `limit_key` to customize the `limit` param the same way.
+- Set `page_key: 'custom_page'` to customize URL generation, e.g., `?custom_page=3`.
+- Set the `:limit_key` to customize the `limit` param the same way.
 
 See [Common Options](../toolbox/paginators#common-options)
 
+==- Paginate with JSON:API nested URLs
+
+Enable `jsonapi: true`, optionally providing `:page_key` and `:limit_key`:
+
+```ruby
+# JSON:API nested query string: E.g.: ?page[number]=2&page[size]=100
+@pagy, @records = pagy(:offset, collection, jsonapi: true, page_key: 'number', limit_key: 'size' R)
+```
+
 ==- Customize the URL query
 
-See the [:query_tweak Option](../toolbox/paginators.md#common-options)
+See the [:querify Option](../toolbox/paginators.md#common-options)
 
 ==- Add a URL fragment
 
-You can use the [:fragment](../toolbox/methods.md#common-url-options) option.
+You can use the [:fragment](../toolbox/paginators.md#common-url-options) option.
 
 ==- Customize CSS styles
 
-Pagy includes a [stylesheet](../resources/stylesheet) (in different formats) for customization, as well as styled `nav` tags for `:bootstrap` and `:bulma`.
+Pagy includes a [stylesheet](../resources/stylesheet) (in different formats) for customization, as well as styled `nav` tags for
+`:bootstrap` and `:bulma`.
 
 You can also override the specific helper method.
 
 ==- Override CSS rules in element "style" attribute
 
-The `combo_nav_js_tag` and `limit_selector_js_tag` use inline style attributes. You can override these rules in your stylesheet files using the `[style]`
+The `combo_nav_js_tag` and `limit_selector_js_tag` use inline style attributes. You can override these rules in your stylesheet
+files using the `[style]`
 attribute selector and `!important`. Below is an example of overriding the `width` of an `input` element:
 
 ```css
@@ -140,7 +152,8 @@ Simply pass it as the collection to the [:offset](../toolbox/paginators/offset.m
 Pagy works seamlessly with `ActiveRecord` collections, but certain collections may require specific handling:
 
 - **Grouped collections**
-  - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginators/offset.md#options) option
+  - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginators/offset.md#options)
+    option
 - **Decorated collections**
   - Do it in two steps:
     1. Get the page of records without decoration
@@ -173,15 +186,6 @@ Explore the following options:
 - [:requestable_limit option](../toolbox/paginators#common-options)
 - [:jsonapi option](../toolbox/paginators#common-options)
 
-==- Paginate with JSON:API
-
-Enable `jsonapi: true`, optionally providing `:page_key` and `:limit_key`:
-
-```ruby
-# JSON:API nested query string: E.g.: ?page[number]=2&page[size]=100
-@pagy, @records = pagy(:offset, collection, jsonapi: true, page_key: 'number', limit_key: 'size'R)
-```
-
 ==- Paginate for Javascript Frameworks
 
 You can send selected `@pagy` instance data to the client as JSON using the [data_hash](../toolbox/methods/data_hash.md) helper,
@@ -205,15 +209,18 @@ quarter, month, week, day).
 When you need to paginate multiple collections in a single request, you need to explicitly differentiate the pagination objects.
 Here are some common methods to achieve this:
 
-##### Pass the request path
+##### Override the request path
+
 <br/>
 
-By default, Pagy generates links using the same `request_path` as the request. To generate links pointing to a different controller or path, explicitly pass the desired `:request_path`. For example:
+By default, Pagy generates links using the same path as the request path. To generate links pointing to a different controller or
+path, explicitly pass the desired `:path`. For example:
 
 ```rb
+
 def index
-  @pagy_foos, @foos = pagy(:offset, Foo.all, request_path: '/foos')
-  @pagy_bars, @bars = pagy(:offset, Bar.all, request_path: '/bars')
+  @pagy_foos, @foos = pagy(:offset, Foo.all, path: '/foos')
+  @pagy_bars, @bars = pagy(:offset, Bar.all, path: '/bars')
 end
 ```
 
@@ -234,18 +241,18 @@ independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_ta
 
 ```erb
   <-- movies/index.html.erb -->
-  
-  <-- movies#bad_movies -->
-  <%= turbo_frame_tag "bad_movies", src: bad_movies_path do %>    
-      <%= render "movies_table", locals: {movies: @movies}%>
-      <%== @pagy.nav_tag %>    
-  <% end %>
 
-  <-- movies#good_movies -->
-  <%= turbo_frame_tag "good_movies", src: good_movies_path  do %>    
-      <%= render "movies_table", locals: {movies: @movies}%>
-      <%== @pagy.nav_tag %>    
-  <% end %>   
+<-- movies#bad_movies -->
+<%= turbo_frame_tag "bad_movies", src: bad_movies_path do %>
+<%= render "movies_table", locals: {movies: @movies}%>
+<%== @pagy.nav_tag %>
+<% end %>
+
+<-- movies#good_movies -->
+<%= turbo_frame_tag "good_movies", src: good_movies_path  do %>
+<%= render "movies_table", locals: {movies: @movies}%>
+<%== @pagy.nav_tag %>
+<% end %>   
 ```
 
 ```rb
@@ -267,9 +274,7 @@ of the above logic.
 
 <br/>
 
-You can also
-paginate [multiple model in the same request](https://www.imaginarycloud.com/blog/how-to-paginate-ruby-on-rails-apps-with-pagy/)
-by simply using different `:page_key` for each instance:
+You can also paginate multiple model in the same request by simply using different `:page_key` for each instance:
 
 ```rb
 
@@ -286,7 +291,7 @@ See [:max_pages](../toolbox/paginators.md#common-options) option.
 ==- Paginate collections with metadata
 
 When your collection is already paginated and contains count and pagination metadata, you don't need any `pagy*` controller
-method. 
+method.
 
 For example this is a Tmdb API search result object, but you can apply the same principle to any other type of collection
 metadata:
@@ -348,8 +353,8 @@ deleted and a user went to a stale page.
 By default, Pagy doesn't raise any exceptions for requesting an out-of-range page. Instead, it does not retrieve any records and
 serves the UI navigators as usual, so the user can visit a different page.
 
-Sometimes you may want to take a diffrent action, so you can set the `raise_range_error: true` option, `rescue` it and do
-whatever fits your app better. For example:
+Sometimes you may want to take a diffrent action, so you can set the `raise_range_error: true` option, `rescue` it and do whatever
+fits your app better. For example:
 
 ```ruby controller
 rescue_from Pagy::RangeError, with: :redirect_to_last_page
@@ -405,13 +410,16 @@ pagy demo
 
 ==- Use Pagy with a non-rack app
 
-For non-rack environments that don't respond to the request method, you should pass the [:request](../toolbox/paginators.md#common-options) option to the paginator.
- 
+For non-rack environments that don't respond to the request method, you should pass
+the [:request](../toolbox/paginators.md#common-options) option to the paginator.
+
 ==- Use `pagy` outside of a controller or view
 
-The `pagy` method needs to set a few options that depend on the availability of the `self.request` method in the class/module where you included it.
+The `pagy` method needs to set a few options that depend on the availability of the `self.request` method in the class/module
+where you included it.
 
-For example, if you call the `pagy` method for a model (that included the `Pagy::Method`), it would almost certainly not have the `request` method available.
+For example, if you call the `pagy` method for a model (that included the `Pagy::Method`), it would almost certainly not have the
+`request` method available.
 
 The simplest way to make it work is as follows:
 
@@ -430,9 +438,11 @@ end
 
 ==- Handle POST requests (server side)
 
-You may need to POST a very complex search form and paginate the results. Pagy produces nav tags with GET links, so here is a simple way of handling it.
+You may need to POST a very complex search form and paginate the results. Pagy produces nav tags with GET links, so here is a
+simple way of handling it.
 
-You can start the process with your regular POST request and cache the filtering data on the server. Then, using the regular GET pagination cycle, pass only the cache key as a param (which avoids sending the actual filters back and forth).
+You can start the process with your regular POST request and cache the filtering data on the server. Then, using the regular GET
+pagination cycle, pass only the cache key as a param (which avoids sending the actual filters back and forth).
 
 Here is a conceptual example using the `session`:
 
@@ -440,19 +450,22 @@ Here is a conceptual example using the `session`:
 require 'digest'
 
 def filtered_action
-  options = {}
+  options         = {}
   if params[:filter_key] # already cached
-     filters = session[params[:filter_key]] 
-  else                   # first request
+    filters = session[params[:filter_key]]
+  else
+    # first request
     filters      = params[:filters]
     key          = Digest::SHA1.hexdigest(filters.sort.to_json)
     session[key] = filters
-    options[:query_tweak] = { filter_key: key } 
+
+    options[:querify] = ->(qh) { qh.merge!(filter_key: key) }
   end
   collection      = Product.where(**filters)
   @pagy, @records = pagy(:offset, collection, **options)
 end
 ```
+
 !!!success Notice: ensure a server-side storage
 
 If you use the `session` for caching, configure it to use `ActiveRecord`, `Redis`, or any server-side storage

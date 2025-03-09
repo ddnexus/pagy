@@ -16,9 +16,26 @@ The `@pagy` instance provides methods for every navigation tag and helper to use
 
 Its class is determined by the paginator used, but you can safely ignore it. Simply utilize its methods.
 
+!!!success The `@pagy` methods are autoloaded only if used!
+
+Unused code consumes no memory.
+!!!
+
+[:icon-list-unordered: data_hash](methods/data_hash.md)<br/>
+[:icon-list-unordered: headers_hash](methods/headers_hash.md)<br/>
+[:icon-list-unordered: links_hash](methods/links_hash.md)<br/>
+[:icon-arrow-right: page_url](methods/page_url.md)<br/>
+[:icon-code: nav_tag](methods/nav_tag.md)<br/>
+[:icon-code: nav_js_tag](methods/nav_js_tag)<br/>
+[:icon-code: combo_nav_js_tag](methods/combo_nav_js_tag.md)<br/>
+[:icon-code-square: info_tag](methods/info_tag.md)<br/>
+[:icon-code-square: limit_selector_js_tag](methods/limit_selector_js_tag.md)<br/>
+[:icon-code-square: a_tags](methods/a_tags.md)<br/>
+
+
 ==- Common Nav Styles
 
-- default
+- No arguments: default pagy style
 - `:bootstrap`
   - Set `classes: 'pagination any_class'` style option to override the default `'pagination'` class.
 - `:bulma`
@@ -43,30 +60,5 @@ Its class is determined by the paginator used, but you can safely ignore it. Sim
   ```
   !!!
   Refer to [ARIA](../resources/aria.md) for additional information.
-
-==- Common URL Options
-
-- `absolute: true`
-  - Makes the URL absolute.
-- `fragment: '#...'`
-  - URL fragment string. _(It must include the leding `"#"`!_)
-
-=== Methods
-
-!!!success The `pagy` methods are autoloaded only if used!
-
-Unused code consumes no memory.
-!!!
-
-[:icon-list-unordered: data_hash](methods/data_hash.md)<br/>
-[:icon-list-unordered: headers_hash](methods/headers_hash.md)<br/>
-[:icon-list-unordered: links_hash](methods/links_hash.md)<br/>
-[:icon-arrow-right: page_url](methods/page_url.md)<br/>
-[:icon-code: nav_tag](methods/nav_tag.md)<br/>
-[:icon-code: nav_js_tag](methods/nav_js_tag)<br/>
-[:icon-code: combo_nav_js_tag](methods/combo_nav_js_tag.md)<br/>
-[:icon-code-square: info_tag](methods/info_tag.md)<br/>
-[:icon-code-square: limit_selector_js_tag](methods/limit_selector_js_tag.md)<br/>
-[:icon-code-square: a_tags.md](methods/a_tags.md)<br/>
 
 ===

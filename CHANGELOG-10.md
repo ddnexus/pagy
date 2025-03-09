@@ -48,7 +48,7 @@ None
 
 ### Pagy 10: more with less!
 
-This version introduces a complete redesign of the legacy code.
+#### A complete redesign of the legacy code.
 
 - **New [Keynav](https://ddnexus.github.io/pagy/toolbox/paginator/keynav_js.md) Pagination**
   - The pagy-exclusive technique using [keyset](https://ddnexus.github.io/pagy/toolbox/paginator/keyset.md) pagination alongside
@@ -56,14 +56,17 @@ This version introduces a complete redesign of the legacy code.
 - **Method Autoloading**
   - Methods are autoloaded only if used, unused methods consume no memory.
 - **Intelligent automation**
-  - Configuration requirements reduced by 99%, simplified JavaScript setup and automatic I18n loading.
-- **Self-explaining API**
+  - [Configuration](https://ddnexus.github.io/pagy/toolbox/initializer.md) requirements reduced by 99%, simplified [JavaScript](https://ddnexus.github.io/pagy/resources/javascript.md)
+    setup and automatic [I18n]((https://ddnexus.github.io/pagy/resources/i18n.md)) loading.
+- **[Self-explaining API](#examples)**
   - Explicit and unambiguous renaming reduces the need to consult the documentation.
-- **New and simpler documentation**
+- **New and simpler [documentation](https://ddnexus.github.io/pagy/guides/quick_start.md)**
   - Very concise, straightforward, easy to navigate and understand.
 - **Simplified user interaction**
-  - You solely need the `pagy` method and the `@pagy` instance, to paginate any collection, and use any navigation tag and helper.
-- **Effortless overriding**
+  - You solely need the [pagy](https://ddnexus.github.io/pagy/toolbox/paginators.md) method and
+    the [@pagy](https://ddnexus.github.io/pagy/toolbox/methods.md) instance, to paginate any collection, and use any navigation
+    tag and helper.
+- **Effortless [overriding](https://ddnexus.github.io/pagy/guides/how_to.md#override-pagy-methods)**
   - The new methods have narrower scopes and can be overridden without deep knowledge.
 
 Take a look at the [Examples](https://github.com/ddnexus/pagy#examples) for a quick overview.
@@ -95,13 +98,22 @@ a long time**.
 
 #### Core changes
 
-- The `:params` variable/option has been replaced with the `:query_tweak` option. It has nothing to do with params anymore,
-  because it's a specific override, besides they have string keys and not symbol keys (for significant fewer conversions).
-  - If set to a lambda, ensure it directly modifies the passed `query_hash`. The returned value is now ignored for a slightly
-    better performance.
+- The `:params` variable/option has been removed and replaced with the `:querify` option, which is a `lambda` that can modify
+  the string-keyed queried hash at will. It is a bit more verbose, but it's a very powerful and efficient low-level modification,
+  solves an incompatibility with the old high level `:params` hash and improve performnce. It is part of
+  the [Common URL Options]((https://ddnexus.github.io/pagy/toolbox/paginators.md#common-url-options) group that gives you full and efficient control on the URL composition.
+  - Replace the existing `:params` hash with the lambda that merges them:
+    ```ruby
+    # Old symbol-keyed, high-level hash variable
+    params: { a: 1, b: 2 } 
+    # New string-keyed, low-level, direct modification of the query hash
+    querify: ->(q) { q.merge!('a' => 1, 'b' => 2) } 
+    # It also allows to do things like:
+    querify = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
+    ```
 - The `:page_param` and `:limit_param` have been replaced by `:page_key` and `:limit_key`, which are strings now, not symbols (for
   significant fewer conversions).
-- The `count_args` variable has been removed. Pagy will set it automatically.
+- The `count_args` variable has been removed. Pagy sets it automatically.
 - The `:outset` and `:cycle` variables have been removed.
   - They were seldom used, mostly useless, and implementing them in your own code is trivial.
 - The `:anchor_string` variable has been removed
@@ -280,10 +292,10 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 - Replace the `:url` variable with the `:request` option hash. For example:
 
   ```ruby
-  request: { base_url:     'http://www.example.com',
-             path:         '/path',
-             query_hash:   { 'param1' => 1234 }, # string-keyed hash
-             cookie:       'xyz' } # 'pagy' cookie, only for keynav  
+  request: { base_url: 'http://www.example.com',
+             path:     '/path',
+             queried:  { 'param1' => 1234 }, # The string-keyed hash queried from the request 
+             cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
   ```
   See [Use Pagy with a non-rack app](https://ddnexus.github.io/pagy/guides/how-to.md#use-pagy-with-a-non-rack-app)
 

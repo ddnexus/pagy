@@ -10,7 +10,7 @@
 # Pagy.options[:limit] = 10               # Limit the items per page
 # Pagy.options[:requestable_limit] = 100  # The client can request a limit up to 100
 # Pagy.options[:max_pages] = 200          # Allow only 200 pages
-# Pagy.options[:jsonapi] = true           # Use JSON:API compliant parameters and URLs
+# Pagy.options[:jsonapi] = true       # Use JSON:API compliant URLs
 
 
 ############ JavaScript ####################################################################

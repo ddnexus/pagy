@@ -18,7 +18,7 @@ describe 'pagy/helpers/url' do
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal 'http://example.com:3000/foo?page=5'
     end
     it 'renders url with params' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, query_tweak: { a: 3, b: 4 })
+      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, querify: ->(qh) { qh.merge!(a: 3, b: 4) })
       _(pagy.send(:compose_page_url, 5)).must_equal "/foo?page=5&a=3&b=4"
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal "http://example.com:3000/foo?page=5&a=3&b=4"
     end
@@ -28,21 +28,21 @@ describe 'pagy/helpers/url' do
       _(pagy.send(:compose_page_url, 6, absolute: true, fragment: '#fragment')).must_equal 'http://example.com:3000/foo?page=6#fragment'
     end
     it 'renders url with params and fragment' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, query_tweak: { a: 3, b: 4 })
+      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, querify: ->(qh) { qh.merge!(a: 3, b: 4) })
       _(pagy.send(:compose_page_url, 5, fragment: '#fragment')).must_equal "/foo?page=5&a=3&b=4#fragment"
       _(pagy.send(:compose_page_url, 5, absolute: true, fragment: '#fragment')).must_equal "http://example.com:3000/foo?page=5&a=3&b=4#fragment"
     end
     it 'renders url with overridden path' do
-      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, request_path: '/bar')
+      pagy, = app.send(:pagy, :offset, @collection, count: 1000, page: 3, path: '/bar')
       _(pagy.send(:compose_page_url, 5)).must_equal '/bar?page=5'
     end
     it 'renders url with overridden request' do
       pagy, = app.send(:pagy, :offset, @collection,
-                       count: 1000,
-                       page: 3,
-                       request: { base_url: 'http://example.com',
-                                  path: '/path',
-                                  query_hash: { 'a' => '1', 'b' => '2' } })
+                       count:   1000,
+                       page:    3,
+                       request: { base_url:   'http://example.com',
+                                  path:       '/path',
+                                  queried: { 'a' => '1', 'b' => '2' } })
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal 'http://example.com/path?a=1&b=2&page=5'
     end
   end
@@ -52,9 +52,9 @@ describe 'pagy/helpers/url' do
       app   = MockApp.new(params: { delete_me: 'delete_me', a: 5 })
       pagy, = app.send(:pagy, :offset,
                        @collection,
-                       count:  1000,
-                       page:   3,
-                       query_tweak: lambda do |params|
+                       count:       1000,
+                       page:        3,
+                       querify: lambda do |params|
                          params.delete('delete_me')
                          params.merge!('b' => 4, 'add_me' => 'add_me')
                        end)

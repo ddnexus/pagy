@@ -51,7 +51,7 @@ render json: @records
     # Note: You can also pass the `:header_names` option to the paginator 
     ```
     
-See also [Common URL Options](../methods#common-url-options)
+See also [Common URL Options](../paginators.md#common-url-options)
 
 ==- Suggestions
 <br/>

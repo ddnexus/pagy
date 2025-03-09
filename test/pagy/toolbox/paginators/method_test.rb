@@ -7,7 +7,7 @@ require_relative '../../../mock_helpers/app'
 
 describe 'paginators jsonapi' do
   before do
-    @collection = MockCollection.new
+    @collection   = MockCollection.new
     @pagy_default = { requestable_limit: 100, jsonapi: true }
   end
 

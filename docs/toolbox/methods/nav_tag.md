@@ -56,6 +56,6 @@ See [Common Nav Styles](../methods.md#common-nav-styles)
 - `compact: true`
   - Fill all the slots with contiguos pages, regardles the number of slots.
 
-See also other appicable options: [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../methods#common-url-options)
+See also other appicable options: [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators.md#common-url-options)
 
 ===

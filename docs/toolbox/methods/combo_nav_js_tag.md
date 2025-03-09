@@ -57,5 +57,5 @@ See [Common Nav Styles](../methods.md#common-nav-styles)
 
 ==- Options
 
-See [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../methods#common-url-options)
+See [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators.md#common-url-options)
 ===

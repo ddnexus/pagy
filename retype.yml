@@ -25,15 +25,15 @@ links:
     target: blank
   - text: Issues
     link: https://github.com/ddnexus/pagy/issues
-    icon: issue-opened-24
+    icon: issue-opened
     target: blank
   - text: Q&A
     link: https://github.com/ddnexus/pagy/discussions/categories/q-a
-    icon: comment-discussion-24
+    icon: comment-discussion
     target: blank
   - text: Discussions
     link: https://github.com/ddnexus/pagy/discussions
-    icon: comment-discussion-24
+    icon: comment-discussion
     target: blank
   - text: AI Search
     link: https://gurubase.io/g/pagy
