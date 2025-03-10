@@ -8,7 +8,7 @@ require_relative 'pagy/toolbox/methods/loader'
 
 # Top superclass: it defines only what's common to all the subclasses
 class Pagy
-  VERSION     = '9.3.4'
+  VERSION     = '10.0.0'
   ROOT        = Pathname.new(__dir__).parent.freeze
   DEFAULT     = { limit: 20, limit_key: 'limit', page_key: 'page' }.freeze
   PAGE_TOKEN  = 'P '

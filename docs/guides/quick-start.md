@@ -15,7 +15,7 @@ icon: rocket
 :icon-light-bulb: To prevent unexpected breaking changes, see [RubyGem Specifiers](http://guides.rubygems.org/patterns/#pessimistic-version-constraint):
 
 ```ruby Gemfile
-gem 'pagy', '~> 9.3' # omit the patch version
+gem 'pagy', '~> 10.0' # omit the patch version
 ```
 
 #### • Play with it directly...
