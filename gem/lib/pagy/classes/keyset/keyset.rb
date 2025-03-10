@@ -119,9 +119,9 @@ class Pagy
 
     # Extract the cutoff from the last record (only called if @more)
     def extract_cutoff
-      attr = keyset_attributes_from(@records.last)
-      @options[:pre_serialize]&.(attr)
-      attr.values
+      attributes = keyset_attributes_from(@records.last)
+      @options[:pre_serialize]&.(attributes)
+      attributes.values
     end
   end
 end

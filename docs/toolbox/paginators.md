@@ -95,7 +95,7 @@ These options control give you full control over the URL composition.
 - `path: '/custom_path'`
   - Overrides the request path in pagination URLs. Use the path only (not the absolute URL). _(see [Override the request path](../guides/how-to.md#paginate-multiple-independent-collections))_
 - `querify: tweak`
-  - Set it to a `Lambda` to directly edit the passed string-keyed query hash` itself. Its result is ignored.
+  - Set it to a `Lambda` to directly edit the passed string-keyed query hash itself. Its result is ignored.
     ```ruby
     tweak = ->(q) { q.except!('not_useful').merge!('custom' => 'useful') }
     ```

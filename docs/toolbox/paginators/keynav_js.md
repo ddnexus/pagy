@@ -14,10 +14,11 @@ categories:
 
 `:keynav_js` is a fast KEYSET paginator that supports the UI.
 
-- It provides **nearly complete** support for **most** navigation helpers, with the following limitations:
-  1. Nav bar links beyond the last or highest visited page are not displayed.
-  2. The `info_tag` helper is not supported.
-     :::
+!!! warning Caveat
+
+Nav bar links beyond the last or highest visited page are not displayed.
+!!!
+
 - It requires [JavaScript Support](../../resources/javascript.md) and a browser that implements `sessionStorage`.
   - If those conditions are not met, it falls back to the [:countless](countless.md) paginator seamlessly.
     :::

@@ -16,27 +16,35 @@ categories:
 
 !!!success :keyset
 
-- Works with:
+- **It works with:**
   - `ActiveRecord::Relation` or `Sequel::Dataset` sets
   - Single or multiple ordered columns
   - Any combination of order directions
-- Unlike the classic OFFSET pagination:
+- **Unlike the classic OFFSET pagination:**
   - Its performance is reliably fast from start to end, no matter how big your table is.
-  - It's completely accurate. Even with insertions or deletions during browsing, it will never repeat or
-    miss records.
+  - It's completely accurate. Even with insertions or deletions during browsing, it will never repeat or miss records.
   - Does not suffer from `RangeError`s
 !!!
 
-- It **does not** support ANY helpers nor UI components, only API or infinite scrolling.
+!!!warning It does not support `nav` helpers
 
-!!!success
+It's mostly used for API or infinite scrolling.
 
-Use the [:keynav_js](keynav_js.md) paginator for KEYSET pagination with almost complete UI support.
+!!!success For KEYSET pagination with UI support...
+
+Use the [:keynav_js](keynav_js.md) paginator.
 !!!
 
 ```ruby Controller
 @pagy, @records = pagy(:keyset, set, **options)
 ```
+
+```ERB
+<!-- The only supported helper -->
+<%== @pagy.next_a_tag(text: 'Next page &gt;') %>
+```
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#5-keyset-apps)
 
 ==- Glossary
 
@@ -53,7 +61,6 @@ There are a few peculiar aspects of the keyset pagination technique that you mig
 | `set`               | The `uniquely ordered` `ActiveRecord::Relation` or `Sequel::Dataset` collection to paginate.                                                                                                                                                                                                                                               |
 | `keyset`            | The hash of column/order pairs. Pagy extracts it from the order of the `set`.                                                                                                                                                                                                                                                              |
 | `keyset attributes` | The hash of attributes of the `keyset` columns of a record.                                                                                                                                                                                                                                                                                |
-| `keyset values`     | The `values` of the `keyset attributes`.                                                                                                                                                                                                                                                                                                   |
 | `cutoff`            | The value that identifies where the `page` ends, and the `next` one begins. It is encoded as a `Base64` URL-safe string.                                                                                                                                                                                                                   |
 | `page`              | The current `page`, i.e. the page of records beginning after the `cutoff` of the previous page. Also the `:page` option, which is set to the `cutoff` of the previous page                                                                                                                                                                 |
 | `next`              | The next `page`, i.e. the page of records beginning after the `cutoff`. Also the `cutoff` value retured by the `next` method.                                                                                                                                                                                                              |
@@ -79,7 +86,8 @@ You don't know the `previous` and the `last` page; you only know the `first` and
 
 !!!success
 
-If you want to paginate backward, like: `last` ... `prev` ... `prev`, just call `reverse_order` on your set, and proceed forward like:
+If you want to paginate backward, like: `last` ... `prev` ... `prev`, just call `reverse_order` on your set, and proceed forward
+like:
 `first` ... `next` ... `next` ... It does exactly the same: just faster and simpler.
 
 !!!
@@ -112,15 +120,21 @@ It is fast out of the box without any setup.
 
 ==- Options
 
-- `:keyset`
+- `keyset: {...}`
   - Set it only to force the `keyset` hash of column/order pairs. _(It is set automatically from the set order)_
-- `:tuple_comparison`
-  - Set it to `true` to enable the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction
-    order, hence, it's ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL`
+- `tuple_comparison: true`
+  - Enable the tuple comparison e.g. `(brand, id) > (:brand, :id)`. It works only with the same direction order, hence, it's
+    ignored for mixed order. Check how your DB supports it (your `keyset` should include only `NOT NULL`
     columns).
-- `:pre_serialize`
+- `pre_serialize: serialize`
   - Set it to a `lambda` that receives the `keyset_attributes` hash. Modify this hash directly to customize the serialization of
     specific values (e.g., to preserve `Time` object precision). The lambda's return value is ignored.
+    ```ruby 
+    serialize = lambda do |attributes|
+      # Convert it to a string matching the stored value/format in SQLite DB
+      attributes[:created_at] = attributes[:created_at].strftime('%F %T.%6N')
+    end
+    ```
 
 See also [Common Options](../paginators#common-options)
 
@@ -249,8 +263,8 @@ The generic `to_json` method used to encode the `page` may lose some information
 !!! Success
 
 - Ensure that the composite index reflects exactly the columns sequence and order of your keyset
-- Research your specific DB features, type of index, and performance for different ordering. Use SQL `EXPLAIN ANALYZE` or
-  similar tool to confirm.
+- Research your specific DB features, type of index, and performance for different ordering. Use SQL `EXPLAIN ANALYZE` or similar
+  tool to confirm.
 - Consider using the same direction order, enabling the `:tuple_comparison`, and changing type of index (different DBs may behave
   differently).
 - Consider overriding the `Keyset#compose_predicate` method.

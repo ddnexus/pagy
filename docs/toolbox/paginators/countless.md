@@ -12,16 +12,17 @@ categories:
 
 ---
 
-!!!warning Consider using the `:keynav_js` paginator when possible!
-
-The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the faster `keyset` pagination, making it particularly suitable for large, slow collection results.
-!!!
-
 `:countless` is an OFFSET paginator that avoids the `COUNT` query, reducing the number of queries per rendering by one.
 
-- It provides **nearly complete** support for **most** navigation helpers, with the following limitations:
-  1. Nav bar links beyond the last or highest visited page are not displayed.
-  2. The `info_tag` helper is not supported.
+!!!warning Consider using the `:keynav_js` paginator when possible!
+
+The [:keynav_js](keynav_js.md) offers identical UI features but utilizes the faster `keyset` pagination.
+!!!
+
+!!! warning Caveat
+
+Nav bar links beyond the last or highest visited page are not displayed.
+!!!
 
 ```ruby Controller 
 @pagy, @records = pagy(:countless, collection, **options)
