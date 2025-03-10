@@ -18,51 +18,49 @@
 
 VERSION = '9.3.4'
 
+if VERSION != Pagy::VERSION
+  Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
+end
+run_from_repo = Pagy::ROOT.join('pagy.gemspec').exist?
+
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
-gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
+gemfile(!run_from_repo) do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
   gem 'sinatra'
 end
 
-# Edit this section adding/removing the extras and Pagy::DEFAULT as needed
-# pagy initializer
-require 'pagy/extras/pagy'
-require 'pagy/extras/limit'
-require 'pagy/extras/overflow'
-Pagy::DEFAULT[:overflow] = :empty_page
-Pagy::DEFAULT.freeze
+# Edit this section adding the legacy as needed
+# Pagy initializer
+Pagy.options[:requestable_limit] = 100
 
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
 class PagyRepro < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
-  get('/javascripts/:file') do
+  get('/javascript/:file') do
     format = params[:file].split('.').last
     if format == 'js'
       content_type 'application/javascript'
     elsif format == 'map'
       content_type 'application/json'
     end
-    send_file Pagy.root.join('javascripts', params[:file])
+    send_file Pagy::ROOT.join('javascript', params[:file])
   end
 
   # Edit this action as needed
   get '/' do
     collection = MockCollection.new
     @pagy, @records = pagy(collection)
+    # @pagy, @records = pagy(:offset, collection, limit: 7, requestable_limit: 30)
+    # @pagy, @records = pagy(:countless, collection)
+    # @pagy, @records = pagy(Array(1..1000))
+    # response.headers.merge!(@pagy.headers_hash)
     erb :main
-  end
-
-  # Edit this section adding your own helpers as needed
-  helpers do
-    include Pagy::Frontend
   end
 
   # Views
@@ -73,7 +71,7 @@ class PagyRepro < Sinatra::Base
       <html>
       <head>
          <title>Pagy Repro App</title>
-        <script src="javascripts/pagy.min.js"></script>
+        <script src="javascript/pagy.js"></script>
         <script>
           window.addEventListener("load", Pagy.init);
         </script>
@@ -104,7 +102,7 @@ class PagyRepro < Sinatra::Base
             If you want to customize the style,
             please replace the line below with the actual file content
           */
-          <%= Pagy.root.join('stylesheets', 'pagy.css').read %>
+          <%= Pagy::ROOT.join('stylesheet/pagy.css').read %>
         </style>
       </head>
       <body>
@@ -133,24 +131,24 @@ class PagyRepro < Sinatra::Base
 
         <hr>
 
-        <h4>pagy_nav</h4>
-        <%= pagy_nav(@pagy, id: 'nav', aria_label: 'Pages nav') %>
+        <h4>pagy.nav_tag</h4>
+        <%= @pagy.nav_tag(id: 'nav', aria_label: 'Pages nav') %>
 
-        <h4>pagy_nav_js</h4>
-        <%= pagy_nav_js(@pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+        <h4>pagy.nav_js_tag</h4>
+        <%= @pagy.nav_js_tag(id: 'nav-js', aria_label: 'Pages nav_js') %>
 
-        <h4>pagy_nav_js</h4>
-        <%= pagy_nav_js(@pagy, id: 'nav-js-responsive', aria_label: 'Pages nav_js_responsove',
+        <h4>pagy.nav_js_tag</h4>
+        <%= @pagy.nav_js_tag(id: 'nav-js-responsive', aria_label: 'Pages nav_js_responsove',
            steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
 
-        <h4>pagy_combo_nav_js</h4>
-        <%= pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <h4>pagy.combo_nav_js_tag</h4>
+        <%= @pagy.combo_nav_js_tag(id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
 
-        <h4>pagy_limit_selector_js</h4>
-        <%= pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
+        <h4>pagy.limit_selector_js_tag</h4>
+        <%= @pagy.limit_selector_js_tag(id: 'limit-selector-js') %>
 
-        <h4>pagy_info</h4>
-        <%= pagy_info(@pagy, id: 'pagy-info') %>
+        <h4>pagy.info_tag</h4>
+        <%= @pagy.info_tag(id: 'pagy-info') %>
       </div>
     ERB
   end

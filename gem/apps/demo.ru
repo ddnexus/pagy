@@ -21,11 +21,13 @@
 
 VERSION = '9.3.4'
 
+if VERSION != Pagy::VERSION
+  Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
+end
+
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
-gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
+gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
@@ -34,69 +36,61 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # pagy initializer
-STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
-           bootstrap:   {},
-           bulma:       {},
-           tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css' } }.freeze
-
-STYLES.each_key do |style|
-  require "pagy/extras/#{STYLES[style][:extra] || style}"
-end
-require 'pagy/extras/limit'
-require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false         # opt-in trim
+NAMES = { pagy:      { css_anchor: 'pagy-scss' },
+          bootstrap: { style: :bootstrap },
+          bulma:     { style: :bulma },
+          tailwind:  { css_anchor: 'pagy-tailwind-css' } }.freeze
 
 # Sinatra setup
 require 'sinatra/base'
 
+# Pagy init
+Pagy.options[:requestable_limit] = 100
+
 # Sinatra application
 class PagyDemo < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   get '/' do
     redirect '/pagy'
   end
 
   get '/template' do
-    collection = MockCollection.new
-    @pagy, @records = pagy(collection, trim_extra: params['trim'])
+    collection      = MockCollection.new
+    @pagy, @records = pagy(:offset, collection)
 
-    erb :template, locals: { pagy: @pagy, style: 'pagy' }
+    erb :template, locals: { pagy: @pagy, name: 'pagy', css_anchor: 'pagy-scss' }
   end
 
-  get('/javascripts/:file') do
+  get('/javascript/:file') do
     format = params[:file].split('.').last
     if format == 'js'
       content_type 'application/javascript'
     elsif format == 'map'
       content_type 'application/json'
     end
-    send_file Pagy.root.join('javascripts', params[:file])
+    send_file Pagy::ROOT.join('javascript', params[:file])
   end
 
-  get('/stylesheets/:file') do
+  get('/stylesheet/:file') do
     content_type 'text/css'
-    send_file Pagy.root.join('stylesheets', params[:file])
+    send_file Pagy::ROOT.join('stylesheet', params[:file])
   end
 
   # One route/action per style
-  STYLES.each_key do |style|
-    prefix = STYLES[style][:prefix] || "_#{style}"
+  NAMES.each do |name, value|
+    get("/#{name}") do
+      collection      = MockCollection.new
+      @pagy, @records = pagy(:offset, collection)
 
-    get("/#{style}/?:trim?") do
-      collection = MockCollection.new
-      @pagy, @records = pagy(collection, trim_extra: params['trim'])
-
-      erb :helpers, locals: { style:, prefix: }
+      erb :helpers, locals: { name:, style: value[:style], css_anchor: value[:css_anchor] }
     end
   end
 
   helpers do
-    include Pagy::Frontend
-
     def style_menu
       html = +%(<div id="style-menu"> )
-      STYLES.each_key { |style| html << %(<a href="/#{style}">#{style}</a>) }
+      NAMES.each_key { |style| html << %(<a href="/#{style}">#{style}</a>) }
       html << %(<a href="/template">template</a>)
       html << %(</div>)
     end
@@ -110,7 +104,7 @@ class PagyDemo < Sinatra::Base
       formatter = Rouge::Formatters::HTMLInline.new('monokai.sublime')
       summary   = { html: 'Served HTML (pretty formatted)', erb: 'ERB Template' }
       %(<details><summary>#{summary[format]}</summary><pre>\n#{
-         formatter.format(lexer.lex(html))
+      formatter.format(lexer.lex(html))
       }</pre></details>)
     end
   end
@@ -122,12 +116,12 @@ class PagyDemo < Sinatra::Base
       <html lang="en">
       <head>
         <title>Pagy Demo App</title>
-        <script src="/javascripts/pagy.min.js"></script>
+        <script src="/javascript/pagy.js"></script>
         <script>
           window.addEventListener("load", Pagy.init);
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <%= erb :"#{style}_head" if defined?(style) %>
+        <%= erb :"#{name}_head" if defined?(name) %>
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;
@@ -186,7 +180,7 @@ class PagyDemo < Sinatra::Base
             color: white;
             background-color: rgb(30 30 30);
             padding: 1rem;
-            overflow: auto;
+            range_rescue: auto;
           }
           .content {
             padding: 0 1.5rem 2rem !important;
@@ -232,7 +226,7 @@ class PagyDemo < Sinatra::Base
   template :pagy_head do
     <<~ERB
       <!-- copy and paste the pagy style in order to edit it -->
-      <link rel="stylesheet" href="/stylesheets/pagy.css">
+      <link rel="stylesheet" href="/stylesheet/pagy.css">
     ERB
   end
 
@@ -253,64 +247,56 @@ class PagyDemo < Sinatra::Base
       <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
       <!-- copy and paste the pagy.tailwind style in order to edit it -->
       <style type="text/tailwindcss">
-        <%= Pagy.root.join('stylesheets', 'pagy.tailwind.css').read %>
+        <%= Pagy::ROOT.join('stylesheet/pagy.tailwind.css').read %>
       </style>
     ERB
   end
 
   template :helpers do
-    <<~'ERB'
-      <h1><%= style %></h1>
-      <% extra = STYLES[style][:extra] || "#{style}" %>
-      <% css_anchor = STYLES[style][:css_anchor] %>
+    <<~ERB
+      <h1><%= name %></h1>
 
-      <p class="description">See the <a href="http://ddnexus.github.io/pagy/docs/extras/<%= extra %>" target="blank"><%= extra %> extra</a>
-      documentation
       <% if css_anchor %>
-        and the <a href="http://ddnexus.github.io/pagy/docs/api/stylesheets/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
+        and the <a href="http://ddnexus.github.io/pagy/docs/api/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
       <% end %>
       for details</p>
 
       <h2>Collection</h2>
       <p id="records">@records: <%= @records.join(',') %></p>
 
-      <h2>pagy<%= prefix %>_nav <span class="notes">Simple nav <code>size: 5</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
+      <h2>pagy.nav_tag <span class="notes">Simple nav <code>size: 5</code></span></h2>
+      <%= html = @pagy.nav_tag(style, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
       <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
+      <h2>pagy.nav_tag <span class="notes">Fast nav <code>size: 7</code></span></h2>
+      <%= html = @pagy.nav_tag(style, id: 'nav', aria_label: 'Pages nav') %>
       <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav_js <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+      <h2>pagy.nav_js_tag <span class="notes">Fast nav <code>size: 7</code></span></h2>
+      <%= html = @pagy.nav_js_tag(style, id: 'nav-js', aria_label: 'Pages nav_js') %>
       <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav_js <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
-      <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
-           aria_label: 'Pages nav_js_responsive',
-           steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+      <h2>pagy.nav_js_tag <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
+      <%= html = @pagy.nav_js_tag(style, id: 'nav-js-responsive',
+                              aria_label: 'Pages nav_js_responsive',
+                              steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
       <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_combo_nav_js</h2>
-      <%= html = send(:"pagy#{prefix}_combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+      <h2>pagy.combo_nav_js_tag</h2>
+      <%= html = @pagy.combo_nav_js_tag(style, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
       <%= highlight(html) %>
 
-      <h2>pagy_info</h2>
-      <%= html = pagy_info(@pagy, id: 'pagy-info') %>
+      <h2>pagy.info_tag</h2>
+      <%= html = @pagy.info_tag(id: 'pagy-info') %>
       <%= highlight(html) %>
 
-      <% if style.match(/pagy|tailwind/) %>
-      <h2>pagy_limit_selector_js</h2>
-      <%= html = pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
+      <% if name&.match(/pagy|tailwind/) %>
+      <h2>pagy.limit_selector_js_tag</h2>
+      <%= html = @pagy.limit_selector_js_tag(id: 'limit-selector-js') %>
       <%= highlight(html) %>
 
-      <h2>pagy_prev_a / pagy_next_a</h2>
-      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << pagy_prev_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
-      <%= highlight(html) %>
-
-      <h2>pagy_prev_link / pagy_next_link <span class="notes">Link not rendered<span></h2>
-      <% html = '<head>' << (pagy_prev_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
+      <h2>pagy.previous_a_tag / pagy.next_a_tag</h2>
+      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_a_tag << @pagy.next_a_tag << '</nav>' %>
       <%= highlight(html) %>
       <% end %>
     ERB
@@ -341,19 +327,19 @@ class PagyDemo < Sinatra::Base
     <%# IMPORTANT: replace '<%=' with '<%==' if you run this in rails %>
 
     <%# The a variable below is set to a lambda that generates the a tag %>
-    <%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>
-    <% a = pagy_anchor(pagy) %>
+    <%# Usage: anchor_tag = a_lambda.(page_number, text, classes: nil, aria_label: nil) %>
+    <% a_lambda = pagy.send(:a_lambda) %>
     <nav class="pagy nav" aria-label="Pages">
       <%# Previous page link %>
-      <% if pagy.prev %>
-        <%= a.(pagy.prev, '&lt;', aria_label: 'Previous') %>
+      <% if pagy.previous %>
+        <%= a_lambda.(pagy.previous, '&lt;', aria_label: 'Previous') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
       <% end %>
       <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
-      <% pagy.series.each do |item| %>
+      <% pagy.send(:series).each do |item| %>
         <% if item.is_a?(Integer) %>
-          <%= a.(item) %>
+          <%= a_lambda.(item) %>
         <% elsif item.is_a?(String) %>
           <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
         <% elsif item == :gap %>
@@ -362,7 +348,7 @@ class PagyDemo < Sinatra::Base
       <% end %>
       <%# Next page link %>
       <% if pagy.next %>
-        <%= a.(pagy.next, '&gt;', aria_label: 'Next') %>
+        <%= a_lambda.(pagy.next, '&gt;', aria_label: 'Next') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
       <% end %>
@@ -405,12 +391,12 @@ class Formatter
       ## Handle incomplete same-tag nesting
       while block.scan(/<#{name}.*?>/).size > block.scan(tag_end).size
         more, rest = rest.split(tag_end, 2)
-        block << tag_end << more
+        block << (tag_end + more)
       end
       if (match = tag_start.match(DATA_PAGY))
         search, data = match.captures
-        formatted = data.scan(/.{1,76}/).join("\n")
-        replace = %(\n#{INDENT * (level + 1)}data-pagy="#{formatted}")
+        formatted    = data.scan(/.{1,76}/).join("\n")
+        replace      = %(\n#{INDENT * (level + 1)}data-pagy="#{formatted}")
         tag_start.sub!(search, replace)
       end
       if block.match(WRAPPER)
@@ -418,7 +404,7 @@ class Formatter
         process(block, level + 1)
         push.(tag_end)
       else
-        push.(tag_start << block << tag_end)
+        push.(tag_start << (block + tag_end))
       end
     end
     process(rest, level) if rest

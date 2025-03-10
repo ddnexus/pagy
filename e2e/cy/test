@@ -11,13 +11,13 @@ cd "$root/e2e"
 
 test () {
 	NODE_NO_WARNINGS=1 \
-	start-test "bundle exec $root/gem/bin/pagy $app -p $port -q --no-install > /dev/null" "http://0.0.0.0:$port" \
+	start-test "bundle exec $root/gem/bin/pagy $app -p $port -q > /dev/null" "http://0.0.0.0:$port" \
 	"cypress run --quiet --config baseUrl=http://0.0.0.0:$port --spec cypress/e2e/$app.cy.ts"
 }
 
 if [[ -z $app ]]
 then
-	for app in demo repro rails calendar
+	for app in demo repro rails calendar keynav
 	do
 		port=$((port+1))
 		test &

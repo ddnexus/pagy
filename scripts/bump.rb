@@ -41,7 +41,7 @@ commits.each do |commit|
   gitlog.puts body
 end
 # Abort if there is no gem change
-abort("No gem changes since version #{old_version}!") if gitlog.size.zero? # rubocop:disable Style/ZeroLengthPredicate
+abort("No gem changes since version #{old_version}!") if gitlog.size.zero? # rubocop:disable Style/ZeroLengthPredicate -- (bug)
 
 gitlog.close
 
@@ -81,7 +81,7 @@ replace_string_in_file('CHANGELOG.md', *["~> #{old_version}", "~> #{new_version}
 end
 
 # Bumps docs example
-replace_string_in_file('quick-start.md', *[old_version, new_version].map { |v| v.split('.')[0, 2].join('.') })
+replace_string_in_file('docs/guides/quick-start.md', *[old_version, new_version].map { |v| v.split('.')[0, 2].join('.') })
 
 # Build javascript files
 system(Scripty::ROOT.join('src/build').to_s)

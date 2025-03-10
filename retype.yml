@@ -2,20 +2,21 @@ serve:
   watch:
     mode: disk  # no more surprises with retype not copying download link files!
 
-input: .
+input: docs
 output: .retype
 url: https://ddnexus.github.io/pagy
 
 branding:
   title: Pagy
+  logo: assets/images/pagy-the-frog.png
   label: 9.3.4
   colors:
     label:
-      text: "#FFFFFF"
-      background: "#99004D"
+      text: "#ffffff"
+      background: "#1f7a1f"
 
 meta:
-  title: " | Pagy"
+  title: " 💚 Pagy"
 
 links:
   - text: GitHub
@@ -24,15 +25,15 @@ links:
     target: blank
   - text: Issues
     link: https://github.com/ddnexus/pagy/issues
-    icon: issue-opened-24
+    icon: issue-opened
     target: blank
   - text: Q&A
     link: https://github.com/ddnexus/pagy/discussions/categories/q-a
-    icon: comment-discussion-24
+    icon: comment-discussion
     target: blank
   - text: Discussions
     link: https://github.com/ddnexus/pagy/discussions
-    icon: comment-discussion-24
+    icon: comment-discussion
     target: blank
   - text: AI Search
     link: https://gurubase.io/g/pagy
@@ -57,4 +58,4 @@ search:
   mode: full
 
 footer:
-  copyright: "&copy; 2017-2024 [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"
+  copyright: "&copy; 2017-2025 [Domizio Demichelis](https://github.com/ddnexus) - [MIT License](https://opensource.org/licenses/MIT)"

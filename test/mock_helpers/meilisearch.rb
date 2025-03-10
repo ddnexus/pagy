@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pagy/extras/meilisearch'
-
 module MockMeilisearch
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
               'b' => ('b-1'..'b-1000').to_a }.freeze
@@ -25,10 +23,10 @@ module MockMeilisearch
   end
 
   class Model
-    def self.ms_search(*args)
-      Results.new(*args)
+    def self.ms_search(*)
+      Results.new(*)
     end
 
-    extend Pagy::Meilisearch
+    extend Pagy::Search
   end
 end

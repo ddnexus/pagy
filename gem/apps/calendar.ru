@@ -18,11 +18,13 @@
 
 VERSION = '9.3.4'
 
+if VERSION != Pagy::VERSION
+  Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
+end
+
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
-gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
+gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
   source 'https://rubygems.org'
   gem 'activerecord'
   gem 'activesupport'
@@ -33,15 +35,12 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # Pagy initializer
-require 'pagy/extras/calendar'
-require 'pagy/extras/bootstrap'
-Pagy::DEFAULT.freeze
 
 # Sinatra setup
 require 'sinatra/base'
 # Sinatra application
 class PagyCalendar < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   # This method must be implemented by the application.
   # It must return the starting and ending local Time objects array defining the calendar :period
@@ -76,21 +75,17 @@ class PagyCalendar < Sinatra::Base
     # so for this demo we use a different zone with utc_offset 0
     Time.zone = 'GMT'
     # Default calendar
-    # The conf Hash defines the pagy objects variables keyed by calendar unit and the final pagy standard object
-    # The :skip is an optional and arbitrarily named param that skips the calendar pagination and uses only the pagy
-    # object to paginate the unfiltered collection. (It's active by default even without a :skip param).
+    # The conf Hash defines the pagy objects options, keyed by calendar unit and the final pagy standard object
+    # The :disabled is an optional and arbitrarily named param that skips the calendar pagination and uses only the pagy
+    # object to paginate the unfiltered collection. (It's active by default even without a :disabled param).
     # You way want to invert the logic (also in the view) with something like `active: params[:active]`,
     # which would be inactive by default and only active on demand.
-    @calendar, @pagy, @events = pagy_calendar(Event.all,
-                                              year:   {},
-                                              month:  {},
-                                              day:    {},
-                                              active: !params[:skip])
+    @calendar, @pagy, @events = pagy(:calendar, Event.all,
+                                     year:     {},
+                                     month:    {},
+                                     day:      {},
+                                     disabled: params[:disabled])
     erb :main
-  end
-
-  helpers do
-    include Pagy::Frontend
   end
 
   # Views
@@ -138,7 +133,7 @@ class PagyCalendar < Sinatra::Base
       <div class="container">
         <h1>Pagy Calendar App</h1>
         <p>Self-contained, standalone app implementing nested calendar pagination for year, month, day units.</p>
-        <p>See the <a href="https://ddnexus.github.io/pagy/docs/extras/calendar">Pagy Calendar Extra</a> for details.</p>
+        <p>See the <a href="https://ddnexus.github.io/pagy/toolbox/paginators/calendar">Pagy Calendar</a> for details.</p>
         <p>Please, report the following versions in any new issue.</p>
         <h2>Versions</h2>
         <ul>
@@ -151,12 +146,12 @@ class PagyCalendar < Sinatra::Base
 
         <!-- calendar UI manual toggle -->
         <p>
-        <% if params[:skip] %>
+        <% if params[:disabled] %>
           <a id="toggle" href="/" >Show Calendar</a>
         <% else %>
-          <a id="toggle" href="?skip=true" >Hide Calendar</a>
+          <a id="toggle" href="?disabled=true" >Hide Calendar</a>
           <br>
-          <a id="go-to-day" href="<%= pagy_calendar_url_at(@calendar, Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
+          <a id="go-to-day" href="<%= @calendar.url_at(Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
           <!-- You can use Time.zone.now to find the current page if your time period include today -->
           <% end %>
         </p>
@@ -164,14 +159,14 @@ class PagyCalendar < Sinatra::Base
         <!-- calendar filtering navs -->
         <% if @calendar %>
           <p>Showtime: <%= @calendar.showtime %></p>
-          <%= pagy_bootstrap_nav(@calendar[:year], id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
-          <%= pagy_bootstrap_nav(@calendar[:month], id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
-          <%= pagy_bootstrap_nav(@calendar[:day], id: "day-nav", aria_label: "Days") %> <!-- day nav -->
+          <%= @calendar[:year].nav_tag(:bootstrap, id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
+          <%= @calendar[:month].nav_tag(:bootstrap, id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
+          <%= @calendar[:day].nav_tag(:bootstrap, id: "day-nav", aria_label: "Days") %> <!-- day nav -->
         <% end %>
 
         <!-- page info extended for the calendar unit -->
         <div class="alert alert-primary" role="alert">
-          <%= pagy_info(@pagy, id: 'pagy-info') %>
+          <%= @pagy.info_tag(id: 'pagy-info') %>
           <% if @calendar %>
             for <b><%= @calendar.showtime.strftime('%Y-%m-%d') %></b>
           <% end %>
@@ -184,8 +179,8 @@ class PagyCalendar < Sinatra::Base
           <% end %>
         </div>
 
-        <!-- standard pagination of the selected month -->
-        <p><%= pagy_bootstrap_nav(@pagy, id: 'pages-nav', aria_label: 'Pages') if @pagy.pages > 1 %><p/>
+        <!-- standard pagination of the last unit (month) -->
+        <p><%= @pagy.nav_tag(:bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.last > 1 %><p/>
       </div>
     ERB
   end

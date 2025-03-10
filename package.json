@@ -5,20 +5,24 @@
   "type": "module",
   "devDependencies": {
     "@cypress/snapshot": "^2.1.7",
-    "@types/node": "22.10.1",
-    "cypress": "13.16.0",
-    "cypress-html-validate": "6.1.0",
+    "@types/node": "22.12.0",
+    "cypress": "14.0.1",
+    "cypress-html-validate": "7.1.0",
     "eslint-plugin-cypress": "4.1.0",
     "eslint-plugin-promise": "7.2.1",
-    "html-validate": "8.27.0",
-    "start-server-and-test": "2.0.8",
-    "@eslint/js": "9.16.0",
+    "html-validate": "9.2.0",
+    "start-server-and-test": "2.0.10",
+    "@eslint/js": "9.19.0",
     "@types/eslint__js": "^8.42.3",
-    "eslint": "9.16.0",
+    "eslint": "9.19.0",
     "eslint-plugin-align-assignments": "^1.1.2",
     "retypeapp-linux-x64": "3.6.0",
-    "typescript": "5.7.2",
-    "typescript-eslint": "8.17.0"
+    "typescript": "5.7.3",
+    "typescript-eslint": "8.22.0"
+  },
+  "scripts": {
+    "e2e-lint": "eslint ./e2e",
+    "src-lint": "eslint ./src"
   },
   "workspaces": ["e2e"]
 }
