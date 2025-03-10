@@ -6,14 +6,10 @@
 - See the [Changelog](https://ddnexus.github.io/pagy/changelog) for possible breaking changes
 <!-- whats_new_end -->
 
-### Changes in 9.3.3
+### Changes in 9.3.4
 
 <!-- changes_start -->
-- Add test for locales - to find problematic keys (#752)
-- Update locales: zh-CN, zh-HK, zh-TW  (#751) (fix #608, fix #609, fix #610)
-  - Remove :other from :aria_label key and code comment
-  - Change :item_name which had :one_other keys to default to the :other key
-  - Fix comment
+- Fix method visibility in JsonApiExtra (#765)
 <!-- changes_end -->
 
 [CHANGELOG](https://ddnexus.github.io/pagy/changelog)
