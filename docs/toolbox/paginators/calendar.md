@@ -22,7 +22,7 @@ It enables cascade-filtering of the collection by time units _(year, quarter, mo
 
 ![calendar_app](/assets/images/calendar-app.png)
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#4-calendar-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#4-calendar-app)
 
 !!!success Use this paginator when most pages contain results.
 !!!

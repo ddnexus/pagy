@@ -19,7 +19,7 @@ categories:
 
 ![nav_tag (:bootstrap style)](/assets/images/bootstrap_nav.png){width=300}
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 !!!warning It works with all paginators but `:keyset`
 !!!
@@ -44,7 +44,7 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
 
 ==- Styles
 
-See [Common Nav Styles](../methods.md#common-nav-styles)
+See [Common Nav Styles](../methods#common-nav-styles)
 
 ==- Options
 
@@ -56,6 +56,6 @@ See [Common Nav Styles](../methods.md#common-nav-styles)
 - `compact: true`
   - Fill all the slots with contiguos pages, regardles the number of slots.
 
-See also other appicable options: [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators.md#common-url-options)
+See also other appicable options: [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators#common-url-options)
 
 ===

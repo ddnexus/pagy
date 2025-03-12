@@ -28,15 +28,15 @@ Increment the MAJOR version in your Gemfile ONLY when you are ready to handle th
 If you upgrade from version `< 10.0.0` see the following:
 
 - [Breaking changes in version 10.0.0](#version-1000)
-- [Breaking changes in version 9.0.0](CHANGELOG_LEGACY.md#version-900)
-- [Breaking changes in version 8.0.0](CHANGELOG_LEGACY.md#version-800)
-- [Breaking changes in version 7.0.0](CHANGELOG_LEGACY.md#version-700)
-- [Breaking changes in version 6.0.0](CHANGELOG_LEGACY.md#version-600)
-- [Breaking changes in version 5.0.0](CHANGELOG_LEGACY.md#version-500)
-- [Breaking changes in version 4.0.0](CHANGELOG_LEGACY.md#version-400)
-- [Breaking changes in version 3.0.0](CHANGELOG_LEGACY.md#version-300)
-- [Breaking changes in version 2.0.0](CHANGELOG_LEGACY.md#version-200)
-- [Breaking changes in version 1.0.0](CHANGELOG_LEGACY.md#version-100)
+- [Breaking changes in version 9.0.0](CHANGELOG_LEGACY#version-900)
+- [Breaking changes in version 8.0.0](CHANGELOG_LEGACY#version-800)
+- [Breaking changes in version 7.0.0](CHANGELOG_LEGACY#version-700)
+- [Breaking changes in version 6.0.0](CHANGELOG_LEGACY#version-600)
+- [Breaking changes in version 5.0.0](CHANGELOG_LEGACY#version-500)
+- [Breaking changes in version 4.0.0](CHANGELOG_LEGACY#version-400)
+- [Breaking changes in version 3.0.0](CHANGELOG_LEGACY#version-300)
+- [Breaking changes in version 2.0.0](CHANGELOG_LEGACY#version-200)
+- [Breaking changes in version 1.0.0](CHANGELOG_LEGACY#version-100)
 
 ## Deprecations
 
@@ -64,7 +64,7 @@ None
   - Explicit and unambiguous renaming reduces the need to consult the documentation.
 - **New and simpler [documentation](guides/quick-start.md)**
   - Very concise, straightforward, easy to navigate and understand.
-- **Effortless [overriding](guides/how-to.md#override-pagy-methods)**
+- **Effortless [overriding](guides/how-to#override-pagy-methods)**
   - The new methods have narrower scopes and can be overridden without deep knowledge.
 
 Take a look at the [Examples](https://github.com/ddnexus/pagy#examples) for a quick overview.
@@ -99,7 +99,7 @@ a long time**.
 - The `:params` variable/option has been removed and replaced with the `:querify` option, which is a `lambda` that can modify
   the string-keyed queried hash at will. It is a bit more verbose, but it's a very powerful and efficient low-level modification,
   solves an incompatibility with the old high level `:params` hash and improve performnce. It is part of
-  the [Common URL Options](toolbox/paginators.md#common-url-options) group that gives you full and efficient control on the URL composition.
+  the [Common URL Options](toolbox/paginators#common-url-options) group that gives you full and efficient control on the URL composition.
   - Replace the existing `:params` hash with the lambda that merges them:
     ```ruby
     # Old symbol-keyed, high-level hash variable
@@ -294,7 +294,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
              queried:  { 'param1' => 1234 }, # The string-keyed hash queried from the request 
              cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
   ```
-  See [Use Pagy with a non-rack app](guides/how-to.md#use-pagy-with-a-non-rack-app)
+  See [Use Pagy with a non-rack app](guides/how-to#use-pagy-with-a-non-rack-app)
 
 ##### `i18n`
 
@@ -324,7 +324,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 - Overriding methods in controllers/helpers is strongly discouraged.
 - The cleanest approach for local overriding is via Ruby refinements. For global overriding, use the `pagy.rb` initializer.
-- Check the [How To Override Pagy Method](guides/how-to.md#override-pagy-methods)
+- Check the [How To Override Pagy Method](guides/how-to#override-pagy-methods)
 - Additionally, internal Pagy protected methods have been extensively refactored, frequently renamed, and occasionally removed.
 - Reconcile internal overrides by reviewing the updated Pagy codebase.
 

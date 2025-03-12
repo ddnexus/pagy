@@ -45,6 +45,6 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
 
 ==- Options
 
-See [Common URL Options](../paginators.md#common-url-options)
+See [Common URL Options](../paginators#common-url-options)
 
 ===

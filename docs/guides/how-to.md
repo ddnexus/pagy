@@ -47,7 +47,7 @@ pagination bar.
 
 You can customize the number and position of page links in the navigation bar using:
 
-- The [:slots and :compact options](../toolbox/methods/nav_tag.md#options).
+- The [:slots and :compact options](../toolbox/methods/nav_tag#options).
 - Overriding the `series` method for full control over the pagination bar
 
 ==- Force the `:page`
@@ -96,11 +96,11 @@ Enable `jsonapi: true`, optionally providing `:page_key` and `:limit_key`:
 
 ==- Customize the URL query
 
-See the [:querify Option](../toolbox/paginators.md#common-options)
+See the [:querify Option](../toolbox/paginators#common-options)
 
 ==- Add a URL fragment
 
-You can use the [:fragment](../toolbox/paginators.md#common-url-options) option.
+You can use the [:fragment](../toolbox/paginators#common-url-options) option.
 
 ==- Customize CSS styles
 
@@ -152,7 +152,7 @@ Simply pass it as the collection: `pagy(:offset, my_array, **options)`
 Pagy works seamlessly with `ActiveRecord` collections, but certain collections may require specific handling:
 
 - **Grouped collections**
-  - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginators/offset.md#options)
+  - For better performance of grouped counts, you may want to use the [:count_over](../toolbox/paginators/offset#options)
     option
 - **Decorated collections**
   - Do it in two steps:
@@ -286,7 +286,7 @@ end
 
 ==- Paginate only max_pages, regardless the count
 
-See [:max_pages](../toolbox/paginators.md#common-options) option.
+See [:max_pages](../toolbox/paginators#common-options) option.
 
 ==- Paginate collections with metadata
 
@@ -411,7 +411,7 @@ pagy demo
 ==- Use Pagy with a non-rack app
 
 For non-rack environments that don't respond to the request method, you should pass
-the [:request](../toolbox/paginators.md#common-options) option to the paginator.
+the [:request](../toolbox/paginators#common-options) option to the paginator.
 
 ==- Use `pagy` outside of a controller or view
 

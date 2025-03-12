@@ -49,7 +49,7 @@ render json: { data: @records, pagy: pagy_hash }
     - `:to`
     - `:url_template`
 
-See also [Common URL Options](../paginators.md#common-url-options)
+See also [Common URL Options](../paginators#common-url-options)
 
 ==- Usage of `:url_template`
 

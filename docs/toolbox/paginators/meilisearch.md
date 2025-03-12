@@ -61,10 +61,10 @@ Search paginators don't query a DB, but use the same positional technique as [:o
 - `search_method: :my_search`
   - Allows customization of the search method name (default: `:ms_search`)
 
-See also [Offset Options](offset.md#options)
+See also [Offset Options](offset#options)
 
 ==- Readers
 
-See [Offset Readers](offset.md#readers)
+See [Offset Readers](offset#readers)
 
 ===

@@ -44,7 +44,7 @@ Use the [:keynav_js](keynav_js.md) paginator.
 <%== @pagy.next_a_tag(text: 'Next page &gt;') %>
 ```
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#5-keyset-apps)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#5-keyset-apps)
 
 ==- Glossary
 

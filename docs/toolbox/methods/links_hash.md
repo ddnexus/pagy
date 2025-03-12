@@ -24,6 +24,6 @@ link_hash = @pagy.links_hash(**options)
 
 ==- Options
 
-See [Common URL Options](../paginators.md#common-url-options)
+See [Common URL Options](../paginators#common-url-options)
 
 ===

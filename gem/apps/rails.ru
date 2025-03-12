@@ -112,7 +112,7 @@ class CommentsController < ActionController::Base # :nodoc:
   end
 end
 
-# You don't need this in real rails apps (see https://ddnexus.github.io/pagy/docs/api/javascript/setup/#2-configure)
+# You don't need this in real rails apps (see https://ddnexus.github.io/pagy/resources/javascript)
 class PagyController < ActionController::Base
   def javascript
     format = params[:file].split('.').last

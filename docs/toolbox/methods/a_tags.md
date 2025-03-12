@@ -51,6 +51,6 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
 - `aria_label: 'My Link'`
   - Override the default aria label string looked up in the dictionary
 
-See also [Common URL Options](../paginators.md#common-url-options)
+See also [Common URL Options](../paginators#common-url-options)
 
 ===

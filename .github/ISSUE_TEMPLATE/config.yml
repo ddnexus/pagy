@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: How To
-    url: https://ddnexus.github.io/pagy/docs/how-to/
+    url: https://ddnexus.github.io/pagy/guides/how-to/
     about: Quick recipes to get what you want from pagy
   - name: Pagy Q&A Discussions
     url: https://github.com/ddnexus/pagy/discussions/categories/q-a

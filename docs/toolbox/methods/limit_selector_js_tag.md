@@ -52,6 +52,6 @@ and might break in a next release.
 
 ==- Options
 
-See [Common URL Options](../paginators.md#common-url-options)
+See [Common URL Options](../paginators#common-url-options)
 
 ===

@@ -39,10 +39,10 @@ Nav bar links beyond the last or highest visited page are not displayed.
     - `@records` behaves like a standard collection.
     - The collection ends when `@records.size < @pagy.limit`.
 
-See also [Offset Options](offset.md#options)
+See also [Offset Options](offset#options)
 
 ==- Readers
 
-See [Offset Readers](offset.md#readers)
+See [Offset Readers](offset#readers)
 
 ===

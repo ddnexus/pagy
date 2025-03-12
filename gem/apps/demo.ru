@@ -257,7 +257,7 @@ class PagyDemo < Sinatra::Base
       <h1><%= name %></h1>
 
       <% if css_anchor %>
-        and the <a href="http://ddnexus.github.io/pagy/docs/api/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
+        and the <a href="http://ddnexus.github.io/pagy/resources/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
       <% end %>
       for details</p>
 

@@ -18,11 +18,11 @@ categories:
 `combo_nav_js_tag` combines navigation and pagination info in a single compact element.
 
 It is the fastest and lightest navigator, recommended when you care about efficiency and server load (
-see [Maximizing Performance](../../guides/how-to.md#maximize-performance)) still needing UI.
+see [Maximizing Performance](../../guides/how-to#maximize-performance)) still needing UI.
 
 ![combo_nav_js (:bootstrap style)](/assets/images/bootstrap_combo_nav_js.png)
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 !!!warning It works with all paginators but `:keyset`
 !!!
@@ -53,9 +53,9 @@ and might break in a next release.
 
 ==- Styles
 
-See [Common Nav Styles](../methods.md#common-nav-styles)
+See [Common Nav Styles](../methods#common-nav-styles)
 
 ==- Options
 
-See [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators.md#common-url-options)
+See [Common Nav Options](../methods#common-nav-options) and [Common URL Options](../paginators#common-url-options)
 ===

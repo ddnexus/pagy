@@ -30,7 +30,7 @@ Nav bar links beyond the last or highest visited page are not displayed.
 - `@pagy` is the pagination instance. It provides the [instance methods](../methods#methods) to use in your code.
 - `@records` is the eager-loaded `Array` of the page records.
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#5-keyset-apps)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#5-keyset-apps)
 
 !!!warning These documents integrate the [:keyset](keyset.md) documentation.
 
@@ -39,7 +39,7 @@ It's easier to understand if you familiarize with the [:keyset](keyset.md) docs.
 
 ==- Glossary
 
-Integrates the [Keyset Glossary](keyset.md#glossary)
+Integrates the [Keyset Glossary](keyset#glossary)
 
 { .compact }
 
@@ -55,11 +55,11 @@ The Keynav pagination adds the numeric variables (`@page`, `@last`, `@prev`, `@n
 with the UI. It does so by transparently exchanging data back and forth with the client, that stores the state of the pagination.
 
 You can use the `:keyset_js` paginator as you would use the [:countless paginator](countless.md). You just need
-the [Keyset Setup](keyset.md#setup) and [JavaScript Support](../../resources/javascript.md), to get a lot more performance.
+the [Keyset Setup](keyset#setup) and [JavaScript Support](../../resources/javascript.md), to get a lot more performance.
 
 ==- In-depth: Cutoffs Filtering
 
-Let's take a new look at the diagram of the keyset pagination explained in the [Keyset documentation](keyset.md#in-depth-cutoffs):
+Let's take a new look at the diagram of the keyset pagination explained in the [Keyset documentation](keyset#in-depth-cutoffs):
 
 ```
                   │ first page (10)  >│ second page (10) >│ last page (9)  >│

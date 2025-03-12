@@ -23,7 +23,7 @@ categories:
 
 ![Responsive nav_js_tag (:bootstrap style)](/assets/images/bootstrap_nav_js.png){width=500}
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground.md#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 !!!warning It works with all paginators but `:keyset`
 !!!
@@ -64,14 +64,14 @@ and might break in a next release.
 
 ==- Styles
 
-See [Common Nav Styles](../methods.md#common-nav-styles)
+See [Common Nav Styles](../methods#common-nav-styles)
 
 ==- Options
 
 - `steps: { 0 => 5, 540 => 7, 720 => 9 }`
   - Enable responsiveness. Assign different number of `:slots` to different tag widths.
 
-See also other applicabe options: [nav_tag Options](nav_tag.md#options)
+See also other applicabe options: [nav_tag Options](nav_tag#options)
 
 ==- In Depth: `:steps` Option
 

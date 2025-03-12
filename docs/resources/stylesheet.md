@@ -77,4 +77,4 @@ stylesheet_path = Pagy::ROOT.join('stylesheet/pagy.tailwind.css')
 
 +++
 
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../sandbox/playground.md#3-demo-app)
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../sandbox/playground#3-demo-app)

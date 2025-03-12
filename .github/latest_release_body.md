@@ -20,7 +20,7 @@
   - Explicit and unambiguous renaming reduces the need to consult the documentation.
 - **New and simpler [documentation](https://ddnexus.github.io/pagy/guides/quick_start.md)**
   - Very concise, straightforward, easy to navigate and understand.
-- **Effortless [overriding](https://ddnexus.github.io/pagy/guides/how_to.md#override-pagy-methods)**
+- **Effortless [overriding](https://ddnexus.github.io/pagy/guides/how_to#override-pagy-methods)**
   - The new methods have narrower scopes and can be overridden without deep knowledge.
 
 See the [CHANGELOG](https://ddnexus.github.io/pagy/changelog) for breaking changes
