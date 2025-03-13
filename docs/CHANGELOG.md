@@ -189,8 +189,8 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 | `pagy_limit_selector_js(@pagy, ...)` | `@pagy.limit_selector_js_tag(...)` |
 | `pagy_prev_url(@pagy, ...)`          | `@pagy.page_url(:previous, ...)`   |
 | `pagy_next_url(@pagy, ...)`          | `@pagy.page_url(:next, ...)`       |
-| `pagy_prev_a(@pagy, ...)`            | `@pagy.previous_a_tag(...)`        |
-| `pagy_next_a(@pagy, ...)`            | `@pagy.next_a_tag(...)`            |
+| `pagy_prev_a(@pagy, ...)`            | `@pagy.previous_tag(...)`        |
+| `pagy_next_a(@pagy, ...)`            | `@pagy.next_tag(...)`            |
 
 ##### `boostrap`, `bulma`
 

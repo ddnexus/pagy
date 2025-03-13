@@ -8,7 +8,7 @@ class Pagy
     return send(:"#{style}_nav_tag", **) if style
 
     a_lambda = a_lambda(**)
-    html     = previous_a_tag(a_lambda)
+    html     = previous_tag(a_lambda)
     series(**).each do |item|
       # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
       html << case item
@@ -22,7 +22,7 @@ class Pagy
                 raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
               end
     end
-    html << next_a_tag(a_lambda)
+    html << next_tag(a_lambda)
     wrap_nav(html, 'pagy nav', **)
   end
 end

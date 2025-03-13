@@ -30,7 +30,7 @@ Unused code consumes no memory.
 [:icon-code: combo_nav_js_tag](methods/combo_nav_js_tag.md)<br/>
 [:icon-code-square: info_tag](methods/info_tag.md)<br/>
 [:icon-code-square: limit_selector_js_tag](methods/limit_selector_js_tag.md)<br/>
-[:icon-code-square: a_tags](methods/a_tags.md)<br/>
+[:icon-code-square: link_tags](methods/link_tags.md)<br/>
 
 
 ==- Common Nav Styles

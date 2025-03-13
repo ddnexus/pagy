@@ -43,12 +43,12 @@ describe 'Pagy nav test' do
       end
     end
   end
-  describe 'previous_a_tag' do
-    tests_for(:previous_a_tag, [[1, 0], [3, 21], [6, 21], [50, 20]],
+  describe 'previous_tag' do
+    tests_for(:previous_tag, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'PREV', aria_label: 'My previous page')
   end
-  describe 'next_a_tag' do
-    tests_for(:next_a_tag, [[1, 0], [3, 21], [6, 21], [50, 20]],
+  describe 'next_tag' do
+    tests_for(:next_tag, [[1, 0], [3, 21], [6, 21], [50, 20]],
               text: 'NEXT', aria_label: 'My next page')
   end
 end

@@ -295,8 +295,8 @@ class PagyDemo < Sinatra::Base
       <%= html = @pagy.limit_selector_js_tag(id: 'limit-selector-js') %>
       <%= highlight(html) %>
 
-      <h2>pagy.previous_a_tag / pagy.next_a_tag</h2>
-      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_a_tag << @pagy.next_a_tag << '</nav>' %>
+      <h2>pagy.previous_tag / pagy.next_tag</h2>
+      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_tag << @pagy.next_tag << '</nav>' %>
       <%= highlight(html) %>
       <% end %>
     ERB

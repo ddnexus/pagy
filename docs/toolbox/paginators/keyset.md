@@ -41,7 +41,7 @@ Use the [:keynav_js](keynav_js.md) paginator.
 
 ```ERB
 <!-- The only supported helper -->
-<%== @pagy.next_a_tag(text: 'Next page &gt;') %>
+<%== @pagy.next_tag(text: 'Next page &gt;') %>
 ```
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#5-keyset-apps)
