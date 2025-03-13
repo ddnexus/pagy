@@ -264,38 +264,38 @@ class PagyDemo < Sinatra::Base
       <h2>Collection</h2>
       <p id="records">@records: <%= @records.join(',') %></p>
 
-      <h2>pagy.series_nav <span class="notes">Small nav <code>slots: 5</code></span></h2>
+      <h2>@pagy.series_nav <span class="notes">Small nav <code>slots: 5</code></span></h2>
       <%= html = @pagy.series_nav(style, id: 'small-nav', aria_label: 'Pages simple-nav', slots: 5) %>
       <%= highlight(html) %>
 
-      <h2>pagy.series_nav <span class="notes">Series nav <code>slots: 7</code></span></h2>
+      <h2>@pagy.series_nav <span class="notes">Series nav <code>slots: 7</code></span></h2>
       <%= html = @pagy.series_nav(style, id: 'series-nav', aria_label: 'Pages nav') %>
       <%= highlight(html) %>
 
-      <h2>pagy.series_nav_js <span class="notes">Series nav js <code>slots: 7</code></span></h2>
+      <h2>@pagy.series_nav_js <span class="notes">Series nav js <code>slots: 7</code></span></h2>
       <%= html = @pagy.series_nav_js(style, id: 'series-nav-js', aria_label: 'Pages nav_js') %>
       <%= highlight(html) %>
 
-      <h2>pagy.series_nav_js <span class="notes">Responsive nav <code>steps:  { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }</code> (Resize the window to see)</span></h2>
+      <h2>@pagy.series_nav_js <span class="notes">Responsive nav <code>steps:  { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }</code> (Resize the window to see)</span></h2>
       <%= html = @pagy.series_nav_js(style, id: 'series-nav-js-responsive',
                                      aria_label: 'Pages nav_js_responsive',
                                      steps:      { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
       <%= highlight(html) %>
 
-      <h2>pagy.input_nav_js</h2>
+      <h2>@pagy.input_nav_js</h2>
       <%= html = @pagy.input_nav_js(style, id: 'input-nav-js', aria_label: 'Pages combo_nav_js') %>
       <%= highlight(html) %>
 
-      <h2>pagy.info_tag</h2>
+      <h2>@pagy.info_tag</h2>
       <%= html = @pagy.info_tag(id: 'pagy-info') %>
       <%= highlight(html) %>
 
       <% if name&.match(/pagy|tailwind/) %>
-      <h2>pagy.limit_tag_js</h2>
+      <h2>@pagy.limit_tag_js</h2>
       <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
       <%= highlight(html) %>
 
-      <h2>pagy.previous_tag / pagy.next_tag</h2>
+      <h2>@pagy.previous_tag / @pagy.next_tag</h2>
       <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_tag << @pagy.next_tag << '</nav>' %>
       <%= highlight(html) %>
       <% end %>

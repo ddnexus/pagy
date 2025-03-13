@@ -115,7 +115,7 @@ a long time**.
 - The `:outset` and `:cycle` variables have been removed.
   - They were seldom used, mostly useless, and implementing them in your own code is trivial.
 - The `:anchor_string` variable has been removed
-  - It was only helpful for adding `data-remote="true"`, which is obsolete. Rails apps relying on it cannot run on Ruby 3.2, so cannot use thi version.
+  - It was only helpful for adding `data-remote="true"`, which is obsolete. Rails apps relying on it cannot run on Ruby 3.2, so they cannot use this version.
 - The `pagy_prev_link` and `pagy_next_link` have been removed: they were just useless.
 - Rename the `:size` variable to `slots`.
 - Replace the `ends` with `compact` (with opposite boolean)
@@ -176,7 +176,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `pagy`
 
-- All the old helpers are now `@pagy` instance methods with more explicit names (e.g. `_tag`)
+- All the old helpers are now `@pagy` instance methods with more explicit names.
 
 {.compact}
 
@@ -202,7 +202,6 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 - Replace `pagy_countless(...)` with `pagy(:countless, ...)`
 - Rename any existing `countless_minimal: true` to `headless: true`.
-- Leave all remaining elements unchanged.
 
 ##### `calendar`
 
@@ -220,7 +219,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 - Replace `pagy_<extra-name>(...)` with `pagy(:<extra-name>, ...)`.
 - **Active and passive modes are now handled by the same `pagy` method:**
-  - Replace any existing `Pagy.new_from_<extra-name>` with `pagy(:<extra-name>, ...)`.
+  - Replace any existing `Pagy.new_from_<extra-name>(...)` with `pagy(:<extra-name>, ...)`.
 - **Customization of the `pagy_search` method name has been discontinued:**
   - Remove any existing `:<extra-name>_pagy_search` variable from your code.
   - Replace custom method names with the standard `pagy_search` method.
@@ -258,7 +257,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 ##### `metadata`
 
-- Rename `pagy_metadata(@pagy, ...)` to `@pagy.data_hash(...)` (renamed to reflect its functionality and return value).
+- Rename `pagy_metadata(@pagy, ...)` to `@pagy.data_hash(...)` (renamed to reflect its functionality and returned value).
 - Rename any existing `:scaffold_url` to `url_template` (renamed to clarify that it is a template string).
 - Rename any existing `:metadata` option to `:data_keys` (renamed to specify that they correspond to data-identifying keys).
 - Pass the `:data_keys` option directly to the `data_hash` helper or the `pagy` method, depending on the context.
@@ -275,9 +274,9 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
     - The only difference is that there are no records/results to display.
     - The "previous page" button points to the last page, so if users truly want to see the last page results (which they have
       already seen), they can simply click the link.
-- **Summary**:
+- **Summary for keeping the same behavior**:
   - The `:overflow` variable is not used anymore.
-  - If you did not use any extra (i.e., Pagy raised errors), set `raise_range_error: true`.
+  - If you did not use the extra (i.e., Pagy raised errors), set `raise_range_error: true`.
   - If you used `overflow: :empty_page` or just required the overflow extra, simply remove it (this is now the default behavior).
   - If you used `overflow: :last_page` and still want this behavior despite the reasons above:
     - Set `raise_range_error: true`.
@@ -294,8 +293,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
              queried:  { 'param1' => 1234 }, # The string-keyed hash queried from the request 
              cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
   ```
-  See [Use Pagy with a non-rack app](guides/how-to#use-pagy-with-a-non-rack-app)
-
+  
 ##### `i18n`
 
 - If absolutely necessary, uncomment or add this line to your initializer: `Pagy.translate_with_the_slower_i18n_gem!`.
@@ -322,7 +320,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 #### Possibly Breaking Overridings
 
-- Overriding methods in controllers/helpers is strongly discouraged.
+- Overriding methods in controllers/helpers is not possible or discouraged.
 - The cleanest approach for local overriding is via Ruby refinements. For global overriding, use the `pagy.rb` initializer.
 - Check the [How To Override Pagy Method](guides/how-to#override-pagy-methods)
 - Additionally, internal Pagy protected methods have been extensively refactored, frequently renamed, and occasionally removed.
