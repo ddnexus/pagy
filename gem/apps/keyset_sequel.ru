@@ -43,7 +43,7 @@ class PagyKeysetSequel < Sinatra::Base
   get '/' do
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
     @pagy, @pets = pagy(:keyset, Pet.order(:animal, :name, Sequel.desc(:birthdate), :id),
-                        limit: 10, requestable_limit: 100)
+                        limit: 10, max_limit: 100)
     erb :main
   end
 

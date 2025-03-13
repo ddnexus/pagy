@@ -26,10 +26,10 @@ class Pagy
     def resolve_limit(options)
       limit_key = options[:limit_key] || DEFAULT[:limit_key]
       return options[:limit] || DEFAULT[:limit] \
-             unless options[:requestable_limit] &&
+             unless options[:max_limit] &&
                     (requested_limit = @jsonapi ? @queried['page'][limit_key] : @queried[limit_key])
 
-      [requested_limit.to_i, options[:requestable_limit]].min
+      [requested_limit.to_i, options[:max_limit]].min
     end
   end
 end

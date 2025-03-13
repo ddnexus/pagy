@@ -8,7 +8,7 @@ require_relative '../../../mock_helpers/app'
 describe 'paginators jsonapi' do
   before do
     @collection   = MockCollection.new
-    @pagy_default = { requestable_limit: 100, jsonapi: true }
+    @pagy_default = { max_limit: 100, jsonapi: true }
   end
 
   it 'raises PageParamError with page number' do
@@ -37,7 +37,7 @@ describe 'paginators jsonapi' do
       app = MockApp.new(params: { page: nil })
       pagy, _records = app.send(:pagy, :offset, @collection)
       _(pagy.send(:compose_page_url, 1)).must_equal '/foo?page=1'
-      pagy, _records = app.send(:pagy, :offset, @collection, requestable_limit: 100)
+      pagy, _records = app.send(:pagy, :offset, @collection, max_limit: 100)
       _(pagy.send(:compose_page_url, 1)).must_equal '/foo?page=1&limit=20'
     end
     it 'skips the :jsonapi with page:3' do

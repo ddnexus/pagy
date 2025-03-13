@@ -53,7 +53,7 @@ class PagyKeynav < Sinatra::Base
     Time.zone = 'UTC'
 
     @order       = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy(:keynav_js, Pet.order(@order), limit: 4, requestable_limit: 100)
+    @pagy, @pets = pagy(:keynav_js, Pet.order(@order), limit: 4, max_limit: 100)
     @ids         = @pets.pluck(:id)
     erb :main
   end

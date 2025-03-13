@@ -28,7 +28,7 @@ def test_limit_options_params(limit, options, params)
   end
 end
 
-describe 'requestable_limit' do
+describe 'max_limit' do
   let(:app) { MockApp.new }
   describe "controller_methods" do
     before do
@@ -42,13 +42,13 @@ describe 'requestable_limit' do
     end
     it 'uses the params' do
       limit  = 12
-      options   = { requestable_limit: 100 }
+      options   = { max_limit: 100 }
       params = { a: "a", page: 3, limit: limit }
       test_limit_options_params(limit, options, params)
     end
     it 'uses the params without page' do
       limit  = 12
-      options   = { requestable_limit: 100 }
+      options   = { max_limit: 100 }
       params = { a: "a", limit: limit }
       test_limit_options_params(limit, options, params)
     end
@@ -60,18 +60,18 @@ describe 'requestable_limit' do
     end
     it 'uses limit_key from options' do
       limit  = 14
-      options   = { requestable_limit: 100, limit_key: 'custom' }
+      options   = { max_limit: 100, limit_key: 'custom' }
       params = { a: "a", page: 3, limit_key: 'custom', custom: limit }
       test_limit_options_params(limit, options, params)
     end
     it 'uses limit_key from default' do
       limit  = 15
-      options   = { limit_key: 'custom', requestable_limit: 100 }
+      options   = { limit_key: 'custom', max_limit: 100 }
       params = { a: "a", page: 3, custom: 15 }
 
       test_limit_options_params(limit, options, params)
     end
-    it 'doesn\'t use the :requestable_limit' do
+    it 'doesn\'t use the :max_limit' do
       limit  = 20
       options   = {}
       params = { a: "a", page: 3, limit: 35 }
@@ -85,28 +85,28 @@ describe 'requestable_limit' do
       let(:request) { Pagy::Request.new(MockApp.new.request) }
 
       it 'renders basic url' do
-        pagy = Pagy::Offset.new(count: 1000, page: 3, requestable_limit: 100)
+        pagy = Pagy::Offset.new(count: 1000, page: 3, max_limit: 100)
         _(pagy.limit).must_equal 20
       end
       it 'renders basic url and limit var' do
-        pagy = Pagy::Offset.new(count: 1000, page: 3, limit: 50, requestable_limit: 100)
+        pagy = Pagy::Offset.new(count: 1000, page: 3, limit: 50, max_limit: 100)
         _(pagy.limit).must_equal 50
       end
       it 'renders url with limit_key' do
-        pagy = Pagy::Offset.new(count: 1000, page: 3, limit_key: 'custom', requestable_limit: 100, request:)
+        pagy = Pagy::Offset.new(count: 1000, page: 3, limit_key: 'custom', max_limit: 100, request:)
         _(pagy.send(:compose_page_url, 5)).must_equal '/foo?page=5&custom=20'
       end
       it 'renders url with fragment' do
-        pagy = Pagy::Offset.new(count: 1000, page: 3, requestable_limit: 100, request:)
+        pagy = Pagy::Offset.new(count: 1000, page: 3, max_limit: 100, request:)
         _(pagy.send(:compose_page_url, 6, fragment: '#fragment')).must_equal '/foo?page=6&limit=20#fragment'
       end
       it 'renders url with params and fragment' do
-        pagy = Pagy::Offset.new(count: 1000, page: 3, querify: ->(qh) { qh.merge!('a' => 3, 'b' => 4) }, limit: 40, requestable_limit: 100, request:)
+        pagy = Pagy::Offset.new(count: 1000, page: 3, querify: ->(qh) { qh.merge!('a' => 3, 'b' => 4) }, limit: 40, max_limit: 100, request:)
         _(pagy.send(:compose_page_url, 5, fragment: '#fragment')).must_equal "/foo?page=5&limit=40&a=3&b=4#fragment"
       end
     end
-    it 'renders or skips the output depending on requestable_limit' do
-      pagy, = app.send(:pagy, :offset, MockCollection.new, page: 3, requestable_limit: 100)
+    it 'renders or skips the output depending on max_limit' do
+      pagy, = app.send(:pagy, :offset, MockCollection.new, page: 3, max_limit: 100)
       _(pagy.limit_selector_js_tag).must_rematch :selector_1
       _(pagy.limit_selector_js_tag(id: 'test-id', item_name: 'products')).must_rematch :selector_2
       pagy, = app.send(:pagy, :offset, MockCollection.new, page: 3)

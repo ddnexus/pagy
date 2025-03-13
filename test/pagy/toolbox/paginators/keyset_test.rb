@@ -22,7 +22,7 @@ describe 'Keyset' do
         pagy, records = app.send(:pagy, :keyset,
                                  model.order(:id),
                                  tuple_comparison: true,
-                                 requestable_limit: 100)
+                                 max_limit: 100)
         _(records.first.id).must_equal 11
         _(pagy.next).must_equal "WzIwXQ"
       end
@@ -32,7 +32,7 @@ describe 'Keyset' do
         app = MockApp.new(params: { page: nil, limit: 10 })
         pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
-                                  requestable_limit: 100)
+                                  max_limit: 100)
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"
         _(pagy.page_url(:next)).must_equal "/foo?limit=10&page=WzEwXQ"
       end
@@ -40,7 +40,7 @@ describe 'Keyset' do
         app = MockApp.new(params: { page: "WzEwXQ", limit: 10 })
         pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
-                                  requestable_limit: 100)
+                                  max_limit: 100)
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"
         _(pagy.page_url(:next)).must_equal "/foo?limit=10&page=WzIwXQ"
       end
@@ -48,7 +48,7 @@ describe 'Keyset' do
         app = MockApp.new(params: { page: "WzQwXQ", limit: 10 })
         pagy, _records = app.send(:pagy, :keyset,
                                   model.order(:id),
-                                  requestable_limit: 100)
+                                  max_limit: 100)
         _(pagy.page_url(:first)).must_equal "/foo?limit=10"
         _(pagy.page_url(:next)).must_be_nil
       end

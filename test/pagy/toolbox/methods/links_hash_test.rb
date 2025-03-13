@@ -8,7 +8,7 @@ require_relative '../../../files/models'
 describe 'links_hash' do
   before do
     @collection = MockCollection.new
-    @pagy_default = { requestable_limit: 100, jsonapi: true }
+    @pagy_default = { max_limit: 100, jsonapi: true }
   end
 
   describe 'links_hash' do

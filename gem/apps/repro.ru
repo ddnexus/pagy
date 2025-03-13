@@ -34,7 +34,7 @@ end
 
 # Edit this section adding the legacy as needed
 # Pagy initializer
-Pagy.options[:requestable_limit] = 100
+Pagy.options[:max_limit] = 100
 
 # Sinatra setup
 require 'sinatra/base'
@@ -56,7 +56,7 @@ class PagyRepro < Sinatra::Base
   get '/' do
     collection = MockCollection.new
     @pagy, @records = pagy(collection)
-    # @pagy, @records = pagy(:offset, collection, limit: 7, requestable_limit: 30)
+    # @pagy, @records = pagy(:offset, collection, limit: 7, max_limit: 30)
     # @pagy, @records = pagy(:countless, collection)
     # @pagy, @records = pagy(Array(1..1000))
     # response.headers.merge!(@pagy.headers_hash)

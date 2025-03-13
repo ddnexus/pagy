@@ -253,8 +253,8 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 ##### `limit`
 
 - Rename the existing `:limit_param` to `:limit_key`.
-- Delete the existing `:limit_max` and `:limit_extra`.
-- Enable the feature by passing `requestable_limit: your_max_limit` option to the `pagy` method.
+- Delete the existing `:limit_extra`.
+- Enable the feature by passing `max_limit: your_max_limit` option to the `pagy` method.
 
 ##### `metadata`
 
