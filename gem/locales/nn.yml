@@ -20,5 +20,5 @@ nn:
       no_items: "Ingen %{item_name} funne"
       single_page: "Viser %{count} %{item_name}"
       multiple_pages: "Viser %{item_name} %{from}-%{to} av totalt %{count}"
-    combo_nav_js_tag: "Side %{page_input} av %{pages}"
-    limit_selector_js_tag: "Vis %{limit_input} %{item_name} per side"
+    input_nav_js: "Side %{page_input} av %{pages}"
+    limit_tag_js: "Vis %{limit_input} %{item_name} per side"

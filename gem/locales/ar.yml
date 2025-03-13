@@ -28,5 +28,5 @@ ar:
       no_items: "لا يوجد %{item_name}"
       single_page: "عرض %{count} %{item_name}"
       multiple_pages: "عرض %{item_name} %{from}-%{to} من اجمالي %{count}"
-    combo_nav_js_tag: "الصفحة %{page_input} من %{pages}"
-    limit_selector_js_tag: "عرض %{limit_input} %{item_name} لكل صفحة"
+    input_nav_js: "الصفحة %{page_input} من %{pages}"
+    limit_tag_js: "عرض %{limit_input} %{item_name} لكل صفحة"

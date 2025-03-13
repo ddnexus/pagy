@@ -2,23 +2,23 @@
 
 class Pagy
   module Loader
-    paths = { public:    { page_url:                   'page_url',
-                           data_hash:                  'data_hash',
-                           headers_hash:               'headers_hash',
-                           links_hash:                 'links_hash',
-                           next_tag:                   'link_tags',
-                           previous_tag:               'link_tags',
-                           combo_nav_js_tag:           'combo_nav_js_tag',
-                           info_tag:                   'info_tag',
-                           limit_selector_js_tag:      'limit_selector_js_tag',
-                           nav_tag:                    'nav_tag',
-                           nav_js_tag:                 'nav_js_tag' },
-              protected: { bootstrap_nav_tag:          'bootstrap/nav_tag',
-                           bootstrap_nav_js_tag:       'bootstrap/nav_js_tag',
-                           bootstrap_combo_nav_js_tag: 'bootstrap/combo_nav_js_tag',
-                           bulma_nav_tag:              'bulma/nav_tag',
-                           bulma_nav_js_tag:           'bulma/nav_js_tag',
-                           bulma_combo_nav_js_tag:     'bulma/combo_nav_js_tag' } }.freeze
+    paths = { public:    { page_url:              'page_url',
+                           data_hash:             'data_hash',
+                           headers_hash:          'headers_hash',
+                           links_hash:            'links_hash',
+                           next_tag:              'link_tags',
+                           previous_tag:          'link_tags',
+                           input_nav_js:      'input_nav_js',
+                           info_tag:              'info_tag',
+                           limit_tag_js: 'limit_tag_js',
+                           series_nav:            'series_nav',
+                           series_nav_js:            'series_nav_js' },
+              protected: { bootstrap_series_nav:       'bootstrap/series_nav',
+                           bootstrap_series_nav_js:    'bootstrap/series_nav_js',
+                           bootstrap_input_nav_js: 'bootstrap/input_nav_js',
+                           bulma_series_nav:           'bulma/series_nav',
+                           bulma_series_nav_js:        'bulma/series_nav_js',
+                           bulma_input_nav_js:     'bulma/input_nav_js' } }.freeze
 
     paths.each do |visibility, methods|
       send(visibility)

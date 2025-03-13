@@ -24,5 +24,5 @@ ta:
       no_items: "%{item_name} கிடைக்கவில்லை"
       single_page: "%{count} %{item_name} காட்டப்படுகின்றது"
       multiple_pages: "மொத்தம் %{count} %{item_name}, காட்டப்படுபவை %{from}-%{to}"
-    combo_nav_js_tag: "%{pages}-இல் %{page_input}-வது பக்கம்"
-    limit_selector_js_tag: "ஒரு பக்கத்திற்கு %{limit_input} %{item_name} காட்டு"
+    input_nav_js: "%{pages}-இல் %{page_input}-வது பக்கம்"
+    limit_tag_js: "ஒரு பக்கத்திற்கு %{limit_input} %{item_name} காட்டு"

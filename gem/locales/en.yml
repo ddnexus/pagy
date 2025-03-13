@@ -20,5 +20,5 @@ en:
       no_items: "No %{item_name} found"
       single_page: "Displaying %{count} %{item_name}"
       multiple_pages: "Displaying %{item_name} %{from}-%{to} of %{count} in total"
-    combo_nav_js_tag: "Page %{page_input} of %{pages}"
-    limit_selector_js_tag: "Show %{limit_input} %{item_name} per page"
+    input_nav_js: "Page %{page_input} of %{pages}"
+    limit_tag_js: "Show %{limit_input} %{item_name} per page"

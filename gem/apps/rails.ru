@@ -189,17 +189,17 @@ TEMPLATE = <<~ERB
         </div>
         <hr>
 
-        <h4>pagy.nav_tag</h4>
-        <%== @pagy.nav_tag(id: 'nav', aria_label: 'Pages nav') %>
+        <h4>pagy.series_nav</h4>
+        <%== @pagy.series_nav(id: 'series-nav', aria_label: 'Pages nav') %>
 
-        <h4>pagy.nav_js_tag</h4>
-        <%== @pagy.nav_js_tag(id: 'nav-js', aria_label: 'Pages nav_js') %>
+        <h4>pagy.series_nav_js</h4>
+        <%== @pagy.series_nav_js(id: 'series-nav-js', aria_label: 'Pages nav_js') %>
 
-        <h4>pagy.combo_nav_js_tag</h4>
-        <%== @pagy.combo_nav_js_tag(id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <h4>pagy.input_nav_js</h4>
+        <%== @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages combo_nav_js') %>
 
-        <h4>pagy.limit_selector_js_tag</h4>
-        <%== @pagy.limit_selector_js_tag(id: 'limit-selector-js') %>
+        <h4>pagy.limit_tag_js</h4>
+        <%== @pagy.limit_tag_js(id: 'limit-tag-js') %>
 
         <h4>pagy.info_tag</h4>
         <%== @pagy.info_tag(id: 'pagy-info') %>

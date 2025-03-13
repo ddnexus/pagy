@@ -122,9 +122,9 @@ search           = Product.pagy_search(params[:q])
 
 ```erb
 <!-- Render nav bar helpers with different styles -->
-<%== @pagy.nav_tag %> <!-- default style -->
-<%== @pagy.nav_tag(:bootstrap) %>
-<%== @pagy.nav_tag(:bulma) %>
+<%== @pagy.series_nav %> <!-- default style -->
+<%== @pagy.series_nav(:bootstrap) %>
+<%== @pagy.series_nav(:bulma) %>
 ```
 
 ##### Client side rendering
@@ -137,13 +137,13 @@ Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 
 ```erb
 <!-- Render client side nav bar helpers of different types and styles -->
-<%== @pagy.nav_js_tag %> <!-- default style -->
-<%== @pagy.nav_js_tag(:bootstrap) %>
-<%== @pagy.nav_js_tag(:bulma) %>
+<%== @pagy.series_nav_js %> <!-- default style -->
+<%== @pagy.series_nav_js(:bootstrap) %>
+<%== @pagy.series_nav_js(:bulma) %>
 
-<%== @pagy.combo_nav_js_tag %> <!-- default style -->
-<%== @pagy.combo_nav_js_tag(:bootstrap) %>
-<%== @pagy.combo_nav_js_tag(:bulma) %>
+<%== @pagy.input_nav_js %> <!-- default style -->
+<%== @pagy.input_nav_js(:bootstrap) %>
+<%== @pagy.input_nav_js(:bulma) %>
 ```
 
 ##### View helpers
@@ -155,12 +155,12 @@ Bootstrap styling example).
 
 | Helper Name                                                                                                                                                                                                                       | Preview (Bootstrap Style shown)                                  |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| [`@pagy.nav_tag`](https://ddnexus.github.io/pagy/toolbox/methods/nav_tag)                                                                                                                                                         | ![`nav_tag`](/assets/images/bootstrap_nav.png)                   |
-| [`@pagy.nav_js_tag`](https://ddnexus.github.io/pagy/toolbox/methods/nav_js_tag)                                                                                                                                                   | ![`pagy_nav_js`](/assets/images/bootstrap_nav_js.png)            |
-| [`@pagy.info_tag`](https://ddnexus.github.io/pagy/toolbox/methods/nav_js_tag)                                                                                                                                                     | ![`info_tag`](/assets/images/pagy_info.png)                      |
-| [`@pagy.combo_nav_js_tag`](https://ddnexus.github.io/toolbox/methods/combo_nav_js_tag)                                                                                                                                            | ![`combo_nav_js_tag`](/assets/images/bootstrap_combo_nav_js.png) |
-| [`@pagy.limit_selector_js_tag`](https://ddnexus.github.io/pagy/toolbox/methods/limit_seletor_js_tag)                                                                                                                              | ![`limit_selector_js_tag`](/assets/images/limit_selector_js.png) |
-| [`@calendar[:year].nav_tag`](https://ddnexus.github.io/toolbox/paginators/calendar)<br/>[`@calendar[:month].nav_tag`](https://ddnexus.github.io/pagy/toolbox/pginators/calendar/)<br/> (other units: `:quarter`, `:week`, `:day`) | ![calendar](/assets/images/calendar-app.png)                     |
+| [`@pagy.series_nav`](https://ddnexus.github.io/pagy/toolbox/methods/series_nav)                                                                                                                                                         | ![`series_nav`](/assets/images/bootstrap_nav.png)                   |
+| [`@pagy.series_nav_js`](https://ddnexus.github.io/pagy/toolbox/methods/series_nav_js)                                                                                                                                                   | ![`pagy_nav_js`](/assets/images/bootstrap_nav_js.png)            |
+| [`@pagy.info_tag`](https://ddnexus.github.io/pagy/toolbox/methods/series_nav_js)                                                                                                                                                     | ![`info_tag`](/assets/images/pagy_info.png)                      |
+| [`@pagy.input_nav_js`](https://ddnexus.github.io/toolbox/methods/input_nav_js)                                                                                                                                            | ![`input_nav_js`](/assets/images/bootstrap_combo_nav_js.png) |
+| [`@pagy.limit_tag_js`](https://ddnexus.github.io/pagy/toolbox/methods/limit_seletor_js_tag)                                                                                                                              | ![`limit_tag_js`](/assets/images/limit_selector_js.png) |
+| [`@calendar[:year].series_nav`](https://ddnexus.github.io/toolbox/paginators/calendar)<br/>[`@calendar[:month].series_nav`](https://ddnexus.github.io/pagy/toolbox/pginators/calendar/)<br/> (other units: `:quarter`, `:week`, `:day`) | ![calendar](/assets/images/calendar-app.png)                     |
 
 <br/>
 

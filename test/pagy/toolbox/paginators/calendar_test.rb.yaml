@@ -1,17 +1,11 @@
 ---
-calendar__Counts_feature_test_0003_works_with_anchor_string:
-  :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" title="Displaying
-    50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1" title="Displaying
-    50 items">2021</a><a role="link" aria-disabled="true" aria-current="page" class="current">2022</a><a
-    href="/foo?year_page=3" title="Displaying 220 items">2023</a><a href="/foo?year_page=3"
-    title="Displaying 220 items" aria-label="Next">&gt;</a></nav>
 calendar__Counts_feature_test_0001_works_with_MockApp__CalendarCounts:
-  :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" title="Displaying
-    50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1" title="Displaying
-    50 items">2021</a><a role="link" aria-disabled="true" aria-current="page" class="current">2022</a><a
-    href="/foo?year_page=3" title="Displaying 220 items">2023</a><a href="/foo?year_page=3"
-    title="Displaying 220 items" aria-label="Next">&gt;</a></nav>
-  :month: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=2&month_page=6"
+  :year: <nav class="pagy series-nav" aria-label="Pages"><a href="/foo?year_page=1"
+    title="Displaying 50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1"
+    title="Displaying 50 items">2021</a><a role="link" aria-disabled="true" aria-current="page"
+    class="current">2022</a><a href="/foo?year_page=3" title="Displaying 220 items">2023</a><a
+    href="/foo?year_page=3" title="Displaying 220 items" aria-label="Next">&gt;</a></nav>
+  :month: <nav class="pagy series-nav" aria-label="Pages"><a href="/foo?year_page=2&month_page=6"
     title="Displaying 19 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=2&month_page=1"
     title="Displaying 18 items">Jan</a><a href="/foo?year_page=2&month_page=2" title="Displaying
     17 items">Feb</a><a href="/foo?year_page=2&month_page=3" title="Displaying 20
@@ -24,7 +18,7 @@ calendar__Counts_feature_test_0001_works_with_MockApp__CalendarCounts:
     href="/foo?year_page=2&month_page=11" title="Displaying 18 items">Nov</a><a href="/foo?year_page=2&month_page=12"
     title="Displaying 20 items">Dec</a><a href="/foo?year_page=2&month_page=8" title="Displaying
     20 items" aria-label="Next">&gt;</a></nav>
-  :day: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=2&month_page=7&day_page=3"
+  :day: <nav class="pagy series-nav" aria-label="Pages"><a href="/foo?year_page=2&month_page=7&day_page=3"
     title="No items found" class="empty-page" aria-label="Previous">&lt;</a><a href="/foo?year_page=2&month_page=7&day_page=1"
     title="Displaying 1 item">01</a><a href="/foo?year_page=2&month_page=7&day_page=2"
     title="Displaying 1 item">02</a><a href="/foo?year_page=2&month_page=7&day_page=3"
@@ -59,11 +53,11 @@ calendar__Counts_feature_test_0001_works_with_MockApp__CalendarCounts:
     title="Displaying 1 item">31</a><a href="/foo?year_page=2&month_page=7&day_page=5"
     title="Displaying 2 items" aria-label="Next">&gt;</a></nav>
 calendar__Counts_feature_test_0002_works_with_MockApp__CalendarCountsSkip:
-  :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" aria-label="Previous">&lt;</a><a
-    href="/foo?year_page=1">2021</a><a role="link" aria-disabled="true" aria-current="page"
-    class="current">2022</a><a href="/foo?year_page=3">2023</a><a href="/foo?year_page=3"
-    aria-label="Next">&gt;</a></nav>
-  :month: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=2&month_page=6"
+  :year: <nav class="pagy series-nav" aria-label="Pages"><a href="/foo?year_page=1"
+    aria-label="Previous">&lt;</a><a href="/foo?year_page=1">2021</a><a role="link"
+    aria-disabled="true" aria-current="page" class="current">2022</a><a href="/foo?year_page=3">2023</a><a
+    href="/foo?year_page=3" aria-label="Next">&gt;</a></nav>
+  :month: <nav class="pagy series-nav" aria-label="Pages"><a href="/foo?year_page=2&month_page=6"
     aria-label="Previous">&lt;</a><a href="/foo?year_page=2&month_page=1">Jan</a><a
     href="/foo?year_page=2&month_page=2">Feb</a><a href="/foo?year_page=2&month_page=3">Mar</a><a
     href="/foo?year_page=2&month_page=4">Apr</a><a href="/foo?year_page=2&month_page=5">May</a><a
@@ -72,7 +66,7 @@ calendar__Counts_feature_test_0002_works_with_MockApp__CalendarCountsSkip:
     href="/foo?year_page=2&month_page=9">Sep</a><a href="/foo?year_page=2&month_page=10">Oct</a><a
     href="/foo?year_page=2&month_page=11">Nov</a><a href="/foo?year_page=2&month_page=12">Dec</a><a
     href="/foo?year_page=2&month_page=8" aria-label="Next">&gt;</a></nav>
-  :day: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=2&month_page=7&day_page=3"
+  :day: <nav class="pagy series-nav" aria-label="Pages"><a href="/foo?year_page=2&month_page=7&day_page=3"
     aria-label="Previous">&lt;</a><a href="/foo?year_page=2&month_page=7&day_page=1">01</a><a
     href="/foo?year_page=2&month_page=7&day_page=2">02</a><a href="/foo?year_page=2&month_page=7&day_page=3">03</a><a
     role="link" aria-disabled="true" aria-current="page" class="current">04</a><a
@@ -91,11 +85,80 @@ calendar__Counts_feature_test_0002_works_with_MockApp__CalendarCountsSkip:
     href="/foo?year_page=2&month_page=7&day_page=29">29</a><a href="/foo?year_page=2&month_page=7&day_page=30">30</a><a
     href="/foo?year_page=2&month_page=7&day_page=31">31</a><a href="/foo?year_page=2&month_page=7&day_page=5"
     aria-label="Next">&gt;</a></nav>
-calendar__instance_methods_test_0011_selects__week_for_the_first_page:
+calendar__instance_methods_test_0005_selects__quarter_for_the_first_page:
   :entries:
   - 2021-10-21 13:18:23.000000000 Z
   - 2021-10-21 23:14:50.000000000 Z
   - 2021-10-23 01:06:02.000000000 Z
+  - 2021-10-25 18:54:35.000000000 Z
+  - 2021-10-26 02:22:17.000000000 Z
+  - 2021-10-28 22:59:49.000000000 Z
+  - 2021-10-30 15:02:25.000000000 Z
+  - 2021-11-02 04:03:39.000000000 Z
+  - 2021-11-04 22:41:23.000000000 Z
+  - 2021-11-06 00:34:29.000000000 Z
+  - 2021-11-06 23:56:16.000000000 Z
+  - 2021-11-07 06:22:04.000000000 Z
+  - 2021-11-07 19:46:08.000000000 Z
+  - 2021-11-08 09:31:13.000000000 Z
+  - 2021-11-09 17:22:03.000000000 Z
+  - 2021-11-11 05:29:54.000000000 Z
+  - 2021-11-13 09:41:04.000000000 Z
+  - 2021-11-16 07:48:22.000000000 Z
+  - 2021-11-16 12:43:44.000000000 Z
+  - 2021-11-17 16:03:07.000000000 Z
+  - 2021-11-20 02:39:01.000000000 Z
+  - 2021-11-21 02:01:24.000000000 Z
+  - 2021-11-23 19:24:43.000000000 Z
+  - 2021-11-26 11:47:22.000000000 Z
+  - 2021-11-28 06:30:04.000000000 Z
+  - 2021-12-01 00:13:55.000000000 Z
+  - 2021-12-03 19:10:16.000000000 Z
+  - 2021-12-04 00:43:47.000000000 Z
+  - 2021-12-06 20:15:35.000000000 Z
+  - 2021-12-09 16:27:07.000000000 Z
+  - 2021-12-10 15:28:48.000000000 Z
+  - 2021-12-10 23:08:16.000000000 Z
+  - 2021-12-11 23:09:08.000000000 Z
+  - 2021-12-14 04:56:58.000000000 Z
+  - 2021-12-14 14:00:56.000000000 Z
+  - 2021-12-15 22:58:51.000000000 Z
+  - 2021-12-16 01:28:21.000000000 Z
+  - 2021-12-16 20:16:54.000000000 Z
+  - 2021-12-19 00:34:04.000000000 Z
+  - 2021-12-19 06:58:41.000000000 Z
+  - 2021-12-21 11:13:53.000000000 Z
+  - 2021-12-23 07:28:50.000000000 Z
+  - 2021-12-23 07:57:58.000000000 Z
+  - 2021-12-23 18:32:13.000000000 Z
+  - 2021-12-24 01:17:51.000000000 Z
+  - 2021-12-25 05:36:16.000000000 Z
+  - 2021-12-25 23:21:57.000000000 Z
+  - 2021-12-27 12:18:57.000000000 Z
+  - 2021-12-28 16:59:57.000000000 Z
+  - 2021-12-31 15:10:23.000000000 Z
+calendar__instance_methods_test_0012_selects__week_for_an_intermediate_page:
+  :entries:
+  - 2022-04-03 18:27:19.000000000 Z
+  - 2022-04-03 23:44:08.000000000 Z
+  - 2022-04-06 10:59:32.000000000 Z
+  - 2022-04-07 01:33:53.000000000 Z
+  - 2022-04-08 10:26:34.000000000 Z
+calendar__instance_methods_test_0013_selects__week_for_the_last_page:
+  :entries:
+  - 2023-11-12 01:20:18.000000000 Z
+  - 2023-11-12 04:22:50.000000000 Z
+  - 2023-11-12 08:38:58.000000000 Z
+  - 2023-11-13 15:43:40.000000000 Z
+calendar__instance_methods_test_0008_selects__month_for_the_first_page:
+  :entries:
+  - 2021-10-21 13:18:23.000000000 Z
+  - 2021-10-21 23:14:50.000000000 Z
+  - 2021-10-23 01:06:02.000000000 Z
+  - 2021-10-25 18:54:35.000000000 Z
+  - 2021-10-26 02:22:17.000000000 Z
+  - 2021-10-28 22:59:49.000000000 Z
+  - 2021-10-30 15:02:25.000000000 Z
 calendar__instance_methods_test_0017_runs_multiple_units:
   :entries:
   - 2022-07-16 15:40:39.000000000 Z
@@ -108,6 +171,85 @@ calendar__instance_methods_test_0017_runs_multiple_units:
   - 2022-07-25 07:21:20.000000000 Z
   - 2022-07-27 12:02:44.000000000 Z
   - 2022-07-29 03:29:28.000000000 Z
+calendar__instance_methods_test_0009_selects__month_for_an_intermediate_page:
+  :entries:
+  - 2023-10-01 11:54:24.000000000 Z
+  - 2023-10-03 07:36:32.000000000 Z
+  - 2023-10-05 05:13:57.000000000 Z
+  - 2023-10-06 16:07:06.000000000 Z
+  - 2023-10-09 00:03:52.000000000 Z
+  - 2023-10-09 02:32:01.000000000 Z
+  - 2023-10-10 16:39:07.000000000 Z
+  - 2023-10-12 13:28:16.000000000 Z
+  - 2023-10-14 04:29:14.000000000 Z
+  - 2023-10-17 03:30:24.000000000 Z
+  - 2023-10-20 03:13:15.000000000 Z
+  - 2023-10-20 20:47:06.000000000 Z
+  - 2023-10-21 13:59:34.000000000 Z
+  - 2023-10-23 21:38:48.000000000 Z
+  - 2023-10-24 06:07:13.000000000 Z
+  - 2023-10-25 22:51:17.000000000 Z
+  - 2023-10-26 21:12:50.000000000 Z
+  - 2023-10-28 05:52:20.000000000 Z
+  - 2023-10-29 22:11:01.000000000 Z
+  - 2023-10-30 12:29:25.000000000 Z
+calendar__instance_methods_test_0011_selects__week_for_the_first_page:
+  :entries:
+  - 2021-10-21 13:18:23.000000000 Z
+  - 2021-10-21 23:14:50.000000000 Z
+  - 2021-10-23 01:06:02.000000000 Z
+calendar__instance_methods_test_0014_selects__day_for_the_first_page:
+  :entries:
+  - 2021-10-21 13:18:23.000000000 Z
+  - 2021-10-21 23:14:50.000000000 Z
+calendar__instance_methods_test_0016_selects__day_for_the_last_page:
+  :entries:
+  - 2021-12-19 00:34:04.000000000 Z
+  - 2021-12-19 06:58:41.000000000 Z
+calendar__instance_methods_test_0007_selects__quarter_for_last_page:
+  :entries:
+  - 2023-10-01 11:54:24.000000000 Z
+  - 2023-10-03 07:36:32.000000000 Z
+  - 2023-10-05 05:13:57.000000000 Z
+  - 2023-10-06 16:07:06.000000000 Z
+  - 2023-10-09 00:03:52.000000000 Z
+  - 2023-10-09 02:32:01.000000000 Z
+  - 2023-10-10 16:39:07.000000000 Z
+  - 2023-10-12 13:28:16.000000000 Z
+  - 2023-10-14 04:29:14.000000000 Z
+  - 2023-10-17 03:30:24.000000000 Z
+  - 2023-10-20 03:13:15.000000000 Z
+  - 2023-10-20 20:47:06.000000000 Z
+  - 2023-10-21 13:59:34.000000000 Z
+  - 2023-10-23 21:38:48.000000000 Z
+  - 2023-10-24 06:07:13.000000000 Z
+  - 2023-10-25 22:51:17.000000000 Z
+  - 2023-10-26 21:12:50.000000000 Z
+  - 2023-10-28 05:52:20.000000000 Z
+  - 2023-10-29 22:11:01.000000000 Z
+  - 2023-10-30 12:29:25.000000000 Z
+  - 2023-11-02 02:52:55.000000000 Z
+  - 2023-11-02 06:00:32.000000000 Z
+  - 2023-11-03 08:39:06.000000000 Z
+  - 2023-11-04 23:51:22.000000000 Z
+  - 2023-11-07 16:11:33.000000000 Z
+  - 2023-11-10 10:55:29.000000000 Z
+  - 2023-11-12 01:20:18.000000000 Z
+  - 2023-11-12 04:22:50.000000000 Z
+  - 2023-11-12 08:38:58.000000000 Z
+  - 2023-11-13 15:43:40.000000000 Z
+calendar__instance_methods_test_0010_selects__month_for_the_last_page:
+  :entries:
+  - 2023-11-02 02:52:55.000000000 Z
+  - 2023-11-02 06:00:32.000000000 Z
+  - 2023-11-03 08:39:06.000000000 Z
+  - 2023-11-04 23:51:22.000000000 Z
+  - 2023-11-07 16:11:33.000000000 Z
+  - 2023-11-10 10:55:29.000000000 Z
+  - 2023-11-12 01:20:18.000000000 Z
+  - 2023-11-12 04:22:50.000000000 Z
+  - 2023-11-12 08:38:58.000000000 Z
+  - 2023-11-13 15:43:40.000000000 Z
 calendar__instance_methods_test_0004_selects__year_for_the_pages_and_check_the_total:
   :entries:
   - 2021-10-21 13:18:23.000000000 Z
@@ -617,22 +759,8 @@ calendar__instance_methods_test_0004_selects__year_for_the_pages_and_check_the_t
   - 2023-11-12 04:22:50.000000000 Z
   - 2023-11-12 08:38:58.000000000 Z
   - 2023-11-13 15:43:40.000000000 Z
-calendar__instance_methods_test_0010_selects__month_for_the_last_page:
-  :entries:
-  - 2023-11-02 02:52:55.000000000 Z
-  - 2023-11-02 06:00:32.000000000 Z
-  - 2023-11-03 08:39:06.000000000 Z
-  - 2023-11-04 23:51:22.000000000 Z
-  - 2023-11-07 16:11:33.000000000 Z
-  - 2023-11-10 10:55:29.000000000 Z
-  - 2023-11-12 01:20:18.000000000 Z
-  - 2023-11-12 04:22:50.000000000 Z
-  - 2023-11-12 08:38:58.000000000 Z
-  - 2023-11-13 15:43:40.000000000 Z
-calendar__instance_methods_test_0016_selects__day_for_the_last_page:
-  :entries:
-  - 2021-12-19 00:34:04.000000000 Z
-  - 2021-12-19 06:58:41.000000000 Z
+calendar__instance_methods_test_0015_selects__day_for_an_intermediate_page:
+  :entries: []
 calendar__instance_methods_test_0006_selects__quarter_for_an_intermediate_page:
   :entries:
   - 2022-07-01 16:05:14.000000000 Z
@@ -700,149 +828,3 @@ calendar__instance_methods_test_0006_selects__quarter_for_an_intermediate_page:
   - 2022-09-28 12:12:13.000000000 Z
   - 2022-09-29 21:13:01.000000000 Z
   - 2022-09-30 00:09:29.000000000 Z
-calendar__instance_methods_test_0015_selects__day_for_an_intermediate_page:
-  :entries: []
-calendar__instance_methods_test_0005_selects__quarter_for_the_first_page:
-  :entries:
-  - 2021-10-21 13:18:23.000000000 Z
-  - 2021-10-21 23:14:50.000000000 Z
-  - 2021-10-23 01:06:02.000000000 Z
-  - 2021-10-25 18:54:35.000000000 Z
-  - 2021-10-26 02:22:17.000000000 Z
-  - 2021-10-28 22:59:49.000000000 Z
-  - 2021-10-30 15:02:25.000000000 Z
-  - 2021-11-02 04:03:39.000000000 Z
-  - 2021-11-04 22:41:23.000000000 Z
-  - 2021-11-06 00:34:29.000000000 Z
-  - 2021-11-06 23:56:16.000000000 Z
-  - 2021-11-07 06:22:04.000000000 Z
-  - 2021-11-07 19:46:08.000000000 Z
-  - 2021-11-08 09:31:13.000000000 Z
-  - 2021-11-09 17:22:03.000000000 Z
-  - 2021-11-11 05:29:54.000000000 Z
-  - 2021-11-13 09:41:04.000000000 Z
-  - 2021-11-16 07:48:22.000000000 Z
-  - 2021-11-16 12:43:44.000000000 Z
-  - 2021-11-17 16:03:07.000000000 Z
-  - 2021-11-20 02:39:01.000000000 Z
-  - 2021-11-21 02:01:24.000000000 Z
-  - 2021-11-23 19:24:43.000000000 Z
-  - 2021-11-26 11:47:22.000000000 Z
-  - 2021-11-28 06:30:04.000000000 Z
-  - 2021-12-01 00:13:55.000000000 Z
-  - 2021-12-03 19:10:16.000000000 Z
-  - 2021-12-04 00:43:47.000000000 Z
-  - 2021-12-06 20:15:35.000000000 Z
-  - 2021-12-09 16:27:07.000000000 Z
-  - 2021-12-10 15:28:48.000000000 Z
-  - 2021-12-10 23:08:16.000000000 Z
-  - 2021-12-11 23:09:08.000000000 Z
-  - 2021-12-14 04:56:58.000000000 Z
-  - 2021-12-14 14:00:56.000000000 Z
-  - 2021-12-15 22:58:51.000000000 Z
-  - 2021-12-16 01:28:21.000000000 Z
-  - 2021-12-16 20:16:54.000000000 Z
-  - 2021-12-19 00:34:04.000000000 Z
-  - 2021-12-19 06:58:41.000000000 Z
-  - 2021-12-21 11:13:53.000000000 Z
-  - 2021-12-23 07:28:50.000000000 Z
-  - 2021-12-23 07:57:58.000000000 Z
-  - 2021-12-23 18:32:13.000000000 Z
-  - 2021-12-24 01:17:51.000000000 Z
-  - 2021-12-25 05:36:16.000000000 Z
-  - 2021-12-25 23:21:57.000000000 Z
-  - 2021-12-27 12:18:57.000000000 Z
-  - 2021-12-28 16:59:57.000000000 Z
-  - 2021-12-31 15:10:23.000000000 Z
-calendar__instance_methods_test_0008_selects__month_for_the_first_page:
-  :entries:
-  - 2021-10-21 13:18:23.000000000 Z
-  - 2021-10-21 23:14:50.000000000 Z
-  - 2021-10-23 01:06:02.000000000 Z
-  - 2021-10-25 18:54:35.000000000 Z
-  - 2021-10-26 02:22:17.000000000 Z
-  - 2021-10-28 22:59:49.000000000 Z
-  - 2021-10-30 15:02:25.000000000 Z
-calendar__instance_methods_test_0007_selects__quarter_for_last_page:
-  :entries:
-  - 2023-10-01 11:54:24.000000000 Z
-  - 2023-10-03 07:36:32.000000000 Z
-  - 2023-10-05 05:13:57.000000000 Z
-  - 2023-10-06 16:07:06.000000000 Z
-  - 2023-10-09 00:03:52.000000000 Z
-  - 2023-10-09 02:32:01.000000000 Z
-  - 2023-10-10 16:39:07.000000000 Z
-  - 2023-10-12 13:28:16.000000000 Z
-  - 2023-10-14 04:29:14.000000000 Z
-  - 2023-10-17 03:30:24.000000000 Z
-  - 2023-10-20 03:13:15.000000000 Z
-  - 2023-10-20 20:47:06.000000000 Z
-  - 2023-10-21 13:59:34.000000000 Z
-  - 2023-10-23 21:38:48.000000000 Z
-  - 2023-10-24 06:07:13.000000000 Z
-  - 2023-10-25 22:51:17.000000000 Z
-  - 2023-10-26 21:12:50.000000000 Z
-  - 2023-10-28 05:52:20.000000000 Z
-  - 2023-10-29 22:11:01.000000000 Z
-  - 2023-10-30 12:29:25.000000000 Z
-  - 2023-11-02 02:52:55.000000000 Z
-  - 2023-11-02 06:00:32.000000000 Z
-  - 2023-11-03 08:39:06.000000000 Z
-  - 2023-11-04 23:51:22.000000000 Z
-  - 2023-11-07 16:11:33.000000000 Z
-  - 2023-11-10 10:55:29.000000000 Z
-  - 2023-11-12 01:20:18.000000000 Z
-  - 2023-11-12 04:22:50.000000000 Z
-  - 2023-11-12 08:38:58.000000000 Z
-  - 2023-11-13 15:43:40.000000000 Z
-calendar__instance_methods_test_0013_selects__week_for_the_last_page:
-  :entries:
-  - 2023-11-12 01:20:18.000000000 Z
-  - 2023-11-12 04:22:50.000000000 Z
-  - 2023-11-12 08:38:58.000000000 Z
-  - 2023-11-13 15:43:40.000000000 Z
-calendar__instance_methods_test_0009_selects__month_for_an_intermediate_page:
-  :entries:
-  - 2023-10-01 11:54:24.000000000 Z
-  - 2023-10-03 07:36:32.000000000 Z
-  - 2023-10-05 05:13:57.000000000 Z
-  - 2023-10-06 16:07:06.000000000 Z
-  - 2023-10-09 00:03:52.000000000 Z
-  - 2023-10-09 02:32:01.000000000 Z
-  - 2023-10-10 16:39:07.000000000 Z
-  - 2023-10-12 13:28:16.000000000 Z
-  - 2023-10-14 04:29:14.000000000 Z
-  - 2023-10-17 03:30:24.000000000 Z
-  - 2023-10-20 03:13:15.000000000 Z
-  - 2023-10-20 20:47:06.000000000 Z
-  - 2023-10-21 13:59:34.000000000 Z
-  - 2023-10-23 21:38:48.000000000 Z
-  - 2023-10-24 06:07:13.000000000 Z
-  - 2023-10-25 22:51:17.000000000 Z
-  - 2023-10-26 21:12:50.000000000 Z
-  - 2023-10-28 05:52:20.000000000 Z
-  - 2023-10-29 22:11:01.000000000 Z
-  - 2023-10-30 12:29:25.000000000 Z
-calendar__instance_methods_test_0012_selects__week_for_an_intermediate_page:
-  :entries:
-  - 2022-04-03 18:27:19.000000000 Z
-  - 2022-04-03 23:44:08.000000000 Z
-  - 2022-04-06 10:59:32.000000000 Z
-  - 2022-04-07 01:33:53.000000000 Z
-  - 2022-04-08 10:26:34.000000000 Z
-calendar__instance_methods_test_0014_selects__day_for_the_first_page:
-  :entries:
-  - 2021-10-21 13:18:23.000000000 Z
-  - 2021-10-21 23:14:50.000000000 Z
-calendar__Counts_feature_test_0003_works_with_a_string_attributes:
-  :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" title="Displaying
-    50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1" title="Displaying
-    50 items">2021</a><a role="link" aria-disabled="true" aria-current="page" class="current">2022</a><a
-    href="/foo?year_page=3" title="Displaying 220 items">2023</a><a href="/foo?year_page=3"
-    title="Displaying 220 items" aria-label="Next">&gt;</a></nav>
-calendar__Counts_feature_test_0003_works_with:
-  :year: <nav class="pagy nav" aria-label="Pages"><a href="/foo?year_page=1" title="Displaying
-    50 items" aria-label="Previous">&lt;</a><a href="/foo?year_page=1" title="Displaying
-    50 items">2021</a><a role="link" aria-disabled="true" aria-current="page" class="current">2022</a><a
-    href="/foo?year_page=3" title="Displaying 220 items">2023</a><a href="/foo?year_page=3"
-    title="Displaying 220 items" aria-label="Next">&gt;</a></nav>

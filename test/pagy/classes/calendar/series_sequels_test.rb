@@ -2,7 +2,7 @@
 
 require_relative '../../../test_helper'
 require_relative '../../../mock_helpers/app'  # just for time zone
-require_relative '../../../../gem/lib/pagy/toolbox/methods/support/nav_js' # just to check the sequels
+require_relative '../../../../gem/lib/pagy/toolbox/methods/support/wrap_series_nav_js' # just to check the sequels
 
 Time.zone = 'EST'
 Date.beginning_of_week = :sunday

@@ -18,5 +18,5 @@ tr:
       no_items: "Hiç %{item_name} bulunamadı"
       single_page: "Toplam %{count} %{item_name} gösteriliyor"
       multiple_pages: "%{count} %{item_name} içerisinden %{from}-%{to} kadarı gösteriliyor"
-    combo_nav_js_tag: "Sayfa %{page_input} / %{pages}"
-    limit_selector_js_tag: "Sayfada %{limit_input} %{item_name} göster"
+    input_nav_js: "Sayfa %{page_input} / %{pages}"
+    limit_tag_js: "Sayfada %{limit_input} %{item_name} göster"

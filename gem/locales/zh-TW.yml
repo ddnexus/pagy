@@ -16,5 +16,5 @@ zh-TW:
       no_items: "未找到任何 %{item_name}"
       single_page: "顯示 %{count} 項 %{item_name}"
       multiple_pages: "共 %{count} 項 %{item_name}，顯示第 %{from} 至 %{to} 項"
-    combo_nav_js_tag: "第 %{page_input} 頁，共 %{pages} 頁"
-    limit_selector_js_tag: "每頁顯示 %{limit_input} 項 %{item_name}"
+    input_nav_js: "第 %{page_input} 頁，共 %{pages} 頁"
+    limit_tag_js: "每頁顯示 %{limit_input} 項 %{item_name}"

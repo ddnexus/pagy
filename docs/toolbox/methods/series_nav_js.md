@@ -1,5 +1,5 @@
 ---
-label: nav_js_tag
+label: series_nav_js
 icon: code
 order: 160
 image: ""
@@ -11,17 +11,17 @@ categories:
 
 #
 
-## :icon-code: nav_js_tag
+## :icon-code: series_nav_js
 
 ---
 
-`nav_js_tag` functions similarly to a [nav_tag](nav_tag.md), with the following added features:
+`series_nav_js` functions similarly to a [series_nav](series_nav.md), with the following added features:
 
 1. Enables client-side rendering.
 2. Provides optional responsiveness.
 3. Improves performance and optimizes resource usage (see [Maximizing Performance](../../guides/how-to#maximize-performance)).
 
-![Responsive nav_js_tag (:bootstrap style)](/assets/images/bootstrap_nav_js.png){width=500}
+![Responsive series_nav_js (:bootstrap style)](/assets/images/bootstrap_nav_js.png){width=500}
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
@@ -29,9 +29,9 @@ categories:
 !!!
 
 ```erb
-<%== @pagy.nav_js_tag(**options %>  <%# default pagy style %>
-<%== @pagy.nav_js_tag(:bootstrap, **options) %>
-<%== @pagy.nav_js_tag(:bulma, **options) %>
+<%== @pagy.series_nav_js(**options %>  <%# default pagy style %>
+<%== @pagy.series_nav_js(:bootstrap, **options) %>
+<%== @pagy.series_nav_js(:bulma, **options) %>
 ```
   
 ==- Caveats
@@ -48,7 +48,7 @@ If Javascript is disabled in the client browser, this helper will not render any
 
 !!!warning Window Resizing
 
-The `nav_js_tag` elements are automatically re-rendered on window resize. If another function changes the size without causing a window resize, you need to explicitly re-render:
+The `series_nav_js` elements are automatically re-rendered on window resize. If another function changes the size without causing a window resize, you need to explicitly re-render:
 
 ```js
 document.getElementById('my-pagy-nav-js').render();
@@ -71,11 +71,11 @@ See [Common Nav Styles](../methods#common-nav-styles)
 - `steps: { 0 => 5, 540 => 7, 720 => 9 }`
   - Enable responsiveness. Assign different number of `:slots` to different tag widths.
 
-See also other applicabe options: [nav_tag Options](nav_tag#options)
+See also other applicabe options: [series_nav Options](series_nav#options)
 
 ==- In Depth: `:steps` Option
 
-Notice: when `:steps` is not set, the `nav_js_tag` behaves exactly as a `nav_tag`: just faster.
+Notice: when `:steps` is not set, the `series_nav_js` behaves exactly as a `series_nav`: just faster.
 
 Set it as a hash, where the keys are integers representing the widths in pixels, and the values are the `:slots` options to be
 applied for those widths.

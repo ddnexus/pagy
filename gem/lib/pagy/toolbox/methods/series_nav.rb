@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'support/nav'
+require_relative 'support/wrap_series_nav'
 
 class Pagy
   # Return the html with the series of links to the pages
-  def nav_tag(style = nil, **)
-    return send(:"#{style}_nav_tag", **) if style
+  def series_nav(style = nil, **)
+    return send(:"#{style}_series_nav", **) if style
 
     a_lambda = a_lambda(**)
     html     = previous_tag(a_lambda)
@@ -23,6 +23,6 @@ class Pagy
               end
     end
     html << next_tag(a_lambda)
-    wrap_nav(html, 'pagy nav', **)
+    wrap_series_nav(html, 'pagy series-nav', **)
   end
 end

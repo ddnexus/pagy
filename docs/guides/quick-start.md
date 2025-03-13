@@ -45,9 +45,9 @@ gem 'pagy', '~> 10.0' # omit the patch version
 
   ```erb
   <%# Render navigation bar helpers with various types and styles %>
-  <%== @pagy.nav_tag %>
-  <%== @pagy.nav_js_tag(:bootstrap) %>
-  <%== @pagy.combo_nav_js_tag(:bulma) %>
+  <%== @pagy.series_nav %>
+  <%== @pagy.series_nav_js(:bootstrap) %>
+  <%== @pagy.input_nav_js(:bulma) %>
   <%== @pagy.info_tag %>
   ``` 
   _See all the available [@pagy methods](../toolbox/methods)_

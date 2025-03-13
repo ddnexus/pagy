@@ -25,7 +25,7 @@ You can also [ask the Pagy-trained AI](https://gurubase.io/g/pagy) for instant a
 - **Client Side**
   - Use the `limit` option combined with the `:max_limit` option, which allows the client to request a `:limit` up to the
     specified `:max_limit`.
-  - Additionally, you can use the [limit_selector_js_tag](../toolbox/methods/limit_selector_js_tag) helper to provide a UI
+  - Additionally, you can use the [limit_tag_js](../toolbox/methods/limit_tag_js) helper to provide a UI
     selector to the user.
 
 ```ruby
@@ -42,12 +42,12 @@ See [Common Options](../toolbox/paginators#common-options).
 
 ==- Control the pagination bar
 
-Pagy provides [nav_tag](../toolbox/methods/nav_tag.md) and [nav_js_tag](../toolbox/methods/nav_js_tag.md) helpers for displaying a
+Pagy provides [series_nav](../toolbox/methods/series_nav.md) and [series_nav_js](../toolbox/methods/series_nav_js.md) helpers for displaying a
 pagination bar.
 
 You can customize the number and position of page links in the navigation bar using:
 
-- The [:slots and :compact options](../toolbox/methods/nav_tag#options).
+- The [:slots and :compact options](../toolbox/methods/series_nav#options).
 - Overriding the `series` method for full control over the pagination bar
 
 ==- Force the `:page`
@@ -111,7 +111,7 @@ You can also override the specific helper method.
 
 ==- Override CSS rules in element "style" attribute
 
-The `combo_nav_js_tag` and `limit_selector_js_tag` use inline style attributes. You can override these rules in your stylesheet
+The `input_nav_js` and `limit_tag_js` use inline style attributes. You can override these rules in your stylesheet
 files using the `[style]`
 attribute selector and `!important`. Below is an example of overriding the `width` of an `input` element:
 
@@ -225,8 +225,8 @@ end
 ```
 
 ```erb
-<%== @pagy_foos.nav_tag %>
-<%== @pagy_bars.nav_tag %>
+<%== @pagy_foos.series_nav %>
+<%== @pagy_bars.series_nav %>
 <!-- Pagination links of `/foos?page=2` instead of `/dashboard?page=2` -->
 <!-- Pagination links of `/bars?page=2` etc. -->
 ```
@@ -245,13 +245,13 @@ independent context in a `turbo_frame_tag` and ensure a matching `turbo_frame_ta
 <-- movies#bad_movies -->
 <%= turbo_frame_tag "bad_movies", src: bad_movies_path do %>
 <%= render "movies_table", locals: {movies: @movies}%>
-<%== @pagy.nav_tag %>
+<%== @pagy.series_nav %>
 <% end %>
 
 <-- movies#good_movies -->
 <%= turbo_frame_tag "good_movies", src: good_movies_path  do %>
 <%= render "movies_table", locals: {movies: @movies}%>
-<%== @pagy.nav_tag %>
+<%== @pagy.series_nav %>
 <% end %>   
 ```
 
@@ -317,7 +317,7 @@ Unlike other gems, Pagy does not decide for you that the nav of a single page of
 rendered... or maybe you don't. If you don't:
 
 ```erb
-<%== @pagy.nav_tag if @pagy.last > 1 %>
+<%== @pagy.series_nav if @pagy.last > 1 %>
 ```
 
 ==- Deal with a slow collection COUNT(*)
@@ -334,7 +334,7 @@ Check out these paginators:
   - [:countless](../toolbox/paginators/countless.md)
   - [:keyset](../toolbox/paginators/keyset.md)
   - [:keynav_js](../toolbox/paginators/keynav_js.md)
-- Consider the `*_js_nav_tag`s (a few orders of magnitute faster)
+- Consider the `*_nav_js_tag`s (a few orders of magnitute faster)
   - Add the `oj` gem to your gemfile
 
 ==- Ignore Brakeman UnescapedOutputs false positives warnings

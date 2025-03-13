@@ -20,5 +20,5 @@ ca:
       no_items: "No s'ha trobat cap resultat"
       single_page: "Mostrant %{count} %{item_name}"
       multiple_pages: "Mostrant %{item_name} %{from}-%{to} de %{count} en total"
-    combo_nav_js_tag: "Pàgina %{page_input} de %{pages}"
-    limit_selector_js_tag: "Mostra %{limit_input} %{item_name} per pàgina"
+    input_nav_js: "Pàgina %{page_input} de %{pages}"
+    limit_tag_js: "Mostra %{limit_input} %{item_name} per pàgina"

@@ -96,7 +96,7 @@ export function testLimitSelector(app:string, id:string, path = "/") {
             // test page after changing limit
             cy.visit(`${path}?page=2&limit=10`);
             cy.location().should(loc => expect(loc.href).to.match(/page=2/));
-            cy.get("#limit-selector-js input").type("5{enter}");
+            cy.get("#limit-tag-js input").type("5{enter}");
             cy.location().should(loc => expect(loc.href).to.match(/page=3/));
         }
     });

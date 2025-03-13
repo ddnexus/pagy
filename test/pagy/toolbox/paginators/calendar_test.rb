@@ -298,9 +298,9 @@ describe 'calendar' do
                                                     month:  {},
                                                     day:    {},
                                                     offset: { limit: 10 })
-        _(calendar[:year].nav_tag).must_rematch :year
-        _(calendar[:month].nav_tag).must_rematch :month
-        _(calendar[:day].nav_tag).must_rematch :day
+        _(calendar[:year].series_nav).must_rematch :year
+        _(calendar[:month].series_nav).must_rematch :month
+        _(calendar[:day].series_nav).must_rematch :day
       end
     end
   end

@@ -20,5 +20,5 @@ de:
       no_items: "Keine %{item_name} gefunden"
       single_page: "Zeige %{count} %{item_name}"
       multiple_pages: "Zeige %{item_name} %{from}-%{to} von %{count} gesamt"
-    combo_nav_js_tag: "Seite %{page_input} von %{pages}"
-    limit_selector_js_tag: "Zeige %{limit_input} %{item_name} pro Seite"
+    input_nav_js: "Seite %{page_input} von %{pages}"
+    limit_tag_js: "Zeige %{limit_input} %{item_name} pro Seite"

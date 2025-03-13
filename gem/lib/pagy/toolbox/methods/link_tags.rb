@@ -23,3 +23,12 @@ class Pagy
     end
   end
 end
+
+# @pagy.series_nav
+# @pagy.series_nav_js
+# @pagy.input_nav_js
+#
+# @pagy.info_tag
+# @pagy.limit_tag_js
+# @pagy.previous_tag
+# @pagy.next_tag

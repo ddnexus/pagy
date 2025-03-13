@@ -20,5 +20,5 @@ nl:
       no_items: "Geen %{item_name} gevonden"
       single_page: "Toont %{count} %{item_name}"
       multiple_pages: "Toont %{from}-%{to} %{item_name} van %{count} in totaal"
-    combo_nav_js_tag: "Pagina %{page_input} van %{pages}"
-    limit_selector_js_tag: "Toont %{limit_input} %{item_name} per pagina"
+    input_nav_js: "Pagina %{page_input} van %{pages}"
+    limit_tag_js: "Toont %{limit_input} %{item_name} per pagina"

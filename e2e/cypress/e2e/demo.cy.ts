@@ -13,13 +13,13 @@ for (const path of paths) {
             cy.visit(path);
         });
 
-        testNav(app, "#nav", {path: path});
-        testNav(app, "#nav-js", {path: path});
-        testNav(app, "#nav-js-responsive", {path: path, rjs: true});
-        testComboNav(app, "#combo-nav-js");
+        testNav(app, "#series-nav", {path: path});
+        testNav(app, "#series-nav-js", {path: path});
+        testNav(app, "#series-nav-js-responsive", {path: path, rjs: true});
+        testComboNav(app, "#input-nav-js");
         testInfo(app, "#pagy-info", path);
         if (path === "/pagy") {
-            testLimitSelector(app, "#limit-selector-js", path);
+            testLimitSelector(app, "#limit-tag-js", path);
         }
     });
 }

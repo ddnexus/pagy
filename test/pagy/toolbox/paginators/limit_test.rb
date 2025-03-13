@@ -107,10 +107,10 @@ describe 'max_limit' do
     end
     it 'renders or skips the output depending on max_limit' do
       pagy, = app.send(:pagy, :offset, MockCollection.new, page: 3, max_limit: 100)
-      _(pagy.limit_selector_js_tag).must_rematch :selector_1
-      _(pagy.limit_selector_js_tag(id: 'test-id', item_name: 'products')).must_rematch :selector_2
+      _(pagy.limit_tag_js).must_rematch :selector_1
+      _(pagy.limit_tag_js(id: 'test-id', item_name: 'products')).must_rematch :selector_2
       pagy, = app.send(:pagy, :offset, MockCollection.new, page: 3)
-      _ { pagy.limit_selector_js_tag(id: 'test-id') }.must_raise Pagy::OptionError
+      _ { pagy.limit_tag_js(id: 'test-id') }.must_raise Pagy::OptionError
     end
   end
 end

@@ -159,9 +159,9 @@ class PagyCalendar < Sinatra::Base
         <!-- calendar filtering navs -->
         <% if @calendar %>
           <p>Showtime: <%= @calendar.showtime %></p>
-          <%= @calendar[:year].nav_tag(:bootstrap, id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
-          <%= @calendar[:month].nav_tag(:bootstrap, id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
-          <%= @calendar[:day].nav_tag(:bootstrap, id: "day-nav", aria_label: "Days") %> <!-- day nav -->
+          <%= @calendar[:year].series_nav(:bootstrap, id: "year-nav", aria_label: "Years") %>   <!-- year nav -->
+          <%= @calendar[:month].series_nav(:bootstrap, id: "month-nav", aria_label: "Months") %>  <!-- month nav -->
+          <%= @calendar[:day].series_nav(:bootstrap, id: "day-nav", aria_label: "Days") %> <!-- day nav -->
         <% end %>
 
         <!-- page info extended for the calendar unit -->
@@ -180,7 +180,7 @@ class PagyCalendar < Sinatra::Base
         </div>
 
         <!-- standard pagination of the last unit (month) -->
-        <p><%= @pagy.nav_tag(:bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.last > 1 %><p/>
+        <p><%= @pagy.series_nav(:bootstrap, id: 'pages-nav', aria_label: 'Pages') if @pagy.last > 1 %><p/>
       </div>
     ERB
   end

@@ -92,11 +92,11 @@ window.Pagy = (() => {
       rjsObserver.observe(parent);
     }
   };
-  const initComboJs = async (nav, [url_token, keynavArgs]) => {
+  const initInputNavJs = async (nav, [url_token, keynavArgs]) => {
     const augment = keynavArgs && storageSupport ? await augmentKeynav(nav, keynavArgs) : (page) => page;
     initInput(nav, (inputValue) => url_token.replace(pageRe, augment(inputValue)));
   };
-  const initSelectorJs = (span, [from, url_token]) => {
+  const initLimitTagJs = (span, [from, url_token]) => {
     initInput(span, (inputValue) => {
       return url_token.replace(pageRe, Math.max(Math.ceil(from / parseInt(inputValue)), 1)).replace("L ", inputValue);
     });
@@ -130,14 +130,14 @@ window.Pagy = (() => {
       for (const element of elements) {
         try {
           const [helperId, ...args] = JSON.parse(B64Decode(element.getAttribute("data-pagy")));
-          if (helperId == "n") {
+          if (helperId == "k") {
             augmentKeynav(element, ...args);
-          } else if (helperId == "nj") {
+          } else if (helperId == "snj") {
             buildNavJs(element, args);
-          } else if (helperId == "cj") {
-            initComboJs(element, args);
-          } else if (helperId == "sj") {
-            initSelectorJs(element, args);
+          } else if (helperId == "inj") {
+            initInputNavJs(element, args);
+          } else if (helperId == "ltj") {
+            initLimitTagJs(element, args);
           }
         } catch (err) {
           console.warn("Pagy.init: %o\n%s", element, err);
@@ -147,5 +147,5 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=E7AA6BC5F248885164756E2164756E21
+//# debugId=C0124A51020435A464756E2164756E21
 //# sourceMappingURL=pagy.js.map

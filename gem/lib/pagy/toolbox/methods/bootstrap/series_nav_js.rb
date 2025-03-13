@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 require_relative 'previous_next_html'
-require_relative '../support/nav_js'
+require_relative '../support/wrap_series_nav_js'
 
 class Pagy
   private
 
   # Javascript pagination for bootstrap: it returns a nav with a data-pagy attribute used by the pagy.js file
-  def bootstrap_nav_js_tag(classes: 'pagination', **)
+  def bootstrap_series_nav_js(classes: 'pagination', **)
     a_lambda = a_lambda(**)
     tokens   = { before:  %(<ul class="#{classes}">#{bootstrap_html_for(:previous, a_lambda)}),
                  anchor:  %(<li class="page-item">#{a_lambda.(PAGE_TOKEN, LABEL_TOKEN, classes: 'page-link')}</li>),
@@ -16,6 +16,6 @@ class Pagy
                  gap:     %(<li class="page-item gap disabled"><a role="link" class="page-link" aria-disabled="true">#{
                             I18n.translate('pagy.gap')}</a></li>),
                  after:   %(#{bootstrap_html_for(:next, a_lambda)}</ul>) }
-    wrap_nav_js(tokens, 'pagy-bootstrap nav-js', **)
+    wrap_series_nav_js(tokens, 'pagy-bootstrap series-nav-js', **)
   end
 end

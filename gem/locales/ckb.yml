@@ -16,5 +16,5 @@ ckb:
       no_items: "هیچ %{item_name}ێک نەدۆزرایەوە"
       single_page: "پیشاندانی %{count} %{item_name}"
       multiple_pages: "پشاندانی %{item_name}ی %{from}-%{to} لە کۆی %{count} بە گشتی"
-    combo_nav_js_tag: "پەڕی %{page_input} لە %{pages}"
-    limit_selector_js_tag: "نیشاندانی %{limit_input} %{item_name} لە هەر پەڕێک"
+    input_nav_js: "پەڕی %{page_input} لە %{pages}"
+    limit_tag_js: "نیشاندانی %{limit_input} %{item_name} لە هەر پەڕێک"

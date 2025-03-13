@@ -27,7 +27,7 @@ You don't need any stylesheets if you use nav tag with `:bootstrap` or `:bulma` 
 To ensure a minimalistic valid output, complete with all the ARIA attributes, pagy outputs a single line with the minimum number of tags
 and class attributes required to identify all the parts of the nav bars:
 
-- The output of `nav_tag` and `nav_js_tag` helpers, is a series of `a` tags inside a `nav` tag wrapper.
+- The output of `series_nav` and `series_nav_js` helpers, is a series of `a` tags inside a `nav` tag wrapper.
 - The disabled links are so because they are missing the `href` attributes.
 - The `pagy nav` and `pagy nav-js` classes are assigned to the `nav` tag.
 - The `current` and `gap` classes are assigned to the specific `a` tags.

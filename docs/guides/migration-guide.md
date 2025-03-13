@@ -77,13 +77,13 @@ Search for keywords like `page` and `paginate` statements and use the `pagy(:off
 
 Similarly, in views, legacy pagination statements typically correspond directly to Pagy, simplifying conversion.
 
-Search for keywords like `will_paginate` and `paginate` statement and use one of the `nav_tag` methods. For example:
+Search for keywords like `will_paginate` and `paginate` statement and use one of the `series_nav` methods. For example:
 
 ```erb View
 <%= will_paginate @records %>
 <%= paginate @records %>
 
-<%== @pagy.nav_tag %>
+<%== @pagy.series_nav %>
 ```
 
 ## Find the remaining code

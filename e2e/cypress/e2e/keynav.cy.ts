@@ -8,6 +8,6 @@ describe(`[${app}] Test helpers`, () => {
     });
     let pages = [...Array(13).keys()].map((n) => (n + 1).toString())
     pages.push("10", "13"); // jump back and forth
-    testNav(app, "#nav", {pages});
-    testNav(app, "#nav-js-responsive", {pages, rjs: true});
+    testNav(app, "#series-nav", {pages});
+    testNav(app, "#series-nav-js-responsive", {pages, rjs: true});
 });

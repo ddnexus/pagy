@@ -16,5 +16,5 @@ dz:
       no_items: "%{item_name}གཅིག་ཡང་འཚོལ་མ་འཐོབ།"
       single_page: "%{item_name} %{count} བཀྲམ་སྟོན་འབད་དོ།"
       multiple_pages: "བསྡོམས་ཀྱིས་ %{count} ལས་%{item_name} %{from}-%{to} བཀྲམ་སྟོན་འབད་དོ།"
-    combo_nav_js_tag: "ཤོག་ལེབ་ %{pages} ལས་ %{page_input}།"
-    limit_selector_js_tag: "ཤོག་ལེབ་རེ་ལུ་%{item_name} %{limit_input} སྟོན།"
+    input_nav_js: "ཤོག་ལེབ་ %{pages} ལས་ %{page_input}།"
+    limit_tag_js: "ཤོག་ལེབ་རེ་ལུ་%{item_name} %{limit_input} སྟོན།"

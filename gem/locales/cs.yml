@@ -22,5 +22,5 @@ cs:
       no_items: "Nic nebylo nalezeno"
       single_page: "Zobrazeno %{count} %{item_name}"
       multiple_pages: "Zobrazeny položky %{from}-%{to} z %{count} celkem"
-    combo_nav_js_tag: "Strana %{page_input} z %{pages}"
-    limit_selector_js_tag: "Zobrazit %{limit_input} %{item_name} na stránce"
+    input_nav_js: "Strana %{page_input} z %{pages}"
+    limit_tag_js: "Zobrazit %{limit_input} %{item_name} na stránce"

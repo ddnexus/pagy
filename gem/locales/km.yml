@@ -18,5 +18,5 @@ km:
       no_items: "មិនមាន %{item_name} ទេ"
       single_page: "បង្ហាញ %{count} %{item_name}"
       multiple_pages: "បង្ហាញ %{item_name} %{from}-%{to} នៃ %{count} ជាចំនួនសរុប"
-    combo_nav_js_tag: "ទំព័រ %{page_input} នៃ %{pages}"
-    limit_selector_js_tag: "បង្ហាញ %{limit_input} %{item_name} ក្នុង ១ ទំព័រ"
+    input_nav_js: "ទំព័រ %{page_input} នៃ %{pages}"
+    limit_tag_js: "បង្ហាញ %{limit_input} %{item_name} ក្នុង ១ ទំព័រ"

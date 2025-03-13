@@ -23,7 +23,7 @@ Pagy has an inheritable options system that allows you to set and override optio
     - e.g.: `pagy(paginator, collection, **options)`
     - The options passed to the paginator override the `Pagy.options` and are inherited by the `@pagy` instance.
 3. **Methods level** 
-    - e.g.: `@pagy.nav_tag(**options)`
+    - e.g.: `@pagy.series_nav(**options)`
     - The options passed to the methods override all other options.
 
 !!!success

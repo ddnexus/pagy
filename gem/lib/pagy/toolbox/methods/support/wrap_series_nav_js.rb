@@ -24,11 +24,11 @@ class Pagy
   end
 
   # Build the nav_js tag, with the specific tokens for the style
-  def wrap_nav_js(tokens, nav_classes, id: nil, aria_label: nil, **)
+  def wrap_series_nav_js(tokens, nav_classes, id: nil, aria_label: nil, **)
     sequels = sequels(**)
     %(<nav#{id && %( id="#{id}")} class="#{'pagy-rjs ' if sequels[0].size > 1}#{nav_classes}" #{
       nav_aria_label_attribute(aria_label:)} #{
-      data = [:nj, tokens.values, sequels]
+      data = [:snj, tokens.values, sequels]
       data.push(@update) if keynav?
       data_pagy_attribute(*data)
       }></nav>)

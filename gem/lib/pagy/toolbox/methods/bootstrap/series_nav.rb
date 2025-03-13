@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative '../support/nav'
 require_relative 'previous_next_html'
+require_relative '../support/wrap_series_nav'
 
 class Pagy
   private
 
   # Pagination for bootstrap: it returns the html with the series of links to the pages
-  def bootstrap_nav_tag(classes: 'pagination', **)
+  def bootstrap_series_nav(classes: 'pagination', **)
     a_lambda = a_lambda(**)
     html     = %(<ul class="#{classes}">#{bootstrap_html_for(:previous, a_lambda)})
     series(**).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
@@ -24,6 +24,6 @@ class Pagy
               end
     end
     html << %(#{bootstrap_html_for(:next, a_lambda)}</ul>)
-    wrap_nav(html, 'pagy-bootstrap nav', **)
+    wrap_series_nav(html, 'pagy-bootstrap series-nav', **)
   end
 end

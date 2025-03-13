@@ -20,5 +20,5 @@ sv-SE:
       no_items: "Inga %{item_name} hittade"
       single_page: "Visar %{count} %{item_name}"
       multiple_pages: "Visar %{item_name} %{from}-%{to} av %{count} totalt"
-    combo_nav_js_tag: "Sida %{page_input} av %{pages}"
-    limit_selector_js_tag: "Visa %{limit_input} %{item_name} per sida"
+    input_nav_js: "Sida %{page_input} av %{pages}"
+    limit_tag_js: "Visa %{limit_input} %{item_name} per sida"

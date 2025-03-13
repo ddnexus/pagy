@@ -4,10 +4,10 @@ interface SyncData {
   key:   string
   str?:  string
 }
-type InitArgs = ["n",  KeynavArgs] |
-                ["nj", NavJsArgs] |
-                ["cj", ComboNavJsArgs] |
-                ["sj", SelectorJsArgs]
+type InitArgs = ["k",  KeynavArgs] |          // series_nav[_js] with keynav instance
+                ["snj", SeriesNavJsArgs] |    // series_nav_js
+                ["inj", InputNavJsArgs] |     // input_nav_js
+                ["ltj", LimitTagJsArgs]       // limit_tag_js
 type AugmentKeynav = (nav:HTMLElement, keynavArgs:KeynavArgs) => Promise<((page: string) => string)>
 type KeynavArgs = readonly [storageKey:  string | null,
                             pageKey:     string,
@@ -23,12 +23,12 @@ type AugmentedPage = [browserId:   string,
                       pages:       number,
                       priorCutoff: Cutoff | null,
                       pageCutoff:  Cutoff | null]
-type NavJsArgs = readonly [NavJsTokens, NavJsSeries, KeynavArgs?]
+type SeriesNavJsArgs = readonly [NavJsTokens, NavJsSeries, KeynavArgs?]
 type NavJsSeries = readonly [widths: number[],
                              series: (string | number)[][],
                              labels: string[][] | null]
-type ComboNavJsArgs = readonly [urlToken: string, KeynavArgs?]
-type SelectorJsArgs = readonly [from:     number,
+type InputNavJsArgs = readonly [urlToken: string, KeynavArgs?]
+type LimitTagJsArgs = readonly [from:     number,
                                 urlToken: string]
 type NavJsTokens = readonly [before:  string,
                              anchor:  string,
@@ -130,9 +130,9 @@ const Pagy = (() => {
     return augment;
   };
 
-  // Build the nav_js_tag helper
+  // Build the series_nav_js helper
   const buildNavJs = (nav:NavJsElement, [[before, anchor, current, gap, after],
-                                        [widths, series, labels], keynavArgs]:NavJsArgs) => {
+                                        [widths, series, labels], keynavArgs]:SeriesNavJsArgs) => {
     const  parent = <HTMLElement>nav.parentElement;
     let lastWidth = -1;
     (nav.render = () => {
@@ -156,16 +156,16 @@ const Pagy = (() => {
     if (nav.classList.contains(pagy + "-rjs")) { rjsObserver.observe(parent) }
   };
 
-  // Init the combo_nav_js_tag helpers
-  const initComboJs = async (nav:HTMLElement, [url_token, keynavArgs]:ComboNavJsArgs) => {
+  // Init the input_nav_js helpers
+  const initInputNavJs = async (nav:HTMLElement, [url_token, keynavArgs]:InputNavJsArgs) => {
     const augment = keynavArgs && storageSupport
                     ? await augmentKeynav(nav, keynavArgs)
                     : (page: string) => page;
     initInput(nav, inputValue => url_token.replace(pageRe, augment(inputValue)));
   };
 
-  // Init the limit_selector_js_tag helper
-  const initSelectorJs = (span:HTMLSpanElement, [from, url_token]:SelectorJsArgs) => {
+  // Init the limit_tag_js helper
+  const initLimitTagJs = (span:HTMLSpanElement, [from, url_token]:LimitTagJsArgs) => {
     initInput(span, inputValue => {
       // @ts-expect-error the page is a number, but 'replace' type converts it to string (shorter .min)
       return url_token.replace(pageRe, Math.max(Math.ceil(from / parseInt(inputValue)), 1))
@@ -205,15 +205,15 @@ const Pagy = (() => {
       for (const element of <NodeListOf<HTMLElement>>elements) {
         try {
           const [helperId, ...args] = <InitArgs>JSON.parse(B64Decode(<string>element.getAttribute("data-pagy")));
-          if (helperId == "n") {
+          if (helperId == "k") {
             // @ts-expect-error spread 2 arguments, not 3 as it complains about
             void augmentKeynav(element, ...<KeynavArgs><unknown>args);
-          } else if (helperId == "nj") {
-            buildNavJs(<NavJsElement>element, <NavJsArgs><unknown>args);
-          } else if (helperId == "cj") {
-            void initComboJs(element, <ComboNavJsArgs><unknown>args);
-          } else if (helperId == "sj") {
-            initSelectorJs(element, <SelectorJsArgs><unknown>args);
+          } else if (helperId == "snj") {
+            buildNavJs(<NavJsElement>element, <SeriesNavJsArgs><unknown>args);
+          } else if (helperId == "inj") {
+            void initInputNavJs(element, <InputNavJsArgs><unknown>args);
+          } else if (helperId == "ltj") {
+            initLimitTagJs(element, <LimitTagJsArgs><unknown>args);
           }
           // else { console.warn("Pagy.init: %o\nUnknown helperId '%s'", element, helperId) }
         } catch (err) { console.warn("Pagy.init: %o\n%s", element, err) }

@@ -24,5 +24,5 @@ sr:
       no_items: "Нema пронађених %{item_name}"
       single_page: "Приказује се %{count} %{item_name}"
       multiple_pages: "Приказ %{item_name} %{from}-%{to} од %{count} укупно"
-    combo_nav_js_tag: "Страниca %{page_input} од %{pages}"
-    limit_selector_js_tag: "Прикажи %{limit_input} %{item_name} по страниcи"
+    input_nav_js: "Страниca %{page_input} од %{pages}"
+    limit_tag_js: "Прикажи %{limit_input} %{item_name} по страниcи"

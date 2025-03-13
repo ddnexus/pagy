@@ -336,7 +336,7 @@ table below:
   - HTML changes
     - All the pagy helper root classes have been changed according to the following rule. For example:
       - `"pagy-nav"` > `"pagy nav"`
-      - `"pagy-bootstrap-nav-js"` > `"pagy-bootstrap nav-js"`
+      - `"pagy-bootstrap-nav-js"` > `"pagy-bootstrap series-nav-js"`
       - and so on for all the helpers
     - The `active` class of the `*nav`/`*nav_js` links as been renamed as `current`
     - The `disabled`, `prev`, `next` and `pagy-combo-input` link classes have been removed (see

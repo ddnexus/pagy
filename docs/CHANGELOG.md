@@ -180,23 +180,23 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 {.compact}
 
-| Search (old)                         | Replace with (new)                 |
-|--------------------------------------|------------------------------------|
-| `pagy_nav(@pagy, ...)`               | `@pagy.nav_tag(...)`               |
-| `pagy_nav_js(@pagy, ...)`            | `@pagy.nav_js_tag(...)`            |
-| `pagy_combo_nav_js(@pagy, ...)`      | `@pagy.combo_nav_js_tag(...)`      |
-| `pagy_info(@pagy, ...)`              | `@pagy.info_tag(...)`              |
-| `pagy_limit_selector_js(@pagy, ...)` | `@pagy.limit_selector_js_tag(...)` |
-| `pagy_prev_url(@pagy, ...)`          | `@pagy.page_url(:previous, ...)`   |
-| `pagy_next_url(@pagy, ...)`          | `@pagy.page_url(:next, ...)`       |
+| Search (old)                         | Replace with (new)               |
+|--------------------------------------|----------------------------------|
+| `pagy_nav(@pagy, ...)`               | `@pagy.series_nav(...)`          |
+| `pagy_nav_js(@pagy, ...)`            | `@pagy.series_nav_js(...)`       |
+| `pagy_combo_nav_js(@pagy, ...)`      | `@pagy.input_nav_js(...)`        |
+| `pagy_info(@pagy, ...)`              | `@pagy.info_tag(...)`            |
+| `pagy_limit_selector_js(@pagy, ...)` | `@pagy.limit_tag_js(...)`        |
+| `pagy_prev_url(@pagy, ...)`          | `@pagy.page_url(:previous, ...)` |
+| `pagy_next_url(@pagy, ...)`          | `@pagy.page_url(:next, ...)`     |
 | `pagy_prev_a(@pagy, ...)`            | `@pagy.previous_tag(...)`        |
 | `pagy_next_a(@pagy, ...)`            | `@pagy.next_tag(...)`            |
 
 ##### `boostrap`, `bulma`
 
-- Replace any existing `pagy_<extra-name>_nav(@pagy, ...)` with `@pagy.nav_tag(:<extra-name>, ...)`
-- Replace any existing `pagy_<extra-name>_nav_js(@pagy, ...)` with `@pagy.nav_js_tag(:<extra-name>, ...)`
-- Replace any existing `pagy_<extra-name>_combo_nav_js(@pagy, ...)` with `@pagy.combo_nav_js_tag(:<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_nav(@pagy, ...)` with `@pagy.series_nav(:<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_nav_js(@pagy, ...)` with `@pagy.series_nav_js(:<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_combo_nav_js(@pagy, ...)` with `@pagy.input_nav_js(:<extra-name>, ...)`
 
 ##### `countless`
 

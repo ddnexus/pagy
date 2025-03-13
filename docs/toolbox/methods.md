@@ -25,11 +25,11 @@ Unused code consumes no memory.
 [:icon-list-unordered: headers_hash](methods/headers_hash.md)<br/>
 [:icon-list-unordered: links_hash](methods/links_hash.md)<br/>
 [:icon-arrow-right: page_url](methods/page_url.md)<br/>
-[:icon-code: nav_tag](methods/nav_tag.md)<br/>
-[:icon-code: nav_js_tag](methods/nav_js_tag)<br/>
-[:icon-code: combo_nav_js_tag](methods/combo_nav_js_tag.md)<br/>
+[:icon-code: series_nav](methods/series_nav.md)<br/>
+[:icon-code: series_nav_js](methods/series_nav_js.md)<br/>
+[:icon-code: input_nav_js](methods/input_nav_js.md)<br/>
 [:icon-code-square: info_tag](methods/info_tag.md)<br/>
-[:icon-code-square: limit_selector_js_tag](methods/limit_selector_js_tag.md)<br/>
+[:icon-code-square: limit_tag_js](methods/limit_tag_js.md)<br/>
 [:icon-code-square: link_tags](methods/link_tags.md)<br/>
 
 
@@ -56,7 +56,7 @@ Unused code consumes no memory.
 
   ```erb
   <%# Explicitly set the aria_label %>
-  <%== @pagy.nav_tag(aria_label: 'Search result pages') %>
+  <%== @pagy.series_nav(aria_label: 'Search result pages') %>
   ```
   !!!
   Refer to [ARIA](../resources/aria.md) for additional information.

@@ -20,5 +20,5 @@ da:
       no_items: "Ingen %{item_name} fundet"
       single_page: "Viser %{count} %{item_name}"
       multiple_pages: "Viser %{item_name} %{from}-%{to} af %{count} totalt"
-    combo_nav_js_tag: "Side %{page_input} af %{pages}"
-    limit_selector_js_tag: "Antal %{limit_input} %{item_name} per side"
+    input_nav_js: "Side %{page_input} af %{pages}"
+    limit_tag_js: "Antal %{limit_input} %{item_name} per side"

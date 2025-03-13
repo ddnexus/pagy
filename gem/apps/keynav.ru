@@ -138,19 +138,19 @@ class PagyKeynav < Sinatra::Base
           <% end %>
         </table>
         </div>
-        <h3>pagy.nav_tag</h3>
+        <h3>pagy.series_nav</h3>
         <p>
-          <%= @pagy.nav_tag(id: 'nav', aria_label: 'Pages (nav)') %>
+          <%= @pagy.series_nav(id: 'series-nav', aria_label: 'Pages (nav)') %>
         </p>
-          <h3>pagy.nav_js_tag (responsive)</h3>
+          <h3>pagy.series_nav_js (responsive)</h3>
         <p>
-          <%= @pagy.nav_js_tag(id: 'nav-js-responsive',
+          <%= @pagy.series_nav_js(id: 'series-nav-js-responsive',
                            aria_label: 'Pages (nav_js_responsive)',
                            steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
         </p>
-          <h3>pagy.combo_nav_js_tag</h3>
+          <h3>pagy.input_nav_js</h3>
         <p>
-          <%= @pagy.combo_nav_js_tag(id: 'combo-nav-js', aria_label: 'Pages (combo_nav_js)') %>
+          <%= @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages (combo_nav_js)') %>
         </p>
       </div>
     ERB

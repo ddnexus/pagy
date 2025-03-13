@@ -35,7 +35,7 @@ The `nav` elements are `landmark  roles`, and should be distinctly labeled.
 
 ```erb
 <%# Explicitly set the aria_label %>
-<%== @pagy.nav_tag(aria_label: 'Search result pages') %>
+<%== @pagy.series_nav(aria_label: 'Search result pages') %>
 ```
 
 !!!
