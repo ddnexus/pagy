@@ -40,9 +40,9 @@ describe 'pagy/helpers/url' do
       pagy, = app.send(:pagy, :offset, @collection,
                        count:   1000,
                        page:    3,
-                       request: { base_url:   'http://example.com',
-                                  path:       '/path',
-                                  queried: { 'a' => '1', 'b' => '2' } })
+                       request: { base_url: 'http://example.com',
+                                  path:     '/path',
+                                  query:    { 'a' => '1', 'b' => '2' } })
       _(pagy.send(:compose_page_url, 5, absolute: true)).must_equal 'http://example.com/path?a=1&b=2&page=5'
     end
   end

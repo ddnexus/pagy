@@ -54,7 +54,7 @@ class Pagy
         conf[unit][:period]  = object&.send(:active_period) || @period
         conf[unit][:page]    = page_keys["#{unit}_#{@page_key}"] \
                              = create(unit, **conf[unit]).send(:page_at, time, **)
-        conf[unit][:querify] = ->(queried) { queried.merge!(page_keys) }
+        conf[unit][:querify] = ->(query) { query.merge!(page_keys) }
         create(unit, **conf[unit])
       end.send(:compose_page_url, 1, **)
     end
@@ -62,11 +62,11 @@ class Pagy
     private
 
     # Create the calendar
-    def init(conf, period, queried)
+    def init(conf, period, query)
       @conf     = Marshal.load(Marshal.dump(conf))  # store a copy
       @units    = Calendar::UNITS & @conf.keys # get the units in time length desc order
       @period   = period
-      @queried  = queried
+      @query    = query
       @page_key = conf[:offset][:page_key] || DEFAULT[:page_key]
       # set all the :page_key options for later deletion
       @units.each { |unit| conf[unit][:page_key] = "#{unit}_#{@page_key}" }
@@ -76,7 +76,7 @@ class Pagy
         params_to_delete     = @units[(index + 1), @units.length].map { |sub| conf[sub][:page_key] } + [@page_key]
         conf[unit][:querify] = ->(up) { up.except!(*params_to_delete.map(&:to_s)) }
         conf[unit][:period]  = object&.send(:active_period) || @period
-        conf[unit][:page]    = @queried["#{unit}_#{@page_key}"] # requested page
+        conf[unit][:page]    = @query["#{unit}_#{@page_key}"] # requested page
         # :nocov:
         # simplecov doesn't need to fail block_given?
         conf[unit][:counts] = yield(unit, conf[unit][:period]) if block_given?

@@ -17,7 +17,7 @@ class Pagy
           calendar, from, to =
             Calendar.send(:init, config,
                           pagy_calendar_period(collection),
-                          config[:request].queried) do |unit, period|
+                          config[:request].query) do |unit, period|
               pagy_calendar_counts(collection, unit, *period) if respond_to?(:pagy_calendar_counts)
             end
           collection = pagy_calendar_filter(collection, from, to)

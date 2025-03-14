@@ -73,10 +73,10 @@ Individual paginators may offer additional options, which are documented with th
 - `request: custom_request`
   - **Set this hash only in non-rack environments** or when instructed by the docs. _(It is set automatically from the request)_. For example:
     ```ruby
-    custom_request =  { base_url: 'http://www.example.com',
-                        path:     '/path',
-                        queried:  { 'param1' => 1234 }, # The string-keyed hash queried from the request
-                        cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
+    custom_request = { base_url: 'http://www.example.com',
+                       path:     '/path',
+                       query:    { 'param1' => 1234 }, # The string-keyed hash query from the request
+                       cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
     ```
 
 ==- Common URL Options

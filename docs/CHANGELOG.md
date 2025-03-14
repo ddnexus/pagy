@@ -97,7 +97,7 @@ a long time**.
 #### Core changes
 
 - The `:params` variable/option has been removed and replaced with the `:querify` option, which is a `lambda` that can modify
-  the string-keyed queried hash at will. It is a bit more verbose, but it's a very powerful and efficient low-level modification,
+  the string-keyed query hash at will. It is a bit more verbose, but it's a very powerful and efficient low-level modification,
   solves an incompatibility with the old high level `:params` hash and improve performnce. It is part of
   the [Common URL Options](toolbox/paginators#common-url-options) group that gives you full and efficient control on the URL composition.
   - Replace the existing `:params` hash with the lambda that merges them:
@@ -290,7 +290,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
   ```ruby
   request: { base_url: 'http://www.example.com',
              path:     '/path',
-             queried:  { 'param1' => 1234 }, # The string-keyed hash queried from the request 
+             query:    { 'param1' => 1234 }, # The string-keyed hash query from the request 
              cookie:   'xyz' }               # The 'pagy' cookie, only for keynav  
   ```
   
