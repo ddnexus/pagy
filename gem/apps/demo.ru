@@ -45,7 +45,7 @@ NAMES = { pagy:      { css_anchor: 'pagy-scss' },
 require 'sinatra/base'
 
 # Pagy init
-Pagy.options[:max_limit] = 100
+Pagy.options[:client_max_limit] = 100
 
 # Sinatra application
 class PagyDemo < Sinatra::Base

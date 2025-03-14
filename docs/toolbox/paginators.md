@@ -68,8 +68,8 @@ Individual paginators may offer additional options, which are documented with th
   - Restricts pagination to only `:max_pages`. _(Ignored by `Pagy::Calendar::*` unit instances)_
 - `page: 3`
   - Set it only to force the current `:page`. _(It is set automatically from the request query hash)_.
-- `max_limit: 1_000`
-  - Allow the client to set the `:limit` in the `request` query, up to `1_000` in the example. If the requested limit is higher it will be capped to `max_limit`.
+- `client_max_limit: 1_000`
+  - Set the maximum `:limit` that the client is allowed to `request`. Higher requested `:limit`s are silently capped.
 - `request: custom_request`
   - **Set this hash only in non-rack environments** or when instructed by the docs. _(It is set automatically from the request)_. For example:
     ```ruby

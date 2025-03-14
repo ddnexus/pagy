@@ -40,16 +40,16 @@ class Pagy
 
     # Return the URL for the page, relying on the Pagy::Request
     def compose_page_url(page, limit_token: nil, **options)
-      jsonapi, page_key, limit_key, limit, max_limit, querify, absolute, path, fragment =
+      jsonapi, page_key, limit_key, limit, client_max_limit, querify, absolute, path, fragment =
         @options.merge(options)
-                .values_at(:jsonapi, :page_key, :limit_key, :limit, :max_limit, :querify, :absolute, :path, :fragment)
+                .values_at(:jsonapi, :page_key, :limit_key, :limit, :client_max_limit, :querify, :absolute, :path, :fragment)
       query = @request.query.clone(freeze: false)
       query.delete(jsonapi ? 'page' : page_key)
-      paging = {}.tap do |h|
-                 h[page_key]  = countless? ? "#{page || 1}+#{@last}" : page
-                 h[limit_key] = limit_token || limit if max_limit
-               end.compact # No empty params
-      query.merge!(jsonapi ? { 'page' => paging } : paging) if paging.size.positive?
+      factors = {}.tap do |h|
+                  h[page_key]  = countless? ? "#{page || 1}+#{@last}" : page
+                  h[limit_key] = limit_token || limit if client_max_limit
+                end.compact # No empty params
+      query.merge!(jsonapi ? { 'page' => factors } : factors) if factors.size.positive?
       querify&.(query) # Must modify the query: the returned value is ignored
       query_string = QueryUtils.build_nested_query(query, nil, [page_key, limit_key])
       query_string = "?#{query_string}" unless query_string.empty?

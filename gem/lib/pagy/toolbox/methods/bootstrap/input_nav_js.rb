@@ -14,7 +14,7 @@ class Pagy
                %(border: none; display: inline-block;" class="page-link active">#{A_TAG})
     html     = %(<ul class="#{classes}">#{
                  bootstrap_html_for(:previous, a_lambda)
-                 }<li class="page-item pagy-bootstrap"><label class="page-link">#{
+                 }<li class="page-item"><label class="page-link">#{
                  I18n.translate('pagy.input_nav_js', page_input: input, pages: @last)
                  }</label></li>#{
                  bootstrap_html_for(:next, a_lambda)

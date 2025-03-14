@@ -43,7 +43,7 @@ class PagyKeyset < Sinatra::Base
     Time.zone = 'UTC'
 
     @order = { animal: :asc, name: :asc, birthdate: :desc, id: :asc }
-    @pagy, @pets = pagy(:keyset, Pet.order(@order), limit: 10, max_limit: 100)
+    @pagy, @pets = pagy(:keyset, Pet.order(@order), limit: 10, client_max_limit: 100)
     # response.headers.merge!(@pagy.headers_hash)
     erb :main
   end

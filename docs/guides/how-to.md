@@ -23,14 +23,14 @@ You can also [ask the Pagy-trained AI](https://gurubase.io/g/pagy) for instant a
 - **Server side**
   - Use the `:limit` option.
 - **Client Side**
-  - Use the `limit` option combined with the `:max_limit` option, which allows the client to request a `:limit` up to the
-    specified `:max_limit`.
+  - Use the `limit` option combined with the `:client_max_limit` option, which allows the client to request a `:limit` up to the
+    specified `:client_max_limit`.
   - Additionally, you can use the [limit_tag_js](../toolbox/methods/limit_tag_js) helper to provide a UI
     selector to the user.
 
 ```ruby
 @pagy, @products = pagy(:offset, collection, limit: 10)
-@pagy, @products = pagy(:offset, collection, limit: 10, max_limit: 1_000)
+@pagy, @products = pagy(:offset, collection, limit: 10, client_max_limit: 1_000)
 ```
 
 !!! warning ActiveRecord `limit`
@@ -183,7 +183,7 @@ Explore the following options:
 
 - [:keyset paginator](../toolbox/paginators/keyset.md)
 - [headers_hash helper](../toolbox/methods/headers_hash.md)
-- [:max_limit option](../toolbox/paginators#common-options)
+- [:client_max_limit option](../toolbox/paginators#common-options)
 - [:jsonapi option](../toolbox/paginators#common-options)
 
 ==- Paginate for Javascript Frameworks
