@@ -126,7 +126,7 @@ const Pagy = (() => {
             re  = new RegExp(`(?<=\\?.*)\\b${pageKey}=(\\d+)`);   // find the numeric page from pageKey
       a.href    = url.replace(re, pageKey + "=" + augment(url.match(re)![1]));  // eslint-disable-line @typescript-eslint/no-non-null-assertion
     }
-    // Return the augment function for furter augmentation (i.e. url token in combo_nav_js)
+    // Return the augment function for furter augmentation (i.e. url token in input_nav_js)
     return augment;
   };
 

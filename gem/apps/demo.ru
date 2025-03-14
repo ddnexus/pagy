@@ -37,8 +37,8 @@ end
 
 # pagy initializer
 NAMES = { pagy:      { css_anchor: 'pagy-scss' },
-          bootstrap: { style: :bootstrap },
-          bulma:     { style: :bulma },
+          bootstrap: { style: :bootstrap, classes: 'pagination pagination-sm' },
+          bulma:     { style: :bulma, classes: 'pagination is-small' },
           tailwind:  { css_anchor: 'pagy-tailwind-css' } }.freeze
 
 # Sinatra setup
@@ -82,8 +82,10 @@ class PagyDemo < Sinatra::Base
     get("/#{name}") do
       collection      = MockCollection.new
       @pagy, @records = pagy(:offset, collection)
-
-      erb :helpers, locals: { name:, style: value[:style], css_anchor: value[:css_anchor] }
+      erb :helpers, locals: { name:,
+                              style: value[:style],
+                              classes: value[:classes],
+                              css_anchor: value[:css_anchor] }
     end
   end
 
@@ -182,7 +184,7 @@ class PagyDemo < Sinatra::Base
             padding: 1rem;
             range_rescue: auto;
           }
-          .content {
+          .main-content {
             padding: 0 1.5rem 2rem !important;
           }
 
@@ -205,6 +207,15 @@ class PagyDemo < Sinatra::Base
             color: inherit;
             text-decoration: none;
           }
+          .pagy, .pagy-bootstrap, .pagy-bulma {
+            padding: .5em;
+            margin: .3em 0;
+            width: fit-content;
+            box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);
+          }
+          .pagy-bootstrap .pagination {
+            margin: 0;
+          }
           /* Quick demo for overriding the element style attribute of certain pagy helpers
           .pagy input[style] {
             width: 5rem !important;
@@ -215,7 +226,7 @@ class PagyDemo < Sinatra::Base
       <body>
         <!-- each different class used by each style -->
         <%= style_menu %>
-        <div class="content">
+        <div class="main-content">
           <%= yield %>
         </div>
       </body>
@@ -257,33 +268,45 @@ class PagyDemo < Sinatra::Base
       <h1><%= name %></h1>
 
       <% if css_anchor %>
-        and the <a href="http://ddnexus.github.io/pagy/resources/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
+        <p>Check the <u><i><b><a href="http://ddnexus.github.io/pagy/resources/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a></b></u></i>
+        for details.</p>
       <% end %>
-      for details</p>
+      </p>
 
       <h2>Collection</h2>
       <p id="records">@records: <%= @records.join(',') %></p>
 
-      <h2>@pagy.series_nav <span class="notes">Small nav <code>slots: 5</code></span></h2>
-      <%= html = @pagy.series_nav(style, id: 'small-nav', aria_label: 'Pages simple-nav', slots: 5) %>
+      <h2>@pagy.series_nav<br/><span class="notes">Small nav <code>{slots: 5, compact: true}</code></span></h2>
+      <%= html = @pagy.series_nav(style, classes:,
+                                  id: 'small-nav',
+                                  aria_label: 'Pages small-nav',
+                                  slots: 5) %>
       <%= highlight(html) %>
 
-      <h2>@pagy.series_nav <span class="notes">Series nav <code>slots: 7</code></span></h2>
-      <%= html = @pagy.series_nav(style, id: 'series-nav', aria_label: 'Pages nav') %>
+      <h2>@pagy.series_nav<br/><span class="notes">Series nav <code>{slots: 7}</code></span></h2>
+      <%= html = @pagy.series_nav(style, classes:,
+                                  id: 'series-nav',
+                                  aria_label: 'Pages series_nav') %>
       <%= highlight(html) %>
 
-      <h2>@pagy.series_nav_js <span class="notes">Series nav js <code>slots: 7</code></span></h2>
-      <%= html = @pagy.series_nav_js(style, id: 'series-nav-js', aria_label: 'Pages nav_js') %>
+      <h2>@pagy.series_nav_js<br/><span class="notes">Faster Series nav js <code>{slots: 7}</code></span></h2>
+      <%= html = @pagy.series_nav_js(style, classes:,
+                                     id: 'series-nav-js',
+                                     aria_label: 'Pages series_nav_js') %>
       <%= highlight(html) %>
 
-      <h2>@pagy.series_nav_js <span class="notes">Responsive nav <code>steps:  { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }</code> (Resize the window to see)</span></h2>
-      <%= html = @pagy.series_nav_js(style, id: 'series-nav-js-responsive',
-                                     aria_label: 'Pages nav_js_responsive',
+      <h2>@pagy.series_nav_js<br/><span class="notes">Responsive nav <code>{steps: {0 => 5, 500 => 7, 750 => 9, 1000 => 11}}</code>
+      <br/>(Resize the window to see)</span></h2>
+      <%= html = @pagy.series_nav_js(style, classes:,
+                                     id: 'series-nav-js-responsive',
+                                     aria_label: 'Pages series_nav_js_responsive',
                                      steps:      { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
       <%= highlight(html) %>
 
       <h2>@pagy.input_nav_js</h2>
-      <%= html = @pagy.input_nav_js(style, id: 'input-nav-js', aria_label: 'Pages combo_nav_js') %>
+      <%= html = @pagy.input_nav_js(style, classes:,
+                                    id: 'input-nav-js',
+                                    aria_label: 'Pages inpup_nav_js') %>
       <%= highlight(html) %>
 
       <h2>@pagy.info_tag</h2>

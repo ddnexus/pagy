@@ -11,18 +11,22 @@ categories:
 
 #
 
-## :icon-code: inout_nav_js
+## :icon-code: input_nav_js
 
 ---
+
+![input_nav_js](../../assets/images/input_nav_js.png){width=255}
+
+![input_nav_js(:bootstrap)](../../assets/images/input_nav_js-bootstrap.png){width=255}
+
+![input_nav_js(:bulma)](../../assets/images/input_nav_js-bulma.png){width=255}
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 `input_nav_js` combines navigation and pagination info in a single compact element.
 
 It is the fastest and lightest navigator, recommended when you care about efficiency and server load (
 see [Maximizing Performance](../../guides/how-to#maximize-performance)) still needing UI.
-
-![input_nav_js (:bootstrap style)](/assets/images/bootstrap_combo_nav_js.png)
-
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 !!!warning It works with all paginators but `:keyset`
 !!!

@@ -126,6 +126,7 @@ search           = Product.pagy_search(params[:q])
 <%== @pagy.series_nav(:bootstrap) %>
 <%== @pagy.series_nav(:bulma) %>
 ```
+<img src="assets/images/series_nav.png" width="360">
 
 ##### Client side rendering
 
@@ -140,11 +141,18 @@ Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 <%== @pagy.series_nav_js %> <!-- default style -->
 <%== @pagy.series_nav_js(:bootstrap) %>
 <%== @pagy.series_nav_js(:bulma) %>
+```
+<img src="assets/images/series_nav_js-11.png" width="535"><br/>
+<img src="assets/images/series_nav_js-9.png" width="448"><br/>
+<img src="assets/images/series_nav_js-7.png" width="360"><br/>
 
+
+```erb
 <%== @pagy.input_nav_js %> <!-- default style -->
 <%== @pagy.input_nav_js(:bootstrap) %>
 <%== @pagy.input_nav_js(:bulma) %>
 ```
+<img src="assets/images/input_nav_js.png" width="255"><br/>
 
 ##### View helpers
 

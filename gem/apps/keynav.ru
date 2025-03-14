@@ -150,7 +150,7 @@ class PagyKeynav < Sinatra::Base
         </p>
           <h3>@pagy.input_nav_js</h3>
         <p>
-          <%= @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages (combo_nav_js)') %>
+          <%= @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages (input_nav_js)') %>
         </p>
       </div>
     ERB

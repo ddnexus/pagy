@@ -1,7 +1,7 @@
 ---
-label: link_tags
+label: anchor_tags
 icon: code-square
-order: 110
+order: 140
 categories:
   - Methods
   - Tags
@@ -9,9 +9,13 @@ categories:
 
 #
 
-## :icon-code-square: link_tags
+## :icon-code-square: anchor_tags
 
 ---
+
+![previous_tag & next_tag](../../assets/images/anchor_tags.png){width=91}
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 The `previous_tag` and `next_tag` return the enabled/disabled previous/next page anchor tag.
 

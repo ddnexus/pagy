@@ -196,7 +196,8 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 
 - Replace any existing `pagy_<extra-name>_nav(@pagy, ...)` with `@pagy.series_nav(:<extra-name>, ...)`
 - Replace any existing `pagy_<extra-name>_nav_js(@pagy, ...)` with `@pagy.series_nav_js(:<extra-name>, ...)`
-- Replace any existing `pagy_<extra-name>_combo_nav_js(@pagy, ...)` with `@pagy.input_nav_js(:<extra-name>, ...)`
+- Replace any existing `pagy_<extra-name>_combo_nav_js(@pagy, ...)` with `@pagy.input_nav_js(:<extra-name>, ...)
+- Notice: A few minor cosmetic changes. 
 
 ##### `countless`
 
@@ -336,5 +337,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 - **I18n refactoring**
   - No setup required: the locales and their pluralization are autoloaded when your app uses them.
   - You can easily override the lookup of locale files with `Pagy::I18n.pathnames << my_dictionaries`.
+- *Boostrap and Bulma**
+  - Fixed a few style glitches.
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)

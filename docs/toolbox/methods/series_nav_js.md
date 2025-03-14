@@ -15,15 +15,19 @@ categories:
 
 ---
 
+![series_nav_js](../../assets/images/series_nav.png){width=360}
+
+![series_nav_js(:bootstrap)](../../assets/images/series_nav-bootstrap.png){width=360}
+
+![series_nav_js(:bulma)](../../assets/images/series_nav-bulma.png){width=360}
+\
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
+
 `series_nav_js` functions similarly to a [series_nav](series_nav.md), with the following added features:
 
 1. Enables client-side rendering.
 2. Provides optional responsiveness.
 3. Improves performance and optimizes resource usage (see [Maximizing Performance](../../guides/how-to#maximize-performance)).
-
-![Responsive series_nav_js (:bootstrap style)](/assets/images/bootstrap_nav_js.png){width=500}
-
-[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 !!!warning It works with all paginators but `:keyset`
 !!!

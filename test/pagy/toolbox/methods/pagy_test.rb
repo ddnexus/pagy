@@ -11,22 +11,22 @@ describe 'Pagy nav test' do
 
   describe "nav" do
     it 'renders first, intermediate and last pages' do
-      nav_tests(STYLE)
+      series_nav_tests(STYLE)
     end
   end
 
   describe "nav_js" do
     it 'renders single and multiple pages when used with Pagy::Offset::Countless' do
-      nav_js_countless_tests(STYLE)
+      series_nav_js_countless_tests(STYLE)
     end
     it 'renders first, intermediate and last pages with required steps' do
-      nav_js_tests(STYLE)
+      series_nav_js_tests(STYLE)
     end
   end
 
-  describe "combo_nav_js" do
+  describe "input_nav_js" do
     it 'renders first, intermediate and last pages' do
-      combo_nav_js_tests(STYLE)
+      input_nav_js_tests(STYLE)
     end
   end
 

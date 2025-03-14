@@ -28,18 +28,18 @@ Unused code consumes no memory.
 [:icon-code: series_nav](methods/series_nav.md)<br/>
 [:icon-code: series_nav_js](methods/series_nav_js.md)<br/>
 [:icon-code: input_nav_js](methods/input_nav_js.md)<br/>
+[:icon-code-square: anchor_tags](methods/anchor_tags.md)<br/>
 [:icon-code-square: info_tag](methods/info_tag.md)<br/>
 [:icon-code-square: limit_tag_js](methods/limit_tag_js.md)<br/>
-[:icon-code-square: link_tags](methods/link_tags.md)<br/>
 
 
 ==- Common Nav Styles
 
 - No arguments: default pagy style
 - `:bootstrap`
-  - Set `classes: 'pagination any_class'` style option to override the default `'pagination'` class.
+  - Set `classes: 'pagination pagination-sm any-class'` style option to override the default `'pagination'` class.
 - `:bulma`
-  - Set `classes: 'pagination any_class'` style option to override the default `'pagination is-centered'` classes.
+  - Set `classes: 'pagination is-small any-class'` style option to override the default `'pagination'` classes.
   
 ==- Common Nav Options
 

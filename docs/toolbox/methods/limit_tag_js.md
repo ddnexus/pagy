@@ -13,6 +13,10 @@ categories:
 
 ---
 
+![limit_tag_js](../../assets/images/limit_tag_js.png){width=253}
+
+[!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
+
 The `limit_tag_js` allows the user to select any arbitrary limit per page, up to the `:client_max_limit` option. It raises an `OptionError` exception if the `:client_max_limit` is not truthy.
 
 !!!warning It works with all paginators but `:keyset`
@@ -33,9 +37,6 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
 <span id="my-elector" class="pagy limit-tag-js" data-pagy="WyJzaiIsNDEsIi9wYXRoP2V4YW1wbGU9MTIzJnBhZ2U9UCAiXQ=="><label>Show <input name="limit" type="number" min="1" max="" value="20" style="padding: 0; text-align: center; width: 3rem;"><a style="display: none;">#</a> Products per page</label></span>
 => nil
 ```
-
-It looks like: <span>Show <input type="number" min="1" max="100" value="20" style="padding: 0; text-align: center; width: 3rem;"> Products per
-page</span>
 
 !!!success Pagy requests the _right_ page number
 

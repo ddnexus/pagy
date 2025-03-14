@@ -9,7 +9,7 @@ module NavTests
     Pagy::Request.new(MockApp.new.request)
   end
 
-  def nav_tests(style)
+  def series_nav_tests(style)
     [1, 20, 50].each do |page|
       pagy  = Pagy::Offset.new(count: 1000, page: page, request:)
       pagyx = Pagy::Offset.new(count: 1000, page: page, request:)
@@ -22,7 +22,7 @@ module NavTests
     _(pagyk.series_nav(style)).must_rematch :keyset
   end
 
-  def nav_js_tests(style)
+  def series_nav_js_tests(style)
     # e.g. pagy_bootstrap_nav_js
     [1, 20, 50].each do |page|
       pagy  = Pagy::Offset.new(count: 1000, page: page, request:)
@@ -38,7 +38,7 @@ module NavTests
     _(pagyk.series_nav_js(style)).must_rematch :keyset
   end
 
-  def nav_js_countless_tests(style)
+  def series_nav_js_countless_tests(style)
     # e.g. pagy_bootstrap_nav_js
     [[1, 0], [2, 23]].each do |page, rest|
       pagy  = Pagy::Offset::Countless.new(page: page, last: page, request:).send(:finalize, rest)
@@ -48,7 +48,7 @@ module NavTests
     end
   end
 
-  def combo_nav_js_tests(style)
+  def input_nav_js_tests(style)
     [1, 3, 6].each do |page|
       pagy  = Pagy::Offset.new(count: 103, page: page, request:)
       pagyx = Pagy::Offset.new(count: 103, page: page, request:)

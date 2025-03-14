@@ -142,7 +142,7 @@ class PagyRepro < Sinatra::Base
            steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
 
         <h4>@pagy.input_nav_js</h4>
-        <%= @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <%= @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages input_nav_js') %>
 
         <h4>@pagy.limit_tag_js</h4>
         <%= @pagy.limit_tag_js(id: 'limit-tag-js') %>

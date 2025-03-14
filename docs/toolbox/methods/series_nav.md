@@ -15,11 +15,15 @@ categories:
 
 ---
 
-`series_nav` returns an HTML string containing pagination links, wrapped in a `nav` tag, ready to be used in your view.
+![series_nav](../../assets/images/series_nav.png){width=360}
 
-![series_nav (:bootstrap style)](/assets/images/bootstrap_nav.png){width=300}
+![series_nav(:bootstrap)](../../assets/images/series_nav-bootstrap.png){width=360}
+
+![series_nav(:bulma)](../../assets/images/series_nav-bulma.png){width=360}
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
+
+`series_nav` returns an HTML string containing pagination links, wrapped in a `nav` tag, ready to be used in your view.
 
 !!!warning It works with all paginators but `:keyset`
 !!!

@@ -196,7 +196,7 @@ TEMPLATE = <<~ERB
         <%== @pagy.series_nav_js(id: 'series-nav-js', aria_label: 'Pages nav_js') %>
 
         <h4>@pagy.input_nav_js</h4>
-        <%== @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <%== @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages input_nav_js') %>
 
         <h4>@pagy.limit_tag_js</h4>
         <%== @pagy.limit_tag_js(id: 'limit-tag-js') %>

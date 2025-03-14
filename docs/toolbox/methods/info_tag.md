@@ -1,7 +1,7 @@
 ---
 label: info_tag
 icon: code-square
-order: 140
+order: 120
 categories:
   - Methods
   - Tags
@@ -12,6 +12,8 @@ categories:
 ## :icon-code-square: info_tag
 
 ---
+
+![info_tag](../../assets/images/info_tag.png){width=311}
 
 `info_tag` provides information about the content of the current pagination.
 

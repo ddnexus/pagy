@@ -96,7 +96,7 @@ Pagy_nav_test__previous_tag_test_0001_renders_the_previous_tag_for_page_1:
   :r2: <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
   :r3: <a role="link" aria-disabled="true" aria-label="My previous page">PREV</a>
   :r4: <a role="link" aria-disabled="true" aria-label="My previous page">PREV</a>
-Pagy_nav_test__combo_nav_js_test_0001_renders_first,_intermediate_and_last_pages:
+Pagy_nav_test__input_nav_js_test_0001_renders_first,_intermediate_and_last_pages:
   :plain_1: '<nav class="pagy input-nav-js" aria-label="Pages" data-pagy="WyJpbmoiLCIvZm9vP3BhZ2U9UCAiXQ=="><a
     role="link" aria-disabled="true" aria-label="Previous">&lt;</a><label>Page <input
     name="page" type="number" min="1" max="6" value="1" aria-current="page" style="text-align:
