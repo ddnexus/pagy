@@ -21,6 +21,16 @@ describe 'Offset' do
       _(records.count).must_equal Pagy::DEFAULT[:limit]
       _(records).must_equal [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
     end
+    it 'paginates with page param empty' do
+      app = MockApp.new(params: { page: '' })
+      pagy, records = app.send(:pagy, :offset, @collection, limit: 10)
+      _(pagy).must_be_instance_of Pagy::Offset
+      _(pagy.count).must_equal 1000
+      _(pagy.limit).must_equal pagy.limit
+      _(pagy.page).must_equal 1
+      _(records.count).must_equal 10
+      _(records).must_equal [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    end
     it 'paginates with options' do
       pagy, records = app.send(:pagy, :offset, @collection, page: 2, limit: 10)
       _(pagy).must_be_instance_of Pagy::Offset

@@ -2,7 +2,7 @@
 
 class Pagy
   # Decouple the reuest from the env, allowing non-rack apps to use pagy by passing a hash.
-  # Resolve :page and :limit, supporting the :jsonapi option. Support URL composition.
+  # Resolve :page and :limit, supporting the :jsonapi option. Support for URL composition.
   class Request
     def initialize(request, options = {})
       @base_url, @path, @queried, @cookie =
@@ -20,6 +20,7 @@ class Pagy
     def resolve_page(options, force_integer: true)
       page_key = options[:page_key] || DEFAULT[:page_key]
       page     = @jsonapi ? @queried['page'][page_key] : @queried[page_key]
+      page     = nil if page == ''   # fix for app-generated queries like ?page=
       force_integer ? (page || 1).to_i : page
     end
 
