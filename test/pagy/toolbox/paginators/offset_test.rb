@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../../../test_helper'
-require_relative '../../../mock_helpers/arel'
 require_relative '../../../mock_helpers/collection'
 require_relative '../../../mock_helpers/app'
 
