@@ -334,7 +334,7 @@ Check out these paginators:
   - [:countless](../toolbox/paginators/countless.md)
   - [:keyset](../toolbox/paginators/keyset.md)
   - [:keynav_js](../toolbox/paginators/keynav_js.md)
-- Consider the `*_nav_js_tag`s (a few orders of magnitute faster)
+- Consider the `*_nav_js` tags: they are a few orders of magnitute faster.
   - Add the `oj` gem to your gemfile
 
 ==- Ignore Brakeman UnescapedOutputs false positives warnings

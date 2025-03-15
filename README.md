@@ -118,7 +118,35 @@ search           = Product.pagy_search(params[:q])
 @pagy    = pagy(:searchkick, @results)
 ```
 
+##### Calendar pagination
+
+Combines `time-range` and `offset` pagination.
+
+_(Available time units: year, quarter, month, week, and day)_
+
+<img src="assets/images/calendar-app.png" width="700"><br/>
+
+```ruby
+@calendar, @pagy, @records = pagy(:calendar, collection, year: {}, month: {}, offset: {})
+```
+
+```ERB
+<%== @calendar[:year].series_nav(:bootstrap) %>
+<%== @calendar[:month].series_nav(:bootstrap) %>
+<%== @pagy.info_tag %>
+...
+<%== @pagy.series_nav(:bootstrap) %>
+```
+
 ##### Server side rendering
+
+##### `series_nav` 
+
+Default, :bootstrap and :bulma styles shown.
+
+<img src="assets/images/series_nav.png" width="288"><br/>
+<img src="assets/images/series_nav-bootstrap.png" width="248"><br/>
+<img src="assets/images/series_nav-bulma.png" width="304"><br/>
 
 ```erb
 <!-- Render nav bar helpers with different styles -->
@@ -126,7 +154,6 @@ search           = Product.pagy_search(params[:q])
 <%== @pagy.series_nav(:bootstrap) %>
 <%== @pagy.series_nav(:bulma) %>
 ```
-<img src="assets/images/series_nav.png" width="360">
 
 ##### Client side rendering
 
@@ -136,41 +163,34 @@ javascript_dir = Rails.root.join('app/javascript')
 Pagy.sync_javascript(javascript_dir, 'pagy.mjs') if Rails.env.development?
 ```
 
+##### `series_nav_js` 
+
+**Faster and responsive**
+
+Dynamically fills the container width.
+
+<img src="assets/images/series_nav_js-7.png" width="288"><br/>
+<img src="assets/images/series_nav_js-9.png" width="358"><br/>
+<img src="assets/images/series_nav_js-11.png" width="428"><br/>
+
 ```erb
 <!-- Render client side nav bar helpers of different types and styles -->
 <%== @pagy.series_nav_js %> <!-- default style -->
 <%== @pagy.series_nav_js(:bootstrap) %>
 <%== @pagy.series_nav_js(:bulma) %>
 ```
-<img src="assets/images/series_nav_js-11.png" width="535"><br/>
-<img src="assets/images/series_nav_js-9.png" width="448"><br/>
-<img src="assets/images/series_nav_js-7.png" width="360"><br/>
 
+##### `input_nav_js` 
+
+**Fastest!** Combines navigation and info in minimum space.
+
+<img src="assets/images/input_nav_js.png" width="204"><br/>
 
 ```erb
 <%== @pagy.input_nav_js %> <!-- default style -->
 <%== @pagy.input_nav_js(:bootstrap) %>
 <%== @pagy.input_nav_js(:bulma) %>
 ```
-<img src="assets/images/input_nav_js.png" width="255"><br/>
-
-##### View helpers
-
-Pagy offers a variety of view helpers for pagination. Below is a list of available UI components, along with their previews (
-Bootstrap styling example).
-
-<br/>
-
-| Helper Name                                                                                                                                                                                                                       | Preview (Bootstrap Style shown)                                  |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| [`@pagy.series_nav`](https://ddnexus.github.io/pagy/toolbox/methods/series_nav)                                                                                                                                                         | ![`series_nav`](/assets/images/bootstrap_nav.png)                   |
-| [`@pagy.series_nav_js`](https://ddnexus.github.io/pagy/toolbox/methods/series_nav_js)                                                                                                                                                   | ![`pagy_nav_js`](/assets/images/bootstrap_nav_js.png)            |
-| [`@pagy.info_tag`](https://ddnexus.github.io/pagy/toolbox/methods/series_nav_js)                                                                                                                                                     | ![`info_tag`](/assets/images/pagy_info.png)                      |
-| [`@pagy.input_nav_js`](https://ddnexus.github.io/toolbox/methods/input_nav_js)                                                                                                                                            | ![`input_nav_js`](/assets/images/bootstrap_combo_nav_js.png) |
-| [`@pagy.limit_tag_js`](https://ddnexus.github.io/pagy/toolbox/methods/limit_seletor_js_tag)                                                                                                                              | ![`limit_tag_js`](/assets/images/limit_selector_js.png) |
-| [`@calendar[:year].series_nav`](https://ddnexus.github.io/toolbox/paginators/calendar)<br/>[`@calendar[:month].series_nav`](https://ddnexus.github.io/pagy/toolbox/pginators/calendar/)<br/> (other units: `:quarter`, `:week`, `:day`) | ![calendar](/assets/images/calendar-app.png)                     |
-
-<br/>
 
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Support and Docs
 

@@ -276,27 +276,36 @@ class PagyDemo < Sinatra::Base
       <h2>Collection</h2>
       <p id="records">@records: <%= @records.join(',') %></p>
 
-      <h2>@pagy.series_nav<br/><span class="notes">Small nav <code>{slots: 5, compact: true}</code></span></h2>
+      <h2>@pagy.series_nav<br/>
+        <span class="notes">Small nav <code>{slots: 5, compact: true}</code></span>
+      </h2>
       <%= html = @pagy.series_nav(style, classes:,
                                   id: 'small-nav',
                                   aria_label: 'Pages small-nav',
                                   slots: 5) %>
       <%= highlight(html) %>
 
-      <h2>@pagy.series_nav<br/><span class="notes">Series nav <code>{slots: 7}</code></span></h2>
+      <h2>@pagy.series_nav<br/>
+        <span class="notes">Series nav <code>{slots: 7}</code></span>
+      </h2>
       <%= html = @pagy.series_nav(style, classes:,
                                   id: 'series-nav',
                                   aria_label: 'Pages series_nav') %>
       <%= highlight(html) %>
 
-      <h2>@pagy.series_nav_js<br/><span class="notes">Faster Series nav js <code>{slots: 7}</code></span></h2>
+      <h2>@pagy.series_nav_js<br/>
+        <span class="notes">Faster Series nav js <code>{slots: 7}</code></span>
+      </h2>
       <%= html = @pagy.series_nav_js(style, classes:,
                                      id: 'series-nav-js',
                                      aria_label: 'Pages series_nav_js') %>
       <%= highlight(html) %>
 
-      <h2>@pagy.series_nav_js<br/><span class="notes">Responsive nav <code>{steps: {0 => 5, 500 => 7, 750 => 9, 1000 => 11}}</code>
-      <br/>(Resize the window to see)</span></h2>
+      <h2>@pagy.series_nav_js<br/>
+        <span class="notes">Responsive nav: <code>{steps: {0 => 5, 500 => 7, 750 => 9, 1000 => 11}}</code><br/>
+        (Resize the window to see)
+        </span>
+      </h2>
       <%= html = @pagy.series_nav_js(style, classes:,
                                      id: 'series-nav-js-responsive',
                                      aria_label: 'Pages series_nav_js_responsive',
@@ -314,13 +323,13 @@ class PagyDemo < Sinatra::Base
       <%= highlight(html) %>
 
       <% if name&.match(/pagy|tailwind/) %>
-      <h2>@pagy.limit_tag_js</h2>
-      <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
-      <%= highlight(html) %>
+        <h2>@pagy.limit_tag_js</h2>
+        <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
+        <%= highlight(html) %>
 
-      <h2>@pagy.previous_tag / @pagy.next_tag</h2>
-      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_tag << @pagy.next_tag << '</nav>' %>
-      <%= highlight(html) %>
+        <h2>@pagy.previous_tag / @pagy.next_tag</h2>
+        <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_tag << @pagy.next_tag << '</nav>' %>
+        <%= highlight(html) %>
       <% end %>
     ERB
   end
@@ -333,6 +342,7 @@ class PagyDemo < Sinatra::Base
       See the <a href="https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">
       Custom Templates</a> documentation.
       </p>
+
       <h2>Collection</h2>
       <p id="records">@records: <%= @records.join(',') %></p>
 

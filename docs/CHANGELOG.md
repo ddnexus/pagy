@@ -197,7 +197,12 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 - Replace any existing `pagy_<extra-name>_nav(@pagy, ...)` with `@pagy.series_nav(:<extra-name>, ...)`
 - Replace any existing `pagy_<extra-name>_nav_js(@pagy, ...)` with `@pagy.series_nav_js(:<extra-name>, ...)`
 - Replace any existing `pagy_<extra-name>_combo_nav_js(@pagy, ...)` with `@pagy.input_nav_js(:<extra-name>, ...)
-- Notice: A few minor cosmetic changes. 
+- **Cosmetic changes**
+  - **Bulma**
+    - Removed `is-centered` CSS class.
+    - Moved the previous/next links at the beginning and end of the pagination.
+  - **Bootstrap**
+    - Removed redundant `pagy-bootstrap` class from the `input_nav_js` body.
 
 ##### `countless`
 
@@ -253,7 +258,7 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 ##### `limit`
 
 - Rename the existing `:limit_param` to `:limit_key`.
-- Delete the existing `:limit_extra`.
+- Delete the existing `:limit_extra` and `:max_limit`.
 - Enable the feature by passing `client_max_limit: your_client_max_limit` option to the `pagy` method.
 
 ##### `metadata`
@@ -337,7 +342,9 @@ All the extras are gone. Here is what to do in order to accomodate the changes:
 - **I18n refactoring**
   - No setup required: the locales and their pluralization are autoloaded when your app uses them.
   - You can easily override the lookup of locale files with `Pagy::I18n.pathnames << my_dictionaries`.
-- *Boostrap and Bulma**
+- **Playground apps**
+  - Better usability and styles
+- **Boostrap and Bulma**
   - Fixed a few style glitches.
 
 [LEGACY CHANGELOG >>>](CHANGELOG_LEGACY.md)

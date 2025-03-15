@@ -11,7 +11,7 @@ image: ""
 
 ---
 
-!!!warning The helpers and paginators named `*_js*` require Pagy JavaScript support.
+!!!warning The helpers and paginators named `*_js` require Pagy JavaScript support.
 
 Simply add the appropriate file(s) and statements as outlined below.
 !!!

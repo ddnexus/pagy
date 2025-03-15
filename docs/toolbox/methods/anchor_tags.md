@@ -2,6 +2,7 @@
 label: anchor_tags
 icon: code-square
 order: 140
+image: ""
 categories:
   - Methods
   - Tags
@@ -13,7 +14,7 @@ categories:
 
 ---
 
-![previous_tag & next_tag](../../assets/images/anchor_tags.png){width=91}
+![previous_tag & next_tag](../../assets/images/anchor_tags.png){width=73}
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 

@@ -94,7 +94,7 @@ class PagyKeyset < Sinatra::Base
       <div class="content">
         <h1>Pagy Keyset App</h1>
         <p>Self-contained, standalone app usable to easily reproduce any Keyset related pagy issue with ActiveRecord sets.</p>
-        <p>Please, report the following versions in any new issue.</p>
+
         <h2>Versions</h2>
         <ul>
           <li>Ruby:    <%= RUBY_VERSION %></li>

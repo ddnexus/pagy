@@ -15,11 +15,11 @@ categories:
 
 ---
 
-![series_nav](../../assets/images/series_nav.png){width=360}
+![series_nav](../../assets/images/series_nav.png){width=288}
 
-![series_nav(:bootstrap)](../../assets/images/series_nav-bootstrap.png){width=360}
+![series_nav(:bootstrap)](../../assets/images/series_nav-bootstrap.png){width=248}
 
-![series_nav(:bulma)](../../assets/images/series_nav-bulma.png){width=360}
+![series_nav(:bulma)](../../assets/images/series_nav-bulma.png){width=304}
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 

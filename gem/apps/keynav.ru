@@ -108,8 +108,10 @@ class PagyKeynav < Sinatra::Base
       <div class="content">
         <h1>Pagy Keynav App</h1>
         <p>Self-contained, standalone app usable to easily reproduce any Keynav related pagy issue
-        with ActiveRecord sets. Notice that Keynav works also with Sequel sets</p>
-        <p>Please, report the following versions in any new issue.</p>
+        with ActiveRecord sets.</p>
+
+         <p>Notice that Keynav works also with Sequel sets.</p>
+
         <h2>Versions</h2>
         <ul>
           <li>Ruby:    <%= RUBY_VERSION %></li>

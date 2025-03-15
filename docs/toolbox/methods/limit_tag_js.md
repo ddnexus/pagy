@@ -2,6 +2,7 @@
 label: limit_tag_js
 icon: code-square
 order: 130
+image: ""
 categories:
   - Methods
   - Tags
@@ -13,7 +14,7 @@ categories:
 
 ---
 
-![limit_tag_js](../../assets/images/limit_tag_js.png){width=253}
+![limit_tag_js](../../assets/images/limit_tag_js.png){width=202}
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
@@ -45,9 +46,9 @@ After selecting a new limit, pagy reloads the page that roughly contains the sam
 
 ==- Caveats
 
-!!!danger Overriding `*_js*` helpers is not recommended
+!!!danger Overriding `*_js` helpers is not recommended
 
-The `*_js*` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
+The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
 and might break in a next release.
 !!!
 

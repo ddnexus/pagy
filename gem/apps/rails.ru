@@ -172,7 +172,7 @@ TEMPLATE = <<~ERB
       <div class="content">
         <h1>Pagy Rails App</h1>
         <p> Self-contained, standalone Rails app usable to easily reproduce any rails related pagy issue.</p>
-        <p>Please, report the following versions in any new issue.</p>
+
         <h2>Versions</h2>
         <ul>
           <li>Ruby:  <%== RUBY_VERSION %></li>

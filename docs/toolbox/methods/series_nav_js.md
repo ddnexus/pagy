@@ -15,18 +15,16 @@ categories:
 
 ---
 
-![series_nav_js](../../assets/images/series_nav.png){width=360}
+![](../../assets/images/series_nav_js-7.png){width=288}
+![](../../assets/images/series_nav_js-9.png){width=358}
+![](../../assets/images/series_nav_js-11.png){width=428}
 
-![series_nav_js(:bootstrap)](../../assets/images/series_nav-bootstrap.png){width=360}
-
-![series_nav_js(:bulma)](../../assets/images/series_nav-bulma.png){width=360}
-\
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 `series_nav_js` functions similarly to a [series_nav](series_nav.md), with the following added features:
 
 1. Enables client-side rendering.
-2. Provides optional responsiveness.
+2. Optional responsiveness: dynamically fills the container width.
 3. Improves performance and optimizes resource usage (see [Maximizing Performance](../../guides/how-to#maximize-performance)).
 
 !!!warning It works with all paginators but `:keyset`
@@ -60,9 +58,9 @@ document.getElementById('my-pagy-nav-js').render();
 
 !!!
 
-!!!danger Overriding `*_js*` helpers is not recommended
+!!!danger Overriding `*_js` helpers is not recommended
 
-The `*_js*` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
+The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
 and might break in a next release.
 !!!
 

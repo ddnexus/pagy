@@ -61,6 +61,6 @@ gem 'pagy', '~> 10.0' # omit the patch version
 - For native pagy helpers (used also with tailwind), you can integrate the [Stylesheet](../resources/stylesheet) into your app.
 - For `:bootstrap` and `:bulma` styles, no additional CSS file is needed.
 
-#### If you use any `*_js*` method...
+#### If you use any `*_js` method...
 
 - Add [JavaScript support](../resources/javascript)

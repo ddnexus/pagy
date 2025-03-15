@@ -134,7 +134,7 @@ class PagyCalendar < Sinatra::Base
         <h1>Pagy Calendar App</h1>
         <p>Self-contained, standalone app implementing nested calendar pagination for year, month, day units.</p>
         <p>See the <a href="https://ddnexus.github.io/pagy/toolbox/paginators/calendar">Pagy Calendar</a> for details.</p>
-        <p>Please, report the following versions in any new issue.</p>
+
         <h2>Versions</h2>
         <ul>
           <li>Ruby:    <%= RUBY_VERSION %></li>
@@ -146,13 +146,13 @@ class PagyCalendar < Sinatra::Base
 
         <!-- calendar UI manual toggle -->
         <p>
-        <% if params[:disabled] %>
-          <a id="toggle" href="/" >Show Calendar</a>
-        <% else %>
-          <a id="toggle" href="?disabled=true" >Hide Calendar</a>
-          <br>
-          <a id="go-to-day" href="<%= @calendar.url_at(Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
-          <!-- You can use Time.zone.now to find the current page if your time period include today -->
+          <% if params[:disabled] %>
+            <a id="toggle" href="/" >Show Calendar</a>
+          <% else %>
+            <a id="toggle" href="?disabled=true" >Hide Calendar</a>
+            <br>
+            <a id="go-to-day" href="<%= @calendar.url_at(Time.zone.parse('2022-03-02')) %>">Go to the 2022-03-02 Page</a>
+            <!-- You can use Time.zone.now to find the current page if your time period include today -->
           <% end %>
         </p>
 
@@ -175,7 +175,7 @@ class PagyCalendar < Sinatra::Base
         <!-- page records (time converted in your local time)-->
         <div id="records" class="list-group">
           <% @events.each do |event| %>
-          <p class="list-group-item"><%= event.title %> - <%= event.time.to_s %></p>
+            <p class="list-group-item"><%= event.title %> - <%= event.time.to_s %></p>
           <% end %>
         </div>
 

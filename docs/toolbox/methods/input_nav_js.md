@@ -15,11 +15,11 @@ categories:
 
 ---
 
-![input_nav_js](../../assets/images/input_nav_js.png){width=255}
+![input_nav_js](../../assets/images/input_nav_js.png){width=204}
 
-![input_nav_js(:bootstrap)](../../assets/images/input_nav_js-bootstrap.png){width=255}
+![input_nav_js(:bootstrap)](../../assets/images/input_nav_js-bootstrap.png){width=178}
 
-![input_nav_js(:bulma)](../../assets/images/input_nav_js-bulma.png){width=255}
+![input_nav_js(:bulma)](../../assets/images/input_nav_js-bulma.png){width=201}
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
@@ -49,9 +49,9 @@ Try this method in the [Pagy Console](../../sandbox/console.md):
 ```   
 ==- Caveats
 
-!!!danger Overriding `*_js*` helpers is not recommended
+!!!danger Overriding `*_js` helpers is not recommended
 
-The `*_js*` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
+The `*_js` helpers are tightly coupled with the javascript code, so any partial overriding on one side, would be quite fragile
 and might break in a next release.
 !!!
 

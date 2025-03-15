@@ -30,10 +30,7 @@ It enables cascade-filtering of the collection by time units _(year, quarter, mo
 !!!
 
 ```ruby
-  @calendar, @pagy, @records = pagy(:calendar, collection,
-                                    year:  {},
-                                    month: {},
-                                    offset: {})
+  @calendar, @pagy, @records = pagy(:calendar, collection, year: {}, month: {}, offset: {})
 ```
 
 - `@calendar` is a specialized hash that contains the pagy time unit objects (e.g., `:year` and `:month` in this example).

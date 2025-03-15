@@ -117,7 +117,7 @@ class PagyRepro < Sinatra::Base
       <div class="content">
         <h1>Pagy Repro App</h1>
         <p> Self-contained, standalone app usable to easily reproduce any pagy issue.</p>
-        <p>Please, report the following versions in any new issue.</p>
+
         <h2>Versions</h4>
         <ul>
           <li>Ruby:    <%= RUBY_VERSION %></li>
@@ -137,7 +137,7 @@ class PagyRepro < Sinatra::Base
         <h4>@pagy.series_nav_js</h4>
         <%= @pagy.series_nav_js(id: 'series-nav-js', aria_label: 'Pages nav_js') %>
 
-        <h4>@pagy.series_nav_js</h4>
+        <h4>@pagy.series_nav_js (responsive)</h4>
         <%= @pagy.series_nav_js(id: 'series-nav-js-responsive', aria_label: 'Pages nav_js_responsove',
            steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
 
