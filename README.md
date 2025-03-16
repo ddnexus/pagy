@@ -20,6 +20,10 @@ _Agnostic pagination in plain ruby_
 
 <!-- whats_new_start -->
 
+<a href="https://ddnexus.github.io/pagy/sandbox/playground/#3-demo-app">
+  <img src="https://github.com/ddnexus/pagy/raw/dev/assets/images/try-it.svg" width="130">
+</a><br/>
+
 ### <span style="font-size: .65em; vertical-align: middle">💚</span> Version 10
 
 #### A complete redesign of the legacy code.
@@ -124,7 +128,7 @@ Combines `time-range` and `offset` pagination.
 
 _(Available time units: year, quarter, month, week, and day)_
 
-<img src="assets/images/calendar-app.png" width="700"><br/>
+<img src="assets/images/calendar-app.png" width="721"><br/>
 
 ```ruby
 @calendar, @pagy, @records = pagy(:calendar, collection, year: {}, month: {}, offset: {})

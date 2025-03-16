@@ -15,17 +15,25 @@ categories:
 
 ---
 
-![](../../assets/images/series_nav_js-7.png){width=288}
-![](../../assets/images/series_nav_js-9.png){width=358}
+:::raised
 ![](../../assets/images/series_nav_js-11.png){width=428}
+:::
+
+:::raised
+![](../../assets/images/series_nav_js-9.png){width=358}
+:::
+
+:::raised
+![](../../assets/images/series_nav_js-7.png){width=288}
+:::
+<br/>
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
 `series_nav_js` functions similarly to a [series_nav](series_nav.md), with the following added features:
 
-1. Enables client-side rendering.
-2. Optional responsiveness: dynamically fills the container width.
-3. Improves performance and optimizes resource usage (see [Maximizing Performance](../../guides/how-to#maximize-performance)).
+1. Optional responsiveness: Dynamically fills the container width.
+2. Improves performance and optimizes resource usage (see [Maximizing Performance](../../guides/how-to#maximize-performance)).
 
 !!!warning It works with all paginators but `:keyset`
 !!!

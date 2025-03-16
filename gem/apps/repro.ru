@@ -88,10 +88,15 @@ class PagyRepro < Sinatra::Base
             margin: 0 !important;
             font-family: sans-serif !important;
           }
-          .content {
+          .main-content {
             padding: 1rem 1.5rem 2rem !important;
           }
-
+          .pagy, .pagy-bootstrap, .pagy-bulma {
+            padding: .5em;
+            margin: .3em 0;
+            width: fit-content;
+            box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);
+          }
           /* Quick demo for overriding the element style attribute of certain pagy helpers
           .pagy input[style] {
             width: 5rem !important;
@@ -114,7 +119,7 @@ class PagyRepro < Sinatra::Base
 
   template :main do
     <<~ERB
-      <div class="content">
+      <div class="main-content">
         <h1>Pagy Repro App</h1>
         <p> Self-contained, standalone app usable to easily reproduce any pagy issue.</p>
 
@@ -132,17 +137,21 @@ class PagyRepro < Sinatra::Base
         <hr>
 
         <h4>@pagy.series_nav</h4>
-        <%= @pagy.series_nav(id: 'series-nav', aria_label: 'Pages nav') %>
+        <%= @pagy.series_nav(id: 'series-nav',
+                             aria_label: 'Pages nav') %>
 
         <h4>@pagy.series_nav_js</h4>
-        <%= @pagy.series_nav_js(id: 'series-nav-js', aria_label: 'Pages nav_js') %>
+        <%= @pagy.series_nav_js(id: 'series-nav-js',
+                                aria_label: 'Pages nav_js') %>
 
         <h4>@pagy.series_nav_js (responsive)</h4>
-        <%= @pagy.series_nav_js(id: 'series-nav-js-responsive', aria_label: 'Pages nav_js_responsove',
-           steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+        <%= @pagy.series_nav_js(id: 'series-nav-js-responsive',
+                                aria_label: 'Pages nav_js_responsove',
+                                steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
 
         <h4>@pagy.input_nav_js</h4>
-        <%= @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages input_nav_js') %>
+        <%= @pagy.input_nav_js(id: 'input-nav-js',
+                               aria_label: 'Pages input_nav_js') %>
 
         <h4>@pagy.limit_tag_js</h4>
         <%= @pagy.limit_tag_js(id: 'limit-tag-js') %>

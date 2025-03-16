@@ -89,9 +89,16 @@ class PagyKeynav < Sinatra::Base
             margin: 0 !important;
             font-family: sans-serif !important;
           }
-          .content {
+          .main-content {
             padding: 1rem 1.5rem 2rem !important;
           }
+         .pagy {
+            padding: .5em;
+            margin: .3em 0;
+            width: fit-content;
+            box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);
+          }
+
 
           <%= Pagy::ROOT.join('stylesheet/pagy.css').read %>
         </style>
@@ -105,7 +112,7 @@ class PagyKeynav < Sinatra::Base
 
   template :main do
     <<~ERB
-      <div class="content">
+      <div class="main-content">
         <h1>Pagy Keynav App</h1>
         <p>Self-contained, standalone app usable to easily reproduce any Keynav related pagy issue
         with ActiveRecord sets.</p>
@@ -140,20 +147,21 @@ class PagyKeynav < Sinatra::Base
           <% end %>
         </table>
         </div>
-        <h3>@pagy.series_nav</h3>
-        <p>
-          <%= @pagy.series_nav(id: 'series-nav', aria_label: 'Pages (nav)') %>
-        </p>
-          <h3>@pagy.series_nav_js (responsive)</h3>
-        <p>
-          <%= @pagy.series_nav_js(id: 'series-nav-js-responsive',
-                           aria_label: 'Pages (nav_js_responsive)',
-                           steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
-        </p>
-          <h3>@pagy.input_nav_js</h3>
-        <p>
-          <%= @pagy.input_nav_js(id: 'input-nav-js', aria_label: 'Pages (input_nav_js)') %>
-        </p>
+
+        <h4>@pagy.series_nav</h4>
+        <%= @pagy.series_nav(id: 'series-nav',
+                             aria_label: 'Pages (nav)') %>
+
+        <h4>@pagy.series_nav_js (responsive)</h4>
+        <%= @pagy.series_nav_js(id: 'series-nav-js-responsive',
+                                aria_label: 'Pages (nav_js_responsive)',
+                                steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+        <h4>@pagy.input_nav_js</h4>
+        <%= @pagy.input_nav_js(id: 'input-nav-js',
+                               aria_label: 'Pages (input_nav_js)') %>
+
+        <h4>@pagy.info_tag</h4>
+        <%= @pagy.info_tag(id: 'pagy-info') %>
       </div>
     ERB
   end

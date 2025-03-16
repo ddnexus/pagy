@@ -216,6 +216,29 @@ class PagyDemo < Sinatra::Base
           .pagy-bootstrap .pagination {
             margin: 0;
           }
+          /* INTERNAL USE: screenshot masking start
+          .pagy, .pagy-bootstrap, .pagy-bulma {
+            background-color: black !important;
+          }
+          .pagy *:not(.gap) {
+            background-color: white !important;
+          }
+          .pagy *, .pagy-bootstrap *,
+          .pagy-bulma a,
+          .pagy-bulma label,
+          .pagy-bulma .pagination-ellipsis  {
+            color: white !important;
+          }
+          .pagy-bootstrap .page-item .page-link,
+          .pagy-bulma li.pagination-link,
+          .pagy-bulma input,
+          .pagy-bulma a, .pagy-bulma a.pagination-previous, .pagy-bulma a.pagination-next {
+            border-color: white !important;
+            background-color: white !important;
+            opacity: 1;
+          }
+          /* INTERNAL USE: screenshot masking end */
+
           /* Quick demo for overriding the element style attribute of certain pagy helpers
           .pagy input[style] {
             width: 5rem !important;

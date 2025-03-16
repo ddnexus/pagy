@@ -75,7 +75,7 @@ class PagyKeyset < Sinatra::Base
             margin: 0 !important;
             font-family: sans-serif !important;
           }
-          .content {
+          .main-content {
             padding: 1rem 1.5rem 2rem !important;
           }
 
@@ -91,7 +91,7 @@ class PagyKeyset < Sinatra::Base
 
   template :main do
     <<~ERB
-      <div class="content">
+      <div class="main-content">
         <h1>Pagy Keyset App</h1>
         <p>Self-contained, standalone app usable to easily reproduce any Keyset related pagy issue with ActiveRecord sets.</p>
 

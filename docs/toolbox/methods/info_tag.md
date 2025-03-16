@@ -14,7 +14,10 @@ categories:
 
 ---
 
-![info_tag](../../assets/images/info_tag.png){width=311}
+:::raised
+![](../../assets/images/info_tag.png){width=311}
+:::
+<br>
 
 `info_tag` provides information about the content of the current pagination.
 

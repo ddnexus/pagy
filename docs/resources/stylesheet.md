@@ -7,13 +7,13 @@ image: ""
 
 # 
 
-## Stylesheet
+## Pagy Stylesheet
 
 ---
 
-![Pagy Style](../assets/images/pagy-style.png){width=300}
-
-## Overview
+![](../assets/images/series_nav.png){width=288}
+![](../assets/images/input_nav_js.png){width=204}
+![](../assets/images/limit_tag_js.png){width=202}
 
 Pagy includes a few stylesheet files that you can download, link, or copy, and integrate with your app.
 
@@ -22,7 +22,7 @@ Pagy includes a few stylesheet files that you can download, link, or copy, and i
 You don't need any stylesheets if you use nav tag with `:bootstrap` or `:bulma` styles.
 !!!
 
-### HTML Structure of Nav Bars
+#### HTML Structure of Nav Bars
 
 To ensure a minimalistic valid output, complete with all the ARIA attributes, pagy outputs a single line with the minimum number of tags
 and class attributes required to identify all the parts of the nav bars:
@@ -39,6 +39,8 @@ and class attributes required to identify all the parts of the nav bars:
 - You can target the previous and next links by using `pagy a:first-child` and `pagy a:last-child` pseudo classes
 
 !!!
+
+#### Files
 
 !!!success
 

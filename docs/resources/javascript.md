@@ -11,7 +11,7 @@ image: ""
 
 ---
 
-!!!warning The helpers and paginators named `*_js` require Pagy JavaScript support.
+!!!warning The helpers and paginators named `*_js` require JavaScript support.
 
 Simply add the appropriate file(s) and statements as outlined below.
 !!!
@@ -42,7 +42,7 @@ Depending on your app's architecture, you have a couple of options:
   ```
 - **Load it like any other JavaScript file or module you already use in your app**
 
-#### 3. Set up the `Pagy.init` Listener
+#### 3. Set up the `Pagy.init` listener
 
 The primary purpose of the JavaScript support is to utilize `Pagy.init` as an event listener attached to a suitable `window` event:
 

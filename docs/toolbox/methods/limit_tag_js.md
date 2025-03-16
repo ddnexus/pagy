@@ -14,7 +14,10 @@ categories:
 
 ---
 
-![limit_tag_js](../../assets/images/limit_tag_js.png){width=202}
+:::raised
+![](../../assets/images/limit_tag_js.png){width=202}
+:::
+<br/>
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 

@@ -20,7 +20,7 @@ The `:calendar` paginator combines the functionality of `time-range` and `OFFSET
 
 It enables cascade-filtering of the collection by time units _(year, quarter, month, week, and day)_, followed by paginating the filtered collection using the `:offset` paginator.
 
-![calendar_app](/assets/images/calendar-app.png)
+![calendar_app](/assets/images/calendar-app.png){with=721}
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#4-calendar-app)
 

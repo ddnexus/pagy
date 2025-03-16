@@ -14,7 +14,10 @@ categories:
 
 ---
 
-![previous_tag & next_tag](../../assets/images/anchor_tags.png){width=73}
+:::raised
+![](../../assets/images/anchor_tags.png){width=73}
+:::
+<br/>
 
 [!button corners="pill" variant="success" text=":icon-play: Try it now!"](../../sandbox/playground#3-demo-app)
 
