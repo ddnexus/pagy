@@ -42,22 +42,14 @@ and class attributes required to identify all the parts of the nav bars:
 
 #### Files
 
++++ pagy.css
+
 !!!success
 
-You can easily transform the stylesheet below by editing the content inside the curly brackets, usually leaving everything else untouched.
+You can customize all the colors by just overriding its variables.
+
+Use the GUI editor in the [Demo app](../sandbox/playground#3-demo-app).
 !!!
-
-+++ pagy.scss
-
-[!file](../gem/stylesheet/pagy.scss)
-
-```ruby 
-stylesheet_path = Pagy::ROOT.join('stylesheet/pagy.scss')
-```
-
-:::code source="/gem/stylesheet/pagy.scss" title="pagy.scss":::
-
-+++ pagy.css
 
 [!file](../gem/stylesheet/pagy.css)
 
@@ -68,6 +60,11 @@ stylesheet_path = Pagy::ROOT.join('stylesheet/pagy.css')
 :::code source="/gem/stylesheet/pagy.css" title="pagy.css":::
 
 +++ pagy.tailwind.css
+
+!!!success
+
+You can customize  the stylesheet below by editing the content inside the curly brackets, usually leaving everything else untouched.
+!!!
 
 [!file](../gem/stylesheet/pagy.tailwind.css)
 

@@ -59,7 +59,7 @@ class PagyDemo < Sinatra::Base
     collection      = MockCollection.new
     @pagy, @records = pagy(:offset, collection)
 
-    erb :template, locals: { pagy: @pagy, name: 'pagy', css_anchor: 'pagy-scss' }
+    erb :template, locals: { pagy: @pagy, name: 'template', css_anchor: 'pagy-scss' }
   end
 
   get('/javascript/:file') do
@@ -131,6 +131,14 @@ class PagyDemo < Sinatra::Base
             padding: 0;
             margin: 0;
           } }
+          *,
+          *::before,
+          *::after {
+            box-sizing: border-box;
+          }
+          input[type="range"] {
+            all: revert;
+          }
           body {
             background: white !important;
             margin: 0 !important;
@@ -216,6 +224,73 @@ class PagyDemo < Sinatra::Base
           .pagy-bootstrap .pagination {
             margin: 0;
           }
+
+          #control-container {
+            background-color: #E8E8E8;
+            border: 1px solid gray;
+            padding: 20px;
+            display: table; /* Or display: inline-block; */
+          }
+          #pagy-control-box {
+            display: grid;
+            grid-template-columns: 150px 200px 50px;
+            grid-row-gap: 5px;
+            grid-column-gap: 5px;
+            padding-left: 5px;
+          }
+
+          #pagy-control-box label {
+            grid-column: 1;
+            text-align: right;
+            padding-right: 5px;
+          }
+
+          #pagy-control-box input[type="range"] {
+            grid-column: 2;
+            all: revert; /* Restore user-agent styles for range inputs */
+          }
+
+          #pagy-control-box input[type="color"] {
+            grid-column: 2;
+            all: revert; /* Restore user-agent styles for range inputs */
+          }
+
+          #pagy-control-box span {
+            text-align: left;
+            grid-column: 3;
+          }
+
+          #pagy-control-box h2 {
+            grid-column: 1 / -1;
+          }
+
+          #reset-style-button {
+            all: revert;
+            display: block;
+            margin-top: 10px;
+            justify-self: end;
+          }
+
+          #css-variables-display {
+            width: 100%;
+            grid-column: 2 / -1;
+            grid-row: 6;
+            height: 130px;
+            resize: vertical;
+          }
+
+          #pagy-control-box label[for="css-variables-display"] {
+            grid-column: 1;
+            grid-row: 6;
+            align-self: start;
+          }
+          #reset-style-button {
+            all: revert;
+            display: block;
+            margin-top: 10px;
+            padding: .5em 2em;
+            justify-self: end;
+          }
           /* INTERNAL USE: screenshot masking start
           .pagy, .pagy-bootstrap, .pagy-bulma {
             background-color: black !important;
@@ -257,10 +332,129 @@ class PagyDemo < Sinatra::Base
     ERB
   end
 
+  template :template_head do
+    '<link rel="stylesheet" href="/stylesheet/pagy.css">'
+  end
+
   template :pagy_head do
     <<~ERB
-      <!-- copy and paste the pagy style in order to edit it -->
       <link rel="stylesheet" href="/stylesheet/pagy.css">
+      <style id="app-pagy-style">
+      /* dynamically overridden by js */
+      </style>
+
+      <script>
+        function getDefaultCssVariableValue(className, variableName) {
+          const element = document.querySelector('.' + className);
+          if (element) {
+            const style = getComputedStyle(element);
+            return style.getPropertyValue(variableName).trim();
+          }
+          return null;
+        }
+
+        function initializePagyDemo() {
+          const hueInput = document.getElementById('hue');
+          const saturationInput = document.getElementById('saturation');
+          const lightnessInput = document.getElementById('lightness');
+          const hueValue = document.getElementById('hue-value');
+          const saturationValue = document.getElementById('saturation-value');
+          const lightnessValue = document.getElementById('lightness-value');
+          const bgColorInput = document.getElementById('bg-color');
+          const opacityInput = document.getElementById('opacity');
+          const opacityValue = document.getElementById('opacity-value');
+          const appPagyStyle = document.getElementById('app-pagy-style');
+          const pagyElements = document.querySelectorAll('.pagy');
+          const resetStyleButton = document.getElementById('reset-style-button');
+          const cssVariablesDisplay = document.getElementById('css-variables-display');
+
+          function resetStyles() {
+            document.cookie = "pagy_hue=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "pagy_saturation=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "pagy_lightness=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "pagy_bgColor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "pagy_opacity=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.reload();
+          }
+
+          function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+          }
+
+          function setCookie(name, value) {
+            document.cookie = `${name}=${value}; path=/`;
+          }
+
+          function updateControlVariables() {
+            const cssVariablesString = `.pagy {\n` +
+              `  --pagy-hue: ${hueInput.value};\n` +
+              `  --pagy-saturation: ${saturationInput.value}%;\n` +
+              `  --pagy-lightness: ${lightnessInput.value}%;\n` +
+              `  --pagy-opacity: ${opacityInput.value};\n` +
+              `}`;
+
+            appPagyStyle.textContent = cssVariablesString;
+            pagyElements.forEach(element => {
+              element.style.backgroundColor = bgColorInput.value;
+            });
+
+            opacityValue.textContent = opacityInput.value;
+            hueValue.textContent = hueInput.value;
+            saturationValue.textContent = saturationInput.value + '%';
+            lightnessValue.textContent = lightnessInput.value + '%';
+
+            setCookie('pagy_hue', hueInput.value);
+            setCookie('pagy_saturation', saturationInput.value);
+            setCookie('pagy_lightness', lightnessInput.value);
+            setCookie('pagy_bgColor', bgColorInput.value);
+            setCookie('pagy_opacity', opacityInput.value);
+            cssVariablesDisplay.value = cssVariablesString;
+          }
+
+          resetStyleButton.addEventListener('click', resetStyles);
+          hueInput.addEventListener('input', updateControlVariables);
+          saturationInput.addEventListener('input', updateControlVariables);
+          lightnessInput.addEventListener('input', updateControlVariables);
+          bgColorInput.addEventListener('input', updateControlVariables);
+          opacityInput.addEventListener('input', updateControlVariables);
+
+          const savedHue = getCookie('pagy_hue');
+          const savedSaturation = getCookie('pagy_saturation');
+          const savedLightness = getCookie('pagy_lightness');
+          const savedBgColor = getCookie('pagy_bgColor');
+          const savedOpacity = getCookie('pagy_opacity');
+
+          if (savedHue) {
+            hueInput.value = savedHue;
+          } else {
+              hueInput.value = getDefaultCssVariableValue('pagy', '--pagy-hue');
+          }
+          if (savedSaturation) {
+            saturationInput.value = savedSaturation;
+          } else {
+              saturationInput.value = getDefaultCssVariableValue('pagy', '--pagy-saturation').replace('%','');
+          }
+          if (savedLightness) {
+            lightnessInput.value = savedLightness;
+          } else {
+              lightnessInput.value = getDefaultCssVariableValue('pagy', '--pagy-lightness').replace('%','');
+          }
+          if (savedBgColor) {
+            bgColorInput.value = savedBgColor;
+          }
+          if (savedOpacity) {
+            opacityInput.value = savedOpacity;
+          } else {
+              opacityInput.value = getDefaultCssVariableValue('pagy', '--pagy-opacity');
+          }
+
+          updateControlVariables();
+        }
+
+        document.addEventListener('DOMContentLoaded', initializePagyDemo);
+      </script>
     ERB
   end
 
@@ -295,6 +489,36 @@ class PagyDemo < Sinatra::Base
         for details.</p>
       <% end %>
       </p>
+
+      <% if name&.match(/pagy/) %>
+         <div id="control-container">
+          <b>Customize the Pagy Style</b>
+          <hr>
+          <div id="pagy-control-box">
+            <h2>Pagy Variables</h2>
+            <label for="hue">Pagy Hue:</label>
+            <input type="range" id="hue" min="0" max="360">
+            <span id="hue-value">215</span>
+            <label for="saturation">Pagy Saturation:</label>
+            <input type="range" id="saturation" min="0" max="100">
+            <span id="saturation-value">65%</span>
+            <label for="lightness">Pagy Lightness:</label>
+            <input type="range" id="lightness" min="0" max="100">
+            <span id="lightness-value">50%</span>
+            <label for="opacity">Pagy Opacity:</label>
+            <input type="range" id="opacity" min="0" max="1" step="0.01">
+            <span id="opacity-value">1</span>
+            <label for="css-variables-display">CSS Override:</label>
+            <textarea id="css-variables-display" rows="5" cols="40" readonly></textarea>
+
+            <h2>Visual Feedback</h2>
+            <label for="bg-color">Page background:</label>
+            <input type="color" id="bg-color" value="#ffffff">
+          </div>
+          <hr>
+          <button id="reset-style-button">Reset Style</button>
+        </div>
+      <% end %>
 
       <h2>Collection</h2>
       <p id="records">@records: <%= @records.join(',') %></p>
@@ -385,7 +609,7 @@ class PagyDemo < Sinatra::Base
     <%# The a variable below is set to a lambda that generates the a tag %>
     <%# Usage: anchor_tag = a_lambda.(page_number, text, classes: nil, aria_label: nil) %>
     <% a_lambda = pagy.send(:a_lambda) %>
-    <nav class="pagy serie-nav" aria-label="Pages">
+    <nav class="pagy series-nav" aria-label="Pages">
       <%# Previous page link %>
       <% if pagy.previous %>
         <%= a_lambda.(pagy.previous, '&lt;', aria_label: 'Previous') %>
