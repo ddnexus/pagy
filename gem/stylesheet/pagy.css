@@ -1,72 +1,93 @@
+/*
+For visual customization and variables generation use the GUI Editor
+available in the Demo App http://ddnexus.github.io/pagy/sandbox/playground#3-demo-app
+*/
+
+
 .pagy {
   /* Base color variables */
-  --pagy-hue: 0;
-  --pagy-saturation: 0%;
-  --pagy-lightness: 50%;
-  --pagy-opacity: 1;
+  --hue: 0;
+  --saturation: 0%;
+  --lightness: 50%;
+  --opacity: 1;
 
   /* Specific color variables (calculated) */
-  --pagy-current-background: hsl(var(--pagy-hue), var(--pagy-saturation), var(--pagy-lightness));
-  --pagy-current-color: white;
-  --pagy-page-background: hsl(var(--pagy-hue), var(--pagy-saturation), calc(var(--pagy-lightness) + 32%));
-  --pagy-page-color: hsl(var(--pagy-hue), var(--pagy-saturation), calc(var(--pagy-lightness) - 30%));
-  --pagy-page-hover-background: hsl(var(--pagy-hue), var(--pagy-saturation), calc(var(--pagy-lightness) + 36%));
-  --pagy-disabled-opacity: .5;
-  --pagy-label-input-background: hsl(var(--pagy-hue), var(--pagy-saturation), calc(var(--pagy-lightness) + 43%));
+  --current-text:       white;
+  --current-background: hsl(var(--hue), var(--saturation),      var(--lightness));
+  --text:               hsl(var(--hue), var(--saturation), calc(var(--lightness) - 30%));
+  --background:         hsl(var(--hue), var(--saturation), calc(var(--lightness) + 32%));
+  --hover-text:         hsl(var(--hue), var(--saturation), calc(var(--lightness) +  4%));
+  --hover-background:   hsl(var(--hue), var(--saturation), calc(var(--lightness) + 36%));
+  --input-background:   hsl(var(--hue), var(--saturation), calc(var(--lightness) + 43%));
+  --disabled-opacity:   .5;
+
+  /* Base layout variables */
+  --spacing: 0.125rem;
+  --rounding: 1.5rem;
+  --padding: 0.625rem;
+
+  /* legacy values
+  --spacing: .25rem;
+  --rounding: .5rem;
+  --padding: .75rem;
+   */
 
   display: flex;
   font-family: sans-serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 600;
-  color: var(--pagy-page-color);
-  opacity: var(--pagy-opacity);
+  color: var(--text);
+  opacity: var(--opacity);
 }
 
 .pagy > :not([hidden]) ~ :not([hidden]) {
-  --space-reverse: 0;
-  margin-right: calc(0.25rem * var(--space-reverse));
-  margin-left: calc(0.25rem * calc(1 - var(--space-reverse)));
+  margin-left: calc(var(--spacing) * (1 - var(--space-reverse, 0)));
+  margin-right: calc(var(--spacing) * var(--space-reverse, 0));
+}
+
+.rtl .pagy > :not([hidden]) ~ :not([hidden]) {
+  --space-reverse: 1;
 }
 
 .pagy a:not(.gap) {
   display: block;
   text-decoration: none;
-  border-radius: 0.5rem;
-  background-color: var(--pagy-page-background);
-  padding: 0.25rem 0.75rem;
+  border-radius: var(--rounding);
+  background-color: var(--background);
+  padding: calc(var(--padding) / 3) var(--padding);
   color: inherit;
 }
 
 .pagy a:not(.gap):hover {
-  background-color: var(--pagy-page-hover-background);
-  color: hsl(var(--pagy-hue), var(--pagy-saturation), calc(var(--pagy-lightness) + 4%));
+  background-color: var(--hover-background);
+  color: var(--hover-text)
 }
 
 .pagy a:not(.gap):not([href]) { /* disabled and current */
   cursor: default;
-  background-color: var(--pagy-page-background);
-  color: var(--pagy-page-color);
-  opacity: var(--pagy-disabled-opacity);
+  background-color: var(--background);
+  color: var(--text);
+  opacity: var(--disabled-opacity);
 }
 
 .pagy a:not(.gap).current {
-  background-color: var(--pagy-current-background);
-  color: var(--pagy-current-color);
+  background-color: var(--current-background);
+  color: var(--current-text);
   opacity: 1; /* Keep hardcoded: it overrides disabled */
 }
 
 .pagy label {
   white-space: nowrap;
   display: inline-block;
-  border-radius: 0.5rem;
-  background-color: var(--pagy-page-background);
-  padding: 0.125rem 0.75rem;
+  border-radius: var(--rounding);
+  background-color: var(--background);
+  padding: calc(var(--padding) / 3) var(--padding);
 }
 
 .pagy label input {
-  line-height: 1.5rem;
-  border-radius: 0.375rem;
+  all: unset;
   border-style: none;
-  background-color: var(--pagy-label-input-background);
+  border-radius: calc(var(--rounding) / 2);
+  background-color: var(--input-background);
 }

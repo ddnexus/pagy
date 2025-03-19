@@ -1,0 +1,56 @@
+/*
+For visual customization and variables generation use the GUI Editor
+available in the Demo App http://ddnexus.github.io/pagy/sandbox/playground#3-demo-app
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .pagy {
+    /* Base color variables */
+    --hue: 0;
+    --saturation: 0%;
+    --lightness: 50%;
+    --opacity: 1;
+
+    /* Specific color variables (calculated) */
+    --current-text:       white;
+    --current-background: hsl(var(--hue), var(--saturation),      var(--lightness));
+    --text:               hsl(var(--hue), var(--saturation), calc(var(--lightness) - 30%));
+    --background:         hsl(var(--hue), var(--saturation), calc(var(--lightness) + 32%));
+    --hover-text:         hsl(var(--hue), var(--saturation), calc(var(--lightness) +  4%));
+    --hover-background:   hsl(var(--hue), var(--saturation), calc(var(--lightness) + 36%));
+    --input-background:   hsl(var(--hue), var(--saturation), calc(var(--lightness) + 43%));
+    --disabled-opacity:   .5;
+
+    /* Base layout variables */
+    --spacing: .25rem;
+    --rounding: .5rem;
+    --padding: .75rem;
+
+    --rounding-half: calc(var(--rounding) / 2);
+    --padding-third: calc(var(--padding) / 3);
+
+    @apply flex space-x-[var(--spacing)] font-semibold text-sm text-[var(--text)] opacity-[var(--opacity)];
+    a:not(.gap) {
+      @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[var(--padding-third)] bg-[var(--background)] text-inherit;
+      &:hover {
+        @apply bg-[var(--hover-background)] text-[var(--hover-text)];
+      }
+      &:not([href]) { /* disabled links */
+        @apply cursor-default bg-[var(--background)] text-[var(--text)] opacity-[var(--disabled-opacity)];
+      }
+      &.current {
+        @apply bg-[var(--current-background)] text-[var(--current-text)] opacity-100;
+      }
+    }
+    label {
+      @apply inline-block whitespace-nowrap rounded-[var(--rounding)] px-[var(--padding)] py-[var(--padding-third)] bg-[var(--background)];
+      input {
+        @apply border-none rounded-[var(--rounding-half)] bg-[var(--input-background)];
+      }
+    }
+  }
+}

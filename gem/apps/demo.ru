@@ -225,72 +225,66 @@ class PagyDemo < Sinatra::Base
             margin: 0;
           }
 
-          #control-container {
-            background-color: #E8E8E8;
-            border: 1px solid gray;
-            padding: 20px;
-            display: table; /* Or display: inline-block; */
-          }
-          #pagy-control-box {
-            display: grid;
-            grid-template-columns: 150px 200px 50px;
-            grid-row-gap: 5px;
-            grid-column-gap: 5px;
-            padding-left: 5px;
-          }
+#control-container {
+  background-color: #E8E8E8;
+  border: 1px solid gray;
+  padding: 20px;
+  display: table; /* Or display: inline-block; */
+}
+#pagy-control-box {
+  display: grid;
+  grid-template-columns: 150px 200px;
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+  padding-left: 5px;
+}
 
-          #pagy-control-box label {
-            grid-column: 1;
-            text-align: right;
-            padding-right: 5px;
-          }
+#pagy-control-box label {
+  grid-column: 1;
+  text-align: right;
+  padding-right: 5px;
+}
 
-          #pagy-control-box input[type="range"] {
-            grid-column: 2;
-            all: revert; /* Restore user-agent styles for range inputs */
-          }
+#pagy-control-box input[type="range"] {
+  grid-column: 2;
+  all: revert; /* Restore user-agent styles for range inputs */
+}
 
-          #pagy-control-box input[type="color"] {
-            grid-column: 2;
-            all: revert; /* Restore user-agent styles for range inputs */
-          }
+#pagy-control-box input[type="color"] {
+  grid-column: 2;
+  all: revert; /* Restore user-agent styles for range inputs */
+}
 
-          #pagy-control-box span {
-            text-align: left;
-            grid-column: 3;
-          }
+#pagy-control-box h2 {
+  grid-column: 1 / -1;
+}
 
-          #pagy-control-box h2 {
-            grid-column: 1 / -1;
-          }
+#reset-style-button {
+  all: revert;
+  display: block;
+  margin-top: 10px;
+  justify-self: end;
+}
 
-          #reset-style-button {
-            all: revert;
-            display: block;
-            margin-top: 10px;
-            justify-self: end;
-          }
+#css-variables-display {
+  grid-column: 2;
+  grid-row: 9;
+  height: 170px;
+  resize: vertical;
+}
 
-          #css-variables-display {
-            width: 100%;
-            grid-column: 2 / -1;
-            grid-row: 6;
-            height: 130px;
-            resize: vertical;
-          }
-
-          #pagy-control-box label[for="css-variables-display"] {
-            grid-column: 1;
-            grid-row: 6;
-            align-self: start;
-          }
-          #reset-style-button {
-            all: revert;
-            display: block;
-            margin-top: 10px;
-            padding: .5em 2em;
-            justify-self: end;
-          }
+#pagy-control-box label[for="css-variables-display"] {
+  grid-column: 1;
+  grid-row: 9;
+  align-self: start;
+}
+#reset-style-button {
+  all: revert;
+  display: block;
+  margin-top: 10px;
+  padding: .5em 2em;
+  justify-self: end;
+}
           /* INTERNAL USE: screenshot masking start
           .pagy, .pagy-bootstrap, .pagy-bulma {
             background-color: black !important;
@@ -343,119 +337,143 @@ class PagyDemo < Sinatra::Base
       /* dynamically overridden by js */
       </style>
 
-      <script>
-        function getDefaultCssVariableValue(className, variableName) {
-          const element = document.querySelector('.' + className);
-          if (element) {
-            const style = getComputedStyle(element);
-            return style.getPropertyValue(variableName).trim();
-          }
-          return null;
-        }
+<script>
+  function getDefaultCssVariableValue(className, variableName) {
+    const element = document.querySelector('.' + className);
+    if (element) {
+      const style = getComputedStyle(element);
+      return style.getPropertyValue(variableName).trim();
+    }
+    return null;
+  }
 
-        function initializePagyDemo() {
-          const hueInput = document.getElementById('hue');
-          const saturationInput = document.getElementById('saturation');
-          const lightnessInput = document.getElementById('lightness');
-          const hueValue = document.getElementById('hue-value');
-          const saturationValue = document.getElementById('saturation-value');
-          const lightnessValue = document.getElementById('lightness-value');
-          const bgColorInput = document.getElementById('bg-color');
-          const opacityInput = document.getElementById('opacity');
-          const opacityValue = document.getElementById('opacity-value');
-          const appPagyStyle = document.getElementById('app-pagy-style');
-          const pagyElements = document.querySelectorAll('.pagy');
-          const resetStyleButton = document.getElementById('reset-style-button');
-          const cssVariablesDisplay = document.getElementById('css-variables-display');
+  function initializePagyDemo() {
+    const hueInput = document.getElementById('hue');
+    const saturationInput = document.getElementById('saturation');
+    const lightnessInput = document.getElementById('lightness');
+    const bgColorInput = document.getElementById('bg-color');
+    const opacityInput = document.getElementById('opacity');
+    const appPagyStyle = document.getElementById('app-pagy-style');
+    const pagyElements = document.querySelectorAll('.pagy');
+    const resetStyleButton = document.getElementById('reset-style-button');
+    const cssVariablesDisplay = document.getElementById('css-variables-display');
+    const spacingInput = document.getElementById('spacing');
+    const roundingInput = document.getElementById('rounding');
+    const paddingInput = document.getElementById('padding');
 
-          function resetStyles() {
-            document.cookie = "pagy_hue=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.cookie = "pagy_saturation=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.cookie = "pagy_lightness=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.cookie = "pagy_bgColor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            document.cookie = "pagy_opacity=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            window.location.reload();
-          }
+    function resetStyles() {
+      document.cookie = "pagy_hue=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "pagy_saturation=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "pagy_lightness=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "pagy_bgColor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "pagy_opacity=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "pagy_spacing=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "pagy_rounding=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "pagy_padding=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.reload();
+    }
 
-          function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-          }
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
 
-          function setCookie(name, value) {
-            document.cookie = `${name}=${value}; path=/`;
-          }
+    function setCookie(name, value) {
+      document.cookie = `${name}=${value}; path=/`;
+    }
 
-          function updateControlVariables() {
-            const cssVariablesString = `.pagy {\n` +
-              `  --pagy-hue: ${hueInput.value};\n` +
-              `  --pagy-saturation: ${saturationInput.value}%;\n` +
-              `  --pagy-lightness: ${lightnessInput.value}%;\n` +
-              `  --pagy-opacity: ${opacityInput.value};\n` +
-              `}`;
+    function updateControlVariables() {
+      const cssVariablesString = `.pagy {\n` +
+        `  --hue: ${hueInput.value};\n` +
+        `  --saturation: ${saturationInput.value}%;\n` +
+        `  --lightness: ${lightnessInput.value}%;\n` +
+        `  --opacity: ${opacityInput.value};\n` +
+        `  --spacing: ${spacingInput.value}rem;\n` +
+        `  --rounding: ${roundingInput.value}rem;\n` +
+        `  --padding: ${paddingInput.value}rem;\n` +
+        `}`;
 
-            appPagyStyle.textContent = cssVariablesString;
-            pagyElements.forEach(element => {
-              element.style.backgroundColor = bgColorInput.value;
-            });
+      appPagyStyle.textContent = cssVariablesString;
+      pagyElements.forEach(element => {
+        element.style.backgroundColor = bgColorInput.value;
+      });
 
-            opacityValue.textContent = opacityInput.value;
-            hueValue.textContent = hueInput.value;
-            saturationValue.textContent = saturationInput.value + '%';
-            lightnessValue.textContent = lightnessInput.value + '%';
+      setCookie('pagy_hue', hueInput.value);
+      setCookie('pagy_saturation', saturationInput.value);
+      setCookie('pagy_lightness', lightnessInput.value);
+      setCookie('pagy_bgColor', bgColorInput.value);
+      setCookie('pagy_opacity', opacityInput.value);
+      setCookie('pagy_spacing', spacingInput.value);
+      setCookie('pagy_rounding', roundingInput.value);
+      setCookie('pagy_padding', paddingInput.value);
+      cssVariablesDisplay.value = cssVariablesString;
+    }
 
-            setCookie('pagy_hue', hueInput.value);
-            setCookie('pagy_saturation', saturationInput.value);
-            setCookie('pagy_lightness', lightnessInput.value);
-            setCookie('pagy_bgColor', bgColorInput.value);
-            setCookie('pagy_opacity', opacityInput.value);
-            cssVariablesDisplay.value = cssVariablesString;
-          }
+    resetStyleButton.addEventListener('click', resetStyles);
+    hueInput.addEventListener('input', updateControlVariables);
+    saturationInput.addEventListener('input', updateControlVariables);
+    lightnessInput.addEventListener('input', updateControlVariables);
+    bgColorInput.addEventListener('input', updateControlVariables);
+    opacityInput.addEventListener('input', updateControlVariables);
+    spacingInput.addEventListener('input', updateControlVariables);
+    roundingInput.addEventListener('input', updateControlVariables);
+    paddingInput.addEventListener('input', updateControlVariables);
 
-          resetStyleButton.addEventListener('click', resetStyles);
-          hueInput.addEventListener('input', updateControlVariables);
-          saturationInput.addEventListener('input', updateControlVariables);
-          lightnessInput.addEventListener('input', updateControlVariables);
-          bgColorInput.addEventListener('input', updateControlVariables);
-          opacityInput.addEventListener('input', updateControlVariables);
+    const savedHue = getCookie('pagy_hue');
+    const savedSaturation = getCookie('pagy_saturation');
+    const savedLightness = getCookie('pagy_lightness');
+    const savedBgColor = getCookie('pagy_bgColor');
+    const savedOpacity = getCookie('pagy_opacity');
+    const savedSpacing = getCookie('pagy_spacing');
+    const savedRounding = getCookie('pagy_rounding');
+    const savedPadding = getCookie('pagy_padding');
 
-          const savedHue = getCookie('pagy_hue');
-          const savedSaturation = getCookie('pagy_saturation');
-          const savedLightness = getCookie('pagy_lightness');
-          const savedBgColor = getCookie('pagy_bgColor');
-          const savedOpacity = getCookie('pagy_opacity');
+    if (savedHue) {
+      hueInput.value = savedHue;
+    } else {
+        hueInput.value = getDefaultCssVariableValue('pagy', '--hue');
+    }
+    if (savedSaturation) {
+      saturationInput.value = savedSaturation;
+    } else {
+        saturationInput.value = getDefaultCssVariableValue('pagy', '--saturation').replace('%','');
+    }
+    if (savedLightness) {
+      lightnessInput.value = savedLightness;
+    } else {
+        lightnessInput.value = getDefaultCssVariableValue('pagy', '--lightness').replace('%','');
+    }
+    if (savedBgColor) {
+      bgColorInput.value = savedBgColor;
+    }
+    if (savedOpacity) {
+      opacityInput.value = savedOpacity;
+    } else {
+        opacityInput.value = getDefaultCssVariableValue('pagy', '--opacity');
+    }
+    if (savedSpacing) {
+      spacingInput.value = savedSpacing;
+    } else {
+        spacingInput.value = getDefaultCssVariableValue('pagy', '--spacing').replace('rem','');
+    }
+    if (savedRounding) {
+      roundingInput.value = savedRounding;
+    } else {
+        roundingInput.value = getDefaultCssVariableValue('pagy', '--rounding').replace('rem','');
+    }
+    if (savedPadding) {
+      paddingInput.value = savedPadding;
+    } else {
+        paddingInput.value = getDefaultCssVariableValue('pagy', '--padding').replace('rem','');
+    }
 
-          if (savedHue) {
-            hueInput.value = savedHue;
-          } else {
-              hueInput.value = getDefaultCssVariableValue('pagy', '--pagy-hue');
-          }
-          if (savedSaturation) {
-            saturationInput.value = savedSaturation;
-          } else {
-              saturationInput.value = getDefaultCssVariableValue('pagy', '--pagy-saturation').replace('%','');
-          }
-          if (savedLightness) {
-            lightnessInput.value = savedLightness;
-          } else {
-              lightnessInput.value = getDefaultCssVariableValue('pagy', '--pagy-lightness').replace('%','');
-          }
-          if (savedBgColor) {
-            bgColorInput.value = savedBgColor;
-          }
-          if (savedOpacity) {
-            opacityInput.value = savedOpacity;
-          } else {
-              opacityInput.value = getDefaultCssVariableValue('pagy', '--pagy-opacity');
-          }
+    updateControlVariables();
+  }
 
-          updateControlVariables();
-        }
-
-        document.addEventListener('DOMContentLoaded', initializePagyDemo);
-      </script>
-    ERB
+  document.addEventListener('DOMContentLoaded', initializePagyDemo);
+</script>
+ERB
   end
 
   template :bootstrap_head do
@@ -473,9 +491,8 @@ class PagyDemo < Sinatra::Base
   template :tailwind_head do
     <<~ERB
       <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-      <!-- copy and paste the pagy.tailwind style in order to edit it -->
       <style type="text/tailwindcss">
-        <%= Pagy::ROOT.join('stylesheet/pagy.tailwind.css').read %>
+        <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>
       </style>
     ERB
   end
@@ -491,33 +508,35 @@ class PagyDemo < Sinatra::Base
       </p>
 
       <% if name&.match(/pagy/) %>
-         <div id="control-container">
-          <b>Customize the Pagy Style</b>
-          <hr>
-          <div id="pagy-control-box">
-            <h2>Pagy Variables</h2>
-            <label for="hue">Pagy Hue:</label>
-            <input type="range" id="hue" min="0" max="360">
-            <span id="hue-value">215</span>
-            <label for="saturation">Pagy Saturation:</label>
-            <input type="range" id="saturation" min="0" max="100">
-            <span id="saturation-value">65%</span>
-            <label for="lightness">Pagy Lightness:</label>
-            <input type="range" id="lightness" min="0" max="100">
-            <span id="lightness-value">50%</span>
-            <label for="opacity">Pagy Opacity:</label>
-            <input type="range" id="opacity" min="0" max="1" step="0.01">
-            <span id="opacity-value">1</span>
-            <label for="css-variables-display">CSS Override:</label>
-            <textarea id="css-variables-display" rows="5" cols="40" readonly></textarea>
+<div id="control-container">
+  <b>Customize the Pagy Style</b>
+  <hr>
+  <div id="pagy-control-box">
+    <h2>Pagy Variables</h2>
+    <label for="hue">Hue:</label>
+    <input type="range" id="hue" min="0" max="360">
+    <label for="saturation">Saturation:</label>
+    <input type="range" id="saturation" min="0" max="100">
+    <label for="lightness">Lightness:</label>
+    <input type="range" id="lightness" min="0" max="100">
+    <label for="opacity">Opacity:</label>
+    <input type="range" id="opacity" min="0" max="1" step="0.01">
+    <label for="spacing">Spacing:</label>
+    <input type="range" id="spacing" min="0" max="1.5" step="0.125">
+    <label for="rounding">Rounding:</label>
+    <input type="range" id="rounding" min="0" max="1.5" step="0.125">
+    <label for="padding">Padding:</label>
+    <input type="range" id="padding" min="0" max="1.5" step="0.125">
+    <label for="css-variables-display">CSS Override:</label>
+    <textarea id="css-variables-display" rows="5" cols="40" readonly></textarea>
 
-            <h2>Visual Feedback</h2>
-            <label for="bg-color">Page background:</label>
-            <input type="color" id="bg-color" value="#ffffff">
-          </div>
-          <hr>
-          <button id="reset-style-button">Reset Style</button>
-        </div>
+    <h2>Visual Feedback</h2>
+    <label for="bg-color">Page background:</label>
+    <input type="color" id="bg-color" value="#ffffff">
+  </div>
+  <hr>
+  <button id="reset-style-button">Reset Style</button>
+</div>
       <% end %>
 
       <h2>Collection</h2>
