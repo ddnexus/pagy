@@ -3,42 +3,35 @@ For visual customization and variables generation use the GUI Editor
 available in the Demo App http://ddnexus.github.io/pagy/sandbox/playground#3-demo-app
 */
 
-
 .pagy {
-  /* Base color variables */
-  --hue: 0;
-  --saturation: 0%;
-  --lightness: 50%;
+
+
+  --B: 1;  /* Brightness: Light/Dark (1 or -1) */
+  --H: 0;
+  --S: 0;
+  --L: 50;
   --opacity: 1;
-
-  /* Specific color variables (calculated) */
-  --current-text:       white;
-  --current-background: hsl(var(--hue), var(--saturation),      var(--lightness));
-  --text:               hsl(var(--hue), var(--saturation), calc(var(--lightness) - 30%));
-  --background:         hsl(var(--hue), var(--saturation), calc(var(--lightness) + 32%));
-  --hover-text:         hsl(var(--hue), var(--saturation), calc(var(--lightness) +  4%));
-  --hover-background:   hsl(var(--hue), var(--saturation), calc(var(--lightness) + 36%));
-  --input-background:   hsl(var(--hue), var(--saturation), calc(var(--lightness) + 43%));
-  --disabled-opacity:   .5;
-
-  /* Base layout variables */
   --spacing: 0.125rem;
-  --rounding: 1.5rem;
-  --padding: 0.625rem;
+  --rounding: 1.125rem;
+  --padding: 0.75rem;
+  --font-size: 0.875rem;
+  --line-height: 1.4375rem;
+  --font-weight: 700;
+  --border-width: 0rem;
 
-  /* legacy values
-  --spacing: .25rem;
-  --rounding: .5rem;
-  --padding: .75rem;
-   */
+  --text:               hsl(var(--H) var(--S) calc(var(--L) - (25 * var(--B))));
+  --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))));
+  --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)));
+  --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))));
+  --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))));
+  --background-current: hsl(var(--H) var(--S) var(--L));
+  --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))));
 
-  display: flex;
-  font-family: sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 600;
   color: var(--text);
-  opacity: var(--opacity);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+  display: flex;
 }
 
 .pagy > :not([hidden]) ~ :not([hidden]) {
@@ -53,41 +46,45 @@ available in the Demo App http://ddnexus.github.io/pagy/sandbox/playground#3-dem
 .pagy a:not(.gap) {
   display: block;
   text-decoration: none;
-  border-radius: var(--rounding);
   background-color: var(--background);
   padding: calc(var(--padding) / 3) var(--padding);
+  border: var(--border-width) solid var(--background-current);
+  border-radius: var(--rounding);
   color: inherit;
+  opacity: var(--opacity);
 }
 
 .pagy a:not(.gap):hover {
-  background-color: var(--hover-background);
-  color: var(--hover-text)
+  background-color: var(--background-hover);
+  color: var(--text-hover)
 }
 
 .pagy a:not(.gap):not([href]) { /* disabled and current */
   cursor: default;
   background-color: var(--background);
   color: var(--text);
-  opacity: var(--disabled-opacity);
+  opacity: calc(var(--opacity)*.6);
 }
 
 .pagy a:not(.gap).current {
-  background-color: var(--current-background);
-  color: var(--current-text);
-  opacity: 1; /* Keep hardcoded: it overrides disabled */
+  background-color: var(--background-current);
+  color: var(--text-current);
+  border-color: var(--text);
+  opacity: var(--opacity);
 }
 
 .pagy label {
   white-space: nowrap;
   display: inline-block;
+  border: var(--border-width) solid var(--background-current);
   border-radius: var(--rounding);
   background-color: var(--background);
-  padding: calc(var(--padding) / 3) var(--padding);
+  padding: calc((var(--padding) / 3) - var(--border-width)) var(--padding);
 }
 
 .pagy label input {
   all: unset;
-  border-style: none;
-  border-radius: calc(var(--rounding) / 2);
-  background-color: var(--input-background);
+  border: var(--border-width) solid var(--background-current);
+  border-radius: calc(var(--rounding) / 2) !important;
+  background-color: var(--background-input);
 }

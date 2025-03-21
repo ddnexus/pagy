@@ -37,9 +37,9 @@ end
 
 # pagy initializer
 NAMES = { pagy:      { css_anchor: 'pagy-scss' },
+          tailwind:  { css_anchor: 'pagy-tailwind-css' },
           bootstrap: { style: :bootstrap, classes: 'pagination pagination-sm' },
-          bulma:     { style: :bulma, classes: 'pagination is-small' },
-          tailwind:  { css_anchor: 'pagy-tailwind-css' } }.freeze
+          bulma:     { style: :bulma, classes: 'pagination is-small' } }.freeze
 
 # Sinatra setup
 require 'sinatra/base'
@@ -82,18 +82,22 @@ class PagyDemo < Sinatra::Base
     get("/#{name}") do
       collection      = MockCollection.new
       @pagy, @records = pagy(:offset, collection)
-      erb :helpers, locals: { name:,
-                              style: value[:style],
-                              classes: value[:classes],
-                              css_anchor: value[:css_anchor] }
+      erb :page, locals: { name:,
+                           style: value[:style],
+                           classes: value[:classes],
+                           css_anchor: value[:css_anchor] }
     end
   end
 
   helpers do
     def style_menu
       html = +%(<div id="style-menu"> )
-      NAMES.each_key { |style| html << %(<a href="/#{style}">#{style}</a>) }
-      html << %(<a href="/template">template</a>)
+      NAMES.each_key do |style|
+        name    = style.to_s
+        name[0] = name[0].capitalize
+        html << %(<a href="/#{style}">#{name}</a>)
+      end
+      html << %(<a href="/template">Template</a>)
       html << %(</div>)
     end
 
@@ -111,6 +115,310 @@ class PagyDemo < Sinatra::Base
     end
   end
 
+  TWEAKER_SCRIPT = <<~HTML
+    <script>
+      function createDynamicStyleTag() {
+        const dynamicStyle = document.createElement('style');
+        dynamicStyle.id = 'app-pagy-style';
+        document.head.appendChild(dynamicStyle);
+      }
+
+      function getDefaultValue(variableName) {
+        const element = document.querySelector('.pagy');
+        if (element) {
+          const style = getComputedStyle(element);
+          return style.getPropertyValue(variableName).trim();
+        }
+        return null;
+      }
+
+      function initializePagyDemo() {
+        createDynamicStyleTag();
+
+        const hueInput = document.getElementById('hue');
+        const saturationInput = document.getElementById('saturation');
+        const lightnessInput = document.getElementById('lightness');
+        const opacityInput = document.getElementById('opacity');
+        const appPagyStyle = document.getElementById('app-pagy-style');
+        const pagyElements = document.querySelectorAll('.pagy');
+        const resetButton = document.getElementById('reset-button');
+        const overrideDisplay = document.getElementById('override');
+        const spacingInput = document.getElementById('spacing');
+        const roundingInput = document.getElementById('rounding');
+        const paddingInput = document.getElementById('padding');
+        const fontSizeInput = document.getElementById('font-size');
+        const lineHeightInput = document.getElementById('line-height');
+        const brightnessInput = document.getElementById('brightness');
+        const fontWeightInput = document.getElementById('font-weight');
+        const borderWidthInput = document.getElementById('border-width');
+
+        function resetCssVariables() {
+          const cookieNames = [
+            "pagy_brightness",
+            "pagy_hue",
+            "pagy_saturation",
+            "pagy_lightness",
+            "pagy_opacity",
+            "pagy_spacing",
+            "pagy_rounding",
+            "pagy_padding",
+            "pagy_line_height",
+            "pagy_font_size",
+            "pagy_font_weight",
+            "pagy_border_width" ];
+          cookieNames.forEach((name) => {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+          });
+          window.location.reload();
+        }
+
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) {
+            return parts.pop().split(';').shift();
+          }
+        }
+
+        function setCookie(name, value) {
+          document.cookie = `${name}=${value}; path=/`;
+        }
+
+        function updateCSSVariables() {
+          const override =
+            `.pagy {\n` +
+            `  --B: ${brightnessInput.value};\n` +
+            `  --H: ${hueInput.value};\n` +
+            `  --S: ${saturationInput.value};\n` +
+            `  --L: ${lightnessInput.value};\n` +
+            `  --opacity: ${opacityInput.value};\n` +
+            `  --spacing: ${spacingInput.value}rem;\n` +
+            `  --rounding: ${roundingInput.value}rem;\n` +
+            `  --padding: ${paddingInput.value}rem;\n` +
+            `  --line-height: ${lineHeightInput.value}rem;\n` +
+            `  --font-size: ${fontSizeInput.value}rem;\n` +
+            `  --font-weight: ${fontWeightInput.value};\n` +
+            `  --border-width: ${borderWidthInput.value}rem;\n` +
+            `}`;
+
+          appPagyStyle.textContent = override;
+
+          // Update bgColor based on brightness
+          let backdrop = brightnessInput.value === '-1' ? '#000000' : '#ffffff';
+
+          pagyElements.forEach((element) => {
+            element.style.backgroundColor = backdrop;
+          });
+
+          setCookie('pagy_hue', hueInput.value);
+          setCookie('pagy_saturation', saturationInput.value);
+          setCookie('pagy_lightness', lightnessInput.value);
+          setCookie('pagy_brightness', brightnessInput.value);
+          setCookie('pagy_opacity', opacityInput.value);
+          setCookie('pagy_spacing', spacingInput.value);
+          setCookie('pagy_rounding', roundingInput.value);
+          setCookie('pagy_padding', paddingInput.value);
+          setCookie('pagy_font_size', fontSizeInput.value);
+          setCookie('pagy_line_height', lineHeightInput.value);
+          setCookie('pagy_font_weight', fontWeightInput.value);
+          setCookie('pagy_border_width', borderWidthInput.value);
+          overrideDisplay.value = override;
+        }
+
+        brightnessInput.addEventListener('input', updateCSSVariables);
+        hueInput.addEventListener('input', updateCSSVariables);
+        saturationInput.addEventListener('input', updateCSSVariables);
+        lightnessInput.addEventListener('input', updateCSSVariables);
+        opacityInput.addEventListener('input', updateCSSVariables);
+        spacingInput.addEventListener('input', updateCSSVariables);
+        roundingInput.addEventListener('input', updateCSSVariables);
+        paddingInput.addEventListener('input', updateCSSVariables);
+        fontSizeInput.addEventListener('input', updateCSSVariables);
+        lineHeightInput.addEventListener('input', updateCSSVariables);
+        fontWeightInput.addEventListener('input', updateCSSVariables);
+        borderWidthInput.addEventListener('input', updateCSSVariables);
+        resetButton.addEventListener('click', resetCssVariables);
+
+        const savedBrightness = getCookie('pagy_brightness');
+        const savedHue = getCookie('pagy_hue');
+        const savedSaturation = getCookie('pagy_saturation');
+        const savedLightness = getCookie('pagy_lightness');
+        const savedOpacity = getCookie('pagy_opacity');
+        const savedSpacing = getCookie('pagy_spacing');
+        const savedRounding = getCookie('pagy_rounding');
+        const savedPadding = getCookie('pagy_padding');
+        const savedFontSize = getCookie('pagy_font_size');
+        const savedLineHeight = getCookie('pagy_line_height');
+        const savedFontWeight = getCookie('pagy_font_weight');
+        const savedBorderWidth = getCookie('pagy_border_width');
+
+        brightnessInput.value = savedBrightness ?? getDefaultValue('--B');
+        hueInput.value = savedHue ?? getDefaultValue('--H');
+        saturationInput.value = savedSaturation ?? getDefaultValue('--S');
+        lightnessInput.value = savedLightness ?? getDefaultValue('--L');
+        opacityInput.value = savedOpacity ?? getDefaultValue('--opacity');
+        spacingInput.value = savedSpacing ?? getDefaultValue('--spacing').replace('rem', '');
+        roundingInput.value = savedRounding ?? getDefaultValue('--rounding').replace('rem', '');
+        paddingInput.value = savedPadding ?? getDefaultValue('--padding').replace('rem', '');
+        fontSizeInput.value = savedFontSize ?? getDefaultValue('--font-size').replace('rem', '');
+        lineHeightInput.value = savedLineHeight ?? getDefaultValue('--line-height').replace('rem', '');
+        fontWeightInput.value = savedFontWeight ?? getDefaultValue('--font-weight');
+        borderWidthInput.value = savedBorderWidth ?? getDefaultValue('--border-width').replace('rem', '');
+
+        // Update backdrop based on brightness during initialization
+        let initialBgColor = brightnessInput.value === '-1' ? '#000000' : '#ffffff';
+
+        pagyElements.forEach((element) => {
+          element.style.backgroundColor = initialBgColor;
+        });
+
+        updateCSSVariables();
+      }
+      document.addEventListener('DOMContentLoaded', initializePagyDemo);
+    </script>
+  HTML
+
+  TWEAKER_STYLE = <<~HTML
+    <style>
+      @media (max-width: 900px) {
+        #main-container {
+          flex-direction: column;
+        }
+        #top-hr {
+          display: none;
+        }
+      }
+      #main-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      #tweaker {
+        all: revert;
+        border: 1px solid white;
+        padding: 20px;
+        display: table;
+        margin-top: 8px;
+        margin-right: 40px;
+        width: 400px;
+        align-self: flex-start; /* Prevents the left panel from stretching to match the right panel's height */
+        flex-shrink: 0; /* Prevents the left panel from shrinking */
+        box-sizing: border-box;
+        background-color: rgba(255,255,255,.5);
+        box-shadow: 8px 8px 18px 0px rgba(0,0,0,0.2);
+      }
+      #content {
+        box-sizing: border-box;
+        flex: 1;
+        overflow: hidden;
+        width: 100%;
+        min-width: 0;
+      }
+      #tweaker-grid {
+        all: revert;
+        display: grid;
+        grid-template-columns: auto auto; /* Or your desired columns */
+        grid-row-gap: 3px;
+        grid-column-gap: 5px;
+        line-height: 1rem;
+        width: 100%;
+      }
+      #tweaker-grid label {
+        grid-column: 1;
+        text-align: right;
+        padding-right: 5px;
+        white-space: nowrap;
+      }
+
+      #brightness {
+        all: revert;
+        margin: 0 2px;
+      }
+      #override {
+        all: revert;
+        font-family: monospace;
+        font-size: .8rem;
+        line-height: 1.25;
+        height: 235px;
+        resize: vertical;
+        margin: 2px;
+      }
+      #reset-button {
+        all: revert;
+        display: block;
+        margin-top: 10px;
+        margin-right: 3px;
+        padding: .5em 2em;
+        justify-self: end;
+      }
+    </style>
+  HTML
+
+  TWEAKER_HTML = <<~HTML
+    <div id="tweaker">
+      <b>CSS Tweaker</b>
+      <hr>
+      <div id="tweaker-grid">
+        <label for="brightness">Brightness</label>
+        <select id="brightness">
+            <option value="1">Light</option>
+            <option value="-1">Dark</option>
+        </select>
+        <label for="hue">Hue</label>
+        <input type="range" id="hue" min="0" max="360">
+        <label for="saturation">Saturation</label>
+        <input type="range" id="saturation" min="0" max="100">
+        <label for="lightness">Lightness</label>
+        <input type="range" id="lightness" min="0" max="100">
+        <label for="opacity">Opacity</label>
+        <input type="range" id="opacity" min="0" max="1" step="0.01">
+        <label for="spacing">Spacing</label>
+        <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
+        <label for="rounding">Rounding</label>
+        <input type="range" id="rounding" min="0" max="3" step="0.0625">
+        <label for="padding">Padding</label>
+        <input type="range" id="padding" min="0" max="1.5" step="0.0625">
+        <label for="line-height">Line Height</label>
+        <input type="range" id="line-height" min="1" max="2.5" step="0.0625">
+        <label for="font-size">Font Size</label>
+        <input type="range" id="font-size" min="0.5" max="2" step="0.0625">
+        <label for="font-weight">Font Weight</label>
+        <input type="range" id="font-weight" min="100" max="1000" step="50">
+        <label for="border-width">Border Width</label>
+        <input type="range" id="border-width" min="0" max="0.25" step="0.03125">
+        <label for="override">Override</label>
+        <textarea id="override" rows="5" cols="40" readonly></textarea>
+      </div>
+      <hr>
+      <button id="reset-button">Reset</button>
+    </div>
+  HTML
+
+  MASK_STYLE = <<~HTML
+    <style>
+      .pagy, .pagy-bootstrap, .pagy-bulma {
+        background-color: black !important;
+        padding: .5em;
+      }
+      .pagy *:not(.gap) {
+        background-color: white !important;
+      }
+      .pagy *, .pagy-bootstrap *,
+      .pagy-bulma a,
+      .pagy-bulma label,
+      .pagy-bulma .pagination-ellipsis  {
+        color: white !important;
+      }
+      .pagy-bootstrap .page-item .page-link,
+      .pagy-bulma li.pagination-link,
+      .pagy-bulma input,
+      .pagy-bulma a, .pagy-bulma a.pagination-previous, .pagy-bulma a.pagination-next {
+        border-color: white !important;
+        background-color: white !important;
+        opacity: 1;
+      }
+    </style>
+  HTML
+
   # Views
   template :layout do
     <<~'ERB'
@@ -124,6 +432,9 @@ class PagyDemo < Sinatra::Base
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%= erb :"#{name}_head" if defined?(name) %>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
         <style type="text/css">
           @media screen { html, body {
             font-size: 1rem;
@@ -136,13 +447,22 @@ class PagyDemo < Sinatra::Base
           *::after {
             box-sizing: border-box;
           }
+          input[type="number"],
           input[type="range"] {
             all: revert;
           }
           body {
-            background: white !important;
             margin: 0 !important;
-            font-family: sans-serif !important;
+            font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+            color: #303030 !important;
+          }
+          svg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
           }
           h1, h2 {
             font-size: 1.8rem !important;
@@ -150,16 +470,22 @@ class PagyDemo < Sinatra::Base
             margin-top: 1rem !important;
             margin-bottom: 0.7rem !important;
             line-height: 1.5 !important;
-            color: rgb(90 90 90)  !important;
+            color: #303030  !important;
           }
           h2 {
             font-family: monospace;
             font-size: .9rem !important;
             margin-top: 1.6rem !important;
           }
+          hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px;
+            border-top-color: gray;
+            margin: 8px 0 !important;
+          }
           summary, .notes {
             font-size: .8rem;
-            color: gray;
             margin-top: .6rem;
             font-style: italic;
             cursor: pointer;
@@ -169,7 +495,7 @@ class PagyDemo < Sinatra::Base
             font-weight: normal;
           }
           .notes code{
-            background-color: #E8E8E8;
+            background-color: rgba(255, 255, 255, .6);
             padding: 0 0.3rem;
             font-style: normal;
             border-radius: 3px;
@@ -182,7 +508,7 @@ class PagyDemo < Sinatra::Base
             text-decoration: underline;
           }
           pre, pre code {
-            display: block;
+            display: inline-block;
             margin-top: .3rem;
             margin-bottom: 1rem;
             font-size: .8rem !important;
@@ -190,12 +516,13 @@ class PagyDemo < Sinatra::Base
             color: white;
             background-color: rgb(30 30 30);
             padding: 1rem;
-            range_rescue: auto;
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre;
           }
           .main-content {
             padding: 0 1.5rem 2rem !important;
           }
-
           #style-menu {
             flex;
             font-family: sans-serif;
@@ -203,7 +530,7 @@ class PagyDemo < Sinatra::Base
             line-height: 1.5rem;
             white-space: nowrap;
             color: white;
-            background-color: gray;
+            background-color: rgba(0,0,0,.65);
             padding: .2rem 1.5rem;
           }
           #style-menu > :not([hidden]) ~ :not([hidden]) {
@@ -216,106 +543,30 @@ class PagyDemo < Sinatra::Base
             text-decoration: none;
           }
           .pagy, .pagy-bootstrap, .pagy-bulma {
-            padding: .5em;
+            background-color: white;
+            padding: 1.5em;
             margin: .3em 0;
             width: fit-content;
-            box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);
+            box-shadow: 8px 8px 18px 0px rgba(0,0,0,0.25);
+          }
+          span.pagy {
+            display: block;
           }
           .pagy-bootstrap .pagination {
             margin: 0;
           }
-
-#control-container {
-  background-color: #E8E8E8;
-  border: 1px solid gray;
-  padding: 20px;
-  display: table; /* Or display: inline-block; */
-}
-#pagy-control-box {
-  display: grid;
-  grid-template-columns: 150px 200px;
-  grid-row-gap: 5px;
-  grid-column-gap: 5px;
-  padding-left: 5px;
-}
-
-#pagy-control-box label {
-  grid-column: 1;
-  text-align: right;
-  padding-right: 5px;
-}
-
-#pagy-control-box input[type="range"] {
-  grid-column: 2;
-  all: revert; /* Restore user-agent styles for range inputs */
-}
-
-#pagy-control-box input[type="color"] {
-  grid-column: 2;
-  all: revert; /* Restore user-agent styles for range inputs */
-}
-
-#pagy-control-box h2 {
-  grid-column: 1 / -1;
-}
-
-#reset-style-button {
-  all: revert;
-  display: block;
-  margin-top: 10px;
-  justify-self: end;
-}
-
-#css-variables-display {
-  grid-column: 2;
-  grid-row: 9;
-  height: 170px;
-  resize: vertical;
-}
-
-#pagy-control-box label[for="css-variables-display"] {
-  grid-column: 1;
-  grid-row: 9;
-  align-self: start;
-}
-#reset-style-button {
-  all: revert;
-  display: block;
-  margin-top: 10px;
-  padding: .5em 2em;
-  justify-self: end;
-}
-          /* INTERNAL USE: screenshot masking start
-          .pagy, .pagy-bootstrap, .pagy-bulma {
-            background-color: black !important;
-          }
-          .pagy *:not(.gap) {
-            background-color: white !important;
-          }
-          .pagy *, .pagy-bootstrap *,
-          .pagy-bulma a,
-          .pagy-bulma label,
-          .pagy-bulma .pagination-ellipsis  {
-            color: white !important;
-          }
-          .pagy-bootstrap .page-item .page-link,
-          .pagy-bulma li.pagination-link,
-          .pagy-bulma input,
-          .pagy-bulma a, .pagy-bulma a.pagination-previous, .pagy-bulma a.pagination-next {
-            border-color: white !important;
-            background-color: white !important;
-            opacity: 1;
-          }
-          /* INTERNAL USE: screenshot masking end */
-
-          /* Quick demo for overriding the element style attribute of certain pagy helpers
-          .pagy input[style] {
-            width: 5rem !important;
-          }
-          */
         </style>
+        <%=TWEAKER_STYLE if name&.match(/pagy|tailwind/) %>
+        <%# MASK_STYLE %>
       </head>
       <body>
+        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+          <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="100" stitchTiles="stitch" />
+            <feColorMatrix type="matrix" values="0.5 0 0 0 0, 0.5 0 0 0 0, 0.5 0 0 0 0, 0 0 0 0.5 0" />
+         </filter>
+          <rect width="100%" height="100%" filter="url(#noiseFilter)" fill="rgb(255, 255, 255)" />
+        </svg>
         <!-- each different class used by each style -->
         <%= style_menu %>
         <div class="main-content">
@@ -326,154 +577,21 @@ class PagyDemo < Sinatra::Base
     ERB
   end
 
-  template :template_head do
-    '<link rel="stylesheet" href="/stylesheet/pagy.css">'
-  end
-
   template :pagy_head do
     <<~ERB
       <link rel="stylesheet" href="/stylesheet/pagy.css">
-      <style id="app-pagy-style">
-      /* dynamically overridden by js */
+      <%=TWEAKER_SCRIPT %>
+    ERB
+  end
+
+  template :tailwind_head do
+    <<~ERB
+      <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+      <style type="text/tailwindcss">
+        <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>
       </style>
-
-<script>
-  function getDefaultCssVariableValue(className, variableName) {
-    const element = document.querySelector('.' + className);
-    if (element) {
-      const style = getComputedStyle(element);
-      return style.getPropertyValue(variableName).trim();
-    }
-    return null;
-  }
-
-  function initializePagyDemo() {
-    const hueInput = document.getElementById('hue');
-    const saturationInput = document.getElementById('saturation');
-    const lightnessInput = document.getElementById('lightness');
-    const bgColorInput = document.getElementById('bg-color');
-    const opacityInput = document.getElementById('opacity');
-    const appPagyStyle = document.getElementById('app-pagy-style');
-    const pagyElements = document.querySelectorAll('.pagy');
-    const resetStyleButton = document.getElementById('reset-style-button');
-    const cssVariablesDisplay = document.getElementById('css-variables-display');
-    const spacingInput = document.getElementById('spacing');
-    const roundingInput = document.getElementById('rounding');
-    const paddingInput = document.getElementById('padding');
-
-    function resetStyles() {
-      document.cookie = "pagy_hue=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "pagy_saturation=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "pagy_lightness=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "pagy_bgColor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "pagy_opacity=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "pagy_spacing=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "pagy_rounding=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      document.cookie = "pagy_padding=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.reload();
-    }
-
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-    function setCookie(name, value) {
-      document.cookie = `${name}=${value}; path=/`;
-    }
-
-    function updateControlVariables() {
-      const cssVariablesString = `.pagy {\n` +
-        `  --hue: ${hueInput.value};\n` +
-        `  --saturation: ${saturationInput.value}%;\n` +
-        `  --lightness: ${lightnessInput.value}%;\n` +
-        `  --opacity: ${opacityInput.value};\n` +
-        `  --spacing: ${spacingInput.value}rem;\n` +
-        `  --rounding: ${roundingInput.value}rem;\n` +
-        `  --padding: ${paddingInput.value}rem;\n` +
-        `}`;
-
-      appPagyStyle.textContent = cssVariablesString;
-      pagyElements.forEach(element => {
-        element.style.backgroundColor = bgColorInput.value;
-      });
-
-      setCookie('pagy_hue', hueInput.value);
-      setCookie('pagy_saturation', saturationInput.value);
-      setCookie('pagy_lightness', lightnessInput.value);
-      setCookie('pagy_bgColor', bgColorInput.value);
-      setCookie('pagy_opacity', opacityInput.value);
-      setCookie('pagy_spacing', spacingInput.value);
-      setCookie('pagy_rounding', roundingInput.value);
-      setCookie('pagy_padding', paddingInput.value);
-      cssVariablesDisplay.value = cssVariablesString;
-    }
-
-    resetStyleButton.addEventListener('click', resetStyles);
-    hueInput.addEventListener('input', updateControlVariables);
-    saturationInput.addEventListener('input', updateControlVariables);
-    lightnessInput.addEventListener('input', updateControlVariables);
-    bgColorInput.addEventListener('input', updateControlVariables);
-    opacityInput.addEventListener('input', updateControlVariables);
-    spacingInput.addEventListener('input', updateControlVariables);
-    roundingInput.addEventListener('input', updateControlVariables);
-    paddingInput.addEventListener('input', updateControlVariables);
-
-    const savedHue = getCookie('pagy_hue');
-    const savedSaturation = getCookie('pagy_saturation');
-    const savedLightness = getCookie('pagy_lightness');
-    const savedBgColor = getCookie('pagy_bgColor');
-    const savedOpacity = getCookie('pagy_opacity');
-    const savedSpacing = getCookie('pagy_spacing');
-    const savedRounding = getCookie('pagy_rounding');
-    const savedPadding = getCookie('pagy_padding');
-
-    if (savedHue) {
-      hueInput.value = savedHue;
-    } else {
-        hueInput.value = getDefaultCssVariableValue('pagy', '--hue');
-    }
-    if (savedSaturation) {
-      saturationInput.value = savedSaturation;
-    } else {
-        saturationInput.value = getDefaultCssVariableValue('pagy', '--saturation').replace('%','');
-    }
-    if (savedLightness) {
-      lightnessInput.value = savedLightness;
-    } else {
-        lightnessInput.value = getDefaultCssVariableValue('pagy', '--lightness').replace('%','');
-    }
-    if (savedBgColor) {
-      bgColorInput.value = savedBgColor;
-    }
-    if (savedOpacity) {
-      opacityInput.value = savedOpacity;
-    } else {
-        opacityInput.value = getDefaultCssVariableValue('pagy', '--opacity');
-    }
-    if (savedSpacing) {
-      spacingInput.value = savedSpacing;
-    } else {
-        spacingInput.value = getDefaultCssVariableValue('pagy', '--spacing').replace('rem','');
-    }
-    if (savedRounding) {
-      roundingInput.value = savedRounding;
-    } else {
-        roundingInput.value = getDefaultCssVariableValue('pagy', '--rounding').replace('rem','');
-    }
-    if (savedPadding) {
-      paddingInput.value = savedPadding;
-    } else {
-        paddingInput.value = getDefaultCssVariableValue('pagy', '--padding').replace('rem','');
-    }
-
-    updateControlVariables();
-  }
-
-  document.addEventListener('DOMContentLoaded', initializePagyDemo);
-</script>
-ERB
+       <%=TWEAKER_SCRIPT %>
+    ERB
   end
 
   template :bootstrap_head do
@@ -488,138 +606,89 @@ ERB
     ERB
   end
 
-  template :tailwind_head do
-    <<~ERB
-      <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-      <style type="text/tailwindcss">
-        <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>
-      </style>
-    ERB
+  template :template_head do
+    '<link rel="stylesheet" href="/stylesheet/pagy.css">'
   end
 
-  template :helpers do
+  template :page do
     <<~ERB
-      <h1><%= name %></h1>
+      <h1><%= title = name.to_s; title[0] = title[0].capitalize; title %></h1>
 
       <% if css_anchor %>
         <p>Check the <u><i><b><a href="http://ddnexus.github.io/pagy/resources/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a></b></u></i>
         for details.</p>
       <% end %>
       </p>
+      <div id="main-container">
+        <% if name&.match(/pagy|tailwind/) %>
+          <%=TWEAKER_HTML %>
+        <% end %>
 
-      <% if name&.match(/pagy/) %>
-<div id="control-container">
-  <b>Customize the Pagy Style</b>
-  <hr>
-  <div id="pagy-control-box">
-    <h2>Pagy Variables</h2>
-    <label for="hue">Hue:</label>
-    <input type="range" id="hue" min="0" max="360">
-    <label for="saturation">Saturation:</label>
-    <input type="range" id="saturation" min="0" max="100">
-    <label for="lightness">Lightness:</label>
-    <input type="range" id="lightness" min="0" max="100">
-    <label for="opacity">Opacity:</label>
-    <input type="range" id="opacity" min="0" max="1" step="0.01">
-    <label for="spacing">Spacing:</label>
-    <input type="range" id="spacing" min="0" max="1.5" step="0.125">
-    <label for="rounding">Rounding:</label>
-    <input type="range" id="rounding" min="0" max="1.5" step="0.125">
-    <label for="padding">Padding:</label>
-    <input type="range" id="padding" min="0" max="1.5" step="0.125">
-    <label for="css-variables-display">CSS Override:</label>
-    <textarea id="css-variables-display" rows="5" cols="40" readonly></textarea>
+        <div id="content">
+          <hr id="top-hr">
+          <h2>@records</h2>
+          <p id="records"><%= @records.join(',') %></p>
 
-    <h2>Visual Feedback</h2>
-    <label for="bg-color">Page background:</label>
-    <input type="color" id="bg-color" value="#ffffff">
-  </div>
-  <hr>
-  <button id="reset-style-button">Reset Style</button>
-</div>
-      <% end %>
+          <h2>@pagy.series_nav<br/>
+            <span class="notes">Series nav <code>{slots: 7}</code></span>
+          </h2>
+          <%= html = @pagy.series_nav(style, classes:,
+                                      id: 'series-nav',
+                                      aria_label: 'Pages series_nav') %>
+          <%= highlight(html) %>
 
-      <h2>Collection</h2>
-      <p id="records">@records: <%= @records.join(',') %></p>
+          <h2>@pagy.series_nav_js<br/>
+            <span class="notes">Responsive nav: <code>{steps: {0 => 5, 500 => 7, 600 => 9, 700 => 11}}</code><br/>
+            (Resize the window to see)
+            </span>
+          </h2>
+          <%= html = @pagy.series_nav_js(style, classes:,
+                                         id: 'series-nav-js-responsive',
+                                         aria_label: 'Pages series_nav_js_responsive',
+                                         steps: { 0 => 5, 500 => 7, 600 => 9, 700 => 11 }) %>
+          <%= highlight(html) %>
 
-      <h2>@pagy.series_nav<br/>
-        <span class="notes">Small nav <code>{slots: 5, compact: true}</code></span>
-      </h2>
-      <%= html = @pagy.series_nav(style, classes:,
-                                  id: 'small-nav',
-                                  aria_label: 'Pages small-nav',
-                                  slots: 5) %>
-      <%= highlight(html) %>
+          <h2>@pagy.input_nav_js</h2>
+          <%= html = @pagy.input_nav_js(style, classes:,
+                                        id: 'input-nav-js',
+                                        aria_label: 'Pages inpup_nav_js') %>
+          <%= highlight(html) %>
 
-      <h2>@pagy.series_nav<br/>
-        <span class="notes">Series nav <code>{slots: 7}</code></span>
-      </h2>
-      <%= html = @pagy.series_nav(style, classes:,
-                                  id: 'series-nav',
-                                  aria_label: 'Pages series_nav') %>
-      <%= highlight(html) %>
+          <% if name&.match(/pagy|tailwind/) %>
+            <h2>@pagy.limit_tag_js</h2>
+            <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
+            <%= highlight(html) %>
+          <% end %>
 
-      <h2>@pagy.series_nav_js<br/>
-        <span class="notes">Faster Series nav js <code>{slots: 7}</code></span>
-      </h2>
-      <%= html = @pagy.series_nav_js(style, classes:,
-                                     id: 'series-nav-js',
-                                     aria_label: 'Pages series_nav_js') %>
-      <%= highlight(html) %>
-
-      <h2>@pagy.series_nav_js<br/>
-        <span class="notes">Responsive nav: <code>{steps: {0 => 5, 500 => 7, 750 => 9, 1000 => 11}}</code><br/>
-        (Resize the window to see)
-        </span>
-      </h2>
-      <%= html = @pagy.series_nav_js(style, classes:,
-                                     id: 'series-nav-js-responsive',
-                                     aria_label: 'Pages series_nav_js_responsive',
-                                     steps:      { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
-      <%= highlight(html) %>
-
-      <h2>@pagy.input_nav_js</h2>
-      <%= html = @pagy.input_nav_js(style, classes:,
-                                    id: 'input-nav-js',
-                                    aria_label: 'Pages inpup_nav_js') %>
-      <%= highlight(html) %>
-
-      <h2>@pagy.info_tag</h2>
-      <%= html = @pagy.info_tag(id: 'pagy-info') %>
-      <%= highlight(html) %>
-
-      <% if name&.match(/pagy|tailwind/) %>
-        <h2>@pagy.limit_tag_js</h2>
-        <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
-        <%= highlight(html) %>
-
-        <h2>@pagy.previous_tag / @pagy.next_tag</h2>
-        <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << @pagy.previous_tag << @pagy.next_tag << '</nav>' %>
-        <%= highlight(html) %>
-      <% end %>
+          <h2>@pagy.info_tag</h2>
+          <%= html = @pagy.info_tag(id: 'pagy-info') %>
+          <%= highlight(html) %>
+                <br><br>
+        </div> 
+      </div>
     ERB
   end
 
   template :template do
-    <<~ERB
-      <h1>Pagy Template Demo</h1>
+     <<~ERB
+       <h1>Pagy Template Demo</h1>
 
-      <p class="description">
-      See the <a href="https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">
-      Custom Templates</a> documentation.
-      </p>
+       <p class="description">
+       See the <a href="https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">
+       Custom Templates</a> documentation.
+       </p>
 
-      <h2>Collection</h2>
-      <p id="records">@records: <%= @records.join(',') %></p>
+       <h2>Collection</h2>
+       <p id="records">@records: <%= @records.join(',') %></p>
 
-      <h2>Rendered ERB template</h2>
+       <h2>Rendered ERB template</h2>
 
-      <%# We don't inline the template here, so we can highlight it more easily %>
-      <%= html = ERB.new(TEMPLATE).result(binding) %>
-      <%= highlight(TEMPLATE, format: :erb) %>
-      <%= highlight(html) %>
-    ERB
-  end
+       <%# We don't inline the template here, so we can highlight it more easily %>
+       <%= html = ERB.new(TEMPLATE).result(binding) %>
+       <%= highlight(TEMPLATE, format: :erb) %>
+       <%= highlight(html) %>
+     ERB
+   end
 
   # Easier code highlighting
   TEMPLATE = <<~ERB

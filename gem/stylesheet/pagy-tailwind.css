@@ -9,47 +9,50 @@ available in the Demo App http://ddnexus.github.io/pagy/sandbox/playground#3-dem
 
 @layer components {
   .pagy {
-    /* Base color variables */
-    --hue: 0;
-    --saturation: 0%;
-    --lightness: 50%;
+    --B: 1;  /* Brightness: Light/Dark (1 or -1) */
+    --H: 0;
+    --S: 0;
+    --L: 50;
     --opacity: 1;
+    --spacing: 0.125rem;
+    --rounding: 1.125rem;
+    --padding: 0.75rem;
+    --font-size: 0.875rem;
+    --line-height: 1.4375rem;
+    --font-weight: 700;
+    --border-width: 0rem;
 
-    /* Specific color variables (calculated) */
-    --current-text:       white;
-    --current-background: hsl(var(--hue), var(--saturation),      var(--lightness));
-    --text:               hsl(var(--hue), var(--saturation), calc(var(--lightness) - 30%));
-    --background:         hsl(var(--hue), var(--saturation), calc(var(--lightness) + 32%));
-    --hover-text:         hsl(var(--hue), var(--saturation), calc(var(--lightness) +  4%));
-    --hover-background:   hsl(var(--hue), var(--saturation), calc(var(--lightness) + 36%));
-    --input-background:   hsl(var(--hue), var(--saturation), calc(var(--lightness) + 43%));
-    --disabled-opacity:   .5;
+    --text:               hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))));
+    --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (33 * var(--B))));
+    --text-current:       hsl(var(--H) var(--S) calc(100 * (var(--B) + 1)));
+    --background:         hsl(var(--H) var(--S) calc(var(--L) + (30 * var(--B))));
+    --background-hover:   hsl(var(--H) var(--S) calc(var(--L) + (20 * var(--B))));
+    --background-current: hsl(var(--H) var(--S) var(--L));
+    --background-input:   hsl(var(--H) var(--S) calc(var(--L) + (45 * var(--B))));
 
-    /* Base layout variables */
-    --spacing: .25rem;
-    --rounding: .5rem;
-    --padding: .75rem;
-
-    --rounding-half: calc(var(--rounding) / 2);
-    --padding-third: calc(var(--padding) / 3);
-
-    @apply flex space-x-[var(--spacing)] font-semibold text-sm text-[var(--text)] opacity-[var(--opacity)];
+    @apply flex space-x-[var(--spacing)] font-[var(--font-weight)]
+    text-[length:var(--font-size)] text-[var(--text)]
+    leading-[var(--line-height)];
     a:not(.gap) {
-      @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[var(--padding-third)] bg-[var(--background)] text-inherit;
+      @apply block rounded-[var(--rounding)] px-[var(--padding)] py-[calc(var(--padding)/3)] bg-[var(--background)]
+      border-solid  border-[var(--background-current)] border-[length:var(--border-width)] opacity-[var(--opacity)];
       &:hover {
-        @apply bg-[var(--hover-background)] text-[var(--hover-text)];
+        @apply bg-[var(--background-hover)] text-[var(--text-hover)];
       }
       &:not([href]) { /* disabled links */
-        @apply cursor-default bg-[var(--background)] text-[var(--text)] opacity-[var(--disabled-opacity)];
+        @apply cursor-default bg-[var(--background)]  opacity-[calc(var(--opacity)*.5)];
       }
       &.current {
-        @apply bg-[var(--current-background)] text-[var(--current-text)] opacity-100;
+        @apply bg-[var(--background-current)] text-[var(--text-current)] opacity-[var(--opacity)];
       }
     }
     label {
-      @apply inline-block whitespace-nowrap rounded-[var(--rounding)] px-[var(--padding)] py-[var(--padding-third)] bg-[var(--background)];
+      @apply inline-block whitespace-nowrap rounded-[var(--rounding)] px-[var(--padding)]
+      py-[calc(var(--padding)/3-var(--border-width))]
+      bg-[var(--background)] border-solid border-[length:var(--border-width)] border-[var(--background-current)];
       input {
-        @apply border-none rounded-[var(--rounding-half)] bg-[var(--input-background)];
+        @apply text-[length:var(--font-size)] leading-[var(--line-height)] rounded-[calc(var(--rounding)/2)]
+        bg-[var(--background-input)] border-[length:var(--border-width)] border-[var(--background-current)];
       }
     }
   }
