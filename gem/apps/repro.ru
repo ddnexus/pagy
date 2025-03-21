@@ -140,14 +140,10 @@ class PagyRepro < Sinatra::Base
         <%= @pagy.series_nav(id: 'series-nav',
                              aria_label: 'Pages nav') %>
 
-        <h4>@pagy.series_nav_js</h4>
-        <%= @pagy.series_nav_js(id: 'series-nav-js',
-                                aria_label: 'Pages nav_js') %>
-
         <h4>@pagy.series_nav_js (responsive)</h4>
         <%= @pagy.series_nav_js(id: 'series-nav-js-responsive',
                                 aria_label: 'Pages nav_js_responsove',
-                                steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
+                                steps: { 0 => 5, 500 => 7, 600 => 9, 700 => 11 }) %>
 
         <h4>@pagy.input_nav_js</h4>
         <%= @pagy.input_nav_js(id: 'input-nav-js',

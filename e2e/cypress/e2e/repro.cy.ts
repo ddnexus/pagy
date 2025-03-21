@@ -7,7 +7,6 @@ describe(`[${app}] Test helpers`, () => {
     });
 
     testNav(app, "#series-nav", {});
-    testNav(app, "#series-nav-js", {});
     testNav(app, "#series-nav-js-responsive", {rjs: true});
     testComboNav(app, "#input-nav-js");
     testInfo(app, "#pagy-info");

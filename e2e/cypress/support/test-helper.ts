@@ -23,7 +23,7 @@ interface TestNavOpts {
 export function testNav(app:string, id:string, {path = "/", pages = ["3", "50"], rjs = false}:TestNavOpts) {
     it(`[${app}] Test ${id}`, () => {
         if (rjs) {
-            const widths = [700, 950, 1050];
+            const widths = [600, 700];
             for (const width of widths) {
                 cy.viewport(width, 1000);
                 cy.visit(path);

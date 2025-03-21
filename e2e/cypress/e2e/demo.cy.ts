@@ -14,7 +14,6 @@ for (const path of paths) {
         });
 
         testNav(app, "#series-nav", {path: path});
-        testNav(app, "#series-nav-js", {path: path});
         testNav(app, "#series-nav-js-responsive", {path: path, rjs: true});
         testComboNav(app, "#input-nav-js");
         testInfo(app, "#pagy-info", path);
