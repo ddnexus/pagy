@@ -116,229 +116,157 @@ class PagyDemo < Sinatra::Base
   end
 
   TWEAKER_SCRIPT = <<~HTML
-<script>
-  function createDynamicStyleTag() {
-    const dynamicStyle = document.createElement('style');
-    dynamicStyle.id = 'app-pagy-style';
-    document.head.appendChild(dynamicStyle);
-  }
-
-  function getDefaultValue(variableName) {
-    const element = document.querySelector('.pagy');
-    if (element) {
-      const style = getComputedStyle(element);
-      return style.getPropertyValue(variableName).trim();
-    }
-    return null;
-  }
-
-  function initializePagyDemo() {
-    createDynamicStyleTag();
-
-    const hueInput = document.getElementById('hue');
-    const saturationInput = document.getElementById('saturation');
-    const lightnessInput = document.getElementById('lightness');
-    const opacityInput = document.getElementById('opacity');
-    const appPagyStyle = document.getElementById('app-pagy-style');
-    const pagyElements = document.querySelectorAll('.pagy');
-    const overrideDisplay = document.getElementById('override');
-    const spacingInput = document.getElementById('spacing');
-    const roundingInput = document.getElementById('rounding');
-    const paddingInput = document.getElementById('padding');
-    const fontSizeInput = document.getElementById('font-size');
-    const lineHeightInput = document.getElementById('line-height');
-    const brightnessInput = document.getElementById('brightness');
-    const fontWeightInput = document.getElementById('font-weight');
-    const borderWidthInput = document.getElementById('border-width');
-    const presetsDropdown = document.getElementById('presets');
-
-    const presets = {
-      'Dark Mode': `.pagy { --B: -1; --H: 200; --S: 50; --L: 20; --opacity: 0.9; --spacing: 0.5rem; --rounding: 0.125rem; --padding: 0.375rem; --line-height: 1.75rem; --font-size: 1.125rem; --font-weight: 600; --border-width: 0.0625rem;}`,
-      'High Contrast': `.pagy { --B: 1; --H: 0; --S: 100; --L: 50; --opacity: 1; --spacing: 0.5rem; --rounding: 0.5rem; --padding: 0.5rem; --line-height: 2rem; --font-size: 1.25rem; --font-weight: 700; --border-width: 0.125rem;}`
-    };
-
-    const variableMap = {
-      brightness:     { cssName: '--B', unit: null },
-      hue:            { cssName: '--H', unit: null },
-      saturation:     { cssName: '--S', unit: null },
-      lightness:      { cssName: '--L', unit: null },
-      opacity:        { cssName: '--opacity', unit: null },
-      spacing:        { cssName: '--spacing', unit: 'rem' },
-      rounding:       { cssName: '--rounding', unit: 'rem' },
-      padding:        { cssName: '--padding', unit: 'rem' },
-      'font-size':    { cssName: '--font-size', unit: 'rem' },
-      'line-height':  { cssName: '--line-height', unit: 'rem' },
-      'font-weight':  { cssName: '--font-weight', unit: null },
-      'border-width': { cssName: '--border-width', unit: 'rem' }
-    };
-
-    function resetCssVariables() {
-      const cookieNames = [
-        "pagy_brightness",
-        "pagy_hue",
-        "pagy_saturation",
-        "pagy_lightness",
-        "pagy_opacity",
-        "pagy_spacing",
-        "pagy_rounding",
-        "pagy_padding",
-        "pagy_line_height",
-        "pagy_font_size",
-        "pagy_font_weight",
-        "pagy_border_width" ];
-      cookieNames.forEach((name) => {
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      });
-      presetsDropdown.value = 'Default';
-      window.location.reload();
-    }
-
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) {
-        return parts.pop().split(';').shift();
+    <script>
+      function createDynamicStyleTag() {
+        const dynamicStyle = document.createElement('style');
+        dynamicStyle.id = 'app-pagy-style';
+        document.head.appendChild(dynamicStyle);
       }
-    }
-
-    function setCookie(name, value) {
-      document.cookie = `${name}=${value}; path=/`;
-    }
-
-    function updateCSSVariables() {
-      const override =
-        `.pagy {\n` +
-        `  --B: ${brightnessInput.value};\n` +
-        `  --H: ${hueInput.value};\n` +
-        `  --S: ${saturationInput.value};\n` +
-        `  --L: ${lightnessInput.value};\n` +
-        `  --opacity: ${opacityInput.value};\n` +
-        `  --spacing: ${spacingInput.value}rem;\n` +
-        `  --rounding: ${roundingInput.value}rem;\n` +
-        `  --padding: ${paddingInput.value}rem;\n` +
-        `  --line-height: ${lineHeightInput.value}rem;\n` +
-        `  --font-size: ${fontSizeInput.value}rem;\n` +
-        `  --font-weight: ${fontWeightInput.value};\n` +
-        `  --border-width: ${borderWidthInput.value}rem;\n` +
-        `}`;
-
-      appPagyStyle.textContent = override;
-
-      // Update bgColor based on brightness
-      let backdrop = brightnessInput.value === '-1' ? '#000000' : '#ffffff';
-
-      pagyElements.forEach((element) => {
-        element.style.backgroundColor = backdrop;
-      });
-
-      setCookie('pagy_hue', hueInput.value);
-      setCookie('pagy_saturation', saturationInput.value);
-      setCookie('pagy_lightness', lightnessInput.value);
-      setCookie('pagy_brightness', brightnessInput.value);
-      setCookie('pagy_opacity', opacityInput.value);
-      setCookie('pagy_spacing', spacingInput.value);
-      setCookie('pagy_rounding', roundingInput.value);
-      setCookie('pagy_padding', paddingInput.value);
-      setCookie('pagy_font_size', fontSizeInput.value);
-      setCookie('pagy_line_height', lineHeightInput.value);
-      setCookie('pagy_font_weight', fontWeightInput.value);
-      setCookie('pagy_border-width', borderWidthInput.value);
-      overrideDisplay.value = override;
-      presetsDropdown.options[0].textContent = 'Customized';
-    }
-
-    brightnessInput.addEventListener('input', updateCSSVariables);
-    hueInput.addEventListener('input', updateCSSVariables);
-    saturationInput.addEventListener('input', updateCSSVariables);
-    lightnessInput.addEventListener('input', updateCSSVariables);
-    opacityInput.addEventListener('input', updateCSSVariables);
-    spacingInput.addEventListener('input', updateCSSVariables);
-    roundingInput.addEventListener('input', updateCSSVariables);
-    paddingInput.addEventListener('input', updateCSSVariables);
-    fontSizeInput.addEventListener('input', updateCSSVariables);
-    lineHeightInput.addEventListener('input', updateCSSVariables);
-    fontWeightInput.addEventListener('input', updateCSSVariables);
-    borderWidthInput.addEventListener('input', updateCSSVariables);
-
-    // Populate presets dropdown
-    const defaultOption = document.createElement('option');
-    defaultOption.value = 'Default';
-    defaultOption.textContent = 'Default';
-    presetsDropdown.appendChild(defaultOption);
-
-    for (const presetName in presets) {
-      const option = document.createElement('option');
-      option.value = presetName;
-      option.textContent = presetName;
-      presetsDropdown.appendChild(option);
-    }
-presetsDropdown.addEventListener('change', (event) => {
-      if (event.target.value === 'Default') {
-        resetCssVariables();
-      } else {
-        const selectedPreset = presets[event.target.value];
-        if (selectedPreset) {
-          const variables = selectedPreset.match(/--[A-Za-z\-]+: [^;]+;/g);
-          if (variables) {
-            variables.forEach(variable => {
-              const [name, value] = variable.split(':').map(str => str.trim());
-              for (const inputId in variableMap) { 
-                if (variableMap[inputId].cssName === name) {
-                  const inputElement = document.getElementById(inputId);
-                  if (inputElement) {
-                    const unit = variableMap[inputId].unit;
-                    inputElement.value = value.replace((unit ? unit : '') + ';', '');
-                  }
-                  break;
-                }
-              }
-            });
-            updateCSSVariables();
+    
+      function getDefaultValue(variableName) {
+        const element = document.querySelector('.pagy');
+        if (element) {
+          const style = getComputedStyle(element);
+          return style.getPropertyValue(variableName).trim();
+        }
+        return null;
+      }
+    
+      function initializePagyDemo() {
+        createDynamicStyleTag();
+        
+        let variableMap = {
+          brightness:  { cssName: '--B',            unit: null  },
+          hue:         { cssName: '--H',            unit: null  },
+          saturation:  { cssName: '--S',            unit: null  },
+          lightness:   { cssName: '--L',            unit: null  },
+          opacity:     { cssName: '--opacity',      unit: null  },
+          spacing:     { cssName: '--spacing',      unit: 'rem' },
+          rounding:    { cssName: '--rounding',     unit: 'rem' },
+          padding:     { cssName: '--padding',      unit: 'rem' },
+          fontSize:    { cssName: '--font-size',    unit: 'rem' },
+          lineHeight:  { cssName: '--line-height',  unit: 'rem' },
+          fontWeight:  { cssName: '--font-weight',  unit: null  },
+          borderWidth: { cssName: '--border-width', unit: 'rem' }
+        };
+        
+        for (const [id, data] of Object.entries(variableMap)) {
+          data.input      = document.getElementById(id)
+          data.cookieName = `pagy-${id}`
+        }
+    
+        const appPagyStyle    = document.getElementById('app-pagy-style');
+        const pagyElements    = document.querySelectorAll('.pagy');
+        const overrideDisplay = document.getElementById('override');
+        const presetsDropdown = document.getElementById('presets');
+        const presets = {
+          'Dark Mode': `.pagy { --B: -1; --H: 200; --S: 50; --L: 20; --opacity: 0.9; --spacing: 0.5rem; --rounding: 0.125rem; --padding: 0.375rem; --line-height: 1.75rem; --font-size: 1.125rem; --font-weight: 600; --border-width: 0.0625rem;}`,
+          'High Contrast': `.pagy { --B: 1; --H: 0; --S: 100; --L: 50; --opacity: 1; --spacing: 0.5rem; --rounding: 0.5rem; --padding: 0.5rem; --line-height: 2rem; --font-size: 1.25rem; --font-weight: 700; --border-width: 0.125rem;}`
+        };
+    
+        function resetCssVariables() {
+          for (const data of Object.entries(variableMap)) {
+            document.cookie = `${data.cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+          }
+          presetsDropdown.value = 'Default';
+          window.location.reload();
+        }
+    
+        function getCookie(name) {
+          const value = `; ${document.cookie}`;
+          const parts = value.split(`; ${name}=`);
+          if (parts.length === 2) {
+            return parts.pop().split(';').shift();
           }
         }
-      }
-    });
+    
+        function setCookie(name, value) {
+          document.cookie = `${name}=${value}; path=/`;
+        }
+    
+        function updateCSSVariables() {
+          let override =  `.pagy {\n`
+           for (const data of Object.entries(variableMap)) {
+             override += `  ${data.cssName}: ${data.input.value}${data[unit] ?? ''};\n`
+             setCookie(data.cookieName, data.input.value);
+           }
+           override +=  '}';
+              
+          appPagyStyle.textContent = override;
+    
+          // Update bgColor based on brightness
+          let backdrop = variableMap.brightness.input.value === '-1' ? '#000000' : '#ffffff';
+    
+          pagyElements.forEach((element) => {
+            element.style.backgroundColor = backdrop;
+          });
+         overrideDisplay.value = override;
+        }
+        
+        function deselectDropdown() {
+          presetsDropdown.value = '';
+        }
+    
+        for (const data of Object.entries(variableMap)) {
+          console.log(variableMap);
+          console.log(data);
+          console.log(data['input']);
+          data.input.addEventListener('input', updateCSSVariables);
+          data.input.addEventListener('input', deselectDropdown);
+        }
 
-    const savedBrightness = getCookie('pagy_brightness');
-    const savedHue = getCookie('pagy_hue');
-    const savedSaturation = getCookie('pagy_saturation');
-    const savedLightness = getCookie('pagy_lightness');
-    const savedOpacity = getCookie('pagy_opacity');
-    const savedSpacing = getCookie('pagy_spacing');
-    const savedRounding = getCookie('pagy_rounding');
-    const savedPadding = getCookie('pagy_padding');
-    const savedFontSize = getCookie('pagy_font_size');
-    const savedLineHeight = getCookie('pagy_line_height');
-    const savedFontWeight = getCookie('pagy_font_weight');
-    const savedBorderWidth = getCookie('pagy_border_width');
+        for (const presetName in presets) {
+          const option = document.createElement('option');
+          option.value = presetName;
+          option.textContent = presetName;
+          presetsDropdown.appendChild(option);
+        }
+        presetsDropdown.addEventListener('change', (event) => {
+          if (event.target.value === 'Default') {
+            resetCssVariables();
+          } else {
+            const selectedPreset = presets[event.target.value];
+            if (selectedPreset) {
+              const variables = selectedPreset.match(/--[A-Za-z\-]+: [^;]+;/g);
+              if (variables) {
+                variables.forEach(variable => {
+                  const [name, value] = variable.split(':').map(str => str.trim());
+                  for (const inputId in variableMap) { 
+                    if (variableMap[inputId].cssName === name) {
+                      const inputElement = document.getElementById(inputId);
+                      if (inputElement) {
+                        const unit = variableMap[inputId].unit;
+                        inputElement.value = value.replace((unit ? unit : '') + ';', '');
+                      }
+                      break;
+                    }
+                  }
+                });
+                updateCSSVariables();
+              }
+            }
+          }
+        });
 
-    for (const inputId in variableMap) {
-      const { cssName, unit } = variableMap[inputId];
-      const savedValue = getCookie(`pagy_${inputId}`);
-      const defaultValue = getDefaultValue(cssName);
-      const inputElement = document.getElementById(inputId);
-      if (inputElement) {
-        inputElement.value = savedValue ?? (defaultValue ? (unit ? defaultValue.replace(unit, '') : defaultValue) : '');
-      }
-    }
+        for (const data of Object.entries(variableMap)) {
+          const defaultValue = getDefaultValue(data.cssName);
+          data.input.value   = getCookie(`${data.cookieName}`) ?? (defaultValue ? (unit ? defaultValue.replace(unit, '') : defaultValue) : '');
+        }
+    
+        // Update backdrop based on brightness during initialization
+        let initialBgColor = variableMap.brightness.input.value === '-1' ? '#000000' : '#ffffff';
+        pagyElements.forEach((element) => {
+          element.style.backgroundColor = initialBgColor;
+        });
+    
+        updateCSSVariables();
 
-    // Update backdrop based on brightness during initialization
-    let initialBgColor = brightnessInput.value === '-1' ? '#000000' : '#ffffff';
-
-    pagyElements.forEach((element) => {
-      element.style.backgroundColor = initialBgColor;
-    });
-
-    updateCSSVariables();
-
-    if (!getCookie('pagy_brightness') && !getCookie('pagy_hue') && !getCookie('pagy_saturation') && !getCookie('pagy_lightness') && !getCookie('pagy_opacity') && !getCookie('pagy_spacing') && !getCookie('pagy_rounding') && !getCookie('pagy_padding') && !getCookie('pagy_font_size') && !getCookie('pagy_line_height') && !getCookie('pagy_font_weight') && !getCookie('pagy_border_width')) {
-      presetsDropdown.value = 'Default';
-    } else {
-      presetsDropdown.options[0].textContent = 'Customized';
-    }
-  }
-  document.addEventListener('DOMContentLoaded', initializePagyDemo);
-</script>
+        if (Object.entries(variableMap).some(data => getCookie(data.cookieName) === 'false')) {
+          presetsDropdown.value = 'Default'; 
+        }
+     }
+      document.addEventListener('DOMContentLoaded', initializePagyDemo);
+    </script>
     HTML
 
   TWEAKER_STYLE = <<~HTML
@@ -417,48 +345,49 @@ presetsDropdown.addEventListener('change', (event) => {
   HTML
 
   TWEAKER_HTML = <<~HTML
-<div id="tweaker">
-  <b>CSS Tweaker</b>
-  <hr>
-  <div id="tweaker-grid">
-    <label for="presets">Presets</label>
-    <select id="presets">
-      <option value=""></option>
-    </select>
-    <label for="brightness">Brightness</label>
-    <select id="brightness">
-      <option value="1">Light</option>
-      <option value="-1">Dark</option>
-    </select>
-    <label for="hue">Hue</label>
-    <input type="range" id="hue" min="0" max="360">
-    <label for="saturation">Saturation</label>
-    <input type="range" id="saturation" min="0" max="100">
-    <label for="lightness">Lightness</label>
-    <input type="range" id="lightness" min="0" max="100">
-    <label for="opacity">Opacity</label>
-    <input type="range" id="opacity" min="0" max="1" step="0.01">
-    <label for="spacing">Spacing</label>
-    <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
-    <label for="rounding">Rounding</label>
-    <input type="range" id="rounding" min="0" max="3" step="0.0625">
-    <label for="padding">Padding</label>
-    <input type="range" id="padding" min="0" max="1.5" step="0.0625">
-    <label for="line-height">Line Height</label>
-    <input type="range" id="line-height" min="1" max="2.5" step="0.0625">
-    <label for="font-size">Font Size</label>
-    <input type="range" id="font-size" min="0.5" max="2" step="0.0625">
-    <label for="font-weight">Font Weight</label>
-    <input type="range" id="font-weight" min="100" max="1000" step="50">
-    <label for="border-width">Border Width</label>
-    <input type="range" id="border-width" min="0" max="0.25" step="0.03125">
-    <label for="override">Override</label>
-    <textarea id="override" rows="5" cols="40" readonly></textarea>
-  </div>
-  <hr>
-  <button id="reset-button">Reset</button>
-</div>
-HTML
+    <div id="tweaker">
+      <b>CSS Tweaker</b>
+      <hr>
+      <div id="tweaker-grid">
+        <label for="presets">Presets</label>
+        <select id="presets">
+          <option value="" disabled>Presets...</option>
+          <option value="Default">Default</option>
+        </select>
+        <label for="brightness">Brightness</label>
+        <select id="brightness">
+          <option value="1">Light</option>
+          <option value="-1">Dark</option>
+        </select>
+        <label for="hue">Hue</label>
+        <input type="range" id="hue" min="0" max="360">
+        <label for="saturation">Saturation</label>
+        <input type="range" id="saturation" min="0" max="100">
+        <label for="lightness">Lightness</label>
+        <input type="range" id="lightness" min="0" max="100">
+        <label for="opacity">Opacity</label>
+        <input type="range" id="opacity" min="0" max="1" step="0.01">
+        <label for="spacing">Spacing</label>
+        <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
+        <label for="rounding">Rounding</label>
+        <input type="range" id="rounding" min="0" max="3" step="0.0625">
+        <label for="padding">Padding</label>
+        <input type="range" id="padding" min="0" max="1.5" step="0.0625">
+        <label for="lineHeight">Line Height</label>
+        <input type="range" id="lineHeight" min="1" max="2.5" step="0.0625">
+        <label for="fontSize">Font Size</label>
+        <input type="range" id="fontSize" min="0.5" max="2" step="0.0625">
+        <label for="fontWeight">Font Weight</label>
+        <input type="range" id="fontWeight" min="100" max="1000" step="50">
+        <label for="borderWidth">Border Width</label>
+        <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
+        <label for="override">Override</label>
+        <textarea id="override" rows="5" cols="40" readonly></textarea>
+      </div>
+      <hr>
+      <button id="reset-button">Reset</button>
+    </div>
+  HTML
 
   MASK_STYLE = <<~HTML
     <style>
