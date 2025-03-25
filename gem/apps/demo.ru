@@ -115,390 +115,6 @@ class PagyDemo < Sinatra::Base
     end
   end
 
-  TWEAKER_SCRIPT = <<~HTML
-    <script>
-      function tweakerInit() {
-        // Create override style tag
-        const styleTag = document.createElement('style');
-        styleTag.id    = 'pagy-override-style-tag';
-        document.head.appendChild(styleTag);
-        const overrideStyleTag = document.getElementById('pagy-override-style-tag');
-
-        const pagyElements     = document.querySelectorAll('.pagy');
-        const overrideDisplay  = document.getElementById('override');
-
-        let variableMap = {
-          brightness:  { cssName: '--B',            unit: ''    },
-          hue:         { cssName: '--H',            unit: ''    },
-          saturation:  { cssName: '--S',            unit: ''    },
-          lightness:   { cssName: '--L',            unit: ''    },
-          opacity:     { cssName: '--opacity',      unit: ''    },
-          spacing:     { cssName: '--spacing',      unit: 'rem' },
-          rounding:    { cssName: '--rounding',     unit: 'rem' },
-          padding:     { cssName: '--padding',      unit: 'rem' },
-          fontSize:    { cssName: '--font-size',    unit: 'rem' },
-          lineHeight:  { cssName: '--line-height',  unit: 'rem' },
-          fontWeight:  { cssName: '--font-weight',  unit: ''    },
-          borderWidth: { cssName: '--border-width', unit: 'rem' }
-        };
-        for (const [id, data] of Object.entries(variableMap)) {
-          data.input      = document.getElementById(id)
-          data.cookieName = `pagy-${id}`
-        }
-
-        // Cookie handling
-        const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode)))
-                                           .replace( /[+/=]/g, (m) => (m === "+" ? "-" : m === "/" ? "_" : ""));
-        const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));;
-
-        const setCookie = (name, value) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
-
-        const getCookie = (name) => {
-          const cookieName = `${name}=`;
-          const cookieArray = document.cookie.split(';');
-
-          for (let i = 0; i < cookieArray.length; i++) {
-            let cookie = cookieArray[i].trim();
-            if (cookie.startsWith(cookieName)) {
-              return B64Decode(cookie.substring(cookieName.length));
-            }
-          }
-          return null;
-        }
-
-        const deleteCookie = (name) => document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-
-        const updateCSSVariables = () =>  {
-          let override = `.pagy {\n`
-          Object.values(variableMap).forEach(data => {
-            override += `  ${data.cssName}: ${data.input.value}${data.unit};\n`
-          });
-          override +=  '}';
-          overrideDisplay.value = override;
-          overrideStyleTag.textContent = override;
-          setCookie('pagy-override', override);
-          // Update bgColor based on brightness
-          let backdrop = variableMap.brightness.input.value === '-1' ? '#000000' : '#ffffff';
-          pagyElements.forEach((element) => {
-            element.style.backgroundColor = backdrop;
-          });
-        }
-
-        // PRESETS
-        const presets = {
-          Default:
-          `.pagy {
-             --B: 1;
-             --H: 0;
-             --S: 0;
-             --L: 50;
-             --opacity: 1;
-             --spacing: 0.125rem;
-             --rounding: 1.75rem;
-             --padding: 0.75rem;
-             --font-size: 0.875rem;
-             --line-height: 1.4375rem;
-             --font-weight: 700;
-             --border-width: 0rem;
-           }`,
-          Dark:
-          `.pagy {
-             --B: -1;
-             --H: 0;
-             --S: 0;
-             --L: 60;
-             --opacity: 1;
-             --spacing: 0.125rem;
-             --rounding: 1.75rem;
-             --padding: 0.75rem;
-             --font-size: 0.875rem;
-             --line-height: 1.4375rem;
-             --font-weight: 700;
-             --border-width: 0rem;
-           }`,
-          MidnighExpress:
-          `.pagy {
-             --B: -1;
-             --H: 231;
-             --S: 28;
-             --L: 60;
-             --opacity: 1;
-             --spacing: 0.1875rem;
-             --rounding: 0.375rem;
-             --padding: 0.9375rem;
-             --font-size: 1rem;
-             --line-height: 1rem;
-             --font-weight: 450;
-             --border-width: 0rem;
-           }`,
-          Pilloween:
-          `.pagy {
-             --B: -1;
-             --H: 10;
-             --S: 80;
-             --L: 50;
-             --opacity: 1;
-             --spacing: 0.375rem;
-             --rounding: 1.125rem;
-             --padding: 0.75rem;
-             --font-size: 0.875rem;
-             --line-height: 1.25rem;
-             --font-weight: 700;
-             --border-width: 0.0625rem;
-           }`,
-          GreenPeas:
-           `.pagy {
-              --B: 1;
-              --H: 98;
-              --S: 63;
-              --L: 30;
-              --opacity: 1;
-              --spacing: 0.125rem;
-              --rounding: 1.125rem;
-              --padding: 0.6875rem;
-              --font-size: 0.875rem;
-              --line-height: 1.625rem;
-              --font-weight: 700;
-              --border-width: 0rem;
-             }`,
-           CocoaBeans:
-           `.pagy {
-              --B: 1;
-              --H: 27;
-              --S: 63;
-              --L: 17;
-              --opacity: 1;
-              --spacing: 0.0625rem;
-              --rounding: 1.125rem;
-              --padding: 0.5rem;
-              --font-size: 0.875rem;
-              --line-height: 2.375rem;
-              --font-weight: 700;
-              --border-width: 0rem;
-            }`,
-           PurpleStripe:
-           `.pagy {
-              --B: 1;
-              --H: 255;
-              --S: 63;
-              --L: 39;
-              --opacity: 1;
-              --spacing: 0rem;
-              --rounding: 0rem;
-              --padding: 0.875rem;
-              --font-size: 0.875rem;
-              --line-height: 1.25rem;
-              --font-weight: 300;
-              --border-width: 0rem;
-            }`,
-           GhostInThought: 
-            `.pagy {
-              --B: 1;
-              --H: 174;
-              --S: 40;
-              --L: 70;
-              --opacity: 1;
-              --spacing: 0.125rem;
-              --rounding: 1.125rem;
-              --padding: 0.75rem;
-              --font-size: 0.875rem;
-              --line-height: 1.4375rem;
-              --font-weight: 450;
-              --border-width: 0rem;
-            }`,
-            VintageScent:
-            `.pagy {
-               --B: 1;
-               --H: 51;
-               --S: 27;
-               --L: 64;
-               --opacity: 1;
-               --spacing: 0.125rem;
-               --rounding: 0.75rem;
-               --padding: 0.75rem;
-               --font-size: 0.875rem;
-               --line-height: 1.4375rem;
-               --font-weight: 300;
-               --border-width: 0.0625rem;
-             }`
-        };
-
-        const presetsDropdown  = document.getElementById('presets');
-
-        // Setup preset options
-        for (const presetName in presets) {
-          const option       = document.createElement('option');
-          option.value       = presetName;
-          option.textContent = presetName;
-          presetsDropdown.appendChild(option);
-        }
-
-        const applyPreset = name => {
-          const css = name
-                       ? (deleteCookie('pagy-override'), presets[name])
-                       : getCookie('pagy-override');
-          css.match(/--[^:]+:\s*[^;]+/g)?.forEach(match => {
-            let [cssName, cssValue] = match.split(':');
-            cssName  = cssName.trim()
-            cssValue = cssValue.trim().replace(/[a-zA-Z%]+$/);
-            for (const data of Object.values(variableMap)) {
-                if (data.cssName === cssName) {
-                  data.input.value = parseFloat(cssValue);
-                  break;
-                }
-              }
-          });
-          setCookie('pagy-preset', name)
-          updateCSSVariables();
-        };
-        presetsDropdown.addEventListener('change', (event) => applyPreset(event.target.value));
-
-        // Event listeners
-        const deselectDropdown = () => {
-          presetsDropdown.value = '';
-          setCookie('pagy-preset', '');
-        }
-        Object.values(variableMap).forEach(data => {
-          data.input.addEventListener('input', updateCSSVariables);
-          data.input.addEventListener('input', deselectDropdown);
-        });
-
-        // Start
-         const preset = getCookie('pagy-preset') ?? 'Default';
-         presetsDropdown.value = preset;
-         applyPreset(preset);
-     }
-     document.addEventListener('DOMContentLoaded', tweakerInit);
-
-    </script>
-    HTML
-
-  TWEAKER_STYLE = <<~HTML
-    <style>
-      @media (max-width: 900px) {
-        #main-container {
-          flex-direction: column;
-        }
-        #top-hr {
-          display: none;
-        }
-      }
-      #main-container {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      #tweaker {
-        all: revert;
-        border: 1px solid white;
-        padding: 20px;
-        display: table;
-        margin-top: 8px;
-        margin-right: 40px;
-        width: 400px;
-        align-self: flex-start; /* Prevents the left panel from stretching to match the right panel's height */
-        flex-shrink: 0; /* Prevents the left panel from shrinking */
-        box-sizing: border-box;
-        background-color: rgba(255,255,255,.5);
-        box-shadow: 8px 8px 18px 0px rgba(0,0,0,0.2);
-      }
-      #content {
-        box-sizing: border-box;
-        flex: 1;
-        overflow: hidden;
-        width: 100%;
-        min-width: 0;
-      }
-      #tweaker-head {
-        display: flex; 
-        justify-content: space-between;
-      }
-      #presets {
-        all: revert;
-      }
-      #tweaker-grid {
-        all: revert;
-        display: grid;
-        grid-template-columns: auto auto; /* Or your desired columns */
-        grid-row-gap: 3px;
-        grid-column-gap: 5px;
-        line-height: normal;
-        width: 100%;
-      }
-      #tweaker-grid label {
-        grid-column: 1;
-        text-align: right;
-        padding-right: 5px;
-        white-space: nowrap;
-      }
-
-      #brightness {
-        all: revert;
-        margin: 0 2px;
-      }
-      #override {
-        all: revert;
-        font-family: monospace;
-        font-size: .8rem;
-        line-height: 1.25;
-        height: 235px;
-        resize: vertical;
-        margin: 2px;
-      }
-      #reset-button {
-        all: revert;
-        display: block;
-        margin-top: 10px;
-        margin-right: 3px;
-        padding: .5em 2em;
-        justify-self: end;
-      }
-    </style>
-  HTML
-
-  TWEAKER_HTML = <<~HTML
-    <div id="tweaker">
-      <div id="tweaker-head">
-        <b>CSS Tweaker</b>
-          <label for="presets" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
-          <select id="presets">
-            <option value="" disabled>Presets...</option>
-          </select>
-      </div>
-      <hr>
-      <div id="tweaker-grid">
-        <label for="brightness">Brightness</label>
-        <select id="brightness">
-          <option value="1">Light</option>
-          <option value="-1">Dark</option>
-        </select>
-        <label for="hue">Hue</label>
-        <input type="range" id="hue" min="0" max="360">
-        <label for="saturation">Saturation</label>
-        <input type="range" id="saturation" min="0" max="100">
-        <label for="lightness">Lightness</label>
-        <input type="range" id="lightness" min="0" max="100">
-        <label for="opacity">Opacity</label>
-        <input type="range" id="opacity" min="0" max="1" step="0.01">
-        <label for="spacing">Spacing</label>
-        <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
-        <label for="rounding">Rounding</label>
-        <input type="range" id="rounding" min="0" max="3" step="0.0625">
-        <label for="padding">Padding</label>
-        <input type="range" id="padding" min="0" max="1.5" step="0.0625">
-        <label for="lineHeight">Line Height</label>
-        <input type="range" id="lineHeight" min="1" max="2.5" step="0.0625">
-        <label for="fontSize">Font Size</label>
-        <input type="range" id="fontSize" min="0.5" max="2" step="0.0625">
-        <label for="fontWeight">Font Weight</label>
-        <input type="range" id="fontWeight" min="100" max="1000" step="50">
-        <label for="borderWidth">Border Width</label>
-        <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
-        <label for="override">Override</label>
-        <textarea id="override" rows="5" cols="40" readonly></textarea>
-      </div>
-    </div>
-  HTML
-
   MASK_STYLE = <<~HTML
     <style>
       .pagy, .pagy-bootstrap, .pagy-bulma {
@@ -527,7 +143,7 @@ class PagyDemo < Sinatra::Base
 
   # Views
   template :layout do
-    <<~'ERB'
+    <<~'HTML'
       <!DOCTYPE html>
       <html lang="en">
       <head>
@@ -536,6 +152,9 @@ class PagyDemo < Sinatra::Base
         <script>
           window.addEventListener("load", Pagy.init);
         </script>
+        <% if name&.match(/pagy|tailwind/) %>
+          <script src="/javascript/pagy-tweaker.js"></script>
+        <% end %>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%= erb :"#{name}_head" if defined?(name) %>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -662,7 +281,6 @@ class PagyDemo < Sinatra::Base
             margin: 0;
           }
         </style>
-        <%=TWEAKER_STYLE if name&.match(/pagy|tailwind/) %>
         <%# MASK_STYLE %>
       </head>
       <body>
@@ -680,14 +298,13 @@ class PagyDemo < Sinatra::Base
         </div>
       </body>
       </html>
-    ERB
+    HTML
   end
 
   template :pagy_head do
-    <<~ERB
+    <<~HTML
       <link rel="stylesheet" href="/stylesheet/pagy.css">
-      <%=TWEAKER_SCRIPT %>
-    ERB
+    HTML
   end
 
   template :tailwind_head do
@@ -696,7 +313,6 @@ class PagyDemo < Sinatra::Base
       <style type="text/tailwindcss">
         <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>
       </style>
-       <%=TWEAKER_SCRIPT %>
     ERB
   end
 
@@ -726,10 +342,6 @@ class PagyDemo < Sinatra::Base
       <% end %>
       </p>
       <div id="main-container">
-        <% if name&.match(/pagy|tailwind/) %>
-          <%=TWEAKER_HTML %>
-        <% end %>
-
         <div id="content">
           <hr id="top-hr">
           <h2>@records</h2>
@@ -862,7 +474,7 @@ class Formatter
       push.(tag)
     elsif (match = input.match(PAIRED))
       tag_start, name, block, tag_end, rest = match.captures
-      ## Handle incomplete same-tag nesting
+      # Handle incomplete same-tag nesting
       while block.scan(/<#{name}.*?>/).size > block.scan(tag_end).size
         more, rest = rest.split(tag_end, 2)
         block << (tag_end + more)

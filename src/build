@@ -11,6 +11,8 @@ echo 'Generating javascript files'
 bun build ./pagy.ts --target=node --no-bundle --outfile=$jdir/pagy.mjs
 echo 'export default Pagy;' >> $jdir/pagy.mjs
 
+bun build ./pagy-tweaker.ts --target=browser --no-bundle  --outfile=$jdir/pagy-tweaker.js
+
 bun build ./pagy.js --target=browser --minify --outfile=$jdir/pagy.min.js
 sed -i "0,/var ./{s/var ./window.Pagy/}" $jdir/pagy.min.js
 
