@@ -1,4 +1,72 @@
 (() => {
+  const panelInit = (shadowRoot) => {
+    const panel = shadowRoot.getElementById("panel");
+    const head = shadowRoot.getElementById("head");
+    const toggle = shadowRoot.getElementById("toggle");
+    const controlDiv = shadowRoot.getElementById("controls");
+    const helpIcon = shadowRoot.getElementById("help-icon");
+    const helpDiv = shadowRoot.getElementById("help");
+    panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
+    panel.style.top = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
+    const keepPanelInView = () => {
+      const panelRect = panel.getBoundingClientRect();
+      if (panelRect.left < 0) {
+        panel.style.left = "0px";
+      } else if (panelRect.right > window.innerWidth) {
+        panel.style.left = `${window.innerWidth - panel.offsetWidth}px`;
+      }
+      if (panelRect.top < 0) {
+        panel.style.top = "0px";
+      } else if (panelRect.bottom > window.innerHeight) {
+        panel.style.top = `${window.innerHeight - panel.offsetHeight}px`;
+      }
+      if (panelRect.top < 0 && panel.offsetHeight < window.innerHeight) {
+        panel.style.top = "0px";
+      }
+    };
+    keepPanelInView();
+    window.addEventListener("resize", keepPanelInView);
+    let offsetX = 0;
+    let offsetY = 0;
+    let dragging = false;
+    head.addEventListener("mousedown", (e) => {
+      dragging = true;
+      offsetX = e.clientX - panel.offsetLeft;
+      offsetY = e.clientY - panel.offsetTop;
+    });
+    panel.addEventListener("mousedown", (e) => {
+      if (e.target === head || e.ctrlKey || e.metaKey) {
+        dragging = true;
+        offsetX = e.clientX - panel.offsetLeft;
+        offsetY = e.clientY - panel.offsetTop;
+      }
+    });
+    document.addEventListener("mousemove", (e) => {
+      if (!dragging)
+        return;
+      panel.style.left = `${e.clientX - offsetX}px`;
+      panel.style.top = `${e.clientY - offsetY}px`;
+    });
+    document.addEventListener("mouseup", () => {
+      dragging = false;
+    });
+    toggle.addEventListener("click", (e) => {
+      helpDiv.style.display = "none";
+      if (controlDiv.style.display !== "none") {
+        controlDiv.style.display = "none";
+      } else {
+        controlDiv.style.display = "grid";
+      }
+    });
+    helpIcon.addEventListener("click", () => {
+      controlDiv.style.display = "none";
+      helpDiv.style.display = "flex";
+    });
+    helpDiv.addEventListener("click", () => {
+      helpDiv.style.display = "none";
+      controlDiv.style.display = "grid";
+    });
+  };
   const tweakerInit = (shadowRoot) => {
     const styleTag = document.createElement("style");
     styleTag.id = "pagy-override-style-tag";
@@ -7,22 +75,21 @@
     const pagyElements = document.querySelectorAll(".pagy");
     const overrideDisplay = shadowRoot.getElementById("override");
     let variables = {
-      brightness: { cssName: "--B", unit: "" },
-      hue: { cssName: "--H", unit: "" },
-      saturation: { cssName: "--S", unit: "" },
-      lightness: { cssName: "--L", unit: "" },
-      opacity: { cssName: "--opacity", unit: "" },
-      spacing: { cssName: "--spacing", unit: "rem" },
-      rounding: { cssName: "--rounding", unit: "rem" },
-      padding: { cssName: "--padding", unit: "rem" },
-      fontSize: { cssName: "--font-size", unit: "rem" },
-      lineHeight: { cssName: "--line-height", unit: "" },
-      fontWeight: { cssName: "--font-weight", unit: "" },
-      borderWidth: { cssName: "--border-width", unit: "rem" }
+      brightness: { name: "--B", unit: "" },
+      hue: { name: "--H", unit: "" },
+      saturation: { name: "--S", unit: "" },
+      lightness: { name: "--L", unit: "" },
+      opacity: { name: "--opacity", unit: "" },
+      spacing: { name: "--spacing", unit: "rem" },
+      rounding: { name: "--rounding", unit: "rem" },
+      padding: { name: "--padding", unit: "rem" },
+      fontSize: { name: "--font-size", unit: "rem" },
+      lineHeight: { name: "--line-height", unit: "" },
+      fontWeight: { name: "--font-weight", unit: "" },
+      borderWidth: { name: "--border-width", unit: "rem" }
     };
-    for (const [id, data] of Object.entries(variables)) {
-      data.input = shadowRoot.getElementById(id);
-      data.cookieName = `pagy-${id}`;
+    for (const [id, css] of Object.entries(variables)) {
+      css.input = shadowRoot.getElementById(id);
     }
     const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
     const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
@@ -41,17 +108,15 @@
     };
     const updateCSS = () => {
       let override = `.pagy {\n`;
-      Object.values(variables).forEach((data) => {
-        override += `  ${data.cssName}: ${data.input.value}${data.unit};\n`;
+      Object.values(variables).forEach((css) => {
+        override += `  ${css.name}: ${css.input.value}${css.unit};\n`;
       });
       override += "}";
       overrideDisplay.value = override;
       overrideStyleTag.textContent = override;
       setCookie("pagy-override", override);
-      let backdrop = variables.brightness.input.value === "-1" ? "#000000" : "#ffffff";
-      pagyElements.forEach((element) => {
-        element.style.backgroundColor = backdrop;
-      });
+      const backdrop = variables.brightness.input.value === "-1" ? "black" : "white";
+      pagyElements.forEach((element) => element.style.backgroundColor = backdrop);
     };
     const presets = {
       Default: `.pagy {
@@ -191,12 +256,12 @@
     const applyPreset = (name) => {
       const css = name ? (deleteCookie("pagy-override"), presets[name]) : getCookie("pagy-override");
       css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
-        let [cssName, cssValue] = match.split(":");
-        cssName = cssName.trim();
-        cssValue = cssValue.trim().replace(/[a-zA-Z%]+$/, "");
-        for (const data of Object.values(variables)) {
-          if (data.cssName === cssName) {
-            data.input.value = cssValue;
+        let [name, value] = match.split(":");
+        name = name.trim();
+        value = value.trim().replace(/[a-zA-Z%]+$/, "");
+        for (const css of Object.values(variables)) {
+          if (css.name === name) {
+            css.input.value = value;
             break;
           }
         }
@@ -204,66 +269,18 @@
       setCookie("pagy-preset", name || "");
       updateCSS();
     };
-    presetsDropdown.addEventListener("change", (event) => applyPreset(event.target.value));
+    presetsDropdown.addEventListener("change", (e) => applyPreset(e.target.value));
     const deselectDropdown = () => {
       presetsDropdown.value = "";
       setCookie("pagy-preset", "");
     };
-    Object.values(variables).forEach((data) => {
-      data.input.addEventListener("input", updateCSS);
-      data.input.addEventListener("input", deselectDropdown);
+    Object.values(variables).forEach((css) => {
+      css.input.addEventListener("input", updateCSS);
+      css.input.addEventListener("input", deselectDropdown);
     });
     const preset = getCookie("pagy-preset") ?? "Default";
     presetsDropdown.value = preset;
     applyPreset(preset);
-    const panel = shadowRoot.getElementById("panel");
-    const head = shadowRoot.getElementById("head");
-    const toggle = shadowRoot.getElementById("toggle");
-    const controls = shadowRoot.getElementById("controls");
-    let offsetX = 0;
-    let offsetY = 0;
-    let dragging = false;
-    head.addEventListener("mousedown", (e) => {
-      dragging = true;
-      offsetX = e.clientX - panel.offsetLeft;
-      offsetY = e.clientY - panel.offsetTop;
-    });
-    document.addEventListener("mousemove", (e) => {
-      if (!dragging)
-        return;
-      panel.style.left = `${e.clientX - offsetX}px`;
-      panel.style.top = `${e.clientY - offsetY}px`;
-    });
-    toggle.addEventListener("click", (e) => {
-      if (controls.style.display !== "none") {
-        controls.style.display = "none";
-      } else {
-        controls.style.display = "grid";
-      }
-    });
-    document.addEventListener("mouseup", () => {
-      dragging = false;
-    });
-    panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
-    panel.style.top = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
-    const keepPanelInView = () => {
-      const panelRect = panel.getBoundingClientRect();
-      if (panelRect.left < 0) {
-        panel.style.left = "0px";
-      } else if (panelRect.right > window.innerWidth) {
-        panel.style.left = `${window.innerWidth - panel.offsetWidth}px`;
-      }
-      if (panelRect.top < 0) {
-        panel.style.top = "0px";
-      } else if (panelRect.bottom > window.innerHeight) {
-        panel.style.top = `${window.innerHeight - panel.offsetHeight}px`;
-      }
-      if (panelRect.top < 0 && panel.offsetHeight < window.innerHeight) {
-        panel.style.top = "0px";
-      }
-    };
-    keepPanelInView();
-    window.addEventListener("resize", keepPanelInView);
   };
   const attachShadow = () => {
     const host = document.createElement("div");
@@ -271,8 +288,12 @@
     document.body.appendChild(host);
     const shadow = host.attachShadow({ mode: "open" });
     shadow.innerHTML = `
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
       <style>
         #panel {
+          font-family: 'Nunito Sans', sans-serif;
           width: 350px;
           box-sizing: border-box;
           box-shadow: 12px 12px 25px 0 rgba(0,0,0,0.3);
@@ -301,7 +322,7 @@
           margin-left: auto; 
         }
         #controls {
-          all: revert;
+          /*all: revert;*/
           padding: 16px;
           font-size: 0.8rem;
           display: grid;
@@ -316,6 +337,30 @@
           text-align: right;
           padding-right: 5px;
           white-space: nowrap;
+          position: relative;
+        }
+        #help-icon {
+          width: 23px;
+          height: 23px;
+          background-color: #888888;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 18px;
+          font-weight: 500;
+          font-family: 'Nunito Sans', sans-serif;
+          color: white;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+        #help {
+          display: none;
+          padding: 16px;
+          font-size: 0.8rem;
+          color: black;
+          background-color: rgba(200,200,200,.9);
         }
         #brightness {
           all: revert;
@@ -340,40 +385,50 @@
           </select>
         </div>
         <div id="controls">
-            <label for="brightness">Brightness</label>
-            <select id="brightness">
-              <option value="1">Light</option>
-              <option value="-1">Dark</option>
-            </select>
-            <label for="hue">Hue</label>
-            <input type="range" id="hue" min="0" max="360">
-            <label for="saturation">Saturation</label>
-            <input type="range" id="saturation" min="0" max="100">
-            <label for="lightness">Lightness</label>
-            <input type="range" id="lightness" min="0" max="100">
-            <label for="opacity">Opacity</label>
-            <input type="range" id="opacity" min="0" max="1" step="0.01">
-            <label for="spacing">Spacing</label>
-            <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
-            <label for="rounding">Rounding</label>
-            <input type="range" id="rounding" min="0" max="3" step="0.0625">
-            <label for="padding">Padding</label>
-            <input type="range" id="padding" min="0" max="1.5" step="0.0625">
-            <label for="lineHeight">Line Height</label>
-            <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
-            <label for="fontSize">Font Size</label>
-            <input type="range" id="fontSize" min="0.75" max="2" step="0.0625">
-            <label for="fontWeight">Font Weight</label>
-            <input type="range" id="fontWeight" min="100" max="1000" step="50">
-            <label for="borderWidth">Border Width</label>
-            <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
-            <label for="override">Override</label>
-            <textarea id="override" rows="5" cols="40" readonly></textarea>
-          </div>
-        <div id="bottom"></div>
+          <label for="brightness">Brightness</label>
+          <select id="brightness">
+            <option value="1">Light</option>
+            <option value="-1">Dark</option>
+          </select>
+          <label for="hue">Hue</label>
+          <input type="range" id="hue" min="0" max="360">
+          <label for="saturation">Saturation</label>
+          <input type="range" id="saturation" min="0" max="100">
+          <label for="lightness">Lightness</label>
+          <input type="range" id="lightness" min="0" max="100">
+          <label for="opacity">Opacity</label>
+          <input type="range" id="opacity" min="0" max="1" step="0.01">
+          <label for="spacing">Spacing</label>
+          <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
+          <label for="rounding">Rounding</label>
+          <input type="range" id="rounding" min="0" max="3" step="0.0625">
+          <label for="padding">Padding</label>
+          <input type="range" id="padding" min="0" max="1.5" step="0.0625">
+          <label for="lineHeight">Line Height</label>
+          <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
+          <label for="fontSize">Font Size</label>
+          <input type="range" id="fontSize" min="0.75" max="2" step="0.0625">
+          <label for="fontWeight">Font Weight</label>
+          <input type="range" id="fontWeight" min="100" max="1000" step="50">
+          <label for="borderWidth">Border Width</label>
+          <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
+          <label for="override">Override<span id="help-icon">?</span></label>
+          <textarea id="override" rows="5" cols="40" readonly></textarea>
+        </div>
+  <div id="help">
+    <ul>
+      <li><b>Help</b></li>
+      <li><b>Example</b></li>
+      <li><b>Example</b></li>
+      <li><b>Example</b></li>
+      <li><b>Example</b></li>
+      <li><b>Example</b></li>
+    </ul>
+  </div>
       </div>
     `;
     tweakerInit(shadow);
+    panelInit(shadow);
   };
   document.addEventListener("DOMContentLoaded", attachShadow);
 })();
