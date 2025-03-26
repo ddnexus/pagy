@@ -30,52 +30,52 @@ type Presets = { [key: string]: string };
       lightness:   { cssName: '--L',            unit: ''    },
       opacity:     { cssName: '--opacity',      unit: ''    },
       spacing:     { cssName: '--spacing',      unit: 'rem' },
-      rounding:    { cssName: '--rounding',     unit: 'rem' },
+      rounding:    { cssName: '--rounding',     unit: 'rem'   },
       padding:     { cssName: '--padding',      unit: 'rem' },
       fontSize:    { cssName: '--font-size',    unit: 'rem' },
-      lineHeight:  { cssName: '--line-height',  unit: 'rem' },
+      lineHeight:  { cssName: '--line-height',  unit: ''    },
       fontWeight:  { cssName: '--font-weight',  unit: ''    },
       borderWidth: { cssName: '--border-width', unit: 'rem' },
     };
 
     for (const [id, data] of Object.entries(variables)) {
-      data.input      = <HTMLInputElement>shadowRoot.getElementById(id);
+      data.input = <HTMLInputElement>shadowRoot.getElementById(id);
       data.cookieName = `pagy-${id}`;
     }
 
     // Cookie handling
     const B64SafeEncode = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode)))
-                                              .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
-    const B64Decode     = (base64:string) => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
-    const deleteCookie  = (name:string) => (document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`);
-    const setCookie     = (name:string, value:string) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
-    const getCookie     = (name:string):string | null => {
-                            const cookieName  = `${name}=`;
-                            const cookieArray = document.cookie.split(';');
-                            for (let i = 0; i < cookieArray.length; i++) {
-                              let cookie = cookieArray[i].trim();
-                              if (cookie.startsWith(cookieName)) {
-                                return B64Decode(cookie.substring(cookieName.length));
-                              }
-                            }
-                            return null;
-                          };
+        .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
+    const B64Decode = (base64:string) => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
+    const deleteCookie = (name:string) => (document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`);
+    const setCookie = (name:string, value:string) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
+    const getCookie = (name:string):string | null => {
+      const cookieName = `${name}=`;
+      const cookieArray = document.cookie.split(';');
+      for (let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i].trim();
+        if (cookie.startsWith(cookieName)) {
+          return B64Decode(cookie.substring(cookieName.length));
+        }
+      }
+      return null;
+    };
 
     const updateCSS = () => {
-                        let override = `.pagy {\n`;
-                        Object.values(variables).forEach((data) => {
-                          override += `  ${data.cssName}: ${data.input!.value}${data.unit};\n`;
-                        });
-                        override += '}';
-                        overrideDisplay.value = override;
-                        overrideStyleTag.textContent = override;
-                        setCookie('pagy-override', override);
-                        // Update bgColor based on brightness
-                        let backdrop = variables.brightness.input!.value === '-1' ? '#000000' : '#ffffff';
-                        pagyElements.forEach((element) => {
-                          element.style.backgroundColor = backdrop;
-                        });
-                      };
+      let override = `.pagy {\n`;
+      Object.values(variables).forEach((data) => {
+        override += `  ${data.cssName}: ${data.input!.value}${data.unit};\n`;
+      });
+      override += '}';
+      overrideDisplay.value = override;
+      overrideStyleTag.textContent = override;
+      setCookie('pagy-override', override);
+      // Update bgColor based on brightness
+      let backdrop = variables.brightness.input!.value === '-1' ? '#000000' : '#ffffff';
+      pagyElements.forEach((element) => {
+        element.style.backgroundColor = backdrop;
+      });
+    };
     // PRESETS
     const presets:Presets = {
       Default:
@@ -89,7 +89,7 @@ type Presets = { [key: string]: string };
          --rounding: 1.75rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.4375rem;
+         --line-height: 1.75;
          --font-weight: 700;
          --border-width: 0rem;
        }`,
@@ -104,7 +104,7 @@ type Presets = { [key: string]: string };
          --rounding: 1.75rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.4375rem;
+         --line-height: 1.75;
          --font-weight: 700;
          --border-width: 0rem;
        }`,
@@ -117,9 +117,9 @@ type Presets = { [key: string]: string };
          --opacity: 1;
          --spacing: 0.1875rem;
          --rounding: 0.375rem;
-         --padding: 0.9375rem;
+         --padding: 1rem;
          --font-size: 1rem;
-         --line-height: 1rem;
+         --line-height: 1.25;
          --font-weight: 450;
          --border-width: 0rem;
        }`,
@@ -134,7 +134,7 @@ type Presets = { [key: string]: string };
          --rounding: 1.125rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.25rem;
+         --line-height: 1.5;
          --font-weight: 700;
          --border-width: 0.0625rem;
        }`,
@@ -149,8 +149,8 @@ type Presets = { [key: string]: string };
          --rounding: 1.125rem;
          --padding: 0.6875rem;
          --font-size: 0.875rem;
-         --line-height: 1.625rem;
-         --font-weight: 700;
+         --line-height: 1.75;
+         --font-weight: 600;
          --border-width: 0rem;
        }`,
       CocoaBeans:
@@ -164,7 +164,7 @@ type Presets = { [key: string]: string };
          --rounding: 1.125rem;
          --padding: 0.5rem;
          --font-size: 0.875rem;
-         --line-height: 2.375rem;
+         --line-height: 2.5;
          --font-weight: 700;
          --border-width: 0rem;
        }`,
@@ -179,7 +179,7 @@ type Presets = { [key: string]: string };
          --rounding: 0rem;
          --padding: 0.875rem;
          --font-size: 0.875rem;
-         --line-height: 1.25rem;
+         --line-height: 1.5;
          --font-weight: 300;
          --border-width: 0rem;
        }`,
@@ -194,7 +194,7 @@ type Presets = { [key: string]: string };
          --rounding: 1.125rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.4375rem;
+         --line-height: 1.75;
          --font-weight: 450;
          --border-width: 0rem;
        }`,
@@ -209,7 +209,7 @@ type Presets = { [key: string]: string };
          --rounding: 0.75rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.4375rem;
+         --line-height: 1.75;
          --font-weight: 300;
          --border-width: 0.0625rem;
        }`
@@ -224,63 +224,100 @@ type Presets = { [key: string]: string };
     }
 
     const applyPreset = (name:string | null) => {
-                          const css = name
-                                      ? (deleteCookie('pagy-override'), presets[name])
-                                      : getCookie('pagy-override');
-                          css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
-                            let [cssName, cssValue] = match.split(':');
-                            cssName = cssName.trim();
-                            cssValue = cssValue.trim().replace(/[a-zA-Z%]+$/, '');
-                            for (const data of Object.values(variables)) {
-                              if (data.cssName === cssName) {
-                                data.input!.value = cssValue;
-                                break;
-                              }
-                            }
-                          });
-                          setCookie('pagy-preset', name || '');
-                          updateCSS();
-                        };
+      const css = name
+                  ? (deleteCookie('pagy-override'), presets[name])
+                  : getCookie('pagy-override');
+      css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
+        let [cssName, cssValue] = match.split(':');
+        cssName = cssName.trim();
+        cssValue = cssValue.trim().replace(/[a-zA-Z%]+$/, '');
+        for (const data of Object.values(variables)) {
+          if (data.cssName === cssName) {
+            data.input!.value = cssValue;
+            break;
+          }
+        }
+      });
+      setCookie('pagy-preset', name || '');
+      updateCSS();
+    };
     presetsDropdown.addEventListener('change', (event) => applyPreset((<HTMLSelectElement>event.target).value));
 
     // Event listeners
     const deselectDropdown = () => {
-                               presetsDropdown.value = '';
-                               setCookie('pagy-preset', '');
-                             };
+      presetsDropdown.value = '';
+      setCookie('pagy-preset', '');
+    };
     Object.values(variables).forEach((data) => {
       data.input!.addEventListener('input', updateCSS);
       data.input!.addEventListener('input', deselectDropdown);
     });
 
     // Start
-    const preset          = getCookie('pagy-preset') ?? 'Default';
+    const preset = getCookie('pagy-preset') ?? 'Default';
     presetsDropdown.value = preset;
     applyPreset(preset);
 
     // Drag and drop functionality
     const panel    = <HTMLElement>shadowRoot.getElementById('panel');
     const head     = <HTMLElement>shadowRoot.getElementById('head');
-    let offsetX    = 0;
-    let offsetY    = 0;
-    let isDragging = false;
+    const toggle   = <HTMLElement>shadowRoot.getElementById('toggle');
+    const controls = <HTMLElement>shadowRoot.getElementById('controls');
+    let offsetX  = 0;
+    let offsetY  = 0;
+    let dragging = false;
 
     head.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      offsetX    = e.clientX - panel.offsetLeft;
-      offsetY    = e.clientY - panel.offsetTop;
+      dragging = true;
+      offsetX  = e.clientX - panel.offsetLeft;
+      offsetY  = e.clientY - panel.offsetTop;
     });
 
     document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
+      if (!dragging) return;
       panel.style.left = `${e.clientX - offsetX}px`;
-      panel.style.top  = `${e.clientY - offsetY}px`;
+      panel.style.top = `${e.clientY - offsetY}px`;
+    });
+
+    toggle.addEventListener('click', (e) => {
+      if (controls.style.display !== 'none') {
+        controls.style.display = 'none';
+      } else {
+        controls.style.display = 'grid';
+      }
     });
 
     document.addEventListener('mouseup', () => {
-      isDragging = false;
+      dragging = false;
     });
+
+    // Initial position in center page
+    panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
+    panel.style.top  = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
+
+    const keepPanelInView = () => {
+                              const panelRect = panel.getBoundingClientRect();
+                              // Check if panel is off-screen horizontally
+                              if (panelRect.left < 0) {
+                                panel.style.left = '0px';
+                              } else if (panelRect.right > window.innerWidth) {
+                                panel.style.left = `${window.innerWidth - panel.offsetWidth}px`;
+                              }
+                              // Check if panel is off-screen vertically
+                              if (panelRect.top < 0) {
+                                panel.style.top = '0px';
+                              } else if (panelRect.bottom > window.innerHeight) {
+                                panel.style.top = `${window.innerHeight - panel.offsetHeight}px`;
+                              }
+                              // Ensure the top bar is in view
+                              if (panelRect.top < 0 && panel.offsetHeight < window.innerHeight) {
+                                panel.style.top = '0px';
+                              }
+                            };
+    keepPanelInView();
+    window.addEventListener('resize', keepPanelInView);
   }
+
   const attachShadow = () => {
     const host = document.createElement('div');
     host.id    = 'tweaker-host';
@@ -289,40 +326,43 @@ type Presets = { [key: string]: string };
     shadow.innerHTML = `
       <style>
         #panel {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
+          width: 350px;
+          box-sizing: border-box;
+          box-shadow: 12px 12px 25px 0 rgba(0,0,0,0.3);
+          position: fixed;
           z-index: 1000;
         }
-        #panel {
-          all: revert;
-          width: 400px;
-          box-sizing: border-box;
-          background-color: rgba(255,255,255,.5);
-          box-shadow: 8px 8px 18px 0 rgba(0,0,0,0.2);
-        }
         #head {
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
           background-color: #707070;
-          border: 1px solid #404040;
-          padding: 8px;
+          padding: 4px 8px;
           cursor: move;
           user-select: none;
           color: white;  
+          display: flex;
+          align-items: center;
+        }
+        #toggle {
+          margin-right: 12px;
+          line-height: 1em;
+          user-select: none;
+          cursor: pointer;
         }
         #presets {
           all: revert;
-          float: right;
+          margin-left: auto; 
         }
         #controls {
           all: revert;
-          padding: 20px;
+          padding: 16px;
+          font-size: 0.8rem;
           display: grid;
           grid-template-columns: auto auto;
-          grid-row-gap: 3px;
           grid-column-gap: 5px;
           line-height: normal;
-          border: 1px solid white;
+          color: black;
+          background-color: rgba(200,200,200,.9);
         }
         #controls label {
           grid-column: 1;
@@ -345,14 +385,14 @@ type Presets = { [key: string]: string };
         }
       </style>
       <div id="panel">
-        <details open>
-          <summary id="head"><b>Pagy Tweaker</b>              
-            <label for="presets" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
-            <select id="presets">
-              <option value="" disabled>Presets...</option>
-            </select>
-          </summary>
-          <div id="controls">
+        <div id="head">
+          <span id="toggle">☰</span><b>Pagy Tweaker</b></span>
+          <label for="presets" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
+          <select id="presets">
+            <option value="" disabled>Presets...</option>
+          </select>
+        </div>
+        <div id="controls">
             <label for="brightness">Brightness</label>
             <select id="brightness">
               <option value="1">Light</option>
@@ -373,9 +413,9 @@ type Presets = { [key: string]: string };
             <label for="padding">Padding</label>
             <input type="range" id="padding" min="0" max="1.5" step="0.0625">
             <label for="lineHeight">Line Height</label>
-            <input type="range" id="lineHeight" min="1" max="2.5" step="0.0625">
+            <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
             <label for="fontSize">Font Size</label>
-            <input type="range" id="fontSize" min="0.5" max="2" step="0.0625">
+            <input type="range" id="fontSize" min="0.75" max="2" step="0.0625">
             <label for="fontWeight">Font Weight</label>
             <input type="range" id="fontWeight" min="100" max="1000" step="50">
             <label for="borderWidth">Border Width</label>
@@ -383,7 +423,7 @@ type Presets = { [key: string]: string };
             <label for="override">Override</label>
             <textarea id="override" rows="5" cols="40" readonly></textarea>
           </div>
-        </details>
+        <div id="bottom"></div>
       </div>
     `;
     tweakerInit(shadow);

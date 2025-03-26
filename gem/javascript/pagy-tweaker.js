@@ -16,7 +16,7 @@
       rounding: { cssName: "--rounding", unit: "rem" },
       padding: { cssName: "--padding", unit: "rem" },
       fontSize: { cssName: "--font-size", unit: "rem" },
-      lineHeight: { cssName: "--line-height", unit: "rem" },
+      lineHeight: { cssName: "--line-height", unit: "" },
       fontWeight: { cssName: "--font-weight", unit: "" },
       borderWidth: { cssName: "--border-width", unit: "rem" }
     };
@@ -64,7 +64,7 @@
          --rounding: 1.75rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.4375rem;
+         --line-height: 1.75;
          --font-weight: 700;
          --border-width: 0rem;
        }`,
@@ -78,7 +78,7 @@
          --rounding: 1.75rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.4375rem;
+         --line-height: 1.75;
          --font-weight: 700;
          --border-width: 0rem;
        }`,
@@ -90,9 +90,9 @@
          --opacity: 1;
          --spacing: 0.1875rem;
          --rounding: 0.375rem;
-         --padding: 0.9375rem;
+         --padding: 1rem;
          --font-size: 1rem;
-         --line-height: 1rem;
+         --line-height: 1.25;
          --font-weight: 450;
          --border-width: 0rem;
        }`,
@@ -106,7 +106,7 @@
          --rounding: 1.125rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.25rem;
+         --line-height: 1.5;
          --font-weight: 700;
          --border-width: 0.0625rem;
        }`,
@@ -120,8 +120,8 @@
          --rounding: 1.125rem;
          --padding: 0.6875rem;
          --font-size: 0.875rem;
-         --line-height: 1.625rem;
-         --font-weight: 700;
+         --line-height: 1.75;
+         --font-weight: 600;
          --border-width: 0rem;
        }`,
       CocoaBeans: `.pagy {
@@ -134,7 +134,7 @@
          --rounding: 1.125rem;
          --padding: 0.5rem;
          --font-size: 0.875rem;
-         --line-height: 2.375rem;
+         --line-height: 2.5;
          --font-weight: 700;
          --border-width: 0rem;
        }`,
@@ -148,7 +148,7 @@
          --rounding: 0rem;
          --padding: 0.875rem;
          --font-size: 0.875rem;
-         --line-height: 1.25rem;
+         --line-height: 1.5;
          --font-weight: 300;
          --border-width: 0rem;
        }`,
@@ -162,7 +162,7 @@
          --rounding: 1.125rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.4375rem;
+         --line-height: 1.75;
          --font-weight: 450;
          --border-width: 0rem;
        }`,
@@ -176,7 +176,7 @@
          --rounding: 0.75rem;
          --padding: 0.75rem;
          --font-size: 0.875rem;
-         --line-height: 1.4375rem;
+         --line-height: 1.75;
          --font-weight: 300;
          --border-width: 0.0625rem;
        }`
@@ -218,23 +218,52 @@
     applyPreset(preset);
     const panel = shadowRoot.getElementById("panel");
     const head = shadowRoot.getElementById("head");
+    const toggle = shadowRoot.getElementById("toggle");
+    const controls = shadowRoot.getElementById("controls");
     let offsetX = 0;
     let offsetY = 0;
-    let isDragging = false;
+    let dragging = false;
     head.addEventListener("mousedown", (e) => {
-      isDragging = true;
+      dragging = true;
       offsetX = e.clientX - panel.offsetLeft;
       offsetY = e.clientY - panel.offsetTop;
     });
     document.addEventListener("mousemove", (e) => {
-      if (!isDragging)
+      if (!dragging)
         return;
       panel.style.left = `${e.clientX - offsetX}px`;
       panel.style.top = `${e.clientY - offsetY}px`;
     });
-    document.addEventListener("mouseup", () => {
-      isDragging = false;
+    toggle.addEventListener("click", (e) => {
+      if (controls.style.display !== "none") {
+        controls.style.display = "none";
+      } else {
+        controls.style.display = "grid";
+      }
     });
+    document.addEventListener("mouseup", () => {
+      dragging = false;
+    });
+    panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
+    panel.style.top = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
+    const keepPanelInView = () => {
+      const panelRect = panel.getBoundingClientRect();
+      if (panelRect.left < 0) {
+        panel.style.left = "0px";
+      } else if (panelRect.right > window.innerWidth) {
+        panel.style.left = `${window.innerWidth - panel.offsetWidth}px`;
+      }
+      if (panelRect.top < 0) {
+        panel.style.top = "0px";
+      } else if (panelRect.bottom > window.innerHeight) {
+        panel.style.top = `${window.innerHeight - panel.offsetHeight}px`;
+      }
+      if (panelRect.top < 0 && panel.offsetHeight < window.innerHeight) {
+        panel.style.top = "0px";
+      }
+    };
+    keepPanelInView();
+    window.addEventListener("resize", keepPanelInView);
   };
   const attachShadow = () => {
     const host = document.createElement("div");
@@ -244,40 +273,43 @@
     shadow.innerHTML = `
       <style>
         #panel {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
+          width: 350px;
+          box-sizing: border-box;
+          box-shadow: 12px 12px 25px 0 rgba(0,0,0,0.3);
+          position: fixed;
           z-index: 1000;
         }
-        #panel {
-          all: revert;
-          width: 400px;
-          box-sizing: border-box;
-          background-color: rgba(255,255,255,.5);
-          box-shadow: 8px 8px 18px 0 rgba(0,0,0,0.2);
-        }
         #head {
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
           background-color: #707070;
-          border: 1px solid #404040;
-          padding: 8px;
+          padding: 4px 8px;
           cursor: move;
           user-select: none;
           color: white;  
+          display: flex;
+          align-items: center;
+        }
+        #toggle {
+          margin-right: 12px;
+          line-height: 1em;
+          user-select: none;
+          cursor: pointer;
         }
         #presets {
           all: revert;
-          float: right;
+          margin-left: auto; 
         }
         #controls {
           all: revert;
-          padding: 20px;
+          padding: 16px;
+          font-size: 0.8rem;
           display: grid;
           grid-template-columns: auto auto;
-          grid-row-gap: 3px;
           grid-column-gap: 5px;
           line-height: normal;
-          border: 1px solid white;
+          color: black;
+          background-color: rgba(200,200,200,.9);
         }
         #controls label {
           grid-column: 1;
@@ -300,14 +332,14 @@
         }
       </style>
       <div id="panel">
-        <details open>
-          <summary id="head"><b>Pagy Tweaker</b>              
-            <label for="presets" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
-            <select id="presets">
-              <option value="" disabled>Presets...</option>
-            </select>
-          </summary>
-          <div id="controls">
+        <div id="head">
+          <span id="toggle">\u2630</span><b>Pagy Tweaker</b></span>
+          <label for="presets" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
+          <select id="presets">
+            <option value="" disabled>Presets...</option>
+          </select>
+        </div>
+        <div id="controls">
             <label for="brightness">Brightness</label>
             <select id="brightness">
               <option value="1">Light</option>
@@ -328,9 +360,9 @@
             <label for="padding">Padding</label>
             <input type="range" id="padding" min="0" max="1.5" step="0.0625">
             <label for="lineHeight">Line Height</label>
-            <input type="range" id="lineHeight" min="1" max="2.5" step="0.0625">
+            <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
             <label for="fontSize">Font Size</label>
-            <input type="range" id="fontSize" min="0.5" max="2" step="0.0625">
+            <input type="range" id="fontSize" min="0.75" max="2" step="0.0625">
             <label for="fontWeight">Font Weight</label>
             <input type="range" id="fontWeight" min="100" max="1000" step="50">
             <label for="borderWidth">Border Width</label>
@@ -338,7 +370,7 @@
             <label for="override">Override</label>
             <textarea id="override" rows="5" cols="40" readonly></textarea>
           </div>
-        </details>
+        <div id="bottom"></div>
       </div>
     `;
     tweakerInit(shadow);
