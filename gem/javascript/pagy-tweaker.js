@@ -1,4 +1,19 @@
 (() => {
+  const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
+  const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
+  const deleteCookie = (name) => document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  const setCookie = (name, value) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
+  const getCookie = (name) => {
+    const cookieName = `${name}=`;
+    const cookieArray = document.cookie.split(";");
+    for (let i = 0;i < cookieArray.length; i++) {
+      let cookie = cookieArray[i].trim();
+      if (cookie.startsWith(cookieName)) {
+        return B64Decode(cookie.substring(cookieName.length));
+      }
+    }
+    return null;
+  };
   const panelInit = (shadowRoot) => {
     const panel = shadowRoot.getElementById("panel");
     const head = shadowRoot.getElementById("head");
@@ -6,9 +21,20 @@
     const controlDiv = shadowRoot.getElementById("controls");
     const helpIcon = shadowRoot.getElementById("help-icon");
     const helpDiv = shadowRoot.getElementById("help");
-    panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
-    panel.style.top = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
+    const getPanelPosition = () => {
+      const position = getCookie("pagy-tweaker-position");
+      if (position) {
+        const [left, top] = position.split(",");
+        return { left: parseInt(left), top: parseInt(top) };
+      }
+      return null;
+    };
+    const setPanelPosition = (left, top) => {
+      setCookie("pagy-tweaker-position", `${left},${top}`);
+    };
     const keepPanelInView = () => {
+      const left = parseInt(panel.style.left);
+      const top = parseInt(panel.style.top);
       const panelRect = panel.getBoundingClientRect();
       if (panelRect.left < 0) {
         panel.style.left = "0px";
@@ -23,33 +49,43 @@
       if (panelRect.top < 0 && panel.offsetHeight < window.innerHeight) {
         panel.style.top = "0px";
       }
+      setPanelPosition(left, top);
     };
-    keepPanelInView();
     window.addEventListener("resize", keepPanelInView);
+    const position = getPanelPosition();
+    if (position) {
+      panel.style.left = `${position.left}px`;
+      panel.style.top = `${position.top}px`;
+    } else {
+      panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
+      panel.style.top = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
+      keepPanelInView();
+    }
     let offsetX = 0;
     let offsetY = 0;
     let dragging = false;
     head.addEventListener("mousedown", (e) => {
+      if (e.target.closest("#presets"))
+        return;
       dragging = true;
       offsetX = e.clientX - panel.offsetLeft;
       offsetY = e.clientY - panel.offsetTop;
     });
     panel.addEventListener("mousedown", (e) => {
-      if (e.target === head || e.ctrlKey || e.metaKey) {
-        dragging = true;
-        offsetX = e.clientX - panel.offsetLeft;
-        offsetY = e.clientY - panel.offsetTop;
-      }
+      if (!(e.target === head || e.ctrlKey || e.metaKey))
+        return;
+      dragging = true;
+      offsetX = e.clientX - panel.offsetLeft;
+      offsetY = e.clientY - panel.offsetTop;
     });
     document.addEventListener("mousemove", (e) => {
       if (!dragging)
         return;
       panel.style.left = `${e.clientX - offsetX}px`;
       panel.style.top = `${e.clientY - offsetY}px`;
+      setPanelPosition(e.clientX - offsetX, e.clientY - offsetY);
     });
-    document.addEventListener("mouseup", () => {
-      dragging = false;
-    });
+    document.addEventListener("mouseup", () => dragging = false);
     toggle.addEventListener("click", (e) => {
       helpDiv.style.display = "none";
       if (controlDiv.style.display !== "none") {
@@ -71,9 +107,6 @@
     const styleTag = document.createElement("style");
     styleTag.id = "pagy-override-style-tag";
     document.head.appendChild(styleTag);
-    const overrideStyleTag = document.getElementById("pagy-override-style-tag");
-    const pagyElements = document.querySelectorAll(".pagy");
-    const overrideDisplay = shadowRoot.getElementById("override");
     let variables = {
       brightness: { name: "--B", unit: "" },
       hue: { name: "--H", unit: "" },
@@ -91,21 +124,8 @@
     for (const [id, css] of Object.entries(variables)) {
       css.input = shadowRoot.getElementById(id);
     }
-    const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
-    const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
-    const deleteCookie = (name) => document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    const setCookie = (name, value) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
-    const getCookie = (name) => {
-      const cookieName = `${name}=`;
-      const cookieArray = document.cookie.split(";");
-      for (let i = 0;i < cookieArray.length; i++) {
-        let cookie = cookieArray[i].trim();
-        if (cookie.startsWith(cookieName)) {
-          return B64Decode(cookie.substring(cookieName.length));
-        }
-      }
-      return null;
-    };
+    const overrideStyleTag = document.getElementById("pagy-override-style-tag");
+    const overrideDisplay = shadowRoot.getElementById("override");
     const updateCSS = () => {
       let override = `.pagy {\n`;
       Object.values(variables).forEach((css) => {
@@ -115,136 +135,152 @@
       overrideDisplay.value = override;
       overrideStyleTag.textContent = override;
       setCookie("pagy-override", override);
-      const backdrop = variables.brightness.input.value === "-1" ? "black" : "white";
-      pagyElements.forEach((element) => element.style.backgroundColor = backdrop);
     };
     const presets = {
-      Default: `.pagy {
-         --B: 1;
-         --H: 0;
-         --S: 0;
-         --L: 50;
-         --opacity: 1;
-         --spacing: 0.125rem;
-         --rounding: 1.75rem;
-         --padding: 0.75rem;
-         --font-size: 0.875rem;
-         --line-height: 1.75;
-         --font-weight: 700;
-         --border-width: 0rem;
-       }`,
-      Dark: `.pagy {
-         --B: -1;
-         --H: 0;
-         --S: 0;
-         --L: 60;
-         --opacity: 1;
-         --spacing: 0.125rem;
-         --rounding: 1.75rem;
-         --padding: 0.75rem;
-         --font-size: 0.875rem;
-         --line-height: 1.75;
-         --font-weight: 700;
-         --border-width: 0rem;
-       }`,
-      MidnighExpress: `.pagy {
-         --B: -1;
-         --H: 231;
-         --S: 28;
-         --L: 60;
-         --opacity: 1;
-         --spacing: 0.1875rem;
-         --rounding: 0.375rem;
-         --padding: 1rem;
-         --font-size: 1rem;
-         --line-height: 1.25;
-         --font-weight: 450;
-         --border-width: 0rem;
-       }`,
-      Pilloween: `.pagy {
-         --B: -1;
-         --H: 10;
-         --S: 80;
-         --L: 50;
-         --opacity: 1;
-         --spacing: 0.375rem;
-         --rounding: 1.125rem;
-         --padding: 0.75rem;
-         --font-size: 0.875rem;
-         --line-height: 1.5;
-         --font-weight: 700;
-         --border-width: 0.0625rem;
-       }`,
-      GreenPeas: `.pagy {
-         --B: 1;
-         --H: 98;
-         --S: 63;
-         --L: 30;
-         --opacity: 1;
-         --spacing: 0.125rem;
-         --rounding: 1.125rem;
-         --padding: 0.6875rem;
-         --font-size: 0.875rem;
-         --line-height: 1.75;
-         --font-weight: 600;
-         --border-width: 0rem;
-       }`,
-      CocoaBeans: `.pagy {
-         --B: 1;
-         --H: 27;
-         --S: 63;
-         --L: 17;
-         --opacity: 1;
-         --spacing: 0.0625rem;
-         --rounding: 1.125rem;
-         --padding: 0.5rem;
-         --font-size: 0.875rem;
-         --line-height: 2.5;
-         --font-weight: 700;
-         --border-width: 0rem;
-       }`,
-      PurpleStripe: `.pagy {
-         --B: 1;
-         --H: 255;
-         --S: 63;
-         --L: 39;
-         --opacity: 1;
-         --spacing: 0rem;
-         --rounding: 0rem;
-         --padding: 0.875rem;
-         --font-size: 0.875rem;
-         --line-height: 1.5;
-         --font-weight: 300;
-         --border-width: 0rem;
-       }`,
-      GhostInThought: `.pagy {
-         --B: 1;
-         --H: 174;
-         --S: 40;
-         --L: 70;
-         --opacity: 1;
-         --spacing: 0.125rem;
-         --rounding: 1.125rem;
-         --padding: 0.75rem;
-         --font-size: 0.875rem;
-         --line-height: 1.75;
-         --font-weight: 450;
-         --border-width: 0rem;
-       }`,
-      VintageScent: `.pagy {
-         --B: 1;
-         --H: 51;
-         --S: 27;
-         --L: 64;
-         --opacity: 1;
-         --spacing: 0.1875rem;
-         --rounding: 0.75rem;
-         --padding: 0.75rem;
-         --font-size: 0.875rem;
-         --line-height: 1.75;
-         --font-weight: 300;
-         --border-width: 0.0625rem;
-       }`
+      Default: `
+      .pagy {
+        --B: 1;
+        --H: 0;
+        --S: 0;
+        --L: 50;
+        --opacity: 1;
+        --spacing: 0.125rem;
+        --rounding: 1.75rem;
+        --padding: 0.75rem;
+        --font-size: 0.875rem;
+        --line-height: 1.75;
+        --font-weight: 700;
+        --border-width: 0rem;
+      }
+      `,
+      Dark: `
+      .pagy {
+        --B: -1;
+        --H: 0;
+        --S: 0;
+        --L: 60;
+        --opacity: 1;
+        --spacing: 0.125rem;
+        --rounding: 1.75rem;
+        --padding: 0.75rem;
+        --font-size: 0.875rem;
+        --line-height: 1.75;
+        --font-weight: 700;
+        --border-width: 0rem;
+      }
+      `,
+      MidnighExpress: `
+      .pagy {
+        --B: -1;
+        --H: 231;
+        --S: 28;
+        --L: 60;
+        --opacity: 1;
+        --spacing: 0.1875rem;
+        --rounding: 0.375rem;
+        --padding: 1rem;
+        --font-size: 1rem;
+        --line-height: 1.25;
+        --font-weight: 450;
+        --border-width: 0rem;
+      }
+      `,
+      Pilloween: ` 
+      .pagy {
+        --B: -1;
+        --H: 10;
+        --S: 80;
+        --L: 50;
+        --opacity: 1;
+        --spacing: 0.375rem;
+        --rounding: 1.125rem;
+        --padding: 0.75rem;
+        --font-size: 0.875rem;
+        --line-height: 1.5;
+        --font-weight: 700;
+        --border-width: 0.0625rem;
+      }
+      `,
+      Peppermint: `
+      .pagy {
+        --B: 1;
+        --H: 78;
+        --S: 70;
+        --L: 42;
+        --opacity: 1;
+        --spacing: 0.1875rem;
+        --rounding: 0.75rem;
+        --padding: 0.625rem;
+        --font-size: 0.875rem;
+        --line-height: 1.75;
+        --font-weight: 550;
+        --border-width: 0rem;
+      }
+      `,
+      CocoaBeans: `
+      .pagy {
+        --B: 1;
+        --H: 27;
+        --S: 63;
+        --L: 17;
+        --opacity: 1;
+        --spacing: 0.0625rem;
+        --rounding: 1.125rem;
+        --padding: 0.5rem;
+        --font-size: 0.875rem;
+        --line-height: 2.5;
+        --font-weight: 700;
+        --border-width: 0rem;
+      }
+      `,
+      PurpleStripe: `
+      .pagy {
+        --B: 1;
+        --H: 255;
+        --S: 63;
+        --L: 39;
+        --opacity: 1;
+        --spacing: 0rem;
+        --rounding: 0rem;
+        --padding: 0.875rem;
+        --font-size: 0.875rem;
+        --line-height: 1.5;
+        --font-weight: 300;
+        --border-width: 0rem;
+      }
+      `,
+      GhostInThought: `
+      .pagy {
+        --B: 1;
+        --H: 174;
+        --S: 40;
+        --L: 70;
+        --opacity: 1;
+        --spacing: 0.125rem;
+        --rounding: 1.125rem;
+        --padding: 0.75rem;
+        --font-size: 0.875rem;
+        --line-height: 1.75;
+        --font-weight: 450;
+        --border-width: 0rem;
+      }
+      `,
+      VintageScent: `
+      .pagy {
+        --B: 1;
+        --H: 51;
+        --S: 27;
+        --L: 64;
+        --opacity: 1;
+        --spacing: 0.1875rem;
+        --rounding: 0.75rem;
+        --padding: 0.75rem;
+        --font-size: 0.875rem;
+        --line-height: 1.75;
+        --font-weight: 300;
+        --border-width: 0.0625rem;
+      }
+      `
     };
     const presetsDropdown = shadowRoot.getElementById("presets");
     for (const presetName in presets) {
@@ -290,7 +326,7 @@
     shadow.innerHTML = `
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
       <style>
         #panel {
           font-family: 'Nunito Sans', sans-serif;
@@ -303,8 +339,8 @@
         #head {
           border-top-left-radius: 5px;
           border-top-right-radius: 5px;
-          background-color: #707070;
-          padding: 4px 8px;
+          background-color: #505050;
+          padding: 4px 10px;
           cursor: move;
           user-select: none;
           color: white;  
@@ -316,13 +352,30 @@
           line-height: 1em;
           user-select: none;
           cursor: pointer;
+          position: relative; /* Add this to allow absolute positioning of the pseudo-element */
+          z-index: 1
+        }
+        #toggle:before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: calc(100% + 14px);
+          height: calc(100% + 12px);
+          border-radius: 50%;
+          background-color: white;
+          opacity: 0;
+          z-index: -1;
+        }
+        #toggle:hover:before {
+          opacity: .16;
         }
         #presets {
           all: revert;
           margin-left: auto; 
         }
         #controls {
-          /*all: revert;*/
           padding: 16px;
           font-size: 0.8rem;
           display: grid;
@@ -342,7 +395,7 @@
         #help-icon {
           width: 23px;
           height: 23px;
-          background-color: #888888;
+          background-color: #505050;
           border-radius: 50%;
           display: flex;
           justify-content: center;
@@ -368,8 +421,9 @@
         }
         #override {
           all: revert;
-          font-family: monospace;
+          font-family: "Ubuntu Sans Mono", monospace;
           font-size: .8rem;
+          font-weight: 400;
           line-height: 1.25;
           height: 235px;
           resize: vertical;

@@ -280,6 +280,12 @@ class PagyDemo < Sinatra::Base
           .pagy-bootstrap .pagination {
             margin: 0;
           }
+          <% if name&.match(/pagy|tailwind/) %>
+           /*  black/white backdrop color based on --B */
+            .pagy {
+              background-color: hsl(0 0 calc(100 * var(--B)));
+            }
+          <% end %>
         </style>
         <%# MASK_STYLE %>
       </head>
