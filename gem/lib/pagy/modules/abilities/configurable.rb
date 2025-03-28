@@ -16,5 +16,11 @@ class Pagy
       targets.each { |filename| FileUtils.cp(ROOT.join('javascript', filename), destination) }
       (names - targets).each { |filename| FileUtils.rm_f(File.join(destination, filename)) }
     end
+
+    def tweaker_tag
+      %(<script id="pagy-tweaker">
+        #{ROOT.join('javascript', 'tweaker.js').read}
+      </script>)
+    end
   end
 end

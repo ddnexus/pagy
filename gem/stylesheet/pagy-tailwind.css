@@ -15,12 +15,12 @@ available in the Demo App http://ddnexus.github.io/pagy/sandbox/playground#3-dem
     --L: 50;
     --opacity: 1;
     --spacing: 0.125rem;
-    --rounding: 1.75rem;
     --padding: 0.75rem;
-    --font-size: 0.875rem;
-    --line-height: 1.75;
-    --font-weight: 700;
+    --rounding: 1.75rem;
     --border-width: 0rem;
+    --font-size: 0.875rem;
+    --font-weight: 700;
+    --line-height: 1.75;
 
     --text:               hsl(var(--H) var(--S) calc(var(--L) - (30 * var(--B))));
     --text-hover:         hsl(var(--H) var(--S) calc(var(--L) - (33 * var(--B))));

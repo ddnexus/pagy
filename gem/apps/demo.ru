@@ -152,8 +152,8 @@ class PagyDemo < Sinatra::Base
         <script>
           window.addEventListener("load", Pagy.init);
         </script>
-        <% if name&.match(/pagy|tailwind/) %>
-          <script src="/javascript/pagy-tweaker.js"></script>
+        <% if name&.match(/pagy|tailwind/) && ENV["CY_TEST"] != "true" %>
+          <%= Pagy.tweaker_tag %>
         <% end %>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%= erb :"#{name}_head" if defined?(name) %>
@@ -388,7 +388,7 @@ class PagyDemo < Sinatra::Base
           <%= html = @pagy.info_tag(id: 'pagy-info') %>
           <%= highlight(html) %>
                 <br><br>
-        </div> 
+        </div>
       </div>
     ERB
   end

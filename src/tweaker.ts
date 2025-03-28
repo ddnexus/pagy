@@ -1,20 +1,16 @@
-// pagy-tweaker.ts
-
 type VariableMap = {
   [key: string]: {
-    name:     string;
-    unit:        string;
-    input?:      HTMLInputElement;
+    name:   string;
+    unit:   string;
+    input?: HTMLInputElement;
   };
 };
-
 type Presets = { [key: string]: string };
-
 
 (() => {
   // Cookie handling
   const B64SafeEncode = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode)))
-      .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
+                                            .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
   const B64Decode     = (base64:string) => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
   const deleteCookie  = (name:string) => (document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`);
   const setCookie     = (name:string, value:string) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
@@ -30,11 +26,14 @@ type Presets = { [key: string]: string };
     return null;
   };
 
+  const contentPadding = 16;
+
   const panelInit = (shadowRoot: ShadowRoot) => {
+    const overlay    = <HTMLElement>shadowRoot.getElementById('overlay');
     const panel      = <HTMLElement>shadowRoot.getElementById('panel');
-    const head       = <HTMLElement>shadowRoot.getElementById('head');
+    const topBar     = <HTMLElement>shadowRoot.getElementById('top-bar');
     const toggle     = <HTMLElement>shadowRoot.getElementById('toggle');
-    const controlDiv = <HTMLElement>shadowRoot.getElementById('controls');
+    const controlsDiv = <HTMLElement>shadowRoot.getElementById('controls');
     const helpIcon   = <HTMLElement>shadowRoot.getElementById('help-icon');
     const helpDiv    = <HTMLElement>shadowRoot.getElementById('help');
 
@@ -53,7 +52,7 @@ type Presets = { [key: string]: string };
 
     const keepPanelInView = () => {
       const left = parseInt(panel.style.left);
-      const top = parseInt(panel.style.top);
+      const top  = parseInt(panel.style.top);
 
       const panelRect = panel.getBoundingClientRect();
       // Check if panel is off-screen horizontally
@@ -79,10 +78,10 @@ type Presets = { [key: string]: string };
     const position = getPanelPosition();
     if (position) {
       panel.style.left = `${position.left}px`;
-      panel.style.top = `${position.top}px`;
+      panel.style.top  = `${position.top}px`;
     } else {
       panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
-      panel.style.top = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
+      panel.style.top  = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
       keepPanelInView();
     }
 
@@ -91,19 +90,19 @@ type Presets = { [key: string]: string };
     let offsetY  = 0;
     let dragging = false;
 
-    head.addEventListener('mousedown', (e) => {
-      if ((e.target as HTMLElement).closest('#presets')) return;
+    topBar.addEventListener('mousedown', (e) => {
+      if ((<HTMLElement>e.target).closest('#preset-menu')) return;
 
       dragging = true;
       offsetX  = e.clientX - panel.offsetLeft;
       offsetY  = e.clientY - panel.offsetTop;
     });
     panel.addEventListener('mousedown', (e) => {
-      if (!(e.target === head || e.ctrlKey || e.metaKey)) return;
+      if (!(e.target === topBar || e.ctrlKey || e.metaKey)) return;
 
       dragging = true;
-      offsetX = e.clientX - panel.offsetLeft;
-      offsetY = e.clientY - panel.offsetTop;
+      offsetX  = e.clientX - panel.offsetLeft;
+      offsetY  = e.clientY - panel.offsetTop;
     });
     document.addEventListener('mousemove', (e) => {
       if (!dragging) return;
@@ -113,30 +112,51 @@ type Presets = { [key: string]: string };
       setPanelPosition(e.clientX - offsetX, e.clientY - offsetY);
     });
     document.addEventListener('mouseup', () => dragging = false);
-    // Control Toggle
-    toggle.addEventListener('click', (e) => {
-      helpDiv.style.display = 'none';
-      if (controlDiv.style.display !== 'none') {
-        controlDiv.style.display = 'none';
-      } else {
-        controlDiv.style.display = 'grid';
+
+    // Add event listeners to control overlay visibility based on ctrl key press
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.metaKey) {
+        overlay.style.display = 'block'; // Show overlay
+        overlay.style.width   = `${panel.offsetWidth}px`;  // Match panel width
+        overlay.style.height  = `${panel.offsetHeight}px`; // Match panel height
       }
     });
+    document.addEventListener('keyup', (e) => {
+      if (!e.ctrlKey && !e.metaKey) {
+        overlay.style.display = 'none'; // Hide overlay
+      }
+    });
+
+    // Control Toggle
+     const toggleControlDiv = () => {
+       if (controlsDiv.style.display !== 'none' || helpDiv.style.display !== 'none') {
+         controlsDiv.style.display = 'none';
+         helpDiv.style.display = 'none';
+       } else {
+         helpDiv.style.display = 'block';
+         controlsDiv.style.display = 'grid';
+       }
+     }
+
+    toggle.addEventListener('click', toggleControlDiv);
+    topBar.addEventListener('dblclick', toggleControlDiv);
+
     // Help Toggle
     helpIcon.addEventListener('click', () => {
-      controlDiv.style.display = 'none';
-      helpDiv.style.display    = 'flex';
+      helpDiv.style.display    = 'block';
+      helpDiv.style.height     = `${controlsDiv.clientHeight - contentPadding * 2}px`; // Match panel height
+      controlsDiv.style.display = 'none';
     });
     helpDiv.addEventListener('click', () => {
       helpDiv.style.display    = 'none';
-      controlDiv.style.display = 'grid';
+      controlsDiv.style.display = 'grid';
     });
   }
 
   const tweakerInit = (shadowRoot: ShadowRoot) => {
     // Create override style tag as the last tag in <head>
     const styleTag = document.createElement('style');
-    styleTag.id    = 'pagy-override-style-tag';
+    styleTag.id    = 'pagy-tweaker-override-style-tag';
     document.head.appendChild(styleTag);
 
     let variables:VariableMap = {
@@ -146,18 +166,18 @@ type Presets = { [key: string]: string };
       lightness:   { name: '--L',            unit: ''    },
       opacity:     { name: '--opacity',      unit: ''    },
       spacing:     { name: '--spacing',      unit: 'rem' },
-      rounding:    { name: '--rounding',     unit: 'rem' },
       padding:     { name: '--padding',      unit: 'rem' },
-      fontSize:    { name: '--font-size',    unit: 'rem' },
-      lineHeight:  { name: '--line-height',  unit: ''    },
-      fontWeight:  { name: '--font-weight',  unit: ''    },
+      rounding:    { name: '--rounding',     unit: 'rem' },
       borderWidth: { name: '--border-width', unit: 'rem' },
+      fontSize:    { name: '--font-size',    unit: 'rem' },
+      fontWeight:  { name: '--font-weight',  unit: ''    },
+      lineHeight:  { name: '--line-height',  unit: ''    },
     };
     for (const [id, css] of Object.entries(variables)) {
       css.input = <HTMLInputElement>shadowRoot.getElementById(id);
     }
 
-    const overrideStyleTag = <HTMLStyleElement>document.getElementById('pagy-override-style-tag');
+    const overrideStyleTag = <HTMLStyleElement>document.getElementById('pagy-tweaker-override-style-tag');
     const overrideDisplay  = <HTMLTextAreaElement>shadowRoot.getElementById('override');
     const updateCSS = () => {
       let override = `.pagy {\n`;
@@ -167,8 +187,9 @@ type Presets = { [key: string]: string };
       override += '}';
       overrideDisplay.value        = override;
       overrideStyleTag.textContent = override;
-      setCookie('pagy-override', override);
+      setCookie('pagy-tweaker-override', override);
     };
+
     // PRESETS
     const presets:Presets = {
       Default: `
@@ -240,7 +261,7 @@ type Presets = { [key: string]: string };
         --B: 1;
         --H: 78;
         --S: 70;
-        --L: 42;
+        --L: 38;
         --opacity: 1;
         --spacing: 0.1875rem;
         --rounding: 0.75rem;
@@ -316,19 +337,19 @@ type Presets = { [key: string]: string };
       }
       `
     };
-    const presetsDropdown = <HTMLSelectElement>shadowRoot.getElementById('presets');
+    const presetMenu = <HTMLSelectElement>shadowRoot.getElementById('preset-menu');
     // Setup preset options
     for (const presetName in presets) {
       const option       = document.createElement('option');
       option.value       = presetName;
       option.textContent = presetName;
-      presetsDropdown.appendChild(option);
+      presetMenu.appendChild(option);
     }
 
     const applyPreset = (name:string | null) => {
       const css = name
-                  ? (deleteCookie('pagy-override'), presets[name])
-                  : getCookie('pagy-override');
+                  ? (deleteCookie('pagy-tweaker-override'), presets[name])
+                  : getCookie('pagy-tweaker-override');
       css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
         let [name, value] = match.split(':');
         name  = name.trim();
@@ -340,15 +361,15 @@ type Presets = { [key: string]: string };
           }
         }
       });
-      setCookie('pagy-preset', name || '');
+      setCookie('pagy-tweaker-preset', name || '');
       updateCSS();
     };
-    presetsDropdown.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
+    presetMenu.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
 
     // Event listeners
     const deselectDropdown = () => {
-      presetsDropdown.value = '';
-      setCookie('pagy-preset', '');
+      presetMenu.value = '';
+      setCookie('pagy-tweaker-preset', '');
     };
     Object.values(variables).forEach((css) => {
       css.input!.addEventListener('input', updateCSS);
@@ -356,14 +377,14 @@ type Presets = { [key: string]: string };
     });
 
     // Start
-    const preset = getCookie('pagy-preset') ?? 'Default';
-    presetsDropdown.value = preset;
+    const preset     = getCookie('pagy-tweaker-preset') ?? 'Default';
+    presetMenu.value = preset;
     applyPreset(preset);
   };
 
   const attachShadow = () => {
     const host = document.createElement('div');
-    host.id    = 'tweaker-host';
+    host.id    = 'pagy-tweaker-host';
     document.body.appendChild(host);
     const shadow     = host.attachShadow({ mode: 'open' });
     shadow.innerHTML = `
@@ -371,7 +392,22 @@ type Presets = { [key: string]: string };
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
       <style>
+        :host {
+          --base-color: #505050;
+        }
+        #overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0); /* Transparent */
+          cursor: move;
+          z-index: 10; /* Make sure it's on top of the panel */
+          display: none; /* Initially hidden */
+        }
         #panel {
+          accent-color: var(--base-color);
           font-family: 'Nunito Sans', sans-serif;
           width: 350px;
           box-sizing: border-box;
@@ -379,23 +415,29 @@ type Presets = { [key: string]: string };
           position: fixed;
           z-index: 1000;
         }
-        #head {
+        pre, code, kbd, samp {
+          font-family: 'Ubuntu Sans Mono', monospace;
+        }
+        #top-bar {
           border-top-left-radius: 5px;
           border-top-right-radius: 5px;
-          background-color: #505050;
+          background-color: var(--base-color);
           padding: 4px 10px;
           cursor: move;
           user-select: none;
-          color: white;  
+          color: white;
           display: flex;
           align-items: center;
+        }
+        #title {
+          font-weight: 600;
         }
         #toggle {
           margin-right: 12px;
           line-height: 1em;
           user-select: none;
           cursor: pointer;
-          position: relative; /* Add this to allow absolute positioning of the pseudo-element */
+          position: relative;
           z-index: 1
         }
         #toggle:before {
@@ -414,21 +456,24 @@ type Presets = { [key: string]: string };
         #toggle:hover:before {
           opacity: .16;
         }
-        #presets {
-          all: revert;
-          margin-left: auto; 
+        #preset-menu {
+          margin-left: auto;
+        }
+        .panel-content{
+          line-height: 1.1;
+          color: black;
+          background-color: rgba(220,220,220,.6);
+          backdrop-filter: blur(14px);
+          padding: ${contentPadding}px;
+          font-size: 0.8rem;
         }
         #controls {
-          padding: 16px;
-          font-size: 0.8rem;
           display: grid;
           grid-template-columns: auto auto;
           grid-column-gap: 5px;
-          line-height: normal;
-          color: black;
-          background-color: rgba(200,200,200,.9);
         }
         #controls label {
+          font-weight: 600;
           grid-column: 1;
           text-align: right;
           padding-right: 5px;
@@ -438,7 +483,7 @@ type Presets = { [key: string]: string };
         #help-icon {
           width: 23px;
           height: 23px;
-          background-color: #505050;
+          background-color: var(--base-color);
           border-radius: 50%;
           display: flex;
           justify-content: center;
@@ -453,17 +498,40 @@ type Presets = { [key: string]: string };
         }
         #help {
           display: none;
-          padding: 16px;
-          font-size: 0.8rem;
-          color: black;
-          background-color: rgba(200,200,200,.9);
+          overflow-y: auto;
+        }
+        #help h3 {
+          font-size: 1rem;
+          margin-top: 0;
+          margin-bottom: .2rem;
+        }
+        #help h4 {
+          text-align: right;
+          padding: 4px 8px;
+          background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255, 1));
+          margin-top: 1rem;
+          margin-bottom: .5rem;
+        }
+        #help p {
+          margin-top: .5rem;
+          margin-bottom: .4rem;
+        }
+        #help dl {
+          margin: 0;
+        }
+        #help dt {
+          font-weight: bold;
+          margin-top: 0.4rem;
+          margin-bottom: 0.2rem;
+        }
+        #help dd {
+          margin-bottom: .15rem;
+          margin-left: 1rem;
         }
         #brightness {
-          all: revert;
           margin: 0 2px;
         }
         #override {
-          all: revert;
           font-family: "Ubuntu Sans Mono", monospace;
           font-size: .8rem;
           font-weight: 400;
@@ -474,14 +542,14 @@ type Presets = { [key: string]: string };
         }
       </style>
       <div id="panel">
-        <div id="head">
-          <span id="toggle">☰</span><b>Pagy Tweaker</b></span>
-          <label for="presets" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
-          <select id="presets">
+        <div id="top-bar">
+          <span id="toggle">☰</span><span id="title">PagyTweaker</span>
+          <label for="preset-menu" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
+          <select id="preset-menu">
             <option value="" disabled>Presets...</option>
           </select>
         </div>
-        <div id="controls">
+        <div class="panel-content" id="controls">
           <label for="brightness">Brightness</label>
           <select id="brightness">
             <option value="1">Light</option>
@@ -497,31 +565,53 @@ type Presets = { [key: string]: string };
           <input type="range" id="opacity" min="0" max="1" step="0.01">
           <label for="spacing">Spacing</label>
           <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
-          <label for="rounding">Rounding</label>
-          <input type="range" id="rounding" min="0" max="3" step="0.0625">
           <label for="padding">Padding</label>
           <input type="range" id="padding" min="0" max="1.5" step="0.0625">
-          <label for="lineHeight">Line Height</label>
-          <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
+          <label for="rounding">Rounding</label>
+          <input type="range" id="rounding" min="0" max="3" step="0.0625">
+          <label for="borderWidth">Border Width</label>
+          <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
           <label for="fontSize">Font Size</label>
           <input type="range" id="fontSize" min="0.75" max="2" step="0.0625">
           <label for="fontWeight">Font Weight</label>
           <input type="range" id="fontWeight" min="100" max="1000" step="50">
-          <label for="borderWidth">Border Width</label>
-          <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
-          <label for="override">Override<span id="help-icon">?</span></label>
+          <label for="lineHeight">Line Height</label>
+          <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
+          <label for="override">CSS Override<span id="help-icon">?</span></label>
           <textarea id="override" rows="5" cols="40" readonly></textarea>
         </div>
-  <div id="help">
-    <ul>
-      <li><b>Help</b></li>
-      <li><b>Example</b></li>
-      <li><b>Example</b></li>
-      <li><b>Example</b></li>
-      <li><b>Example</b></li>
-      <li><b>Example</b></li>
-    </ul>
-  </div>
+        <div id="help" class="panel-content">
+          <h4>Panel</h4>
+          <dl>
+            <dt>Install</dt>
+              <dd><code><%== Pagy.tweaker_tag %></code></dd>
+            <dt>Move</dt>
+              <dd>Drag on the TOP Bar or anywhere with <code>Ctrl</code> or <code>Cmd</code> pressed.</dd>
+            <dt>Collapse/Expand</dt>
+              <dd>Click on the <b>☰</b> icon or double-click on the Top Bar.</dd>
+          </dl>
+          <h4>Customizing</h4>
+          <p>You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
+            the <i>pagy.css</i> calculates all the other metrics.</p>
+          <p>Pick a Presets as a starting point, customize it with the controls,
+            and copy/paste the CSS Override in your Stylesheet.</p>
+          <p>Override the calculations for full control over the final style.</p>
+          <p><b>Important</b>: Do not link the <i>pagy.css</i> file. Copy its customized content in your CSS to avoid unwanted cosmetic changes on update.</p>
+          <h4>Controls</h4>
+          <dl>
+            <dt>Presets dropdown</dt>
+              <dd>Pick a starting point to further customize.</dd>
+            <dt>Brightness</dt>
+              <dd>Toggle the Light or Dark theming. Notice that when you toggle it, you should also adjust the lightness.</dd>
+            <dt>Hue, Saturation, Lightness</dt>
+              <dd>Adjust them to generate any color, however notice that the automatic calculations work better within certain ranges and combinations.</dd>
+            <dt>Padding, Font Size, Line Height</dt>
+              <dd>You can control the relative dimensions of the items, through the interactions of these properties.</dd>
+            <dt>Other Properties</dt>
+              <dd>Self-explanatory.</dd>
+          </dl>
+        </div>
+        <div id="overlay"></div>
       </div>
     `;
     tweakerInit(shadow);
