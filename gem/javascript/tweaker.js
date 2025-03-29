@@ -1,17 +1,16 @@
-(()=>{const T=(x)=>btoa(String.fromCharCode(...new TextEncoder().encode(x))).replace(/[+/=]/g,(F)=>F=="+"?"-":F=="/"?"_":""),X=(x)=>new TextDecoder().decode(Uint8Array.from(atob(x),(F)=>F.charCodeAt(0))),Y=(x)=>document.cookie=`${x}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`,$=(x,F)=>document.cookie=`${x}=${T(F)}; path=/`,M=(x)=>{const F=`${x}=`,j=document.cookie.split(";");for(let J=0;J<j.length;J++){let Q=j[J].trim();if(Q.startsWith(F))return X(Q.substring(F.length))}return null},N=16,B=(x)=>{const F=x.getElementById("overlay"),j=x.getElementById("panel"),J=x.getElementById("top-bar"),Q=x.getElementById("toggle"),K=x.getElementById("controls"),A=x.getElementById("help-icon"),H=x.getElementById("help"),V=()=>{const q=M("pagy-tweaker-position");if(q){const[_,O]=q.split(",");return{left:parseInt(_),top:parseInt(O)}}return null},E=(q,_)=>{$("pagy-tweaker-position",`${q},${_}`)},Z=()=>{const q=parseInt(j.style.left),_=parseInt(j.style.top),O=j.getBoundingClientRect();if(O.left<0)j.style.left="0px";else if(O.right>window.innerWidth)j.style.left=`${window.innerWidth-j.offsetWidth}px`;if(O.top<0)j.style.top="0px";else if(O.bottom>window.innerHeight)j.style.top=`${window.innerHeight-j.offsetHeight}px`;if(O.top<0&&j.offsetHeight<window.innerHeight)j.style.top="0px";E(q,_)};window.addEventListener("resize",Z);const z=V();if(z){j.style.left=`${z.left}px`;j.style.top=`${z.top}px`}else{j.style.left=`${(window.innerWidth-j.offsetWidth)/2}px`;j.style.top=`${(window.innerHeight-j.offsetHeight)/2}px`;Z()}let G=0,U=0,L=!1;J.addEventListener("mousedown",(q)=>{if(q.target.closest("#preset-menu"))return;L=!0;G=q.clientX-j.offsetLeft;U=q.clientY-j.offsetTop});j.addEventListener("mousedown",(q)=>{if(!(q.target===J||q.ctrlKey||q.metaKey))return;L=!0;G=q.clientX-j.offsetLeft;U=q.clientY-j.offsetTop});document.addEventListener("mousemove",(q)=>{if(!L)return;j.style.left=`${q.clientX-G}px`;j.style.top=`${q.clientY-U}px`;E(q.clientX-G,q.clientY-U)});document.addEventListener("mouseup",()=>L=!1);document.addEventListener("keydown",(q)=>{if(q.ctrlKey||q.metaKey){F.style.display="block";F.style.width=`${j.offsetWidth}px`;F.style.height=`${j.offsetHeight}px`}});document.addEventListener("keyup",(q)=>{if(!q.ctrlKey&&!q.metaKey)F.style.display="none"});const W=()=>{if(K.style.display!=="none"||H.style.display!=="none"){K.style.display="none";H.style.display="none"}else{H.style.display="block";K.style.display="grid"}};Q.addEventListener("click",W);J.addEventListener("dblclick",W);A.addEventListener("click",()=>{H.style.display="block";H.style.height=`${K.clientHeight-N*2}px`;K.style.display="none"});H.addEventListener("click",()=>{H.style.display="none";K.style.display="grid"})},I=(x)=>{const F=document.createElement("style");F.id="pagy-tweaker-override-style-tag";document.head.appendChild(F);let j={brightness:{name:"--B",unit:""},hue:{name:"--H",unit:""},saturation:{name:"--S",unit:""},lightness:{name:"--L",unit:""},opacity:{name:"--opacity",unit:""},spacing:{name:"--spacing",unit:"rem"},padding:{name:"--padding",unit:"rem"},rounding:{name:"--rounding",unit:"rem"},borderWidth:{name:"--border-width",unit:"rem"},fontSize:{name:"--font-size",unit:"rem"},fontWeight:{name:"--font-weight",unit:""},lineHeight:{name:"--line-height",unit:""}};for(const[z,G]of Object.entries(j))G.input=x.getElementById(z);const J=document.getElementById("pagy-tweaker-override-style-tag"),Q=x.getElementById("override"),K=()=>{let z=".pagy {\n";Object.values(j).forEach((G)=>{z+=`  ${G.name}: ${G.input.value}${G.unit};\n`});z+="}";Q.value=z;J.textContent=z;$("pagy-tweaker-override",z)},A={Default:`
+(()=>{const X=(x)=>btoa(String.fromCharCode(...new TextEncoder().encode(x))).replace(/[+/=]/g,(F)=>F=="+"?"-":F=="/"?"_":""),M=(x)=>new TextDecoder().decode(Uint8Array.from(atob(x),(F)=>F.charCodeAt(0))),Y=(x)=>document.cookie=`${x}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`,E=(x,F)=>document.cookie=`${x}=${X(F)}; path=/`,T=(x)=>{const F=`${x}=`,j=document.cookie.split(";");for(let H=0;H<j.length;H++){let L=j[H].trim();if(L.startsWith(F))return M(L.substring(F.length))}return null},N=16,I=(x)=>{const F=x.getElementById("overlay"),j=x.getElementById("panel"),H=x.getElementById("top-bar"),L=x.getElementById("toggle"),K=x.getElementById("controls"),U=x.getElementById("help-icon"),J=x.getElementById("help"),V=()=>{const q=T("pagy-tweaker-position");if(q){const[$,Q]=q.split(",");return{left:parseInt($),top:parseInt(Q)}}return null},A=(q,$)=>{E("pagy-tweaker-position",`${q},${$}`)},_=()=>{const q=parseInt(j.style.left),$=parseInt(j.style.top),Q=j.getBoundingClientRect();if(Q.left<0)j.style.left="0px";else if(Q.right>window.innerWidth)j.style.left=`${window.innerWidth-j.offsetWidth}px`;if(Q.top<0)j.style.top="0px";else if(Q.bottom>window.innerHeight)j.style.top=`${window.innerHeight-j.offsetHeight}px`;if(Q.top<0&&j.offsetHeight<window.innerHeight)j.style.top="0px";A(q,$)};window.addEventListener("resize",_);const z=V();if(z){j.style.left=`${z.left}px`;j.style.top=`${z.top}px`}else{j.style.left=`${(window.innerWidth-j.offsetWidth)/2}px`;j.style.top=`${(window.innerHeight-j.offsetHeight)/2}px`;_()}let G=0,W=0,O=!1;H.addEventListener("mousedown",(q)=>{if(q.target.closest("#preset-menu"))return;O=!0;G=q.clientX-j.offsetLeft;W=q.clientY-j.offsetTop});j.addEventListener("mousedown",(q)=>{if(!(q.target===H||q.ctrlKey||q.metaKey))return;O=!0;G=q.clientX-j.offsetLeft;W=q.clientY-j.offsetTop});document.addEventListener("mousemove",(q)=>{if(!O)return;j.style.left=`${q.clientX-G}px`;j.style.top=`${q.clientY-W}px`;A(q.clientX-G,q.clientY-W)});document.addEventListener("mouseup",()=>O=!1);document.addEventListener("keydown",(q)=>{if(q.ctrlKey||q.metaKey){F.style.display="block";F.style.width=`${j.offsetWidth}px`;F.style.height=`${j.offsetHeight}px`}});document.addEventListener("keyup",(q)=>{if(!q.ctrlKey&&!q.metaKey)F.style.display="none"});const Z=()=>{if(K.style.display!=="none"||J.style.display!=="none"){K.style.display="none";J.style.display="none"}else K.style.display="grid"};L.addEventListener("click",Z);H.addEventListener("dblclick",Z);U.addEventListener("click",()=>{J.style.display="block";J.style.height=`${K.clientHeight-N*2}px`;K.style.display="none"});J.addEventListener("click",()=>{J.style.display="none";K.style.display="grid"})},R=(x)=>{const F=document.createElement("style");F.id="pagy-tweaker-override-style-tag";document.head.appendChild(F);let j={brightness:{name:"--B",unit:""},hue:{name:"--H",unit:""},saturation:{name:"--S",unit:""},lightness:{name:"--L",unit:""},spacing:{name:"--spacing",unit:"rem"},padding:{name:"--padding",unit:"rem"},rounding:{name:"--rounding",unit:"rem"},borderWidth:{name:"--border-width",unit:"rem"},fontSize:{name:"--font-size",unit:"rem"},fontWeight:{name:"--font-weight",unit:""},lineHeight:{name:"--line-height",unit:""}};for(const[z,G]of Object.entries(j))G.input=x.getElementById(z);const H=document.getElementById("pagy-tweaker-override-style-tag"),L=x.getElementById("override"),K=()=>{let z=".pagy {\n";Object.values(j).forEach((G)=>{z+=`  ${G.name}: ${G.input.value}${G.unit};\n`});z+="}";L.value=z;H.textContent=z;E("pagy-tweaker-override",z)},U={Default:`
       .pagy {
         --B: 1;
         --H: 0;
         --S: 0;
         --L: 50;
-        --opacity: 1;
         --spacing: 0.125rem;
-        --rounding: 1.75rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 700;
+        --rounding: 1.75rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.75;
       }
       `,Dark:`
       .pagy {
@@ -19,14 +18,13 @@
         --H: 0;
         --S: 0;
         --L: 60;
-        --opacity: 1;
         --spacing: 0.125rem;
-        --rounding: 1.75rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 700;
+        --rounding: 1.75rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.75;
       }
       `,MidnighExpress:`
       .pagy {
@@ -34,14 +32,13 @@
         --H: 231;
         --S: 28;
         --L: 60;
-        --opacity: 1;
         --spacing: 0.1875rem;
-        --rounding: 0.375rem;
         --padding: 1rem;
-        --font-size: 1rem;
-        --line-height: 1.25;
-        --font-weight: 450;
+        --rounding: 0.375rem;
         --border-width: 0rem;
+        --font-size: 1rem;
+        --font-weight: 450;
+        --line-height: 1.25;
       }
       `,Pilloween:` 
       .pagy {
@@ -49,14 +46,13 @@
         --H: 10;
         --S: 80;
         --L: 50;
-        --opacity: 1;
         --spacing: 0.375rem;
-        --rounding: 1.125rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.5;
-        --font-weight: 700;
+        --rounding: 1.125rem;
         --border-width: 0.0625rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.5;
       }
       `,Peppermint:`
       .pagy {
@@ -64,14 +60,13 @@
         --H: 78;
         --S: 70;
         --L: 38;
-        --opacity: 1;
         --spacing: 0.1875rem;
-        --rounding: 0.75rem;
         --padding: 0.625rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 550;
+        --rounding: 0.75rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 550;
+        --line-height: 1.75;
       }
       `,CocoaBeans:`
       .pagy {
@@ -79,14 +74,13 @@
         --H: 27;
         --S: 63;
         --L: 17;
-        --opacity: 1;
         --spacing: 0.0625rem;
-        --rounding: 1.125rem;
         --padding: 0.5rem;
-        --font-size: 0.875rem;
-        --line-height: 2.5;
-        --font-weight: 700;
+        --rounding: 1.125rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 2.5;
       }
       `,PurpleStripe:`
       .pagy {
@@ -94,14 +88,13 @@
         --H: 255;
         --S: 63;
         --L: 39;
-        --opacity: 1;
         --spacing: 0rem;
-        --rounding: 0rem;
         --padding: 0.875rem;
-        --font-size: 0.875rem;
-        --line-height: 1.5;
-        --font-weight: 300;
+        --rounding: 0rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 300;
+        --line-height: 1.5;
       }
       `,GhostInThought:`
       .pagy {
@@ -109,14 +102,13 @@
         --H: 174;
         --S: 40;
         --L: 70;
-        --opacity: 1;
         --spacing: 0.125rem;
-        --rounding: 1.125rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 450;
+        --rounding: 1.125rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 450;
+        --line-height: 1.75;
       }
       `,VintageScent:`
       .pagy {
@@ -124,19 +116,15 @@
         --H: 51;
         --S: 27;
         --L: 64;
-        --opacity: 1;
         --spacing: 0.1875rem;
-        --rounding: 0.75rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 300;
+        --rounding: 0.75rem;
         --border-width: 0.0625rem;
+        --font-size: 0.875rem;
+        --font-weight: 300;
+        --line-height: 1.75;
       }
-      `},H=x.getElementById("preset-menu");for(const z in A){const G=document.createElement("option");G.value=z;G.textContent=z;H.appendChild(G)}const V=(z)=>{(z?(Y("pagy-tweaker-override"),A[z]):M("pagy-tweaker-override"))?.match(/--[^:]+:\s*[^;]+/g)?.forEach((U)=>{let[L,W]=U.split(":");L=L.trim();W=W.trim().replace(/[a-zA-Z%]+$/,"");for(const q of Object.values(j))if(q.name===L){q.input.value=W;break}});$("pagy-tweaker-preset",z||"");K()};H.addEventListener("change",(z)=>V(z.target.value));const E=()=>{H.value="";$("pagy-tweaker-preset","")};Object.values(j).forEach((z)=>{z.input.addEventListener("input",K);z.input.addEventListener("input",E)});const Z=M("pagy-tweaker-preset")??"Default";H.value=Z;V(Z)},b=()=>{const x=document.createElement("div");x.id="pagy-tweaker-host";document.body.appendChild(x);const F=x.attachShadow({mode:"open"});F.innerHTML=`
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+      `},J=x.getElementById("preset-menu");for(const z in U){const G=document.createElement("option");G.value=z;G.textContent=z;J.appendChild(G)}const V=(z)=>{(z?(Y("pagy-tweaker-override"),U[z]):T("pagy-tweaker-override"))?.match(/--[^:]+:\s*[^;]+/g)?.forEach((W)=>{let[O,Z]=W.split(":");O=O.trim();Z=Z.trim().replace(/[a-zA-Z%]+$/,"");for(const q of Object.values(j))if(q.name===O){q.input.value=Z;break}});E("pagy-tweaker-preset",z||"");K()};J.addEventListener("change",(z)=>V(z.target.value));const A=()=>{J.value="";E("pagy-tweaker-preset","")};Object.values(j).forEach((z)=>{z.input.addEventListener("input",K);z.input.addEventListener("input",A)});const _=T("pagy-tweaker-preset")??"Default";J.value=_;V(_)},b=()=>{const x=document.createElement("div");x.id="pagy-tweaker-host";document.body.appendChild(x);[{rel:"preconnect",href:"https://fonts.googleapis.com"},{rel:"preconnect",href:"https://fonts.gstatic.com",crossorigin:"anonymous"},{href:"https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap",rel:"stylesheet"}].forEach((L)=>{const K=document.createElement("link");Object.entries(L).forEach(([U,J])=>{K.setAttribute(U,J)});document.head.appendChild(K)});const F=document.createElement("style");F.id="pagy-tweaker-style-tag";const j=document.getElementById("pagy-tweaker");F.textContent=M(j.getAttribute("data-pagy-css"));document.head.appendChild(F);const H=x.attachShadow({mode:"open"});H.innerHTML=`
       <style>
         :host {
           --base-color: #505050;
@@ -147,22 +135,22 @@
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0); /* Transparent */
+          background: rgba(0, 0, 0, 0);
           cursor: move;
-          z-index: 10; /* Make sure it's on top of the panel */
-          display: none; /* Initially hidden */
+          z-index: 10;
+          display: none;
         }
         #panel {
           accent-color: var(--base-color);
-          font-family: 'Nunito Sans', sans-serif;
+          font-family: 'Nunito Sans', sans-serif !important;
           width: 350px;
           box-sizing: border-box;
           box-shadow: 12px 12px 25px 0 rgba(0,0,0,0.3);
           position: fixed;
           z-index: 1000;
         }
-        pre, code, kbd, samp {
-          font-family: 'Ubuntu Sans Mono', monospace;
+        #panel pre, #panel code, #panel kbd, #panel samp {
+          font-family: 'Ubuntu Sans Mono', monospace !important;
         }
         #top-bar {
           border-top-left-radius: 5px;
@@ -226,6 +214,18 @@
           white-space: nowrap;
           position: relative;
         }
+        #brightness {
+          margin: 0 2px;
+        }
+        #override {
+          font-family: "Ubuntu Sans Mono", monospace !important;
+          font-size: .8rem;
+          font-weight: 400;
+          line-height: 1.1;
+          height: 185px;
+          resize: vertical;
+          margin: 2px;
+        }
         #help-icon {
           width: 23px;
           height: 23px;
@@ -251,6 +251,9 @@
           margin-top: 0;
           margin-bottom: .2rem;
         }
+        #help > h4:first-child {
+          margin-top: 0;
+        }
         #help h4 {
           text-align: right;
           padding: 4px 8px;
@@ -274,18 +277,6 @@
           margin-bottom: .15rem;
           margin-left: 1rem;
         }
-        #brightness {
-          margin: 0 2px;
-        }
-        #override {
-          font-family: "Ubuntu Sans Mono", monospace;
-          font-size: .8rem;
-          font-weight: 400;
-          line-height: 1.25;
-          height: 235px;
-          resize: vertical;
-          margin: 2px;
-        }
       </style>
       <div id="panel">
         <div id="top-bar">
@@ -307,8 +298,6 @@
           <input type="range" id="saturation" min="0" max="100">
           <label for="lightness">Lightness</label>
           <input type="range" id="lightness" min="0" max="100">
-          <label for="opacity">Opacity</label>
-          <input type="range" id="opacity" min="0" max="1" step="0.01">
           <label for="spacing">Spacing</label>
           <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
           <label for="padding">Padding</label>
@@ -359,4 +348,4 @@
         </div>
         <div id="overlay"></div>
       </div>
-    `;I(F);B(F)};document.addEventListener("DOMContentLoaded",b)})();
+    `;R(H);I(H)};document.addEventListener("DOMContentLoaded",b)})();

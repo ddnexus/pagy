@@ -28,14 +28,14 @@ type Presets = { [key: string]: string };
 
   const contentPadding = 16;
 
-  const panelInit = (shadowRoot: ShadowRoot) => {
-    const overlay    = <HTMLElement>shadowRoot.getElementById('overlay');
-    const panel      = <HTMLElement>shadowRoot.getElementById('panel');
-    const topBar     = <HTMLElement>shadowRoot.getElementById('top-bar');
-    const toggle     = <HTMLElement>shadowRoot.getElementById('toggle');
-    const controlsDiv = <HTMLElement>shadowRoot.getElementById('controls');
-    const helpIcon   = <HTMLElement>shadowRoot.getElementById('help-icon');
-    const helpDiv    = <HTMLElement>shadowRoot.getElementById('help');
+  const panelInit = (shadow: ShadowRoot) => {
+    const overlay     = <HTMLElement>shadow.getElementById('overlay');
+    const panel       = <HTMLElement>shadow.getElementById('panel');
+    const topBar      = <HTMLElement>shadow.getElementById('top-bar');
+    const toggle      = <HTMLElement>shadow.getElementById('toggle');
+    const controlsDiv = <HTMLElement>shadow.getElementById('controls');
+    const helpIcon    = <HTMLElement>shadow.getElementById('help-icon');
+    const helpDiv     = <HTMLElement>shadow.getElementById('help');
 
     // Panel position
     const getPanelPosition = () => {
@@ -133,7 +133,6 @@ type Presets = { [key: string]: string };
          controlsDiv.style.display = 'none';
          helpDiv.style.display = 'none';
        } else {
-         helpDiv.style.display = 'block';
          controlsDiv.style.display = 'grid';
        }
      }
@@ -153,7 +152,7 @@ type Presets = { [key: string]: string };
     });
   }
 
-  const tweakerInit = (shadowRoot: ShadowRoot) => {
+  const tweakerInit = (shadow: ShadowRoot) => {
     // Create override style tag as the last tag in <head>
     const styleTag = document.createElement('style');
     styleTag.id    = 'pagy-tweaker-override-style-tag';
@@ -164,7 +163,6 @@ type Presets = { [key: string]: string };
       hue:         { name: '--H',            unit: ''    },
       saturation:  { name: '--S',            unit: ''    },
       lightness:   { name: '--L',            unit: ''    },
-      opacity:     { name: '--opacity',      unit: ''    },
       spacing:     { name: '--spacing',      unit: 'rem' },
       padding:     { name: '--padding',      unit: 'rem' },
       rounding:    { name: '--rounding',     unit: 'rem' },
@@ -174,11 +172,11 @@ type Presets = { [key: string]: string };
       lineHeight:  { name: '--line-height',  unit: ''    },
     };
     for (const [id, css] of Object.entries(variables)) {
-      css.input = <HTMLInputElement>shadowRoot.getElementById(id);
+      css.input = <HTMLInputElement>shadow.getElementById(id);
     }
 
     const overrideStyleTag = <HTMLStyleElement>document.getElementById('pagy-tweaker-override-style-tag');
-    const overrideDisplay  = <HTMLTextAreaElement>shadowRoot.getElementById('override');
+    const overrideDisplay  = <HTMLTextAreaElement>shadow.getElementById('override');
     const updateCSS = () => {
       let override = `.pagy {\n`;
       Object.values(variables).forEach((css) => {
@@ -198,14 +196,13 @@ type Presets = { [key: string]: string };
         --H: 0;
         --S: 0;
         --L: 50;
-        --opacity: 1;
         --spacing: 0.125rem;
-        --rounding: 1.75rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 700;
+        --rounding: 1.75rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.75;
       }
       `,
       Dark: `
@@ -214,14 +211,13 @@ type Presets = { [key: string]: string };
         --H: 0;
         --S: 0;
         --L: 60;
-        --opacity: 1;
         --spacing: 0.125rem;
-        --rounding: 1.75rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 700;
+        --rounding: 1.75rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.75;
       }
       `,
       MidnighExpress: `
@@ -230,14 +226,13 @@ type Presets = { [key: string]: string };
         --H: 231;
         --S: 28;
         --L: 60;
-        --opacity: 1;
         --spacing: 0.1875rem;
-        --rounding: 0.375rem;
         --padding: 1rem;
-        --font-size: 1rem;
-        --line-height: 1.25;
-        --font-weight: 450;
+        --rounding: 0.375rem;
         --border-width: 0rem;
+        --font-size: 1rem;
+        --font-weight: 450;
+        --line-height: 1.25;
       }
       `,
       Pilloween:` 
@@ -246,14 +241,13 @@ type Presets = { [key: string]: string };
         --H: 10;
         --S: 80;
         --L: 50;
-        --opacity: 1;
         --spacing: 0.375rem;
-        --rounding: 1.125rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.5;
-        --font-weight: 700;
+        --rounding: 1.125rem;
         --border-width: 0.0625rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 1.5;
       }
       `,
       Peppermint:`
@@ -262,14 +256,13 @@ type Presets = { [key: string]: string };
         --H: 78;
         --S: 70;
         --L: 38;
-        --opacity: 1;
         --spacing: 0.1875rem;
-        --rounding: 0.75rem;
         --padding: 0.625rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 550;
+        --rounding: 0.75rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 550;
+        --line-height: 1.75;
       }
       `,
       CocoaBeans:`
@@ -278,14 +271,13 @@ type Presets = { [key: string]: string };
         --H: 27;
         --S: 63;
         --L: 17;
-        --opacity: 1;
         --spacing: 0.0625rem;
-        --rounding: 1.125rem;
         --padding: 0.5rem;
-        --font-size: 0.875rem;
-        --line-height: 2.5;
-        --font-weight: 700;
+        --rounding: 1.125rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 600;
+        --line-height: 2.5;
       }
       `,
       PurpleStripe: `
@@ -294,14 +286,13 @@ type Presets = { [key: string]: string };
         --H: 255;
         --S: 63;
         --L: 39;
-        --opacity: 1;
         --spacing: 0rem;
-        --rounding: 0rem;
         --padding: 0.875rem;
-        --font-size: 0.875rem;
-        --line-height: 1.5;
-        --font-weight: 300;
+        --rounding: 0rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 300;
+        --line-height: 1.5;
       }
       `,
       GhostInThought: `
@@ -310,14 +301,13 @@ type Presets = { [key: string]: string };
         --H: 174;
         --S: 40;
         --L: 70;
-        --opacity: 1;
         --spacing: 0.125rem;
-        --rounding: 1.125rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 450;
+        --rounding: 1.125rem;
         --border-width: 0rem;
+        --font-size: 0.875rem;
+        --font-weight: 450;
+        --line-height: 1.75;
       }
       `,
       VintageScent:`
@@ -326,18 +316,17 @@ type Presets = { [key: string]: string };
         --H: 51;
         --S: 27;
         --L: 64;
-        --opacity: 1;
         --spacing: 0.1875rem;
-        --rounding: 0.75rem;
         --padding: 0.75rem;
-        --font-size: 0.875rem;
-        --line-height: 1.75;
-        --font-weight: 300;
+        --rounding: 0.75rem;
         --border-width: 0.0625rem;
+        --font-size: 0.875rem;
+        --font-weight: 300;
+        --line-height: 1.75;
       }
       `
     };
-    const presetMenu = <HTMLSelectElement>shadowRoot.getElementById('preset-menu');
+    const presetMenu = <HTMLSelectElement>shadow.getElementById('preset-menu');
     // Setup preset options
     for (const presetName in presets) {
       const option       = document.createElement('option');
@@ -386,11 +375,26 @@ type Presets = { [key: string]: string };
     const host = document.createElement('div');
     host.id    = 'pagy-tweaker-host';
     document.body.appendChild(host);
+    // Font links
+    [{ rel: "preconnect", href: "https://fonts.googleapis.com" },
+     { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "anonymous" },
+     { href: "https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap", rel: "stylesheet" }
+    ].forEach((linkConfig) => {
+      const link = document.createElement("link");
+      Object.entries(linkConfig).forEach(([attr, value]) => {
+        link.setAttribute(attr, value);
+      });
+      document.head.appendChild(link);
+    });
+    // Append the gem updated pagy.css, to override user app
+    const style   = document.createElement('style');
+    style.id      = 'pagy-tweaker-style-tag';
+    const element = document.getElementById('pagy-tweaker')
+    style.textContent = B64Decode(<string>element!.getAttribute("data-pagy-css"));
+    document.head.appendChild(style);
+
     const shadow     = host.attachShadow({ mode: 'open' });
     shadow.innerHTML = `
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
       <style>
         :host {
           --base-color: #505050;
@@ -401,22 +405,22 @@ type Presets = { [key: string]: string };
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0); /* Transparent */
+          background: rgba(0, 0, 0, 0);
           cursor: move;
-          z-index: 10; /* Make sure it's on top of the panel */
-          display: none; /* Initially hidden */
+          z-index: 10;
+          display: none;
         }
         #panel {
           accent-color: var(--base-color);
-          font-family: 'Nunito Sans', sans-serif;
+          font-family: 'Nunito Sans', sans-serif !important;
           width: 350px;
           box-sizing: border-box;
           box-shadow: 12px 12px 25px 0 rgba(0,0,0,0.3);
           position: fixed;
           z-index: 1000;
         }
-        pre, code, kbd, samp {
-          font-family: 'Ubuntu Sans Mono', monospace;
+        #panel pre, #panel code, #panel kbd, #panel samp {
+          font-family: 'Ubuntu Sans Mono', monospace !important;
         }
         #top-bar {
           border-top-left-radius: 5px;
@@ -480,6 +484,18 @@ type Presets = { [key: string]: string };
           white-space: nowrap;
           position: relative;
         }
+        #brightness {
+          margin: 0 2px;
+        }
+        #override {
+          font-family: "Ubuntu Sans Mono", monospace !important;
+          font-size: .8rem;
+          font-weight: 400;
+          line-height: 1.1;
+          height: 185px;
+          resize: vertical;
+          margin: 2px;
+        }
         #help-icon {
           width: 23px;
           height: 23px;
@@ -505,6 +521,9 @@ type Presets = { [key: string]: string };
           margin-top: 0;
           margin-bottom: .2rem;
         }
+        #help > h4:first-child {
+          margin-top: 0;
+        }
         #help h4 {
           text-align: right;
           padding: 4px 8px;
@@ -528,18 +547,6 @@ type Presets = { [key: string]: string };
           margin-bottom: .15rem;
           margin-left: 1rem;
         }
-        #brightness {
-          margin: 0 2px;
-        }
-        #override {
-          font-family: "Ubuntu Sans Mono", monospace;
-          font-size: .8rem;
-          font-weight: 400;
-          line-height: 1.25;
-          height: 235px;
-          resize: vertical;
-          margin: 2px;
-        }
       </style>
       <div id="panel">
         <div id="top-bar">
@@ -561,8 +568,6 @@ type Presets = { [key: string]: string };
           <input type="range" id="saturation" min="0" max="100">
           <label for="lightness">Lightness</label>
           <input type="range" id="lightness" min="0" max="100">
-          <label for="opacity">Opacity</label>
-          <input type="range" id="opacity" min="0" max="1" step="0.01">
           <label for="spacing">Spacing</label>
           <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
           <label for="padding">Padding</label>
@@ -614,6 +619,7 @@ type Presets = { [key: string]: string };
         <div id="overlay"></div>
       </div>
     `;
+
     tweakerInit(shadow);
     panelInit(shadow);
   };

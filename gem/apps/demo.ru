@@ -152,9 +152,6 @@ class PagyDemo < Sinatra::Base
         <script>
           window.addEventListener("load", Pagy.init);
         </script>
-        <% if name&.match(/pagy|tailwind/) && ENV["CY_TEST"] != "true" %>
-          <%= Pagy.tweaker_tag %>
-        <% end %>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%= erb :"#{name}_head" if defined?(name) %>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -280,12 +277,6 @@ class PagyDemo < Sinatra::Base
           .pagy-bootstrap .pagination {
             margin: 0;
           }
-          <% if name&.match(/pagy|tailwind/) %>
-           /*  black/white backdrop color based on --B */
-            .pagy {
-              background-color: hsl(0 0 calc(100 * var(--B)));
-            }
-          <% end %>
         </style>
         <%# MASK_STYLE %>
       </head>
@@ -307,14 +298,24 @@ class PagyDemo < Sinatra::Base
     HTML
   end
 
+  TWEAKER_HEAD = <<~ERB
+    <%= Pagy.tweaker_tag if ENV["CY_TEST"] != "true"%>
+    <style>
+      /* black/white backdrop color based on --B */
+      .pagy { background-color: hsl(0 0 calc(100 * var(--B))); }
+    </style>
+  ERB
+
   template :pagy_head do
-    <<~HTML
-      <link rel="stylesheet" href="/stylesheet/pagy.css">
-    HTML
+    <<~ERB
+      #{TWEAKER_HEAD}
+      <!-- link rel="stylesheet" href="/stylesheet/pagy.css" -->
+    ERB
   end
 
   template :tailwind_head do
     <<~ERB
+      #{TWEAKER_HEAD}
       <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
       <style type="text/tailwindcss">
         <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>
@@ -378,16 +379,14 @@ class PagyDemo < Sinatra::Base
                                         aria_label: 'Pages inpup_nav_js') %>
           <%= highlight(html) %>
 
-          <% if name&.match(/pagy|tailwind/) %>
-            <h2>@pagy.limit_tag_js</h2>
-            <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
-            <%= highlight(html) %>
-          <% end %>
+          <h2>@pagy.limit_tag_js</h2>
+          <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
+          <%= highlight(html) %>
 
           <h2>@pagy.info_tag</h2>
           <%= html = @pagy.info_tag(id: 'pagy-info') %>
           <%= highlight(html) %>
-                <br><br>
+          <br><br> <!-- bulma fix -->
         </div>
       </div>
     ERB

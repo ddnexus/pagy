@@ -18,8 +18,9 @@ class Pagy
     end
 
     def tweaker_tag
-      %(<script id="pagy-tweaker">
-        #{ROOT.join('javascript', 'tweaker.js').read}
+      css = ROOT.join('stylesheet/pagy.css').read
+      %(<script id="pagy-tweaker" data-pagy-css="#{B64.encode(css)}">
+        #{ROOT.join('javascript/tweaker.js').read}
       </script>)
     end
   end
