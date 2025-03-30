@@ -298,24 +298,24 @@ class PagyDemo < Sinatra::Base
     HTML
   end
 
-  TWEAKER_HEAD = <<~ERB
-    <%= Pagy.tweaker_tag if ENV["CY_TEST"] != "true"%>
+  STYLIST_HEAD = <<~ERB
+    <%= Pagy.stylist_tag if ENV["CY_TEST"] != "true"%>
     <style>
       /* black/white backdrop color based on --B */
-      .pagy { background-color: hsl(0 0 calc(100 * var(--B))); }
+      .pagy { background-color: hsl(0 0 calc(100 * var(--B))) !important; }
     </style>
   ERB
 
   template :pagy_head do
     <<~ERB
-      #{TWEAKER_HEAD}
+      #{STYLIST_HEAD}
       <!-- link rel="stylesheet" href="/stylesheet/pagy.css" -->
     ERB
   end
 
   template :tailwind_head do
     <<~ERB
-      #{TWEAKER_HEAD}
+      #{STYLIST_HEAD}
       <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
       <style type="text/tailwindcss">
         <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>

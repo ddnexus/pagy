@@ -17,10 +17,10 @@ class Pagy
       (names - targets).each { |filename| FileUtils.rm_f(File.join(destination, filename)) }
     end
 
-    def tweaker_tag
+    def stylist_tag
       css = ROOT.join('stylesheet/pagy.css').read
-      %(<script id="pagy-tweaker" data-pagy-css="#{B64.encode(css)}">
-        #{ROOT.join('javascript/tweaker.js').read}
+      %(<script id="pagy-stylist" data-pagy-stylist-default="#{B64.encode(css)}">
+        #{ROOT.join('javascript/stylist.js').read}
       </script>)
     end
   end

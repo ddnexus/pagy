@@ -1,23 +1,12 @@
-type VariableMap = {
-  [key: string]: {
-    name:   string;
-    unit:   string;
-    input?: HTMLInputElement;
-  };
-};
-type Presets = { [key: string]: string };
-
 (() => {
-  // Cookie handling
-  const B64SafeEncode = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode)))
-                                            .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
-  const B64Decode     = (base64:string) => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
-  const deleteCookie  = (name:string) => (document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`);
-  const setCookie     = (name:string, value:string) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
-  const getCookie     = (name:string):string | null => {
-    const cookieName  = `${name}=`;
-    const cookieArray = document.cookie.split(';');
-    for (let i = 0; i < cookieArray.length; i++) {
+  const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
+  const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
+  const deleteCookie = (name) => document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  const setCookie = (name, value) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
+  const getCookie = (name) => {
+    const cookieName = `${name}=`;
+    const cookieArray = document.cookie.split(";");
+    for (let i = 0;i < cookieArray.length; i++) {
       let cookie = cookieArray[i].trim();
       if (cookie.startsWith(cookieName)) {
         return B64Decode(cookie.substring(cookieName.length));
@@ -25,171 +14,145 @@ type Presets = { [key: string]: string };
     }
     return null;
   };
-
   const contentPadding = 16;
-
-  const panelInit = (shadow: ShadowRoot) => {
-    const overlay     = <HTMLElement>shadow.getElementById('overlay');
-    const panel       = <HTMLElement>shadow.getElementById('panel');
-    const topBar      = <HTMLElement>shadow.getElementById('top-bar');
-    const toggle      = <HTMLElement>shadow.getElementById('toggle');
-    const controlsDiv = <HTMLElement>shadow.getElementById('controls');
-    const helpIcon    = <HTMLElement>shadow.getElementById('help-icon');
-    const helpDiv     = <HTMLElement>shadow.getElementById('help');
-
-    // Panel position
+  const panelInit = (shadow) => {
+    const overlay = shadow.getElementById("overlay");
+    const panel = shadow.getElementById("panel");
+    const topBar = shadow.getElementById("top-bar");
+    const controlsToggle = shadow.getElementById("controls-toggle");
+    const controlsDiv = shadow.getElementById("controls");
+    const helpIcon = shadow.getElementById("help-icon");
+    const helpDiv = shadow.getElementById("help");
     const getPanelPosition = () => {
-      const position = getCookie('pagy-tweaker-position');
+      const position = getCookie("pagy-stylist-position");
       if (position) {
-        const [left, top] = position.split(',');
+        const [left, top] = position.split(",");
         return { left: parseInt(left), top: parseInt(top) };
       }
       return null;
     };
-    const setPanelPosition = (left: number, top: number) => {
-      setCookie('pagy-tweaker-position', `${left},${top}`);
+    const setPanelPosition = (left, top) => {
+      setCookie("pagy-stylist-position", `${left},${top}`);
     };
-
     const keepPanelInView = () => {
       const left = parseInt(panel.style.left);
-      const top  = parseInt(panel.style.top);
-
+      const top = parseInt(panel.style.top);
       const panelRect = panel.getBoundingClientRect();
-      // Check if panel is off-screen horizontally
       if (panelRect.left < 0) {
-        panel.style.left = '0px';
+        panel.style.left = "0px";
       } else if (panelRect.right > window.innerWidth) {
         panel.style.left = `${window.innerWidth - panel.offsetWidth}px`;
       }
-      // Check if panel is off-screen vertically
       if (panelRect.top < 0) {
-        panel.style.top = '0px';
+        panel.style.top = "0px";
       } else if (panelRect.bottom > window.innerHeight) {
         panel.style.top = `${window.innerHeight - panel.offsetHeight}px`;
       }
-      // Ensure the top bar is in view
       if (panelRect.top < 0 && panel.offsetHeight < window.innerHeight) {
-        panel.style.top = '0px';
+        panel.style.top = "0px";
       }
       setPanelPosition(left, top);
     };
-    window.addEventListener('resize', keepPanelInView);
-
+    window.addEventListener("resize", keepPanelInView);
     const position = getPanelPosition();
     if (position) {
       panel.style.left = `${position.left}px`;
-      panel.style.top  = `${position.top}px`;
+      panel.style.top = `${position.top}px`;
     } else {
       panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
-      panel.style.top  = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
+      panel.style.top = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
       keepPanelInView();
     }
-
-    // Panel dragging
-    let offsetX  = 0;
-    let offsetY  = 0;
+    let offsetX = 0;
+    let offsetY = 0;
     let dragging = false;
-
-    topBar.addEventListener('mousedown', (e) => {
-      if ((<HTMLElement>e.target).closest('#preset-menu')) return;
-
+    topBar.addEventListener("mousedown", (e) => {
+      if (e.target.closest("#preset-menu"))
+        return;
       dragging = true;
-      offsetX  = e.clientX - panel.offsetLeft;
-      offsetY  = e.clientY - panel.offsetTop;
+      offsetX = e.clientX - panel.offsetLeft;
+      offsetY = e.clientY - panel.offsetTop;
     });
-    panel.addEventListener('mousedown', (e) => {
-      if (!(e.target === topBar || e.ctrlKey || e.metaKey)) return;
-
+    panel.addEventListener("mousedown", (e) => {
+      if (!(e.target === topBar || e.ctrlKey || e.metaKey))
+        return;
       dragging = true;
-      offsetX  = e.clientX - panel.offsetLeft;
-      offsetY  = e.clientY - panel.offsetTop;
+      offsetX = e.clientX - panel.offsetLeft;
+      offsetY = e.clientY - panel.offsetTop;
     });
-    document.addEventListener('mousemove', (e) => {
-      if (!dragging) return;
-
+    document.addEventListener("mousemove", (e) => {
+      if (!dragging)
+        return;
       panel.style.left = `${e.clientX - offsetX}px`;
-      panel.style.top  = `${e.clientY - offsetY}px`;
+      panel.style.top = `${e.clientY - offsetY}px`;
       setPanelPosition(e.clientX - offsetX, e.clientY - offsetY);
     });
-    document.addEventListener('mouseup', () => dragging = false);
-
-    // Add event listeners to control overlay visibility based on ctrl key press
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener("mouseup", () => dragging = false);
+    document.addEventListener("keydown", (e) => {
       if (e.ctrlKey || e.metaKey) {
-        overlay.style.display = 'block'; // Show overlay
-        overlay.style.width   = `${panel.offsetWidth}px`;  // Match panel width
-        overlay.style.height  = `${panel.offsetHeight}px`; // Match panel height
+        overlay.style.display = "block";
+        overlay.style.width = `${panel.offsetWidth}px`;
+        overlay.style.height = `${panel.offsetHeight}px`;
       }
     });
-    document.addEventListener('keyup', (e) => {
+    document.addEventListener("keyup", (e) => {
       if (!e.ctrlKey && !e.metaKey) {
-        overlay.style.display = 'none'; // Hide overlay
+        overlay.style.display = "none";
       }
     });
-
-    // Control Toggle
-     const toggleControlDiv = () => {
-       if (controlsDiv.style.display !== 'none' || helpDiv.style.display !== 'none') {
-         controlsDiv.style.display = 'none';
-         helpDiv.style.display = 'none';
-       } else {
-         controlsDiv.style.display = 'grid';
-       }
-     }
-
-    toggle.addEventListener('click', toggleControlDiv);
-    topBar.addEventListener('dblclick', toggleControlDiv);
-
-    // Help Toggle
-    helpIcon.addEventListener('click', () => {
-      helpDiv.style.display    = 'block';
-      helpDiv.style.height     = `${controlsDiv.clientHeight - contentPadding * 2}px`; // Match panel height
-      controlsDiv.style.display = 'none';
+    const toggleControlDiv = () => {
+      if (controlsDiv.style.display !== "none" || helpDiv.style.display !== "none") {
+        controlsDiv.style.display = "none";
+        helpDiv.style.display = "none";
+      } else {
+        controlsDiv.style.display = "grid";
+      }
+    };
+    controlsToggle.addEventListener("click", toggleControlDiv);
+    topBar.addEventListener("dblclick", toggleControlDiv);
+    helpIcon.addEventListener("click", () => {
+      helpDiv.style.display = "block";
+      helpDiv.style.height = `${controlsDiv.clientHeight - contentPadding * 2}px`;
+      controlsDiv.style.display = "none";
     });
-    helpDiv.addEventListener('click', () => {
-      helpDiv.style.display    = 'none';
-      controlsDiv.style.display = 'grid';
+    helpDiv.addEventListener("click", () => {
+      helpDiv.style.display = "none";
+      controlsDiv.style.display = "grid";
     });
-  }
-
-  const tweakerInit = (shadow: ShadowRoot) => {
-    // Create override style tag as the last tag in <head>
-    const styleTag = document.createElement('style');
-    styleTag.id    = 'pagy-tweaker-override-style-tag';
+  };
+  const stylistInit = (shadow) => {
+    const styleTag = document.createElement("style");
+    styleTag.id = "pagy-stylist-override";
     document.head.appendChild(styleTag);
-
-    let variables:VariableMap = {
-      brightness:  { name: '--B',            unit: ''    },
-      hue:         { name: '--H',            unit: ''    },
-      saturation:  { name: '--S',            unit: ''    },
-      lightness:   { name: '--L',            unit: ''    },
-      spacing:     { name: '--spacing',      unit: 'rem' },
-      padding:     { name: '--padding',      unit: 'rem' },
-      rounding:    { name: '--rounding',     unit: 'rem' },
-      borderWidth: { name: '--border-width', unit: 'rem' },
-      fontSize:    { name: '--font-size',    unit: 'rem' },
-      fontWeight:  { name: '--font-weight',  unit: ''    },
-      lineHeight:  { name: '--line-height',  unit: ''    },
+    let variables = {
+      brightness: { name: "--B", unit: "" },
+      hue: { name: "--H", unit: "" },
+      saturation: { name: "--S", unit: "" },
+      lightness: { name: "--L", unit: "" },
+      spacing: { name: "--spacing", unit: "rem" },
+      padding: { name: "--padding", unit: "rem" },
+      rounding: { name: "--rounding", unit: "rem" },
+      borderWidth: { name: "--border-width", unit: "rem" },
+      fontSize: { name: "--font-size", unit: "rem" },
+      fontWeight: { name: "--font-weight", unit: "" },
+      lineHeight: { name: "--line-height", unit: "" }
     };
-    for (const [id, css] of Object.entries(variables)) {
-      css.input = <HTMLInputElement>shadow.getElementById(id);
+    for (const [id, v] of Object.entries(variables)) {
+      v.input = shadow.getElementById(id);
     }
-
-    const overrideStyleTag = <HTMLStyleElement>document.getElementById('pagy-tweaker-override-style-tag');
-    const overrideDisplay  = <HTMLTextAreaElement>shadow.getElementById('override');
-    const updateCSS = () => {
+    const updateStyle = () => {
       let override = `.pagy {\n`;
-      Object.values(variables).forEach((css) => {
-        override += `  ${css.name}: ${css.input!.value}${css.unit};\n`;
+      Object.values(variables).forEach((v) => {
+        override += `  ${v.name}: ${v.input.value}${v.unit};\n`;
       });
-      override += '}';
-      overrideDisplay.value        = override;
-      overrideStyleTag.textContent = override;
-      setCookie('pagy-tweaker-override', override);
+      override += "}";
+      const overrideArea = shadow.getElementById("override");
+      const overrideStyle = document.getElementById("pagy-stylist-override");
+      overrideArea.value = override;
+      overrideStyle.textContent = override;
+      setCookie("pagy-stylist-override", override);
     };
-
-    // PRESETS
-    const presets:Presets = {
+    const presets = {
       Default: `
       .pagy {
         --B: 1;
@@ -235,10 +198,10 @@ type Presets = { [key: string]: string };
         --line-height: 1.25;
       }
       `,
-      Pilloween:` 
+      Pilloween: ` 
       .pagy {
         --B: -1;
-        --H: 10;
+        --H: 20;
         --S: 80;
         --L: 50;
         --spacing: 0.375rem;
@@ -250,7 +213,7 @@ type Presets = { [key: string]: string };
         --line-height: 1.5;
       }
       `,
-      Peppermint:`
+      Peppermint: `
       .pagy {
         --B: 1;
         --H: 78;
@@ -265,7 +228,7 @@ type Presets = { [key: string]: string };
         --line-height: 1.75;
       }
       `,
-      CocoaBeans:`
+      CocoaBeans: `
       .pagy {
         --B: 1;
         --H: 27;
@@ -310,7 +273,7 @@ type Presets = { [key: string]: string };
         --line-height: 1.75;
       }
       `,
-      VintageScent:`
+      VintageScent: `
       .pagy {
         --B: 1;
         --H: 51;
@@ -326,59 +289,50 @@ type Presets = { [key: string]: string };
       }
       `
     };
-    const presetMenu = <HTMLSelectElement>shadow.getElementById('preset-menu');
-    // Setup preset options
+    const presetMenu = shadow.getElementById("preset-menu");
     for (const presetName in presets) {
-      const option       = document.createElement('option');
-      option.value       = presetName;
+      const option = document.createElement("option");
+      option.value = presetName;
       option.textContent = presetName;
       presetMenu.appendChild(option);
     }
-
-    const applyPreset = (name:string | null) => {
-      const css = name
-                  ? (deleteCookie('pagy-tweaker-override'), presets[name])
-                  : getCookie('pagy-tweaker-override');
+    const applyPreset = (name) => {
+      const css = name ? (deleteCookie("pagy-stylist-override"), presets[name]) : getCookie("pagy-stylist-override");
       css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
-        let [name, value] = match.split(':');
-        name  = name.trim();
-        value = value.trim().replace(/[a-zA-Z%]+$/, '');
-        for (const css of Object.values(variables)) {
-          if (css.name === name) {
-            css.input!.value = value;
+        let [name, value] = match.split(":");
+        name = name.trim();
+        value = value.trim().replace(/[a-zA-Z%]+$/, "");
+        for (const v of Object.values(variables)) {
+          if (v.name === name) {
+            v.input.value = value;
             break;
           }
         }
       });
-      setCookie('pagy-tweaker-preset', name || '');
-      updateCSS();
+      setCookie("pagy-stylist-preset", name || "");
+      updateStyle();
     };
-    presetMenu.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
-
-    // Event listeners
+    presetMenu.addEventListener("change", (e) => applyPreset(e.target.value));
     const deselectDropdown = () => {
-      presetMenu.value = '';
-      setCookie('pagy-tweaker-preset', '');
+      presetMenu.value = "";
+      setCookie("pagy-stylist-preset", "");
     };
-    Object.values(variables).forEach((css) => {
-      css.input!.addEventListener('input', updateCSS);
-      css.input!.addEventListener('input', deselectDropdown);
+    Object.values(variables).forEach((v) => {
+      v.input.addEventListener("input", updateStyle);
+      v.input.addEventListener("input", deselectDropdown);
     });
-
-    // Start
-    const preset     = getCookie('pagy-tweaker-preset') ?? 'Default';
+    const preset = getCookie("pagy-stylist-preset") ?? "Default";
     presetMenu.value = preset;
     applyPreset(preset);
   };
-
   const attachShadow = () => {
-    const host = document.createElement('div');
-    host.id    = 'pagy-tweaker-host';
+    const host = document.createElement("div");
+    host.id = "pagy-stylist-host";
     document.body.appendChild(host);
-    // Font links
-    [{ rel: "preconnect", href: "https://fonts.googleapis.com" },
-     { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "anonymous" },
-     { href: "https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap", rel: "stylesheet" }
+    [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "anonymous" },
+      { href: "https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap", rel: "stylesheet" }
     ].forEach((linkConfig) => {
       const link = document.createElement("link");
       Object.entries(linkConfig).forEach(([attr, value]) => {
@@ -386,14 +340,12 @@ type Presets = { [key: string]: string };
       });
       document.head.appendChild(link);
     });
-    // Append the gem updated pagy.css, to override user app
-    const style   = document.createElement('style');
-    style.id      = 'pagy-tweaker-style-tag';
-    const element = document.getElementById('pagy-tweaker')
-    style.textContent = B64Decode(<string>element!.getAttribute("data-pagy-css"));
+    const style = document.createElement("style");
+    style.id = "pagy-stylist-default";
+    const element = document.getElementById("pagy-stylist");
+    style.textContent = B64Decode(element.getAttribute("data-pagy-stylist-default"));
     document.head.appendChild(style);
-
-    const shadow     = host.attachShadow({ mode: 'open' });
+    const shadow = host.attachShadow({ mode: "open" });
     shadow.innerHTML = `
       <style>
         :host {
@@ -436,7 +388,7 @@ type Presets = { [key: string]: string };
         #title {
           font-weight: 600;
         }
-        #toggle {
+        #controls-toggle {
           margin-right: 12px;
           line-height: 1em;
           user-select: none;
@@ -444,7 +396,7 @@ type Presets = { [key: string]: string };
           position: relative;
           z-index: 1
         }
-        #toggle:before {
+        #controls-toggle:before {
           content: '';
           position: absolute;
           top: 50%;
@@ -457,7 +409,7 @@ type Presets = { [key: string]: string };
           opacity: 0;
           z-index: -1;
         }
-        #toggle:hover:before {
+        #controls-toggle:hover:before {
           opacity: .16;
         }
         #preset-menu {
@@ -550,7 +502,7 @@ type Presets = { [key: string]: string };
       </style>
       <div id="panel">
         <div id="top-bar">
-          <span id="toggle">☰</span><span id="title">PagyTweaker</span>
+          <span id="controls-toggle">\u2630</span><span id="title">Pagy Stylist</span>
           <label for="preset-menu" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
           <select id="preset-menu">
             <option value="" disabled>Presets...</option>
@@ -589,11 +541,11 @@ type Presets = { [key: string]: string };
           <h4>Panel</h4>
           <dl>
             <dt>Install</dt>
-              <dd><code><%== Pagy.tweaker_tag %></code></dd>
+              <dd><code><%== Pagy.stylist_tag %></code></dd>
             <dt>Move</dt>
               <dd>Drag on the TOP Bar or anywhere with <code>Ctrl</code> or <code>Cmd</code> pressed.</dd>
             <dt>Collapse/Expand</dt>
-              <dd>Click on the <b>☰</b> icon or double-click on the Top Bar.</dd>
+              <dd>Click on the <b>\u2630</b> icon or double-click on the Top Bar.</dd>
           </dl>
           <h4>Customizing</h4>
           <p>You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
@@ -619,9 +571,8 @@ type Presets = { [key: string]: string };
         <div id="overlay"></div>
       </div>
     `;
-
-    tweakerInit(shadow);
     panelInit(shadow);
+    stylistInit(shadow);
   };
-  document.addEventListener('DOMContentLoaded', attachShadow);
+  document.addEventListener("DOMContentLoaded", attachShadow);
 })();
