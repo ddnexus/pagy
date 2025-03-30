@@ -1,4 +1,12 @@
 (() => {
+  const icons = "help,tune,unfold_less,unfold_more,visibility,visibility_off";
+  const linkTags = `
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300&icon_names=${icons}&display=block">
+  `;
+  document.head.insertAdjacentHTML("beforeend", linkTags);
   const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
   const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const deleteCookie = (name) => document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
@@ -16,13 +24,7 @@
   };
   const contentPadding = 16;
   const panelInit = (shadow) => {
-    const overlay = shadow.getElementById("overlay");
     const panel = shadow.getElementById("panel");
-    const topBar = shadow.getElementById("top-bar");
-    const controlsToggle = shadow.getElementById("controls-toggle");
-    const controlsDiv = shadow.getElementById("controls");
-    const helpIcon = shadow.getElementById("help-icon");
-    const helpDiv = shadow.getElementById("help");
     const getPanelPosition = () => {
       const position = getCookie("pagy-stylist-position");
       if (position) {
@@ -66,15 +68,9 @@
     let offsetX = 0;
     let offsetY = 0;
     let dragging = false;
+    const topBar = shadow.getElementById("top-bar");
     topBar.addEventListener("mousedown", (e) => {
       if (e.target.closest("#preset-menu"))
-        return;
-      dragging = true;
-      offsetX = e.clientX - panel.offsetLeft;
-      offsetY = e.clientY - panel.offsetTop;
-    });
-    panel.addEventListener("mousedown", (e) => {
-      if (!(e.target === topBar || e.ctrlKey || e.metaKey))
         return;
       dragging = true;
       offsetX = e.clientX - panel.offsetLeft;
@@ -88,36 +84,48 @@
       setPanelPosition(e.clientX - offsetX, e.clientY - offsetY);
     });
     document.addEventListener("mouseup", () => dragging = false);
-    document.addEventListener("keydown", (e) => {
-      if (e.ctrlKey || e.metaKey) {
-        overlay.style.display = "block";
-        overlay.style.width = `${panel.offsetWidth}px`;
-        overlay.style.height = `${panel.offsetHeight}px`;
-      }
-    });
-    document.addEventListener("keyup", (e) => {
-      if (!e.ctrlKey && !e.metaKey) {
-        overlay.style.display = "none";
-      }
-    });
-    const toggleControlDiv = () => {
-      if (controlsDiv.style.display !== "none" || helpDiv.style.display !== "none") {
-        controlsDiv.style.display = "none";
-        helpDiv.style.display = "none";
+    const contentChk = shadow.getElementById("content-chk");
+    const contentIcon = shadow.getElementById("content-icon");
+    const contentDiv = shadow.getElementById("content");
+    contentChk.addEventListener("change", () => {
+      if (contentChk.checked) {
+        contentIcon.textContent = "unfold_less";
+        contentDiv.style.display = "block";
       } else {
-        controlsDiv.style.display = "grid";
+        contentIcon.textContent = "unfold_more";
+        contentDiv.style.display = "none";
       }
-    };
-    controlsToggle.addEventListener("click", toggleControlDiv);
-    topBar.addEventListener("dblclick", toggleControlDiv);
-    helpIcon.addEventListener("click", () => {
-      helpDiv.style.display = "block";
-      helpDiv.style.height = `${controlsDiv.clientHeight - contentPadding * 2}px`;
-      controlsDiv.style.display = "none";
     });
-    helpDiv.addEventListener("click", () => {
-      helpDiv.style.display = "none";
-      controlsDiv.style.display = "grid";
+    const stylistChk = shadow.getElementById("stylist-chk");
+    const stylistIcon = shadow.getElementById("stylist-icon");
+    const stylistStyle = document.getElementById("pagy-stylist-default");
+    const stylistStyleOverride = document.getElementById("pagy-stylist-override");
+    stylistChk.addEventListener("change", () => {
+      if (stylistChk.checked) {
+        stylistIcon.textContent = "visibility_off";
+        stylistStyle.disabled = false;
+        stylistStyleOverride.disabled = false;
+      } else {
+        stylistIcon.textContent = "visibility";
+        stylistStyle.disabled = true;
+        stylistStyleOverride.disabled = true;
+      }
+    });
+    const controlsChk = shadow.getElementById("controls-chk");
+    const controlsIcon = shadow.getElementById("controls-icon");
+    const controlsDiv = shadow.getElementById("controls");
+    const helpDiv = shadow.getElementById("help");
+    controlsChk.addEventListener("change", () => {
+      if (controlsChk.checked) {
+        controlsIcon.textContent = "help";
+        helpDiv.style.display = "none";
+        controlsDiv.style.display = "grid";
+      } else {
+        controlsIcon.textContent = "tune";
+        helpDiv.style.display = "block";
+        helpDiv.style.height = `${controlsDiv.clientHeight - contentPadding * 2}px`;
+        controlsDiv.style.display = "none";
+      }
     });
   };
   const stylistInit = (shadow) => {
@@ -329,17 +337,6 @@
     const host = document.createElement("div");
     host.id = "pagy-stylist-host";
     document.body.appendChild(host);
-    [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "anonymous" },
-      { href: "https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap", rel: "stylesheet" }
-    ].forEach((linkConfig) => {
-      const link = document.createElement("link");
-      Object.entries(linkConfig).forEach(([attr, value]) => {
-        link.setAttribute(attr, value);
-      });
-      document.head.appendChild(link);
-    });
     const style = document.createElement("style");
     style.id = "pagy-stylist-default";
     const element = document.getElementById("pagy-stylist");
@@ -347,24 +344,15 @@
     document.head.appendChild(style);
     const shadow = host.attachShadow({ mode: "open" });
     shadow.innerHTML = `
+      ${linkTags}
       <style>
         :host {
           --base-color: #505050;
         }
-        #overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0);
-          cursor: move;
-          z-index: 10;
-          display: none;
-        }
         #panel {
           accent-color: var(--base-color);
           font-family: 'Nunito Sans', sans-serif !important;
+          font-display: block;
           width: 350px;
           box-sizing: border-box;
           box-shadow: 12px 12px 25px 0 rgba(0,0,0,0.3);
@@ -378,44 +366,47 @@
           border-top-left-radius: 5px;
           border-top-right-radius: 5px;
           background-color: var(--base-color);
-          padding: 4px 10px;
+          padding: 5px 12px;
           cursor: move;
           user-select: none;
           color: white;
           display: flex;
           align-items: center;
+          justify-content: space-between;
+        }
+        #top-bar label {
+          display: flex;
+          align-items: center;
+        }
+        .left-items {
+          display: flex;
+          align-items: center;
+        }
+        .right-items {
+          display: flex;
+          align-items: center;
+        }
+        .switch-icon {
+          font-size: 24px;
+          font-weight: 200;
+          cursor: pointer;
         }
         #title {
-          font-weight: 600;
+          font-weight: 500;
         }
-        #controls-toggle {
-          margin-right: 12px;
-          line-height: 1em;
-          user-select: none;
-          cursor: pointer;
-          position: relative;
-          z-index: 1
+        .right-items > *:not(:last-child) {
+          margin-right: 6px;
         }
-        #controls-toggle:before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: calc(100% + 14px);
-          height: calc(100% + 12px);
-          border-radius: 50%;
-          background-color: white;
-          opacity: 0;
-          z-index: -1;
+        .left-items > *:not(:first-child) {
+          margin-left: 4px;
         }
-        #controls-toggle:hover:before {
-          opacity: .16;
+        #top-bar label input[type="checkbox"] {
+          display: none;
         }
         #preset-menu {
-          margin-left: auto;
+          /*margin-left: 5px;*/
         }
-        .panel-content{
+        .content{
           line-height: 1.1;
           color: black;
           background-color: rgba(220,220,220,.6);
@@ -448,21 +439,14 @@
           resize: vertical;
           margin: 2px;
         }
-        #help-icon {
-          width: 23px;
-          height: 23px;
-          background-color: var(--base-color);
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 18px;
-          font-weight: 500;
-          font-family: 'Nunito Sans', sans-serif;
+        .help-icon {
+          font-size: 1rem;
+          vertical-align: -25%;
+          border-radius: 15%;
           color: white;
-          position: absolute;
-          bottom: 0;
-          left: 0;
+          background-color: var(--base-color);
+          margin-top: 0.2rem;
+          padding: 1px;
         }
         #help {
           display: none;
@@ -502,58 +486,79 @@
       </style>
       <div id="panel">
         <div id="top-bar">
-          <span id="controls-toggle">\u2630</span><span id="title">Pagy Stylist</span>
-          <label for="preset-menu" style="width:0;height:0;color:rgba(0,0,0,0);">&nbsp;</label>
-          <select id="preset-menu">
-            <option value="" disabled>Presets...</option>
-          </select>
+          <div class="left-items">
+            <span id="title">Pagy Stylist</span>
+          </div>
+          <div class="right-items">
+            <label for="controls-chk">
+              <input id="controls-chk" type="checkbox" checked>
+              <span class="material-symbols-outlined switch-icon" id="controls-icon">help</span>
+            </label>          
+            <label for="stylist-chk">
+              <input id="stylist-chk" type="checkbox" checked>
+              <span class="material-symbols-outlined switch-icon" id="stylist-icon">visibility_off</span>
+            </label>
+            <label for="content-chk" style="margin-left: -2px;">
+              <input id="content-chk" type="checkbox" checked>
+              <span class="material-symbols-outlined switch-icon" id="content-icon">unfold_less</span>
+            </label>
+            <label for="preset-menu">
+              <select id="preset-menu">
+                <option value="" disabled>Presets...</option>
+              </select>
+            </label>
+          </div>
         </div>
-        <div class="panel-content" id="controls">
-          <label for="brightness">Brightness</label>
-          <select id="brightness">
-            <option value="1">Light</option>
-            <option value="-1">Dark</option>
-          </select>
-          <label for="hue">Hue</label>
-          <input type="range" id="hue" min="0" max="360">
-          <label for="saturation">Saturation</label>
-          <input type="range" id="saturation" min="0" max="100">
-          <label for="lightness">Lightness</label>
-          <input type="range" id="lightness" min="0" max="100">
-          <label for="spacing">Spacing</label>
-          <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
-          <label for="padding">Padding</label>
-          <input type="range" id="padding" min="0" max="1.5" step="0.0625">
-          <label for="rounding">Rounding</label>
-          <input type="range" id="rounding" min="0" max="3" step="0.0625">
-          <label for="borderWidth">Border Width</label>
-          <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
-          <label for="fontSize">Font Size</label>
-          <input type="range" id="fontSize" min="0.75" max="2" step="0.0625">
-          <label for="fontWeight">Font Weight</label>
-          <input type="range" id="fontWeight" min="100" max="1000" step="50">
-          <label for="lineHeight">Line Height</label>
-          <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
-          <label for="override">CSS Override<span id="help-icon">?</span></label>
-          <textarea id="override" rows="5" cols="40" readonly></textarea>
-        </div>
-        <div id="help" class="panel-content">
+        <div id="content">
+          <div class="content" id="controls">
+            <label for="brightness">Brightness</label>
+            <select id="brightness">
+              <option value="1">Light</option>
+              <option value="-1">Dark</option>
+            </select>
+            <label for="hue">Hue</label>
+            <input type="range" id="hue" min="0" max="360">
+            <label for="saturation">Saturation</label>
+            <input type="range" id="saturation" min="0" max="100">
+            <label for="lightness">Lightness</label>
+            <input type="range" id="lightness" min="0" max="100">
+            <label for="spacing">Spacing</label>
+            <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
+            <label for="padding">Padding</label>
+            <input type="range" id="padding" min="0" max="1.5" step="0.0625">
+            <label for="rounding">Rounding</label>
+            <input type="range" id="rounding" min="0" max="3" step="0.0625">
+            <label for="borderWidth">Border Width</label>
+            <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
+            <label for="fontSize">Font Size</label>
+            <input type="range" id="fontSize" min="0.75" max="2" step="0.0625">
+            <label for="fontWeight">Font Weight</label>
+            <input type="range" id="fontWeight" min="100" max="1000" step="50">
+            <label for="lineHeight">Line Height</label>
+            <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
+            <label for="override">CSS Override</label>
+            <textarea id="override" rows="5" cols="40" readonly></textarea>
+          </div>
+          <div id="help" class="content">
           <h4>Panel</h4>
           <dl>
             <dt>Install</dt>
               <dd><code><%== Pagy.stylist_tag %></code></dd>
             <dt>Move</dt>
-              <dd>Drag on the TOP Bar or anywhere with <code>Ctrl</code> or <code>Cmd</code> pressed.</dd>
-            <dt>Collapse/Expand</dt>
-              <dd>Click on the <b>\u2630</b> icon or double-click on the Top Bar.</dd>
+              <dd>Drag on the TOP Bar.</dd>
+            <dt>Top Bar Icons</dt>
+           
+              <dd><ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                   <li><span class="material-symbols-outlined help-icon">unfold_less</span>
+                       <span class="material-symbols-outlined help-icon">unfold_more</span> Collapse/Expand the content</li>
+                   <li><span class="material-symbols-outlined help-icon">help</span>
+                       <span class="material-symbols-outlined help-icon">tune</span> Toggle the Help/Controls content</li>
+                   <li><span class="material-symbols-outlined help-icon">visibility</span>
+                       <span class="material-symbols-outlined help-icon">visibility_off</span> Show/Hide the Live Style</li>
+                
+                  </ul>
+              </dd>
           </dl>
-          <h4>Customizing</h4>
-          <p>You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
-            the <i>pagy.css</i> calculates all the other metrics.</p>
-          <p>Pick a Presets as a starting point, customize it with the controls,
-            and copy/paste the CSS Override in your Stylesheet.</p>
-          <p>Override the calculations for full control over the final style.</p>
-          <p><b>Important</b>: Do not link the <i>pagy.css</i> file. Copy its customized content in your CSS to avoid unwanted cosmetic changes on update.</p>
           <h4>Controls</h4>
           <dl>
             <dt>Presets dropdown</dt>
@@ -563,16 +568,23 @@
             <dt>Hue, Saturation, Lightness</dt>
               <dd>Adjust them to generate any color, however notice that the automatic calculations work better within certain ranges and combinations.</dd>
             <dt>Padding, Font Size, Line Height</dt>
-              <dd>You can control the relative dimensions of the items, through the interactions of these properties.</dd>
+              <dd>You can control the relative dimensions of the page links, through the interactions of these properties.</dd>
             <dt>Other Properties</dt>
               <dd>Self-explanatory.</dd>
           </dl>
+          <h4>Customizing</h4>
+          <p>You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
+            the <i>pagy.css</i> calculates all the other metrics.</p>
+          <p>Pick a Presets as a starting point, customize it with the controls,
+            and copy/paste the CSS Override in your Stylesheet.</p>
+          <p>Override the calculations for full control over the final style.</p>
+          <p><b>Important</b>: Do not link the <i>pagy.css</i> file. Copy its customized content in your CSS to avoid unwanted cosmetic changes on update.</p>
         </div>
-        <div id="overlay"></div>
+        </div>
       </div>
     `;
-    panelInit(shadow);
     stylistInit(shadow);
+    panelInit(shadow);
   };
   document.addEventListener("DOMContentLoaded", attachShadow);
 })();

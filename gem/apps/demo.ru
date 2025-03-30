@@ -309,7 +309,7 @@ class PagyDemo < Sinatra::Base
   template :pagy_head do
     <<~ERB
       #{STYLIST_HEAD}
-      <!-- link rel="stylesheet" href="/stylesheet/pagy.css" -->
+      <link rel="stylesheet" href="/stylesheet/pagy.css">
     ERB
   end
 
