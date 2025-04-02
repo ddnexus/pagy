@@ -298,8 +298,8 @@ class PagyDemo < Sinatra::Base
     HTML
   end
 
-  STYLIST_HEAD = <<~ERB
-    <%= Pagy.stylist_tag if ENV["CY_TEST"] != "true"%>
+  WAND_HEAD = <<~ERB
+    <%= Pagy.wand_tag if ENV["CY_TEST"] != "true"%>
     <style>
       /* black/white backdrop color based on --B */
       .pagy { background-color: hsl(0 0 calc(100 * var(--B))) !important; }
@@ -308,14 +308,14 @@ class PagyDemo < Sinatra::Base
 
   template :pagy_head do
     <<~ERB
-      #{STYLIST_HEAD}
+      #{WAND_HEAD}
       <link rel="stylesheet" href="/stylesheet/pagy.css">
     ERB
   end
 
   template :tailwind_head do
     <<~ERB
-      #{STYLIST_HEAD}
+      #{WAND_HEAD}
       <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
       <style type="text/tailwindcss">
         <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>

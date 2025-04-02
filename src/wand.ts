@@ -1,21 +1,33 @@
+type VariableMap = {
+  [key: string]: {
+    name:   string;
+    unit:   string;
+    input?: HTMLInputElement;
+  };
+};
+type Presets = { [key: string]: string };
+
 (() => {
   const roundness = 12;
-  const icons = "compress,expand,help,tune,visibility,visibility_off";
+  // Alpha sorted icon names
+  const icons    = 'compress,expand,help,tune,visibility,visibility_off';
   const linkTags = `
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300&icon_names=${icons}&display=block">
-  `;
-  document.head.insertAdjacentHTML("beforeend", linkTags);
-  const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
-  const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
-  const deleteCookie = (name) => document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-  const setCookie = (name, value) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
-  const getCookie = (name) => {
-    const cookieName = `${name}=`;
-    const cookieArray = document.cookie.split(";");
-    for (let i = 0;i < cookieArray.length; i++) {
+  `
+  document.head.insertAdjacentHTML('beforeend', linkTags);
+  // Cookie handling
+  const B64SafeEncode = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode)))
+                                            .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
+  const B64Decode     = (base64:string) => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
+  const deleteCookie  = (name:string) => (document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`);
+  const setCookie     = (name:string, value:string) => document.cookie = `${name}=${B64SafeEncode(value)}; path=/`;
+  const getCookie     = (name:string):string | null => {
+    const cookieName  = `${name}=`;
+    const cookieArray = document.cookie.split(';');
+    for (let i = 0; i < cookieArray.length; i++) {
       let cookie = cookieArray[i].trim();
       if (cookie.startsWith(cookieName)) {
         return B64Decode(cookie.substring(cookieName.length));
@@ -23,41 +35,47 @@
     }
     return null;
   };
-  const encodeBool = (bool) => bool ? "true" : "false";
-  const decodeBool = (str) => str === "true";
-  const stylistInit = (shadow) => {
-    const styleTag = document.createElement("style");
-    styleTag.id = "pagy-stylist-override";
+  const encodeBool = (bool:boolean) =>  bool ? 'true' : 'false';
+  const decodeBool = (str:string) => str === 'true';
+
+  const wandInit = (shadow: ShadowRoot) => {
+    // Create override style tag as the last tag in <head>
+    const styleTag = document.createElement('style');
+    styleTag.id    = 'pagy-wand-override';
     document.head.appendChild(styleTag);
-    let variables = {
-      brightness: { name: "--B", unit: "" },
-      hue: { name: "--H", unit: "" },
-      saturation: { name: "--S", unit: "" },
-      lightness: { name: "--L", unit: "" },
-      spacing: { name: "--spacing", unit: "rem" },
-      padding: { name: "--padding", unit: "rem" },
-      rounding: { name: "--rounding", unit: "rem" },
-      borderWidth: { name: "--border-width", unit: "rem" },
-      fontSize: { name: "--font-size", unit: "rem" },
-      fontWeight: { name: "--font-weight", unit: "" },
-      lineHeight: { name: "--line-height", unit: "" }
+
+    let variables:VariableMap = {
+      brightness:  { name: '--B',            unit: ''    },
+      hue:         { name: '--H',            unit: ''    },
+      saturation:  { name: '--S',            unit: ''    },
+      lightness:   { name: '--L',            unit: ''    },
+      spacing:     { name: '--spacing',      unit: 'rem' },
+      padding:     { name: '--padding',      unit: 'rem' },
+      rounding:    { name: '--rounding',     unit: 'rem' },
+      borderWidth: { name: '--border-width', unit: 'rem' },
+      fontSize:    { name: '--font-size',    unit: 'rem' },
+      fontWeight:  { name: '--font-weight',  unit: ''    },
+      lineHeight:  { name: '--line-height',  unit: ''    },
     };
     for (const [id, v] of Object.entries(variables)) {
-      v.input = shadow.getElementById(id);
+      v.input = <HTMLInputElement>shadow.getElementById(id);
     }
+
     const updateStyle = () => {
       let override = `.pagy {\n`;
       Object.values(variables).forEach((v) => {
-        override += `  ${v.name}: ${v.input.value}${v.unit};\n`;
+        override += `  ${v.name}: ${v.input!.value}${v.unit};\n`;
       });
-      override += "}";
-      const overrideArea = shadow.getElementById("override");
-      const overrideStyle = document.getElementById("pagy-stylist-override");
-      overrideArea.value = override;
+      override += '}';
+      const overrideArea        = <HTMLTextAreaElement>shadow.getElementById('override');
+      const overrideStyle       = <HTMLStyleElement>document.getElementById('pagy-wand-override');
+      overrideArea.value        = override;
       overrideStyle.textContent = override;
-      setCookie("pagy-stylist-override", override);
+      setCookie('pagy-wand-override', override);
     };
-    const presets = {
+
+    // PRESETS
+    const presets:Presets = {
       Default: `
       .pagy {
         --B: 1;
@@ -103,7 +121,7 @@
         --line-height: 1.25;
       }
       `,
-      Pilloween: ` 
+      Pilloween:` 
       .pagy {
         --B: -1;
         --H: 20;
@@ -118,7 +136,7 @@
         --line-height: 1.5;
       }
       `,
-      Peppermint: `
+      Peppermint:`
       .pagy {
         --B: 1;
         --H: 78;
@@ -133,7 +151,7 @@
         --line-height: 1.75;
       }
       `,
-      CocoaBeans: `
+      CocoaBeans:`
       .pagy {
         --B: 1;
         --H: 27;
@@ -178,7 +196,7 @@
         --line-height: 1.75;
       }
       `,
-      VintageScent: `
+      VintageScent:`
       .pagy {
         --B: 1;
         --H: 51;
@@ -194,181 +212,209 @@
       }
       `
     };
-    const presetMenu = shadow.getElementById("preset-menu");
+    const presetMenu = <HTMLSelectElement>shadow.getElementById('preset-menu');
+    // Setup preset options
     for (const presetName in presets) {
-      const option = document.createElement("option");
-      option.value = presetName;
+      const option       = document.createElement('option');
+      option.value       = presetName;
       option.textContent = presetName;
       presetMenu.appendChild(option);
     }
-    const applyPreset = (name) => {
-      const css = name ? (deleteCookie("pagy-stylist-override"), presets[name]) : getCookie("pagy-stylist-override");
+
+    const applyPreset = (name:string | null) => {
+      const css = name
+                  ? (deleteCookie('pagy-wand-override'), presets[name])
+                  : getCookie('pagy-wand-override');
       css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
-        let [name, value] = match.split(":");
-        name = name.trim();
-        value = value.trim().replace(/[a-zA-Z%]+$/, "");
+        let [name, value] = match.split(':');
+        name  = name.trim();
+        value = value.trim().replace(/[a-zA-Z%]+$/, '');
         for (const v of Object.values(variables)) {
           if (v.name === name) {
-            v.input.value = value;
+            v.input!.value = value;
             break;
           }
         }
       });
-      setCookie("pagy-stylist-preset", name || "");
+      setCookie('pagy-wand-preset', name || '');
       updateStyle();
     };
-    presetMenu.addEventListener("change", (e) => applyPreset(e.target.value));
+    presetMenu.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
+
+    // Event listeners
     const deselectDropdown = () => {
-      presetMenu.value = "";
-      setCookie("pagy-stylist-preset", "");
+      presetMenu.value = '';
+      setCookie('pagy-wand-preset', '');
     };
     Object.values(variables).forEach((v) => {
-      v.input.addEventListener("input", updateStyle);
-      v.input.addEventListener("input", deselectDropdown);
+      v.input!.addEventListener('input', updateStyle);
+      v.input!.addEventListener('input', deselectDropdown);
     });
-    const preset = getCookie("pagy-stylist-preset") ?? "Default";
+
+    // Start
+    const preset     = getCookie('pagy-wand-preset') ?? 'Default';
     presetMenu.value = preset;
     applyPreset(preset);
   };
-  const panelInit = (shadow) => {
-    const panel = shadow.getElementById("panel");
-    const topBar = shadow.getElementById("top-bar");
+
+
+  const panelInit = (shadow: ShadowRoot) => {
+    const panel  = <HTMLElement>shadow.getElementById('panel');
+    const topBar = <HTMLElement>shadow.getElementById('top-bar');
+
+    // Panel position
     const getCookiePosition = () => {
-      const position = getCookie("pagy-stylist-position");
+      const position = getCookie('pagy-wand-position');
       if (position) {
-        const [left, top] = position.split(",");
+        const [left, top] = position.split(',');
         return { left: parseInt(left), top: parseInt(top) };
       }
       return null;
     };
-    const setCookiePosition = (left, top) => {
-      setCookie("pagy-stylist-position", `${left},${top}`);
+    const setCookiePosition = (left: string|number, top: string|number) => {
+      setCookie('pagy-wand-position', `${left},${top}`);
     };
     const viewport = () => {
-      return {
-        width: window.visualViewport ? window.visualViewport.width : document.documentElement.clientWidth,
-        height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight
-      };
-    };
+      return { width:  window.visualViewport ? window.visualViewport.width  : document.documentElement.clientWidth,
+               height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight }
+    }
     const keepTopBarInView = () => {
       const v = viewport();
-      const topBarRect = topBar.getBoundingClientRect();
+      const topBarRect     = topBar.getBoundingClientRect();
+      // Check if topBar is off-screen horizontally
       if (topBarRect.left < 0) {
-        panel.style.left = "0px";
+        panel.style.left = '0px';
       } else if (topBarRect.right > v.width) {
         panel.style.left = `${v.width - topBar.offsetWidth}px`;
       }
+      // Check if topBar is off-screen vertically
       if (topBarRect.top < 0) {
-        panel.style.top = "0px";
+        panel.style.top = '0px';
       } else if (topBarRect.bottom > v.height) {
         panel.style.top = `${v.height - topBar.offsetHeight}px`;
       }
+      // Ensure the top bar is in view
       if (topBarRect.top < 0 && topBar.offsetHeight < v.height) {
-        panel.style.top = "0px";
+        panel.style.top = '0px';
       }
       setCookiePosition(topBar.style.left, topBar.style.top);
     };
-    window.addEventListener("resize", keepTopBarInView);
+    window.addEventListener('resize', keepTopBarInView);
+
     const position = getCookiePosition();
     if (position) {
       panel.style.left = `${position.left}px`;
-      panel.style.top = `${position.top}px`;
+      panel.style.top  = `${position.top}px`;
     } else {
       const v = viewport();
-      panel.style.left = `${(v.width - panel.offsetWidth) / 2}px`;
-      panel.style.top = `${(v.height - panel.offsetHeight) / 2}px`;
+      panel.style.left = `${(v.width - topBar.offsetWidth) / 2}px`;
+      panel.style.top  = `${(v.height - topBar.offsetHeight) / 2}px`;
       keepTopBarInView();
     }
-    let offsetX = 0;
-    let offsetY = 0;
+
+
+    // Panel dragging
+    let offsetX  = 0;
+    let offsetY  = 0;
     let dragging = false;
-    topBar.addEventListener("mousedown", (e) => {
-      if (e.target.closest("#preset-menu"))
-        return;
+
+    topBar.addEventListener('mousedown', (e) => {
+      if ((<HTMLElement>e.target).closest('#preset-menu')) return;
+
       dragging = true;
-      offsetX = e.clientX - panel.offsetLeft;
-      offsetY = e.clientY - panel.offsetTop;
+      offsetX  = e.clientX - panel.offsetLeft;
+      offsetY  = e.clientY - panel.offsetTop;
     });
-    document.addEventListener("mousemove", (e) => {
-      if (!dragging)
-        return;
+    document.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+
       panel.style.left = `${e.clientX - offsetX}px`;
-      panel.style.top = `${e.clientY - offsetY}px`;
+      panel.style.top  = `${e.clientY - offsetY}px`;
       setCookiePosition(e.clientX - offsetX, e.clientY - offsetY);
     });
-    document.addEventListener("mouseup", () => dragging = false);
-    const contentChk = shadow.getElementById("content-chk");
-    contentChk.checked = decodeBool(getCookie("pagy-stylist-content-chk") ?? "true");
-    const contentIcon = shadow.getElementById("content-icon");
-    const contentDiv = shadow.getElementById("content");
+    document.addEventListener('mouseup', () => dragging = false);
+
+
+    // Toggle content
+    const contentChk   = <HTMLInputElement>shadow.getElementById('content-chk');
+    contentChk.checked = decodeBool(getCookie('pagy-wand-content-chk') ?? 'false');
+    const contentIcon  = <HTMLElement>shadow.getElementById('content-icon');
+    const contentDiv   = <HTMLElement>shadow.getElementById('content');
     const contentSwitcher = () => {
-      if (contentChk.checked) {
-        contentIcon.textContent = "compress";
-        contentDiv.style.display = "block";
-      } else {
-        contentIcon.textContent = "expand";
-        contentDiv.style.display = "none";
+      if (contentChk.checked) {  // compress
+        contentIcon.textContent  = 'compress';
+        contentDiv.style.display = 'block';
+      } else {                   // expand
+        contentIcon.textContent  = 'expand';
+        contentDiv.style.display = 'none';
       }
-      setCookie("pagy-stylist-content-chk", encodeBool(contentChk.checked));
+      setCookie('pagy-wand-content-chk', encodeBool(contentChk.checked));
     };
-    contentChk.addEventListener("change", contentSwitcher);
+    contentChk.addEventListener('change', contentSwitcher);
     contentSwitcher();
-    const stylistChk = shadow.getElementById("stylist-chk");
-    stylistChk.checked = decodeBool(getCookie("pagy-stylist-stylist-chk") ?? "true");
-    const stylistIcon = shadow.getElementById("stylist-icon");
-    const stylistStyle = document.getElementById("pagy-stylist-default");
-    const stylistStyleOverride = document.getElementById("pagy-stylist-override");
-    const stylistSwitcher = () => {
-      if (stylistChk.checked) {
-        stylistIcon.textContent = "visibility_off";
-        stylistStyle.disabled = false;
-        stylistStyleOverride.disabled = false;
-      } else {
-        stylistIcon.textContent = "visibility";
-        stylistStyle.disabled = true;
-        stylistStyleOverride.disabled = true;
+
+    // Toggle Live
+    const liveChk           = <HTMLInputElement>shadow.getElementById('live-chk');
+    liveChk.checked         = decodeBool(getCookie('pagy-wand-live-chk') ?? 'true');
+    const liveIcon          = <HTMLElement>shadow.getElementById('live-icon');
+    const liveStyle         = <HTMLStyleElement>document.getElementById('pagy-wand-default');
+    const liveStyleOverride = <HTMLStyleElement>document.getElementById('pagy-wand-override');
+    const liveSwitcher = () => {
+      if (liveChk.checked) {       // enable live
+        liveIcon.textContent       = 'visibility_off';
+        liveStyle.disabled         = false;
+        liveStyleOverride.disabled = false;
+      } else {                        // disable live
+        liveIcon.textContent       = 'visibility';
+        liveStyle.disabled         = true;
+        liveStyleOverride.disabled = true;
       }
-      setCookie("pagy-stylist-stylist-chk", encodeBool(stylistChk.checked));
+      setCookie('pagy-wand-live-chk', encodeBool(liveChk.checked));
     };
-    stylistChk.addEventListener("change", stylistSwitcher);
-    stylistSwitcher();
-    const controlsChk = shadow.getElementById("controls-chk");
-    controlsChk.checked = decodeBool(getCookie("pagy-stylist-controls-chk") ?? "true");
-    const controlsIcon = shadow.getElementById("controls-icon");
-    const controlsDiv = shadow.getElementById("controls");
-    const helpDiv = shadow.getElementById("help");
+    liveChk.addEventListener('change', liveSwitcher);
+    liveSwitcher();
+
+    // Toggle controls
+    const controlsChk   = <HTMLInputElement>shadow.getElementById('controls-chk');
+    controlsChk.checked = decodeBool(getCookie('pagy-wand-controls-chk') ?? 'true');
+    const controlsIcon  = <HTMLElement>shadow.getElementById('controls-icon');
+    const controlsDiv   = <HTMLElement>shadow.getElementById('controls');
+    const helpDiv       = <HTMLElement>shadow.getElementById('help');
     const controlsSwitcher = () => {
-      if (controlsChk.checked) {
-        controlsIcon.textContent = "help";
-        helpDiv.style.display = "none";
-        controlsDiv.style.display = "grid";
-      } else {
-        controlsIcon.textContent = "tune";
-        helpDiv.style.display = "block";
-        helpDiv.style.height = `${controlsDiv.clientHeight - roundness * 2}px`;
-        controlsDiv.style.display = "none";
+      if (controlsChk.checked) {  // show controls
+        controlsIcon.textContent  = 'help';
+        helpDiv.style.display     = 'none';
+        controlsDiv.style.display = 'grid';
+      } else {                    // show help
+        controlsIcon.textContent  = 'tune';
+        helpDiv.style.display     = 'block';
+        helpDiv.style.height      = `${controlsDiv.clientHeight - roundness * 2}px`; // Match panel height
+        controlsDiv.style.display = 'none';
       }
-      setCookie("pagy-stylist-controls-chk", encodeBool(controlsChk.checked));
+      setCookie('pagy-wand-controls-chk', encodeBool(controlsChk.checked));
     };
-    controlsChk.addEventListener("change", controlsSwitcher);
-    controlsChk.addEventListener("click", () => {
-      if (!contentChk.checked) {
+    controlsChk.addEventListener('change', controlsSwitcher);
+    controlsChk.addEventListener('click', () => {
+      if (!contentChk.checked) {  // expand content first
         contentChk.checked = true;
         contentSwitcher();
       }
     });
     controlsSwitcher();
   };
+
   const attachShadow = () => {
-    const host = document.createElement("div");
-    host.id = "pagy-stylist-host";
+    const host = document.createElement('div');
+    host.id    = 'pagy-wand-host';
     document.body.appendChild(host);
-    const style = document.createElement("style");
-    style.id = "pagy-stylist-default";
-    const element = document.getElementById("pagy-stylist");
-    style.textContent = B64Decode(element.getAttribute("data-pagy-stylist-default"));
+    // Append the gem updated pagy.css, to override user app
+    const style   = document.createElement('style');
+    style.id      = 'pagy-wand-default';
+    const element = document.getElementById('pagy-wand')
+    style.textContent = B64Decode(<string>element!.getAttribute("data-pagy-wand-default"));
     document.head.appendChild(style);
-    const shadow = host.attachShadow({ mode: "open" });
+
+    const shadow     = host.attachShadow({ mode: 'open' });
     shadow.innerHTML = `
       ${linkTags}
       <style>
@@ -524,14 +570,14 @@
       </style>
       <div id="panel">
         <div id="top-bar">
-          <span id="title">Pagy Stylist</span>
+          <span id="title">Pagy Wand</span>
           <label for="content-chk">
-            <input id="content-chk" type="checkbox" checked>
-            <span class="material-symbols-outlined switch-icon" id="content-icon">compress</span>
+            <input id="content-chk" type="checkbox">
+            <span class="material-symbols-outlined switch-icon" id="content-icon">expand</span>
           </label>
-          <label for="stylist-chk">
-            <input id="stylist-chk" type="checkbox" checked>
-            <span class="material-symbols-outlined switch-icon" id="stylist-icon">visibility_off</span>
+          <label for="live-chk">
+            <input id="live-chk" type="checkbox" checked>
+            <span class="material-symbols-outlined switch-icon" id="live-icon">visibility_off</span>
           </label>
           <label for="controls-chk">
             <input id="controls-chk" type="checkbox" checked>
@@ -577,7 +623,7 @@
             <h4>Install</h4>
               <dl>
                 <dt>Load it in HTML head</dt>
-                <dd><code><%== Pagy.stylist_tag %></code>
+                <dd><code><%== Pagy.wand_tag %></code>
                 </dd>
               </dl>
             <h4>Panel</h4>
@@ -625,8 +671,9 @@
         </div>
       </div>
     `;
-    stylistInit(shadow);
+
+    wandInit(shadow);
     panelInit(shadow);
   };
-  document.addEventListener("DOMContentLoaded", attachShadow);
+  document.addEventListener('DOMContentLoaded', attachShadow);
 })();
