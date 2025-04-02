@@ -38,7 +38,7 @@ type Presets = { [key: string]: string };
   const encodeBool = (bool:boolean) =>  bool ? 'true' : 'false';
   const decodeBool = (str:string) => str === 'true';
 
-  const wandInit = (shadow: ShadowRoot) => {
+  const wandInit   = (shadow: ShadowRoot) => {
     // Create override style tag as the last tag in <head>
     const styleTag = document.createElement('style');
     styleTag.id    = 'pagy-wand-override';
@@ -73,6 +73,153 @@ type Presets = { [key: string]: string };
       overrideStyle.textContent = override;
       setCookie('pagy-wand-override', override);
     };
+
+    const panel  = <HTMLElement>shadow.getElementById('panel');
+    const topBar = <HTMLElement>shadow.getElementById('top-bar');
+
+    // Panel position
+    const getCookiePosition = () => {
+      const position = getCookie('pagy-wand-position');
+      if (position) {
+        const [left, top] = position.split(',');
+        return { left: parseInt(left), top: parseInt(top) };
+      }
+      return null;
+    };
+    const setCookiePosition = (left: string|number, top: string|number) => {
+      setCookie('pagy-wand-position', `${left},${top}`);
+    };
+    const viewport = () => {
+      return { width:  window.visualViewport ? window.visualViewport.width  : document.documentElement.clientWidth,
+        height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight }
+    }
+
+    const keepTopBarInView = () => {
+      const v = viewport();
+      const topBarRect     = topBar.getBoundingClientRect();
+      // Check if topBar is off-screen horizontally
+      if (topBarRect.left < 0) {
+        panel.style.left = '0px';
+      } else if (topBarRect.right > v.width) {
+        panel.style.left = `${v.width - topBar.offsetWidth}px`;
+      }
+      // Check if topBar is off-screen vertically
+      if (topBarRect.top < 0) {
+        panel.style.top = '0px';
+      } else if (topBarRect.bottom > v.height) {
+        panel.style.top = `${v.height - topBar.offsetHeight}px`;
+      }
+      // Ensure the top bar is in view
+      if (topBarRect.top < 0 && topBar.offsetHeight < v.height) {
+        panel.style.top = '0px';
+      }
+      setCookiePosition(topBar.style.left, topBar.style.top);
+    };
+    let resizeTimeout: number | undefined;   // debouncing
+    window.addEventListener('resize', () => {
+      if (resizeTimeout) clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(keepTopBarInView, 250);
+    });
+    // Set position from cookie (or CSS centers it)
+    const position = getCookiePosition();
+    if (position) {
+      panel.style.left = `${position.left}px`;
+      panel.style.top  = `${position.top}px`;
+    } else {
+      const v = viewport();
+      panel.style.left = `${(v.width - topBar.offsetWidth) / 2}px`;
+      panel.style.top  = `${(v.height - topBar.offsetHeight) / 2}px`;
+      keepTopBarInView();
+    }
+
+    // Panel dragging
+    let offsetX  = 0;
+    let offsetY  = 0;
+    let dragging = false;
+
+    topBar.addEventListener('mousedown', (e) => {
+      if ((<HTMLElement>e.target).closest('#preset-menu')) return;
+
+      dragging = true;
+      offsetX  = e.clientX - panel.offsetLeft;
+      offsetY  = e.clientY - panel.offsetTop;
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+
+      panel.style.left = `${e.clientX - offsetX}px`;
+      panel.style.top  = `${e.clientY - offsetY}px`;
+      setCookiePosition(e.clientX - offsetX, e.clientY - offsetY);
+    });
+    document.addEventListener('mouseup', () => dragging = false);
+
+
+    // Toggle content
+    const contentChk   = <HTMLInputElement>shadow.getElementById('content-chk');
+    contentChk.checked = decodeBool(getCookie('pagy-wand-content-chk') ?? 'false');
+    const contentIcon  = <HTMLElement>shadow.getElementById('content-icon');
+    const contentDiv   = <HTMLElement>shadow.getElementById('content');
+    const contentSwitcher = () => {
+      if (contentChk.checked) {  // compress
+        contentIcon.textContent  = 'compress';
+        contentDiv.style.display = 'block';
+      } else {                   // expand
+        contentIcon.textContent  = 'expand';
+        contentDiv.style.display = 'none';
+      }
+      setCookie('pagy-wand-content-chk', encodeBool(contentChk.checked));
+    };
+    contentChk.addEventListener('change', contentSwitcher);
+    contentSwitcher();
+
+    // Toggle Live
+    const liveChk           = <HTMLInputElement>shadow.getElementById('live-chk');
+    liveChk.checked         = decodeBool(getCookie('pagy-wand-live-chk') ?? 'true');
+    const liveIcon          = <HTMLElement>shadow.getElementById('live-icon');
+    const liveStyle         = <HTMLStyleElement>document.getElementById('pagy-wand-default');
+    const liveStyleOverride = <HTMLStyleElement>document.getElementById('pagy-wand-override');
+    const liveSwitcher = () => {
+      if (liveChk.checked) {       // enable live
+        liveIcon.textContent       = 'visibility_off';
+        liveStyle.disabled         = false;
+        liveStyleOverride.disabled = false;
+      } else {                        // disable live
+        liveIcon.textContent       = 'visibility';
+        liveStyle.disabled         = true;
+        liveStyleOverride.disabled = true;
+      }
+      setCookie('pagy-wand-live-chk', encodeBool(liveChk.checked));
+    };
+    liveChk.addEventListener('change', liveSwitcher);
+    liveSwitcher();
+
+    // Toggle controls
+    const controlsChk   = <HTMLInputElement>shadow.getElementById('controls-chk');
+    controlsChk.checked = decodeBool(getCookie('pagy-wand-controls-chk') ?? 'true');
+    const controlsIcon  = <HTMLElement>shadow.getElementById('controls-icon');
+    const controlsDiv   = <HTMLElement>shadow.getElementById('controls');
+    const helpDiv       = <HTMLElement>shadow.getElementById('help');
+    const controlsSwitcher = () => {
+      if (controlsChk.checked) {  // show controls
+        controlsIcon.textContent  = 'help';
+        helpDiv.style.display     = 'none';
+        controlsDiv.style.display = 'grid';
+      } else {                    // show help
+        controlsIcon.textContent  = 'tune';
+        helpDiv.style.display     = 'block';
+        helpDiv.style.height      = `${controlsDiv.clientHeight - roundness * 2}px`; // Match panel height
+        controlsDiv.style.display = 'none';
+      }
+      setCookie('pagy-wand-controls-chk', encodeBool(controlsChk.checked));
+    };
+    controlsChk.addEventListener('change', controlsSwitcher);
+    controlsChk.addEventListener('click', () => {
+      if (!contentChk.checked) {  // expand content first
+        contentChk.checked = true;
+        contentSwitcher();
+      }
+    });
+    controlsSwitcher();
 
     // PRESETS
     const presets:Presets = {
@@ -235,6 +382,9 @@ type Presets = { [key: string]: string };
             break;
           }
         }
+        const liveChk = <HTMLInputElement>shadow.getElementById('live-chk');
+        liveChk.checked = true;
+        liveSwitcher();
       });
       setCookie('pagy-wand-preset', name || '');
       updateStyle();
@@ -255,152 +405,6 @@ type Presets = { [key: string]: string };
     const preset     = getCookie('pagy-wand-preset') ?? 'Default';
     presetMenu.value = preset;
     applyPreset(preset);
-  };
-
-
-  const panelInit = (shadow: ShadowRoot) => {
-    const panel  = <HTMLElement>shadow.getElementById('panel');
-    const topBar = <HTMLElement>shadow.getElementById('top-bar');
-
-    // Panel position
-    const getCookiePosition = () => {
-      const position = getCookie('pagy-wand-position');
-      if (position) {
-        const [left, top] = position.split(',');
-        return { left: parseInt(left), top: parseInt(top) };
-      }
-      return null;
-    };
-    const setCookiePosition = (left: string|number, top: string|number) => {
-      setCookie('pagy-wand-position', `${left},${top}`);
-    };
-    const viewport = () => {
-      return { width:  window.visualViewport ? window.visualViewport.width  : document.documentElement.clientWidth,
-               height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight }
-    }
-    const keepTopBarInView = () => {
-      const v = viewport();
-      const topBarRect     = topBar.getBoundingClientRect();
-      // Check if topBar is off-screen horizontally
-      if (topBarRect.left < 0) {
-        panel.style.left = '0px';
-      } else if (topBarRect.right > v.width) {
-        panel.style.left = `${v.width - topBar.offsetWidth}px`;
-      }
-      // Check if topBar is off-screen vertically
-      if (topBarRect.top < 0) {
-        panel.style.top = '0px';
-      } else if (topBarRect.bottom > v.height) {
-        panel.style.top = `${v.height - topBar.offsetHeight}px`;
-      }
-      // Ensure the top bar is in view
-      if (topBarRect.top < 0 && topBar.offsetHeight < v.height) {
-        panel.style.top = '0px';
-      }
-      setCookiePosition(topBar.style.left, topBar.style.top);
-    };
-    window.addEventListener('resize', keepTopBarInView);
-
-    const position = getCookiePosition();
-    if (position) {
-      panel.style.left = `${position.left}px`;
-      panel.style.top  = `${position.top}px`;
-    } else {
-      const v = viewport();
-      panel.style.left = `${(v.width - topBar.offsetWidth) / 2}px`;
-      panel.style.top  = `${(v.height - topBar.offsetHeight) / 2}px`;
-      keepTopBarInView();
-    }
-
-
-    // Panel dragging
-    let offsetX  = 0;
-    let offsetY  = 0;
-    let dragging = false;
-
-    topBar.addEventListener('mousedown', (e) => {
-      if ((<HTMLElement>e.target).closest('#preset-menu')) return;
-
-      dragging = true;
-      offsetX  = e.clientX - panel.offsetLeft;
-      offsetY  = e.clientY - panel.offsetTop;
-    });
-    document.addEventListener('mousemove', (e) => {
-      if (!dragging) return;
-
-      panel.style.left = `${e.clientX - offsetX}px`;
-      panel.style.top  = `${e.clientY - offsetY}px`;
-      setCookiePosition(e.clientX - offsetX, e.clientY - offsetY);
-    });
-    document.addEventListener('mouseup', () => dragging = false);
-
-
-    // Toggle content
-    const contentChk   = <HTMLInputElement>shadow.getElementById('content-chk');
-    contentChk.checked = decodeBool(getCookie('pagy-wand-content-chk') ?? 'false');
-    const contentIcon  = <HTMLElement>shadow.getElementById('content-icon');
-    const contentDiv   = <HTMLElement>shadow.getElementById('content');
-    const contentSwitcher = () => {
-      if (contentChk.checked) {  // compress
-        contentIcon.textContent  = 'compress';
-        contentDiv.style.display = 'block';
-      } else {                   // expand
-        contentIcon.textContent  = 'expand';
-        contentDiv.style.display = 'none';
-      }
-      setCookie('pagy-wand-content-chk', encodeBool(contentChk.checked));
-    };
-    contentChk.addEventListener('change', contentSwitcher);
-    contentSwitcher();
-
-    // Toggle Live
-    const liveChk           = <HTMLInputElement>shadow.getElementById('live-chk');
-    liveChk.checked         = decodeBool(getCookie('pagy-wand-live-chk') ?? 'true');
-    const liveIcon          = <HTMLElement>shadow.getElementById('live-icon');
-    const liveStyle         = <HTMLStyleElement>document.getElementById('pagy-wand-default');
-    const liveStyleOverride = <HTMLStyleElement>document.getElementById('pagy-wand-override');
-    const liveSwitcher = () => {
-      if (liveChk.checked) {       // enable live
-        liveIcon.textContent       = 'visibility_off';
-        liveStyle.disabled         = false;
-        liveStyleOverride.disabled = false;
-      } else {                        // disable live
-        liveIcon.textContent       = 'visibility';
-        liveStyle.disabled         = true;
-        liveStyleOverride.disabled = true;
-      }
-      setCookie('pagy-wand-live-chk', encodeBool(liveChk.checked));
-    };
-    liveChk.addEventListener('change', liveSwitcher);
-    liveSwitcher();
-
-    // Toggle controls
-    const controlsChk   = <HTMLInputElement>shadow.getElementById('controls-chk');
-    controlsChk.checked = decodeBool(getCookie('pagy-wand-controls-chk') ?? 'true');
-    const controlsIcon  = <HTMLElement>shadow.getElementById('controls-icon');
-    const controlsDiv   = <HTMLElement>shadow.getElementById('controls');
-    const helpDiv       = <HTMLElement>shadow.getElementById('help');
-    const controlsSwitcher = () => {
-      if (controlsChk.checked) {  // show controls
-        controlsIcon.textContent  = 'help';
-        helpDiv.style.display     = 'none';
-        controlsDiv.style.display = 'grid';
-      } else {                    // show help
-        controlsIcon.textContent  = 'tune';
-        helpDiv.style.display     = 'block';
-        helpDiv.style.height      = `${controlsDiv.clientHeight - roundness * 2}px`; // Match panel height
-        controlsDiv.style.display = 'none';
-      }
-      setCookie('pagy-wand-controls-chk', encodeBool(controlsChk.checked));
-    };
-    controlsChk.addEventListener('change', controlsSwitcher);
-    controlsChk.addEventListener('click', () => {
-      if (!contentChk.checked) {  // expand content first
-        contentChk.checked = true;
-        contentSwitcher();
-      }
-    });
-    controlsSwitcher();
   };
 
   const attachShadow = () => {
@@ -673,7 +677,6 @@ type Presets = { [key: string]: string };
     `;
 
     wandInit(shadow);
-    panelInit(shadow);
   };
   document.addEventListener('DOMContentLoaded', attachShadow);
 })();
