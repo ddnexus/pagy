@@ -257,11 +257,13 @@ type Presets = { [key: string]: string };
     applyPreset(preset);
   };
 
+
   const panelInit = (shadow: ShadowRoot) => {
-    const panel = <HTMLElement>shadow.getElementById('panel');
+    const panel  = <HTMLElement>shadow.getElementById('panel');
+    const topBar = <HTMLElement>shadow.getElementById('top-bar');
 
     // Panel position
-    const getPanelPosition = () => {
+    const getCookiePosition = () => {
       const position = getCookie('pagy-stylist-position');
       if (position) {
         const [left, top] = position.split(',');
@@ -269,42 +271,45 @@ type Presets = { [key: string]: string };
       }
       return null;
     };
-    const setPanelPosition = (left: number, top: number) => {
+    const setCookiePosition = (left: string|number, top: string|number) => {
       setCookie('pagy-stylist-position', `${left},${top}`);
     };
-    const keepPanelInView = () => {
-      const left = parseInt(panel.style.left);
-      const top  = parseInt(panel.style.top);
-
-      const panelRect = panel.getBoundingClientRect();
-      // Check if panel is off-screen horizontally
-      if (panelRect.left < 0) {
+    const viewport = () => {
+      return { width: window.visualViewport ? window.visualViewport.width : document.documentElement.clientWidth,
+               height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight }
+    }
+    const keepTopBarInView = () => {
+      const v = viewport();
+      const topBarRect     = topBar.getBoundingClientRect();
+      // Check if topBar is off-screen horizontally
+      if (topBarRect.left < 0) {
         panel.style.left = '0px';
-      } else if (panelRect.right > window.innerWidth) {
-        panel.style.left = `${window.innerWidth - panel.offsetWidth}px`;
+      } else if (topBarRect.right > v.width) {
+        panel.style.left = `${v.width - topBar.offsetWidth}px`;
       }
-      // Check if panel is off-screen vertically
-      if (panelRect.top < 0) {
+      // Check if topBar is off-screen vertically
+      if (topBarRect.top < 0) {
         panel.style.top = '0px';
-      } else if (panelRect.bottom > window.innerHeight) {
-        panel.style.top = `${window.innerHeight - panel.offsetHeight}px`;
+      } else if (topBarRect.bottom > v.height) {
+        panel.style.top = `${v.height - topBar.offsetHeight}px`;
       }
       // Ensure the top bar is in view
-      if (panelRect.top < 0 && panel.offsetHeight < window.innerHeight) {
+      if (topBarRect.top < 0 && topBar.offsetHeight < v.height) {
         panel.style.top = '0px';
       }
-      setPanelPosition(left, top);
+      setCookiePosition(topBar.style.left, topBar.style.top);
     };
-    window.addEventListener('resize', keepPanelInView);
+    window.addEventListener('resize', keepTopBarInView);
 
-    const position = getPanelPosition();
+    const position = getCookiePosition();
     if (position) {
       panel.style.left = `${position.left}px`;
       panel.style.top  = `${position.top}px`;
     } else {
-      panel.style.left = `${(window.innerWidth - panel.offsetWidth) / 2}px`;
-      panel.style.top  = `${(window.innerHeight - panel.offsetHeight) / 2}px`;
-      keepPanelInView();
+      const v = viewport();
+      panel.style.left = `${(v.width - panel.offsetWidth) / 2}px`;
+      panel.style.top  = `${(v.height - panel.offsetHeight) / 2}px`;
+      keepTopBarInView();
     }
 
 
@@ -313,7 +318,6 @@ type Presets = { [key: string]: string };
     let offsetY  = 0;
     let dragging = false;
 
-    const topBar = <HTMLElement>shadow.getElementById('top-bar');
     topBar.addEventListener('mousedown', (e) => {
       if ((<HTMLElement>e.target).closest('#preset-menu')) return;
 
@@ -326,13 +330,13 @@ type Presets = { [key: string]: string };
 
       panel.style.left = `${e.clientX - offsetX}px`;
       panel.style.top  = `${e.clientY - offsetY}px`;
-      setPanelPosition(e.clientX - offsetX, e.clientY - offsetY);
+      setCookiePosition(e.clientX - offsetX, e.clientY - offsetY);
     });
     document.addEventListener('mouseup', () => dragging = false);
 
 
     // Toggle content
-    const contentChk   = <HTMLElement>shadow.getElementById('content-chk');
+    const contentChk   = <HTMLInputElement>shadow.getElementById('content-chk');
     contentChk.checked = decodeBool(getCookie('pagy-stylist-content-chk') ?? 'true');
     const contentIcon  = <HTMLElement>shadow.getElementById('content-icon');
     const contentDiv   = <HTMLElement>shadow.getElementById('content');
@@ -346,11 +350,11 @@ type Presets = { [key: string]: string };
       }
       setCookie('pagy-stylist-content-chk', encodeBool(contentChk.checked));
     };
-    contentSwitcher();
     contentChk.addEventListener('change', contentSwitcher);
+    contentSwitcher();
 
     // Toggle Stylist
-    const stylistChk           = <HTMLElement>shadow.getElementById('stylist-chk');
+    const stylistChk           = <HTMLInputElement>shadow.getElementById('stylist-chk');
     stylistChk.checked         = decodeBool(getCookie('pagy-stylist-stylist-chk') ?? 'true');
     const stylistIcon          = <HTMLElement>shadow.getElementById('stylist-icon');
     const stylistStyle         = <HTMLStyleElement>document.getElementById('pagy-stylist-default');
@@ -367,16 +371,15 @@ type Presets = { [key: string]: string };
       }
       setCookie('pagy-stylist-stylist-chk', encodeBool(stylistChk.checked));
     };
-    stylistSwitcher();
     stylistChk.addEventListener('change', stylistSwitcher);
+    stylistSwitcher();
 
-    // Toggle Help
-    const controlsChk   = <HTMLElement>shadow.getElementById('controls-chk');
+    // Toggle controls
+    const controlsChk   = <HTMLInputElement>shadow.getElementById('controls-chk');
     controlsChk.checked = decodeBool(getCookie('pagy-stylist-controls-chk') ?? 'true');
     const controlsIcon  = <HTMLElement>shadow.getElementById('controls-icon');
     const controlsDiv   = <HTMLElement>shadow.getElementById('controls');
     const helpDiv       = <HTMLElement>shadow.getElementById('help');
-
     const controlsSwitcher = () => {
       if (controlsChk.checked) {  // show controls
         controlsIcon.textContent  = 'help';
@@ -390,8 +393,14 @@ type Presets = { [key: string]: string };
       }
       setCookie('pagy-stylist-controls-chk', encodeBool(controlsChk.checked));
     };
-    controlsSwitcher();
     controlsChk.addEventListener('change', controlsSwitcher);
+    controlsChk.addEventListener('click', () => {
+      if (!contentChk.checked) {  // expand content first
+        contentChk.checked = true;
+        contentSwitcher();
+      }
+    });
+    controlsSwitcher();
   };
 
   const attachShadow = () => {
@@ -620,7 +629,7 @@ type Presets = { [key: string]: string };
             <h4>Panel</h4>
             <dl>
               <dt>Move</dt>
-                <dd>Drag on the TOP Bar.</dd>
+                <dd>Drag the TOP Bar.</dd>
               <dt>Top Bar Buttons</dt>
                 <dd>
                   <ul style="list-style-type: none; padding-left: 0; margin: 0;">
