@@ -277,6 +277,19 @@ class PagyDemo < Sinatra::Base
           .pagy-bootstrap .pagination {
             margin: 0;
           }
+          .pagy {
+            --B: 1;
+            --H: 174;
+            --S: 40;
+            --L: 70;
+            --spacing: 0.125rem;
+            --padding: 0.75rem;
+            --rounding: 1.125rem;
+            --border-width: 0rem;
+            --font-size: 0.875rem;
+            --font-weight: 450;
+            --line-height: 1.75;
+          }
         </style>
         <%# MASK_STYLE %>
       </head>

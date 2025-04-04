@@ -1,19 +1,22 @@
 (() => {
-  const padding = 12;
-  const baseColor = "#484848";
-  const pagyColor = "lightsalmon";
   const icons = "help,tune,visibility,visibility_off";
   const linkTags = `
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Pattaya&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300&icon_names=${icons}&display=block">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Pattaya&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=${icons}&display=block" />
   `;
   document.head.insertAdjacentHTML("beforeend", linkTags);
   const B64SafeEncode = (unicode) => btoa(String.fromCharCode(...new TextEncoder().encode(unicode))).replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
   const B64Decode = (base64) => new TextDecoder().decode(Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)));
   const encodeBool = (bool) => bool ? "true" : "false";
   const decodeBool = (str) => str === "true";
+  const PRESET = "pagy-wand-preset";
+  const OVERRIDE = "pagy-wand-override";
+  const POSITION = "pagy-wand-position";
+  const CONTROLS_CHK = "pagy-wand-controls-chk";
+  const HELP_CHK = "pagy-wand-help-chk";
+  const LIVE_CHK = "pagy-wand-live-chk";
   function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   }
@@ -32,9 +35,24 @@
     return null;
   }
   function initialize(shadow) {
-    const styleTag = document.createElement("style");
-    styleTag.id = "pagy-wand-override";
-    document.head.appendChild(styleTag);
+    const styleTagOverride = document.createElement("style");
+    styleTagOverride.id = "pagy-wand-ovrride";
+    document.head.appendChild(styleTagOverride);
+    const panel = shadow.getElementById("panel");
+    const topBar = shadow.getElementById("top-bar");
+    const presetMenu = shadow.getElementById("preset-menu");
+    const controlsChk = shadow.getElementById("controls-chk");
+    controlsChk.checked = decodeBool(getCookie(CONTROLS_CHK) ?? "false");
+    const controlsIcon = shadow.getElementById("controls-icon");
+    const controlsDiv = shadow.getElementById("controls");
+    const helpChk = shadow.getElementById("help-chk");
+    helpChk.checked = decodeBool(getCookie(HELP_CHK) ?? "false");
+    const helpIcon = shadow.getElementById("help-icon");
+    const helpDiv = shadow.getElementById("help");
+    const liveChk = shadow.getElementById("live-chk");
+    liveChk.checked = decodeBool(getCookie(LIVE_CHK) ?? "true");
+    const liveIcon = shadow.getElementById("live-icon");
+    const liveStyle = document.getElementById("pagy-wand-default");
     let controls = {
       brightness: { name: "--B", unit: "" },
       hue: { name: "--H", unit: "" },
@@ -50,152 +68,12 @@
     };
     for (const [id, c] of Object.entries(controls)) {
       c.input = shadow.getElementById(id);
-    }
-    function updateStyle() {
-      let override = `.pagy {\n`;
-      Object.values(controls).forEach((c) => {
-        override += `  ${c.name}: ${c.input.value}${c.unit};\n`;
-      });
-      override += "}";
-      const overrideArea = shadow.getElementById("override");
-      const overrideStyle = document.getElementById("pagy-wand-override");
-      overrideArea.value = override;
-      overrideStyle.textContent = override;
-      setCookie("pagy-wand-override", override);
-    }
-    function getCookiePosition() {
-      const position = getCookie("pagy-wand-position");
-      if (position) {
-        const [left, top] = position.split(",");
-        return { left: parseInt(left), top: parseInt(top) };
-      }
-      return null;
-    }
-    function setCookiePosition(left, top) {
-      setCookie("pagy-wand-position", `${left},${top}`);
-    }
-    const viewport = () => ({
-      width: window.visualViewport ? window.visualViewport.width : document.documentElement.clientWidth,
-      height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight
-    });
-    const panel = shadow.getElementById("panel");
-    const topBar = shadow.getElementById("top-bar");
-    function keepTopBarInView() {
-      const v = viewport();
-      const topBarRect = topBar.getBoundingClientRect();
-      if (topBarRect.left < 0) {
-        panel.style.left = "0px";
-      } else if (topBarRect.right > v.width) {
-        panel.style.left = `${v.width - topBar.offsetWidth}px`;
-      }
-      if (topBarRect.top < 0) {
-        panel.style.top = "0px";
-      } else if (topBarRect.bottom > v.height) {
-        panel.style.top = `${v.height - topBar.offsetHeight}px`;
-      }
-      if (topBarRect.top < 0 && topBar.offsetHeight < v.height) {
-        panel.style.top = "0px";
-      }
-      setCookiePosition(topBar.style.left, topBar.style.top);
-    }
-    let resizeTimeout;
-    window.addEventListener("resize", () => {
-      if (resizeTimeout)
-        clearTimeout(resizeTimeout);
-      resizeTimeout = window.setTimeout(keepTopBarInView, 250);
-    });
-    const position = getCookiePosition();
-    if (position) {
-      panel.style.left = `${position.left}px`;
-      panel.style.top = `${position.top}px`;
-    } else {
-      panel.classList.add("initial");
-      window.addEventListener("load", () => {
-        panel.addEventListener("transitionend", () => {
-          panel.style.transition = "none";
-          const rect = panel.getBoundingClientRect();
-          panel.style.top = rect.top + "px";
-          panel.style.left = rect.left + "px";
-          setCookiePosition(panel.style.left, panel.style.top);
-          panel.classList.remove("initial");
-          panel.classList.remove("centered");
-        });
-        panel.classList.add("centered");
+      c.input.addEventListener("input", () => {
+        updateStyle();
+        presetMenu.value = "";
+        setCookie(PRESET, "");
       });
     }
-    let offsetX = 0;
-    let offsetY = 0;
-    let dragging = false;
-    topBar.addEventListener("mousedown", (e) => {
-      if (e.target.closest("#preset-menu"))
-        return;
-      dragging = true;
-      offsetX = e.clientX - panel.offsetLeft;
-      offsetY = e.clientY - panel.offsetTop;
-    });
-    document.addEventListener("mousemove", (e) => {
-      if (!dragging)
-        return;
-      panel.style.left = `${e.clientX - offsetX}px`;
-      panel.style.top = `${e.clientY - offsetY}px`;
-      setCookiePosition(e.clientX - offsetX, e.clientY - offsetY);
-    });
-    document.addEventListener("mouseup", () => dragging = false);
-    const controlsChk = shadow.getElementById("controls-chk");
-    controlsChk.checked = decodeBool(getCookie("pagy-wand-controls-chk") ?? "false");
-    const controlsIcon = shadow.getElementById("controls-icon");
-    const controlsDiv = shadow.getElementById("controls");
-    const helpChk = shadow.getElementById("help-chk");
-    helpChk.checked = decodeBool(getCookie("pagy-wand-help-chk") ?? "false");
-    const helpIcon = shadow.getElementById("help-icon");
-    const helpDiv = shadow.getElementById("help");
-    function controlsSwitcher() {
-      if (controlsChk.checked) {
-        controlsIcon.classList.add("selected-icon");
-        controlsDiv.style.display = "grid";
-        helpChk.checked = false;
-        helpSwitcher();
-      } else {
-        controlsIcon.classList.remove("selected-icon");
-        controlsDiv.style.display = "none";
-      }
-      setCookie("pagy-wand-controls-chk", encodeBool(controlsChk.checked));
-    }
-    controlsSwitcher();
-    controlsChk.addEventListener("change", controlsSwitcher);
-    function helpSwitcher() {
-      if (helpChk.checked) {
-        helpIcon.classList.add("selected-icon");
-        helpDiv.style.display = "block";
-        controlsChk.checked = false;
-        controlsSwitcher();
-      } else {
-        helpIcon.classList.remove("selected-icon");
-        helpDiv.style.display = "none";
-      }
-      setCookie("pagy-wand-help-chk", encodeBool(helpChk.checked));
-    }
-    helpSwitcher();
-    helpChk.addEventListener("change", helpSwitcher);
-    const liveChk = shadow.getElementById("live-chk");
-    liveChk.checked = decodeBool(getCookie("pagy-wand-live-chk") ?? "true");
-    const liveIcon = shadow.getElementById("live-icon");
-    const liveStyle = document.getElementById("pagy-wand-default");
-    const liveStyleOverride = document.getElementById("pagy-wand-override");
-    function liveSwitcher() {
-      if (liveChk.checked) {
-        liveIcon.textContent = "visibility";
-        liveStyle.disabled = false;
-        liveStyleOverride.disabled = false;
-      } else {
-        liveIcon.textContent = "visibility_off";
-        liveStyle.disabled = true;
-        liveStyleOverride.disabled = true;
-      }
-      setCookie("pagy-wand-live-chk", encodeBool(liveChk.checked));
-    }
-    liveSwitcher();
-    liveChk.addEventListener("change", liveSwitcher);
     const presets = {
       Default: `
       .pagy {
@@ -333,7 +211,6 @@
       }
       `
     };
-    const presetMenu = shadow.getElementById("preset-menu");
     for (const presetName in presets) {
       const option = document.createElement("option");
       option.value = presetName;
@@ -341,7 +218,7 @@
       presetMenu.appendChild(option);
     }
     function applyPreset(name) {
-      const css = name ? (deleteCookie("pagy-wand-override"), presets[name]) : getCookie("pagy-wand-override");
+      const css = name ? (deleteCookie(OVERRIDE), presets[name]) : getCookie(OVERRIDE);
       css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
         let [name, value] = match.split(":");
         name = name.trim();
@@ -352,33 +229,153 @@
             break;
           }
         }
-        const liveChk = shadow.getElementById("live-chk");
-        liveChk.checked = true;
-        liveSwitcher();
       });
-      setCookie("pagy-wand-preset", name || "");
+      setCookie(PRESET, name || "");
       updateStyle();
     }
     presetMenu.addEventListener("change", (e) => applyPreset(e.target.value));
-    Object.values(controls).forEach((c) => {
-      c.input.addEventListener("input", () => {
-        updateStyle();
-        presetMenu.value = "";
-        setCookie("pagy-wand-preset", "");
-      });
-    });
-    const preset = getCookie("pagy-wand-preset") ?? "Default";
+    const preset = getCookie(PRESET) ?? "Default";
     presetMenu.value = preset;
     applyPreset(preset);
+    function updateStyle() {
+      let override = `.pagy {\n`;
+      Object.values(controls).forEach((c) => {
+        override += `  ${c.name}: ${c.input.value}${c.unit};\n`;
+      });
+      override += "}";
+      shadow.getElementById("override").value = override;
+      styleTagOverride.textContent = liveChk.checked ? override : "";
+      setCookie(OVERRIDE, override);
+    }
+    function getCookiePosition() {
+      const position = getCookie(POSITION);
+      if (position) {
+        const [left, top] = position.split(",");
+        return { left: parseInt(left), top: parseInt(top) };
+      }
+      return null;
+    }
+    function setCookiePosition(left, top) {
+      setCookie(POSITION, `${left},${top}`);
+    }
+    const viewport = () => ({
+      width: window.visualViewport ? window.visualViewport.width : document.documentElement.clientWidth,
+      height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight
+    });
+    function keepTopBarInView() {
+      const v = viewport();
+      const rect = topBar.getBoundingClientRect();
+      if (rect.left < 0) {
+        panel.style.left = "0px";
+      } else if (rect.right > v.width) {
+        panel.style.left = `${v.width - topBar.offsetWidth}px`;
+      }
+      if (rect.top < 0) {
+        panel.style.top = "0px";
+      } else if (rect.bottom > v.height) {
+        panel.style.top = `${v.height - topBar.offsetHeight}px`;
+      }
+      if (rect.top < 0 && topBar.offsetHeight < v.height) {
+        panel.style.top = "0px";
+      }
+      setCookiePosition(rect.left, rect.top);
+    }
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      if (resizeTimeout)
+        clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(keepTopBarInView, 250);
+    });
+    const position = getCookiePosition();
+    if (position) {
+      panel.style.left = `${position.left}px`;
+      panel.style.top = `${position.top}px`;
+    } else {
+      panel.classList.add("initial");
+      window.addEventListener("load", () => {
+        panel.addEventListener("transitionend", () => {
+          panel.style.transition = "none";
+          const rect = panel.getBoundingClientRect();
+          panel.style.top = rect.top + "px";
+          panel.style.left = rect.left + "px";
+          setCookiePosition(rect.left, rect.top);
+          panel.classList.remove("initial");
+          panel.classList.remove("centered");
+        });
+        panel.classList.add("centered");
+      });
+    }
+    let offsetX = 0;
+    let offsetY = 0;
+    let dragging = false;
+    topBar.addEventListener("mousedown", (e) => {
+      if (e.target.closest("#preset-menu"))
+        return;
+      dragging = true;
+      offsetX = e.clientX - panel.offsetLeft;
+      offsetY = e.clientY - panel.offsetTop;
+    });
+    document.addEventListener("mousemove", (e) => {
+      if (!dragging)
+        return;
+      panel.style.left = `${e.clientX - offsetX}px`;
+      panel.style.top = `${e.clientY - offsetY}px`;
+      setCookiePosition(e.clientX - offsetX, e.clientY - offsetY);
+    });
+    document.addEventListener("mouseup", () => dragging = false);
+    function controlsSwitcher() {
+      if (controlsChk.checked) {
+        controlsIcon.classList.add("selected-icon");
+        controlsDiv.style.display = "grid";
+        helpChk.checked = false;
+        helpSwitcher();
+      } else {
+        controlsIcon.classList.remove("selected-icon");
+        controlsDiv.style.display = "none";
+      }
+      setCookie(CONTROLS_CHK, encodeBool(controlsChk.checked));
+    }
+    controlsSwitcher();
+    controlsChk.addEventListener("change", controlsSwitcher);
+    function helpSwitcher() {
+      if (helpChk.checked) {
+        helpIcon.classList.add("selected-icon");
+        helpDiv.style.display = "block";
+        controlsChk.checked = false;
+        controlsSwitcher();
+      } else {
+        helpIcon.classList.remove("selected-icon");
+        helpDiv.style.display = "none";
+      }
+      setCookie(HELP_CHK, encodeBool(helpChk.checked));
+    }
+    helpSwitcher();
+    helpChk.addEventListener("change", helpSwitcher);
+    function liveSwitcher() {
+      if (liveChk.checked) {
+        liveIcon.classList.add("selected-icon");
+        liveIcon.textContent = "visibility";
+        liveStyle.disabled = false;
+      } else {
+        liveIcon.classList.remove("selected-icon");
+        liveIcon.textContent = "visibility_off";
+        liveStyle.disabled = true;
+      }
+      updateStyle();
+      setCookie(LIVE_CHK, encodeBool(liveChk.checked));
+    }
+    liveSwitcher();
+    liveChk.addEventListener("change", liveSwitcher);
   }
   function attachShadow() {
+    const padding = 0.75;
+    const baseColor = "#484848";
+    const pagyColor = "lightsalmon";
     const host = document.createElement("div");
     host.id = "pagy-wand-host";
     document.body.appendChild(host);
-    const style = document.createElement("style");
-    style.id = "pagy-wand-default";
-    const element = document.getElementById("pagy-wand");
-    style.textContent = B64Decode(element.getAttribute("data-pagy-wand-default"));
+    const scale = document.getElementById("pagy-wand").getAttribute("data-scale");
+    const style = document.getElementById("pagy-wand-default");
     document.head.appendChild(style);
     const shadow = host.attachShadow({ mode: "closed" });
     shadow.innerHTML = `
@@ -388,26 +385,27 @@
           font-display: block;
         }
         #panel select, #panel select option, #panel input[type="range"] {
-          font-family: 'Nunito Sans', sans-serif !important;
+          font-family: 'Nunito Sans', sans-serif;
           font-weight: 500;
           cursor: pointer;
         }
         #panel select, textarea {
-          border-radius: 4px;
+          border-radius: 0.25rem;
           border: none;
-          box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.3);
+          box-shadow: 0.125rem 0.125rem 0.3125rem 0 rgba(0,0,0,0.3);
         }
         #panel {
           accent-color: ${baseColor};
-          font-family: 'Nunito Sans', sans-serif !important;
+          font-family: 'Nunito Sans', sans-serif;
           line-height: 1.2;
-          border-radius: 20px;
-          width: 350px;
+          border-radius: 1.25rem;
+          width: 22rem;
           box-sizing: border-box;
-          box-shadow: 12px 12px 25px 1px rgba(0,0,0, .4);
+          box-shadow: 0.75rem 0.75rem 1.5625rem 0.0625rem rgba(0,0,0,.4);
           position: fixed;
           z-index: 1000;
           overflow: hidden;
+          transform: scale(${scale});
           transition: transform 1s ease;
         }
         #panel.initial {
@@ -416,14 +414,24 @@
           transform: translate(-50%, 0) scale(0.1) rotate(0deg);
         }
         #panel.centered {
-          transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(1) rotate(1080deg);
+          transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(${scale}) rotate(1080deg);
         }
         #panel pre, #panel code, #panel kbd, #panel samp {
-          font-family: 'Ubuntu Sans Mono', monospace !important;
+          font-family: 'Ubuntu Sans Mono', monospace;
         }
         #top-bar {
-          background-color: ${baseColor};
-          padding: 6px ${padding}px 6px ${padding + 2}px;
+          background: linear-gradient(to bottom,
+            #1a1a1a 0%,      /* Fading Further */
+            #2b2b2b 5%,      /* Fading to Mid-Tone */
+            #404040 10%,     /* Soft Highlight */
+            #525252 20%,     /* Highlight Transition */
+            #404040 40%,     /* Mid-Tone (Lighter) */
+            #2b2b2b 60%,     /* Mid-Tone (Darker) */
+            #1a1a1a 80%,     /* Core Shadow */
+            #0d0d0d 92%,     /* Deep Shadow */
+            #000000 100%     /* Darkest Shadow */
+            );
+          padding: 0.25rem ${padding}rem 0.25rem calc(${padding}rem + 0.125rem);
           cursor: move;
           user-select: none;
           color: white;
@@ -440,20 +448,18 @@
         }
         #title {
           color: ${pagyColor};
-          font-family: 'Pattaya', sans-serif !important;
+          font-family: 'Pattaya', sans-serif;
           font-size: 1.4rem;
-          text-shadow: 1px 1px 0 rgba(0,0,0,1);
-          margin-right: 2px;
-          display: flex;
-          align-items: center;
+          text-shadow: 0.0625rem 0.0625rem 0 rgba(0,0,0,1);
+          margin-right: 0.125rem;
         }
         #preset-menu {
-          border-radius: 20px !important;
-          padding-left: 4px !important;
+          border-radius: 1.25rem !important;
+          padding-left: 0.25rem !important;
         }
         .switch-icon {
-          font-size: 24px;
-          font-weight: 200;
+          font-size: 1.5rem;
+          font-weight: 300;
           cursor: pointer;
         }
         .selected-icon {
@@ -464,53 +470,52 @@
           font-size: 0.8rem;
           color: black;
           background-color: rgba(220,220,220,.6);
-          backdrop-filter: blur(14px);
-          padding: ${padding}px;
-          border-top: 2px solid ${pagyColor};
-          border-bottom: 2px solid ${pagyColor};
+          backdrop-filter: blur(0.875rem);
+          padding: ${padding}rem;
+          border-top: 0.125rem solid ${pagyColor};
+          border-bottom: 0.125rem solid ${pagyColor};
           display: flex;
-          justify-content: center; 
-          align-items: center;    
-          height: 484px;
+          justify-content: center;
+          align-items: center;
+          height: 30rem;
         }
-        #controls {  
+        #controls {
           display: grid;
           grid-template-columns: auto auto;
-          grid-column-gap: 5px;
-          grid-row-gap: 1px;
+          grid-column-gap: 0.625rem;
         }
         #controls label {
           font-weight: 600;
           grid-column: 1;
-          padding-right: 5px;
           white-space: nowrap;
           justify-self: end;
           align-self: center;
         }
         label[for="override"] {
           align-self: start !important;
-          margin-top: 5px;
+          margin-top: 0.375rem;
         }
         #brightness {
-          margin: 2px;
+          margin: 0.125rem;
         }
         #override {
-          font-family: "Ubuntu Sans Mono", monospace !important;
+          font-family: "Ubuntu Sans Mono", monospace;
           font-size: .8rem;
           font-weight: 400;
           line-height: 1.1;
-          height: 185px;
+          height: 11.5625rem;
           resize: vertical;
-          margin: 3px;
+          margin: 0.1875rem;
         }
         .help-icon {
           font-size: 1rem;
-          vertical-align: -25%;
+          vertical-align: -15.625%;
           border-radius: 15%;
           color: white;
           background-color: ${baseColor};
           margin-top: 0.2rem;
-          padding: 2px 1px 1px 1px;
+          padding: 0.125rem 0.0625rem 0.0625rem 0.0625rem;
+          font-weight: 300;
         }
         .selected-help-icon {
           color: ${pagyColor};
@@ -529,9 +534,9 @@
         }
         #help h4 {
           text-align: right;
-          padding: 4px 10px; 
-          border-top-right-radius: 40px; /* large to ensure roundness */
-          border-bottom-right-radius: 40px;
+          padding: 0.25rem 0.625rem;
+          border-top-right-radius: 2.5rem;
+          border-bottom-right-radius: 2.5rem;
           background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255, 1));
           margin-top: 1rem;
           margin-bottom: .5rem;
@@ -555,13 +560,13 @@
           margin-left: .4rem;
         }
         #help code {
-          font-family: "Ubuntu Sans Mono", monospace !important;
+          font-family: "Ubuntu Sans Mono", monospace;
           display: inline-block;
           line-height: .8rem;
-          border-radius: 10px;
+          border-radius: 0.625rem;
           background-color: white;
-          padding: 1px 5px;
-        } 
+          padding: 0.0625rem 0.3125rem;
+        }
       </style>
       <div id="panel">
         <div id="top-bar">
@@ -573,15 +578,15 @@
           </label>
           <label for="controls-chk">
             <input id="controls-chk" type="checkbox">
-            <span class="material-symbols-outlined switch-icon" id="controls-icon">tune</span>
+            <span class="material-symbols-rounded switch-icon" id="controls-icon">tune</span>
           </label>
           <label for="help-chk">
             <input id="help-chk" type="checkbox">
-            <span class="material-symbols-outlined switch-icon" id="help-icon">help</span>
+            <span class="material-symbols-rounded switch-icon" id="help-icon">help</span>
           </label>
           <label for="live-chk">
             <input id="live-chk" type="checkbox" checked>
-            <span class="material-symbols-outlined switch-icon" id="live-icon">visibility</span>
+            <span class="material-symbols-rounded switch-icon" id="live-icon">visibility</span>
           </label>
         </div>
         <div id="content">
@@ -621,25 +626,25 @@
                 <dd><code><%== Pagy.wand_tag %></code>
                 </dd>
               </dl>
-            <h4>Panel</h4>
+            <h4>Wand</h4>
             <dl>
               <dt>Move</dt>
-                <dd>Drag the TOP Bar.</dd>
+                <dd>Drag the Wand.</dd>
               <dt>Top Bar Indicators</dt>
                 <dd>
                   <ul style="list-style-type: none; padding-left: 0; margin: 0;">
-                    <li><span class="material-symbols-outlined help-icon">tune</span> <span class="material-symbols-outlined help-icon selected-help-icon">tune</span><span class="button-desc">Expand/collapse the Controls Section</span></li>
-                    <li><span class="material-symbols-outlined help-icon">help</span> <span class="material-symbols-outlined help-icon selected-help-icon">help</span><span class="button-desc">Expand/collapse the Help Section</span></li>
-                        <span class="material-symbols-outlined help-icon">visibility</span> <span class="material-symbols-outlined help-icon">visibility_off</span><span class="button-desc">Enable/disable the Live Style</span></li>
+                    <li><span class="material-symbols-rounded help-icon">tune</span> <span class="material-symbols-rounded help-icon selected-help-icon">tune</span><span class="button-desc">Toggle the Controls Section</span></li>
+                    <li><span class="material-symbols-rounded help-icon">help</span> <span class="material-symbols-rounded help-icon selected-help-icon">help</span><span class="button-desc">Toggle the Help Section</span></li>
+                        <span class="material-symbols-rounded help-icon">visibility_off</span> <span class="material-symbols-rounded help-icon selected-help-icon">visibility</span><span class="button-desc">Toggle the Live Preview</span></li>
                   </ul>
                 </dd>
+              <dt>Presets</dt>
+                <dd>Pick a starting point to try and further customize.</dd>
               <dt>Close Icon</dt>
                 <dd>There is no dynamic close button by design.</dd>
             </dl>
             <h4>Controls</h4>
             <dl>
-              <dt>Presets</dt>
-                <dd>Pick a starting point to try and further customize.</dd>
               <dt>Brightness</dt>
                 <dd>Toggle between Light and Dark theming. Adjust the lightness after toggling.</dd>
               <dt>Hue, Saturation, Lightness</dt>
