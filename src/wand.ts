@@ -15,11 +15,11 @@ type Presets = { [key: string]: string };
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Pattaya&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=${icons}&display=block" />
-  `
+  `;
   document.head.insertAdjacentHTML('beforeend', linkTags);
   // Cookie handling
   const B64SafeEncode = (unicode:string) => btoa(String.fromCharCode(...(new TextEncoder).encode(unicode)))
-                                            .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
+      .replace(/[+/=]/g, (m) => m == "+" ? "-" : m == "/" ? "_" : "");
   const B64Decode     = (base64:string) => (new TextDecoder()).decode(Uint8Array.from(atob(base64), c => c.charCodeAt(0)));
 
   const encodeBool    = (bool:boolean) =>  bool ? 'true' : 'false';
@@ -33,6 +33,7 @@ type Presets = { [key: string]: string };
   const HELP_CHK     = 'pagy-wand-help-chk';
   const LIVE_CHK     = 'pagy-wand-live-chk';
 
+  // Cookie functions
   function deleteCookie(name:string) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
   }
@@ -53,6 +54,7 @@ type Presets = { [key: string]: string };
     return null;
   }
 
+  // initialize function (Original structure)
   function initialize(shadow: ShadowRoot) {
     // Append CSS ovveride style tag in <head>
     const styleTagOverride = document.createElement('style');
@@ -78,6 +80,7 @@ type Presets = { [key: string]: string };
     const liveIcon  = <HTMLElement>shadow.getElementById('live-icon');
     const liveStyle = <HTMLStyleElement>document.getElementById('pagy-wand-default');
 
+    // controls object (Original - units remain 'rem' as they apply to document override)
     let controls:Controls = {
       brightness:  { name: '--B',            unit: ''    },
       hue:         { name: '--H',            unit: ''    },
@@ -100,7 +103,7 @@ type Presets = { [key: string]: string };
       });
     }
 
-    // PresetMenu
+    // PresetMenu (Original - units remain 'rem')
     const presets:Presets = {
       Default: `
       .pagy {
@@ -246,16 +249,17 @@ type Presets = { [key: string]: string };
       presetMenu.appendChild(option);
     }
 
+    // applyPreset function (Original logic)
     function applyPreset(name:string | null) {
       const css = name
                   ? (deleteCookie(OVERRIDE), presets[name])
                   : getCookie(OVERRIDE);
       css?.match(/--[^:]+:\s*[^;]+/g)?.forEach((match) => {
-        let [name, value] = match.split(':');
-        name  = name.trim();
+        let [cssVarName, value] = match.split(':');
+        cssVarName = cssVarName.trim();
         value = value.trim().replace(/[a-zA-Z%]+$/, '');
         for (const c of Object.values(controls)) {
-          if (c.name === name) {
+          if (c.name === cssVarName) {
             c.input!.value = value;
             break;
           }
@@ -265,22 +269,39 @@ type Presets = { [key: string]: string };
       updateStyle();
     }
     presetMenu.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
-    const preset     = getCookie(PRESET) ?? 'Default';
-    presetMenu.value = preset;
-    applyPreset(preset);
 
-    // Style handling
+    // Initial load logic
+    const preset = getCookie(PRESET) ?? 'Default';
+    presetMenu.value = preset; // Set dropdown value first
+    // Check for override *after* setting preset dropdown, apply override if exists
+    const initialOverride = getCookie(OVERRIDE);
+    if (initialOverride) {
+      applyPreset(null); // Apply override
+      presetMenu.value = ''; // Unselect preset in dropdown
+    } else {
+      applyPreset(preset); // Apply preset if no override
+    }
+
+
+    // Style handling (Original logic)
     function updateStyle() {
       let override = `.pagy {\n`;
       Object.values(controls).forEach((c) => {
-        override += `  ${c.name}: ${c.input!.value}${c.unit};\n`;
+        override += `  ${c.name}: ${c.input!.value}${c.unit};\n`; // Uses original units from controls object
       });
       override += '}';
       (<HTMLTextAreaElement>shadow.getElementById('override'))!.value = override;
       styleTagOverride.textContent = liveChk.checked ? override : '';
-      setCookie(OVERRIDE, override);
+      // Save override cookie only if a preset is NOT selected
+      if (presetMenu.value === '') {
+        setCookie(OVERRIDE, override);
+      } else {
+        // If a preset *is* selected, delete any override cookie
+        deleteCookie(OVERRIDE);
+      }
     }
 
+    // getCookiePosition function
     function getCookiePosition() {
       const position = getCookie(POSITION);
       if (position) {
@@ -290,36 +311,45 @@ type Presets = { [key: string]: string };
       return null;
     }
 
-    // Position handling
+    // setCookiePosition function
     function setCookiePosition(left: string|number, top: string|number) {
       setCookie(POSITION, `${left},${top}`);
     }
 
+    // Viewport function
     const viewport = () => ({
       width:  window.visualViewport ? window.visualViewport.width  : document.documentElement.clientWidth,
       height: window.visualViewport ? window.visualViewport.height : document.documentElement.clientHeight,
     });
 
+    // keepTopBarInView function
     function keepTopBarInView() {
       const v = viewport();
       const rect = topBar.getBoundingClientRect();
+      let newLeft = panel.offsetLeft; // Use panel's current position
+      let newTop = panel.offsetTop;
+
       // Check if topBar is off-screen horizontally
       if (rect.left < 0) {
-        panel.style.left = '0px';
+        newLeft = panel.offsetLeft - rect.left; // Adjust panel left
       } else if (rect.right > v.width) {
-        panel.style.left = `${v.width - topBar.offsetWidth}px`;
+        // Correct calculation: adjust by how much the right edge is past the viewport width
+        newLeft = panel.offsetLeft - (rect.right - v.width);
       }
       // Check if topBar is off-screen vertically
       if (rect.top < 0) {
-        panel.style.top = '0px';
+        newTop = panel.offsetTop - rect.top; // Adjust panel top
       } else if (rect.bottom > v.height) {
-        panel.style.top = `${v.height - topBar.offsetHeight}px`;
+        // Correct calculation: adjust by how much the bottom edge is past the viewport height
+        newTop = panel.offsetTop - (rect.bottom - v.height);
       }
-      // Ensure the top bar is in view
-      if (rect.top < 0 && topBar.offsetHeight < v.height) {
-        panel.style.top = '0px';
-      }
-      setCookiePosition(rect.left, rect.top);
+
+      // Apply potentially adjusted positions
+      panel.style.left = `${newLeft}px`;
+      panel.style.top = `${newTop}px`;
+
+      // Save the *panel's* final position
+      setCookiePosition(newLeft, newTop);
     }
 
     // Resize event listener
@@ -329,26 +359,31 @@ type Presets = { [key: string]: string };
       resizeTimeout = window.setTimeout(keepTopBarInView, 250);
     });
 
-    // Set position from cookie (or transition-center it)
+    // Set position from cookie (or transition-center it) (Original logic)
     const position = getCookiePosition();
 
-    if (position) {
+    if (position && !isNaN(position.left) && !isNaN(position.top)) { // Added NaN check for robustness
       panel.style.left = `${position.left}px`;
       panel.style.top  = `${position.top}px`;
     } else {
-      panel.classList.add('initial');
-      window.addEventListener('load', () => {
-        panel.addEventListener('transitionend', () => {
-          panel.style.transition = 'none'; // Remove transition using 'none'
-          const rect       = panel.getBoundingClientRect();
+      panel.classList.add('initial'); // Start with initial styles (transform/opacity)
+      requestAnimationFrame(() => {
+        panel.classList.add('centered'); // Add class to trigger transition
+      });
+      panel.addEventListener('transitionend', (e) => {
+        // Only act when the transform transition ends
+        if (e.propertyName === 'transform') {
+          panel.style.transition = 'none'; // Remove transition for immediate positioning
+          const rect = panel.getBoundingClientRect();
           panel.style.top  = rect.top + 'px';
           panel.style.left = rect.left + 'px';
           setCookiePosition(rect.left, rect.top);
-          panel.classList.remove('initial')
-          panel.classList.remove('centered')
-        });
-        panel.classList.add('centered');
-      });
+          panel.classList.remove('initial');
+          panel.classList.remove('centered');
+          // Optional: Restore short transition for dragging if desired
+          // panel.style.transition = 'left 0.1s ease, top 0.1s ease';
+        }
+      }, { once: true }); // Important: Run only once
     }
 
     // Panel dragging
@@ -357,30 +392,45 @@ type Presets = { [key: string]: string };
     let dragging = false;
 
     topBar.addEventListener('mousedown', (e) => {
-      if ((<HTMLElement>e.target).closest('#preset-menu')) return;
+      // Ignore clicks on interactive elements within the top bar
+      if ((<HTMLElement>e.target).closest('#preset-menu, label')) return;
 
       dragging = true;
       offsetX  = e.clientX - panel.offsetLeft;
       offsetY  = e.clientY - panel.offsetTop;
+      topBar.style.cursor = 'grab';
+      panel.style.transition = 'none'; // Disable transition during drag for responsiveness
     });
+
     document.addEventListener('mousemove', (e) => {
       if (!dragging) return;
+      e.preventDefault(); // Prevent text selection
 
-      panel.style.left = `${e.clientX - offsetX}px`;
-      panel.style.top  = `${e.clientY - offsetY}px`;
-      setCookiePosition(e.clientX - offsetX, e.clientY - offsetY);
+      const newLeft = e.clientX - offsetX;
+      const newTop = e.clientY - offsetY;
+      panel.style.left = `${newLeft}px`;
+      panel.style.top  = `${newTop}px`;
+      setCookiePosition(newLeft, newTop);
     });
-    document.addEventListener('mouseup', () => dragging = false);
+
+    document.addEventListener('mouseup', () => {
+      if (!dragging) return;
+
+      dragging = false;
+      topBar.style.cursor = 'move'; // Restore move cursor
+      // Restore original transition after drag
+      // panel.style.transition = 'transform 1s ease'; // Or whatever it should be
+    });
 
 
-    // Toggles
+    // Toggles (Original structure)
     // Controls
     function controlsSwitcher() {
       if (controlsChk.checked) {  // show controls
         controlsIcon.classList.add('selected-icon');
         controlsDiv.style.display = 'grid';
         helpChk.checked           = false;
-        helpSwitcher();
+        helpSwitcher(); // Ensure help updates if controls shown
       } else {                    // hide controls
         controlsIcon.classList.remove('selected-icon');
         controlsDiv.style.display = 'none';
@@ -396,7 +446,7 @@ type Presets = { [key: string]: string };
         helpIcon.classList.add('selected-icon');
         helpDiv.style.display = 'block';
         controlsChk.checked   = false;
-        controlsSwitcher();
+        controlsSwitcher(); // Ensure controls updates if help shown
       } else {                // hide help
         helpIcon.classList.remove('selected-icon');
         helpDiv.style.display = 'none';
@@ -420,9 +470,10 @@ type Presets = { [key: string]: string };
       updateStyle(); // take care of the override if not checked
       setCookie(LIVE_CHK, encodeBool(liveChk.checked));
     }
-    liveSwitcher();
+    liveSwitcher(); // <-- Call immediately after definition
     liveChk.addEventListener('change', liveSwitcher);
-  }
+  } // End initialize
+
 
   function attachShadow() {
     const padding   = 0.75;
@@ -431,11 +482,10 @@ type Presets = { [key: string]: string };
     const host = document.createElement('div');
     host.id    = 'pagy-wand-host';
     document.body.appendChild(host);
-    // Set the scaling
-    const scale = (document.getElementById("pagy-wand"))!.getAttribute("data-scale");
-    const style = <HTMLElement>document.getElementById('pagy-wand-default')
+    const scale = parseFloat((document.getElementById("pagy-wand"))!.getAttribute("data-scale")!);
+    const style = <HTMLElement>document.getElementById('pagy-wand-default');
     document.head.appendChild(style);
-    const shadow     = host.attachShadow({ mode: 'closed' });
+    const shadow = host.attachShadow({ mode: 'closed' });
     // Append the gem-updated pagy.css, to override the user stylesheet
     shadow.innerHTML = `
       ${linkTags}
@@ -449,22 +499,31 @@ type Presets = { [key: string]: string };
           cursor: pointer;
         }
         #panel select, textarea {
-          border-radius: 0.25rem;
+          font-size: ${scale * .8}rem;
+          border-radius: ${scale}rem;
+                    /*border-radius: ${scale * 1.25}rem !important;*/
+          padding-left: ${scale * 0.25}rem !important;
           border: none;
-          box-shadow: 0.125rem 0.125rem 0.3125rem 0 rgba(0,0,0,0.3);
+          box-shadow: ${scale * 0.125}rem
+                      ${scale * 0.125}rem
+                      ${scale * 0.3125}rem 
+                      0 rgba(0,0,0,0.3);
         }
         #panel {
           accent-color: ${baseColor};
           font-family: 'Nunito Sans', sans-serif;
           line-height: 1.2;
-          border-radius: 1.25rem;
-          width: 22rem;
+          border-radius:  ${scale * 1.25}rem;
+          width:  ${scale * 22}rem;
           box-sizing: border-box;
-          box-shadow: 0.75rem 0.75rem 1.5625rem 0.0625rem rgba(0,0,0,.4);
+          box-shadow: ${scale * 0.75}rem
+                      ${scale * 0.75}rem
+                      ${scale * 1.5625}rem
+                      ${scale * 0.0625}rem
+                      rgba(0,0,0,.4);
           position: fixed;
           z-index: 1000;
           overflow: hidden;
-          transform: scale(${scale});
           transition: transform 1s ease;
         }
         #panel.initial {
@@ -473,24 +532,27 @@ type Presets = { [key: string]: string };
           transform: translate(-50%, 0) scale(0.1) rotate(0deg);
         }
         #panel.centered {
-          transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(${scale}) rotate(1080deg);
+          transform: translate(calc(50vw - 50%), calc(50vh - 50%)) scale(1) rotate(1080deg);
         }
         #panel pre, #panel code, #panel kbd, #panel samp {
           font-family: 'Ubuntu Sans Mono', monospace;
         }
         #top-bar {
           background: linear-gradient(to bottom,
-            #1a1a1a 0%,      /* Fading Further */
-            #2b2b2b 5%,      /* Fading to Mid-Tone */
-            #404040 10%,     /* Soft Highlight */
-            #525252 20%,     /* Highlight Transition */
-            #404040 40%,     /* Mid-Tone (Lighter) */
-            #2b2b2b 60%,     /* Mid-Tone (Darker) */
-            #1a1a1a 80%,     /* Core Shadow */
-            #0d0d0d 92%,     /* Deep Shadow */
-            #000000 100%     /* Darkest Shadow */
-            );
-          padding: 0.25rem ${padding}rem 0.25rem calc(${padding}rem + 0.125rem);
+                                        #1a1a1a 0%,
+                                        #2b2b2b 5%,
+                                        #404040 10%,
+                                        #525252 20%,
+                                        #404040 40%,
+                                        #2b2b2b 60%,
+                                        #1a1a1a 80%,
+                                        #0d0d0d 92%,
+                                        #000000 100%
+                                      );
+          padding: ${scale * 0.25}rem
+                   ${scale * padding}rem
+                   ${scale * 0.25}rem
+                   ${scale * (padding + 0.125)}rem;
           cursor: move;
           user-select: none;
           color: white;
@@ -508,16 +570,14 @@ type Presets = { [key: string]: string };
         #title {
           color: ${pagyColor};
           font-family: 'Pattaya', sans-serif;
-          font-size: 1.4rem;
-          text-shadow: 0.0625rem 0.0625rem 0 rgba(0,0,0,1);
-          margin-right: 0.125rem;
-        }
-        #preset-menu {
-          border-radius: 1.25rem !important;
-          padding-left: 0.25rem !important;
+          font-size: ${scale * 1.4}rem;
+          text-shadow: ${scale * 0.0625}rem
+                       ${scale *  0.0625}rem 
+                       0 rgba(0,0,0,1);
+          margin-right: ${scale * 0.125}rem;
         }
         .switch-icon {
-          font-size: 1.5rem;
+          font-size: ${scale * 1.5}rem;
           font-weight: 300;
           cursor: pointer;
         }
@@ -526,22 +586,22 @@ type Presets = { [key: string]: string };
         }
         .content{
           overflow-y: auto;
-          font-size: 0.8rem;
+          font-size: ${scale * 0.8}rem;
           color: black;
           background-color: rgba(220,220,220,.6);
-          backdrop-filter: blur(0.875rem);
-          padding: ${padding}rem;
-          border-top: 0.125rem solid ${pagyColor};
-          border-bottom: 0.125rem solid ${pagyColor};
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 30rem;
+          backdrop-filter: blur(${scale * 0.875}rem);
+          padding: ${scale}rem;
+          border-top: ${scale * 0.15625}rem solid ${pagyColor};
+          border-bottom: ${scale * 0.15625}rem solid ${pagyColor};
+          height: ${scale * 29}rem;
         }
         #controls {
           display: grid;
-          grid-template-columns: auto auto;
-          grid-column-gap: 0.625rem;
+          grid-template-columns: min-content 1fr ;
+          grid-column-gap: ${scale * 0.625}rem;
+        }
+        #controls input {
+          margin: 0;
         }
         #controls label {
           font-weight: 600;
@@ -552,28 +612,35 @@ type Presets = { [key: string]: string };
         }
         label[for="override"] {
           align-self: start !important;
-          margin-top: 0.375rem;
+          margin-top: ${scale * 0.375}rem;
         }
         #brightness {
-          margin: 0.125rem;
+          margin: ${scale * 0.125}rem;
         }
         #override {
+          white-space: pre-wrap; /* Preserve line breaks, wrap only when necessary */
+          word-break: normal;    /* Prevent breaking words */
+          overflow-wrap: normal; /* Standard line breaking */
           font-family: "Ubuntu Sans Mono", monospace;
-          font-size: .8rem;
-          font-weight: 400;
+          padding: ${scale * .4}rem !important;
+          border-radius: ${scale * .4}rem;
           line-height: 1.1;
-          height: 11.5625rem;
+          font-weight: 400;
+          height: ${scale * 11.25}rem;
           resize: vertical;
-          margin: 0.1875rem;
+          margin: 0;
         }
         .help-icon {
-          font-size: 1rem;
+          font-size: ${scale}rem;
           vertical-align: -15.625%;
           border-radius: 15%;
           color: white;
           background-color: ${baseColor};
-          margin-top: 0.2rem;
-          padding: 0.125rem 0.0625rem 0.0625rem 0.0625rem;
+          margin-top: ${scale * 0.2}rem;
+          padding: ${scale * 0.125}rem
+                   ${scale * 0.0625}rem
+                   ${scale * 0.0625}rem
+                   ${scale * 0.0625}rem;
           font-weight: 300;
         }
         .selected-help-icon {
@@ -581,50 +648,45 @@ type Presets = { [key: string]: string };
         }
         #help {
           display: none;
-          line-height: 1rem;
-        }
-        #help h3 {
-          font-size: 1rem;
-          margin-top: 0;
-          margin-bottom: .2rem;
+          line-height: ${scale}rem;
         }
         #help > h4:first-child {
           margin-top: 0;
         }
         #help h4 {
           text-align: right;
-          padding: 0.25rem 0.625rem;
-          border-top-right-radius: 2.5rem;
+          padding: ${scale * 0.25}rem ${scale * 0.625}rem;
+          border-top-right-radius: ${scale * 2.5}rem;
           border-bottom-right-radius: 2.5rem;
           background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255, 1));
-          margin-top: 1rem;
-          margin-bottom: .5rem;
+          margin-top: ${scale}rem;
+          margin-bottom: ${scale * .5}rem;
         }
         #help p {
-          margin-top: .4rem;
-          margin-bottom: .3rem;
+          margin-top: ${scale * .4}rem;
+          margin-bottom: ${scale * .3}rem;
         }
         #help dl {
           margin: 0;
         }
         #help dt {
           font-weight: bold;
-          margin: .4rem 0 .1rem 0;
+          margin: ${scale * .4}rem 0 ${scale * .1}rem 0;
         }
         #help dd {
-          margin-bottom: .15rem;
-          margin-left: 1rem;
+          margin-bottom: ${scale * .15}rem;
+          margin-left: ${scale}rem;
         }
         #help .button-desc {
-          margin-left: .4rem;
+          margin-left: ${scale * .4}rem;
         }
         #help code {
           font-family: "Ubuntu Sans Mono", monospace;
           display: inline-block;
-          line-height: .8rem;
-          border-radius: 0.625rem;
+          line-height: ${scale * .8}rem;
+          border-radius: ${scale * 0.625}rem;
           background-color: white;
-          padding: 0.0625rem 0.3125rem;
+          padding: ${scale * 0.0625}rem ${scale * 0.3125}rem;
         }
       </style>
       <div id="panel">
@@ -676,7 +738,7 @@ type Presets = { [key: string]: string };
             <label for="lineHeight">Line Height</label>
             <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
             <label for="override">CSS Override</label>
-            <textarea id="override" rows="5" cols="40" readonly></textarea>
+            <textarea id="override" readonly></textarea>
           </div>
           <div id="help" class="content">
             <h4>Install</h4>
