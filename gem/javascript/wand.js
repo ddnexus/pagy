@@ -1,7 +1,7 @@
 (() => {
   const baseColor = "#484848";
-  const pagyColor = "lightsalmon";
-  const icons = "content_copy,done_outline,error,help,tune,visibility,visibility_off";
+  const pagyColor = "#81ffff";
+  const icons = "content_copy,done_outline,error,help,tune,visibility,visibility_off,wand_shine";
   const linkTags = `
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -424,7 +424,6 @@
     copyIcon.addEventListener("click", copyToClipboard);
   }
   function attachShadow() {
-    const padding = 0.75;
     const host = document.createElement("div");
     host.id = "pagy-wand-host";
     document.body.appendChild(host);
@@ -495,9 +494,9 @@
                                         #000000 100%
                                       );
           padding: ${scale * 0.25}rem
-                   ${scale * padding}rem
+                   ${scale * 0.75}rem
                    ${scale * 0.25}rem
-                   ${scale * (padding + 0.125)}rem;
+                   ${scale * 0.875}rem;
           cursor: move;
           user-select: none;
           color: white;
@@ -515,7 +514,7 @@
         #title {
           color: ${pagyColor};
           font-family: 'Pattaya', sans-serif;
-          font-size: ${scale * 1.5}rem;
+          font-size: ${scale * 1.4}rem;
           text-shadow: ${scale * 0.0625}rem
                        ${scale * 0.0625}rem 
                        0 rgba(0,0,0,1);
@@ -536,14 +535,14 @@
           background-color: rgba(220,220,220,.6);
           backdrop-filter: blur(${scale * 0.875}rem);
           padding: ${scale * 0.8}rem ${scale}rem;
-          border-top: ${scale * 0.15625}rem solid ${pagyColor};
-          border-bottom: ${scale * 0.15625}rem solid ${pagyColor};
-          height: ${scale * 29}rem;
+          border-top: ${scale * 0.15}rem solid ${pagyColor};
+          border-bottom: ${scale * 0.15}rem solid ${pagyColor};
+          height: ${scale * 28.9}rem;
         }
         #controls {
           display: grid;
           grid-template-columns: min-content 1fr;
-          grid-template-rows: repeat(11, ${scale * 1.5}rem) ${scale * 12.25}rem;
+          grid-template-rows: repeat(11, ${scale * 1.5}rem) ${scale * 12}rem;
           grid-column-gap: ${scale * 0.625}rem;
         }
         #controls input {
@@ -555,13 +554,31 @@
           white-space: nowrap;
           justify-self: end;
           align-self: center;
+          user-select: none;
+          cursor: default;
         }
         label[for="override"] {
           align-self: start !important;
           margin-top: ${scale * 0.35}rem;
         }
         #brightness {
-          margin: ${scale * 0.1}rem 0;
+          margin: 0 0 ${scale * 0.2}rem 0;
+        }
+        #override-label-container {
+          display: flex;
+          position: relative;
+        }
+        #wand-icon {
+          font-weight: 300;
+          font-size: ${scale * 4}rem;
+          position: absolute;
+          color: white;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          user-select: none;
+          cursor: default;
+          text-shadow: 0 0 ${scale * 0.5}rem ${pagyColor};
         }
         #override-container {
           display: inline;
@@ -572,8 +589,8 @@
           word-break: normal;    /* Prevent breaking words */
           overflow-wrap: normal; /* Standard line breaking */
           font-family: "Ubuntu Sans Mono", monospace;
-          padding: ${scale * 0.4}rem !important;
-          border-radius: ${scale * 0.4}rem;
+          padding: ${scale * 0.2}rem !important;
+          border-radius: ${scale * 0.6}rem;
           line-height: 1.1;
           font-weight: 400;
           height: 100%;
@@ -581,19 +598,20 @@
           resize: vertical;
           box-sizing: border-box;  
           position: relative;
+          margin-top: ${scale * 0.25}rem;
         }
         #copy-icon {
           font-weight: 300;
           color: ${baseColor};
           position: absolute;
-          top: ${scale * 0.5}rem;
-          right: ${scale * 0.5}rem;
+          top: ${scale * 0.8}rem;
+          right: ${scale * 0.6}rem;
           cursor: pointer;
         }
         .copy-feedback {
           position: absolute;
-          top: ${scale * 0.8}rem;
-          right: ${scale * 2.2}rem;
+          top: ${scale}rem;
+          right: ${scale * 2.3}rem;
           padding: ${scale * 0.1}rem ${scale * 0.3}rem;
           border-radius: ${scale * 0.2}rem;
           font-weight: 700;
@@ -653,8 +671,8 @@
           border-top-right-radius: ${scale * 2.5}rem;
           border-bottom-right-radius: 2.5rem;
           background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255, 1));
-          margin-top: ${scale}rem;
-          margin-bottom: ${scale * 0.5}rem;
+          margin-top: ${scale * 0.8}rem;
+          margin-bottom: ${scale * 0.4}rem;
         }
         #help p {
           margin-top: ${scale * 0.4}rem;
@@ -731,7 +749,10 @@
             <input type="range" id="fontWeight" min="100" max="1000" step="50">
             <label for="lineHeight">Line Height</label>
             <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
-            <label for="override">CSS Override</label>
+            <div id="override-label-container">
+              <label for="override">CSS Override</label>
+              <span id="wand-icon" class="material-symbols-rounded">wand_shine</span>
+            </div>
             <div id="override-container">
               <textarea id="override" readonly></textarea>
               <span id="copy-feedback" class="copy-feedback"></span>
@@ -742,14 +763,17 @@
             <h4>Install</h4>
               <dl>
                 <dt>Load it in HTML head</dt>
-                <dd><code><%== Pagy.wand_tag(scale: 1) %></code>
+                <dd>
+                  <code><%== Pagy.wand_tag %></code>
+                  <p>You can pass the optional <code>scale</code> factor argument to change the size of the Wand.
+                    <br>Default: <code>scale: 1</code></p>
                 </dd>
               </dl>
             <h4>Wand</h4>
             <dl>
-              <dt>Move</dt>
+              <dt>Top Bar</dt>
                 <dd>Drag the Wand.</dd>
-              <dt>Top Bar Indicators</dt>
+              <dt>Top Bar Indicator Buttons</dt>
                 <dd>
                   <ul style="list-style-type: none; padding-left: 0; margin: 0;">
                     <li><span class="material-symbols-rounded help-icon">tune</span> <span class="material-symbols-rounded help-icon selected-help-icon">tune</span><span class="button-desc">Toggle the Controls Section</span></li>
@@ -787,10 +811,10 @@
               the <code><i>pagy.css</i></code> or <code><i>pagy-tailwind.css</i></code> calculates all the other metrics.</p>
             <p>Pick a Presets as a starting point, customize it with the controls,
               and copy/paste the CSS Override in your Stylesheet.</p>
-            <p>You can add further customization to the <code>.pagy</code> CSS Override, or maybe
-            override the calculated properties for full control over the final style.</p>
-            <p><b>Important</b>: Do not link the Pagy CSS file. Copy its customized content in your CSS, in order to avoid unwanted 
-            cosmetic changes that could happen on update.</p>
+            <p>You can add further customization to the <code>.pagy</code> CSS Override, or override the calculated properties
+              for full control over the final style.</p>
+            <p><b>Important</b>: Do not link the Pagy CSS file. Copy its customized content in your CSS,
+              in order to avoid unwanted cosmetic changes that could happen on update.</p>
           </div>
         </div>
       </div>
