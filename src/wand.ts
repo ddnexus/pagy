@@ -9,8 +9,10 @@ type Presets = { [key: string]: string };
 
 (() => {
   // Load ASAP
-  const icons    = 'help,tune,visibility,visibility_off';  // Alpha sorted icon names
-  const linkTags = `
+  const baseColor = '#484848';
+  const pagyColor = 'lightsalmon';
+  const icons     = 'content_copy,done_outline,error,help,tune,visibility,visibility_off';  // Alpha sorted icon names
+  const linkTags  = `
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Pattaya&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap">
@@ -79,6 +81,9 @@ type Presets = { [key: string]: string };
     liveChk.checked = decodeBool(getCookie(LIVE_CHK) ?? 'true');
     const liveIcon  = <HTMLElement>shadow.getElementById('live-icon');
     const liveStyle = <HTMLStyleElement>document.getElementById('pagy-wand-default');
+
+    const copyIcon  = <HTMLElement>shadow.getElementById('copy-icon');
+    const overrideArea = <HTMLTextAreaElement>shadow.getElementById('override');
 
     // controls object (Original - units remain 'rem' as they apply to document override)
     let controls:Controls = {
@@ -290,7 +295,7 @@ type Presets = { [key: string]: string };
         override += `  ${c.name}: ${c.input!.value}${c.unit};\n`; // Uses original units from controls object
       });
       override += '}';
-      (<HTMLTextAreaElement>shadow.getElementById('override'))!.value = override;
+      overrideArea!.value = override;
       styleTagOverride.textContent = liveChk.checked ? override : '';
       // Save override cookie only if a preset is NOT selected
       if (presetMenu.value === '') {
@@ -472,13 +477,46 @@ type Presets = { [key: string]: string };
     }
     liveSwitcher(); // <-- Call immediately after definition
     liveChk.addEventListener('change', liveSwitcher);
+
+    // Copy override
+    async function copyToClipboard() {
+      const feedback = shadow.getElementById('copy-feedback')!; // Get the new element
+      const originalIcon = 'content_copy';
+      feedback.classList.remove('visible');
+
+      try {
+        await navigator.clipboard.writeText(overrideArea.value);
+        copyIcon.textContent = 'done_outline';
+        copyIcon.style.color = 'green';
+        feedback.textContent = 'Copied!';
+        feedback.classList.add('visible', 'success');
+
+        setTimeout(() => {
+          copyIcon.textContent = originalIcon;
+          copyIcon.style.color = baseColor;
+          feedback.classList.remove('visible', 'success');
+        }, 3000);
+
+      } catch (err) {
+        console.error('Failed to copy! (navigator.clipboard requires "localhost" or HTTPS) - ', err);
+        copyIcon.textContent = 'error';
+        copyIcon.style.color = 'red';
+        feedback.textContent = 'Failed!';
+        feedback.classList.add('visible', 'failure');
+
+        setTimeout(() => {
+          copyIcon.textContent = originalIcon;
+          copyIcon.style.color = baseColor;
+          feedback.classList.remove('visible', 'failure');
+        }, 5000);
+      }
+    }
+    copyIcon.addEventListener('click', copyToClipboard);
   } // End initialize
 
 
   function attachShadow() {
     const padding   = 0.75;
-    const baseColor = '#484848';
-    const pagyColor = 'lightsalmon';
     const host = document.createElement('div');
     host.id    = 'pagy-wand-host';
     document.body.appendChild(host);
@@ -570,7 +608,7 @@ type Presets = { [key: string]: string };
         #title {
           color: ${pagyColor};
           font-family: 'Pattaya', sans-serif;
-          font-size: ${scale * 1.4}rem;
+          font-size: ${scale * 1.5}rem;
           text-shadow: ${scale * 0.0625}rem
                        ${scale *  0.0625}rem 
                        0 rgba(0,0,0,1);
@@ -590,14 +628,15 @@ type Presets = { [key: string]: string };
           color: black;
           background-color: rgba(220,220,220,.6);
           backdrop-filter: blur(${scale * 0.875}rem);
-          padding: ${scale}rem;
+          padding: ${scale * .8}rem ${scale}rem;
           border-top: ${scale * 0.15625}rem solid ${pagyColor};
           border-bottom: ${scale * 0.15625}rem solid ${pagyColor};
           height: ${scale * 29}rem;
         }
         #controls {
           display: grid;
-          grid-template-columns: min-content 1fr ;
+          grid-template-columns: min-content 1fr;
+          grid-template-rows: repeat(11, ${scale *1.5}rem) ${scale * 12.25}rem;
           grid-column-gap: ${scale * 0.625}rem;
         }
         #controls input {
@@ -612,10 +651,14 @@ type Presets = { [key: string]: string };
         }
         label[for="override"] {
           align-self: start !important;
-          margin-top: ${scale * 0.375}rem;
+          margin-top: ${scale * 0.35}rem;
         }
         #brightness {
-          margin: ${scale * 0.125}rem;
+          margin: ${scale * 0.1}rem 0;
+        }
+        #override-container {
+          display: inline;
+          position: relative;
         }
         #override {
           white-space: pre-wrap; /* Preserve line breaks, wrap only when necessary */
@@ -626,11 +669,45 @@ type Presets = { [key: string]: string };
           border-radius: ${scale * .4}rem;
           line-height: 1.1;
           font-weight: 400;
-          height: ${scale * 11.25}rem;
+          height: 100%;
+          width: 100%;
           resize: vertical;
-          margin: 0;
+          box-sizing: border-box;  
+          position: relative;
         }
-        .help-icon {
+        #copy-icon {
+          font-weight: 300;
+          color: ${baseColor};
+          position: absolute;
+          top: ${scale * .5}rem;
+          right: ${scale * .5}rem;
+          cursor: pointer;
+        }
+        .copy-feedback {
+          position: absolute;
+          top: ${scale * .8}rem;
+          right: ${scale * 2.2}rem;
+          padding: ${scale * 0.1}rem ${scale * 0.3}rem;
+          border-radius: ${scale * 0.2}rem;
+          font-weight: 700;
+          white-space: nowrap;
+          color: white;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.4s ease-in-out, visibility 0.2s ease-in-out;
+          pointer-events: none; /* Prevent interfering with clicks */
+        }
+        .copy-feedback.visible {
+          opacity: 1;
+          visibility: visible;
+        }
+        .copy-feedback.success {
+          background-color: green; /* Subtle background */
+        }
+        .copy-feedback.failure {
+          background-color: red; /* Subtle background */
+        }
+        .help-icon, .help-copy-icon {
           font-size: ${scale}rem;
           vertical-align: -15.625%;
           border-radius: 15%;
@@ -645,6 +722,16 @@ type Presets = { [key: string]: string };
         }
         .selected-help-icon {
           color: ${pagyColor};
+        }
+         .help-copy-icon {
+           color: ${baseColor};
+           background-color: white;
+         }
+        .help-copy-icon.success {
+          color: green;
+        }
+        .help-copy-icon.failure {
+          color: red;
         }
         #help {
           display: none;
@@ -738,13 +825,17 @@ type Presets = { [key: string]: string };
             <label for="lineHeight">Line Height</label>
             <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
             <label for="override">CSS Override</label>
-            <textarea id="override" readonly></textarea>
+            <div id="override-container">
+              <textarea id="override" readonly></textarea>
+              <span id="copy-feedback" class="copy-feedback"></span>
+              <span id="copy-icon" class="material-symbols-rounded">content_copy</span>
+            </div>
           </div>
           <div id="help" class="content">
             <h4>Install</h4>
               <dl>
                 <dt>Load it in HTML head</dt>
-                <dd><code><%== Pagy.wand_tag %></code>
+                <dd><code><%== Pagy.wand_tag(scale: 1) %></code>
                 </dd>
               </dl>
             <h4>Wand</h4>
@@ -756,7 +847,7 @@ type Presets = { [key: string]: string };
                   <ul style="list-style-type: none; padding-left: 0; margin: 0;">
                     <li><span class="material-symbols-rounded help-icon">tune</span> <span class="material-symbols-rounded help-icon selected-help-icon">tune</span><span class="button-desc">Toggle the Controls Section</span></li>
                     <li><span class="material-symbols-rounded help-icon">help</span> <span class="material-symbols-rounded help-icon selected-help-icon">help</span><span class="button-desc">Toggle the Help Section</span></li>
-                        <span class="material-symbols-rounded help-icon">visibility_off</span> <span class="material-symbols-rounded help-icon selected-help-icon">visibility</span><span class="button-desc">Toggle the Live Preview</span></li>
+                    <li><span class="material-symbols-rounded help-icon">visibility_off</span> <span class="material-symbols-rounded help-icon selected-help-icon">visibility</span><span class="button-desc">Toggle the Live Preview</span></li>
                   </ul>
                 </dd>
               <dt>Presets</dt>
@@ -774,6 +865,15 @@ type Presets = { [key: string]: string };
                 <dd>You can control the relative dimensions of the page links, through the interactions of these properties.</dd>
               <dt>Other Properties</dt>
                 <dd>Self-explanatory.</dd>
+              <dt>CSS Override</dt>
+                <dd>
+                  <p>The set of <code>.pagy</code> rules currently applied.</p>
+                  <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+                    <li><span class="material-symbols-rounded help-copy-icon">content_copy</span> <span class="button-desc">Copy the CSS Override</span></li>
+                    <li><span class="material-symbols-rounded help-copy-icon success">done_outline</span> <span class="button-desc">Copied! Feedback</li>
+                    <li><span class="material-symbols-rounded help-copy-icon failure">error</span> <span class="button-desc">Failed! Feedback</li>
+                  </ul>
+                </dd>
             </dl>
             <h4>Customizing</h4>
             <p>You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
