@@ -17,6 +17,7 @@ class Pagy
       (names - targets).each { |filename| FileUtils.rm_f(File.join(destination, filename)) }
     end
 
+    # Generate the script and style tags to implement the wand
     def wand_tag(scale: 1)
       <<~HTML
         <script id="pagy-wand" data-scale="#{scale}">

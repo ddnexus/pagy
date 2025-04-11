@@ -1,7 +1,8 @@
 (() => {
+  const lightGray = "rgba(220,220,220,.6)";
   const baseColor = "#484848";
   const pagyColor = "#81ffff";
-  const icons = "content_copy,done_outline,error,help,tune,visibility,visibility_off,wand_shine";
+  const icons = "check_circle,content_copy,error,help,tune,visibility,visibility_off";
   const linkTags = `
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -399,13 +400,13 @@
       feedback.classList.remove("visible");
       try {
         await navigator.clipboard.writeText(overrideArea.value);
-        copyIcon.textContent = "done_outline";
-        copyIcon.style.color = "green";
+        copyIcon.textContent = "check_circle";
+        copyIcon.style.color = "limegreen";
         feedback.textContent = "Copied!";
         feedback.classList.add("visible", "success");
         setTimeout(() => {
           copyIcon.textContent = originalIcon;
-          copyIcon.style.color = baseColor;
+          copyIcon.style.color = lightGray;
           feedback.classList.remove("visible", "success");
         }, 3000);
       } catch (err) {
@@ -416,7 +417,7 @@
         feedback.classList.add("visible", "failure");
         setTimeout(() => {
           copyIcon.textContent = originalIcon;
-          copyIcon.style.color = baseColor;
+          copyIcon.style.color = lightGray;
           feedback.classList.remove("visible", "failure");
         }, 5000);
       }
@@ -439,13 +440,12 @@
         }
         #panel select, #panel select option, #panel input[type="range"] {
           font-family: 'Nunito Sans', sans-serif;
-          font-weight: 500;
           cursor: pointer;
+          font-weight: 600;
         }
         #panel select, textarea {
           font-size: ${scale * 0.8}rem;
           border-radius: ${scale}rem;
-                    /*border-radius: ${scale * 1.25}rem !important;*/
           padding-left: ${scale * 0.25}rem !important;
           border: none;
           box-shadow: ${scale * 0.125}rem
@@ -468,7 +468,7 @@
           position: fixed;
           z-index: 1000;
           overflow: hidden;
-          transition: transform 1s ease;
+          transition: transform 1s ease-in;
         }
         #panel.initial {
           top: 0;
@@ -532,7 +532,7 @@
           overflow-y: auto;
           font-size: ${scale * 0.8}rem;
           color: black;
-          background-color: rgba(220,220,220,.6);
+          background-color: ${lightGray};
           backdrop-filter: blur(${scale * 0.875}rem);
           padding: ${scale * 0.8}rem ${scale}rem;
           border-top: ${scale * 0.15}rem solid ${pagyColor};
@@ -563,22 +563,9 @@
         }
         #brightness {
           margin: 0 0 ${scale * 0.2}rem 0;
-        }
-        #override-label-container {
-          display: flex;
-          position: relative;
-        }
-        #wand-icon {
-          font-weight: 300;
-          font-size: ${scale * 4}rem;
-          position: absolute;
           color: white;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          user-select: none;
-          cursor: default;
-          text-shadow: 0 0 ${scale * 0.5}rem ${pagyColor};
+          background-color: black;
+          opacity: .6;
         }
         #override-container {
           display: inline;
@@ -592,17 +579,20 @@
           padding: ${scale * 0.2}rem !important;
           border-radius: ${scale * 0.6}rem;
           line-height: 1.1;
-          font-weight: 400;
           height: 100%;
           width: 100%;
-          resize: vertical;
+          resize: none;
+          font-weight: 500;
           box-sizing: border-box;  
           position: relative;
           margin-top: ${scale * 0.25}rem;
+          color: white;
+          background-color: black;
+          opacity: .6;
         }
         #copy-icon {
           font-weight: 300;
-          color: ${baseColor};
+          color: ${lightGray};
           position: absolute;
           top: ${scale * 0.8}rem;
           right: ${scale * 0.6}rem;
@@ -627,7 +617,7 @@
           visibility: visible;
         }
         .copy-feedback.success {
-          background-color: green; /* Subtle background */
+          background-color: limegreen; /* Subtle background */
         }
         .copy-feedback.failure {
           background-color: red; /* Subtle background */
@@ -653,7 +643,7 @@
            background-color: white;
          }
         .help-copy-icon.success {
-          color: green;
+          color: limegreen;
         }
         .help-copy-icon.failure {
           color: red;
@@ -661,6 +651,10 @@
         #help {
           display: none;
           line-height: ${scale}rem;
+          scrollbar-width: none;
+        }
+        #help::-webkit-scrollbar {
+          display: none;
         }
         #help > h4:first-child {
           margin-top: 0;
@@ -670,7 +664,8 @@
           padding: ${scale * 0.25}rem ${scale * 0.625}rem;
           border-top-right-radius: ${scale * 2.5}rem;
           border-bottom-right-radius: 2.5rem;
-          background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255, 1));
+          color: white;
+          background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,.5));
           margin-top: ${scale * 0.8}rem;
           margin-bottom: ${scale * 0.4}rem;
         }
@@ -749,10 +744,7 @@
             <input type="range" id="fontWeight" min="100" max="1000" step="50">
             <label for="lineHeight">Line Height</label>
             <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
-            <div id="override-label-container">
-              <label for="override">CSS Override</label>
-              <span id="wand-icon" class="material-symbols-rounded">wand_shine</span>
-            </div>
+            <label for="override">CSS Override</label>
             <div id="override-container">
               <textarea id="override" readonly></textarea>
               <span id="copy-feedback" class="copy-feedback"></span>
@@ -801,7 +793,7 @@
                   <p>The set of <code>.pagy</code> rules currently applied.</p>
                   <ul style="list-style-type: none; padding-left: 0; margin: 0;">
                     <li><span class="material-symbols-rounded help-copy-icon">content_copy</span> <span class="button-desc">Copy the CSS Override</span></li>
-                    <li><span class="material-symbols-rounded help-copy-icon success">done_outline</span> <span class="button-desc">Copied! Feedback</li>
+                    <li><span class="material-symbols-rounded help-copy-icon success">check_circle</span> <span class="button-desc">Copied! Feedback</li>
                     <li><span class="material-symbols-rounded help-copy-icon failure">error</span> <span class="button-desc">Failed! Feedback</li>
                   </ul>
                 </dd>
