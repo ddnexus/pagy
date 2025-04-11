@@ -4,7 +4,7 @@ require_relative '../../../test_helper'
 require 'fileutils'
 require 'pathname'
 
-describe ".sync_javascript" do
+describe "sync_javascript" do
   let(:destination) { Dir.mktmpdir }
   let(:all_files) { %w[pagy.mjs pagy.js pagy.js.map pagy.min.js] }
 
@@ -68,5 +68,28 @@ describe ".sync_javascript" do
     all_files.each do |file|
       _(File.exist?(destination_path.join(file))).must_equal true, "Expected #{file} to be copied"
     end
+  end
+end
+
+describe 'Pagy.wand_tag' do
+  let(:js_content) { Pagy::ROOT.join('javascript/wand.js').read }
+  let(:css_content) { Pagy::ROOT.join('stylesheet/pagy.css').read }
+
+  it 'generates the wand tag with default scale' do
+    generated_html = Pagy.wand_tag # scale: 1 is default
+
+    # Check script tag structure and content using regex for flexibility with whitespace
+    _(generated_html).must_match %r{<script id="pagy-wand" data-scale="1">\s*#{Regexp.escape(js_content)}\s*</script>}m
+    # Check style tag structure and content using regex
+    _(generated_html).must_match %r{<style id="pagy-wand-default">\s*#{Regexp.escape(css_content)}\s*</style>}m
+  end
+
+  it 'generates the wand tag with custom scale' do
+    generated_html = Pagy.wand_tag(scale: 2.5)
+
+    # Check script tag structure and content with custom scale
+    _(generated_html).must_match %r{<script id="pagy-wand" data-scale="2\.5">\s*#{Regexp.escape(js_content)}\s*</script>}m
+    # Check style tag structure and content (should be the same)
+    _(generated_html).must_match %r{<style id="pagy-wand-default">\s*#{Regexp.escape(css_content)}\s*</style>}m
   end
 end
