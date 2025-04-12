@@ -282,7 +282,7 @@ describe 'calendar' do
                                                   offset: { limit: 10 })
 
       _(calendar[:day].send(:a_lambda).call(2, classes: 'a b c')).must_equal \
-        "<a href=\"/foo?day_page=2\" title=\"No items found\" class=\"a b c empty-page\">22</a>"
+        "<a href=\"/foo?day_page=2\" title=\"No items found\" class=\"a b c empty-page\" rel=\"next\">22</a>"
     end
   end
   describe "Counts feature" do
