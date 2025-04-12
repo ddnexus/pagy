@@ -1,0 +1,14 @@
+---
+info_tag_test_0001_renders_without_i18n_key:
+  :info_0: <span class="pagy info">No items found</span>
+  :info_1: <span class="pagy info">Displaying 1 item</span>
+  :info_13: <span class="pagy info">Displaying 13 items</span>
+  :info_100: <span class="pagy info">Displaying items 41-60 of 100 in total</span>
+info_tag_test_0002_overrides_the_item_name_and_set_id:
+  :info_0: <span id="pagy-info" class="pagy info">No Widgets found</span>
+  :info_1: <span id="pagy-info" class="pagy info">Displaying 1 Widget</span>
+  :info_13: <span id="pagy-info" class="pagy info">Displaying 13 Widgets</span>
+  :info_100: <span id="pagy-info" class="pagy info">Displaying Widgets 41-60 of 100
+    in total</span>
+info_tag_test_0003_renders_with_no_count:
+  :info_no_count: <span class="pagy info">Page 23 of 50</span>

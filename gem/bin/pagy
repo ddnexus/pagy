@@ -1,13 +1,15 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-VERSION = '9.3.4'
+VERSION = '10.0.0'
 LINUX   = RbConfig::CONFIG['host_os'].include?('linux')
 HOST    = '0.0.0.0'
 PORT    = '8000'
 
 require_relative '../lib/optimist'
+require_relative '../lib/pagy'
 require_relative '../apps/index'
+
 apps = PagyApps::INDEX
 opts = Optimist.options do
   text <<~HEAD
@@ -31,7 +33,6 @@ opts = Optimist.options do
   opt :env,     'Environment',                  default: 'development'
   opt :host,    'Host',                         default: HOST, short: :o
   opt :port,    'Port',                         default: PORT
-  opt :install, 'Install bundle for users',     default: true
   if LINUX
     text 'Rerun options'
     opt :rerun, 'Enable rerun for development', default: true
@@ -43,14 +44,13 @@ opts = Optimist.options do
 end
 Optimist.educate if ARGV.empty?
 
-run_from_repo = File.exist?(File.expand_path('../pagy.gemspec', __dir__))
+run_from_repo = Pagy::ROOT.join('pagy.gemspec').exist?
 
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
-gemfile(opts[:install]) do
+gemfile(!run_from_repo) do
   source 'https://rubygems.org'
+  gem 'logger'
   gem 'rackup'
   gem 'rerun' if LINUX
 end
@@ -58,14 +58,14 @@ end
 arg = ARGV.shift
 if arg.eql?('clone')
   name = ARGV.shift
-  Optimist.die("Expected APP to be in [#{apps.keys.join(', ')}]; got #{arg.inspect}") unless apps.key?(arg)
+  Optimist.die("Expected APP to be in [#{apps.keys.join(', ')}]; got #{name.inspect}") unless apps.key?(name)
   if File.exist?(name)
     print "Do you want to overwrite the #{name.inspect} file? (y/n)> "
     answer = gets.chomp
     Optimist.die("#{name.inspect} file already present") unless answer.start_with?(/y/i)
   end
   require 'fileutils'
-  FileUtils.cp(apps[arg], '.', verbose: true)
+  FileUtils.cp(apps[name], '.', verbose: true)
 else
   if apps.key?(arg)  # showcase env
     opts[:env]   = 'showcase'
@@ -94,5 +94,5 @@ else
     rerun << ' -c' if opts[:clear]
     rerun << " -- #{rackup}"
   end
-  exec("PAGY_INSTALL_BUNDLE='#{opts[:install]}' #{rerun || rackup}")
+  exec(rerun || rackup)
 end

@@ -19,15 +19,11 @@ body:
     attributes:
       label: 👀 Before submitting...
       options:
-        - label: I upgraded to pagy version 9.3.4
+        - label: I upgraded to pagy version 10.0.0
           required: true
-        - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/)
+        - label: I asked [Pagy AI](https://gurubase.io/g/pagy) (Good starting point for further investigation).
           required: true
-        - label: I searched through the [Issues](https://github.com/ddnexus/pagy/issues)
-          required: true
-        - label: I searched through the [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
-          required: true
-        - label: I asked [Pagy Trained AI](https://gurubase.io/g/pagy) - Warning - The information may not be 100% accurate, but it serves as a good starting point for further investigation.
+        - label: I searched through the [Documentation](https://ddnexus.github.io/pagy/), [Issues](https://github.com/ddnexus/pagy/issues), and [Q&A](https://github.com/ddnexus/pagy/discussions/categories/q-a)
           required: true
 
   - type: markdown
@@ -40,7 +36,7 @@ body:
         
         #### 👍 VALID code files 
         
-          - (Edited) copy of a single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/playground) 
+          - (Edited) copy of a single-file APP from the [Pagy Playground](https://ddnexus.github.io/pagy/sandbox/playground) 
           - Link to a pagy fork containing an added test file
           - A plain ruby file that can run as a single command like `ruby my_issue.rb`
           _(without any other setup step, installation or guessing, and with no or minimal interaction required)_
@@ -59,9 +55,9 @@ body:
           - Multiple files / Setup instructions / Your partial or complete applications
           - and EVERYTHING other than the VALID code files listed above
         
-        Instead, start from a [pagy APP](https://ddnexus.github.io/pagy/playground/#pagy-apps),
+        Instead, start from a [pagy APP](https://ddnexus.github.io/pagy/sandbox/playground),
         add the smallest amount of code that exposes the bug and post it.
-        It's a very quick and simple process and, most of the times, it will make your issue just "disappear". ;)
+        It's a very quick and simple process and, most of the times, it will make your issue just "disappear". 😉
         
         _If anything is unclear to you, please ask for [support](https://github.com/ddnexus/pagy/discussions/categories/q-a).
         We will be happy to help._

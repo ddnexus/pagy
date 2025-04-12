@@ -1,12 +1,13 @@
-require:
-  - rubocop-minitest
-  - rubocop-packaging
+plugins:
   - rubocop-performance
+  - rubocop-minitest
   - rubocop-rake
+  - rubocop-packaging
 
 # trying to be good  O:)
 AllCops:
-  TargetRubyVersion: 3.1
+  SuggestExtensions: false
+  TargetRubyVersion: 3.2
   NewCops: enable
   Exclude:
     - ___*/**/*
@@ -69,7 +70,7 @@ Style/LambdaCall:
   Enabled: false
 
 
-# cannot inline the disabling in the file because rubocop complains anyway
+# Cannot inline the disabling in the file because rubocop complains anyway
 Style/RedundantInitialize:
   Exclude:
     - test/mock_helpers/arel.rb
@@ -78,7 +79,9 @@ Style/RedundantInitialize:
 Style/StringConcatenation:
   Enabled: false
 
-# these cops are disabled only in the test files in order to
+Style/Documentation:
+  Enabled: false
+# These cops are disabled only in the test files in order to
 # allow to copy and paste the failed output for test reconciliation
 Style/StringLiterals:
   Enabled: true

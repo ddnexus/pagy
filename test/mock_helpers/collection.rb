@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'active_record'
 require 'yaml'
 
 require 'active_support'
@@ -31,14 +32,12 @@ class MockCollection < Array
     size
   end
 
-  def group_values
-    []
-  end
-
   class Grouped < MockCollection
     def count(*)
       @collection.to_h { |v| [v, v + 1] }
     end
+
+    def is_a?(*) = true
 
     def unscope(*)
       self

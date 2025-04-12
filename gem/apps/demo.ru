@@ -19,13 +19,15 @@
 # URL
 #    http://0.0.0.0:8000
 
-VERSION = '9.3.4'
+VERSION = '10.0.0'
+
+if VERSION != Pagy::VERSION
+  Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
+end
 
 # Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
-gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
+gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
@@ -34,70 +36,68 @@ gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
 end
 
 # pagy initializer
-STYLES = { pagy:        { extra: 'pagy', prefix: '', css_anchor: 'pagy-scss' },
-           bootstrap:   {},
-           bulma:       {},
-           tailwind:    { extra: 'pagy', prefix: '', css_anchor: 'pagy-tailwind-css' } }.freeze
-
-STYLES.each_key do |style|
-  require "pagy/extras/#{STYLES[style][:extra] || style}"
-end
-require 'pagy/extras/limit'
-require 'pagy/extras/trim'
-Pagy::DEFAULT[:trim_extra] = false         # opt-in trim
+NAMES = { pagy:      { css_anchor: 'pagy-scss' },
+          tailwind:  { css_anchor: 'pagy-tailwind-css' },
+          bootstrap: { style: :bootstrap, classes: 'pagination pagination-sm' },
+          bulma:     { style: :bulma, classes: 'pagination is-small' } }.freeze
 
 # Sinatra setup
 require 'sinatra/base'
 
+# Pagy init
+Pagy.options[:client_max_limit] = 100
+
 # Sinatra application
 class PagyDemo < Sinatra::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   get '/' do
     redirect '/pagy'
   end
 
   get '/template' do
-    collection = MockCollection.new
-    @pagy, @records = pagy(collection, trim_extra: params['trim'])
+    collection      = MockCollection.new
+    @pagy, @records = pagy(:offset, collection)
 
-    erb :template, locals: { pagy: @pagy, style: 'pagy' }
+    erb :template, locals: { pagy: @pagy, name: 'template', css_anchor: 'pagy-scss' }
   end
 
-  get('/javascripts/:file') do
+  get('/javascript/:file') do
     format = params[:file].split('.').last
     if format == 'js'
       content_type 'application/javascript'
     elsif format == 'map'
       content_type 'application/json'
     end
-    send_file Pagy.root.join('javascripts', params[:file])
+    send_file Pagy::ROOT.join('javascript', params[:file])
   end
 
-  get('/stylesheets/:file') do
+  get('/stylesheet/:file') do
     content_type 'text/css'
-    send_file Pagy.root.join('stylesheets', params[:file])
+    send_file Pagy::ROOT.join('stylesheet', params[:file])
   end
 
   # One route/action per style
-  STYLES.each_key do |style|
-    prefix = STYLES[style][:prefix] || "_#{style}"
-
-    get("/#{style}/?:trim?") do
-      collection = MockCollection.new
-      @pagy, @records = pagy(collection, trim_extra: params['trim'])
-
-      erb :helpers, locals: { style:, prefix: }
+  NAMES.each do |name, value|
+    get("/#{name}") do
+      collection      = MockCollection.new
+      @pagy, @records = pagy(:offset, collection)
+      erb :page, locals: { name:,
+                           style: value[:style],
+                           classes: value[:classes],
+                           css_anchor: value[:css_anchor] }
     end
   end
 
   helpers do
-    include Pagy::Frontend
-
     def style_menu
       html = +%(<div id="style-menu"> )
-      STYLES.each_key { |style| html << %(<a href="/#{style}">#{style}</a>) }
-      html << %(<a href="/template">template</a>)
+      NAMES.each_key do |style|
+        name    = style.to_s
+        name[0] = name[0].capitalize
+        html << %(<a href="/#{style}">#{name}</a>)
+      end
+      html << %(<a href="/template">Template</a>)
       html << %(</div>)
     end
 
@@ -110,35 +110,89 @@ class PagyDemo < Sinatra::Base
       formatter = Rouge::Formatters::HTMLInline.new('monokai.sublime')
       summary   = { html: 'Served HTML (pretty formatted)', erb: 'ERB Template' }
       %(<details><summary>#{summary[format]}</summary><pre>\n#{
-         formatter.format(lexer.lex(html))
+      formatter.format(lexer.lex(html))
       }</pre></details>)
     end
   end
 
+  SCREENSHOT_STYLE = <<~HTML
+    <style>
+      .pagy, .pagy-bootstrap, .pagy-bulma {
+        padding: .5em;
+      }
+    </style>
+  HTML
+
+  MASK_STYLE = <<~HTML
+    <style>
+      .pagy, .pagy-bootstrap, .pagy-bulma {
+        background-color: black !important;
+        padding: .5em;
+      }
+      .pagy *:not(.gap) {
+        background-color: white !important;
+      }
+      .pagy *, .pagy-bootstrap *,
+      .pagy-bulma a,
+      .pagy-bulma label,
+      .pagy-bulma .pagination-ellipsis  {
+        color: white !important;
+      }
+      .pagy-bootstrap .page-item .page-link,
+      .pagy-bulma li.pagination-link,
+      .pagy-bulma input,
+      .pagy-bulma a, .pagy-bulma a.pagination-previous, .pagy-bulma a.pagination-next {
+        border-color: white !important;
+        background-color: white !important;
+        opacity: 1;
+      }
+    </style>
+  HTML
+
   # Views
   template :layout do
-    <<~'ERB'
+    <<~'HTML'
       <!DOCTYPE html>
       <html lang="en">
       <head>
         <title>Pagy Demo App</title>
-        <script src="/javascripts/pagy.min.js"></script>
+        <script src="/javascript/pagy.js"></script>
         <script>
           window.addEventListener("load", Pagy.init);
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <%= erb :"#{style}_head" if defined?(style) %>
-        <style type="text/css">
+        <%= erb :"#{name}_head" if defined?(name) %>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+        <style>
           @media screen { html, body {
             font-size: 1rem;
             line-height: 1.2s;
             padding: 0;
             margin: 0;
           } }
+          *,
+          *::before,
+          *::after {
+            box-sizing: border-box;
+          }
+          input[type="number"],
+          input[type="range"] {
+            all: revert;
+          }
           body {
-            background: white !important;
             margin: 0 !important;
-            font-family: sans-serif !important;
+            font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+            color: #303030 !important;
+          }
+          svg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
           }
           h1, h2 {
             font-size: 1.8rem !important;
@@ -146,16 +200,22 @@ class PagyDemo < Sinatra::Base
             margin-top: 1rem !important;
             margin-bottom: 0.7rem !important;
             line-height: 1.5 !important;
-            color: rgb(90 90 90)  !important;
+            color: #303030  !important;
           }
           h2 {
             font-family: monospace;
             font-size: .9rem !important;
             margin-top: 1.6rem !important;
           }
+          hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px;
+            border-top-color: gray;
+            margin: 8px 0 !important;
+          }
           summary, .notes {
             font-size: .8rem;
-            color: gray;
             margin-top: .6rem;
             font-style: italic;
             cursor: pointer;
@@ -165,7 +225,7 @@ class PagyDemo < Sinatra::Base
             font-weight: normal;
           }
           .notes code{
-            background-color: #E8E8E8;
+            background-color: rgba(255, 255, 255, .6);
             padding: 0 0.3rem;
             font-style: normal;
             border-radius: 3px;
@@ -178,7 +238,7 @@ class PagyDemo < Sinatra::Base
             text-decoration: underline;
           }
           pre, pre code {
-            display: block;
+            display: inline-block;
             margin-top: .3rem;
             margin-bottom: 1rem;
             font-size: .8rem !important;
@@ -186,12 +246,13 @@ class PagyDemo < Sinatra::Base
             color: white;
             background-color: rgb(30 30 30);
             padding: 1rem;
-            overflow: auto;
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre;
           }
-          .content {
+          .main-content {
             padding: 0 1.5rem 2rem !important;
           }
-
           #style-menu {
             flex;
             font-family: sans-serif;
@@ -199,7 +260,7 @@ class PagyDemo < Sinatra::Base
             line-height: 1.5rem;
             white-space: nowrap;
             color: white;
-            background-color: gray;
+            background-color: rgba(0,0,0,.65);
             padding: .2rem 1.5rem;
           }
           #style-menu > :not([hidden]) ~ :not([hidden]) {
@@ -211,28 +272,76 @@ class PagyDemo < Sinatra::Base
             color: inherit;
             text-decoration: none;
           }
-          /* Quick demo for overriding the element style attribute of certain pagy helpers
-          .pagy input[style] {
-            width: 5rem !important;
+          .pagy, .pagy-bootstrap, .pagy-bulma {
+            background-color: white;
+            padding: 1.5em;
+            margin: .3em 0;
+            width: fit-content;
+            box-shadow: 8px 8px 18px 0px rgba(0,0,0,0.25);
           }
-          */
+          span.pagy {
+            display: block;
+          }
+          .pagy-bootstrap .pagination {
+            margin: 0;
+          }
+          .pagy {
+            --B: 1;
+            --H: 174;
+            --S: 40;
+            --L: 70;
+            --spacing: 0.125rem;
+            --padding: 0.75rem;
+            --rounding: 1.125rem;
+            --border-width: 0rem;
+            --font-size: 0.875rem;
+            --font-weight: 450;
+            --line-height: 1.75;
+          }
         </style>
+        <%# SCREENSHOT_STYLE %>
+        <%# MASK_STYLE %>
       </head>
       <body>
+        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+          <filter id="noiseFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="100" stitchTiles="stitch" />
+            <feColorMatrix type="matrix" values="0.5 0 0 0 0, 0.5 0 0 0 0, 0.5 0 0 0 0, 0 0 0 0.5 0" />
+         </filter>
+          <rect width="100%" height="100%" filter="url(#noiseFilter)" fill="rgb(255, 255, 255)" />
+        </svg>
         <!-- each different class used by each style -->
         <%= style_menu %>
-        <div class="content">
+        <div class="main-content">
           <%= yield %>
         </div>
       </body>
       </html>
-    ERB
+    HTML
   end
+
+  WAND_HEAD = <<~ERB
+    <%= Pagy.wand_tag if ENV["CY_TEST"] != "true"%>
+    <style>
+      /* black/white backdrop color based on --B */
+      .pagy { background-color: hsl(0 0 calc(100 * var(--B))) !important; }
+    </style>
+  ERB
 
   template :pagy_head do
     <<~ERB
-      <!-- copy and paste the pagy style in order to edit it -->
-      <link rel="stylesheet" href="/stylesheets/pagy.css">
+      #{WAND_HEAD}
+      <link rel="stylesheet" href="/stylesheet/pagy.css">
+    ERB
+  end
+
+  template :tailwind_head do
+    <<~ERB
+      #{WAND_HEAD}
+      <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+      <style type="text/tailwindcss">
+        <%= Pagy::ROOT.join('stylesheet/pagy-tailwind.css').read %>
+      </style>
     ERB
   end
 
@@ -248,112 +357,102 @@ class PagyDemo < Sinatra::Base
     ERB
   end
 
-  template :tailwind_head do
-    <<~ERB
-      <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-      <!-- copy and paste the pagy.tailwind style in order to edit it -->
-      <style type="text/tailwindcss">
-        <%= Pagy.root.join('stylesheets', 'pagy.tailwind.css').read %>
-      </style>
-    ERB
+  template :template_head do
+    '<link rel="stylesheet" href="/stylesheet/pagy.css">'
   end
 
-  template :helpers do
-    <<~'ERB'
-      <h1><%= style %></h1>
-      <% extra = STYLES[style][:extra] || "#{style}" %>
-      <% css_anchor = STYLES[style][:css_anchor] %>
+  template :page do
+    <<~ERB
+      <h1><%= title = name.to_s; title[0] = title[0].capitalize; title %></h1>
 
-      <p class="description">See the <a href="http://ddnexus.github.io/pagy/docs/extras/<%= extra %>" target="blank"><%= extra %> extra</a>
-      documentation
       <% if css_anchor %>
-        and the <a href="http://ddnexus.github.io/pagy/docs/api/stylesheets/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a>
+        <p>Check the <u><i><b><a href="http://ddnexus.github.io/pagy/resources/stylesheet/#<%= css_anchor %>" target="blank"><%= css_anchor.gsub('-', '.') %></a></b></u></i>
+        for details.</p>
       <% end %>
-      for details</p>
+      </p>
+      <div id="main-container">
+        <div id="content">
+          <hr id="top-hr">
+          <h2>@records</h2>
+          <p id="records"><%= @records.join(',') %></p>
 
-      <h2>Collection</h2>
-      <p id="records">@records: <%= @records.join(',') %></p>
+          <h2>@pagy.series_nav<br/>
+            <span class="notes">Series nav <code>{slots: 7}</code></span>
+          </h2>
+          <%= html = @pagy.series_nav(style, classes:,
+                                      id: 'series-nav',
+                                      aria_label: 'Pages series_nav') %>
+          <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav <span class="notes">Simple nav <code>size: 5</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'simple-nav', aria_label: 'Pages simple-nav', size: 5) %>
-      <%= highlight(html) %>
+          <h2>@pagy.series_nav_js<br/>
+            <span class="notes">Responsive nav: <code>{steps: {0 => 5, 500 => 7, 600 => 9, 700 => 11}}</code><br/>
+            (Resize the window to see)
+            </span>
+          </h2>
+          <%= html = @pagy.series_nav_js(style, classes:,
+                                         id: 'series-nav-js-responsive',
+                                         aria_label: 'Pages series_nav_js_responsive',
+                                         steps: { 0 => 5, 500 => 7, 600 => 9, 700 => 11 }) %>
+          <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav", @pagy, id: 'nav', aria_label: 'Pages nav') %>
-      <%= highlight(html) %>
+          <h2>@pagy.input_nav_js</h2>
+          <%= html = @pagy.input_nav_js(style, classes:,
+                                        id: 'input-nav-js',
+                                        aria_label: 'Pages inpup_nav_js') %>
+          <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav_js <span class="notes">Fast nav <code>size: 7</code></span></h2>
-      <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
-      <%= highlight(html) %>
+          <h2>@pagy.limit_tag_js</h2>
+          <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
+          <%= highlight(html) %>
 
-      <h2>pagy<%= prefix %>_nav_js <span class="notes">Responsive nav <code>steps: {...}</code> (Resize the window to see)</span></h2>
-      <%= html = send(:"pagy#{prefix}_nav_js", @pagy, id: 'nav-js-responsive',
-           aria_label: 'Pages nav_js_responsive',
-           steps: { 0 => 5, 500 => 7, 750 => 9, 1000 => 11 }) %>
-      <%= highlight(html) %>
-
-      <h2>pagy<%= prefix %>_combo_nav_js</h2>
-      <%= html = send(:"pagy#{prefix}_combo_nav_js", @pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
-      <%= highlight(html) %>
-
-      <h2>pagy_info</h2>
-      <%= html = pagy_info(@pagy, id: 'pagy-info') %>
-      <%= highlight(html) %>
-
-      <% if style.match(/pagy|tailwind/) %>
-      <h2>pagy_limit_selector_js</h2>
-      <%= html = pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
-      <%= highlight(html) %>
-
-      <h2>pagy_prev_a / pagy_next_a</h2>
-      <%= html = '<nav class="pagy" id="prev-next" aria-label="Pagy prev-next">' << pagy_prev_a(@pagy) << pagy_next_a(@pagy) << '</nav>' %>
-      <%= highlight(html) %>
-
-      <h2>pagy_prev_link / pagy_next_link <span class="notes">Link not rendered<span></h2>
-      <% html = '<head>' << (pagy_prev_link(@pagy)||'') << (pagy_next_link(@pagy)||'') << '</head>' %>
-      <%= highlight(html) %>
-      <% end %>
+          <h2>@pagy.info_tag</h2>
+          <%= html = @pagy.info_tag(id: 'pagy-info') %>
+          <%= highlight(html) %>
+          <br><br> <!-- bulma fix -->
+        </div>
+      </div>
     ERB
   end
 
   template :template do
-    <<~ERB
-      <h1>Pagy Template Demo</h1>
+     <<~ERB
+       <h1>Pagy Template Demo</h1>
 
-      <p class="description">
-      See the <a href="https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">
-      Custom Templates</a> documentation.
-      </p>
-      <h2>Collection</h2>
-      <p id="records">@records: <%= @records.join(',') %></p>
+       <p class="description">
+       See the <a href="https://ddnexus.github.io/pagy/docs/how-to/#using-your-pagination-templates">
+       Custom Templates</a> documentation.
+       </p>
 
-      <h2>Rendered ERB template</h2>
+       <h2>Collection</h2>
+       <p id="records">@records: <%= @records.join(',') %></p>
 
-      <%# We don't inline the template here, so we can highlight it more easily %>
-      <%= html = ERB.new(TEMPLATE).result(binding) %>
-      <%= highlight(TEMPLATE, format: :erb) %>
-      <%= highlight(html) %>
-    ERB
-  end
+       <h2>Rendered ERB template</h2>
+
+       <%# We don't inline the template here, so we can highlight it more easily %>
+       <%= html = ERB.new(TEMPLATE).result(binding) %>
+       <%= highlight(TEMPLATE, format: :erb) %>
+       <%= highlight(html) %>
+     ERB
+   end
 
   # Easier code highlighting
   TEMPLATE = <<~ERB
     <%# IMPORTANT: replace '<%=' with '<%==' if you run this in rails %>
 
     <%# The a variable below is set to a lambda that generates the a tag %>
-    <%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>
-    <% a = pagy_anchor(pagy) %>
-    <nav class="pagy nav" aria-label="Pages">
+    <%# Usage: anchor_tag = a_lambda.(page_number, text, classes: nil, aria_label: nil) %>
+    <% a_lambda = pagy.send(:a_lambda) %>
+    <nav class="pagy series-nav" aria-label="Pages">
       <%# Previous page link %>
-      <% if pagy.prev %>
-        <%= a.(pagy.prev, '&lt;', aria_label: 'Previous') %>
+      <% if pagy.previous %>
+        <%= a_lambda.(pagy.previous, '&lt;', aria_label: 'Previous') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
       <% end %>
       <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
-      <% pagy.series.each do |item| %>
+      <% pagy.send(:series).each do |item| %>
         <% if item.is_a?(Integer) %>
-          <%= a.(item) %>
+          <%= a_lambda.(item) %>
         <% elsif item.is_a?(String) %>
           <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
         <% elsif item == :gap %>
@@ -362,7 +461,7 @@ class PagyDemo < Sinatra::Base
       <% end %>
       <%# Next page link %>
       <% if pagy.next %>
-        <%= a.(pagy.next, '&gt;', aria_label: 'Next') %>
+        <%= a_lambda.(pagy.next, '&gt;', aria_label: 'Next') %>
       <% else %>
         <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
       <% end %>
@@ -402,15 +501,15 @@ class Formatter
       push.(tag)
     elsif (match = input.match(PAIRED))
       tag_start, name, block, tag_end, rest = match.captures
-      ## Handle incomplete same-tag nesting
+      # Handle incomplete same-tag nesting
       while block.scan(/<#{name}.*?>/).size > block.scan(tag_end).size
         more, rest = rest.split(tag_end, 2)
-        block << tag_end << more
+        block << (tag_end + more)
       end
       if (match = tag_start.match(DATA_PAGY))
         search, data = match.captures
-        formatted = data.scan(/.{1,76}/).join("\n")
-        replace = %(\n#{INDENT * (level + 1)}data-pagy="#{formatted}")
+        formatted    = data.scan(/.{1,76}/).join("\n")
+        replace      = %(\n#{INDENT * (level + 1)}data-pagy="#{formatted}")
         tag_start.sub!(search, replace)
       end
       if block.match(WRAPPER)
@@ -418,7 +517,7 @@ class Formatter
         process(block, level + 1)
         push.(tag_end)
       else
-        push.(tag_start << block << tag_end)
+        push.(tag_start << (block + tag_end))
       end
     end
     process(rest, level) if rest

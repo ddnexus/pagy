@@ -7,9 +7,9 @@ describe(`[${app}] Test helpers`, () => {
         cy.visit("/");
     });
 
-    testNav(app, "#nav", {pages: ["3"]});
-    testNav(app, "#nav-js", {pages: ["3"]});
-    testComboNav(app, "#combo-nav-js");
-    testLimitSelector(app, "#limit-selector-js");  // no style, no trim
+    testNav(app, "#series-nav", {pages: ["3"]});
+    testNav(app, "#series-nav-js", {pages: ["3"]});
+    testComboNav(app, "#input-nav-js");
+    testLimitSelector(app, "#limit-tag-js");
     testInfo(app, "#pagy-info");
 });

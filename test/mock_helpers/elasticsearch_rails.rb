@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pagy/extras/elasticsearch_rails'
-
 module MockElasticsearchRails
   RESULTS = { 'a' => ('a-1'..'a-1000').to_a,
               'b' => ('b-1'..'b-1000').to_a }.freeze
@@ -34,11 +32,11 @@ module MockElasticsearchRails
   end
 
   class Model
-    def self.search(*args)
-      Response.new(*args)
+    def self.search(*)
+      Response.new(*)
     end
 
-    extend Pagy::ElasticsearchRails
+    extend Pagy::Search
   end
 
   class ResponseES7 < Response
@@ -49,8 +47,8 @@ module MockElasticsearchRails
   end
 
   class ModelES7 < Model
-    def self.search(*args)
-      ResponseES7.new(*args)
+    def self.search(*)
+      ResponseES7.new(*)
     end
   end
 
@@ -73,8 +71,8 @@ module MockElasticsearchRails
   end
 
   class ModelES5 < Model
-    def self.search(*args)
-      ResponseES5.new(*args)
+    def self.search(*)
+      ResponseES5.new(*)
     end
   end
 end

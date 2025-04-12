@@ -1,0 +1,10 @@
+---
+client_max_limit__view_methods_test_0001_renders_or_skips_the_output_depending_on_client_max_limit:
+  :selector_1: '<span class="pagy limit-tag-js" data-pagy="WyJsdGoiLDQxLCIvZm9vP3BhZ2U9UCAmbGltaXQ9TCAiXQ=="><label>Show
+    <input name="limit" type="number" min="1" max="100" value="20" style="padding:
+    0; text-align: center; width: 3rem;"><a style="display: none;">#</a> items per
+    page</label></span>'
+  :selector_2: '<span id="test-id" class="pagy limit-tag-js" data-pagy="WyJsdGoiLDQxLCIvZm9vP3BhZ2U9UCAmbGltaXQ9TCAiXQ=="><label>Show
+    <input name="limit" type="number" min="1" max="100" value="20" style="padding:
+    0; text-align: center; width: 3rem;"><a style="display: none;">#</a> products
+    per page</label></span>'

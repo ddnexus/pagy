@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Pagy AI
+    url: https://gurubase.io/g/pagy
+    about: Good starting point for further investigation.
   - name: How To
-    url: https://ddnexus.github.io/pagy/docs/how-to/
+    url: https://ddnexus.github.io/pagy/guides/how-to/
     about: Quick recipes to get what you want from pagy
   - name: Pagy Q&A Discussions
     url: https://github.com/ddnexus/pagy/discussions/categories/q-a
     about: Ask and answer questions here
-  - name: Pagy Trained AI
-    url: https://gurubase.io/g/pagy
-    about: Ask the LLM and it will attempt to answer. Warning - The information may not be 100% accurate, but it serves as a good starting point for further investigation.

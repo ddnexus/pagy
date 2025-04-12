@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="e2e" type="js.build_tools.npm" folderName="Lint">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="e2e-lint" />
+    </scripts>
+    <node-interpreter value="project" />
+    <package-manager value="/opt/node/bin/bun" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

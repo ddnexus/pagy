@@ -16,13 +16,15 @@
 # URL
 #    http://0.0.0.0:8000
 
-VERSION = '9.3.4'
+VERSION = '10.0.0'
 
-# Gemfile
+if VERSION != Pagy::VERSION
+  Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
+end
+
+# Bundle
 require 'bundler/inline'
-require 'bundler'
-Bundler.configure
-gemfile(ENV['PAGY_INSTALL_BUNDLE'] == 'true') do
+gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
   source 'https://rubygems.org'
   gem 'oj'
   gem 'puma'
@@ -47,25 +49,16 @@ class PagyRails < Rails::Application # :nodoc:
 
   routes.draw do
     root to: 'comments#index'
-    get '/javascripts/:file', to: 'pagy#javascripts', file: /.*/
+    get '/javascript/:file', to: 'pagy#javascript', file: /.*/
   end
 end
 
 # AR config
-dir = Rails.env.development? ? '.' : Dir.pwd  # app dir in dev or pwd otherwise
+dir = Rails.env.development? ? '.' : Dir.pwd # app dir in dev or pwd otherwise
 unless File.writable?(dir)
   warn "ERROR: directory #{dir.inspect} is not writable (the pagy-rails-app needs to create DB files)"
   exit 1
 end
-
-# Pagy initializer
-require 'pagy/extras/pagy'
-require 'pagy/extras/limit'
-require 'pagy/extras/overflow'
-require 'pagy/extras/headers'
-Pagy::DEFAULT[:limit]    = 10
-Pagy::DEFAULT[:overflow] = :empty_page
-Pagy::DEFAULT.freeze
 
 # Activerecord initializer
 ActiveRecord::Base.logger = Logger.new(OUTPUT)
@@ -84,11 +77,15 @@ end
 # Models
 class Post < ActiveRecord::Base # :nodoc:
   has_many :comments
-end # :nodoc:
+end
+
+# :nodoc:
 
 class Comment < ActiveRecord::Base # :nodoc:
   belongs_to :post
-end # :nodoc:
+end
+
+# :nodoc:
 
 # Unused model, useful to test overriding conflicts
 module Calendar
@@ -102,31 +99,27 @@ Post.all.each_with_index do |post, pi|
   2.times { |ci| Comment.create(post:, body: "Comment #{ci + 1} to Post #{pi + 1}") }
 end
 
-# Helpers
-module CommentsHelper
-  include Pagy::Frontend
-end
-
 # Controllers
 class CommentsController < ActionController::Base # :nodoc:
   include Rails.application.routes.url_helpers
-  include Pagy::Backend
+  include Pagy::Method
 
   def index
-    @pagy, @comments = pagy(Comment.all)
-    pagy_headers_merge(@pagy)
+    @pagy, @comments = pagy(:offset, Comment.all, limit: 10, client_max_limit: 100)
+    # Reload the page in the network tab of the Chrome Inspector to check
+    # response.headers.merge!(@pagy.headers_hash)
     render inline: TEMPLATE
   end
 end
 
-# You don't need this in real rails apps (see https://ddnexus.github.io/pagy/docs/api/javascript/setup/#2-configure)
+# You don't need this in real rails apps (see https://ddnexus.github.io/pagy/resources/javascript)
 class PagyController < ActionController::Base
-  def javascripts
+  def javascript
     format = params[:file].split('.').last
     if format == 'js'
-      render js: Pagy.root.join('javascripts', params[:file]).read
+      render js: Pagy::ROOT.join('javascript', params[:file]).read
     elsif format == 'map'
-      render json: Pagy.root.join('javascripts', params[:file]).read
+      render json: Pagy::ROOT.join('javascript', params[:file]).read
     end
   end
 end
@@ -139,7 +132,7 @@ TEMPLATE = <<~ERB
     <html>
     <head>
     <title>Pagy Rails App</title>
-      <script src="/javascripts/pagy.min.js"></script>
+      <script src="/javascript/pagy.js"></script>
       <script>
         window.addEventListener("load", Pagy.init);
       </script>
@@ -156,8 +149,14 @@ TEMPLATE = <<~ERB
           margin: 0 !important;
           font-family: sans-serif !important;
         }
-        .content {
+        .main-content {
           padding: 1rem 1.5rem 2rem !important;
+        }
+        .pagy, .pagy-bootstrap, .pagy-bulma {
+          padding: .5em;
+          margin: .3em 0;
+          width: fit-content;
+          box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.2);
         }
 
         /* Quick demo for overriding the element style attribute of certain pagy helpers
@@ -170,16 +169,16 @@ TEMPLATE = <<~ERB
           If you want to customize the style,
           please replace the line below with the actual file content
         */
-        <%== Pagy.root.join('stylesheets', 'pagy.css').read %>
+        <%== Pagy::ROOT.join('stylesheet/pagy.css').read %>
       </style>
     </head>
 
     <body>
 
-      <div class="content">
+      <div class="main-content">
         <h1>Pagy Rails App</h1>
         <p> Self-contained, standalone Rails app usable to easily reproduce any rails related pagy issue.</p>
-        <p>Please, report the following versions in any new issue.</p>
+
         <h2>Versions</h2>
         <ul>
           <li>Ruby:  <%== RUBY_VERSION %></li>
@@ -194,22 +193,26 @@ TEMPLATE = <<~ERB
           <p style="margin: 0;"><%= comment.body %></p>
         <% end %>
         </div>
+
         <hr>
 
-        <h4>pagy_nav</h4>
-        <%== pagy_nav(@pagy, id: 'nav', aria_label: 'Pages nav') %>
+        <h4>@pagy.series_nav</h4>
+        <%== @pagy.series_nav(id: 'series-nav',
+                              aria_label: 'Pages nav') %>
 
-        <h4>pagy_nav_js</h4>
-        <%== pagy_nav_js(@pagy, id: 'nav-js', aria_label: 'Pages nav_js') %>
+        <h4>@pagy.series_nav_js</h4>
+        <%== @pagy.series_nav_js(id: 'series-nav-js',
+                                 aria_label: 'Pages nav_js') %>
 
-        <h4>pagy_combo_nav_js</h4>
-        <%== pagy_combo_nav_js(@pagy, id: 'combo-nav-js', aria_label: 'Pages combo_nav_js') %>
+        <h4>@pagy.input_nav_js</h4>
+        <%== @pagy.input_nav_js(id: 'input-nav-js',
+                                aria_label: 'Pages input_nav_js') %>
 
-        <h4>pagy_limit_selector_js</h4>
-        <%== pagy_limit_selector_js(@pagy, id: 'limit-selector-js') %>
+        <h4>@pagy.limit_tag_js</h4>
+        <%== @pagy.limit_tag_js(id: 'limit-tag-js') %>
 
-        <h4>pagy_info</h4>
-        <%== pagy_info(@pagy, id: 'pagy-info') %>
+        <h4>@pagy.info_tag</h4>
+        <%== @pagy.info_tag(id: 'pagy-info') %>
       </div>
 
     </body>

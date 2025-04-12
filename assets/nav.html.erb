@@ -1,0 +1,29 @@
+<%# IMPORTANT: replace '<%=' with '<%==' if you run this in rails %>
+
+<%# The a variable below is set to a lambda that generates the a tag %>
+<%# Usage: anchor_tag = a_lambda.(page_number, text, classes: nil, aria_label: nil) %>
+<% a_lambda = pagy.send(:a_lambda) %>
+<nav class="pagy nav" aria-label="Pages">
+  <%# Previous page link %>
+  <% if pagy.previous %>
+    <%= a_lambda.(pagy.previous, '&lt;', aria_label: 'Previous') %>
+  <% else %>
+    <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
+  <% end %>
+  <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
+  <% pagy.send(:series).each do |item| %>
+    <% if item.is_a?(Integer) %>
+      <%= a_lambda.(item) %>
+    <% elsif item.is_a?(String) %>
+      <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
+    <% elsif item == :gap %>
+      <a role="link" aria-disabled="true" class="gap">&hellip;</a>
+    <% end %>
+  <% end %>
+  <%# Next page link %>
+  <% if pagy.next %>
+    <%= a_lambda.(pagy.next, '&gt;', aria_label: 'Next') %>
+  <% else %>
+    <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
+  <% end %>
+</nav>

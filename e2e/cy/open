@@ -9,4 +9,4 @@ root="$(git rev-parse --show-toplevel)"
 . "$root/scripts/cd-and-back.sh"
 cd "$root/e2e"
 
-start-test "bundle exec $root/gem/bin/pagy $app -p $port" http://0.0.0.0:$port --no-install "cypress open"
+start-test "CY_TEST=true bundle exec $root/gem/bin/pagy $app -p $port" http://0.0.0.0:$port "cypress open"

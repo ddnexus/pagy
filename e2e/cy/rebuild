@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+port=8080
+
+root="$(git rev-parse --show-toplevel)"
+. "$root/scripts/cd-and-back.sh"
+cd "$root/e2e"
+
+echo "Reconciling the test snapshots..."
+echo > snapshots.js
+
+test () {
+	NODE_NO_WARNINGS=1 \
+	start-test "CY_TEST=true bundle exec $root/gem/bin/pagy $app -p $port -q > /dev/null" "http://0.0.0.0:$port" \
+	"cypress run --quiet --config baseUrl=http://0.0.0.0:$port --spec cypress/e2e/$app.cy.ts"
+}
+
+for app in demo repro rails calendar keynav
+do
+	port=$((port+1))
+	test
+done

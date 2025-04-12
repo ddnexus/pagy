@@ -1,6 +1,8 @@
-# :arabic pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+# See https://ddnexus.github.io/pagy/resources/i18n
+
 ar:
   pagy:
+    p11n: 'Arabic'
     aria_label:
       nav:
         zero: "لا يوجد صفحات"
@@ -9,9 +11,9 @@ ar:
         few: "صفحات"
         many: "صفحات"
         other: "صفحات"
-      prev: "السابق"
+      previous: "السابق"
       next: "التالي"
-    prev: "&lt;"
+    previous: "&lt;"
     next: "&gt;"
     gap: "&hellip;"
     item_name:
@@ -21,9 +23,10 @@ ar:
       few: "قليل"
       many: "كثير"
       other: "عناصر"
-    info:
+    info_tag:
+      no_count: "الصفحة %{page} من %{pages}"
       no_items: "لا يوجد %{item_name}"
       single_page: "عرض %{count} %{item_name}"
       multiple_pages: "عرض %{item_name} %{from}-%{to} من اجمالي %{count}"
-    combo_nav_js: "الصفحة %{page_input} من %{pages}"
-    limit_selector_js: "عرض %{limit_input} %{item_name} لكل صفحة"
+    input_nav_js: "الصفحة %{page_input} من %{pages}"
+    limit_tag_js: "عرض %{limit_input} %{item_name} لكل صفحة"

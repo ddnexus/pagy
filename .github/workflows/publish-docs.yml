@@ -20,18 +20,18 @@ jobs:
           skip_after_successful_duplicate: 'true'
           paths: '[
             ".github/workflows/publish-docs.yml",
+            "assets/**",
+            "!assets/images/png/**",
             "docs/**",
             "gem/**",
-            "CHANGELOG.md",
-            "CHANGELOG_LEGACY.md",
-            "playground.md",
-            "quick-start.md",
             "README.md",
-            "README.yml",
             "retype.yml"
             ]'
           paths_ignore: '[
-            "docs/README.md"
+            "gem/apps/**",
+            "gem/javascript/**",
+            "gem/locales/**",
+            "!gem/locales/en.yml"
             ]'
           do_not_skip: '["workflow_dispatch"]'
 
@@ -42,8 +42,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.x
       - uses: retypeapp/action-build@v3
-      - uses: retypeapp/action-github-pages@v3
+      - uses: retypeapp/action-github-pages@latest
         with:
           branch: docs-site
           update-branch: true

@@ -6,10 +6,9 @@ describe(`[${app}] Test helpers`, () => {
         cy.visit("/");
     });
 
-    testNav(app, "#nav", {});
-    testNav(app, "#nav-js", {});
-    testNav(app, "#nav-js-responsive", {rjs: true});
-    testComboNav(app, "#combo-nav-js");
+    testNav(app, "#series-nav", {});
+    testNav(app, "#series-nav-js-responsive", {rjs: true});
+    testComboNav(app, "#input-nav-js");
     testInfo(app, "#pagy-info");
-    testLimitSelector(app, "#limit-selector-js");  // no style, no trim
+    testLimitSelector(app, "#limit-tag-js");
 });

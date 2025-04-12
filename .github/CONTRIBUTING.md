@@ -17,8 +17,8 @@ Here are a few useful information for contributing:
     - Ensure you are basing your PR on the `master` branch and keep rebasing it on `master` when it changes
     - **Code**
        - You can have a decent development environment already setup by just using one of the apps in
-      the [Pagy Playground](https://ddnexus.github.io/pagy/playground) and/or
-      with the [Pagy::Console](https://ddnexus.github.io/pagy/docs/api/console/) directly from the repo
+      the [Pagy Playground](https://ddnexus.github.io/pagy/sandbox/playground) and/or
+      with the [Pagy::Console](https://ddnexus.github.io/pagy/sandbox/console/) directly from the repo
     - **Docs**
       - The docs run on retype, and the repo is configured for its linux package. You may want to install the [platform specific npm package](https://retype.com/guides/getting-started/#platform-specific) in order to use it
       - `cd` in the pagy root directory
