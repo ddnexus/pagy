@@ -115,7 +115,7 @@ window.Pagy = (() => {
       link.href = getUrl(input.value);
       link.click();
     };
-    ["change", "focus"].forEach((e) => input.addEventListener(e, () => input.select()));
+    input.addEventListener("focus", () => input.select());
     input.addEventListener("focusout", action);
     input.addEventListener("keypress", (e) => {
       if (e.key == "Enter") {
@@ -147,5 +147,5 @@ window.Pagy = (() => {
   };
 })();
 
-//# debugId=C0124A51020435A464756E2164756E21
+//# debugId=A445A612C9DC53D564756E2164756E21
 //# sourceMappingURL=pagy.js.map

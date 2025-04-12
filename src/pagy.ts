@@ -179,19 +179,19 @@ const Pagy = (() => {
           link    = <HTMLAnchorElement>element.querySelector("a"),
           initial = input.value,
           action  = () => {
-      if (input.value === initial) { return }  // not changed
-      const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
-      if (val < min || val > max) {  // reset invalid/out-of-range
-        input.value = initial;
-        input.select();
-        return;
-      }
-      link.href = getUrl(input.value);
-      link.click();
-    };
-    ["change", "focus"].forEach(e => input.addEventListener(e, () => input.select()));  // auto-select
-    input.addEventListener("focusout", action);                                         // trigger action
-    input.addEventListener("keypress", e => { if (e.key == "Enter") { action() } });    // trigger action
+                      if (input.value === initial) { return }  // not changed
+                      const [min, val, max] = [input.min, input.value, input.max].map(n => parseInt(n) || 0);
+                      if (val < min || val > max) {  // reset invalid/out-of-range
+                        input.value = initial;
+                        input.select();
+                        return;
+                      }
+                      link.href = getUrl(input.value);
+                      link.click();
+                    };
+    input.addEventListener("focus", () => input.select());
+    input.addEventListener("focusout", action);
+    input.addEventListener("keypress", e => { if (e.key == "Enter") { action() } });
   };
 
   // Public interface

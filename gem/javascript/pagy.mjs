@@ -114,7 +114,7 @@ const Pagy = (() => {
       link.href = getUrl(input.value);
       link.click();
     };
-    ["change", "focus"].forEach((e) => input.addEventListener(e, () => input.select()));
+    input.addEventListener("focus", () => input.select());
     input.addEventListener("focusout", action);
     input.addEventListener("keypress", (e) => {
       if (e.key == "Enter") {
