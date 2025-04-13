@@ -25,6 +25,10 @@ if VERSION != Pagy::VERSION
   Warning.warn("\n>>> WARNING! '#{File.basename(__FILE__)}-#{VERSION}' running with 'pagy-#{Pagy::VERSION}'! <<< \n\n")
 end
 
+APP_MODE = :demo
+# APP_MODE = :screenshot
+# APP_MODE = :mask
+
 # Bundle
 require 'bundler/inline'
 gemfile(!Pagy::ROOT.join('pagy.gemspec').exist?) do
@@ -93,11 +97,13 @@ class PagyDemo < Sinatra::Base
     def style_menu
       html = +%(<div id="style-menu"> )
       NAMES.each_key do |style|
+        next unless APP_MODE == :demo || %i[pagy bootstrap bulma].include?(style)
+
         name    = style.to_s
         name[0] = name[0].capitalize
         html << %(<a href="/#{style}">#{name}</a>)
       end
-      html << %(<a href="/template">Template</a>)
+      (html << %(<a href="/template">Template</a>)) if APP_MODE == :demo
       html << %(</div>)
     end
 
@@ -114,40 +120,6 @@ class PagyDemo < Sinatra::Base
       }</pre></details>)
     end
   end
-
-  SCREENSHOT_STYLE = <<~HTML
-    <style>
-      .pagy, .pagy-bootstrap, .pagy-bulma {
-        padding: .5em;
-      }
-    </style>
-  HTML
-
-  MASK_STYLE = <<~HTML
-    <style>
-      .pagy, .pagy-bootstrap, .pagy-bulma {
-        background-color: black !important;
-        padding: .5em;
-      }
-      .pagy *:not(.gap) {
-        background-color: white !important;
-      }
-      .pagy *, .pagy-bootstrap *,
-      .pagy-bulma a,
-      .pagy-bulma label,
-      .pagy-bulma .pagination-ellipsis  {
-        color: white !important;
-      }
-      .pagy-bootstrap .page-item .page-link,
-      .pagy-bulma li.pagination-link,
-      .pagy-bulma input,
-      .pagy-bulma a, .pagy-bulma a.pagination-previous, .pagy-bulma a.pagination-next {
-        border-color: white !important;
-        background-color: white !important;
-        opacity: 1;
-      }
-    </style>
-  HTML
 
   # Views
   template :layout do
@@ -299,8 +271,43 @@ class PagyDemo < Sinatra::Base
             --line-height: 1.75;
           }
         </style>
-        <%# SCREENSHOT_STYLE %>
-        <%# MASK_STYLE %>
+        <% if APP_MODE != :demo %>
+        <style>
+          .pagy, .pagy-bootstrap, .pagy-bulma {
+            padding: .5em;
+          }
+         details, span.notes {
+            display: none;
+          }
+        </style>
+        <% end %>
+        <% if APP_MODE == :mask %>
+        <style>
+          .pagy, .pagy-bootstrap, .pagy-bulma {
+            background-color: black !important;
+          }
+          .pagy *:not(.gap) {
+            background-color: white !important;
+          }
+          .pagy a:not(.gap):not([href]) { /* disabled and current */
+            opacity: 1 !important;
+          }
+          .pagy *, .pagy-bootstrap *,
+          .pagy-bulma a,
+          .pagy-bulma label,
+          .pagy-bulma .pagination-ellipsis  {
+            color: white !important;
+          }
+          .pagy-bootstrap .page-item .page-link,
+          .pagy-bulma li.pagination-link,
+          .pagy-bulma input,
+          .pagy-bulma a, .pagy-bulma a.pagination-previous, .pagy-bulma a.pagination-next {
+            border-color: white !important;
+            background-color: white !important;
+            opacity: 1;
+          }
+        </style>
+        <% end %>
       </head>
       <body>
         <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
@@ -373,10 +380,13 @@ class PagyDemo < Sinatra::Base
       <div id="main-container">
         <div id="content">
           <hr id="top-hr">
-          <h2>@records</h2>
-          <p id="records"><%= @records.join(',') %></p>
+          <% if APP_MODE == :demo %>
+            <h2>@records</h2>
+            <p id="records"><%= @records.join(',') %></p>
+          <% end %>
 
           <h2>@pagy.series_nav<br/>
+            <%= '(capture page-1)' unless APP_MODE == :demo %>
             <span class="notes">Series nav <code>{slots: 7}</code></span>
           </h2>
           <%= html = @pagy.series_nav(style, classes:,
@@ -385,6 +395,7 @@ class PagyDemo < Sinatra::Base
           <%= highlight(html) %>
 
           <h2>@pagy.series_nav_js<br/>
+            <%= '(capture page-11 showing 7, 9, and 11 slots)' unless APP_MODE == :demo %>
             <span class="notes">Responsive nav: <code>{steps: {0 => 5, 500 => 7, 600 => 9, 700 => 11}}</code><br/>
             (Resize the window to see)
             </span>
@@ -395,19 +406,29 @@ class PagyDemo < Sinatra::Base
                                          steps: { 0 => 5, 500 => 7, 600 => 9, 700 => 11 }) %>
           <%= highlight(html) %>
 
-          <h2>@pagy.input_nav_js</h2>
+          <h2>@pagy.input_nav_js<br>
+            <%= '(capture page-11)' unless APP_MODE == :demo %>
+          </h2>
           <%= html = @pagy.input_nav_js(style, classes:,
                                         id: 'input-nav-js',
                                         aria_label: 'Pages inpup_nav_js') %>
           <%= highlight(html) %>
 
-          <h2>@pagy.limit_tag_js</h2>
-          <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
-          <%= highlight(html) %>
+          <% if name.match(/pagy|tailwind/) || APP_MODE == :demo %>
+            <h2>@pagy.limit_tag_js</h2>
+            <%= html = @pagy.limit_tag_js(id: 'limit-tag-js') %>
+            <%= highlight(html) %>
+          <% end %>
 
-          <h2>@pagy.info_tag</h2>
-          <%= html = @pagy.info_tag(id: 'pagy-info') %>
-          <%= highlight(html) %>
+          <% if name.match(/pagy|tailwind/) && APP_MODE != :demo %>
+            <h2>anchor_tags</h2>
+            <nav class="pagy" id="anchor-tags" aria-label="Pagy prev-next"><%= @pagy.previous_tag + ' ' + @pagy.next_tag %></nav>
+          <% end %>
+          <% if APP_MODE == :demo %>
+            <h2>@pagy.info_tag</h2>
+            <%= html = @pagy.info_tag(id: 'pagy-info') %>
+            <%= highlight(html) %>
+          <% end %>
           <br><br> <!-- bulma fix -->
         </div>
       </div>

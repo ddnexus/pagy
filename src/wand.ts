@@ -277,7 +277,7 @@ type Presets = { [key: string]: string };
     presetMenu.addEventListener('change', (e) => applyPreset((<HTMLSelectElement>e.target).value));
 
     // Initial load logic
-    const preset = getCookie(PRESET) ?? 'Default';
+    const preset     = getCookie(PRESET) ?? 'Default';
     presetMenu.value = preset; // Set dropdown value first
     // Check for override *after* setting preset dropdown, apply override if exists
     const initialOverride = getCookie(OVERRIDE);

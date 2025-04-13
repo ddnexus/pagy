@@ -15,7 +15,9 @@ categories:
 ---
 
 :::raised
-![](../../assets/images/info_tag.png){width=311}
+
+<p id="text-only">Displaying items 201-220 of 1000 in total</p>
+
 :::
 <br>
 
