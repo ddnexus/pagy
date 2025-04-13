@@ -1,14 +1,14 @@
 ---
-Pagy_nav_test__previous_tag_test_0003_renders_the_previous_tag_for_page_6:
-  :r1: <a href="/foo?page=5" rel="prev" aria-label="Previous">&lt;</a>
-  :r2: <a href="/foo?page=5+7" rel="prev" aria-label="Previous">&lt;</a>
-  :r3: <a href="/foo?page=5" rel="prev" aria-label="My previous page">PREV</a>
-  :r4: <a href="/foo?page=5+7" rel="prev" aria-label="My previous page">PREV</a>
 Pagy_nav_test__previous_tag_test_0001_renders_the_previous_tag_for_page_1:
   :r1: <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
   :r2: <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
   :r3: <a role="link" aria-disabled="true" aria-label="My previous page">PREV</a>
   :r4: <a role="link" aria-disabled="true" aria-label="My previous page">PREV</a>
+Pagy_nav_test__previous_tag_test_0003_renders_the_previous_tag_for_page_6:
+  :r1: <a href="/foo?page=5" rel="prev" aria-label="Previous">&lt;</a>
+  :r2: <a href="/foo?page=5+7" rel="prev" aria-label="Previous">&lt;</a>
+  :r3: <a href="/foo?page=5" rel="prev" aria-label="My previous page">PREV</a>
+  :r4: <a href="/foo?page=5+7" rel="prev" aria-label="My previous page">PREV</a>
 Pagy_nav_test__previous_tag_test_0004_renders_the_previous_tag_for_page_50:
   :r1: <a href="/foo?page=49" rel="prev" aria-label="Previous">&lt;</a>
   :r2: <a href="/foo?page=49+50" rel="prev" aria-label="Previous">&lt;</a>
@@ -114,16 +114,16 @@ Pagy_nav_test__input_nav_js_test_0001_renders_first,_intermediate_and_last_pages
     name="page" type="number" min="1" max="6" value="6" aria-current="page" style="text-align:
     center; width: 2rem; padding: 0;"><a style="display: none;">#</a> of 6</label><a
     role="link" aria-disabled="true" aria-label="Next">&gt;</a></nav>'
-Pagy_nav_test__next_tag_test_0003_renders_the_next_tag_for_page_6:
-  :r1: <a href="/foo?page=7" rel="next" aria-label="Next">&gt;</a>
-  :r2: <a href="/foo?page=7+7" rel="next" aria-label="Next">&gt;</a>
-  :r3: <a href="/foo?page=7" rel="next" aria-label="My next page">NEXT</a>
-  :r4: <a href="/foo?page=7+7" rel="next" aria-label="My next page">NEXT</a>
 Pagy_nav_test__next_tag_test_0001_renders_the_next_tag_for_page_1:
   :r1: <a href="/foo?page=2" rel="next" aria-label="Next">&gt;</a>
   :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
   :r3: <a href="/foo?page=2" rel="next" aria-label="My next page">NEXT</a>
   :r4: <a role="link" aria-disabled="true" aria-label="My next page">NEXT</a>
+Pagy_nav_test__next_tag_test_0003_renders_the_next_tag_for_page_6:
+  :r1: <a href="/foo?page=7" rel="next" aria-label="Next">&gt;</a>
+  :r2: <a href="/foo?page=7+7" rel="next" aria-label="Next">&gt;</a>
+  :r3: <a href="/foo?page=7" rel="next" aria-label="My next page">NEXT</a>
+  :r4: <a href="/foo?page=7+7" rel="next" aria-label="My next page">NEXT</a>
 Pagy_nav_test__next_tag_test_0004_renders_the_next_tag_for_page_50:
   :r1: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
   :r2: <a role="link" aria-disabled="true" aria-label="Next">&gt;</a>
