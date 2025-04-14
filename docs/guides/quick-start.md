@@ -21,7 +21,7 @@ gem 'pagy', '~> 10.0' # omit the patch version
 #### • Play with it directly...
 
 - **...in the Browser**
-  - Run `pagy demo` in your terminal, and visit http://0.0.0.0:8000
+  - Run `pagy demo` in your terminal, and visit http://127.0.0.1:8000
 - **...in IRB**
   - Include the [Pagy::Console](../sandbox/console)
 
