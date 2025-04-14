@@ -71,10 +71,20 @@
       fontWeight: { name: "--font-weight", unit: "" },
       lineHeight: { name: "--line-height", unit: "" }
     };
+    function updateColorRamps() {
+      const h = controls.hue.input.value;
+      const s = controls.saturation.input.value;
+      const l = controls.lightness.input.value;
+      controls.saturation.input.style.background = `linear-gradient(to right, hsl(${h}, 0%, ${l}%), hsl(${h}, 100%, ${l}%))`;
+      controls.lightness.input.style.background = `linear-gradient(to right, hsl(${h}, ${s}%, 0%), hsl(${h}, ${s}%, 50%), hsl(${h}, ${s}%, 100%))`;
+    }
     for (const [id, c] of Object.entries(controls)) {
       c.input = shadow.getElementById(id);
-      c.input.addEventListener("input", () => {
+      c.input.addEventListener("input", (e) => {
         updateStyle();
+        if (["hue", "saturation", "lightness"].includes(id)) {
+          updateColorRamps();
+        }
         presetMenu.value = "";
         setCookie(PRESET, "");
       });
@@ -175,7 +185,7 @@
         --B: 1;
         --H: 255;
         --S: 63;
-        --L: 39;
+        --L: 43;
         --spacing: 0rem;
         --padding: 0.875rem;
         --rounding: 0rem;
@@ -261,6 +271,7 @@
       } else {
         deleteCookie(OVERRIDE);
       }
+      updateColorRamps();
     }
     function getCookiePosition() {
       const position = getCookie(POSITION);
@@ -448,10 +459,7 @@
           border-radius: ${scale}rem;
           padding-left: ${scale * 0.25}rem !important;
           border: none;
-          box-shadow: ${scale * 0.125}rem
-                      ${scale * 0.125}rem
-                      ${scale * 0.3125}rem 
-                      0 rgba(0,0,0,0.3);
+          box-shadow: inset 0 0 ${scale * 0.2}rem ${pagyColor};
         }
         #panel {
           accent-color: ${baseColor};
@@ -503,6 +511,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          box-shadow: inset 0 0 ${scale * 0.2}rem ${pagyColor};
         }
         #top-bar label {
           display: flex;
@@ -537,16 +546,73 @@
           padding: ${scale * 0.8}rem ${scale}rem;
           border-top: ${scale * 0.15}rem solid ${pagyColor};
           border-bottom: ${scale * 0.15}rem solid ${pagyColor};
-          height: ${scale * 28.9}rem;
+          height: ${scale * 29.7}rem;
         }
         #controls {
           display: grid;
           grid-template-columns: min-content 1fr;
-          grid-template-rows: repeat(11, ${scale * 1.5}rem) ${scale * 12}rem;
+          grid-template-rows: ${scale * 1.5}rem
+                                  ${scale * 0.7}rem
+                              repeat(3, ${scale * 1.3}rem)
+                                  ${scale * 0.7}rem
+                              repeat(4, ${scale * 1.3}rem)
+                                  ${scale * 0.7}rem
+                              repeat(3, ${scale * 1.3}rem)
+                                  ${scale * 0.7}rem
+                              ${scale * 12}rem;
           grid-column-gap: ${scale * 0.625}rem;
+        }
+        #controls hr.separator {
+          grid-column: 1 / -1;
+          border: none;
+          border-bottom: ${scale * 0.15}rem dotted #909090; /* Style the line */
+          width: 100%;
+          height: ${scale * 0.03125}rem;
+          align-self: center;
         }
         #controls input {
           margin: 0;
+        }
+        #controls input[type="range"] {
+          align-self: center;
+        }
+        #hue {
+          background: linear-gradient(to right, hsl(0, 100%, 50%), hsl(60, 100%, 50%), hsl(120, 100%, 50%), hsl(180, 100%, 50%), hsl(240, 100%, 50%), hsl(300, 100%, 50%), hsl(360, 100%, 50%));
+          height: ${scale * 0.8}rem; /* Adjusted for thumb visibility */
+        }
+        #saturation {
+          background: linear-gradient(to right, hsl(0, 0%, 50%), hsl(0, 100%, 50%)); /* Placeholder - JS will update */
+          height: ${scale * 0.8}rem; /* Adjusted for thumb visibility */
+        }
+        #lightness {
+          background: linear-gradient(to right, hsl(0, 100%, 0%), hsl(0, 100%, 50%), hsl(0, 100%, 100%)); /* Placeholder - JS will update */
+          height: ${scale * 0.8}rem; /* Adjusted for thumb visibility */
+        }
+        #hue, #saturation, #lightness {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100%;
+          border-radius: ${scale * 0.5}rem; /* Rounded track */
+          outline: none;
+          box-shadow: inset 0 0 ${scale * 0.1}rem rgba(0,0,0,0.5);
+        }
+        #hue::-webkit-slider-thumb, #saturation::-webkit-slider-thumb, #lightness::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: ${scale}rem; /* Thumb size */
+          height: ${scale}rem; /* Thumb size */
+          background: transparent;
+          border: ${scale * 0.15}rem solid ${baseColor};
+          border-radius: 50%;
+          cursor: pointer;
+        }
+        #hue::-moz-range-thumb, #saturation::-moz-range-thumb, #lightness::-moz-range-thumb {
+          width: ${scale}rem; /* Thumb size */
+          height: ${scale}rem; /* Thumb size */
+          background: transparent;
+          border: ${scale * 0.15}rem solid ${baseColor};
+          border-radius: 50%;
+          cursor: pointer;
         }
         #controls label {
           font-weight: 600;
@@ -724,26 +790,30 @@
               <option value="1">Light</option>
               <option value="-1">Dark</option>
             </select>
+            <hr class="separator">
             <label for="hue">Hue</label>
             <input type="range" id="hue" min="0" max="360">
             <label for="saturation">Saturation</label>
             <input type="range" id="saturation" min="0" max="100">
             <label for="lightness">Lightness</label>
             <input type="range" id="lightness" min="0" max="100">
+            <hr class="separator">
             <label for="spacing">Spacing</label>
             <input type="range" id="spacing" min="0" max="1.5" step="0.0625">
             <label for="padding">Padding</label>
             <input type="range" id="padding" min="0" max="1.5" step="0.0625">
             <label for="rounding">Rounding</label>
             <input type="range" id="rounding" min="0" max="3" step="0.0625">
-            <label for="borderWidth">Border Width</label>
+            <label for="borderWidth">Borders</label>
             <input type="range" id="borderWidth" min="0" max="0.25" step="0.03125">
+            <hr class="separator">
             <label for="fontSize">Font Size</label>
             <input type="range" id="fontSize" min="0.75" max="2" step="0.0625">
             <label for="fontWeight">Font Weight</label>
             <input type="range" id="fontWeight" min="100" max="1000" step="50">
             <label for="lineHeight">Line Height</label>
             <input type="range" id="lineHeight" min="1.25" max="2.5" step="0.0625">
+            <hr class="separator">
             <label for="override">CSS Override</label>
             <div id="override-container">
               <textarea id="override" readonly></textarea>
@@ -776,18 +846,20 @@
               <dt>Presets</dt>
                 <dd>Pick a starting point to try and further customize.</dd>
               <dt>Close Icon</dt>
-                <dd>There is no dynamic close button by design.</dd>
+                <dd>There is no dynamic close button by design, so you won't forget to remove it in production.</dd>
             </dl>
             <h4>Controls</h4>
             <dl>
               <dt>Brightness</dt>
-                <dd>Toggle between Light and Dark theming. Adjust the lightness after toggling.</dd>
+                <dd>Toggle between Light and Dark theming calculation. Adjust the lightness after toggling.</dd>
               <dt>Hue, Saturation, Lightness</dt>
-                <dd>Adjust them to generate any color, however notice that the automatic calculations work better within certain ranges and combinations.</dd>
-              <dt>Padding, Font Size, Line Height</dt>
-                <dd>You can control the relative dimensions of the page links, through the interactions of these properties.</dd>
-              <dt>Other Properties</dt>
-                <dd>Self-explanatory.</dd>
+                <dd>Generate any color, however notice that the automatic calculations work better within certain ranges/combinations.</dd>
+              <dt>Spacing, Padding, Rounding, Borders</dt>
+                <dd>Control the layout and overall look.</dd>
+              <dt>Font Size, Font Weight, Line Height</dt>
+                <dd>Control the typography of the page links.</dd>
+              <dt>Interactions</dt>
+                <dd>The combination of Padding, Font Size, Line Height, controls the internal proportions of the page links.</dd>
               <dt>CSS Override</dt>
                 <dd>
                   <p>The set of <code>.pagy</code> rules currently applied.</p>
@@ -797,6 +869,8 @@
                     <li><span class="material-symbols-rounded help-copy-icon failure">error</span> <span class="button-desc">Failed! Feedback</li>
                   </ul>
                 </dd>
+              <dt>Opacity</dt>
+                <dd>It's a rarely used setting, so we didn't add it ATM. Just manually set the <code>--opacity</code> in your CSS Override if you need it.</dd>
             </dl>
             <h4>Customizing</h4>
             <p>You can change Pagy's styling quite radically, by just setting a few CSS Custom Properties:
