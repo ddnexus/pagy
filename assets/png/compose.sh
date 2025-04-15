@@ -20,6 +20,10 @@
 #     Run the Pagy executable directly from the pagy repository: i.e.:
 #             ./gem/bin/pagy demo
 #   * Save the png files in the assets/png/screenshots dir
+#   * Slots: please, capture the 3 slots size for bootstrap and bulma as well (e.g.:
+#                   series_nav_js-7-bootstrap, series_nav_js-9-bootstrap, series_nav_js-11-bootstrap,
+#                   series_nav_js-7-bulma, series_nav_js-9-bulma, series_nav_js-11-bulma
+#     )s indicated in their pages
 
 # 3. SCREENSHOT MASKS
 #   * Comment the `APP_MODE = :screenshot` line and uncomment the `APP_MODE = :mask`
