@@ -5,11 +5,16 @@
 #     https://chromewebstore.google.com/detail/fusebase-pro-capture-scre/fddbloohgcjopkmnjdeodjcfbgiimpcn
 #   * Use the "Capture Fragment" feature to capture the `.pagy` nav/div,
 #     save the screenshots/masks and name each file with the file name indicated in the demo.app
+#     Refer to
 #   * Open the the gem/apps/demo.ru app
 
 # 2. SCREENSHOTS
 #   * Comment the `APP_MODE = :demo` line and uncomment the `APP_MODE = :screenshot`
-#     in the gem/apps/demo.ru and run `pagy demo`
+#     in the gem/apps/demo.ru and run `pagy demo`. WARNING: if you have installed pagy
+#     as a gem, it is important that you run the correct version of your demo app, and
+#     not an outdated version. To be absolutely sure you are running the latest version
+#     Run the Pagy executable directly from the pagy repository: i.e.:
+#             ./gem/bin/pagy demo
 #   * Save the png files in the assets/png/screenshots dir
 
 # 3. SCREENSHOT MASKS
