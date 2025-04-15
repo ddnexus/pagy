@@ -1,11 +1,15 @@
 #!/usr/bin/env zsh
 
+# Background / Objective: to quickly and easily capture screenshot images of pagination links
+# with their respective "masks". This allows us to dispaly the images with transparency
+# to make it look good on whatever background we desire in the Pagy docs.
+# We found that doing things manually was extremely time consuming and error prone.
+
 # 1. PREPARATION
 #   * Install the Chrome extension FusionBase Pro
 #     https://chromewebstore.google.com/detail/fusebase-pro-capture-scre/fddbloohgcjopkmnjdeodjcfbgiimpcn
 #   * Use the "Capture Fragment" feature to capture the `.pagy` nav/div,
 #     save the screenshots/masks and name each file with the file name indicated in the demo.app
-#     Refer to
 #   * Open the the gem/apps/demo.ru app
 
 # 2. SCREENSHOTS
