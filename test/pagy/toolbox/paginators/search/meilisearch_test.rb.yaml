@@ -1,4 +1,16 @@
 ---
+meilisearch__controller_methods___pagy_meilisearch_test_0002_paginates_with_options:
+  :results:
+  - b-11
+  - b-12
+  - b-13
+  - b-14
+  - b-15
+  - b-16
+  - b-17
+  - b-18
+  - b-19
+  - b-20
 meilisearch__controller_methods___pagy_meilisearch_test_0001_paginates_response_with_defaults:
   :results:
   - a-41
@@ -21,15 +33,3 @@ meilisearch__controller_methods___pagy_meilisearch_test_0001_paginates_response_
   - a-58
   - a-59
   - a-60
-meilisearch__controller_methods___pagy_meilisearch_test_0002_paginates_with_options:
-  :results:
-  - b-11
-  - b-12
-  - b-13
-  - b-14
-  - b-15
-  - b-16
-  - b-17
-  - b-18
-  - b-19
-  - b-20
